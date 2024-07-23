@@ -1,0 +1,48 @@
+Seguendo l'esempio del teorema di Gauss, ci chiediamo qualora sia possibile esprimere in forma differenziale la legge $ \oint \vec{E} \cdot d\vec{l} = 0 $: per fare ciò, è necessario definire il rotore. \\
+%
+Consideriamo una curva chiusa $ \gamma $ ed una superficie $ S : \partial S = \gamma $ (tale superficie non è univoca); consideriamo un campo vettoriale $ \vec{F} $ e la sua circuitazione $ \Gamma \equiv \oint_{\gamma} \vec{F} \cdot d\vec{l} $: suddividendo $ \gamma $ in due loops $ \gamma_1 $ e $ \gamma_2 $ tali da avere un lato in comune, è evidente che $ \Gamma = \Gamma_1 + \Gamma_2 $, dunque in generale possiamo suddividere $ \gamma $ in $ \{\gamma_k\}_{k\in\mathbb{N}} $, così da avere $ \Gamma = \sum_{k} \Gamma_k $. Dato che $ \Gamma_k $ tende ad annullarsi all'aumentare del numero dei loops, possiamo prendere come rotore il limite del rapporto tra $ \Gamma_k $ e l'area $ S_k $ racchiusa da $ \gamma_k $: per eliminare l'ambiguità della superficie scelta, definiamo il rotore rispetto ad una particolare direzione, la quale fornisce la direzione del vettore normale alla superficie, mentre il verso è stabilito dalla regola della mano destra; abbiamo dunque la definizione di rotore:
+\begin{equation}
+	( \text{rot} \vec{F} ) \cdot \hat{n}_k = \lim_{S_k \rightarrow 0} \frac{\Gamma_k}{S_k}
+	\label{eq:}
+\end{equation}
+Dunque avremo che:
+\begin{equation}
+	\Gamma = \displaystyle\sum_{k = 1}^{N} ( \text{rot} \vec{F} ) \cdot \hat{n}_k S_k \,\xlongrightarrow[N \rightarrow \infty]{}\, \oiint_S ( \text{rot} \vec{F} ) \cdot d\vec{S}
+	\label{eq:}
+\end{equation}
+Abbiamo ricavato il teorema di Stokes:
+\begin{equation}
+	\oint_{\partial S} \vec{F} \cdot d\vec{l} = \oiint_S ( \text{rot} \vec{F} ) \cdot d\vec{S}
+	\label{eq:}
+\end{equation}
+
+\subsubsection{Rotore in coordinare cartesiane}
+
+Consideriamo un loop rettangolare $ \gamma $ sul piano $ \left(x,y\right) $ ed una corrispondente superficie chiusa con normale $ \hat{n} = \hat{e}_z $ e calcoliamo la componente del rotore $ ( \text{rot}\vec{F} )_z \equiv (\text{rot}\vec{F}) \cdot \hat{e}_z $; detti $ \vec{r}_0 $ il punto centrale del rettangolo, $ \vec{r}_1, \dots, \vec{r}_4 $ i punti medi dei suoi lati e $ \Delta x, \Delta y $ le loro lunghezze (supposte infinitesime), abbiamo che la circuitazione sarà:
+\begin{equation}
+\begin{split}
+	\Gamma &= \vec{F}_1 \cdot \hat{e}_x \Delta_x + \vec{F}_2 \cdot \hat{e}_y \Delta_y - \vec{F}_3 \cdot \hat{e}_x \Delta_x - \vec{F}_4 \cdot \hat{e}_4 \Delta_4 \\
+	       &= \left[ \frac{\partial F_x}{\partial y} \left( - \frac{\Delta y}{2} \right) - \frac{\partial F_x}{\partial y} \left( \frac{\Delta y}{2} \right) \right] \Delta x + \left[ \frac{\partial F_y}{\partial x} \left( \frac{\Delta x}{2} \right) - \frac{\partial F_y}{\partial x} \left( - \frac{\Delta x}{2} \right)  \right] \Delta y \\
+	       &= \left[ \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right] \Delta x \Delta y
+\end{split}
+	\label{eq:}
+\end{equation}
+
+Dato che l'area della superficie è $ S = \Delta x \Delta y $, si ha che $ (\text{rot} \vec{F})_z = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} $.\\
+%
+Per analogia si trovano anche le altre componenti e si arriva a:
+\begin{equation}
+	\text{rot} \vec{F} = \nabla \times \vec{F}
+	\label{eq:rotore}
+\end{equation}
+
+\subsubsection{Teorema di Helmholtz}
+
+Il teorema di Stokes permette una comoda caratterizzazione dei campi conservativi: $ \vec{F} $ è un campo conservativo $ \iff $ $ \oint \vec{F} \cdot d\vec{l} = 0 $ $ \iff $ $ \nabla\times \vec{F} = 0 $ $ \iff $ esiste una funzione scalare $ \phi : \vec{F} = \nabla\phi $. \\
+%
+Da ciò è possibile ricavare il teorema di Helmholtz: dato un campo vettoriale $ \vec{F}(\vec{r}) $ di cui sono noti la divergenza $ \nabla\cdot \vec{F} = \rho(\vec{r}) $ e il rotore $ \nabla\times \vec{F} = \vec{J}(\vec{r}) $, se queste due funzioni si annullano all'infinito più velocemente di $ \frac{1}{r^2} $, allora il campo è univocamente determinato da:
+\begin{equation}
+	\vec{F} = - \nabla V + \nabla\times \vec{A} \, , \qquad V(\vec{r}) = \frac{1}{4\pi} \iiint \displaystyle\frac{\nabla\cdot \vec{F}}{\abs{\vec{r} - \vec{r}\,'}} d\vec{r}\,' \, , \qquad \vec{A}(\vec{r}) = \frac{1}{4\pi} \iiint \displaystyle\frac{\nabla\times \vec{F}}{\abs{\vec{r} - \vec{r}\,'}} d\vec{r}\,'
+	\label{eq:th-helmholtz}
+\end{equation}
+ovvero esso è dato da una componente irrotazionale e da una solenoidale.
