@@ -1,0 +1,244 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\input{../imports.tex}
+
+\begin{document}
+
+\section{Magnetostatica}
+
+\subsection{Forza di Lorentz}
+
+Consideriamo una carica elettrica $ q $ con velocità $ \vec{v} $ immersa in un campo magnetico (o campo di induzione magnetica, u.d.m. tesla $ \text{T} = \text{N}\cdot\text{s}\cdot\text{C}^{-1}\cdot\text{m}^{-1} $) $ \vec{B} $: sperimentalmente, si osserva che la forza agente sulla carica è pari a $ \vec{F_B} = q \vec{v}\times\vec{B} $.\\
+%
+Se consideriamo anche la presenza di un campo elettrico $ \vec{E} $, otteniamo l'espressione della forza di Lorentz:
+\begin{equation}
+	\vec{F}_L = q ( \vec{E} + \vec{v} \times \vec{B} )
+	\label{eq:f-lotentz}
+\end{equation}
+Per misurare $ \vec{B} $ sono necessarie almeno due misure di velocità e forza, poiché, data una forza ed una velocità, esistono infinite combinazioni di $ \vec{B} $ e $ \theta $ che danno lo stesso prodotto vettoriale, e inoltre se $ \vec{B} $ genera una determinata forza, anche $ \vec{B} + k\vec{v} $ genera la stessa forza; con due coppie di misure $ (\vec{v}_1, \vec{F}_1 $ e $ (\vec{v}_2, \vec{F}_2 $ si ottiene:
+\begin{equation}
+	\vec{B} = \displaystyle\frac{1}{qv_1^2} \left[ \vec{F}_1 \times \vec{v}_1 + \displaystyle\frac{(\vec{F}_2 \times \vec{v}_2) \cdot \vec{v}_1}{v_2^2} \vec{v_1} \right]
+	\label{eq:}
+\end{equation}
+%
+È importante notare che la forza magnetica non compie lavoro: infatti, essendo essa sempre perpendicolare a $ \vec{v} $, si ha che $ dW_B = \vec{F_B} \cdot d\vec{l} = \vec{F_B} \cdot \vec{v} \, dt = 0$; pertanto, essa modificherà soltanto la direzione della velocità della carica, ma non il suo modulo.\\
+%
+Inoltre, sempre dato che $ \vec{F}_B \perp \vec{v} $, essa darà luogo ad un moto a spirale attorno alla linea di campo magnetico, dato dalla somma del moto rettilineo uniforme di $ \vec{v}_{\parallel} $ e di quello centripeto di $ \vec{v}_{\perp} $: questo moto a spirale è detto moto di ciclotrone. Possiamo calcolare il raggio di girazione $ r_g $ dell'orbita e la rispettiva frequenza di ciclotrone $ \nu_c $ imponendo $ F_B = F_c $, ottenendo:
+\begin{equation}
+	r_g = \displaystyle\frac{m v_{\perp}}{q B} \qquad \nu_c = \displaystyle\frac{q B}{2\pi m}
+	\label{eq:eq-ciclotrone}
+\end{equation}
+
+\subsubsection{Forza magnetica su correnti elettriche}
+
+Consideriamo un filo conduttore di sezione $ S $ in cui scorre una corrente $ i $, immerso per un tratto $ L $ in un campo magnetico uniforme $ \vec{B} $ perpendicolare al filo. \\ 
+%
+Se nel conduttore abbiamo $ n $ cariche per unità di volume, allora in un tratto $ dl $  si avranno $ n \, S \, dl $ cariche, dunque la forza totale esercitata sul tratto dal campo elettrico sarà $ d\vec{F_B} = q \, n \, S \, dl \, \vprod{v}{B} $; d'altra parte, si ha che $ q \, n = \rho $ densità di carica e $ \rho \vec{v} = \vec{J} $ densità di corrente, dunque $ d\vec{F_B} = S \, dl \, \vprod{J}{B} $, ma $ S \, J = i $, quindi possiamo assegnare il verso di $ \vec{J} $ a $ dl $, ottenendo:
+\begin{equation}
+	d\vec{F}_B = i \, d\vprod{l}{B}
+	\label{eq:forza-filo}
+\end{equation}
+Dato che la forza magnetica viene esercitata sulle cariche in moto nel conduttore, ma queste interagiscono meccanicamente con la sua struttura atomica, la forza agisce sull'intero conduttore, provocando lo spostamento del filo. \\ 
+%
+Prendendo una distribuzione di carica in un campo elettrico uniforme $ \vec{B} $, assumendo che le cariche si muovano tutte con la stessa velocità $ \vec{v} $, si ha $ d\vec{F}_B = dq \, \vprod{v}{B} = \rho \, dV \, \vprod{v}{B} = \vprod{J}{B} \, dV $, quindi possiamo definire la densità di forza magnetica come:
+\begin{equation}
+	\displaystyle\frac{d\vec{F}_B}{dV} = \vprod{J}{B}
+	\label{eq:dens-f-mag}
+\end{equation}
+
+\paragraph{Densità di corrente}
+
+Possiamo generalizzare il concetto di densità di corrente a superfici e linee: considerando un conduttore di percorso da una densità di corrente $ \vec{J} $, se prendiamo una superficie infinitesima approssimativamente rettangolare avremo $ dS = ds \, dl $ e $ di = \vec{J}\cdot d\vec{S} = \rho \vec{v}\cdot\hat{n} \, ds \, dl $. \\ 
+%
+Facendo tendere $ ds \rightarrow 0 $ si ha $ \rho \, ds \rightarrow \sigma $ densità superficiale di carica e $ di = \sigma \vec{v} \cdot \hat{n} \, dl $, quindi possiamo definire la densità superficiale di corrente $ \vec{K} \equiv \sigma\vec{v} $ (u.d.m. $ \text{C} \cdot \text{s}^{-1} \cdot \text{m}^{-1} = \text{A}  \cdot \text{m}^{-1} $): la corrente che scorre attraverso una superficie arbitraria attraverso una data linea è:
+\begin{equation}
+	i = \int_{\gamma} \vec{K}\cdot d\vec{l}
+	\label{eq:dens-sup-corr}
+\end{equation}
+%
+Se invece facciamo tendere anche $ dl \rightarrow 0 $ si ha $ \rho \, ds \, dl \rightarrow \lambda $ densità lineare di carica e $ i = \lambda \vec{v} \cdot \hat{n} $, quindi definiamo la densità lineare di corrente $ \vec{I} \equiv \lambda \vec{v} $ (u.d.m. $ \text{A} $: dato che rimane una sola dimensione, $ \vec{I} $ e $ \hat{n} $ sono sempre paralleli, quindi il modulo di $ \vec{I} $ corrisponde di fatto alla corrente. \\ 
+%
+A seconda delle varie distribuzioni di corrente, la forza magnetica agente è data da:
+\begin{equation}
+	\vec{F}_B = \iiint_V \vprod{J}{B} \, dV \qquad \vec{F}_B = \oiint_S \vprod{K}{B} \, dS \qquad \vec{F}_B = \oint_{\gamma} \vprod{I}{B} \, dl
+	\label{eq:distr-corr}
+\end{equation}
+
+\subsection{Legge di Biot-Savart}
+
+A differenza della legge di Coulomb, la forza di Lorentz non dice nulla sull'ontologia dei generatori del campo magnetico: date le osservazioni sperimentali, è ragionevole supporre che la sorgente del campo magnetico sia legata alla corrente elettrica, ma la questione è più complessa (ad esempio i magneti permanenti, che richiedono una teoria quantistica della materia). \\ 
+%
+Consideriamo un filo percorso da una corrente stazionaria $ i $ ed un suo elemento infinitesimo $ dl $; empiricamente si trova che il campo magnetico $ d\vec{B} $ generato da $ dl $ in un punto a distanza $ \vec{r} $ da esso è dato dalla legge di Biot-Savart:
+\begin{equation}
+	d\vec{B} = \displaystyle\frac{\mu_0}{4\pi} \displaystyle\frac{i \, d\vec{l} \times \hat{r}}{r^2}
+	\label{eq:biot-savart}
+\end{equation}
+dove $ d\vec{l} $ ha il verso di $ i $ e $ \mu_0 = 4\pi \cdot 10^{-7} \, \text{T} \, \text{m} \, \text{A}^{-1} $ è detta permeabilità magnetica del vuoto. \\ 
+%
+Questa legge vale solo in condizioni stazionarie (corrente continua): in queste condizioni $ \rho $ non dipende dal tempo, e dato che $ \dive\vec{J} = -\frac{\partial \rho}{\partial t} $, la legge di Biot-Savart vale quando $ \dive\vec{J} = 0 $.
+
+\subsubsection{Filo percorso da corrente}
+
+Consideriamo un filo abbastanza lungo percorso da una corrente stazionaria $ i $ e concentriamoci nella porzione lontana dalle estremità, così da poterlo approssimare come infinito: in questo caso, è evidente che il campo è indipendente dalla posizione lungo il filo, dunque possiamo fissare un sistema di assi con origine lungo il filo ed asse $ x $ lungo esso. \\ 
+%
+Dato che il sistema gode di evidente simmetri cilindrica, calcoliamo il campo magnetico in un punto $ P $ ad una generica distanza $ a $ dal filo, WLOG lungo l'asse $ y $: prendendo il generico elemento di filo dal quale $ P $ dista $ \vec{r} $, si ha $ d\vec{l} = dl \, \hat{e}_x \equiv dx \hat{e}_x $ e $ \hat{r} = -\cos{\theta} \, \hat{e}_x + \sin{\theta} \, \hat{e}_y $, quindi $ d\vec{l} \times \hat{r} = dl \sin{\theta} \, \hat{e}_z $; dato che $ x = r \cos{(\pi - \theta)} = - r \cos{\theta} $ e $ r = a / \sin{(\pi - \theta)} = a / \sin{\theta} $, si ha $ x = - a \cot{\theta} $, dunque $ dx = a \csc^2{\theta} \, d\theta $ e possiamo scrivere:
+\begin{equation}
+	dB = \displaystyle\frac{\mu_0}{4\pi} \displaystyle\frac{i\, dx \, \sin{\theta}}{r^2} = \displaystyle\frac{\mu_0}{4\pi} \displaystyle\frac{i}{a} \, \sin{\theta} \, d\theta
+	\label{eq:filo-calc}
+\end{equation}
+Integrando su tutto il filo ($ \theta \in [0, \pi] $) e passando alle coordinate cillindriche per meglio esprimere il fatto che le linee di campo sono circonferenze centrate nel filo:
+\begin{equation}
+	\vec{B}(\vec{r}) = \displaystyle\frac{\mu_0 i}{2\pi r} \hat{e}_{\phi}
+	\label{eq:mag-filo-corr}
+\end{equation}
+
+\subsubsection{Spira circolare percorsa da corrente}
+
+Consideriamo ora una spira circolare di raggio $ a $ percorsa da una corrente stazionaria $ i $ e fissiamo un sistema di riferimento con origine nel centro della spira ed asse $ z $ ortogonale ad essa. \\ 
+%
+Vogliamo calcolare il campo magnetico in un punto lungo l'asse della spira, ovvero $ \vec{r}_2 = z \, \hat{e}_z $: dato che il generico elemento $ d\vec{l} $ ha posizione $ d\vec{r}_1 = a (\cos{\theta} \, \hat{e}_x + \sin{\theta} \, \hat{e}_y) $, si ha $ d\vec{l} = \frac{d\vec{r}_1}{d\theta}d\theta $ e quindi:
+\begin{equation}
+	\begin{split}
+		d\vec{l} \times (\vec{r}_2 - \vec{r}_1) &= (-a \sin{\theta} \, \hat{e}_x + a \cos{\theta} \, \hat{e}_y) \times (z \, \hat{e}_z - a \sin{\theta} \, \hat{e}_x - a \sin{\theta} \hat{e}_y) \\ 
+							&= \left[ az \cos{\theta} \, \hat{e}_x + az \sin{\theta} \, \hat{e}_y + a^2 (\sin^2{\theta} + \cos^2{\theta}) \, \hat{e}_z \right] d\theta \\ 
+							&= (z \cos{\theta} \, \hat{e}_x + z \sin{\theta} \, \hat{e}_y + a \, \hat{e}_z) \, a \, d\theta
+	\end{split}
+	\label{eq:}
+\end{equation}
+Inoltre, abbiamo che $ \abs{\vec{r}_2 - \vec{r}_1}^3 = (a^2 + z^2)^{3/2} $, dunque:
+\begin{equation}
+	d\vec{B} = \displaystyle\frac{\mu_0 i a}{4\pi} \displaystyle\frac{z \cos{\theta} \, \hat{e}_x + z \sin{\theta} \, \hat{e}_y + a \, \hat{e}_z}{(a^2 + z^2)^{3/2}} d\theta
+	\label{eq:}
+\end{equation}
+Integrando su tutta la spira ($ \theta \in [0, 2\pi] $) si ottiene:
+\begin{equation}
+	\vec{B}(z) = \displaystyle\frac{\mu_0 i a^2}{2(a^2 + z^2)^{3/2}}
+	\label{eq:mag-spir}
+\end{equation}
+Il calcolo del campo in posizioni diverse dall'asse della spira è complesso e richiede l'utilizzo di integrali ellittici: qualitativamente, le linee di campo sono linee chiuse che avvolgono la spira, diventando sempre più circolari via via che si avvicinano ad essa.
+
+\subsubsection{Monopoli magnetici}
+
+Al contrario del campo elettrico, il campo magnetico non ha sorgenti definite, ma è associato alla presenza di correnti elettriche (anche nel caso dei magneti permanenti, associati alle correnti atomiche): fino a prova sperimentale contraria, possiamo affermare che il campo magnetico non ha sorgenti, ovvero che i monopoli magnetici non esistono. \\ 
+%
+Di conseguenza, per la legge di Gauss, ci aspettiamo che il campo magnetico sia solenoidale, ed è proprio così. \\ 
+%
+Consideriamo una distribuzione di corrente $ \vec{J}(\vec{r}) $: dato che $ \vec{i} = \vec{J} S $ e che $ \vec{J} \parallel d\vec{l} $, possiamo scrivere la legge di Biot-Savart come:
+\begin{equation}
+	d\vec{B} = \displaystyle\frac{\mu_0}{4\pi} \displaystyle\frac{\vec{J}(\vec{r}_1) \times (\vec{r}_2 - \vec{r}_1)}{\abs{\vec{r}_2 - \vec{r}_1}^3} S \, dl 
+	\label{eq:bio-savart-2}
+\end{equation}
+dunque considerando superfici normali al percorso della corrente, possiamo trasformare l'integrale di linea in $ S\,dl $ in un integrale di volume in $ dV $ su tutto il volume del conduttore in cui scorre corrente, ottenendo la forma integrale della legge di Biot-Savart:
+\begin{equation}
+	\vec{B}(\vec{r}) = \displaystyle\frac{\mu_0}{4\pi} \iiint_V \displaystyle\frac{\vec{J}(\vec{r}\,') \times (\vec{r} - \vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}^3} \, dV
+	\label{eq:bio-savart-int}
+\end{equation}
+Calcoliamo esplicitamente la divergenza di $ \vec{B} $:
+\begin{equation}
+	\begin{split}
+		\dive\vec{B}(\vec{r}) &= \displaystyle\frac{\mu_0}{4\pi} \iiint_V \nabla_r \cdot \displaystyle\frac{\vec{J}(\vec{r}\,') \times (\vec{r} - \vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}^3} \, dV \\ 
+				      & \qquad\qquad \dive (\vec{A}\times\vec{B}) = (\dive\vec{A})\cdot\vec{B} - \vec{A}\cdot (\dive\vec{B}) \\ 
+				      & \qquad\qquad \nabla_r \times\vec{J}(\vec{r}\,') = 0 \\ 
+				      &= -\displaystyle\frac{\mu_0}{4\pi} \iiint_V \vec{J}(\vec{r}\,') \cdot \nabla_r \times \left(\displaystyle\frac{\vec{r} - \vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}^3}\right) dV = 0
+	\end{split}
+	\label{eq:}
+\end{equation}
+che è proprio quello che avevamo previsto col teorema di Gauss.
+
+\subsection{Legge di Ampère}
+
+Per cercare una relazione tra campo magnetico e correnti elettriche, dato che le linee di campo sono sempre chiuse, ragioniamo sulla circuitazione di $ \vec{B} $. \\ 
+%
+Consideriamo un filo infinito percorso da corrente; abbiamo visto che le linee di campo sono circonferenza attorno al filo, dunque prendiamo come loop per calcolare la circuitazione il rettangolo curvilinee delimitato tra due linee di campo, a distanze $ \vec{r}_1 $ e $ \vec{r}_2 $, determinato da un angolo $ \Delta\theta $:
+\begin{equation}
+	\begin{split}
+		\Gamma &\equiv \oint_{\gamma} \vec{B} \cdot d\vec{l} = \int_{\gamma_1} \vec{B} \cdot d\vec{l} + \int_{\gamma_{12}} \vec{B} \cdot d\vec{l} + \int_{\gamma_2} \vec{B} \cdot d\vec{l} + \int_{\gamma_{21}} \vec{B} \cdot d\vec{l} \\ 
+		       & \qquad\qquad \vec{B}\cdot d\vec{l}_{12} = \vec{B}\cdot d\vec{l}_{21} = 0 \\ 
+		       &= - \displaystyle\frac{\mu_0 i}{2\pi r_1} r_1 \Delta\theta + \displaystyle\frac{\mu_0 i}{2\pi r_2} r_2 \Delta\theta = 0
+	\end{split}
+	\label{eq:circ-1-filo-inf}
+\end{equation}
+Se invece prendiamo un loop circolare centrato nel filo:
+\begin{equation}
+	\Gamma = \displaystyle\frac{\mu_0 i}{2\pi r} 2\pi r = \mu_0 i
+	\label{eq:circ-2-filo-inf}
+\end{equation}
+La differenza tra i due casi è che il primo loop non ha nessuna corrente concatenata ad esso. \\ 
+%
+Dato che qualsiasi loop generico può essere approssimato con tratti radiali ed archi di circonferenze, la validità di quanto appena mostrato è generale e si esprime tramite la legge di Ampère: la circuitazione del campo magnetico lungo un loop di $ N $ avvolgimenti attorno a $ M $ correnti stazionarie concatenate è:
+\begin{equation}
+	\Gamma = N \mu_0 \displaystyle\sum_{k = 1}^{M} i_k
+	\label{eq:ampere}
+\end{equation}
+Possiamo generalizzare ad una distribuzione di corrente $ \vec{J} $ stazionaria ($ \div\vec{J} = 0 $):
+\begin{equation}
+	\Gamma = \mu_0 \oiint_S \vec{J} \cdot d\vec{S}
+	\label{eq:ampere-int}
+\end{equation}
+Utilizzando il teorema di Stokes, otteniamo la forma differenziale della legge di Ampère:
+\begin{equation}
+	\rot\vec{B} = \mu_0 \vec{J}
+	\label{eq:ampere-diff}
+\end{equation}
+Nel calcolo del rotore, analogamente a quello della divergenza, dobbiamo prestare attenzione alle singolarotà derivanti da oggetti che matematicamente sono monodimensionali (fili ideali) ma nella realtà non lo sono: per trattare queste singolarità, si fa di nuovo ricorso alla $ \delta $ di Dirac. \\ 
+%
+Possiamo anche ottene esplicitamente la forma differenziale della legge di Ampère a partire da quella di Biot-Savart:
+\begin{equation}
+	\begin{split}
+	 	\rot\vec{B}(\vec{r}) &= \displaystyle\frac{\mu_0}{4\pi} \iiint_V \nabla_r \times \left( \displaystyle\frac{\vec{J}(\vec{r}\,') \times (\vec{r} - \vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}^3} \right) dV \\
+				     & \qquad\qquad \rot\vprod{A}{B} = (\vec{A}\cdot\nabla)\vec{B} - (\vec{B}\cdot\nabla)\vec{A} + \vec{A}(\dive\vec{B}) - \vec{B}(\dive\vec{A}) \\ 
+				     &= \displaystyle\frac{\mu_0}{4\pi} \left[ \iiint_V \left( \vec{J}(\vec{r}\,') \cdot \nabla_r \right) \frac{\vec{r} - \vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}^3} dV + \iiint_V \vec{J}(\vec{r}\,') \left( \nabla_r \cdot \frac{\vec{r} - \vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}^3} \right) dV \right] \\ 
+				     & \qquad\qquad \nabla_r \frac{\vec{r} - \vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}^3} = - \nabla_{r'} \frac{\vec{r} - \vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}^3} \\ 
+				     &= \displaystyle\frac{\mu_0}{4\pi} \left[ -\displaystyle\sum_{k = 1}^{3} \iiint_V \left( \vec{J}(\vec{r}\,') \cdot \nabla_r \right) \frac{x_k - x'_k}{\abs{\vec{r} - \vec{r}\,'}^3} dV + \iiint_V \vec{J}(\vec{r}\,') \, 4\pi \delta(\vec{r} - \vec{r}\,') \, dV \right] \\
+				     &=  \displaystyle\frac{\mu_0}{4\pi} \left[ -\displaystyle\sum_{k = 1}^{3} \iiint_V \left[ \nabla_{r'} \left( \vec{J}(\vec{r}\,') \frac{x_k - x'_k}{\abs{\vec{r} - \vec{r}\,'}^3} \right) -  \frac{x_k - x'_k}{\abs{\vec{r} - \vec{r}\,'}^3} \nabla_{r'} \cdot \vec{J}(\vec{r}\,') \right] dV + 4\pi\vec{J}(\vec{r}) \right] \\ 
+				     & \qquad\qquad \dive\vec{J} = 0 \\ 
+				     &= - \displaystyle\frac{\mu_0}{4\pi} \displaystyle\sum_{k = 1}^{3} \oiint_S \left( \vec{J}(\vec{r}\,') \frac{x_k - x'_k}{\abs{\vec{r} - \vec{r}\,'}^3} \right) \cdot d\vec{S} + \mu_0 \vec{J}(\vec{r}) = \mu_0 \vec{J}(\vec{r})
+	\end{split}
+	\label{eq:}
+\end{equation}
+dove abbiamo usato il fatto che l'ultimo integrale si annulla considerando una superficie abbastanza grande poiché dipende da $ \abs{\vec{r} - \vec{r}\,'}^{-3} $.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
