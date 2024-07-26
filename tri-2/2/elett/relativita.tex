@@ -1,0 +1,161 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\input{../imports.tex}
+
+\begin{document}
+
+\section{Relatività}
+
+\subsection{Relatività Ristretta}
+La relatività ristretta si basa su due postulati:
+\begin{enumerate}
+	\item tutte le leggi fisiche sono le stesse in tutti i sistemi di riferimento inerziali, non esiste un sistema di riferimento privilegiato;
+	\item la velocità della luce nello spazio vuoto ha lo stesso valore in tutti i sistemi di riferimento inerziali.
+\end{enumerate}
+Il secondo postulato è in evidente contrasto con la relatività galileiana ma ha evidenze sia di natura teorica che sperimentale.
+
+\subsubsection{Equivalenza dei sistemi di riferimento}
+
+Consideriamo il seguente Gedankenexperiment: una persona è in un vagone che viaggia a velocità $ \vec{v} $ e si guarda in uno specchio posto a distanza $ l $ in direzione opposta al verso del moto: se la velocità della luce risentisse del sistema di riferimento dell'osservatore, si avrebbe:
+\begin{equation}
+	\Delta t = \Delta t_{\text{andata}} + \Delta t_{\text{ritorno}} = \frac{l}{c - v} + \frac{l}{c + v} = \frac{2l}{c} \left( 1 - \frac{v^2}{c^2}\right)^{-1}
+	\label{eq:1}
+\end{equation}
+quindi il viaggiatore potrebbe così misurare la velocità del vagone ad ogni istante, distinguendo tra sistemi inerziali diversi e quindi violando il primo postulato.
+
+\subsubsection{Equivalenza delle leggi fisiche}
+
+Uno dei principali risultati della teoria di Maxwell è stato l'unificazione dei fenomeni elettrici e magnetici nel campo elettromagnetico, predicendo l'esistenza di onde elettromagnetiche che si propagano nel vuoto alla velocità costante $ c \equiv \frac{1}{\sqrt{\epsilon_0\mu_0}} $: poiché le leggi fisiche devono essere le stesse in ogni sistema inerziale, $ c $ non può dipendere dal sistema di riferimento.
+
+\subsubsection{Esperimento di Michelson-Morley}
+
+Al tempo della loro teorizzazione e scoperta, era ragionevole pensare che le onde elettromagnetiche si propagassero in un mezzo trasparente e non interagente con la materia, detto etere. \\ 
+%
+Per rilevare la presenza di questo etere, si cercò di evidenziare la differenza di tempo impiegata da due raggi luminosi per viaggiare per la stessa distanza in due direzioni perpendicolare e parallela al vento d'etere, assumendo che questo viaggi a $ v \ll c $:
+\begin{equation}
+	\Delta t_{\parallel} = \frac{l}{c-v} + \frac{l}{c+v} = \frac{2l}{c}\frac{1}{1 - \frac{v^2}{c^2}} \approx \frac{2l}{c}\left(1 + \frac{v^2}{c^2}\right)
+	\label{eq:2}
+\end{equation}
+Per quanto riguarda la direzione ortogonale al vento d'etere, bisogna contare che mentre il raggio percorre $ c\Delta t' $ l'intero sistema trasla ortogonalmente ad esso di $ v\Delta t' $, quindi per il teorema di Pitagora $ c^2 \Delta t'^2 = v \Delta t'^2 + l^2 $, ovvero:
+\begin{equation}
+	\Delta t_{\perp} = 2 \Delta t' = \frac{2l}{\sqrt{c^2 - v^2}} = \frac{2l}{c} \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} \approx \frac{2l}{c} \left(\frac{1}{2}\frac{v^2}{c^2}\right)
+	\label{eq:3}
+\end{equation}
+Si vede quindi che la differenza tra i due tempi è $ \frac{l}{c}\frac{v^2}{c^2} $, che per la velocità di rivoluzione della Terra è dell'ordine di $ 10^{-7} \s $. Invece di misurarla direttamente, Michelson e Morley misurarono il diagramma di interferenza generato dai due fasci, ruotando l'apparato in varie direzioni per vedere in quale i diagrammi risultassero diversi: contrariamente all'ipotesi dell'esistenza dell'etere, non si evidenziò alcuna variazione di tali diagrammi.
+
+% \subsubsection{Simultaneità relativistica}
+
+% Consideriamo due sistemi di riferimento $ \mathcal{S} $ ed $ \mathcal{S}' $, inizialmente coincidenti e con $ \mathcal{S}' $ in moto rettilineo uniforme con velocità $ \vec{v} $. \\ 
+%
+% Ponendo due sorgenti sonore equidistanti dall'origine $ O \equiv O' $ inizialmente comune dei due sistemi, l'osservatore in $ O $ registra i suoni allo stesso istante di tempo e giudica i due eventi simultanei, mentre per l'osservatore in $ O' $ i suoni si muovono a velocità $ c_s \pm v $, dunque non sono simultanei. \\ 
+%
+% Se invece consideriamo due sorgenti luminose, entrambi gli osservatori vedranno simultaneamente le due luci
+
+\subsection{Trasformazioni di Lorentz}
+
+Consideriamo due sistemi di riferimento $ \mathcal{S} $ ed $ \mathcal{S}' $, inizialmente coincidenti e con $ \mathcal{S}' $ in moto rettilineo uniforme con velocità $	\vec{v} = v\,\hat{e}_x $. \\ 
+%
+Innanzitutto, le trasformazioni che legano le coordinate tra i due sistemi devono essere lineari, altrimenti ad esempio si avrebbe che la lunghezza di un segmento dipenderebbe dalla sua posizione, contraddicendo il principio di omogeneità ed isotropia dello spazio; possiamo poi notare che il moto interessa soltanto la direzione $ x $, dunque $ (y',z') $ possono dipendere solo da $ (y,z) $, e dato che all'istante iniziale le origini coincidono si ha $ y' = \alpha y $, $ z' = \beta z $. \\ 
+%
+Consideriamo una sbarra di lunghezza $ l $ lungo l'asse $ y $: l'osservatore in $ \mathcal{S}' $ la misurerà lunga $ l' = \alpha l $; viceversa, se la sbarra si trova lungo $ y' $, l'osservatore in $ \mathcal{S} $ la misurerà lunga $ l = \frac{1}{\alpha} l' $. Dato che i due sistemi di riferimento devono essere equivalenti, si deve avere $ l = l' $ (altrimenti sarebbero distinguibili), quindi $ \alpha = 1 $, ovvero $ y' = y $ ed analogamente $ z = z' $. \\ 
+%
+Consideriamo ora che, nel sistema $ \mathcal{S} $, $ O' = (vt, 0, 0, t) $, dunque per $ x' = \alpha x + \beta y + \gamma z + \delta t $ vale il vincolo $ 0 = \alpha vt + \beta y + \gamma z + \delta t  \,\,\forall y,z\in\mathbb{R} \,\Rightarrow\, \beta = \gamma = 0 \,\wedge\, \delta = -v\alpha $, quindi $ x' = \alpha (x - vt) $; inoltre, dato il principio di isotropia dello spazio, $ t' $ può dipendere solo da $ (x,t) $, ovvero $ t' = \beta x + \gamma t $. \\ 
+%
+Dal secondo postulato sappiamo che una sorgente luminosa puntiforme si espande come simmetria sferica in entrambi i sistemi ed alla stessa velocità $ c $, quindi possiamo scrivere $ R^2 = x^2 + y^2 + z^2 = c^2 t^2 $ e $ R'^2 = x'^2 + y'^2 + z'^2 = c^2 t'^2 $ e, dato che $ R^2 = R'^2 $, otteniamo:
+\begin{equation}
+	(x^2- x'^2) + (y^2 - y'^2) + (z^2 - z'^2) - c^2 (t^2 - t'^2) = 0
+	\label{eq:4}
+\end{equation}
+Sostituendo le espressioni trovate prima e svolgendo i calcoli, otteniamo il seguente sistema di equazioni:
+\begin{equation}
+	\begin{cases}
+		1 - \alpha^2 + c^2 \beta^2 = 0 \\ 
+		c^2 \delta^2 - \alpha^2 v^2 - c^2 = 0 \\ 
+		\alpha^2 v + c^2 \beta\delta = 0
+	\end{cases}
+	\label{eq:5}
+\end{equation}
+che ha come soluzione $ \alpha = \delta = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} $ e $ \beta = -\frac{v}{c^2}\frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} $. \\ 
+%
+Definendo il fattore di Lorentz $ \gamma \equiv \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} \in [1, \infty)$, otteniamo quindi l'espressione delle trasformazioni di Lorentz:
+\begin{equation}
+	\begin{cases}
+		x' = \gamma \left(x - vt\right) \\ 
+		y' = y \\ 
+		z' = z \\ 
+		t' = \gamma \left(t - \frac{v}{c^2} x\right)
+	\end{cases}
+	\qquad\Longleftrightarrow\qquad
+		\begin{cases}
+		x = \gamma \left(x' + vt'\right) \\ 
+		y = y' \\ 
+		z = z' \\ 
+		t = \gamma \left(t' + \frac{v}{c^2} x'\right)
+	\end{cases}
+	\label{eq:6}
+\end{equation}
+
+\subsubsection{Contrazione delle lunghezze}
+
+Consideriamo una barra in moto rettilineo uniforme con $ \vec{v} = v\,\hat{e}_x $: nel sistema di riferimento solidale alla barra essa ha coordinate $ x'_1 = 0 $ e $ x'_2 = l' $, mentre, assumendo di effettuare la misura a $ t = 0 $, per un osservatore essa ha estremi $ x_1 = 0 $ e $ x_2 = l $: per le trasformazioni di Lorentz, sappiamo che $ x' = \gamma (x - vt) $, quindi osserviamo il fenomeno della contrazione delle lunghezze (poiché $ \gamma \ge 1 $):
+\begin{equation}
+	l = \frac{l'}{\gamma}
+	\label{eq:7}
+\end{equation}
+ovvero un osservatore in quiete misura una lunghezza minore di un oggetto in movimento rispetto ad un osservatore solidale all'oggetto. Ciò non è un effetto apparente, ma è una vera contrazione dello spazio stesso, il quale diventa appunto relativo.
+
+\subsubsection{Dilatazione dei tempi}
+
+Consideriamo ora un orologio in $ \mathcal{S}' $ in una posizione fissata $ x'_1 $ e immaginiamo che un osservatore solidale a $ \mathcal{S}' $ faccia due misure di tempi $ t'_1 $ e $ t'_2 $: allora per le trasformazioni di Lorentz un osservatore in $ \mathcal{S} $ misurerà $ t_2 = \gamma \left(t'_2 + \frac{v}{c^2} x'_1\right) $ e $ t_1 = \gamma \left(t'_1 + \frac{v}{c^2} x'_2\right) $, dunque possiamo osservare il fenomeno della dilatazione dei tempi:
+\begin{equation}
+	\Delta t = \gamma \Delta t'
+	\label{eq:8}
+\end{equation}
+ovvero un osservatore in quiete misura dei tempi maggiori per un evento rispetto ad un osservatore solidale a tale evento: il tempo non è più un'entità assoluta. \\ 
+%
+È possibile ricavare la dilatazione dei tempi anche senza trasformazioni di Lorentz: consideriamo un orologio costituito da un segnale luminoso che rimbalza tra due specchi in $ \mathcal{S}' $ posti a distanza $ l' $: evidentemente $ \Delta t' = \frac{2l'}{c} $. Per l'osservatore in $ \mathcal{S} $ il segnale luminoso compie un moto a zig-zag rimbalzando tra gli specchi in moto, percorrendo in un rimbalzo una distanza $ l \,:\, l^2 = l'^2 + \frac{v^2 \Delta t^2}{4} $, con $ \Delta t $ il tempo che il segnale compie per completare un periodo (ovvero due rimbalzi): dato che, d'altra parte, anche in $ \mathcal{S} $ la luce viaggia a $ c $, si ha $ 4\left(l'^2 + \frac{v^2 \Delta t^2}{4}\right) = c^2 \Delta t^2 \, \Rightarrow \, \Delta t^2 = \frac{4l'^2}{c^2} \gamma^2 $, ovvero proprio la dilatazione dei tempi $ \Delta t = \gamma \Delta t' $.
+
+\subsection{Quadrivettori e Tensore Metrico}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
