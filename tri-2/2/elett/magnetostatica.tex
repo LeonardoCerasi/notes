@@ -284,6 +284,8 @@ Consideriamo ora il caso di una spira circolare di raggio $ a $: $ \vec{r} = a (
 	\vec{m} = i \pi a^2 \, \hat{e}_z
 	\label{eq:mom-sp-circ}
 \end{equation}
+generalizzabile ad una generica spira piana di area $ S $ come $ \vec{m} = i S \,\hat{e}_z $. \\ 
+%
 Avremo dunque:
 \begin{equation}
 	\vec{A}(\vec{r}) = \displaystyle\frac{\mu_0}{4\pi r^3} \, \vprod{m}{r} = \displaystyle\frac{\mu_0 m}{4\pi r^3} \, \hat{e}_z \times\left(x\,\hat{e}_x + y\,\hat{e}_y + z\,\hat{e}_z\right) = \displaystyle\frac{\mu_0 m}{4\pi r^2} \displaystyle\frac{-y \, \hat{e}_x + x \, \hat{e}_y}{r}
@@ -294,8 +296,112 @@ Passando in coordinate sferiche, ricordando che $ \hat{e}_{\phi} = \frac{1}{\rho
 	\vec{A}(\vec{r}) = \displaystyle\frac{\mu_0 m}{4\pi r^2} \sin\theta \,\hat{e}_{\phi}
 	\label{eq:po-sp-circ}
 \end{equation}
-Le linee di campo di $ \vec{A} $ sono delle circonferenze concentriche e parallele alla spira.
+Le linee di campo di $ \vec{A} $ sono delle circonferenze concentriche e parallele alla spira. \\ 
+%
+Possiamo così calcolare il campo magnetico lontano dalla spira:
+\begin{equation}
+	\begin{split}
+		\vec{B}(\vec{r}) &= \rot\vec{A}(\vec{r}) \\
+				 &= \displaystyle\frac{1}{r\sin\theta} \left( \displaystyle\frac{\partial}{\partial\theta} \left( A_{\phi} \sin\theta \right) - \displaystyle\frac{\partial A_{\theta}}{\partial\phi} \right) \hat{e}_r + \displaystyle\frac{1}{r} \left( \displaystyle\frac{1}{\sin\theta} \displaystyle\frac{\partial A_r}{\partial\phi} - \displaystyle\frac{\partial}{\partial r} \left(r A_{\phi} \right)\right) \hat{e}_{\theta} + \\ 
+				 & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad + \displaystyle\frac{1}{r} \left(\displaystyle\frac{\partial}{\partial r} \left( r A_{\theta} \right) - \displaystyle\frac{\partial A_r}{\partial\theta} \right) \hat{e}_{\phi} \\ 
+				 &= \displaystyle\frac{1}{r\sin\theta}\displaystyle\frac{\partial}{\partial\theta} \left(A_{\phi} \sin\theta\right) \hat{e}_r - \displaystyle\frac{1}{r} \displaystyle\frac{\partial}{\partial r} \left( r A_{\phi} \right) \hat{e}_{\theta} \\ 
+				 &= \displaystyle\frac{\mu_0 m}{4\pi r^3} \left(2\cos\theta \,\hat{e}_r + \sin\theta \,\hat{e}_{\theta}\right)
+	\end{split}
+	\label{eq:}
+\end{equation}
+Si nota che questa espressione è matematicamente uguale a quella per il campo elettrico di un dipolo (lontano da esso) $ \vec{E}(\vec{r}) = \frac{p}{4\pi\epsilon_0 r^3} \left(2\cos\theta \,\hat{e}_r + \sin\theta \,\hat{e}_{\theta} \right) $: i campi dei dipoli elettrici e magnetici hanno lo stesso andamento lontano dak dipolo, mentre vicino ad esso hanno andamenti completamente differenti.
 
+\subsection{Forze su Fili e Spire}
+
+\subsubsection{Forza tra due fili percorsi da corrente}
+
+Consideriamo due fili paralleli lunghi $ l $, distanti $ a $ e percorsi da correnti stazionarie $ i_1 $ e $ i_2 $ concordi. Ponendo $ a \ll l $ così da poter approssimare come infiniti i due fili, si ha che i loro campi magnetici sono dati da $ \vec{B}(\vec{r}) = \frac{\mu_0 i}{2\pi r} \hat{e}_{\phi} $, dunque i campi magnetici subiti rispettivamente dai due fili (assumendoli paralleli all'asse $ z $ lungo l'asse $ x $) sono $ \vec{B}_{1,2} = \pm \frac{\mu_0 i_{2,1}}{2\pi a} \hat{e}_{\phi} $ (segno dalla seconda regola della mano destra): la forza magnetica agente su un filo percorso da corrente è $ \vec{F}_B = l \vprod{i}{B} $, quindi nel nostro caso si ha:
+\begin{equation}
+	\vec{F}_{1,2} = \pm \frac{\mu_0 i_1 i_2 l}{2 \pi a} \hat{e}_x
+	\label{eq:forza-fili}
+\end{equation}
+che è quello che si osserva sperimentalmente: se le correnti sono concordi ii fili si attraggono, se sono discordi si respingono.
+
+\subsubsection{Spira in un campo magnetico uniforme}
+
+Consideriamo una spira quadrata $ \varsigma $ di lato $ l $ percorsa da una corrente stazionaria $ i $ ed immersa in un campo magnetico uniforme $ \vec{B} $, formando un angolo $ \theta $ con esso e potendo ruotare rispetto all'asse $ x $. \\ 
+%
+Fissiamo un sistema di riferimento con asse $ z $ lungo $ \vec{B} $, la forza agente sulla spira sarà:
+\begin{equation}
+	\begin{split}
+		\vec{F} &= i \oint_{\varsigma} d\vprod{l}{B} = i B \oint_{\varsigma} d\vec{l}\times\hat{e}_z \\ 
+			&= iB\int_{x_-} dl \left(\sin\theta\,\hat{e}_y + \cos\theta\,\hat{e}_z\right) \times \hat{e}_z + iB\int_{x_+} -dl \left(\sin\theta\,\hat{e}_y + \cos\theta\,\hat{e}_z\right) \times \hat{e}_z + \\ 
+			& \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad + iB\int_{z_+} dx \, \hat{e}_x \times \hat{e}_z + iB\int_{z_-} -dx \,\hat{e}_x \times \hat{e}_z \\ 
+			&= i\,lB\sin\theta\,\hat{e}_x - i\,lb\sin\theta\,\hat{e}_x - i\,lB\,\hat{e}_y + i\,lB\,\hat{e}_y = 0
+	\end{split}
+	\label{eq:}
+\end{equation}
+Dunque la spira non trasla, bensì ruota a causa del momento torcente dovuto alle forze espresse dagli ultimi due integrali (asse di rotazione è $ x $):
+\begin{equation}
+	\begin{split}
+		\vec{\tau} &= \vec{\tau_+} + \vec{\tau_-} = \vec{r}_+ \times \vec{F}_+ + \vec{r}_- \times \vec{F}_- \\ 
+			   &= -\frac{l}{2} \left(\cos\theta\,\hat{e}_y + \sin\theta\,\hat{e}_z\right) \times \left(-ilB\,\hat{e}_y\right) + \frac{l}{2} \left(\cos\theta\,\hat{e}_y + \sin\theta\,\hat{e}_z\right) \times \left(ilB\,\hat{e}_y\right) \\ 
+			   &= i \, l^2 B \sin\theta \,\hat{e}_x = m B \sin\theta\,\hat{e}_x
+	\end{split}
+	\label{eq:calc-mom-sp}
+\end{equation}
+Si riconosce un prodotto vettoriale, ottenendo la formula generale (per spire piane):
+\begin{equation}
+	\vec{\tau} = \vprod{m}{B}
+	\label{eq:mom-sp}
+\end{equation}
+Possiamo anche calcolare il lavoro necessario a far ruotare la spira di un angolo $ \theta $:
+\begin{equation}
+	W = \int_0^{\theta} \vec{\tau}_{\text{ext}} \cdot d\vec{\theta} = - \int_0^{\theta} \tau \, d\theta = - i \, l^2 B \int_0^{\theta} \sin\theta \,d\theta = - i \, l^2 B \left(1 - \cos\theta\right)
+	\label{eq:}
+\end{equation}
+quindi possiamo definire l'energia potenziale della spira (a meno di sostante $ il^2 B $):
+\begin{equation}
+	U(\theta) = -\sprod{m}{B}
+	\label{eq:pot-sp}
+\end{equation}
+
+\subsubsection{Spira in campo magnetico non uniforme}
+
+Consideriamo di nuovo una spira quadrata di lato $ l $ parallela al piano $ xy $, questa volta in un campo magnetico non uniforme $ \vec{B} $ ortogonale ad essa. \\ 
+%
+Assumiamo per semplificare che $ \vec{B} = \vec{B}(x) $: le forze sui lati $ y_+ $ e $ y_- $ sono continuamente bilanciate, quindi possiamo concentrarci su quelle sui lati $ x_+ $ e $ x_- $: $ \vec{F}_- = -i\,lB_- \,\vec{e}_x $ e $ \vec{F}_+ = i\,lB_+ \,\vec{e}_x $. Il lavoro effettuato per portare la spira da una regione a campo nullo $ x_0 $ alle posizioni finali $ x_- $ e $ x_+ $ è:
+\begin{equation}
+	\begin{split}
+		W &= W_- + W_+ = -\int_{x_0}^{x_+} \vec{F}_+ \cdot d\vec{l} - \int_{x_0}^{x_-} \vec{F}_- \cdot d\vec{l} = -i\,l\int_{x_0}^{x_+} B(x) \,dx + i\,l\int_{x_0}^{x_+} B(x) \,dx \\ 
+		  &= -i\,l\int_{x_-}^{x_+} B(x) \,dx
+	\end{split}
+	\label{eq:}
+\end{equation}
+Supponendo che la spira sia piccola rispetto alla scala di distanze su cui varia il campo magnetico, possiamo assumere che su tutta la spira e per tutto il moto il campo magnetico sulla spira assuma il valore che ha al suo centro, quindi $ W \approx -i\,l^2 B(x_c) = -m\,B(x_c) $; inoltre, dato che $ \vec{F} = i\,l\left(\vec{B}(x_+) - \vec{B}(x_-)\right) $, sviluppando al prim'ordine otteniamo la forza totale agente sulla spira:
+\begin{equation}
+	\vec{F} = m \displaystyle\frac{\partial B}{\partial x} \hat{e}_x
+	\label{eq:}
+\end{equation}
+
+Consideriamo ora il caso più generale $ \vec{B} = \vec{B}(\vec{r}) $, ponendo ora la spira nel piano $ yz $: approssimiamo comunque il valore del campo magnetico su ciascun lato al valore che esso assume nei rispettivi punti medi:
+\begin{equation}
+	\begin{split}
+		\vec{F} &= i\oint_{\varsigma} d\vprod{l}{B} = i \left[ \int_{z_-}^{(1)} d\vprod{l}{B} + \int_{y_+}^{(2)} d\vprod{l}{B} + \int_{z_+}^{(3)} d\vprod{l}{B} + \int_{z_-}^{(4)} d\vprod{l}{B} \right] \\ 
+			&= i \left[ \int_0^l dy \, \hat{e}_y \times (\vec{B}_1 - \vec{B}_3) + \int_0^d dz \, \hat{e}_z \times (\vec{B}_2 - \vec{B}_4) \right] \\ 
+			& \qquad \text{sviluppo rispetto al centro della spira} \\
+			&= i\,l\left[ - \int_0^l dy\, \hat{e}_y \times \displaystyle\frac{\partial\vec{B}}{\partial z} + \int_0^l dz\, \hat{e}_z \times \displaystyle\frac{\partial\vec{B}}{\partial y} \right] = m_c \left[ - \hat{e}_y \times \displaystyle\frac{\partial\vec{B}}{\partial z} + \hat{e}_z \times \displaystyle\frac{\partial\vec{B}}{\partial y} \right] \\ 
+			&= m_c \left[ - \displaystyle\frac{\partial B_z}{\partial z} \hat{e}_x + \displaystyle\frac{\partial B_x}{\partial z} \hat{e}_z - \displaystyle\frac{\partial B_y}{\partial y} \hat{e}_x + \displaystyle\frac{\partial B_x}{\partial y} \hat{e}_y \right] \\ 
+			& \qquad\qquad \dive\vec{B} = 0 \Rightarrow \displaystyle\frac{\partial B_x}{\partial x} = - \displaystyle\frac{\partial B_y}{\partial y} - \displaystyle\frac{\partial B_z}{\partial z} \\ 
+			&= m_0 \left[ \displaystyle\frac{\partial B_x}{\partial x} \hat{e}_x + \displaystyle\frac{\partial B_y}{\partial y} \hat{e}_y + \displaystyle\frac{\partial B_z}{\partial z} \hat{e}_z \right] = m_0 \nabla B_x
+	\end{split}
+	\label{eq:}
+\end{equation}
+Si nota che il dipolo orientato lungo l'asse x seleziona la componente $ B_x $ per calcolare la forza totale sulla spira; si può generalizzare ad un'orientazione generica del dipolo:
+\begin{equation}
+	\vec{F} = \nabla(\sprod{m}{B})
+	\label{eq:for-sp-non-uni}
+\end{equation}
+
+\subsubsection{Strato di corrente uniforme}
+
+Consideriamo uno strato infinito di spessore $ 2a $ (spessore lungo asse $ x $) percorso da una densità di corrente $ \vec{J} = J\,\hat{e}_z $ uniforme: per la legge di Biot-Savart $ \vec{B}\perp\vec{J} $, quindi $ B_z = 0 $; inoltre, se per assurdo fosse $ B_x \neq 0 $, allora invertendo $ \vec{J} $ si dobrebbe invertire anche il segno di $ B_x $, ma, dato che lo strato è inifito, invertire $ \vec{J} $ significa invertire l'asse $ x $, e non ha senso fisico che il campo magnetico dipenda dal sistema di riferimento, quindi bisogna avere anche $ B_x = 0 $, quindi per simmetria $ \vec{B} = B(x) \,\hat{e}_y $; infine, sempre per la legge di Biot-Savart, si deve avere $ B(0) = 0 $ e $ \text{sgn}\,B(x) = \text{sgn}\,x $.
+% METTI SGN COME NEWCOMMAND IN IMPORTS
 
 
 
