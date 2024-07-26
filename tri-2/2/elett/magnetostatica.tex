@@ -269,7 +269,7 @@ Consideriamo una spira $ \varsigma $ di forma generica percorsa da una corrente 
 Definendo il momento di dipolo magnetico $ \vec{m} \equiv \frac{i}{2} \oint_{\varsigma} \left(\vec{r}\,'\times d\vec{r}\,'\right) $ possiamo scrivere il potenziale vettore lontano dalla spira come:
 \begin{equation}
 	\vec{A}(\vec{r}) = \displaystyle\frac{\mu_0}{4\pi r^2} \, \vec{m}\times\hat{r}
-	\label{eq:po-vett-sp-lont}
+	\label{eq:pot-dip}
 \end{equation}
 Si può notare che il momento di monopolo magnetico $ \oint_{\varsigma} d\vec{r} = 0  $ è sempre nullo, a differenza di quello elettrico. \\ 
 %
@@ -400,11 +400,120 @@ Si nota che il dipolo orientato lungo l'asse x seleziona la componente $ B_x $ p
 
 \subsubsection{Strato di corrente uniforme}
 
-Consideriamo uno strato infinito di spessore $ 2a $ (spessore lungo asse $ x $) percorso da una densità di corrente $ \vec{J} = J\,\hat{e}_z $ uniforme: per la legge di Biot-Savart $ \vec{B}\perp\vec{J} $, quindi $ B_z = 0 $; inoltre, se per assurdo fosse $ B_x \neq 0 $, allora invertendo $ \vec{J} $ si dobrebbe invertire anche il segno di $ B_x $, ma, dato che lo strato è inifito, invertire $ \vec{J} $ significa invertire l'asse $ x $, e non ha senso fisico che il campo magnetico dipenda dal sistema di riferimento, quindi bisogna avere anche $ B_x = 0 $, quindi per simmetria $ \vec{B} = B(x) \,\hat{e}_y $; infine, sempre per la legge di Biot-Savart, si deve avere $ B(0) = 0 $ e $ \text{sgn}\,B(x) = \text{sgn}\,x $.
-% METTI SGN COME NEWCOMMAND IN IMPORTS
+Consideriamo uno strato infinito di spessore $ 2a $ (spessore lungo asse $ x $) percorso da una densità di corrente $ \vec{J} = J\,\hat{e}_z $ uniforme: per la legge di Biot-Savart $ \vec{B}\perp\vec{J} $, quindi $ B_z = 0 $; inoltre, se per assurdo fosse $ B_x \neq 0 $, allora invertendo $ \vec{J} $ si dovrebbe invertire anche il segno di $ B_x $, ma, dato che lo strato è infinito, invertire $ \vec{J} $ significa invertire l'asse $ x $, e non ha senso fisico che il campo magnetico dipenda dal sistema di riferimento, quindi bisogna avere anche $ B_x = 0 $, quindi per simmetria $ \vec{B} = B(x) \,\hat{e}_y $; infine, sempre per la legge di Biot-Savart, ed in particolare per il termine $ \vec{J}\times(\vec{r} - \vec{r}\,') $, si deve avere $ B(0) = 0 $ e $ \sgn{B(x)} = \sgn{x} $. \\ 
+%
+Poniamoci nel caso $ x > 0 $ e distinguiamo tra $ x < a $ e $ x > a $, considerando sempre un loop $ \gamma $ rettangolare sul piano $ xy $ di lunghezza $ l $ sull'asse $ y $: nel caso $ x < a $ il loop è completamente contenuto nello strato, quindi la legge di Amère dà:
+\begin{equation}
+	\oint_{\gamma} \vec{B} \cdot d\vec{l} = B(x)l - B(0)l = B(x)l = \mu_0 i = \mu_0 \oiint_S \vec{J} \cdot d\vec{S} = \mu_0 J x l \,\,\Longrightarrow\,\, B(x) = \mu_0 J x
+	\label{eq:}
+\end{equation}
+Per $ x > a $, invece, il loop intercetta la corrente solo fino ad $ x = a $, dunque si trova che $ B(x) = \mu_0 J a $; in definitiva, l'espressione del campo magnetico è:
+\begin{equation}
+	\vec{B}(\vec{r}) = 
+	\begin{cases}
+		\mu_0 J x \, \hat{e}_y & \abs{x} < a \\ 
+		\mu_0 J a \,\text{sgn}(x) \,\hat{e}_y & \abs{x} \ge a
+	\end{cases}
+	\label{eq:}
+\end{equation}
 
+\subsubsection{Guscio sferico carico rotante}
 
-
+Consideriamo un guscio sferico uniformemente carico di raggio $ R $ e carica superficiale $ \sigma $, in rotazione con velocità angolare $ \vec{\Omega} $, e fissiamo gli assi in modo che l'asse $ z $ sia allineato a $ \vec{r} $ e $ \vec{\Omega} $ giaccia sul piano $ xy $: poiché la carica è in movimento, si avrà una densità superficiale di corrente $ \vec{K}(\vec{r}\,') = \sigma\vec{v}\,' = \sigma\vprod{\Omega}{r}\,' $. \\ 
+%
+Detto $ \psi $ l'angolo tra $ \Omega $ e $ \hat{e}_z $ e posto $ \vec{r} = r\,\hat{e}_z $, si ha:
+\begin{equation}
+	\begin{split}
+		\vprod{\Omega}{r}\,' &= (\omega \sin\psi \,\hat{e}_x + \omega \cos\psi \,\hat{e}_z) \times R (\sin\theta'\cos\phi' \,\hat{e}_x + \sin\theta'\sin\theta' \,\hat{e}_y + \cos\theta' \,\hat{e}_z) \\ 
+				     &= R\omega \left[-\cos\psi\sin\theta'\sin\phi' \,\hat{e}_x + (\cos\psi\sin\theta'\cos\phi' - \sin\psi\cos\theta')\,\hat{e}_y + \sin\psi\sin\theta'\sin\phi' \,\hat{e}_z \right]
+	\end{split}
+	\label{eq:}
+\end{equation}
+\begin{equation}
+	\abs{\vec{r} - \vec{r}\,'} = \sqrt{r^2 + r'^2 - 2\sprod{r}{r}\,'} = \sqrt{r^2 + R^2 - 2rR\cos\theta'}
+	\label{eq:}
+\end{equation}
+Il potenziale vettore è dato da $ \vec{A}(\vec{r}) = \frac{\mu_0 \sigma}{4\pi} \oiint_S \frac{\vec{K}(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dS' = \frac{\mu_0 \sigma}{4\pi} \int_0^{\pi} \int_0^{2\pi} \frac{\vprod{\Omega}{r}\,'}{\abs{\vec{r}-\vec{r}\,'}} R^2 \sin\theta' d\theta' d\phi' $, ma il denominatore non dipende da $ \phi' $, mentre il numeratore vi dipende solo tramite funzioni trigonometriche semplici che hanno integrale nullo su $ [0,2\pi] $, quindi:
+\begin{equation}
+	\begin{split}
+		\vec{A}(\vec{r}) &= \displaystyle\frac{\mu_0 \sigma R^3 \omega}{4\pi} 2\pi\sin\psi \int_0^{\pi} \displaystyle\frac{-\cos\theta'}{\sqrt{r^2 + R^2 -2rR\cos\theta'}} \sin\theta' d\theta' \,\hat{e}_y \\ 
+				 & \qquad\qquad \cos\theta' = x \\ 
+				 &= \displaystyle\frac{\mu_0}{2} \sigma R^3 \omega \sin\psi \int_{-1}^{1} \displaystyle\frac{x}{\sqrt{r^2 + R^2 - 2rRx}} dx \\ 
+				 &= \displaystyle\frac{\mu_0}{2} \sigma R^3 \omega \sin\psi \left[ -\displaystyle\frac{1}{3R^2r^2}\left( (r^2 + R^2 + rR)\abs{R - r} - (r^2 + R^2 - rR)(R + r)\right)\right]
+	\end{split}
+	\label{eq:}
+\end{equation}
+Semplificando, otteniamo:
+\begin{equation}
+	\vec{A}(\vec{r}) =
+	\begin{cases}
+		-\frac{\mu_0}{3} \sigma r R \omega \sin\psi \,\hat{e}_y & r < R \\ 
+		-\frac{\mu_0}{3} \sigma \displaystyle\frac{R^4}{r^2} \omega \sin\psi \,\hat{e}_y & r > R
+	\end{cases}
+	\,=
+	\begin{cases}
+		\frac{\mu_0}{3} \sigma R \vprod{\Omega}{r} & r < R \\ 
+		\frac{\mu_0}{3} \sigma \displaystyle\frac{R^4}{r^3} \vprod{\Omega}{r} & r > R
+	\end{cases}
+	\label{eq:po-sf}
+\end{equation}
+Si nota che per $ r > R $ il potenziale ha la stessa forma matematica del potenziale di dipolo \ref{eq:pot-dip}, ponendo $ \vec{m} = \frac{4}{3} \pi R^4 \vec{\Omega} $. \\ 
+%
+Ruotiamo ora il sistema di riferimento in modo che l'asse $ z $ sia lungo $ \vec{\Omega} $: ora $ \vec{\Omega} = \omega \hat{e}_z = \omega (\cos\theta \,\hat{e}_r - \sin\theta \,\hat{e}_{\theta}) $ e $ \vec{r} = r \,\hat{e}_r $, quindi $ \vprod{\Omega}{r} = \omega r \sin\theta \,\hat{e}_{\phi} $ e:
+\begin{equation}
+	\vec{A}(\vec{r}) =
+	\begin{cases}
+		-\frac{\mu_0}{3} \sigma r R \omega \sin\theta \,\hat{e}_{\phi} & r < R \\ 
+		-\frac{\mu_0}{3} \sigma \displaystyle\frac{R^4}{r^2} \omega \sin\theta \,\hat{e}_{\phi} & r > R
+	\end{cases}
+	\label{eq:}
+\end{equation}
+Per calcolare il campo magnetico, ricordiamo il rotore in coordinate sferiche:
+\begin{equation}
+	\begin{split}
+		\vec{B}(\vec{r}) &= \rot\vec{A} \\ 
+				 &= \displaystyle\frac{1}{r\sin\theta} \left( \displaystyle\frac{\partial}{\partial\theta} \left( A_{\phi} \sin\theta \right) - \displaystyle\frac{\partial A_{\theta}}{\partial\phi} \right) \hat{e}_r + \displaystyle\frac{1}{r} \left( \displaystyle\frac{1}{\sin\theta} \displaystyle\frac{\partial A_r}{\partial\phi} - \displaystyle\frac{\partial}{\partial r} \left(r A_{\phi} \right)\right) \hat{e}_{\theta} + \\ 
+				 & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad + \displaystyle\frac{1}{r} \left(\displaystyle\frac{\partial}{\partial r} \left( r A_{\theta} \right) - \displaystyle\frac{\partial A_r}{\partial\theta} \right) \hat{e}_{\phi} \\ 
+				 &= \displaystyle\frac{1}{r\sin\theta}\displaystyle\frac{\partial}{\partial\theta}(A_{\phi} \sin\theta) \,\hat{e}_r - \displaystyle\frac{1}{r}\displaystyle\frac{\partial}{\partial r} (rA_{\phi}) \,\hat{e}_{\theta}
+	\end{split}
+	\label{eq:}
+\end{equation}
+Nel caso $ r < R $:
+\begin{equation}
+	B_r = \displaystyle\frac{\mu_0}{3} \displaystyle\frac{\sigma r R \omega}{r \sin\theta} \displaystyle\frac{\partial}{\partial\theta} \sin^2\theta = \displaystyle\frac{2\mu_0}{3} \sigma R \omega \cos\theta
+	\label{eq:}
+\end{equation}
+\begin{equation}
+	B_{\theta} = -\displaystyle\frac{\mu_0}{3} \sigma R \omega \displaystyle\frac{\partial}{\partial r} (r^2 \sin\theta) = -\displaystyle\frac{2\mu_0}{3} \sigma R \omega \sin\theta
+	\label{eq:}
+\end{equation}
+\begin{equation}
+	\vec{B}(\vec{r}) = \displaystyle\frac{2}{3} \mu_0 \sigma\omega R\,\hat{e}_z
+	\label{eq:}
+\end{equation}
+Nel caso $ r > R $:
+\begin{equation}
+	B_r = \displaystyle\frac{1}{r \sin\theta} \displaystyle\frac{\mu_0}{3} \displaystyle\frac{\sigma R^4 \omega}{r^2} \displaystyle\frac{\partial}{\partial\theta} \sin^2\theta = \displaystyle\frac{2\mu_0}{3} \displaystyle\frac{\sigma R^4 \omega}{r^3} \cos\theta
+	\label{eq:}
+\end{equation}
+\begin{equation}
+	B_{\theta} = -\displaystyle\frac{1}{r} \displaystyle\frac{\mu_0}{3} \sigma R^4 \omega \sin\theta \displaystyle\frac{\partial}{\partial r} \left(\displaystyle\frac{1}{r}\right) = \displaystyle\frac{\mu_0}{3} \displaystyle\frac{\sigma R^4 \omega}{r^3} \sin\theta
+	\label{eq:}
+\end{equation}
+\begin{equation}
+	\vec{B}(\vec{r}) = \displaystyle\frac{\mu_0 \sigma R^4 \omega}{3 r^3} \left(2\cos\theta \,\hat{e}_r + \sin\theta \,\hat{e}_{\theta}\right)
+	\label{eq:}
+\end{equation}
+Quindi in definitiva:
+\begin{equation}
+	\vec{B}(\vec{r}) =
+	\begin{cases}
+		\frac{2}{3} \mu_0 \sigma\omega R\,\hat{e}_z & r < R \\ 
+		\displaystyle\frac{\mu_0 \sigma R^4 \omega}{3 r^3} \left(2\cos\theta \,\hat{e}_r + \sin\theta \,\hat{e}_{\theta}\right) & r > R
+	\end{cases}
+	\label{eq:mag-sf}
+\end{equation}
+Si noti che all'interno del guscio il campo magnetico è uniforme e diretto lungo l'asse di rotazione, mentre all'esterno è equivalente a quello di un dipolo magnetico con $ \mu = \frac{4}{3} \pi R^4 \vec{\Omega} $.
 
 
 
