@@ -119,11 +119,367 @@ ovvero un osservatore in quiete misura dei tempi maggiori per un evento rispetto
 
 \subsection{Quadrivettori e Tensore Metrico}
 
+Come suggerito dalle trasformazioni di Lorentz, spazio e tempo non sono indipendenti ma legati tra loro, quindi adottiamo un punto di vista quadri-dimensionale definendo $ x^0 \equiv ct $, $ x^1 \equiv x $, $ x^2 \equiv y $, $ x^3 \equiv z $; possiamo scrivere le trasformazioni di Lorentz come:
+\begin{equation}
+	\begin{pmatrix}
+		x'^0 \\ x'^1 \\ x'^2 \\ x'^3
+	\end{pmatrix}
+	=
+	\begin{bmatrix}
+		\gamma & -\gamma\beta & 0 & 0 \\ 
+		-\gamma\beta & \gamma & 0 & 0 \\ 
+		0 & 0 & 1 & 0 \\ 
+		0 & 0 & 0 & 1 \\ 
+	\end{bmatrix}
+	\begin{pmatrix}
+		x^0 \\ x^1 \\ x^2 \\ x^3 
+	\end{pmatrix}
+	\label{eq:9}
+\end{equation}
+dove è stato definito $ \beta\equiv\frac{v}{c} $. \\ 
+%
+Adottando la convezione di sommatoria sottintesa di Einstein, definiamo il quadrivettore controvariante $ x^{\mu} \equiv (ct, x, y, z) $ e il suo corrispettivo covariante $ x_{\mu} \equiv (ct, -x, -y, -z) $: le trasformazioni di Lorentz lasciano invariata la quantità $ x^{\mu}x_{\mu} \equiv x\cdot x$, detto invariante di Lorentz. \\ 
+%
+Per passare dalle componenti controvarianti a quelle covarianti e viceversa si utilizza il tensore metrico $ g_{\mu\nu} = g^{\mu\nu} = \text{diag}(1,-1,-1,-1) $: $ x_{\mu} = g_{\mu\nu}x^{\mu} $. \\ 
+Possiamo scrivere le trasformazioni di Lorentz come:
+\begin{equation}
+	x'^{\mu} = \Lambda^{\mu}_{\nu} x^{\nu}
+	\label{eq:10}
+\end{equation}
+dove la matrice di trasformazione $ \Lambda^{\mu}_{\nu} $ è data da \ref{eq:9}.
 
+\subsubsection{Cinematica relativistica}
 
+Dato che le trasformazioni di Lorentz sono lineari, anche il differenziale di un quadrivettore gode di tutte le proprietà di un quadrivettore; se prendiamo il suo modulo:
+\begin{equation}
+	dx^{\mu}dx_{\mu} = c^2dt^2 - \abs{d\vec{r}}^2 \equiv d\tau^2
+	\label{eq:11}
+\end{equation}
+Possiamo dunque definire il tempo proprio (ha però le dimensioni di una distanza):
+\begin{equation}
+	d\tau = c \,dt \sqrt{1 - \displaystyle\frac{1}{c^2}\left(\displaystyle\frac{\abs{d\vec{r}}}{dt}\right)^2} = \displaystyle\frac{c}{\gamma}\,dt
+	\label{eq:12}
+\end{equation}
+invariante rispetto alle trasformazioni di Lorentz (ovvero lo stesso in tutti i sistemi di riferimento inerziali). \\ 
+%
+Vediamo come trasforma la velocità $ vec{u} $ di un punto $ P \in \mathcal{S} $ in un sistema di riferimento $ \mathcal{S}' $ in moto relativo rettilineo uniforme rispetto ad esso con velocità $ \vec{v} $; dalle trasformazioni di Lorentz:
+\begin{equation}
+	\begin{split}
+		dx^0 &= \gamma (dx'^0 + \beta dx'^1) \qquad dx^2 = dx'^2 \\ 
+		dx^1 &= \gamma (\beta dx'^0 + dx'^1) \qquad dx^3 = dx'^3
+	\end{split}
+	\label{eq:13}
+\end{equation}
+Quindi:
+\begin{equation}
+	\begin{split}
+		u^1 &= c \displaystyle\frac{dx^1}{dx^0} = c \displaystyle\frac{\beta dx'^0 dx'^1}{dx'^0 + \beta dx'^1} = \displaystyle\frac{v + u'^1}{1 + \frac{vu'^1}{c^2}} \\ 
+		u^{2,3} &= c \displaystyle\frac{dx^{2,3}}{dx^0} = \displaystyle\frac{u'^{2,3}}{\gamma (1 + \frac{vu'^1}{c^2})}
+	\end{split}
+	\label{eq:14}
+\end{equation}
+ovvero, generalizzando:
+\begin{equation}
+	u_{\parallel} = \displaystyle\frac{v + u'_{\parallel}}{1 + \frac{\sprod{v}{u}\,'}{c^2}} \qquad\qquad u_{\perp} = \displaystyle\frac{1}{\gamma}\displaystyle\frac{u'_{\perp}}{1 + \frac{\sprod{v}{u}\,'}{c^2}}
+	\label{eq:15}
+\end{equation}
+Si possono notare due importanti conseguenze: innanzitutto se $ \abs{u'} = c $ allora anche $ \abs{u} = c $, in accordo con il secondo postulato; inoltre, se la quantità di moto è conservata in un sistema di riferimento, in generale essa non sarà conservata anche nell'altro. \\ 
+Da queste leggi di trasformazione notiamo che la velocità non è un quadrivettore; per avere una velocità che abbia le proprietà dei quadrivettori, dobbiamo definire la quadrivelocità:
+\begin{equation}
+	\eta^{\mu} \equiv \displaystyle\frac{dx^{\mu}}{d\tau} = \gamma \, (1, \vec{\beta})
+	\label{eq:16}
+\end{equation}
+Si nota che $ \eta^2 = 1 $, ovvero che $ \eta^{\mu} $ è una quantità adimensionale. \\ 
+%
+Analogamente, definiamo il quadrimomento:
+\begin{equation}
+	p^{\mu} \equiv m_0 c^2 \eta^{\mu} = \gamma m_0 c^2 (1, \vec{\beta})
+	\label{eq:17}
+\end{equation}
+dove $ m_0 $ è la massa a riposo del corpo. \\ 
+Si nota che $ p^2 = m_0^2 \, c^4 $, ovvero che $ p^{\mu} $ ha le dimensioni di un'energia.
 
+\subsubsection{Dinamica relativistica}
 
+Riprendiamo le tre leggi di Newton:
+\begin{enumerate}
+	\item prima legge: viene inglobata nel primo postulato di Einstein;
+	\item seconda legge: vale anche in relatività ristretta come $ \vec{F} = \frac{d\vec{p}}{dt} $, con $ \vec{p} = \gamma m_0 \vec{v} $;
+	\item terza legge: non vale in relatività ristretta, poiché si basa sulla simultaneità delle forze, concetto che cambia in relatività rispetto alla meccanica classica.
+\end{enumerate}
 
+Consideriamo una particella soggetta ad una forza costante $ \vec{F} $ e consideriamo un sistema di riferimento con asse $ x $ orientato lungo $ \vec{F} $, facendo l'ulteriore semplificazione che $ \vec{p}(0) = 0 \,\Rightarrow\, \vec{p}(t) \parallel \vec{F} \,\,\forall t\in\mathbb{R}^+$, così da poter scrivere:
+\begin{equation}
+	F = \displaystyle\frac{dp}{dt} \qquad \Longrightarrow \qquad p(t) = F t = \displaystyle\frac{m_0 v(t)}{1 - \frac{v^2(t)}{c^2}}
+	\label{eq:18}
+\end{equation}
+Prendendo il modulo quadro:
+\begin{equation}
+	\displaystyle\frac{m_0^2 \, c^2 \beta^2}{1 - \beta^2} = F^2 t^2 \qquad \Longrightarrow \qquad v^2(t) = c^2 \displaystyle\frac{F^2 t^2}{m_0^2 \, c^2 + F^2 t^2}
+	\label{eq:19}
+\end{equation}
+Si evidenziano due comportamenti asintotici:
+\begin{itemize}
+	\item limite non-relativistico: $ Ft \ll m_0 c \,\,\Rightarrow\,\, v(t) \approx \frac{F}{m_0}t$;
+	\item limite ultra-relativistico: $ Ft \gg m_0 c \,\,\Rightarrow\,\, v(t) \rightarrow c $.
+\end{itemize}
+Possiamo determinare la traiettoria integrando:
+\begin{equation}
+	\begin{split}
+		x(t) &= c \int_o^t \displaystyle\frac{Ft'}{\sqrt{{m_0^2 \, c^2 + F^2 t'^2}}} dt' = c \int_0^t \displaystyle\frac{\frac{Ft'}{m_0 c}}{\sqrt{1 + (\frac{F t'}{m_0 c})^2}} \\ 
+		     & \qquad\qquad y \equiv \frac{F t'}{m_0 c} \\ 
+		     &= \frac{m_0 c^2}{F} \int_0^{\frac{Ft}{m_0 c}} \displaystyle\frac{y}{1 + y^2} dy + x_0 = \displaystyle\frac{m_0 c^2}{F} \left(\sqrt{1 + \left(\frac{F t}{m_0 c}\right)} - 1\right) + x_0
+	\end{split}
+	\label{eq:20}
+\end{equation}
+Nel limite non relativistico $ \frac{Ft}{m_0c} \ll 1 $, quindi $ x(t) \approx x_0 + \frac{1}{2}\frac{F}{m}t^2 $, che è proprio quello che ci aspetteremmo dalla meccanica classica: la soluzione classica è un ramo di parabola, mentre quella realtivistica è un ramo di iperbole. \\ 
+%
+Vediamo ora come diventa il teorema dell'energia cinetica in ambito relativistico:
+\begin{equation}
+	\begin{split}
+		W &= \int \vec{F}\cdot d\vec{l} = \int_0^t \displaystyle\frac{d\vec{p}}{dt'}\cdot \displaystyle\frac{d\vec{l}}{dt'} dt' = \int_0^t \left[ \displaystyle\frac{m_0}{\sqrt{1 - \frac{v^2}{c^2}}} \displaystyle\frac{d\vec{v}}{dt'} + \frac{1}{2}\displaystyle\frac{m_0 2\frac{v}{c^2}\frac{dv}{dt'}}{\left(1 - \frac{v^2}{c^2}\right)^{3/2}} \right] \cdot\vec{v}\, dt' \\ 
+		  &= \int_0^t \displaystyle\frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}} v \displaystyle\frac{dv}{dt'} \left[ 1 + \displaystyle\frac{\frac{v^2}{c^2}}{1 - \frac{v^2}{c^2}}\right] dt' = \int_0^t \displaystyle\frac{m_0 v}{\left(1-\frac{v^2}{c^2}\right)^{3/2}} \displaystyle\frac{dv}{dt'} dt' = \int_0^t \displaystyle\frac{d}{dt}\left(\gamma m_0 c^2\right)dt'
+	\end{split}
+	\label{eq:21}
+\end{equation}
+Dato che $ W = K $, abbiamo le espressioni per l'energia totale, l'energia cinetica e l'energia a riposo della particella:
+\begin{equation}
+	E = \gamma m_0 c^2 \qquad\qquad K = m_0 c^2 (\gamma-1) \qquad\qquad E_0 = m_0 c^2
+	\label{eq:22}
+\end{equation}
+Nel limite non relativistico $ \gamma \approx 1 + \frac{1}{2}\frac{v^2}{c^2} $, quindi si ottiene giustamente $ K \approx \frac{1}{2} m_0 v^2 $. \\ 
+Infine, possiamo vedere come trasforma la forza $ \vec{F} $ in un sistema di riferimento in moto relativo con $ \vec{v} = -v\,\hat{e}_x $:
+\begin{equation}
+	F'_{y,z} = \displaystyle\frac{dp'_{y,z}}{dt'} = \displaystyle\frac{dp_{y,z}}{\gamma (dt - \frac{\beta}{c}dx)} = \displaystyle\frac{F_{y,z}}{\gamma (1 - \frac{\beta}{c} v_x)}
+	\label{eq:23}
+\end{equation}
+Dato che $ p^{\mu} = (E, c\vec{p}) $, si ha $ dp'_x = \frac{dp'^1}{c} = \gamma (-\beta \frac{E}{c} + p_x) $, quindi:
+\begin{equation}
+	F'_x = \displaystyle\frac{dp'_x}{dt'} = \displaystyle\frac{\gamma (-\beta \frac{E}{c} + p_x)}{\gamma (dt - \frac{\beta}{c} dx)} = \displaystyle\frac{F_x - \frac{\beta}{c}\frac{dE}{dt}}{1 - \frac{\beta}{c}v_x} = \displaystyle\frac{F_x - \frac{\beta}{c}\sprod{F}{v}}{1 - \frac{\beta}{c} v_x}
+	\label{eq:24}
+\end{equation}
+dove abbiamo ripreso $ \frac{dE}{dt} = \frac{d}{dt}(\gamma m_0 c^2) = \frac{d\vec{p}}{dt}\cdot\vec{v}=\sprod{F}{v} $. Generalizzando:
+\begin{equation}
+	F_{\parallel} = \displaystyle\frac{F_{\parallel} - \frac{\beta}{c}\sprod{F}{v}}{1 - \frac{\beta}{c} \abs{\vec{v}}} \qquad\qquad F_{\perp} = \displaystyle\frac{F_{\perp}}{\gamma (1 - \frac{\beta}{c} \abs{\vec{v}})}
+	\label{eq:25}
+\end{equation}
+Si può anche definire un quadrivettore forza, detto forza di Minkowski:
+\begin{equation}
+	f^{\mu} \equiv \displaystyle\frac{dp^{\mu}}{d\tau} = \gamma \left(\displaystyle\frac{1}{c}\displaystyle\frac{dE}{dt}, \vec{F}\right)
+	\label{eq:26}
+\end{equation}
+
+\subsection{Campo Elettromagnetico}
+
+I pilastri dell'elettrostatica sono la legge di Coulomb e quella di Gauss: il linea di principio, non ci sarebbe nessun motivo per cui esse debbano valere anche per cariche in moto, ed infatti la legge di Coulomb vale solo per cariche ferme (o, in maniera approssimativa, se $ v \ll c $); d'altra parte, sperimentalmente si osserva che la legge di Gauss vale anche per cariche in moto, quindi in un certo senso essa è una legge più generale di quella di Coulomb. \\ 
+%
+Una conseguenza di ciò è che la carica è un invariante relativistico: essa è indipendente dal sistema di riferimento, e dunque dalla velocità (a differenza, ad esempio, della massa, per la quale vale $ m = \gamma m_0 $): intuitivamente, ciò viene evidenziato, ad esempio, considerando un conduttore neutro e notando che aumentandone, la temperatura, la velocità degli elettroni aumenta più della velocità degli ioni, quindi se la carica dipendesse dalla temperatura si potrebbe caricare il conduttore semplicemente scaldandolo. \\ 
+%
+Se la carica è invariante, si vede che le densità di carica non lo sono. \\ 
+%
+Consideriamo una superficie piana con densità di carica $ \sigma = \frac{q}{S} $: se essa si muove con velocità $ \vec{v} $ nella direzione di uno dei due lati, il lato parallelo a $ \vec{v} $ subirà la contrazione di un fattore $ \gamma^{-1} $ per un osservatore esterno, dunque $ S' = \gamma^{-1} S $:
+\begin{equation}
+	\sigma' = \gamma\sigma
+	\label{eq:27}
+\end{equation}
+
+\subsubsection{Trasformazioni di Lorentz del campo elettrico}
+
+Consideriamo un condensatore a facce piane parallele con densità di carica $ \pm\sigma $ a riposo in un sistema di riferimento $ \mathcal{S} $ e calcoliamo il campo elettrico in un sistema $ \mathcal{S}' $ in moto con $ \vec{v} = -v\,\hat{e}_x $: il campo elettrico tra le armature in $ \mathcal{S} $ è $ \vec{E} = \frac{\sigma}{\epsilon_0}\,\hat{e}_y $, ma a priori non sappiamo come esso sia visto da $ \mathcal{S}' $, quindi assumiamo che abbia un componente lungo $ \hat{e}_x $ (ignoriamo per il momento il campo magnetico). \\ 
+%
+Se prendiamo il campo tra le due armature, dato che le densità di carica sono opposte in segno anche le componenti $ E_x $ dei due campi elettrici saranno opposte in segno, quindi si elideranno tra loro: tra le due armature il campo elettrico rimane ortogonale ad esse.
+Se prendiamo come superficie gaussiana un parallelepipedo di sezione orizzontale $ S $ che intersechi una delle due armature (WLOG quella con $ +\sigma $), la legge di Gauss ci dà $ \Phi(E') = E'S' = \frac{\sigma'S'}{\epsilon_0} $, dunque ricaviamo la legge di trasformazione:
+\begin{equation}
+	E'_{\perp} = \gamma E_{\perp}
+	\label{eq:28}
+\end{equation}
+Applicando la stessa analisi ad un condensatore che invece si muova parallelamente al campo elettrico, ad esempio $ \vec{v} = v \,\hat{e}_z $, si trova:
+\begin{equation}
+	E'_{\parallel} = E_{\parallel}
+	\label{eq:29}
+\end{equation}
+Queste trasformazioni sono generali e valgono per qualsiasi configurazione delle sorgenti.
+
+\subsubsection{Campo elettrico di una carica in moto}
+
+Consideriamo una carica $ q $ a riposo in un sistema di riferimento $	\mathcal{S} $: il suo campo elettrico è dato da:
+\begin{equation}
+	\vec{E}(\vec{r}) = \frac{q}{4\pi\epsilon_0} \frac{x\,\hat{e}_x + y\,\hat{e}_y}{(x^2+y^2)^{3/2}} \qquad\Longrightarrow\qquad \frac{E_y}{E_x} = \frac{y}{x} \quad (\text{campo radiale})
+	\label{eq:30}
+\end{equation} 
+Consideriamo ora un sistema di riferimento $ \mathcal{S}' $ in moto con $ \vec{v} = -v\,\hat{e}_x $ ($ O' $ vede la carica muoversi con $ +v\,\hat{e}_x $) tale che le origini coincidano a $ t = 0 $: in generale $ x = \gamma (x' + \beta ct') $ e $ t = \gamma (ct' - \beta x') $, quindi all'istante iniziale si ha $ x = \gamma x' $ e $ y = y' $, quindi:
+\begin{equation}
+	\vec{E}'(\vec{r}\,') = E'_x\,\hat{e}_x + E'_y\,\hat{e}_y = E_x\,\hat{e}_x + \gamma E_y\,\hat{e}_y = \frac{q}{4\pi\epsilon_0} \frac{\gamma x' \,\hat{e}_x + \gamma y' \,\hat{e}_y}{(\gamma^2x^2+y^2)^{3/2}}
+	\label{eq:31}
+\end{equation}
+Quindi il campo continua ad essere radiale ($ \frac{E'_y}{E'_x} = \frac{y'}{x'} $). Per quando riguarda il modulo, svolgendo i calcoli si trova:
+\begin{equation}
+	E'(\vec{r}\,') = \frac{q}{4\pi\epsilon_0 r'^2} \frac{1-\beta^2}{(1 - \beta^2\sin^2\theta)^{3/2}}
+	\label{eq:32}
+\end{equation}
+dove $ \theta $ è l'angolo tra $ \vec{r}\,' $ e $ \vec{v} $. \\ 
+%
+Tenendo $ r' $ fissato, si vede subito che $ E'(\frac{\pi}{2}) = \gamma E \ge E = E'(0) $, ovvero il campo elettrico di una carica in moto è maggiore nella direzione perpendicolare allo spostamento: di conseguenza, il campo elettrico non è più conservativo, poiché $ \oint_{\gamma}\vec{E}'\cdot d\vec{l} \neq 0 $ se si considera ad esempio un arco di corona tra $ [r'_1,r'_2] $ e $ [0,\frac{\pi}{2}] $, ovvero $ \rot\vec{E}' \neq 0 $. \\ 
+%
+Dato che il campo elettrico varia in modulo in base alla direzione e che col passare del tempo la carica si muove, se fissiamo un punto nello spazio e misuriamo il campo elettrico lì ad ogni istante misureremo un campo diverso: una carica in moto genera un campo elettrico variabile nel tempo. \\ 
+%
+Consideriamo ora una carica inizialmente ferma in $ x = 0 $: il campo elettrico è radiale e non dipende dalla direzione. \\Se la carica si mette in moto, nelle sue immediate vicinanze il campo elettrico è quello di una carica in movimento, appena determinato; lontano dalla carica, invece, e più precisamente all'esterno di una sfera centrata in $ x = 0 $ e di raggio $ ct $, l'informazione che la carica si è messa in moto non è ancora arrivata ed il campo è ancora quello elettrostatico: si viene quindi a creare un guscio sferico all'interfaccia tra queste due regioni, viaggiante a $ c $, in cui le linee di campo si devono raccordare, dunque sono radiali ma essenzialmente tangenti alla sfera (lo spessore di questo guscio dipende dall'accelerazione iniziale della carica). \\ 
+L'accelerazione della carica ha quindi generato un impulso viaggiante alla velocità della luce in cui il campo elettrico è praticamente perpendicolare alla direzione di propagazione dell'impulso: si vedrà che questo impulso è associato ad un campo magnetico e che il fronte della perturbazione è un'onda elettromagnetica che si propaga. \\ 
+Supponiamo ora che la carica si fermi bruscamente in un istante che ridefiniremo come $ t = 0 $ ed in una nuova posizione $ x = 0 $: in ogni istante successivo a $ t = 0 $ il campo interno alla sfera centrata in $ x = 0 $ e di raggio $ ct $ è quello elettrostatico di una carica puntiforme, mentre, all'esterno di questa sfera l'informazione ancora non è arrivata ed il campo è ancora quello di una carica in moto che si trovasse dopo il punto in cui la carica si è fermata, ovvero nel punto $ x = vt $; all'interfaccia tra le due ragioni si viene a creare di nuovo un guscio sferico analogo al precedente. \\ 
+%
+Consideriamo una linea di campo singola (WLOG nel caso di decellerazione) e cerchiamo la relazione tra il suo tratto all'interno del guscio sferico e all'esterno di esso, caratterizzati da due angoli $ \theta_0 $ e $ \phi_0 $ (dentro e fuori) rispetto alla direzione di $ \vec{v} $ (WLOG $ \hat{e}_x $): per farlo, consideriamo il loop in figura. \\ 
+%
+%
+%
+\hbox{} \\ INSERIRE LA FIGURA \\ \hbox{} \\ 
+%
+%
+%
+In particolare, consideriamo i punti $ A $ ed $ F $ tali che essi si trovino ad una distanza fissata $ r $ rispettivamente $ x = 0 $ e da $ x = vt $ e prendiamo la superficie gaussiana data dalla rotazione del loop attorno all'asse $ x $: per il teorema di Gauss il flusso totale del campo elettrico attraverso questa superficie deve esse nullo, ed inoltre si nota che gli unici tratti del loop che contribuiscono al flusso sono i due archi all'interno ed all'esterno del guscio, poiché in tutti gli altri tratti il campo è parallelo alla superficie. Questi flussi sono:
+\begin{equation}
+	\Phi_{\text{interno}} = \int_{\text{arco interno}} \vec{E}\cdot d\vec{S} = -\frac{q}{4\pi\epsilon_0 r^2} 2\pi r^2 \int_0^{\theta_0} \sin\theta \,d\theta = -\frac{q}{2\epsilon_0} (1-\cos\theta_0)
+	\label{eq:33}
+\end{equation}
+\begin{equation}
+	\Phi_{\text{esterno}} = \int_{\text{arco esterno}} \vec{E}\cdot d\vec{S} = \frac{q}{4\pi\epsilon_0 r^2} 2\pi r^2 \int_0^{\phi_0} \displaystyle\frac{1 - \beta^2}{(1 - \beta^2 \sin^2\phi)^{3/2}} \sin\phi \,d\phi
+	\label{eq:34}
+\end{equation}
+Risolvendo l'integrale si trova il flusso totale $ \Phi = \Phi_{\text{interno}} + \Phi_{\text{esterno}} $:
+\begin{equation}
+	\Phi = -\frac{q}{2\epsilon_0} (1-\cos\theta_0) + \frac{q}{2\epsilon_0} \left[ 1 - \frac{\sqrt{2}\cos\phi_0}{\sqrt{2 - \beta^2 + \beta^2 \cos2\phi_0}} \right] = 0
+	\label{eq:35}
+\end{equation}
+da cui:
+\begin{equation}
+	\cos\theta_0 = \frac{\sqrt{2}\cos\phi_0}{\sqrt{2(1 - \beta^2\sin^2\phi_0)}} \qquad\Longrightarrow\qquad \cos^2\theta_0 = \frac{\cos^2\phi_0}{1 - \beta^2\sin^2\phi_0}
+	\label{eq:36}
+\end{equation}
+Semplificando:
+\begin{equation}
+	\tan^2\theta_0 = \sin^2\theta_0 \frac{1 - \beta^2\sin^2\phi_0}{\cos^2\phi} = \left[1 - \frac{\cos^2\phi_0}{1 - \beta^2\sin^2\phi_0} \right] \frac{1 - \beta^2\sin^2\phi_0}{\cos^2\phi_0} = \frac{1 - \cos^2\phi_0}{\cos^2\phi_0} - \beta^2\tan^2\phi_0
+	\label{eq:37}
+\end{equation}
+Dato che $ 1 - \cos^2\phi_0 = \sin^2\phi_0 $ e $ 1 - \beta^2 = \gamma^{-2} $, otteniamo la relazione semplificata:
+\begin{equation}
+	\tan\phi_0 = \gamma\tan\theta_0
+	\label{eq:38}
+\end{equation}
+
+\subsubsection{Trasformazioni di $ \vec{E} $ e $ \vec{B} $}
+
+Consideriamo di nuovo un condensatore a facce piane parallele che si muove con velocità $ \vec{u} = u \,\hat{e}_x $ in un sistema di riferimento $ \mathcal{S} $, nel quale i piani hanno densità di carica $ \pm\sigma $ e corrente $ \vec{K} = \pm\sigma\vec{u} $, le quali generano un campo elettrico $ \vec{E} = \frac{\sigma}{\epsilon_0} \,\hat{e}_y $ ed uno magnetico $ \vec{B} = \mu_0 \sigma u\,\hat{e}_z $ nello spazio fra i piani. \\ 
+%
+Consideriamo ora un sistema di riferimento $ \mathcal{S}' $ in moto rispetto ad $ \mathcal{S} $ con $ \vec{v} = v \,\hat{e}_x $: in esso il condensatore avrà velocità:
+\begin{equation}
+	u' = \frac{u - v}{1 - \frac{uv}{c^2}} = c \frac{\beta_u - \beta}{1 - \beta_u\beta}
+	\label{eq:39}
+\end{equation}
+Di conseguenza:
+\begin{equation}
+	\gamma_{u'}^2 = \frac{1}{1 - \frac{u'^2}{c^2}} = \frac{(1 - \beta_u\beta)^2}{(1-\beta_u\beta)^2 - (\beta_u-\beta)^2} = \frac{(1-\beta_u\beta)^2}{1 + \beta_u^2\beta^2-\beta_u^2-\beta^2} = \frac{1}{1-\beta_u^2}\frac{1}{1-\beta^2}(1-\beta_u\beta)^2
+	\label{eq:40}
+\end{equation}
+ovvero:
+\begin{equation}
+	\gamma_{u'} = \gamma_u\gamma(1-\beta_u\beta)
+	\label{eq:41}
+\end{equation}
+Per quanto riguarda le sorgenti, nel sistema di riferimento solidale al condensatore si ha $ \sigma_0 = \frac{\sigma}{\gamma_u} $, mentre in $ \mathcal{S}' $ si ha $ \sigma' = \sigma_0\gamma_{u'} = \sigma\gamma(1-\beta_u\beta) $ e $ \vec{K'} = \sigma'u'\,\hat{e}_{x'} = \sigma\gamma c(\beta_u-\beta)\,\hat{e}_{x'} $. \\ 
+%
+Possiamo quindi scrivere:
+\begin{equation}
+	E'_{y'} = \frac{\sigma'}{\epsilon_0} = \gamma \frac{\sigma}{\epsilon_0} - \gamma \frac{\gamma}{\epsilon_0}\beta_u\beta = \gamma E_y - \gamma \frac{\sigma}{\epsilon_0 c^2} uv = \gamma E_y - \gamma \sigma \mu_0 uv = \gamma (E_y - vB_z)
+	\label{eq:42}
+\end{equation}
+\begin{equation}
+	B'_{z'} = \mu_0 K' = \mu_0 \sigma \gamma c \beta_u - \mu_0 \sigma \gamma c \beta = \gamma \mu_0 \sigma u - \frac{\sigma}{\epsilon_0 c^2} \sigma \gamma v = \gamma (B_z - \frac{v}{c^2} E_y)
+	\label{eq:43}
+\end{equation}
+ovvero:
+\begin{equation}
+	E'_{y'} = \gamma (E_y - \beta cB_z) \qquad\qquad cB'_{z'} = \gamma (cB_z - \beta E_y)
+	\label{eq:44}
+\end{equation}
+che sono simili a $ x' = \gamma (x - \beta ct) $ e $ ct' = \gamma (ct - \beta x) $. \\ 
+%
+Facendo lo stesso ragionamento su un sistema con piani paralleli al piano $ xy $ e che si muove sempre lungo $ \vec{e}_x $ si ricava:
+\begin{equation}
+	E'_{z'} = \gamma(E_z + \beta cB_y) \qquad\qquad cB'_{y'} = \gamma (cB_y + \beta E_z)
+	\label{eq:45}
+\end{equation}
+%
+Consideriamo ora un solenoide a riposo in $ \mathcal{S} $ con $ n $ spire per unità di lunghezza ed in cui scorre una corrente $ i $: il suo campo magnetico è $ \vec{B} = \mu_0 n i \,\hat{e}_x $ (direzione dell'asse del solenoide). \\ 
+%
+In un sistema di riferimento $ \mathcal{S}' $ in moto con $ \vec{v} = -v \,\hat{e}_x $ il campo magnetico è sempre diretto lungo $ x' $ e, per la contrazione delle lunghezze, $ n' = \gamma n $, mentre $ i' = \frac{dq}{dt'} = \gamma^{-1} i $, quindi il campo rimane invariato: $ B_x = B'_{x'} $ (analogamente al campo elettrico). \\ 
+%
+Possiamo dunque scrivere le leggi di trasformazione per il campo elettrico e per quello magnetico:
+\begin{equation}
+	\begin{split}
+		\vec{E}'_{\parallel} &= \vec{E}_{\parallel} \qquad \vec{E}'_{\perp} = \gamma (\vec{E}_{\perp} + \vprod{v}{B}_{\perp}) \\ 
+		\vec{B}'_{\parallel} &= \vec{B}_{\parallel} \qquad \vec{B}'_{\perp} = \gamma (\vec{B}_{\perp} - \tfrac{1}{c^2} \vprod{v}{E}_{\perp})
+	\end{split}
+	\label{eq:46}
+\end{equation}
+Queste trasformazioni suggeriscono che i campi elettrico e magnetico non siano indipendenti, ma manifestazioni di una stessa grandezza fisica: il campo elettromagnetico. \\ 
+%
+Notiamo due casi particolari:
+\begin{itemize}
+	\item $ \vec{B} = 0 $: se a riposo non è presente un campo magnetico, in un sistema di riferimento generico è presente $ \vec{B}' = \vec{B}'_{\perp} = -\gamma \frac{1}{c^2}\vprod{v}{E}_{\perp} = -\frac{1}{c^2}\vprod{v}{E}'_{\perp} $, ma $ \vprod{v}{E}_{\parallel} = 0 $, quindi vale $ \vec{B} = -\frac{1}{c^2}\vprod{v}{E}' $;
+	\item $ \vec{E} = 0 $: se a riposo non è presente un campo eletttrico, in un sistema di riferimento generico è presente $ \vec{E}' = \vec{E}'_{\perp} = \gamma \vprod{v}{B}_{\perp} = \vprod{v}{B}'_{\perp} $, ma $ \vprod{v}{B}'_{\parallel} = 0 $, quindi vale $ \vec{E}' = \vprod{v}{B}' $.
+\end{itemize}
+Si può inoltre dimostrare che ci sono due invarianti: $ \sprod{E}{B} $ e $ E^2 - c^2B^2 $. Di conseguenza:
+\begin{itemize}
+	\item Se in un sistema inerziale uno dei due campi è nullo, allora in ogni altro sistema inerziale $ \vec{E}\perp\vec{B} $ (poiché $ \sprod{E}{B} = 0 $ cost.);
+	\item Se in un sistema inerziale $ \sprod{E}{B} = 0 $, allora ci sono tre casi:
+	\begin{enumerate}
+		\item $ E^2 - c^2B^2 > 0 $: esiste un sistema $ \mathcal{S}' $ tale che $ \vec{B}' = 0 $ e il modulo della sua velocità relativa è $ v = c^2 \frac{B}{E} $;
+		\item $ E^2 - c^2B^2 < 0 $: esiste un sistmea $ \mathcal{S}' $ tale che $ \vec{E}' = 0 $ e il modulo della sua velocità relativa è $ v = \frac{E}{B} $;
+		\item $ E^2 - c^2B^2 = 0 $: in ogni sistema inerziale vale $ E = c B $ ed è un'onda elettromagnetica che si propaga a velocità $ c $.
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{Carica in moto rettilineo uniforme}
+
+Consideriamo una carica $ q $ a riposo in un sistema di riferimento $ \mathcal{S} $ ed un sistema $ \mathcal{S}' $ in moto relativo con $ \vec{v} = -v\,\hat{e}_x $ (vede la carica muoversi con $ \vec{v}\,' = +v\,\hat{e}_x $): in $ \mathcal{S} $ si ha $ \vec{B} = 0 $. \\ 
+In $ \mathcal{S}' $ vale $ \vec{B}' = \frac{1}{c^2} \vec{v}\,'\times\vec{E}' $, ma anche (fissato $ r' $):
+\begin{equation}
+	\vec{E}'(\theta') = \frac{1}{4\pi\epsilon_0} \frac{q}{r'^2} \frac{1 - \beta^2}{1 - \beta^2\sin^2\theta'} \,\hat{r}' \equiv E'(\theta') \,\hat{r}'
+	\label{eq:47}
+\end{equation}
+quindi:
+\begin{equation}
+	\vec{B}' = E'(\theta')\frac{1}{c^2}\frac{v}{r'} (z\,\hat{e}_y - y\,\hat{e}_z)
+	\label{eq:48}
+\end{equation}
+In $ \mathcal{S}' $ non solo il campo magnetico aumenta di intensità in direzione ortogonale al moto, ma è anche presente un campo magnetico sempre ortogonale al moto e con linee di campo circolari centrare sull'asse della direzione del moto. \\ 
+Nel limite non-relativistico $ \beta \rightarrow 0 $ si ha $ \vec{B}' \rightarrow \frac{\mu_0}{4\pi}\frac{q}{r'^2}\vec{v}\,'\times\hat{r}' $, che, ricordando $ q\vec{v}\,' = i \vec{l} $, non è altro che la legge di Biot-Savart.
+
+\subsubsection{Barretta conduttrice in moto rettilineo uniforme}
+
+Consideriamo una barretta conduttrice a riposo nel sistema di riferimento $ \mathcal{S} $ (barretta sul piano $ xy $) immersa in un campo magnetico costante, omogeneo ed uniforme $ \vec{B} = B\,\hat{e}_z $ e con $ \vec{E} = 0 $. \\ 
+%
+Supponiamo ora che la barretta si muova con $ \vec{v} = v \,\vec{e}_y $: per effetto del movimento, si sviluppa una forza $ \vec{F} = F \,\hat{e}_x $ sulle cariche della barretta, quindi si crea uno sbilanciamento di cariche ed un campo elettrico $ \vec{E} $ che riporta le cariche in una situazione stazionaria; l'equilibrio tra forza di Lorentz e campo elettrico indotto porta a $ \vec{E}_{\text{int}} = -\vprod{v}{B} $: il campo elettrico esterno così generato non è né omogeneo né uniforme (vedere figura). \\ 
+%
+%
+%
+\hbox{} \\ INSERIRE LA FIGURA \\ \hbox{} \\ 
+%
+%
+%
+Mettiamoci ora in un sistema di riferimento $ \mathcal{S}' $ per cui $ \mathcal{S} $ si muove a $ \vec{v}' = -v\,\hat{e}_{y'} $ rispetto ad esso: in questo sistema il campo magnetico è $ \vec{B}' = \gamma B \,\hat{e}_z $, ma non ha effetto sulle cariche poiché in questo sistema sono ferme; d'altra parte, in $ \mathcal{S}' $ vi è un campo elettrico $ \vec{E} = \vprod{v}{B}' = \gamma vB \,\hat{e}_{x'} $, dunque il sistema è puramente elettrostatico: questo campo elettrico fa muovere le cariche che si dispongono sulla superficie della barretta, modificando il campo elettrico esterno e rendendolo nullo all'interno. \\ 
+%
+%
+%
+\hbox{} \\ INSERIRE LA FIGURA \\ \hbox{} \\ 
+%
+%
+%
+Ricapitolando:
+\begin{itemize}
+	\item in $ \mathcal{S} $: la barretta si muove in un campo magnetico uniforme e la forza di Lorentz fa muovere le cariche verso la superficie, generando un campo elettrico che all'interno del conduttore va ad annullare la forza totale;
+	\item in $ \mathcal{S}' $: la barretta è ferma in un campo magnetico uniforme (più intenso di prima) ed è presente un campo elettrostatico dato da $ \vec{E}' = \vprod{v}{B}' $, il quale fa muovere le cariche verso la superficie generando un campo elettrico indotto che annulla il campo totale all'interno e si va a sommare a quello esterno.
+\end{itemize}
+In entrambi i sistemi la barretta è sottoposta allo stesso effetto fisico, ma i campi in gioco sono diversi.
 
 
 
