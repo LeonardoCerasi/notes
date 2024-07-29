@@ -1,0 +1,123 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\input{../imports.tex}
+
+\newcommand{\E}{\mathcal{E}}
+
+\begin{document}
+
+\section{Induzione Magnetica}
+
+\subsection{Legge di Induzione di Faraday}
+
+Svolgendo esperimenti su coppie di circuiti, uno dei quali percorso da corrente stazionaria, Faraday si accorse della presenza di un transiente, nel circuito scollegato, in corrispondenza dell'accensione e dello spegnimento del generatore di corrente: la sua intuizione fu che questo transiente fosse legato alla variazione del flusso del campo magnetico, la quale genera un campo magnetico non conservativo la cui circuitazione è una differenza di potenziale (la forza elettromotrice) lungo la spira:
+\begin{equation}
+	\frac{d\Phi_B}{dt} = -\mathcal{E}
+	\label{eq:1}
+\end{equation}
+
+\subsubsection{Primo esperimento di Faraday}
+
+Nel suo primo esperimento, Farady tenne ferma la bobina in cui scorre corrente e mosse la spira scollegata. \\ 
+%
+Consideriamo una spira quadrata di lato $ l $ parallela al piano $ xy $ e vincoliamola a muoversi lungo l'asse $ y $; consideriamo anche un campo magnetico non uniforme ortogonale alla spira, ovvero lungo l'asse $ z $: supponiamo che esso vari secondo $ \vec{B}(y) = B_0 \frac{abs{y}}{L} \,\hat{e}_z $, con $ L $ lunghezza caratteristica del sistema. \\ 
+%
+Consideriamo un moto della spira dato da $ y(t) = vt $ e calcoliamo la f.e.m. dalla legge di Faraday:
+\begin{equation}
+	\begin{split}
+		\E(t) &= -\frac{d}{dt} \oiint_{\text{spira}} \vec{B}\cdot d\vec{S} = -\frac{d}{dt} \int_{y(t)}^{y(t)+l} B(y')\,dy' = -B_0 \frac{l}{L} \frac{d}{dt} \int_{vt}^{vt+l} y'dy' \\ 
+		      &= -B_0 \frac{l}{2L} \frac{d}{dt} (2vt + l) = - B_0 \frac{l}{L} lv \qquad\qquad \vec{B}_1 \equiv \vec{B}(y + l), \, \vec{B}_3 \equiv \vec{B}(y) \\ 
+		      &= (B_3 - B_1) lv
+	\end{split}
+	\label{eq:2}
+\end{equation}
+Possiamo analizzare l'esperimento anche alla luce della forza di Lorentz, la quale non era conosciuta ai tempi di Faraday. \\ 
+%
+Sui lati della spira paralleli al moto (detti $ 2 $ e $ 4 $) si sviluppano forze ortogonali alla spira: se supponiamo la spira di spessore infinitesimo, ciò implica che le cariche non possono muoversi se non per un breve tratto, così che la forza di Lorentz viene immediatamente bilanciata dalla resistenza meccanica della struttura cristallina del conduttore e dai vincoli a cui è sottoposta la spira. D'altro canto, sui lati $ 1 $ e $ 3 $ la forza mette in moto le cariche, che si vanno a disporre lungo i lati $ 2 $ e $ 4 $ generando un campo elettrico che si oppone al moto delle cariche stesse: dato che il campo magnetico non è uniforme, le forze variano nel tempo e causano una continua ridistribuzione delle cariche. \\ 
+%
+La circuitazione di $ \vec{F} $ lungo la spira vale:
+\begin{equation}
+	\begin{split}
+		\Gamma(\vec{F}) &= \oint_{\text{spira}} \vec{F}\cdot d\vec{l} = \int_1 \vec{F}\cdot d\vec{l} + \int_2 \vec{F}\cdot d\vec{l} + \int_3 \vec{F}\cdot d\vec{l} + \int_4 \vec{F}\cdot d\vec{l} \\ 
+				&= \int_1 q (\vprod{v}{B})\cdot d\vec{l} + \int_3 q (\vprod{v}{B})\cdot d\vec{l} = qlv(B_3 - B_1)
+	\end{split}
+	\label{eq:3}
+\end{equation}
+Dato che a questo lavoro è associata una d.d.p. $ \E = \frac{1}{q} \Gamma(\vec{F}) $, otteniamo la stessa f.e.m. indotta \ref{eq:2}.
+
+\subsubsection{Secondo esperimento di Faraday}
+
+Nel suo secondo esperimento, Faraday mosse la spira scollegata e tenne ferma la bobina percorsa da corrente: nel sistema di riferimento $ \mathcal{S}' $ del laboratorio la spira è ferma, per cui non può agire la forza di Lorentz, quindi il meccanismo che genera la f.e.m. deve essere diverso da prima. \\ 
+%
+Supponendo che la velocità relativa sia direzionata lungo l'asse che congiunge i centri della spira e della bobina e che essa sia $ v \ll c $, nel sistema $ \mathcal{S} $ solidale alla bobina si ha $ \vec{B}' = \gamma^{-1} \vec{B} \approx \vec{B} $, mentre in $ \mathcal{S} $ vi è un campo elettrico $ \vec{E}' = \vprod{v}{B}' \approx \vprod{v}{B} $: quest'ultimo non è conservativo e la sua circuitazione lungo la spira vale $ \Gamma(\vec{E}) = l (E'_1 - E'_3) = lv (B'_1 - B'_3) $, alla quale è associata la f.e.m. $ \E = lv (B_1 - B_3) $. \\ 
+%
+Si noti che questa trattazione è di natura relativistica, ma vale solo per $ v \ll c $, poiché si assume che il valore dei campi ai due lati della spira sia calcolato simultaneamente nello stesso istante: la legge di Faraday non è un invariante relativistico. \\ 
+%
+Calcoliamo ora il flusso del campop magnetico, in questo caso senza assumere una sua particolare forma funzionale (e omettendo gli apici del sistema di riferimento per semplicità): il flusso infinitesimo è dato da $ d\Phi_B = B(y) \,dS = B(y) l \,dy = B(y) lv \,dt $, quindi si vede subito che:
+\begin{equation}
+	\frac{d\Phi_B}{dt} = lv (B_3 - B_1) = -\E
+	\label{eq:4}
+\end{equation}
+
+\subsubsection{Spira con lato mobile}
+
+Consideriamo ora una spira immersa in un campo magnetico uniforme $ \vec{B} = B \,\hat{e}_z $ ortogonale alla spira e con un lato che può scorrere sugli altri due: se lo mettiamo in moto con velocità $ \vec{v} = v \,\hat{e}_x $, il flusso magnetico concatenato alla spira varia nel tempo, anche se il campo è uniforme. \\ 
+%
+Nel lato mobile, le cariche sono sottoposte alla forza di Lorentz $ \vec{F} = qvB \,\hat{e}_y $, dunque nella spira agisce una f.e.m. $ \E = \frac{1}{q} \oint \vec{F}\cdot d\vec{l} $: l'integrale è non-nullo solo lungo il lato in moto e vale $ \E = -lvB $ ($ \vec{F} $ e $ d\vec{l} $ sono discordi). D'altra parte, si ha $ \Phi_B(t) = lB x(t) = lB v t $, quindi si vede che la legge di Faraday è rispettata. \\ 
+%
+Data la f.e.m., si instaura necessariamente una corrente $ i = \E / R $ nel lato in moto (assumendolo ohmico), quindi vi è una dissipazione di energia $ P = \E^2 / R $ per effetto Joule: dato che la forza magnetica non compie lavoro, il lavoro necessario a questa dissipazione è fornito dall'esterno (ad esempio da noi) al sistema per mantenere un moto a velocità costante, in quanto il moto delle cariche è dissipativo. \\ 
+%
+Dato che la forza di Lorentz imprime una velocità lungo la barretta alle cariche, esse hanno una velocità totale $ \vec{u} $ in direzione diagonale rispetto alla barretta, scomponibile nella direzione parallela $ u_x = v $ e ed in quella ortogonale al moto $ u_y $. La forza effettiva agente sulle cariche $ \vec{F}_m $ è ortogonale ad $ \vec{u} $ e quindi non compie lavoro: $ F_{m,y} $ determina il moto delle cariche nella barretta, mentre $ F_{m,x} $ si oppone alla forza esterna che mantiene in moto la barretta. Questa forza effettiva deve essere bilanciata da una forza $ -\vec{F}_m $ poiché il sistema è in condizioni stazionarie: essa si scompone lungo $ y $ (parallelo alla barretta) in $ F_R $, corrispondente alla resistenza della struttura molecolare al moto delle cariche, ed in quella $ x $ in $ F_{\text{ext}} $, ovvero la forza esterna che mantiene la barretta in moto. \\ 
+%
+La potenza totale associata a $ \vec{F}_m $  è:
+\begin{equation}
+	P_m = P_{m,x} + P_{m,y} = -F_{m,x}u_x + F_{m,y}u_y = -qBu_yu_x + qBu_xu_y = 0
+	\label{eq:5}
+\end{equation}
+come ci aspettavamo. \\ 
+%
+Possiamo quindi vedere che la forza magnetica non compie lavoro, ma fa da tramite fra la potenza spesa per applicare la forza $ \vec{F}_{\text{ext}} $ e la potenza dissipata per effetto Joule: l'energia spesa per mantenere la barretta in moto viene trasferita dalla forza magnetica alle cariche, le quali instaurano una corrente stazionaria e dissipano l'energia fornita tramite gli urti col reticolo cristallino del conduttore.
+
+\subsubsection{Arbitrarietà delle superfici}
+
+La trattazione svolta finora è stata fatta solo su circuiti piani e le relative superfici piane, ma possiamo dimostrare che il flusso magnetico non dipende dalla superficie scelta, purché delimitata sempre dallo stesso circuito. \\ 
+%
+Consideriamo un circuito $ C $ e due superifici da esso delimitate $ S_1 $ ed $ S_2 $: definendo $ S \equiv S_1 \cup S_2 $, che è una superficie chiusa, si ha:
+\begin{equation}
+	\begin{split}
+		\Phi_S (\vec{B}) &= \oiint_S \vec{B}\cdot d\vec{S} = \iiint_V \dive\vec{B} \,dV = 0 \\ 
+				 &= \oiint_{S_1} \vec{B}\cdot d\vec{S}_1 - \oiint_{S_2} \vec{B}\cdot d\vec{S}_2
+	\end{split}
+	\label{eq:6}
+\end{equation}
+dove si è usato che $ \dive\vec{B} = 0 $ e che, considerando la superficie chiusa, $ d\vec{S}_2 $ da direzione opposta a quando si integra sulla superficie aperta. Di conseguenza:
+\begin{equation}
+	\oiint_{S_1} \vec{B}\cdot d\vec{S}_1 = \oiint_{S_2} \vec{B}\cdot d\vec{S}_2
+	\label{eq:7}
+\end{equation}
+ovvero il flusso non dipende dalla particolare superficie scelta. \\ 
+%
+Un'importante conseguenza è che, dato che $ \dive(\rot\vec{B}) = 0 $ (identità vettoriale), si ha che anche la superficie considerata nel teorema di Stokes è indifferente, purché $ \partial S = \gamma $.
+
+\subsubsection{F.e.m. da movimento}
+
+Consideriamo un generico circuito di forma qualunque $ \gamma $ in moto con velocità $ \vec{v} $ in un campo magnetico statico ma non uniforme e siamo $ S_{1,2} $ e $ \gamma_{1,2} $ le superfici e i relativi bordi che delimitano il circuito ai tempi $ t $ e $ t + dt $. \\ 
+%
+Data l'invarianza del flusso rispetto alla superficie scelta, possiamo calcolare $ \Phi_B(t+dt) $ considerando come bordo $ S_1 \cup \Delta S $, dove $ \Delta S $ è la superficie che unisce $	\gamma_1 $ e $ \gamma_2 $: dato che $ d\vec{S}_{\Delta S} = (\vec{v}dt)\times d\vec{l}_1 $, si ha:
+\begin{equation}
+	\begin{split}
+		\Phi_B(t+dt) &= \oiint_{S_1 \cup \Delta S} \vec{B}\cdot d\vec{S} = \Phi_B(t) + \oiint_{\Delta S} \vec{B}\cdot d\vec{S}_{\Delta S} = \Phi_B(t) + dt \oint_{\gamma_1} \vec{B}\cdot (\vec{v}\times d\vec{l}_1) \\ 
+			     &\approx \Phi_B(t) + \frac{d\Phi_B}{dt} dt
+	\end{split}
+	\label{eq:8}
+\end{equation}
+Quindi:
+\begin{equation}
+	\frac{d\Phi_B}{dt} = \oint_{\gamma_1} \vec{B} \cdot (\vec{v}\times d\vec{l}_1) = - \oint_{\gamma_1} (\vec{v}\times\vec{B}) \cdot d\vec{l}_1 = -\frac{1}{q} \oint_{\gamma_1} \vec{F}_m \cdot d\vec{l}_1 = -\E
+	\label{eq:9}
+\end{equation}
+che è proprio la legge di Faraday.
+
+\end{document}
