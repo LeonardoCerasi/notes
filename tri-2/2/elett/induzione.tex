@@ -120,4 +120,195 @@ Quindi:
 \end{equation}
 che è proprio la legge di Faraday.
 
+\subsubsection{Terzo esperimento di Faraday}
+
+Nel suo terzo esperimento, Faraday tenne ferme sia la bobina che la spira, ma fece variare la corrente passante per la bobina, generando un campo magnetico variabile: in questo caso, il fenomeno non è spiegabile tramite un cambio di sistema di riferimento, quindi è necessaria una nuova legge fisica. \\ 
+%
+Consideriamo una spira $ \gamma $ ed una superficie $ S : \partial S = \gamma $ immersa in un campo di induzione magnetica $ \vec{B}(t,\vec{r}) $; la legge di Faraday può essere sviluppata come:
+\begin{equation}
+	\begin{split}
+		\E &= \oint_{\gamma} \vec{E} \cdot d\vec{l} = \oiint_S \rot\vec{E} \cdot d\vec{S} \\ 
+		   &= -\frac{d\Phi_B}{dt} = -\frac{d}{dt} \oiint_S \vec{B}\cdot d\vec{S} = - \oiint_S \frac{\partial\vec{B}}{\pa t} \cdot d\vec{S}
+	\end{split}
+	\label{eq:10}
+\end{equation}
+Dunque otteniamo la terza equazione di Maxwell:
+\begin{equation}
+	\rot\vec{E} = -\frac{\pa\vec{B}}{\pa t}
+	\label{eq:11}
+\end{equation}
+Dato il potenziale vettore $ \vec{A} : \vec{B} = \rot\vec{A} $, si ha:
+\begin{equation}
+	\rot\vec{E} = -\frac{\pa}{\pa t} (\rot\vec{A}) \quad\Longrightarrow\quad \rot\left(\vec{E} + \frac{\pa\vec{A}}{\pa t}\right) = 0 \quad\Longrightarrow\quad \vec{E} = -\nabla\phi - \frac{\pa\vec{A}}{\pa t}
+	\label{eq:12}
+\end{equation}
+ovvero:
+\begin{equation}
+	\vec{E} = -\nabla\phi - \frac{\pa\vec{A}}{\pa t}
+	\label{eq:13}
+\end{equation}
+Quindi il campo elettrico può essere espresso in funzione di un potenziale scalare e di uno vettore. \\ 
+%
+Riprendiamo il caso del circuito di forma generica in movimento, ma supponiamo questa volta che il campo magnetico sia anche variabile nel tempo:
+\begin{equation}
+	\begin{split}
+		\frac{\Delta\Phi_B}{\Delta t} &= \frac{1}{\Delta t} \left[ \oiint_{S(t+\Delta t)} \vec{B}(\vec{r},t+\Delta t) \cdot d\vec{S} - \oiint_{S(t)} \vec{B}(\vec{r},t)\cdot d\vec{S} \right] \\ 
+					      &= \frac{1}{\Delta t} \left[ \oiint_{S(t)} \left( \vec{B}(\vec{r},t) + \frac{\pa\vec{B}(\vec{r},t)}{\pa t} \Delta t \right) \cdot d\vec{S} + \oiint_{\Delta S} \left( \vec{B}(\vec{r},t) + \frac{\pa\vec{B}(\vec{r},t)}{\pa t} \Delta t \right) \cdot d\vec{S} \right] + \\ 
+					      & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad -\frac{1}{\Delta t} \oiint_{S(t)} \vec{B}(\vec{r},t)\cdot d\vec{S} \\ 
+					      &= \frac{1}{\Delta t} \left[ \oiint_{S(t)} \left( \frac{\pa\vec{B}(\vec{r},t)}{\pa t} \Delta t \right) \cdot d\vec{S} + \oiint_{\Delta S} \left( \vec{B}(\vec{r},t) + \frac{\pa\vec{B}(\vec{r},t)}{\pa t} \Delta t \right) \cdot \left((\vec{v}\Delta t)\times d\vec{l}\right) \right] \\ 
+					      &= \oiint_{S(t)} \frac{\pa\vec{B}(\vec{r},t)}{\pa t} \cdot d\vec{S} + \oint_{\pa S(t)} \vec{B}(\vec{r},t)\cdot (\vec{v}\times d\vec{l})
+	\end{split}
+	\label{eq:14}
+\end{equation}
+dove abbiamo ignorato un termine proporzionale a $ \Delta t^2 $; passando al limite, otteniamo:
+\begin{equation}
+	\frac{d\Phi_B}{dt} = \oiint_{S(t)} \frac{\pa\vec{B}(\vec{r},t)}{\pa t} \cdot d\vec{S} - \oint_{\gamma(t)} \left(\vprod{v}{B}(\vec{r},t)\right)\cdot d\vec{l}
+	\label{eq:15}
+\end{equation}
+Notiamo quindi due contributi alla f.e.m.: il primo termine, detto f.e.m. da induzione, associato alla f.e.m. indotta dal campo elettrico generato da un campo magnetico variabile nel tempo, ed il secondo, detto f.e.m. da movimento, legato al campo elettromotore $ \vprod{v}{B} $.
+
+\subsection{Legge di Lenz}
+
+Il segno negativo nella legge di Faraday non è una pura convenzione matematica, ma ha un significato fisico profondo, legato alla conservazione dell'energia. \\ 
+%
+Consideriamo una spira immersa in un campo magnetico uniforme $ \vec{B} $ e supponiamo di indurvi una variazione $ d\vec{B}_1 $ concorde a $ \vec{B} $: la corrispondente variazione di flusso magnetico genera una f.e.m. ed una corrente $ i_1 $; se invece induciamo una variazione $ d\vec{B}_2 $ opposta a $ \vec{B} $, avremo una f.e.m. indotta ed una corrente $ i_2 $ opposta ad $ i_1 $: la legge di Lenz afferma che la f.e.m. indotta ha segno tale per cui la corrente indotta genera un campo amgnetico indotto che si oppone alla variazione di flusso magnetico. \\ 
+%
+Se riprendiamo il caso della spira con un lato mobile, vediamo che la variazione del flusso genera una corrente indotta $ i_{\text{ind}} $ che scorre in modo da generare un campo magnetico indotto $ \vec{B}_1 $ opposto a $ \vec{B} $, il cui flusso varia col moto della barretta: ciò genera un'ulteriore corrente indotta $ i_{\text{ind},1} $, opposta a $ i_{\text{int}} $, che causa una forza opposta al verso del moto: la legge di Lenz quindi assicura che la f.e.m. indotta si opponga alla variazione di flusso e rallenti la barretta; in caso contrario, si avrebbe una continua accelerazione della barretta ed una conseguente violazione della conservazione dell'energia. \\ 
+%
+Possiamo anche notare che, per il campo elettrico indotto, valgono delle equazioni formalmente identiche a quelle del campo magnetico: infatti esso è un campo non conservativo generato da una variazione del campo magnetico e non da cariche, quindi:
+\begin{equation}
+	\rot\vec{E}_{\text{ind}} = -\frac{\pa\vec{B}}{\pa t} \qquad\qquad \dive\vec{E}_{\text{ind}} = 0
+	\label{eq:16}
+\end{equation}
+Per il teorema di Helmholtz, se $ \vec{E}_{\text{ind}} $ si annulla abbastanza velocemente all'infinito, allora la soluzione ha una forma completamente definita.
+
+\subsubsection{Auto-induttanza e mutua induttanza}
+
+Consideriamo una spira percorsa da corrente stazionaria: con la legge di Biot-Savart, possiamo calcolare il flusso magnetico attraverso di essa:
+\begin{equation}
+	\Phi_B = \oiint_S \vec{B}(\vec{r}) \cdot d\vec{S} = \oiint_S \left[ \frac{\mu_0 i}{4\pi} \oint_{\gamma} \frac{d\vec{l} \times (\vec{r} - \vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}^3} \right]\cdot d\vec{S} \equiv Li
+	\label{eq:17}
+\end{equation}
+dove abbiamo definito l'auto-induttanza della spira:
+\begin{equation}
+	L \equiv \frac{\mu_0}{4\pi} \oiint_S \left[ \oint_{\gamma} \frac{d\vec{l} \times (\vec{r} - \vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}^3} \right] \cdot d\vec{S}
+	\label{eq:18}
+\end{equation}
+che dipende solo dalle caratteristiche geometriche del della spira. In generale, essa è molto difficile da calcolare analiticamente e viene misurata sperimentalmente: la sua u.d.m. è l'Henry $ \text{H} = \text{T}\cdot\text{m}^2\cdot\text{A}^{-1} $. \\ 
+%
+Tenendo conto che $ \vec{B} = \rot\vec{A} $ e $ \vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \oint_{\gamma} \frac{d\vec{l}}{\abs{\vec{r} - \vec{r}\,'}} $, usando il teorema di Stokes otteniamo la formula di Neumann per l'auto-induttanza:
+\begin{equation}
+	L = \frac{\mu_0}{4\pi} \oint_{\gamma} \oint_{\gamma} \frac{d\vec{l}\cdot d\vec{l}\,'}{\abs{\vec{r} - \vec{r}\,'}}
+	\label{eq:19}
+\end{equation}
+Questa diverge per fili di raggio tendente a zero, dunque è necessario tener conto del raggio finito del filo. \\ 
+%
+Consideriamo ora due spire; il flusso magnetico generato dalla spira $ 1 $ sulla spira $ 2 $ è dato da:
+\begin{equation}
+	\Phi_2 = \frac{\mu_0}{4\pi} \oint_{\gamma_2} \vec{A}_1 \cdot d\vec{l}_2 = \frac{\mu_0 i_1}{4\pi} \oint_{\gamma_2} \oint_{\gamma_1} \frac{d\vec{l}_1 \cdot d\vec{l}_2}{\abs{\vec{r}_1 - \vec{r}_2}}
+	\label{eq:20}
+\end{equation}
+Troviamo quindi la formula di Neumann per la mutua induttanza:
+\begin{equation}
+	M_{21} \equiv \frac{\mu_0 }{4\pi} \oint_{\gamma_2} \oint_{\gamma_1} \frac{d\vec{l}_1 \cdot d\vec{l}_2}{\abs{\vec{r}_1 - \vec{r}_2}}
+	\label{eq:21}
+\end{equation}
+Si vede chiaramente che:
+\begin{equation}
+	M_{12} = M_{21}
+	\label{eq:22}
+\end{equation}
+Tenendo conto anche delle auto-induttanze $ L_1 \equiv M_{11} $ e $ L_2 \equiv M_{22} $, otteniamo:
+\begin{equation}
+	\begin{split}
+		\Phi_1 &= M_{11} i_1 + M_{12} i_2 \\ 
+		\Phi_2 &= M_{21} i_1 + M_{22} i_2
+	\end{split}
+	\qquad\Longleftrightarrow\qquad \vec{\Phi}_B = \underbar{M} \cdot \vec{i}
+	\label{eq:23}
+\end{equation}
+dove l'elemento della matrice di induttanza è dato da:
+\begin{equation}
+	M_{jk} = \frac{\mu_0}{4\pi} \oint_{\gamma_j} \oint_{\gamma_k} \frac{d\vec{l}_k \cdot d\vec{l}_j}{\abs{\vec{r}_k - \vec{r}_j}}
+	\label{eq:24}
+\end{equation}
+%
+Se invece supponiamo che nella spira $ 2 $ inizialmente non scorra corrente, mentre nella spira $ 1 $ essa vari nel tempo, avremo una forza elettromotrice indotta nella spira $ 2 $ data da:
+\begin{equation}
+	\E_{21} = - M_{21}\frac{di_1}{dt}
+	\label{eq:25}
+\end{equation}
+La variazione di $ i_1 $ nel tempo genera una f.e.m. indotta anche nella spira $ 1 $, data da:
+\begin{equation}
+	\E_{1} = -L_1 \frac{di_1}{dt}
+	\label{eq:26}
+\end{equation}
+Possiamo trascurare gli effetti che la variazione della corrente nella spira $ 2 $, ed il conseguente campo magnetico indotto, avrebbero sulla spira $ 1 $ (generando una corrente indotta opposta ad $ i_1 $) supponendo che essi siano del second'ordine rispetto agli effetti dovuti ad $ i_1 $.
+
+\subsubsection{Generatore di corrente alternata}
+
+Consideriamo una spira quadrata di lato $ l $ parallela al piano $ xy $ ed immersa in un campo magnetico uniforme $ \vec{B} = B \,\hat{e}_z $; supponiamo inoltre che la spira possa ruotare attorno al proprio asse (ad esempio lungo l'asse $ x $) con velocità angolare $ \omega $. Se ad un certo tempo $ t $ la normale alla spira forma un angolo $ \alpha(t) = \omega t $ col campo magnetico, si avrà che il flusso magnetico attraverso la spira sarà:
+\begin{equation}
+	\Phi_B (t) = Bl^2 \cos\omega t
+	\label{eq:27}
+\end{equation}
+Di conseguenza, per la legge di Faraday, viene generata una f.e.m.:
+\begin{equation}
+	\E = Bl^2 \sin\omega t
+	\label{eq:28}
+\end{equation}
+Dato che, per la legge di Lenz, questa f.e.m. indotta genera un campo magnetico indotto che si oppone alla rotazione della spira, sarà necessario continuare a fornirle energia per mantenerla in rotazione: essa sarà parzialmente convertita in energia elettrica e parzialmente dissipata dagli attriti meccanici.
+
+\subsubsection{Il freno elettromagnetico}
+
+Quando un conduttore si muove in un campo magnetico si sviluppa una f.e.m. indotta e le relative correnti superficiali indotte che, per la legge di Lenz, generano un campo magnetico che si oppone al campo magnetico esterno. \\ 
+%
+Ad esempio, consideriamo un foglio metallico che si muove lentamente in una regione con campo magnetico (vedi fig.): in essa, la forza di Lorentz fa muovere le cariche ortogonalmente a $ \vec{v} $, creando delle correnti che si chiudono scorrendo anche al di fuori della regione del campo magnetico; queste correnti generano un campo magnetico che si oppone alla variazione del campo magnetico esterno ed al moto della lastra. \\ 
+%
+%
+%
+\hbox{}\\ INSERITE LA FIGURA\\ \hbox{}\\ 
+%
+%
+%
+Una variante del freno magnetico si ha prendendo un disco conduttore in rotazione al posto di un foglio metallico: questa variante è utilizzata nelle ruote dei treni ad alta velocità, mentre la versione lineare nelle giostre a caduta o nelle montagne russe. \\ 
+%
+Un'altra applicazione della legge di Lenz è la frenata rigenerativa dei veicoli elettrici: quando al motore elettrico viene tolta l'alimentazione (ad esempio sollevando l'acceleratore) la sua rotazione viene sfruttata per produrre energia elettrica che viene re-immagazzinata nella batteria ed il cui campo magnetico indotto agisce frenando i veicolo.
+
+\subsection{Circuiti con Induttanze}
+
+\subsubsection{Circuito RL}
+
+Consideriamo un circuito con un solenoide collegato ad una f.e.m. $ \E_0 $: il conduttore che forma avrà una resistenza complessiva $ R $, quindi possiamo schematizzare il circuito come una resistenza $ R $ in serie con un'induttanza $ L $. \\ 
+Se nel circuito circola una corrente $ i(t) $, il flusso concatenato al solenoide $ \Phi_B(t) = Li(t) $ genera una f.e.m. indotta $ \E_{\text{ind}} $ che causa una corrente indotta $ i_{\text{ind}} $ opposta ad $ i(t) $. Ridefinendo $ i(t) $ così da includere anche la corrente indotta, si ha che il circuito è descritto da:
+\begin{equation}
+	\E_0 - L \frac{di(t)}{dt} = Ri(t)
+	\label{eq:29}
+\end{equation}
+Dal punto di vista qualitativo, si può vedere come per tempi lunghi il sistema raggiunga una condizione stazionaria con corrente $ i_{\infty} = \E_0 / R $; inoltre, dato che appena dopo l'accensione $ i \approx 0 $, si ha $ i(t) \approx \frac{\E_0}{L} t $. \\ 
+%
+Risolvendo analiticamente si vede che:
+\begin{equation}
+	i(t) = \frac{\E_0}{R} (1 - e^{-t/\tau}), \quad \tau \equiv \frac{L}{R}
+	\label{eq:30}
+\end{equation}
+dove $ \tau $ è detta costante di tempo ($ [\tau] = s $). \\ 
+%
+Un esempio importante di circuito RC è il trasformatore. \\ 
+%
+Consideriamo due solenoidi coassiali con $ n_1 $ ed $ n_2 $ spire, molto lunghi e di raggio praticamente uguale: il campo di induzione magnetica sarà contenuto completamente all'interno dei due solenoidi. \\ 
+%
+Colleghiamo un generatore di f.e.m. $ V_P(t) $ al solenoide $ 1 $ (detto $ \virgolette{primario} $): se definiamo $ \Phi_B $ come il flusso magnetico concatenato ad una singola spira, si ha $ \Phi_{1,2} = n_{1,2} \Phi_B $ e $ \E_{1,2} = - n_{1,2} \frac{d\Phi_B}{dt} $, ovvero:
+\begin{equation}
+	\frac{\E_1}{\E_2} = \frac{n_1}{n_2}
+	\label{eq:31}
+\end{equation}
+che è l'equazione fondamentale del trasformatore. \\ 
+%
+Se assumiamo la resistenza dei solenoidi come molto piccola, allora $ \E_1 \approx V_P(t) $ e $ V_S(t) = \frac{n_2}{n_1}V_P(t) $.
+
+\subsubsection{Energia del campo magnetico}
+
+
+
 \end{document}
