@@ -285,7 +285,7 @@ Se nel circuito circola una corrente $ i(t) $, il flusso concatenato al solenoid
 	\E_0 - L \frac{di(t)}{dt} = Ri(t)
 	\label{eq:29}
 \end{equation}
-Dal punto di vista qualitativo, si può vedere come per tempi lunghi il sistema raggiunga una condizione stazionaria con corrente $ i_{\infty} = \E_0 / R $; inoltre, dato che appena dopo l'accensione $ i \approx 0 $, si ha $ i(t) \approx \frac{\E_0}{L} t $. \\ 
+Dal punto di vista qualitativo, si può vedere come per tempi lunghi il sistema raggiunga una condizione stazionaria con corrente $ i_0 = \E_0 / R $; inoltre, dato che appena dopo l'accensione $ i \approx 0 $, si ha $ i(t) \approx \frac{\E_0}{L} t $. \\ 
 %
 Risolvendo analiticamente si vede che:
 \begin{equation}
@@ -294,6 +294,12 @@ Risolvendo analiticamente si vede che:
 \end{equation}
 dove $ \tau $ è detta costante di tempo ($ [\tau] = s $). \\ 
 %
+Supponiamo ora di togliere tensione alla bobina e che, prima di questa azione, nel solenoide circoli una corrente $ i_0 $: senza alimentazione, la corrente tende a diminuire nel tempo e ciò genera una f.e.m. indotta che si oppone alla diminuzione di corrente:
+\begin{equation}
+	-L \frac{di(t)}{dt} = Ri(t) \qquad\Longrightarrow\qquad i(t) = i_0 e^{-t/\tau}
+	\label{eq:31}
+\end{equation}
+%
 Un esempio importante di circuito RC è il trasformatore. \\ 
 %
 Consideriamo due solenoidi coassiali con $ n_1 $ ed $ n_2 $ spire, molto lunghi e di raggio praticamente uguale: il campo di induzione magnetica sarà contenuto completamente all'interno dei due solenoidi. \\ 
@@ -301,7 +307,7 @@ Consideriamo due solenoidi coassiali con $ n_1 $ ed $ n_2 $ spire, molto lunghi 
 Colleghiamo un generatore di f.e.m. $ V_P(t) $ al solenoide $ 1 $ (detto $ \virgolette{primario} $): se definiamo $ \Phi_B $ come il flusso magnetico concatenato ad una singola spira, si ha $ \Phi_{1,2} = n_{1,2} \Phi_B $ e $ \E_{1,2} = - n_{1,2} \frac{d\Phi_B}{dt} $, ovvero:
 \begin{equation}
 	\frac{\E_1}{\E_2} = \frac{n_1}{n_2}
-	\label{eq:31}
+	\label{eq:32}
 \end{equation}
 che è l'equazione fondamentale del trasformatore. \\ 
 %
@@ -309,6 +315,129 @@ Se assumiamo la resistenza dei solenoidi come molto piccola, allora $ \E_1 \appr
 
 \subsubsection{Energia del campo magnetico}
 
+La potenza erogata da un circuito RC è data da $ P_{\E}(t) = \E_0 i(t) = \frac{\E_0^2}{R} (1 - e^{-t/\tau}) $ mentre quella dissipata è $ P_R(t) = R i^2(t) = \frac{\E_0^2}{R} (1 - e^{-t/\tau})^2 $: la differenza tra potenza erogata e potenza dissipata è trasferita al campo magnetico generato dal solenoide e vale $ P_L(t) = \frac{\E_0^2}{R} e^{-t/\tau} (1 - e^{-t/\tau}) $. Possiamo dunque calcolare l'energia magnetica:
+\begin{equation}
+	W = \int_0^{\infty} P_L(t) \, dt = \frac{\E_0^2}{R} \int_0^{\infty} (e^{-t/\tau} - e^{-2t/\tau}) \, dt = \frac{\E_0^2}{R}\frac{\tau}{2} = \frac{1}{2}L i_0^2
+	\label{eq:33}
+\end{equation}
+%
+Se invece consideriamo il caso della scarica di un circuito RC, è presente la sola potenza dissipata $ P_R(t) = Ri_0^2 e^{-2t/\tau} $, quindi:
+\begin{equation}
+	W = \int_0^{\infty} P_R(t) \, dt = Ri_0^2 \int_0^{\infty} e^{-2t/\tau} dt = R i_0^2 \frac{\tau}{2} = \frac{1}{2} L i_0^2
+	\label{eq:34}
+\end{equation}
+Questa energia, immagazzinata nel campo magnetico, viene quindi $ \virgolette{reuperata} $ e dissipata dalla resistenza. \\ 
+%
+Possiamo quindi definire un'energia potenziale associata al campo magnetico del solenoide:
+\begin{equation}
+	U_M \equiv \frac{1}{2} Li^2
+	\label{eq:35}
+\end{equation}
+%
+Possiamo anche slegare l'energia magnetica dalla corrente circolante nel circuito: ricordando la definizione di flusso magnetico per un'induttanza generica:
+\begin{equation}
+	\begin{split}
+		U_M &= \frac{1}{2} \Phi_B i = \frac{1}{2} i \oiint_S \vec{B} \cdot d\vec{S} = \frac{1}{2} i \oint_{\gamma} \vec{A} \cdot d\vec{l} = \frac{1}{2} \iiint_V \sprod{A}{J} \,dV = \frac{1}{2\mu_0} \iiint_V \vec{A}\cdot (\rot\vec{B}) \,dV \\ 
+		    &= \frac{1}{2\mu_0} \left[ \iiint_V \vec{B}\cdot (\rot\vec{A}) \,dV - \iiint_V \dive (\vprod{A}{B}) \,dV \right] \\ 
+		    &= \frac{1}{2\mu_0} \left[ \iiint_V B^2 dV - \oiint_S (\vprod{A}{B}) \cdot d\vec{S} \right]
+	\end{split}
+	\label{eq:36}
+\end{equation}
+Dato che al di fuori del volume della spira $ \vec{J} = 0 $, l'integrale di volume può essere esteso a tutto lo spazio, quindi il secondo integrale tende ad annullarsi poiché l'integrando è proporzionale a $ r^{-1} $; otteniamo quindi l'espressione finale:
+\begin{equation}
+	U_M = \frac{1}{2\mu_0} \iiint_V B^2 dV
+	\label{eq:37}
+\end{equation}
+%
+Definendo la densità di energia magnetica $ \rho_M = \frac{1}{2\mu_0}B^2 $, possiamo notare l'analogia col campo elettrico, per il quale si ha $ \rho_E = \frac{\epsilon_0}{2}E^2 $. \\ 
+%
+Si può anche trovare un'utile relazione tra auto-induttanza e mutua induttanza: se consideriamo $ N $ spire accoppiate con coefficienti di mutua induttanza $ M_{jk} $, il flusso attraverso la $ j $-esima spira sarà $ \Phi_j  = \sum_{k=1}^{N} M_{jk}i_k $, quindi, dato che l'energia magnetica di una spira è $ U_M = \frac{1}{2}\Phi i $, si ha che l'energia magnetica totale sarà:
+\begin{equation}
+	U_M = \frac{1}{2} \displaystyle\sum_{j,k=1}^{N} M_{jk} i_j i_k
+	\label{eq:38}
+\end{equation}
+Nel caso semplice di due spire, definendo $ M \equiv M_{12} = M_{21} $:
+\begin{equation}
+	U_M = \frac{1}{2} L_1 i_1^2 + M i_1 i_2 + \frac{1}{2} L_2 i_2^2
+	\label{eq:39}
+\end{equation}
+Definendo $ x \equiv i_1 / i_2 $ si ha $ U_M = \frac{1}{2} i_2^2 (L_1 x^2 + 2Mx + L_2) $, che ha un minimo in $ x_m = -\frac{M}{L_1} $; dato che deve essere sempre $ U_M \ge 0 $, la condizione in $ x_m $ implica:
+\begin{equation}
+	M \le \sqrt{L_1 L_2}
+	\label{eq:40}
+\end{equation}
+%
+In generale è quindi possibile scrivere $ M = k \sqrt{L_1 L_2} $, con $ k \ge 1 $, e ciò esprime il fatto che non tutte le linee di campo di una spira sono concatenate all'altra: più $ k $ è vicino ad $ 1 $, più sono le linee di campo concatenate. \\ 
+Nel caso del trasformatore le linee di campo sono praticamente sovrapposte, dunque $ k \approx 1 $ e $ M \approx \sqrt{L_1 L_2} $.
 
+\subsubsection{Circuito LC}
+
+Consideriamo un circuito composto da un capacitore $ C $ ed un'induttanza $ L $, assumendo che la resistenza dei conduttori sia trascurabile. Supponiamo che a $ t = 0 $ il condensatore sia carico e che non scorra corrente: $ q(0) = q_{\text{max}} \equiv C V_{\text{max}} $, $ i(0) = 0 $. \\ 
+%
+Definendo $ V_C $ e $ V_L $ le cadute di potenziale ai capi del condensatore e dell'induttanza, per la seconda legge di Kirchhoff $ V_C + V_L = 0 $, ovvero:
+\begin{equation}
+	L \frac{di}{dt} + \frac{q}{C} = 0 \qquad\Longrightarrow\qquad \frac{d^2 i}{dt^2} = -\frac{1}{LC} i
+	\label{eq:41}
+\end{equation}
+Definendo la frequenza $ \omega_0 = 1 / \sqrt{LC} $, la soluzione è $ i(t) = i_{\text{max}} \sin(\omega_0 t + \phi) $. La condizione $ i(0) = 0 $ implica $ \phi = 0 $, mentre, dato che $ V(t) = L \omega_0 i_{\text{max}} \cos\omega_0 t $, la condizione $ V(0) = V_{\text{max}} = q_{\text{max}} / C $ implica $ i_{\text{max}} = q_{\text{max}}\omega_0 $. \\ 
+%
+Ridefinendo $ q_0 \equiv q_{\text{max}} $, si ha:
+\begin{equation}
+	i(t) = q_0 \omega_0 \sin\omega_0 t
+	\label{eq:42}
+\end{equation}
+Ricordando che $ U_E = \frac{1}{2} CV^2 $ e $ U_M = \frac{1}{2} Li^2 $, possiamo descrivere l'oscillazione del circuito LC: nell'istante iniziale il condensatore è completamente carico e tutta l'energia è immagazzinata nel campo elettrico; successivamente, inizia a scorrere corrente finché il condensatore non si scarica e tutta l'energia viene trasferita al campo magnetico, ma la corrente continua a scorrere e arriva a caricare di nuovo completamente il condensatore ma con segni delle cariche opposti, ritornando ad immagazzinare tutta l'energia nel campo elettrico; il semi-ciclo a questo punto si ripete ma con verso della corrente e dei campi invertito, ed al suo completamente si chiude il ciclo tornando nella condizione iniziale.
+
+\subsubsection{Circuito RLC}
+
+Consideriamo ora un circuito LC in cui però viene inserita anche una resistenza: ciò porterà ad una dissipazione di energia per effetto Joule, smorzando le oscillazioni. \\ 
+Sempre per la seconda legge di Kirchhoff, si ha:
+\begin{equation}
+	L \frac{di}{dt} + \frac{q}{C} + Ri = 0 \qquad\Longrightarrow\qquad L \frac{d^2 i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i = 0
+	\label{eq:43}
+\end{equation}
+Cerchiamo una soluzione del tipo $ i(t) = A e^{-\alpha t} \sin\omega t $:
+\begin{equation}
+	A e^{-\alpha t} \left[ \left( \frac{1}{C} + R\alpha + L(\alpha^2 - \omega^2)\right) \sin\omega t + \omega (R + 2L\alpha) \cos\omega t \right] = 0
+	\label{eq:44}
+\end{equation}
+Affinché questa equazione sia soddisfatta, i coefficienti di $ \sin\omega t $ e $ \cos\omega t $ devono essere identicamente nulli:
+\begin{equation}
+	R + 2L\alpha = 0 \quad\Rightarrow\quad \alpha = -\frac{R}{2L} \qquad \frac{1}{C} + R\alpha + L (\alpha^2 - \omega^2) = 0 \quad\Rightarrow\quad \omega^2 = \frac{1}{LC} - \frac{R^2}{4L^2}
+	\label{eq:45}
+\end{equation}
+Una soluzione oscillatoria richiede $ \omega $ reale, pertanto, definendo $ \omega_0 \equiv 1 / \sqrt{LC} $, si ha la condizione sul valore della resistenza $ \omega_0 > R / 2L $: la presenza di una resistenza, oltre a smorzare l'oscillazione, attenua anche la sua frequenza.
+
+\subsection{Legge di Ampère - Maxwell}
+
+Se consideriamo il caso del circuito LC, in esso non è mai presente una corrente stazionaria o una carica costante nel tempo sulle armature del condensatore: dall'equazione di continuità $ \pa_t \rho = - \dive\vec{J} $, si ha $ \dive\vec{J} \neq 0 $; d'altro canto, dall'equazione di Ampère $ \rot\vec{B} = \mu_0 \vec{J} $ si ha $ \mu_0 \dive\vec{J} = \dive(\rot\vec{B}) = 0 $ (identità vettoriale $ \dive\rot = 0 $): questa apparente inconsistenza deriva dal fatto che all'equazione di Ampère manca un termine per tenere conto di correnti variabili. \\ 
+%
+Ci aspettiamo di trovare un problema analogo in un circuito RC: se consideriamo una superficie $ S : \pa S = \gamma $ che taglia il filo che collega il capacitore al resistore, avremo:
+\begin{equation}
+	\oint_{\gamma} \vec{B} \cdot d\vec{l} = \oiint_S (\rot\vec{B}) \cdot d\vec{S} = \mu_0 \oiint_S \vec{J}\cdot d\vec{S} \quad\Longrightarrow\quad \mu_0 i = \mu_0 J \pi^2 a
+	\label{eq:46}
+\end{equation}
+dove $ a $ è la sezione del filo: in questo caso non sembra esserci nessuna incongruenza. \\ 
+%
+Se invece prendiamo una superficie $ S' $ delimitata dallo stesso contorno $ \gamma $, ma che stavolta, al posto di tagliare il filo, si chiude fra le armature del condensatore: dato che tra di esse non scorre corrente, $ S' $  non è attraversata da nessuna corrente, dunque $ \oiint_{S'} (\rot\vec{B}) \cdot d\vec{S}' = 0 $; d'altra parte, $ \gamma $ è comunque concatenato al filo, dunque $ \oint_{\gamma} \vec{B} \cdot d\vec{l} = \mu_0 i \neq 0 $, in apparente contraddizione col teorema di Stokes. \\ 
+%
+Per capire quale sia il termine mancante, consideriamo l'equazione di continuità e la legge di Gauss per il campo elettrico:
+\begin{equation}
+	\dive\vec{J} = - \frac{\pa\rho}{\pa t} = - \epsilon_0 \frac{\pa}{\pa t} \dive\vec{E} \qquad \Longrightarrow \qquad \dive \left(\vec{J} + \epsilon_0 \frac{\pa\vec{E}}{\pa t}\right) = 0
+	\label{eq:47}
+\end{equation}
+Il termine che viene aggiunto alla densità di corrente è detto corrente di spostamento: non è una vera e propria corrente, nel senso che non corrisponde al movimento di cariche nel tempo, ma descrive il fatto che la presenza di un campo elettrico variabile genera un campo magnetico, a sua volta variabile. \\ 
+Possiamo quindi scrivere la forma generale dell'equazione di Ampère, detta equazione di Ampère-Maxwell:
+\begin{equation}
+	\rot\vec{B} = \mu_0 \vec{J} + \frac{1}{c^2} \frac{\pa\vec{E}}{\pa t}
+	\label{eq:48}
+\end{equation}
+%
+Se applichiamo questa legge alla superficie $ S' $ considerata in precedenza, troviamo:
+\begin{equation}
+	\oiint_{S'} (\rot\vec{B}) \cdot d\vec{S}' = \mu_0 \epsilon_0 \oiint_{S'} \frac{\pa\vec{E}}{\pa t} \cdot d\vec{S}' = \mu_0 \epsilon_0 \oiint_{S'} \frac{1}{\epsilon_0} \frac{d\sigma}{dt} dS' = \mu_0 \frac{d\sigma}{dt} S' = \mu_0 \frac{dq}{dt} = \mu_0 i
+	\label{eq:49}
+\end{equation}
+poiché tra le armature del condensatore $ E(t) = \frac{\sigma(t)}{\epsilon_0} $. Vediamo quindi che, contando anche la corrente di spostamento, non vi è più alcuna inconsistenza.
 
 \end{document}
