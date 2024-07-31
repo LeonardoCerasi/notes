@@ -1,0 +1,60 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\input{../imports.tex}
+
+\begin{document}
+
+\section{Classificazione}
+
+Immaginiamo di realizzare un dispositivo per misurare la forza magnetica su vari materiali, ad esempio costruendo un solenoide cavo dentro il quale inserire dei porta-campioni: con riferimento alla figura, esso sarebbe lungo $ 40\,\text{cm} $ e con una cavità di circa $ 10\,\text{cm} $, con avvolgimenti di rame in grado di sopportare una potenza elettrica fino a $ 400\,\text{kW} $ e con un circuito di raffreddamento (cavità rettangolari) per dissipare il calore prodotto per effetto Joule; un solenoide di questo tipo genera un campo magnetico pressoché uniforme nella parte centrale con intensità di $ 3\,\text{T} $, mentre all'imboccatura vale circa $ 1.7\,\text{T} $. \\ 
+%
+Immaginiamo inoltre di avere una bilancia con porta-campioni da inserire all'interno della cavità, così da poter misurare l'effetto della forza esercitata dal campo magnetico sul materiale da testare: essa non è massima dove è maggiore l'intensità del campo, ovvero al centro, bensì all'imboccatura, dove si ha la maggior variazione di intensità. \\ 
+%
+La forza magnetica agente sulla sostanza può variare molto sia qualitativamente che quantitativamente, a seconda della sostanza, dunque distinguiamo le seguenti tipologie di materiali:
+\begin{enumerate}
+	\item materiali diamagnetici: vengono debolmente respinti con una forza proporzionale a $ B^2 $;
+	\item materiali paramagnetici: vengono debolmente attratti con una forza proporzionale a $ B^2 $;
+	\item materiali ferromagnetici: vengono attratti con forze di vari ordini di grandezza più intense rispetto ai materiali paramagnetici. 
+\end{enumerate}
+Tutti i materiali hanno un comportamento diamagnetico, e questo effetto è indipendente dalla temperatura. \\ 
+Nei materiali paramagnetici è presente una forza attrattiva che supera la componente diamagnetica, ed essa è proporzionale alla temperatura: la forza aumenta al diminuire della temperatura. \\ 
+Nei materiali ferromagnetici è presente una forza attrattiva di almeno $ 2-3 $ ordini di grandezza superiore alla componente diamagnetica, ed in questo caso la forza dipende linearmente dal campo. \\ 
+%
+Per comprendere la scala delle energie in gioco, consideriamo l'ossigeno liquido, uno dei materiali paramagnetici con la forza più intensa ($ \sim 75\,\text{N}\cdot\text{kg}^{-1} $): per allontanare di $ 10\,\text{cm} $ dal campo magnetico $ 1\,\text{kg} $ di ossigeno liquido è necessario un lavoro pari a $ W \sim 75 \,\text{N} \cdot 10\,\text{cm} \sim 10\,\text{J} $, ovvero circa $ 10^{-24}\,\text{J} $ per molecola di ossigeno ($ 1\,\text{kg} $ di $ \text{O}_2 $ ha circa $ 2\cdot 10^{25} $ molecole); la vaporizzazione della stessa quantità di ossigeno liquido, invece, richiede circa $ 2.1\cdot 10^5 \,\text{J} $, ovvero circa $ 10^{-20}\,\text{J} $ per molecola. \\ 
+Vediamo dunque che per materiali diamagnetici e paramagnetici, anche in presenza di campi magnetici abbastanza intensi, le energie in gioco sono piccole rispetto alle energie chimiche di legame; d'altro canto, nei materiali ferromagnetici, a seconda dell'intensità del campo, queste energie possono diventare comparabili a quelle chimiche di legame.
+
+\subsection{Correnti Atomiche}
+
+Sebbene i monopoli magnetici non siano esclusi dalle teorie di fisica fondamentale, il fatto che essi non siano ancora stati osservati sperimentalmente ci porta a concludere che, se esistono, sono molto rari. \\ 
+Per questo motivo, per spiegare i comuni effetti magnetici nella materia dobbiamo far ricorso all'ipotesi che essi siano generati da correnti elettriche esistenti a livello microscopico. \\ 
+%
+L'esistenza di correnti atomiche emerge naturalmente dal modello atomico della materia ed esse sono alla base del comportamento diamagnetico di tutti i materiali. \\ 
+%
+Consideriamo un caso semplice, ovvero un elettrone che ruota attorno ad un protone con velocità $ \vec{v} $ e frequenza $ \nu = \frac{v}{2\pi r} $: a questo moto possiamo associare la corrente $ i = e\,\nu = \frac{ev}{2\pi r} $; ovviamente stiamo trattando un modello semplificato che non tiene conto né della natura quantistica della materia, né del fatto che la corrente non è distribuita uniformemente lungo la circonferenza. \\ 
+La presenza di una corrente a livello atomico implica la presenza di un momento magnetico $ \vec{m} = i \pi r^2 \,\hat{e}_z $, con l'asse $ z $ ortogonale al piano dell'orbita (dato che $ q = -e < 0 $, con questo asse si ha che $ i $ scorre in senso antiorario e $ \vec{v} $ in senso orario): sostituendo l'espressione trovata prima, si ha $ \vec{m} = \frac{1}{2} evr \,\hat{e}_z $; d'altra parte, l'elettrone ha un momento angolare pari a $ \vec{L} = - r m_e v \,\hat{e}_z  $ (segno dato dal verso di $ \vec{v} $ discusso prima), quindi:
+\begin{equation}
+	\vec{m} = \frac{-e}{2m_e}\vec{L}
+	\label{eq:1}
+\end{equation}
+Si può dimostrare che questa relazione è valida in generale, anche tenendo conto della meccanica quantistica e di orbite non circolari; bisogna però ricordare la regola di quantizzazione del momento angolare $ L^2 = \ell(\ell+1)\hbar^2 $, $ \ell \in \mathbb{N} $. \\ 
+%
+Le particelle atomiche sono dotate anche di un momento intrinseco detto spin, un effetto puramente quantistico visualizzabile come il momento legato ad una rotazione della particella su sé stessa. La proiezione del momento angolare di spin lungo qualunque direzione può assumere solo due valori: $ \vec{S} = \pm \frac{\hbar}{2} $. \\ 
+Anche lo spin ha una relazione con un momento magnetico associato, dipendente da una costante di proporzionalità $ g = 2 $:
+\begin{equation}
+	\vec{m}_S = g \frac{-e}{2m_e}\vec{S}
+	\label{eq:2}
+\end{equation}
+Date le regole di quantizzazione per il momento angolare e lo spin, anche il momento magnetico dell'elettrone deve essere quantizzato secondo le stesse regole. \\ 
+%
+Anche protoni e neutroni hanno un momento magnetico, ma dato che la loro massa è circa $ 2000 $ volte la massa dell'elettrone il loro effetto è trascurabile. \\ 
+%
+Sviluppando una teoria quantistica completa del momento (angolare e magnetico) si trova che, per il principio di esclusione di Pauli (sulla stessa orbita non possono coesistere elettroni aventi lo stesso stato), se il numero di elettroni è pari allora il momento angolare/magnetico totale è nullo, poiché sono presenti un egual numero di elettroni con versi opposti sia di momento angolare che di spin. \\ 
+Di conseguenza, le sostanze con un numero pari di elettroni sono quelle che presentano solo un comportamento diamagnetico, mentre quelle con un numero dispari di elettroni possono avere un momento magnetico residuo che è alla base dei fenomeni paramagnetici e ferromagnetici.
+
+\subsection{Diamagnetismo}
+
+
+
+\end{document}
