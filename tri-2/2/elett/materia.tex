@@ -6,7 +6,9 @@
 
 \begin{document}
 
-\section{Classificazione}
+\section{Materia Magnetizzata}
+
+\subsection{Classificazione}
 
 Immaginiamo di realizzare un dispositivo per misurare la forza magnetica su vari materiali, ad esempio costruendo un solenoide cavo dentro il quale inserire dei porta-campioni: con riferimento alla figura, esso sarebbe lungo $ 40\,\text{cm} $ e con una cavità di circa $ 10\,\text{cm} $, con avvolgimenti di rame in grado di sopportare una potenza elettrica fino a $ 400\,\text{kW} $ e con un circuito di raffreddamento (cavità rettangolari) per dissipare il calore prodotto per effetto Joule; un solenoide di questo tipo genera un campo magnetico pressoché uniforme nella parte centrale con intensità di $ 3\,\text{T} $, mentre all'imboccatura vale circa $ 1.7\,\text{T} $. \\ 
 %
@@ -55,6 +57,251 @@ Di conseguenza, le sostanze con un numero pari di elettroni sono quelle che pres
 
 \subsection{Diamagnetismo}
 
+\subsubsection{Carica in moto circolare}
 
+Immaginiamo una carica positiva $ q $ di massa $ m $ che ruota attorno ad un punto centrale con velocità $ \vec{v}_0 $: possiamo immaginare che il moto sia permesso da una fune che esercita una tensione $ \vec{F}_0 = m \frac{v_0^2}{r} $ (naturalmente negli atomi la forza centripeta è fornita dall'attrazione coulumbiana). \\ 
+%
+Immaginiamo ora di accendere un campo magnetico, che passa in un tempo $ t $ da $ 0 $ a $ \vec{B}_1 $: ciò determina un campo elettrico indotto tale per cui $ \E = \frac{d\Phi_B}{dt} = \pi r^2 \frac{dB}{dt} $ (ignorando il segno), ma anche $ \E = \oint_{\gamma} \vec{E} \cdot d\vec{l} = 2\pi r E $, quindi $ E = \frac{r}{2}\frac{dB}{dt} $. \\ 
+%
+La presenza di un campo elettrico indotto determina un'accelerazione:
+\begin{equation}
+	m \frac{dv}{dt} = qE = q \frac{r}{2} \frac{dB}{dt} \qquad\Longrightarrow\qquad \Delta v = q \frac{r}{2m} \int_0^{B_1} dB = \frac{qr}{2m} B_1
+	\label{eq:3}
+\end{equation}
+Ciò determina anche un aumento di forza centripeta:
+\begin{equation}
+	F_1 = \frac{m}{r} (v + \Delta v)^2 \approx \frac{m}{r} v_0^2 + 2 \frac{m}{r} v_0 \Delta v + o(v^2) \qquad\Longrightarrow\qquad \Delta F = 2 \frac{m}{r} v_0 \Delta v
+	\label{eq:4}
+\end{equation}
+Oltre alla tensione della fune, ora è presente anche la forza di Lorentz:
+\begin{equation}
+	F_m = q (v_0 + \Delta v) B_1 = q (v_0 + \Delta v) \frac{2m}{qr} \Delta v \approx 2 \frac{m}{r} v_0 \Delta v = \Delta F
+	\label{eq:5}
+\end{equation}
+Vediamo quindi come il campo magnetico fornisca anche la necessaria forza centripeta aggiuntiva necessaria per mantenere il raggio dell'orbita costante, indipendentemente dal tipo di legame della particella col punto centrale dell'orbita. \\ 
+%
+Determiniamo ora il segno di $ \Delta\vec{v} $ dato dalla legge di Lenz: dato che abbiamo una carica in moto, ci sarà un campo magnetico da essa indotto $ \vec{B}_{\text{ind}} $. WLOG la carica ruota in senso antiorario, dunque $ \vec{B}_{\text{ind}} $ è diretto verso l'alto, quindi se viene acceso $ \vec{B}_1 $ WLOG verso il basso avremo che $ \Delta\vec{v} $ si deve oppore a questa variazione, ovvero $ \Delta\vec{B}_{\text{ind}} $ deve essere diretto verso l'alto, ovvero $ \Delta\vec{v} $ deve essere in senso antiorario, quindi la velocità aumenta. Questo ragionamento è indipendente dal verso di $ \vec{v}_0 $, ma dipende solo da quello di $ \vec{B}_1 $: l'unica differenza è che se $ \vec{v}_0 $ fosse stata in senso orario, allora la velocità sarebbe diminuita.
+
+\subsubsection{Momento magnetico indotto}
+
+Consideriamo un setup analogo al precedente, ma stavolta ragioniamo sul momento magnetico: esso inizialmente vale $ \vec{m} = i \pi r^2 \,\hat{e}_z = \frac{1}{2}qv_0r\,\hat{e}_z $; quando accendiamo il campo magnetico, per il ragionamento fatto prima, si ha una variazione di momento magnetico indipendente dal verso iniziale di $ \vec{m} $:
+\begin{equation}
+	\Delta\vec{m} = \frac{q}{2m} \Delta\vec{L} = \frac{q}{2m} \vec{r}\times m\Delta\vec{v} = \frac{q}{2m} r\frac{qr}{2m}m(-\vec{B}) \qquad\Longrightarrow\qquad \Delta\vec{m} = - \frac{q^2 r^2}{4m} \vec{B}
+	\label{eq:6}
+\end{equation}
+Possiamo vedere come essa sia effettivamente dipendente solo da $ \vec{B} $, ed in particolare opposta ad esso, come ci aspetteremmo dalla legge di Lenz. \\ 
+%
+Questo risultato è generalizzabile al caso in cui abbiamo molti atomi con $ Z $ elettroni, numero atomico $ A $ ed orbite orientate casualmente rispetto al campo magnetico esterno. Considerando che $ Z / A \sim 1 / 2 $, è possibile dimostrare che il momento magnetico indotto dal campo esterno è:
+\begin{equation}
+	\vec{m} = -\frac{1}{2} m \mathcal{N}_A \frac{e^2 R_0^2}{6 m_e} \vec{B}
+	\label{eq:7}
+\end{equation}
+dove $ \mathcal{N}_A $ è il numero di Avogadro e $ R_0 $ è il raggio atomico medio. \\ 
+%
+Ricordando che la forza legata ad un momento magnetico è $ \vec{F} = \nabla(\sprod{m}{B}) $, dato che nel nostro sistema di riferimento sia $ \vec{m} $ che $ \vec{B} $ sono lungo $ \hat{e}_z $, l'unica componente della forza sarà:
+\begin{equation}
+	F_z = - m \mathcal{N}_A \frac{e^2 R_0^2}{6 m_e} B \frac{\pa B}{\pa z}
+	\label{eq:8}
+\end{equation}
+Si nota che la forza è diretta nel verso in cui il campo decresce; inoltre: è proporzionale al quadrato del campo magnetico, dipende dal gradiente del campo (quindi non è presente se il campo è uniforme) ed è diretta in verso opposto ad esso, dunque ha tutte le caratteristiche osservate sperimentalmente per la forza che sviluppano i materiali diamagnetici.
+
+\subsection{Paramagnetismo}
+
+Le particelle che compongono gli atomi hanno un momento angolare intrinseco, lo spin, che è un vettore, ma del quale possiamo misurare solo la componente lungo un determinato asse quando effettuiamo una misura: su qualunque asse, per un elettrone tale componente può essere solo $ S = \pm\frac{\hbar}{2} $; di conseguenza, anche il momento magnetico di spin sarà quantizzato e pari a:
+\begin{equation}
+	m_S = \pm\frac{e\hbar}{2m_e} \equiv \pm\mu_B
+	\label{eq:9}
+\end{equation}
+detto magnetone di Bohr. \\ 
+%
+Negli atomi con $ Z $ pari il momento magnetico di spin totale si annulla, dunque rimane solo l'effetto del diamagnetismo, mentre se $ Z $ è dispari i momenti magnetici di spin non vengono completamente cancellati ed ogni atomo ha un momento magnetico residuo: questi sono orientati casualmente ed in assenza di un campo magnetico esterno il momento magnetico globale è nullo. \\ 
+%
+Quando una sostanza paramagnetica si trova in un campo magnetico esterno, i momenti intrinseci degli atomi tendono ad allinearsi con il campo esterno, ovvero in verso opposto al diamagnetismo: per dare una descrizione qualitativa, dobbiamo considerare la statistica con cui sono distribuiti gli elettroni in base al momento magnetico. \\ 
+%
+L'energia potenziale di un dipolo magnetico $ \vec{m} $ in un campo magnetico esterno $ \vec{B} $ è data da $ U = - \sprod{m}{B} $, dunque per un elettrone essa può assumere i valori $ U = \pm\mu_B B $. Il numero di elettroni su un determinato livello energetico è dato dalla statistica di Boltzmann $ n = A \exp(U/k_B T) $, quindi data la quantizzazione del momento magnetico e il fatto che $ N = n_{\text{up}} + n_{\text{down}} $, si ha:
+\begin{equation}
+	n_{\pm} = N \frac{e^{\pm\mu_B B / k_B T}}{e^{\mu_B B / k_B T} + e^{-\mu_B B / k_B T}}
+	\label{eq:10}
+\end{equation}
+Quindi il momento magnetico totale sarà:
+\begin{equation}
+	m_T = n_+ \mu_B + n_- (-\mu_B) = N\mu_B \frac{e^{\mu_B B / k_B T} - e^{-\mu_B B / k_B T}}{e^{\mu_B B / k_B T} + e^{-\mu_B B / k_B T}} \quad\Longrightarrow\quad m_T = N\mu_B \tanh\frac{\mu_B B}{k_B T}
+	\label{eq:11}
+\end{equation}
+Da questa relazione è chiaro che abbiamo un bilancio tra il campo magnetico, che tende ad allineare reciprocamente gli spin, e la temperatura, che invece tende a rompere tale allineamento, come si evince dalla figura: \\ 
+%
+%
+%
+\hbox{}\\ INSERIRE LA FIGURA\\ \hbox{}\\ 
+%
+%
+%
+Questa teoria del paramagnetismo può essere estesa anche ad atomi e molecole con configurazioni di momento angolare più complicate, come si evince dai fit sperimentali (SI PUÒ INSERIRE FIGURA DA SLIDE 39-49), sebbene bisogni tener conto in maniera più rigorosa del formalismo quantistico applicato alla struttura della materia.
+
+\subsection{Campo magnetico della materia magnetizzata}
+
+Ricordiamo che, nel caso di un conduttore molto sottile, il potenziale vettore può essere scritto in funzione della densità superficiale di corrente:
+\begin{equation}
+	\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \oiint_S \frac{\vec{K}(\vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}} dS
+	\label{eq:12}
+\end{equation}
+Consideriamo un blocco di materia uniformemente magnetizzato e fissiamo un sistema di riferimento con asse $ z $ parallelo alla magnetizzazione $ \vec{M} $, ovvero alla fomma dei contributi di tutti i dipoli magnetici elementari contenuti nel blocco. \\ 
+%
+Suddividendo il blocco in fette perpendicolari ad $ \vec{M} $ e le fette in cubetti con momento di dipolo magnetico $ \vec{m} = \vec{M} dV = \vec{M} dSdz $: dato che ogni cubetto è equivalente ad una spira di area $ dS $ in cui scorre una corrente $ i $, si ha $ m = i \,dS $, quindi, essendo la magnetizzazione costante, si ha che sul bordo di ogni cubetto scorre la stessa corrente $ i = M dz $; dato che nelle parti interne le correnti si elidono a vicenda, la magnetizzazione del blocco è equivalente ad una densità superficiale di corrente che scorre sulla superficie esterna del blocco: dato che $ i = \int_0^L M dz $ e $ i = \int_0^L K dz $, segue che $ K = M $. \\ 
+%
+È possibile dimostrare che il campo macroscopico generato dai dipoli magnetici all'interno del blocco è quello generato dalla densità di corrente superficiale $ \vec{K} $: naturalmente si tratta di un campo macroscopico, nel quale i contributi microscopici a livello atomico, fortemente variabili, vengono mediati (così come nell'equivalente caso elettrico). \\ 
+%
+Supponiamo ora che la magnetizzazione vari lungo la direzione $ y $, continuando però ad essere orientata lungo $ z $, e suddividiamo il blocco in cubetti in cui $ \vec{M} $ sia approssimativamente costante: ognuno di essi può essere sostituito da una corrente superficiale $ i(y) = M_z(y) \Delta z $, quindi tra due cubetti vicini vale $ i(y+\Delta y) \approx (M_z(y) + \frac{\pa M_z}{\pa y}\Delta y) \Delta z $, quindi $ \Delta i = \frac{\pa M_z}{\pa y} \Delta y \Delta z $ (lungo $ x $, si vede graficamente); d'altro canto, se consideriamo una magnetizzazione variabile lungo $ z $ e direzionata lungo $ y $, otteniamo analogamente che $ \Delta i = - \frac{\pa M_y}{\pa z} \Delta y \Delta z $ (sempre lungo $ x $, il $ - $ si vede graficamente). In generale, dunque, avremo una variazione $ \Delta i_x = (\frac{\pa M_z}{\pa y} - \frac{\pa M_y}{\pa z}) \Delta y \Delta z \equiv J_x \Delta y \Delta z $, quindi generalizzando ad una magnetizzazione generica otteniamo la densità di corrente di magnetizzazione:
+\begin{equation}
+	\vec{J}_M = \rot\vec{M}
+	\label{eq:13}
+\end{equation}
+che è analoga alla densità di carica di polarizzazione $ \rho_P = -\dive\vec{P} $. 
+
+\subsubsection{Campo $ \vec{B} $}
+
+Supponiamo di avere un volume di materia magnetizzata con magnetizzazione $ \vec{M}(\vec{r}) $: un volume infinitesimo $ dV' $ avrà un momento magnetico $ d\vec{m} = \vec{M}(\vec{r}\,') dV' $, dunque dall'espressione del potenziale vettore a grande distanza da un dipolo otteniamo $ d\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} d\vec{m}\times \frac{\vec{r}}{r^3} $, quindi:
+\begin{equation}
+	\begin{split}
+		\vec{A}(\vec{r}) &= \frac{\mu_0}{4\pi} \iiint_V d\vec{m} \times \frac{\vec{r}-\vec{r}\,'}{\abs{\vec{r}-\vec{r}\,'}^3} = \frac{\mu_0}{4\pi} \iiint_V \vec{M}(\vec{r}\,') \times \frac{\vec{r}-\vec{r}\,'}{\abs{\vec{r}-\vec{r}\,'}^3} dV' \\ 
+				 &= \frac{\mu_0}{4\pi} \iiint_V \vec{M}(\vec{r}\,') \times \nabla_{r'} \frac{1}{\abs{\vec{r}-\vec{r}\,'}} dV' \\ 
+				 & \qquad\qquad \rot(f\vec{C}) = f(\rot\vec{C}) - \vec{C}\times\nabla f \\ 
+				 &= \frac{\mu_0}{4\pi} \iiint_V \frac{\nabla_{r'}\times\vec{M}(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV' - \frac{\mu_0}{4\pi} \iiint_V \nabla_{r'} \times \frac{\vec{M}(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV' \\ 
+				 & \qquad\qquad \iiint_V \nabla_{r'}\times\vec{A} \,dV' = \oiint_S \hat{n}' \times\vec{A} \,dS' \quad (\text{non dimostriamo}) \\ 
+				 &= \frac{\mu_0}{4\pi} \iiint_V \frac{\vec{J}_M(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV' + \frac{\mu_0}{4\pi} \oiint_S \frac{\vec{M}(\vec{r}\,') \times \hat{n}'}{\abs{\vec{r}-\vec{r}\,'}} dV' \\ 
+				 & \qquad\qquad \vec{M}(\vec{r}\,') \times \hat{n}' \equiv \vec{K}(\vec{r}\,') \quad (\text{densità superficiale di corrente}) \\ 
+				 &= \frac{\mu_0}{4\pi} \iiint_V \frac{\vec{J}_M(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV' + \frac{\mu_0}{4\pi} \oiint_S \frac{\vec{K}(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV'
+	\end{split}
+	\label{eq:14}
+\end{equation}
+Vediamo come il potenziale vettore sia dato da due termini: quello legato alle correnti di magnetizzazione, dovute alle disomogeneità del vettore di magnetizzazione del materiale, e quello legato alle correnti magnetiche che si instaurano sulla superficie del corpo.
+
+\subsubsection{Discontinuità di $ \vec{B} $}
+
+Così come un campo elettrico presenta discontinuità quando attravera una densità superficiale di carica, anche un campo magnetico presenta discontinuità quando attraversa una densità superficiale di corrente. \\ 
+%
+Consideriamo una densità superficiale di corrente $ \vec{K} $ su una superficie e consideriamo una cammino rettangolare chiuso $ \gamma $ (con altezze infinitesime e che racchiude una superficie $ S $) perpendicolare alla superficie: per la legge di Ampère, si ha:
+\begin{equation}
+	\oint_{\gamma} \vec{B}\cdot d\vec{l} = \mu_0 \oiint_S \vec{J}\cdot d\vec{S} \qquad\Longrightarrow\qquad (B_{1,t} - B_{2,t}) L = \mu_0 KL
+	\label{eq:15}
+\end{equation}
+ovvero, per la componente tangente:
+\begin{equation}
+	\Delta B_t = \mu_0 K
+	\label{eq:16}
+\end{equation}
+Se invece consideriamo una superficie cilindrica chiusa $ S $ (di altezza infinitesima) perpendicolare alla superficie, dato che $ \dive\vec{B} = 0 $ si ha:
+\begin{equation}
+	\oiint_S \vec{B}\cdot d\vec{S} = 0 \qquad\Longrightarrow\qquad B_{1,n} - B_{2,n} = 0 
+	\label{eq:17}
+\end{equation}
+ovvero, per la componente normale:
+\begin{equation}
+	\Delta B_n = 0 
+	\label{eq:18}
+\end{equation}
+Possiamo condenssare entrambe le relazioni in:
+\begin{equation}
+	\Delta\vec{B} = \vec{K}\times\hat{n}
+	\label{eq:19}
+\end{equation}
+Nonostante ciò, il potenziale vettore è sempre continuo:
+\begin{itemize}
+	\item componente tangenziale: col cammino tangenziale precendente, si ha $ \oint_{\gamma} \vec{A}\cdot d\vec{l} = \oiint_S \rot\vec{A}\cdot d\vec{S} = \oiint_S \vec{B}\cdot d\vec{S} = \Phi_B $, ma, dato che le altezze sono infinitesime, il flusso attraverso la superficie tende a zero, per cui la componente tangenziale cambia con continuità attraverso la superficie su cui scorre la corrente;
+	\item componente normale: sfruttando il fatto che il potenziale vettore è definito a meno del gradiente di uno scalare, è sempre possibile trovare una funzione scalare tale per cui $ \dive\vec{A}' = 0 $ (basta che $ \lap f = -\dive\vec{A} $), per cui anche la componente normale del potenziale vettore varia con continuità attraverso la superficie.
+\end{itemize}
+
+\subsubsection{Campo $ \vec{H} $}
+
+Consideriamo un corpo di volume $ V_c $ e superficie $ S_c $ avente una magnetizzazione $ \vec{M} $: il suo potenziale vettore sarà:
+\begin{equation}
+	\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \iiint_{V_c} \frac{\vec{J}_M(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV' + \frac{\mu_0}{4\pi} \oiint_{S_c} \frac{\vec{K}(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}} dV'
+	\label{eq:20}
+\end{equation}
+Possiamo immaginare di estendere gli integrali a tutto lo spazio, poiché al di fuori di $ V_c $ la magnetizzazione è nulla, ottenendo:
+\begin{equation}
+	\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \iiint_V \frac{\nabla_{r'}\times\vec{M}(\vec{r}\,')}{\abs{\vec{r}-\vec{r}\,'}}dV'
+	\label{eq:21}
+\end{equation}
+poiché $ \vec{K} = 0 $ su ogni superficie al di fuori del corpo. Ovviamente l'effetto delle correnti di superficie non è magicamente scomparso, ma viene inglobato dalla discontinuità di $ \vec{M} $ lungo $ S_c $ (incluso nel dominio di integrazione): integrando su tali discontinuità di ottengono dei termini con $ \delta $ di Dirac, i quali rappresentano l'effetto delle correnti superficiali. \\ 
+%
+Scriviamo ora la legge di Ampère per il corpo, considerando sia le correnti libere che quelle di magnetizzazione:
+\begin{equation}
+	\rot\vec{B} = \mu_0 (\vec{J}_f + \vec{J}_M) \qquad\qquad\Longrightarrow\qquad\qquad \rot\left(\frac{1}{\mu_0}\vec{B} - \vec{M}\right) = \vec{J}_f
+	\label{eq:22}
+\end{equation}
+Possiamo quindi definire il seguente campo di magnetizzazione (u.d.m. $ \text{A}\cdot\text{m}^{-1} $):
+\begin{equation}
+	\vec{H} \equiv \frac{1}{\mu_0} \vec{B} - \vec{M} \qquad\qquad\qquad \rot\vec{H} = \vec{J}_f
+	\label{eq:23}
+\end{equation}
+analogo al campo $ \vec{D} $ in elettrostatica. Diversamente da quest'ultimo, il campo $ \vec{H} $ è molto utilizzato: mentre $ \vec{D} $ è legato alle cariche elettrostatiche libere, difficili da controllare poiché si ha controllo piuttosto sui potenziali a cui si trovano i conduttori, $ \vec{H} $ è legato alle correnti libere, che sono proprio ciò su cui si ha controllo. \\ 
+%
+Assumendo una dipendenza lineare di $ \vec{M} $ da $ \vec{H} $, ad esempio $ \vec{M} = \chi_m \vec{H} $, si ha:
+\begin{equation}
+	\vec{B} = \mu\vec{H} \qquad\qquad \mu \equiv \mu_0 (1 + \chi_m) \equiv \mu_0 \mu_r
+	\label{eq:24}
+\end{equation}
+dove $ \chi_m $ è detta suscettività magnetica e $ \mu_r $ permeabilità magnetica relativa. \\ 
+%
+Se $ \mu $ non dipende dalla posizione, il mezzo di dice omogeneo, mentre se non dipende da $ \vec{H} $ si dice lineare. Inoltre, se $ \chi_m < 0 $ il mezzo è diamagnetico, mentre se $ \chi_m > 0 $ è paramagnetico; se invece $ \mu $ dipende da $ \vec{H} $ il mezzo è ferromagnetico. \\ 
+Equivalentemente al caso elettrostatico, anche nel caso di un campo magnetico in della materia polarizzata bisogna tener conto, ai fini del calcolo dell'energia magnetica $ U_m = \frac{1}{2\mu_0}\iiint_V B^2 dV $, dell'energia di magnetizzazione:
+\begin{equation}
+	U_m = \frac{1}{2} \iiint_V \sprod{B}{H} \,dV
+	\label{eq:25}
+\end{equation}
+che tiene conto dell'energia che è stata necessaria per magnetizzare la materia. La forza magnetica associata è $ \vec{F}_m = \nabla U_m $ (poiché l'energia potenziale è l'opposto di quella magnetica).
+
+\subsubsection{Condizioni al contorno per $ \vec{H} $}
+
+Innanzitutto, dato che $ \dive\vec{B} = 0 $, vale che $ \dive\vec{H} = -\dive\vec{M} $. \\ 
+%
+Considerando le stesse superfici prese per il campo $ \vec{B} $, abbiamo analogamente che:
+\begin{equation}
+	\oint_{\gamma} \vec{H} \cdot d\vec{l} = \oiint_S \vec{J}_f \cdot d\vec{S} \qquad\qquad \oiint_S \vec{H}\cdot d\vec{S} =	- \oiint_S \vec{M}\cdot d\vec{S}
+	\label{eq:26}
+\end{equation}
+quindi:
+\begin{equation}
+	\Delta\vec{H}_t = \vec{K}_f \qquad\qquad \Delta\vec{H}_n = - \Delta\vec{M}
+	\label{eq:27}
+\end{equation}
+Nel campo $ \vec{H} $ non è continua neanche la componente normale.
+
+\subsection{Ferromagnetismo}
+
+A differenza dei materiali diamagnetici e paramagnetici, in quelli ferromagnetici la forza dipende linearmente dal campo magnetico, quindi, dato che $ \vec{F} = \nabla(\sprod{m}{B}) $, si evince che il momento magnetico non varia col campo magnetico: in altre parole, si raggiunge un limite di saturazione nell'allineamento dei dipoli magnetici e l'aumentare il campo magnetico non può rafforzare ulteriormente il campo magnetico generato dalla magnetizzazione. \\ 
+%
+Inoltre, i materiali ferromagnetici possono rimanere magnetizzati anche in assenza di campo magnetico: il ferromagnetismo è un fenomeno che dipende dalla temperatura e scompare al di sopra di una temperatura caratteristica per ogni materiale, detta temperatura di Curie. \\ 
+%
+Consideriamo ad esempio il ferro: si trova sperimentalmente, con il setup sperimentale discusso in precedenza, che $ 1\,\text{kg} $ di ferro è soggetto per ferromagnetismo a $ 4000\,\text{N} $ quando $ \abs{\frac{\pa\vec{B}}{\pa z}} = 17\,\text{T/m} $, quindi, dato che $ \vec{F} = \nabla(\sprod{m}{B}) $, $ m = \frac{F}{\abs{\pa\vec{B} / \pa t}} = 235 \,\text{J/T} $; essendo la densità del ferro $ 7800 \,\text{kg/m}^3 $, il volume sarà $ V = 7800^{-1} \,\text{m}^3 $ e la magnetizzazione $ M = \frac{m}{V} = 1.83 \cdot 10^6 \,\text{JT}^{-1}\text{m}^{-3} $. Dato che il valore così trovato è il valore massimo che può assumere $ M $, essendo quest'ultimo $ M = n\mu_B $ ($ n $ numero di elettroni per unità di volume), si ha $ n = M / \mu_B = 2\cdot 10^{29} \,\text{m}^{-3} $: nel ferro ci sono circa $ 10^{29} $ atomi per metro cubo, quindi possiamo concludere che ogni atomo contribuisce alla magnetizzazione con circa $ 2 $ elettroni. \\ 
+%
+Il fenomeno del ferromagnetismo è complesso ed una sua descrizione richiede il formalismo quantistico; da un punto di vista qualitativo, possiamo affermare che due elettroni di atomi adiacenti si trovano in uno stato energeticamente conveniente quando i loro spin sono allineati: dividendo il corpo in $ \virgolette{domini} $ magnetici, l'applicazione di un campo magnetico esterno tende ad allineare la magnetizzazione dei domini, facendoli $ \virgolette{coalescere} $ e massimizzando il momento magnetico del materiale. È possibile visualizzare i domini magnetici tramite la microscopia a effetto Kerr, che sfrutta l'effetto della magnetizzazione sulla luce riflessa dai materiali.
+
+\subsubsection{Magnete toroidale con nucleo ferromagnetico}
+
+Consideriamo un toroide (solenoide chiuso a forma di toro) avvolto intorno ad un nucleo di materiale lineare (quindi non ferromagnetico) con suscettività magnetica $ \chi_m $. Detti $ N $ il numero di spire del toroide e $ i $ la corrente che vi scorre, per simmetria si ha che le linee del campo $ \vec{H} $ sono circonferenze, quindi presa $ \gamma $ circonferenza di raggio $ r $ interna al nucleo $ \oint_{\gamma} \vec{H} \cdot d\vec{l} = H 2\pi r = N i $, quindi $ H = \frac{N i}{2\pi r} $:
+\begin{equation}
+	\vec{M} = \frac{1}{\mu_0} \vec{B} - \vec{H} = \frac{\mu - \mu_0}{\mu_0} \vec{H} = \chi_m \vec{H} \qquad\Longrightarrow\qquad M = \chi_m \frac{Ni}{2\pi r}
+	\label{eq:28}
+\end{equation}
+La magnetizzazione è anch'essa diretta lungo circonferenze centrare nel centro del toroide, e genera una densità di corrente superficiale $ K = M = \chi_m \frac{N i}{2\pi r} $ non uniforme (mentre la corrente di magnetizzazione è naturalmente costante: $ i_m = K 2\pi r = \chi_m N i $). \\ 
+%
+Supponiamo ora invece che il nucleo sia di materiale ferromagnetico: non c'è più una relazione lineare tra $ \vec{B} $ e $ \vec{H} $, quindi bisogna studiare sperimentalmente la curva di magnetizzazione $ B(H) $ del sistema: per ogni valore di $ i $, determiniamo $ H $ e misuriamo $ B $; inoltre, definiamo $ \mu \equiv B / H $, che non è più una costante. \\ 
+%
+Se il toroide fosse vuoto si avrebbe $ B = \mu_0 H $, quindi ad esempio con $ H = 300 \,\text{A/m} $ si dovrebbe avere $ B \approx 4 \cdot 10^{-4} \,\text{T} $, mentre con il nucleo ferromagnetico si ottiene $ B = 1.3 \,\text{T} $, un valore $ 3000 $ volte più grande: questo campo magnetico è dato da quello del toroide sommato a quello della corrente di magnetizzazione $ i_m = \chi_m N i $. \\ 
+%
+Per un materiale ferromagnetico $ \chi_m \approx \mu / \mu_0 $ (dell'ordine delle migliaia), plottato nel grafico: \\ 
+%
+%
+%
+\hbox{}\\ INSERIRE LA FIGURA\\ \hbox{}\\ 
+%
+%
+%
+Quindi, se facciamo scorrere una corrente dell'ordine di $ 1\,\text{A} $, otteniamo lo stesso campo magnetico che sarebbe generato dal solo toroide facendovi scorrere una corrente di varie migliaia di $ \text{A} $. \\ 
+Si nota inoltre come all'aumentare di $ H $ (cioè della corrente) il campo magnetico raggiunga un punto di saturazione dovuto al completo allineamento dei domini magnetici: da quel punto la crescita torna ad essere lineare, determinata dalla sola corrente libera. \\ 
+%
+Supponiamo di aver magnetizzato un materiale ferromagnetico e di aver raggiunto un punto della sua curva di magnetizzazione oltre il punto di saturazione; se volessimo tornare alle condizioni iniziali $ H = 0 $, $ B = 0 $, dovremmo ridurre la corrente nel toroide fino a raggiungere $ H = 0 $: così facendo, raggiungeremmo uno stato in cui $ B \neq 0 $: poiché $ B = \mu_0 (H + M) $, ciò ci dice che nel materiale permane una magnetizzazione $ M = B / \mu_0 $ anche senza eccitazione esterna. Per riportare a zero la magnetizzazione, è necessario eccitare il toroide con una corrente di segno opposto a quella iniziale, raggiungendo uno stato in cui $ H = - M $ e $ B = 0 $; continuando a ridurre $ H $ si raggiunge una nuova regione di saturazione: facendo crescere di nuovo $ H $ si può raggiungere nuovamente lo stato di magnetizzazione iniziale percorrendo un percorso diverso nel piano $ H - B $: il grafico così ottenuto è un'isteresi, che evidenzia un comportamento per il quale lo stato del sistema dipende dalla $ \virgolette{storia} $ precedente.
 
 \end{document}
