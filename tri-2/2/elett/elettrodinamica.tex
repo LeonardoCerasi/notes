@@ -1,0 +1,231 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\input{../imports.tex}
+
+\begin{document}
+
+\section{Elettrodinamica}
+
+\subsection{Equazioni di Maxwell nella materia}
+
+Ricordiamo le equazioni di Maxwell nel vuoto:
+\begin{equation}
+	\begin{split}
+		\dive\vec{E} &= \frac{\rho}{\epsilon_0} \\ 
+		\dive\vec{B} &= 0 
+	\end{split}
+	\qquad\qquad
+	\begin{split}
+		\rot\vec{E} &= - \frac{\pa\vec{B}}{\pa t} \\ 
+		\rot\vec{B} &= \mu_0 \left( \vec{J} + \frac{\pa\vec{E}}{\pa t} \right)
+	\end{split}
+	\label{eq:1}
+\end{equation}
+Per poterle generalizzare nella materia è necessario considerare tutte le sorgenti dei campi elettrico e magnetico. \\ 
+%
+Innanzitutto ricordiamo il vettore spostamento elettrico $ \vec{D} = \epsilon_0 \vec{E} + \vec{P} $, che esprime il legame tra campo elettrico e cariche libere e di polarizzazione:
+\begin{equation}
+	\dive\vec{D} = \rho_f \qquad\qquad \rho_P = -\dive\vec{P} \qquad\qquad \sigma_P = \vec{P}\cdot\hat{n}
+	\label{eq:2}
+\end{equation}
+A queste equazioni va aggiunta anche quella per la densità di polarizzazione $ \vec{P} = \vec{P}(\vec{E}) $, che per i materiali lineari è $ \vec{P} = \epsilon_0 \chi_e \vec{E} $. \\ 
+%
+Risulta evidente che un campo elettrico variabile genera un vettore di polarizzazione variabile, il quale porterà ad una variazione di cariche superficiali di polarizzazione:
+\begin{equation}
+	\frac{\pa\sigma_P}{\pa t} = \frac{\pa\vec{P}}{\pa t} \cdot \hat{n} \equiv \vec{J}_P \cdot \hat{n}
+	\label{eq:3}
+\end{equation}
+Questa è una vera a propria densità di corrente, detta densità di corrente di polarizzazione, soddisfacente l'equazione di continuità:
+\begin{equation}
+	\dive\vec{J}_P = \dive \frac{\pa\vec{P}}{\pa t} = \frac{\pa (\dive\vec{P})}{\pa t} = - \frac{\pa\rho_P}{\pa t}
+	\label{eq:4}
+\end{equation}
+In generale, quindi, avremo per seguenti sorgenti per il campo elettromagnetico:
+\begin{itemize}
+	\item cariche (campo elettrico):
+	\begin{itemize}
+		\item cariche libere $ \rho_f $;
+		\item cariche di polarizzazione $ \rho_P = -\dive\vec{P} $;
+	\end{itemize}
+	\item correnti (campo magnetico):
+	\begin{itemize}
+		\item correnti libere $ \vec{J}_f $;
+		\item correnti di magnetizzazione $ \vec{J}_M = \rot\vec{M} $;
+		\item correnti di polarizzazione $ \vec{J}_P = \frac{\pa\vec{P}}{\pa t} $.
+	\end{itemize}
+\end{itemize}
+Tenendo conto di ciò, le due equazioni di Maxwell omogenee (legge di Faraday e legge di Gauss per $ \vec{B} $) rimangono invariate, la legge di Gauss per $ \vec{E} $ diventa $ \dive\vec{D} = \rho_f $ e la legge di Ampère diventa:
+\begin{equation}
+	\begin{split}
+		\rot\vec{B} &= \mu_0 \left( \vec{J}_f + \rot\vec{M} + \frac{\pa\vec{P}}{\pa t} \right) + \epsilon_0 \mu_0 \frac{\pa\vec{E}}{\pa t} \\ 
+			    &\qquad\qquad\qquad\qquad\Longrightarrow\qquad \rot\left(\frac{1}{\mu_0} \vec{B} - \vec{M}\right) = \vec{J}_f + \frac{\pa}{\pa t} \left(\vec{P} + \epsilon_0 \vec{E}\right)
+	\end{split}
+	\label{eq:5}
+\end{equation}
+Quindi, riconoscendo i campi $ \vec{D} $ e $ \vec{H} $, si ottengono le equazioni di Maxwell nella materia:
+\begin{equation}
+	\begin{split}
+		\dive\vec{D} &= \rho_f \\ 
+		\dive\vec{B} &= 0 
+	\end{split}
+	\qquad\qquad
+	\begin{split}
+		\rot\vec{E} &= - \frac{\pa\vec{B}}{\pa t} \\ 
+		\rot\vec{H} &= \vec{J}_f + \frac{\pa\vec{D}}{\pa t}
+	\end{split}
+	\label{eq:6}
+\end{equation}
+A queste vanno aggiunte le dovute condizioni, oltre che ovviamente alle relazioni fenomenologiche tra $ \vec{D} $, $ \vec{H} $ e $ \vec{E} $, $	\vec{B} $. \\ 
+Nel caso più generale:
+\begin{equation}
+	\Delta D_{\perp} = 0 \qquad \Delta E_{\parallel} = 0 \qquad \Delta\vec{H}_{\parallel} = \vec{K}_f \times \hat{n} \qquad \Delta B_{\perp} = 0 
+	\label{eq:7}
+\end{equation}
+In presenza di un mezzo lineare $ \vec{D} = \epsilon\vec{E} $ e $ \vec{H} = \frac{1}{\mu}\vec{B} $, quindi:
+\begin{equation}
+	\epsilon_1 E_{\perp,1} - \epsilon_2 E_{\perp,2} = 0 \qquad \Delta E_{\parallel} = 0 \qquad \frac{1}{\mu_1}\vec{B}_{\parallel,1} - \frac{1}{\mu_2}\vec{B}_{\parallel,2} = \vec{K}_f \times \hat{n} \qquad \Delta B_{\perp} = 0 
+	\label{eq:8}
+\end{equation}
+
+\subsection{Onde Elettromagnetiche}
+
+\subsubsection{Esperimento di Hertz}
+
+L'esperimento consisteva in un generatore ad alta tensione (a induzione) collegato a due sfere metalliche separate da uno spazio vuoto: controllando la tensione e l'induttanza del generatore si generavano fra le sfere delle scariche elettriche di intensità variabile ad una certa frequenza (circa $ 100\,\text{MHz} $). \\ 
+%
+Ponendo una spira metallica collegata ad altre due sfere come ricevitore, Hertz osservò che fra queste due sfere si instauravano delle scariche elettriche alla stessa frequenza, dimostrando che gli elettroni in movimento generano un'onda di campo elettrico e magnetico che si propaga nello spazio. \\ 
+%
+Ponendo una lastra di rame ad una certa distanza dal generatore, in modo che le onde si riflettessero e generassero onde stazionarie, Hertz misurò la loro velocità di propagazione: porendo il ricevitore in diverse posizioni fra il generatore e la lastra poté misurare la lunghezza d'onda $ \lambda $, così da poter calcolare $ v = \lambda\nu \approx 3\cdot 10^8 \,\text{m/s} = c $.
+
+\subsubsection{Equazioni di Maxwell nel vuoto}
+
+Cerchiamo di descrivere la propagazione di onde elettromagnetiche nel vuoto, ovvero con $ \rho_f = 0 $, $ \vec{J}_f = 0 $ e $ \vec{D} = \epsilon_0 \vec{E} $ e $ \vec{B} = \mu_0 \vec{H} $: utilizzando l'ansatz $ \vec{E}(\vec{r}, t) = e^{i\omega t}\vec{E}(\vec{r}) $, $ \vec{B}(\vec{r}, t) = e^{i\omega t}\vec{B}(\vec{r}) $, con $ \omega = 2\pi \nu $, le equazioni di Maxwell diventano:
+\begin{equation}
+	\begin{split}
+		\dive\vec{E} &= 0 \\ 
+		\dive\vec{H} &= 0 
+	\end{split}
+	\qquad\qquad
+	\begin{split}
+		\rot\vec{E} &= - i\omega \mu_0 \vec{H} \\ 
+		\rot\vec{H} &= i\omega \epsilon_0 \vec{E}
+	\end{split}
+	\label{eq:9}
+\end{equation}
+Applicando il rotore alla seconda equazione di Maxwell, ricordando che $ \rot\rot = \nabla(\dive) - \lap $ e la prima equazione di Maxwell, si ottiene:
+\begin{equation}
+	\lap\vec{E} + \omega^2 \epsilon_0 \mu_0 \vec{E} = 0
+	\label{eq:10}
+\end{equation}
+e analogamente per il campo $ \vec{H} $. \\ 
+%
+Poiché siamo interessati a delle onde piane, cerchiamo soluzioni in cui il campo abbia una sola componente che vari solo lungo una direzione ortogonale ad esso; WLOG $ \vec{E} = (E_x (z,t), 0, 0) $, quindi:
+\begin{equation}
+	\frac{\pa^2 E_z}{\pa t^2} + k^2 E_x = 0 \,,\quad k \equiv \omega\sqrt{\epsilon_0\mu_0} \qquad\Longrightarrow\qquad E_x(z,t) = E_+ e^{-ikz}e^{i\omega t} + E_- e^{ikz} e^{i\omega t}
+	\label{eq:11}
+\end{equation}
+Dato che $ \epsilon_0, \mu_0 \in \mathbb{R} $, anche $ k\in\mathbb{R} $, quindi:
+\begin{equation}
+	E_x(z,t) = E_+ \cos(\omega t - kz) + E_- \cos(\omega t + kz)
+	\label{eq:12}
+\end{equation}
+che sono un'onda che si muove verso $ +z $ e verso $ -z $ rispettivamente (basta vedere le superfici a fase $ \phi = \omega t \pm kz $ costante). \\ 
+La velocità a cui si muove un punto a fare costante è detta velocità di fase $ v_p = \frac{dz}{dt} $, quindi:
+\begin{equation}
+	v_p = \frac{dz}{dt} = \frac{d}{dt} \left(\frac{\mp \omega t - \text{cost.}}{k}\right) = \mp \frac{\omega}{k} = \mp \frac{1}{\sqrt{\epsilon_0\mu_0}} = \mp c
+	\label{eq:13}
+\end{equation}
+La lunghezza d'onda è per definizione la distanza tra due punti dell'onda aventi la stessa fase:
+\begin{equation}
+	(\omega t - kz) - (\omega t - k (z + \lambda)) = 2\pi \qquad\Longrightarrow\qquad \lambda = \frac{2\pi}{k} = \frac{2\pi v_p}{\omega} = \frac{v_p}{\nu}
+	\label{eq:14}
+\end{equation}
+Dalla quarta equazione di Maxwell:
+\begin{equation}
+	\rot\vec{E} = -i\omega \mu_0 \vec{H} \qquad\Longrightarrow\qquad \frac{\pa E_x}{\pa z} = -i\omega \mu_0 H_y
+	\label{eq:15}
+\end{equation}
+ovvero:
+\begin{equation}
+	H_y (z,t) = \frac{k}{\omega \mu_0} \left(E_+ e^{i(\omega t - kz)} - E_- e^{i(\omega t + kz)}\right)
+	\label{eq:16}
+\end{equation}
+Otteniamo quindi che i campi $ \vec{E} $ e $ \vec{H} $ sono ortogonali tra loro ed oscillanti con la stessa fase: si parla in questo caso di modi di propagazione TEM (transverse electromagnetic). Sono possibili anche altri modi di propagazione, a seconda del mezzo e delle condizioni al contorno: ad esempio, i modi TM (transverse magnetic) con campo elettrico parallelo alla firezione di propagazione, o i modi TE (transverse electric) con campo $ \vec{H} $ parallelo alla direzione di propagazione. \\ 
+%
+Si può notare che termine $ \frac{k}{\omega\mu_0} $ ha le dimensioni dell'inverso di un'impedenza: infatti, si definisce l'impedenza caratteristica del vuoto come:
+\begin{equation}
+	Z = \frac{\mu_0 \omega}{k} = \sqrt{\frac{\mu_0}{\epsilon_0}} \approx 377 \,\Omega
+	\label{eq:17}
+\end{equation}
+
+\subsubsection{Onde elettromagnetiche in conduttori e dielettrici omogenei e isotropi}
+
+Consideriamo ora un'onda piana che si propaga in un conduttore omogeneo e isotropo di conducibilità $ \sigma $, costante dielettrica $ \epsilon $ e permeabilità magnetica $ \mu $: in questo caso è presente una densità di corrente $ \vec{J} = \sigma\vec{E} $, quindi le equazioni di Maxwell diventano:
+\begin{equation}
+	\begin{split}
+		\dive\vec{E} &= 0 \\ 
+		\dive\vec{H} &= 0 
+	\end{split}
+	\qquad\qquad
+	\begin{split}
+		\rot\vec{E} &= - i\omega \mu \vec{H} \\ 
+		\rot\vec{H} &= (i\omega \epsilon + \sigma) \vec{E}
+	\end{split}
+	\label{eq:18}
+\end{equation}
+dalle quali si ottiene un sistema di equazioni di Helmholtz:
+\begin{equation}
+	\begin{cases}
+		\lap\vec{E} - \gamma^2 \vec{E} = 0 \\ 
+		\lap\vec{H} - \gamma^2 \vec{H} = 0 
+	\end{cases}
+	\qquad\qquad \gamma = i \omega \sqrt{\epsilon\mu} \sqrt{1 - i \frac{\sigma}{\omega\epsilon}}
+	\label{eq:19}
+\end{equation}
+Sebbene le equazioni siano formalmente le stesse che nel caso precedente, in questo caso la costante di propagazione è complessa: scrivendo $ \gamma = \alpha + i\beta $ si ottiene:
+\begin{equation}
+	E_x (z,t) = E_+ e^{-\alpha z} e^{i(\omega t - \beta z)} + E_- e^{\alpha z} e^{i(\omega t + \beta z)}
+	\label{eq:20}
+\end{equation}
+dunque si ottengono comunque due onde che si propagano verso $ \pm z $, ma in questo caso queste onde sono attenuate esponenzialmente. \\ 
+%
+Il campo magnetico associato si può scrivere come:
+\begin{equation}
+	H_y (z,t) = -i\frac{\gamma}{\mu \omega} \left(E_+ e^{i(\omega t - kz)} - E_- e^{i(\omega t + kz)}\right)
+	\label{eq:21}
+\end{equation}
+%
+Per un conduttore l'impedenza caratteristica del mezzo è:
+\begin{equation}
+	Z = i \frac{\mu \omega}{\gamma} = \sqrt{\frac{\mu}{\epsilon}} \sqrt{1 - i \frac{\omega}{\omega \epsilon}}
+	\label{eq:22}
+\end{equation}
+che è in generale un numero complesso. \\ 
+%
+Consideriamo ora un mezzo dielettrico senza perdite, ovvero con $ \epsilon\in\mathbb{R} $: dato che in un dielettrico $ \sigma = 0 $, la costante di propagazione diventa $ \gamma = i \omega \sqrt{\epsilon\mu} \equiv i k $, quindi le soluzioni sono quelle trovate per la propagazione nel vuoto (con le corrette $ \epsilon $ e $ \mu $). \\ 
+Se invece prendiamo un dielettrico con perdite, ovvero un dielettrico non ideale nel quale si instaurano delle correnti di polarizzazione, la costante dielettrica sarà complessa: $ \epsilon = \epsilon' - i \epsilon'' $; definendo $ \tan\delta \equiv \epsilon'' / \epsilon' $, possiamo scrivere la costante di propagazione come $ \gamma = i \omega \sqrt{\mu(\epsilon' - i \epsilon'')} = i \omega \sqrt{\mu \epsilon'} \sqrt{1 - i \tan\delta} $. \\ 
+%
+Nella maggior parte dei casi abbiamo a che fare con onde che si propagano in metalli, che sono buoni conduttori: in questi casi, le correnti conduttive prevalgono su quelle di spostamento, ovvero $ \sigma \gg \omega\epsilon $:
+\begin{equation}
+	\gamma = i \omega \sqrt{\epsilon\mu} \sqrt{1 - i \frac{\sigma}{\omega\epsilon}} \approx i \omega \sqrt{\epsilon\mu} \sqrt{\frac{\sigma}{i \omega \epsilon}} = \sqrt{i} \sqrt{\omega\epsilon\mu} = (1 + i) \sqrt{\frac{\omega\epsilon\mu}{2}} \equiv (1 + i) \frac{1}{\delta_s}
+	\label{eq:23}
+\end{equation}
+dove è stata definita la skin depth del mezzo (u.d.m. $ \text{m} $), che rappresenta la distanza percorsa dall'onda prima di essere attenuata di un fattore $ 1/e $ (infatti ricordando l'espressione per $ E_x $ si ha $ \alpha = \beta = \delta_s $).
+
+\subsection{Spettro Elettromagnetico}
+
+Le onde elettromagnetiche si possono propagare con un intervallo di lunghezze d'onda praticamente infinito; inoltre, dalla meccanica quantistica sappiamo che il campo elettromagnetico è quantizzato: il quanto di radiazione è il fotone, con energia $ E_{\gamma} = h\nu $. \\ 
+Possiamo classificare le onde elettromagnetiche in base alla loro lunghezza d'onda:
+\begin{itemize}
+	\item onde radio: hanno una lunghezza d'onda che va da qualche metro a svariati kilometri e sono generate, ad esempio, dalle cariche in oscillazione nei fili conduttori delle antenne radio e in molti fenomeni astrofisici (emissione di sicrotrone, scattering di elettroni liberi su protoni, etc.); le onde con $ \lambda > 10\,\text{km} $ vengono riflesse dall'atmosfera, dunque consentono telecomunicazioni a lunga distanza superando i limiti imposti dalla curvatura terrestre;
+	\item microonde: hanno una lunghezza d'onda minori di $ 1\,\text{m} $ e fino a $ 1\,\text{mm} $, hanno numerose applicazioni pratiche (radar, cellulari, cottura, etc.) e sono usate in cosmologia per studiare l'universo primordiale (CMB);
+	\item infrarosso:  ha lunghezze d'onda dal millimetro al micron, è generato da qualunque oggetto a temperatura ambiente ed ha numerose applicazioni (visione notturna, telecomandi ad infrarosso, etc.); in ambito astrofisico la radiazione infrarossa è molto studiata poiché legata a processi fisici presenti nelle stellar nurseries, le zone ricche di polvere nella nostra galassia dove nascono le stelle;
+	\item radiazione visibile: quella che noi comunemente chiamiamo luce ha una lunghezza d'onda tra circa $ 0.6\,\mu\text{m} $ e $ 0.4\,\mu\text{m} $ ed è l'unica radiazione a cui è sensibile l'occhio umano; è generata da oggetti molto caldi, ad esempio i filamenti incandescenti delle lampadine;
+	\item ultravioletto: ha lunghezze d'onda tra circa $ 0.4 \,\mu\text{m} $ e $ 0.6 \,\text{nm} $ ed è generata in importanti quantità dal Sole (fonte di danni cutanei), oltre che in generale dalle stelle giovani; l'emissione UV diffusa è dominata dalla luce di stelle brillanti diffusa dalla polvere interstellare, oltre che ipoteticamente dal mezzo intergalattico e da possibili aloni galattici;
+	\item raggi X: hanno lunghezze d'onda comprese tra qualche nanometro e il decimo di picometro ($ 10^{-12}\,\text{m} $), sono molto energetiche con alto potere di penetrazione, quindi con vari usi medici, e sono prodotti ad esempio dall'accelerazione di elettroni energetici che bombardano una lastra di metallo; le emissioni di origine astrofisica originano da buchi neri e stelle di neutroni in rapida rotazione (pulsar), oltre che da ammassi di galassie;
+	\item raggi gamma: sono le onde più energetiche dello spettro elettromagnetico, con lunghezze d'onda inferiori al picometro, sono prodotte da reazioni nucleari, ad esempio in reattori termonucleari e all'interno del Sole, ed hanno un elevato potere penetrante, risultando molto pericolose per la salute; nell'universo le sorgenti di GRB (gamma ray bursts) sono estremamente brillanti e distanti, dall'origine ancora per lo più ignota (principalmente pulsar e AGN, active galactic nuclei).
+\end{itemize}
+
+\end{document}
