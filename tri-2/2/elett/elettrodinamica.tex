@@ -4,6 +4,7 @@
 
 \input{../imports.tex}
 
+
 \begin{document}
 
 \section{Elettrodinamica}
@@ -227,5 +228,492 @@ Possiamo classificare le onde elettromagnetiche in base alla loro lunghezza d'on
 	\item raggi X: hanno lunghezze d'onda comprese tra qualche nanometro e il decimo di picometro ($ 10^{-12}\,\text{m} $), sono molto energetiche con alto potere di penetrazione, quindi con vari usi medici, e sono prodotti ad esempio dall'accelerazione di elettroni energetici che bombardano una lastra di metallo; le emissioni di origine astrofisica originano da buchi neri e stelle di neutroni in rapida rotazione (pulsar), oltre che da ammassi di galassie;
 	\item raggi gamma: sono le onde più energetiche dello spettro elettromagnetico, con lunghezze d'onda inferiori al picometro, sono prodotte da reazioni nucleari, ad esempio in reattori termonucleari e all'interno del Sole, ed hanno un elevato potere penetrante, risultando molto pericolose per la salute; nell'universo le sorgenti di GRB (gamma ray bursts) sono estremamente brillanti e distanti, dall'origine ancora per lo più ignota (principalmente pulsar e AGN, active galactic nuclei).
 \end{itemize}
+
+\subsection{Polarizzazione}
+
+Consideriamo un'onda piana che si propaga nel vuoto e fissiamo una terna cartesiana con asse $ z $ nella direzione di propagazione dell'onda (WLOG uscente dal piano); scomponiamo $ \vec{E} $, che si trova interamente nel piano, nelle sue componenti:
+\begin{equation}
+	\vec{E} = E_x \,\hat{e}_x + E_y \,\hat{e}_y = E_1 \sin(\omega t - kz) \,\hat{e}_x + E_2 \sin(\omega t - kz + \delta) \,\hat{e}_y
+	\label{eq:24}
+\end{equation}
+con $ \omega = 2\pi \nu $, $ k = 2\pi / \lambda $ e $ \delta $ la differenza di fase tra i due componenti. \\ 
+%
+Fissiamoci in $ z = 0 $ e studiamo l'andamento di $ E_x(t) $ e $ E_y(t) $:
+\begin{equation}
+	E_x = E_1 \sin \omega t \quad\Longrightarrow\quad \sin \omega t = \frac{E_x}{E_1} \quad\Longrightarrow\quad \cos \omega t = \sqrt{1 - \frac{E_x^2}{E_1^2}}
+	\label{eq:25}
+\end{equation}
+\begin{equation}
+	E_y = E_2 \left(\sin \omega t \cos \delta + \cos \omega t \sin \delta\right) = E_2 \left[ \frac{E_x}{E_1} \cos \delta + \sqrt{1 - \frac{E_x^2}{E_1^2}} \sin \delta\right]
+	\label{eq:26}
+\end{equation}
+\begin{equation}
+	\frac{E_y}{E_2} = \frac{E_x}{E_1} \cos \delta + \sqrt{1 - \frac{E_x^2}{E_1^2}} \sin \delta \quad\Longrightarrow\quad \left(\frac{E_y}{E_2} - \frac{E_x}{E_1} \cos \delta\right)^2 = \left(1 - \frac{E_x^2}{E_1^2}\right) \sin^2 \delta
+	\label{eq:27}
+\end{equation}
+Troviamo quindi l'equazione di un'ellisse nel piano $ E_x $, $ E_y $:
+\begin{equation}
+	\frac{1}{E_2^2 \sin^2 \delta} E_y^2 - \frac{2\cos \delta}{E_1 E_2 \sin^2 \delta} E_x E_y + \frac{1}{E_1^2 \sin^2 \delta} E_x^2 = 1
+	\label{eq:28}
+\end{equation}
+A $ z $ fissato, dunque, col passare del tempo il vettore $ \vec{E} $ ruota tracciando un'ellisse nel piano ortogonale alla direzione di propagazione dell'onda elettromagnetica. \\ 
+%
+Ci sono alcuni casi particolari:
+\begin{itemize}
+	\item $ E_1 = 0 $ o $ E_2 = 0 $: caso semplice di polarizzazione lineare lungo $ y $ o $ x $ rispettivamente;
+	\item $ \delta = 0 $: si ha $ E_y = \frac{E_2}{E_1} E_x $, quindi anche in questo caso la polarizzazione è lineare con $ \vec{E} $ inclinato di un angolo $ \gamma = \tan^{-1} \frac{E_2}{E_1} $ rispetto all'asse $ x $;
+	\item $ \delta = \pm \frac{\pi}{2} $ e $ E_1 = E_2 $: si ha $ E_x^2 + E_y^2 = E^2 $, ovvero la polarizzazione è circolare. 
+\end{itemize}
+In generale, il verso di polarizzazione è stabilito dal segno di $ \delta \in [-\pi,\pi] $: se $ \delta > 0 $ la polarizzazione è destrorsa, mentre se $ \delta < 0 $ è sinistrorsa; infatti, prendendo WLOG $ \delta = \pm \frac{\pi}{2} $, per $ t = 0 $ si ha $ E_x = 0 $, $ E_y = \pm E_2 $, mentre per $ t = \frac{\pi}{2\omega} $ si ha $ E_x = E_1 $ e $ E_2 = 0 $, dimostrando quanto detto prima.
+
+\subsubsection{Luce non polarizzata e polarizzata}
+
+I segnali luminosi di origine naturale sono generati da transizioni energetiche a livello atomico, ovvero da elettroni che oscillano fra orbitali differenti emettendo e assorbendo fotoni: tali emissioni sono tutte incoerenti, nel senso che le varie onde che si sommano formando il segnale luminoso hanno fasi scorrelate tra loro. La luce naturale è quindi non polarizzata. \\ 
+%
+È anche possibile stimolare le oscillazioni degli elettroni in modo che siano tutte in fase e la luce risulti polarizzata: è questo il caso di un laser (light amplification by stimulated emission of radiation) o di un maser (microwave amplification by stimulated emission of radiation): quest'ultimo è un sistema in grado di generare emissione stimolata e coerente in una range di frequenze molto ampio, dal radio all'infrarosso, ed esistono vari meccanismi astrofisici che possono generare radiazione maser (atmosfere planetarie e stellari, resti di supernova, sorgenti extragalattiche, etc.). \\ 
+%
+Un'applicazione della luce polarizzata è la microscopia a polarizzazione: tali microscopi vengono utilizzati con sostanze birifrangenti, ovvero con un indice di rifrazione dipendente dalla polarizzazione della luce: in queste sostanze la luce viene rifratta in vari raggi con cammini ottici diversi, che poi si ricombinano sull'oculare formando figure d'interferenza che possono evidenziare la struttura cristallina della sostanza.
+
+\subsection{Teorema di Poynting}
+
+Ricordando che vi è un'energia associata sia al campo elettrico che a quello magnetico, possiamo definire l'energia associata al campo elettromagnetico come la loro somma:
+\begin{equation}
+	U_{EM} = \frac{1}{2} \iiint_V \left( \epsilon_0 E^2 + \frac{1}{\mu_0} B^2\right) dV
+	\label{eq:29}
+\end{equation}
+%
+Consideriamo ora una distribuzione di cariche $ \rho $ e di correnti $ \vec{J} $ che genera un campo elettromagnetico: detta $ \vec{v} $ la velocità delle cariche in moto (data la densità di corrente), possiamo scrivere $ dq = \rho dV $ e $ \vec{J} dV = \rho \vec{v} dV = \vec{v} dV $, dunque definendo $ w $ la densità di lavoro abbiamo:
+\begin{equation}
+	dw dV = \vec{F_L} \cdot d\vec{l} = dq (\vec{E} + \vprod{v}{B})\cdot d\vec{l} = dq \sprod{E}{v} dt = \rho dV \sprod{E}{v} dt = \sprod{J}{E} dV dt
+	\label{eq:30}
+\end{equation}
+Pertanto la potenza erogata nel volume $ dV $, data da $ P = \frac{dw}{dt} dV $, è:
+\begin{equation}
+	P = \iiint_V \sprod{J}{E} \,dV
+	\label{eq:31}
+\end{equation}
+Ricavando $ \vec{J} $ dall'equazione di Ampère-Maxwell:
+\begin{equation}
+	\begin{split}
+		P &= \iiint_V \left(\frac{1}{\mu_0} \vec{E} \cdot \rot\vec{B} - \epsilon_0 \vec{E} \cdot \frac{\pa\vec{E}}{\pa t}\right) dV \\ 
+		  &\qquad\qquad \dive(\vprod{A}{B}) = \vec{C} \cdot \rot\vec{A} - \vec{A} \cdot \rot\vec{C} \\ 
+		  &= \iiint_V \left(\frac{1}{\mu_0} \dive(\vprod{B}{E}) + \frac{1}{\mu_0} \vec{B} \cdot \rot\vec{E} - \epsilon_0 \vec{E} \cdot \frac{\pa\vec{E}}{\pa t}\right) dV
+	\end{split}
+	\label{eq:32}
+\end{equation}
+Dll'equazione di Faraday abbiamo $ \rot\vec{E} = - \frac{\pa\vec{B}}{\pa t} $, quindi:
+\begin{equation}
+	\begin{split}
+		P &= \iiint_V \left( - \frac{1}{\mu_0} \dive(\sprod{E}{B}) - \frac{1}{\mu_0} \vec{B} \cdot \frac{\pa\vec{B}}{\pa t} - \epsilon_0 \vec{E} \cdot \frac{\pa\vec{E}}{\pa t}\right) dV \\ 
+		  &= - \frac{1}{\mu_0} \iiint_V \dive(\vprod{E}{B}) dV - \frac{\pa}{\pa t} \left[\frac{1}{2} \iiint_V \left(\frac{1}{\mu_0} B^2 + \epsilon_0 E^2\right) dV \right] \\ 
+		  &= - \frac{1}{\mu_0} \oiint_{\pa V} (\vprod{E}{B})\cdot d\vec{S} - \frac{\pa U_{EM}}{\pa t}
+	\end{split}
+	\label{eq:33}
+\end{equation}
+Definiamo il vettore di Poynting $ \vec{S} = \frac{1}{\mu_0}\vprod{E}{B} $, che ha le dimensioni di una potenza per unità di superficie ($ \text{W}\cdot\text{m}^{-2} $) ed ha la stessa direzione di propagazione del campo elettromagnetico: esso rappresenta la potenza trasportata dall'onda che si propaga. Possiamo allora scrivere:
+\begin{equation}
+	\oiint_{\pa V} \vec{S}\cdot d\vec{S} = -\frac{\pa}{\pa t}(U_{EM} + W) \qquad\Longleftrightarrow\qquad \dive\vec{S} = -\frac{\pa}{\pa t} (u_{EM} + w)
+	\label{eq:34}
+\end{equation}
+Questa è formalmente identica all'equazione di continuità, ed infatti il significato fisico è proprio quello: il flusso di energia del campo elettromagnetico attraverso una superficie chiusa è pari alla variazione di energia all'interno del volume; se il flusso è positivo significa che l'energia esce dal volume, quindi la densità di energia al suo interno deve diminuire, e viceversa.
+
+\subsection{Momento Angolare del Campo Elettromagnetico}
+
+Consideriamo un cilindro (ad esempio un solenoide) di raggio $ a $ e lunghezza infinita e supponiamo che al suo interno ci sia un campo magnetico $ \vec{B} $ uniforme e variabile nel tempo, diretto lungo l'asse del cilindro: la variazione del campo magnetico induce un campo elettrico con $ \dive\vec{E} = 0 $ e $ \rot\vec{E} = \frac{\pa\vec{B}}{\pa t} $, dunque le sue linee di campo sono chiuse. Calcoliamo questo campo elettrico, considerando circonferenze ortogonali all'asse del cilindro di raggio $ r $:
+\begin{equation}
+	\oint_{\gamma} \vec{E}\cdot d\vec{l} = - \oiint_{S} \frac{\pa\vec{B}}{\pa t}\cdot d\vec{S} \qquad\Longrightarrow\qquad
+	\begin{cases}
+		E(r) 2\pi r = - \pi r^2 \frac{\pa B}{\pa t} , & r < a \\
+		
+		E(r) 2\pi r = - \pi a^2 \frac{\pa B}{\pa t} , & r > a
+	\end{cases}
+	\label{eq:35}
+\end{equation}
+per cui abbiamo:
+\begin{equation}
+	\vec{E}(r) = 
+	\begin{cases}
+		-\displaystyle\frac{r}{2} \displaystyle\frac{\pa B}{\pa t} \,\hat{e}_{\phi} , & r < a \\
+		\\ 
+		-\displaystyle\frac{a^2}{2r} \displaystyle\frac{\pa B}{\pa t} \,\hat{e}_{\phi} , & r > a
+	\end{cases}
+	\label{eq:36}
+\end{equation}
+%
+Se attorno al cilindro disponiamo un anello carico di raggio $ b > a $ con densità lineare di carica $ \lambda $ e ad un certo punto spegniamo il campo magnetico (quindi $ \frac{\pa B}{\pa t} < 0 $), la variazione di flusso durante il transiente induce un campo elettrico come descritto prima, con linee di campo concentriche, il quale agisce sull'anello con una forza tangenziale ad esso che instaura una moto rotatorio. La corrente indotta sulle cariche naturalmente induce un campo magnetico $ \vec{B}_{\text{ind}} $ che si oppone alla variazione di flusso di $ \vec{B} $, ma questo effetto può essere trascurato poiché $ B \gg B_{\text{ind}} $. \\ 
+Dato che l'anello è messo in rotazione in assenza di altre forze dissipative, esso continuerà a ruotare anche dopo lo spegnimento di $ \vec{B} $: la forza agente sull'elemento di carica è $ d\vec{F} = dq\vec{E} = \lambda \vec{E}\,dl = \lambda b \vec{E} \,d\theta $, quindi:
+\begin{equation}
+	d\vec{\tau} = \vec{b}\times d\vec{F} \qquad\Longrightarrow\qquad \vec{\tau} = 2\pi b^2 \lambda E(b) \,\hat{e}_z = -\pi a^2 b \lambda \frac{\pa B}{\pa t} \,\hat{e}_z
+	\label{eq:37}
+\end{equation}
+\begin{equation}
+	\vec{\tau} = \frac{d\vec{L}}{dt} \qquad\Longrightarrow\qquad dL = \tau \,dt = -\pi a^2 b \lambda \,dB \qquad\Longrightarrow\qquad \Delta L = \pi a^2 b \lambda B
+	\label{eq:38}
+\end{equation}
+poiché il campo magnetico varia da $ B $ a $ 0 $. \\ 
+%
+Questo esempio mostra come il campo elettromagnetico abbia un momento angolare, poiché altrimenti non sarebbe possibile per l'anello mettersi in rotazione, dato che in un sistema isolato $ \vec{L} $ si conserva. \\ 
+Per vedere più nel dettaglio questo fatto, vediamo cosa succederebbe se il campo elettromagnetico non avesse anche una quantità di moto. \\ 
+Consideriamo due cariche positive in movimento, supponendo che ad un certo istante si trovino sugli assi $ x $ e $ y $ con velocità rispettivamente $ \vec{v}_1 = - v_1 \,\hat{e}_x $, $ \vec{v}_2 = - v_2 \,\hat{e}_y $ ($ v_1, v_2 > 0 $): esse generano un campo elettrostatico tale che $ \vec{F}^{(e)}_{1,2} = q_2 \vec{E}_1 = - \vec{F}^{(e)}_{2,1} = q_1 \vec{E}_2 $ (in accordo con la terza legge di Newton); dato che le cariche sono in moto, su di loro agisce anche un campo magnetico: si trova con la seconda regola della mano destra che $ \vec{B}_1 $ in $ q_2 $ ha direzione $ -\hat{e}_z $ e $ \vec{B}_2 $ in $ q_1 $ ha direzione $ \hat{e}_z $, quindi $ \vec{F}^{(m)}_{1,2} = q_2 \vec{v}_2 \times \vec{B}_1 \neq \pm \vec{F}^{(m)}_{2,1} = q_1 \vec{v}_1 \times \vec{B}_2 $ (la prima è diretta lungo $ \hat{e}_x $, la seconda lungo $ \vec{e}_y $). \\ 
+%
+Questa è un'apparente violazione della terza legge di Newton, e quindi della conservazione della quantità di moto: il problema viene risolto introducendo la quantità di moto del campo elettrico (non è un'introduzione ad hoc, ma può essere derivata dalle equazioni di Maxwell). \\ 
+Consideriamo unìonda elettromagnetica piana con polarizzazione lineare, definendo $ \hat{n} $ la direzione di oscillazione del campo elettrico e $ \hat{k} $ quella di propagazione dell'onda: possiamo dunque scrivere:
+\begin{equation}
+	\vec{E} = E_0 \cos(\omega t - \sprod{k}{r}) \,\hat{n} \qquad \vec{B} = \frac{E_0}{c} \cos(\omega t - \sprod{k}{r}) \,\hat{k}\times\hat{n}
+	\label{eq:39}
+\end{equation}
+La densità di energia sarà dunque:
+\begin{equation}
+	\begin{split}
+		u_{EM} &= \frac{1}{2} \epsilon_0 E^2 + \frac{1}{2\mu_0} B^2 = \frac{1}{2} \epsilon_0 E_0^2 \cos^2 (\omega t - \sprod{k}{r}) + \frac{1}{2\mu_0 c^2} E_0^2 \cos^2 (\omega t - \sprod{k}{r}) \\ 
+		       &= \epsilon_0 E_0^2 \cos^2 (\omega t - \sprod{k}{r})
+	\end{split}
+	\label{eq:40}
+\end{equation}
+mentre il vettore di Poynting:
+\begin{equation}
+	\begin{split}
+		\vec{S} &= \frac{1}{\mu_0} \vprod{E}{B} = \frac{1}{\mu_0 c} E_0^2 \cos^2 (\omega t - \sprod{k}{r}) \,\hat{n}\times(\hat{k}\times\hat{n}) \\ 
+			&= c \epsilon_0 E_0^2 \cos^2 (\omega t - \sprod{k}{r}) \, (\hat{k}(\hat{n}\cdot\hat{n}) - \hat{n}(\hat{k}\cdot\hat{n})) \\ 
+			&= c \epsilon_0 E_0^2 \cos^2 (\omega t - \sprod{k}{r}) \,\hat{k} = c u_{EM} \,\hat{k}
+	\end{split}
+	\label{eq:41}
+\end{equation}
+Dunque se l'onda è piana e polarizzata linearmente il vettore di Poynting è diretto lungo la direzione di propagazione dell'onda. \\ 
+%
+Dal vettore di Poynting si dimostra che la densità di quantità di moto è $ \vec{g} = \frac{1}{c^2} \vec{S} $: per un'onda piana polarizzata linearmente $ \vec{g} = \frac{1}{c}u_{EM} \,\hat{k} $. \\ 
+Si noti che sia l'energia che la quantità di moto sono grandezze rapidamente variabili: per un'onda luminosa, le variazioni avvengono con frequenze dell'ordine di $ 10^{16}\,\text{Hz} $, mentre per quelle radio si ha comunque $ 10^3\,\text{Hz} $. \\ 
+Di conseguenza, un dispositivo che interagisca con un'onda elettromagnetica non sarà sensibile alle variazioni di densità di energia, ma alla densità di energia media $ \langle u_{EM} \rangle \equiv \int_0^T u_{EM}(t) \,dt $, con $ T $ periodo dell'onda. \\ 
+%
+Nel caso di un'onda piana, dato che $ \int_0^{2\pi} \cos^2 x\,dx = \frac{1}{2} $, si vede facilmente che:
+\begin{equation}
+	\langle u_{EM} \rangle = \frac{1}{2} \epsilon_0 E_0^2 \quad\Longrightarrow\quad \langle \vec{S} \rangle = \frac{c}{2} \epsilon_0 E_0^2 \,\hat{k} \quad\Longrightarrow\quad \langle \vec{g} \rangle = \frac{1}{2c} \epsilon_0 E_0^2 \,\hat{k}
+	\label{eq:42}
+\end{equation}
+Il valore medio del vettore di Poynting è definito intensità dell'onda $ I \equiv \langle S \rangle $ (u.d.m. $ \text{W}\cdot\text{m}^{-2} $) e rappresenta l'energia per unità di tempo che viene trasportata dall'onda per unità di superficie. \\ 
+%
+Nel caso generale si ha:
+\begin{equation}
+	\langle u_{EM} \rangle = \frac{1}{2} \epsilon_0 \langle E^2 \rangle + \frac{1}{2\mu_0} \langle B^2 \rangle \qquad \langle \vec{S} \rangle = \frac{1}{\mu_0} \langle \vprod{E}{B} \rangle \qquad \langle \vec{g} \rangle = \frac{1}{c^2} \langle \vec{S} \rangle
+	\label{eq:43}
+\end{equation}
+
+\subsubsection{Pressione di radiazione}
+
+Una radiazione elettromagnetica esercita una pressione quanto incide su una superficie, derivante dal fatto che la radiazione possiede una quantità di moto. \\ 
+%
+Consideriamo un'onda piana incidente su una superficie $ A $ di materiale completamente assorbente la radiazione: sia l'energia che la quantità di moto vengono completamente trasferite al materiale. La quantità di moto trasferita da uno spessore $ dx = c\,dt $ di materiale è:
+\begin{equation}
+	d\vec{p} = \langle \vec{g} \rangle A \,dx = \frac{1}{2c} \epsilon_0 E_0^2 A c \,dt \, \hat{k} \qquad\Longrightarrow\qquad \vec{F} = \frac{d\vec{p}}{dt} = \frac{1}{2} \epsilon_0 E_0^2 A \,\hat{k}
+	\label{eq:44}
+\end{equation}
+Dunque troviamo facilmente la pressione di radiazione:
+\begin{equation}
+	P_r^{(\text{abs})} = \frac{1}{2} \epsilon_0 E_0^2
+	\label{eq:45}
+\end{equation}
+%
+Se al contrario consideriamo un materiale perfettamente riflettente, la radiazione elettromagnetica cede energia e momento al materiale, il quale, invece di dissiparlo in calore come nel caso precedente, lo riconverte in un'onda elettromagnetica che viene riemessa in direzione opposta a quella incidente: la variazione di quantità di moto sarà dunque $ d\vec{p} = d\vec{p}_{\text{i}} - d\vec{p}_{\text{r}} = 2 d\vec{p}_{\text{i}} $, poiché $ d\vec{p}_{\text{r}} = -d\vec{p}_{\text{i}} $; la variazione del momento è doppia rispetto al caso precedente, dunque:
+\begin{equation}
+	P_r^{(\text{refl})} = \epsilon_0 E_0^2
+	\label{eq:46}
+\end{equation}
+%
+Possiamo anche calcolare il valore della pressione della radiazione solare, partendo dal valore della costante solare $ C_s \approx 1300 \,\text{W/m}^2 $, ovvero il valore della potenza emessa dal Sole che incide sulla Terra per unità di superficie. \\ 
+Supponiamo che la luce solare sia un'onda piana polarizzata linearmente: la sua intensità è $ I = \frac{c}{2} \epsilon_0 E_0^2 \equiv C_s $, ma la sua pressione di radiazione è $ P_r = \frac{1}{2} \epsilon_0 E_0^2 $, quindi $ P_r = \frac{C_s}{c} \approx 4.3 \cdot 10^{-6} \,\text{Pa} $, che è estremamente piccola se confrontata ad esempio alla pressione atmosferica, dalla quale differisce per $ 11 $ ordini di grandezza.
+
+\subsection{Ottica}
+
+\newcommand{\inc}{\text{i}}
+\newcommand{\tr}{\text{t}}
+\newcommand{\rif}{\text{r}}
+
+\subsubsection{Incidenza normale}
+
+Consideriamo l'interazione di un'onda elettromagnetica con una superficie piana semi-riflettente, supponendo che l'onda incida perpendicolarmente alla superficie: una parte dell'onda verrà trasmessa, mentre una parte verrà riflessa. \\ 
+Dette $ 1 $ e $ 2 $ le regioni rispettivamente $ \virgolette{davanti} $ e $ \virgolette{dietro} $ la superficie, si ha:
+\begin{align}
+	\vec{E}_1 &= \vec{E}_{\text{i}} + \vec{E}_{\text{r}} & \vec{B}_1 &= \vec{B}_{\text{i}} + \vec{B}_{\text{r}} \\ 
+	\vec{E}_2 &= \vec{E}_{\text{t}} & \vec{B}_2 &= \vec{B}_{\text{t}}
+	\label{eq:47-48}
+\end{align}
+Se l'onda è piana e polarizzata linearmente, fissata una terna cartesiana tale che la superficie giaccia nel piano $ xy $, possiamo scrivere i campi come:
+\begin{equation}
+	\vec{E}_1 = \left[E_{0,\text{i}} e^{i(\omega_{\inc} t - k_{z,1} z)} + E_{0,\rif} e^{i(\omega_{\rif} t + k_{z,1} z)} \right]\,\hat{e}_x \qquad \vec{B}_1 = \left[B_{0,\text{i}} e^{i(\omega_{\inc} t - k_{z,1} z)} + B_{0,\rif} e^{i(\omega_{\rif} t + k_{z,1} z)} \right]\,\hat{e}_y
+	\label{eq:49}
+\end{equation}
+\begin{equation}
+	\vec{E}_2 = E_{0,\rif} e^{i(\omega_{\tr} t - k_{z,2} z)}\,\hat{e}_x \qquad \vec{B}_2 = B_{0,\tr} e^{i(\omega_{\tr} t - k_{z,2} z)}\,\hat{e}_y
+	\label{eq:50}
+\end{equation}
+Inoltre ricordiamo la relazione che lega $ \vec{E} $ e $ \vec{B} $:
+\begin{equation}
+	\vec{B}_1 = \frac{1}{v_1} \left[E_{0,\text{i}} e^{i(\omega_{\inc} t - k_{z,1} z)} - E_{0,\rif} e^{i(\omega_{\rif} t + k_{z,1} z)} \right]\,\hat{e}_y
+	\label{eq:51}
+\end{equation}
+\begin{equation}
+	\vec{B}_2 = \frac{1}{v_2} E_{0,\rif} e^{i(\omega_{\tr} t - k_{z,2} z)}\,\hat{e}_y
+	\label{eq:52}
+\end{equation}
+Stiamo dando per scontato che la direzione di polarizzazione dei campi riflesso e trasmesso sia la stessa dell'onda incidente: questo non è scontato, ma si può dimostrare imponendo le condizioni al contorno (in $ z = 0 $, dov'è la superficie):
+\begin{equation}
+	\vec{E}_1^{\parallel} = \vec{E}_2^{\parallel} \qquad \frac{1}{\mu_1}\vec{B}_1^{\parallel} = \frac{1}{\mu_2}\vec{B}_2^{\parallel}
+	\label{eq:53}
+\end{equation}
+Con queste è possibile determinare i campi:
+\begin{align}
+	\begin{split}
+		E_1^{\parallel}(z=0) = E_2^{\parallel}(z=0) &\qquad\Longrightarrow\qquad E_{0,\inc} e^{i\omega_{\inc} t} + E_{0,\rif} e^{i\omega_{\rif} t} = E_{0,\tr} e^{i\omega_{\tr} t} \\ 
+							    &\qquad\Longrightarrow\qquad \omega_{\inc} = \omega_{\rif} = \omega_{\tr} \qquad E_{0,\inc} + E_{0,\rif} = E_{0,\tr}
+	\end{split}
+	\\ 
+	\begin{split}
+		\frac{1}{\mu_1}\vec{B}_1^{\parallel}(z=0) = \frac{1}{\mu_2}\vec{B}_2^{\parallel}(z=0) &\qquad\Longrightarrow\qquad \frac{1}{\mu_1 v_1} (E_{0,\inc} - E_{0,\rif}) = \frac{1}{\mu_2 v_2} E_{0,\tr} \\ 
+												      &\qquad\Longrightarrow\qquad (E_{0,\inc} - E_{0, \rif}) = \beta E_{0,\tr} \qquad \beta \equiv \frac{\mu_1 v_1}{\mu_2 v_2}
+	\end{split}
+	\label{eq:54-55}
+\end{align}
+La soluzione del sistema di equazioni ottenuto è:
+\begin{equation}
+	E_{0,\tr} = \frac{2}{1 + \beta} E_{0,\inc} \qquad E_{0,\rif} = \frac{1 - \beta}{1 + \beta} E_{0,\inc}
+	\label{eq:56}
+\end{equation}
+Dato che per la maggio parte delle sostanze $ \mu_r \equiv \mu / \mu_0 \sim 1 $, si può scrivere $ \beta \approx v_1 / v_2 = n_2 / n_1 $, dove $ n \equiv c / v $ è l'indice di rifrazione del mezzo, così da far diventare la soluzione:
+\begin{equation}
+	E_{0,\tr} = \frac{2n_1}{n_1 + n_2} E_{0,\inc} \qquad E_{0,\rif} = \frac{n_1 - n_2}{n_1 + n_2} E_{0,\inc}
+	\label{eq:57}
+\end{equation}
+Come ci aspetteremmo, se $ n_1 = n_2 $ l'onda è completamente trasmessa. \\ 
+%
+Se ora consideriamo l'intensità $ I = \frac{1}{2} \epsilon v E_0^2 $, abbiamo:
+\begin{equation}
+	I_{\inc} = \frac{1}{2} \epsilon_1 v_1 E_{0,\inc}^2 \qquad I_{\rif} = \frac{1}{2} \epsilon_1 v_1 \left( \frac{n_1 - n_2}{n_1 + n_2}\right)^2 \qquad I_{\tr} = \frac{1}{2} \epsilon_2 v_2 \left( \frac{2n_1}{n_1 + n_2} \right)^2
+	\label{eq:58}
+\end{equation}
+Ricordando $ \epsilon = 1 / \mu v^2 $, è possibile definire i coefficienti di riflessione e trasmissione:
+\begin{equation}
+	R \equiv \frac{I_{\rif}}{I_{\inc}} = \left( \frac{n_1 - n_2}{n_1 + n_2} \right)^2 \qquad T \equiv \frac{I_{\tr}}{I_{\inc}} = \frac{4 n_1 n_2}{(n_1 + n_2)^2} \qquad T + R = 1
+	\label{eq:59}
+\end{equation}
+
+\subsubsection{Incidenza obliqua}
+
+Supponiamo ora che l'onda incida sulla superficie con un angolo $ \theta_{\inc} $ rispetto alla normale alla superficie: una parte dell'onda verrà riflessa con un angolo $ \theta_{\rif} $ ed una parte trasmessa con un angolo $ \theta_{\tr} $. \\ 
+I campi delle tre onde sono:
+\begin{equation}
+	\vec{E}_{\inc,\rif,\tr}(\vec{r},t) = \vec{E}_{0,\inc,\rif,\tr} e^{i(\omega_{\inc,\rif,\tr} t - \vec{k}_{\inc,\rif,\tr} \cdot \vec{r})} \qquad \vec{B}_{\inc,\rif,\tr}(\vec{r},t) = \frac{1}{v_{1,2}} \hat{k}_{\inc,\rif,\tr} \times \vec{E}_{\inc,\rif,\tr}(\vec{r},t)
+	\label{eq:60}
+\end{equation}
+All'interfaccia tra le due regioni ($ z = 0 $), per il campo elettrico si ha la seguente condizione al contorno:
+\begin{equation}
+	E^{\parallel}_{0,\inc} e^{i(\omega_{\inc} t - \vec{k}_{\inc} \cdot \vec{r})} + E^{\parallel}_{0,\rif} e^{i(\omega_{\rif} t - \vec{k}_{\rif} \cdot \vec{r})} = E^{\parallel}_{0,\tr} e^{i(\omega_{\tr} t - \vec{k}_{\tr} \cdot \vec{r})}
+	\label{eq:61}
+\end{equation}
+che è equivalente a dire che le tre fasi devono essere uguali; tale condizione deve valere in ogni punto dello spazio, quindi anche nell'origine, e ad ogni tempo, quindi, ricordando che $ k = \frac{\omega}{v} $, otteniamo:
+\begin{equation}
+	\omega_{\inc} = \omega_{\rif} = \omega_{\tr} \equiv \omega \qquad\Longrightarrow\qquad k_{\inc} = k_{\rif} = \frac{v_2}{2_1} k_{\tr} = \frac{n_1}{n_2} k_{\tr}
+	\label{eq:62}
+\end{equation}
+L'uguaglianza delle fasi si riduce quindi a $ \vec{k}_{\inc}\cdot\vec{r} = \vec{k}_{\rif}\cdot\vec{r} = \vec{k}_{\tr}\cdot\vec{r} $, che sul piano $ z = 0 $ diventa:
+\begin{equation}
+	k_{x,\inc} x + k_{y,\inc}  y = k_{x,\rif} x + k_{y,\rif} y = k_{x,\tr} x + k_{y,\tr} y \quad\Longrightarrow\quad
+	\begin{cases}
+		k_{x,\inc} = k_{x,\rif} = k_{x,\tr} \,\,(y = 0) \\ 
+		k_{y,\inc} = k_{y,\rif} = k_{y,\tr} \,\,(x = 0)
+	\end{cases}
+	\label{eq:63}
+\end{equation}
+Il significato fisico di queste relazioni è che le componenti trasversali (ortogonali a $ \hat{e}_z $) dei tre vettori d'onda sono uguali, dunque questi vettori giacciono sullo stesso piano: questa non è altro che la prima legge dell'ottica geometrica, che dice che i tre raggi giacciono su uno stesso piano detto piano d'incidenza; tale piano è determinato da $ \vec{k}_{\inc} $ e dalla normale alla superficie. \\ 
+%
+Supponiamo per semplicità che la normale alla superficie sia $ \hat{e}_z $ ed il piano di incidenza sia il piano $ yz $: detto $ \theta_j $ l'angolo che $ \vec{k}_j $ forma con l'asse $ z $, la \ref{eq:63} si scrive:
+\begin{equation}
+	\begin{cases}
+		k_{\inc} \sin\theta_{\inc} = k_{\rif} \sin\theta_{\rif} \\ 
+		k_{\inc} \sin\theta_{\rif} = k_{\tr} \sin\theta_{\tr}
+	\end{cases}
+	\label{eq:64}
+\end{equation}
+ma $ k = \frac{2\pi}{\lambda} = \frac{\omega}{v} $, e la riflessione non varia la lunghezza d'onda, dunque $ k_{\inc} = k_{\rif} $ e $ \frac{k_{\inc}}{k_{\tr}} = \frac{v_2}{v_1} = \frac{n_1}{n_2} $, quindi:
+\begin{equation}
+	\theta_{\inc} = \theta_{\rif} \qquad n_1 \sin\theta_{\inc} = n_2 \sin\theta_{\tr}
+	\label{eq:65}
+\end{equation}
+che sono la seconda e la terza legge dell'ottica geometrica. \\ 
+%
+Rimangono ora da trovare le relazioni tra le ampiezza dei campi. Sempre avendo WLOG $ yz $ come piano d'incidenza, assumiamo che $ \vec{E} $ giaccia anch'esso sul piano d'incidenza: si può dimostrare che, in questo caso, anche i campi riflesso e trasmesso giacciono sullo stesso piano; una trattazione analoga può essere fatta nel caso in cui $ \vec{E} $ sia ortogonale al piano d'incidenza. \\ 
+Se $ \vec{E} $ è sul piano d'incidenza, $ \vec{B} = \frac{1}{v} \hat{k}\times\vec{E} $ è ortogonale ad esso; inoltre, dato che $ \hat{k}\perp\vec{E},\vec{B} $, si ha $ B = E / v $. Applichiamo ora le condizioni al contorno (componente normale è $ z $):
+\begin{equation}
+	\begin{cases}
+		\epsilon_1 (E_{0z,\inc} + E_{0z,\rif}) = \epsilon_2 E_{0z,\tr} \\ 
+		B_{0z,\inc} + B_{0z,\rif} = B_{0z,\tr} \\ 
+		E^{\parallel}_{0,\inc} + E^{\parallel}_{0,\rif} = E^{\parallel}_{0,\tr} \\ 
+		\frac{1}{\mu_1}(B^{\parallel}_{0,\inc} + B^{\parallel}_{0,\rif}) = \frac{1}{\mu_2}B^{\parallel}_{0,\tr}
+	\end{cases}
+	\quad\Longrightarrow\quad
+	\begin{cases}
+		\epsilon_1 (E_{0,\inc}\sin\theta_{\inc} + E_{0,\rif}\sin\theta_{\rif}) = \epsilon_2 E_{0,\tr}\sin\theta_{\tr} \\ 
+		B_z = 0 \\ 
+		E_{0,\inc} \cos\theta_{\inc} + E_{0,\rif} \cos\theta_{\rif} = E_{0,\tr} \cos\theta_{\tr} \\ 
+		\frac{1}{\mu_1 v_1}(E_{0,\inc} + E_{0,\rif}) = \frac{1}{\mu_2 v_2}E_{0,\tr}
+	\end{cases}
+	\label{eq:66}
+\end{equation}
+Dato che $ \theta_{\inc} = \theta_{\rif} $, $ \sin\theta_{\inc} / v_1 = \sin\theta_{\tr} / v_2 $ e che $ \epsilon = 1 / \mu v^2 $, la prima e l'ultima equazione sono equivalenti, dunque il sistema di equazioni si riduce a: 
+\begin{equation}
+	\begin{cases}
+		E_{0,\inc} + E_{0,\rif} = \alpha E_{0,\tr} \qquad \alpha = \displaystyle\frac{\cos\theta_{\tr}}{\cos\theta_{\inc}} \\ 
+		\\ 
+		E_{0,\inc} - E_{0,\rif} = \beta E_{0,\tr} \qquad \beta = \displaystyle\frac{\mu_1 v_1}{\mu_2 v_2} \\ 
+	\end{cases}
+	\label{eq:67}
+\end{equation}
+che ha come soluzioni:
+\begin{equation}
+	E_{0,\tr} = \frac{2}{\alpha + \beta} E_{0,\inc} \qquad E_{0,\rif} = \frac{\alpha - \beta}{\alpha + \beta} E_{0,\inc}
+	\label{eq:68}
+\end{equation}
+Si nota che per $ \theta_{\inc} = 0 $ e $ \theta_{\tr} = 0 $ si ritrova la legge dell'incidenza normale. \\ 
+Le ampiezze così trovate dipendono dall'angolo di incidenza tramite il parametro $ \alpha $:
+\begin{equation}
+	\alpha = \frac{1}{\cos\theta_{\inc}} \sqrt{1 - \left(\frac{n_1}{n_2} \sin\theta_{\inc}\right)^2}
+	\label{eq:69}
+\end{equation}
+Ci sono due casi limite: il primo, banale, è che $ \theta_{\inc} \rightarrow \frac{\pi}{2} \,\Rightarrow\, \alpha \rightarrow \infty $, ovvero si ha riflessione totale, mentre per $ \alpha = \beta $ si ha trasmissione totale: tale fenomeno avviene quando l'angolo d'incidenza è pari all'angolo di Brewster così definito:
+\begin{equation}
+	\sin^2 \theta_B = \frac{1 - \beta^2}{(n_1 / n_2)^2 - \beta^2}
+	\label{eq:70}
+\end{equation}
+Per luce polarizzata perpendicolarmente al piano d'incidenza non esiste un fenomeno analogo. \\ 
+Supponiamo che un fascio di luce polarizzata arbitrariamente incida su una superficie con angolo d'incidenza pari (o prossimo) all'angolo di Brewster: la componente con polarizzazione parallela al piano d'incidenza è completamente trasmessa, quindi tutta la luce riflessa ha polarizzazione perpendicolare al piano d'incidenza. \\ 
+Su questo fenomeno si basa l'utilizzo dei filtri polaroid negli occhiali per ridurre i riflessi.
+
+\subsection{Potenziali Elettromagnetici}
+
+Dalla terza equazione di Maxwell $ \dive\vec{B} = 0 $ abbiamo visto che deve esistere una funzione vettoriale $ \vec{A} : \vec{B} = \rot\vec{A} $; inserendolo nella seconda equazione di Maxwell:
+\begin{equation}
+	\rot\vec{E} = -\frac{\pa}{\pa t} \rot\vec{A} = - \rot \frac{\pa\vec{A}}{\pa t} \qquad\Longrightarrow\qquad \rot\left(\vec{E} + \frac{\pa\vec{A}}{\pa t}\right) = 0
+	\label{eq:71}
+\end{equation}
+quindi deve esistere una funzione scalare $ \phi : \vec{E} + \frac{\pa\vec{A}}{\pa t} = -\nabla\phi $. Possiamo quindi scrivere sia il campo elettrico che il campo magnetico in funzione di due potenziali, detti potenziale scalare e potenziale vettore:
+\begin{equation}
+	\vec{E} = - \nabla\phi - \frac{\pa\vec{A}}{\pa t} \qquad \vec{B} = \rot\vec{A}
+	\label{eq:72}
+\end{equation}
+Inserendo queste espressioni nella legge di Ampère-Maxwell:
+\begin{equation}
+	\rot\rot\vec{A} = \mu_0 \vec{J} + \frac{1}{c^2} \frac{\pa}{\pa t} \left(-\nabla\phi - \frac{\pa\vec{A}}{\pa t}\right)
+	\label{eq:73}
+\end{equation}
+Ricordando che $ \rot\rot = \nabla(\dive) - \lap $:
+\begin{equation}
+	\lap\vec{A} - \frac{1}{c^2} \frac{\pa^2\vec{A}}{\pa t^2} - \nabla\left( \frac{1}{c^2} \frac{\pa\phi}{\pa t} + \dive\vec{A} \right) = -\mu_0 \vec{J}
+	\label{eq:74}
+\end{equation}
+Se invece consideriamo la prima equazione di Maxwell:
+\begin{equation}
+	\lap\phi + \frac{\pa}{\pa t} (\dive\vec{A}) = -\frac{\rho}{\epsilon_0} \qquad\Longrightarrow\qquad \lap \phi - \frac{1}{c^2} \frac{\pa^2 \phi}{\pa t^2} + \frac{\pa}{\pa t} \left( \frac{1}{c^2} \frac{\pa\phi}{\pa t} + \dive\vec{A} \right) = -\frac{\rho}{\epsilon_0}
+	\label{eq:75}
+\end{equation}
+Queste equazioni sono accoppiate dal termine $ \frac{1}{c^2} \frac{\pa\phi}{\pa t} + \dive\vec{A} $, quindi è naturale chiedersi qualora sia possibile annullare questa espressione. 
+
+\subsubsection{Invarianza di gauge}
+
+I potenziali elettromagnetici non sono univocamente determinati: $ \phi $ è invariante per aggiunta di una costante, mentre $ \vec{A} $ per aggiunta del gradiente di una funzione scalare; una trasformazione del tipo:
+\begin{equation}
+	\begin{split}
+		\phi &\longrightarrow \phi + \text{cost.} \\ 
+		\vec{A} &\longrightarrow \vec{A} + \nabla f
+	\end{split}
+	\label{eq:76}
+\end{equation}
+è detta trasformazione di gauge (inglese per $ \virgolette{misurare} $, $ \virgolette{calibrare} $). \\ 
+In questo contesto, si dice che il campo elettromagnetico è invariante per trasformazioni di gauge, nel senso che anche dopo una trasformazione del genere i campi rimangono gli stessi. \\ 
+%
+Cerchiamo dunque una trasformazione di gauge che disaccoppi le equazioni per i potenziali. \\ 
+%
+Consideriamo la trasformazione $ \vec{A}' = \vec{A} + \nabla\Lambda $: il campo elettrico sarà:
+\begin{equation}
+	\vec{E} = -\nabla\phi - \frac{\pa\vec{A}}{\pa t} = -\nabla\left(\phi - \frac{\pa \Lambda}{\pa t}\right) - \frac{\pa\vec{A}'}{\pa t} \equiv -\nabla\phi' - \frac{\pa\vec{A}'}{\pa t}
+	\label{eq:77}
+\end{equation}
+dove è stato definito $ \phi' = \phi - \frac{\pa \Lambda}{\pa t} $. Otteniamo un'equazione per $ \Lambda $:
+\begin{equation}
+	\frac{1}{c^2} \frac{\pa\phi'}{\pa t} + \dive\vec{A}' = 0 \quad\Longrightarrow\quad \lap \Lambda - \frac{1}{c^2} \frac{\pa^2 \Lambda}{\pa t^2} = - \left( \frac{1}{c^2} \frac{\pa \phi}{\pa t} + \dive\vec{A}\right)
+	\label{eq:78}
+\end{equation}
+È possibile dimostrare che questa equazione in $ \Lambda $ ha sempre una soluzione, ovvero che è sempre possibile determinare il gauge nel quale le equazione dei potenziali elettromagnetici si disaccoppiano:
+\begin{align}
+	\lap\vec{A} - \frac{1}{c^2} \frac{\pa^2 \vec{A}}{\pa t^2} &= - \mu_0 \vec{J} \\ 
+	\lap\phi - \frac{1}{c^2} \frac{\pa^2 \phi}{\pa t^2} &= - \frac{\rho}{\epsilon_0}
+	\label{eq:79-80}
+\end{align}
+Questo è detto gauge di Lorenz.	\\ 
+Si noti che nel caso stazionario si ritrovano le equazioni dell'elettrostatica $ \lap\phi = - \frac{\rho}{\epsilon_0} $ e della magnetostatica $ \lap\vec{A} = -\mu_0 \vec{J} $. \\ 
+Il gauge di Lorenz è uno dei vari gauge possibili, e nel caso dell'elttrodinamica esso è ragionevole poiché le equazioni dei potenziali si disaccoppiano in due equazioni d'onda non omogenee. \\ 
+Nel caso statico, però, esiste un gauge più vantaggioso, detto gauge di Coulomb, poiché le equazioni da disaccoppiare in questo caso sono:
+\begin{equation}
+	\lap\vec{A} - \nabla(\dive\vec{A}) = -\mu_0 \vec{J} \qquad \lap\phi + \frac{\pa}{\pa t} (\dive\vec{A}) = -\frac{\rho}{\epsilon_0}
+	\label{eq:81}
+\end{equation}
+quindi basta annullare $ \dive\vec{A} $. Considerando di nuovo $ \vec{A}' = \vec{A} + \nabla\Lambda $, l'equazione per $ \Lambda : \dive\vec{A}' = 0 $ è:
+\begin{equation}
+	\lap \Lambda = - \dive\vec{A}
+	\label{eq:82}
+\end{equation}
+che è un'equazione di Poisson con soluzione generale data da:
+\begin{equation}
+	\Lambda(\vec{r}) = \frac{1}{4\pi} \iiint_V \frac{\dive\vec{A}}{\abs{\vec{r} - \vec{r}\,'}} dV'
+	\label{eq:83}
+\end{equation}
+In generale, non è necessario conoscere $ \Lambda $, ma basta sapere che esiste, così da poter scrivere e risolvere le equazioni dei potenziali nel determinato gauge.
+
+\subsubsection{Potenziali ritardati}
+
+Abbiamo visto che nel caso statico le equazioni per i potenziali hanno come soluzioni:
+\begin{equation}
+	\phi(\vec{r}) = \frac{1}{4\pi\epsilon_0} \iiint_V \frac{\rho(\vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}} dV' \qquad \vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \iiint_V \frac{\vec{J}(\vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}} dV'
+	\label{eq:84}
+\end{equation}
+È possibile dimostrare che nel caso dinamico le soluzioni sono formalmente simili:
+\begin{equation}
+	\phi(\vec{r},t) = \frac{1}{4\pi\epsilon_0} \iiint_V \frac{\rho(\vec{r}\,', t_r)}{\abs{\vec{r} - \vec{r}\,'}} dV' \qquad \vec{A}(\vec{r},t) = \frac{\mu_0}{4\pi} \iiint_V \frac{\vec{J}(\vec{r}\,',t_r)}{\abs{\vec{r} - \vec{r}\,'}} dV' \qquad t_r \equiv t - \frac{\abs{\vec{r} - \vec{r}\,'}}{c}
+	\label{eq:85}
+\end{equation}
+dove $ t_r $ è detto tempo ritardato: esso ha un significato profondamente fisico, poiché quantifica il fatto che l'informazione non si propaga a velocità infinita e che quindi i potenziali in un determinato punto $ (\vec{r},t) $ sono determinati dalle distribuzioni di cariche e correnti ad un tempo precedente, appunto $ t_c $. \\ 
+%
+La semplicità di tale soluzione è solo apparente, come si può notare dalle espressioni per i campi:
+\begin{align}
+	\vec{E}(\vec{r},t) &= \frac{1}{4\pi \epsilon_0} \iiint_V \left[ \frac{\rho(\vec{r}\,', t_r) (\vec{r} - \vec{r}\,')}{\abs{\vec{r} - \vec{r}\,'}^3} - \frac{\dot{\rho}(\vec{r}\,', t_r) (\vec{r} - \vec{r}\,')}{c \abs{\vec{r} - \vec{r}\,'}^2} - \frac{\dot{\vec{J}}(\vec{r}\,', t_r)}{c^2 \abs{\vec{r} - \vec{r}\,'}} \right] dV' \\ 
+	\vec{B}(\vec{r},t) &= \frac{\mu_0}{4\pi} \iiint_V \left[ \frac{\vec{J}(\vec{r}\,', t_r)}{\abs{\vec{r} - \vec{r}\,'}^3} - \frac{\dot{\vec{J}}(\vec{r}\,', t_r)}{c \abs{\vec{r} - \vec{r}\,'}^2} \right] \times (\vec{r} - \vec{r}\,') dV'
+	\label{eq:86-87}
+\end{align}
+Naturalmente per $ \rho $ e $ \vec{J} $ indipendenti dal tempo ritroviamo le equazioni del caso statico. \\ 
+%
+A partire da questa soluzione generale, è possibile fornire un'approssimazione quasi-statica del campo magnetico. \\ 
+Iniziamo definendo $ \vec{u} \equiv \vec{r} - \vec{r}\,' $:
+\begin{equation}
+	\vec{B}(\vec{r},t) = \frac{\mu_0}{4\pi} \iiint_V \left[ \frac{\vec{J}(\vec{r}\,', t_r)}{u^2} + \frac{\dot{\vec{J}}(\vec{r}\,', t_r)}{cu} \right] \times \hat{u} \,dV
+	\label{eq:88}
+\end{equation}
+Consideriamo ora una densità di corrente le cui variazioni temporali abbiano una scala di tempi fissata da un parametro $ \tau \equiv J(\vec{r},t) / \dot{J}(\vec{r},t) $, ed in particolare il caso di variazioni lente $ \tau \gg \abs{t - t_r} $:
+\begin{equation}
+	\begin{split}
+		\dot{\vec{J}}(t_r) &\approx \dot{\vec{J}}(t) + \ddot{\vec{J}}(t)(t_r - t) \,,\qquad \vec{J}(t_r) \approx \vec{J}(t) + \dot{\vec{J}}(t)(t_r - t) \\ 
+				   &\qquad \dot{\vec{J}}(t) \approx \frac{1}{\tau}\vec{J}(t) \,\Rightarrow\, \ddot{\vec{J}}(t) \approx \frac{1}{\tau} \dot{\vec{J}}(t) \\ 
+				   &\approx \dot{\vec{J}}(t)\left(1 + \frac{t_r - t}{\tau}\right) \approx \dot{\vec{J}}(t)
+	\end{split}
+	\label{eq:89}
+\end{equation}
+Dalla definizione di potenziale ritardato otteniamo inoltre che $ u = \abs{\vec{r} - \vec{r}\,'} = c (t - t_r) $, quindi possiamo approssimare l'espressione per il campo magnetico:
+\begin{equation}
+	\begin{split}
+		\vec{B}(\vec{r},t) &= \frac{\mu_0}{4\pi} \iiint_V \left[ \frac{\vec{J}(\vec{r}\,', t_r)}{u^2} + \frac{\dot{\vec{J}}(\vec{r}\,', t_r)}{cu} \right] \times \hat{u} \,dV \\ 
+				   &\approx \frac{\mu_0}{4\pi} \iiint_V \left[ \frac{\vec{J}(\vec{r}\,', t) + \dot{\vec{J}}(\vec{r}\,',t_r)(t_r - t)}{u^2} + \frac{\dot{\vec{J}}(\vec{r}\,', t_r)}{cu} \right] \times \hat{u} \,dV \\ 
+				   &\approx \frac{\mu_0}{4\pi} \iiint_V \left[ \frac{\vec{J}(\vec{r}\,', t) - \dot{\vec{J}}(\vec{r}\,',t)(t - t_r)}{cu (t - t_r)} + \frac{\dot{\vec{J}}(\vec{r}\,', t_r)}{cu} \right] \times \hat{u} \,dV \\ 
+				   &= \frac{\mu_0}{4\pi} \iiint_V \frac{\vec{J}(\vec{r}\,', t)}{u^2} \times \hat{u} \,dV
+	\end{split}
+	\label{eq:90}
+\end{equation}
+Nell'approssimazione quasi-statica ritroviamo la legge di Biot-Savart.
 
 \end{document}
