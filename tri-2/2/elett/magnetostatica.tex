@@ -93,7 +93,7 @@ Consideriamo ora una spira circolare di raggio $ a $ percorsa da una corrente st
 Vogliamo calcolare il campo magnetico in un punto lungo l'asse della spira, ovvero $ \vec{r}_2 = z \, \hat{e}_z $: dato che il generico elemento $ d\vec{l} $ ha posizione $ d\vec{r}_1 = a (\cos{\theta} \, \hat{e}_x + \sin{\theta} \, \hat{e}_y) $, si ha $ d\vec{l} = \frac{d\vec{r}_1}{d\theta}d\theta $ e quindi:
 \begin{equation}
 	\begin{split}
-		d\vec{l} \times (\vec{r}_2 - \vec{r}_1) &= (-a \sin{\theta} \, \hat{e}_x + a \cos{\theta} \, \hat{e}_y) \times (z \, \hat{e}_z - a \sin{\theta} \, \hat{e}_x - a \sin{\theta} \hat{e}_y) \\ 
+		d\vec{l} \times (\vec{r}_2 - \vec{r}_1) &= (-a \sin{\theta} \, \hat{e}_x + a \cos{\theta} \, \hat{e}_y) \times (z \, \hat{e}_z - a \cos{\theta} \, \hat{e}_x - a \sin{\theta} \hat{e}_y) \,d\theta \\ 
 							&= \left[ az \cos{\theta} \, \hat{e}_x + az \sin{\theta} \, \hat{e}_y + a^2 (\sin^2{\theta} + \cos^2{\theta}) \, \hat{e}_z \right] d\theta \\ 
 							&= (z \cos{\theta} \, \hat{e}_x + z \sin{\theta} \, \hat{e}_y + a \, \hat{e}_z) \, a \, d\theta
 	\end{split}
@@ -106,7 +106,7 @@ Inoltre, abbiamo che $ \abs{\vec{r}_2 - \vec{r}_1}^3 = (a^2 + z^2)^{3/2} $, dunq
 \end{equation}
 Integrando su tutta la spira ($ \theta \in [0, 2\pi] $) si ottiene:
 \begin{equation}
-	\vec{B}(z) = \displaystyle\frac{\mu_0 i a^2}{2(a^2 + z^2)^{3/2}}
+	\vec{B}(z) = \displaystyle\frac{\mu_0 i a^2}{2(a^2 + z^2)^{3/2}} \,\hat{e}_z
 	\label{eq:mag-spir}
 \end{equation}
 Il calcolo del campo in posizioni diverse dall'asse della spira è complesso e richiede l'utilizzo di integrali ellittici: qualitativamente, le linee di campo sono linee chiuse che avvolgono la spira, diventando sempre più circolari via via che si avvicinano ad essa.
@@ -164,7 +164,7 @@ Dato che qualsiasi loop generico può essere approssimato con tratti radiali ed 
 	\Gamma = N \mu_0 \displaystyle\sum_{k = 1}^{M} i_k
 	\label{eq:ampere}
 \end{equation}
-Possiamo generalizzare ad una distribuzione di corrente $ \vec{J} $ stazionaria ($ \div\vec{J} = 0 $):
+Possiamo generalizzare ad una distribuzione di corrente $ \vec{J} $ stazionaria ($ \dive\vec{J} = 0 $):
 \begin{equation}
 	\Gamma = \mu_0 \oiint_S \vec{J} \cdot d\vec{S}
 	\label{eq:ampere-int}
@@ -248,9 +248,9 @@ Nel limite $ \rho \ll l $ esso può essere approssimato da $ A_z (\rho) = \displ
 Consideriamo una spira $ \varsigma $ di forma generica percorsa da una corrente stazionaria $ i $: il potenziale vettore sarà dato da:
 \begin{equation}
 	\begin{split}
-		\vec{A}(\vec{r}) &= \displaystyle\frac{\mu_0 i}{4\pi} \oint_{\varsigma} \displaystyle\frac{d\vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}} = \displaystyle\frac{\mu_0 i}{4\pi} \oint_{\varsigma} \displaystyle\frac{d\vec{r}\,'}{\sqrt{r^2 + r'^2 - 2\sprod{r}{r}\,'}} = \displaystyle\frac{\mu_0 i}{4\pi r} \oint_{\varsigma} \left( 1 + \displaystyle\frac{r'^2}{r^2} - 2 \displaystyle\frac{\sprod{r}{r}\,'}{r^2} \right) d\vec{r}\,' \\ 
+		\vec{A}(\vec{r}) &= \displaystyle\frac{\mu_0 i}{4\pi} \oint_{\varsigma} \displaystyle\frac{d\vec{r}\,'}{\abs{\vec{r} - \vec{r}\,'}} = \displaystyle\frac{\mu_0 i}{4\pi} \oint_{\varsigma} \displaystyle\frac{d\vec{r}\,'}{\sqrt{r^2 + r'^2 - 2\sprod{r}{r}\,'}} = \displaystyle\frac{\mu_0 i}{4\pi r} \oint_{\varsigma} \left( 1 + \displaystyle\frac{r'^2}{r^2} - 2 \displaystyle\frac{\sprod{r}{r}\,'}{r^2} \right)^{-1/2} d\vec{r}\,' \\ 
 				 & \qquad\qquad r \gg r' \Rightarrow \abs{\vec{r} - \vec{r}\,'} \approx \frac{1}{r} \left(1 + \frac{\sprod{r}{r}\,'}{r^2}\right) \\ 
-				 &= \displaystyle\frac{\mu_0 i}{4\pi r} \left[ \oint_{\varsigma} d\vec{r}\,' + \displaystyle\frac{1}{r^2} \oint_{\varsigma} \left( \sprod{r}{r}\,' \right) d\vec{r}\,' \right] = \displaystyle\frac{\mu_0 i}{4\pi r^3} \oint_{\varsigma} \left( \sprod{r}{r}\,' \right) d\vec{r}\,' \\ 
+				 &\approx \displaystyle\frac{\mu_0 i}{4\pi r} \left[ \oint_{\varsigma} d\vec{r}\,' + \displaystyle\frac{1}{r^2} \oint_{\varsigma} \left( \sprod{r}{r}\,' \right) d\vec{r}\,' \right] = \displaystyle\frac{\mu_0 i}{4\pi r^3} \oint_{\varsigma} \left( \sprod{r}{r}\,' \right) d\vec{r}\,' \\ 
 				 & \qquad\qquad \left(\sprod{r}{r}\,'\right) d\vec{r}\,' = \vec{r}\,' \left(\vec{r}\cdot d\vec{r}\,'\right) + \left(\vec{r}\,'\times d\vec{r}\,'\right)\times\vec{r} \qquad \qquad \qquad \text{integrale lungo } \vec{r}\,' \\ 
 				 & \qquad\qquad \left(\vec{r}\cdot\vec{r}\,'\right) d\vec{r}\,' = d\left[\vec{r}\,'\left(\sprod{r}{r}\,'\right)\right] - \vec{r}\,'d\left(\sprod{r}{r}\,'\right) = d\left[\vec{r}\,'\left(\sprod{r}{r}\,'\right)\right] - \vec{r}\,'\left(\vec{r}\cdot d\vec{r}\,'\right) \\ 
 				 & \qquad \qquad \Rightarrow \left(\sprod{r}{r}\,'\right)d\vec{r}\,' = \frac{1}{2} \left[ d\left[ \vec{r}\,' \left(\sprod{r}{r}\,'\right)\right] + \left(\vec{r}\,' \times d\vec{r}\,'\right) \times\vec{r} \right] \\ 
@@ -283,7 +283,7 @@ Avremo dunque:
 	\vec{A}(\vec{r}) = \displaystyle\frac{\mu_0}{4\pi r^3} \, \vprod{m}{r} = \displaystyle\frac{\mu_0 m}{4\pi r^3} \, \hat{e}_z \times\left(x\,\hat{e}_x + y\,\hat{e}_y + z\,\hat{e}_z\right) = \displaystyle\frac{\mu_0 m}{4\pi r^2} \displaystyle\frac{-y \, \hat{e}_x + x \, \hat{e}_y}{r}
 	\label{eq:calc-po-sp-circ}
 \end{equation}
-Passando in coordinate sferiche, ricordando che $ \hat{e}_{\phi} = \frac{1}{\rho} (-y \, \hat{e}_x + x \, \hat{e}_y) $:
+Passando in coordinate sferiche, ricordando che $ \hat{e}_{\phi} = \frac{1}{r} (-y \, \hat{e}_x + x \, \hat{e}_y) $:
 \begin{equation}
 	\vec{A}(\vec{r}) = \displaystyle\frac{\mu_0 m}{4\pi r^2} \sin\theta \,\hat{e}_{\phi}
 	\label{eq:po-sp-circ}
@@ -301,7 +301,7 @@ Possiamo così calcolare il campo magnetico lontano dalla spira:
 	\end{split}
 	\label{eq:}
 \end{equation}
-Si nota che questa espressione è matematicamente uguale a quella per il campo elettrico di un dipolo (lontano da esso) $ \vec{E}(\vec{r}) = \frac{p}{4\pi\epsilon_0 r^3} \left(2\cos\theta \,\hat{e}_r + \sin\theta \,\hat{e}_{\theta} \right) $: i campi dei dipoli elettrici e magnetici hanno lo stesso andamento lontano dak dipolo, mentre vicino ad esso hanno andamenti completamente differenti.
+Si nota che questa espressione è matematicamente uguale a quella per il campo elettrico di un dipolo (lontano da esso) $ \vec{E}(\vec{r}) = \frac{p}{4\pi\epsilon_0 r^3} \left(2\cos\theta \,\hat{e}_r + \sin\theta \,\hat{e}_{\theta} \right) $: i campi dei dipoli elettrici e magnetici hanno lo stesso andamento lontano dal dipolo, mentre vicino ad esso hanno andamenti completamente differenti.
 
 \subsection{Forze su Fili e Spire}
 
