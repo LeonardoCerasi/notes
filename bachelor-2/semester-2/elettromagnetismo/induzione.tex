@@ -1,18 +1,8 @@
-\documentclass[]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[italian]{babel}
-
-\input{../imports.tex}
-
-\newcommand{\E}{\mathcal{E}}
-
-\begin{document}
-
 \section{Induzione Magnetica}
 
 \subsection{Legge di Induzione di Faraday}
 
-Svolgendo esperimenti su coppie di circuiti, uno dei quali percorso da corrente stazionaria, Faraday si accorse della presenza di un transiente, nel circuito scollegato, in corrispondenza dell'accensione e dello spegnimento del generatore di corrente: la sua intuizione fu che questo transiente fosse legato alla variazione del flusso del campo magnetico, la quale genera un campo magnetico non conservativo la cui circuitazione è una differenza di potenziale (la forza elettromotrice) lungo la spira:
+Svolgendo esperimenti su coppie di circuiti, uno dei quali percorso da corrente stazionaria, Faraday si accorse della presenza di un transiente, nel circuito scollegato, in corrispondenza dell'accensione e dello spegnimento del generatore di corrente: la sua intuizione fu che questo transiente fosse legato alla variazione del flusso del campo magnetico, la quale genera un campo elettrico non conservativo la cui circuitazione è una differenza di potenziale (la forza elettromotrice) lungo la spira:
 \begin{equation}
 	\frac{d\Phi_B}{dt} = -\mathcal{E}
 	\label{eq:1}
@@ -22,18 +12,18 @@ Svolgendo esperimenti su coppie di circuiti, uno dei quali percorso da corrente 
 
 Nel suo primo esperimento, Farady tenne ferma la bobina in cui scorre corrente e mosse la spira scollegata. \\ 
 %
-Consideriamo una spira quadrata di lato $ l $ parallela al piano $ xy $ e vincoliamola a muoversi lungo l'asse $ y $; consideriamo anche un campo magnetico non uniforme ortogonale alla spira, ovvero lungo l'asse $ z $: supponiamo che esso vari secondo $ \vec{B}(y) = B_0 \frac{abs{y}}{L} \,\hat{e}_z $, con $ L $ lunghezza caratteristica del sistema. \\ 
+Consideriamo una spira quadrata di lato $ l $ parallela al piano $ xy $ e vincoliamola a muoversi lungo l'asse $ y $; consideriamo anche un campo magnetico non uniforme ortogonale alla spira, ovvero lungo l'asse $ z $: supponiamo che esso vari secondo $ \vec{B}(y) = B_0 \frac{\abs{y}}{L} \,\hat{e}_z $, con $ L $ lunghezza caratteristica del sistema. \\ 
 %
 Consideriamo un moto della spira dato da $ y(t) = vt $ e calcoliamo la f.e.m. dalla legge di Faraday:
 \begin{equation}
 	\begin{split}
-		\E(t) &= -\frac{d}{dt} \oiint_{\text{spira}} \vec{B}\cdot d\vec{S} = -\frac{d}{dt} \int_{y(t)}^{y(t)+l} B(y')\,dy' = -B_0 \frac{l}{L} \frac{d}{dt} \int_{vt}^{vt+l} y'dy' \\ 
-		      &= -B_0 \frac{l}{2L} \frac{d}{dt} (2vt + l) = - B_0 \frac{l}{L} lv \qquad\qquad \vec{B}_1 \equiv \vec{B}(y + l), \, \vec{B}_3 \equiv \vec{B}(y) \\ 
+		\E(t) &= -\frac{d}{dt} \oiint_{\text{spira}} \vec{B}\cdot d\vec{S} = -\frac{d}{dt} \int_{y(t)}^{y(t)+l} B(y')l\,dy' = -B_0 \frac{l}{L} \frac{d}{dt} \int_{vt}^{vt+l} y'dy' \\ 
+		      &= -B_0 \frac{l}{2L} \frac{d}{dt} (2vt + l^2) = - B_0 \frac{l}{L} lv \qquad\qquad \vec{B}_1 \equiv \vec{B}(y + l), \, \vec{B}_3 \equiv \vec{B}(y) \\ 
 		      &= (B_3 - B_1) lv
 	\end{split}
 	\label{eq:2}
 \end{equation}
-Possiamo analizzare l'esperimento anche alla luce della forza di Lorentz, la quale non era conosciuta ai tempi di Faraday. \\ 
+Si può analizzare l'esperimento anche con la forza di Lorentz, non conosciuta ai tempi di Faraday. \\ 
 %
 Sui lati della spira paralleli al moto (detti $ 2 $ e $ 4 $) si sviluppano forze ortogonali alla spira: se supponiamo la spira di spessore infinitesimo, ciò implica che le cariche non possono muoversi se non per un breve tratto, così che la forza di Lorentz viene immediatamente bilanciata dalla resistenza meccanica della struttura cristallina del conduttore e dai vincoli a cui è sottoposta la spira. D'altro canto, sui lati $ 1 $ e $ 3 $ la forza mette in moto le cariche, che si vanno a disporre lungo i lati $ 2 $ e $ 4 $ generando un campo elettrico che si oppone al moto delle cariche stesse: dato che il campo magnetico non è uniforme, le forze variano nel tempo e causano una continua ridistribuzione delle cariche. \\ 
 %
@@ -49,15 +39,15 @@ Dato che a questo lavoro è associata una d.d.p. $ \E = \frac{1}{q} \Gamma(\vec{
 
 \subsubsection{Secondo esperimento di Faraday}
 
-Nel suo secondo esperimento, Faraday mosse la spira scollegata e tenne ferma la bobina percorsa da corrente: nel sistema di riferimento $ \mathcal{S}' $ del laboratorio la spira è ferma, per cui non può agire la forza di Lorentz, quindi il meccanismo che genera la f.e.m. deve essere diverso da prima. \\ 
+Nel suo secondo esperimento, Faraday tenne ferma la spira scollegata e mosse la bobina percorsa da corrente: nel sistema di riferimento $ \mathcal{S}' $ del laboratorio la spira è ferma, per cui non può agire la forza di Lorentz, quindi il meccanismo che genera la f.e.m. deve essere diverso da prima. \\ 
 %
-Supponendo che la velocità relativa sia direzionata lungo l'asse che congiunge i centri della spira e della bobina e che essa sia $ v \ll c $, nel sistema $ \mathcal{S} $ solidale alla bobina si ha $ \vec{B}' = \gamma^{-1} \vec{B} \approx \vec{B} $, mentre in $ \mathcal{S} $ vi è un campo elettrico $ \vec{E}' = \vprod{v}{B}' \approx \vprod{v}{B} $: quest'ultimo non è conservativo e la sua circuitazione lungo la spira vale $ \Gamma(\vec{E}) = l (E'_1 - E'_3) = lv (B'_1 - B'_3) $, alla quale è associata la f.e.m. $ \E = lv (B_1 - B_3) $. \\ 
+Supponendo che la velocità relativa sia direzionata lungo l'asse che congiunge i centri della spira e della bobina e che essa sia $ v \ll c $, nel sistema $ \mathcal{S} $ solidale alla bobina si ha $ \vec{B} = \gamma^{-1} \vec{B}' \approx \vec{B}' $, mentre in $ \mathcal{S}' $ vi è un campo elettrico $ \vec{E}' = \vprod{v}{B}' \approx \vprod{v}{B} $: quest'ultimo non è conservativo e la sua circuitazione lungo la spira vale $ \Gamma(\vec{E}) = l (E'_3 - E'_1) = lv (B'_3 - B'_1) $, alla quale è associata la f.e.m. $ \E = lv (B_3 - B_1) $. \\ 
 %
 Si noti che questa trattazione è di natura relativistica, ma vale solo per $ v \ll c $, poiché si assume che il valore dei campi ai due lati della spira sia calcolato simultaneamente nello stesso istante: la legge di Faraday non è un invariante relativistico. \\ 
 %
-Calcoliamo ora il flusso del campop magnetico, in questo caso senza assumere una sua particolare forma funzionale (e omettendo gli apici del sistema di riferimento per semplicità): il flusso infinitesimo è dato da $ d\Phi_B = B(y) \,dS = B(y) l \,dy = B(y) lv \,dt $, quindi si vede subito che:
+Calcoliamo ora il flusso del campo magnetico, in questo caso senza assumere una sua particolare forma funzionale (e omettendo gli apici del sistema di riferimento per semplicità): il flusso infinitesimo è dato da $ d\Phi_B = B(y) \,dS = B(y) l \,dy = B(y) lv \,dt $, quindi si vede subito che:
 \begin{equation}
-	\frac{d\Phi_B}{dt} = lv (B_3 - B_1) = -\E
+	\frac{d\Phi_B}{dt} = lv (B_1 - B_3) = -\E
 	\label{eq:4}
 \end{equation}
 
@@ -65,7 +55,7 @@ Calcoliamo ora il flusso del campop magnetico, in questo caso senza assumere una
 
 Consideriamo ora una spira immersa in un campo magnetico uniforme $ \vec{B} = B \,\hat{e}_z $ ortogonale alla spira e con un lato che può scorrere sugli altri due: se lo mettiamo in moto con velocità $ \vec{v} = v \,\hat{e}_x $, il flusso magnetico concatenato alla spira varia nel tempo, anche se il campo è uniforme. \\ 
 %
-Nel lato mobile, le cariche sono sottoposte alla forza di Lorentz $ \vec{F} = qvB \,\hat{e}_y $, dunque nella spira agisce una f.e.m. $ \E = \frac{1}{q} \oint \vec{F}\cdot d\vec{l} $: l'integrale è non-nullo solo lungo il lato in moto e vale $ \E = -lvB $ ($ \vec{F} $ e $ d\vec{l} $ sono discordi). D'altra parte, si ha $ \Phi_B(t) = lB x(t) = lB v t $, quindi si vede che la legge di Faraday è rispettata. \\ 
+Nel lato mobile, le cariche sono sottoposte alla forza di Lorentz $ \vec{F} = -qvB \,\hat{e}_y $, dunque nella spira agisce una f.e.m. $ \E = \frac{1}{q} \oint \vec{F}\cdot d\vec{l} $: l'integrale è non-nullo solo lungo il lato in moto e vale $ \E = -lvB $ ($ \vec{F} $ e $ d\vec{l} $ sono discordi). D'altra parte, si ha $ \Phi_B(t) = lB x(t) = lB v t $, quindi si vede che la legge di Faraday è rispettata. \\ 
 %
 Data la f.e.m., si instaura necessariamente una corrente $ i = \E / R $ nel lato in moto (assumendolo ohmico), quindi vi è una dissipazione di energia $ P = \E^2 / R $ per effetto Joule: dato che la forza magnetica non compie lavoro, il lavoro necessario a questa dissipazione è fornito dall'esterno (ad esempio da noi) al sistema per mantenere un moto a velocità costante, in quanto il moto delle cariche è dissipativo. \\ 
 %
@@ -171,7 +161,7 @@ Notiamo quindi due contributi alla f.e.m.: il primo termine, detto f.e.m. da ind
 
 Il segno negativo nella legge di Faraday non è una pura convenzione matematica, ma ha un significato fisico profondo, legato alla conservazione dell'energia. \\ 
 %
-Consideriamo una spira immersa in un campo magnetico uniforme $ \vec{B} $ e supponiamo di indurvi una variazione $ d\vec{B}_1 $ concorde a $ \vec{B} $: la corrispondente variazione di flusso magnetico genera una f.e.m. ed una corrente $ i_1 $; se invece induciamo una variazione $ d\vec{B}_2 $ opposta a $ \vec{B} $, avremo una f.e.m. indotta ed una corrente $ i_2 $ opposta ad $ i_1 $: la legge di Lenz afferma che la f.e.m. indotta ha segno tale per cui la corrente indotta genera un campo amgnetico indotto che si oppone alla variazione di flusso magnetico. \\ 
+Consideriamo una spira immersa in un campo magnetico uniforme $ \vec{B} $ e supponiamo di indurvi una variazione $ d\vec{B}_1 $ concorde a $ \vec{B} $: la corrispondente variazione di flusso magnetico genera una f.e.m. ed una corrente $ i_1 $; se invece induciamo una variazione $ d\vec{B}_2 $ opposta a $ \vec{B} $, avremo una f.e.m. indotta ed una corrente $ i_2 $ opposta ad $ i_1 $: la legge di Lenz afferma che la f.e.m. indotta ha segno tale per cui la corrente indotta genera un campo magnetico indotto che si oppone alla variazione di flusso magnetico. \\ 
 %
 Se riprendiamo il caso della spira con un lato mobile, vediamo che la variazione del flusso genera una corrente indotta $ i_{\text{ind}} $ che scorre in modo da generare un campo magnetico indotto $ \vec{B}_1 $ opposto a $ \vec{B} $, il cui flusso varia col moto della barretta: ciò genera un'ulteriore corrente indotta $ i_{\text{ind},1} $, opposta a $ i_{\text{int}} $, che causa una forza opposta al verso del moto: la legge di Lenz quindi assicura che la f.e.m. indotta si opponga alla variazione di flusso e rallenti la barretta; in caso contrario, si avrebbe una continua accelerazione della barretta ed una conseguente violazione della conservazione dell'energia. \\ 
 %
@@ -196,7 +186,7 @@ dove abbiamo definito l'auto-induttanza della spira:
 \end{equation}
 che dipende solo dalle caratteristiche geometriche del della spira. In generale, essa è molto difficile da calcolare analiticamente e viene misurata sperimentalmente: la sua u.d.m. è l'Henry $ \text{H} = \text{T}\cdot\text{m}^2\cdot\text{A}^{-1} $. \\ 
 %
-Tenendo conto che $ \vec{B} = \rot\vec{A} $ e $ \vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \oint_{\gamma} \frac{d\vec{l}}{\abs{\vec{r} - \vec{r}\,'}} $, usando il teorema di Stokes otteniamo la formula di Neumann per l'auto-induttanza:
+Tenendo conto che $ \vec{B} = \rot\vec{A} $ e $ \vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} i \oint_{\gamma} \frac{d\vec{l}}{\abs{\vec{r} - \vec{r}\,'}} $, usando il teorema di Stokes otteniamo la formula di Neumann per l'auto-induttanza:
 \begin{equation}
 	L = \frac{\mu_0}{4\pi} \oint_{\gamma} \oint_{\gamma} \frac{d\vec{l}\cdot d\vec{l}\,'}{\abs{\vec{r} - \vec{r}\,'}}
 	\label{eq:19}
@@ -300,7 +290,7 @@ Supponiamo ora di togliere tensione alla bobina e che, prima di questa azione, n
 	\label{eq:31}
 \end{equation}
 %
-Un esempio importante di circuito RC è il trasformatore. \\ 
+Un esempio importante di circuito RL è il trasformatore. \\ 
 %
 Consideriamo due solenoidi coassiali con $ n_1 $ ed $ n_2 $ spire, molto lunghi e di raggio praticamente uguale: il campo di induzione magnetica sarà contenuto completamente all'interno dei due solenoidi. \\ 
 %
@@ -367,7 +357,7 @@ Definendo $ x \equiv i_1 / i_2 $ si ha $ U_M = \frac{1}{2} i_2^2 (L_1 x^2 + 2Mx 
 	\label{eq:40}
 \end{equation}
 %
-In generale è quindi possibile scrivere $ M = k \sqrt{L_1 L_2} $, con $ k \ge 1 $, e ciò esprime il fatto che non tutte le linee di campo di una spira sono concatenate all'altra: più $ k $ è vicino ad $ 1 $, più sono le linee di campo concatenate. \\ 
+In generale è quindi possibile scrivere $ M = k \sqrt{L_1 L_2} $, con $ k \le 1 $, e ciò esprime il fatto che non tutte le linee di campo di una spira sono concatenate all'altra: più $ k $ è vicino ad $ 1 $, più sono le linee di campo concatenate. \\ 
 Nel caso del trasformatore le linee di campo sono praticamente sovrapposte, dunque $ k \approx 1 $ e $ M \approx \sqrt{L_1 L_2} $.
 
 \subsubsection{Circuito LC}
@@ -398,12 +388,12 @@ Sempre per la seconda legge di Kirchhoff, si ha:
 \end{equation}
 Cerchiamo una soluzione del tipo $ i(t) = A e^{-\alpha t} \sin\omega t $:
 \begin{equation}
-	A e^{-\alpha t} \left[ \left( \frac{1}{C} + R\alpha + L(\alpha^2 - \omega^2)\right) \sin\omega t + \omega (R + 2L\alpha) \cos\omega t \right] = 0
+	A e^{-\alpha t} \left[ \left( \frac{1}{C} - R\alpha + L(\alpha^2 - \omega^2)\right) \sin\omega t + \omega (R - 2L\alpha) \cos\omega t \right] = 0
 	\label{eq:44}
 \end{equation}
 Affinché questa equazione sia soddisfatta, i coefficienti di $ \sin\omega t $ e $ \cos\omega t $ devono essere identicamente nulli:
 \begin{equation}
-	R + 2L\alpha = 0 \quad\Rightarrow\quad \alpha = -\frac{R}{2L} \qquad \frac{1}{C} + R\alpha + L (\alpha^2 - \omega^2) = 0 \quad\Rightarrow\quad \omega^2 = \frac{1}{LC} - \frac{R^2}{4L^2}
+	R - 2L\alpha = 0 \quad\Rightarrow\quad \alpha = \frac{R}{2L} \qquad \frac{1}{C} - R\alpha + L (\alpha^2 - \omega^2) = 0 \quad\Rightarrow\quad \omega^2 = \frac{1}{LC} - \frac{R^2}{4L^2}
 	\label{eq:45}
 \end{equation}
 Una soluzione oscillatoria richiede $ \omega $ reale, pertanto, definendo $ \omega_0 \equiv 1 / \sqrt{LC} $, si ha la condizione sul valore della resistenza $ \omega_0 > R / 2L $: la presenza di una resistenza, oltre a smorzare l'oscillazione, attenua anche la sua frequenza.
@@ -439,5 +429,3 @@ Se applichiamo questa legge alla superficie $ S' $ considerata in precedenza, tr
 	\label{eq:49}
 \end{equation}
 poiché tra le armature del condensatore $ E(t) = \frac{\sigma(t)}{\epsilon_0} $. Vediamo quindi che, contando anche la corrente di spostamento, non vi è più alcuna inconsistenza.
-
-\end{document}
