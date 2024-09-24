@@ -72,12 +72,12 @@ Quindi, riconoscendo i campi $ \vec{D} $ e $ \vec{H} $, si ottengono le equazion
 A queste vanno aggiunte le dovute condizioni, oltre che ovviamente alle relazioni fenomenologiche tra $ \vec{D} $, $ \vec{H} $ e $ \vec{E} $, $	\vec{B} $. \\ 
 Nel caso più generale:
 \begin{equation}
-	\Delta D_{\perp} = 0 \qquad \Delta E_{\parallel} = 0 \qquad \Delta\vec{H}_{\parallel} = \vec{K}_f \times \hat{n} \qquad \Delta B_{\perp} = 0 
+	\Delta D_{\perp} = \sigma_f \qquad \Delta E_{\parallel} = 0 \qquad \Delta\vec{H}_{\parallel} = \vec{K}_f \times \hat{n} \qquad \Delta B_{\perp} = 0 
 	\label{eq:7}
 \end{equation}
 In presenza di un mezzo lineare $ \vec{D} = \epsilon\vec{E} $ e $ \vec{H} = \frac{1}{\mu}\vec{B} $, quindi:
 \begin{equation}
-	\epsilon_1 E_{\perp,1} - \epsilon_2 E_{\perp,2} = 0 \qquad \Delta E_{\parallel} = 0 \qquad \frac{1}{\mu_1}\vec{B}_{\parallel,1} - \frac{1}{\mu_2}\vec{B}_{\parallel,2} = \vec{K}_f \times \hat{n} \qquad \Delta B_{\perp} = 0 
+	\epsilon_1 E_{\perp,1} - \epsilon_2 E_{\perp,2} = \sigma_f \qquad \Delta E_{\parallel} = 0 \qquad \frac{1}{\mu_1}\vec{B}_{\parallel,1} - \frac{1}{\mu_2}\vec{B}_{\parallel,2} = \vec{K}_f \times \hat{n} \qquad \Delta B_{\perp} = 0 
 	\label{eq:8}
 \end{equation}
 
@@ -89,7 +89,7 @@ L'esperimento consisteva in un generatore ad alta tensione (a induzione) collega
 %
 Ponendo una spira metallica collegata ad altre due sfere come ricevitore, Hertz osservò che fra queste due sfere si instauravano delle scariche elettriche alla stessa frequenza, dimostrando che gli elettroni in movimento generano un'onda di campo elettrico e magnetico che si propaga nello spazio. \\ 
 %
-Ponendo una lastra di rame ad una certa distanza dal generatore, in modo che le onde si riflettessero e generassero onde stazionarie, Hertz misurò la loro velocità di propagazione: porendo il ricevitore in diverse posizioni fra il generatore e la lastra poté misurare la lunghezza d'onda $ \lambda $, così da poter calcolare $ v = \lambda\nu \approx 3\cdot 10^8 \,\text{m/s} = c $.
+Ponendo una lastra di rame ad una certa distanza dal generatore, in modo che le onde si riflettessero e generassero onde stazionarie, Hertz misurò la loro velocità di propagazione: ponendo il ricevitore in diverse posizioni fra il generatore e la lastra poté misurare la lunghezza d'onda $ \lambda $, così da poter calcolare $ v = \lambda\nu \approx 3\cdot 10^8 \,\text{m/s} = c $.
 
 \subsubsection{Equazioni di Maxwell nel vuoto}
 
@@ -115,7 +115,7 @@ e analogamente per il campo $ \vec{H} $. \\
 %
 Poiché siamo interessati a delle onde piane, cerchiamo soluzioni in cui il campo abbia una sola componente che vari solo lungo una direzione ortogonale ad esso; WLOG $ \vec{E} = (E_x (z,t), 0, 0) $, quindi:
 \begin{equation}
-	\frac{\pa^2 E_z}{\pa t^2} + k^2 E_x = 0 \,,\quad k \equiv \omega\sqrt{\epsilon_0\mu_0} \qquad\Longrightarrow\qquad E_x(z,t) = E_+ e^{-ikz}e^{i\omega t} + E_- e^{ikz} e^{i\omega t}
+	\frac{\pa^2 E_x}{\pa z^2} + k^2 E_x = 0 \,,\quad k \equiv \omega\sqrt{\epsilon_0\mu_0} \qquad\Longrightarrow\qquad E_x(z,t) = E_+ e^{-ikz}e^{i\omega t} + E_- e^{ikz} e^{i\omega t}
 	\label{eq:11}
 \end{equation}
 Dato che $ \epsilon_0, \mu_0 \in \mathbb{R} $, anche $ k\in\mathbb{R} $, quindi:
@@ -124,7 +124,7 @@ Dato che $ \epsilon_0, \mu_0 \in \mathbb{R} $, anche $ k\in\mathbb{R} $, quindi:
 	\label{eq:12}
 \end{equation}
 che sono un'onda che si muove verso $ +z $ e verso $ -z $ rispettivamente (basta vedere le superfici a fase $ \phi = \omega t \pm kz $ costante). \\ 
-La velocità a cui si muove un punto a fare costante è detta velocità di fase $ v_p = \frac{dz}{dt} $, quindi:
+La velocità a cui si muove un punto a fase costante è detta velocità di fase $ v_p = \frac{dz}{dt} $, quindi:
 \begin{equation}
 	v_p = \frac{dz}{dt} = \frac{d}{dt} \left(\frac{\mp \omega t - \text{cost.}}{k}\right) = \mp \frac{\omega}{k} = \mp \frac{1}{\sqrt{\epsilon_0\mu_0}} = \mp c
 	\label{eq:13}
@@ -185,13 +185,13 @@ dunque si ottengono comunque due onde che si propagano verso $ \pm z $, ma in qu
 %
 Il campo magnetico associato si può scrivere come:
 \begin{equation}
-	H_y (z,t) = -i\frac{\gamma}{\mu \omega} \left(E_+ e^{i(\omega t - kz)} - E_- e^{i(\omega t + kz)}\right)
+	H_y (z,t) = -i\frac{\gamma}{\mu \omega} \left(E_+ e^{i\omega t - \gamma z} - E_- e^{i\omega t + \gamma z}\right)
 	\label{eq:21}
 \end{equation}
 %
 Per un conduttore l'impedenza caratteristica del mezzo è:
 \begin{equation}
-	Z = i \frac{\mu \omega}{\gamma} = \sqrt{\frac{\mu}{\epsilon}} \sqrt{1 - i \frac{\omega}{\omega \epsilon}}
+	Z = i \frac{\mu \omega}{\gamma} = \sqrt{\frac{\mu}{\epsilon}} \left(1 - i \frac{\sigma}{\omega \epsilon}\right)^{-1/2}
 	\label{eq:22}
 \end{equation}
 che è in generale un numero complesso. \\ 
@@ -201,7 +201,7 @@ Se invece prendiamo un dielettrico con perdite, ovvero un dielettrico non ideale
 %
 Nella maggior parte dei casi abbiamo a che fare con onde che si propagano in metalli, che sono buoni conduttori: in questi casi, le correnti conduttive prevalgono su quelle di spostamento, ovvero $ \sigma \gg \omega\epsilon $:
 \begin{equation}
-	\gamma = i \omega \sqrt{\epsilon\mu} \sqrt{1 - i \frac{\sigma}{\omega\epsilon}} \approx i \omega \sqrt{\epsilon\mu} \sqrt{\frac{\sigma}{i \omega \epsilon}} = \sqrt{i} \sqrt{\omega\epsilon\mu} = (1 + i) \sqrt{\frac{\omega\epsilon\mu}{2}} \equiv (1 + i) \frac{1}{\delta_s}
+	\gamma = i \omega \sqrt{\epsilon\mu} \sqrt{1 - i \frac{\sigma}{\omega\epsilon}} \approx i \omega \sqrt{\epsilon\mu} \sqrt{\frac{\sigma}{i \omega \epsilon}} = \sqrt{i} \sqrt{\omega\sigma\mu} = (1 + i) \sqrt{\frac{\omega\sigma\mu}{2}} \equiv (1 + i) \frac{1}{\delta_s}
 	\label{eq:23}
 \end{equation}
 dove è stata definita la skin depth del mezzo (u.d.m. $ \text{m} $), che rappresenta la distanza percorsa dall'onda prima di essere attenuata di un fattore $ 1/e $ (infatti ricordando l'espressione per $ E_x $ si ha $ \alpha = \beta = \delta_s $).
@@ -275,10 +275,10 @@ Ricordando che vi è un'energia associata sia al campo elettrico che a quello ma
 %
 Consideriamo ora una distribuzione di cariche $ \rho $ e di correnti $ \vec{J} $ che genera un campo elettromagnetico: detta $ \vec{v} $ la velocità delle cariche in moto (data la densità di corrente), possiamo scrivere $ dq = \rho dV $ e $ \vec{J} dV = \rho \vec{v} dV $, dunque definendo $ w $ la densità di lavoro abbiamo:
 \begin{equation}
-	dw dV = \vec{F_L} \cdot d\vec{l} = dq (\vec{E} + \vprod{v}{B})\cdot d\vec{l} = dq \sprod{E}{v} dt = \rho dV \sprod{E}{v} dt = \sprod{J}{E} dV dt
+	dw dV = d\vec{F_L} \cdot d\vec{l} = dq (\vec{E} + \vprod{v}{B})\cdot d\vec{l} = dq \sprod{E}{v} dt = \rho dV \sprod{E}{v} dt = \sprod{J}{E} dV dt
 	\label{eq:30}
 \end{equation}
-Pertanto la potenza erogata nel volume $ dV $, data da $ P = \frac{dw}{dt} dV $, è:
+Pertanto la potenza erogata nel volume $ dV $, data da $ dP = \frac{dw}{dt} dV $, è:
 \begin{equation}
 	P = \iiint_V \sprod{J}{E} \,dV
 	\label{eq:31}
@@ -295,7 +295,7 @@ Ricavando $ \vec{J} $ dall'equazione di Ampère-Maxwell:
 Dll'equazione di Faraday abbiamo $ \rot\vec{E} = - \frac{\pa\vec{B}}{\pa t} $, quindi:
 \begin{equation}
 	\begin{split}
-		P &= \iiint_V \left( - \frac{1}{\mu_0} \dive(\sprod{E}{B}) - \frac{1}{\mu_0} \vec{B} \cdot \frac{\pa\vec{B}}{\pa t} - \epsilon_0 \vec{E} \cdot \frac{\pa\vec{E}}{\pa t}\right) dV \\ 
+		P &= \iiint_V \left( - \frac{1}{\mu_0} \dive(\vprod{E}{B}) - \frac{1}{\mu_0} \vec{B} \cdot \frac{\pa\vec{B}}{\pa t} - \epsilon_0 \vec{E} \cdot \frac{\pa\vec{E}}{\pa t}\right) dV \\ 
 		  &= - \frac{1}{\mu_0} \iiint_V \dive(\vprod{E}{B}) dV - \frac{\pa}{\pa t} \left[\frac{1}{2} \iiint_V \left(\frac{1}{\mu_0} B^2 + \epsilon_0 E^2\right) dV \right] \\ 
 		  &= - \frac{1}{\mu_0} \oiint_{\pa V} (\vprod{E}{B})\cdot d\vec{S} - \frac{\pa U_{EM}}{\pa t}
 	\end{split}
@@ -310,7 +310,7 @@ Questa è formalmente identica all'equazione di continuità, ed infatti il signi
 
 \subsection{Momento Angolare del Campo Elettromagnetico}
 
-Consideriamo un cilindro (ad esempio un solenoide) di raggio $ a $ e lunghezza infinita e supponiamo che al suo interno ci sia un campo magnetico $ \vec{B} $ uniforme e variabile nel tempo, diretto lungo l'asse del cilindro: la variazione del campo magnetico induce un campo elettrico con $ \dive\vec{E} = 0 $ e $ \rot\vec{E} = \frac{\pa\vec{B}}{\pa t} $, dunque le sue linee di campo sono chiuse. Calcoliamo questo campo elettrico, considerando circonferenze ortogonali all'asse del cilindro di raggio $ r $:
+Consideriamo un cilindro (ad esempio un solenoide) di raggio $ a $ e lunghezza infinita e supponiamo che al suo interno ci sia un campo magnetico $ \vec{B} $ uniforme e variabile nel tempo, diretto lungo l'asse del cilindro: la variazione del campo magnetico induce un campo elettrico con $ \dive\vec{E} = 0 $ e $ \rot\vec{E} = -\frac{\pa\vec{B}}{\pa t} $, dunque le sue linee di campo sono chiuse. Calcoliamo questo campo elettrico, considerando circonferenze ortogonali all'asse del cilindro di raggio $ r $:
 \begin{equation}
 	\oint_{\gamma} \vec{E}\cdot d\vec{l} = - \oiint_{S} \frac{\pa\vec{B}}{\pa t}\cdot d\vec{S} \qquad\Longrightarrow\qquad
 	\begin{cases}
@@ -347,8 +347,8 @@ Questo esempio mostra come il campo elettromagnetico abbia un momento angolare, 
 Per vedere più nel dettaglio questo fatto, vediamo cosa succederebbe se il campo elettromagnetico non avesse anche una quantità di moto. \\ 
 Consideriamo due cariche positive in movimento, supponendo che ad un certo istante si trovino sugli assi $ x $ e $ y $ con velocità rispettivamente $ \vec{v}_1 = - v_1 \,\hat{e}_x $, $ \vec{v}_2 = - v_2 \,\hat{e}_y $ ($ v_1, v_2 > 0 $): esse generano un campo elettrostatico tale che $ \vec{F}^{(e)}_{1,2} = q_2 \vec{E}_1 = - \vec{F}^{(e)}_{2,1} = q_1 \vec{E}_2 $ (in accordo con la terza legge di Newton); dato che le cariche sono in moto, su di loro agisce anche un campo magnetico: si trova con la seconda regola della mano destra che $ \vec{B}_1 $ in $ q_2 $ ha direzione $ -\hat{e}_z $ e $ \vec{B}_2 $ in $ q_1 $ ha direzione $ \hat{e}_z $, quindi $ \vec{F}^{(m)}_{1,2} = q_2 \vec{v}_2 \times \vec{B}_1 \neq \pm \vec{F}^{(m)}_{2,1} = q_1 \vec{v}_1 \times \vec{B}_2 $ (la prima è diretta lungo $ \hat{e}_x $, la seconda lungo $ \vec{e}_y $). \\ 
 %
-Questa è un'apparente violazione della terza legge di Newton, e quindi della conservazione della quantità di moto: il problema viene risolto introducendo la quantità di moto del campo elettrico (non è un'introduzione ad hoc, ma può essere derivata dalle equazioni di Maxwell). \\ 
-Consideriamo unìonda elettromagnetica piana con polarizzazione lineare, definendo $ \hat{n} $ la direzione di oscillazione del campo elettrico e $ \hat{k} $ quella di propagazione dell'onda: possiamo dunque scrivere:
+Questa è un'apparente violazione della terza legge di Newton, e quindi della conservazione della quantità di moto: il problema viene risolto introducendo la quantità di moto del campo elettromagnetico (non è un'introduzione ad hoc, ma può essere derivata dalle equazioni di Maxwell). \\ 
+Consideriamo un'onda elettromagnetica piana con polarizzazione lineare, definendo $ \hat{n} $ la direzione di oscillazione del campo elettrico e $ \hat{k} $ quella di propagazione dell'onda: possiamo dunque scrivere:
 \begin{equation}
 	\vec{E} = E_0 \cos(\omega t - \sprod{k}{r}) \,\hat{n} \qquad \vec{B} = \frac{E_0}{c} \cos(\omega t - \sprod{k}{r}) \,\hat{k}\times\hat{n}
 	\label{eq:39}
@@ -374,9 +374,9 @@ Dunque se l'onda è piana e polarizzata linearmente il vettore di Poynting è di
 %
 Dal vettore di Poynting si dimostra che la densità di quantità di moto è $ \vec{g} = \frac{1}{c^2} \vec{S} $: per un'onda piana polarizzata linearmente $ \vec{g} = \frac{1}{c}u_{EM} \,\hat{k} $. \\ 
 Si noti che sia l'energia che la quantità di moto sono grandezze rapidamente variabili: per un'onda luminosa, le variazioni avvengono con frequenze dell'ordine di $ 10^{16}\,\text{Hz} $, mentre per quelle radio si ha comunque $ 10^3\,\text{Hz} $. \\ 
-Di conseguenza, un dispositivo che interagisca con un'onda elettromagnetica non sarà sensibile alle variazioni di densità di energia, ma alla densità di energia media $ \langle u_{EM} \rangle \equiv \int_0^T u_{EM}(t) \,dt $, con $ T $ periodo dell'onda. \\ 
+Di conseguenza, un dispositivo che interagisca con un'onda elettromagnetica non sarà sensibile alle variazioni di densità di energia, ma alla densità di energia media $ \langle u_{EM} \rangle \equiv \frac{1}{T} \int_0^T u_{EM}(t) \,dt $, con $ T $ periodo dell'onda. \\ 
 %
-Nel caso di un'onda piana, dato che $ \int_0^{2\pi} \cos^2 x\,dx = \frac{1}{2} $, si vede facilmente che:
+Nel caso di un'onda piana, dato che $ \frac{1}{2\pi} \int_0^{2\pi} \cos^2 x\,dx = \frac{1}{2} $, si vede facilmente che:
 \begin{equation}
 	\langle u_{EM} \rangle = \frac{1}{2} \epsilon_0 E_0^2 \quad\Longrightarrow\quad \langle \vec{S} \rangle = \frac{c}{2} \epsilon_0 E_0^2 \,\hat{k} \quad\Longrightarrow\quad \langle \vec{g} \rangle = \frac{1}{2c} \epsilon_0 E_0^2 \,\hat{k}
 	\label{eq:42}
@@ -478,7 +478,7 @@ Come ci aspetteremmo, se $ n_1 = n_2 $ l'onda è completamente trasmessa. \\
 %
 Se ora consideriamo l'intensità $ I = \frac{1}{2} \epsilon v E_0^2 $, abbiamo:
 \begin{equation}
-	I_{\inc} = \frac{1}{2} \epsilon_1 v_1 E_{0,\inc}^2 \qquad I_{\rif} = \frac{1}{2} \epsilon_1 v_1 \left( \frac{n_1 - n_2}{n_1 + n_2}\right)^2 \qquad I_{\tr} = \frac{1}{2} \epsilon_2 v_2 \left( \frac{2n_1}{n_1 + n_2} \right)^2
+	I_{\inc} = \frac{1}{2} \epsilon_1 v_1 E_{0,\inc}^2 \qquad I_{\rif} = \frac{1}{2} \epsilon_1 v_1 \left( \frac{n_1 - n_2}{n_1 + n_2}\right)^2 E_{0,\rif}^2 \qquad I_{\tr} = \frac{1}{2} \epsilon_2 v_2 \left( \frac{2n_1}{n_1 + n_2} \right)^2 E_{0,\tr}^2
 	\label{eq:58}
 \end{equation}
 Ricordando $ \epsilon = 1 / \mu v^2 $, è possibile definire i coefficienti di riflessione e trasmissione:
@@ -502,7 +502,7 @@ All'interfaccia tra le due regioni ($ z = 0 $), per il campo elettrico si ha la 
 \end{equation}
 che è equivalente a dire che le tre fasi devono essere uguali; tale condizione deve valere in ogni punto dello spazio, quindi anche nell'origine, e ad ogni tempo, quindi, ricordando che $ k = \frac{\omega}{v} $, otteniamo:
 \begin{equation}
-	\omega_{\inc} = \omega_{\rif} = \omega_{\tr} \equiv \omega \qquad\Longrightarrow\qquad k_{\inc} = k_{\rif} = \frac{v_2}{2_1} k_{\tr} = \frac{n_1}{n_2} k_{\tr}
+	\omega_{\inc} = \omega_{\rif} = \omega_{\tr} \equiv \omega \qquad\Longrightarrow\qquad k_{\inc} = k_{\rif} = \frac{v_2}{v_1} k_{\tr} = \frac{n_1}{n_2} k_{\tr}
 	\label{eq:62}
 \end{equation}
 L'uguaglianza delle fasi si riduce quindi a $ \vec{k}_{\inc}\cdot\vec{r} = \vec{k}_{\rif}\cdot\vec{r} = \vec{k}_{\tr}\cdot\vec{r} $, che sul piano $ z = 0 $ diventa:
@@ -520,7 +520,7 @@ Supponiamo per semplicità che la normale alla superficie sia $ \hat{e}_z $ ed i
 \begin{equation}
 	\begin{cases}
 		k_{\inc} \sin\theta_{\inc} = k_{\rif} \sin\theta_{\rif} \\ 
-		k_{\inc} \sin\theta_{\rif} = k_{\tr} \sin\theta_{\tr}
+		k_{\inc} \sin\theta_{\inc} = k_{\tr} \sin\theta_{\tr}
 	\end{cases}
 	\label{eq:64}
 \end{equation}
@@ -542,10 +542,10 @@ Se $ \vec{E} $ è sul piano d'incidenza, $ \vec{B} = \frac{1}{v} \hat{k}\times\v
 	\end{cases}
 	\quad\Longrightarrow\quad
 	\begin{cases}
-		\epsilon_1 (E_{0,\inc}\sin\theta_{\inc} + E_{0,\rif}\sin\theta_{\rif}) = \epsilon_2 E_{0,\tr}\sin\theta_{\tr} \\ 
+		\epsilon_1 (E_{0,\inc}\sin\theta_{\inc} - E_{0,\rif}\sin\theta_{\rif}) = \epsilon_2 E_{0,\tr}\sin\theta_{\tr} \\ 
 		B_z = 0 \\ 
 		E_{0,\inc} \cos\theta_{\inc} + E_{0,\rif} \cos\theta_{\rif} = E_{0,\tr} \cos\theta_{\tr} \\ 
-		\frac{1}{\mu_1 v_1}(E_{0,\inc} + E_{0,\rif}) = \frac{1}{\mu_2 v_2}E_{0,\tr}
+		\frac{1}{\mu_1 v_1}(E_{0,\inc} - E_{0,\rif}) = \frac{1}{\mu_2 v_2}E_{0,\tr}
 	\end{cases}
 	\label{eq:66}
 \end{equation}
