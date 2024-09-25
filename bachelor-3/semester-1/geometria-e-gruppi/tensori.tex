@@ -1,6 +1,114 @@
 \selectlanguage{italian}
 
-\section{Tensori}
+\section{Sistemi di coordinate e trasformazioni}
 
-Questa è una frase in italiano. \\ 
-Sembrerebbe funzionare.
+
+Le leggi fisiche sono equazioni che coinvolgono quantità invarianti rispetto a cambiamenti di sistemi di riferimento (RF): queste quantità sono espresse tramite tensori, oggetti che ubbidiscono a determinate leggi di trasformazione nel passaggio da un RF a un altro. \\ 
+I tensori sono generalmente delle funzioni spaziali, ovvero dipendono da set ordinati di coordinate spaziali (quantità misurabili sperimentalmente, dunque fisiche, non solo matematiche). Le coordinate spaziali designano un punto nello spaziotempo che, di per sé, è assoluto: utilizzando diversi sistemi di riferimento, però, esso sarà descritto da set di coordinate differenti, sebbene la sua esistenza sia slegata da essi.
+
+\begin{definition}
+	Dato uno spazio o una sua regione costituita da punti, descritti da $ n $-ple ordinate di variabili continue $ \{x^k\}_{k=1,\dots,n}\subset\R, n \in \N $, si definisce \textit{trasformazione ammissibile} un insieme di funzioni $ y^k = y^k (x^1, \dots, x^n), k = 1, \dots, n $ che soddisfino le seguenti condizioni:
+	\begin{enumerate}
+		\item $ y^k (x^1, \dots, x^n) $ è monodroma (single-valued) e continuamente derivabile $ \forall k = 1, \dots, n $;
+		\item $ \det \left[ \frac{\pa y^k}{\pa x^j} \right] \neq 0 $.
+	\end{enumerate}
+\end{definition}
+
+La condizione sulla Jacobiana è necessaria per garantire l'invertibilità della trasformazione. 
+
+\begin{definition}
+	Si definisce \textit{tensore} di rango $ r+s $ un oggetto con $ r+s $ componenti dipendenti dalle coordinate $ x^k $:
+	\begin{equation}
+		T^{\,i_1 \dots i_r}_{j_1 \dots j_s} = T^{\,i_1 \dots i_r}_{j_1 \dots j_s} (x^1, \dots, x^n)
+		\label{eq:1}
+	\end{equation}
+	dove ciascun indice varia in $ \{1, \dots, n\} $.
+\end{definition}
+Si adottano inoltre le seguenti convenzioni sugli indici:
+\begin{enumerate}
+	\item Einstein's summation convention: $ A^k B_k \equiv \sum_{k = 1}^{n} A^k B_k $;
+	\item range convention: ogni indice libero in un'equazione varia indipendentemente in $ \{1, \dots, n\} $, quindi se in un'equazione sono presenti $ N $ indici liberi, essa rappresenta $ n^N $ equazioni distinte;
+	\item in $ \frac{\pa y^k}{\pa x^j} $ l'indice $ j $ è considerato un petice.
+\end{enumerate}
+
+\begin{definition}
+	Data una trasformazione ammissibile delle coordinate ed un tensore, si definisce la \textit{trasformazione indotta} delle componenti del tensore:
+	\begin{equation}
+		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} \left[ T^{\,1 \dots 1}_{1 \dots 1} (x^1, \dots, x^n), \dots, T^{\,n \dots n}_{n \dots n} (x^1, \dots, x^n) \right]
+		\label{eq:2}
+	\end{equation}
+\end{definition}
+
+È possibile dimostrare i seguenti asserti:
+
+\begin{theorem}
+	Esiste un \textnormal{isomorfismo} tra una trasformazione di coordinate e la sua trasformazione indotta.
+\end{theorem}
+
+\begin{proposition}
+	Ogni trasformazione indotta è un isomorfismo.
+\end{proposition}
+
+In generale, i tensori sono definiti dalle loro leggi di trasformazione indotte, che possono essere lineari o non-lineari (ad esempio nel caso di RF curvilinei), ma sempre omogenee. \\
+Nel seguito verranno considerati solo tensori che sono funzioni $ \R^n \longrightarrow \R^{n^{r+s}} $.
+
+
+\subsection{Tensori assoluti}
+
+
+\begin{definition}
+	Si definisce \textit{scalare} un tensore $ \alpha (x^1, \dots, x^n) $ di rango $ 0 $ con legge di trasformazione:
+	\begin{equation}
+		\tilde{\alpha} (y^1, \dots, y^n) = \alpha (x^1, \dots, x^n)
+		\label{eq:3}
+	\end{equation}
+\end{definition}
+
+Il valore di un campo scalare in un punto dello spazio è (giustamente) indipendente dal RF.
+
+\begin{definition}
+	Si definisce \textit{vettore contravariante} un tensore $ a^k (x^1, \dots, x^n) $ di rango $ 1 $ con legge di trasformazione:
+	\begin{equation}
+		\tilde{a}^k (y^1, \dots, y^n) = \frac{\pa y^k}{\pa x^j} a^j (x^1, \dots, x^n)
+		\label{eq:4}
+	\end{equation}
+\end{definition}
+
+\begin{definition}
+	Si definisce \textit{vettore covariante} un tensore $ a_k (x^1, \dots, x^n) $ di rango $ 1 $ con legge di trasformazione:
+	\begin{equation}
+		\tilde{a}_k (y^1, \dots, y^n) = \frac{\pa x^j}{\pa y^k} a_j (x^1, \dots, x^n)
+		\label{eq:5}
+	\end{equation}
+\end{definition}
+
+Per ricavare le due leggi di trasformazione, va ricordato l'isomorfismo canonico tra uno spazio vettoriale $ V $ ed il suo duale $ V^* $: grazie ad esso, un generico vettore $ \mathbf{v} $ può essere espresso sia sulla base canonica $ \{\mathbf{b}_i\}_{i=1,\dots,n} $ di $ V $ come $ \mathbf{v} = v^i \mathbf{b}_i $, sia sulla base duale $ \{\mathbf{b}^i\}_{i=1,\dots,n} $ di $ V^* $ come $ \mathbf{v} = v_i \mathbf{b}^i $. \\ 
+%
+Considerando uno spazio euclideo con RF $ (x^1, \dots, x^n) $, la base canonica dello spazio in un punto $ \mathbf{r} $ è data da $ \mathbf{e}_i = \frac{\pa \mathbf{r}}{\pa x^i} $, dunque, dato che $ \mathbf{a} = a^j \mathbf{e}_j = \tilde{a}^k \tilde{\mathbf{e}}_k $:
+
+\begin{equation}
+	\mathbf{e}_j = \frac{\pa \mathbf{r}}{\pa x^j} = \frac{\pa y^k}{\pa x^j} \frac{\pa \mathbf{r}}{\pa y^k} = \frac{\pa y^k}{\pa x^j} \tilde{\mathbf{e}}_k \quad \Longrightarrow \quad \tilde{a}^k = \frac{\pa y^k}{\pa x^j} a^j
+	\label{eq:6}
+\end{equation}
+
+Se invece si esprime $ \mathbf{a} $ sulla base duale $ \mathbf{e}^i = \nabla x^i $, dato che $ \mathbf{a} = a_j \mathbf{e}^j = \tilde{a}_k \tilde{\mathbf{e}}^k $:
+
+\begin{equation}
+	\mathbf{e}^j = \frac{\pa x^j}{\pa \mathbf{r}} = \frac{\pa x^j}{\pa y^k} \frac{\pa y^k} {\pa \mathbf{r}} = \frac{\pa x^j}{\pa y^k} \tilde{\mathbf{e}}^k \quad \Longrightarrow \quad \tilde{a}_k = \frac{\pa x^j}{\pa y^k} a_j
+	\label{eq:7}
+\end{equation}
+Si può notare che la legge di trasformazione contravariante è quella del differenziale, mentre quela covariante è quella del gradiente. \\
+%
+È possibile generalizzare queste leggi di trasformazioni a tensori qualsiasi.
+
+\begin{definition}
+	Dato un tensore $ T^{\,i_1 \dots i_r}_{j_1 \dots j_s} (x^1, \dots, x^n) $ di rango $ r+s $, la sua legge di trasformazione è:
+	\begin{equation}
+		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \frac{\pa y^{i_1}}{\pa x^{k_1}} \dots \frac{\pa y^{i_r}}{\pa x^{k_r}} \frac{\pa x^{l_1}}{\pa y^{j_1}} \dots \frac{\pa x^{l_s}}{\pa y^{l_s}} T^{\,k_1 \dots k_r}_{l_1 \dots l_s} (x^1, \dots, x^n)
+		\label{eq:8}
+	\end{equation}
+\end{definition}
+
+\begin{example}
+	Un esempio interessante è il tensore di Kronecker, definito a partire dalla delta di Kronecker: $ \tilde{\delta}^i_j = \frac{\pa y^i}{\pa x^k} \frac{\pa x^l}{\pa y^j} \delta^k_l = \frac{\pa y^i}{\pa y^j} = \delta^i_l $, dunque è un tensore isotropico (indipendente dal RF).
+\end{example}

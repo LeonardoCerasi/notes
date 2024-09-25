@@ -1,82 +1,95 @@
-\usepackage[]{csvsimple}
-\usepackage{float}
-
-\usepackage{ragged2e}
-\usepackage[left=25mm, right=25mm, top=15mm]{geometry}
+% page layout
+\usepackage[left=15mm, right=15mm, top=25mm]{geometry}
 \geometry{a4paper}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{paralist}
-\usepackage{subfig} 
+
+% headers and foooters
 \usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+
+% no random page numbers
+\fancypagestyle{plain}{%
+  \fancyhf{}                          % clear all header and footer fields
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% custom headers and footers
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE,LO]{\chaptername\ \thechapter:\ \leftmark}
+\fancyfoot{}
+
+% no blank pages
+\let\cleardoublepage\clearpage
+% removes indentation
+\setlength{\parindent}{0pt}
+
+% math
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{mathtools}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{braket}
-\usepackage{gensymb}
-\usepackage{url}
-\usepackage{hyperref}
-\usepackage{csquotes}
-\usepackage{multicol}
-\usepackage{graphicx}
-\usepackage{wrapfig}
-\usepackage{caption}
 
+% custom environments
+\newtheoremstyle{theorem}{}{}{\slshape}{}{\bfseries}{.}{ }{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definizione}[section]
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Teorema}[section]
+
+\theoremstyle{theorem}
+\newtheorem{corollary}{Corollario}[theorem]
+
+\theoremstyle{theorem}
+\newtheorem{lemma}{Lemma}[section]
+
+\theoremstyle{theorem}
+\newtheorem{proposition}{Proposizione}[section]
+
+\theoremstyle{remark}
+\newtheorem{example}{Esempio}[section]
+
+% sectioning
+\usepackage{titlesec}
+
+% hyper-references
+\usepackage{hyperref}
+
+% extended integral symbols
 \usepackage{esint}
 
-\captionsetup{font=small}
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-\lhead{}\chead{}\rhead{}
-\lfoot{}\cfoot{\thepage}\rfoot{}
-\usepackage{sectsty}
-\usepackage[nottoc,notlof,notlot]{tocbibind}
-\usepackage[titles,subfigure]{tocloft}
-\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
-\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape}
+% add table of contents, index and bibliography to table of contents
+\usepackage{tocbibind}
 
-\let\oldsection\section% Store \section
-\renewcommand{\section}{% Update \section
-	\renewcommand{\theequation}{\thesection.\arabic{equation}}% Update equation number
-	\oldsection}% Regular \section
-\let\oldsubsection\subsection% Store \subsection
-\renewcommand{\subsection}{% Update \subsection
-	\renewcommand{\theequation}{\thesubsection.\arabic{equation}}% Update equation number
-	\oldsubsection}% Regular \subsection
-
+% custom math symbols
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\sgn}[1]{\text{sgn}\,#1}
-\newcommand{\vprod}[2]{\vec{#1}\times\vec{#2}}
-\newcommand{\sprod}[2]{\vec{#1}\cdot\vec{#2}}
-
-\newcommand{\g}{\text{g}}
-\newcommand{\m}{\text{m}}
-\newcommand{\cm}{\text{cm}}
-\newcommand{\mm}{\text{mm}}
-\newcommand{\s}{\text{s}}
-\newcommand{\N}{\text{N}}
-\newcommand{\Hz}{\text{Hz}}
-
-\newcommand{\E}{\mathcal{E}}
-
-\newcommand{\virgolette}[1]{``\text{#1}"}
-\newcommand{\tildetext}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
-
-\renewcommand{\arraystretch}{1.2}
-
-\addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
-\addto\captionsenglish{\renewcommand{\tablename}{Tab.}}
-
-\DeclareCaptionLabelFormat{andtable}{#1~#2  \&  \tablename~\thetable}
-
-\setlength{\parindent}{0pt}
-
-\newcommand{\dive}{\nabla\cdot}
-\newcommand{\rot}{\nabla\times}
-\newcommand{\lap}{\nabla^2}
 \newcommand{\pa}{\partial}
+
+% number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% custom chapter heading
+\titleformat{\chapter}[display]
+{\normalfont\bfseries}
+{\large\chaptertitlename \, \thechapter}
+{1ex}
+{\titlerule[1pt]
+\vspace{2ex}%
+\Huge}
+
+% frontmatters defaults
+\author{Leonardo Cerasi%
+	\thanks{\scriptsize\href{mailto:leonardo.cerasi@studenti.unimi.it}{leo.cerasi@pm.me}}\\
+	\small GitHub repository: \href{https://github.com/LeonardoCerasi/notes}{LeonardoCerasi/notes}}
+\date{}
