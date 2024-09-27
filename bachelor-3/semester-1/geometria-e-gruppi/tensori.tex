@@ -34,7 +34,7 @@ Si adottano inoltre le seguenti convenzioni sugli indici:
 \begin{definition}
 	Data una trasformazione ammissibile delle coordinate ed un tensore, si definisce la \textit{trasformazione indotta} delle componenti del tensore:
 	\begin{equation}
-		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} \left[ T^{\,1 \dots 1}_{1 \dots 1} (x^1, \dots, x^n), \dots, T^{\,n \dots n}_{n \dots n} (x^1, \dots, x^n) \right]
+		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} \left[ T^{1 \dots 1}_{1 \dots 1} (x^1, \dots, x^n), \dots, T^{\,n \dots n}_{n \dots n} (x^1, \dots, x^n) \right]
 		\label{eq:2}
 	\end{equation}
 \end{definition}
@@ -104,7 +104,7 @@ Si può notare che la legge di trasformazione contravariante è quella del diffe
 \begin{definition}
 	Dato un tensore $ T^{\,i_1 \dots i_r}_{j_1 \dots j_s} (x^1, \dots, x^n) $ di rango $ r+s $, la sua legge di trasformazione è:
 	\begin{equation}
-		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \frac{\pa y^{i_1}}{\pa x^{k_1}} \dots \frac{\pa y^{i_r}}{\pa x^{k_r}} \frac{\pa x^{l_1}}{\pa y^{j_1}} \dots \frac{\pa x^{l_s}}{\pa y^{l_s}} T^{\,k_1 \dots k_r}_{l_1 \dots l_s} (x^1, \dots, x^n)
+		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \frac{\pa y^{i_1}}{\pa x^{k_1}} \dots \frac{\pa y^{i_r}}{\pa x^{k_r}} \frac{\pa x^{l_1}}{\pa y^{j_1}} \dots \frac{\pa x^{l_s}}{\pa y^{l_s}} T^{k_1 \dots k_r}_{l_1 \dots l_s} (x^1, \dots, x^n)
 		\label{eq:8}
 	\end{equation}
 \end{definition}
@@ -112,3 +112,170 @@ Si può notare che la legge di trasformazione contravariante è quella del diffe
 \begin{example}
 	Un esempio interessante è il tensore di Kronecker, definito a partire dalla delta di Kronecker: $ \tilde{\delta}^i_j = \frac{\pa y^i}{\pa x^k} \frac{\pa x^l}{\pa y^j} \delta^k_l = \frac{\pa y^i}{\pa y^j} = \delta^i_l $, dunque è un tensore isotropico (indipendente dal RF).
 \end{example}
+
+\begin{example}
+	Un altro esempio di tensore è il campo elettrico, definito come il gradiente di un campo scalare (anche esso tensore di rango $ 0 $): $ \mathbf{E} = -\nabla\phi $, ovvero $ E_i = - \frac{\pa \phi}{\pa x^i} $.
+\end{example}
+
+\begin{example}
+	Un tensore di rango $ 2 $ può essere ottenuto, ad esempio, come prodotto diretto tra due tensori di rango $ 1 $: ad esempio $ \tens{T} = \mathbf{v} \otimes \mathbf{u} $, che può essere espresso in tre modi:
+	\begin{enumerate}
+		\item contravariante: $ \tens{T} = v^j \mathbf{e}_j \otimes u^k \mathbf{e}_k $, quindi $ T^{jk} = v^j u^k $;
+		\item covariante: $ \tens{T} = v_j \mathbf{e}^j \otimes u_k \mathbf{e}^k $, quindi $ T_{jk} = v_j u_k $;
+		\item mixed: $ \tens{T} = v_j \mathbf{e}^j \otimes u^k \mathbf{e}_k $, quindi $ T_j^k = v_j u^k $.
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	Anche il gradiente di un vettore è un tensore di rango $ 2 $, poiché può essere visto come prodotto diretto: $ \tens{T} = \nabla\mathbf{v} $, ovvero $ T^{\,i}_j = \frac{\pa v^i}{\pa x^j} $.
+\end{example}
+
+
+\subsection{Pseudotensori}
+
+
+Un particolare tipo di trasformazioni di coordinate sono le rotazioni in $ \R^3 $.
+
+\begin{definition}
+	Si definisce \textit{rotazione} un'isometria di $ \R^3 $ rappresentata da una matrice ortogonale $ \tens{R} \in \Ot \defeq \{\tens{R} \in \R^{3\times3} : \tens{R}^{\intercal}\tens{R} = \tens{R}\tens{R}^{\intercal} = \tens{I}_3 \} $.
+\end{definition}
+
+È necessario fare una distinzione tra due classi di rotazioni.
+
+\begin{definition}
+	Si definisce \textit{rotazione propria} una rotazione rappresentata da una matrice ortogonale $ \tens{R} \in \SOt \defeq \{\tens{R} \in \Ot : \det\tens{R} = +1 \} $.
+\end{definition}
+
+\begin{example}
+	Considerando un tensore di rango $ 2 $ definito come $ \tens{T} = \ve{v} \otimes \ve{u} $ ed una rotazione propria $ \tens{R} $: $ \tens{T} = T^i_j \ve{e}_i \otimes \ve{e}^j = \tilde{T}^i_j \tilde{\ve{e}}_i \otimes \tilde{\ve{e}}^j $, ma $ \ve{e}^j = \frac{\pa x^j}{\pa y^k} \tilde{\ve{e}}^k $, dunque $ \tilde{T}^i_j = \frac{\pa y^i}{\pa x^k} \frac{\pa x^l}{\pa y^j} T^k_l $; dato che il Jacobiano della trasformazione è proprio la matrice di rotazione $ \tens{R} $, si vede che le componenti contravarianti del tensore trasformano secondo $ \tens{R} $, mentre le componenti covarianti secondo $ \tens{R}^{-1} = \tens{R}^{\intercal} $.
+\end{example}
+
+\begin{definition}
+	Si definisce \textit{rotazione impropria} una rotazione rappresentata da una matrice ortogonale $ \tens{R} \in \Ot : \det\tens{R} = -1 $.
+\end{definition}
+
+Le rotazioni improprie sono rotazioni con l'inversione di un asse, dunque non conservano l'orientazione (handedness) dello spazio.
+
+\begin{definition}
+	Si definisce \textit{pseudotensore} di rango $ r+s $ un oggetto tensoriale di rango $ r+s $ che per effetto di una rotazione trasforma secondo:
+	\begin{equation}
+		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \left(\det\tens{R}\right)\, \frac{\pa y^{i_1}}{\pa x^{k_1}} \dots \frac{\pa y^{i_r}}{\pa x^{k_r}} \frac{\pa x^{l_1}}{\pa y^{j_1}} \dots \frac{\pa x^{l_s}}{\pa y^{l_s}} T^{k_1 \dots k_r}_{l_1 \dots l_s} (x^1, \dots, x^n)
+		\label{eq:9}
+	\end{equation}
+\end{definition}
+
+Uno pseudotensore acquista un segno $ - $ sotto rotazioni improprie. \\
+Lo pseduotensore per eccellenza è il tensore di Levi-Civita.
+
+\begin{definition}
+	Si definisce il tensore di Levi-Civita nel caso tridimensionale euclideo:
+	\begin{equation}
+		\epsilon_{ijk} = \epsilon^{ijk} = 
+		\begin{cases}
+			+1 &\quad (i,j,k) = \sigma_p(1,2,3) \\
+			-1 &\quad (i,j,k) = \sigma_d(1,2,3) \\
+			0  &\quad \text{altrimenti}
+		\end{cases}
+		\label{eq:10}
+	\end{equation}
+	dove $ \sigma_{p,d} $ sono delle permutazioni pari/dispari.
+\end{definition}
+
+È possibile dimostrare le seguenti proposizioni.
+
+\begin{proposition}\label{levi-civ-det}
+	Data $ \tens{A} \in \R^{3\times 3} $, si ha $ \left(\det\tens{A}\right)\, \epsilon_{lmn} = A_{li} A_{mj} A_{nk} \epsilon^{ijk} $.
+\end{proposition}
+
+\begin{proposition}
+	$ \epsilon_{ijk}\epsilon_{klm} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}.$
+\end{proposition}
+
+Dalla prop. \ref{levi-civ-det} è facile ricavare la legge di trasformazione del tensore di Levi-Civita:
+\begin{equation}
+	\tilde{\epsilon}_{ijk} = \frac{\pa x^l}{\pa y^i} \frac{\pa x^m}{\pa y^j} \frac{\pa x^n}{\pa y^k} \epsilon_{lmn} = \left(\det\tens{R}^{-1}\right) \epsilon_{ijk} = \left(\det\tens{R}\right) \epsilon_{ijk}
+	\label{eq:11}
+\end{equation}
+Quindi sotto rotazioni improprie il tensore di Levi-Civita cambia di segno.
+
+\begin{example}
+	Dato che $ B^i = \left(\nabla\times\ve{A}\right)^i = \epsilon^{ijk}\frac{\pa A_k}{\pa x^j}$, si vede che, per effetto di rotazioni improprie, il campo magnetico cambia di segno: ciò è legato al cambiamento di handedness dello spazio.
+\end{example}
+
+
+\subsection{Tensore Metrico}
+
+
+Mentre nel caso euclideo la base canonica $ \ve{e}_j = \frac{\pa \ve{r}}{\pa x^j} $ ($ \ve{e}_j $ tangente alla $ j $-esima linea coordinata) coincide con la base duale $ \ve{e}^j = \nabla x^j $ ($ \ve{e}^j $ ortogonale alla $ j $-esima linea coordinata), ciò non è valido in generale.\\
+In RF generici, per passare da una base alla sua duale è necessario introdurre un oggetto tensoriale detto tensore metrico.
+
+\begin{definition}
+	Data una base $ \{\ve{e}_j\}_{j=1,\dots,n} $, si definisce il \textit{tensore metrico} in tale base come $ g_{ij} \defeq \ve{e}_i \cdot \ve{e}_j \, \forall i,j = 1,\dots,n$.
+\end{definition}
+
+Ovviamente è possibile specificare le componenti controvarianti $ g^{ij} $, al posto di quelle covarianti. \\
+Nel caso in cui i vettori base sono mutualmente ortogonali, il tensore metrico sarà rappresentato da una matrice diagonale: come negli spazi vettoriali si può sempre ottenere una base ortonormale da una base non-ortonormale (algoritmo di Gram-Schmidt), così si può diagonalizzare anche il tensore metrico.
+
+\begin{proposition}
+	$ ds^2 = g_{ij} dx^i dx^j $.
+\end{proposition}
+\begin{proof}
+	$ ds^2 \equiv d\ve{r} \cdot d\ve{r} = dx^i \ve{e}_i \cdot dx^j \ve{e}_j = g_{ij} dx^i dx^j $.
+\end{proof}
+
+\begin{proposition}
+	Nel caso tridimensionale $ dV = \sqrt{\det\tens{g}}\, dx^1 dx^2 dx^3 $.
+\end{proposition}
+\begin{proof}
+	Considerando una base già ortogonalizzata tale che $ g_{ij} = h_i^2 \delta_{ij} $, dove $ h_i $ è detto fattore scala, abbiamo $ ds^2 = h_i^2 (dx^i)^2 $ (concorde col fatto che $ d\ve{r} = \frac{\pa \ve{r}}{\pa x^j} dx^j = h_j dx^j \hat{\ve{e}}_j $ per definizione di $ \hat{\ve{e}}_j $); per definizione $ dV = \abs{dx^1\ve{e}_1 \cdot (dx^2\ve{e}_2 \times dx^3\ve{e}_3)} = h_1 h_2 h_3 dx^1 dx^2 dx^3 \hat{\ve{e}}_1 \cdot (\hat{\ve{e}}_2 \times \hat{\ve{e}}_3) $, ma la base è ortogonale e per il tensore metrico si ha $ \det\tens{g} = h_1^2 h_2^2 h_3^2 $, dunque $ dV = \sqrt{\det\tens{g}}\, dx^1 dx^2 dx^3 $.
+\end{proof}
+
+Il tensore metrico è dunque fondamentale per il calcolo di distanze, aree, volumi, etc., ma ha anche un'altra importante funzione: passare dalle componenti covarianti a quelle contravarianti e viceversa.\\
+Il prodotto scalare può essere espresso in vari modi: $ \ve{a}\cdot\ve{b} = a_i b^i = a^i b_i = g_{ij} a^i b^j = g^{ij} a_i b_j $, dunque si notano due importanti identità:
+
+\begin{equation}
+	\begin{split}
+		g_{ij} a^i &= a_j \\
+		g^{ij} a_i &= a^j
+	\end{split}
+	\label{eq:12}
+\end{equation}
+
+È dunque possibile passare da una base al suo duale mediante contrazione col tensore metrico.
+
+\begin{proposition}
+	$ \left[g^{ij}\right] = \left[g_{ij}\right]^{-1} $.
+\end{proposition}
+\begin{proof}
+	$ a^i = g^{ij} a_j = g^{ij} g_{jk} a^k $, dunque $ g^{ij} g_{jk} = \delta^i_k $, ovvero $ \left[g^{ij}\right]\left[g_{ij}\right] = \tens{I}_n $.
+\end{proof}
+
+Da questa dimostrazione si nota che $ g^i_j = \delta^i_j $.\\
+Data la relazione di passaggio tra componenti covarianti e contravarianti, è possibile enunciare in maniera generica la legge di trasformazione di un tensore.
+
+\begin{definition}
+	Dato un tensore $ T^{\,i_1 \dots i_r}_{j_1 \dots j_s} (x^1, \dots, x^n) $ di rango $ r+s $, la sua legge di trasformazione è:
+	\begin{equation}
+		\tilde{T}^{\,i_1 \dots i_r}_{j_1 \dots j_s} (y^1, \dots, y^n) = \det\left[\frac{\pa x}{\pa y}\right]^w \frac{\pa y^{i_1}}{\pa x^{k_1}} \dots \frac{\pa y^{i_r}}{\pa x^{k_r}} \frac{\pa x^{l_1}}{\pa y^{j_1}} \dots \frac{\pa x^{l_s}}{\pa y^{l_s}} T^{k_1 \dots k_r}_{l_1 \dots l_s} (x^1, \dots, x^n)
+		\label{eq:13}
+	\end{equation}
+	dove in base al valore di $ w $ si parla di:
+	\begin{itemize}
+		\item $ w = 0 $: tensore assoluto;
+		\item $ w = -1 $: tensore relativo (o pseudotensore);
+		\item $ w = +1 $: densità tensoriale.
+	\end{itemize}
+\end{definition}
+
+Si può notare che $ \det\left[\frac{\pa x}{\pa y}\right] = \frac{1}{\det\tens{J}} $, dove $ \tens{J} $ è il Jacobiano della trasformazione.
+
+
+
+
+
+
+
+
+
+
+
