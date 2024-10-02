@@ -1,0 +1,136 @@
+\selectlanguage{italian}
+
+\section{Spazio prodotto diretto}
+
+Per definire formalmente i sistemi quantistici in più dimensioni, è necessario definire prima il prodotto diretto tra spazi di Hilbert.
+
+\begin{definition}
+	Dati due spazi di Hilbert $ \hilb $ e $ \mathscr{K} $ con basi $ \{\ket{e_i}\} $ e $ \{\ket{\tilde{e}_j}\} $, si definisce il loro prodotto diretto come $ \hilb \otimes \mathscr{K} \defeq \{ \ket{\psi} = \sum_{i,j} c_{ij} \ket{e_i} \otimes \ket{\tilde{e}_j} \} $. In questo spazio si definisce il prodotto scalare tra due vettori $ \ket{\psi_1} = \ket{e_{i_1}}\otimes\ket{\tilde{e}_{j_1}} $ e $ \ket{\psi_2} = \ket{e_{i_2}}\otimes\ket{\tilde{e}_{j_2}} $ come $ \braket{\psi_1 | \psi_2} = \braket{e_{i_1} | e_{i_2}}\braket{\tilde{e}_{j_1} | \tilde{e}_{j_2}} $.
+\end{definition}
+
+Per semplificare la scrittura, si adotta la notazione $ \ket{e_i}\otimes\ket{e_j} \equiv \ket{e_i e_j} $ (o si sottintende $ \otimes $).\\
+Si noti che osservabili relative a spazi diversi sono sempre compatibili.\\
+In generale, il generico $ \ket{\psi}\in\hilb\otimes\mathscr{K} $ non è scrivibile come prodotto diretto $ \ket{\psi} = \ket{\phi}\otimes\ket{\tilde{\phi}} $, con $ \ket{\phi}\in\hilb $ e $ \ket{\tilde{\phi}}\in\mathscr{K} $, poiché in generale non è detto che $ c_{ij} $ sia fattorizzabile in $ \alpha_i $ e $ \tilde{\alpha}_j $: in questo caso si dice che lo stato è entangled.
+
+\begin{definition}
+	Uno stato $ \ket{\psi}\in\hilb\otimes\mathscr{K} $ si dice entangled se non è fattorizzabile.
+\end{definition}
+
+\begin{example}
+	Dati due qubit, uno stato entangled è $ \ket{\psi} = \frac{1}{\sqrt{2}} \left(\ket{01} + \ket{10}\right) $, dato che il generico stato fattorizzabile è $ \left(a\ket{0} + b\ket{1}\right)\otimes\left(c\ket{0} + d\ket{1}\right) = ac\ket{00} + ad\ket{01} + bc\ket{10} + bd\ket{11} $.
+\end{example}
+
+La probabilità $ P_{ij} = \abs{c_{ij}}^2 $ è detta probabilità congiunta: in generale essa non è il prodotto delle probabilità dei singoli eventi per i fenomeni di interferenza quantistica, i quali rendono tale probabilità dipendente dallo stato dell'intero sistema.
+
+\section{Sistemi multidimensionali}
+
+Per generalizzare la meccanica quantistica in $ d $ dimensioni, si introduce l'operatore posizione $ \hat{\ve{x}} $:
+\begin{equation}
+	\hat{\ve{x}} \defeq
+	\begin{pmatrix}
+		\hat{x}_1 \\
+		\vdots \\
+		\hat{x}_d
+	\end{pmatrix}
+	\label{eq:1}
+\end{equation}
+Ciascuna componente di questo vettore è un operatore hermitiano che agisce su uno spazio di Hilbert, mentre il vettore $ \hat{\ve{x}} $ agisce sul loro prodotto diretto $ \hilb \defeq \hilb_1 \otimes \dots \otimes \hilb_d $. Su ciascuno spazio $ \hilb_j $ viene definita la base delle posizioni da $ \hat{x}_j \ket{x_j} = x_j \ket{x_j} $, dunque la base delle posizioni in $ \hilb $ sarà $ \ket{\ve{x}} \defeq \ket{x_1} \otimes \dots \otimes \ket{x_d} $: data $ \ket{\psi} \in \hilb $, la sua rappresentazione sulla base delle posizioni è $ \braket{\ve{x} | \psi} \equiv \psi(\ve{x}) $, con $ \psi : \R^d \rightarrow \C $, il cui modulo quadro dà una densità di di probabilità $ d $-dimensionale $ dP_{\ve{x}} = \abs{\psi(\ve{x})}^2 d^d\ve{x} $.\\
+In questo caso, l'entanglement consiste nel fatto che, in generale, $ \psi(\ve{x}) \neq \psi_1(x_1) \dots \psi_d(x_d) $.\\
+Tale formalismo è generalizzabile al caso di $ n $ corpi in $ d $ dimensioni, nel qual caso si ha uno spazio prodotto diretto di $ nd $ spazi di Hilbert.
+
+\begin{example}
+	Nel caso di $ 2 $ corpi in $ 3 $ dimensioni, si ha:
+	\begin{equation*}
+		\hat{\ve{x}} =
+		\begin{pmatrix}
+			\hat{x}_{1,1} \\
+			\hat{x}_{1,2} \\
+			\hat{x}_{1,3} \\
+			\hat{x}_{2,1} \\
+			\hat{x}_{2,2} \\
+			\hat{x}_{2,3} \\
+		\end{pmatrix}
+	\end{equation*}
+	In questo sistema, la funzione d'onda è $ \braket{\ve{x}_1 \ve{x}_2 | \psi} = \psi(\ve{x}_1, \ve{x}_2) $.
+\end{example}
+
+\begin{equation}
+	\braket{\ve{x}' | \ve{x}} = \delta^{(d)}(\ve{x} - \ve{x}')
+	\label{eq:2}
+\end{equation}
+
+La $ \delta^{(d)} $ è il prodotto di $ d $ delte di Dirac ed è definita da $ \int_{\R^d} d^d\ve{x} \, \delta^{(d)}(\ve{x} - \ve{x}') f(\ve{x}) = f(\ve{x}') $ come distribuzione.
+
+\subsection{Coordinate cartesiane}
+
+Analogamente al caso monodimensionale, per definite l'operatore impulso si considera una traslazione spaziale; le componenti del vettore operatore impulso $ \hat{\ve{p}} $ sulla base delle posizioni sono definite da:
+
+\begin{equation}
+  \braket{\ve{x} | \hat{p}_j | \psi} = - i\hbar \frac{\pa}{\pa x_j} \psi(\ve{x})
+	\label{eq:3}
+\end{equation}
+In forma vettoriale, è possibile scrivere:
+\begin{equation}
+	\hat{\ve{p}} = -i\hbar\nabla
+	\label{eq:4}
+\end{equation}
+
+A questo punto, è facile definite le autofunzioni dell'impulso tali per cui $ \hat{\ve{p}}\ket{\ve{k}} = \hbar \ve{k}\ket{\ve{k}} $:
+
+\begin{equation}
+	\braket{\ve{x} | \ve{k}} = \frac{1}{(2\pi)^{d/2}} e^{i \ve{k}\cdot\ve{x}} \equiv \psi_{\ve{k}}(\ve{x})
+	\label{eq:5}
+\end{equation}
+
+Il fatto che operatori su spazi diversi commutino tra loro implica che:
+
+\begin{equation}
+	\left[ \hat{p}_j, \hat{p}_k \right] = 0 \quad \forall j,k = 1, \dots, d
+	\label{eq:6}
+\end{equation}
+
+Dal punto di vista matematico, questo è ovvio per il lemma di Schwarz (assumendo una well-behaved $ \psi $), mentre da quello fisico ciò esprime il fatto che traslazioni lungo assi diversi commutano tra loro: ciò non è scontato, infatti ad esempio le rotazioni rispetto ad assi diversi non commutano (dunque le componenti del momento angolare non commuteranno).\\
+%
+È facile vedere che $ \hat{\ve{p}}^2 = -\hbar^2 \lap $, dunque è possibile definire l'Hamiltoniana del sistema (e con essa la sua evoluzione temporale):
+
+\begin{equation}
+	\mathcal{H} = - \frac{\hbar^2}{2m} \lap + V(\ve{x})
+	\label{eq:7}
+\end{equation}
+
+Ricordando che $ \hat{\mathcal{H}}\ket{\psi} = E\ket{\psi} $, si ottiene l'equazione di Schrödinger sulla base delle coordinate:
+\begin{equation}
+	- \frac{\hbar^2}{2m} \lap \psi(\ve{x}) + V(\ve{x}) \psi(\ve{x}) = E \psi(\ve{x})
+	\label{eq:8}
+\end{equation}
+
+\section{Separabilità}
+
+Nel caso di sistemi non-entangled, è possibile separare il problema multidimensionale in $ d $ problemi monodimensionali e scrivere la soluzione come prodotto delle soluzioni dei problemi ridotti.
+
+\subsection{Problemi separabili in coordinate cartesiane}
+
+\begin{proposition}
+	In coordinate cartesiane, condizione sufficiente affinché il problema sia separabile è che:
+	\begin{equation}
+		V(\ve{x}) = V_1(x_1) + \dots + V_d(x_d)
+		\label{eq:9}
+	\end{equation}
+\end{proposition}
+
+In tal caso, l'Hamiltoniana del sistema è somma di $ d $ sotto-Hamiltoniane (e di conseguenza lo è anche l'evoluzione temporale):
+
+\begin{equation}
+	\hat{\mathcal{H}}_j = \frac{\hat{p}_j^2}{2m} + \hat{V}(x_j)
+	\label{eq:10}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
