@@ -121,9 +121,215 @@ Nel caso di sistemi non-entangled, è possibile separare il problema multidimens
 In tal caso, l'Hamiltoniana del sistema è somma di $ d $ sotto-Hamiltoniane (e di conseguenza lo è anche l'evoluzione temporale):
 
 \begin{equation}
-	\hat{\mathcal{H}}_j = \frac{\hat{p}_j^2}{2m} + \hat{V}(x_j)
+	\mathcal{H}_j = \frac{\hat{p}_j^2}{2m} + \hat{V}(\hat{x}_j)
 	\label{eq:10}
 \end{equation}
+
+dunque la determinazione dello spettro dell'Hamiltoniana si riduce a $ d $ problemi unidimensionali.
+
+\begin{proposition}\label{ham-sep-cart}
+	Data un'Hamiltoniana separabile $ \mathcal{H} $, detti $ \braket{x_j | \psi_{k_j}} = \psi_{k_j}(x_j) $ gli autostati della $ j $-esima sotto-Hamiltoniana $ \mathcal{H}_j \ket{\psi_{k_j}} = E_{k_j} \ket{\psi_{k_j}} $, sono autostati di $ \mathcal{H} $ gli stati prodotto:
+	\begin{equation}
+		\braket{\ve{x} | \psi_{k_1 \dots k_d}} = \psi_{k_1 \dots k_d} (\ve{x}) \equiv \psi_{k_1}(x_1) \dots \psi_{k_d}(x_d)
+		\label{eq:11}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Si vede facilmente che:
+	\begin{equation*}
+		\begin{split}
+			\braket{\ve{x} | \mathcal{H} | \psi_{k_1 \dots k_d}}
+			&= - \frac{\hbar^2}{2m} \frac{\pa^2 \psi_{k_1}(x_1)}{\pa x_1^2} \psi_{k_2}(x_2) \dots \psi_{k_d} (x_d) + V_1(x_1) \psi_{k_1}(x_1) \psi_{k_2}(x_2) \dots \psi_{k_d}(x_d) +\\
+			& \vdots\\
+			& - \frac{\hbar^2}{2m} \frac{\pa^2 \psi_{k_d}(x_d)}{\pa x_d^2} \psi_{k_1}(x_1) \dots \psi_{k_{d-1}} (x_{d-1}) + V_d(x_d) \psi_{k_d}(x_d) \psi_{k_1}(x_1) \dots \psi_{k_{d-1}}(x_{d-1})\\
+			&= E_{k_1} \psi_{k_1}(x_1) \dots \psi_{k_d}(x_d) + \dots + E_{k_d} \psi_{k_1}(x_1) \dots \psi_{k_d}(x_d)\\
+			&= E_{k_1 \dots k_d} \psi_{k_1 \dots k_d}(\ve{x})
+		\end{split}
+	\end{equation*}
+	dove è stata definita $ E_{k_1 \dots k_d} \equiv E_{k_1} + \dots + E_{k_d} $.
+\end{proof}
+
+\subsection{Hamiltoniane separabili}
+
+Si può vedere che, per un'Hamiltoniana separabile, le autofunzioni \ref{eq:11} sono le più generali.\\
+Innanzitutto, il commutatore canonico in $ d $ dimensioni si generalizza come:
+
+\begin{equation}
+	\left[\hat{x}_j, \hat{p}_k\right] = i\hbar \delta_{jk} \qquad \left[\hat{x}_j, \hat{x}_k\right] = 0 \qquad \left[\hat{p}_j, \hat{p}_k\right] = 0
+	\label{eq:12}
+\end{equation}
+
+Da ciò segue che le Hamiltoniane \ref{eq:10} commutano tra loro, dunque sono diagonalizzabili simultaneamente e gli autovalori della loro somma sono la somma dei loro autovalori: di conseguenza, gli autostati di dell'Hamiltoniana del sistema sono tutti e soli quelli trovati nella Prop. \ref{ham-sep-cart}.\\
+%
+Questo argomento è facilmente generalizzabile: si consideri un'Hamiltoniana generica $ \mathcal{H} $ che è possibile separare come somma di Hamiltoniane commutanti tra loro:
+
+\begin{equation}
+	\mathcal{H} = \mathcal{H}_1 + \dots + \mathcal{H}_d \qquad \left[\mathcal{H}_j, \mathcal{H}_k\right] = 0
+	\label{eq:13}
+\end{equation}
+
+Le $ \mathcal{H}_j $ sono allora diagonalizzabili simultaneamente:
+
+\begin{equation}
+	\mathcal{H}_j \ket{k_j} = E_{k_j} \ket{k_j}
+	\label{eq:14}
+\end{equation}
+
+e tali autostati formano una base per gli autostati di $ \mathcal{H} $:
+
+\begin{equation}
+	\ket{k_1 \dots k_d} = \ket{k_1} \otimes \dots \otimes \ket{k_d}
+	\label{eq:15}
+\end{equation}
+
+mentre i suoi autostati sono:
+
+\begin{equation}
+	E_{k_1 \dots k_d} = E_{k_1} + \dots + E_{k_d}
+	\label{eq:16}
+\end{equation}
+
+\begin{example}
+	Un esempio tipico di problema tridimensionale separabile è la buca parallelepipedale di potenziale:
+	\begin{equation*}
+		V_j(x_j) = 
+		\begin{cases}
+			0 & \quad \abs{x_j} < a_j\\
+			\infty & \quad \abs{x_j} \ge a_j
+		\end{cases}
+	\end{equation*}
+	Ricordando la forma esplicita delle autofunzioni:
+	\begin{equation*}
+		\braket{x_j | \psi_{n_j}} =
+		\begin{cases}
+			A_{n_j} \cos\left(k_{n_j} x_j\right) & \quad n_j = 2n + 1\\
+			B_{n_j} \sin\left(k_{n_j} x_j\right) & \quad n_j = 2n\\
+		\end{cases}
+		\qquad\qquad k_{n_j} = \frac{n_j \pi}{2 a_j}
+	\end{equation*}
+	è facile ricavare lo spettro dell'Hamiltoniana:
+	\begin{equation*}
+		E_{n_1 n_2 n_3} = \frac{\hbar^2}{2m} \left(k_{n_1}^2 + k_{n_2}^2 + k_{n_3}^2\right) = \frac{\hbar^2 \pi^2}{8m} \left(\frac{n_1^2}{a_1^2} + \frac{n_2^2}{a_2^2} + \frac{n_3^2}{a_3^2}\right)
+	\end{equation*}
+	Se i valori degli $ a_j $ sono commensurabili, è possibile che lo spettro presenti delle degenerazioni: ad esempio, se si considerano $ a_1 = a_2 = a_3 \equiv a $, lo stato fondamentale $ E_{111} $ non presenta degenerazioni, ma già il primo stato eccitato è triplamente degenere: $ E_{211} = E_{121} = E_{112} $.
+\end{example}
+
+\begin{example}
+	Un esempio di particolare importanza è l'oscillatore armonico tridimensionale: con lo stesso ragionamento di prima, si trova lo spettro:
+	\begin{equation*}
+		E_{n_1 n_1 n_3} = \hbar \left(n_1 \omega_1 + n_2 \omega_2 + n_3 \omega_3 + \frac{1}{2} \left(\omega_1 + \omega_2 + \omega_3\right)\right)
+	\end{equation*}
+	Nel caso in cui $ \omega_1 = \omega_2 = \omega_3 \equiv \omega $, si ha un potenziale a simmetria sferica $ \hat{V}(\hat{\ve{x}}) = \frac{1}{2} m \omega^2 \hat{\ve{x}}^2 $ e lo spettro diventa:
+	\begin{equation*}
+		E_{n_1 n_2 n_3} = \hbar \omega \left(n_1 + n_2 + n_3 + \frac{3}{2}\right) \equiv \hbar \omega \left(N + \frac{3}{2}\right)
+	\end{equation*}
+	È possibile calcolare la degenerazione dell'$ N $-esimo stato eccitato: $ n_1 $ può essere scelto in $ N + 1 $ modi, quindi $ n_2 $ può essere scelto in $ N + 1 - n_1 $ e, una volta scelti $ n_1 $ ed $ n_2 $, $ n_3 $ è fissato, dunque la degenerazione $ d(N) $ è:
+	\begin{equation*}
+		d(N) = \displaystyle\sum_{n_1 = 0}^{N} (N + 1 - n_1) = (N + 1)^2 - \frac{1}{2} N (N + 1) = \frac{1}{2} (N + 1) (N + 2)
+	\end{equation*}
+\end{example}
+
+\section{Problema dei due corpi quantistico}
+
+Il problema dei due corpi è un sistema in cui due corpi interagiscono tramite un potenziale che dipende solo dalla loro separazione:
+
+\begin{equation}
+	\mathcal{H} = \frac{\hat{\ve{p}}_1^2}{2m_1} + \frac{\hat{\ve{p}}_2^2}{2m_2} + \hat{V}(\hat{\ve{x}}_1 - \hat{\ve{x}}_2)
+	\label{eq:17}
+\end{equation}
+
+Le variabili canoniche soddisfano la relazione di commutazione:
+
+\begin{equation}
+	\left[\hat{x}_{j,a}, \hat{p}_{k,b}\right] = i\hbar \delta_{jk} \delta_{ab} \qquad \left[\hat{x}_{j,a}, \hat{x}_{k,b}\right] = 0 \qquad \left[\hat{p}_{j,a}, \hat{p}_{k,b}\right] = 0
+	\label{eq:18}
+\end{equation}
+
+dove $ a,b = 1,2 $ e $ j,k = 1,2,3 $.\\
+%
+Il problema è separabile definendo le coordinate relative e quelle del baricentro:
+
+\begin{equation}
+	\begin{split}
+		\hat{\ve{r}} &\defeq \hat{\ve{x}}_1 - \hat{\ve{x}}_2\\
+		\hat{\ve{R}} &\defeq \frac{m_1 \hat{\ve{x}}_1 + m_2 \hat{\ve{x}}_2}{m_1 + m_2}
+	\end{split}
+	\label{eq:19}
+\end{equation}
+
+A queste vanno associate i rispettivi impulsi congiunti:
+
+\begin{equation}
+	\begin{split}
+		\hat{\ve{p}} &\defeq \frac{m_2 \hat{\ve{p}}_1 - m_1 \hat{\ve{p}}_2}{m_1 + m_2}\\
+		\hat{\ve{P}} &\defeq \hat{\ve{p}}_1 + \hat{\ve{p}}_2
+	\end{split}
+	\label{eq:20}
+\end{equation}
+
+È pura algebra verificare che le variabili così definite soddisfino le relazioni di commutazione canoniche.\\
+È altrettanto facile verificare che l'Hamiltoniana si può scrivere come:
+
+\begin{equation}
+	\mathcal{H} = \frac{\hat{\ve{P}}^2}{2M} + \frac{\hat{\ve{p}}^2}{2\mu} + \hat{V}(\hat{\ve{r}})
+	\label{eq:21}
+\end{equation}
+
+dove sono state definite la massa totale $ M \equiv m_1 + m_2 $ e quella ridotta $ \mu^{-1} = m_1^{-1} + m_2^{-1} $.\\
+Questa Hamiltoniana è manifestamente separabile come $ \mathcal{H} = \mathcal{H}_B(\hat{\ve{R}}, \hat{\ve{P}}) + \mathcal{H}_r(\hat{\ve{r}}, \hat{\ve{p}}) $:
+
+\begin{equation}
+	\begin{split}
+		\mathcal{H}_B(\hat{\ve{R}}, \hat{\ve{P}}) &= \frac{\hat{\ve{P}}^2}{2M}\\
+		\mathcal{H}_r(\hat{\ve{r}}, \hat{\ve{p}}) &= \frac{\hat{\ve{p}}^2}{2\mu} + \hat{V}(\hat{\ve{r}})
+	\end{split}
+	\label{eq:22}
+	\qquad\qquad \left[\mathcal{H}_B, \mathcal{H}_r\right] = 0
+\end{equation}
+
+Lo spettro è facilmente determinabile poiché sono due problemi unidimensionali.\\
+È importante capire che la scelta di variabili canoniche trasformate non è casuale, ma dettata dalla separabilità del termine potenziale, che fissa $ \hat{\ve{r}} $, dalle relazioni di commutazione, che per ogni scelta di $ \hat{\ve{R}} $ fissano gli impulsi coniugati, e dalla separabilità del termine cinetico che va a fissare di conseguenza $ \hat{\ve{R}} $ poiché rende univoca la scelta degli impulsi.
+
+\subsection{Trasformazioni lineari di coordinate}
+
+È possibile definire una generica trasformazione lineare di coordinate tramite una matrice di trasformazione $ \tens{M}\in\R^{d\times d} $:
+
+\begin{equation}
+	\hat{\ve{x}}' = \tens{M} \hat{\ve{x}}
+	\label{eq:23}
+\end{equation}
+
+ovvero in componenti $ \hat{x}'_j = \sum_{k = 1}^{d} M_{jk} \hat{x}_k $.
+
+\begin{proposition}
+	Data una trasformazione lineare di coordiante $ \tens{M} $, gli impulsi coniugati trasformano secondo:
+	\begin{equation}
+		\hat{\ve{p}}'^{\,\intercal} = \hat{\ve{p}}^{\intercal} \tens{M}^{-1}
+		\label{eq:24}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Considerando $ \hat{\ve{p}}'^{\,\intercal} = \hat{\ve{p}}^{\intercal} \tens{N} $, in componenti $ \hat{p}'_j = \sum_{k = 1}^{d} \hat{p}_k N_{kj} $, dalle relazioni di commutazione canoniche si ha:
+	\begin{equation*}
+		\left[\hat{x}'_j, \hat{p}'_k\right] = \sum_{m = 1}^{d} \sum_{n = 1}^{d} M_{jm} N_{nk} \underbrace{\left[\hat{x}_m, \hat{p}_n\right]}_{= i \hbar \delta_{mn}} = i\hbar \sum_{n = 1}^{d} M_{jn} N_{nk} \,\dot{=}\, i\hbar \delta_{jk} \quad \Longleftrightarrow \quad \tens{M}\tens{N} = \tens{I}_d
+	\end{equation*}
+\end{proof}
+
+È possibile ricavare la trasformazione \ref{eq:24} anche partendo dai principi, costruendo gli impulsi coniugati come generatori di traslazioni spaziali. Nella rappresentazione delle coordinate:
+
+\begin{equation}
+	\braket{\hat{\ve{x}} | \hat{\ve{p}} | \hat{\ve{x}}'} = - i\hbar \nabla_{\ve{x}}\delta(\ve{x} - \ve{x}')
+	\label{eq:25}
+\end{equation}
+
+Con abuso di notazione si può scrivere $ \hat{p}_j = -i\hbar\pa_j $, dunque la relazione di trasformazione è data dalla derivata composta:
+
+\begin{equation}
+	\hat{p}'_j = -i\hbar \frac{\pa }{\pa x'_j} = -i\hbar \displaystyle\sum_{k = 1}^{d} \frac{\pa x_k}{\pa x'_j} \frac{\pa}{\pa x_k}
+	\label{eq:26}
+\end{equation}
+
+Dall'Eq. \ref{eq:23} si ha $ \frac{\pa x'_j}{\pa x_k} = M_{jk} $, dunque $ \frac{\pa x_k}{\pa x'_j} = M^{-1}_{kj} $, ovvero l'Eq. \ref{eq:24}.
 
 
 

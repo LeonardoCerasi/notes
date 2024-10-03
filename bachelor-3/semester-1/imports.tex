@@ -2,6 +2,9 @@
 \usepackage[left=15mm, right=15mm, top=25mm]{geometry}
 \geometry{a4paper}
 
+% images
+\usepackage{graphicx}
+
 % headers and foooters
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
@@ -18,8 +21,15 @@
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[LE,RO]{\thepage}
-\fancyhead[RE,LO]{\chaptername\ \thechapter:\ \leftmark}
+\fancyhead[LO]{\chaptername\ \thechapter:\ \leftmark}
+\fancyhead[RE]{\partname\ \thepart:\ \leftmark}
 \fancyfoot{}
+
+% special header for Introduzione
+\fancypagestyle{introd}{%
+  \fancyhead[LE,RO]{\thepage}%
+  \fancyhead[RE,LO]{\leftmark}%
+}
 
 % no blank pages
 \let\cleardoublepage\clearpage
@@ -38,6 +48,9 @@
 
 % physics
 \usepackage{braket}
+
+% chemistry
+\usepackage{chemformula}
 
 % custom environments
 \newtheoremstyle{theorem}{}{}{\slshape}{}{\bfseries}{.}{ }{}
@@ -86,6 +99,8 @@
                      \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
                      =}
 \newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\lap}{\nabla^2}
+\newcommand{\hilb}{\mathscr{H}}
 
 % number sets
 \newcommand{\N}{\mathbb{N}}
@@ -97,6 +112,23 @@
 % groups
 \newcommand{\Ot}{\text{O}(3)}
 \newcommand{\SOt}{\text{SO}(3)}
+
+% units of measure
+\newcommand{\m}{\,\text{m}}
+\newcommand{\ang}{\,\text{\AA}}
+\newcommand{\fm}{\,\text{fm}}
+
+\newcommand{\barn}{\,\text{barn}}
+
+\newcommand{\ev}{\,\text{eV}}
+\newcommand{\kev}{\,\text{keV}}
+\newcommand{\mev}{\,\text{MeV}}
+\newcommand{\gev}{\,\text{GeV}}
+\newcommand{\tev}{\,\text{TeV}}
+
+\newcommand{\g}{\text{g}}
+\newcommand{\w}{\text{W}}
+\newcommand{\z}{\text{Z}}
 
 % custom chapter heading
 \titleformat{\chapter}[display]
