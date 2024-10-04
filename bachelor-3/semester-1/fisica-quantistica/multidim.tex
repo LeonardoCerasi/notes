@@ -311,7 +311,7 @@ ovvero in componenti $ \hat{x}'_j = \sum_{k = 1}^{d} M_{jk} \hat{x}_k $.
 \begin{proof}
 	Considerando $ \hat{\ve{p}}'^{\,\intercal} = \hat{\ve{p}}^{\intercal} \tens{N} $, in componenti $ \hat{p}'_j = \sum_{k = 1}^{d} \hat{p}_k N_{kj} $, dalle relazioni di commutazione canoniche si ha:
 	\begin{equation*}
-		\left[\hat{x}'_j, \hat{p}'_k\right] = \sum_{m = 1}^{d} \sum_{n = 1}^{d} M_{jm} N_{nk} \underbrace{\left[\hat{x}_m, \hat{p}_n\right]}_{= i \hbar \delta_{mn}} = i\hbar \sum_{n = 1}^{d} M_{jn} N_{nk} \,\dot{=}\, i\hbar \delta_{jk} \quad \Longleftrightarrow \quad \tens{M}\tens{N} = \tens{I}_d
+		\left[\hat{x}'_j, \hat{p}'_k\right] = \sum_{m = 1}^{d} \sum_{n = 1}^{d} M_{jm} N_{nk} \underbrace{\left[\hat{x}_m, \hat{p}_n\right]}_{i \hbar \delta_{mn}} = i\hbar \sum_{n = 1}^{d} M_{jn} N_{nk} \,\dot{=}\, i\hbar \delta_{jk} \quad \Longleftrightarrow \quad \tens{M}\tens{N} = \tens{I}_d
 	\end{equation*}
 \end{proof}
 
@@ -330,6 +330,77 @@ Con abuso di notazione si può scrivere $ \hat{p}_j = -i\hbar\pa_j $, dunque la 
 \end{equation}
 
 Dall'Eq. \ref{eq:23} si ha $ \frac{\pa x'_j}{\pa x_k} = M_{jk} $, dunque $ \frac{\pa x_k}{\pa x'_j} = M^{-1}_{kj} $, ovvero l'Eq. \ref{eq:24}.
+
+\section{Problemi centrali}
+
+Un generico problema centrale è quello determinato da un'Hamiltoniana del tipo:
+
+\begin{equation}
+	\mathcal{H} = \frac{\hat{\ve{p}}^2}{2m} + \hat{V}(\norm{\hat{\ve{x}}})
+	\label{eq:27}
+\end{equation}
+
+Ovvero il potenziale dipende solo dal modulo dell'operatore posizione.\\
+Analogamente al caso classico, l'obbiettivo è quello di separare il moto angolare da quello radiale; per fare ciò, è preferibile lavorare in coordinate sferiche:
+
+\begin{equation}
+	\begin{cases}
+		x_1 = r \sin \theta \cos \phi \\
+		x_2 = r \sin \theta \sin \phi \\
+		x_3 = r \cos \theta
+	\end{cases}
+	\label{eq:28}
+\end{equation}
+
+In queste coordinare, si ha $ V = V(r) $.\\
+In meccanica classica, dall'identità $ (\ve{a}\cdot\ve{b})^2 = \norm{\ve{a}}^2 \norm{\ve{b}}^2 - \norm{\ve{a}\times\ve{b}}^2 $ si può scomporre il termine cinetico in parte radiale e parte angolare, ottenendo $ \ve{p}^2 = p_r^2 + \frac{1}{r^2}\ve{L}^2 $. Quantisticamente, ciò non è così immediato poiché $ \hat{\ve{x}} $ e $ \hat{\ve{p}} $ non commutano.\\
+Per capire come procedere, conviene prima dimostrare l'identità vettoriale utilizzata.
+
+\begin{proposition}
+	Dati $ \ve{a}, \ve{b} \in\R^3 $, si ha $ (\ve{a}\cdot\ve{b})^2 = \norm{\ve{a}}^2 \norm{\ve{b}}^2 - \norm{\ve{a}\times\ve{b}}^2 $.
+\end{proposition}
+\begin{proof}
+	Ricordando che $ (\ve{a}\times\ve{b})_i = \sum_{j,k = 1}{3} \epsilon_{ijk} a_j b_k $, si ha:
+	\begin{equation*}
+		\norm{\ve{a}\times\ve{b}}^2 = \sum_{i,j,k,l,m = 1}^{3} \epsilon_{ijk} a_j b_k \epsilon_{ilm} a_l b_m = \sum_{i,j,k,l,m = 0}^{3} (\delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl}) a_j b_k a_l b_m = \norm{\ve{a}}^2 \norm{\ve{b}}^2 - \norm{\ve{a}\times\ve{b}}^2
+	\end{equation*}
+\end{proof}
+
+È necessario, inoltre, definire $ p_r $ ed $ \ve{L} $ in ambito quantistico:
+
+\begin{equation}
+	\tilde{p}_r \defeq \frac{1}{r} \hat{\ve{x}}\cdot\hat{\ve{p}}
+	\label{eq:29}
+\end{equation}
+
+dove il tilde sta ad indicare il fatto che $ \tilde{p}_r $ non è un operatore hermitiano, dunque non è associato ad un'osservabile fisica.
+
+\begin{proposition}
+	Nella rappresentazione delle coordinate, si ha:
+	\begin{equation}
+		\tilde{p}_r = - i \hbar \frac{\pa}{\pa r}
+		\label{eq:30}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Nella rappresentazione delle coordinate:
+	\begin{equation*}
+		\begin{split}
+			\tilde{p}_r &= -i\hbar \sum_{j = 1}^{3} \frac{x_j}{r} \pa_j = -i\hbar \sum_{j = 0}^{3} \frac{x_j}{r} \left(\pa_j r \frac{\pa}{\pa r} + \pa_j \theta \frac{\pa}{\pa \theta} + \pa_j \phi \frac{\pa}{\pa \phi}\right)\\
+				    &= -i\hbar \sum_{j = 1}^{3} \frac{x_j}{r} \frac{x_j}{r} \frac{\pa}{\pa r} = -i\hbar \frac{\pa}{\pa r}
+		\end{split}
+	\end{equation*}
+	dove si è usato il dato che $ \sum_{j = 1}^{3} x_j \pa_j \theta = \sum_{j = 1}^{3} x_j \pa_j \phi $ ($ \nabla\theta, \nabla\phi \perp \ve{x} = r\ve{e}_r $) e $ \pa_j r = \frac{x_j}{r} $.
+\end{proof}
+
+\begin{proposition}
+	$ \left[\hat{r}, \tilde{p}_r\right] = i\hbar $.
+\end{proposition}
+\begin{proof}
+	$ \left[\hat{r}, \tilde{p}_r\right]\psi = -i\hbar \left(r \frac{\pa}{\pa r} - \frac{\pa}{\pa r}r\right)\psi = i\hbar\psi $.
+\end{proof}
+
+Si evince quindi che $ \tilde{p}_r $ è canonicamente coniugato a $ \hat{r} $, ovvero genera le traslazioni lungo la coordinata radiale.
 
 
 
