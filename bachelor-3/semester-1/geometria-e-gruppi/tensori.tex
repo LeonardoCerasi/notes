@@ -203,7 +203,7 @@ Quindi sotto rotazioni improprie il tensore di Levi-Civita cambia di segno.
 \end{example}
 
 
-\subsection{Tensore Metrico}
+\section{Tensore Metrico}
 
 
 Mentre nel caso euclideo la base canonica $ \ve{e}_j = \frac{\pa \ve{r}}{\pa x^j} $ ($ \ve{e}_j $ tangente alla $ j $-esima linea coordinata) coincide con la base duale $ \ve{e}^j = \nabla x^j $ ($ \ve{e}^j $ ortogonale alla $ j $-esima linea coordinata), ciò non è valido in generale.\\
@@ -269,6 +269,35 @@ Data la relazione di passaggio tra componenti covarianti e contravarianti, è po
 
 Si può notare che $ \det\left[\frac{\pa x}{\pa y}\right] = \frac{1}{\det\tens{J}} $, dove $ \tens{J} $ è il Jacobiano della trasformazione.
 
+\begin{theorem}[del quoziente]
+	Dati due tensori $ \tens{A} $ e $ \tens{C} $, se per un oggetto $ \tens{B} $ vale l'equazione tensoriale $ \tens{A}\tens{B} = \tens{C} $, allora $ \tens{B} $ è un tensore.
+\end{theorem}
+
+\subsection{Sistemi di rferimento mobili}
+
+È possibile considerare SR in cui i vettori base dipendono dal punto in cui sono applicati: dato un punto $ \ve{r}(\ve{x}) $, lo spostamento infinitesimo da esso si scrive come $ d\ve{r}(\ve{x}) = \ve{e}_j(\ve{x}) dx^j $ e i vettori base sono $ \ve{e}_j (\ve{x}) = \frac{\pa \ve{r}}{\pa x^j}(\ve{x}) $.\\
+Nel passaggio da un SR all'altro, essi trasformano come vettori covarianti:
+
+\begin{equation}
+	\tilde{\ve{e}}_j (\ve{y}) = \frac{\pa \ve{r}}{\pa y^j} = \frac{\pa x^k}{\pa y^j} \frac{\pa \ve{r}}{\pa x^k} = \frac{\pa x^k}{\pa y^j} \ve{e}_k (\ve{x})
+	\label{eq:1.14}
+\end{equation}
+
+Questi sono anche vettori nell'embedding manifold (una varietà a dimensione maggiore, tendenzialmente euclidea, che $ \virgolette{ricopre} $ la varietà considerata: ad esempio, $ \mathbb{S}^2 $ è embedded in $ \R^3 $), il quale avrà un tensore metrico $ \eta_{ij} $.\\
+Questi vettori possono essere sia non-normalizzati che non-simmetrici; inoltre, definiscono un tensore metrico sull'embedded manifold:
+
+\begin{equation}
+	g_{ij} (\ve{x}) \defeq \ve{e}_i (\ve{x}) \cdot \ve{e}_j (\ve{x})
+	\label{eq:1.15}
+\end{equation}
+
+dove il prodotto scalare è quello definito sull'embedding manifold da $ \eta_{ij} $. Per varietà reali, il tensore metrico è reale e simmetrico.\\
+Sotto trasformazione da un moving frame ad un altro, il tensore metrico trasforma come un tensore doppiamente covariante:
+
+\begin{equation}
+	\tilde{g}_{ij} (\ve{y}) = \tilde{\ve{e}}_i (\ve{y}) \cdot \tilde{\ve{e}}_j (\ve{y}) = \frac{\pa x^k}{\pa y^i} \ve{e}_k (\ve{x}) \cdot \frac{\pa x^l}{\pa y^j} \ve{e}_j (\ve{x}) = \frac{\pa x^k}{\pa y^i} \frac{\pa x^l}{\pa y^j} g_{ij} (\ve{x})
+	\label{eq:1.16}
+\end{equation}
 
 
 

@@ -1,0 +1,193 @@
+\selectlanguage{italian}
+
+\section{Wedge product}
+
+\begin{definition}
+	Si definisce 1\textit{-form} una contrazione di un tensore $ a_k $ di rango 1 con il differenziale:
+	\begin{equation}
+		\omega_1 \defeq a_k dx^k
+		\label{eq:3.1}
+	\end{equation}
+\end{definition}
+
+Le 1-form sono invarianti per cambi di SR:
+
+\begin{equation}
+	\tilde{\omega}_1 = \tilde{a}_k dy^k = \frac{\pa x^i}{\pa y^k} a_i \frac{\pa y^k}{\pa x^j} dx^j = \delta^i_j a_i dx^j = a_i dx^i = \omega_1
+	\label{eq:3.2}
+\end{equation}
+
+È possibile definire anche le 0-form, ma esse coincidono con i campi scalari.
+
+È possibile definire un prodotto antisimmetrico tra forme, il wedge product:
+\begin{equation}
+	\begin{split}
+		dx \wedge dy = - dy \wedge dx \\
+		dx \wedge dx = dy \wedge dy = 0
+	\end{split}
+	\label{eq:3.3}
+\end{equation}
+
+L'antisimmetria è necessaria affinché le coordinate trasformino bene sotto cambio di SR.\\
+Geometricamente, il wedge product è associato ad un'area geometrica; ad esempio, in uno spazio a due dimensioni con cambio di SR $ (x,y) \rightarrow (u,v) $:
+
+\begin{equation}
+	du \wedge dv = \left( \frac{\pa u}{\pa x} dx + \frac{\pa u}{\pa v} dy \right) \wedge \left( \frac{\pa v}{\pa x} dx + \frac{\pa v}{\pa y} dy \right) = \underbrace{\left( \frac{\pa u}{\pa x} \frac{\pa v}{\pa y} - \frac{\pa v}{\pa x} \frac{\pa u}{\pa y} \right)}_{\det\tens{J}} dx \wedge dy
+	\label{eq:3.4}
+\end{equation}
+
+che è proprio la legge di trasformazione delle aree ricavate dall'Analisi.\\
+Generalizzando ad $ n $ dimensioni:
+
+\begin{equation}
+	dy_1 \wedge \dots \wedge dy_n = \left( \det\tens{J} \right) dy_1 \wedge \dots \wedge dy_n
+	\label{eq:3.5}
+\end{equation}
+
+Questa equazione è valida in generale e non solo per sistemi ortogonali (in tal caso non ci sarebbero i wedge products).
+
+\begin{definition}
+	Si definisce 2\textit{-form} la contrazione di un tensore di rango 2 con un doppio wedge product:
+	\begin{equation}
+		\omega_2 \defeq \frac{1}{2} a_{ij} dx^i \wedge dx^j
+		\label{eq:3.6}
+	\end{equation}
+\end{definition}
+
+\begin{definition}\label{p-form}
+	Si definisce $ p $\textit{-form} la contrazione di un tensore di rango $ p $:
+	\begin{equation}
+		\omega_p \defeq \frac{1}{p!} a_{i_1 \dots i_p} dx^{i_1} \dots dx^{i_p}
+		\label{eq:3.7}
+	\end{equation}
+\end{definition}
+
+\section{Derivata esteriore}
+
+È possibile definire un'operatore differenziale tra forme, la derivata esteriore $ d $:
+
+\begin{equation}
+	d\omega_p = d\left( a_{i_1 \dots i_p} dx^{i_1} \wedge \dots \wedge dx^{i_p} \right) \defeq \pa_k a_{i_1 \dots i_p} dx^k \wedge dx^{i_1} \wedge \dots \wedge dx^{i_p} \equiv \omega_{p+1}
+	\label{eq:3.8}
+\end{equation}
+
+Dunque, la derivata esteriore trasforma una $ p $-form in una $ (p+1) $-form.
+
+\begin{example}
+	Data un campo scalare (0-form) $ f $, il suo differenziale è $ df = \frac{\pa f}{\pa x^k} dx^k $.
+\end{example}
+
+\begin{example}
+	Data una 1-form su $ \R^3 $ $ A = A_x dx + A_y dy + A_z dz $, si trova che la sua derivata esteriore è $ dA = \left( \nabla\times\ve{A} \right)_x dy \wedge dz + \left( \nabla\times\ve{A} \right)_y dz \wedge dx + \left( \nabla\times\ve{A} \right)_z dx \wedge dy $, dove si è definito $ \ve{A} = \left( A_x, A_y, A_z \right) $.
+\end{example}
+
+\begin{proposition}
+	Il numero di componenti indipendenti di una $ p $-form su uno spazio di dimensione $ n $ è $ \binom{n}{p} $.
+\end{proposition}
+
+Ciò deriva dall'antisimmetria del wedge product, il quale può essere espresso tramite prodotti diretti:
+
+\begin{equation}
+	dx^i \wedge dx^j \defeq dx^i \otimes dx^j - dx^j \otimes dx^i
+	\label{eq:3.9}
+\end{equation}
+
+In forma sintetica, si può scrivere:
+
+\begin{equation}
+	dx^{i_1} \wedge \dots \wedge dx^{i_p} \equiv dx^{[i_1} \wedge \dots \wedge dx^{i_p]}
+	\label{eq:3.10}
+\end{equation}
+
+dove le parentesi quadre indicano il prodotto antisimmetrico (somma delle permutazioni pari e sottrazione di quelle dispari). Da ciò si vede il perché del fattore $ \frac{1}{p!} $ nella Def. \ref{p-form}: partendo da un tensore senza simmetrie, la costruzione della $ p $-form tramite il wedge product ne estrae la sola parte antisimmetrica.
+
+\begin{example}
+	Per una 2-form su $ \R^2 $: $ \omega_2 = \frac{1}{2} A_{ij} dx^i dx^j = \frac{1}{2}\left( A_{12} - A_{21} \right) dx \wedge dy $, dunque se $ A_{ij} $ è antisimmetrico ciò si riduce a $ \omega_2 = A_{12} dx \wedge dy $, mentre se esso è simmetrico si ha $ \omega_2 = 0 $.
+\end{example}
+
+\begin{proposition}\label{id-bianchi}
+	Sotto le dovute ipotesi di regolarità, si ha $ d^2 \equiv 0 $.
+\end{proposition}
+\begin{proof}
+	Data $ \omega_{p+1} = d\omega_p $:
+	\begin{equation*}
+		d^2 \omega_p = d\omega_{p+1} = \left( \pa_j \pa_k a_{i_1 \dots i_p} \right) dx^j \wedge dx^k \wedge dx^{i_1} \wedge \dots \wedge dx^{i_p}
+	\end{equation*}
+	Per il lemma di Schwarz $ \pa_j \pa_k f $ è simmetrico per $ f $ regolare, dunque per l'Eq. \ref{eq:3.9} si ha $ d^2 \omega_p = 0 $.
+\end{proof}
+
+$ d^2 = 0 $ è un modo elegante di scrivere l'identità di Bianchi: per rompere questa identità è necessaria una perturbazione dello spazio considerato, detta difetto topologico.\\
+È possibile dare un'ulteriore caratterizzazione delle forme differenziali.
+
+\begin{definition}
+	Una $ p $-form $ \omega_p $ si dice chiusa se $ d\omega_p = 0 $.
+\end{definition}
+
+\begin{definition}
+	Una $ p $-form $ \omega_p $ si dice esatta se esiste una $ (p-1) $-form $ \omega_{p-1} $ tale che $ \omega_p = d\omega_{p-1} $.
+\end{definition}
+
+\begin{proposition}
+	Una forma esatta è anche chiusa.
+\end{proposition}
+\begin{proof}
+	Direttamente dalla Prop. \ref{id-bianchi}.
+\end{proof}
+
+\begin{theorem}[di Stokes]\label{th-stokes}
+	Data una $ p $-form $ \omega $ ed un dominio semplicemente connesso $ S $, si ha:
+	\begin{equation}
+		\int_{\pa S} \omega = \int_S d\omega
+		\label{eq:3.11}
+	\end{equation}
+\end{theorem}
+
+Si dimostra anche che la derivata esteriore anticommuta con i differenziali.
+
+\begin{proposition}
+	Data una $ p $-form $ \omega_p $ ed una generica forma $ \varsigma $, si ha:
+	\begin{equation}
+		d(\omega_p \wedge \varsigma) = d\omega_p \wedge \varsigma + (-1)^p \omega_p \wedge d\varsigma
+		\label{eq:3.12}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Si dimostra per semplicità solo il caso di due 1-fom $ \omega = a_i dx^i $ e $ \varsigma = b_j dx^j $:
+	\begin{equation*}
+		\begin{split}
+			d(\omega \wedge \varsigma) &= d\left( a_i  dx^i \wedge B_j dx^j \right) = \pa_k (a_i b_j) dx^k \wedge dx^i \wedge dx^j\\
+						   &= (\pa_k a_i) b_j dx^k \wedge dx^i \wedge dx^j + a_i (\pa_k b_j) dx^k \wedge dx^i \wedge dx^j\\
+						   &= (\pa_k a_i) b_j dx^k \wedge dx^i \wedge dx^j - a_i (\pa_k b_j) dx^i \wedge dx^k \wedge dx^j\\
+						   &= \left( \pa_k a_i dx^k \wedge dx^i \right) \wedge b_j dx^j - a_i dx^i \wedge \left( \pa_k b_j dx^k \wedge dx^j \right)\\
+						   &= d\omega \wedge \varsigma - \omega \wedge d\varsigma
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\subsection{Elettrodinamica}
+
+Riprendendo il potenziale \ref{eq:2.21}, è possibile definire la 1-form $ A = A_i dx^i $:
+
+\begin{equation}
+	dA = \pa_i A_j dx^i \wedge dx^j = \frac{1}{2} F_{ij} dx^i \wedge dx^j \equiv F
+	\label{eq:3.13}
+\end{equation}
+
+dove è stata definita la 2-form determinata dal tensore di Faraday \ref{eq:2.23}. L'Eq. \ref{eq:2.25} diventa, grazie all'identità di Bianchi:
+
+\begin{equation}
+	dF = 0
+	\label{eq:3.14}
+\end{equation}
+
+Nel caso elettrostatico $ \dot{\ve{B}} = 0 $, quindi $ \nabla\times\ve{E} = 0 $, ovvero $ dE = 0 $: il campo elettrostatico è chiuso e, per il teorema di Stokes, localmente esatto.
+
+
+
+
+
+
+
+
+
+
