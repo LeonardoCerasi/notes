@@ -1,3 +1,74 @@
 \selectlanguage{italian}
 
-\section{Oggetti non-relativistici}
+Nelle teorie classiche di campo vengono considerati due oggetti distinti: le particelle e i campi. I campi determinano il moto delle particelle, mentre le particelle determinano le oscillazioni dei campi.
+
+\section{Particelle non-relativistiche}
+
+Per descrivere il moto di una particella tra due punti fissati $ \ve{x}(t_1) \equiv \ve{x}_1 $ e $ \ve{x}(t_2) \equiv \ve{x}_2 $ si studia l'azione $ S $ associata alla traiettoria $ \ve{x}(t) $, definita come:
+\begin{equation}
+  S\left[ \ve{x}(t) \right] \defeq \int_{t_1}^{t_2} dt\, L(\ve{x}(t),\dot{\ve{x}}(t))
+  \label{eq:1.1}
+\end{equation}
+dove $ L $ è la lagragiana che descrive la particella.\\
+La traiettoria percorsa dalla particella, per il principio di minima azione, è quella che estremizza $ S $, ovvero tale per cui $ \delta S = 0 \,\,\forall \delta\ve{x}(t) : \delta\ve{x}(t_1) = \delta\ve{x}(t_2) = 0 $; esplicitando:
+\begin{equation}
+  \begin{split}
+    \delta S = \int_{t_1}^{t_2} dt\, \delta L(\ve{x}(t),\dot{\ve{x}}(t))
+    &= \int_{t_1}^{t_2} dt\, \left( \frac{\pa L}{\pa x^i} \delta x^i + \frac{\pa L}{\pa \dot{x}^i} \delta\dot{x}^i \right)\\
+    &= \int_{t_1}^{t_2} dt\, \left( \frac{\pa L}{\pa x^i} - \frac{d}{dt}\left(\frac{\pa L}{\pa \dot{x}^i}\right) \right) \delta{x}^i + \left[ \frac{\pa L}{\pa\dot{x}^i} \delta x^i \right]_{t_1}^{t_2}
+  \end{split}
+  \label{eq:1.2}
+\end{equation}
+dove si è usata la convenzione di somma di Einstein.\\
+Si vede subito che il termine di bordo è nullo, dunque estremizzare l'azione equivale alle equazioni di Eulero-Lagrange:
+\begin{equation}
+  \frac{\pa L}{\pa x^i} - \frac{d}{dt} \frac{\pa L}{\pa \dot{x}^i} = 0
+  \label{eq:1.3}
+\end{equation}
+
+\subsection{Equazione geodetica}
+
+In generale, il moto di una particella libera su una generica varietà differenziale è descritto dalla lagrangiana $ L = \frac{1}{2}m \dot{\ve{x}}\cdot\dot{\ve{x}} $; bisogna dunque tener conto della metrica della varietà considerata:
+\begin{equation}
+  L = \frac{m}{2} g_{ij}(x) \dot{x}^i \dot{x}^j
+  \label{eq:1.4}
+\end{equation}
+dove $ x $ rappresenta collettivamente tutte le coordinate $ x^i $ sulla varietà. Si ricordi che, per una varietà reale $ n $-dimensionale, $ g_{ij}\in\R^{n\times n} $ è una matrice reale simmetrica.\\
+Le equazioni di Eulero-Lagrange diventano dunque:
+\begin{equation}
+  \frac{m}{2} \frac{\pa g_{ij}}{\pa x^k} \dot{x}^i \dot{x}^j - \frac{d}{dt} \left( m g_{ik} \dot{x}^i \right) = 0
+  \label{eq:1.5}
+\end{equation}
+Espandendo il secondo termine:
+\begin{equation}
+  \frac{1}{2} \frac{\pa g_{ij}}{\pa x^k} \dot{x}^i \dot{x}^j - \frac{\pa g_{ik}}{\pa x^j} \dot{x}^i \dot{x}^j - g_{ik} \ddot{x}^i = 0
+  \label{eq:1.6}
+\end{equation}
+Del termine $ g_{ik,j} - \frac{1}{2} g_{ij,k} $, essendo contratto con un fattore simmetrico $ \dot{x}^i \dot{x}^j $, sopravvive solo la parte simmetrica rispetto agli indici $ i $ e $ j $, ovvero:
+\begin{equation}
+  g_{ik} \ddot{x}^i + \frac{1}{2}\left( \frac{\pa g_{ik}}{\pa x^j} + \frac{\pa g_{jk}}{\pa x^i} - \frac{\pa g_{ij}}{\pa x^k} \right) \dot{x}^i \dot{x}^j = 0
+  \label{eq:1.7}
+\end{equation}
+A questo punto, si contrae per la metrica inversa $ g^{lk} $, che per definizione soddisfa $ g^{lk} g_{ik} = \delta^l_i $, così da ottenere (rinominando gli indici):
+\begin{equation}
+  \ddot{x}^i + \Gamma^i_{jk} \dot{x}^j \dot{x}^k = 0
+  \label{eq:1.8}
+\end{equation}
+dove è stato definito il simbolo di Christoffel:
+\begin{equation}
+  \Gamma^i_{jk} \defeq \frac{1}{2} g^{il} \left( \frac{\pa g_{lj}}{\pa x^k} + \frac{\pa g_{lk}}{\pa x^j} - \frac{\pa g_{jk}}{\pa x^l} \right)
+  \label{eq:1.9}
+\end{equation}
+Questa equazione del moto è nota come equazione geodetica e le sue soluzioni sono dette geodetiche.
+
+\section{Particelle relativistiche}
+
+
+
+
+
+
+
+
+
+
