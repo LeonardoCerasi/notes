@@ -1,6 +1,6 @@
 \selectlanguage{italian}
 
-\section{Wedge product}
+\section{Wedge product}\label{sec-wp}
 
 \begin{definition}
 	Si definisce 1\textit{-form} una contrazione di un tensore $ a_k $ di rango 1 con il differenziale:
@@ -134,6 +134,10 @@ $ d^2 = 0 $ è un modo elegante di scrivere l'identità di Bianchi: per rompere 
 	Direttamente dalla Prop. \ref{id-bianchi}.
 \end{proof}
 
+\begin{lemma}[di Poincaré]
+	Su una varietà semplicemente connessa, una forma chiusa è anche esatta.
+\end{lemma}
+
 \begin{theorem}[di Stokes]\label{th-stokes}
 	Data una $ p $-form $ \omega $ ed un dominio semplicemente connesso $ S $, si ha:
 	\begin{equation}
@@ -152,7 +156,7 @@ Si dimostra anche che la derivata esteriore anticommuta con i differenziali.
 	\end{equation}
 \end{proposition}
 \begin{proof}
-	Si dimostra per semplicità solo il caso di due 1-fom $ \omega = a_i dx^i $ e $ \varsigma = b_j dx^j $:
+	Nel caso di due 1-fom $ \omega = a_i dx^i $ e $ \varsigma = b_j dx^j $:
 	\begin{equation*}
 		\begin{split}
 			d(\omega \wedge \varsigma) &= d\left( a_i  dx^i \wedge B_j dx^j \right) = \pa_k (a_i b_j) dx^k \wedge dx^i \wedge dx^j\\
@@ -181,6 +185,120 @@ dove è stata definita la 2-form determinata dal tensore di Faraday \ref{eq:2.23
 \end{equation}
 
 Nel caso elettrostatico $ \dot{\ve{B}} = 0 $, quindi $ \nabla\times\ve{E} = 0 $, ovvero $ dE = 0 $: il campo elettrostatico è chiuso e, per il teorema di Stokes, localmente esatto.
+
+\section{Operatore di Hodge}
+
+\subsection{Tensore di Levi-Civita}
+
+Il simbolo di Levi-Civita tridimensionale (Def. \ref{def-lc}) è completamente antisimmetrico ed isotropico (Eq. \ref{eq:11}), ma è possibile renderlo un tensore di rango 3 tramite il determinante della metrica.
+
+\begin{definition}
+	Si definisce \textit{tensore di Levi-Civita} $ \varepsilon_{ijk} \defeq \sqg \,\epsilon_{ijk} $.
+\end{definition}
+
+Per trovare la legge di trasformazione del tensore di Levi-Civita, sono necessari alcuni risultati di Algebra Lineare.
+
+\begin{theorem}[di Laplace]
+	Data $ \tens{M}\in\R^{n\times n} $, si ha $ \det\tens{M} = \epsilon^{i_1 \dots i_n} M_{i_1 1} \dots M_{i_n n} $.
+\end{theorem}
+\begin{corollary}
+	$ \epsilon_{k_1 \dots k_n} \det\tens{M} = \epsilon^{i_1 \dots i_n} M_{i_1 k_1} \dots M_{i_n k_n} $.
+\end{corollary}
+\begin{corollary}\label{cor-lap}
+	$ \det \left( \tens{M}_1 \dots \tens{M}_k \right) = \left( \det\tens{M}_1 \right) \dots \left( \det\tens{M}_k \right) $.
+\end{corollary}
+
+Considerando un passaggio di RF $ x^i \mapsto y^i $:
+\begin{equation}
+	\begin{split}
+		\varepsilon'_{ijk} &= \underbrace{\sqrt{\tens{g}'} \epsilon'_{ijk} = \sqrt{\tens{g}'} \epsilon_{ijk}}_{\text{isotropia di }\epsilon_{ijk}} = \sqrt{\abs{ \det \left( \frac{\pa x^s}{\pa y^m} \frac{\pa x^t}{\pa y^n} g_{st} \right) }} \epsilon_{ijk}\\
+				   &= \sqrt{\abs{ \det \left( \frac{\pa x^s}{\pa y^m} \right) \det \left( \frac{\pa x^t}{\pa y^n} \right) \det \left( g_{st} \right) }} \epsilon_{ijk} = \abs{\det \left( \frac{\pa x}{\pa y} \right)} \sqg \epsilon_{ijk} = \sigma \sqg \underbrace{\det \left( \frac{\pa x}{\pa y} \right) \epsilon_{ijk}}_{\text{Cor. \ref{cor-lap}}}\\
+				   &= \sigma \sqg \frac{\pa x^s}{\pa y^i} \frac{\pa x^t}{\pa y^j} \frac{\pa x^u}{\pa y^k} \epsilon_{stu} = \sigma \frac{\pa x^s}{\pa y^i} \frac{\pa x^t}{\pa y^j} \frac{\pa x^u}{\pa y^k} \varepsilon_{stu}
+	\end{split}
+	\label{eq:3.15}
+\end{equation}
+Essendo $ \varepsilon_{ijk} $ definito a partire da $ \epsilon_{ijk} $ (dunque da un prodotto antisimmetrico), esso è uno pseudotensore e di conseguenza la sua trasformazione dipende da $ \sigma $, il segno del determinante dello Jacobiano. Si ricordi che $ \det\tens{J} $ cambia di segno per ogni inversione nella trasformazione di RF.\\
+Le componenti controvarianti del tensore di Levi-Civita sono:
+\begin{equation}
+	\varepsilon^{ijk} = g^{is} g^{jt} g^{ku} \varepsilon_{stu} = g^{is} g^{jt} g^{ku} \sqg\, \epsilon_{stu} = \sqg \det \left( g^{mn} \right) \epsilon_{ijk} = \frac{\sqg}{\det \left( g_{mn} \right)} \epsilon_{ijk} = \frac{\sigma}{\sqg} \epsilon_{ijk}
+	\label{eq:3.16}
+\end{equation}
+dato che, per metriche generiche (non definite positive), $ \tens{g} \defeq \abs{\det \left( g_{mn} \right)} $.\\
+Tutte queste proprietà di $ \varepsilon_{ijk} $ sono valide anche per il generico tensore di Levi-Civita $ n $-dimensionale, definito analogamente come:
+\begin{equation}
+	\varepsilon_{i_1 \dots i_n} \defeq \sqg \, \epsilon_{i_1 \dots i_n}
+	\label{eq:3.17}
+\end{equation}
+
+\subsection{Hodge's star}
+
+L'operatore di Hodge, anche detto duale di Hodge o Hodge's star, è un operatore che mappa una $ p $-form in una $ (n - p) $-form, dove $ n $ è la dimensione della varietà considerata.
+\begin{definition}
+	Data una varietà differenziabile $ n $-dimensionale $ \mathcal{M} $, si definisce l'\textit{operatore di Hodge} $ * : \bigwedge^p \mathcal{M} \rightarrow \bigwedge^{n - p} \mathcal{M} $ tale che:
+	\begin{equation}
+		* \left( dx^{i_1} \wedge \dots \wedge dx^{i_p} \right) \defeq \frac{1}{(n - p)!} g^{i_1 k_1} \dots g^{i_p k_p} \varepsilon_{k_1 \dots k_p m_1 \dots m_{n - p}} dx^{m_1} \wedge \dots \wedge dx^{m_{n - p}}
+		\label{eq:3.18}
+	\end{equation}
+\end{definition}
+
+\begin{example}
+	Su $ \R^3 $ si ha $ *1 = dx \wedge dy \wedge dz $, $ * \left( dx \wedge dy \wedge dz \right) = 1 $, $ *dx = dy \wedge dz $, $ * \left( dx \wedge dy \right) = dz $ e così via. Inoltre, si trovano due importanti proprietà:
+	\begin{equation*}
+		*df = * \left( \frac{\pa f}{\pa x}dx + \frac{\pa f}{\pa y}dy + \frac{\pa f}{\pa z}dz \right) = \frac{\pa f}{\pa x} dy \wedge dz + \frac{\pa f}{\pa y} dz \wedge dx + \frac{\pa f}{\pa z} dx \wedge dy
+	\end{equation*}
+	\begin{equation*}
+		*\ve{F} = * \left( F_x dx + F_y dy + F_z dz \right) = F_x dy \wedge dz + F_y dz \wedge dx + F_z dx \wedge dy
+	\end{equation*}
+	Si vede dunque che:
+	\begin{equation}
+		d*df = \lap f \, dx \wedge dy \wedge dz
+		\label{eq:3.19}
+	\end{equation}
+	\begin{equation}
+		d*\ve{F} = \nabla\cdot\ve{F} \, dx \wedge dy \wedge dz
+		\label{eq:3.20}
+	\end{equation}
+\end{example}
+\begin{example}
+	Su $ \R^{1,3} $ bisogna tener conto del segno negativo della coordianta spaziale; ad esempio $ *1 = dt \wedge dx \wedge dy \wedge dz $, ma $ * \left( dt \wedge dx \wedge dy \wedge dz \right) = -1 $, inoltre per le 1-form:
+	\begin{align*}
+		*dt &= - dx \wedge dy \wedge dz & *dx &= - dy \wedge dz \wedge dt \\
+		*dy &= - dz \wedge dx \wedge dt & *dz &= - dz \wedge dy \wedge dt
+	\end{align*}
+	Per le 2-form:
+	\begin{align*}
+		*(dx \wedge dt) &= dy \wedge dz & *(dx \wedge dy) &= - dz \wedge dt \\
+		*(dy \wedge dt) &= dz \wedge dx & *(dy \wedge dz) &= - dx \wedge dt \\
+		*(dz \wedge dt) &= dx \wedge dy & *(dz \wedge dx) &= - dy \wedge dt
+	\end{align*}
+	Per le 3-form:
+	\begin{align*}
+		*(dx \wedge dy \wedge dz) &= - dt & *(dy \wedge dz \wedge dt) &= -dx \\
+		*(dz \wedge dx \wedge dt) &= - dy & *(dx \wedge dy \wedge dt) &= -dz
+	\end{align*}
+\end{example}
+
+\section{Operatori differenziali su varietà curve}
+
+Considerata una generica varietà differenziabile $ n $-dimensionale $ \mathcal{M} $, fissando un RF $ \{\ve{e}_i\}_{i = 1, \dots, n} $ ortogonale, è possibile definire su $ \mathcal{M} $ gli usuali operatori differenziali dello spazio euclideo.
+
+\subsection{Gradiente}
+
+Data una funzione scalare $ f : \mathcal{M} \rightarrow \R $, si definisce il suo differenziale come:
+\begin{equation}
+	df(\ve{x}) = f(\ve{x} + d\ve{x}) - f(\ve{x}) = \frac{\pa f}{\pa x^i}dx^i = \nabla f(\ve{x}) \cdot d\ve{x}
+	\label{eq:3.21}
+\end{equation}
+
+\begin{proposition}
+	$ \nabla f = \displaystyle\sum_{i = 1}^{n} \frac{1}{h_i} \frac{\pa f}{\pa x^i} \hat{\ve{e}}_i $.
+\end{proposition}
+\begin{proof}
+	Dato che $ \frac{\hat{\ve{e}}_i}{h_i} = \ve{e}^i $ (giustamente $ \frac{\pa f}{\pa x^i} $ è covariante):
+	\begin{equation*}
+		\nabla f \cdot d\ve{x} = \frac{\pa f}{\pa x^i} \ve{e}^i \cdot dx^j \ve{e}_j = \frac{\pa f}{\pa x^i} dx^j \delta^j_i = \frac{\pa f}{\pa x^i} dx^i = df
+	\end{equation*}
+\end{proof}
 
 
 
