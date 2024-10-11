@@ -168,24 +168,6 @@ Si dimostra anche che la derivata esteriore anticommuta con i differenziali.
 	\end{equation*}
 \end{proof}
 
-\subsection{Elettrodinamica}
-
-Riprendendo il potenziale \ref{eq:2.21}, è possibile definire la 1-form $ A = A_i dx^i $:
-
-\begin{equation}
-	dA = \pa_i A_j dx^i \wedge dx^j = \frac{1}{2} F_{ij} dx^i \wedge dx^j \equiv F
-	\label{eq:3.13}
-\end{equation}
-
-dove è stata definita la 2-form determinata dal tensore di Faraday \ref{eq:2.23}. L'Eq. \ref{eq:2.25} diventa, grazie all'identità di Bianchi:
-
-\begin{equation}
-	dF = 0
-	\label{eq:3.14}
-\end{equation}
-
-Nel caso elettrostatico $ \dot{\ve{B}} = 0 $, quindi $ \nabla\times\ve{E} = 0 $, ovvero $ dE = 0 $: il campo elettrostatico è chiuso e, per il teorema di Stokes, localmente esatto.
-
 \section{Operatore di Hodge}
 
 \subsection{Tensore di Levi-Civita}
@@ -299,6 +281,45 @@ Data una funzione scalare $ f : \mathcal{M} \rightarrow \R $, si definisce il su
 		\nabla f \cdot d\ve{x} = \frac{\pa f}{\pa x^i} \ve{e}^i \cdot dx^j \ve{e}_j = \frac{\pa f}{\pa x^i} dx^j \delta^j_i = \frac{\pa f}{\pa x^i} dx^i = df
 	\end{equation*}
 \end{proof}
+
+\section{Elettrodinamica}
+
+Riprendendo il potenziale \ref{eq:2.21}, è possibile definire la 1-form $ A = A_i dx^i $:
+
+\begin{equation}
+	dA = \pa_i A_j dx^i \wedge dx^j = \frac{1}{2} F_{ij} dx^i \wedge dx^j \equiv F
+	\label{eq:3.13}
+\end{equation}
+
+dove è stata definita la 2-form determinata dal tensore di Faraday \ref{eq:2.23}. L'Eq. \ref{eq:2.25} diventa, grazie all'identità di Bianchi:
+
+\begin{equation}
+	dF = 0
+	\label{eq:3.14}
+\end{equation}
+
+Nel caso elettrostatico $ \dot{\ve{B}} = 0 $, quindi $ \nabla\times\ve{E} = 0 $, ovvero $ dE = 0 $: il campo elettrostatico è chiuso e, per il teorema di Stokes, localmente esatto.\\
+È anche possibile calcolare il duale di Hodge di $ F $:
+\begin{equation}
+	*F = \frac{1}{2}F_{ij} * \left( dx^i \wedge dx^j \right) = \frac{1}{4} F_{ij} g^{ik} g^{il} \varepsilon_{klmn} dx^m \wedge dx^n = \frac{1}{4} F^{kl} \varepsilon_{klmn} dx^m \wedge dx^n
+	\label{eq:3.22}
+\end{equation}
+Applicando il duale della derivata esteriore:
+\begin{equation}
+	\begin{split}
+		*d*F &= \frac{1}{4} \pa_p \left( F^{kl} \varepsilon_{klmn} \right) * \left( dx^p \wedge dx^m \wedge dx^n \right) = \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \epsilon_{klmn} g^{p\alpha} g^{m\beta} g^{n\gamma} \varepsilon_{\alpha\beta\gamma\delta} dx^{\delta}\\
+		     &= \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \sqg \, \epsilon_{klmn} g^{\alpha p} g^{\beta m} g^{\gamma n} g^{\delta w} \epsilon_{\alpha\beta\gamma\delta} dx_w = \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \sqg\, \epsilon_{klmn} \frac{\sigma}{\tens{g}} \epsilon^{pmnw} dx_w\\
+		     &= \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \frac{\sigma}{\sqg} 2 \left( \delta^p_k \delta^w_l - \delta^w_k \delta^p_l \right) dx_w = \frac{\sigma}{2\sqg} \left[ \pa_p \left( \sqg F^{pw} \right) dx_w - \pa \left( \sqg F^{wp} \right) dx_w \right]\\
+		     &= - \frac{\sigma}{\sqg} \pa_p \left( \sqg F^{kp} \right) dx_k
+	\end{split}
+	\label{eq:3.23}
+\end{equation}
+Nello spaziotempo di Minkowski $ g_{ij} = \diag(-1,1,1,1) $, dunque l'Eq. \ref{eq:3.23} si riduce a $ *d*F = \pa_p (F^{kp}) dx_k $: ricordando dall'Eq. \ref{eq:2.27} che $ \pa_p (F^{kp}) = \mu_0 j^k $, definendo la 1-form della corrente $ j \defeq j^k dx_k $ si trova la generalizzazione su varietà curva della seconda equazione di Maxwell covariante:
+\begin{equation}
+	*d*F = \mu_0 j
+	\label{eq:3.24}
+\end{equation}
+Questa, unità all'identità di Bianchi Eq. \ref{eq:3.14}, rappresenta tutti i fenomeni dell'elettrodinamica classica.
 
 
 
