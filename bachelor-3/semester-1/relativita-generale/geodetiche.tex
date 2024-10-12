@@ -63,6 +63,96 @@ Questa equazione del moto è nota come equazione geodetica e le sue soluzioni so
 
 \section{Particelle relativistiche}
 
+È possibile estendere la meccanica lagrangiana allo spaziotempo di Minkowski $ \R^{1,3} $, descritto dalla metrica:
+\begin{equation}
+  \eta_{\mu \nu} = \diag(-1,+1,+1,+1)
+  \label{eq:1.10}
+\end{equation}
+Dato che questa metrica non è definita positiva, è possibile classificare due punti deparati da una distanza infinitesima $ ds^2 = \eta_{\mu \nu} dx^{\mu} dx^{\nu} $ in base al segno di $ ds^2 $: se $ ds^2 < 0 $ si dicono timelike-separated, se $ ds^2 > 0 $ spacelike-separated e se $ ds^2 = 0 $ lightlike-separated (o null).\\
+A differenza del caso classico, in cui l'orbita è parametrizzata dal tempo (che è assoluto), nel caso relativistico essa deve essere parametrizzata da un generico $ \sigma \in \R $ monotono crescente lungo la traiettoria.\\
+In ambito relativistico, il principio di minima azione ha un'interpretazione geometrica: la traiettoria deve estremizzare la distanza tra due punti dello spaziotempo. Di conseguenza, dato che una particella di massa $ m $ deve seguire una traiettoria timelike, si definisce l'azione come:
+\begin{equation}
+  S = -mc \int_{x_1}^{x_2} \sqrt{-ds^2} = -mc \int_{\sigma_1}^{\sigma_2} \sqrt{-\eta_{\mu \nu} \frac{dx^{\mu}}{d\sigma} \frac{dx^{\nu}}{d\sigma}}
+  \label{eq:1.11}
+\end{equation}
+Il coefficiente è necessario per rendere l'azione dimensionalmente omogenea con $ \hbar $.\\
+L'azione così definita presenta due simemtrie:
+\begin{enumerate}
+  \item invarianza di Lorentz: l'azione è invariante per $ x^{\mu} \mapsto \Lambda^{\mu}_{\,\,\nu} x^{\nu} $, con $ \Lambda : \Lambda^{\mu}_{\,\,\rho} \eta_{\mu \nu} \Lambda^{\nu}_{\,\,\sigma} = \eta_{\rho \sigma} $;
+  \item invarianza per riparametrizzazioni: essendo $ \sigma $ un parametro arbitrario, è normale che l'azione non dipenda dalla sua scelta, infatti se si riparametrizza con una funzione monotona $ \tilde{\sigma}(\sigma) $ si ha:
+    \begin{equation}
+      \tilde{S} = -mc \int_{\tilde{\sigma}_1}^{\tilde{\sigma}_2} d\tilde{\sigma} \sqrt{- \eta_{\mu \nu} \frac{dx^{\mu}}{d\tilde{\sigma}} \frac{dx^{\nu}}{d\tilde{\sigma}}} = -mc \int_{\sigma_1}^{\sigma_2} d\sigma \frac{d\tilde{\sigma}}{d\sigma} \sqrt{- \eta_{\mu \nu} \frac{dx^{\mu}}{d\sigma} \frac{dx^{\nu}}{d\sigma} \left( \frac{d\sigma}{d\tilde{\sigma}} \right)^2} = S
+      \label{eq:1.12}
+    \end{equation}
+\end{enumerate}
+
+Grazie all'invarianza per riparametrizzazioni, il valore dell'azione tra due punti dello spaziotempo assume un significato ben preciso, il tempo proprio, ovvero il tempo misurato dalla particella in moto stessa:
+\begin{equation}
+  \tau(\sigma) = \frac{1}{c} \int_0^{\sigma} d\sigma' \sqrt{- \eta_{\mu \nu} \frac{dx^{\mu}}{d\sigma'} \frac{dx^{\nu}}{d\sigma'}}
+  \label{eq:1.13}
+\end{equation}
+Una conseguenza dell'identificazione tra azione e tempo proprio è che il principio di minima azione richiede che la traiettoria estremizzi il tempo proprio. È anche possibile riparametrizzare l'azione col tempo proprio, essendo questo una funzione monotona crescente lungo la traiettoria.
+
+\subsection{Equazione geodetica}
+
+Nel caso relativistico su una varietà differenziabile generica, la lagrangiana di una particella libera è:
+\begin{equation}
+  L = \sqrt{ - g_{\mu \nu} (x) \dot{x}^{\mu} \dot{x}^{\nu}}
+  \label{eq:1.14}
+\end{equation}
+Dunque, le equazioni di Eulero-Lagrange diventano:
+\begin{equation}
+  - \frac{1}{2L} \frac{\pa g_{\mu \nu}}{\pa x^{\rho}} \dot{x}^{\mu} \dot{x}^{\nu} - \frac{d}{d\sigma} \left( - \frac{1}{L} g_{\rho \nu} \dot{x}^{\nu} \right) = 0
+  \label{eq:1.15}
+\end{equation}
+L'unica differenza con Eq. \ref{eq:1.5} è che $ L = L(\sigma) $, dunque si trova un'equazione analoga all'Eq. \ref{eq:1.7} ma con un termine aggiuntivo:
+\begin{equation}
+  g_{\mu \rho} \ddot{x}^{\rho} + \frac{1}{2} \left( \frac{\pa g_{\mu \rho}}{\pa x^{\nu}} + \frac{\pa g_{\mu \nu}}{\pa x^{\rho}} - \frac{\pa g_{\nu \rho}}{\pa x^{\mu}} \right) \dot{x}^{\nu} \dot{x}^{\rho} = \frac{1}{L} \frac{dL}{d\sigma} g_{\mu \rho} \dot{x}^{\rho}
+  \label{eq:1.16}
+\end{equation}
+È possibile annullare il termine $ \frac{dL}{d\sigma} $ con un'opportuna scelta di parametrizzazione. Dall'Eq. \ref{eq:1.13} si vede che:
+\begin{equation}
+  c \frac{d\tau}{d\sigma} = L(\sigma)
+  \label{eq:1.17}
+\end{equation}
+Dunque, riparametrizzando con $ \tau(\sigma) $:
+\begin{equation}
+  L(\tau) = \sqrt{ -g_{\mu \nu}(x) \frac{dx^{\mu}}{d\tau} \frac{dx^{\nu}}{d\tau}} = \frac{d\sigma}{d\tau} L(\sigma) = c
+  \label{eq:1.18}
+\end{equation}
+In generale, qualsiasi riparametrizzazione con $ \tilde{\tau} = a \tau + b $ (parametri affini della worldline) porta ad avere una lagrangiana costante.\\
+Ricordando la definizione di connessione affine in Eq. \ref{eq:1.9}, si trova l'\textit{equazione geodetica}:
+\begin{equation}
+  \frac{d^2 x^{\mu}}{d\tau^2} + \Gamma^{\mu}_{\nu \rho} \frac{dx^{\nu}}{d\tau} \frac{dx^{\rho}}{d\tau}
+  \label{eq:1.19}
+\end{equation}
+
+\subsection{Momento coniugato}
+
+La differenza sostanziale tra lo spazio euclideo e lo spaziotempo di Minkowski è che, mentre nello spazio euclideo un corpo può rimanere fermo, nello spaziotempo nessun corpo può fermarsi nella direzione temporale. Questo fatto deve essere rispecchiato dal momento della particella:
+\begin{equation}
+  p_{\mu} = \frac{dL}{dx^{\mu}} = \frac{d}{dx^{\mu}} \left( -mc \sqrt{- \eta_{\mu \nu}} \dot{x}^{\mu} \dot{x}^{\nu} \right) = mc \frac{\eta_{\mu \nu} \dot{x}^{\nu}}{\sqrt{- \eta_{\rho \sigma} \dot{x}^{\rho} \dot{x}^{\sigma} }} = - \frac{m^2 c^2}{L} \eta_{\mu \nu} \dot{x}^{\nu}
+  \label{eq:1.20}
+\end{equation}
+Non tutte le componenti del 4-momento sono indipendenti:
+\begin{equation}
+  p^2 = p^{\mu} p_{\mu} = \frac{m^4 c^4}{L^2} \eta_{\mu \nu} \dot{x}^{\mu} \dot{x}^{\nu} = -m^2 c^2
+  \label{eq:1.21}
+\end{equation}
+ovvero:
+\begin{equation}
+  \left( p^0 \right)^2 = \ve{p}^2 + m^2 c^2
+  \label{eq:1.22}
+\end{equation}
+Di conseguenza, si ha sempre $ \left( p^0 \right)^2 > 0 $.\\
+Si noti che riparametrizzando la worldline col tempo proprio, dato che $ \frac{d\tau}{d\sigma} = - \frac{L}{mc^2} $:
+\begin{equation}
+  p^{\mu} = m \frac{d\sigma}{d\tau} \frac{dx^{\mu}}{d\sigma} = m \frac{dx^{\mu}}{d\tau}
+  \label{eq:1.23}
+\end{equation}
+come dalla cinematica relativistica.\\
+La non-indipendenza di una delle componenti del 4-momento è naturale: da una descrizione classica del sistema risultano tre gradi di libertà $ x^i (t) $, dunque passando ad una descrizione relativistica non può risultare un grado di libertà in più. Ciò è legato all'invarianza per riparametrizzazione: risolvendo le equazioni del moto si trovano le componenti della traiettoria $ x^{\mu} = x^{\mu} (\sigma) $, ma il parametro $ \sigma $ non può rappresentare dell'informazione sul sistema, dunque una delle quattro equazioni del moto va utilizzata per eliminare la dipendenza da $ \sigma $, riducendo di nuovo a tre i gradi di libertà.
+
 
 
 
