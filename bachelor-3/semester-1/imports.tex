@@ -9,6 +9,11 @@
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
 
+% part name
+\let\Oldpart\part
+\newcommand{\parttitle}{}
+\renewcommand{\part}[1]{\Oldpart{#1}\renewcommand{\parttitle}{#1}}
+
 % no random page numbers
 \fancypagestyle{plain}{%
   \fancyhf{}                          % clear all header and footer fields
@@ -22,7 +27,7 @@
 \fancyhead{}
 \fancyhead[LE,RO]{\thepage}
 \fancyhead[LO]{\chaptername\ \thechapter:\ \leftmark}
-\fancyhead[RE]{\partname\ \thepart:\ \leftmark}
+\fancyhead[RE]{\partname\ \thepart:\ \parttitle}
 \fancyfoot{}
 
 % special header for Introduzione
@@ -106,6 +111,9 @@
 \newcommand{\hilb}{\mathscr{H}}
 \newcommand{\diag}[1]{\text{diag}\,#1}
 \newcommand{\sqg}{\sqrt{\tens{g}}}
+
+% functions
+\DeclareMathOperator{\sech}{sech}
 
 % number sets
 \newcommand{\N}{\mathbb{N}}

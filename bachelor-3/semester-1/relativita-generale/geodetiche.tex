@@ -139,7 +139,6 @@ Non tutte le componenti del 4-momento sono indipendenti:
   p^2 = p^{\mu} p_{\mu} = \frac{m^4 c^4}{L^2} \eta_{\mu \nu} \dot{x}^{\mu} \dot{x}^{\nu} = -m^2 c^2
   \label{eq:1.21}
 \end{equation}
-ovvero:
 \begin{equation}
   \left( p^0 \right)^2 = \ve{p}^2 + m^2 c^2
   \label{eq:1.22}
@@ -150,8 +149,106 @@ Si noti che riparametrizzando la worldline col tempo proprio, dato che $ \frac{d
   p^{\mu} = m \frac{d\sigma}{d\tau} \frac{dx^{\mu}}{d\sigma} = m \frac{dx^{\mu}}{d\tau}
   \label{eq:1.23}
 \end{equation}
-come dalla cinematica relativistica.\\
 La non-indipendenza di una delle componenti del 4-momento è naturale: da una descrizione classica del sistema risultano tre gradi di libertà $ x^i (t) $, dunque passando ad una descrizione relativistica non può risultare un grado di libertà in più. Ciò è legato all'invarianza per riparametrizzazione: risolvendo le equazioni del moto si trovano le componenti della traiettoria $ x^{\mu} = x^{\mu} (\sigma) $, ma il parametro $ \sigma $ non può rappresentare dell'informazione sul sistema, dunque una delle quattro equazioni del moto va utilizzata per eliminare la dipendenza da $ \sigma $, riducendo di nuovo a tre i gradi di libertà.
+
+\subsection{Interazioni}
+
+Dall'invarianza per riparametrizzazione, è possibile scegliere come parametro $ \sigma = t $ il tempo misurato in un qualunque RF inerziale; considerando una particella libera nello spaziotempo di Minkowski, l'azione in Eq. \ref{eq:1.11} diventa:
+\begin{equation}
+  S = -mc^2 \int_{t_0}^{t_1} dt\,\sqrt{1 - \frac{\dot{\ve{x}}^2}{c^2}}
+  \label{eq:1.24}
+\end{equation}
+In questa forma, è chiara la presenza di soli tre gradi di libertà dovuti a $ \ve{x}(t) $.
+
+\subsubsection{Elettromagnetismo}
+
+Analogamente al caso classico, per rappresentare l'interazione elettromagnetica è necessario aggiungere un termine potenziale all'azione. Il problema è che la semplice aggiunta di $ \int d\sigma V(\ve{x}) $ non soddisfa l'invarianza per riparametrizzazione: per soddisfarre questo requisito, è necessario individuare un potenziale che cancelli il fattore Jacobiano derivante dalla trasformazione della misura $ d\sigma $. Un'opzione è considerare un termine lineare in $ \dot{x}^{\mu} $, dunque per l'invarianza di Lorentz è necessario che l'indice $ \mu $ sia contratto:
+\begin{equation}
+  S = \int_{\sigma_1}^{\sigma_2} d\sigma \left[ -mc^2 \sqrt{-\eta_{\mu \nu} \frac{dx^{\mu}}{d\sigma} \frac{x^{\nu}}{d\sigma}} - q A_{\mu}(x) \dot{x}^{\mu} \right]
+  \label{eq:1.25}
+\end{equation}
+dove $ q $ è la carica associata all'interazione e $ A_{\mu}(x) $ è il suo potenziale quadrivettoriale.\\
+Scrivendo $ A_{\mu}(x) = (\phi(x)/c, \ve{A}(x)) $, l'azione in Eq. \ref{eq:1.25} descrive l'interazione elettromagnetica; ciò diventa evidente riparametrizzando con $ \sigma = t $:
+\begin{equation}
+  S = \int_{t_0}^{t_1} dt \left[ -mc^2 \sqrt{1 - \frac{\dot{\ve{x}}^2}{c^2}} - q\phi(x) - q\ve{A}(x)\cdot\ve{x} \right]
+  \label{eq:1.26}
+\end{equation}
+
+\subsubsection{Gravitazione}
+
+Per descrivere l'interazione gravitazione è necessario considerare un'azione generalizzata del tipo:
+\begin{equation}
+  S = \int_{t_0}^{t_1} dt \left[ -mc^2 \sqrt{1 + \frac{2\Phi(\ve{x})}{c^2} - \frac{\dot{\ve{x}}^2}{c^2}} \right]
+  \label{eq:1.27}
+\end{equation}
+Nel limite non-relativistico $ \dot{\ve{x}}^2 \ll c^2 $ e $ 2\Phi(\ve{x}) \ll c^2 $, dunque approssimando al prim'ordine:
+\begin{equation}
+  S = \int_{t_0}^{t_1} dt \left[ -mc^2 + \frac{m}{2}\dot{\ve{x}}^2 - m\Phi(\ve{x}) \right]
+  \label{eq:1.28}
+\end{equation}
+Il primo termine (l'energia a riposo della particella) non ha effetti sull'azione poiché è costante, mentre gli altri termini descrivono il moto non-relativistico di una particella in un campo gravitazionale $ \Phi(\ve{x}) $.\\
+Il termine $ 1 + 2\Phi(\ve{x})/c^2 $ in Eq. \ref{eq:1.27} deriva dalla componente $ \eta_{00} $ della metrica, dunque si osserva che la metrica deve dipendere da $ x $, ovvero la descrizione dell'interazione gravitazionale introduce uno spaziotempo curvo. La condizione che deve soddisfarre la metrica in un weak gravitational field è:
+\begin{equation}
+  g_{00}(x) \approx - \left( 1 + \frac{2\Phi(x)}{c^2} \right)
+  \label{eq:1.29}
+\end{equation}
+con $ \Phi(x) $ il campo gravitazionale Newtoniano.
+
+\section{Principio di Equivalenza}
+
+Come si evince dall'Eq. \ref{eq:1.28}, la $ \virgolette{carica} $ dell'interazione gravitazionale è porprio la massa della particella: questo fatto viene definito \textit{weak equivalence principle} (WEP) ed è solitamente espresso tramite l'uguaglianza tra la massa inerziale e la massa gravitazionale:
+\begin{equation}
+  m_{\text{i}} = m_{\text{g}}
+  \label{eq:1.30}
+\end{equation}
+Questo è un fatto sperimentale misurato con una precisione dell'ordine di $ 10^{-13} $.\\
+Una conseguenza del WEP è l'indistinguibilità tra un'accellerazione costante ed un campo gravitazionale costante: ciò può essere visto in maniera analitica.\\
+Considerando una particella di massa $ m $ con accellerazione costante $ \ve{a} = a \hat{\ve{e}}_x $ in un RF inerziale $ \mathcal{O} $, dalla relatività speciale si vede subito che la traiettoria non può essere $ x(t) = \frac{1}{2} at^2 $, poiché la velocità eccederebbe $ c $; bisogna invece ricordare la composizione relativistica delle velocità:
+\begin{equation}
+  v = \frac{v_1 + v_2}{1 + v_1 v_2 / c^2}
+  \label{eq:1.31}
+\end{equation}
+È possibile definire la rapidità $ \varphi : v = c \tanh\varphi $, così da poter riscrivere la composizione delle velocità come $ \varphi = \varphi_1 + \varphi_2 $.\\
+Un'accelerazione costante significa che la rapidità della particella aumenta linearmente rispetto al tempo proprio, ovvero $ \varphi(\tau) = a\tau/c $, quindi:
+\begin{equation}
+  v(\tau) = \frac{dx}{d\tau} = c \sech \left( \frac{a\tau}{c} \right)
+  \label{eq:1.32}
+\end{equation}
+La relazione tra il tempo misurato nel RF inerziale ed il tempo proprio è:
+\begin{equation}
+  \frac{dt}{d\tau} = \gamma(\tau) = \sqrt{\frac{1}{1 - v(\tau)^2 / c^2}} = \cosh \left( \frac{a\tau}{c} \right) \quad\Longrightarrow\quad t(\tau) = \frac{c}{a} \sinh \left( \frac{a\tau}{c} \right)
+  \label{eq:1.33}
+\end{equation}
+con costante d'integrazione tale per cui $ \tau = 0 $ corrisponda a $ t = 0 $. Per quanto riguarda la traiettoria:
+\begin{equation}
+  x(\tau) = \frac{c^2}{a} \cosh \left( \frac{a\tau}{c} \right) - \frac{c^2}{a}
+  \label{eq:1.34}
+\end{equation}
+con costante d'integrazione tale per cui $ x(0) = 0 $. Si trova dunque un'iperbole nello spaziotempo:
+\begin{equation}
+  \left( x + \frac{c^2}{a} \right)^2 - c^2 t^2 = \frac{c^4}{a^2}
+  \label{eq:1.35}
+\end{equation}
+con asintoti $ ct = \pm \left( x + c^2 / a \right) $ per $ \tau \rightarrow \pm\infty $. Si può mostrare che la trasformazione tra le coordinate $ (t,x) $ nel RF inerziale e quelle $ (\tau,\rho) $ solidali alla particella è data da:
+\begin{equation}
+  \begin{split}
+    ct &= \left( \rho + \frac{c^2}{a} \right) \sinh \left( \frac{a\tau}{c} \right) \\
+    x &= \left( \rho + \frac{c^2}{a} \right) \cosh \left( \frac{a\tau}{c} \right) - \frac{c^2}{a}
+  \end{split}
+  \label{eq:1.36}
+\end{equation}
+Infatti, l'orbita della particella è giustamente descritta da $ \rho = 0 $. Inoltre, si vede che le coordinate $ (\tau,\rho) $ non ricoprono tutto lo spaziotempo di Minkowski $ (t,x) $: questo dimostra che ci sono delle regioni dello spaziotempo causalmente disconnesse dalla particella.\\
+Ricordando che $ ds^2 = -c^2 dt^2 + d\ve{r}^2 $, sostituendo l'Eq. \ref{eq:1.36} si ottiene la \textit{metrica di Kottler-Möller}:
+\begin{equation}
+  ds^2 = - \left( 1 + \frac{a\rho}{c^2} \right)^2 c^2 d\tau^2 + d\rho^2 + dy^2 + dz^2
+  \label{eq:1.37}
+\end{equation}
+Mentre la parte spaziale rimane piatta, si vede che $ g_{00} = g_{00} (x) $; inoltre, nel caso sub-relativistico:
+\begin{equation}
+  g_{00} \approx - \left( 1 + \frac{2a\rho}{c^2} \right)
+  \label{eq:1.38}
+\end{equation}
+Definendo $ \Phi(\rho) = a\rho $, si trova proprio la condizione \ref{eq:1.29}: questo è proprio l'assero del WEP, poiché un'accellerazione costante dà una metrica indistinguibile da quella di un campo gravitazionale costante (sub-relativistico).
 
 
 
