@@ -356,7 +356,7 @@ In queste coordinare, si ha $ V = V(r) $.\\
 In meccanica classica, dall'identità $ (\ve{a}\cdot\ve{b})^2 = \norm{\ve{a}}^2 \norm{\ve{b}}^2 - \norm{\ve{a}\times\ve{b}}^2 $ si può scomporre il termine cinetico in parte radiale e parte angolare, ottenendo $ \ve{p}^2 = p_r^2 + \frac{1}{r^2}\ve{L}^2 $. Quantisticamente, ciò non è così immediato poiché $ \hat{\ve{x}} $ e $ \hat{\ve{p}} $ non commutano.\\
 Per capire come procedere, conviene prima dimostrare l'identità vettoriale utilizzata.
 
-\begin{proposition}
+\begin{proposition}\label{cross-class}
 	Dati $ \ve{a}, \ve{b} \in\R^3 $, si ha $ (\ve{a}\cdot\ve{b})^2 = \norm{\ve{a}}^2 \norm{\ve{b}}^2 - \norm{\ve{a}\times\ve{b}}^2 $.
 \end{proposition}
 \begin{proof}
@@ -400,7 +400,85 @@ dove il tilde sta ad indicare il fatto che $ \tilde{p}_r $ non è un operatore h
 	$ \left[\hat{r}, \tilde{p}_r\right]\psi = -i\hbar \left(r \frac{\pa}{\pa r} - \frac{\pa}{\pa r}r\right)\psi = i\hbar\psi $.
 \end{proof}
 
-Si evince quindi che $ \tilde{p}_r $ è canonicamente coniugato a $ \hat{r} $, ovvero genera le traslazioni lungo la coordinata radiale.
+Si evince quindi che $ \tilde{p}_r $ è canonicamente coniugato a $ \hat{r} $, ovvero genera le traslazioni lungo la coordinata radiale.\\
+A questo punto, è possibile definire l'analogo quantistico di $ \ve{L} $:
+\begin{equation}
+	\hat{\ve{L}} \defeq \hat{\ve{x}}\times\hat{\ve{p}}
+	\label{eq:1.31}
+\end{equation}
+A priori, non si può dire che questo sia l'operatore quantistico associato al momento angolare, ma si dimostrerà essere tale. Sulla base delle coordinate:
+\begin{equation}
+	L_j = -i\hbar \sum_{j,k = 1}^{3} \epsilon_{ijk} x_j \frac{\pa}{\pa x_k}
+	\label{eq:1.32}
+\end{equation}
+
+\begin{proposition}\label{r-l-comm}
+	$ [ \hat{\ve{r}}, \hat{L}_j ] = 0 $.
+\end{proposition}
+\begin{proof}
+	Basta dimostrare che $ \hat{\ve{L}} $ non ha componenti radiali:
+	\begin{equation*}
+		\hat{\ve{x}}\cdot\hat{\ve{L}} = \sum_{i = 1}^{3} \hat{x}_i \hat{L}_i = \sum_{i,j,k = 1}^{3} \epsilon_{ijk} \hat{x}_i \hat{x}_j \pa_k = \frac{1}{2} \sum_{i,j,k = 1}^{3} \epsilon_{ijk} [\hat{x}_i,\hat{x}_j] \pa_k = \frac{1}{2} \sum_{i,j,k = 1}^{3} \epsilon_{ijk} \delta_{ij} \pa_k = 0
+	\end{equation*}
+\end{proof}
+Utilizzando lo stesso procedimento usato per dimostrare la Prop. \ref{cross-class}:
+\begin{equation*}
+	\begin{split}
+		\hat{\ve{L}}^2
+		&= \sum_{i,j,k,a,b = 1}^{3} \epsilon_{ijk} \epsilon_{iab} \hat{x}_j \hat{p}_k \hat{x}_a \hat{p}_b = \sum_{i,j,k,a,b = 1}^{3} \left( \delta_{ja}\delta_{kb} - \delta_{jb}\delta_{ka} \right) \hat{x}_j \hat{p}_k \hat{x}_a \hat{p}_b = \sum_{j,k = 1}^{3} \left( \hat{x}_j \hat{p}_k \hat{x}_j \hat{p}_k - \hat{x}_j \hat{p}_k \hat{x}_k \hat{p}_j \right)\\
+		&= \sum_{j,k = 1}^{3} \left( \hat{x}_j \hat{x}_j \hat{p}_k \hat{p}_k + \hat{x}_j [\hat{p}_k,\hat{x}_j] \hat{p}_k - \hat{x}_j \hat{x}_k \hat{p}_k \hat{p}_j - \hat{x}_j [\hat{p}_k,\hat{x}_k]\hat{p}_j \right)\\
+		&= \hat{\ve{x}}^2 \hat{\ve{p}}^2 - i\hbar \hat{\ve{x}}\cdot\hat{\ve{p}} + \sum_{j,k = 1}^{3} \left( - \hat{x}_k \hat{x}_j \hat{p}_k \hat{p}_j + i\hbar \delta_{kk} \hat{x}_j \hat{p}_j \right)\\
+		&= \hat{\ve{x}}^2 \hat{\ve{p}}^2 - i\hbar \hat{\ve{x}}\cdot\hat{\ve{p}} - \sum_{j,k = 1}^{3} \left( \hat{x}_k \hat{p}_k \hat{x}_j \hat{p}_j + \hat{x}_k [\hat{x}_j,\hat{p}_k] \hat{p}_j \right) + 3i\hbar \hat{\ve{x}}\cdot\hat{\ve{p}}\\
+		&= \hat{\ve{x}}^2 \hat{\ve{p}}^2 + 2i\hbar\hat{\ve{x}}\cdot\hat{\ve{p}} - \left( \hat{\ve{x}}\cdot\hat{\ve{p}} \right)^2 - i\hbar\hat{\ve{x}}\cdot\hat{\ve{p}} = \hat{\ve{x}}^2 \hat{\ve{p}}^2 - \left( \hat{\ve{x}}\cdot\hat{\ve{p}} \right)^2 + i\hbar \hat{\ve{x}}\cdot\hat{\ve{p}}
+	\end{split}
+\end{equation*}
+Rispetto al caso classico è presente un termine in più. Ricordando che $ \hat{\ve{x}}^2 \equiv \hat{r}^2 $:
+\begin{equation*}
+	\begin{split}
+		\hat{\ve{p}}^2
+		&= \frac{1}{r^2} \hat{\ve{L}}^2 + \frac{1}{r^2} \left( \hat{\ve{x}}\cdot\hat{\ve{p}} \right)^2 - \frac{i\hbar}{r^2} \hat{\ve{x}}\cdot\hat{\ve{p}} = \frac{1}{r^2} \hat{\ve{L}}^2 - \frac{\hbar^2}{r^2} r \frac{\pa}{\pa r} r \frac{\pa}{\pa r} - \frac{\hbar^2}{r^2} r \frac{\pa}{\pa r}\\
+		&= \frac{1}{r^2} \hat{\ve{L}}^2 - \frac{\hbar^2}{r^2} r \frac{\pa}{\pa r} \left( r \frac{\pa}{\pa r} + 1 \right) - \frac{\hbar^2}{r^2} r \frac{\pa}{\pa r} = \frac{1}{r^2} \hat{\ve{L}}^2 - \frac{\hbar^2}{r^2} r^2 \frac{\pa^2}{\pa r^2} - \frac{\hbar^2}{r^2} r \frac{\pa}{\pa r} - \frac{\hbar^2}{r^2} r \frac{\pa}{\pa r}
+	\end{split}
+\end{equation*}
+Data la Prop. \ref{r-l-comm}, è indifferente l'ordine in cui si applicano $ \frac{1}{r^2} $ e $ \hat{\ve{L}}^2 $, dunque:
+\begin{equation}
+	\hat{\ve{p}}^2 = -\hbar^2 \frac{\pa^2}{\pa r^2} - 2\hbar^2 \frac{1}{r} \frac{\pa}{\pa r} + \frac{\hat{\ve{L}}^2}{r^2}
+	\label{eq:1.33}
+\end{equation}
+È possibile ricondurre l'Hamiltoniana in Eq. \ref{eq:27} alla sua forma separata classica hermitianizzando l'operatore $ \tilde{p}_r $:
+\begin{equation*}
+	\tilde{p}^{\dagger}_r = \hat{\ve{p}}^{\dagger} \cdot \frac{\hat{\ve{x}}^{\dagger}}{\hat{r}^{\dagger}} = \hat{\ve{p}} \cdot \frac{\hat{\ve{x}}}{\hat{r}} = -i\hbar \sum_{i = 1}^{3} \pa_i \frac{x_i}{r} = - i\hbar \sum_{i = 1}^{3} \left( \frac{x_i}{r} \pa_i + \pa_i \left( \frac{x_i}{r} \right) \right) = \tilde{p}_r - \frac{2i\hbar}{\hat{r}}
+\end{equation*}
+Ricordando che l'hermitianizzazione avviene tramite $ \hat{a} = \frac{1}{2} (\tilde{a} + \tilde{a}^{\dagger}) $, si definisce l'impulso radiale autoaggiunto come:
+\begin{equation}
+	\hat{p}_r \defeq \hat{p}_r - \frac{i\hbar}{\hat{r}}
+	\label{eq:1.34}
+\end{equation}
+ovvero, sulla base delle coordinate:
+\begin{equation}
+	\hat{p}_r = -i\hbar \left( \frac{\pa}{\pa r} + \frac{1}{r} \right)
+	\label{eq:1.35}
+\end{equation}
+Per esprimere $ \hat{\ve{p}}^2 $ in funzione di $ \hat{p}_r $, si calcola:
+\begin{equation*}
+	\begin{split}
+		\hat{p}^2_r
+		&= -\hbar^2 \left( \frac{\pa}{\pa r} + \frac{1}{r} \right) \left( \frac{\pa}{\pa r} + \frac{1}{r} \right) = -\hbar^2 \left( \frac{\pa^2}{\pa r^2} + \frac{1}{r} \frac{\pa}{\pa r} + \frac{\pa}{\pa r} \frac{1}{r} + \frac{1}{r^2} \right)\\
+		&= -\hbar^2 \left( \frac{\pa^2}{\pa r^2} + \frac{2}{r} \frac{\pa}{\pa r} - \frac{1}{r^2} + \frac{1}{r^2} \right) = -\hbar^2 \left( \frac{\pa^2}{\pa r^2} + \frac{2}{r} \frac{\pa}{\pa r} \right)
+	\end{split}
+\end{equation*}
+Si trova dunque un'espressione che coincide con quella classica:
+\begin{equation}
+	\hat{\ve{p}}^2 = \hat{p}^2_r + \frac{\hat{\ve{L}}^2}{\hat{r}^2}
+	\label{eq:1.36}
+\end{equation}
+L'Hamiltoniana si separa come:
+\begin{equation}
+	\mathcal{H} = \frac{\hat{p}_r^2}{2m} + \hat{V}(\hat{r}) + \frac{\hat{\ve{L}}^2}{2m\hat{r}^2}
+	\label{eq:1.37}
+\end{equation}
+Questa Hamiltoniana non è separata in senso proprio, poiché i due termini non agiscono su spazi separati; tuttavia, si vede che $ [\hat{\ve{L}}^2,\mathcal{H}] = 0 $, dunque sono diagonalizzabili simultaneamente: una volta determinato lo spettro di $ \hat{\ve{L}}^2 $, il problema diventa unidimensionale (radiale).\\
+In questo caso, quindi, le autofunzioni non sono esprimibili come prodotto di autofunzioni su spazi separati, ma la semplificazione del problema deriva da una simmetria: la simmetria per rotazioni.
 
 
 

@@ -1,0 +1,123 @@
+\selectlanguage{italian}
+
+\section{Momento angolare e rotazioni}
+
+\paragraph{Caso classico}
+
+Per il Th. di Noether, associate alle invarianze per rotazioni attorno ai tre assi coordianti si hanno tre cariche di Noether conservate.\\
+Si considerino $ \ve{x} = \left( r\cos \phi, r\sin \phi \right) \equiv \left( x_1, x_2 \right) $ nel piano $ z = 0 $ ed una rotazione attorno all'asse $ z $ di un angolo infinitesimo $ \varepsilon $: questa causa uno spostamento $ \delta\ve{x} $ dato da:
+\begin{equation*}
+	\begin{split}
+		\delta\ve{x}
+		&= \left( r\cos (\phi + \varepsilon), r\sin (\phi + \varepsilon) \right) - \left( r\cos \phi, r\sin \phi \right)\\
+		&= \left( -r \varepsilon \sin \phi, r \varepsilon \cos \phi \right) + o(\varepsilon) = \varepsilon \left( -x_2, x_1 \right) + o(\varepsilon)
+	\end{split}
+\end{equation*}
+Quindi, per una generica rotazione attorno ad un asse dato dal versore $ \ve{n} $ si ha:
+\begin{equation}
+	\delta x_i = \varepsilon \sum_{j,k = 1}^{3} \epsilon_{ijk} n_j x_k \quad\Longleftrightarrow\quad \delta\ve{x} = \varepsilon \ve{n}\times\ve{x}
+	\label{eq:2.1}
+\end{equation}
+Nel caso di una rotazione attorno al $ j $-esimo asse coordinato $ \delta x_i^{(j)} = \varepsilon \sum_{k = 1}^{3} \epsilon_{ijk} x_k $, quindi la carica di Noether associata è:
+\begin{equation}
+	q_j \defeq \sum_{i = 1}^{3} \frac{\pa L}{\pa \dot{x}_i} \delta x_i^{(j)} = \varepsilon \sum_{i,k = 1}^{3} \epsilon_{jki} x_k p_i = \varepsilon L_j
+	\label{eq:2.2}
+\end{equation}
+Dunque l'invarianza per rotazioni attorno ad un asse ha come quantità conservata associata la componente del momento angolare lungo tale asse.
+
+\paragraph{Caso quantistico}
+
+Bisogna innanzitutto verificare che $ \hat{\ve{L}} $ definito in Eq. \ref{eq:1.31} sia effettivamente il momento angolare, ovvero il generatore delle rotazioni (a meno di un fattore $ \hbar $): questo equivale a verificare che l'operatore $ \hat{R}_{\varepsilon} $, definito come:
+\begin{equation}
+	\hat{R}_{\varepsilon} = e^{i\frac{\varepsilon}{\hbar} \ve{n}\cdot\hat{\ve{L}}} = \tens{I}_3 + i\frac{\varepsilon}{\hbar} \ve{n}\cdot\hat{	\ve{L}} + o(\varepsilon)
+	\label{eq:2.3}
+\end{equation}
+realizzi una rotazione di angolo infinitesimo $ \varepsilon $ attorno all'asse $ \ve{n} $, ovvero:
+\begin{equation}
+	\braket{\ve{x} | \hat{R}_{\varepsilon} | \psi} = \psi(\ve{x} + \delta_{\ve{n}}\ve{x}) = \psi(\ve{x}) + \delta_{\ve{n}}\ve{x}\cdot\nabla\psi(\ve{x}) + o(\varepsilon)
+	\label{eq:2.4}
+\end{equation}
+dove $ \delta_{\ve{n}}\ve{x} = \varepsilon \ve{n}\times\ve{x} $. Calcolando gli elementi di matrice di $ \hat{R}_{\varepsilon} $ sulla base delle posizioni:
+\begin{equation}
+	\braket{\ve{x} | \hat{R}_{\varepsilon} | \psi} = \psi(\ve{x}) + i \frac{\varepsilon}{\hbar} \cdot (-i\hbar) \sum_{i,j,k = 1}^{3} n_i \epsilon_{ijk} x_j \pa_k \psi(\ve{x}) + o(\varepsilon)
+	\label{eq:2.5}
+\end{equation}
+Confontando le Eq. \ref{eq:2.4} - \ref{eq:2.5}, si vede che sono uguali, dunque $ \hat{\ve{L}} $ è il generatore delle rotazioni.
+
+\section{Proprietà}
+
+\subsection{Espressione esplicita}
+
+Innanzitutto si noti che dalla definizione in Eq. \ref{eq:1.31} discende subito che $ \hat{\ve{L}} $ è hermitiano:
+\begin{equation}
+	\hat{L}_i^{\dagger} = \sum_{j,k = 1}^{3} \epsilon_{ijk} \hat{p}_k \hat{x}_j = \sum_{j,k = 1}^{3} \epsilon_{ijk} \left( [\hat{p}_k,\hat{x}_j] + \hat{x}_j \hat{p}_k \right) = L_i + i\hbar \sum_{j,k = 1}^{3} \epsilon_{ijk} \delta_{jk} = L_i
+	\label{eq:2.6}
+\end{equation}
+È anche possibile calcolare esplicitamente l'espressione di $ \hat{\ve{L}} $ in coordinate sferiche:
+\begin{equation}
+	\hat{L}_x = i\hbar \left( \sin \phi \frac{\pa}{\pa \theta} + \frac{\cos \theta}{\sin \theta} \cos \phi \frac{\pa}{\pa \phi} \right)
+	\label{eq:2.7}
+\end{equation}
+\begin{equation}
+	\hat{L}_y = i\hbar \left( -\cos \phi \frac{\pa}{\pa \theta} + \frac{\cos \theta}{\sin \theta} \sin \phi \frac{\pa}{\pa \phi} \right)
+	\label{eq:2.8}
+\end{equation}
+\begin{equation}
+	L_z = -i\hbar \frac{\pa}{\pa \phi}
+	\label{eq:2.9}
+\end{equation}
+Si ha inoltre:
+\begin{equation}
+	\hat{\ve{L}}^2 \equiv \hat{L}^2 = -\hbar^2 \left( \frac{\pa^2}{\pa \theta^2} + \frac{\sin \theta}{\cos \theta} \frac{\pa}{\pa \theta} + \frac{1}{\sin^2 \theta} \frac{\pa^2}{\pa \phi^2} \right)
+	\label{eq:2.10}
+\end{equation}
+
+\subsection{Commutatori}
+
+Sebbene in un sistema invariante per rotazioni il momento angolare commuti con l'Hamiltoniana, le componenti di $ \hat{\ve{L}} $ non commutano tra loro
+
+\begin{lemma}\label{lem-l-comm}
+	$ \hat{x}_i \hat{p}_j - \hat{x}_j \hat{p}_i = \sum_{k = 1}^{3} \epsilon_{ijk}	\hat{L}_k $.
+\end{lemma}
+\begin{proof}
+	$ \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k = \sum_{k,a,b = 1}^{3} \epsilon_{ijk}\epsilon_{kab} \hat{x}_a \hat{p}_b = \sum_{k,a,b = 1}^{3} \left( \delta_{ia}\delta_{jb} - \delta_{ib}\delta_{ja} \right) \hat{x}_a \hat{p}_b = \hat{x}_i \hat{p}_j - \hat{x}_j \hat{p}_i $.
+\end{proof}
+
+\begin{proposition}\label{l-comm}
+	$ [\hat{L}_i,\hat{L}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k $.
+\end{proposition}
+\begin{proof}
+	Usando nell'ultima uguaglianza il Lemma \ref{lem-l-comm}:
+	\begin{equation*}
+		\begin{split}
+			[\hat{L}_i,\hat{L}_j]
+			&= \sum_{a,b,l,m = 1}^{3} \epsilon_{iab}\epsilon_{jlm} [\hat{x}_a \hat{p}_b,\hat{x}_l \hat{p}_m] = \sum_{a,b,l,m = 1}^{3}  \epsilon_{iab} \epsilon_{jlm} \left( \hat{x}_l [\hat{x}_a,\hat{p}_m] \hat{p}_b + \hat{x}_a [\hat{p}_b,\hat{x}_l] \hat{p}_m \right)\\
+			&= i\hbar \sum_{a,b,l = 1}^{3} \epsilon_{bia} \epsilon_{jla} \hat{x}_l \hat{p}_b - i\hbar \sum_{a,b,m = 1}^{3} \epsilon_{iab} \epsilon_{mjb} \hat{x}_a \hat{p}_m\\
+			&= i\hbar \sum_{a,b,l = 1}^{3} \left( \delta_{bj}\delta_{il} - \delta_{bl}\delta_{ji} \right) \hat{x}_l \hat{p}_b - i\hbar \sum_{a,b,m = 1}^{3} \left( \delta_{im} \delta_{aj} - \delta_{ij}\delta_{am} \right) \hat{x}_a \hat{p}_m\\
+			&= i\hbar \left( \hat{x}_i \hat{p}_j - \delta_{ij} \hat{\ve{x}}\cdot\hat{\ve{p}} - \hat{x}_j \hat{p}_i + \hat{\ve{x}}\cdot\hat{\ve{p}} \delta_{ij} \right) = i\hbar \left( \hat{x}_i \hat{p}_j - \hat{x}_j \hat{p}_i \right) = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+Si ricordi che il commutatore tra un operatore hermitiano $ \hat{G} $, generatore della trasformazione (anch'essa hermitiana) $ \hat{T} = e^{i \varepsilon \hat{G}} $, ed un generico operatore $ \hat{A} $ può essere calcolato da:
+\begin{equation}
+	\hat{A}' = \hat{T}^{-1} \hat{A} \hat{T} = \left( \tens{I} - i\varepsilon\hat{G} \right) \hat{A} \left( \tens{I} + i\varepsilon\hat{G} \right) = \hat{A} + i\varepsilon [\hat{A},\hat{G}] \quad\Longrightarrow\quad [\hat{A},\hat{G}] = \frac{1}{i\varepsilon} \delta\hat{A}
+	\label{eq:2.11}
+\end{equation}
+Dunque dalla Prop. \ref{l-comm} è possibile vedere come trasforma $ \hat{L}_i $ sotto la rotazione data da $ \hat{L}_j $, e confrontandola con l'Eq. \ref{eq:2.1} si vede che $ \hat{\ve{L}} $ trasforma proprio come un vettore sotto rotazioni (cosa non scontata).\\
+Ciò suggerisce naturalmente che $ \hat{L}^2 $, essendo invariante per rotazioni, commuti con ciascuna $ \hat{L}_i $:
+\begin{equation}
+	[\hat{L}^2,\hat{L}_i] = \sum_{k = 1}^{3} [\hat{L}_k\hat{L}_k,\hat{L}_i] = i\hbar \sum_{j,k = 1}^{3} \epsilon_{kij} \left( \hat{L}_k\hat{L}_j + \hat{L}_j\hat{L}_k \right) = 0
+	\label{eq:2.12}
+\end{equation}
+nullo poiché prodotto di simbolo completamente antisimmetrico con operatore simmetrico.
+
+
+
+
+
+
+
+
+
+
