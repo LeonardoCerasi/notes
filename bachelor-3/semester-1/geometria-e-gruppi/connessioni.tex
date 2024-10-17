@@ -107,6 +107,78 @@ Scrivendo in funzione delle connessioni affini:
 \end{equation}
 Sulle varietà torsion-free ($ T^a_{bc} \equiv 0 $) si può definire il rotore covariante come $ V_{l;i} - V_{i;l} = V_{l,i} - V_{i,l} $.
 
+\begin{proposition}
+	La derivata covariante trasforma come un tensore.
+\end{proposition}
+\begin{proof}
+	Ricordando Eq. \ref{eq:4.6}:
+	\begin{equation*}
+		\begin{split}
+			\tilde{\nabla}_l \tilde{V}^k
+			&= \frac{\pa \tilde{V}^k}{\pa y^l} + \tilde{\Gamma}^k_{li}\tilde{V}^i = \frac{\pa x^m}{\pa y^l} \frac{\pa}{\pa x^m} \left( \frac{\pa y^k}{\pa x^p} V^p \right) + \tilde{\Gamma}^k_{lj} \tilde{V}^j\\
+			&= \frac{\pa x^m}{\pa y^l} \frac{\pa y^k}{\pa x^p} \frac{\pa V^p}{\pa x^m} + \frac{\pa x^m}{\pa y^l} \frac{\pa^2 y^k}{\pa x^m \pa x^n} V^n + \frac{\pa y^k}{\pa x^p} \frac{\pa x^m}{\pa y^l} \underbrace{\frac{\pa x^n}{\pa y^j} \frac{\pa y^j}{\pa x_i}}_{\delta^n_i} \Gamma^p_{mn} V^i + \frac{\pa y^k}{\pa x^p} \frac{\pa^2 x^p}{\pa y^l \pa y^j} \frac{\pa y^j}{\pa x^n} V^n\\
+			&= \frac{\pa x^m}{\pa y^l} \frac{\pa y^k}{\pa x^p} \left( \frac{\pa V^p}{\pa x^m} + \Gamma^p_{mn} V^n \right) + \left( \frac{\pa x^m}{\pa y^l} \frac{\pa^2 y^k}{\pa x^m \pa x^n} + \frac{\pa y^k}{\pa x^p} \frac{\pa^2 x^p}{\pa y^l \pa y^j} \frac{\pa y^j}{\pa x^n} \right) V^n
+		\end{split}
+	\end{equation*}
+	Basta mostrare che il secondo termine è nullo:
+	\begin{equation*}
+		\begin{split}
+			\frac{\pa}{\pa y^l} \frac{\pa y^k}{\pa x^n} + \frac{\pa y^k}{\pa x^p} \left[ \frac{\pa y^j}{\pa x^n} \frac{\pa}{\pa y^l} \frac{\pa x^p}{\pa y^j} \right]
+			&= \frac{\pa}{\pa y^l} \frac{\pa y^k}{\pa x^n} + \frac{\pa y^k}{\pa x^p} \left[ \frac{\pa}{\pa y^l} \left( \frac{\pa y^j}{\pa x^n} \frac{\pa x^p}{\pa y^j} \right) - \frac{\pa x^p}{\pa y^j} \frac{\pa}{\pa y^l} \frac{\pa y^j}{\pa x^n} \right]\\
+			&= \frac{\pa}{\pa y^l} \frac{\pa y^k}{\pa x^n} + \frac{\pa y^k}{\pa x^p} \left( \frac{\pa}{\pa y^l} \delta^p_n \right) - \delta^k_j \frac{\pa}{\pa y^l} \frac{\pa y^j}{\pa x^n} = \frac{\pa}{\pa y^l} \frac{\pa y^k}{\pa x^n} - \frac{\pa}{\pa y^l} \frac{\pa y^k}{\pa x^n} = 0
+		\end{split}
+	\end{equation*}
+	Il caso della derivata covariante di un vettore covariante è analogo.
+\end{proof}
+
+\begin{proposition}\label{cov-2}
+	La derivata covariante di un tensore di rango 2 è:
+	\begin{equation}
+		\nabla_k A_{ij} = \frac{\pa A_{ij}}{\pa x^k} - \Gamma^m_{ik} A_{mj} - \Gamma^m_{jk} A_{im}
+		\label{eq:4.12}
+	\end{equation}
+	\begin{equation}
+		\nabla_k A^{ij} = \frac{\pa A^{ij}}{\pa x^k} + \Gamma^i_{mk} A^{mj} + \Gamma^j_{mk} A^{im}
+		\label{eq:4.13}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	$ \tens{A} = A_{ij} \ve{e}^i \otimes \ve{e}^j $, quindi:
+	\begin{equation*}
+		\begin{split}
+			\frac{\pa \tens{A}}{\pa x^k}
+			&= \frac{\pa A_{ij}}{\pa x^k} \ve{e}^i \otimes \ve{e}^j + A_{ij} \frac{\pa\ve{e}^i}{\pa x^k} \otimes \ve{e}^j + A_{ij} \ve{e}^i \otimes \frac{\pa\ve{e}^j}{\pa x^k}\\
+			&= \frac{\pa A_{ij}}{\pa x^k} \ve{e}^i \otimes \ve{e}^j - A_{ij} \Gamma^i_{mk} \ve{e}^m \otimes \ve{e}^j - A_{ij} \Gamma^j_{mk} \ve{e}^i \otimes \ve{e}^m\\
+			&= \frac{\pa A_{ij}}{\pa x^k} \ve{e}^i \otimes \ve{e}^j - A_{mj} \Gamma^m_{ik} \ve{e}^i \otimes \ve{e}^j - A_{im} \Gamma^m_{jk} \ve{e}^i \otimes \ve{e}^j\\
+			&= \left( \frac{\pa A_{ij}}{\pa x^k} - \Gamma^m_{ik} A_{mj} - \Gamma^m_{jk} A_{im} \right) \ve{e}^i \otimes \ve{e}^j \eqdef \left( \nabla_k A_{ij} \right) \ve{e}^i \otimes \ve{e}^j
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}
+	Dato $ A_{ij} $ tensore di rango 2 antisimmetrico su una varietà torsion-free, si ha:
+	\begin{equation}
+		A_{ij;k} + A_{ki;j} + A_{jk;i} = A_{ij,k} + A_{ki,j} + A_{jk,i}
+		\label{eq:4.14}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Dalla Prop. \ref{cov-2}:
+	\begin{equation*}
+		\begin{split}
+			A_{ij;k} + A_{ki;j} + A_{jk;i}
+			&= A_{ij,k} - \Gamma^m_{ik} A_{mj} - \Gamma^m_{jk} A_{im} + A_{ki,j} - \Gamma^m_{kj} A_{mi} - \Gamma^m_{ij} A_{km} \\ &\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad + A_{jk,i} - \Gamma^m_{ji} A_{mk} - \Gamma^m_{ki} A_{jm}
+		\end{split}
+	\end{equation*}
+	Per simmetria di $ \Gamma^m_{ik} $ ed antisimmetria di $ A_{ij} $:
+	\begin{equation*}
+		\Gamma^m_{ik} A_{mj} = - \Gamma^m_{ki} A_{jk} \qquad \Gamma^m_{jk} A_{im} = - \Gamma^m_{kj} A_{mi} \qquad \Gamma^m_{ij} A_{km} = - \Gamma^m_{ji} A_{mk}
+	\end{equation*}
+	da cui segue la tesi.
+\end{proof}
+
+Ciò dimostra che l'identità di Bianchi è valida in qualsiasi sistema di riferimento su una varietà torsion-free.
+
 
 
 
