@@ -5,12 +5,12 @@
 \paragraph{Caso classico}
 
 Per il Th. di Noether, associate alle invarianze per rotazioni attorno ai tre assi coordianti si hanno tre cariche di Noether conservate.\\
-Si considerino $ \ve{x} = \left( r\cos \phi, r\sin \phi \right) \equiv \left( x_1, x_2 \right) $ nel piano $ z = 0 $ ed una rotazione attorno all'asse $ z $ di un angolo infinitesimo $ \varepsilon $: questa causa uno spostamento $ \delta\ve{x} $ dato da:
+Si considerino $ \ve{x} = \left( r\cos \varphi, r\sin \varphi \right) \equiv \left( x_1, x_2 \right) $ nel piano $ z = 0 $ ed una rotazione attorno all'asse $ z $ di un angolo infinitesimo $ \varepsilon $: questa causa uno spostamento $ \delta\ve{x} $ dato da:
 \begin{equation*}
 	\begin{split}
 		\delta\ve{x}
-		&= \left( r\cos (\phi + \varepsilon), r\sin (\phi + \varepsilon) \right) - \left( r\cos \phi, r\sin \phi \right)\\
-		&= \left( -r \varepsilon \sin \phi, r \varepsilon \cos \phi \right) + o(\varepsilon) = \varepsilon \left( -x_2, x_1 \right) + o(\varepsilon)
+		&= \left( r\cos (\varphi + \varepsilon), r\sin (\varphi + \varepsilon) \right) - \left( r\cos \varphi, r\sin \varphi \right)\\
+		&= \left( -r \varepsilon \sin \varphi, r \varepsilon \cos \varphi \right) + o(\varepsilon) = \varepsilon \left( -x_2, x_1 \right) + o(\varepsilon)
 	\end{split}
 \end{equation*}
 Quindi, per una generica rotazione attorno ad un asse dato dal versore $ \ve{n} $ si ha:
@@ -55,20 +55,20 @@ Innanzitutto si noti che dalla definizione in Eq. \ref{eq:1.31} discende subito 
 \end{equation}
 È anche possibile calcolare esplicitamente l'espressione di $ \hat{\ve{L}} $ in coordinate sferiche:
 \begin{equation}
-	\hat{L}_x = i\hbar \left( \sin \phi \frac{\pa}{\pa \theta} + \frac{\cos \theta}{\sin \theta} \cos \phi \frac{\pa}{\pa \phi} \right)
+	\hat{L}_x = i\hbar \left( \sin \varphi \frac{\pa}{\pa \vartheta} + \frac{\cos \vartheta}{\sin \vartheta} \cos \varphi \frac{\pa}{\pa \varphi} \right)
 	\label{eq:2.7}
 \end{equation}
 \begin{equation}
-	\hat{L}_y = i\hbar \left( -\cos \phi \frac{\pa}{\pa \theta} + \frac{\cos \theta}{\sin \theta} \sin \phi \frac{\pa}{\pa \phi} \right)
+	\hat{L}_y = i\hbar \left( -\cos \varphi \frac{\pa}{\pa \vartheta} + \frac{\cos \vartheta}{\sin \vartheta} \sin \varphi \frac{\pa}{\pa \varphi} \right)
 	\label{eq:2.8}
 \end{equation}
 \begin{equation}
-	L_z = -i\hbar \frac{\pa}{\pa \phi}
+	L_z = -i\hbar \frac{\pa}{\pa \varphi}
 	\label{eq:2.9}
 \end{equation}
 Si ha inoltre:
 \begin{equation}
-	\hat{\ve{L}}^2 \equiv \hat{L}^2 = -\hbar^2 \left( \frac{\pa^2}{\pa \theta^2} + \frac{\sin \theta}{\cos \theta} \frac{\pa}{\pa \theta} + \frac{1}{\sin^2 \theta} \frac{\pa^2}{\pa \phi^2} \right)
+	\hat{\ve{L}}^2 \equiv \hat{L}^2 = -\hbar^2 \left( \frac{\pa^2}{\pa \vartheta^2} + \frac{\sin \vartheta}{\cos \vartheta} \frac{\pa}{\pa \vartheta} + \frac{1}{\sin^2 \vartheta} \frac{\pa^2}{\pa \varphi^2} \right)
 	\label{eq:2.10}
 \end{equation}
 
@@ -111,6 +111,163 @@ Ciò suggerisce naturalmente che $ \hat{L}^2 $, essendo invariante per rotazioni
 	\label{eq:2.12}
 \end{equation}
 nullo poiché prodotto di simbolo completamente antisimmetrico con operatore simmetrico.
+
+\section{Spettro del momento angolare}
+
+Sebbene le componenti del momento angolare non commutano tra loro, e quindi non sono diagonalizzabili simultaneamente, è possibile trovare una terna di operatori compatibili: l'Hamiltoniana $ \mathcal{H} $, il modulo del momento angolare $ \hat{L}^2 $ e la componente $ \hat{L}_z $; in realtà poteva essere scelta qualsiasi componente del momento angolare, ma convenzionalmente si sceglie $ \hat{L}_z $, principalmente per la sua semplice espressione in coordinate sferiche (Eq. \ref{eq:2.9}).\\
+Si definisce lo spettro di autofunzioni comuni di $ \hat{L}_z $ ed $ \hat{L}^2 $ come l'insieme di stati $ \ket{\ell,m} $ tali che:
+\begin{equation}
+	\hat{L}_z \ket{\ell,m} = \hbar m \ket{\ell,m}
+	\label{eq:2.13}
+\end{equation}
+\begin{equation}
+	\hat{L}^2 \ket{\ell,m} = \lambda_{\ell} \ket{\ell,m}
+	\label{eq:2.14}
+\end{equation}
+È inoltre lecito supporre che tali stati siano normalizzati in senso proprio, dato che l'operatore momento angolare, visto come operatore differenziale, agisce su un dominio compatto (una superficie omeomorfa a $ \mathbb{S}^2 $), quindi:
+\begin{equation}
+	\braket{\ell',m' | \ell,m} = \delta_{\ell' \ell} \delta_{m' m}
+	\label{eq:2.15}
+\end{equation}
+
+\subsection{Costruzione dello spettro}
+
+Per determinare lo spettro, è conveniente definire i seguenti operatori:
+\begin{equation}
+	\hat{L}_{\pm} \defeq \hat{L}_x \pm i \hat{L}_y
+	\label{eq:2.16}
+\end{equation}
+
+\begin{proposition}
+	$ ( \hat{L}_{\pm} )^{\dagger} = \hat{L}_{\mp} $.
+\end{proposition}
+\begin{proof}
+	Banale ricordando che ogni $ \hat{L}_i $ è hermitiana (Eq. \ref{eq:2.6}).
+\end{proof}
+\begin{proposition}
+	$ [\hat{L}_z,\hat{L}_{\pm}] = \pm\hbar\hat{L}_{\pm} $.
+\end{proposition}
+\begin{proof}
+	$ [\hat{L}_z,\hat{L}_{\pm}] = [\hat{L},\hat{L}_x] \pm i [\hat{L}_z,\hat{L}_{\pm}] = i\hbar \hat{L}_y \pm i (-i\hbar \hat{L}_x) = \pm \hbar (\hat{L}_x \pm i \hat{L}_y) = \pm\hbar\hat{L}_{\pm} $.
+\end{proof}
+
+Questi sono operatori di scala.
+
+\begin{proposition}\label{l-ladder}
+	$ \hat{L}_z\hat{L}_{\pm} \ket{\ell,m} = \hbar (m \pm 1) \hat{L}_{\pm} \ket{\ell,m} $.
+\end{proposition}
+\begin{proof}
+	$ \hat{L}_z \hat{L}_{\pm} \ket{\ell,m} = \hat{L}_{\pm} \hat{L}_z \ket{\ell,m} + [\hat{L}_z,\hat{L}_{\pm}]\ket{\ell,m} = \hat{L}_{\pm} \hat{L}_z \ket{\ell,m} \pm \hbar \hat{L}_{\pm} \ket{\ell,m} $.
+\end{proof}
+
+Con questi operatori si dimostra che la scala degli stati si arresta in entrambe le direzioni.
+
+\begin{proposition}
+	Fissato $ \ell\in\R $, la successione $ \{ \ket{\ell,m} \}_{m\in\R} $ ha cardinalità finita.
+\end{proposition}
+\begin{proof}
+	Si definisca $ \ket{\phi_{\pm}} \equiv \hat{L}_{\pm} \ket{\ell,m} $; naturalmente:
+	\begin{equation*}
+		\begin{split}
+			&\braket{\phi_+ | \phi_+} = \braket{\ell,m | \hat{L}_- \hat{L}_+ | \ell,m} \ge 0\\
+			&\braket{\phi_- | \phi_-} = \braket{\ell,m | \hat{L}_+ \hat{L}_- | \ell,m} \ge 0
+		\end{split}
+	\end{equation*}
+	Considerando che:
+	\begin{equation*}
+		\hat{L}_{\pm} \hat{L}_{\mp} = ( \hat{L}_x \pm i\hat{L}_y ) ( \hat{L}_x \mp i\hat{L}_y ) = \hat{L}_x^2 + \hat{L}_y^2 \mp i [\hat{L}_x,\hat{L}_y] = \hat{L}^2 - \hat{L}_z^2 \pm \hbar\hat{L}_z
+	\end{equation*}
+	si ha:
+	\begin{equation*}
+		0 \le \braket{\phi_+ | \phi_+} + \braket{\phi_- | \phi_-} = 2 \braket{\ell,m | \hat{L}^2 - \hat{L}_z^2 | \ell,m} = \lambda_{\ell}^2 - \hbar^2 m^2
+	\end{equation*}
+	Si ha quindi:
+	\begin{equation*}
+		- \frac{\abs{\lambda_{\ell}}}{\hbar} \le m \le \frac{\abs{\lambda_{\ell}}}{\hbar}
+	\end{equation*}
+	che dimostra la tesi.
+\end{proof}
+Dunque, per $ \ell $ fissato devono esistere degli stati limite $ \ket{\ell,m_{\text{min}}} $, $ \ket{\ell,m_{\text{max}}} $ tali che:
+\begin{equation}
+	\begin{split}
+		&\hat{L}_- \ket{\ell,m_{\text{min}}} = 0 \\
+		&\hat{L}_+ \ket{\ell,m_{\text{max}}} = 0
+	\end{split}
+	\label{eq:2.17}
+\end{equation}
+Ciò determina univocamente i valori ammessi sia di $ \lambda_{\ell} $ che di $ m $. Infatti, applicando $ \hat{L}_{\pm} $ alle Eq. \ref{eq:2.17}:
+\begin{equation*}
+	\begin{split}
+		&0 = \hat{L}_+ \hat{L}_- \ket{\ell,m_{\text{min}}} = (\hat{L}^2 - \hat{L}_z^2 + \hbar\hat{L}_z)\ket{\ell,m_{\text{min}}} = (\lambda_{\ell} - \hbar^2 m_{\text{min}}^2 + \hbar^2 m_{\text{min}}) \ket{\ell,m_{\text{min}}}\\
+		&0 = \hat{L}_- \hat{L}_+ \ket{\ell,m_{\text{max}}} = (\hat{L}^2 - \hat{L}_z^2 - \hbar\hat{L}_z)\ket{\ell,m_{\text{max}}} = (\lambda_{\ell} - \hbar^2 m_{\text{max}}^2 - \hbar^2 m_{\text{max}}) \ket{\ell,m_{\text{max}}}
+	\end{split}
+\end{equation*}
+Sottraendo le due equazioni si ottiene:
+\begin{equation*}
+	m_{\text{max}} (m_{\text{max}} + 1) - m_{\text{min}} (m_{\text{min}} - 1) = 0
+\end{equation*}
+le cui soluzioni sono
+\begin{equation*}
+	m_{\text{max}} = \frac{-1 \pm (2m_{\text{min}} - 1)}{2} \in \{ m_{\text{min}} - 2, -m_{\text{min}} \}
+\end{equation*}
+L'unica soluzione sensata è $ m_{\text{max}} = -m_{\text{min}} $. Dato che $ \hat{L}_{\pm} $ sono operatori di scala, si deve avere $ m_{\text{max}} = m_{\text{min}} + N, \, N\in\N $, dunque
+\begin{equation*}
+	m_{\text{max}} = \frac{N}{2}
+\end{equation*}
+che può essere intero o semi-intero.\\
+Si ha inoltre che $ \lambda_{\ell} = \hbar^2 m_{\text{max}} (m_{\text{max}} + 1) $, quindi, definendo $ \ell \equiv \frac{N}{2} $ (fin'ora era arbitrario), si può scrivere:
+\begin{equation*}
+	\lambda_{\ell} = \hbar^2 \ell (\ell + 1)
+\end{equation*}
+In definitiva:
+\begin{equation}
+	\hat{L}^2 \ket{\ell,m} = \hbar^2 \ell (\ell + 1) \ket{\ell,m} \qquad \ell = \frac{N}{2},\,N\in\N
+	\label{eq:2.18}
+\end{equation}
+\begin{equation}
+	\hat{L}_z \ket{\ell,m} = \hbar m \ket{\ell,m} \qquad -\ell \le m \le \ell
+	\label{eq:2.19}
+\end{equation}
+La normalizzazione propria degli stati è data da:
+\begin{equation}
+	\braket{\ell',m' | \ell,m} = \delta_{\ell'\ell} \delta_{m'm}
+	\label{eq:2.20}
+\end{equation}
+Per normalizzare correttamente le autofunzioni, si calcola:
+\begin{equation*}
+	\begin{split}
+		&\hat{L}_+\hat{L}_- \ket{\ell,m} = \hbar^2 (\ell(\ell + 1) - m(m - 1)) \ket{\ell,m}\\
+		&\hat{L}_-\hat{L}_+ \ket{\ell,m} = \hbar^2 (\ell(\ell + 1) - m(m + 1)) \ket{\ell,m}
+	\end{split}
+\end{equation*}
+Ricordando la Prop. \ref{l-ladder}, si può definire pienamente la scala delle autofunzioni a $ \ell $ fissato:
+\begin{equation}
+	\ket{\ell,m \pm 1} = \frac{1}{\hbar \sqrt{\ell(\ell + 1) - m(m \pm 1)}} \hat{L}_{\pm} \ket{\ell,m}
+	\label{eq:2.21}
+\end{equation}
+
+\paragraph{Quantizzazione}
+
+È necessario fare delle osservazioni sugli autovalori di $ \hat{L}_z $ e $ \hat{L}^2 $ trovati. Innanzitutto, si vede che $ L_z $ è quantizzato in multipli interi o semi-interi di $ \hbar $, il che è alquanto notevole, soprattutto se comparato alla fisica classica: quantisticamente, quindi, sebbene non abbia senso parlare di traiettorie ($ \hat{x} $ e $ \hat{p} $ non commutano), si possono descrivere le orbite quantizzate dei corpi, corrispondendi a valori discreti del momento angolare.\\
+Un'altro fatto che viene confermato è che le componenti del momento angolare non sono compatibili tra loro: se è completamente determinata $ L_z $, $ L_x $ ed $ L_y $ sono completamente indeterminate (e quindi non avrebbe senso parlare di un vettore tridimensionale); ciò è confermato dal fatto che, quando $ L_z $ assume il suo valore massimo $ \hbar \ell $, questo è comunque strettamente minore del modulo del momento angolare $ \hbar \sqrt{\ell(\ell + 1)} $ (mentre classicamente si avrebbe $ L_z^{(\text{max})} = L $).
+
+\subsection{Autofunzioni sulla base delle coordinate}
+
+È possibile definire le autofunzioni del momento angolare sulla base delle coordinate come:
+\begin{equation}
+	\braket{\vartheta,\varphi | \ell,m} \defeq Y_{\ell,m}(\vartheta,\varphi)
+	\label{eq:2.22}
+\end{equation}
+Ricordando l'espressione di $ \hat{L}_z $ sulla base delle coordiante (Eq. \ref{eq:2.9}), l'Eq. \ref{eq:2.19} diventa un'equazione differenziale:
+\begin{equation}
+	-i\hbar \frac{\pa}{\pa \varphi} Y_{\ell,m}(\vartheta,\varphi) = \hbar m Y_{\ell,m}(\vartheta,\varphi)
+	\label{eq:2.23}
+\end{equation}
+È possibile scrivere la soluzione generale come:
+\begin{equation}
+	Y_{\ell,m}(\vartheta,\varphi) = \mathcal{N}_{\ell,m} e^{im\varphi} P_{\ell,m}(\cos\vartheta)
+	\label{eq:2.24}
+\end{equation}
 
 
 
