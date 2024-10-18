@@ -17,7 +17,7 @@ Per trattare formalmente questo problema, è necessario definire la nozione di s
 \end{definition}
 Sostanzialmente, $ T_p\mathcal{M} $ è lo spazio di tutti i vettori tangenti a $ \mathcal{M} $ spiccati in $ p $.
 \begin{definition}
-	Data una varietà differenziale $ \mathcal{M} $, fissato un RF $ \{\ve{e}_j(\ve{x})\}_{i = 1, \dots, n} $ su di essa, si definisce la \textit{connessione affine di Levi-Civita} (o \textit{simbolo di Christoffel}) come:
+	Data una varietà differenziale $ \mathcal{M} $, fissato un RF $ \{\ve{e}_j(\ve{x})\}_{i = 1, \dots, n} $ su di essa, si definisce la \textit{connessione affine di Levi-Civita} (o \textit{simbolo di Christoffel del secondo tipo}) come:
 	\begin{equation}
 		\Gamma^k_{li} \defeq \ve{e}^k \cdot \frac{\pa \ve{e}_i}{\pa x^l}
 		\label{eq:4.3}
@@ -56,7 +56,7 @@ Quando non è presente la suddetta simmetria (es: teoria della gravitazione di E
 	Si definisce il \textit{tensore di torsione} $ T^a_{bc} \defeq \Gamma^a_{bc} - \Gamma^a_{cb} $.
 \end{definition}
 
-\section{Trasporto Parallelo}
+\subsection{Trasporto Parallelo}
 
 Data una varietà differenziabile $ n $-dimensionale $ \mathcal{M} $ in un embedding space WLOG identificato con $ \R^{n+k} $, con un opportuno $ k \ge 1 $: è possibile considerare i vettori nei vari $ T_p\mathcal{M} $ come vettori nell'embedding space.\\
 Intuitivamente, è possibile immaginare il trasporto parallelo di un vettore lungo una curva sulla varietà come il cambiare punto di applicazione del vettore sull'ipersuperficie nell'embedding space determinata da $ \mathcal{M} $, mantenendo la tangenza alla varietà ma senza modificare le componenti del vettore nell'embedding space. Ciò porta, se si considera una loop sulla varietà, ad ottenere un vettore orientato diversamente da quello iniziale (vedere Fig. \ref{par-tr}).
@@ -178,6 +178,293 @@ Sulle varietà torsion-free ($ T^a_{bc} \equiv 0 $) si può definire il rotore c
 \end{proof}
 
 Ciò dimostra che l'identità di Bianchi è valida in qualsiasi sistema di riferimento su una varietà torsion-free.
+
+\subsection{Varietà torsion-free}
+
+\subsubsection{Connessioni affini}
+
+\begin{definition}
+	Si definisce \textit{simbolo di Christoffel del primo tipo} $ \Gamma_{ijk} \defeq g_{im} \Gamma^m_{jk} $.
+\end{definition}
+
+\begin{proposition}
+	Su una varietà torsion-free $ \Gamma_{ijk} = \Gamma_{ikj} $.
+\end{proposition}
+\begin{proof}
+	Banale ricordando che su una varietà torsion-free $ \Gamma^m_{jk} = \Gamma^m_{kj} $.
+\end{proof}
+
+\begin{proposition}\label{chri-1-2}
+	$ \Gamma^m_{ij} = g^{km} \Gamma_{kij} $.
+\end{proposition}
+\begin{proof}
+	$ g^{km} \Gamma_{kij} = g^{km} g_{kn} \Gamma^n_{ij} = \delta^m_n \Gamma^n_{ij} = \Gamma^m_{ij} $.
+\end{proof}
+
+È possibile esprimere le connessioni affini in funzione del tensore metrico.
+
+\begin{proposition}\label{chri-1}
+	$ \Gamma_{ijk} = \frac{1}{2} \left( g_{ij,k} + g_{ki,j} - g_{jk,i} \right) $.
+\end{proposition}
+\begin{proof}
+	Si vede innanzitutto che $ \Gamma_{ijk} = g_{im} \Gamma^m_{jk} = g_{im} \ve{e}^m \cdot \ve{e}_{k,j} = \ve{e}_i \cdot \ve{e}_{k,j} $. Di conseguenza $ g_{ij,k} = \ve{e}_{i,k} \cdot \ve{e}_j + \ve{e}_i \cdot \ve{e}_{j,k} = \Gamma_{jki} + \Gamma_{ikj} $, ed analogamente $ g_{ki,j} = \Gamma_{ijk} + \Gamma_{kji} $ e $ g_{jk,i} = \Gamma_{kij} + \Gamma_{jik} $, dunque:
+	\begin{equation*}
+		\begin{split}
+			g_{ij,k} + g_{ki,j} - g_{jk,i}
+			&= \Gamma_{jki} + \Gamma_{ikj} + \Gamma_{ijk} + \Gamma_{kji} - \Gamma_{kij} - \Gamma_{jik}\\
+			&= \Gamma_{jik} - \Gamma_{ijk} + \Gamma_{ijk} + \Gamma_{kij} - \Gamma_{kij} - \Gamma_{jik} = 2 \Gamma_{ijk}
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}
+	$ \Gamma^m_{ij} = \frac{1}{2} g^{km} \left( g_{ki,j} + g_{jk,i} - g_{ij,k} \right) $.
+\end{proposition}
+\begin{proof}
+	Dalle Prop. \ref{chri-1-2} - \ref{chri-1}.
+\end{proof}
+
+\subsubsection{Derivata covariante del tensore metrico}
+
+Dalla Prop. \ref{cov-2} si ha che:
+\begin{equation}
+	\nabla_k g_{ij} = \frac{\pa g_{ij}}{\pa x^k} - \Gamma^m_{ik} g_{mj} - \Gamma^m_{jk} g_{im}
+	\label{eq:4.15}
+\end{equation}
+Dunque:
+\begin{equation*}
+	\begin{split}
+		g_{ij;k}
+		&= g_{ij,k} - \Gamma_{jik} - \Gamma_{ijk}\\
+		&= g_{ij,k} - \frac{1}{2} \left( g_{ji,k} + g_{kj,i} - g_{ik,j} \right) - \frac{1}{2} \left( g_{ij,k} + g_{ki,j} - g_{jk,i} \right)\\
+		&= g_{ij,k} - \frac{1}{2} g_{ijk,k} + \frac{1}{2} g_{jk,i} + \frac{1}{2} g_{ik,j} - \frac{1}{2} g_{ij,k} - \frac{1}{2} g_{ik,j} + \frac{1}{2} g_{jk,i} = 0
+	\end{split}
+\end{equation*}
+Si vede quindi una delle proprietà fondamentali delle varietà torsion-free, ovvero la preservazione della metrica:
+\begin{equation}
+	\nabla_k g_{ij} = 0
+	\label{eq:4.16}
+\end{equation}
+
+\section{Operatori differenziali su varietà curve}
+
+Considerata una generica varietà differenziabile $ n $-dimensionale $ \mathcal{M} $, fissando un RF $ \{\ve{e}_i\}_{i = 1, \dots, n} $ ortogonale, è possibile definire su $ \mathcal{M} $ gli usuali operatori differenziali dello spazio euclideo.
+
+\subsection{Gradiente}
+
+\begin{definition}
+	Dato  un campo scalare $ f : \mathcal{M} \rightarrow \R $, si definisce il suo differenziale come:
+	\begin{equation}
+		df(\ve{x}) = f(\ve{x} + d\ve{x}) - f(\ve{x}) = \frac{\pa f}{\pa x^i}dx^i \eqdef \nabla f(\ve{x}) \cdot d\ve{x}
+		\label{eq:4.17}
+	\end{equation}
+\end{definition}
+
+\begin{proposition}
+	$ \nabla f = \displaystyle\sum_{i = 1}^{n} \frac{1}{h_i} \frac{\pa f}{\pa x^i} \hat{\ve{e}}_i $.
+\end{proposition}
+\begin{proof}
+	Dato che $ \frac{\hat{\ve{e}}_i}{h_i} = \ve{e}^i $ (giustamente $ \frac{\pa f}{\pa x^i} $ è covariante):
+	\begin{equation*}
+		\nabla f \cdot d\ve{x} = \frac{\pa f}{\pa x^i} \ve{e}^i \cdot dx^j \ve{e}_j = \frac{\pa f}{\pa x^i} dx^j \delta^j_i = \frac{\pa f}{\pa x^i} dx^i = df
+	\end{equation*}
+\end{proof}
+
+\subsection{Divergenza}
+
+\begin{definition}
+	Dato un campo vettoriale controvariante $ \ve{V} = V^i \ve{e}_i $, si definisce la sua divergenza come:
+	\begin{equation}
+		\nabla\cdot\ve{V} \defeq V^i_{;i} = V^i_{,i} + \Gamma^i_{ik} V^k
+		\label{eq:4.18}
+	\end{equation}
+\end{definition}
+
+La divergenza non è altro che una contrazione della derivata covariante.
+
+\begin{proposition}\label{chri-contr}
+	$ \Gamma^i_{ik} = \frac{1}{2} g^{im} g_{im,k} $.
+\end{proposition}
+\begin{proof}
+	$ \Gamma^i_{ik} = \frac{1}{2} g^{im} \left( g_{im,k} + g_{ki,m} - g_{mk,i} \right) $, ma $ g^{im} g_{mk,i} = g^{mi} g_{ik,m} $ poichè $ m $, $ i $ indici muti, da cui la tesi.
+\end{proof}
+
+È possibile dare una formulazione alternativa. Si ricordi che, definendo $ c $ la matrice dei cofattori del tensore metrico $ g $ (visto come matrice):
+\begin{equation}
+	\det g = \sum_{i,j} g_{ij} c_{ij} \quad \Longrightarrow \quad c_{ij} = \frac{\pa\det g}{\pa g_{ij}}
+	\label{eq:4.19}
+\end{equation}
+Ricordando poi che $ \left( g_{ij} \right)^{-1} = \left( \det g \right)^{-1} c_{ij} $:
+\begin{equation}
+	g^{ij} = \frac{1}{\det g} \frac{\pa\det g}{\pa g_{ij}}
+	\label{eq:4.20}
+\end{equation}
+
+\begin{proposition}\label{chri-g}
+	$ \Gamma^i_{ik} = \frac{\left( \sqg \right)_{,k}}{\sqg} $.
+\end{proposition}
+\begin{proof}
+	Innanzitutto $ \left( \det g \right)_{,k} = g_{ij,k} \frac{\pa\det g}{\pa g_{ij}} = g_{ij,k} g^{ij} \det g $, quindi, dalla Prop. \ref{chri-contr}:
+	\begin{equation*}
+		\Gamma^i_{ik} = \frac{1}{2} g^{im} g_{im,k} = \frac{1}{2} \frac{1}{\det g} \left( \det g \right)_{,k} = \frac{1}{2\abs{\det g}} \abs{\det g}_{,k} \equiv \frac{\tens{g}_{,k}}{2\tens{g}} = \frac{\left( \sqg \right)_{,k}}{\sqg}
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}\label{dive-cov}
+	Dato un campo vettoriale controvariante $ \ve{V} = V^i \ve{e}_i $, la sua divergenza è:
+	\begin{equation}
+		\nabla\cdot\ve{V} = \frac{\left( \sqg V^k \right)_{,k}}{\sqg}
+		\label{eq:4.21}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Dalle Prop. \ref{chri-g}:
+	\begin{equation*}
+		\nabla\cdot\ve{V} = V^i_{,i} + \Gamma^i_{ik} V^k = V^i_{,i} + \frac{\left( \sqg \right)_{,k}}{\sqg} V^k = \frac{\left( \sqg V^k \right)_{,k}}{\sqg}
+	\end{equation*}
+\end{proof}
+
+\begin{definition}
+	Si definisce la \textit{delta di Kronecker generalizzata} come:
+	\begin{equation}
+		\delta^{\mu_1 \dots \mu_k}_{\nu_1 \dots \nu_k} \defeq
+		\begin{cases}
+			+1 & (\nu_1,\dots,\nu_k) = \sigma_p (\mu_1,\dots,\mu_k) \text{ distinti} \\
+			-1 & (\nu_1,\dots,\nu_k) = \sigma_d (\mu_1,\dots,\mu_k) \text{ distinti} \\
+			0 & \text{altrimenti}
+		\end{cases}
+		\label{eq:4.22}
+	\end{equation}
+\end{definition}
+\begin{lemma}
+	Si ha:
+	\begin{equation}
+		\delta^{\mu_1 \dots \mu_k}_{\nu_1 \dots \nu_k} = \det
+		\begin{bmatrix}
+			\delta^{\mu_1}_{\nu_1} & \dots & \delta^{\mu_1}_{\nu_k}\\
+			\vdots & \ddots & \vdots\\
+			\delta^{\mu_k}_{\nu_1} & \dots & \delta^{\mu_k}_{\nu_k}
+		\end{bmatrix}
+		\label{eq:4.23}
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{eps-gen}
+	$ \epsilon_{i_1 \dots i_k i_{k+1} \dots i_n} \epsilon^{i_i \dots i_k j_{k+1} \dots j_n} = k! \delta^{j_{k+1} \dots j_n}_{i_{k+1} \dots i_n} $.
+\end{lemma}
+
+\begin{proposition}
+	Dato un campo vettoriale $ \ve{V} = V^i \ve{e}_i $, detta $ V = V_i dx^i $ la forma differenziale ad esso associata, si ha:
+	\begin{equation}
+		\nabla\cdot\ve{V} = \sigma * d * V
+		\label{eq:4.24}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Per semplicità si considera il caso 4-dimensionale (si usa il Lemma \ref{eps-gen}):
+	\begin{equation*}
+		\begin{split}
+			*d*V
+			&= *d \left( V_i \frac{1}{3!} g^{ik} \varepsilon_{klmn} dx^l \wedge dx^m \wedge dx^n \right) = * \left[ \frac{1}{3!} \left( \sqg V^k \right)_{,p} \epsilon_{klmn} dx^p \wedge dx^l \wedge dx^m \wedge dx^n \right]\\
+			&= \frac{1}{3!} \left( \sqg V^k \right)_{,p} \epsilon_{klmn} *\left( dx^p \wedge dx^l \wedge dx^m \wedge dx^n \right) = \frac{1}{3!} \left( \sqg V^k \right)_{,p} \epsilon_{klmn} g^{p \alpha} g^{l \beta} g^{m \gamma} g^{n \delta} \sqg \epsilon_{\alpha \beta \gamma \delta}\\
+			&= \frac{1}{3!} \left( \sqg V^k \right)_{,p} \sqg \epsilon_{klmn} \left( \det g \right)^{-1} \epsilon^{plmn} = \frac{1}{3!} \frac{\sigma}{\sqg} \left( \sqg V^k \right)_{,p} \left( 3! \delta^p_k \right) = \frac{\sigma}{\sqg} \left( \sqg V^k \right)_{,k}
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\begin{example}
+	In uno spazio piatto $ n $-dimensionale con $ g_{ij} = h_i^2 \delta_{ij} $ si ha $ \bar{V}_i \equiv h_i^{-1} V_i = h_i V^i $, quindi:
+	\begin{equation*}
+		\nabla\cdot\ve{V} = \frac{1}{\sqrt{h_1^2 \dots h_n^2}} \sum_{k = 1}^{n} \left( \sqrt{h_1^2 \dots h_n^2} \bar{V}_k \right)_{,k} = \frac{1}{h_1 \dots h_n} \sum_{k = 1}^{n} \frac{\pa}{\pa x^k} \left( \frac{h_1 \dots h_n}{h_k} V_k \right)
+	\end{equation*}
+\end{example}
+
+\subsection{Laplaciano}
+
+\begin{definition}
+	Dato un campo scalare $ f : \mathcal{M} \rightarrow \R $, si definisce il suo laplaciano come:
+	\begin{equation}
+		\Box f \defeq \nabla\cdot\nabla f = \left( g^{ik} f_{,k} \right)_{;i}
+		\label{eq:4.25}
+	\end{equation}
+\end{definition}
+
+% Nella letteratura russa è indicato anche con $ \Delta $, mentre in uno spazio piatto con $ \nabla^2 $.
+
+\begin{proposition}
+	Si ha:
+	\begin{equation}
+		\Box f = \frac{\left( \sqg f^{,k} \right)_{,k}}{\sqg}
+		\label{eq:4.26}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Banale dalla Prop. \ref{dive-cov}, usando $ g^{ik} f_{,k} = f^{,i} $.
+\end{proof}
+
+\begin{proposition}
+	Dato un campo scalare $ f : \mathcal{M} \rightarrow \R $, si ha:
+	\begin{equation}
+		\Box f = \sigma * d * df
+		\label{eq:4.27}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			*d*df
+			&= *d \left( f_{,i} *dx^i \right) = *d \left( \frac{1}{3!} \sqg f_{,i} g^{ik} \epsilon_{klmn} dx^l \wedge dx^m \wedge dx^n \right)\\
+			&= * \left( \frac{1}{3!} \left( \sqg f^{,k} \right)_{,p} \epsilon_{klmn} dx^p \wedge dx^l \wedge dx^m \wedge dx^n \right)\\
+			&= \frac{1}{3!} \left( \sqg f^{,k} \right)_{,p} \epsilon_{klmn} g^{p \alpha} g^{l \beta} g^{m \gamma} g^{n \delta} \sqg \epsilon_{\alpha \beta \gamma \delta}\\
+			&= \frac{1}{3!} \left( \sqg f^{,k} \right)_{,p} \epsilon_{klmn} \sqg \left( \det g \right)^{-1} \epsilon^{plmn} = \frac{1}{3!} \frac{\sigma}{\sqg} \left( \sqg f^{,k} \right)_{,p} 3! \delta^p_k = \frac{\sigma}{\sqg} \left( \sqg f^{,k} \right)_{,k}
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\begin{example}
+	In uno spazio piatto $ n $-dimensionale con $ g_{ij} = h_i^2 \delta_{ij} $ si ha $ f^{,k} = g^{ik} f_{,i} = h_k^{-2} f_{,k} $, quindi:
+	\begin{equation*}
+		\nabla^2 f = \frac{1}{\sqrt{h_1^2 \dots h_n^2}} \sum_{k = 1}^{n} \left( \sqrt{h_1^2 \dots h_n^2} h_k^{-2} f_{,k} \right)_{,k} = \frac{1}{h_1 \dots h_n} \sum_{k = 1}^{n} \frac{\pa}{\pa x^k} \left( \frac{h_1 \dots h_n}{h_k^2} \frac{\pa f}{\pa x^k} \right)
+	\end{equation*}
+\end{example}
+
+\section{Elettrodinamica covariante}
+
+Riprendendo il potenziale \ref{eq:2.21}, è possibile definire la 1-form $ A = A_i dx^i $:
+
+\begin{equation}
+	dA = \pa_i A_j dx^i \wedge dx^j = \frac{1}{2} F_{ij} dx^i \wedge dx^j \equiv F
+	\label{eq:3.13}
+\end{equation}
+
+dove è stata definita la 2-form determinata dal tensore di Faraday \ref{eq:2.23}. L'Eq. \ref{eq:2.25} diventa, grazie all'identità di Bianchi:
+
+\begin{equation}
+	dF = 0
+	\label{eq:3.14}
+\end{equation}
+
+Nel caso elettrostatico $ \dot{\ve{B}} = 0 $, quindi $ \nabla\times\ve{E} = 0 $, ovvero $ dE = 0 $: il campo elettrostatico è chiuso e, per il teorema di Stokes, localmente esatto.\\
+È anche possibile calcolare il duale di Hodge di $ F $:
+\begin{equation}
+	*F = \frac{1}{2}F_{ij} * \left( dx^i \wedge dx^j \right) = \frac{1}{4} F_{ij} g^{ik} g^{il} \varepsilon_{klmn} dx^m \wedge dx^n = \frac{1}{4} F^{kl} \varepsilon_{klmn} dx^m \wedge dx^n
+	\label{eq:3.22}
+\end{equation}
+Applicando il duale della derivata esteriore:
+\begin{equation}
+	\begin{split}
+		*d*F &= \frac{1}{4} \pa_p \left( F^{kl} \varepsilon_{klmn} \right) * \left( dx^p \wedge dx^m \wedge dx^n \right) = \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \epsilon_{klmn} g^{p\alpha} g^{m\beta} g^{n\gamma} \varepsilon_{\alpha\beta\gamma\delta} dx^{\delta}\\
+		     &= \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \sqg \, \epsilon_{klmn} g^{\alpha p} g^{\beta m} g^{\gamma n} g^{\delta w} \epsilon_{\alpha\beta\gamma\delta} dx_w = \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \sqg\, \epsilon_{klmn} \frac{\sigma}{\tens{g}} \epsilon^{pmnw} dx_w\\
+		     &= \frac{1}{4} \pa_p \left( \sqg F^{kl} \right) \frac{\sigma}{\sqg} 2 \left( \delta^p_k \delta^w_l - \delta^w_k \delta^p_l \right) dx_w = \frac{\sigma}{2\sqg} \left[ \pa_p \left( \sqg F^{pw} \right) dx_w - \pa \left( \sqg F^{wp} \right) dx_w \right]\\
+		     &= - \frac{\sigma}{\sqg} \pa_p \left( \sqg F^{kp} \right) dx_k
+	\end{split}
+	\label{eq:3.23}
+\end{equation}
+Nello spaziotempo di Minkowski $ g_{ij} = \diag(-1,1,1,1) $, dunque l'Eq. \ref{eq:3.23} si riduce a $ *d*F = \pa_p (F^{kp}) dx_k $: ricordando dall'Eq. \ref{eq:2.27} che $ \pa_p (F^{kp}) = \mu_0 j^k $, definendo la 1-form della corrente $ j \defeq j^k dx_k $ si trova la generalizzazione su varietà curva della seconda equazione di Maxwell covariante:
+\begin{equation}
+	*d*F = \mu_0 j
+	\label{eq:3.24}
+\end{equation}
+Questa, unità all'identità di Bianchi Eq. \ref{eq:3.14}, rappresenta tutti i fenomeni dell'elettrodinamica classica.
 
 
 
