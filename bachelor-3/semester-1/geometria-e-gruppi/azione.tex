@@ -1,0 +1,159 @@
+\selectlanguage{italian}
+
+\section{Principio d'azione stazionaria}
+
+\subsection{Caso classico}
+
+\begin{definition}
+	Dato un sistema descritto da una lagrangiana $ L $, si definisce l'azione come:
+	\begin{equation}
+		S[\ve{x}(t)] \defeq \int_{t_1}^{t_2} L(\ve{x}, \dot{\ve{x}}) dt
+		\label{eq:5.1}
+	\end{equation}
+\end{definition}
+
+Il principio di minima azione afferma che la traiettoria percorsa dal sistema è un estremante dell'azione, ovvero, considerata una variazione della traiettoria $ \delta\ve{x} : \delta\ve{x}(t_1) = \delta\ve{x}(t_2) = \ve{0} $:
+\begin{equation}
+	\delta S = 0
+	\label{eq:5.2}
+\end{equation}
+
+\paragraph{Particella libera}
+
+Classicamente, una particella libera è descritta da $ L = \frac{1}{2} m \dot{\ve{x}}^2 $, dunque:
+\begin{equation*}
+	\begin{split}
+		0
+		&= \delta S = \int_{t_1}^{t_2} \delta L \,dt = \int_{t_1}^{t_2} m \dot{\ve{x}} \cdot \delta\dot{\ve{x}} \,dt = \int_{t_1}^{t_2} \left[ m \frac{d}{dt} \left( \dot{\ve{x}} \cdot \delta\ve{x} \right) - m \ddot{\ve{x}} \cdot \delta\ve{x} \right] dt\\
+		&= m \left[ \ddot{\ve{x}} \cdot \delta\ve{x} \right]_{t_1}^{t_2} - m \int_{t_1}^{t_2} \ddot{\ve{x}} \cdot \delta\ve{x} \,dt = -m \int_{t_1}^{t_2} \ddot{\ve{x}} \cdot \delta\ve{x} \,dt
+	\end{split}
+\end{equation*}
+Dunque, data l'arbitrarietà di $ \delta\ve{x} $, si ha l'equazione del moto della particella libera classica:
+\begin{equation}
+	\ddot{\ve{x}} = \ve{0}
+	\label{eq:5.3}
+\end{equation}
+
+\paragraph{Moto in un potenziale}
+
+In presenza di un potenziale, la lagrangiana diventa $ L = \frac{1}{2} m \dot{\ve{x}}^2 - V(\ve{x}) $, quindi, dato che $ \delta V(\ve{x}) = \nabla V(\ve{x}) \cdot \delta\ve{x} $, si ha l'equazione del moto:
+\begin{equation}
+	0 = \delta S = \int_{t_1}^{t_2} \left( - m\ddot{\ve{x}} - \nabla V(\ve{x}) \right) \cdot \delta\ve{x} \,dt \quad\Longrightarrow\quad m\ddot{\ve{x}} = - \nabla V(\ve{x})
+	\label{eq:5.4}
+\end{equation}
+
+\subsection{Caso relativistico}
+
+\begin{proposition}
+	Una particella libera relativistica è descritta da $ L = - \frac{m c^2}{\gamma} $.
+\end{proposition}
+\begin{proof}
+	$ p_i = \frac{\pa L}{\pa v_i} = - mc^2 \frac{\pa}{\pa v_i} \sqrt{1 - \frac{\ve{v}^2}{c^2}} = -mc^2 \left( -  \gamma \frac{v_i}{c} \right) = \gamma m v_i $, ovvero $ \ve{p} = \gamma m \ve{v} $.
+\end{proof}
+
+\paragraph{Particella libera}
+
+L'azione che descrive una particella libera relativistica è:
+\begin{equation}
+	S = - mc^2 \int_{t_1}^{t_2} \frac{dt}{\gamma} = -mc \int_{\tau_1}^{\tau_2} d\tau
+	\label{eq:5.5}
+\end{equation}
+Ponendo $ c = 1 $, è possibile calcolare le equazioni del moto:
+\begin{equation*}
+	\begin{split}
+		0
+		&= \delta S = - \delta \int_{t_1}^{t_2} m \sqrt{1 - \dot{\ve{x}}^2} \,dt = m \int_{t_1}^{t_2} \frac{\dot{\ve{x}} \cdot \delta\dot{\ve{x}}}{\sqrt{1 - \dot{\ve{x}}^2}} dt = m \int_{t_1}^{t_2} \frac{d\ve{x}}{dt} \cdot \frac{d \delta\ve{x}}{dt} \frac{dt}{d\tau} \,dt\\
+		&= m \int_{\tau_1}^{\tau_2} \frac{d\ve{x}}{dt} \cdot \frac{d \delta\ve{x}}{dt} \frac{dt}{d\tau} \frac{dt}{d\tau} \,d\tau = m \int_{\tau_1}^{\tau_2} \frac{d\ve{x}}{d\tau} \cdot \frac{d\delta\ve{x}}{d\tau} \,d\tau\\
+		&= m \int_{\tau_1}^{\tau_2} \left[ \frac{d}{d\tau} \left( \dot{\ve{x}} \cdot \delta\ve{x} \right) - \frac{d^2\ve{x}}{d\tau^2} \cdot \delta\ve{x} \right] d\tau = - m \int_{\tau_1}^{\tau_2} \frac{d^2 \ve{x}}{d\tau^2} \cdot \delta\ve{x} \,d\tau
+	\end{split}
+\end{equation*}
+Dall'arbitrarietà di $ \delta\ve{x} $ si ottiene l'equazione del moto:
+\begin{equation}
+	\frac{d^2 \ve{x}}{d\tau^2} = \ve{0}
+	\label{eq:5.6}
+\end{equation}
+
+\paragraph{Campo elettromagnetico}
+
+Per descrivere il moto di una particella in un campo elettromagnetico, è necessario aggiungere un termine d'interazione alla lagrangiana:
+\begin{equation}
+	S = -m \int_{\tau_1}^{\tau_2} d\tau + q \int_{\ve{x}_1}^{\ve{x}_2} A_i(\ve{x}) dx^i = \int_{\tau_1}^{\tau_2} \left( -m + q A_i (\ve{x}) \frac{dx^i}{d\tau} \right) d\tau
+	\label{eq:5.7}
+\end{equation}
+Per ottenere le equazioni del moto, dunque:
+\begin{equation*}
+	\begin{split}
+		0
+		&= \delta S = -m \int_{\tau_1}^{\tau_2} \delta\sqrt{-\eta_{ij} dx^i dx^j} + q \int_{\ve{x}_1}^{\ve{x}_2} \delta \left( A_i dx^i \right)\\
+		&= -m \int_{\tau_1}^{\tau_2} \frac{1}{2} \frac{\delta \left( - \eta_{ij} dx^i dx^j \right)}{\sqrt{- \eta_{ij} dx^i dx^j}} + q \int_{\ve{x}_1}^{\ve{x}_2} \left( \delta A_i dx^i + A_i \delta dx^i \right)\\
+		&= m \int_{\tau_1}^{\tau_2} \frac{1}{2} \frac{\eta_{ij} \left( \delta dx^i dx^j + dx^i \delta dx^j \right)}{\sqrt{- \eta_{ij} dx^i dx^j}} + q \int_{\tau_1}^{\tau_2} \left( \delta A_i \frac{dx^i}{d\tau} + A_i \frac{d\delta x^i}{d\tau} \right) d\tau\\
+		&= \int_{\tau_1}^{\tau_2} \left( m \frac{\eta_{ij} dx^i}{\sqrt{- \eta_{ij} dx^i dx^j}} \frac{d\delta x^j}{d\tau} + q \frac{\pa A_i}{\pa x^k} \delta x^k \frac{dx^i}{d\tau} + q A_i \frac{d\delta x^i}{d\tau} \right) d\tau\\
+		&= \int_{\tau_1}^{\tau_2} \left( m \eta_{ij} \frac{dx^i}{d\tau} \frac{d\delta x^j}{d\tau} + q A_{i,k} \delta x^k \frac{dx^i}{d\tau} + q A_i \frac{d\delta x^i}{d\tau} \right) d\tau\\
+		&= \int_{\tau_1}^{\tau_2} \left( - m \frac{du_k}{d\tau} \delta x^k + q A_{i,k} u^i \delta x^k - q \frac{dA_k}{d\tau} \delta x^k \right) d\tau\\
+		&= \int_{\tau_1}^{\tau_2} \left( -m \frac{du_k}{d\tau} + q \left( A_{i,k} - A_{k,i} \right) u^i \right) \delta x^k d\tau
+	\end{split}
+\end{equation*}
+dove si è usata la quadrivelocità $ u_k $. Ricordando la definizione del tensore di Faraday $ F_{ij} \defeq A_{j,i} - A_{i,j} $, si trova l'espressione covariante della forza di Lorentz:
+\begin{equation}
+	\frac{dp_k}{d\tau} = q F_{ki} u^i
+	\label{eq:5.8}
+\end{equation}
+Ciò conferma la scelta della lagrangiana.
+
+\paragraph{Campo gravitazionale}
+
+Si consideri ora una particella su una varietà curva:
+\begin{equation*}
+	\begin{split}
+		0
+		&= \delta S = -m \int_{\tau_1}^{\tau_2} \delta d\tau = -m \int_{\tau_1}^{\tau_2} \delta \sqrt{- g_{ij} dx^i dx^j} = m \int_{\tau_1}^{\tau_2} \frac{1}{2} \frac{\delta g_{ij} dx^i dx^j + 2g_{ij} dx^i \delta dx^j}{\sqrt{- g_{ij} dx^i dx^j}}\\
+		&= m \int_{\tau_1}^{\tau_2} \left( \frac{1}{2} g_{ij,k} u^i u^j \delta x^k d\tau + g_{ij} u^i \delta dx^j \right) = m \int_{\tau_1}^{\tau_2} \left( \frac{1}{2} g_{ij,k} u^i u^j \delta x^k + g_{ij} u^i \frac{d\delta x^j}{d\tau} \right) d\tau\\
+		&= m \int_{\tau_1}^{\tau_2} \left( \frac{1}{2} g_{ij,k} u^i u^j \delta x^k - \frac{d}{d\tau} \left( g_{ij} u^i \right) \delta x^j \right) d\tau = m \int_{\tau_1}^{\tau_2} \left( \frac{1}{2} g_{ij,k} u^i u^j - \frac{d}{d\tau} \left( g_{ik} u^i \right) \right) \delta x^k d\tau
+	\end{split}
+\end{equation*}
+Essendo $ \delta x^k $ arbitrario si ottiene:
+\begin{equation}
+	\frac{1}{2} g_{ij,k} u^i u^j - g_{ik,j} u^i u^j - g_{ik} \frac{du^i}{d\tau} = 0
+	\label{eq:5.9}
+\end{equation}
+Moltiplicando per $ g^{rk} $:
+\begin{equation}
+	\frac{du^r}{d\tau} + g^{rk} \left( g_{ik,j} - \frac{1}{2} g_{ij,k} \right) u^i u^j = 0
+	\label{eq:5.10}
+\end{equation}
+Dato che sopravvive solo la parte simmetrica rispetto a $ i,j $ del tensore moltiplicato per $ u^i u^j $:
+\begin{equation}
+	\frac{du^r}{d\tau} + \frac{1}{2} g^{rk} \left( g_{ik,j} + g_{jk,i} - g_{ij,k} \right) u^i u^j = 0
+	\label{eq:5.11}
+\end{equation}
+Si vede la definizione di connessione di Levi-Civita (Eq. \ref{levi-civita}):
+\begin{equation}
+	\frac{d^2 x^r}{d\tau^2} + \Gamma^r_{ij} \frac{dx^i}{d\tau} \frac{dx^j}{d\tau} = 0
+	\label{eq:5.12}
+\end{equation}
+Questa è nota come \textit{equazione geodetica} e descrive il moto di una particella libera su una varietà curva: si vede che, oltre al termine inerziale, è presente un termine di forza dovuto alla geometria stessa dello spazio; inoltre, si può osservare come la traiettoria sia indipendente dalla massa del corpo.
+Sebbene la connessione di Levi-Civita non sia un tensore, si dimostra che il termine di forza annulla i termini non-omogenei, rendendo l'equazione geodesica un'equazione tensoriale.
+
+\paragraph{Campo elettromagnetico e gravitazionale}
+
+Nel caso di una particella soggetta ad un campo elettromagnetico su una varietà curva:
+\begin{equation}
+	S = -m \int_{\tau_1}^{\tau_2} \sqrt{- g_{ij} dx^i dx^j} + q \int_{\tau_1}^{\tau_2} A_i \frac{dx^i}{d\tau} d\tau
+	\label{eq:5.13}
+\end{equation}
+Svolgendo i calcoli, si trova l'equazione del moto:
+\begin{equation}
+	\frac{d^2 x^r}{d\tau^2} + \Gamma^r_{ij} \frac{dx^i}{d\tau} \frac{dx^j}{d\tau} - \frac{q}{m} F^r_{\,\,\,i} \frac{dx^i}{d\tau} = 0
+	\label{eq:5.14}
+\end{equation}
+che conferma l'identificazione del termine geometrico con la forza di gravità.
+
+
+
+
+
+
+
+
+
+
