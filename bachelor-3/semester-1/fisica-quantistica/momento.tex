@@ -268,6 +268,195 @@ Ricordando l'espressione di $ \hat{L}_z $ sulla base delle coordiante (Eq. \ref{
 	Y_{\ell,m}(\vartheta,\varphi) = \mathcal{N}_{\ell,m} e^{im\varphi} P_{\ell,m}(\cos\vartheta)
 	\label{eq:2.24}
 \end{equation}
+Queste sono dette armoniche sferiche.
+
+\paragraph{Fase}
+
+L'autovalore $ m $ di $ \hat{L}_z $ determina un fattore di fase nell'autofunzione. Se si impone la condizione che la funzione d'onda sia monodroma, così da avere uno spazio degli stati fisici semplicemente connesso, è necessario che $ Y_{\ell,m}(\vartheta,\varphi+2\pi) = Y_{\ell,m}(\vartheta,\varphi) $, ovvero:
+\begin{equation}
+	e^{im2\pi} = 1
+	\label{eq:2.25}
+\end{equation}
+Questa condizione è soddisfatta solo se $ m $, e di conseguenza $ \ell $, è intero: nel caso di momento angolare con autofunzioni monodrome si parla di momento angolare orbitale.
+
+È possibile determinare esplicitamente le armoniche sferiche senza risolvere l'equazione agli autovalori per $ \hat{L}^2 $, che è una PDF di second'ordine, utilizzando invece la condizione $ \hat{L}_- \ket{\ell,m_{\text{min}}} = 0 $. Innanzitutto:
+\begin{equation}
+	\begin{split}
+		\hat{L}_-
+		&= i\hbar \left( \sin \varphi \frac{\pa}{\pa \vartheta} + \cot \vartheta \cos \varphi \frac{\pa}{\pa \varphi} \right) + \hbar \left( -\cos \varphi \frac{\pa}{\pa \vartheta} + \cot \vartheta \sin \varphi \frac{\pa}{\pa \varphi} \right)\\
+		&= \hbar e^{-i\varphi} \left( -\frac{\pa}{\pa \vartheta} + i \cot \vartheta \frac{\pa}{\pa \varphi} \right)
+	\end{split}
+	\label{eq:2.26}
+\end{equation}
+Si vede subito che il fattore di fase fa abbassare di un'unità $ m $. Si ha quindi l'equazione:
+\begin{equation}
+	\hbar e^{-i\varphi} \left( - \frac{\pa}{\pa \vartheta} + i \cot \vartheta \frac{\pa}{\pa \varphi} \right) Y_{\ell,-\ell} (\vartheta,\varphi) = 0
+	\label{eq:2.27}
+\end{equation}
+Dall'Eq. \ref{eq:2.24}:
+\begin{equation}
+	\left( -\frac{\pa}{\pa \vartheta} + \ell \frac{\cos \vartheta}{\sin \vartheta} \right) e^{-i\ell\varphi} P_{\ell,-\ell}(\cos \vartheta) = 0
+	\label{eq:2.28}
+\end{equation}
+Per la chain rule $ \pa_{\vartheta} = \cos \vartheta \pa_{\sin \vartheta} $, dunque:
+\begin{equation}
+	\frac{\pa}{\pa \sin \vartheta} P_{\ell,-\ell}(\cos \vartheta) = \frac{\ell}{\sin \vartheta} P_{\ell,-\ell}(\cos \vartheta)
+	\label{eq:2.29}
+\end{equation}
+Questa può essere riscritta come:
+\begin{equation}
+	\frac{dP_{\ell,-\ell}(\cos \vartheta)}{P_{\ell,-\ell}(\cos \vartheta)} = \ell \frac{d\sin \vartheta}{\sin \vartheta}
+	\label{eq:2.30}
+\end{equation}
+La soluzione è immediata:
+\begin{equation}
+	P_{\ell,-\ell}(\cos \vartheta) = \left( \sin \vartheta \right)^{\ell}
+	\label{eq:2.31}
+\end{equation}
+Tutte le altre armoniche sferiche ad $ \ell $ fissato possono essere trovate con i ladder operators:
+\begin{equation}
+	Y_{\ell,-\ell+k}(\vartheta,\varphi) = \mathcal{N}_{\ell,-\ell+k} \hat{L}_+^k Y_{\ell,-\ell}(\vartheta,\varphi)
+	\label{eq:2.32}
+\end{equation}
+Svolgendo i calcoli:
+\begin{equation}
+	P_{\ell,k} \sim \left( \sin \vartheta \right)^k \left( \cos \vartheta \right)^{\ell-k} \quad \forall k \in \left[ 0,\ell \right]
+	\label{eq:2.33}
+\end{equation}
+Le armoniche sferiche sono una base ortonormale completa dello spazio delle funzioni definite su $ \mathbb{S}^2 $, dunque vale la relazione di ortonormalità:
+\begin{equation}
+	\int_{\mathbb{S}^2} d\Omega \braket{\ell',m' | \vartheta,\varphi}\braket{\vartheta,\varphi | \ell,m} = \int_{\mathbb{S}^2} d\cos\vartheta \,d\varphi \, Y^*_{\ell',m'}(\vartheta,\varphi) Y_{\ell,m}(\vartheta,\varphi) = \delta_{\ell'\ell} \delta_{m'm}
+	\label{eq:2.34}
+\end{equation}
+Vale inoltre la relazione di completezza sulla sfera:
+\begin{equation}
+	\sum_{l = 0}^{+\infty} \sum_{m = -\ell}^{\ell} \ket{\ell,m}\bra{\ell,m} = \tens{I}
+	\label{eq:2.35}
+\end{equation}
+ovvero:
+\begin{equation}
+	\sum_{\ell = 0}^{+\infty} \sum_{m = -\ell}^{\ell} \braket{\vartheta,\varphi | \ell,m}\braket{\ell,m | \vartheta',\varphi'} = \sum_{\ell,m} Y^*_{\ell,m}(\vartheta',\varphi')Y_{\ell,m}(\vartheta,\varphi) = \delta(\cos \vartheta - \cos \vartheta') \delta(\varphi - \varphi')
+	\label{eq:2.36}
+\end{equation}
+Ciò equivale a decomporre il sistema in termini di frequenza proprie sulla sfera: la differenza con la trasformata di Fourier, che decompone in frequenza proprie della retta, è che in quel caso le frequenze variano in $ \left( -\infty,+\infty \right) $, mentre in questo caso in $ \left[ 0,2\pi \right] $.\\
+Nel caso in cui $ m = 0 $ non si ha alcuna dipendenza da $ \varphi $ e si trova che i $ P_{\ell,0}(\cos \vartheta) \equiv P_{\ell}(\vartheta) $ sono polinomi di $ \cos \vartheta $, detti polinomi di Legendre, formanti una base ortonormale su $ \mathbb{S}^1 $, e dunque sul segmento $ \cos \vartheta \in \left[ -1,1 \right] $ (il caso di questa trattazione).
+
+\section{Spin}
+
+Il significato fisico dei valri di $ \ell $ semi-intero è legato a rotazioni su un diverso spazio di Hilbert.\\
+In meccanica classica, la rotazione di osservabili scalari $ \omega(\ve{x}) $ dipende da come tale rotazione agisce sulle coordinate $ \ve{x} $: quantisticamente, questo è il caso associato all'effetto delle rotazioni sulla funzione d'onda $ \braket{\ve{x} | \psi} = \psi(\ve{x}) $, determinato dal momento angolare orbitale (ovvero associato alla traiettoria del sistema).
+Se invece si considera un'osservabile vettoriale $ \ve{v}(\ve{x}) $, la rotazione non agisce solo sul suo modulo (che è uno scalare), ma anche sulla sua direzione.\\
+Dal punto di vista quantistico, questi due tipi di rotazioni sono nettamente distinti, poiché agiscono su spazi di Hilbert differenti: la rotazione delle coordinate agisce su uno spazio di Hilbert infinito-dimensionale, mentre la rotazione delle $ \virgolette{direzioni} $ agisce su uno spazio di Hilbert finito-dimensionale.
+Nel primo caso si parla di momento angolare orbitale, nel secondo caso di momento angolare di spin.
+
+\subsection{Spin \texorpdfstring{$ 1 $}{TEXT}}
+
+Si consideri un sistema tripartito, la cui base dello spazio degli stati è definita come:
+\begin{equation*}
+	\ket{1} \equiv
+	\begin{pmatrix}
+		1 \\ 0 \\ 0
+	\end{pmatrix}
+	\qquad
+	\ket{2} \equiv
+	\begin{pmatrix}
+		0 \\ 1 \\ 0
+	\end{pmatrix}
+	\qquad
+	\ket{3} \equiv
+	\begin{pmatrix}
+		0 \\ 0 \\ 1
+	\end{pmatrix}
+\end{equation*}
+Questa notazione è ambigua, poiché esprime la base rispetto ad un'altra base implicita, ma è conveniente per rappresentare le rotazioni. Il generico stato (equivalente, classicamente, alla direzione di un vettore in $ \R^3 $) è:
+\begin{equation}
+	\ket{v} = c_1 \ket{1} + c_2 \ket{2} + c_3 \ket{3} =
+	\begin{pmatrix}
+		c_1 \\ c_2 \\ c_3
+	\end{pmatrix}
+	\label{eq:2.37}
+\end{equation}
+con $ c_1,c_2,c_3 \in \C : \abs{c_1}^2 + \abs{c_2}^2 + \abs{c_3}^2 = 1 $.\\
+Considerando il caso particolare di $ \ket{v} = \cos \varphi \ket{1} + \sin \varphi \ket{2} $ ed una rotazione attorno a $ \ket{3} $, si ha:
+\begin{equation}
+	\ket{v'} = \hat{R}^{(\varepsilon)}_3 \ket{v} =
+	\begin{pmatrix}
+		\cos \left( \varphi + \varepsilon \right) \\ \sin \left( \varphi + \varepsilon \right) \\ 0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\cos \varphi - \varepsilon \sin \varphi \\ \sin \varphi + \varepsilon \cos \varphi \\ 0
+	\end{pmatrix}
+	+ o(\varepsilon)
+	\label{eq:2.38}
+\end{equation}
+Esprimendo la rotazione in funzione di un generatore $ \hat{R}^{(\varepsilon)}_3 = e^{-\frac{i}{\hbar} \varepsilon \hat{S}_3} $ si ha:
+\begin{equation}
+	\ket{v'} = \left( \tens{I} - \frac{i}{\hbar} \varepsilon \hat{S}_3 + o(\varepsilon) \right) \ket{v}
+	\label{eq:2.39}
+\end{equation}
+Si trova dunque:
+\begin{equation}
+	\hat{S}_3 = -i\hbar
+	\begin{bmatrix}
+		0 & 1 & 0 \\
+		-1 & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}
+	\label{eq:2.40}
+\end{equation}
+Si vede inoltre che l'Eq. \ref{eq:2.39} è compatibile con l'Eq. \ref{eq:2.3}: la rotazione di $ \psi $ può essere interpretata sia come $ \braket{\ve{x} | \psi'} = \psi'(\ve{x}) $ (alias) sia come $ \braket{\ve{x}' | \psi} = \psi(\ve{x}') $ (alibi), e dal primo caso si ha che $ \ket{\psi'} = \hat{R}_{\varepsilon} \ket{\psi} $, mentre dal secondo $ \bra{\ve{x}'} = \bra{\ve{x}} \hat{R}_{\varepsilon} $, ovvero $ \ket{\ve{x}'} = \hat{R}_{\varepsilon}^{\dagger} \ket{\ve{x}} $, che equivale all'Eq. \ref{eq:2.39}.\\
+Replicando il calcolo per gli altri assi di rotazione si trova:
+\begin{equation}
+	\hat{S}_1 = -i\hbar
+	\begin{bmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 1 \\
+		0 & -1 & 0
+	\end{bmatrix}
+	\qquad
+	\hat{S}_2 = -i\hbar
+	\begin{bmatrix}
+		0 & 0 & -1 \\
+		0 & 0 & 0 \\
+		1 & 0 & 0
+	\end{bmatrix}
+	\label{eq:2.41}
+\end{equation}
+ovvero, in generale:
+\begin{equation}
+	[\hat{S}_k]_{ij} = -i\hbar \epsilon_{kij}
+	\label{eq:2.42}
+\end{equation}
+Questi operatori, detti operatori di spin, soddisfano la relazione di commutazione per operatori del momento angolare in Prop. \ref{l-comm}:
+\begin{equation*}
+	\begin{split}
+		[\hat{S}_i,\hat{S}_j]_{ac}
+		&= \sum_{b = 1}^{3} \left( [\hat{S}_i]_{ab} [\hat{S}_j]_{bc} - [\hat{S}_j]_{ab} [\hat{S}_i]_{bc} \right) = -\hbar^2 \sum_{b = 1}^{3} \left( \epsilon_{iab} \epsilon_{jbc} - \epsilon_{jab} \epsilon_{ibc} \right)\\
+		&= -\hbar^2 \left( \delta_{ic}\delta_{aj} - \delta_{ij}\delta_{ac} - \delta_{jc} \delta_{ai} + \delta_{ji} \delta_{ac} \right) = -\hbar^2 \left( \delta_{ic} \delta_{aj} - \delta_{jc} \delta_{ai} \right)\\
+		&= i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} [\hat{S}_k]_{ac} = \hbar^2 \sum_{k = 1}^{3} \epsilon_{ijk} \epsilon_{kac} = \hbar^2 \left( \delta_{ia}\delta_{jc} - \delta_{ic}\delta_{ja} \right)
+	\end{split}
+\end{equation*}
+Gli operatori di spin forniscono dunque una rappresentazione del momento angolare. Per quanto riguarda il modulo, si vede subito che $ \hat{S}^2 \defeq \hat{S}_1^2 + \hat{S}_2^2 + \hat{S}_3^2 $ è espresso come:
+\begin{equation}
+	\hat{S}^2 = 2\hbar^2 \tens{I}
+	\label{eq:2.43}
+\end{equation}
+ovvero tutti i vettori dello spazio sono suoi autovettori. L'autovalore associato a $ \hat{L}^2 $ è in generale $ \hbar^2 \ell (\ell + 1) $, quindi si vede che in questo caso si ha $ \ell = 1 $: per questo si parla di sistema a spin $ 1 $.\\
+La dimensione dello spazio di Hilbert è data dal numero di possibili valori di $ m $, ed in questo caso è giustamente 3; si possono esplicitare gli autovettori $ \ket{v_m} $ di $ \hat{L}_z $, ottenendo la cosiddetta base sferica:
+\begin{equation}
+	\ket{v_{\pm}} = \frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\ \pm i \\ 0
+	\end{pmatrix}
+	\qquad
+	\ket{v_0} =
+	\begin{pmatrix}
+		0 \\ 0 \\ 1
+	\end{pmatrix}
+	\label{eq:2.44}
+\end{equation}
+L'analogia tra un sistema con $ \ell = 1 $ ed uno con spin 1 deriva dal fatto che il primo è descritto da un sottospazio finito-dimensionale di uno spazio infinito-dimensionale, e tale restrizione è equivalente allo spazio che descrive il secondo sistema.
 
 
 
