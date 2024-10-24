@@ -379,7 +379,7 @@ Questa notazione è ambigua, poiché esprime la base rispetto ad un'altra base i
 con $ c_1,c_2,c_3 \in \C : \abs{c_1}^2 + \abs{c_2}^2 + \abs{c_3}^2 = 1 $.\\
 Considerando il caso particolare di $ \ket{v} = \cos \varphi \ket{1} + \sin \varphi \ket{2} $ ed una rotazione attorno a $ \ket{3} $, si ha:
 \begin{equation}
-	\ket{v'} = \hat{R}^{(\varepsilon)}_3 \ket{v} =
+	\ket{v'} = \hat{R}_{\varepsilon}^{(3)} \ket{v} =
 	\begin{pmatrix}
 		\cos \left( \varphi + \varepsilon \right) \\ \sin \left( \varphi + \varepsilon \right) \\ 0
 	\end{pmatrix}
@@ -390,7 +390,7 @@ Considerando il caso particolare di $ \ket{v} = \cos \varphi \ket{1} + \sin \var
 	+ o(\varepsilon)
 	\label{eq:2.38}
 \end{equation}
-Esprimendo la rotazione in funzione di un generatore $ \hat{R}^{(\varepsilon)}_3 = e^{-\frac{i}{\hbar} \varepsilon \hat{S}_3} $ si ha:
+Esprimendo la rotazione in funzione di un generatore $ \hat{R}_{\varepsilon}^{(3)} = e^{-\frac{i}{\hbar} \varepsilon \hat{S}_3} $ si ha:
 \begin{equation}
 	\ket{v'} = \left( \tens{I} - \frac{i}{\hbar} \varepsilon \hat{S}_3 + o(\varepsilon) \right) \ket{v}
 	\label{eq:2.39}
@@ -442,21 +442,92 @@ Gli operatori di spin forniscono dunque una rappresentazione del momento angolar
 	\hat{S}^2 = 2\hbar^2 \tens{I}
 	\label{eq:2.43}
 \end{equation}
-ovvero tutti i vettori dello spazio sono suoi autovettori. L'autovalore associato a $ \hat{L}^2 $ è in generale $ \hbar^2 \ell (\ell + 1) $, quindi si vede che in questo caso si ha $ \ell = 1 $: per questo si parla di sistema a spin $ 1 $.\\
-La dimensione dello spazio di Hilbert è data dal numero di possibili valori di $ m $, ed in questo caso è giustamente 3; si possono esplicitare gli autovettori $ \ket{v_m} $ di $ \hat{L}_z $, ottenendo la cosiddetta base sferica:
+ovvero tutti i vettori dello spazio sono suoi autovettori. L'autovalore associato a $ \hat{L}^2 $ è in generale $ \hbar^2 \ell (\ell + 1) $, quindi si vede che in questo caso si ha $ \ell = 1 $: per questo si parla di sistema a spin $ s = 1 $.\\
+La dimensione dello spazio di Hilbert è data dal numero di possibili valori di $ m \equiv s_z $, ovvero in totale $ 2s + 1 $, dato che $ -s \le s_z \le s $: in questo caso la dimensione è giustamente 3 e si possono esplicitare gli autovettori $ \ket{v_{s_z}} $ di $ \hat{S}_z $ ($ \hat{S}_z \ket{v_{s_z}} = s_z\hbar \ket{v_{s_z}} $), ottenendo la cosiddetta base sferica:
 \begin{equation}
-	\ket{v_{\pm}} = \frac{1}{\sqrt{2}}
+	\ket{v_{\pm}} \equiv \ket{1,\pm 1} = \frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		1 \\ \pm i \\ 0
 	\end{pmatrix}
 	\qquad
-	\ket{v_0} =
+	\ket{v_0} \equiv \ket{1,0} =
 	\begin{pmatrix}
 		0 \\ 0 \\ 1
 	\end{pmatrix}
 	\label{eq:2.44}
 \end{equation}
-L'analogia tra un sistema con $ \ell = 1 $ ed uno con spin 1 deriva dal fatto che il primo è descritto da un sottospazio finito-dimensionale di uno spazio infinito-dimensionale, e tale restrizione è equivalente allo spazio che descrive il secondo sistema.
+L'analogia tra un sistema con $ \ell = 1 $ ed uno con spin 1 deriva dal fatto che il primo è descritto da un sottospazio finito-dimensionale di uno spazio infinito-dimensionale, e tale restrizione è equivalente allo spazio che descrive il secondo sistema. Nel caso tridimensionale considerato, il momento angolare orbitale agisce su uno spazio con base $ \ket{\ve{x}} = \ket{x_1} \otimes \ket{x_2} \otimes \ket{x_3} $, mentre il momento angolare di spin su uno spazio con base $ \{\ket{e_i}\}_{i=1,2,3} $ (qutrit).
+
+\subsection{Spin \texorpdfstring{$ \frac{1}{2} $}{TEXT}}
+
+Per un sistema con $ s = \frac{1}{2} $, i possibili valori di $ s_z $ sono 2, $ s_z = \pm \frac{1}{2} $, dunque il sistema è fondamentalmente un qubit e i suoi stati possono essere indicati come $ \ket{\pm} \equiv \ket{\frac{1}{2},\pm\frac{1}{2}} $.\\
+Il più generale stato in questo spazio è $ \ket{\psi} = c_+ \ket{+} + c_- \ket{-} $, con $ c_{\pm}\in\C $, dunque è possibile rappresentarlo come uno spinore (vettore a componenti complesse):
+\begin{equation}
+	\ket{\psi} =
+	\begin{pmatrix}
+		c_+ \\ c_-
+	\end{pmatrix}
+	\label{eq:2.45}
+\end{equation}
+Dato che $ \hat{S}_z \ket{\pm} = \pm \frac{\hbar}{2} \ket{\pm} $, in tale rappresentazione $ \hat{S}_z $ può essere scritto (con abuso di notazione) come una matrice diagonale:
+\begin{equation}
+	\hat{S}_z = \frac{\hbar}{2}
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{bmatrix}
+	\label{eq:2.46}
+\end{equation}
+Per calcolare $ \hat{S}_x $ ed $ \hat{S}_y $ si utilizzano i ladder operators $ \hat{S}_{\pm} = \hat{S}_x \pm i \hat{S}_y $, ricordando le relazioni di scala in Eq. \ref{eq:2.21}:
+\begin{equation*}
+	\hat{S}_+ \ket{-} = \hbar \sqrt{\frac{1}{2} \left( \frac{1}{2} + 1 \right) - \left( - \frac{1}{2} \right) \left( - \frac{1}{2} + 1 \right)} \ket{+} = \hbar \ket{+}
+\end{equation*}
+\begin{equation*}
+	\hat{S}_- \ket{+} = \hbar \sqrt{\frac{1}{2} \left( \frac{1}{2} + 1 \right) - \frac{1}{2} \left( \frac{1}{2} - 1 \right)} \ket{-} = \hbar \ket{-}
+\end{equation*}
+ovvero:
+\begin{equation}
+	\hat{S}_+ = \hbar
+	\begin{bmatrix}
+		0 & 1 \\
+		0 & 0
+	\end{bmatrix}
+	\qquad
+	\hat{S}_- = \hbar
+	\begin{bmatrix}
+		0 & 0 \\
+		1 & 0
+	\end{bmatrix}
+	\label{eq:2.47}
+\end{equation}
+Dato che $ \hat{S}_x = \frac{1}{2} \left( \hat{S}_+ + \hat{S}_- \right) $ e $ \hat{S}_y = \frac{1}{2i} \left( \hat{S}_+ - \hat{S}_- \right) $, ricordando anche Eq. \ref{eq:2.46}, si trova la relazione tra operatori di spin e matrici di Pauli:
+\begin{equation}
+	\hat{S}_i = \frac{\hbar}{2} \sigma_i
+	\label{eq:2.48}
+\end{equation}
+
+\begin{proposition}
+	$ \left[ \hat{S}_i,\hat{S}_j \right] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{S}_k $.
+\end{proposition}
+\begin{proof}
+	Ricordando che $ \sigma_i \sigma_j = \delta_{ij} \tens{I} + i \sum_{k = 1}^{3} \epsilon_{ijk} \sigma_k $:
+	\begin{equation*}
+		\left[ \hat{S}_i,\hat{S}_j \right] = \frac{\hbar^2}{4} \left( \sigma_i \sigma_j - \sigma_j \sigma_i \right) = \frac{\hbar^2}{2} i \sum_{k = 1}^{3} \sigma_k = i\hbar \sum_{k = 1}^{3} \hat{S}_k
+	\end{equation*}
+\end{proof}
+
+Inoltre, si vede immediatamente che:
+\begin{equation}
+	\hat{S}^2 = \frac{3}{4} \hbar^2 \tens{I}
+	\label{eq:2.49}
+\end{equation}
+Imponento $ s (s + 1) = \frac{3}{4} $ si trova, per l'appunto, $ s = \frac{1}{2} $.\\
+È possibile vedere il comportamento peculiare dei sistemi a spin $ \frac{1}{2} $ sotto rotazioni ricordando l'espressione degli operatori di rotazione in Eq. \ref{eq:2.39}: considerando una rotazione di $ 2\pi $ attorno l'asse $ z $ e ricordando che $ \ket{\pm} $ sono autostati di $ \sigma_z $:
+\begin{equation}
+	\hat{R}_{2\pi}^{(z)} \ket{\psi} = e^{-i \pi \sigma_z} \left( c_+ \ket{+} + c_- \ket{-} \right) = c_+ e^{-i\pi} \ket{+} + c_- e^{i\pi} \ket{-} = - \ket{\psi}
+	\label{eq:2.50}
+\end{equation}
+Il calcolo è analogo lungo qualsiasi asse. Si vede dunque che ruotando il sistema di $ 2\pi $ uno stato di spin semi-intero acquista un segno negativo, mentre per tornare in sé stesso è necessaria una rotazione di $ 4\pi $: questo impedisce di rappresentare il vettore di stato come una funzione sullo spazio delle coordinate, ma non viola alcun principio fondamentale, dando anzi luogo ad effetti sperimentalmente osservabili verificati.
 
 
 
