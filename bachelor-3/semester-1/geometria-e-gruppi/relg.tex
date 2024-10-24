@@ -132,7 +132,20 @@ Si vede la definizione di connessione di Levi-Civita (Eq. \ref{levi-civita}):
 	\label{eq:5.12}
 \end{equation}
 Questa è nota come \textit{equazione geodetica} e descrive il moto di una particella libera su una varietà curva: si vede che, oltre al termine inerziale, è presente un termine di forza dovuto alla geometria stessa dello spazio; inoltre, si può osservare come la traiettoria sia indipendente dalla massa del corpo.
-Sebbene la connessione di Levi-Civita non sia un tensore, si dimostra che il termine di forza annulla i termini non-omogenei, rendendo l'equazione geodesica un'equazione tensoriale.
+Sebbene la connessione di Levi-Civita non sia un tensore, si dimostra che il termine di forza annulla i termini non-omogenei, rendendo l'equazione geodesica un'equazione tensoriale.\\
+In generale, le soluzioni dell'equazione geodetica sono dette geodetiche.
+\begin{definition}
+	Data una varietà differenziabile $ \mathcal{M} $ e due punti $ p,q\in\mathcal{M} $, si dice \textit{geodetica} da $ p $ a $ q $ la curva di lunghezza minore tra $ p $ e $ q $.
+\end{definition}
+\begin{proposition}
+	Dati una geodetica $ \gamma : I \subset \R \rightarrow \mathcal{M} $ ed il suo vettore tangente $ \ve{t}_{\gamma} $, si ha $ \frac{d\ve{t}_{\gamma}}{ds} = \ve{0} $.
+\end{proposition}
+\begin{proof}
+	Ricordando che $ t^i = \frac{dx^i}{ds} $:
+	\begin{equation*}
+		\frac{d\ve{t}_{\gamma}}{ds} = t^i_{;k} \frac{dx^k}{ds} \ve{e}_i = \left( \frac{\pa t^i}{\pa x^k} + \Gamma^i_{jk} t^j \right) \frac{dx^k}{ds} \ve{e}_i = \left( \frac{d^2 x^i}{ds^2} + \Gamma^i_{jk} \frac{dx^j}{ds} \frac{dx^k}{ds} \right) \ve{e}_i = \ve{0}
+	\end{equation*}
+\end{proof}
 
 \subsubsection{Campo elettromagnetico e gravitazionale}
 
@@ -208,6 +221,235 @@ Dunque, nel caso di una particella non soggetta ad altre forze, nelle coordinate
 	\label{eq:5.24}
 \end{equation}
 Si vede dunque che le coordinate free-fall $ \virgolette{seguono} $ il moto del grave nel campo gravitazionale; in maniera analoga, le coordinate di Fermi individuano un RF che segue il moto della particella all'interno dello spaziotempo curvo.
+
+\subsection{Campi gravitazionali deboli statici}
+
+Le connessioni affini costituiscono una generalizzazione del campo di forza gravitazionale newtoniano, mentre il tensore metrico è una generalizzazione del potenziale gravitazionale newtoniano.\\
+Per semplicità, si pongano le approssimazioni di campo debole (componenti spaziali trascurabili rispetto a quella temporale) e statico (derivate temporali trascurabili): l'equazione geodetica diventa:
+\begin{equation}
+	\frac{du^r}{d\tau} + \Gamma^r_{00} \left( u^0 \right)^2 = 0
+	\label{eq:5.25}
+\end{equation}
+Dato che, nell'approssimazione fatta, $ g_{k0,0} = g_{0k,0} = 0 $, si ha $ \Gamma^r_{00} = -\frac{1}{2} g^{rk}g_{00,k} $. Nell'approssimazione di campo debole si può scrivere:
+\begin{equation}
+	g_{ij} = \eta_{ij} + h_{ij}, \quad \abs{h_{ij}} \ll 1
+	\label{eq:5.26}
+\end{equation}
+Trascurando i termini $ o(h) $, si trova $ \Gamma^r_{00} = -\frac{1}{2} h_{00,r} $, con $ r = 1,2,3 $, quindi:
+\begin{equation}
+	\frac{d^2 x^r}{d\tau^2} = \frac{1}{2} \left( \frac{dx^0}{d\tau} \right)^2 h_{00,r} \quad\Longrightarrow\quad \frac{d^2 \ve{x}}{dt^2} = \frac{c^2}{2} \nabla h_{00}
+	\label{eq:5.27}
+\end{equation}
+Confrontando con l'equazione classica $ \ve{a} = - \nabla \Phi(r) $, con $ \Phi(r) = - \frac{GM}{r} $ potenziale gravitazionale newtoniano, si trova il vincolo imposto dal caso subrelativistico:
+\begin{equation}
+	h_{00} = - \frac{2\Phi(r)}{c^2}
+	\label{eq:5.28}
+\end{equation}
+$ \Phi / c^2 $ è adimensionale e vale $ \sim 10^{-39} $ sulla superficie di un protone, $ \sim 10^{-9} $ su quella terrestre, $ \sim 10^{-6} $ su quella del Sole e $ \sim 10^{-4} $ su quella di una nana bianca.
+
+\subsubsection{Time dilation gravitazionale}
+
+Nell'approssimazione di campo gravitazionale debole statico è possibile dare una stima dell'effetto di time dilation gravitazionale. Preso un orologio, il suo tempo proprio (tempo misurato dall'orologio) è:
+\begin{equation}
+	d\tau = \frac{1}{c} \sqrt{-g_{ij} dx^i dx^j} = \sqrt{-g_{00}} dt = \sqrt{ 1 - \frac{2GM}{c^2 r}} dt
+	\label{eq:5.29}
+\end{equation}
+dove $ dt $ è il tempo misurato nello spazio vuoto. Si vede che $ d\tau < dt $.\\
+Prendendo il caso di due corpi sulla Terra a distanze dal centro $ r $ ed $ r + h $:
+\begin{equation}
+	\frac{T_2}{T_1} = \sqrt{\frac{1 - \frac{2GM}{c^2(r+h)}}{1 - \frac{2GM}{c^2r}}} \approx 1 + \frac{gh}{c^2}
+	\label{eq:5.30}
+\end{equation}
+dove è stato definito $ g \equiv \frac{GM}{r^2} $. Da ciò discende il redshift (o blueshift) gravitazionale, verificato sperimentalmente.
+
+\section{Curvatura}
+
+\begin{definition}
+	Si definisce il \textit{tensore di Riemann} come:
+	\begin{equation}
+		R^i_{mnk} \defeq \Gamma^i_{nm,k} - \Gamma^i_{km,n} + \Gamma^i_{kj} \Gamma^j_{nm} - \Gamma^i_{nj} \Gamma^j_{km}
+		\label{eq:5.31}
+	\end{equation}
+\end{definition}
+
+Il tensore di Riemann può anche essere visto come commutatore di derivate covarianti.
+
+\begin{proposition}
+	$ R^i_{mnk} = \left[ \pa_k + \Gamma_k, \pa_n + \Gamma_n \right]^i_{\,\,\,m} $.
+\end{proposition}
+\begin{proof}
+	Si considerano le connessioni affini come matrici $ [\Gamma_k]^i_{\,\,\,m} = \Gamma^i_{km} $:
+	\begin{equation*}
+		\begin{split}
+			\left[ \pa_k + \Gamma_k, \pa_n + \Gamma_n \right]^i_{\,\,\,m}
+			&= \left[ \Gamma_{n,k} - \Gamma_{k,n} + \Gamma_k \Gamma_n - \Gamma_n \Gamma_k \right]^i_{\,\,\,m}\\
+			&= \Gamma^i_{nm,k} - \Gamma^i_{km,n} + \Gamma^i_{kj} \Gamma^j_{nm} - \Gamma^i_{nj} \Gamma^j_{km}
+		\end{split}
+	\end{equation*}
+
+\end{proof}
+
+Dunque, equivalentemente, si può scrivere:
+\begin{equation}
+	\left[ \nabla_k, \nabla_n \right] V^i = R^i_{mnk} V^m
+	\label{eq:5.32}
+\end{equation}
+Il significato fisico del tensore di Riemann è quindi quello di fare trasporto parallelo di un vettore lungo un loop: se non ci fosse curvatura, l'operazione lascerebbe il vettore invariato, ed infatti il tensore di Riemann è detto anche \textit{tensore di curvatura}.
+
+\begin{proposition}
+	$ R^i_{mnk} = - R^i_{mkn} $.
+\end{proposition}
+
+\begin{definition}
+	Si definisce \textit{tensore di Ricci} la contrazione $ R_{mk} \defeq R^n_{mnk} $.
+\end{definition}
+
+\begin{definition}
+	Si definisce \textit{scalare di Ricci} la contrazione $ R \defeq g^{mk} R_{mk} $.
+\end{definition}
+
+\subsection{Curvatura della sfera}
+
+È un utile esercizio calcolare la curvatura di una sfera.\\
+Si consideri una 2-sfera di raggio $ r $ con RF $ (\theta,\phi) \in (0,\pi) \times [0,2\pi) $: le possibili connessioni di Levi-Civita sono 8, ma solo 6 sono indipendenti per simmetria negli indici inferiori. Prendendo $ \R^3 $ come embedding space:
+\begin{equation*}
+	\ve{p} = r \left( \sin \theta \cos \phi, \sin \theta \sin \phi, \cos \theta \right)
+\end{equation*}
+Calcolando i vettori base:
+\begin{equation*}
+	\ve{e}_{\theta} = \frac{\pa \ve{p}}{\pa \theta} = r \left( \cos \theta \cos \phi, \cos \theta \sin \phi, -\sin \theta \right) \equiv r \hat{\ve{e}}_{\theta}
+\end{equation*}
+\begin{equation*}
+	\ve{e}_{\phi} = \frac{\pa \ve{p}}{\pa \phi} = r \sin \theta \left( - \sin \phi, \cos \theta, 0 \right) \equiv r \sin \theta \hat{\ve{e}}_{\phi}
+\end{equation*}
+Si trova dunque il tensore metrico della sfera:
+\begin{equation*}
+	g_{ij} =
+	\begin{bmatrix}
+		r^2 & 0 \\
+		0 & r^2 \sin^2 \theta
+	\end{bmatrix}
+	\qquad g^{ij} =
+	\begin{bmatrix}
+		r^{-2} & 0 \\
+		0 & r^{-2} \sin^{-2} \theta
+	\end{bmatrix}
+\end{equation*}
+I vettori duali base risultano quindi essere $ \ve{e}^{\theta} = r^{-1} \hat{\ve{e}}_{\theta} $ e $ \ve{e}^{\phi} = r^{-1} \sin^{-1} \theta \hat{\ve{e}}_{\phi} $. Le derivate dei vettori base si calcolano essere:
+\begin{equation*}
+	\ve{e}_{\theta,\theta} = -r \hat{\ve{e}}_r \qquad \ve{e}_{\theta,\phi} = \ve{e}_{\phi,\theta} = r \cos \theta \hat{\ve{e}}_{\phi} \qquad \ve{e}_{\phi,\phi} = - r \sin \theta \left( \cos \phi, \sin \phi, 0 \right)
+\end{equation*}
+Ricordando che $ \Gamma^i_{jk} \defeq \ve{e}^i \cdot \ve{e}_{k,j} $ e che $ [\Gamma_k]^i_{\,\,\,m} = \Gamma^i_{km} $, si trovano:
+\begin{equation*}
+	\Gamma_{\theta} =
+	\begin{bmatrix}
+		0 & 0 \\
+		0 & \cot \theta
+	\end{bmatrix}
+	\qquad \Gamma_{\phi} =
+	\begin{bmatrix}
+		0 & - \sin \theta \cos \theta \\
+		\cot \theta & 0
+	\end{bmatrix}
+	\quad\Longrightarrow\quad \left[ \Gamma_{\theta},\Gamma_{\phi} \right] = - \left[ \Gamma_{\phi},\Gamma_{\theta} \right] =
+	\begin{bmatrix}
+		0 & \cos^2 \theta \\
+		\cot^2 \theta & 0
+	\end{bmatrix}
+\end{equation*}
+Per il calcolo del tensore di Ricci sono necessari solo 4 componenti del tensore di Riemann:
+\begin{equation*}
+	R^{\theta}_{\theta\theta\theta} = \left[ \pa_{\theta} + \Gamma_{\theta}, \pa_{\theta} + \Gamma_{\theta} \right]^{\theta}_{\,\,\,\theta} = 0
+\end{equation*}
+\begin{equation*}
+	R^{\phi}_{\theta\phi\theta} = \left[ \pa_{\theta} + \Gamma_{\theta}, \pa_{\phi} + \Gamma_{\phi} \right]^{\phi}_{\,\,\,\theta} = [\Gamma_{\phi,\theta}]^{\phi}_{\,\,\,\theta} + \left[ \Gamma_{\theta},\Gamma_{\phi} \right]^{\phi}_{\,\,\,\theta} = (\cot \theta)_{,\theta} + \cot^2 \theta = -1
+\end{equation*}
+\begin{equation*}
+	R^{\theta}_{\phi\theta\phi} = \left[ \pa_{\phi} + \Gamma_{\phi}, \pa_\theta + \Gamma_{\theta} \right]^{\theta}_{\,\,\,\phi} = - [\Gamma_{\phi,\theta}]^{\theta}_{\,\,\,\phi} = \cos^2 \theta - \sin^2 \theta - \cos^2 \theta = - \sin^2 \theta
+\end{equation*}
+\begin{equation*}
+	R^{\phi}_{\phi\phi\phi} = \left[ \pa_{\phi} + \Gamma_{\phi}, \pa_{\phi} + \Gamma_{\phi} \right]^{\phi}_{\,\,\,\phi} = 0
+\end{equation*}
+Le componenti non-nulle del tensore di Ricci sono:
+\begin{equation*}
+	R_{\theta\theta} = R^{\theta}_{\theta\theta\theta} + R^{\phi}_{\theta\phi\theta} = -1
+\end{equation*}
+\begin{equation*}
+	R_{\phi\phi} = R^{\theta}_{\phi\theta\phi} + R^{\phi}_{\phi\phi\phi} = - \sin^2 \theta
+\end{equation*}
+Dato che $ R = g^{mk} R_{mk} = g^{\theta\theta} R_{\theta\theta} + g^{\phi\phi} R_{\phi\phi} $, si trova lo scalare di curvatura di una 2-sfera:
+\begin{equation}
+	R = - \frac{2}{r^2}
+\end{equation}
+Ciò conferma il teorema di Gauss-Bonnett, che lega la curvatura $ K $ allo scalare di curvatura: per una 2-sfera $ K = \frac{1}{r^2} $, dunque $ K = - \frac{R}{2} $ (affermato dal teorema).
+
+\section{Equazioni di Einstein}
+
+Una particella isolata in uno spaziotempo curvo si muove secondo l'equazione geodesica. In presenza di un campo di materia, invece, la faccenda si complica.\\
+Un campo di materia, nel quale si hanno flussi di materia ed energia, è descritto dall'energy-momentum tensor $ T_{ij} $, definito in modo da soddisfarre la conservazione dell'energia $ \nabla_i T^i_{\,\,\,j} = 0 $.
+
+\begin{example}
+	Per un fluido ideale isotropico a riposo di densità $ \rho $ e pressione $ p $, l'energy-momentum tensor è $ T_{ij} = p g_{ij} + (p + \rho)u_i u_j $, con $ u^i = \frac{dx^i}{d\tau} = \gamma (c, \ve{v}) $.
+\end{example}
+
+Il legame tra il campo di materia e la curvatura dello spaziotempo è dato dall'\textit{equazione di campo di Einstein}:
+\begin{equation}
+	R_{ij} - \frac{1}{2} g_{ij} R = - \frac{8\pi G}{c^4} T_{ij}
+	\label{eq:5.34}
+\end{equation}
+Contraendo con $ g^{ij} $, dato che $ g^{ij}g_{ij} = \delta^i_i = 4 $, definendo la traccia dell'energy-momentum tensor $ T \equiv T^i_i $, si trova che $ R = \frac{8\pi G}{c^4} T $, dunque una forma equivalente dell'equazione di campo è:
+\begin{equation}
+	R_{ij} = - \frac{8\pi G}{c^4} \left( T_{ij} - \frac{T}{2} g_{ij} \right)
+	\label{eq:5.35}
+\end{equation}
+Nello spazio vuoto e su scale piccole (spazio isotropo), trascurando la dark energy, l'equazione di campo diventa $ R_{ij} = 0 $.
+
+\subsection{Azione di Einstein-Hilbert}
+
+È possibile costruire un'azione da cui derivi l'equazione di campo: essa, essendo uno scalare, è invariante per trasformazioni arbitrarie di coordinate, dunque le equazioni tensoriali da esso derivate risultano invarianti per tali trasformazioni.\\
+Per determinare un'azione appropriata, è necessario uno scalare dipendente dalla metrica: lo scalare di Ricci. Ricordando che la 4-form di volume è $ \sqg \,d^4x $, si ricava l'\textit{azione di Einstein-Hilbert} nello spazio vuoto:
+\begin{equation}
+	S_{\text{EH}} = - \frac{c^4}{16 \pi G} \int *R = - \frac{c^4}{16\pi G} \int R \sqg \,d^4x
+	\label{eq:5.36}
+\end{equation}
+
+\begin{proposition}
+	L'equazione di campo di Einstein deriva dall'azione di Einstein-Hilbert.
+\end{proposition}
+\begin{proof}
+	In assenza di campi di materia, data una variazione della metrica $ \delta g_{ij} $ che si annulla all'infinito, è possibile scrivere la variazione al prim'ordine dell'azione come:
+	\begin{equation*}
+		\delta S_{\text{EH}} = - \frac{c^4}{16\pi G} \int \delta (R\sqg) \,d^4x = - \frac{c^4}{16\pi G} \int \left( \sqg \frac{\delta R}{\delta g^{ij}} + R \frac{\delta \sqg}{\delta g^{ij}} \right) g^{ij} d^4x
+	\end{equation*}
+	Per il primo termine, usando $ \delta R^i_{klm} = \nabla_l (\delta \Gamma^i_{mk}) - \nabla_m (\delta \Gamma^i_{lk}) $:
+	\begin{equation*}
+		\delta R = R_{ij} \delta g^{ij} + g^{ij} \delta R_{ij} = R_{ij} \delta g^{ij} + g^{ij} \delta R^k_{ikj} = R_{ij} \delta g^{ij} + g^{ij} \left[ \nabla_k (\delta \Gamma^k_{ji}) - \nabla_j (\delta \Gamma^k_{ki}) \right] = R_{ij} \delta g^{ij}
+	\end{equation*}
+	dove la nullità dell'ultimo termine è stata dimostrata da Gibbins, Hawking e York nel 1970. Per quando riguarda il secondo termine, si ricordi la formula di Jacobi $ \frac{\delta \det \tens{A}}{\delta A_{ij}} = (A^{-1})_{ij} \det \tens{A} $:
+	\begin{equation*}
+		\delta \sqg = \frac{1}{2\sqg} \delta g = \frac{1}{2\sqg} g g^{ij} \delta g_{ij} = - \frac{1}{2} \sqg g_{ij} \delta g^{ij}
+	\end{equation*}
+	dove nell'ultima uguaglianza si è usato $ g^{ij} \delta g_{ij} = - g_{ij} \delta g^{ij} $, che è una proprietà generale:
+	\begin{equation*}
+		k^{-1} \frac{\delta k}{\delta p} + \frac{\delta k^{-1}}{\delta p} k = \frac{\delta (k^-1 k)}{\delta p} = \frac{\delta 1}{\delta p} = 0 \quad\Longrightarrow\quad \delta g^{ij} = - g^{il} (\delta g_{lm}) g^{mj}
+	\end{equation*}
+	Di conseguenza:
+	\begin{equation*}
+		\delta S_{\text{EH}} = - \frac{c^4}{16\pi G} \int \left( R_{ij} - \frac{1}{2} g_{ij} R \right) \delta g^{ij} \sqg \,d^4x
+	\end{equation*}
+	dunque:
+	\begin{equation*}
+		\delta S_{\text{EH}} = 0 \quad\Longleftrightarrow\quad R_{ij} - \frac{1}{2} g_{ij} R = 0
+	\end{equation*}
+	In presenza di un campo di materia, si aggiunge un termine del tipo:
+	\begin{equation*}
+		\delta S_m = - \frac{1}{2} \int T_{ij} \delta g^{ij} \sqg \,d^4x \quad\Longleftrightarrow\quad T_{ij} = - 2 \frac{1}{\sqg} \frac{\delta S_m}{\delta g^{ij}}
+	\end{equation*}
+	quindi si trova l'equazione di campo di Einstein:
+	\begin{equation*}
+		- \frac{c^4}{16\pi G} \left( R_{ij} - \frac{1}{2} g_{ij} R \right) - \frac{1}{2} T_{ij} = 0
+	\end{equation*}
+\end{proof}
 
 
 
