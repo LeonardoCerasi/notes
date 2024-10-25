@@ -1,0 +1,150 @@
+\selectlanguage{italian}
+
+In maniera informale, una varietà è un oggetto che su larga scala può avere proprietà di curvatura non banali, ma che localmente appare come uno spazio euclideo (piatto).\\
+Si vede immediatamente una similitudine con il principio di equivalenza di Einstein: le leggi fisiche si riducono a quelle della relatività speciale in intorni abbastanza piccoli dello spaziotempo; dato che le gravità emerge dalle proprietà di curvatura dello spaziotempo, ciò è equivalente a dire che lo spaziotempo è descritto da una varietà differenziale.
+
+\section{Varietà differenziali}
+
+\begin{definition}
+	Si definisce \textit{spazio euclideo} $ \R^n \defeq \{(x^1,\dots,x^n) : x^j \in \R\} $ dotato della metrica piatta definita positiva $ g_{ij} = \delta_{ij} $.
+\end{definition}
+
+L'identificazione locale di una varietà con $ \R^n $ non equivale ad un'uguaglianza di metriche, ma permette di definire in maniera equivalente le nozioni di funzioni, coordinate, operatori etc.
+
+\begin{example}
+	Esempi di varietà sono la $ n $-sfera $ \mathbb{S}^n $, ovvero il luogo dei punti in $ \R^{n+1} $ a distanza unitaria dall'origine, e l'$ n $-toro $ \mathbb{T}^n $, generato facendo coincidere i lati opposti di un $ n $-cubo.
+\end{example}
+\begin{example}
+	Si definisce \textit{superficie di Riemann} una varietà differenziabile 2-dimensionale orientabile, compatta e senza confini; le superfici di Riemann possono essere caratterizzate dal loro genus $ g $, ovvero dal numero di buchi di tale varietà: condizione necessaria perché due superfici di Riemann siano omotope è che abbiano lo stesso genus.
+\end{example}
+\begin{example}
+	Il gruppo di rotazioni continue in $ \R^n $ forma una varietà: in generale, i \textit{gruppi di Lie} sono varietà dotate di struttura di gruppo; ad esempio $ \text{SO}(2) \cong \mathbb{S}^1 $.
+\end{example}
+
+\subsection{Carte e atlanti}
+
+La varietà nella sua interezza viene costruita attaccando in modo liscio le varie regioni localmente piatte che la compongono.
+
+\begin{definition}
+	Dati due insiemi $ M,N $, una \textit{mappa} $ \varphi : M \rightarrow N $ è una relazione che assegna ad ogni elemento di $ M $ al più un elemento di $ N $. $ M $ è detto \textit{dominio} e $ \varphi(N) $ \textit{immagine}.
+\end{definition}
+
+\begin{definition}
+	Una mappa $ \varphi : M \rightarrow N $ si dice \textit{iniettva} se ad ogni elemento dell'immagine corrisponde soltanto un elemento del dominio.
+\end{definition}
+
+\begin{definition}
+	Una mappa $ \varphi : M \rightarrow N $ si dice \textit{suriettiva} se $ \varphi(M) = N $.
+\end{definition}
+
+\begin{definition}
+	Una mappa $ \varphi : M \rightarrow N $ si dice \textit{biiettiva} se è iniettiva e suriettiva.
+\end{definition}
+
+\begin{definition}
+	Data $ \varphi : M \rightarrow N $ biiettiva, si definisce la mappa inversa $ \varphi^{-1} : N \rightarrow M $ tale che $ \varphi \circ \varphi^{-1} = \text{id}_N $ e $ \varphi^{-1} \circ \varphi = \text{id}_M $.
+\end{definition}
+
+Si ricordi che una mappa tra spazi euclidei $ \varphi : \R^m \rightarrow \R^n $ è definita come:
+\begin{equation}
+	\varphi : (x^1,\dots,x^m) \mapsto (\varphi^1(x^1,\dots,x^m),\dots,\varphi^n(x^1,\dots,x^m))
+	\label{eq:6.1}
+\end{equation}
+
+\begin{definition}
+	Data una mappa $ \varphi : \R^m \rightarrow \R^n $, essa si dice \textit{di classe} $ \mathcal{C}^p $, $ p \ge 0 $ se per ognuna delle $ \varphi^i $ la derivata tutte le derivate $ n $-esime esistono continue, con $ n \le p $.
+\end{definition}
+
+\begin{definition}
+	Una mappa $ \varphi \in \mathcal{C}^{\infty}(\R^m,\R^n) $ si dice \textit{liscia}.
+\end{definition}
+
+\begin{definition}
+	Due insiemi $ M,N $ si dicono diffeomorfi, e si scrive $ M \cong N $, se esiste un diffeomorfismo tra loro, ovvero una mappa $ \varphi \in \mathcal{C}^{\infty}(M,N) $ con inversa $ \varphi^{-1} \in \mathcal{C}^{\infty}(N,M) $.
+\end{definition}
+
+La nozione di diffeomorfismo permette di stabilire se due spazi rappresentano la stessa varietà: un diffeomorfismo è un isomorfismo tra varietà lisce.
+
+\begin{example}
+	$ \text{SO}(2) \cong \mathbb{S}^1 $.
+\end{example}
+
+\begin{definition}
+	Dati $ \ve{x} \in \R^n $ e $ r \in \R^+ $, si definisce la \textit{palla aperta} centrata in $ \ve{x} $ di raggio $ r $ l'insieme $ \mathcal{B}_r(\ve{x}) \defeq \{ \ve{y} \in \R^n : \abs{\ve{y} - \ve{x}} < r \} $, con norma determinata dala metrica.
+\end{definition}
+
+\begin{definition}
+	$ V \subset \R^n $ si dice \textit{aperto} se $ \forall \ve{x} \in V \, \exists r \in \R^+ : \mathcal{B}_r(\ve{x}) \subset V $.
+\end{definition}
+
+Un aperto può quindi essere visto come un'unione di palle aperte, o anche come la parte interna di una o più superfici $ (n-1) $-dimensionali.
+
+\begin{definition}
+	Una \textit{carta} su un insieme $ \mathcal{M} $ consiste di un insieme $ U \subset \mathcal{M} $ ed una mappa $ \varphi : U \rightarrow \R^n $ tali per cui $ \varphi(U) \subset \R^n $ è aperto.
+\end{definition}
+
+$ \R^n $ è detto embedding space di $ \mathcal{M} $.
+
+\begin{definition}
+	Un \textit{atlante} su un insieme $ \mathcal{M} $ è un insieme di carte $ \mathcal{A} = \{U_{\alpha},\varphi_{\alpha}\} $ tali che la loro unione ricopra $ \mathcal{M} $ e siano componibili in maniera liscia: se $ U_{\alpha} \cap U_{\beta} \neq \emptyset $, allora le mappe $ \varphi_{\alpha} \circ \varphi_{\beta}^{-1} $ e $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ sono diffeomorfismi.
+\end{definition}
+
+Le mappe di transizione non sono altro che cambiamenti di coordinate sulle intersezioni.
+
+\begin{definition}
+	Si dice \textit{varietà differenziale} un insieme $ \mathcal{M} $ con un atlante massimale $ \mathcal{A} $ su di esso.
+\end{definition}
+
+Si richiede un atlante massimale per evitare che due varietà con due atlanti, uno massimale ed uno no, vengano identificate come diverse quando in realtà sono diffeomorfe.
+
+\begin{theorem}[di Whitney]
+	Una varietà $ n $-dimensionale può essere embedded in uno spazio al più $ 2n $-dimensionale.
+\end{theorem}
+
+\begin{example}
+	La bottiglia di Klein è 2-dimensionale e non può essere embedded in $ \R^3 $, ma in $ \R^4 $ sì.
+\end{example}
+
+Bisogna considerare che la maggior parte delle varietà non può essere ricoperta da una sola carta.
+
+\begin{example}
+	Si consideri $ \mathbb{S}^1 $ con l'usuale scelta di coordinata $ \varphi : p \in \mathbb{S}^1 \mapsto \theta \in [0,2\pi] \subset \R $: se vengono inclusi $ 0 $ o $ 2\pi $, si ha che $ \varphi(\mathbb{S}^1) $ non è aperto in $ \R $, dunque sono necessarie due carte, una che escluda $ \theta = 0,2\pi $ ed una che escluda $ \theta = \pi $.
+\end{example}
+
+\begin{example}
+	Si consideri $ \mathbb{S}^2 $ con proiezione stereografica (o di Mercator): dato che la proiezione della sfera $ (x^1)^2 + (x^2)^2 + (x^3)^2 = 1 $ su $ x^3 = -1 $ è definita a meno del polo nord, sono necessarie due carte: la proiezione stereografica su $ x^3 = -1 $, che esclude il polo nord, e quella su $ x^3 = 1 $, che esclude il polo sud. Definendo $ y^1,y^2 $ e $ z^1,z^2 $ le coordinate sui piani considerati, si trovano:
+	\begin{equation*}
+		\varphi_{-1} (x^1,x^2,x^3) = \left( \frac{2x^1}{1 - x^3}, \frac{2x^2}{1-x^3} \right) \equiv (y^1,y^2)
+	\end{equation*}
+	\begin{equation*}
+		\varphi_1 (x^1,x^2,x^3) = \left( \frac{2x^1}{1 + x^3}, \frac{2x^2}{1 + x^3} \right) \equiv (z^1,z^2)
+	\end{equation*}
+	Queste si intersecano su $ -1 < x^3 < 1 $ e la mappa di transizione è:
+	\begin{equation*}
+		\varphi_1 \circ \varphi_{-1}^{-1} (y_1,y_2) = \left( \frac{4y^1}{(y^1)^2 + (y^2)^2}, \frac{4y^2}{(y^1)^2 + (y^2)^2} \right) \equiv (z^1,z^2)
+	\end{equation*}
+\end{example}
+
+\section{Spazio tangente}
+
+\begin{definition}
+	Data una varietà $ \mathcal{M} $ ed un punto $ p \in \mathcal{M} $, si definisce lo \textit{spazio tangente} a $ \mathcal{M} $ in $ p $ lo spazio $ T_p\mathcal{M} $ di tutti i vettori tangenti alla varietà in quel punto.
+\end{definition}
+
+È possibile costruire $ T_p\mathcal{M} $ in maniera equivalente: si consideri una curva passante per $ p $, ovvero una mappa $ \varphi : I \subset \R \rightarrow \mathcal{M} : \lambda \mapsto \varphi(\lambda) $ tale che $ \exists \lambda_0 \in I : \varphi(\lambda_0) = p $. Se l'embedding space di $ \mathcal{M} $ è $ \R^n $, in ogni punto dell'immagine la curva determinerà un vettore $ \tau_{\varphi}(\lambda) $ con componenti $ \frac{dx^k}{d\lambda}(\lambda) $, detto vettore tangente: la mappa $ p \mapsto \tau_{\varphi}(\lambda_0) $ dipende dalla carta scelta.\\
+Definendo $ \mathcal{F} $ lo spazio di funzioni lisce su $ \mathcal{M} $, ogni curva $ \varphi $ passante per $ p $ definisce un vettore $ \frac{df}{d\lambda} $ per ogni $ f \in \mathcal{F} $, detta derivata direzionale: la mappa $ f \mapsto \nabla_{\varphi} f(\lambda_0) $ non dipende dalla carta scelta.\\
+Lo spazio tangente $ T_p\mathcal{M} $ può essere visto come lo spazio degli operatori derivata direzionale lungo curve passanti per $ p $.
+
+\begin{definition}
+	Data una varietà $ \mathcal{M} $ ed un punto $ p \in \mathcal{M} $, si definisce lo \textit{spazio cotangente} a $ \mathcal{M} $ in $ p $ lo spazio $ T^*_p\mathcal{M} $ duale di $ T_p\mathcal{M} $.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
