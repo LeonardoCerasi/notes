@@ -500,7 +500,7 @@ ovvero:
 	\end{bmatrix}
 	\label{eq:2.47}
 \end{equation}
-Dato che $ \hat{S}_x = \frac{1}{2} \left( \hat{S}_+ + \hat{S}_- \right) $ e $ \hat{S}_y = \frac{1}{2i} \left( \hat{S}_+ - \hat{S}_- \right) $, ricordando anche Eq. \ref{eq:2.46}, si trova la relazione tra operatori di spin e matrici di Pauli:
+Dato che $ \hat{S}_x = \frac{1}{2} ( \hat{S}_+ + \hat{S}_- ) $ e $ \hat{S}_y = \frac{1}{2i} ( \hat{S}_+ - \hat{S}_- ) $, ricordando anche Eq. \ref{eq:2.46}, si trova la relazione tra operatori di spin e matrici di Pauli:
 \begin{equation}
 	\hat{S}_i = \frac{\hbar}{2} \sigma_i
 	\label{eq:2.48}
@@ -521,13 +521,136 @@ Inoltre, si vede immediatamente che:
 	\hat{S}^2 = \frac{3}{4} \hbar^2 \tens{I}
 	\label{eq:2.49}
 \end{equation}
-Imponento $ s (s + 1) = \frac{3}{4} $ si trova, per l'appunto, $ s = \frac{1}{2} $.\\
+Imponendo $ s (s + 1) = \frac{3}{4} $ si trova, per l'appunto, $ s = \frac{1}{2} $.\\
 È possibile vedere il comportamento peculiare dei sistemi a spin $ \frac{1}{2} $ sotto rotazioni ricordando l'espressione degli operatori di rotazione in Eq. \ref{eq:2.39}: considerando una rotazione di $ 2\pi $ attorno l'asse $ z $ e ricordando che $ \ket{\pm} $ sono autostati di $ \sigma_z $:
 \begin{equation}
 	\hat{R}_{2\pi}^{(z)} \ket{\psi} = e^{-i \pi \sigma_z} \left( c_+ \ket{+} + c_- \ket{-} \right) = c_+ e^{-i\pi} \ket{+} + c_- e^{i\pi} \ket{-} = - \ket{\psi}
 	\label{eq:2.50}
 \end{equation}
 Il calcolo è analogo lungo qualsiasi asse. Si vede dunque che ruotando il sistema di $ 2\pi $ uno stato di spin semi-intero acquista un segno negativo, mentre per tornare in sé stesso è necessaria una rotazione di $ 4\pi $: questo impedisce di rappresentare il vettore di stato come una funzione sullo spazio delle coordinate, ma non viola alcun principio fondamentale, dando anzi luogo ad effetti sperimentalmente osservabili verificati.
+
+\section{Composizione di momenti angolari}
+
+Tutte le particelle che formano la materia sono portatrici di spin (ad eccezione del bosone di Higgs): è dunque necessario studiare come si comportano i sistemi quantistici dotati sia di momento angolare orbitale che di spin.\\
+Lo stato di un sistema si spin $ s $ può essere espresso sia su autostati di $ \hat{\ve{L}} $ che di $ \hat{\ve{S}} $, dunque:
+\begin{equation}
+	\braket{\ve{x} | \psi} = \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} \sum_{s_z = -s}^{s} \braket{\ve{x} | \ell,m,s_z} \braket{\ell,m,s_z | \psi}
+	\label{eq:2.51}
+\end{equation}
+Dato che $ \ket{\ve{x}} = \ket{r,\vartheta,\varphi} \equiv \ket{r} \otimes \ket{\vartheta,\varphi} $ e $ \braket{\vartheta,\varphi | \ell,m} = Y_{\ell,m}(\vartheta,\varphi) $ (base ortonormale di $ \mathbb{S}^2 $):
+\begin{equation}
+	\psi(\ve{x}) = \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} \sum_{s_z = -s}^{s} c_{\ell,m,s_z}(r) Y_{\ell,m}(\vartheta,\varphi) u_{s_z}
+	\label{eq:2.52}
+\end{equation}
+dov'è stata definita la base dello spin $ u_{s_z} \equiv \braket{\vartheta,\varphi | s_z} $. Ad esempio, nel caso $ s = \frac{1}{2} $ gli $ u_{s_z} $ sono i due spinori $ u_+ = (1, 0)^{\intercal} $ e $ u_- = (0,1)^{\intercal} $, dunque $ \psi(\ve{x}) $ sarà anch'esso uno spinore, in generale non fattorizzabile.\\
+La probabilità di rilevare il sistema in $ \ve{x} $ è la somma delle probabilità su tutti i valori di spin:
+\begin{equation}
+	\rho(\ve{x}) = \sum_{s_z = -s}^{s} \abs{\psi_{s_z}(\ve{x})}^2
+	\label{eq:2.53}
+\end{equation}
+La probabilità che la misura dello spin lungo l'asse $ z $ risulti $ s_z $ invece è:
+\begin{equation}
+	P_{s_z} = \int_{\R^3} d^3\ve{x} \,\psi_{s_z}(\ve{x})
+	\label{eq:2.54}
+\end{equation}
+
+\subsection{Coefficienti di Clebsch-Gordan}
+
+È utile definire il momento angolare totale:
+\begin{equation}
+	\hat{\ve{J}} = \hat{\ve{L}} + \hat{\ve{S}}
+	\label{eq:2.55}
+\end{equation}
+Più formalmente, dato che i due operatori agiscono su spazi diversi (quello delle posizioni e quello delle direzioni), la definizione corretta è $ \hat{\ve{J}} \defeq \hat{\ve{L}} \otimes \hat{\tens{I}}_s + \hat{\tens{I}}_x \otimes \hat{\ve{S}} $.
+
+\begin{proposition}
+	$ [J_i,J_j] = i\hbar \sum_{k = 1}^{3} i \hbar \epsilon_{ijk} J_k $.
+\end{proposition}
+\begin{proof}
+	Agendo su spazi diversi, si ha $ [L_i,S_j] = 0 $, dunque:
+	\begin{equation*}
+		[J_i,J_j] = [L_i,L_j] + [S_i,S_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} (L_k + S_k) = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} J_k
+	\end{equation*}
+\end{proof}
+
+Dunque, $ \hat{\ve{J}} $ è effettivamente un operatore di momento angolare: vale di conseguenza che $ [\hat{J}^2,\hat{J}_i] = 0 $.
+
+\begin{proposition}
+	$ \hat{J}^2 $, $ \hat{J}_z $, $ \hat{L}^2 $ ed $ \hat{S}^2 $ commutano tra loro.
+\end{proposition}
+\begin{proof}
+	$ \hat{L}^2 $ ed $ \hat{S}^2 $ commutano poiché agiscono su spazi diversi. $ [\hat{J}^2,\hat{S}^2] $ è analogo a $ [\hat{J}^2,\hat{L}^2] $: $ [\hat{J}^2,\hat{L}^2] = [\hat{L}^2 + \hat{S}^2 + 2 \hat{\ve{L}}\cdot\hat{\ve{S}},\hat{L}^2] = 2 \sum_{k = 1}^{3} [\hat{L}_k \hat{S}_k,\hat{L}^2] = 0 $. I commutatori di $ \hat{J}_z $ sono banali.
+\end{proof}
+
+\begin{proposition}
+	$ \hat{J}^2 $ non commuta con $ \hat{L}_z $ ed $ \hat{S}_z $.
+\end{proposition}
+\begin{proof}
+	Analoghi: $ [\hat{J}^2,\hat{L}_z] = 2 \sum_{i = 1}^{3} [\hat{L}_i,\hat{L_z}]S_i = 2i\hbar \sum_{i,k = 1}^{3} \epsilon_{i3k} L_k S_i \neq 0 $.
+\end{proof}
+
+È possibile, dunque, scegliere due diverse basi per esprimere lo stato del sistema: la \textit{base disaccoppiata} $ \ket{\ell,m,s,s_z} $, diagonalizzando $ \hat{L}^2 $, $ \hat{L}_z $, $ \hat{S}^2 $ ed $ \hat{S}_z $, e la \textit{base accoppiata} $ \ket{j,j_z,\ell,s} $, diagonalizzando $ \hat{J}^2 $, $ \hat{J}_z $, $ \hat{L}^2 $ ed $ \hat{S}^2 $. Il passaggio tra le due basi è dato da:
+\begin{equation}
+	\ket{\ell,m,s,s_z} = \sum_{j = j_{\text{min}}}^{j_{\text{max}}} \sum_{j_z = -j}^{j} \ket{j,j_z,\ell,m} \braket{j,j_z,\ell,s | \ell,m,s,s_z}
+	\label{eq:2.56}
+\end{equation}
+\begin{equation}
+	\ket{j,j_z,\ell,s} = \sum_{m = -\ell}^{\ell} \sum_{s_z = -s}^{s} \ket{\ell,m,s,s_z} \braket{\ell,m,s,s_z | j,j_z,\ell,s}
+	\label{eq:2.57}
+\end{equation}
+I coefficienti $ \braket{j,j_z,\ell,s | \ell,m,s,s_z}, \braket{\ell,m,s,s_z | j,j_z,\ell,s} $ sono detti \textit{coefficienti di Clebsh-Gordan}. È necessario esplicitare il range di $ j $.
+
+\begin{proposition}
+	$ \braket{\ell,m,s,s_z | j,j_z,\ell,s} \propto \delta_{j_z,m + s_z} $.
+\end{proposition}
+\begin{proof}
+	Dato che $ \hat{J}_z = \hat{L}_z + \hat{S}_z $, si ha $ \hat{J}_z - \hat{L}_z - \hat{S}_z = 0 $:
+	\begin{equation*}
+		0 = \braket{\ell,m,s,s_z | \hat{J}_z - \hat{L}_z - \hat{S}_z | j,j_z,\ell,s} = \left( j_z - m - s_z \right) \hbar \braket{\ell,m,s,s_z | j,j_z,\ell,s}
+	\end{equation*}
+	dunque $ \braket{\ell,m,s,s_z | j,j_z,\ell,s} \neq 0 \,\Rightarrow\, j_z = m + s_z $.
+\end{proof}
+Si vede allora che $ \ket{j,j_z,\ell,s} $ è combinazione lineare solo degli stati $ \ket{\ell,m,s,s_z} : m + s_z = j_z $: di conseguenza, $ j_z^{\text{max}} = m^{\text{max}} + s_z^{\text{max}} = \ell + s $, ma $ j_z^{\text{max}} = j_{\text{max}} $, quindi $ j_{\text{max}} = \ell + s $: infatti, lo stato $ \ket{j = \ell + s, j_z = j, \ell, s} $ può essere ottenuto solo come $ \ket{\ell,m = \ell,s,s_z = s} $, mentre, ad esempio, lo stato $ \ket{j = \ell + s, j_z = j - 1, \ell, s} $ è combinazione lineare dei due stati $ \ket{\ell, m = \ell - 1, s, s_z = s} $ e $ \ket{\ell, m = \ell, s, s_z = s - 1} $.\\
+Affinché la base accoppiata abbia lo stesso numero di elementi della base disaccoppiata ($ (2\ell + 1)(2s + 1) $), è necessario che $ j_{\text{min}} = \abs{\ell - s} $; assumendo WLOG $ \ell > s $:
+\begin{equation*}
+	\sum_{j = \ell - s}^{\ell + s} (2j + 1) = \sum_{k = 0}^{2s} \left( 2(k + \ell - s) + 1 \right) = 2s (2s + 1) + \left( 2(\ell - s) +1 \right) (2s + 1) = (2\ell + 1)(2s + 1)
+\end{equation*}
+
+\subsubsection{Composizione di due spin \texorpdfstring{$ \frac{1}{2} $}{TEXXT}}
+
+Nel caso di un sistema in cui si compongono due spin $ \frac{1}{2} $ (doppio qubit), si può introdurre la notazione semplificata $ \pm \equiv \pm \frac{1}{2} $. Dalla condizione $ \abs{s_1 - s_2} \le s \le s_1 + s_2 $ si trova che i possibili valori di $ s $ sono $ 0 $ e $ 1 $: in particolare, si ha un tripletto di spin 1 ($ \ket{1,1}, \ket{1,0},\ket{1,-1} $) ed un singoletto di spin 0 ($ \ket{0,0} $).\\
+Per calcolare i coefficienti di Clebsch-Gordan, si consideri innanzitutto che, per la condizione su $ j_z^{\text{max}} $, si ha:
+\begin{equation}
+	\ket{1,1} = \ket{+,+}
+	\label{eq:2.58}
+\end{equation}
+Definendo $ \hat{S}^{\pm} \defeq \hat{S}_1^{\pm} + \hat{S}_2^{\pm} $ gli operatori di innalzamento/abbassamento per lo spin totale, si ha, dall'Eq. \ref{eq:2.21}:
+\begin{equation*}
+	\begin{split}
+		\hat{S}^- \ket{1,1}
+		&= \hbar \sqrt{1 (1 + 1) - 1 (1 -1)} \ket{1,0} = \hbar \sqrt{2} \ket{1,0}\\
+		&= (\hat{S}_1^- + \hat{S}_2^-) \ket{+,+} = \hbar \sqrt{ \frac{1}{2} \left( \frac{1}{2} + 1 \right) - \frac{1}{2} \left( \frac{1}{2} - 1 \right)} \left( \ket{+,-} + \ket{-,+} \right)\\
+		&= \hbar \left( \ket{+,-} + \ket{-,+} \right)
+	\end{split}
+\end{equation*}
+Si vede dunque che:
+\begin{equation}
+	\ket{1,0} = \frac{1}{\sqrt{2}} \left( \ket{+,-} + \ket{-,+} \right)
+	\label{eq:2.59}
+\end{equation}
+Dato che $ j_z = s_1 + s_2 $, l'unico modo per avere lo stato con $ j_z = -1 $ è:
+\begin{equation}
+	\ket{1,-1} = \ket{-,-}
+	\label{eq:2.60}
+\end{equation}
+Dalla condizione di ortogonalità (in particolare $ \braket{1,0 | 0,0} = 0 $) si ricava infine:
+\begin{equation}
+	\ket{0,0} = \frac{1}{\sqrt{2}} \left( \ket{+,-} - \ket{-,+} \right)
+	\label{eq:2.61}
+\end{equation}
+Questo metodo è generale: si parte dallo stato più alto e si agisce tramite operatori di innalzamento/abbassamento.\\
+I sistemi di doppio spin $ \frac{1}{2} $ sono particolarmente interessanti poiché sono il più semplice sistema quantistico non-banale: i suoi stati non possono essere fattorizzati, ed in particolare gli stati con $ j_z = 0 $ sono massimamente entangled.\\
+Inoltre, si nota che questo è un sistema di particelle identiche: non c'è misura in grado di distinguere le due particelle. C'è quindi simmetria finita per scambio delle particelle: gli stati del tripletto sono simmetrici, mentre il singoletto è antisimmetrico.
 
 
 

@@ -1,0 +1,65 @@
+\selectlanguage{italian}
+
+\section{Equazione di Schrödinger radiale}
+
+Si consideri una generica Hamiltoniana invariante per rotazioni, ad esempio:
+\begin{equation}
+	H = \frac{
+	p^2}{2m} + V(r) = \frac{p_r^2}{2m} + \frac{L^2}{2mr^2} + V(r)
+	\label{eq:3.1}
+\end{equation}
+È evidente che questa Hamiltoniana non si possa separare in parte radiale e parte angolare a causa del termine $ \frac{L^2}{r^2} $. È però possibile diagonalizzare simultaneamente $ \hat{H} $, $ \hat{L}^2 $ e $ \hat{L}_z $, dunque si proietta sugli autostati del momento angolare:
+\begin{equation}
+	\psi(\ve{x}) = \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} \braket{\ve{x} | \ell,m} \braket{\ell,m | \psi} = \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} Y_{\ell,m}(\vartheta,\varphi) \phi_{\ell,m}(r)
+	\label{eq:3.2}
+\end{equation}
+L'equazione di Schrödinger si riduce quindi in una PDE con una sola incognita:
+\begin{equation}
+	\left[ \frac{p_r^2}{2m} + \frac{\hbar^2 \ell (\ell + 1)}{2mr^2} + V(r) \right] \phi_{\ell,m}(r) = E \phi_{\ell,m}(r)
+	\label{eq:3.3}
+\end{equation}
+Questa non dipende da $ m $, dunque fissati $ \ell $ ed $ E $ c'è una degerazione di $ 2\ell + 1 $; si pone $ \phi_{\ell,m}(r) \equiv \phi_{\ell}(r) $.
+È inoltre utile porre:
+\begin{equation}
+	\phi_{\ell}(r) \equiv \frac{u_{\ell}(r)}{r}
+	\label{eq:3.4}
+\end{equation}
+
+\begin{proposition}
+	$ \hat{p}_r^n \phi_{\ell}(r) = \left( -i\hbar \right)^n \frac{1}{r} \frac{\pa^n}{\pa r^n} u_{\ell}(r) $.
+\end{proposition}
+\begin{proof}
+	$ \hat{p}_r \phi_{\ell}(r) = -i\hbar \left( \frac{\pa}{\pa r} + \frac{1}{r} \right) \frac{u_{\ell}(r)}{r} = -i\hbar \frac{1}{r} \frac{\pa}{\pa r} u_{\ell}(r) $.
+\end{proof}
+Una ragione $ \virgolette{fisica} $ per definire $ u_{\ell}(r) $ è che assorbe la misura d'integrazione nel prodotto scalare:
+\begin{equation*}
+	\braket{\psi' | \psi} = \int_{0}^{\infty} dr \,r^2 \phi'^*_{\ell'}(r) \phi_{\ell}(r) \int_{\mathbb{S}^2} d\cos\vartheta \,d\varphi \, Y^*_{\ell',m'}(\vartheta,\varphi) Y_{\ell,m}(\vartheta,\varphi) = \delta_{\ell,\ell'} \delta_{m,m'} \int_0^{\infty} dr \, u'^*_{\ell'}(r) u_{\ell}(r)
+\end{equation*}
+Ciò rende $ \hat{p}_r $ un operatore hermitiano sulle $ u_{\ell} $, ed infatti l'equazione di Schrödinger diventa:
+\begin{equation}
+	\left[ - \frac{\hbar^2}{2m} + \frac{\hbar^2 \ell (\ell + 1)}{2m r^2} + V(r) \right] u_{\ell}(r) = E u_{\ell}(r)
+	\label{eq:3.5}
+\end{equation}
+
+\subsection{Condizioni al contorno}
+
+È necessario che la funzione d'onda radiale $ \phi_{\ell}(r) $ abbia densità di probabilità integrabile su $ [0,+\infty) $: in particolare, si richiede che il seguente integrale non diverga:
+\begin{equation}
+	\braket{\phi_{\ell} | \phi_{\ell}} = \int_0^{\infty} dr \, r^2 \abs{\phi_{\ell}(r)}^2 = \int_{0}^{\infty} dr  \abs{u_{\ell}(r)}^2
+	\label{eq:3.6}
+\end{equation}
+Nell'origine $ \abs{u_{\ell}(r)}^2 $ deve avere al più una singolarità integrabile, dunque per $ r \rightarrow 0^+ $:
+\begin{equation}
+	u_{\ell}(r) \sim \frac{1}{r^{\delta}} : \delta < \frac{1}{2}
+	\label{eq:3.7}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
