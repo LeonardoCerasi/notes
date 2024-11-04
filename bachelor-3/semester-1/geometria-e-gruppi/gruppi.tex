@@ -1,0 +1,296 @@
+\selectlanguage{italian}
+
+\section{Definizioni}
+
+\begin{definition}
+	Si definisce \textit{gruppo} un insieme $ G $ su cui è definita un'operazione binaria (rispetto alla quale $ G $ gode di chiusura) $ \left( a,b \right) \in G \times G \mapsto ab \in G $ con le seguenti proprietà:
+	\begin{enumerate}
+		\item associatività: $ a(bc) = (ab)c \,\forall a,b,c \in G $;
+		\item esistenza dell'identità: $ \exists e \in G : ge = eg = g \,\forall g \in G $;
+		\item esistenza dell'inverso: $ \forall g \in G \,\exists g^{-1} \in G : g g^{-1} = g^{-1} g = e $.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Le traslazioni in $ \R^n $ formano un gruppo in cui l'operazione binaria è la somma vettoriale.
+\end{example}
+\begin{example}
+	L'insieme di tutte le trasformazioni in $ \R^{3,1} $ che lasciano invariata la distanza di Minkowski $ x_1^2 + x_2^2 + x_3^2 - x_4^2 $ forma il \textit{gruppo di Lorentz} $ \SOn{3,1} $.
+\end{example}
+\begin{example}
+	L'insieme di tutte le trasformazioni in $ \R^{3,1} $ che lasciano invariata la distanza tra due punti è il \textit{gruppo di Poincaré} (contiene il gruppo di Lorentz).
+\end{example}
+
+\begin{definition}
+	Un gruppo $ G $ si definisce \textit{abeliano} se l'operazione di gruppo soddisfa la proprietà commutativa.
+\end{definition}
+
+\begin{definition}
+	Dato un gruppo $ G $, la cardinalità dell'insieme $ \abs{G} $ è detta \textit{ordine} del gruppo.
+\end{definition}
+
+\begin{example}
+	Si definisce $ \Z_n $ l'insieme degli interi modulo $ n $, che formano un gruppo finito abeliano di ordine $ n $.
+\end{example}
+
+\begin{definition}
+	Si definisce \textit{gruppo di Lie} un gruppo in cui ogni elemento dipende in maniera continua da uno o più parametri.
+\end{definition}
+I gruppi di Lie hanno ordine infinito.
+
+\begin{definition}
+	Un gruppo di matrici $ G $ si dice \textit{compatto} se la norma data dalla traccia è limitata superiormente: $ \exists m \in \R : \tr ( D^{\dagger}D ) \le m \,\forall D \in G $.
+\end{definition}
+
+\subsection{Gruppi di matrici}
+
+Gli insiemi di matrici formano naturalmente gruppi con la moltiplicazione tra matrici.
+
+\begin{definition}
+	Si definisce \textit{gruppo lineare generale} su un campo $ \K $ il gruppo $ \GL{n}{\K} $ formato dalle matrici $ \K^{n \times n} $ non singolari.
+\end{definition}
+
+\begin{proposition}
+	$ \GL{n}{\K} $ è un gruppo infinito non-abeliano e non-compatto.
+\end{proposition}
+
+\begin{definition}
+	Si definisce \textit{gruppo lineare speciale} $ \SL{n}{\K} \defeq \{ \tens{A} \in \GL{n}{\K} : \det \tens{A} = 1\} $.
+\end{definition}
+
+\begin{definition}
+	Si definisce \textit{gruppo ortogonale} il gruppo $ \On{n} $ delle matrici $ \R^{n \times n} $ ortogonali.
+\end{definition}
+
+\begin{definition}
+	Si definisce \textit{gruppo ortogonale speciale} $ \SOn{n} \defeq \{ \tens{A} \in \On{n} : \det \tens{A} = 1\} $.
+\end{definition}
+
+$ \On{n} $ è il gruppo delle rotazioni in $ \R^n $, sia proprie che improprie, mentre $ \SOn{n} $ è il sottogruppo delle rotazioni proprie.\\
+$ \On{n} $ è il gruppo delle matrici che lasciano invariata la forma quadratica reale $ x_1^2 + \dots + x_n^2 $:
+\begin{equation*}
+	\braket{\ve{y} , \ve{y}} = \ve{y}^{\intercal} \ve{y} = \ve{x}^{\intercal} \tens{A}^{\intercal} \tens{A} \ve{x} = \ve{x}^{\intercal} \tens{I}_n \ve{x} = \ve{x}^{\intercal} \ve{x} = \braket{\ve{x} , \ve{x}}
+\end{equation*}
+
+\begin{proposition}
+	$ \tens{A} \in \On{n} \,\Rightarrow\, \det \tens{A} = \pm 1 $.
+\end{proposition}
+\begin{proof}
+	$ \tens{A}^{\intercal} \tens{A} = \tens{I}_n \,\Rightarrow\, 1 = \det(\tens{A}^{\intercal}\tens{A}) = \det(\tens{A})^2 $.
+\end{proof}
+
+\begin{definition}
+	Si definisce \textit{gruppo unitario} il gruppo $ \Un{n} $ delle matrici $ \C^{n \times n} $ unitarie.
+\end{definition}
+
+\begin{definition}
+	Si definisce \textit{gruppo unitario speciale} $ \SUn{n} \defeq \{ \tens{A} \in \Un{n} : \det \tens{A} = 1\} $.
+\end{definition}
+
+\begin{example}
+	$ \Un{1} $ descrive le rotazioni nel piano di Argand.
+\end{example}
+\begin{example}
+	$ \SUn{3} $ è il gruppo di simmetria per interazione forte (QCD).
+\end{example}
+
+$ \Un{n} $ è il gruppo delle matrici che lasciano invariata la forma quadratica complessa $ \abs{x_1}^2 + \dots + \abs{x_n}^2 $.
+
+\begin{proposition}
+	$ \On{n} $, $ \SOn{n} $, $ \Un{n} $ ed $ \SUn{n} $ sono gruppi di Lie infiniti.
+\end{proposition}
+
+\begin{proposition}
+	$ \SOn{2} $ è abeliano, $ \SOn{n} $ con $ n \ge 3 $ è non-abeliano.
+\end{proposition}
+
+\subsection{Cristallografia}
+
+\begin{definition}
+	Si definsce \textit{cristallo} o \textit{reticolo di Bravais} un reticolo di atomi invariante per traslazioni.
+\end{definition}
+
+\begin{definition}
+	Si definisce il \textit{gruppo spaziale} di un cristallo il gruppo di trasformazioni (traslazioni, rotazioni, riflessioni ed inversioni) che lo lasciano invariato.
+\end{definition}
+
+\begin{definition}
+	Si definisce il \textit{gruppo puntuale} o \textit{gruppo di simmetria} di un cristallo il sottogruppo del suo gruppo spaziale ottenuto escludendo le traslazioni.
+\end{definition}
+
+\begin{example}
+	Il reticolo di Bravais cubico è quello col gruppo di simmetria più ampio: esso è invariante per tutte le permutazioni delle coordinate con tutti i segni possibili, dunque il suo gruppo puntuale ha ordine $ 2^3 3! = 48 $.
+\end{example}
+
+\begin{theorem}
+	Gli unici angoli di rotazione possibili per reticoli di Bravais sono $ \varphi_n = \frac{2\pi}{n} $ con $ n = 1,2,3,4,6 $.
+\end{theorem}
+\begin{proof}
+	Dato un punto $ A $ del reticolo su un suo asse di simmetria perpendicolare al piano considerato, si consideri un punto $ B $ a distanza $ l $ da $ A $ ottenuto tramite traslazione: essendo il reticolo invariante per traslazioni, anche $ B $ si troverà su un suo asse di simmetria perpendicolare al piano.\\
+	Siano i punti $ A' $ e $ B' $ ottenuti dalla rotazione di $ A $ e $ B $ con un angolo $ \varphi_n = \frac{2\pi}{n} $ attorno rispettivamente a $ B $ ed $ A $: supponendo che la rotazione di $ \varphi_n $ sia una simmetria del reticolo, i punti $ A' $ e $ B' $ apparterranno al reticolo, dunque possono essere fatti coincidere con una traslazione.\\
+	Supponendo che $ l $ sia il più piccolo periodo di traslazione del reticolo, si deve avere che $ A'B' = pl $ con $ p \in \N $, ovvero:
+	\begin{equation*}
+		A'B' = l + 2l \sin \left( \varphi_n - \frac{\pi}{2} \right) = a \left( 1 - 2 \cos \varphi_n \right) = p l \quad \Rightarrow \quad \cos \varphi_n = \frac{1}{2} (1 - p)
+	\end{equation*}
+	Dalla condizione $ \abs{\cos \varphi_n} \le 1 $ si trova che i valori possibili di $ p $ sono $ p = 0,1,2,3 $, che corrispondono a $ n = 1,2,3,4,6 $.
+\end{proof}
+
+Come conseguenza, è possibile avere, ad esempio, un reticolo di forma esagonale, ma non di forma pentagonale.\\
+In realtà dei $ \virgolette{quasi-cristalli} $ con $ n = 5 $ sono stati scoperti nel 1982: questi reticoli godono di simmetria orientazionale a lungo raggio, ma non di simmetria traslazionale a lungo raggio.
+
+\begin{definition}
+	L'elemento generico del gruppo delle rotazioni $ C^n $ si indica con $ C_n^r \equiv \frac{2\pi r}{n} $.
+\end{definition}
+
+\begin{proposition}
+	Ponendo $ c \equiv C_n^1 $, si ha che $ C^n = \braket{c} $.
+\end{proposition}
+\begin{proof}
+	$ C_n^r = c^n \,\forall n = 0, \dots, n - 1 $.
+\end{proof}
+
+\begin{proposition}
+	$ C^n $ è un gruppo ciclico abeliano di ordine $ n $.
+\end{proposition}
+\begin{proof}
+	$ c^r c^s = c^{r + s} = c^s c^r $ e $ c^n = e $.
+\end{proof}
+
+\begin{proposition}
+	$ C^n \cong \Z_n $.
+\end{proposition}
+
+\begin{proposition}
+	Il gruppo puntuale $ D^n $ è di ordine $ 2n $ e $ C^n $ è un suo sottogruppo.
+\end{proposition}
+
+\begin{example}
+	Il gruppo puntuale $ D^n $ di un poligono regolare di 4 lati è costituito dalle rotazioni attorno ad assi perpendicolati al piano descritte da $ C^4 $ e dalle rotazioni diedre attorno agli assi di simmetria nel piano, generabili a partire dalla riflessione $ b $ rispetto all'asse $ x $: $ b_x = b $, $ b_{y = -x} = bc $, $ b_y = bc^2 $, $ b_{y = x} = bc^3 $. Si vede subito che $ D^4 = \{e,c,c^2,c^3,b,bc,bc^2,bc^3\} $; inoltre, $ c^4 = b^2 = (bc)^2 = e $.
+\end{example}
+\begin{example}
+	Generalizzando l'esempio precedente, $ D^n = \{e,c,\dots,c^{n-1},b,bc,\dots,bc^{n-1}\} $.
+\end{example}
+
+\section{Sottogruppi}
+
+\begin{definition}
+	Dato un gruppo $ G $, un suo sottoinsieme $ H $ si dice \textit{sottogruppo} se esso è un gruppo sotto la stessa operazione di $ G $, e si scrive $ H \le G $.
+\end{definition}
+\begin{definition}
+	Si dice \textit{sottogruppo proprio} di un gruppo $ G $ un suo sottogruppo $ H $ non triviale, e si scrive $ H < G $.
+\end{definition}
+
+\begin{example}
+	$ D^3 $ ha sottogruppi porpri $ B^2 = \{e,b\} $ e $ C^3 = \{e,c,c^2\} $.
+\end{example}
+
+\begin{definition}
+	Dato un sottogruppo $ H $ di un gruppo $ G $, il \textit{left coset} di un elemento $ g \in G $ è definito come $ gH \defeq \{ gh \in G : h \in H\} $.
+\end{definition}
+
+\begin{definition}
+	Si definisce una \textit{classe di equivalenza} di un gruppo $ G $ un insieme di elementi di $ G $ mutualmente coniugati, ovvero $ g_1 \sim g_2 \,\Leftrightarrow\, \exists f \in G : g_2 = f g f^{-1} $.
+\end{definition}
+
+\begin{example}
+	In $ D^4 $ gli elementi $ b $ e $ bc^2 $ sono mutualmente coniugati poiché corrispondono a rotazioni diedre dello stesso angolo $ \pi $, i cui assi possono essere fatti coincidere mediante una rotazione: fisicamente, ciò corrisponde al fatto che queste rotazioni possono essere fatte coincidere con una rotazione del RF.
+\end{example}
+
+\begin{theorem}[Lagrange]
+	Dati un gruppo finito $ G $ e $ H \le G $, si ha che $ \abs{H} $ divide $ \abs{G} $.
+\end{theorem}
+\begin{proof}
+	Dato $ g \in G : g \notin H $, si ha $ gH \cap H = \emptyset $: per assurdo $ \exists g \in G - H : \exists h_1,h_2 \in H : g h_1 = h_2 $, quindi:
+	\begin{equation*}
+		g h_1 = h_2 \,\Rightarrow\, (g h_1) h_1^{-1} = h_2 h_1^{-1} \,\Rightarrow\, g = h_2 h_1^{-1} \in H
+	\end{equation*}
+	il che è assurdo. Inoltre, si dimostra che dati $ g_1, g_2 \in G : g_1 \neq g_2 $, allora $ g_1 H \cap g_2 H = \emptyset $. Di conseguenza, è possibile scrivere:
+	\begin{equation}
+		G = H \cup \bigcup_{g \notin H} gH
+		\label{eq:7.1}
+	\end{equation}
+	dalla quale risulta la tesi.
+\end{proof}
+
+\begin{definition}
+	Dato un gruppo $ G $, $ H \le G $ si dice \textit{invariante} o \textit{normale} se $ gHg^{-1} = H \,\forall g \in G $, e si scrive $ H \trianglelefteq G $ ($ H \triangleleft G $ se $ H $ è proprio).
+\end{definition}
+
+Un sottogruppo normale contiene tutta la classe di equivalenza di ogni suo elemento.
+
+\begin{example}
+	In $ D^3 $, $ \{e,b\} $ non è normale poiché la classe di equivalenza di $ b $ è $ \{b,bc,bc^2\} $, mentre $ \{e,c,c^2\} $ è normale.
+\end{example}
+
+\begin{definition}
+	Dati un gruppo $ G $ e $ H \trianglelefteq G $, si definisce il \textit{gruppo quoziente} di $ G $ rispetto ad $ H $ come $ G / H \defeq \{gH \subseteq G : g \notin H\} $.
+\end{definition}
+
+\begin{proposition}
+	$ G / H $ è un gruppo con legge moltiplicativa $ (g_1 h_1) (g_2 h_2) = (g_1 g_2) h_3 $.
+\end{proposition}
+\begin{proof}
+	$ (g_1 h_1) (g_2 h_2) = g_1 (g_2 g_2^{-1}) h_1 g_2 h_2 = g_1 g_2 (g_2^{-1} h_1 g_2) h_2 = g_1 g_2 h'_1 h_2 = (g_1 g_2) h_3 $.
+\end{proof}
+
+\begin{proposition}
+	$ \abs{G / H} = \abs{G} / \abs{H} $.
+\end{proposition}
+\begin{proof}
+	Dal teorema di Lagrange.
+\end{proof}
+
+\begin{definition}
+	Dati un gruppo $ G $ e $ A,B \trianglelefteq G $, si dice che $ G $ è il \textit{prodotto diretto} $ G = A \otimes B $ se $ ab = ba \,\forall a \in A,b \in B $ e $ \forall g \in G \,\exists a \in A, b \in B : g = ab $.
+\end{definition}
+
+\begin{example}
+	$ \On{n} = \SOn{n} \otimes \{\tens{I}_n, -\tens{I}_n\} $.
+\end{example}
+
+\section{Rappresentazioni}
+
+\begin{definition}
+	Dati due gruppi $ (A,*_A) $ e $ (B,*_B) $, un mapping $ f : A \rightarrow B $ si definisce \textit{omomorfismo} tra $ A $ e $ B $ se $ f(a_1 *_A a_2) = f(a_1) *_B f(a_2) \,\forall a_1,a_2 \in A $.
+\end{definition}
+
+\begin{definition}
+	Dato un omomorfismo $ f : A \rightarrow B $, si definiscono la sua \textit{immagine} o \textit{range} $ \ran f \defeq \{b \in B : b = f(a), a \in A\} $ ed il suo \textit{nucleo} o \textit{kernel} $ \ker f \defeq \{a \in A : f(a) = e_B\} $.
+\end{definition}
+
+\begin{proposition}
+	$ \ker f \trianglelefteq A $.
+\end{proposition}
+\begin{proof}
+	Dato $ a \in \ker f $, $ f(gag^{-1}) = f(g) f(a) f(g^{-1}) = f(g) f(g^{-1}) = f(e_A) = e_B $.
+\end{proof}
+
+\begin{example}
+	$ f : D^4 \rightarrow \Z_2 $ definita da $ f(e) = f(c^2) = f(b) = f(bc^2) = +1 $ e $ f(c) = f(c^3) = f(bc) = f(bc^3) = -1 $ è un omomorfismo.
+\end{example}
+
+\begin{definition}
+	Dato un gruppo $ G $, si definisce una sua \textit{rappresentazione} $ n $-dimensionale un omomorfismo $ f : G \rightarrow \GL{n}{\R} $.
+\end{definition}
+
+\begin{definition}
+	Si definisce \textit{isomorfismo} un omomorfismo biiettivo.
+\end{definition}
+
+\begin{definition}
+	Dato un gruppo $ G $, una sua rappresentazione si dice \textit{fedele} se è un isomorfismo.
+\end{definition}
+
+\begin{example}
+	$ \On{n} \cong \SOn{n} \otimes \{\tens{I}_n, -\tens{I}_n\} $.
+\end{example}
+
+
+
+
+
+
+
+
+
+
