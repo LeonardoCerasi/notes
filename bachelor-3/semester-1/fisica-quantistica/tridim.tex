@@ -4,7 +4,7 @@
 
 Si consideri una generica Hamiltoniana invariante per rotazioni, ad esempio:
 \begin{equation}
-	H = \frac{
+	\mathcal{H} = \frac{
 	p^2}{2m} + V(r) = \frac{p_r^2}{2m} + \frac{L^2}{2mr^2} + V(r)
 	\label{eq:3.1}
 \end{equation}
@@ -48,11 +48,213 @@ Ciò rende $ \hat{p}_r $ un operatore hermitiano sulle $ u_{\ell} $, ed infatti 
 	\braket{\phi_{\ell} | \phi_{\ell}} = \int_0^{\infty} dr \, r^2 \abs{\phi_{\ell}(r)}^2 = \int_{0}^{\infty} dr  \abs{u_{\ell}(r)}^2
 	\label{eq:3.6}
 \end{equation}
-Nell'origine $ \abs{u_{\ell}(r)}^2 $ deve avere al più una singolarità integrabile, dunque per $ r \rightarrow 0^+ $:
+Nell'origine $ \abs{u_{\ell}(r)}^2 $ deve avere al più una singolarità integrabile, dunque:
 \begin{equation}
-	u_{\ell}(r) \sim \frac{1}{r^{\delta}} : \delta < \frac{1}{2}
+	u_{\ell}(r) \overset{r \rightarrow 0}{\sim} \frac{1}{r^{\delta}} : \delta < \frac{1}{2}
 	\label{eq:3.7}
 \end{equation}
+Dato che $ \lap \frac{1}{r} = - 4\pi \delta^3 (\ve{x}) $, se $ \phi_{\ell}(r) $ diverge nell'origine almeno come $ \frac{1}{r} $ è possibile soddisfare l'equazione di Schrödinger solo se il potenziale nell'origine diverge almeno come una delta di Dirac. Per potenziali non-distribuzionali (ovvero funzioni, quindi non singolari) $ \phi_{\ell}(r) $ deve divergere nell'origine meno di $ \frac{1}{r} $, dunque:
+\begin{equation}
+	\lim_{r \rightarrow 0} r \phi_{\ell}(r) = 0 \quad\Longrightarrow\quad \lim_{r \rightarrow 0} u_{\ell}(r) = 0
+	\label{eq:3.8}
+\end{equation}
+
+\paragraph{Andamento nell'origine}
+
+I potenziali d'interesse fisico sono quelli che per $ r \rightarrow 0 $ divergono meno di $ \frac{1}{r^2} $: il caso in cui nell'origine $ V(r) $ vada come $ \frac{1}{r^k} $ con $ k \ge 2 $ è patologicamente attrattivo e si dimostra non avere un'energia minima, ovvero non presenta stati stabili.\\
+Se quindi nell'origine $ V(r) \sim \frac{1}{r^k} $ con $ k < 2 $, per $ r \rightarrow 0 $ a dominare è il termine centrifugo:
+\begin{equation}
+	- \frac{\hbar^2}{2m} \frac{d^2 u_{\ell}(r)}{d r^2} + \frac{\hbar^2 \ell (\ell + 1)}{2mr^2} u_{\ell}(r) = 0 \quad \Longrightarrow \quad \frac{d^2 u_{\ell}(r)}{d r^2} = \frac{\ell (\ell + 1)}{r^2} u_{\ell}(r)
+	\label{eq:3.9}
+\end{equation}
+La soluzione generale di questa equazione è $ u_{\ell}(r) = A r^{\ell + 1} + B r^{-\ell} $, ma il secondo termine non soddisfa la condizione in Eq. \ref{eq:3.8}, dunque:
+\begin{equation}
+	u_{\ell}(r) \overset{r \rightarrow 0}{\sim} A r^{\ell + 1}
+	\label{eq:3.10}
+\end{equation}
+
+\paragraph{Andamento all'infinito}
+
+Se all'infinito il potenziale si annulla, per $ r \rightarrow \infty $ l'andamento della funzione d'onda è quello della particella libera: se esistono stati legati, ovvero autostati di $ \hat{\mathcal{H}} $ con $ E < 0 $, l'andamento della soluzione è:
+\begin{equation}
+	u_{\ell}(r) \overset{r \rightarrow \infty}{\sim} C e^{- \beta r}, \,\, \beta \equiv \frac{\sqrt{2m\abs{E}}}{\hbar}
+	\label{eq:3.11}
+\end{equation}
+Se invece $ \lim_{r \rightarrow \infty} V(r) \neq 0 $, l'andamento va studiato caso per caso.
+
+\paragraph{Stati legati}
+
+Per un potenziale unidimensionale esiste sempre almeno uno stato legato; inoltre, lo stato fondamentale ha una funzione d'onda pari e gli stati eccitati hanno parità alternata.\\
+Nel caso tridimensionale, è possibile interpretare il problema come un problema unidimensionale con dominio $ [0,\infty) $: la condizione in Eq. \ref{eq:3.8}, però, impone che solo le soluzioni dispari sono accettabili, dunque in generale non è detto che esista lo stato fondamentale. Per un potenziale tridimensionale, quindi, non è detto a priori che esistano stati legati.
+
+\section{Particella libera}
+
+L'equazione di Schrödinger per la particella libera, quindi per $ V(\ve{x}) = 0 $, è:
+\begin{equation}
+	-\frac{\hbar^2}{2m} \lap \psi(\ve{x}) = E \psi(\ve{x})
+	\label{eq:3.12}
+\end{equation}
+Questa è una PDE separabile e, in coordinate cartesiane, le soluzioni sono delle onde piane:
+\begin{equation}
+	\psi_{\ve{k}}(\ve{x}) = \frac{1}{(2\pi)^{3/2}} e^{i \ve{k}\cdot\ve{x}}, \,\, E = \frac{\hbar^2 \ve{k}^2}{2m}
+	\label{eq:3.13}
+\end{equation}
+normalizzate in senso improprio:
+\begin{equation}
+	\braket{\psi_{\ve{k}'} | \psi_{\ve{k}}} = \int_{\R^3} d^3\ve{x}\, \psi^*_{\ve{k}'}(\ve{x}) \psi_{\ve{k}}(\ve{x}) = \delta^3(\ve{k} - \ve{k}')
+	\label{eq:3.14}
+\end{equation}
+Un differente approccio risolutivo è quello che sfrutta la simmetria rotazionale del problema:
+\begin{equation}
+	\psi_{\ell,m}(\ve{x}) = Y_{\ell,m}(\vartheta,\varphi) \frac{u_{\ell}(r)}{r}
+	\label{eq:3.15}
+\end{equation}
+Dall'Eq. \ref{eq:3.5}:
+\begin{equation}
+	\frac{\hbar^2}{2mE} \left[ -\frac{d^2}{dr^2}u_{\ell}(r) + \frac{\ell(\ell + 1)}{r^2}u_{\ell}(r) \right] - u_{\ell}(r) = 0
+	\label{eq:3.16}
+\end{equation}
+Ponendo $ k = \sqrt{\frac{2mE}{\hbar^2}} $ e $ r' = kr $, si ottiene:
+\begin{equation}
+	\frac{d^2}{dr'^2} u_{\ell}(r') - \frac{\ell(\ell + 1)}{r'^2} u_{\ell}(r') + u_{\ell}(r') = 0
+	\label{eq:3.17}
+\end{equation}
+Questa è una ODE di Bessel e la sua soluzione si ottiene introducendo la funzione di Bessel $ j_{\ell}(r') $ (è noto che $ j_{\ell}(x) \sim x^{\ell} $ per $ x \rightarrow 0 $):
+\begin{equation}
+	u_{\ell}(r') = r j_{\ell}(r')
+	\label{eq:3.18}
+\end{equation}
+Le autofunzioni della particella libera tridimensionale sono dunque:
+\begin{equation}
+	\psi_{\ell,m}(\ve{x}) = Y_{\ell,m}(\vartheta,\varphi) j_{\ell}(kr), \,\, k = \frac{\sqrt{2mE}}{\hbar}
+	\label{eq:3.19}
+\end{equation}
+
+\section{Oscillatore armonico isotropo}
+
+L'oscillatore armonico isotropo è descritto dal seguente potenziale:
+\begin{equation}
+	V(r) = \frac{1}{2} m\omega^2 r^2
+	\label{eq:3.20}
+\end{equation}
+Essendo un potenziale centrale, il problema si riduce al problema radiale.
+L'Hamiltoniana radiale corrispondente è:
+\begin{equation}
+	\mathcal{H}_{\ell} = \frac{p_r^2}{2m} + \frac{\hbar^2 \ell(\ell + 1)}{2mr^2} + \frac{1}{2} m\omega^2 r^2
+	\label{eq:3.21}
+\end{equation}
+La sua equazione agli autovalori può essere scritta come:
+\begin{equation}
+	\hat{\mathcal{H}}_{\ell} \ket{n,\ell,m} = E_{n,\ell} \ket{n,\ell,m}
+	\label{eq:3.22}
+\end{equation}
+
+\subsection{Stati con \texorpdfstring{$ \ell = 0 $}{TEXT}}
+
+Per $ \ell = 0 $, il problema si riduce all'oscillatore armonico unidimensionale:
+\begin{equation}
+	\mathcal{H}_0 = \frac{p_r^2}{2m} + \frac{1}{2} m \omega^2 r^2
+	\label{eq:3.23}
+\end{equation}
+Per risolvere con metodo algebrico, si defisce l'operatore di distruzione come:
+\begin{equation}
+	\hat{d}_0 \defeq \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{r} + i \frac{\hat{p}_r}{m\omega} \right)
+	\label{eq:3.24}
+\end{equation}
+ed il relativo operatore di creazione $ d_0^{\dagger} $. In questo modo, si può scrivere:
+\begin{equation}
+	\hat{\mathcal{H}}_0 = \hbar \omega \left( \hat{d}_0^{\dagger}\hat{d}_0 + \frac{1}{2} \right)
+	\label{eq:3.25}
+\end{equation}
+Dato che $ \left[ \hat{r},\hat{p}_r \right] = i\hbar $, si ha $ \left[ \hat{d}_0, \hat{d}_0^{\dagger} \right] = 1 $, dunque lo spettro di $ \hat{\mathcal{H}}_0 $ è lo stesso dell'oscillatore armonico unidimensionale:
+\begin{equation}
+	u_{n,0}(r) = \mathcal{N}_n e^{-c x^2} H_n(r)
+	\label{eq:3.26}
+\end{equation}
+Dato che $ u_{n,0}(-x) = (-1)^n u_{n,0}(x) $, per la condizione al contorno in Eq. \ref{eq:3.8} sono ammissibili solo le soluzioni dispari. Ridefinendo $ n $ così che $ u_{n,0}(r) $ sia la $ (2n+1) $-esima soluzione, si trova lo spettro dell'Hamiltoniana:
+\begin{equation}
+	E_{n,0} = \hbar \omega \left( 2n + \frac{3}{2} \right)
+	\label{eq:3.27}
+\end{equation}
+Dato che il caso $ \ell = 0 $ è quello maggiormente attrattivo, per l'assenza del termine centrifugo, si trova che lo stato fondamentale è $ \ket{0,0,0} $, con energia $ E_{0,0} = \frac{3}{2} \hbar \omega $.
+
+\subsection{Stati con \texorpdfstring{$ \ell $}{TEXT} generico}
+
+Per scrivere l'Hamiltoniana $ \hat{\mathcal{H}}_{\ell} $ in una forma simile a Eq. \ref{eq:3.25} è necessario definire degli operatori di distruzione/creazione generalizzati:
+\begin{equation}
+	\hat{d}_{\ell} \defeq \sqrt{\frac{m\omega}{2\hbar}} \left( \left( \hat{r} + \frac{\hbar\ell}{m\omega\hat{r}} \right) + i \frac{\hat{p}_r}{m\omega} \right)
+	\label{eq:3.28}
+\end{equation}
+È utile inoltre ricordare che, essendo $ \left[ \hat{p}_r, f(\hat{r}) \right] = -i\hbar f(\hat{r}) $, si ha $ \left[ \hat{p}_r, \frac{1}{\hat{r}} \right] = \frac{i\hbar}{\hat{r}^2} $.\\
+Si può generalizzare l'operatore numero come:
+\begin{equation}
+	\hat{D}_{\ell} \defeq \hat{d}_{\ell}^{\dagger} \hat{d}_{\ell}
+	\label{eq:3.29}
+\end{equation}
+La sua espressione eplicita è:
+\begin{equation*}
+	\begin{split}
+		D_{\ell}
+		&= d_{\ell}^{\dagger} d_{\ell} = \frac{m\omega}{2\hbar} \left( \left( r + \frac{\hbar\ell}{m\omega r} \right) - i \frac{p_r}{m\omega} \right) \left( \left( r + \frac{\hbar\ell}{m\omega r} \right) + i \frac{p_r}{m\omega} \right)\\
+		&= \frac{m\omega}{2\hbar} \left( \left( r + \frac{\hbar\ell}{m\omega r} \right)^2 + \frac{p_r^2}{m^2 \omega^2} + \left[ \left( r + \frac{\hbar\ell}{m\omega r} \right), i \frac{p_r}{m\omega} \right] \right)\\
+		&= \frac{m\omega}{2\hbar} \left( r^2 + \frac{\hbar^2\ell^2}{m^2 \omega^2 r^2} + \frac{p_r^2}{m^2 \omega^2} + \frac{2\hbar\ell}{m\omega} - \frac{i}{m\omega} \left( -i\hbar + \frac{\hbar\ell}{m\omega} \frac{i\hbar}{r^2} \right) \right)\\
+		&= \frac{1}{\hbar\omega} \left( \frac{p_r^2}{2m} + \frac{1}{2}m\omega^2 r^2 + \frac{\hbar^2 \ell (\ell + 1)}{2mr^2} \right) + \ell - \frac{1}{2}\\
+	\end{split}
+\end{equation*}
+Risulta quindi che:
+\begin{equation}
+	\hat{D}_{\ell} = \frac{1}{\hbar\omega} \hat{\mathcal{H}}_{\ell} + \ell - \frac{1}{2}
+	\label{eq:3.30}
+\end{equation}
+Di conseguenza, $ \hat{D}_{\ell} $ e $ \hat{\mathcal{H}}_{\ell} $ hanno gli stessi autostati $ \ket{n,\ell} $:
+\begin{equation}
+	\hat{D}_{\ell} \ket{n,\ell} = \mathcal{E}_{n,\ell} \ket{n,\ell}, \,\, \mathcal{E}_{n,\ell} = \frac{1}{\hbar \omega} E_{n,\ell} + \ell - \frac{1}{2}
+	\label{eq:3.31}
+\end{equation}
+Ovviamente $ \hat{D}_0 $ è il consueto operatore numero: infatti, il suo spettro è $ \mathcal{E}_{n,0} = 2n + 1 $.\\
+È necessario definire un ulteriore operatore:
+\begin{equation}
+	\hat{\overline{D}}_{\ell} \defeq \hat{d}_{\ell} \hat{d}_{\ell}^{\dagger}
+	\label{eq:3.32}
+\end{equation}
+Con un calcolo analogo al precedente, si trova che:
+\begin{equation}
+	\hat{\overline{D}}_{\ell} = \frac{1}{\hbar \omega} \hat{\mathcal{H}}_{\ell - 1} + \ell + \frac{1}{2}
+	\label{eq:3.33}
+\end{equation}
+Risulta evidente quindi che:
+\begin{equation}
+	\hat{\overline{D}}_{\ell + 1} = \hat{D}_{\ell} + 2
+	\label{eq:3.34}
+\end{equation}
+Questi operatori legano gli spettri di Hamiltoniane con $ \ell $ diversi: si supponga di avere $ \ket{n,\ell} $ autostato di $ \hat{\mathcal{H}}_{\ell} $ e $ \hat{D}_{\ell} $: $ \hat{d}_{\ell + 1}^{\dagger} \ket{m,\ell} $ è un autostato di $ \hat{\mathcal{H}}_{\ell + 1} $ e $ \hat{D}_{\ell + 1} $, dato che:
+\begin{equation*}
+	\hat{D}_{\ell + 1} \hat{d}_{\ell + 1}^{\dagger} \ket{n,\ell} = \hat{d}_{\ell + 1}^{\dagger} \hat{d}_{\ell + 1} \hat{d}_{\ell + 1}^{\dagger} \ket{n,\ell} = \hat{d}_{\ell + 1}^{\dagger} (\hat{D}_{\ell} + 2) \ket{n,\ell} = (\mathcal{E}_{n,\ell} + 2) \hat{d}_{\ell + 1}^{\dagger} \ket{n,\ell}
+\end{equation*}
+Questi operatori sono simili a degli operatori di scala:
+\begin{equation}
+	\hat{D}_{\ell + 1} \hat{d}_{\ell + 1} \ket{n,\ell} = (\mathcal{E}_{n,\ell} + 2) \hat{d}_{\ell + 1}^{\dagger} \ket{n,\ell}
+	\label{eq:3.35}
+\end{equation}
+\begin{equation}
+	\hat{D}_{\ell - 1} \hat{d}_{\ell} \ket{n,\ell} = (\mathcal{E}_{n,\ell} - 2) \hat{d}_{\ell} \ket{n,\ell}
+	\label{eq:3.36}
+\end{equation}
+In questo modo, è possibile costruire l'intero spettro, ricordando che $ \mathcal{E}_{n,0} = 2n + 1 $:
+\begin{equation*}
+	\begin{split}
+		&\hat{D}_1 \hat{d}_1^{\dagger} \ket{n,0} = (\mathcal{E}_{n,0} + 2) \hat{d}_1^{\dagger} \ket{n,0} = (2n + 3) \hat{d}_1^{\dagger} \ket{n,0}\\
+		&\hat{D}_2 \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{n,0} = (\mathcal{E}_{n,0} + 4) \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{n,0} = (2n + 5) \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{n,0}\\
+		&\qquad\quad\vdots\\
+		&\hat{D}_{\ell + 1} \hat{d}_{\ell + 1}^{\dagger} \dots \hat{d}_1^{\dagger} \ket{n,0} = (2n + 2\ell + 1) \hat{d}_{\ell + 1}^{\dagger} \dots \hat{d}_1^{\dagger} \ket{n,0}
+	\end{split}
+\end{equation*}
+Si evince che $ \mathcal{E}_{n,\ell} = 2n + 2\ell + 1 $, quindi dall'Eq. \ref{eq:3.31} si ricava lo spettro dell'$ \ell $-esima Hamiltoniana:
+\begin{equation}
+	E_{n,\ell} = \hbar \omega \left( 2n + \ell + \frac{3}{2} \right)
+	\label{eq:3.37}
+\end{equation}
+Questi sono tutti e soli i possibili autovalori di $ \hat{\mathcal{H}}_{\ell} $: se per assurdo esistesse un suo autostato con un autovalore non presente in questa sequenza, ci si potrebbe comunque sempre ricondurre ad uno stato con $ \ell = 0 $ applicando ripetutamente $ \hat{d}_{\ell} $, ottenendo così un nuovo autovalore di $ \hat{\mathcal{H}}_0 $, il che è assurdo poiché il suo spettro completo (Eq. \ref{eq:3.27}) è dato dall'Eq. \ref{eq:3.37}.
 
 
 
