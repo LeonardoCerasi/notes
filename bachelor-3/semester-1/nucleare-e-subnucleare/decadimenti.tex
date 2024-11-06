@@ -400,6 +400,238 @@ Il numero medio di neutroni termici fissili $ \eta $ risulta essere dunque:
 Ad esempio, per una miscela naturale di $ \ch{^{235}_{92} U} $ al $ 0.72\% $ e $ \ch{^{238}_{92} U} $ al $ 99.28\% $, dato che $ \sigma_f(235) = 584\,\text{barn} $, $ \sigma_a(235) = 97\,\text{barn} $, $ \sigma_f(238) = 0 $ ($ \ch{^{238}_{92} U} $ non fissiona con neutroni termici) e $ \sigma_a(238) = 2.75\,\text{barn} $, si hanno $ \sigma_f = 4.20\,\text{barn} $ e $ \sigma_{a} = 3.43\,\text{barn} $, quindi $ \eta = 1.33 $.\\
 Considerando invece una miscela con $ \ch{^{235}_{92} U} $ arricchito al $ 3\% $, si ottiene $ \eta = 1.84 $, che permette una maggior perdita neutronica per altri processi d'assorbimento senza entrare in regime subcritico.
 
+\section{Decadimento \texorpdfstring{$ \beta $}{TEXT}}
+
+Il termine \textit{decadimento $ \beta $} indica collettivamente tutte le transizioni tra isobari (stesso $ A $) mediate dall'interazione debole: questi processi tendono ad ottimizzare il rapporto $ N/Z $ dei nuclidi, percorrendo catene isobariche verso la valle di stabilità. In particolare, in questi decadimenti l'interazione debole cambia un neutrone in un protone (o viceversa), producendo una coppia leptone-antileptone o trasformando un elettrone in un neutrino.\\
+Si distinguono tre decadimenti separati:
+\begin{enumerate}
+	\item decadimento $ \beta^- $: $ n \rightarrow p^+ + e^- + \bar{\nu}_e $;
+	\item decadimento $ \beta^+ $: $ p^+ \rightarrow n + e^+ + \nu_e $;
+	\item electron capture: $ p + e^- \rightarrow n + \nu_e $.
+\end{enumerate}
+Nel caso dell'electron capture avviene che un elettrone delle shell più interne (tipicamente la shell K), il quale ha un alta probabilità di trovarsi all'interno del nucleo, venga catturato da quest'ultimo, lasciando un buco nella shell che viene subito colmato da una transizione a catena degli elettroni dell'atomo, emettendo dei raggi X caratteristici.
+
+\subsection{Decadimento dei nucleoni}
+
+Il decadimento $ \beta^+ $ del protone e quello $ \beta^- $ del neutrone possono essere spiegati tramite il modello a quark dei nucleoni.\\
+Il protone è formato da due quark up ed un quark down: nel caso in cui esso sia parte di un nucleo può accadere che, tramite interazione debole, un quark up diventi un quark down, come mostrato nel seguente diagramma di Feynman:
+
+\begin{figure}[h!]
+	\centering
+\begin{tikzpicture}
+	\begin{feynman}
+		\vertex (a1) {\(u\)};
+		\vertex[right=4cm of a1] (ai);
+		\vertex[right=4cm of ai] (a2) {\(d\)};
+
+		\vertex[below=2em of a1] (b1) {\(u\)};
+		\vertex[below=2em of b1] (c1) {\(d\)};
+		\vertex[below=2em of a2] (b2) {\(u\)};
+		\vertex[below=2em of b2] (c2) {\(d\)};
+
+		\vertex[above=1.5cm of a2] (d1) {\(\nu_e\)};
+		\vertex[above=3em of d1] (d2) {\(e^+\)};
+		\vertex at ($(d1)!0.5!(d2) - (2cm, 0)$) (d3);
+
+		\diagram* {
+			{[edges=fermion]
+				(a1) -- (ai) -- (a2),
+				(b1) -- (b2),
+				(c1) -- (c2),
+			},
+			(d2) -- [fermion, out=180, in=45] (d3) -- [fermion, out=-45, in=180] (d1),
+			(ai) -- [scalar, bend left, edge label=\(W^+\)] (d3),
+		};
+
+		\draw [decoration={brace}, decorate] (c1.south west) -- (a1.north west)
+			node [pos=0.5, left] {\(p^+\)};
+		\draw [decoration={brace}, decorate] (a2.north east) -- (c2.south east)
+			node [pos=0.5, right] {\(\,n\)};
+	\end{feynman}
+\end{tikzpicture}
+\end{figure}
+
+Al contrario dei protoni confinati nei nuclei, si pensa che i protoni liberi siano stabili: se decadessero, gli esperimenti fissano un limite inferiore alla vita media $ \tau_p > 1.6 \cdot 10^{33} \,\text{y} $; ciò è comprensibile ricordando che $ m_n = 939.565 \mev/c^2 > m_p = 938.272 \mev/c^2 $.\\
+Per quanto riguarda invece il neutrone, composto da un quark up e due quark down, il decadimento è analogo:
+
+\begin{figure}[h!]
+	\centering
+\begin{tikzpicture}
+	\begin{feynman}
+		\vertex (a1) {\(d\)};
+		\vertex[right=4cm of a1] (ai);
+		\vertex[right=4cm of ai] (a2) {\(u\)};
+
+		\vertex[below=2em of a1] (b1) {\(u\)};
+		\vertex[below=2em of b1] (c1) {\(d\)};
+		\vertex[below=2em of a2] (b2) {\(u\)};
+		\vertex[below=2em of b2] (c2) {\(d\)};
+
+		\vertex[above=1.5cm of a2] (d1) {\(\bar{\nu}_e\)};
+		\vertex[above=3em of d1] (d2) {\(e^-\)};
+		\vertex at ($(d1)!0.5!(d2) - (2cm, 0)$) (d3);
+
+		\diagram* {
+			{[edges=fermion]
+				(a1) -- (ai) -- (a2),
+				(b1) -- (b2),
+				(c1) -- (c2),
+			},
+			(d1) -- [fermion, out=180, in=-45] (d3) -- [fermion, out=45, in=180] (d2),
+			(ai) -- [scalar, bend left, edge label=\(W^-\)] (d3),
+		};
+
+		\draw [decoration={brace}, decorate] (c1.south west) -- (a1.north west)
+			node [pos=0.5, left] {\(n\)};
+		\draw [decoration={brace}, decorate] (a2.north east) -- (c2.south east)
+			node [pos=0.5, right] {\(\,p^+\)};
+	\end{feynman}
+\end{tikzpicture}
+\end{figure}
+
+I neutroni liberi sono instabili poiché $ m_n > m_p $, mentre per neutroni nei nuclei il $ Q $-value del decadimento dipende dalle energie di legame dei nuclidi.\\
+Sebbene instabili, i neutroni liberi sono long-lived ($ \tau_n = 885.7 \pm 0.8 \,\text{s} \approx 14.76 \,\text{min} $), dunque possono essere usati negli esperimenti: non è ancora noto come il neutrone abbia una vita media così lunga.
+
+\subsection{Decadimento dei nuclidi}
+
+Per quanto riguarda i nuclidi, il decadimento $ \beta^- $ è energeticamente favorevole per i nuclidi con un eccesso neutronico, mentre quello $ \beta^+ $ lo è per i nuclidi con eccesso protonico; inoltre, la electron capture è un processo che compete col decadimento $ \beta^+ $, ma non ad esso sovrapponibile, come si evince dal blancio energetico dei decadimenti (massa dei neutrini ignorata poiché $ m_{\nu_e} < 7 \ev/c^2 $):
+\begin{enumerate}
+	\item decadimento $ \beta^- $: $ M(A,Z) > M(A,Z + 1) $, ovvero $ Q > 0 $;
+	\item decadimento $ \beta^+ $: $ M(A,Z) > M(A,Z - 1) + 2 m_e c^2 $, ovvero $ Q > 1.02\mev $;
+	\item electron capture (EC): $ M(A,Z) > M(A,Z - 1) + \varepsilon $, ovvero $ Q > \varepsilon $.
+\end{enumerate}
+Si noti che il bilancio del decadimento $ \beta^- $ non deve tener conto dell'elettrone prodotto, dato che esso è considerato in $ M(A,Z + 1) $, mentre quello del decadimento $ \beta^+ $ deve considerare sia il positrone che l'elettrone in più nel nuclide figlio; inoltre, nell'EC si deve considerare il buco lasciato nella shell elettronica K, che porta ad un'energia d'eccitazione $ \varepsilon $.\\
+Si vede immediatamente che l'EC ha $ 2 m_e c^2 - \varepsilon $ energia disponibile in più, quindi ci possono essere casi in cui il decadimento $ \beta^+ $ non può accadere ma l'ER sì.\\
+Essendo il decadimento $ \beta $ un processo isobarico, bisogna ricordare che la formula di Weizsäcker per $ A $ costante è una parabola, dunque presenterà un minimo (nella valle di stabilità), ed inoltre il termine di pairing impone una trattazione separata dei nuclei con $ A $ pari e di quelli con $ A $ dispari (vedere Fig. \ref{iso-chain}).
+
+\subsubsection{Nuclidi con \texorpdfstring{$ A $}{TEXT} dispari}
+
+Sempre in riferimento alla Fig. \ref{iso-chain}, è possibile vedere come agisce il decadimento $ \beta $ in catene isobariche con $ A $ dispari:
+\begin{align*}
+	\ch{^{101}_{42} Mo} \rightarrow \ch{^{101}_{43} Tc} + e^- + \bar{\nu}_e &\qquad\qquad\qquad \ch{^{101}_{46} Pd} \rightarrow \ch{^{101}_{45} Rh} + e^+ + \nu_e \\
+	\ch{^{101}_{43} Tc} \rightarrow \ch{^{101}_{44} Ru} + e^- + \bar{\nu}_e &\qquad\qquad\qquad \ch{^{101}_{45} Rh} \rightarrow \ch{^{101}_{44} Ru} + e^+ + \nu_e
+\end{align*}
+$ \ch{^{101}_{44} Ru} $ è il nuclide stabile della catena isobarica $ A = 101 $.
+
+\subsubsection{Nuclidi con \texorpdfstring{$ A $}{TEXT} pari}
+
+A causa della doppia parabola, ogni nuclide dispari-dispari ha un nuclide pari-pari corrispondente maggiormente legato, dunque sono tutti instabili; fanno eccezzione i nuclidi leggeri $ \ch{^2 H} $, $ \ch{^6 Li} $, $ \ch{^{10} B} $ e $ \ch{^{14} N} $, per i quali la diminuzione della pairing energy è bilanciata dall'asymmetry energy.\\
+In regioni di massa particolari è possibile che al posto di un decadimento $ \beta $ diretto, magari energeticamente non consentito, avvenga un doppio decadimento $ \beta $ (indicato con $ \beta\beta $); è questo il caso, ad esempio, della catena isobarica $ A = 106 $, mostrata in Fig. \ref{iso-chain}: non è possibile per il $ \ch{^{106}_{48} Cd} $ decadere nel $ \ch{^{106}_{47} Ag} $ tramite decadimento $ \beta^+ $ poiché energeticamente proibito, ma molto raramente ($ t_{1/2} = (4.4 \pm 0.6) \cdot 10^{19} \,\text{y} $) esso può decadere tramite $ \beta\beta $ direttamente nel $ \ch{^{106}_{46} Pd} $:
+\begin{equation*}
+	\ch{^{106}_{48} Cd} \rightarrow \ch{^{106}_{46} Pd} + 2e^+ + 2\nu_e
+\end{equation*}
+Sebbe estremamente raro, il decadimento $ \beta\beta $ è molto importante dal punto di vista della ricerca, poiché permette di testare la teoria di Majorana: il neutrino fu introdotto da Pauli come una particella di massa molto piccola, priva di carica e con spin $ s = \frac{1}{2} $ ad hoc per spiegare le proprietà del decadimento $ \beta $; Majorana successivamente teorizzo che se la massa del neutrino fosse precisamente nulla, allora il neutrino potrebbe essere la sua stessa antiparticella (una cosiddetta particella di Majorana). Una conseguenza della teoria di Majorana sarebbe l'esistenza di un processo ancora più raro del decadimento $ \beta\beta $, il neutrino-less double beta decay ($ 0\nu\beta\beta $), in cui i due neutrini prodotti dal doppio decadimento si annichilano: ciò evidentemente viola la conservazione del numero leptonico, mettendo in discussione l'intero modello standard. Questo decadimento non è mai stato osservato e, qualora fosse effettivamente possibile, dovrebbe essere incredibilmente raro, con limiti teorici imposti da esperimenti come CUORE@LNGS superiori all'eventuale vita media del protone ($ \tau > 3.6 \cdot 10^{24} \,\text{y} $ per il $ \ch{^{128}_{52} Te} $).
+
+\subsection{Energy spectrum}
+
+La necessità di introdurre una nuova particella per spiegare il decadimento $ \beta $ si capisce bene analizzando lo spettro energetico prodotto da tale processo.\\
+A differenza del decadimento $ \alpha $, nel quale lo spettro presenta linee discrete di energia date dalla natura mono-energetica dei decadimenti a due corpi, gli elettroni emessi dal decadimento $ \beta $ presentano uno spettro energetico continuo: ciò sarebbe impossibile per un decadimento a due corpi, anche perché l'elettrone è 2000 volte più leggero del protone, dunque dovrebbe ricevere praticamente tutta l'energia cinetica disponibile. La conclusione è che ci deve essere una terza particella come prodotto di decadimento, appunto il neutrino elettronico, che prende parte dell'energia cinetica totale disponibile.
+Un tipico spettro energetico da decadimento $ \beta $ è riportato in Fig. \ref{beta-spectrum}: si nota che la distribuzione termina quando l'energia dell'elettrone acquista il suo valore massimo $ Q - m_{\nu_e} c^2 \equiv Q_{\beta} $.\\
+Un'altra differenza tra decadimento $ \alpha $ e $ \beta $ è che nel decadimento $ \alpha $ si suppone che il nucleo di $ \ch{^4 He} $ esista già all'interno del nucleo, mentre nel decadimento $ \beta $ l'elettrone viene $ \virgolette{creato} $ nel processo ed immediatamente espulso dal nucleo.
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=0.45\textwidth]{beta-mom.png}
+	\includegraphics[width=0.45\textwidth]{beta-kin.png}
+	\caption{Momentum and energy distributions of electrons from $ \beta $ decay.}
+	\label{beta-spectrum}
+\end{figure}
+
+Analizzando gli spettri energetici, inoltre, si trova che $ Q_{\beta} \approx Q $: ciò implica che il neutrino ha massa estremamente piccola. Inoltre, per conservazione del momento angolare, è necessario che esso abbia spin semi-intero: considerando ad esempio il decadimento $ \ch{^{14}_6 C} \rightarrow \ch{^{14}_7 N} + e^- + \bar{\nu}_e $, se il neutrino non avesse spin semi-intero si avrebbe una violazione della conservazione di $ I $, dato che entrambi i nuclidi hanno $ I $ intero e l'elettrone ha $ s = \frac{1}{2} $.
+
+\subsection{Teoria di Fermi}
+
+A partire dall'ipotesi del neutrino di Pauli (1931), nel 1934 Fermi formulò una teoria per descrivere il decadimento $ \beta $; in particolare, si fanno le seguenti assunzioni:
+\begin{enumerate}
+	\item si trascura l'interazione coulombiana tra elettrone e nucleo (valido per nuclei con $ Z < 10 $);
+	\item si trascura il nuclear recoil (valido poiché $ m_e \ll M_{\text{nucleo}} $);
+	\item si considera il neutrino massless;
+	\item si considerano equiprobabili tutte le possibili partizioni dell'energia tra elettrone e neutrino.
+\end{enumerate}
+Da questi assunti, si ricava che il bilancio energetico del processo è dato da:
+\begin{equation}
+	E = E_e + E_{\nu} = T_e + m_e c^2 + c p_{\nu}
+	\label{eq:2.23}
+\end{equation}
+dalla quale si trova che $ T_e^{\text{max}} = E - m_e c^2 = Q $. La legge fondamentale postulata da Fermi per descrivere il decadimento è la \textit{golden rule}:
+\begin{equation}
+	\lambda = \frac{2\pi}{\hbar} \abs{M}^2 \frac{dn}{dE}
+	\label{eq:2.24}
+\end{equation}
+Il termine $ \frac{dn}{dE} $ è dovuto alla natura dello spazio delle fasi e rappresenta la densità degli stati finali possibili per il decadimento ($ dn $ sono gli stati finali energeticamente possibili tra $ E $ ed $ E + dE $), mentre $ \abs{M}^2 $ è detto elemento di matrice dell'operatore di transizione $ \hat{H} $ e stima la probabilità di overlap tra lo stato iniziale e quello finale del sistema:
+\begin{equation}
+	M \defeq \braket{\psi_{\text{f}} | \hat{H} | \psi_{\text{i}}} = \int_V d^3\ve{x}\, \psi^*_{\text{f}}(\ve{x}) \hat{H} \psi_{\text{i}}(\ve{x})
+	\label{eq:2.25}
+\end{equation}
+dove $ \psi_{\text{f}} = \psi_{\text{Y}} \psi_e \psi_{\nu} $. Il calcolo dell'elemento di matrice è estremamente complicato, specialmente per la difficoltà di calcolare le funzioni d'onda nucleari.\\
+Si supponga che nel decadimento l'elettrone venga emesso con momento $ \ve{p}_e $: dato che la direzione di emssione è ininfluente con le semplificazioni fatte, ricordando che l'elemento di volume minimo dello spazio delle fasi è $ h^3 $ si trova che, confinando il sistema in un volume $ V $ (formalità solo per normalizzare le funzioni d'onda), il numero $ dn_e $ di stati elettronici finali con momento tra $ p_e $ e $ p_e + dp_e $ è:
+\begin{equation}
+	dn_e = \frac{4\pi p_e^2 V}{h^3} dp_e
+	\label{eq:2.26}
+\end{equation}
+Ragionando analogamente per il neutrino, si trova che il numero totale di stati $ dn $ in funzione dei momenti $ p_e $ e $ p_{\nu} $ è:
+\begin{equation}
+	dn = dn_e dn_{\nu} = \left( \frac{4\pi V}{h^3} \right)^2 p_e^2 dp_e p_{\nu}^2 dp_{\nu}
+	\label{eq:2.27}
+\end{equation}
+Ricordando il vincolo $ E = E_e + E_{\nu} $, si ha che $ cp_{\nu} = E - E_e $ e, fissata $ E_e $, $ dp_{\nu} = \frac{dE}{c} $, quindi:
+\begin{equation}
+	\frac{dn}{dE} = \left( \frac{4\pi V}{h^3} \right)^2 \frac{1}{c^3} (E - E_e)^2 p_e^2 dp_e
+	\label{eq:2.28}
+\end{equation}
+Si assume $ \abs{M}^2 $ indipendente da $ p_e $, me è necessario considerare una correzione dovuta all'interazione coulombiana a cui è soggetto l'elettrone/positrone: come si vede in Fig. \ref{beta-coul}, la repulsione dei positroni porta ad averne meno ad energie basse, mentre l'attrazione degli elettroni diminuisce quelli ad alta energia. La correzione analitica è data dalla \textit{funzione di Fermi}:
+\begin{equation}
+	F(Z,E_e) \approx \frac{2\pi \eta}{1 - e^{-2\pi \eta}}
+	\label{eq:2.29}
+\end{equation}
+dove $ \eta $ è il \textit{parametro di SOmmerfeld}, che per $ e^{\pm} $ è definito come:
+\begin{equation}
+	\eta \equiv \mp \frac{Ze^2}{\hbar v_e}
+	\label{eq:2.30}
+\end{equation}
+con $ v_e $ velocità asintotica dell'elettrone/positrone. Per $ \eta \ll 1 $ si ha $ F(Z,E_e) \approx 1 $.\\
+È dunque possibile esprimere la probabilità di disintegrazione differenziale grazie alla golden rule:
+\begin{equation}
+	d\lambda(p_e) = C \abs{M}^2 F(Z,E_e) (E - E_e)^2 p_e^2 dp_e
+	\label{eq:2.31}
+\end{equation}
+con $ C $ una costante. È stato possibile eliminare la dipendenza dal neutrino poiché la sua energia è fissata da quella dell'elettrone/positrone.
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=0.70\textwidth]{beta-coul.png}
+	\caption{Momentum and kinetic energy spectra of electrons and positrons emitted from $ \ch{^{64}_{29}Cu} $ decay.}
+	\label{beta-coul}
+\end{figure}
+
+È possibile ottenere $ \lambda $ integrando su $ [0, p_e^{\text{max}}] $, dove il momento elettronico massimo si ottiene ponendo nullo quello neutrinico, ovvero $ p_e^{\text{max}} = \frac{1}{c} \sqrt{E^2 - m_e^2 c^4} $.\\
+È inoltre utile definire la \textit{funzione di Fermi-Kurie}:
+\begin{equation}
+	K(E_e) \defeq \sqrt{\frac{\frac{d\lambda(p_e)}{dp_e}}{p_e^2 F(Z,E_e)}} \propto E - E_e
+	\label{eq:2.32}
+\end{equation}
+Dall'analisi del Fermi-Kurie plot è possibile ottenere informazioni sulla massa del neutrino: infatti, con metodi di regressione lineare è possibile individuare quando $ E - E_e $ si annulla con una buona precisione, mentre misurare in maniera diretta il valore di energia massimo sarebbe complicato.
+
+\subsubsection{Massa del neutrino}
+
+Nel caso in cui si consideri un neutrino di massa non-nulla $ m_{\nu} $, la sua energia va calcolata come:
+\begin{equation}
+	E_{\nu} = \sqrt{p_{\nu}^2 c^2 + m_{\nu}^2 c^4}
+	\label{eq:2.33}
+\end{equation}
+Differenziando $ p_{\nu}^2 c^2 = (E - E_e)^2 - m_{\nu}^2 c^4 $ e moltiplicando per $ p_{\nu} $, si trova:
+\begin{equation}
+	p_{\nu}^2 dp_{\nu} = \frac{1}{c^3} \sqrt{(E - E_e)^2 - m_{\nu}^2 c^4} (E - E_e) dE
+	\label{eq:2.34}
+\end{equation}
+Dall'Eq. \ref{eq:2.27}-\ref{eq:2.31}, si trova quindi l'equazione corretta:
+\begin{equation}
+	d\lambda(p_e) = C \abs{M}^2 F(Z,E_e) \sqrt{(E - E_e)^2 - m_{\nu}^2 c^4} (E - E_e) dE
+	\label{eq:2.35}
+\end{equation}
+Di conseguenza, varia l'andamento di $ K(E_e) $: in particolare, in prossimità di $ E - E_e = 0 $ l'andamento non sarà lineare ma radicale, e diversi valori di $ m_{\nu} $ determineranno end-point energies diverse.\\
+Questo è uno dei metodi sperimentali più usati per misurare la massa del neutrino, sebbene nel tempo studi sul decadimento del trizio abbiano portato a risultati diversi: gli ultimi dati dell'esperimento Katrin (Karlsuhe, 2022) pongono $ m_{\nu} < 0.8 \ev $.
+
 
 
 
