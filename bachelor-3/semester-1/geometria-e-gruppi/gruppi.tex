@@ -38,7 +38,7 @@
 \end{definition}
 I gruppi di Lie hanno ordine infinito.
 
-\begin{definition}
+\begin{definition}\label{def-m-comp}
 	Un gruppo di matrici $ G $ si dice \textit{compatto} se la norma data dalla traccia è limitata superiormente: $ \exists m \in \R : \tr ( D^{\dagger}D ) \le m \,\forall D \in G $.
 \end{definition}
 
@@ -248,42 +248,193 @@ Un sottogruppo normale contiene tutta la classe di equivalenza di ogni suo eleme
 	$ \On{n} = \SOn{n} \otimes \{\tens{I}_n, -\tens{I}_n\} $.
 \end{example}
 
-\section{Rappresentazioni}
+\section{Gruppi di Lie}
 
-\begin{definition}
-	Dati due gruppi $ (A,*_A) $ e $ (B,*_B) $, un mapping $ f : A \rightarrow B $ si definisce \textit{omomorfismo} tra $ A $ e $ B $ se $ f(a_1 *_A a_2) = f(a_1) *_B f(a_2) \,\forall a_1,a_2 \in A $.
-\end{definition}
+\subsection{Rotazioni 2D}
 
-\begin{definition}
-	Dato un omomorfismo $ f : A \rightarrow B $, si definiscono la sua \textit{immagine} o \textit{range} $ \ran f \defeq \{b \in B : b = f(a), a \in A\} $ ed il suo \textit{nucleo} o \textit{kernel} $ \ker f \defeq \{a \in A : f(a) = e_B\} $.
-\end{definition}
+È noto che in $ \R^2 $ una rotazione del sistema di riferimento cartesiano di un angolo $ \theta \in [0,2\pi) $ è data da $ \ve{r}' = \tens{R}(\theta) \ve{r} $, con:
+\begin{equation}
+	\tens{R}(\theta) =
+	\begin{bmatrix}
+		\cos \theta & \sin \theta \\
+		-\sin \theta & \cos \theta
+	\end{bmatrix}
+	\label{eq:7.2}
+\end{equation}
+Si vede immediatamente che $ \abs{\ve{r}'}^2 = \abs{\ve{r}}^2 $; le rotazioni, infatti, possono essere caratterizzate con questa proprietà, che corrisponde ad imporre:
+\begin{equation}
+	\tens{R}^{\intercal}(\theta) \tens{R}(\theta) = \tens{I}_2
+	\label{eq:7.3}
+\end{equation}
+ovverosia $ \tens{R}(\theta) \in \On{2} $. È facile vedere che l'operazione di gruppo è la composizione di rotazioni $ \tens{R}(\theta_1) \tens{R}(\theta_2) = \tens{R}(\theta_1 + \theta_2) $, con identità $ \tens{R}(0) $ ed inversa $ \tens{R}(-\theta) $.\\
+È importante ricordare che $ \On{n} $ è il gruppo delle rotazioni sia proprie che improprie: le rotazioni proprie descritte in Eq. \ref{eq:7.2} hanno l'ulteriore condizione $ \det\tens{R} = 1 $ e formano il sottogruppo $ \SOn{n} $.\\
+L'Eq. \ref{eq:7.2} è ricavabile sia da relazioni trigonometriche che ragionando sulla condizione in Eq. \ref{eq:7.3}: l'idea fondamentale è quella di considerare rotazioni infinitesime, ovvero con $ \theta \ll 1 $:
+\begin{equation}
+	\tens{R}(\theta) \simeq \tens{I}_2 + \theta \tens{A} + o(\theta^2)
+	\label{eq:7.4}
+\end{equation}
+La condizione di ortogonalità diventa dunque:
+\begin{equation*}
+	\tens{R}^{\intercal}(\theta) \tens{R}(\theta) \simeq \left( \tens{I}_2 + \theta \tens{A}^{\intercal} \right) \left( \tens{I}_2 + \theta \tens{A} \right) \simeq \tens{I}_2 + \theta \left( \tens{A}^{\intercal} + \tens{A} \right) = \tens{I}_2
+\end{equation*}
+ovvero:
+\begin{equation}
+	\tens{A}^{\intercal} = - \tens{A}
+	\label{eq:7.5}
+\end{equation}
+In $ \GL{2}{\R} $ c'è un'unica matrice che soddisfa tale condizione (a meno di moltiplicazione per scalare):
+\begin{equation}
+	\tens{J} =
+	\begin{bmatrix}
+		0 & 1 \\
+		-1 & 0
+	\end{bmatrix}
+	\label{eq:7.6}
+\end{equation}
+Ciò significa che le rotazioni infinitesime hanno la forma $ (x',y') \simeq (x + \theta y, y - \theta x) $, concorde con l'Eq. \ref{eq:7.2}.
 
 \begin{proposition}
-	$ \ker f \trianglelefteq A $.
+	Per $ \theta \in [0,2\pi) $ si ha:
+	\begin{equation}
+		\tens{R}(\theta) = e^{\theta \tens{J}}
+		\label{eq:7.7}
+	\end{equation}
 \end{proposition}
 \begin{proof}
-	Dato $ a \in \ker f $, $ f(gag^{-1}) = f(g) f(a) f(g^{-1}) = f(g) f(g^{-1}) = f(e_A) = e_B $.
+	Data la legge moltiplicativa del gruppo delle rotazioni:
+	\begin{equation*}
+		\tens{R}(\theta) = \lim_{n \rightarrow \infty} \left( \tens{R}\left( \frac{\theta}{n} \right) \right)^n = \lim_{n \rightarrow \infty} \left( \tens{I}_2 + \frac{\theta \tens{J}}{n} \right)^n = e^{\theta \tens{J}}
+	\end{equation*}
 \end{proof}
 
+Si vede dunque che:
+\begin{equation}
+	\tens{J} = \frac{d\tens{R}(\theta)}{d\theta} \bigg\vert_{\theta = 0}
+	\label{eq:7.8}
+\end{equation}
+
+\begin{proposition}
+	Eq. \ref{eq:7.7} $ \Rightarrow $ Eq. \ref{eq:7.2}.
+\end{proposition}
+\begin{proof}
+	Notando che $ \tens{J}^2 = -\tens{I}_2 $:
+	\begin{equation*}
+		e^{\theta \tens{J}} = \sum_{k = 0}^{\infty} \frac{\theta^k \tens{J}^k}{k!} = \sum_{k = 0}^{\infty} \left( -1 \right)^k \frac{\theta^{2k}}{(2k)!} \tens{I}_2 + \sum_{k = 0}^{\infty} \left( -1 \right)^k \frac{\theta^{2k + 1}}{(2k + 1)!} \tens{J} = \cos \theta \tens{I}_2 + \sin \theta \tens{J}
+	\end{equation*}
+\end{proof}
+
+Si può notare che col metodo di Lie si è ottenuta l'espressione per le rotazioni proprie senza mai dover imporre $ \det \tens{R} = 1 $: ciò è conseguenza del fatto che il metodo di Lie si basa sulla dipendenza del gruppo da un parametro continuo, ma $ \On{n} $ è composto da due sottospazi disconnessi ($ \det\tens{R} = 1 $ e $ \det\tens{R} = -1 $) e uno dei due è disconnesso dall'identità, mentre si è definito $ \tens{R}(\theta) $ continuamente connesso a $ \tens{I}_2 $.
+
+\subsection{Algebra di Lie}
+
+Il metodo di Lie è un metodo generale che si applica a tutti i gruppi dipendenti da un parametro continuo. In particolare, permette di ricavare l'espressione delle rotazioni in $ \R^n : n > 2 $, per le quali l'approccio trigonometrico è infattibile: infatti, la condizione in Eq. \ref{eq:7.5} è valida in qualsiasi dimensione.\\
+Nel caso $ n = 3 $ le matrici antisimmetriche base sono:
+\begin{equation}
+	\tens{J}_x =
+	\begin{bmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 1 \\
+		0 & -1 & 0
+	\end{bmatrix}
+	\qquad \tens{J}_y =
+	\begin{bmatrix}
+		0 & 0 & -1 \\
+		0 & 0 & 0 \\
+		1 & 0 & 0
+	\end{bmatrix}
+	\qquad \tens{J}_z =
+	\begin{bmatrix}
+		0 & 1 & 0 \\
+		-1 & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}
+	\label{eq:7.9}
+\end{equation}
+Le rotazioni 3D dipendono da tre angoli (sempre in $ [0,2\pi) $):
+\begin{equation}
+	\tens{R}(\theta_x,\theta_y,\theta_z) = e^{\theta_x \tens{J}_x + \theta_y \tens{J}_y + \theta_z \tens{J}_z}
+	\label{eq:7.10}
+\end{equation}
+Le matrici in Eq. \ref{eq:7.9} sono anti-hermitiane: per renderle hermitiane, si definiscono:
+\begin{equation}
+	J_k \defeq -i \tens{J}_k
+	\label{eq:7.11}
+\end{equation}
+In questo modo, le rotazioni vengono espresse come:
+\begin{equation}
+	\tens{R}(\theta_x,\theta_y,\theta_z) = \exp \left[ i \sum_{k = 1}^{3} \theta_k J_k \right]
+	\label{eq:7.12}
+\end{equation}
+A differenza delle rotazioni 2D, le rotazioni in $ \R^n : n > 2 $ non commutano:
+\begin{equation}
+	\tens{R}\tens{R}'\tens{R}^{-1} \simeq \left( \tens{I}_2 + \tens{A} \right) \left( \tens{I}_2 + \tens{B} \right) \left( \tens{I}_2 - \tens{B} \right) = \tens{I}_2 + \tens{B} + \tens{A}\tens{B} - \tens{B}\tens{A} \simeq \tens{R}' + \left[ \tens{A},\tens{B} \right]
+\end{equation}
+La condizione di commutazione è dunque $ [\tens{A},\tens{B}] = 0 $, dove:
+\begin{equation}
+	[\tens{A},\tens{B}] = - \sum_{i,j} \theta_i \theta_j \left[ J_i, J_j \right]
+	\label{eq:7.14}
+\end{equation}
+dove il fattore negativo deriva da $ \left( i \right)^2 $ (dall'Eq. \ref{eq:7.12}).
+Nel caso $ n = 3 $, svolgendo i calcoli si trova:
+\begin{equation}
+	\left[ J_i, J_j \right] = i \sum_{k = 1}^{3} \epsilon_{ijk} J_k
+	\label{eq:7.15}
+\end{equation}
+Formalmente, le $ J_k $ si definiscono \textit{generatori} del \textit{gruppo di Lie}, mentre le loro relazioni di commutazione sono l'\textit{algebra di Lie} del gruppo. In generale, un gruppo di Lie può dipendere da un generico set di $ k $ parametri continui (tali per cui $ g(0,\dots,0) = e $): si dicono $ \{T_j\}_{j = 1,\dots,k} $ i generatori del gruppo:
+\begin{equation}
+	g(\theta_1, \dots, \theta_k) = \exp \left[ \sum_{\alpha = 1}^{k} \theta_{\alpha} T_{\alpha} \right]
+	\label{eq:7.16}
+\end{equation}
+L'algebra di Lie è determinata da relazioni del tipo:
+\begin{equation}
+	\left[ T_{\alpha}, T_{\beta} \right] = \sum_{\gamma = 1}^{k} f_{\alpha \beta \gamma} T_{\gamma}
+	\label{eq:7.17}
+\end{equation}
+dove le $ f_{\alpha \beta \gamma} $ sono dette costanti di struttura dell'algebra.
+
+\subsection{Rotazioni generiche}
+
+Le rotazioni in $ \R^n $ sono descritte da $ \SOn{n} $: questo è un gruppo di Lie dipendente da $ \frac{1}{2}n(n-1) $ angoli generalizzati $ \theta_{(ab)} : a = 1, \dots, n, \, b = 1, \dots, n-1 $, i quali hanno la proprietà $ \theta_{(ab)} = -\theta_{(ba)} $ (rotazione nel piano $ ab $ cambia di verso quando si prende $ ba $). I generatori di $ \SOn{n} $ sono dunque:
+\begin{equation}
+	J_{(ab)ij} = -i \left( \delta_{ai} \delta_{bj} - \delta_{mj} \delta_{ni} \right) =
+	\begin{cases}
+		-i & i = a, j = b \\
+		i & i = b, j = a \\
+		0 & \text{altrimenti}
+	\end{cases}
+	\label{eq:7.18}
+\end{equation}
+Una rotazione generica è quindi:
+\begin{equation}
+	\tens{R}(\theta) = \exp \left[ i \sum_{a = 1}^{n} \sum_{b = 1}^{n - 1} \theta_{(ab)} J_{(ab)} \right]
+	\label{eq:7.19}
+\end{equation}
+
 \begin{example}
-	$ f : D^4 \rightarrow \Z_2 $ definita da $ f(e) = f(c^2) = f(b) = f(bc^2) = +1 $ e $ f(c) = f(c^3) = f(bc) = f(bc^3) = -1 $ è un omomorfismo.
+	In $ \R^3 $, le rotazioni attorno all'asse $ z $ sono generate da $ J_{(12)} $, poiché avvengono nel piano $ xy $.
 \end{example}
 
-\begin{definition}
-	Dato un gruppo $ G $, si definisce una sua \textit{rappresentazione} $ n $-dimensionale un omomorfismo $ f : G \rightarrow \GL{n}{\R} $.
-\end{definition}
+\begin{proposition}
+	L'algebra di Lie di $ \SOn{n} $ è definita da:
+	\begin{equation}
+		\left[ J_{(ab)},J_{(pq)} \right] = i \left( \delta_{ap} J_{(bq)} + \delta_{bq} J_{(ap)} - \delta_{bp} J_{(aq)} - \delta_{aq} J_{(bp)} \right)
+		\label{eq:7.20}
+	\end{equation}
+\end{proposition}
 
-\begin{definition}
-	Si definisce \textit{isomorfismo} un omomorfismo biiettivo.
-\end{definition}
+\subsubsection{Generatori in forma differenziale}
 
-\begin{definition}
-	Dato un gruppo $ G $, una sua rappresentazione si dice \textit{fedele} se è un isomorfismo.
-\end{definition}
-
-\begin{example}
-	$ \On{n} \cong \SOn{n} \otimes \{\tens{I}_n, -\tens{I}_n\} $.
-\end{example}
+È possibile esprimere i generatori delle rotazioni come operatori differenziali. Ad esempio, in $ \R^2 $:
+\begin{equation*}
+	\psi'(x',y') = \psi(x - \theta y, y + \theta x) \simeq \psi(x,y) + \theta \left( - y \frac{\pa}{\pa x} + x \frac{\pa}{\pa y} \right) \psi(x,y) \simeq \left( 1 + i \theta \hat{J}_z \right) \psi(x,y)
+\end{equation*}
+Si notino i segni dovuti al fatto che $ \hat{J}_z $ ruota l'oggetto e non il RF (si traspone).\\
+Generalizzando ad $ \R^3 $:
+\begin{equation}
+	\hat{\ve{J}} = - i \ve{x} \times \nabla
+	\label{eq:7.21}
+\end{equation}
+Si trova con calcolo diretto che questi 3 generatori soddisfano l'Eq. \ref{eq:7.15}. Questi non sono altro che gli operatori momento angolare della meccanica quantistica: $ \ve{L} = \hbar \ve{J} $.
 
 
 

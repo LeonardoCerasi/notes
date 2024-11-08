@@ -1,0 +1,226 @@
+\selectlanguage{italian}
+
+\section{Rappresentazioni}
+
+\begin{definition}
+	Dati due gruppi $ (A,*_A) $ e $ (B,*_B) $, un mapping $ f : A \rightarrow B $ si definisce \textit{omomorfismo} tra $ A $ e $ B $ se $ f(a_1 *_A a_2) = f(a_1) *_B f(a_2) \,\forall a_1,a_2 \in A $.
+\end{definition}
+
+\begin{definition}
+	Dato un omomorfismo $ f : A \rightarrow B $, si definiscono la sua \textit{immagine} o \textit{range} $ \ran f \defeq \{b \in B : b = f(a), a \in A\} $ ed il suo \textit{nucleo} o \textit{kernel} $ \ker f \defeq \{a \in A : f(a) = e_B\} $.
+\end{definition}
+
+\begin{proposition}
+	$ \ker f \trianglelefteq A $.
+\end{proposition}
+\begin{proof}
+	Dato $ a \in \ker f $, $ f(gag^{-1}) = f(g) f(a) f(g^{-1}) = f(g) f(g^{-1}) = f(e_A) = e_B $.
+\end{proof}
+
+\begin{example}
+	$ f : D^4 \rightarrow \Z_2 $ definita da $ f(e) = f(c^2) = f(b) = f(bc^2) = +1 $ e $ f(c) = f(c^3) = f(bc) = f(bc^3) = -1 $ è un omomorfismo.
+\end{example}
+
+\begin{definition}
+	Dato un gruppo $ G $, si definisce una sua \textit{rappresentazione lineare} su uno spazio vettoriale finito $ V(\K) $ un omomorfismo $ \rho : G \rightarrow \mathrm{GL}(V) $.
+\end{definition}
+
+\begin{proposition}
+	$ \rho(e) = \mathrm{id}_V $.
+\end{proposition}
+
+Nella maggior parte delle applicazioni, piuttosto che considerare le applicazioni lineari $ f \in \mathrm{GL}(V) $ si prendono direttamente le loro matrici associate $ M_f \in \GL{n}{\K} $, dove $ n = \dim_{\K}{V} $ (detto \textit{grado} della rappresentazione).
+
+\begin{definition}
+	Si definisce \textit{isomorfismo} un omomorfismo biiettivo.
+\end{definition}
+
+\begin{definition}
+	Una rappresentazione si dice \textit{fedele} se è un isomorfismo.
+\end{definition}
+
+\begin{example}
+	$ \On{n} \cong \SOn{n} \otimes \{\tens{I}_n, -\tens{I}_n\} $.
+\end{example}
+
+\begin{definition}
+	Dato un gruppo $ G $, due sue rappresentazioni $ \rho_1,\rho_2 $ sugli spazi vettoriali $ V,W $ si dicono \textit{equivalenti} (o \textit{isomorfe} o \textit{simili}) se esiste un isomorfismo $ \varphi : V \rightarrow W $ tale che:
+	\begin{equation}
+		\varphi \circ \rho_1(g) = \rho_2 (g) \circ \varphi \quad \forall g \in G
+		\label{eq:8.1}
+	\end{equation}
+\end{definition}
+
+In termini matriciali $ \rho_1 \sim \rho_2 \,\Leftrightarrow\, \exists S \in \GL{n}{\K} : \rho_2(g) = S \rho_1(g) S^{-1} \,\,\forall g \in G $.\\
+Si vede subito che la similitudine preserva la struttura di gruppo:
+\begin{equation*}
+	\rho_2(g_1 g_2) = S \rho_1(g_1 g_2) S^{-1} = S \rho_1(g_1) S^{-1} S \rho_1(g_2) S^{-1} = \rho_2(g_1) \rho_2(g_2)
+\end{equation*}
+
+\begin{definition}
+	Dato un gruppo $ G $, una sua \textit{rappresentazione unitaria} è una rappresentazione $ \rho : G \rightarrow \Un{n} $.
+\end{definition}
+
+Si può dare una struttura topologica ad un gruppo.
+
+\begin{definition}
+	Si definisce \textit{gruppo topologico} $ G $ un gruppo dotato di una struttura di spazio topologico di Hausdorff, rispetto alla quale le applicazioni $ (a,b) \mapsto ab $ e $ a \mapsto a^{-1} $ sono continue.
+\end{definition}
+
+\begin{definition}
+	Un gruppo topologico $ G $ è detto \textit{gruppo di Lie} se le applicazioni $ (a,b) \mapsto ab $ e $ a \mapsto a^{-1} $ sono mappe lisce.
+\end{definition}
+
+In maniera informale, si possono vedere i gruppi di Lie sia come gruppi che come varietà differenziali (propriamente, c'è un diffeomorfismo tra i due).
+
+\begin{example}
+	$ \SOn{2} $ corrisponde a $ \mathbb{S}^1 $.
+\end{example}
+\begin{example}
+	$ \SOn{3} $ corrisponde a $ \mathbb{D}^3 / \tildetext $, dove $ \sim $ è la relazione d'equivalenza che associa ad ogni punto il suo antipodale.
+\end{example}
+
+Una volta data la struttura topologica, si può stabilire la compattezza di un gruppo: ad esempio, vedere Def. \ref{def-m-comp}. Nel caso dei gruppi di Lie, la compattezza può essere determinata studiando la varietà differenziale associata.
+
+\begin{proposition}
+	Per i gruppi di Lie compatti, ogni rappresentazione è equivalente ad una rappresentazione unitaria.
+\end{proposition}
+
+\section{Rappresentazioni riducibili ed irriducibili}
+
+\begin{definition}
+	Dati un gruppo $ G $ ed un insieme $ \Omega $, si dice che $ G $ \textit{agisce} su $ \Omega $ se viene fissata una mappa $ \Omega \times G \rightarrow \Omega : (\alpha,g) \mapsto \alpha^g $ tale che $ \alpha^{st} = (\alpha^t)^s \,\forall \alpha \in \Omega, s,t \in G $ e $ \alpha^e = \alpha \,\forall \alpha \in \Omega $.
+\end{definition}
+Si noti che si usa la convenzione di azione a sinistra.\\
+Si vede che una rappresentazione $ \rho $ di $ G $ suo spazio vettoriale $ V $ determina un'azione di $ G $ su $ V $ definita da $ \rho_g(v) = \rho(g) v \,\forall v \in V, g \in G $, dove nel lato destro si è usata la rappresentazione matriciale.
+
+\begin{definition}
+	Dati un gruppo $ G $ ed una rappresentazione $ \rho $ su uno spazio vettoriale $ V $, un sottospazio $ W \subset V $ si dice \textit{invariante} per l'azione di $ G $ se $ \rho_g(w) \in W \,\forall w \in W, g \in G $.
+\end{definition}
+
+Se esiste un sottospazio $ G $-invariante $ W $, allora $ \rho $ induce due rappresentazioni, una su $ W $ ed una sul quoziente $ V / W $: la prima è semplicemente la restrizione di $ \rho $ a $ W $, mentre la seconda è determinata da $ \rho_g(v + W) = \rho_g(v) + W \,\forall v \in V/W $ (ben definita per l'invarianza di $ W $). Queste sono dette \textit{rappresentazioni costituenti}.
+
+\begin{definition}
+	Dato un gruppo $ G $, una sua rappresentazione $ \rho $ su $ V $ si dice \textit{riducibile} se esiste un sottospazio $ W \subset V $ invariante per l'azione di $ G $, altrimenti è \textit{irriducibile}. Nel caso in cui $ V $ si spezzi in somma diretta di sottospazi invarianti irriducibili, $ \rho $ si dice \textit{completamente riducibile}.
+\end{definition}
+
+Si vede che una rappresentazione irriducibile risulta essere completamente riducibile.\\
+In termini matriciali, $ \rho $ è riducibile se può essere scritta come:
+\begin{equation}
+	\rho(g) =
+	\begin{bmatrix}
+		\rho_1(g) & 0 \\
+		\tau(g) & \rho_2(g)
+	\end{bmatrix}
+	\label{eq:8.2}
+\end{equation}
+dove $ \rho_1(g) $ è l'azione di $ G $ su $ W $ e $ \rho_2(g) $ su $ V/W $.\\
+Si vede che $ \rho_1 $ e $ \rho_2 $ sono rappresentazioni ristrette ai sottospazi:
+\begin{equation*}
+	\rho_g(w + v) =
+	\begin{bmatrix}
+		\rho_1(g) & 0 \\
+		\tau(g) & \rho_2(g)
+	\end{bmatrix}
+	\begin{pmatrix}
+		w \\ v
+	\end{pmatrix}
+	=
+	\begin{bmatrix}
+		\rho_1(g) w & 0 \\
+		\tau(g) w & \rho_2(g) v
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\rho_g(w) & 0 \\
+		\tau(g) w & \rho_g(v)
+	\end{bmatrix}
+\end{equation*}
+dove $ w \in W $ e $ v \in V/W $.\\
+Il termine $ \tau(g) $ è ciò che rende il sottospazio $ V/W $ non invariante, ed infatti non costituisce una rappresentazione:
+\begin{equation*}
+	\rho(g_1) \rho(g_2) =
+	\begin{bmatrix}
+		\rho_1(g_1) & 0 \\
+		\tau(g_1) & \rho_2(g_1)
+	\end{bmatrix}
+	\begin{bmatrix}
+		\rho_1(g_2) & 0 \\
+		\tau(g_2) & \rho_2(g_2)
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\rho_1(g_1) \rho_2(g_2) & 0 \\
+		\tau(g_1) \rho_1(g_2) + \rho_2(g_1) \tau(g_2) & \rho_2(g_1) \rho_2(g_2)
+	\end{bmatrix}
+\end{equation*}
+Si dimostra che, per gruppi compatti, si può sempre trovare una rappresentazione equivalente in cui $ \tau = 0 $, rendendo la rappresentazione completamente riducibile.\\
+Se $ \rho $ è completamente riducibile, essa può essere scritta come:
+\begin{equation}
+	\rho(g) =
+	\begin{bmatrix}
+		\rho_1(g) & \dots & 0 \\
+		\vdots & \ddots & \vdots \\
+		0 & \dots & \rho_m(g)
+	\end{bmatrix}
+	\label{eq:8.3}
+\end{equation}
+dove $ \rho_j $ è la restrizione di $ \rho $ su $ W_j $ sottospazio invariante irriducibile. In questo caso si ha:
+\begin{equation}
+	V = \bigoplus_{j = 1}^{m} W_j
+	\qquad \qquad
+	\rho = \bigoplus_{j = 1}^{m} \rho
+	\label{eq:8.4}
+\end{equation}
+dove la somma diretta di rappresentazioni (su sottospazi disgiunti) è definita come:
+\begin{equation}
+	(\rho_i \oplus \rho_j)_g (u + v) = \rho_i(g) u + \rho_j(g) v
+	\label{eq:8.5}
+\end{equation}
+con $ u \in W_i $ e $ v \in W_j $.
+
+\begin{example}
+	$ \SOn{2} $ rappresentato su $ \R^3 $ è completamente riducibile sui sottospazi invarianti determinati dal piano $ xy $ e dall'asse $ z $, dato che la sua azione può essere espressa come:
+	\begin{equation}
+		\tens{R}(\theta) =
+		\begin{bmatrix}
+			\cos \theta & - \sin \theta & 0 \\
+			\sin \theta & \cos \theta & 0 \\
+			0 & 0 & 1
+		\end{bmatrix}
+		\equiv
+		\begin{bmatrix}
+			\rho_{xy}(\theta) & 0 \\
+			0 & \rho_z(\theta)
+		\end{bmatrix}
+	\end{equation}
+\end{example}
+
+\paragraph{Spazi vettoriali}
+
+Questi concetti sono mutuati dalla teoria degli spazi vettoriali. Dato uno spazio vettoriale $ n $-dimensionale $ V(\K) $, un endomorfismo $ f \in \End{V} $ è rappresentabile con una matrice $ M_f \in \GL{n}{\K} $:
+\begin{equation*}
+	f(\ve{v}) = M_f \ve{v} \quad \Longrightarrow \quad v'_i = \sum_{j = 1}^{n} M_{ij} v_j \quad \lor \quad \ve{e}'_i = \sum_{j = 1}^{n} M_{ji} \ve{e}_j
+\end{equation*}
+Si consideri un'altra base $ \{\tilde{\ve{e}}_i\}_{i = 1, \dots, n} $: dato che il cambio di base è un isomorfismo (endomorfismo biunivoco), detta $ S $ la matrice che lo rappresenta, per essa valgono le stesse proprietà.\\
+Si può determinare l'azione di $ f $ sulla nuova base:
+\begin{equation*}
+	\begin{split}
+		\tilde{\ve{v}}'
+		&= S \ve{v}' = S M_f \ve{v}\\
+		&= \tilde{M}_f \tilde{\ve{v}} = \tilde{M}_f S \ve{v}
+	\end{split}
+	\qquad \Longrightarrow \qquad
+	\tilde{M}_f = S M_f S^{-1}
+\end{equation*}
+Un cambiamento di rappresentazione, dunque, equivale ad un cambio di base nello spazio vettoriale.
+
+
+
+
+
+
+
+
+
+
