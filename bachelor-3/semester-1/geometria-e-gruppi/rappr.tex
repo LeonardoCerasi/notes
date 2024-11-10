@@ -215,6 +215,294 @@ Si può determinare l'azione di $ f $ sulla nuova base:
 \end{equation*}
 Un cambiamento di rappresentazione, dunque, equivale ad un cambio di base nello spazio vettoriale.
 
+\section{Teorema di Maschke}
+
+\begin{definition}
+	Dato uno spazio vettoriale $ V $ ed un suo sottospazio $ W \subset V $, si definisce il \textit{proiettore} su $ W $ la mappa $ \pi : V \rightarrow W : \pi(v) = v_W $, dove $ v_W $ è la componente di $ v \in V $ su $ W $.
+\end{definition}
+
+\begin{definition}
+	Dato uno spazio vettoriale $ V $ ed un suo sottospazio $ W \subset V $, detto $ \pi $ un proiettore su di esso, esso definisce un suo \textit{complementare} (o \textit{complemento ortogonale}) $ W^{\perp} \defeq \ker{\pi} $.
+\end{definition}
+
+C'è una corrispondenza biunivoca tra proiettori e complementari. Solitamente, si considera il proiettore tale per cui $ W^{\perp} = V / W $.
+
+\begin{proposition}
+	Data $ f \in \End{V}  $ e $ W \subset V $ sottospazio, se $ \im{\pi} = W \land \pi(w) = w \,\forall w \in W $, allora $ V = W \oplus \ker{f} $.
+\end{proposition}
+
+\begin{propcorollary}
+	$ V = W \oplus W^{\perp} $.
+\end{propcorollary}
+
+\begin{theorem}[Maschke]
+	Dato un gruppo finito $ G $ il cui ordine non è divisibile dalla caratteristica del campo, ogni rappresentazione di $ G $ è completamente riducibile.
+\end{theorem}
+\begin{proof}
+	Presa $ \rho $ su $ V $, se $ \rho $ è irriducibile non c'è nulla da dimostrare.
+	Se $ \rho $ è riducibile, allora esiste $ W \subset V $ sottospazio $ G $-invariante: basta dimostrare che esiste sempre un suo complementare $ G $-invariante.
+	Preso $ \pi : V \rightarrow W $ proiettore su $ W $, si definisce:
+	\begin{equation*}
+		\pi^{\circ} \defeq \frac{1}{\abs{G}} \sum_{g \in G} \rho_g \circ \pi \circ \rho_{g^{-1}}
+	\end{equation*}
+	Si vede che $ \pi^{\circ} $ è un proiettore su $ W $: dati $ v \in V $, $ \rho_g \circ \pi \circ \rho_{g^{-1}} (v) = \rho_g (w) \in W $ per invarianza di $ W $, dove $ w \equiv \pi(\rho_{g^{-1}}(v)) \in W $; dato $ w \in W $, $ \rho_g \circ \pi \circ \rho_{g^{-1}}(w) = \rho_g \circ \pi(\rho_{g^{-1}}(w)) = \rho_g \circ \rho_{g^{-1}}(w) = w $ per invarianza di $ W $ e poiché $ \pi(w) = w \,\forall w \in W $, da cui segue che $ \pi^{\circ}(w) = \frac{1}{\abs{G}} \abs{G} w = w $; dunque, $ \pi^{\circ} $ è un proiettore di $ V $ su $ W $. Esso definisce allora un complementare $ W^{\perp} = \ker \pi^{\circ} $: per dimostrare che esso è $ G $-invariante, basta mostrare che, dato $ v \in V $, $ \pi^{\circ} = 0 \,\Rightarrow\, \pi^{\circ}(\rho_g(v)) = 0 \,\forall g \in G $, ovverosia che $ \pi^{\circ} $ permuta con l'azione di $ G $ (dato che in tal caso $ \pi \circ \rho_g (v) = \rho_g \circ \pi(v) = \rho_g (0) = 0 $):
+	\begin{equation*}
+		\begin{split}
+			\rho_g \circ \pi^{\circ} \rho_{g^{-1}} 
+			&= \rho_g \circ \left[ \frac{1}{\abs{G}} \sum_{t \in G} \rho_t \circ \pi \circ \rho_{t^{-1}} \right] \circ \rho_{g^{-1}} = \frac{1}{\abs{G}} \sum_{t \in G} \rho_g \circ \rho_t \circ \pi \circ \rho_{t^{-1}} \circ \rho_{g^{-1}}\\
+			&= \frac{1}{\abs{G}} \sum_{t \in G} \rho_{gt} \circ \pi \circ \rho_{(gt)^{-1}} = \frac{1}{\abs{G}} \sum_{s \in G} \rho_s \circ \pi \circ \rho_{s^{-1}} = \pi^{\circ}
+		\end{split}
+	\end{equation*}
+	Si vede allora che $ \rho = \rho_1 \oplus \rho_2 $, dove $ \rho_1,\rho_2 $ sono le restrizioni di $ \rho $ a $ W,W_0 $: se queste sono irriducibili, si è dimostrata la tesi, altrimenti si procede iterativamente fino a decomporre $ V $ in sottospazi invarianti irriducibili.
+\end{proof}
+
+L'ipotesi sulla caratteristica $ p $ del campo è necessaria in quanto $ \frac{1}{\abs{G}} $ perderebbe di senso nel caso in cui $ p $ dividesse $ \abs{G} $. È anche possibile estendere il teorema di Maschke ai gruppi compatti, equipaggiandoli con un'appropriata misura d'integrazione (per rendere convergente $ \sum_{g} \rightarrow \int d\mu(g) $).
+
+\subsection{Rappresentazioni unitarie}
+
+Nel caso in cui $ \K = \C $, si può dare un'altra formulazione del Teorema di Maschke.
+
+\begin{definition}
+	Dato uno spazio vettoriale $ V(\C) $, si definisce \textit{forma hermitiana} un'applicazione $ V \times V \rightarrow \C $ tale che, per ogni $ u,v,w \in V $, $ \alpha,\beta \in C $:
+	\begin{enumerate}
+		\item $ (u,v) = \overline{(v,u)} $;
+		\item $ (\alpha u + \beta v, w) = \alpha (u,w) + \beta (v,w) $;
+		\item $ (v,v) \ge 0 \land (v,v) = 0 \,\Leftrightarrow\, v = 0 $.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Dato un gruppo $ G $ ed una sua rappresentazione $ \rho $ su $ V(\C) $, una forma hermitiana su $ V $ si dice $ G $\textit{-invariante} se:
+	\begin{equation}
+		(\rho_g(u),\rho_g(v)) = (u,v) \quad\forall u,v \in V, g \in G
+		\label{eq:8.7}
+	\end{equation}
+\end{definition}
+
+\begin{proposition}\label{herm-inv}
+	Data una forma hermitiana, si può sempre definire una forma hermitiana $ G $\textit{-invariante} come:
+	\begin{equation}
+		(u|v) \defeq \sum_{g \in G} (\rho_g(u), \rho_g(v))
+		\label{eq:8.8}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Dato $ t \in G $, $ (\rho_t(u)|\rho_t(v)) = \sum_{g} (\rho_{gt}(u),\rho_{gt}(v)) = \sum_{s} (\rho_s(u),\rho_s(v)) = (u|v) $.
+\end{proof}
+
+In termini matriciali, la condizione in Eq. \ref{eq:8.7} equivale a dire che $ \rho(g) $ è una matrice unitaria:
+\begin{equation*}
+	(\rho_g(u),\rho_g(v)) = (\rho(g) u)^{\dagger}) (\rho(g) v) = u^{\dagger} \rho(g)^{\dagger} \rho(g) v = (u,v) = u^{\dagger} v \quad\Longleftrightarrow\quad \rho(g)^{\dagger} \rho(g) = \tens{I}
+\end{equation*}
+
+\begin{definition}
+	Dato un gruppo $ G $ ed una sua rappresentazione $ \rho $ su $ V(\C) $, questa si dice \textit{rappresentazione unitaria} se esiste una forma hermitiana $ G $-invariante su $ V $.
+\end{definition}
+
+\begin{proposition}\label{uni-rid}
+	Una rappresentazione unitaria è completamente riducibile.
+\end{proposition}
+\begin{proof}
+	Basta dimostrare che, dato un sottospazio $ G $-invariante $ W \subset V $, il suo complemento ortogonale $ W^{\perp} \defeq \{v \in V : (w,v) = 0 \,\forall w \in W\} $ è $ G $-invariante, dato che $ V = W \oplus W^{\perp} $.\\
+	Dati $ v \in W^{\perp} $ e $ g \in G $, $ (\rho_g(w),v) = 0 \,\forall w \in W $ per invarianza di $ W $, dunque:
+	\begin{equation*}
+		0 = (\rho_g(w),v) = (\rho_g(w),\rho_g \circ \rho_{g^{-1}}(v)) = (w,\rho_{g^{-1}}(v)) \quad\Rightarrow\quad \rho_{g^{-1}}(v) \in W^{\perp}
+	\end{equation*}
+	$ W^{\perp} $ è quindi $ G $-invariante e $ V = W \oplus W^{\perp} $; se questi non sono irriducibili, si procede iterativamente.
+\end{proof}
+
+\begin{theorem}[Maschke]
+	Dato un gruppo finito $ G $, ogni sua rappresentazione complessa è completamente riducibile.
+\end{theorem}
+\begin{proof}
+	Per la Prop. \ref{herm-inv} è sempre possibile rendere la rappresentazione unitaria, ovvero completamente riducibile per la Prop. \ref{uni-rid}.
+\end{proof}
+
+Anche in questo caso è possibile generalizzare a gruppi compatti con adeguata misura d'integrazione.
+
+\section{Ortogonalità}
+
+Per dimostrare il cosiddetto grande teorema di ortogonalità è necessario prima dimostrare due lemmi, detti primo e secondo lemma di Schur.
+
+\begin{lemma}[Schur]
+	Dato un gruppo $ G $ ed una sua rappresentazione irriducibile $ \rho $ su $ V(\C) $, se $ \varphi \in \End V $ commuta con l'azione di $ G $, allora $ \varphi = \lambda \id_V $ con $ \lambda \in \C $.
+\end{lemma}
+\begin{proof}
+	Sia $ \lambda \in \C $ un autovalore di $ \varphi $: dato $ v \in V $ un autovettore associato a $ \lambda $, per ogni $ g \in G $ si ha $ \varphi \circ \rho_g(v) = \rho_g \circ \varphi(v) = \rho_g(\lambda v) = \lambda \rho_g(v) $, dunque anche $ \rho_g(v) $ è un autovettore di $ \varphi $ associato allo stesso $ \lambda $.
+	Gli autovettori associati ad ogni autovalore di $ \varphi $ formano quindi dei sottospazi $ G $-invarianti, ma $ \rho $ è irriducibile: gli unici sottospazi $ G $-invarianti possibili sono $ V $ e $ \{0\} $. Il secondo caso non è possibile, dato che ogni endomorfismo  in campo complesso ha almeno un autovalore (il suo polinomio caratteristico ha almeno una radice complessa per il teorema fondamentale dell'algebra), dunque tutti i vettori in $ V $ sono associati allo stesso autovalore $ \lambda $: di conseguenza, $ \varphi = \lambda \id_V $.
+\end{proof}
+
+\begin{lemma}[Schur]
+	Dato un gruppo $ G $ e due sue rappresentazioni irriducibili non-equivalenti $ \rho $ su $ V(\K) $ e $ \rho' $ su $ V'(\K) $, se $ \varphi : V \rightarrow V' $ lineare commuta con l'azione di $ G $, ovvero $ \varphi \circ \rho_g = \rho'_g \circ \varphi \,\forall g \in G $, allora $ \varphi = 0_V $.
+\end{lemma}
+\begin{proof}
+	Sia $ \varphi \neq 0_V $: dato $ w \in \ker \varphi $, $ \varphi(\rho_g(w)) = \rho'_g(\varphi(w)) = \rho'_g(0) = 0 \,\forall g \in G $, dunque $ \ker \varphi $ è un sottospazio $ G $-invariante di $ V $; essendo $ \rho $ irriducibile, $ \ker \varphi = V $ oppure $ \ker \varphi = \{0\} $. Il primo caso è escluso da $ \varphi \neq 0_V $, quindi $ \ker \varphi = \{0\} $, ovvero $ \varphi $ è iniettiva. Dato $ v \in V $, $ \rho'_g(\varphi(v)) = \varphi(\rho_g(v)) \in \im \varphi \,\forall g \in G $, dunque $ \im \varphi $ è un sottospazio $ G $-invariante di $ V' $; essendo $ \rho' $ irriducibile, $ \im \varphi = V' $ oppure $ \im \varphi = \{0\} $. Il secondo caso è escluso da $ \varphi \neq 0_V $, quindi $ \im \varphi = V' $, ovvero $ \varphi $ è suriettiva. Di conseguenza, $ \varphi $ è biunivoca, dunque un isomorfismo: ciò implica l'equivalenza di $ \rho $ e $ \rho' $, il che è escluso per ipotesi, dunque deve essere $ \varphi = 0_V $.
+\end{proof}
+
+\begin{theorem}
+	Dato un gruppo $ G $ ed una famiglia di rappresentazioni irriducibili non-equivalenti $ \rho_{\mu} $ su spazi vettoriali $ V_{\mu}(\C) $ di dimensione $ n_{\mu} $, si ha che:
+	\begin{equation}
+		\sum_{g \in G} \left[ \rho_{\mu}(g) \right]_{ir} \left[ \rho_{\nu}(g^{-1}) \right]_{sj} = \frac{\abs{G}}{n_{\mu}} \delta_{\mu \nu} \delta_{ij} \delta_{rs}
+		\label{eq:8.9}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Fissati $ \mu,\nu $, si consideri $ \varphi : V_{\nu} \rightarrow V_{\mu} $ lineare e si costruisca la mappa $ \psi : V_{\nu} \rightarrow V_{\mu} $ definita come:
+	\begin{equation*}
+		M_{\psi} \defeq \sum_{g \in G} \rho_{\mu}(g) M_{\varphi} \rho_{\nu}(g^{-1})
+	\end{equation*}
+	Preso $ h \in G $, si ha che:
+	\begin{equation*}
+		\rho_{\mu}(h) M_{\psi} = \sum_{g \in G} \rho_{\mu}(hg) M_{\varphi} \rho_{\nu}(g^{-1}) = \sum_{t \in G} \rho_{\mu}(t) M_{\varphi} \rho_{\nu}(t^{-1}h) = M_{\psi} \rho_{\nu}(h)
+	\end{equation*}
+	Per i lemmi di Schur, se $ \mu \neq \nu $ allora $ \psi = 0_{V_{\mu}} $, mentre se $ \mu = \nu $ si ha $ \psi = \lambda_{\mu} \id_{V_{\mu}} $ ovvero $ M_{\psi} = \lambda^{(\mu)} \tens{I} $. Quindi, scegliendo $ \left[ M_{\varphi} \right]_{lm} = \delta_{lr}\delta_{ms} $:
+	\begin{equation*}
+		\delta_{\mu \nu} \lambda^{(\mu)}_{rs} \delta_{ij} = \sum_{g \in G} \left[ \rho_{\mu}(g) M_{\varphi} \rho_{\nu}(g^{-1}) \right]_{ij} = \sum_{g \in G} \sum_{l,m = 1}^{n_{\mu},n_{\nu}} \left[ \rho_{\mu}(g) \right]_{il} \delta_{lr} \delta_{ms} \left[ \rho_{\nu}(g^{-1}) \right]_{mj} = \sum_{g \in G} \left[ \rho_{\mu}(g) \right]_{ir} \left[ \rho_{\nu}(g^{-1}) \right]_{sj}
+	\end{equation*}
+	Bisogna solo mostrare che $ \lambda^{(\mu)}_{rs} = \frac{\abs{G}}{n_{\mu}} \delta_{rs} $; si prenda l'espressione precedente con $ \mu = \nu $ e $ i = j $ e sommando su $ i $ (varia tra $ 1 $ e $ n_{\mu} $):
+	\begin{equation*}
+		\lambda^{(\mu)}_{rs} n_{\mu} = \sum_{g \in G} \left[ \rho_{\mu}(g^{-1}) \rho_{\mu}(g) \right]_{sr} = \sum_{g \in G} \delta_{sr} = \abs{G} \delta_{sr}
+	\end{equation*}
+\end{proof}
+
+\begin{corollary}\label{cond-n-mu}
+	Se le rappresentazioni sono unitarie, $ \sum_{\mu} n_{\mu}^2 \le \abs{G} $.
+\end{corollary}
+\begin{proof}
+	Fissati $ \mu = \nu $ e $ i = j $ ed $ r = s $, l'Eq. \ref{eq:8.9} può essere riscritta come:
+	\begin{equation*}
+		\frac{\abs{G}}{n_{\mu}} = \sum_{g \in G} \left[ \rho_{\mu}(g) \right]_{ir} \left[ \rho_{\mu}(g)^{\dagger} \right]_{ri} = \sum_{g \in G} \left[ \rho_{\mu}(g) \right]_{ir} \overline{\left[ \rho_{\mu}(g) \right]}_{ir}
+	\end{equation*}
+	la quale può essere vista come il prodotto scalare di un vettore $ v^{(\mu)}_{ij} \equiv \left( [\rho_{\mu}(g_1)]_{ir}, \dots, [\rho_{\mu}(g_{\abs{G}}]_{ir} \right) $ con sé stesso; in totale, ci sono $ \sum_{\mu} n_{\mu}^2 $ di questi vettori, e l'Eq. \ref{eq:8.9} determina la loro mutua ortogonalità. Dato che in uno spazio vettoriale di dimensione $ n $ un sistema ortogonale può avere al massimo $ n $ vettori, si deve avere $ \sum_{\mu} n_{\mu}^2 \le \abs{G} $, dato che i $ v^{(\mu)}_{ir} $ sono definiti in uno spazio di dimensione $ \abs{G} $.
+\end{proof}
+
+\section{Caratteri}
+
+\begin{definition}
+	Dato un gruppo $ G $ ed una sua rappresentazione complessa $ \rho $, si definisce il \textit{carattere} di $ \rho $ come $ \chi : G \rightarrow \C : \chi(g) = \tr{\rho(g)} $.
+\end{definition}
+
+\begin{proposition}
+	Due rappresentazioni equivalenti hanno lo stesso carattere.
+\end{proposition}
+\begin{proof}
+	Dalla ciclicità della traccia: $ \tr \left( S \rho(g) S^{-1} \right) = \tr \left( S^{-1} S \rho(g) \right) = \tr \rho(g) $.
+\end{proof}
+
+\begin{propcorollary}\label{cahr-con}
+	$ \chi(tgt^{-1}) = \chi(g) \,\forall g,t \in G $.
+\end{propcorollary}
+
+\begin{proposition}\label{char-herm}
+	Data una rappresentazione unitaria $ \rho $, $ \chi(g^{-1}) = \overline{\chi(g)}\,\forall g \in G $.
+\end{proposition}
+\begin{proof}
+	$ \chi(g^{-1}) = \tr \rho(g^{-1}) = \tr \rho(g)^{\dagger} = \overline{\tr \rho(g)} = \overline{\chi(g)} $.
+\end{proof}
+
+\subsection{Ortogonalità dei caratteri}
+
+Se nell'Eq. \ref{eq:8.9} si considerano $ i = j = r = s $ e si somma su $ i $, dalla Prop. \ref{char-herm} si ottiene:
+\begin{equation}
+	\frac{1}{\abs{G}} \sum_{g \in G} \chi_{\mu}(g) \overline{\chi_{\nu}(g)} = \delta_{\mu \nu}
+	\label{eq:8.10}
+\end{equation}
+Questa espressione permette di definire il prodotto scalare tra vettori $ \chi_{\mu} \equiv (\chi_{\mu}(g_1), \dots, \chi_{\mu}(g_{\abs{G}})) $: caratteri di rappresentazioni irriducibili determinano vettori ortonormali così definiti.\\
+Inoltre, dato che tutti gli elementi di uno stesso coniugio hanno lo stesso carattere (per il Cor. \ref{cahr-con}), detto $ k $ il numero delle classi di coniugazione di $ G $, $ p_i $ il numero di elementi della $ i $-esima classe e $ \chi^{(i)} $ il suo carattere, l'Eq. \ref{eq:8.10} diventa:
+\begin{equation}
+	\braket{\chi_{\mu},\chi_{\nu}} = \frac{1}{\abs{G}} \sum_{i = 1}^{k} p_i \chi_{\mu,i} \overline{\chi_{\nu,i}} = \delta_{\mu \nu}
+	\label{eq:8.11}
+\end{equation}
+I vettori $ \chi_{\mu} $ così definiti formano uno spazio di dimensione $ k $, dunque, per lo stesso ragionamento usato nella dimostrazione del Cor. \ref{cond-n-mu}, detto $ r $ il numero delle rappresentazioni irriducibili, la condizione di ortonormalità impone $ r \le k $.\\
+È altresì possibile dimostrare che:
+\begin{equation}
+	\frac{1}{\abs{G}} \sum_{\mu = 1}^{r} p_i \chi_{\mu,i} \overline{\chi_{\mu,j}} = \delta_{ij}
+	\label{eq:8.12}
+\end{equation}
+dalla quale deriva che $ k \le r $. Unendo le condizioni, si trova che il numero di rappresentazioni irriducibili di un gruppo è uguale al numero delle sue classi di coniugio: $ r = k $.
+
+\subsubsection{Rappresentazioni completamente riducibili}
+
+Per gruppi finiti (o compatti), ogni rappresentazione è completamente riducibile in somma diretta di rappresentazioni irriducibili: ciò significa che le matrici di rappresentazione possono essere scritte in forma diagonale a blocchi (Eq. \ref{eq:8.3}). In questa scrittura, ciascuna rappresentazione irriducibile può comparire più volte; in generale:
+\begin{equation}
+	\rho = \bigoplus_{\mu = 1}^{r} \alpha_{\mu} \rho_{\mu}
+	\label{eq:8.13}
+\end{equation}
+dove $ \alpha_{\mu} \in \N $ indica quante volte $ \rho_{\mu} $ compare in $ \rho $. Prendendo la traccia di questa equazione, si trova:
+\begin{equation}
+	\chi(g) = \sum_{\mu = 1}^{r} \alpha_{\mu} \chi_{\mu}(g)
+	\label{eq:8.14}
+\end{equation}
+Moltiplicando per $ \chi_{\mu}(g^{-1}) $ e sommando su $ g \in G $:
+\begin{equation*}
+	\sum_{g \in G} \chi_{\mu}(g^{-1}) \chi(g) = \sum_{\nu = 1}^{r} \alpha_{\nu} \sum_{g \in G} \chi_{\mu}(g^{-1}) \chi_{\nu}(g) = \sum_{\nu = 1}^{r} \alpha_{\nu} \abs{G} \delta_{\nu \mu} = \abs{G} \alpha_{\mu}
+\end{equation*}
+È quindi possibile determinare $ \alpha_{\mu} $:
+\begin{equation}
+	\alpha_{\mu} = \braket{\chi,\chi_{\mu}}
+	\label{eq:8.15}
+\end{equation}
+Si nota ancora l'analogia con gli spazi vettoriali.
+
+\subsection{Rappresentazione regolare}
+
+\begin{theorem}[Cayley]
+	Ogni gruppo finito di ordine $ n $ è isomorfo ad un sottogruppo di $ S^n $.
+\end{theorem}
+
+Da questo teorema deriva che, dato un gruppo finito $ G $ di ordine $ n $, l'azione di $ g \in G $ su $ G $ è data da:
+\begin{equation}
+	gg_i = \sum_{j = 1}^{n} D_{ij}(g) g_j
+	\label{eq:8.16}
+\end{equation}
+Le matrici $ D_{ij}(g) $, di dimensione $ n^2 $, danno una rappresentazione del gruppo $ G $, detta \textit{rappresentazione regolare}: in particolare, $ D_{ij}(g) $ ha un solo valore non-nullo in ogni riga ed in ogni colonna, in quanto deve agire come una permutazione (in particolare, $ D(e) = \tens{I} $).
+
+\begin{example}
+	In $ C^3 = \{e,c,c^2\} $, si ha:
+	\begin{equation*}
+		D(e) =
+		\begin{bmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & 1
+		\end{bmatrix}
+		\qquad
+		D(c) =
+		\begin{bmatrix}
+			0 & 0 & 1 \\
+			1 & 0 & 0 \\
+			0 & 1 & 0
+		\end{bmatrix}
+		\qquad
+		D(c^2) =
+		\begin{bmatrix}
+			0 & 1 & 0 \\
+			0 & 0 & 1 \\
+			1 & 0 & 0
+		\end{bmatrix}
+	\end{equation*}
+\end{example}
+
+Dato che $ ag = g $ ha come unica soluzione $ a = e $, si ha che l'unica $ D(g) $ con elementi diagonali non nulli e $ D(e) $: per $ g \neq e $, si ha $ D_{ii}(g) = 0 \,\forall i = 1, \dots, n $. Di conseguenza, nella rappresentazione regolare:
+\begin{equation}
+	\chi(g) =
+	\begin{cases}
+		0 & g \neq e \\
+		n & g = e
+	\end{cases}
+	\label{eq:8.17}
+\end{equation}
+Dall'Eq. \ref{eq:8.15} si ricava che $ a_{\mu} = \chi_{\mu}(e) $, ovvero:
+\begin{equation}
+	\alpha_{\mu} = n_{\mu}
+	\label{eq:8.18}
+\end{equation}
+Nella rappresentazione regolare, ogni rappresentazione irriducibile è presente un numero di volte pari al suo grado. Inoltre, ponendo $ g = e $ in Eq. \ref{eq:8.14} si trova:
+\begin{equation}
+	\sum_{\mu = 1}^{r} n_{\mu}^2 = n
+	\label{eq:8.19}
+\end{equation}
+
 
 
 
