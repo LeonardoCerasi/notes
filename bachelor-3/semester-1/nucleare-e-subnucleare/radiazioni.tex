@@ -116,7 +116,9 @@ Per avere un metro di misura della perdita di energia specifica si definisce la 
 	\label{bragg}
 \end{figure}
 
-\section{Raggi \texorpdfstring{$ \gamma $}{TEXT}}
+\section{Particelle neutre}
+
+\subsection{Raggi \texorpdfstring{$ \gamma $}{TEXT}}
 
 A differenza delle particelle cariche, i fotoni agiscono in maniera discreta col materiale e la ionizzazioni da essi causati avviene in regioni limitate del mezzo.\\
 L'interazione dei fotoni col mezzo può avvenire in tre modi (vedere Fig. \ref{ph-i-p}):
@@ -132,6 +134,94 @@ L'interazione dei fotoni col mezzo può avvenire in tre modi (vedere Fig. \ref{p
 	\caption{Linear attenuation coefficient for photon interaction.}
 	\label{ph-i-p}
 \end{figure}
+
+È possibile definire una probabilità d'interazione per unità di lunghezza per ciascuno di questi processi, così da definire il \textit{coefficiente d'attenuazione lineare}:
+\begin{equation}
+	\mu = \sigma_{\text{ph}} + \sigma_{\text{C}} + \sigma_{\text{pp}}
+	\label{eq:3.7}
+\end{equation}
+In questo modo, si può esplicitare la legge d'attenuazione per l'intensità del fascio di fotoni:
+\begin{equation}
+	I(x) = I_0 e^{-\mu x}
+	\label{eq:3.8}
+\end{equation}
+
+\subsubsection{Effetto fotoelettrico}
+
+Avviene quando un raggio $ \gamma $ colpisce un elettrone atomico: il fotone viene completamente assorbito e l'elettrone acquista abbastanza energia per fuoriuscire dall'atomo. In particolare, dato un fotone incidente di pulsazione $ \omega $:
+\begin{equation}
+	K_e = \hbar \omega - E_n
+	\label{eq:3.9}
+\end{equation}
+dove $ E_n $ è la binding energy dell'elettrone, dipendente dal numero quantico principale e calcolabile con la legge di Moseley:
+\begin{equation}
+	E_n = Rhc \frac{(Z - \sigma)^2}{n^2}
+	\label{eq:3.10}
+\end{equation}
+con $ Rhc = 13.6 \ev $ costante di Rydberg e $ \sigma $ un parametro dipendente dall'orbitale dell'elettrone (ad esempio $ \sigma_{\text{K}} \approx 3 $ e $ \sigma_{\text{L}} \approx 5 $).\\
+Un fenomeno interessante è quello degli \textit{elettroni Auger}. Quando un materiale viene ionizzato, il vuoto creato dall'elettrone espulso viene colmato da un elettrone nella shell successiva: questo salto orbitale comporta l'emissione di un fotone, tipicamente un raggio X, e questa radiazione X è quella che viene tipicamente osservata; può capitare, però, che questo fotone, al posto di essere emesso, venga assorbito da un elettrone in una shell ancora più esterna, il quale viene così emesso dall'atomo: un elettrone di questo tipo viene detto elettrone Auger.
+
+\subsubsection{Compton scattering}
+
+È lo scattering relativistico tra un fotone ed un elettrone. Assumento l'elettrone inizialmente a riposo:
+\begin{equation*}
+	\ve{p}_e = \ve{p}_{\gamma} - \ve{p}_{\gamma'} \quad\Rightarrow\quad p_e^2 c^2 = E_{\gamma}^2 + E_{\gamma'}^2 - 2E_{\gamma} E_{\gamma'} \cos \theta
+\end{equation*}
+dove $ \theta $ è l'angolo tra la direzione incidente e la direzione finale del fotone. Dal bilancio energetico dello scattering $ E_{\gamma} + m_e c^2 = E_{\gamma'} + E_e $ si ottiene:
+\begin{equation}
+	E_{\gamma'} = \frac{E_{\gamma}}{1 + \frac{E_{\gamma}}{m_e c^2} (1 - \cos \theta)}
+	\label{eq:3.11}
+\end{equation}
+Il fotone con lo scattering subisce anche una variazione di lunghezza d'onda:
+\begin{equation}
+	\Delta \lambda = \frac{2 \pi}{m_e c} (1 - \cos \theta)
+	\label{eq:3.12}
+\end{equation}
+Dopo un numero di interazioni il fotone viene arrestato: l'ultima interazione è di tipo fotoelettrico.\\
+Il Compton scattering è un fenomeno importante quando si costruiscono rilevatori di raggi $ \gamma $: infatti, esso può portare ad una fuoriuscita di fotoni dal rilevatore (se vengono scatterati a determinati angoli), dunque l'energia misurata è parziale e c'è la presenza di un fondo, detto fondo Compton, eliminabile con delle tecniche note.
+
+\subsubsection{Pair production}
+
+È determinata dall'interazione tra un raggio $ \gamma $ ed il campo elettromagnetico presente nel materiale: l'interazione genera due particelle, un elettrone ed un positrone, e l'energia del fotone viene completamente convertita in questa coppia di particelle; successivamente, queste perdono energia all'interno del materiale. In particolare, dato che la massa dell'elettrone/positrone è $ m_ec^2 = 511\kev $, l'energia minima che deve possedere il raggio $ \gamma $ per far avvenire la pair production è $ E_{\text{min}} = 1.022\mev $.\\
+Dirac formulò una teoria per spiegare la pair production: il mondo è composto da particelle normali con energia positiva $ E \ge m c^2 > 0 $, mentre esiste il cosiddetto \textit{Fermi sea} composto di particelle con energia negativa $ E \le - m c^2 < 0 $. L'interazione elettromagentica può far transizionare una particella dal Fermi sea al mondo normale, riempiendo il gap energetico di $ \Delta E = 2mc^2 $: il buco lasciato nel Fermi sea è la sua corrispettiva antiparticella.\\
+Le prime osservazioni del processo di pair production avvennero nelle camere a bolle: quando un fotone energetico interagisce con un atomo, può avvenire la reazione $ \gamma \rightarrow e^- + e^+ $, eventualmente espellendo anche un ulteriore elettrone dall'atomo. Applicando un campo magnetico è possibile poi studiare il momento e la carica delle particelle così prodotte.
+
+\subsubsection{Interazioni nucleari}
+
+Per raggi $ \gamma $ particolarmente energetici ($ E_{\gamma} \gtrsim 8\mev $) sono possibili anche interazioni a livello nucleare, sebbene meno probabili. Un raggio $ \gamma $ incidente può indurre reazioni all'interno del nucleo, a seguito delle quali possono essere emesse particelle secondarie ad alta energie e/o una sequenza di raggi $ \gamma $ ad energia minore.
+
+\subsection{Neutroni}
+
+A differenza dei fotoni, i neutroni hanno una massa ed è necessario distinguere tra vari range energetici, poiché i processi d'interazione sono molto diversi, sebbene tutti a livello nucleare. Dato che l'interazione nucleare ha un raggio d'azione estremamente ridotto, comparabile al raggio nucleare $ \sim 10^{-15} \m $, i neutroni hanno una bassa probabilità d'interazione: ciò risulta in un minore stopping power ed un maggiore range. Si ricordi inoltre che i neutroni nel nucleo, essendo in stati legati, possono essere stabili, mentre quelli liberi decadono con una vita media di $ 14.76\,\text{min} $.\\
+L'interazione con neutroni ha una probabilità che è circa $ 10^{-6} $ volte quella dell'interazione con particelle cariche; in base all'energia (cinetica) $ E_n $ iniziale del neutrone sono possibili diverse interazioni:
+\begin{enumerate}
+	\item $ E_n \sim 25 \,\text{meV} $: diffusione termica lenta, cattura neutronica (nucleo cattura il neutrone e decade $ \gamma $);
+	\item $ E_n < 10 \mev $: scattering elastico (fino alla termalizzazione), cattura neutronica, eccitazione nucleare;
+	\item $ E_n > 10 \mev $: scattering elastico ed inelastico, reazioni nucleari (con prodottuzione di particelle cariche secondarie).
+\end{enumerate}
+I rilevatori di neutroni non rilevano direttamente i neutroni, bensì la radiazione e le particelle secondarie prodotte dai processi nucleari, ad esempio raggi $ \gamma $, particelle cariche ($ p^+ $, $ \alpha $ etc.), altri neutroni, prodotti di fissione e, per neutroni altamente energetici ($ E_n > 150\mev $), prodotti di spallazione: quest'ultimi sono particolarmente pericolosi perché la spallazione pò dar luogo ad uno shower di particelle secondarie estremamente dannose per l'organismo.\\
+Come si può vedere in Fig. \ref{n-cross-sec}, fino a $ 10\mev $ la cross-section d'interazione con la materia scala come l'inverso della velocità (ovvero come $ E_n^{-1/2} $), mentre per alte energie sono presenti dei fenomeni di risonanza dovute al fatto che il neutrone può interagire con stati nucleari con funzioni d'onda compatibili.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.60\textwidth]{n-cross-sec.png}
+	\caption{Cross-section as a function of neutron energy.}
+	\label{n-cross-sec}
+\end{figure}
+
+\subsubsection{Neutron detection}
+
+La rilevazione di neutroni avviene tramite la rilevazione diretta delle particelle secondarie prodotte dalle interazioni dei neutroni con la materia. Le cross-sections di tali interazioni sono utili solo per neutroni termici lenti, dunque è necessario un moderatore che, tramite scattering, termalizzi i neutroni: il miglior moderatore è l'idrogeno, poiché con un singolo scattering può assorbire quasi tutta l'energia del neutrone. Infatti, data lo scattering tra un neutrone di energia $ E_n $ ed un nucleo $ ^A_Z\text{X} $, detto $ \theta $ l'angolo tra la direzione incidente e la direzione risultante del neutrone, si ha che:
+\begin{equation*}
+	E_n' = E_n \left[ 1 - \frac{2 m_n M_A}{(m_n + M_A)^2} (1 - \cos \theta) \right] \approx E_n \frac{A^2 + 2A \cos \theta + 1}{(A + 1)^2} \quad\Rightarrow\quad \left( \frac{A - 1}{A + 1} \right)^2 E_n \le E_n' \le E_n
+\end{equation*}
+Si trova dunque che l'average energy loss è in percentuale pari a:
+\begin{equation}
+	\bigg\langle \frac{\Delta E_n}{E_n} \bigg\rangle = \frac{2A}{(A + 1)^2}
+	\label{eq:3.13}
+\end{equation}
+che è massima per $ A = 1 $.\\
+Per quanto riguarda i neutroni lenti ($ E_n < 0.5 \ev $), lo scattering elastico non favorisce la rilevazione, poiché l'energia ceduta al nucleo è poca per essere rilevata. Sono invece preferibili le reazioni nucleari neutron-induced, le quali producono particelle secondarie ($ \gamma $, $ p^+ $, $ \alpha $ etc.) abbstanza energetiche da essere rilevate.
 
 
 
