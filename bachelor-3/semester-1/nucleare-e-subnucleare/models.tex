@@ -163,6 +163,119 @@ Ad oggi, un modo computazionalmente efficiente di calcolare l'interazione residu
 Anche in questo caso ci sono però delle limitazioni, prime su tutti il considerare solo i nucleoni di valenza e l'ignorare completamente le eccitazioni del core.\\
 I principali filoni di ricerca a livello computazionale riguardano da un lato la risoluzione numerica della many-body hamiltonian, dall'altro lo studio delle interazioni nucleari.
 
+\section{Collective models}
+
+Il modello a shell descrive molto bene i nuclidi nell'intorno dei magic numbers, per i quali vale l'approssimazione di campo medio. Quando però si considerano nuclei lontani da tali regioni, i dati sperimentali si discostano dalle previsioni del modello a shell: si osservano fenomeni non riconducibili ad eccitazioni individuali di nucleoni che suggeriscono un comportamento collettivo del sistema.
+
+\subsection{Evidenze sperimentali}
+
+La principale limitazione del modello a shell è l'assunzione che il nucleo sia sferico: ciò è approssimativamente vero solo per nuclei vicini ai doubly-magic nuclei, i quali hanno una doppia shell closure, ma in generale non è vero. La deformazione dei nuclidi lontani dai magic numbers è suggerita da varie evidenze sperimentali, come un grande momento di quadrupolo elettrico (discostamento dalla simmetria di carica), una bassa excitation energy ($ < 1\mev $) per il primo stato eccitato nei nuclei pari-pari (quasi sempre il $ 2^+ $) ed un rapporto costante $ E(4^+) / E(2^+) $ sempre per nuclei pari-pari.
+
+\subsubsection{Momento di quadrupolo elettrico}
+
+Ricordando la definizione in Eq. \ref{eq:4.16}, i momenti di multipolo elettrico forniscono una descrizione della distribuzione di carica (dunque dei protoni) nel nucleo.\\
+Dato che i momenti dispari devono essere nulli per la conservazione della parità e che $ K_0 = Ze $ non è altro che la carica totale, il primo parametro utile a verificare la deviazione della distribuzione di carica da una forma sferica è il momento di quadrupolo elettrico $ K_2 \equiv Q $, definito in Eq. \ref{eq:4.17}: assumento che le distribzioni di protoni e neutroni non siano troppo diverse tra loro (vero nella valle di stabilità), si può prendere il momento di quadrupolo elettrico come un indicatore della deformazione del nucleo stesso.\\
+Considerando un nucleo a forma di ellissoide con sezione circolare di raggio $ a $ sul piano $ xy $ e semiasse $ b $ sull'asse $ z $, si può definire un parametro di deformazione $ \beta $ in funzione del raggio medio $ \braket{R} = (ab^2)^{1/3} $ e della differenza dei semiassi $ \Delta R = b - a $:
+\begin{equation}
+	\beta = \frac{4}{3} \sqrt{\frac{\pi}{5}} \frac{\Delta R}{\braket{R}}
+	\label{eq:5.9}
+\end{equation}
+In base al segno di $ \beta $, si può stabilire se il nucleo è sferico ($ \beta = 0 $), prolato (allungato lungo $ z $, $ \beta > 0 $) o oblato (schiacciato su $ xy $, $ \beta < 0 $). Il momento di quadrupolo elettrico è legato a $ \beta $ da:
+\begin{equation}
+	Q_0 = \frac{3}{\sqrt{5\pi}} Z \braket{R}^2 \beta (1 + 0.16 \beta)
+	\label{eq:5.10}
+\end{equation}
+Si noti che $ Q_0 $ è il momento di quadrupolo intrinseco, ovvero misurato nel RF solidale al nuclide; il momento misurato in laboratorio $ Q $ è legato a $ Q_0 $ da una relazione che varia per i vari stati eccitati: per lo stato $ 2^+ $, si ha $ Q = - \frac{2}{7} Q_0 $.
+Come si può vedere in Fig. \ref{quad-mom}, i nuclei vicini ai magic numbers sono praticamente sferici, mentre quelli lontani da essi sono deformati: in particolare, i nuclei delle terre rare sono stabilmente deformati. Inoltre, si nota una prevalenza di nuclei prolati rispetto a quelli oblati.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.60\textwidth]{quad-mom.png}
+	\caption{Nuclear electric quadrupole moments for nuclei with odd nucleons.}
+	\label{quad-mom}
+\end{figure}
+
+\subsubsection{Energia dello stato \texorpdfstring{$ 2^+ $}{TEXT}}
+
+Mentre le eccitazioni dei nuclei dispari sono spiegate bene dal modello a shell, per i nuclei pari-pari il modello non funziona, in quanto in prima approssimazione tutti gli spin dei nucleoni si dovrebbero accoppiare a 0: con tale modello, dunque, è difficile spiegare i loro stati eccitati.\\
+Per i nuclei pari-pari, il ground state è lo stato $ 0^+ $ ed il primo stato eccitato è lo stato $ 2^+ $: per spiegare questo stato col modello a shell, sarebbe necessario rompere una coppia di nucleoni appaiati ed eccitarli su livelli distinti, impiegando una notevole quantità di energia ($ \approx 2\mev $). Studiando le energie degli stati $ 2^+ $, però, si vede (Fig. \ref{2-p}) che tale soglia è raggiunta solo nei pressi delle shell closures, mentre normalmente si hanno energie al di sotto di $ 1.2\mev $ con un trend decrescente, fino ad arrivare a $ 100\kev $ per nuclidi pesanti; si nota inoltre che per $ 150 < A < 190 $ e $ A > 230 $ l'energia $ E(2^+) $ è praticamente costante.\\
+Da queste osservazioni si conclude che, per realizzare il primo stato $ 2^+ $, questi nuclei assumano una configurazione intrinsecamente più conveniente a livello energetico rispetto alla rottura di una coppia nucleonica.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.70\textwidth]{2-p.png}
+	\caption{Energies of lowest $ 2^+ $ states of even-even nuclei, with isotopic chains connected.}
+	\label{2-p}
+\end{figure}
+
+\subsubsection{Andamento anomalo di \texorpdfstring{$ E(4^+) / E(2^+) $}{TEXT} e \texorpdfstring{$ Q(2^+) $}{TEXT}}
+
+\begin{figure}[!b]
+	\centering
+	\includegraphics[width = 0.54 \textwidth]{4-p-2-p.png}
+	\includegraphics[width = 0.45 \textwidth]{q-2.png}
+	\caption{$ E(4^+) / E(2^+) $ ratio and $ Q(2^+) $ for even-even nuclei.}
+	\label{4-p-2-p}
+\end{figure}
+
+Studiando il rapporto delle energie per i primi stati eccitati $ 2^+ $ e $ 4^+ $ dei nuclei pari-pari (Fig. \ref{4-p-2-p}) si nota che per $ A < 150 $ c'è uno scatter attorno al valore 2, mentre per $ 150 < A < 190 $ e $ A > 230 $ il rapporto ha un valore costante pari a 3.3, indipendentemente dal nuclide considerato.\\
+Un trend simile si evidenzia nello studio del momento di quadrupolo magnetico per lo stato $ 2^+ $ (Fig. \ref{4-p-2-p}): per $ A < 150 $ questo momento è circa nullo (a parte deformazioni lontane dalle shell closures), mentre si hanno importanti deviazioni per $ A > 150 $.
+
+\subsubsection{Moti nucleari collettivi}
+
+Tutte queste evidenze sperimentali suggeriscono due tipi diversi di moti nucleari collettivi: le vibrazioni collettive e le rotazioni collettive (vedere Fig. \ref{coll}). Questi moti collettivi avvengono assieme alle eccitazioni single particle del modello a shell e danno una spiegazione a stati che lo shell model non prevede.\\
+Per nuclei con $ A < 150 $ si hanno principalmente delle vibrazioni attorno ad una forma sferica: la forma media nel tempo è comunque quella sferica, ma le eccitazioni causa delle vibrazioni collettive del sistema; la sequenza degli stati eccitati generati dalle vibrazioni collettive è energeticamente equispaziata e ha forma $ E_n = n \hbar \omega $.\\
+Nuclei con $ A > 150 $ invece sono permanente deformati e hanno un moto rotatorio collettivo; le eccitazioni hanno energia $ E_{I} = \frac{\hbar^2}{2\mathfrak{I}} I (I + 1) $, con $ \mathfrak{I} $ il momento d'inerzia del nucleo e $ I $ il quantum number associato al momento angolare totale (sia neutroni che protoni), dunque sono progressivamente sempre più energeticamente separate.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width = 0.40 \textwidth]{coll-vib.png}
+	\includegraphics[width = 0.40 \textwidth]{coll-rot.png}
+	\caption{Collective vibrations and rotations.}
+	\label{coll}
+\end{figure}
+
+\subsection{Collective vibrations}
+
+Sebbene la forma media del nucleo sia sferica, per $ A < 150 $, dato che esso può vibrare, la forma istantanea sarà deformata e descrivibile tramite le armoniche sferiche:
+\begin{equation}
+	R(\theta,\phi,t) = \braket{R} + \sum_{\lambda \ge 1} \sum_{\mu = -\lambda}^{\lambda} \alpha_{\lambda,\mu}(t) Y_{\lambda,\mu}(\theta,\phi)
+	\label{eq:5.11}
+\end{equation}
+I coefficienti $ \alpha_{\lambda,\mu} $ non sono completamente arbitrari, ma per la simmetria di riflessione devono soddisfare $ \alpha_{\lambda,\mu} = \alpha_{\lambda,-\mu} $ (ulteriori condizioni sono imposte dall'eventuale incomprimibilità).\\
+I vari termini $ \lambda $ della sommatoria trasportano un quanto di energia vibrazionale, quindi, in analogia all'elettromagnetismo, vengono detti \textit{fononi}. Ad esempio, un fonone dipolare è un quanto di energia vibrazionale con $ \lambda = 1 $ (ovvero trasporta un unità di momento angolare), un fonone quadripolare ha $ \lambda = 2 $, etc. In Fig. \ref{phon} si può vedere che un fonone dipolare causa uno spostamento del centro di massa del nucleo, dunque non può essere il risultato di forze nucleari.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{phonons.png}
+	\caption{Vibrational phonons.}
+	\label{phon}
+\end{figure}
+
+Aggiungendo un fonone quadripolare ad un nucleo pari-pari nel suo ground state $ 0^+ $ il momento angolare aumenta di due unità ($ \lambda = 2 $) e la parità resta invariata ($ (-1)^{\lambda} = +1 $), dunque lo stato eccitato è $ 2^+ $: studiandone l'energia, si trova un'andamento sovrapponibile a quello in Fig. \ref{2-p} (l'energia di un fonone non è predetta, ma è un parametro regolabile). Aggiungendo un ulteriore fonone quadripolare, bisogna considerare la composizione dei momenti angolari: ciascun fonone ha 5 componenti $ \mu $, per un totale di 25 combinazioni, ma i fononi hanno funzioni d'onda totali simmetriche (poiché hanno spin intero), dunque le combinazioni si riducono a 15 e corrispondono alle componenti associate a momenti angolari $ \ell = 0,2,4 $. Ci si aspetta dunque di trovare degli stati $ 0^+ $, $ 2^+ $ e $ 4^+ $ a circa il doppio dell'energia del primo stato $ 2^+ $, e ciò e proprio quello che si osserva sperimentalmente: questi non hanno esattamente la stessa energia, confermando che anche questo modello ha le proprie semplificazioni e limitazioni, ma comunque è un'importante prova sperimentale della sua validità. In maniera analoga, si troveranno stati $ 0^+ $, $ 2^+ $, $ 3^+ $, $ 4^+ $ e $ 6^+ $ a circa il triplo dell'energia del primo $ 2^+ $, associati a tre fononi quadripolari, e così via.\\
+Per quanto riguarda i fononi ottopolari, essi cambiano la parità dello stato: aggiungengo un fonone ottopolare ad un nucleo pari-pari nel ground state si ottiene uno stato eccitato $ 3^- $, con energia tipicamente superiore al tripletto associato al doppio fonone quadripolare, il quale è anche osservato nei nuclei vibrazionali, a riconferma della validità del modello.
+
+\subsubsection{Giant resonances}
+
+Ad energie superiori iniziano ad influire anche le eccitazioni dovute al pair breaking, dunque la trattazione si fa molto più complessa. Un fenomeno interessante, però, sono le cosiddette \textit{risonanze giganti}: queste vibrazioni avvengono ad energie estremamente elevate ($ > 10\mev $) e coinvolgono praticamente tutti i nucleoni nel nucleo.\\
+Le risonanze giganti più importanti sono il monopolo gigante, in cui non c'è trasferimento di momento angolare poiché il nucleo si espande e comprime attorno alla forma sferica, decadendo poi per emissione di particelle, ed il dipolo gigante, in cui invece la distribuzione di protoni e quella di neutroni oscillano in opposizione di fase, decadendo poi per emissione di particelle e raggi $ \gamma $.\\
+A livello macroscopico, le risonanze giganti possono essere descritte come le oscillazioni di una goccia attorno ad un punto d'equilibrio, mentre a livello microscopico la trattazione è estremamente difficile ma può essere fornita dal modello a shell: queste risonanze altro non sono che una sovrapposizione coerent di tutte le possibili eccitazioni particle-hole nelle varie shell nucleari, e ciò spiega le alte excitation energies.
+
+\paragraph{Pygmy and Giant Dipole Resonance}
+
+La risonanza vibrazionale più importante e studiata è la risonanza gigante di dipolo (GDR), nella quale tutta la distribuzione di protoni oscilla contro tutta la distribuzione dei neutroni: questo può avvenire sia a seguito dell'assorbimento di un fotone, con la componente elettrica del campo elettromagnetico che causa l'oscillazione dei protoni e lascia inalterati i neutroni, oppure a seguito di reazioni nucleari. Tipicamente si ha $ E_{\text{GDR}} \approx 80\mev \cdot A^{-1/3} $.\\
+Va inoltre notato che per nuclei stabilmente deformati i tre assi d'oscillazione non sono ugugali tra loro (solo due lo sono), duqnue la tipica forma approssimativamente lorentziana della GDR (vedere Fig. \ref{pgdr}) si va a deformare, fino a presentare due picchi distinti: questo è un importante indicatore di deformazioni permanenti del nuclide.\\
+Oltre alla GDR, che coinvolge tutti i nucleoni, nei nuclei neutron-rich è possibile una risonanza di dipolo in cui il core, composto di protoni e neutroni, oscilla rispetto alla neutron skin: questa è detta \textit{Pygmy Dipole Resonance} (PDR), poiché avviene ad energie minori della GDR (vedere Fig. \ref{pgdr}). Si pensa che la PDR diventi estremamente preponderante man mano che si considerano nuclei sempre più esotici e neutron-rich, e ciò ha particolare rilevanza in ambito astrofisico.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{pgdr.png}
+	\caption{Pygmy and Giant Dipole Resonances and their respective probabilities.}
+	\label{pgdr}
+\end{figure}
+
+
+
 
 
 
