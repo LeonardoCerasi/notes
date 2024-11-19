@@ -338,6 +338,241 @@ Ad esempio, con calcolo esplicito:
 \end{equation*}
 Gli operatori $ \hat{\mathcal{O}}_{ij} $ sono i generatori del gruppo $ \SUn{3} $ (si vede dalle relazioni di commutazione): in generale, l'oscillatore armonico $ n $-dimensionale ha simmetria $ \SUn{n} $. Gli operatori $ \hat{L}_i $ generano invece $ \SUn{2} $, che è un sottogruppo di $ \SUn{3} $ e corrisponde all'invarianza per rotazioni (se si restringe allo spin intero si ha solo $ \SOn{3} $).
 
+\section{Potenziale coulombiano}
+
+Un problema di fondamentale importanza è quello della descrizione quantitativa degli atomi idrogenoidi, ovvero quelli in cui un nucleo atomico con $ Z $ protoni è circondato da un solo elettrone. Per tale sistema, l'equazione di Schrödinger radiale Eq. \ref{eq:3.5} diventa:
+\begin{equation}
+	\left[ -\frac{\hbar^2}{2m} \frac{\pa^2}{\pa r^2} + \frac{\hbar^2 \ell (\ell + 1)}{2mr^2} - \frac{Ze^2}{r} \right] u(r) = E u(r)
+	\label{eq:3.43}
+\end{equation}
+Il problema può essere formulato in termini adimensionali definendo alcune quantità caratteristiche; innanzitutto, si definisce il \textit{raggio di Bohr}:
+\begin{equation}
+	a_0 \defeq \frac{\hbar^2}{mZe^2}
+	\label{eq:3.44}
+\end{equation}
+Dall'analisi dimensionale dell'Eq. \ref{eq:3.43}, si trova correttamente che $ a_0 $ ha le dimensioni di una lunghezza, così da poter esprimere le lunghezze rispetto ad esso: $ r \mapsto r a_0 $. In questo modo:
+\begin{equation*}
+	\begin{split}
+		E u(r)
+		&= \left[ -\frac{\hbar^2}{2m a_0^2} \frac{\pa}{\pa r^2} + \frac{\hbar^2 \ell(\ell + 1)}{2ma_0^2 r^2} - \frac{Ze^2}{a_0 r} \right] u(r) \\
+		&= \left[ \frac{m (Ze^2)^2}{\hbar^2} \frac{1}{2} \left( - \frac{\pa^2}{\pa r^2} + \frac{\ell (\ell + 1)}{r^2} \right) - \frac{m (Ze^2)^2}{\hbar^2} \frac{1}{r} \right] u(r) \\
+		&= \frac{m(Ze^2)^2}{\hbar^2} \left[ - \frac{1}{2} \frac{\pa^2}{\pa r^2} + \frac{1}{2} \frac{\ell (\ell + 1)}{r^2} - \frac{1}{r} \right] u(r)
+	\end{split}
+\end{equation*}
+Si può dunque definire una costante d'energia:
+\begin{equation}
+	W_0 \defeq \frac{m (Ze^2)^2}{\hbar^2}
+	\label{eq:3.45}
+\end{equation}
+Studiando gli stati legati, quindi con energie negative (si vede graficando il potenziale), dato che essi sono discreti si può scrivere $ E_n = c_n W_0 $, dunque la determinazione dello spettro si riduce al determinare i coefficienti $ c_n $. L'equazione radiale adimensionale diventa quindi:
+\begin{equation}
+	\left[ -\frac{1}{2} \frac{\pa^2}{\pa r^2} + \frac{1}{2} \frac{\ell (\ell + 1)}{r^2} - \frac{1}{r} \right] u(r) = c_n u(r)
+	\label{eq:3.46}
+\end{equation}
+
+\paragraph{Teorema del viriale}
+
+In questi termini adimensionali, è possibile vedere perché i potenziali che nell'origine hanno andamento $ V(r) \sim r^{-\alpha} $ con $ \alpha \ge 2 $ sono patologici. Dato che $ W_0 \sim a_0 $, si vede che $ \braket{T} \sim a_0^{-2} $ e $ \braket{V} \sim a_0^{-\alpha} $, dunque per $ \alpha \ge 2 $ il termine potenziale può essere reso a piacere più grande di quello cinetico considerando sistemi con $ a_0 $ via via più piccolo: data una qualunque autofunzione, è possibile fabbricarne una ad energia più bassa prendendola più localizzata, ovvero non esiste uno stato di energia minima.
+
+\paragraph{Risoluzione analitica}
+
+Il primo metodo utilizzato per la risoluzione dell'Eq. \ref{eq:3.46} fu quello analitico (da Schrödinger). Innanzitutto, da stime asintotiche per $ r \rightarrow \infty $ e $ r \rightarrow 0 $ si ottiene che:
+\begin{equation*}
+	u(r) \overset{r \rightarrow \infty}{\sim} e^{-kr} \qquad u(r) \overset{r \rightarrow 0}{\sim} r^{\ell + 1}
+\end{equation*}
+con $ k^2 = 2c_n $.
+L'Ansatz risolutivo è quindi:
+\begin{equation*}
+	u(r) = e^{-kr} r^{\ell + 1} f(r) \,, \quad f(r) = \sum_{n = 0}^{\infty} \alpha_n r^n
+\end{equation*}
+Affinché la serie si normalizzabile, è necessario che essa si arresti ad un certo $ n_{\text{max}} $: ciò avviene solo per particolari valori di $ k $, ovvero $ k_n = (n + \ell)^{-1} $ con $ n \in \N $. Si trova dunque lo spettro dell'energia, ridefinendo $ n \equiv n + \ell $ come il numero quantico principale:
+\begin{equation}
+	E_n = -\frac{1}{2} \frac{m(Ze^2)^2}{\hbar^2} \frac{1}{n^2}
+	\label{eq:3.47}
+\end{equation}
+La degenerazione dello spettro deriva dal fatto che diversi valori di $ \ell $ possono essere associati allo stesso $ n $, oltre che al fatto che ogni $ \ell $ ha $ 2\ell + 1 $ stati associati.
+
+\subsection{Modello di Bohr}
+
+È propedeutico analizzare il modello quantizzato ad hoc proposto da Bohr per spiegare i dati sperimentali sullo spettro dell'atomo d'idrogeno. In particolare, Bohr suppose che l'elettrone nell'atomo di $ \ch{^1H} $ si muovesse lungo orbite circolari e che il momento angolare fosse quantizzato in unità intere di $ \hbar $. Sebbene dal punto di vista della meccanica quantistica moderna non abbia senso parlare di orbite ben definite, oltre al fatto che gli autovalori di $ \hat{L}^2 $ sono $ \hbar^2 \ell (\ell + 1) $, dunque il momento angolare non è un multiplo intero di $ \hbar $, partendo da queste ipotesi Bohr riuscì a spiegare esattamente i dati sperimentali.\\
+Seguendo il ragionamento di Bohr, si supponga che il sistema sia descritto dalla seguente Lagrangiana:
+\begin{equation}
+	\mathcal{L} = \frac{1}{2} m (\dot{r}^2 + r^2\dot{\theta}^2) + \frac{e^2}{r}
+	\label{eq:3.48}
+\end{equation}
+Se l'orbita è circolare, $ \dot{r} = 0 $, quindi l'equazione di Lagrange per $ r $ diventa:
+\begin{equation*}
+	\frac{\pa \mathcal{L}}{\pa r} = 0 \quad \Rightarrow \quad mr \dot{\theta}^2 = \frac{Ze^2}{r^2} \quad \Rightarrow \quad 2T = -V
+\end{equation*}
+Questa stessa relazione si poteva trovare col teorema del viriale, che vale anche per valori medi quantistici per il teorema di Ehrenfest, e per questo il ragionamento di Bohr porta al risultato corretto anche partendo da ipotesi non corrette. Si trova che l'energia vale quindi:
+\begin{equation}
+	E = -T
+	\label{eq:3.49}
+\end{equation}
+L'equazione di Lagrange per $ \theta $ è:
+\begin{equation*}
+	\frac{d}{dt} \frac{\pa \mathcal{L}}{\pa \dot{\theta}} = \frac{\pa \mathcal{L}}{\pa \theta} \quad \Rightarrow \quad \frac{\pa \mathcal{L}}{\pa \dot{\theta}} = mr^2 \dot{\theta} \equiv \ell \,\text{ const.}
+\end{equation*}
+La seconda ipotesi di Bohr diventa quindi $ \ell = n \hbar $, con $ n \in \N $; dall'equazione per $ r $ si trova:
+\begin{equation*}
+	mr^2 \dot{\theta}^2 = \frac{Ze^2}{r^2} \quad \Rightarrow \quad \frac{\ell^2}{mr^3} = \frac{Ze^2}{r^2} \quad \Rightarrow \quad r = \frac{\ell^2}{mZe^2} = n^2 a_0
+\end{equation*}
+Rielaborando l'Eq. \ref{eq:3.49}:
+\begin{equation*}
+	E = -T = -\frac{1}{2} m r^2 \dot{\theta}^2 = -\frac{1}{2} \frac{\ell^2}{mr^2} = -\frac{1}{2} \frac{m(Ze^2)^2}{\ell^2} = -\frac{1}{2} \frac{m (Ze^2)^2}{\hbar^2} \frac{1}{n^2}
+\end{equation*}
+che è proprio lo spettro trovato in Eq. \ref{eq:3.47}.
+
+\subsection{Simmetrie del problema di Keplero}
+
+\subsubsection{Caso classico}
+
+In termini adimensionali, il problema di Keplero classico può essere formulato tramite la seguente Hamiltoniana:
+\begin{equation}
+	\mathcal{H} = \frac{\ve{p}^2}{2} - \frac{1}{r}
+	\label{eq:3.50}
+\end{equation}
+Le equazioni del moto sono quindi:
+\begin{equation}
+	\begin{cases}
+		\dot{\ve{x}} = \ve{p} \\
+		\dot{\ve{p}} = \nabla \frac{1}{r} = - \frac{\ve{x}}{r^3}
+	\end{cases}
+	\label{eq:3.51}
+\end{equation}
+È necessario indagare gli invarianti del sistema, derivanti dalle sue simmetrie per il teorema di Noether. Una prima simmetria ovvia è quella per rotazioni.
+
+\begin{proposition}
+	$ \ve{L} \defeq \ve{x} \times \ve{p} $ è una costante del moto.
+\end{proposition}
+\begin{proof}
+	$ \frac{d}{dt} (\ve{x} \times \ve{p}) = \dot{\ve{x}} \times \ve{p} + \ve{x} \times \dot{\ve{p}} = \ve{p} \times \ve{p} - \frac{1}{r^3} \ve{x} \times \ve{x} = \ve{0} $.
+\end{proof}
+
+Un'altra simmetria banale è quella per traslazione temporale, che risulta nella conservazione dell'energia $ E \equiv \mathcal{H} $. Un'invariante non-banale è invece il \textit{vettore di Laplace-Runge-Lenz}.
+
+\begin{proposition}
+	$ \ve{M} \defeq \ve{p} \times \ve{L} - \frac{1}{r} \ve{x} $ è una costante del moto.
+\end{proposition}
+\begin{proof}
+	Basta mostrare che $ \frac{d}{dt} (\ve{p} \times \ve{L}) = \frac{d}{dt} \frac{\ve{x}}{r} $:
+	\begin{equation*}
+		\begin{split}
+			\frac{d}{dt} \left( \ve{p} \times \ve{L} \right)_i
+			&= \left( \dot{\ve{p}} \times \ve{L} \right)_i = \left( -\frac{\ve{x}}{r^3} \times \ve{L} \right)_i = - \frac{1}{r^3} \sum_{j,k = 1}^{3} \epsilon_{ijk} x_j L_k = - \frac{1}{r^3} \sum_{j,k,a,b = 1}^{3} \epsilon_{ijk} \epsilon_{kab} x_j x_a p_b \\
+			&= - \frac{1}{r^3} \sum_{j,k,a,b = 1}^{3} \left( \delta_{ia} \delta_{jb} - \delta_{ib} \delta_{ja} \right) x_j x_a p_b = - \frac{1}{r^3} \left( x_i \ve{x} \cdot \ve{p} - r^2 p_i \right) = \frac{\dot{x}_i}{r} - \frac{x_i}{r^3} \sum_{j = 1}^{3} x_j \dot{x}_j = \frac{d}{dt} \frac{x_i}{r}
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+A priori si trovano quindi 7 invarianti. Tuttavia, essendo lo spazio delle fasi di dimensione 6 per il problema di Keplero, vi possono essere al massimo 6 costanti del moto indipendenti; inoltre, se ci si restringe a considerare orbite chiuse, il numero d'invarianti indipendenti scende a 5 poiché l'origine temporale diventa irrilevante.\\
+Il corretto numero di costanti del moto indipendenti si ritrova osservando che solo una delle tre componenti del vettore LRL è indipendente.
+
+\begin{proposition}
+	$ \ve{M} \cdot \ve{L} = 0 $.
+\end{proposition}
+\begin{proof}
+	$ \ve{M} \cdot \ve{L} = (\ve{p} \times \ve{L}) \cdot \ve{L} - \frac{1}{r} \ve{x} \cdot \ve{L} = - \frac{1}{r} \ve{x} \cdot (\ve{x} \times \ve{p}) = 0 $.
+\end{proof}
+
+\begin{proposition}
+	$ \ve{M}^2 = 1 + 2 \ve{L}^2 \mathcal{H} $.
+\end{proposition}
+\begin{proof}
+	Ricordando la Prop. \ref{cross-class}:
+	\begin{equation*}
+		\begin{split}
+			\ve{M}^2
+			&= \norm{\ve{p} \times \ve{L}}^2 + \norm{\frac{\ve{x}}{r}}^2 - 2 \frac{\ve{x}}{r} \cdot \left( \ve{p} \times \ve{L} \right) = \ve{p}^2 \ve{L}^2 - \left( \ve{p} \cdot \ve{L} \right)^2 + 1 - \frac{2}{r} \sum_{i,j,k = 1}^{3} x_i \epsilon_{ijk} p_j L_k \\
+			&= \ve{p}^2 \ve{L}^2 + 1 - \frac{2}{r} \sum_{k = 1}^{3} L_k^2 = 1 + \ve{L}^2 \left( \ve{p}^2 - \frac{2}{r} \right) = 1 + 2 \ve{L}^2 \mathcal{H}
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+Inoltre, per un orbita a sezione conica di eccentricità $ \varepsilon $, si dimostra che $ \norm{\ve{M}} = \varepsilon $: si vede quindi che per orbite chiuse, dato che $ \varepsilon \le 1 $, l'energia deve essere negativa. Inoltre, per orbite ellittiche si dimostra che $ \ve{M} $ è diretto lungo l'asse maggiore dell'ellisse.\\
+Si vede dunque che l'unica informazione utile contenuta nel vettore LRL è quella relativa al suo verso, poiché il piano d'appartenenza e il modulo sono fissati dagli altri invarianti del sistema.
+
+\subsubsection{Caso quantistico}
+
+Si consideri la seguente Hamiltoniana idrogenoide adimensionale:
+\begin{equation}
+	\hat{\mathcal{H}} = \frac{\hat{\ve{p}}^2}{2} - \frac{1}{r}
+	\label{eq:3.52}
+\end{equation}
+È evidente che, analogamente al caso classico, si conservano momento angolare (generatore delle rotazioni) ed energia.
+\begin{definition}
+	Si definisce l'\textit{operatore di Laplace-Runge-Lenz} come:
+	\begin{equation}
+		\hat{\ve{M}} \defeq \frac{1}{2} \left( \hat{\ve{p}} \times \hat{\ve{L}} - \hat{\ve{L}} \times \hat{\ve{p}} \right) - \frac{\hat{\ve{x}}}{r}
+		\label{eq:3.53}
+	\end{equation}
+\end{definition}
+In componenti:
+\begin{equation}
+	\hat{M}_i = \frac{1}{2} \sum_{j,k = 1}^{3} \epsilon_{ijk} \{\hat{p}_j,\hat{L}_k\} - \frac{\hat{x}_i}{r}
+	\label{eq:3.54}
+\end{equation}
+La definizione tramite l'anticommutatore è necessaria per il fatto che $ \hat{\ve{p}} $ e $ \hat{\ve{L}} $ non commutano: l'anticommutatore di due operatori hermitiani non commutanti è infatti hermitiano.\\
+Anche nel caso quantistico si trova che il vettore LRL è un invariante del sistema, ovvero commuta con l'Hamiltoniana.
+
+\begin{proposition}
+	$ [\hat{M}_i, \hat{\mathcal{H}}] = 0 $.
+\end{proposition}
+\begin{proof}
+	Ricordando che $ [\hat{L}_i,\hat{x}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{x}_k $ e $ [\hat{L}_i,\hat{p}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{p}_k $, oltre al fatto che $ [\hat{L}_i, \hat{r}] = [\hat{L}_i, \hat{p}] = 0 $ ($ \hat{p} \equiv \norm{\hat{\ve{p}}} $), dato che in generale $ [\{\hat{A},\hat{B}\},\hat{C}] = \{\hat{A},[\hat{B},\hat{C}]\} + \{\hat{B},[\hat{A},\hat{C}]\} $:
+	\begin{equation*}
+		\begin{split}
+			[\hat{M}_i,\hat{\mathcal{H}}]
+			&= \frac{1}{2} \sum_{j,k = 1}^{3} \epsilon_{ijk} [\{\hat{p}_j,\hat{L}_k\}, \hat{\mathcal{H}}] - \sum_{j = 1}^{3} \left[ \frac{\hat{x}_i}{r}, \hat{p}_j \hat{p}_j \right] = \frac{1}{2} \sum_{j,k = 1}^{3} \epsilon_{ijk} \{\hat{L}_k,[\hat{p}_j,\hat{\mathcal{H}}]\} - \sum_{j = 1}^{3} \left[ \frac{\hat{x}_i}{r}, \hat{p}_j\hat{p}_j \right] \\
+			&= \frac{1}{2} \sum_{j,k = 1}^{3} \epsilon_{ijk} \bigg\{ \hat{L}_k, \left[\hat{p}_j, - \frac{1}{r}\right] \bigg\} - \frac{1}{2} \sum_{j = 1}^{3} \left( \hat{p}_j \left[ \frac{\hat{x}_i}{r}, \hat{p}_j \right] + \left[ \frac{\hat{x}_i}{r}, \hat{p}_j \right] \hat{p}_j \right)
+		\end{split}
+	\end{equation*}
+	Dato $ \hat{L}_i \sum_{j,k = 1}^{3} \epsilon_{ijk} \hat{x}_j \hat{p}_k = \sum_{j,k = 1}^{3} \epsilon_{ijk} \left( \hat{p}_k \hat{x}_j + [\hat{x}_j,\hat{p}_k] \right) = \sum_{j,k = 1}^{3} \epsilon_{ijk} \left( \hat{p}_k \hat{x}_j + i\hbar \delta_{jk} \right) = \sum_{j,k = 1}^{3} \epsilon_{ijk} \hat{p}_k \hat{x}_j $ ed espandendo gli ultimi due commutatori sulla base delle coordinate:
+	\begin{equation*}
+		\begin{split}
+			[\hat{M}_i, \hat{\mathcal{H}}]
+			&= -\frac{i\hbar}{2} \sum_{j,k = 1}^{3} \epsilon_{ijk} \bigg\{ \hat{L}_k, \frac{\hat{x}_j}{r^3} \bigg\} - \frac{i\hbar}{2} \sum_{j = 1}^{3} \left( \hat{p}_j \left( \pa_j \frac{x_i}{r} \right) + \left( \pa_j \frac{x_i}{r} \right) \hat{p}_j \right) \\
+			&= -\frac{i\hbar}{2} \sum_{j,k,a,b = 1}^{3} \epsilon_{ijk} \epsilon_{kab} \left( \frac{\hat{x}_j}{r^3} \hat{x}_a \hat{p}_b + \hat{p}_b \hat{x}_a \frac{\hat{x}_j}{r^3} \right) - \frac{i\hbar}{2} \sum_{j = 1}^{3} \left( \hat{p}_j \left( \frac{\delta_{ij}}{r} - \frac{\hat{x}_i \hat{x}_j}{r^3} \right) + \left( \frac{\delta_{ij}}{r} - \frac{\hat{x}_i \hat{x}_j}{r^3} \right) \hat{p}_j \right) \\
+			&= - \frac{i\hbar}{2} \sum_{j,a,b = 1}^{3} \left( \delta_{ia} \delta_{jb} - \delta_{ib} \delta_{ja} \right) \left( \frac{\hat{x}_j}{r^3} \hat{x}_a \hat{p}_b + \hat{p}_b \hat{x}_a \frac{\hat{x}_j}{r^3} \right) - \frac{i\hbar}{2} \left( \hat{p}_i \frac{1}{r} - \frac{\hat{x}_i}{r^3} \hat{\ve{x}}\cdot\hat{\ve{p}} + \frac{1}{r} \hat{p}_i - \hat{\ve{p}}\cdot\hat{\ve{x}} \frac{\hat{x}_i}{r^3} \right) \\
+			&= - \frac{i\hbar}{2} \left( \frac{\hat{x}_i}{r^3} \hat{\ve{x}}\cdot\hat{\ve{p}} - \frac{1}{r} \hat{p}_i + \hat{\ve{p}}\cdot\hat{\ve{x}} \frac{\hat{x}_i}{r^3} - \hat{p}_i \frac{1}{r} \right) - \frac{i\hbar}{2} \left( \hat{p}_j \frac{1}{r} - \frac{\hat{x}_i}{r^3} \hat{\ve{x}}\cdot\hat{\ve{p}} + \frac{1}{r} \hat{p}_j - \hat{\ve{p}}\cdot\hat{\ve{x}} \frac{\hat{x}_i}{r^3} \right) = 0
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+Dato che la stessa discussione sulle costanti del moto classiche si applica al caso quantistico, ci sono due invarianti non-indipendenti, che anche in questo caso sono componenti del vettore LRL.
+
+\begin{proposition}
+	$ \hat{\ve{M}}\cdot\hat{\ve{L}} = \hat{\ve{L}}\cdot\hat{\ve{M}} = 0 $.
+\end{proposition}
+\begin{proof}
+	Date le identità $ \hat{L}_k \hat{p}_j = \hat{p}_j \hat{L}_k + i\hbar \sum_{a = 1}^{3} \epsilon_{kja} \hat{p}_a $ e $ \sum_{j,k = 1}^{3} \epsilon_{ijk} \epsilon_{kja} = - \sum_{j,k = 1}^{3} \epsilon_{ijk} \epsilon_{ajk} = -2\delta_{ia} $, si può riscrivere il vettore LRL come:
+	\begin{equation*}
+		\hat{M}_i = \sum_{j,k = 1}^{3} \epsilon_{ijk} \frac{\hat{p}_j \hat{L}_k + \hat{L}_k \hat{p}_j}{2} - \frac{\hat{x}_j}{r} = \sum_{j,k = 1}^{3} \epsilon_{ijk} \hat{p}_j \hat{L}_k + \frac{i\hbar}{2} \sum_{j,k,a = 1}^{3} \epsilon_{ijk} \epsilon_{kja} \hat{p}_a - \frac{\hat{x}_i}{r} = \sum_{j,k = 1}^{3} \epsilon_{ijk} \hat{p}_j \hat{L}_k - i\hbar \hat{p}_i - \frac{\hat{x}_i}{r}
+	\end{equation*}
+	Di conseguenza, ricordando che il simbolo di Levi-Civita estrae la parte antisimmetrica:
+	\begin{equation*}
+		\begin{split}
+			\hat{\ve{M}}\cdot\hat{\ve{L}}
+			&= \sum_{i = 1}^{3} \hat{M}_i \hat{L}_i = \sum_{i,j,k = 1}^{3} \epsilon_{ijk} \hat{p_j} \hat{L}_k \hat{L}_i - i\hbar \hat{\ve{p}} \cdot \hat{\ve{L}} - \frac{1}{r} \hat{\ve{x}} \cdot \hat{\ve{L}} = \sum_{i,j,k = 1}^{3} \epsilon_{ijk} \hat{p}_j \hat{L}_k \hat{L}_i \\
+			&= \frac{1}{2} \sum_{i,j,k = 1}^{3} \epsilon_{ijk} \hat{p}_j \left( [\hat{L}_k, \hat{L}_i] + \{\hat{L}_k, \hat{L}_i\} \right) = \frac{i\hbar}{2} \sum_{i,j,k,a = 1}^{3} \epsilon_{ijk} \epsilon_{kia} \hat{p}_j \hat{L}_a = \frac{i\hbar}{2} \sum_{j = 1}^{3} \hat{p}_j \hat{L}_j = \frac{i\hbar}{2} \hat{\ve{p}} \cdot \hat{\ve{L}} = 0
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}
+	$ \hat{M}^2 = \tens{I} + 2\hat{\mathcal{H}} (\hat{L}^2 + \hbar^2) $.
+\end{proposition}
+
+Si ritrovano quindi i consueti 5 integrali del moto.
+
+\begin{proposition}
+	$ [\hat{L}_i, \hat{M}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{M}_k $.
+\end{proposition}
+
+\begin{proposition}
+	$ [\hat{M}_i, \hat{M}_j] = -2i\hbar \hat{\mathcal{H}} \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k $.
+\end{proposition}
+
 
 
 
