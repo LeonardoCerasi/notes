@@ -559,19 +559,230 @@ Dato che la stessa discussione sulle costanti del moto classiche si applica al c
 	\end{equation*}
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{lrl-h-l}
 	$ \hat{M}^2 = \tens{I} + 2\hat{\mathcal{H}} (\hat{L}^2 + \hbar^2) $.
 \end{proposition}
 
 Si ritrovano quindi i consueti 5 integrali del moto.
 
-\begin{proposition}
+\begin{proposition}\label{comm-l-m}
 	$ [\hat{L}_i, \hat{M}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{M}_k $.
 \end{proposition}
+\begin{proof}
+	Ricordando che $ [\hat{L}_i, \hat{A}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{A}_k $, con $ \hat{A}_j = \hat{x}_j, \hat{p}_j, \hat{L}_j $
+\end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{comm-m-m}
 	$ [\hat{M}_i, \hat{M}_j] = -2i\hbar \hat{\mathcal{H}} \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k $.
 \end{proposition}
+\begin{proof}
+	Ricordando che $ [\hat{L}_i, \hat{A}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{A}_k $, con $ \hat{A}_j = \hat{x}_j, \hat{p}_j, \hat{L}_j $
+\end{proof}
+
+\subsection{Spettro}
+
+La Prop. \ref{lrl-h-l} lega lo spettro di $ \hat{\mathcal{H}} $ a quello di $ \hat{M}^2 $ e $ \hat{L}^2 $, ma non è ovvio stabilire a priori se questi siano diagonalizzabili simultaneamente per le Prop. \ref{comm-l-m}-\ref{comm-m-m}.\\
+Si supponga l'esistenza di autostati dell'energia tali che:
+\begin{equation}
+	\hat{\mathcal{H}} \ket{E} = E \ket{E}
+	\label{eq:3.55}
+\end{equation}
+Per questi si ha che $ [\hat{M}_i, \hat{M}_j] \ket{E} = -2E i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k $; dato che si cercano stati legati, dunque con $ E < 0 $, ciò suggerisce di definire dei nuovi operatori $ \virgolette{normalizzati} $:
+\begin{equation}
+	\hat{N}_i \defeq \frac{1}{\sqrt{-2E}} \hat{M}_i
+	\label{eq:3.56}
+\end{equation}
+
+\begin{proposition}
+	$ [\hat{L}_i, \hat{N}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{N}_k $.
+\end{proposition}
+\begin{proof}
+	Dalla Prop. \ref{comm-l-m}.
+\end{proof}
+
+\begin{proposition}
+	$ [\hat{N}_i, \hat{N}_j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{L}_k $.
+\end{proposition}
+\begin{proof}
+	Dalla Prop. \ref{comm-m-m}.
+\end{proof}
+
+Le relazioni di commutazione degli operatori $ \hat{L}_i $ e $ \hat{N}_i $ ricordano quelle dei generatori del gruppo di Lorentz \footnote{$ \SOn{3,1} $, sottogruppo del gruppo di Poincaré composto da tutte le isometrie dello spaziotempo di Minkowski che lasciano fissa l'origine.}, con i primi identificati con i generatori delle rotazioni e i secondi con quelli dei boost.
+
+\begin{proposition}\label{mod-n-l}
+	$ -\tens{I} = 2E (\hat{N}^2 + \hat{L}^2 + \hbar^2) $.
+\end{proposition}
+\begin{proof}
+	Dalla Prop. \ref{lrl-h-l}.
+\end{proof}
+
+È possibile riscrivere in forma nota le relazioni di commutazione definendo i 6 operatori:
+\begin{equation}
+	\hat{F}_{\pm}^i \defeq \frac{1}{2} (\hat{L}_i \pm \hat{N}_i)
+	\label{eq:3.57}
+\end{equation}
+
+\begin{proposition}
+	$ [\hat{F}_{\pm}^i, \hat{F}_{\pm}^j] = i\hbar \sum_{k = 1}^{3} \epsilon_{ijk} \hat{F}_{\pm}^k $.
+\end{proposition}
+\begin{proof}
+	$ [\hat{F}_{\pm}^i, \hat{F}_{\pm}^j] = \frac{1}{4} [\hat{L}_i \pm \hat{N}_i, \hat{L}_j \pm \hat{N}_j] = \frac{i\hbar}{4} \sum_{k = 1}^{3} \epsilon_{ijk} (\hat{L}_k + \hat{L}_k \pm \hat{N}_k \pm \hat{N}_k) $.
+\end{proof}
+
+\begin{proposition}
+	$ [\hat{F}_{\pm}^i, \hat{F}_{\mp}^i] = 0 $.
+\end{proposition}
+\begin{proof}
+	$ [\hat{F}_{\pm}^i, \hat{F}_{\mp}^j] = \frac{1}{4} [\hat{L}_i \pm \hat{N}_i, \hat{L}_j \mp \hat{N}_j] = \frac{i\hbar}{4} \sum_{k = 1}^{3} \epsilon_{ijk} (\hat{L}_k - \hat{L}_k \pm \hat{N}_k \mp \hat{N}_k) = 0 $.
+\end{proof}
+
+Si riconoscono le relazioni di commutazione tra due operatori di momento angolare indipendenti: i 6 operatori $ \hat{F}_{\pm}^i $ possono essere presi come invarianti del sistema, dunque le simmetrie del problema portano ad avere due operatori compatibili $ \hat{\ve{F}}_{\pm} $ le cui componenti commutano con l'Hamiltoniana. Un insieme completo di operatori diagonalizzabili simultaneamente all'Hamiltoniana è quindi $ \hat{F}_+^2 $, $ \hat{F}_-^2 $, $ \hat{F}_+^z $ ed $ \hat{F}_-^z $.\\
+Dato che $ \hat{\ve{F}}_{\pm} $ si comportano come operatori di momento angolare, si può affermare che la simmetria dell'Hamiltoniana \ref{eq:3.52} è data dal gruppo $ \On{3} \times \On{3} \cong \On{4} $, e da qui si capisce la somiglianza coi generatori del gruppo di Lorentz: $ \On{4} $ è il gruppo di tutte le isometrie di $ \R^4 $, ovvero quelle trasformazioni che lasciano invariata la forma quadratica $ x_1^2 + x_2^2 + x_3^2 + x_4^2 $, mentre $ \SOn{3,1} $ è il gruppo di tutte le isometrie di $ \R^{3,1} $, che lasciano invariata $ x_1^2 + x_2^2 + x_3^2 - x_0^2 $.
+
+\begin{proposition}\label{f-p-f-m}
+	$ \hat{F}_+^2 = \hat{F}_-^2 = \frac{1}{4} (\hat{L}^2 + \hat{N}^2) $.
+\end{proposition}
+\begin{proof}
+	Banale ricordando che $ \hat{\ve{M}} \cdot \hat{\ve{L}} = 0 $, dunque $ \hat{\ve{N}} \cdot \hat{\ve{L}} = 0 $.
+\end{proof}
+
+Questo conferma che soltanto 5 delle 6 costanti del moto trovate sono indipendenti.
+
+\begin{proposition}\label{f-spec}
+	$ -\tens{I} = 2E (4\hat{F}_{\pm}^2 + \hbar^2) $.
+\end{proposition}
+\begin{proof}
+	Dalle Prop. \ref{mod-n-l}-\ref{f-p-f-m}.
+\end{proof}
+
+La determinazione dello spettro d'energia è così ridotto alla determinazione dello spettro (identico) di due operatori momento angolare. Indicati con $ \ket{f,f_+^z,f_-^z} $ i loro comuni autostati:
+\begin{equation}
+	\hat{F}_{\pm}^2 \ket{f,f_+^z,f_-^z} = \hbar^2 f (f + 1) \ket{f,f_+^z,f_-^z}
+	\label{eq:3.58}
+\end{equation}
+\begin{equation}
+	\hat{F}_{\pm}^z \ket{f,f_+^z,f_-^z} = \hbar f_{\pm}^z \ket{f,f_+^z,f_-^z}
+	\label{eq:3.59}
+\end{equation}
+con la condizione $ -f \le f_{\pm}^z \le f $. Questi sono anche autostati dell'Hamiltoniana, data la simultanea diagonalizzabilità, e l'autovalore corrispondente a $ \ket{f,f_+^z,f_-^z} $ è dato dalla Prop. \ref{f-spec}:
+\begin{equation}
+	E_f = -\frac{1}{2\hbar^2} \frac{1}{(1 + 2f)^2}
+	\label{eq:3.60}
+\end{equation}
+È possibile definire il \textit{numero quantico principale} $ n \equiv 2f + 1 \in \N $, così da poter completamente determinare gli autostati con gli autovalori di $ \hat{\mathcal{H}} $, $ \hat{F}_+^z $ e $ \hat{F}_-^z $:
+\begin{equation}
+	\hat{\mathcal{H}} \ket{n,f_+^z,f_-^z} = E_n \ket{n,f_+^z,f_-^z}
+	\label{eq:3.61}
+\end{equation}
+Dall'Eq. \ref{eq:3.45} si può ripristinare la giusta dimensionalità dell'autovalore dell'energia:
+\begin{equation}
+	E_n = - \frac{m (Ze^2)^2}{2\hbar^2} \frac{1}{n^2}
+	\label{eq:3.62}
+\end{equation}
+
+\subsubsection{Degenerazione}
+
+Dato che tutti gli autostati $ \ket{n,f_+,f_-} $ a fisso $ n $ sono associati allo stesso autovalore di energia, la degenerazione è determinata dai valori possibili di $ f_+ $ ed $ f_- $ (si ricordi $ -f \le f_{pm} \le f $):
+\begin{equation}
+	d(n) = (2f + 1) (2f + 1) = n^2
+	\label{eq:3.63}
+\end{equation}
+È preferibile esprimere gli autostati su una base che diagonalizzi operatori con un'interpretazione fisica immediata. Dato che $ \hat{\ve{F}}_+ + \hat{\ve{F}}_- = \hat{\ve{L}} $, è possibile scrivere gli autostati di $ \hat{F}_{\pm} $, $ \hat{F}_+^z $ ed $ \hat{F}_-^z $ sulla base di $ \hat{F}_{\pm} $, $ \hat{L}^2 $ ed $ \hat{L}_z $ grazie ai coefficienti di Clebsch-Gordan:
+\begin{equation}
+	\ket{n,f_+^z,f_-^z} = \sum_{\ell \ge 1} \sum_{m = -\ell}^{\ell} \ket{n,\ell,m} \braket{n,\ell,m | n,f_+^z,f_-^z}
+	\label{eq:3.64}
+\end{equation}
+Dato che la condizione sulla somma di momenti angolari $ \hat{\ve{J}} = \hat{\ve{L}}_1 + \hat{\ve{L}}_2 $ è $ \abs{\ell_1 - \ell_2} \le j \le \ell_1 + \ell_2 $, poiché in questo caso $ f_+^z $ ed $ f_-^z $ variano entrambi tra $ -f $ ed $ f $ si ha che, fissato $ n $, $ \ell $ può variare tra $ 0 $ e $ 2f $:
+\begin{equation}
+	0 \le \ell \le n - 1
+	\label{eq:3.65}
+\end{equation}
+Si trova dunque la corretta degenerazione, data ora dai valori di $ m $:
+\begin{equation*}
+	d(n) = \sum_{\ell = 0}^{n - 1} (2\ell + 1) = (n - 1) n + n = n^2
+\end{equation*}
+
+\subsubsection{Autofunzioni sulla base delle coordinate}
+
+Le autofunzioni espresse sulla base delle coordinate possono essere scritte come:
+\begin{equation}
+	\braket{r,\vartheta,\varphi | n,\ell,m} = Y_{\ell,m}(\vartheta,\varphi) \phi_{n,\ell}(r)
+	\label{eq:3.66}
+\end{equation}
+Queste possono essere costruite anche come autofunzioni di $ \hat{\ve{F}}_{\pm} $. Lo stato fondamentale $ \ket{1,0,0} $ è caratterizzato da $ f = 0 $, dunque ha autovalore nullo per qualsiasi $ \hat{F}_{\pm}^i $; in particolare:
+\begin{equation}
+	(\hat{F}_+^i \pm \hat{F}_-^i) \ket{1,0,0} = 0
+	\label{eq:3.67}
+\end{equation}
+Per facilitare l'espressione sulla base delle coordiante:
+\begin{equation}
+	\hat{L}_i \ket{1,0,0} = 0
+	\label{eq:3.68}
+\end{equation}
+\begin{equation}
+	\hat{N}_i \ket{1,0,0} = 0
+	\label{eq:3.69}
+\end{equation}
+La prima è banale notando che $ \ell = 0 $, mentre la seconda può essere riscritta ricordando che $ \hat{N}_i $ è proporzionale a $ \hat{M}_i $:
+\begin{equation*}
+	\left[ \sum_{j,k = 1}^{3} \epsilon_{ijk} \hat{p}_j \hat{L}_k - i\hbar \hat{p}_i - \frac{\hat{x}_i}{r} \right] \ket{1,0,0} = 0
+\end{equation*}
+Dall'Eq. \ref{eq:3.68} si annulla il primo termine, dunque moltiplicando per $ \frac{1}{r} \hat{x}_i $ e sommando su $ i = 1,2,3 $ si ottiene:
+\begin{equation*}
+	\left[ i\hbar \frac{\hat{\ve{x}}}{r} \cdot \hat{\ve{p}} + 1 \right] \ket{1,0,0} = 0
+\end{equation*}
+Dalle Eq. \ref{eq:29}-\ref{eq:30} si ottiene quindi una ODE di primo grado:
+\begin{equation*}
+	\left[ \hbar^2 \frac{d}{dr} + 1 \right] \phi_{1,0}(r) = 0
+\end{equation*}
+La risoluzione è banale:
+\begin{equation*}
+	\phi_{1,0}(r) = \mathcal{N} e^{- r / \hbar^2}
+\end{equation*}
+Ricordando la misura d'integrazione $ r^2 dr $ per $ r \in [0,\infty) $, si ottiene la normalizzazione usando il fatto che $ \int_0^{\infty} dx\, x^n e^{-\sigma x} = n! \sigma^{-(n + 1)} $:
+\begin{equation*}
+	\phi_{1,0}(r) = \frac{2}{\hbar^3} e^{- r / \hbar^2}
+\end{equation*}
+L'armonica sferica è costante e determinata solo dalla normalizzazione su $ \mathbb{S}^2 $, ovvero $ Y_{0,0}(\vartheta,\varphi) = \frac{1}{\sqrt{4\pi}} $, dunque l'autofunzione dello stato fondamentale risulta essere:
+\begin{equation}
+	\psi_{1,0,0}(r,\vartheta,\vartheta) = \frac{1}{\sqrt{\pi}\hbar^3} e^{- r / \hbar^2}
+	\label{eq:3.70}
+\end{equation}
+Al netto del fattore $ \hbar^{-2} $, la dimensionalità dell'espressione si ritrova ricordando che il raggio è espresso in unità del raggio di Bohr, dunque bisogna porre $ r \mapsto (mZe^2) r $, così da ottenere:
+\begin{equation}
+	\psi_{1,0,0}(r,\vartheta,\varphi) = \frac{1}{\sqrt{\pi}} \frac{\left( m Z e^2 \right)^{2/3}}{\hbar^3} e^{ -\frac{mZe^2}{\hbar^2} r }
+	\label{eq:3.71}
+\end{equation}
+Per costruire gli stati eccitati sono possibili due metodi. Il primo consiste nel costruirli come autostati di $ \hat{F}_{\pm}^2 $ e $ \hat{F}_{\pm}^z $, passando poi alla base di $ \hat{L}^2 $ e $ \hat{L}_z $ tramite i coefficienti di Clebsch-Gordan. Il secondo invece richiede di definire degli opportuni operatori di creazione e distruzione generalizzati; in questo caso, l'operatore di distruzione risulta essere:
+\begin{equation}
+	\hat{d}_{\ell} \defeq i \hat{p}_r + \frac{\hbar \ell}{r} - \frac{1}{\hbar \ell}
+	\label{eq:3.72}
+\end{equation}
+e $ \hat{d}_{\ell}^{\dagger} $ l'operatore di creazione. Si dimostra infatti che:
+\begin{equation}
+	\hat{d}_{\ell + 1}^{\dagger} \ket{n,\ell,m} = \mathcal{N} \ket{n,\ell+1,m}
+	\label{eq:3.73}
+\end{equation}
+\begin{equation}
+	\hat{d}_{\ell} \ket{n,\ell,m} = \mathcal{N} \ket{n,\ell-1,m}
+	\label{eq:3.74}
+\end{equation}
+Per ogni $ n $, si ha $ \hat{d}_n^{\dagger}\ket{n,n-1,m} = 0 $ (mentre $ \hat{d}_0 $ non è proprio definito), dunque:
+\begin{equation*}
+	\left[ -\hbar \left( \frac{d}{dr} + \frac{1}{r} \right) + \frac{\hbar n}{r} - \frac{1}{\hbar n} \right] \phi_{n,n-1}(r) = 0
+	\quad \Rightarrow \quad
+	\frac{d\phi_{n,n-1}}{\phi_{n,n-1}} = (n-1) \frac{dr}{r} - \frac{dr}{n\hbar^2}
+\end{equation*}
+La soluzione è, a meno della normalizzazione:
+\begin{equation*}
+	\phi_{n,n-1}(r) = \mathcal{N} r^{n-1} e^{- \frac{r}{n\hbar^2}}
+\end{equation*}
+Le altre autofunzioni si trovano applicando $ \hat{d}_n $, $ \hat{d}_{n-1} $ e così via, ed in generale si ha:
+\begin{equation}
+	\phi_{n,\ell}(r) = \mathcal{N} L_{n,\ell}(r) e^{-kr}
+	\label{eq:3.75}
+\end{equation}
+dove $ L_{n,\ell}(r) $ è un polinomio di grado $ n - 1 $ (poiché $ \hat{d}_{\ell} $ non cambia il grado del polinomio), legato alla famiglia dei polinomi di Laguerre.
 
 
 
