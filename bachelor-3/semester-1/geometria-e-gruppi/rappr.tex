@@ -172,7 +172,7 @@ dove $ \rho_j $ è la restrizione di $ \rho $ su $ W_j $ sottospazio invariante 
 	\rho = \bigoplus_{j = 1}^{m} \rho
 	\label{eq:8.4}
 \end{equation}
-dove la somma diretta di rappresentazioni (su sottospazi disgiunti) è definita come:
+dove la \textit{somma diretta} di rappresentazioni (su sottospazi disgiunti) è definita come:
 \begin{equation}
 	(\rho_i \oplus \rho_j)_g (u + v) = \rho_i(g) u + \rho_j(g) v
 	\label{eq:8.5}
@@ -235,7 +235,7 @@ C'è una corrispondenza biunivoca tra proiettori e complementari. Solitamente, s
 	$ V = W \oplus W^{\perp} $.
 \end{propcorollary}
 
-\begin{theorem}[Maschke]
+\begin{theorem}[Maschke]\label{th-maschke}
 	Dato un gruppo finito $ G $ il cui ordine non è divisibile dalla caratteristica del campo, ogni rappresentazione di $ G $ è completamente riducibile.
 \end{theorem}
 \begin{proof}
@@ -746,6 +746,247 @@ Ricordando che $ \alpha_{\mu} = \braket{\chi,\chi_{\mu}} $:
 \end{equation*}
 Si trova dunque che $ \mathtt{V} = \mathtt{1}' \oplus \mathtt{2} $.
 
+\section{Prodotto diretto di rappresentazioni}
+
+\begin{definition}
+	Dato un gruppo $ G $, il \textit{prodotto diretto} di due sue rappresentazioni $ \rho_{\mu}, \rho_{\nu} $, indicato con $ \rho_{\mu \times \nu} \defeq \rho_{\mu} \otimes \rho_{\nu} $, è definito come:
+	\begin{equation}
+		[\rho_{\mu \times \nu}(g)]_{ai,bj} \defeq [\rho_{\mu}(g)]_{ab} [\rho_{\nu}(g)]_{ij}
+		\label{eq:8.29}
+	\end{equation}
+	con $ a,b = 1,\dots,n_{\mu} $ e $ i,j = 1,\dots,n_{\nu} $.
+\end{definition}
+
+\begin{proposition}
+	$ \rho_{\mu \times \nu} $ è una rappresentazione di $ G $.
+\end{proposition}
+\begin{proof}
+	Basta mostrare che è soddisfatta la legge moltiplicativa di gruppo:
+	\begin{equation*}
+		\begin{split}
+			\rho_{\mu \times \nu}(g) \rho_{\mu \times \nu}(h)
+			&= (\rho_{\mu}(g) \otimes \rho_{\nu}(g))(\rho_{\mu}(h) \otimes \rho_{\nu}(h)) \\
+			&= (\rho_{\mu}(g) \rho_{\mu}(h)) \otimes (\rho_{\nu}(g) \rho_{\nu}(h)) = \rho_{\mu \times \nu}(gh)
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+Il prodotto diretto di due rappresentazioni di grado $ n_{\mu} $ e $ n_{\nu} $ è una rappresentazione di grado $ n_{\mu} n_{\nu} $.
+
+\begin{proposition}
+	$ \chi_{\mu \times \nu}(c) = \chi_{\mu}(c) \chi_{\nu}(c) $.
+\end{proposition}
+\begin{proof}
+	$ \chi_{\mu \times \nu}(c) = \sum_{a = 1}^{n_{\mu}} \sum_{i = 1}^{n_{\nu}} [\rho_{\mu \times \nu}(c)]_{ai,ai} = \sum_{a = 1}^{n_{\mu}} \sum_{i = 1}^{n_{\nu}} [\rho_{\mu}(c)]_{aa} [\rho_{\nu}(c)]_{ii} = \chi_{\mu}(c) \chi_{\nu}(c) $.
+\end{proof}
+
+\begin{proposition}
+	Date due rappresentazioni irriducibili $ \rho_{\mu}, \rho_{\nu} $ di un gruppo $ G $, si ha:
+	\begin{equation}
+		\rho_{\mu} \otimes \rho_{\nu} = \bigoplus_{\sigma = 1}^{r} \alpha_{\sigma} \rho_{\sigma}
+		\label{eq:8.30}
+	\end{equation}
+	detta \textit{serie di Clebsch-Gordan}, dove i coefficienti sono dati da:
+	\begin{equation}
+		\alpha_{\sigma} = \braket{\chi_{\mu} \chi_{\nu}, \chi_{\sigma}}
+		\label{eq:8.31}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Banale ricordando l'Eq. \ref{eq:8.15}.
+\end{proof}
+
+Dunque, il prodotto diretto di due rappresentazioni irriducibile non è a priori irriducibile.
+
+\begin{example}
+	Considerando $ D_3 $, si introduce la notazione cristallografica $ \mathtt{1} \equiv \mathtt{A}_1 $, $ \mathtt{1}' \equiv \mathtt{A}_2 $ e $ \mathtt{2} \equiv \mathtt{E} $ (in generale, $ \mathtt{A} $ indica una rappresentazione irriducibile di grado 1 e $ \mathtt{E} $ una di grado 2). Si prenda $ \mathtt{E} \otimes \mathtt{E} $: dalla tavola dei caratteri si trova che il suo carattere è $ \chi = (4,1,0) $, dunque si possono calcolare i suoi coefficienti di Clebsch-Gordan dall'Eq. \ref{eq:8.31}:
+	\begin{equation*}
+		\alpha_{\mathtt{A}_1} = \frac{1}{6} (1 \cdot 4 \cdot 1 + 2 \cdot 1 \cdot 1 + 3 \cdot 0 \cdot 1) = 1
+	\end{equation*}
+	\begin{equation*}
+		\alpha_{\mathtt{A}_2} = \frac{1}{6} (1 \cdot 4 \cdot 1 + 2 \cdot 1 \cdot 1 + 3 \cdot 0 \cdot (-1)) = 1
+	\end{equation*}
+	\begin{equation*}
+		\alpha_{\mathtt{E}} = \frac{1}{6} (1 \cdot 4 \cdot 2 + 2 \cdot 1 \cdot (-1) + 3 \cdot 0 \cdot 0) = 1
+	\end{equation*}
+	Dunque si ha che per $ D_3 $:
+	\begin{equation*}
+		\mathtt{E} \otimes \mathtt{E} = \mathtt{A}_1 \oplus \mathtt{A}_2 \oplus \mathtt{E}
+	\end{equation*}
+\end{example}
+
+\section{Applicazioni fisiche}
+
+\subsection{Sistemi quantistici a più corpi}
+
+Si consideri un sistema quantistico composto da due elettroni, descritti dalle funzioni d'onda $ \psi_a(\ve{x}) $ e $ \phi_b(\ve{x}) $. Si supponga inoltre che questi elettroni godano della simmetria rispetto ad un gruppo di trasformazioni $ G $: ad esempio, per elettroni liberi questo potrebbe essere $ \SOn{3} $, mentre per elettroni in un solido il gruppo puntuale del reticolo cristallino.\\
+Ciascuna funzione d'onda trasforma sotto l'azione di un $ g \in G $ secondo una sua rappresentazione:
+\begin{equation*}
+	\psi'_a(\ve{x}) = [\rho_{\mu}(g)]_{ac} \psi_c(\ve{x})
+\end{equation*}
+\begin{equation*}
+	\phi'_b(\ve{x}) = [\rho_{\nu}(g)]_{bd} \phi_d(\ve{x})
+\end{equation*}
+La funzione d'onda del sistema è data dal loro prodotto $ \psi_{ab}(\ve{x}) \defeq \psi_a(\ve{x}) \phi_b(\ve{x}) $, dunque essa trasforma secondo il gruppo $ G \times G $:
+\begin{equation*}
+	\psi'_{ab}(\ve{x}) = [\rho_{\mu}(g)]_{ac} [\rho_{\nu}(g)]_{bd} \psi_c(\ve{x}) \phi_d(\ve{x}) = [\rho_{\mu \times \nu}(g)]_{ac,bd} \psi_{cd}(\ve{x})
+\end{equation*}
+che è proprio il prodotto diretto delle due rappresentazioni.\\
+Se in prima approssimazione si può ignorare l'interazione tra i due elettroni, allora ciascuno di essi può trasformare in maniera indipendente, ovvero il sistema è invariante per trasformazioni indipendenti $ g_1,g_2 \in G $:
+\begin{equation*}
+	[\rho_{\mu \times \nu}(g_1,g_2)]_{ac,bd} \defeq [\rho_{\mu}(g_1)]_{ac} [\rho_{\nu}(g_2)]_{bd}
+\end{equation*}
+In questo caso, se $ \rho_{\mu} $ e $ \rho_{\nu} $ sono rappresentazioni irriducibili di $ G $, anche $ \rho_{\mu \times \nu} $ lo è: se per assurdo così non fosse, esisterebbe un sottospazio proprio invariante per ogni $ g_1,g_2 \in G $, ma fissando $ g_2 = e $ ciò significa che $ \rho_{\mu} $ è riducibile, contrariamente all'ipotesi.\\
+Se invece si tiene conto dell'interazione tra gli elettroni, la rotazione deve essere la stessa, dunque si recupera l'usuale prodotto diretto di rappresentazioni, che in generale è riducibile.
+
+\subsection{Ferromagnetismo e ferroelettricità}
+
+Dato un reticolo cristallino con una certa simmetria, ovvero con un certo gruppo puntuale $ G $, la sua capacità di mantenere una magnetizzazione permanente $ \ve{M} $ o una polarizzazione permanente $ \ve{P} $ dipende da $ G $, ed in particolare è possibile solo se questi vettori sono invarianti rispetto alle trasformazioni di $ G $ (si noti che questo è il gruppo puntuale, non quello spaziale, poiché le traslazioni microscopiche del reticolo non sono rilevanti); ciò può essere interpretato come il fatto che le proprietà fisiche del cristallo non possono cambiare sotto trasformazioni che portano il cristallo in sé stesso.\\
+Essendo $ \ve{M} $ e $ \ve{P} $ vettori cartesiani, essi trasformano secondo la rappresentazione vettoriale $ \mathtt{V} $, ovvero:
+\begin{equation*}
+	\ve{M}' = \rho_{\mathtt{V}}(g) \ve{M}
+\end{equation*}
+Dunque, dato che la condizione per l'esistenza di $ \ve{M} $ e $ \ve{P} $ è $ \ve{M}' = \ve{M} $ e $ \ve{P}' = \ve{P} $, ciò significa che la rappresentazione di $ G $ deve contenere almeno una volta la rappresentazione banale $ \ve{A}_1 $: fisicamente, ciò corrisponde all'esistenza di almeno un asse fisso, lungo il quale possono puntare $ \ve{M} $ e $ \ve{P} $.\\
+Va inoltre notato che, essendo $ \ve{M} $ un vettore assiale e $ \ve{P} $ un vettore polare, sotto operatore parità $ \ve{M} $ rimane invariato mentre $ \ve{P} $ cambia di segno: se $ G $ contiene delle riflessioni, il reticolo può mantenere soltanto uno tra $ \ve{M} $ e $ \ve{P} $, non entrambi.\\
+Si consideri, per esempio, un reticolo con simmetria trigonale $ C_3 $: ricordando che per $ C_3 $ la rappresentazione vettoriale si decompone come $ \mathtt{V} = \mathtt{A}_1 \oplus \mathtt{A}_2 \oplus \mathtt{A}_3 $, si vede che è presente un asse invariante, fisicamente corrispondente all'asse $ z $.\\
+La simemtria $ C_3 $ è quella di un triangolo con lati direzionali, dunque distingue le direzioni $ +z $ e $ -z $: questa viene persa considerando invece come gruppo di simmetria $ D_3 $, a causa delle rotazioni diedre (riflessioni). Nel caso di $ D_3 $, infatti, si ha che $ \mathtt{V} = \mathtt{A}_2 \oplus \mathtt{E} $, che non contiene la rappresentazione banale, quindi non ci sono assi invarianti ed il reticolo non può mantenere né $ \ve{M} $ né $ \ve{P} $.
+
+\subsection{Tensore di conduttività}
+
+In un mezzo anisotropo come un solido cristallino, la relazione tra il campo elettrico $ \ve{E} $ e la densità di corrente $ \ve{j} $ è in generale di natura tensoriale:
+\begin{equation*}
+	\ve{j} = \underline{\sigma} \ve{E}
+\end{equation*}
+dove $ \underline{\sigma} $ è il tensore di conduttività. Sotto azione del gruppo di simmetria $ G $ del reticolo:
+\begin{equation*}
+	\ve{j}' = \underline{\sigma}' \ve{E}'
+	\quad \Rightarrow \quad
+	\rho_{\mathtt{V}}(g) \ve{j} = \underline{\sigma}' \rho_{\mathtt{V}}(g) \ve{E}
+	\quad \Rightarrow \quad
+	\underline{\sigma} = \rho_{\mathtt{V}}(g)^{-1} \underline{\sigma}' \rho_{\mathtt{V}}(g)
+\end{equation*}
+Dato che la rappresentazione $ \mathtt{V} $ è reale, dal teorema di Maschke (Th. \ref{th-maschke}) si ha che $ \rho_{\mathtt{V}}(g) $ è ortogonale:
+\begin{equation*}
+	\underline{\sigma}' = \rho_{\mathtt{V}}(g) \underline{\sigma} \rho_{\mathtt{V}}(g)^{\intercal}
+	\quad \Rightarrow \quad
+	\sigma'_{ij} = [\rho_{\mathtt{V}}(g)]_{ik} [\rho_{\mathtt{V}}(g)]_{jl} \sigma_{kl}
+\end{equation*}
+che è proprio la legge di trasformazione di un tensore di rango 2. Si vede quindi che $ \underline{\sigma} $ trasforma secondo $ \mathtt{V} \otimes \mathtt{V} $. Inoltre, si dimostra che l'invarianza per inversione temporale implica la simmetria del tensore di conduttività.\\
+In generale, un tensore di rango 2 può essere separato nelle sue parti simmetrica e antisimmetrica:
+\begin{equation}
+	T_{ij} = T_{\{ij\}} + T_{[ij]}
+	\label{eq:8.32}
+\end{equation}
+\begin{equation}
+	T_{\{ij\}} \defeq \frac{1}{2} \left( T_{ij} + T_{ji} \right)
+	\label{eq:8.33}
+\end{equation}
+\begin{equation}
+	T_{[ij]} \defeq \frac{1}{2} \left( T_{ij} - T_{ji} \right)
+	\label{eq:8.34}
+\end{equation}
+Le parti simmetrica e antisimmetrica formano due sottospazi invarianti, trasformando in maniera indipendente; le relative rappresentazioni simmetrica e antisimmetrica si trovano essere:
+\begin{equation}
+	[\rho_{\mathtt{V} \otimes \mathtt{V}}^{\pm}(g)]_{ij,kl} \equiv \frac{1}{2} \left( [\rho_{\mathtt{V}}(g)]_{ik} [\rho_{\mathtt{V}}(g)]_{jl} \pm [\rho_{\mathtt{V}}(g)]_{il} [\rho_{\mathtt{V}}(g)]_{jk} \right)
+	\label{eq:8.35}
+\end{equation}
+Contraendo con $ \delta_{ik} \delta_{jl} $ si trova la relazione per i caratteri:
+\begin{equation}
+	\chi_{\mathtt{V} \otimes \mathtt{V}}^{\pm}(c) = \frac{1}{2} \left[ (\chi_{\mathtt{V}}(g))^2 \pm \chi_{\mathtt{V}}(g^2) \right]
+	\label{eq:8.36}
+\end{equation}
+La condizione sul tensore di conduttività è quindi che esso sia invariante rispetto alla rappresentazione $ (\mathtt{V} \otimes \mathtt{V})^+ $ del gruppo di simmetria $ G $ del reticolo cristallino.\\
+Si consideri ad esempio la simmetria diedrale $ D_3 $:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|ccc}
+		$ D_3 $ & $ \{e\} $ & $ \{c,c^2\} $ & $ \{b,bc,bc^2\} $ \\
+		\hline
+		$ \mathtt{V} $ & $ 3 $ & $ 0 $ & $ -1 $ \\
+		$ \left( \mathtt{V} \otimes \mathtt{V} \right)^+ $ & $ 6 $ & $ 0 $ & $ 2 $ \\
+		$ \left( \mathtt{V} \otimes \mathtt{V} \right)^- $ & $ 3 $ & $ 0 $ & $ -1 $
+	\end{tabular}
+\end{table}
+Innanzitutto si può notare che $ \underline{\sigma}_{ij} = \sigma \delta_{ij} $ è invariante rispetto a tutte le rotazioni (equivale all'ortogonalità delle matrici di rotazione), mentre altre possibili espressioni per il tensore di conduttività vanno cercate studiando la decomposizione di $ \left( \mathtt{V} \otimes \mathtt{V} \right)^+ $, ed in particolare quante volte la rappresentazione banale $ \mathtt{A}_1 $ appare in essa:
+\begin{equation*}
+	\alpha_{\mathtt{A}_1} = \braket{\chi_{\mathtt{V} \otimes \mathtt{V}}^+, \chi_{\mathtt{A}_1}} = \frac{1}{6} (1 \cdot 6 \cdot 1 + 2 \cdot 0 \cdot 1 + 3 \cdot 2 \cdot 1) = 2
+\end{equation*}
+Dunque, oltre a quella già trovata, ci deve essere un'altra possibile espressione per $ \underline{\sigma} $: è facile vedere che questa è proporzionale a $ \delta_{i3} \delta_{j3} $, poiché la forma quadratica $ z^2 $ è invariante (oltre a $ x^2 + y^2 + z^2 $), quindi l'espressione più generale per il tensore di conduttività è:
+\begin{equation*}
+	\underline{\sigma} =
+	\begin{bmatrix}
+		a & 0 & 0 \\
+		0 & a & 0 \\
+		0 & 0 & b
+	\end{bmatrix}
+\end{equation*}
+Se invece si considera un reticolo a simmetria cubica $ T $, si trova che $ \alpha_{\mathtt{A}_1} = 1 $, dunque l'unica espressione possibile è $ \underline{\sigma}_{ij} = \sigma \delta_{ij} $, ovvero il reticolo è macroscopicamente isotropo.
+
+\subsection{Degenerazione energetica}
+
+In generale, il problema agli autovalori per l'energia di un sistema quantistico è:
+\begin{equation*}
+	\hat{\mathcal{H}} \ket{\psi_{\alpha}} = E_{\alpha} \ket{\psi_{\alpha}}
+\end{equation*}
+con $ E_{\alpha} \neq E_{\beta} $ per $ \alpha \neq \beta $. Nel caso in cui, però, esista un sottoinsieme di autofunzioni $ \{\ket{\psi_a}\}_{a = 1,\dots,d} $ associate allo stesso autovalore di energia $ E $, si parla di degenerazione $ d $-fold.\\
+Si supponga che il sistema goda della simmetria rispetto ad un gruppo $ G $, con trasformazioni date da una rappresentazione unitaria $ \hat{U}(g) $:
+\begin{equation*}
+	\hat{U}(g)^{\dagger} \hat{\mathcal{H}} \hat{U}(g) = \hat{\mathcal{H}}
+	\quad \Leftrightarrow \quad
+	[\hat{\mathcal{H}}, \hat{U}(g)] = 0
+\end{equation*}
+Da ciò si ottiene facilmente che:
+\begin{equation*}
+	\hat{\mathcal{H}} (\hat{U}(g) \ket{\psi_{\alpha}}) = \hat{U}(g) (\hat{\mathcal{H}} \ket{\psi_{\alpha}}) = E_{\alpha} \hat{U}(g) \ket{\psi_{\alpha}}
+\end{equation*}
+Dunque, gli stati trasformati $ \ket{\psi'_{\alpha}} = \hat{U}(g) \ket{\psi_{\alpha}} $ sono ancora associati allo stesso autovalore di energia: se lo stato appartiene ad un sottospazio degenere di dimensione $ d $ (degenerazione), si deve avere:
+\begin{equation*}
+	\ket{\psi'_a} = [U(g)]_{ab} \ket{\psi_b}
+\end{equation*}
+con $ a,b = 1,\dots,d $. Si trova così una rappresentazione irriducibile di $ G $ di grado $ d $ (degenerazione).\\
+In generale, vale che ad ogni sottospazio degenere di dimensione $ d $ è associata una rappresentazione irriducibile di grado $ d $ del gruppo di simmetria, e viceversa. Qualora fosse presente ulteriore degenerazione, si parla di $ \virgolette{degenerazione accidentale} $, che può essere dovuta ad un'altra simmetria $ \virgolette{nascosta} $.\\
+Si consideri ad esempio lo spettro energetico di una particella in un potenziale centrale: il gruppo di simmetria è $ \SOn{3} $, le cui rappresentazioni irriducibili sono etichettate dall'intero $ \ell $ (associato con la parte angolare della funzione d'onda) e sono di grado $ 2\ell + 1 $. Se il potenziale centrale è generico, allora i livelli energetici $ E_{n,\ell} $ saranno distinti; se invece si considera il potenziale coulombiano $ U(r) = - \frac{k}{r} $ si ha una degenerazione accidentale tale per cui $ E_{n,\ell} = E_n $, con $ 0 \le \ell \le n - 1 $ e degenerazione $ d = n^2 $ (dovuta anche a $ -\ell \le m \le \ell $): questa degenerazione è dovuta al fatto che l'Hamiltoniana coulombiana è invariante rispetto a $ \SOn{4} $.
+
+\subsubsection{Splitting}
+
+Data un'Hamiltoniana $ \mathcal{H}_0 $ invariante rispetto ad un gruppo di simmetria $ G $, si introduca un termine d'interazione $ V $ tale per cui l'Hamiltoniana $ \mathcal{H}_1 \equiv \mathcal{H}_0 + V $ risulti invariante solo per un sottogruppo $ H < G $. Di conseguenza, i livelli energetici di $ \mathcal{H}_1 $ sono descritti dalle rappresentazioni irriducibili di $ H $, dunque per studiare il loro splitting è necessario determinare come le rappresentazioni irriducibili di $ G $ si decompongono in rappresentazioni irriducibili di $ H $ (in generale, restringendo una rappresentazione irriducibile ad un sottogruppo proprio essa non rimane irriducibile, dato che possono esserci nuovi sottospazi $ H $-invarianti).\\
+Un esempio è il \textit{crystal field splitting}, ovvero lo splitting dei livelli energetici degeneri che avviene quanto un atomo libero viene posto all'interno di un reticolo cristallino: in questo caso, il gruppo di simmetria si riduce da $ \SOn{3} $ al gruppo puntuale del reticolo. Ad esempio, si consideri un reticolo a simmetria tetraedra $ T $ (cubica), le cui classi di coniugio sono $ E = \{e\} $, $ 3C_2 $, $ 4C_3 $ e $ 4C_3^2 $, dove $ kC_n $ (anche indicato con $ k\Z_n $) indica una classe di coniugio composta da $ k $ rotazioni di angolo $ \frac{2\pi}{n} $ (rotazioni attorno alle diagonali del cubo):
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|cccc}
+		$ T $ & $ E $ & $ 3C_2 $ & $ 4C_3 $ & $ 4C_3^2 $ \\
+		\hline
+		$ \mathtt{A} $ & $ 1 $ & $ 1 $ & $ 1 $ & $ 1 $ \\
+		$ \mathtt{E}_1 $ & $ 1 $ & $ 1 $ & $ \omega $ & $ \omega^2 $ \\
+		$ \mathtt{E}_2 $ & $ 1 $ & $ 1 $ & $ \omega^2 $ & $ \omega $ \\
+		$ \mathtt{T} $ & $ 3 $ & $ -1 $ & $ 0 $ & $ 0 $
+	\end{tabular}
+\end{table}
+dove $ \mathtt{E} = \mathtt{E}_1 \oplus \mathtt{E}_2 $. Si dimostra inoltre che il carattere della rappresentazione irriducibile $ \ell $ di $ \SOn{3} $ è:
+\begin{equation}
+	\chi_{\ell}(\theta) = \frac{\sin \left( \left( \ell + \frac{1}{2} \right) \theta \right)}{\sin \left( \frac{1}{2} \theta \right)} = 1 + 2 \sum_{k = 1}^{\ell} \cos k\theta
+	\label{eq:8.37}
+\end{equation}
+Per esempio, si può mostrare lo splitting dei livelli energetici di un orbitale $ d $ ($ \ell = 2 $): dato che in $ \mathtt{T} $ le rotazioni possibili sono solo con $ \theta = 0, \frac{2\pi}{3}, \pi, \frac{4\pi}{3} $, si ha $ \chi_2 = (5,1,-1,-1) $. Dalla tavola dei caratteri:
+\begin{equation*}
+	\alpha_{\mathtt{A}} = \frac{1}{12} (1 \cdot 5 \cdot 1 + 3 \cdot 1 \cdot 1 + 4 \cdot (-1) \cdot 1 + 4 \cdot (-1) \cdot 1) = 0
+\end{equation*}
+\begin{equation*}
+	\alpha_{\mathtt{E}_1} = \frac{1}{12} (1 \cdot 5 \cdot 1 + 3 \cdot 1 \cdot 1 + 4 \cdot (-1) \cdot \overline{\omega} + 4 \cdot (-1) \cdot \overline{\omega^2}) = 1
+\end{equation*}
+\begin{equation*}
+	\alpha_{\mathtt{E}_2} = \frac{1}{12} (1 \cdot 5 \cdot 1 + 3 \cdot 1 \cdot 1 + 4 \cdot (-1) \cdot \overline{\omega^2} + 4 \cdot (-1) \cdot \overline{\omega}) = 1
+\end{equation*}
+\begin{equation*}
+	\alpha_{\mathtt{A}} = \frac{1}{12} (1 \cdot 5 \cdot 3 + 3 \cdot 1 \cdot (-1) + 4 \cdot (-1) \cdot 0 + 4 \cdot (-1) \cdot 0) = 1
+\end{equation*}
+Si ottiene quindi:
+\begin{equation*}
+	\rho_2 = \mathtt{E}_1 \oplus \mathtt{E}_2 \oplus \mathtt{T}
+\end{equation*}
+Si vede che la simmetria $ \SOn{3} $ dell'orbitale $ d $, che ha una degenerazione 5-fold, viene rotta dal campo anisotropo del reticolo cristallino: la rappresentazione irriducibile in $ \SOn{3} $ di grado 5 viene decomposta in $ T $ in rappresentazioni irriducibili di grado 1, 1 e 3 (due non degeneri e una degenere 3-fold). Si può anche notare che, in realtà, la simmetria per inversione temporale fa sì che ci sia una degenerazione accidentale, per cui i livelli energetici associati ad $ \mathtt{E}_1 $ ed $ \mathtt{E}_2 $ hanno la stessa energia, e per questo possono essere considerati come un singolo livello energetico associato a $ \mathtt{E} $: questa degenerazione viene splittata in presenza di un campo magnetico.
 
 
 
