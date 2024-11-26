@@ -1,0 +1,272 @@
+\selectlanguage{italian}
+
+Il gruppo continuo di rotazione $ \SOn{n} $ è il gruppo che contiene tutte le rotazioni di angoli arbitrari in $ \R^n $: questo è un gruppo compatto, dato che i parametri angolari variano in $ [0,2\pi) $ (o $ [0,\pi) $).
+
+\section{Gruppo \texorpdfstring{$ \SOn{2} $}{TEXT}}
+
+È noto che $ \SOn{2} $ ha una rappresentazione vettoriale fedele $ \mathtt{R} $:
+\begin{equation}
+	\tens{R}(\phi) =
+	\begin{bmatrix}
+		\cos \phi & -\sin \phi \\
+		\sin \phi & \cos \phi
+	\end{bmatrix}
+	\label{eq:9.1}
+\end{equation}
+Se questa rappresentazione è considerata sul campo $ \R $ allora è irriducibile, mentre su $ \C $ è riducibile:
+\begin{equation*}
+	\begin{pmatrix}
+		z' \\ \overline{z}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		r' e^{i\theta'} \\ r' e^{-i\theta'}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		r e^{i (\theta + \phi)} \\ r e^{-i(\theta + \phi)}
+	\end{pmatrix}
+	\quad \Rightarrow \quad
+	\begin{pmatrix}
+		x' + i y' \\ x' - i y'
+	\end{pmatrix}
+	=
+	\begin{bmatrix}
+		e^{i\phi} & 0 \\ 0 & e^{-i\phi}
+	\end{bmatrix}
+	\begin{pmatrix}
+		x + i y \\ x - i y
+	\end{pmatrix}
+\end{equation*}
+In generale, in campo complesso $ \SOn{2} $ ha infinite rappresentazioni definite come:
+\begin{equation}
+	\rho_m(\phi) = e^{im\phi} \quad m\in\Z
+	\label{eq:9.2}
+\end{equation}
+Questo riflette il fatto che il gruppo è abeliano, dunque le sue rappresentazioni complesse irriducibili sono tutte di grado unitario. Inoltre, ciò rende evidente un importante risultato.
+
+\begin{proposition}
+	$ \SOn{2} \cong \Un{1} $.
+\end{proposition}
+\begin{proof}
+	L'omomorfismo è $ \varphi : \SOn{2} \rightarrow \Un{1} : \tens{R}(\phi) \mapsto e^{i\phi} $.
+\end{proof}
+
+Dato che $ \SOn{2} $ è un gruppo compatto con varietà associata $ \mathbb{S}^1 $, si può ridefinire il prodotto scalare in Eq. \ref{eq:8.11} sostituendo:
+\begin{equation*}
+	\frac{1}{\abs{G}} \sum_{g \in G} \quad \longrightarrow \quad \frac{1}{2\pi} \int_0^{2\pi} d\phi
+\end{equation*}
+Ciò dà la corretta ortogonalità tra caratteri:
+\begin{equation*}
+	\braket{\chi_n, \chi_m} = \int_0^{2\pi} \frac{d\phi}{2\pi} e^{in\phi} e^{-im\phi} = \delta_{nm}
+\end{equation*}
+È così possibile studiare la serie di Clebsch-Gordan per due rapppresentazioni irriducibili di $ \SOn{2} $:
+\begin{equation}
+	\braket{\chi_m \chi_n, \chi_k} = \delta_{m + n, k}
+	\quad \Rightarrow \quad
+	\rho_m \otimes \rho_n = \rho_{m + n}
+	\label{eq:9.3}
+\end{equation}
+Si trova inoltre la decomposizione di $ \mathtt{R} $:
+\begin{equation*}
+	\alpha_m = \braket{\chi_{\mathtt{R}}, \chi_m} = \int_0^{2\pi} \frac{d\phi}{2\pi} 2\cos \phi e^{im\phi} = \int_0^{2\pi} \frac{d\phi}{2\phi} \left( e^{i (m+1) \phi} + e^{i (m - 1)\phi} \right) = \delta_{m,-1} + \delta_{m,1}
+\end{equation*}
+Si ritrova dunque la decomposizione già nota:
+\begin{equation}
+	\mathtt{R} = \rho_1 \oplus \rho_{-1}
+	\label{eq:9.4}
+\end{equation}
+
+\subsection{Generatori infinitesimi}
+
+Per studiare l'algebra di Lie dei generatori di $ \SOn{2} $, si possono determinare quest'ultimi espandendo la generica rotazione attorno all'origine:
+\begin{equation}
+	\tens{R}(\phi) = \tens{I} - i \phi \tens{X} + o(\phi^2)
+	\quad \Rightarrow \quad
+	\tens{X} = i \frac{d \tens{R}(\phi)}{d\phi} \bigg\vert_{\phi = 0} =
+	\begin{bmatrix}
+		0 & -i \\ i & 0
+	\end{bmatrix}
+	\eqdef \sigma_2
+	\label{eq:9.5}
+\end{equation}
+Il fatto che il generatore infinitesimo di $ \SOn{2} $ sia hermitiano (in particolare, una matrice di Pauli) deriva dalla condizione di ortogonalità:
+\begin{equation*}
+	\tens{I} = \tens{R}(\phi)^{\dagger} \tens{R}(\phi) = \left( \tens{I} + i \phi \tens{X}^{\dagger} \right) \left( \tens{I} - i \phi \tens{X} \right) = \tens{I} - i \phi \left( \tens{X} - \tens{X}^{\dagger} \right) + o(\phi^2)
+	\quad \Rightarrow \quad
+	\tens{X}^{\dagger} = \tens{X}
+\end{equation*}
+Inoltre, dal fatto che le matrici di rotazione hanno determinante unitario deriva che il generatore infinitesimo deve avere traccia nulla.
+
+\begin{proposition}
+	Per le rotazioni proprie (continuamente connesse all'identità, dunque senza riflessioni) vale che:
+	\begin{equation}
+		\tens{R}(\phi) = \exp \left( - i \phi \tens{X} \right)
+		\label{eq:9.6}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Ricordando che $ \sigma_2^2 = \tens{I} $:
+	\begin{equation*}
+		\exp (-i \phi \tens{X}) = \sum_{k = 0}^{\infty} \frac{(-i \phi)^k}{k!} \tens{X}^k = \tens{I} \cos \phi -i \tens{X} \sin \phi = \tens{R}(\phi)
+	\end{equation*}
+\end{proof}
+
+Per una rappresentazione complessa irriducibile $ \rho_m $, invece, il generatore è banale: $ \tens{X}_m = -m $.
+
+\subsubsection{Meccanica quantistica}
+
+Nel contesto della meccanica quantistica, il generatore infinitesimo è un operatore $ \hat{X} $ che agisce sulla funzione d'onda $ \psi(\ve{x}) $. Si noti che a seguito di una rotazione, la funzione d'onda ruotata deve continuare ad avere lo stesso valore nel punto ruotato: $ \psi'(\ve{x}') = \psi(\ve{x}) $. Di conseguenza, una rotazione $ \tens{R} $ definisce l'operatore unitario di trasformazione della funzione d'onda $ \hat{U}_{\tens{R}} $ come:
+\begin{equation}
+	\hat{U}_{\tens{R}} \psi(\ve{x}) = \psi(\tens{R}^{-1} \ve{x})
+	\label{eq:9.7}
+\end{equation}
+Assumendo per semplicità simmetria azimuthale ed espandendo attorno all'origine:
+\begin{equation*}
+	(1 - i \phi \hat{X} + o(\phi^2)) \psi(r, \theta) = \psi(r, \theta - \phi)
+	\quad \Rightarrow \quad
+	i \hat{X} = \frac{\pa}{\pa \theta}
+\end{equation*}
+Scalando $ \hat{X} $ di un fattore $ \hbar $, si recupera l'usuale generatore del momento angolare lungo $ z $:
+\begin{equation}
+	\hat{J}_z = -i\hbar \frac{\pa}{\pa \theta}
+	\label{eq:9.8}
+\end{equation}
+Le rappresentazioni irriducibili $ \rho_m $ di $ \SOn{2} $ avranno delle autofunzioni di base $ u(\theta) = e^{im\theta} $ che soddisfano $ \hat{X} u_m = m u_m $, dunque si ricava l'equazione agli autovalori:
+\begin{equation}
+	\hat{J}_z u_m = \hbar m u_m
+	\label{eq:9.9}
+\end{equation}
+
+\section{Gruppo \texorpdfstring{$ \SOn{3} $}{TEXT}}
+
+Le rotazioni in $ \SOn{2} $ sono un caso particolare delle rotazioni in $ \SOn{3} $, in particolare sono tutte e sole le rotazioni nel piano ortogonale a $ \ve{n} = (0,0,1) $. In $ \SOn{3} $, le rotazioni attorno all'asse $ z $ sono scritte come:
+\begin{equation*}
+	\tens{R}_3(\phi) =
+	\begin{bmatrix}
+		\cos \phi & -\sin \phi & 0 \\
+		\sin \phi & \cos \phi & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}
+\end{equation*}
+Si trova quindi il generatore corrispondente $ [\tens{X}_3]_{ij} = -i \epsilon_{ij3} $. Per una rotazione attorno all'asse $ k = 1,2,3 $:
+\begin{equation}
+	[\tens{X}_k]_{ij} = -i \epsilon_{ijk}
+	\label{eq:9.10}
+\end{equation}
+Si mostra dunque che:
+\begin{equation*}
+	\tens{R}_1(\phi) =
+	\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & \cos \phi & -\sin \phi \\
+		0 & \sin \phi & \cos \phi
+	\end{bmatrix}
+	\quad
+	\tens{R}_1(\phi) =
+	\begin{bmatrix}
+		\cos \phi & 0 & \sin \phi \\
+		0 & 1 & 0 \\
+		-\sin \phi & 0 & \cos \phi
+	\end{bmatrix}
+	\quad
+	\tens{R}_3(\phi) =
+	\begin{bmatrix}
+		\cos \phi & -\sin \phi & 0 \\
+		\sin \phi & \cos \phi & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+	\tens{X}_1 =
+	\begin{bmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & -i \\
+		0 & i & 0
+	\end{bmatrix}
+	\quad
+	\tens{X}_2 =
+	\begin{bmatrix}
+		0 & 0 & i \\
+		0 & 0 & 0 \\
+		-i & 0 & 0
+	\end{bmatrix}
+	\quad
+	\tens{X}_3 =
+	\begin{bmatrix}
+		0 & -i & 0 \\
+		i & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}
+\end{equation*}
+In maniera equivalente, è possibile studiare fisicamente come agisce la rotazione; in generale, per una rotazione infinitesima attorno ad un versore $ \ve{n} $ si ha:
+\begin{equation}
+	\delta \ve{r} = (\ve{n} \times \ve{r}) \phi
+	\label{eq:9.11}
+\end{equation}
+Per determinare il generico elemento della matrice di rotazione:
+\begin{equation*}
+	r'_i = [\ve{r} + (\ve{n} \times \ve{r}) \phi]_i = r_i + \phi \sum_{j,k = 1}^{3} \epsilon_{ijk} n_j r_k = r_i - \phi \sum_{j,k = 1}^{3} \epsilon_{ijk} n_k r_j = \sum_{j = 1}^{3} \left[ \delta_{ij} - \phi \sum_{k = 1}^{3} \epsilon_{ijk} n_k \right] r_j
+\end{equation*}
+Ricordando che $ r_i = \sum_{j = 1}^{3} [\tens{R}_{\ve{n}}(\phi)]_{ij} r_j $, si trova quindi:
+\begin{equation}
+	[\tens{R}_{\ve{n}}(\phi)]_{ij} = \delta_{ij} - \phi \sum_{k = 1}^{3} \epsilon_{ijk} n_k
+	\label{eq:9.12}
+\end{equation}
+Dall'Eq. \ref{eq:9.5} si ha $ [\tens{R}_{\ve{n}}(\phi)]_{ij} = \delta_{ij} - i \phi [\tens{X}_{\ve{n}}]_{ij} + o(\phi^2) $, dunque si trova il generatore:
+\begin{equation}
+	[\tens{X}_{\ve{n}}]_{ij} = -i \sum_{k = 1}^{3} \epsilon_{ijk} n_k
+	\label{eq:9.13}
+\end{equation}
+Data l'Eq. \ref{eq:9.10}, definendo il vettore di matrici $ \ve{X} \equiv (\tens{X}_1, \tens{X}_2, \tens{X}_3) $ si ha:
+\begin{equation}
+	\tens{X}_{\ve{n}} = \ve{X} \cdot \ve{n}
+	\label{eq:9.14}
+\end{equation}
+Questo generico operatore è hermitiano e traceless, così che la matrice di rotazione sia ortogonale e con determinante unitario. Per rotazioni di angolo arbitrario si ha quindi:
+\begin{equation}
+	\tens{R}_{\ve{n}}(\phi) = \exp \left( -i \ve{n} \cdot \ve{X} \phi \right)
+	\label{eq:9.15}
+\end{equation}
+
+\subsection{Relazioni di commutazione}
+
+L'algebra di Lie di $ \SOn{3} $ è  determinata dalle relazioni di commutazione tra i suoi generatori.
+
+\begin{proposition}\label{so3-comm}
+	$ [\tens{X}_i, \tens{X}_j] = i \sum_{k = 1}^{3} \epsilon_{ijk} \tens{X}_k $.
+\end{proposition}
+\begin{proof}
+	Calcoli.
+\end{proof}
+
+Le relazioni di commutazione trovate per via algebrica possono essere ricavate anche fisicamente, studiando come si compongono le rotazioni infinitesime. Ruotando l'asse di rotazione secondo la generica rotazione $ \ve{n}' = \tens{S}(\theta) \ve{n} $ si trova:
+\begin{equation}
+	\tens{R}_{\ve{n}'}(\phi) = \tens{S}(\theta) \tens{R}_{\ve{n}}(\phi) \tens{S}(\theta)^{-1}
+	\label{eq:9.16}
+\end{equation}
+Prendendo ad esempio $ \ve{n} = (1,0,0) $ (asse $ x $) e ruotandolo attorno all'asse $ z $ di un angolo $ \theta $ si ha $ \ve{n}' = (\cos \theta, \sin \theta, 0) $, quindi, essendo il generatore di $ \tens{S}(\theta) $ in questo caso $ \tens{X}_3 $:
+\begin{equation*}
+	\tens{R}_{\ve{n}'} = e^{-i \tens{X}_3 \theta} e^{-i \tens{X}_1 \phi} e^{i \tens{X}_3 \theta} = e^{-i \ve{n}' \cdot \ve{X} \phi} = e^{-i (\tens{X}_1 \cos \theta + \tens{X}_2 \sin \theta) \phi}
+\end{equation*}
+Espandendo al prim'ordine in $ \phi $:
+\begin{equation*}
+	e^{-i \tens{X}_3 \theta} (\tens{I} - i \tens{X}_1 \phi) e^{i \tens{X}_3 \theta} = \tens{I} - i (\tens{X}_1 \cos \theta + \tens{X}_2 \sin \theta) \phi
+	\quad \Rightarrow \quad
+	e^{-i \tens{X}_3 \theta} \tens{X}_1 e^{i \tens{X}_3 \theta} = \tens{X}_1 \cos \theta + \tens{X}_2 \sin \theta
+\end{equation*}
+Derivando entrambi i lati in $ \theta = 0 $ s trova:
+\begin{equation*}
+	-i [\tens{X}_3, \tens{X}_1] = \tens{X}_2
+\end{equation*}
+che è proprio quanto espresso dalla Prop. \ref{so3-comm}.
+
+
+
+
+
+
+
+
+
+
