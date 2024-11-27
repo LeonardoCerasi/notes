@@ -261,6 +261,167 @@ Derivando entrambi i lati in $ \theta = 0 $ s trova:
 \end{equation*}
 che è proprio quanto espresso dalla Prop. \ref{so3-comm}.
 
+\subsection{Rappresentazioni}
+
+Dall'Eq. \ref{eq:9.16} si vede che le classi di coniugio di $ \SOn{3} $ contengono rotazioni dello stesso angolo attorno ad assi diversi, dunque possono essere etichettate da esso.\\
+Nella rappresentazione tridimensionale $ \mathtt{V} $, si trova (basti guardare $ \tens{R}_1, \tens{R}_2, \tens{R}_3 $):
+\begin{equation}
+	\chi_{\mathtt{V}}(\phi) = 1 + 2 \cos \phi
+	\label{eq:9.17}
+\end{equation}
+Data l'Eq. \ref{eq:9.15}, il problema di trovare rappresentazioni irriducibili del gruppo si riduce al cercare rappresentazioni irriducibili della sua algebra, ovvero dei suoi generatori.\\
+Come già notato, i generatori di $ \SOn{3} $ possono essere identificati con gli operatori del momento angolare in meccanica quantistica (a meno di un fattore $ \hbar $), i quali soddisfano la stessa relazione di commutazione; infatti, dall'Eq. \ref{eq:9.11}:
+\begin{equation*}
+	\psi'(\ve{x}) = \psi(\tens{R}_{\ve{n}}^{-1} \ve{x}) = \psi(\ve{x} - \delta\ve{x}) = \psi(\ve{x} - \phi \ve{n} \times \ve{x}) = \left( 1 - \phi (\ve{n} \times \ve{x}) \cdot \nabla \right) \psi(\ve{x}) = \left( 1 - \frac{i}{\hbar} \phi \ve{n} \cdot \hat{\ve{J}} \right) \psi(\ve{x})
+\end{equation*}
+Per trovare le rappresentazioni irriducibili di $ \SOn{3} $ è quindi possibile diagonalizzare tali operatori: il grado della rappresentazione sarà dato dal numero di autovalori così trovati.
+Si nota che gli $ \hat{J}_k $ non sono compatibili (non commutano), dunque si definiscono i seguenti operatori:
+\begin{equation}
+	\hat{J}_{\pm} \defeq \hat{J}_x \pm i \hat{J}_y
+	\label{eq:9.18}
+\end{equation}
+
+\begin{proposition}
+	$ [\hat{J}_{\pm}, \hat{J}^2] = 0 $.
+\end{proposition}
+\begin{proposition}
+	$ [\hat{J}_z, \hat{J}_{\pm}] = \pm \hbar \hat{J}_{\pm} $.
+\end{proposition}
+
+È quindi possibile definire una base $ \ket{\beta,m} $ tale per cui:
+\begin{equation}
+	\hat{J}^2 \ket{\beta,m} = \beta^2 \hbar^2 \ket{\beta,m}
+	\label{eq:9.19}
+\end{equation}
+\begin{equation}
+	\hat{J}_z \ket{\beta,m} = m \hbar \ket{\beta,m}
+	\label{eq:9.20}
+\end{equation}
+Gli operatori $ \hat{J}_{\pm} $ possono essere interpretati come operatori di scala:
+\begin{equation*}
+	\hat{J}_z \hat{J}_{\pm} \ket{\beta,m} = \left( \hat{J}_{\pm} \hat{J}_z + [\hat{J}_z, \hat{J}_{pm}] \right) \ket{\beta,m} = \left( \hat{J}_{\pm} m\hbar \pm \hbar \hat{J}_{\pm} \right) \ket{\beta,m} = (m \pm 1) \hbar \hat{J}_{\pm} \ket{\beta,m}
+\end{equation*}
+Si deve dunque avere $ \hat{J}_{\pm} \ket{\beta,m} \propto \ket{\beta,m \pm 1} $. Si dimostra anche che la ladder così creata è limitata:
+\begin{equation*}
+	\beta^2 \hbar^2 = \braket{\beta,m | \hat{J}^2 | \beta,m} = \braket{\beta,m | ( \hat{J}_x^2 + \hat{J}_y^2 + m^2 \hbar^2 ) | \beta,m} \ge m^2 \hbar^2
+\end{equation*}
+dove l'ultimo passaggio è giustificato dal fatto che $ \braket{\beta,m | (\hat{J}_x^2 + \hat{J}_y^2) | \beta,m} \ge 0 $, essendo hermitiani; si ha quindi $ m^2 \le \beta^2 $. Si deve avere $ \exists j : \hat{J}_+ \ket{\beta,j} = 0 $, dunque:
+\begin{equation*}
+	\begin{split}
+		\beta^2 \hbar^2 \ket{\beta,j}
+		&= \hat{J}^2 \ket{\beta,j} = \left( (\hat{J}_x - i \hat{J}_y) (\hat{J}_x + i \hat{J}_y) - i [\hat{J}_x,\hat{J}_y] + \hat{J}_z^2 \right) \ket{\beta,j} \\
+		&= \left( \hat{J}_- \hat{J}_+ + \hat{J}_z (\hat{J}_z + \hbar) \right) \ket{\beta,j} = j\hbar (j\hbar + \hbar) \ket{\beta,j}
+	\end{split}
+\end{equation*}
+Si trova quindi $ \beta^2 = j (j + 1) $. Per trovare lo stato bottom, si scrive alternativamente:
+\begin{equation*}
+	\beta^2 \hbar^2 \ket{\beta,j} = \hat{J}^2 \ket{\beta,m} = \left( \hat{J}_+ \hat{J}_- + \hat{J}_z (\hat{J}_z - \hbar) \right) \ket{\beta,m} = j\hbar (j\hbar - \hbar) \ket{\beta,j}
+\end{equation*}
+L'equazione $ j(j + 1) = m(m - 1) $ ha come soluzioni $ m = -j, j+1 $, ma la seconda non ha senso poiché lo stato top è $ m = j $, dunque si trova il vincolo completo $ -j \le m \le j $.\\
+È risolto dunque il problema del grado delle rappresentazioni irriducibili di $ \SOn{3} $: distinguendole in base al valore di $ j $, esse hanno grado $ 2j + 1 $. Si deve avere necessariamente $ 2j + 1 \in \N $, dunque $ j $ deve essere intero o semi-intero.
+Per trovare le costanti di scala:
+\begin{equation*}
+	\norm{ \hat{J}_{\pm} \ket{j,m} }^2 = \braket{j,m | \hat{J}_{\mp} \hat{J}_{\pm} | j,m} \braket{j,m | \left( \hat{J}^2 - \hat{J}_z (\hat{J}_z \pm \hbar) \right) | j,m} = \left( (j (j + 1) - m (m \pm 1) \right) \hbar^2
+\end{equation*}
+Prendendo convenzionalmente la soluzione positiva, si trova:
+\begin{equation}
+	\hat{J}_{\pm} \ket{j,m} = \hbar \sqrt{(j \mp m) (j \pm m + 1)} \ket{j, m \pm 1}
+	\label{eq:9.21}
+\end{equation}
+Risulta dunque evidente il vincolo $ -j \le m \le j $. Gli elementi di matrice degli operatori $ \hat{J}_{\pm}, \hat{J}_z $ (matrici quadrate di lato $ 2j + 1 $):
+\begin{equation}
+	\braket{j,m' | \hat{J}_z | j,m} = \hbar m \delta_{m',m}
+	\label{eq:9.22}
+\end{equation}
+\begin{equation}
+	\braket{j,m' | \hat{J}_{\pm} | j,m} = \hbar \sqrt{(j \mp m) (j \pm m + 1)} \delta_{m',m \pm 1}
+	\label{eq:9.23}
+\end{equation}
+Queste matrici diagonali e quasi-diagonali forniscono le rappresentazioni irriducibili (indicizzate da $ j $) di $ \SOn{3} \cong \SUn{2} $.
+
+\begin{example}
+	Per la rappresentazione $ j = 1 $ si ha:
+	\begin{equation*}
+		J_z = \hbar
+		\begin{bmatrix}
+			-1 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 1
+		\end{bmatrix}
+		\quad
+		J_+ = \sqrt{2} \hbar
+		\begin{bmatrix}
+			0 & 0 & 0 \\
+			1 & 0 & 0 \\
+			0 & 1 & 0
+		\end{bmatrix}
+		\quad
+		J_- = \sqrt{2} \hbar
+		\begin{bmatrix}
+			0 & 1 & 0 \\
+			0 & 0 & 1 \\
+			0 & 0 & 0
+		\end{bmatrix}
+	\end{equation*}
+	Queste matrici sono analoghe a quelle trovate per la rappresentazione $ \mathtt{V} $ di $ \SOn{3} $, con la differenza che non sono espresse nella base cartesiana $ (x,y,z) $ ma in quella sferica $ (z,-\frac{1}{\sqrt{2}}(x + iy), \frac{1}{\sqrt{2}} (x - iy)) $.
+\end{example}
+
+\subsubsection{Caratteri}
+
+È possibile calcolare i caratteri per la rappresentazione $ \rho_j $ di $ \SOn{3} $ ricordando che le classi di coniugio distinguono solo il valore dell'angolo e non l'asse di rotazione, dunque è possibile limitare il calcolo alle sole rotazioni attorno all'asse $ z $:
+\begin{equation*}
+	\tens{R}_3(\phi) = e^{-i \tens{X}_3 \phi} = e^{- \frac{i}{\hbar} J_z \phi} = \diag \left( e^{-ij\phi}, e^{-i (j - 1) \phi}, \dots, e^{i (j - 1) \phi}, e^{i j \phi} \right)
+\end{equation*}
+Si ha quindi:
+\begin{equation*}
+	\chi_j(\phi) = \sum_{m = -j}^{j} e^{-im\phi} = e^{-ij\phi} \frac{1 - e^{i (2j + 1) \phi}}{1 - e^{i \phi}} = \frac{e^{-i (j + 1/2) \phi} - e^{i (j + 1/2) \phi}}{e^{-i \phi / 2} - e^{i \phi / 2}}
+\end{equation*}
+ovvero:
+\begin{equation}
+	\chi_j(\phi) = \frac{\sin \left( (j + \frac{1}{2}) \phi \right)}{\sin \left( \frac{1}{2} \phi \right)}
+	\label{eq:9.24}
+\end{equation}
+Nel caso in cui $ j \in \N $, dalla serie esponenziale si ottiene (le parti immaginarie si semplificano):
+\begin{equation}
+	\chi_j(\phi) = 1 + 2 \sum_{k = 1}^{j} \cos k \phi
+	\label{eq:9.25}
+\end{equation}
+Nel caso in cui $ j = n + \frac{1}{2} $ con $ n \in \N $, invece:
+\begin{equation}
+	\chi_j(\phi) = 2 \sum_{k = 0}^{n} \cos \left( (k + \tfrac{1}{2}) \phi \right)
+	\label{eq:9.26}
+\end{equation}
+Essendo $ \SOn{3} $ compatto, è possibile definire un'appropriata misura $ d\mu(g) $ per poter implementare i risultati della Sec. \ref{sec-char}; in particolare, si deve avere $ \int d\mu(g) = 1 $ per normalizzazione e $ \int d\mu(g) = \int d\mu(g') \,\forall g,g' \in G $ per invarianza di gruppo. Per ottenere la corretta ortogonalità dei caratteri, si definisce la misura:
+\begin{equation*}
+	\frac{1}{\abs{G}} \sum_{g \in G} \qquad \longrightarrow \qquad \int_0^{2\pi} \frac{d\phi}{2\pi} \left( 1 - \cos \phi \right)
+\end{equation*}
+Infatti:
+\begin{equation*}
+	\begin{split}
+		\braket{\chi_j, \chi_{\ell}}
+		&= \frac{1}{2\pi} \int_0^{2\pi} d\phi\, 2\sin^2 \left( \tfrac{1}{2} \phi \right) \frac{\sin \left( (j + \frac{1}{2}) \phi \right)}{\sin \frac{1}{2} \phi} \frac{\sin \left( (\ell + \frac{1}{2}) \phi \right)}{\sin \frac{1}{2} \phi} \\
+		&= \frac{1}{2\pi} \int_0^{2\pi} d\phi \left[ \cos \left( (j - \ell) \phi \right) - \cos \left( (j + \ell + 1) \phi \right) \right] = \delta_{j\ell}
+	\end{split}
+\end{equation*}
+
+\subsubsection{Addizione del momento angolare}
+
+Se si considera un sistema quantistico di due particelle, nel caso non-interagente gli autostati dell'Hamiltoniana possono essere scritti come prodotto diretto $ \ket{j_1,m_1} \otimes \ket{j_2,m_2} $ e la rappresentazione del gruppo di rotazione risulta dunque irriducibile.\\
+Se viene inserito un termine d'interazione nell'Hamiltoniana (ad esempio accoppiamento spin-orbita $ \mathcal{H}_{\text{i}} \sim \hat{\ve{L}} \cdot \hat{\ve{S}} $), l'addizione dei momenti angolari non è più così banale: infatti, l'Hamiltoniana non sarà più indipendente sotto rotazioni indipendenti, ma soltanto sotto rotazioni simultanee, dunque è necessario riscrivere il prodotto diretto $ \ket{j_1,m_1} \otimes \ket{j_2,m_2} $ come combinazione lineare di autostati di $ \hat{J}^2 $ e $ \hat{J}_z $, con $ \hat{\ve{J}} \equiv \hat{\ve{J}}_1 + \hat{\ve{J}}_2 $ (propriamente $ \hat{\ve{J}} = \hat{\ve{J}}_1 \otimes \tens{I}_2 + \tens{I}_1 \otimes \hat{\ve{J}}_2 $), così da rispettare l'invarianza ridotta. Si hanno quindi due basi distinte: la base disaccoppiata $ \ket{j_1,m_1 ; j_2,m_2} $ e quella accoppiata $ \ket{j_1,j_2 ; j,m} $.\\
+Nel caso della base disaccoppiata si ha lo stato top $ \ket{j_1, j_1 ; j_2, j_2} $, per il quale si ha dunque:
+\begin{equation*}
+	\hat{J}_z \ket{j_1,j_1 ; j_2,j_2} = (j_1 + j_2) \hbar \ket{j_1,j_1 ; j_2,j_2}
+	\qquad
+	\hat{J}_{1,+} \ket{j_1,j_1 ; j_2,j_2} = 0
+	\qquad
+	\hat{J}_{2,+} \ket{j_1,j_1 ; j_2,j_2} = 0
+\end{equation*}
+Dato che $ \hat{J}_+ = \hat{J}_{1,+} \otimes \tens{I}_2 + \tens{I}_1 \otimes \hat{J}_{2,+} $, si ha anche $ \hat{J}_+ \ket{j_1,j_1 ; j_2,j_2} = 0 $, dunque si identifica $ \ket{j_1,j_1 ; j_2,j_2} = \ket{j_1,j_2 ; j_1 + j_2, j_1 + j_2} $: da questo stato top è possibile costruire gli stati della ladder applicando l'operatore di scala $ \hat{J}_- $; si noti però che lo stato $ \ket{j_1,j_2 ; j_1 + j_2 , j_1 + j_2 - 1} $ è combinazione lineare di $ \ket{j_1,j_1 - 1 ; j_2,j_2} $ e $ \ket{j_1,j_1 ; j_2, j_2 - 1} $, e così via via applicando $ \hat{J}_- $ ripetutamente. Iterativamente, si ottengono tutti gli stati nell'intervallo $ \abs{j_1 - j_2} \le j \le j_1 + j_2 $: ciascuno ha molteplicità $ 2j + 1 $, dunque il numero totale di stati è:
+\begin{equation*}
+	\sum_{j = \abs{j_1 - j_2}}^{j_1 + j_2} (2j + 1) = \sum_{j = \abs{j_1 - j_2}}^{j_1 + j_2} ((j+1)^2 - j^2) = (j_1 + j_2 + 1)^2 - (j_1 - j_2)^2 = (2j_1 + 1) (2j_2 + 1)
+\end{equation*}
+Questo è proprio il numero di stati che si ottengono nella rappresentazione disaccoppiata: queste rappresentazioni sono infatti equivalenti, con la differenza che nella rappresentazione accoppiata non sono noti $ m_1 $ ed $ m_2 $, dato che $ \hat{J}_{1,z},\hat{J}_{2,z} $ non commutano con $ \hat{J}^2 $, mentre in quella disaccoppiata non è noto $ j $ per lo stesso motivo.
+
 
 
 
