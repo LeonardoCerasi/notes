@@ -363,7 +363,7 @@ Queste matrici diagonali e quasi-diagonali forniscono le rappresentazioni irridu
 			0 & 0 & 0
 		\end{bmatrix}
 	\end{equation*}
-	Queste matrici sono analoghe a quelle trovate per la rappresentazione $ \mathtt{V} $ di $ \SOn{3} $, con la differenza che non sono espresse nella base cartesiana $ (x,y,z) $ ma in quella sferica $ (z,-\frac{1}{\sqrt{2}}(x + iy), \frac{1}{\sqrt{2}} (x - iy)) $.
+	Queste matrici sono analoghe a quelle trovate per la rappresentazione $ \mathtt{V} $ di $ \SOn{3} $, con la differenza che non sono espresse nella base cartesiana $ (x,y,z) $ ma in quella sferica $ (-\frac{1}{\sqrt{2}}(x + iy), z, \frac{1}{\sqrt{2}} (x - iy)) $.
 \end{example}
 
 \subsubsection{Caratteri}
@@ -421,6 +421,198 @@ Dato che $ \hat{J}_+ = \hat{J}_{1,+} \otimes \tens{I}_2 + \tens{I}_1 \otimes \ha
 	\sum_{j = \abs{j_1 - j_2}}^{j_1 + j_2} (2j + 1) = \sum_{j = \abs{j_1 - j_2}}^{j_1 + j_2} ((j+1)^2 - j^2) = (j_1 + j_2 + 1)^2 - (j_1 - j_2)^2 = (2j_1 + 1) (2j_2 + 1)
 \end{equation*}
 Questo è proprio il numero di stati che si ottengono nella rappresentazione disaccoppiata: queste rappresentazioni sono infatti equivalenti, con la differenza che nella rappresentazione accoppiata non sono noti $ m_1 $ ed $ m_2 $, dato che $ \hat{J}_{1,z},\hat{J}_{2,z} $ non commutano con $ \hat{J}^2 $, mentre in quella disaccoppiata non è noto $ j $ per lo stesso motivo.
+
+\subsection{Serie di Clebsch-Gordan}
+
+Dato che l'addizione di due momenti angolari con autovalori $ j_1,j_2 $ risulta in un momento angolare con autovalore $ \abs{j_1 - j_2} \le j \le j_1 + j_2 $, per le rappresentazioni irriducibili ad essi associate si ha:
+\begin{equation*}
+	\rho_{j_1} \otimes \rho_{j_2} = \bigoplus_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \alpha_j \rho_j
+\end{equation*}
+In particolare, ogni rappresentazione irriducibile $ \rho_j $ è su uno spazio vettoriale di dimensione $ 2j + 1 $ sul quale sono definite due basi: quella disaccoppiata e quella accoppiata. Di conseguenza, $ \rho_{j_1} \otimes \rho_{j_2}(g) $ sarà una matrice diagonale a blocchi, dove ogni blocco $ \rho_j(g) $ sulla diagonale ha dimensione crescente al crescere di $ j $. Si noti che tale rappresentazione agisce su autovettori dati da armoniche sferiche, producendo loro combinazioni lineari corrispondenti alle rotazioni delle coordinate spaziali.
+
+\begin{proposition}
+	Si ha che $ \alpha_j = 1 \,\forall j \in [\abs{j_1 - j_2}, j_1 + j_2] $, ovvero:
+	\begin{equation}
+		\rho_{j_1} \otimes \rho_{j_2} = \bigoplus_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \rho_j
+		\label{eq:9.27}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Dall'Eq. \ref{eq:9.24}, assumendo WLOG $ j_1 \ge j_2 $:
+	\begin{equation*}
+		\begin{split}
+			\chi_{j_1}(\phi) \chi_{j_2}(\phi)
+			&= \frac{e^{i (j_1 + 1/2) \phi} - e^{-i (j_1 + 1/2) \phi}}{2i \sin \frac{1}{2} \phi} \sum_{m = -j_2}^{j_2} e^{i m \phi} = \frac{1}{2i \sin \frac{1}{2} \phi} \sum_{m = -j_2}^{j_2} \left( e^{i (j_1 + m + 1/2) \phi} - e^{-i (j_1 - m + 1/2) \phi} \right) \\
+			&= \frac{1}{2i \sin \frac{1}{2} \phi} \sum_{j = j_1 - j_2}^{j_1 + j_2} \left( e^{i (j + 1/2) \phi} - e^{-i (j + 1/2) \phi} \right) = \sum_{j = j_1 - j_2}^{j_1 + j_2} \frac{\sin \left( (j + \frac{1}{2}) \phi \right)}{\sin \frac{1}{2} \phi} = \sum_{j = j_1 - j_2}^{j_1 + j_2} \chi_j(\phi)
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\subsubsection{Coefficienti di Clebsch-Gordan}
+
+Mentre $ \rho_{j_1} \otimes \rho_{j_2}(g) $ agisce sulla base disaccoppiata, ciascun blocco $ \rho_j(g) $ agisce sulla base accoppiata. Il pasaggio da una base all'altra è dato dai \textit{coefficienti di Clebsch-Gordan}:
+\begin{equation}
+	\ket{j_1,m_1 ; j_2,m_2} = \sum_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \sum_{m = -j}^{j} \mathcal{C}(j_1,j_2,j ; m_1,m_2,m) \ket{j_1,j_2 ; j,m}
+	\label{eq:9.28}
+\end{equation}
+Si noti che tutti questi autovettori sono ortogonali tra loro, essendo relativi ad autovalori distinti di operatori hermitiani:
+\begin{equation}
+	\braket{j_1,m'_1 ; j_2,m'_2 | j_1,m_1 ; j_2,m_2} = \delta_{m_1,m'_1} \delta_{m_2,m'_2}
+	\label{eq:9.29}
+\end{equation}
+\begin{equation}
+	\braket{j_1,j_2 ; j',m' | j_1,j_2 ; j,m} = \delta_{j,j'} \delta_{m,m'}
+	\label{eq:9.30}
+\end{equation}
+Di conseguenza, si possono determinare i coefficienti:
+\begin{equation}
+	\mathcal{C}(j_1,j_2,j ; m_1,m_2,m) = \braket{j_1,j_2 ; j,m | j_1,m_1 ; j_2,m_2}
+	\label{eq:9.31}
+\end{equation}
+Questi possono essere visti come gli elementi di una matrice unitaria in cui il primo indice è $ (j,m) $ (nuova base) ed il secondo $ (m_1,m_2) $ (vecchia base). Inoltre, questi coefficienti possono essere resi realti (e dunque la matrice ortogonale) con una fase arbitraria. Dall'unitarietà:
+\begin{equation}
+	\sum_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \sum_{m = -j}^{j} \mathcal{C}(j_1,j_2,j ; m_1,m_2,m) \overline{\mathcal{C}(j_1,j_2,j ; m'_1,m'_2,m)} = \delta_{m_1,m'_1} \delta_{m_2,m'_2}
+	\label{eq:9.32}
+\end{equation}
+\begin{equation}
+	\sum_{m_1 = -j_1}^{j_1} \sum_{m_2 = -j_2}^{j_2} \mathcal{C}(j_1,j_2,j ; m_1,m_2,m) \overline{\mathcal{C}(j_1,j_2,j' ; m_1,m_2,m')} = \delta_{j,j'} \delta_{m,m'}	
+	\label{eq:9.33}
+\end{equation}
+La prima esprime l'ortogonalità della base disaccoppiata e la completezza di quella accoppiata, mentre la seconda il viceversa.\\
+Una relazione più usata dell'Eq. \ref{eq:9.28} è la seguente:
+\begin{equation}
+	\ket{j_1,j_2 ; j,m} = \sum_{m_1 = -j_1}^{j_1} \sum_{m_2 = -j_2}^{j_2} \overline{\mathcal{C}(j_1,j_2,j ; m_1,m_2,m)} \ket{j_1,m_1 ; j_2,m_2}
+	\label{eq:9.34}
+\end{equation}
+In linea generale, per determinare gli autovettori nella base accoppiata, prima si determina $ \ket{j_1,j_2 ; j,j} $ e poi si ottengono gli stati con $ -j \le m \le j $ applicando ripetutamente $ \hat{J}_- $.\\
+Tramite i coefficienti di Clebsch-Gordan è anche possibile esplicitare la rappresentazione delle matrici di rotazione del sistema a partire da quelle per i singoli momenti angolari. Ricordando l'Eq. \ref{eq:9.7}, si ha:
+\begin{equation*}
+	\begin{split}
+		[\rho_j(\tens{R})]_{m',m}
+		&= \braket{j_1,j_2 ; j,m' | \hat{U}_{\tens{R}} | j_1,j_2 ; j,m} \\
+		&= \sum_{m_1,m'_1 = -j_1}^{j_1} \sum_{m_1,m'_2 = -j_2}^{j_2} \mathcal{C}(j_1,j_2,j ; m'_1,m'_2,m') \overline{\mathcal{C}(j_1,j_2,j ; m_1,m_2,m)} \times \\
+		& \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times\braket{j_1,m'_1 ; j_2,m'_2 | \hat{U}_{\tens{R}} | j_1,m_1 ; j_2,m_2}
+	\end{split}
+\end{equation*}
+Nella base disaccoppiata $ \hat{U}_{\tens{R}} $ agisce separatamente su ciascun momento angolare:
+\begin{equation}
+	\begin{split}
+		[\rho_j(\tens{R})]_{m',m}
+		&= \sum_{m_1,m'_1 = -j_1}^{j_1} \sum_{m_2,m'_2 = -j_2}^{j_2} \mathcal{C}(j_1,j_2,j ; m'_1,m'_2,m') \overline{\mathcal{C}(j_1,j_2,j ; m_1,m_2,m)} \times \\
+		& \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times[\rho_{j_1}(\tens{R})]_{m'_1,m_1} [\rho_{j_2}(\tens{R})]_{m'_2,m_2}
+	\end{split}
+	\label{eq:9.35}
+\end{equation}
+
+\paragraph{Angoli di Eulero}
+
+Dalla meccanica classica è noto che una generica rotazione in $ \R^3 $ può essere parametrizzata da tre angoli $ \phi,\theta,\psi $, detti \textit{angoli di Eulero}, nel modo seguente: la prima rotazione di $ \phi $ è attorno all'asse $ z $, la successiva di $ \theta $ è attorno al nuovo asse $ y $ (ruotato) e l'ultima di $ \psi $ è attorno al nuovo asse $ z $ (ruotato due volte). In questo modo:
+\begin{equation}
+	\tens{R}(\phi,\theta,\psi) = \tens{R}_3(\phi) \tens{R}_2(\theta) \tens{R}_3(\psi)
+	\label{eq:9.36}
+\end{equation}
+In ambito quantistico, come si vede in Eq. \ref{eq:9.22}, le rotazioni attorno all'asse $ z $ hanno rappresentazione banale, poiché $ \tens{R}_3(\alpha) = \exp \left( -i \tens{X}_3 \alpha \right) $ con $ \tens{X}_3 $ diagonale; l'unica rotazione con rappresentazione non-banale in Eq. \ref{eq:9.36} è $ \tens{R}_2(\theta) $, per cui si definisce la \textit{matrice di Wigner} $ \tens{d}(\theta) \equiv \exp \left( -i \tens{X}_2 \theta \right) $, con $ \tens{X}_2 $ non-diagonale, di modo che:
+\begin{equation}
+	[\rho_j(\phi,\theta,\psi)]_{m',m} = e^{-i m' \phi} [\tens{d}_j(\theta)]_{m',m} e^{-i m \psi}
+	\label{eq:9.37}
+\end{equation}
+
+\subsubsection{Accoppiamento tra fermioni}
+
+I fermioni sono particelle con spin $ \frac{1}{2} $; di conseguenza, i possibili valori di $ j $ sono soltanto 0 e 1:
+\begin{equation*}
+	\rho_{1/2} \otimes \rho_{1/2} = \rho_1 \oplus \rho_0
+\end{equation*}
+Per semplicità si sopprimono gli indici $ j_1 = j_2 = \frac{1}{2} $, dunque la base disaccoppiata è $ \ket{m_1,m_2} $ e quella accoppiata $ \ket{j,m} $. Dato che l'unico modo di avere $ m = 1 $ è $ m_1 = m_2 = \frac{1}{2} $, si identifica immediatamente lo stato top (scegliendo la fase arbitraria $ \varphi = +1 $) come $ \ket{1,1} = \ket{\tfrac{1}{2},\tfrac{1}{2}} $.
+Ricordando l'Eq. \ref{eq:9.21}, si ha:
+\begin{equation*}
+	\begin{split}
+		\hat{J}_- \ket{1,1}
+		&= \sqrt{2} \ket{1,0} \\
+		&= ( \hat{J}_{1,-} \otimes \tens{I}_2 + \tens{I}_1 \otimes \hat{J}_{2,-} ) \ket{\tfrac{1}{2},\tfrac{1}{2}} = \ket{-\tfrac{1}{2},\tfrac{1}{2}} + \ket{\tfrac{1}{2},-\tfrac{1}{2}}
+	\end{split}
+\end{equation*}
+Reiterando si trova $ \ket{1,-1} = \ket{-\frac{1}{2},-\frac{1}{2}} $.\\
+D'altro canto, $ \ket{0,0} $ deve essere combinazione lineare di $ \ket{-\frac{1}{2},\frac{1}{2}} $ e $ \ket{\frac{1}{2},-\frac{1}{2}} $; si deve inoltre avere:
+\begin{equation*}
+	0 = \hat{J}_+ \ket{0,0} = \hat{J}_+ ( \alpha \ket{-\tfrac{1}{2},\tfrac{1}{2}} + \beta \ket{\tfrac{1}{2},-\tfrac{1}{2}} ) = \left( \alpha + \beta \right) \ket{\tfrac{1}{2},\tfrac{1}{2}}
+\end{equation*}
+Risolvendo e normalizzando, si trova $ \alpha = -\beta = \frac{1}{\sqrt{2}} $. Si trovano quindi i coefficienti di Clebsch-Gordan per due spin $ \frac{1}{2} $:
+\begin{equation*}
+	\ket{1,1} = \ket{\tfrac{1}{2},\tfrac{1}{2}}
+	\qquad
+	\ket{1,0} = \frac{1}{\sqrt{2}} \left( \ket{\tfrac{1}{2},-\tfrac{1}{2}} + \ket{-\tfrac{1}{2},\tfrac{1}{2}} \right)
+	\qquad
+	\ket{1,-1} = \ket{-\tfrac{1}{2},-\tfrac{1}{2}}
+\end{equation*}
+\begin{equation*}
+	\ket{0,0} = \frac{1}{\sqrt{2}} \left( \ket{\tfrac{1}{2},-\tfrac{1}{2}} - \ket{-\tfrac{1}{2},\tfrac{1}{2}} \right)
+\end{equation*}
+Rimane soltanto da calcolare la matrice di Wigner. Innanzitutto, si ricordi che la rappresentazione spinoriale $ \rho_{1/2} $ è una rappresentazione di grado 2 che agisce sulla base $ (u_{1/2},u_{-1/2}) $; in questa base, si ha $ \tens{X}_2 = \sigma_2 $ (matrice di Pauli), dunque:
+\begin{equation*}
+	\tens{d}_{1/2}(\theta) = e^{-i \sigma_2 \theta} = \tens{I} \cos \frac{1}{2} \theta - i \sigma_2 \sin \frac{1}{2} \theta =
+	\begin{bmatrix}
+		\cos \frac{1}{2} \theta & -\sin \frac{1}{2} \theta \\
+		\sin \frac{1}{2} \theta & \cos \frac{1}{2} \theta
+	\end{bmatrix}
+\end{equation*}
+Diagonalizzando, si ha $ \tens{d}_{1/2}(\theta) = \diag ( e^{- i \frac{\theta}{2}}, e^{i \frac{\theta}{2}} ) $: questa è la matrice che determina la rotazione di un fermione preso singolarmente. La matrice di Wigner per il sistema accoppiato è determinabile dall'Eq. \ref{eq:9.35}, ricordando che gli unici coefficienti non nulli sono:
+\begin{equation*}
+	\mathcal{C}(\tfrac{1}{2},\tfrac{1}{2},1 ; \tfrac{1}{2},\tfrac{1}{2},1) = \mathcal{C}(\tfrac{1}{2},\tfrac{1}{2},1 ; -\tfrac{1}{2},-\tfrac{1}{2},-1) = 1
+\end{equation*}
+\begin{equation*}
+	\mathcal{C}(\tfrac{1}{2},\tfrac{1}{2},1 ; \tfrac{1}{2},-\tfrac{1}{2},0) = \mathcal{C}(\tfrac{1}{2},\tfrac{1}{2},1 ; -\tfrac{1}{2},\tfrac{1}{2},0) = \frac{1}{\sqrt{2}}
+\end{equation*}
+\begin{equation*}
+	\mathcal{C}(\tfrac{1}{2},\tfrac{1}{2},0 ; \tfrac{1}{2},-\tfrac{1}{2},0) = - \mathcal{C}(\tfrac{1}{2},\tfrac{1}{2},0 ; -\tfrac{1}{2},\tfrac{1}{2},0) = \frac{1}{\sqrt{2}}
+\end{equation*}
+Ad esempio:
+\begin{align*}
+	m' = 1, m = 1: [\tens{d}_1(\theta)]_{1,1} &= [\tens{d}_{1/2}(\theta)]_{1/2,1/2} [\tens{d}_{1/2}(\theta)]_{1/2,1/2} = \cos^2 \frac{1}{2} \theta = \frac{1}{2} \left( 1 + \cos \theta \right) \\
+	m' = 1, m = 0: [\tens{d}_1(\theta)]_{1,0} &= \frac{1}{\sqrt{2}} [\tens{d}_{1/2}(\theta)]_{1/2,1/2} [\tens{d}_1(\theta)]_{1/2,-1/2} + \frac{1}{\sqrt{2}} [\tens{d}_{1/2}(\theta)]_{1/2,-1/2} [\tens{d}_1(\theta)]_{1/2,1/2} \\
+						  &= - \sqrt{2} \cos \frac{1}{2} \theta \sin \frac{1}{2} \theta = - \frac{1}{\sqrt{2}} \sin \theta \\
+	m' = 1, m = -1: [\tens{d}_1(\theta)]_{1,-1} &= [\tens{d}_{1/2}(\theta)]_{1/2,-1/2} [\tens{d}_1(\theta)]_{1/2,-1/2} = \sin^2 \frac{1}{2} \theta = \frac{1}{2} \left( 1 - \cos \theta \right)
+\end{align*}
+In questo modo, si trova:
+\begin{equation*}
+	\tens{d}_1(\theta) =
+	\begin{bmatrix}
+		\frac{1}{2} \left( 1 + \cos \theta \right) & - \frac{1}{\sqrt{2}} \sin \theta & \frac{1}{2} \left( 1 - \cos \theta \right) \\
+		\frac{1}{\sqrt{2}} \sin \theta & \cos \theta & - \frac{1}{\sqrt{2}} \sin \theta \\
+		\frac{1}{2} \left( 1 - \cos \theta \right) & \frac{1}{\sqrt{2}} \sin \theta & \frac{1}{2} \left( 1 + \cos \theta \right)
+	\end{bmatrix}
+\end{equation*}
+Si ricordi che una generica rotazione attorno all'asse $ y $ nella base $ (x,y,z) $ è data dalla seguente matrice:
+\begin{equation*}
+	\tens{R}_2(\theta) =
+	\begin{bmatrix}
+		\cos \theta & 0 & \sin \theta \\
+		0 & 1 & 0 \\
+		-\sin \theta & 0 & \cos \theta
+	\end{bmatrix}
+\end{equation*}
+Applicando tale rotazione alla base $ (-\frac{1}{\sqrt{2}} (x + iy), z, \frac{1}{\sqrt{2}} (x - iy)) $ si trova:
+\begin{equation*}
+	\begin{pmatrix}
+		-\frac{1}{\sqrt{2}} (x' + iy') \\
+		z' \\
+		\frac{1}{\sqrt{2}} (x' - iy')
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		- \frac{1}{\sqrt{2}} (x \cos \theta + iy + z \sin \theta) \\
+		- x \sin \theta + z \cos \theta \\
+		\frac{1}{\sqrt{2}} (x \cos \theta - iy + z \sin \theta)
+	\end{pmatrix}
+	=
+	\tens{d}_1(\theta)
+	\begin{pmatrix}
+		-\frac{1}{\sqrt{2}} (x + iy) \\
+		z \\
+		\frac{1}{\sqrt{2}} (x - iy)
+	\end{pmatrix}
+\end{equation*}
+Si vede dunque che $ \tens{d}_1(\theta) $ esprimono una rotazione di $ \theta $ attorno all'asse $ y $ rispetto alla base sferica $ (-\frac{1}{\sqrt{2}} (x + iy), z, \frac{1}{\sqrt{2}} (x - iy)) $.
 
 
 
