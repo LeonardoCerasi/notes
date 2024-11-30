@@ -1,0 +1,235 @@
+\selectlanguage{italian}
+
+È possibile mostrare rigorosamente come le leggi della fisica classica emergano da quelle quantistiche. La principale difficoltà è determinata dal fatto che in fisica classica la meccanica consiste nel calcolare la traiettoria di un sistema date le sue condizioni iniziali: in particolare, nella formulazione hamiltoniana la traiettoria è determinata a partire da $ q_0 $ e $ p_0 $, mentre nella formulazione lagrangiana da $ q_0 $ e $ \dot{q}_0 $. Ciò in ambito quantistico non è possibile, a causa del principio d'indeterminazione.\\
+È però possibile formulare la fisica classica in maniera compatibile col principio d'indeterminazione tramite il principio d'azione, il quale determina la traiettoria a partire da $ q_0 $ e $ q_1 $ (posizioni iniziale e finale). È inoltre possibile trovare un analogo classico della funzione d'onda nella teoria di Hamilton-Jacobi.
+
+\section{Principio d'azione classico}
+
+\begin{definition}
+	Dato un sistema classico descritto da una lagrangiana $ \mathscr{L}(q,\dot{q},t) $ che si muove lungo una traiettoria $ q(t) $, detti $ q_0 \equiv q(t_0) $ e $ q_1 \equiv q(t_1) $, si definisce la sua \textit{azione} lungo tale traiettoria come:
+	\begin{equation}
+		\mathcal{S}(q_0,t_0 ; q_1,t_1) \defeq \int_{t_0}^{t_1} dt\, \mathscr{L}(q(t), \dot{q}(t), t)
+		\label{eq:4.1}
+	\end{equation}
+\end{definition}
+
+Il \textit{principio di minima azione} (o principio di Hamilton) afferma che, fissati $ (q_0,t_0) $ e $ (q_1,t_1) $, la traiettoria percorsa dal sistema è quella che estremizza l'azione, vista come un funzionale di $ q(t) $:
+\begin{equation*}
+	\begin{split}
+		\delta \mathcal{S}
+		&= 0 \\
+		&= \int_{t_0}^{t_1} dt\, \delta \mathscr{L} (q(t), \dot{q}(t), t) = \int_{t_0}^{t_1} dt \left( \frac{\pa \mathscr{L}}{\pa q} \delta q + \frac{\pa \mathscr{L}}{\pa \dot{q}} \delta \dot{q} \right) \\
+		&= \int_{t_0}^{t_1} dt \left( \frac{\pa \mathscr{L}}{\pa q} \delta q + \frac{\pa \mathscr{L}}{\pa \dot{q}} \frac{d}{dt} \delta q \right) = \int_{t_0}^{t_1} dt \left( \frac{\pa \mathscr{L}}{\pa q} - \frac{d}{dt} \frac{\pa \mathscr{L}}{\pa \dot{q}} \right) \delta q + \left[ \frac{\pa \mathscr{L}}{\pa \dot{q}} \delta q \right]_{t_0}^{t_1}
+	\end{split}
+\end{equation*}
+Essendo gli estremi della traiettoria fissati, si ha $ \delta q(t_0) = \delta q(t_1) = 0 $, dunque dall'arbitrarietà di $ \delta q $ si ottengono le \textit{equazioni di Eulero-Lagrange}:
+\begin{equation}
+	\frac{\pa \mathscr{L}}{\pa q} - \frac{d}{dt} \frac{\pa \mathscr{L}}{\pa \dot{q}} = 0
+	\label{eq:4.2}
+\end{equation}
+Una volta trovata la traiettoria e fissati $ (q_0,t_0) $, si vede immediatamente che una variazione $ \delta q(t) $ della traiettoria (tale che $ \delta q(t_0) = 0 $) determina una variazione dell'azione data da:
+\begin{equation}
+	\delta \mathcal{S}(t) = \frac{\pa \mathscr{L}}{\pa \dot{q}} \delta q(t)
+	\label{eq:4.3}
+\end{equation}
+Ricordando che $ p \defeq \frac{\pa \mathscr{L}}{\pa \dot{q}} $, si trova:
+\begin{equation}
+	p(t) = \frac{\pa \mathcal{S}(q,t)}{\pa q}
+	\label{eq:4.4}
+\end{equation}
+
+\begin{definition}
+	Dato un sistema classico che si muove lungo una traiettoria $ q(t) $, si definisce la \textit{funzione principale di Hamilton} come l'azione valutata lungo la traiettoria, ovvero:
+	\begin{equation}
+		\mathcal{S}(q,t) = \mathcal{S}(q_0,t_0,q(t),t)
+		\label{eq:4.5}
+	\end{equation}
+\end{definition}
+
+Dato che l'impulso del sistema è il gradiente della funzione principale lungo la traiettoria, è naturale l'associazione di $ S(q,t) $ con la funzione d'onda quantistica.
+
+\subsection{Teoria di Hamilton-Jacobi}
+
+Il collegamento tra la fisica classica e quella quantistica è fornito dalla teoria di Hamilton-Jacobi.
+
+\begin{theorem}[Hamilton-Jacobi]
+	Dato un sistema classico unidimensionale descritto da un'hamiltoniana $ \mathcal{H}(q,p,t) $ che si muove lungo una traiettoria $ q(t) $, la funzione principale di Hamilton soddisfa l'\textit{equazione di Hamilton-Jacobi}:
+	\begin{equation}
+		\frac{\pa \mathcal{S}(q,t)}{\pa t} + \mathcal{H} \left( q, \frac{\pa \mathcal{S}}{\pa q}, t \right) = 0
+		\label{eq:4.6}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Si consideri la derivata totale nel tempo della funzione principale lungo la traiettoria:
+	\begin{equation*}
+		\begin{split}
+			\frac{d \mathcal{S}(q,t)}{dt}
+			&= \mathscr{L}(q,\dot{q},t) = p \dot{q} - \mathcal{H}(q,p,t) \\
+			&= \frac{\pa \mathcal{S}(q,t)}{\pa t} + \frac{\pa \mathcal{S}(q,t)}{\pa q} \dot{q} = \frac{\pa \mathcal{S}(q,t)}{\pa t} + p \dot{q}
+		\end{split}
+		\quad \Rightarrow \quad
+		\frac{\pa \mathcal{S}(q,t)}{\pa t} = - \mathcal{H} \left( q, \frac{\pa \mathcal{S}}{\pa q}, t \right)
+	\end{equation*}
+\end{proof}
+
+\begin{example}
+	Si consideri un oscillatore armonico unidimensionale, descritto dall'hamiltoniana $ \mathcal{H}(q,p) = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2 $; l'equazione di Hamilton-Jacobi in questo caso è:
+	\begin{equation*}
+		\frac{\pa \mathcal{S}}{\pa t} + \frac{1}{2m} \left( \frac{\pa \mathcal{S}}{\pa q} \right)^2 + \frac{1}{2} m \omega^2 q^2 = 0
+	\end{equation*}
+	Essendo il potenziale indipendente dal tempo, il sistema è invariante per traslazioni temporali, dunque lungo la traiettoria l'energia si conserva: fissata la traiettoria $ q(t) $, si ha $ \mathcal{H}(q,p) = E $. Di conseguenza:
+	\begin{equation*}
+		\frac{\pa \mathcal{S}}{\pa t} = -E
+		\quad \Rightarrow \quad
+		\mathcal{S}(q,t) = -E t + W(q)
+	\end{equation*}
+	dove $ W(q) $ è detta \textit{funzione caratteristica di Hamilton}. Per determinare quest'ultima, si risolve $ \mathcal{H}(q,p) = E $, che ora è una ODE:
+	\begin{equation*}
+		\frac{1}{2m} \left( \frac{d W(q)}{d q} \right)^2 + \frac{1}{2} m \omega^2 q^2 = E
+		\quad \Rightarrow \quad
+		W(q) = \pm \sqrt{2mE} \int_{q_0}^q d\xi \sqrt{1 - \frac{m \omega^2}{2E} \xi^2}
+	\end{equation*}
+\end{example}
+
+Questo procedimento ha carattere generale.
+
+\begin{proposition}
+	Dato un sistema classico unidimensionale descritto da un'hamiltoniana indipendente dal tempo $ \mathcal{H}(q,p) = \frac{p^2}{2m} + V(q) $ che si muove lungo una traiettoria $ q(t) $ di energia $ E $, la funzione principale di Hamilton è data da $ \mathcal{S}(q,t) = -E t + W(q) $, dove la funzione caratteristica di Hamilton è determinata come:
+	\begin{equation}
+		W(q) = \pm \sqrt{2m} \int_{q_0}^q d\xi \sqrt{E - V(\xi)}
+		\label{eq:4.7}
+	\end{equation}
+\end{proposition}
+
+Una volta determinata la funzione principale sono noti anche i momenti canonici del sistema, dunque la traiettoria.\\
+Il caso multidimensionale ($ q \equiv (q_1, \dots, q_f) $) è più complicato da trattare; in generale, l'equazione da risolvere per la funzione caratteristica avrà la forma:
+\begin{equation}
+	(\nabla W)^2 = 2m \left( E - V(q) \right)
+	\label{eq:4.8}
+\end{equation}
+Dato che $ p \equiv (p_1, \dots, p_f) = \nabla W(q) $ e che la traiettoria è determinata da $ v_i = \frac{1}{m} p_i $, si può vedere la traiettoria percorsa dal sistema come quella determinata da un'onda che sospinge un oggetto, poiché essa segue il cammino di minima pendenza e la sua velocità è data dalla pendenza stessa.\\
+Interpretando la velocità del sistema come la velocità di gruppo, si può vedere che essa è diversa dalla velocità di fase, ovvero quella a cui si muovono i fronti d'onda, ovvero le superfici con $ \mathcal{S}(q,t) $ costante. Assumendo che il sistema (unidimensionale) sia invariante per traslazioni temporali, dato che $ \mathcal{S}(q,t) = -E t + W(q) $, il fronte d'onda $ q_0(t) $ è determinato da:
+\begin{equation*}
+	\frac{d \mathcal{S}(q_0(t),t)}{dt} = 0
+	\quad \Rightarrow \quad
+	\frac{dW(q)}{dq} \bigg\vert_{q_0} \dot{q}_0 - E = 0
+\end{equation*}
+Essendo la velocità di fase $ v_f \equiv \dot{q}_0 $, si trova:
+\begin{equation}
+	v_f(t) = \pm \frac{E}{\sqrt{2m \left[ E - V(q_0(t)) \right]}}
+	\label{eq:4.9}
+\end{equation}
+La velocità di gruppo è invece data dall'Eq. \ref{eq:4.4} come $ v_g = \frac{1}{m} \frac{\pa W}{\pa q} $:
+\begin{equation}
+	v_g(t) = \pm \sqrt{\frac{2}{m} \left[ E - V(q_0(t)) \right]}
+	\label{eq:4.10}
+\end{equation}
+
+\section{Principio d'azione quantistico}
+
+In ambito quantistico, parlando di traiettoria si intende solo fissare (ovvero misurare) $ q_0 \equiv q(t_0) $ e $ q_1 \equiv q(t_1) $. Si ricordi l'operatore di evoluzione temporale:
+\begin{equation}
+	\ket{\psi(t)} = \hat{S}(t,t_0) \ket{\psi(t_0)}
+	\label{eq:4.11}
+\end{equation}
+La funzione d'onda in un generico punto $ q(t) $ è dunque:
+\begin{equation}
+	\psi(q,t) = \braket{q | \hat{S}(t,t_0) | \psi(t_0)}
+	\label{eq:4.12}
+\end{equation}
+
+\begin{definition}
+	Dato un sistema quantistico con operatore di evoluzione temporale $ \hat{S}(t,t_0) $, si definisce il suo \textit{propagatore} come l'autofunzione della posizione evoluta nel tempo:
+	\begin{equation}
+		K(q,t ; q_0,t_0) \defeq \braket{q | \hat{S}(t,t_0) | q_0}
+		\label{eq:4.13}
+	\end{equation}
+\end{definition}
+
+Il propagatore non è altro che l'elemento di matrice dell'operatore di evoluzione temporale tra autostati della posizione. Si noti che non necessariamente $ t > t_0 $, è ammesso anche $ t < t_0 $: l'evoluzione temporale quantistica è deterministica ed unitaria, dunque reversibile.
+
+\begin{proposition}
+	Dato un sistema quantistico con propagatore $ K(q,t ; q_0,t_0) $, si ha:
+	\begin{equation}
+		\psi(q,t) = \int dq'\, K(q,t ; q',t_0) \psi(q',t_0)
+		\label{eq:4.14}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Essendo $ \int dq \ket{q}\bra{q} = \tens{I} $, si vede banalmente dall'Eq. \ref{eq:4.12}.
+\end{proof}
+
+Dato che le autofunzioni della posizione sono $ \braket{q | q_0} = \delta(q - q_0) $, si ha la conferma che $ K(q,t ; q_0,t_0) $ è proprio la funzione d'onda dell'evoluto temporale dello stato iniziale $ \ket{q_0} $: da qui l'analogia con la funzione principale di Hamilton. Il propagatore contiene tutta la dinamica del sistema.
+
+\begin{proposition}
+	Il propagatore è associativo sotto convoluzione:
+	\begin{equation}
+		K(q,t ; q_0,t_0) = \int dq_1\, K(q,t ; q_1,t_1) K(q_1,t_1 ; q_0,t_0)
+		\label{eq:4.15}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Ricordando l'associatività dell'evoluzione temporale $ \hat{S}(t,t_0) = \hat{S}(t,t_1) \hat{S}(t_1,t_0) $:
+	\begin{equation*}
+		K(q,t ; q_0,t_0) = \braket{q | \hat{S}(t,t_0) | q_0} = \int dq_1 \braket{q | \hat{S}(t,t_1) | q_1} \braket{q_1 | \hat{S}(t_1,t_0) | q_0}
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}
+	Dato un sistema quantistico descritto da un'hamiltoniana indipendente dal tempo $ \hat{\mathcal{H}} = \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) $, considerando una traslazione temporale infinitesima $ dt \equiv \varepsilon $ si ha il propagatore:
+	\begin{equation}
+		K(q',t + \varepsilon ; q,t) = \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{i \frac{d\mathcal{S}(t)}{\hbar}}
+		\label{eq:4.16}
+	\end{equation}
+	dove $ d\mathcal{S}(t) $ è l'elemento infinitesimo d'azione lungo l'evoluzione temporale del sistema.
+\end{proposition}
+\begin{proof}
+	Per un'Hamiltoniana indipendente dal tempo l'operatore di evoluzione temporale è:
+	\begin{equation*}
+		\hat{S}(t,t_0) = e^{\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}}
+	\end{equation*}
+	Per calcolare esplicitamente il propagatore si sfrutta la risoluzione dell'identità sugli impulsi, il che permette di sostituire gli operatori con i rispettivi autovalori (si può mostrare formalmente):
+	\begin{equation*}
+		\begin{split}
+			K(q',t+\varepsilon ; q,t)
+			&= \braket{q' | \hat{S}(t+\varepsilon,t) | q} = \braket{q' | e^{\frac{\varepsilon}{i\hbar} \hat{\mathcal{H}}} | q} = \braket{q' | \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) \right) + o(\varepsilon^2) \right] | q} \\
+			&= \int dp \braket{q' | p} \braket{p | \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) \right) + o(\varepsilon^2) \right] q} \\
+			&= \int dp \braket{q' | p} \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{p^2}{2m} + V(q) \right) + o(\varepsilon^2) \right] \braket{p | q} \\
+			&= \int dp\, \frac{1}{\sqrt{2\pi\hbar}} e^{\frac{i}{\hbar} p q'} e^{- \frac{i}{\hbar} ( \frac{p^2}{2m} + V(q) ) \varepsilon} \frac{1}{\sqrt{2\pi\hbar}} e^{ - \frac{i}{\hbar} pq} = \int \frac{dp}{2\pi\hbar}\, e^{\frac{i}{\hbar} p (q' - q)} e^{- \frac{i}{\hbar} ( \frac{p^2}{2m} + V(q) ) \varepsilon}
+		\end{split}
+	\end{equation*}
+	Questo integrale non contiene operatori ed è riconducibile ad un integrale gaussiano notando che $ t \mapsto t + \varepsilon \,\Rightarrow\, q \mapsto q + \varepsilon \dot{q} \equiv q' $:
+	\begin{equation*}
+		\begin{split}
+			K(q',t+\varepsilon ; q,t)
+			&= \int \frac{dp}{2\pi\hbar}\, e^{\frac{i}{\hbar} ( p\dot{q} - \frac{p^2}{2m} - V(q) ) \varepsilon} = e^{- \frac{i}{\hbar} V(q) \varepsilon} \int \frac{dp}{2\pi\hbar}\, e^{- \frac{i}{\hbar} \frac{1}{2m} (p^2 - 2m\hbar p\dot{q}) \varepsilon} \\
+			&= \frac{1}{2\pi\hbar} e^{-\frac{i}{\hbar} V(q) \varepsilon} \int dp\, e^{-\frac{i \varepsilon}{2m\hbar} (p - m\dot{q})^2} e^{\frac{i m \varepsilon}{2\hbar} \dot{q}^2} \\
+			&= \frac{1}{2\pi\hbar} e^{-\frac{i}{\hbar} (\frac{1}{2}m \dot{q}^2 - V(q)) \varepsilon} \sqrt{\frac{2m\hbar}{i\varepsilon}} \int d\lambda\, e^{-\lambda^2} = \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{\frac{i\varepsilon}{\hbar} (\frac{1}{2} m \dot{q}^2 - V(q))}
+		\end{split}
+	\end{equation*}
+	La dimostrazione è completa notando che, fissata l'evoluzione temporale (la $ \virgolette{traiettoria} $):
+	\begin{equation*}
+		\varepsilon \left( \frac{1}{2} m \dot{q}^2 - V(q) \right) = dt\,\mathscr{L}(q,\dot{q}) = d\mathcal{S}(q,t) \equiv d\mathcal{S}(t)
+	\end{equation*}
+\end{proof}
+
+Il propagatore è quindi dato da una fase pari alla variazione d'azione in unità di $ \hbar $. Il fattore di normalizzazione è fissato dal fatto che:
+\begin{equation}
+	\lim_{\varepsilon \rightarrow 0} K(q',t+\varepsilon ; q,t) = \braket{q',t | q,t} = \delta(q' - q)
+	\label{eq:4.17}
+\end{equation}
+Infatti:
+\begin{equation*}
+	\lim_{\varepsilon \rightarrow 0} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{\frac{i}{\hbar} \varepsilon ( \frac{1}{2} m \dot{q}^2 - V(q))} = \lim_{\varepsilon \rightarrow 0} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{-\frac{m}{2i\hbar} \frac{(q' - q)^2}{\varepsilon}} = \delta(q' - q)
+\end{equation*}
+che è proprio la rappresentazione della delta di Dirac come limite di gaussiane.
+
+
+
+
+
+
+
+
+
+
