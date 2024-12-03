@@ -161,7 +161,7 @@ Il propagatore non è altro che l'elemento di matrice dell'operatore di evoluzio
 
 Dato che le autofunzioni della posizione sono $ \braket{q | q_0} = \delta(q - q_0) $, si ha la conferma che $ K(q,t ; q_0,t_0) $ è proprio la funzione d'onda dell'evoluto temporale dello stato iniziale $ \ket{q_0} $: da qui l'analogia con la funzione principale di Hamilton. Il propagatore contiene tutta la dinamica del sistema.
 
-\begin{proposition}
+\begin{proposition}\label{prop-ass-conv}
 	Il propagatore è associativo sotto convoluzione:
 	\begin{equation}
 		K(q,t ; q_0,t_0) = \int dq_1\, K(q,t ; q_1,t_1) K(q_1,t_1 ; q_0,t_0)
@@ -192,9 +192,9 @@ Dato che le autofunzioni della posizione sono $ \braket{q | q_0} = \delta(q - q_
 	\begin{equation*}
 		\begin{split}
 			K(q',t+\varepsilon ; q,t)
-			&= \braket{q' | \hat{S}(t+\varepsilon,t) | q} = \braket{q' | e^{\frac{\varepsilon}{i\hbar} \hat{\mathcal{H}}} | q} = \braket{q' | \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) \right) + o(\varepsilon^2) \right] | q} \\
-			&= \int dp \braket{q' | p} \braket{p | \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) \right) + o(\varepsilon^2) \right] q} \\
-			&= \int dp \braket{q' | p} \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{p^2}{2m} + V(q) \right) + o(\varepsilon^2) \right] \braket{p | q} \\
+			&= \braket{q' | \hat{S}(t+\varepsilon,t) | q} = \braket{q' | e^{\frac{\varepsilon}{i\hbar} \hat{\mathcal{H}}} | q} = \braket{q' | \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) \right) + o(\varepsilon) \right] | q} \\
+			&= \int dp \braket{q' | p} \braket{p | \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{\hat{p}^2}{2m} + \hat{V}(\hat{q}) \right) + o(\varepsilon) \right] q} \\
+			&= \int dp \braket{q' | p} \left[ 1 + \frac{\varepsilon}{i\hbar} \left( \frac{p^2}{2m} + V(q) \right) + o(\varepsilon) \right] \braket{p | q} \\
 			&= \int dp\, \frac{1}{\sqrt{2\pi\hbar}} e^{\frac{i}{\hbar} p q'} e^{- \frac{i}{\hbar} ( \frac{p^2}{2m} + V(q) ) \varepsilon} \frac{1}{\sqrt{2\pi\hbar}} e^{ - \frac{i}{\hbar} pq} = \int \frac{dp}{2\pi\hbar}\, e^{\frac{i}{\hbar} p (q' - q)} e^{- \frac{i}{\hbar} ( \frac{p^2}{2m} + V(q) ) \varepsilon}
 		\end{split}
 	\end{equation*}
@@ -223,6 +223,65 @@ Infatti:
 	\lim_{\varepsilon \rightarrow 0} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{\frac{i}{\hbar} \varepsilon ( \frac{1}{2} m \dot{q}^2 - V(q))} = \lim_{\varepsilon \rightarrow 0} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{-\frac{m}{2i\hbar} \frac{(q' - q)^2}{\varepsilon}} = \delta(q' - q)
 \end{equation*}
 che è proprio la rappresentazione della delta di Dirac come limite di gaussiane.
+
+\subsection{Path integral}
+
+Dalla Prop. \ref{prop-ass-conv} si sviluppa l'idea di Feynman che porta ad una riformulazione della fisica quantistica: si può pensare l'evoluzione temporale di un sistema come una successione di evoluzioni temporali infinitesime. Dato un sistema quantistico con propagatore $ K(q,t ; q_0,t_0) $ e definito $ t_k \defeq t_0 + k \varepsilon $, con $ t = t_0 + \Delta t = t_0 + n \varepsilon $, si ha:
+\begin{equation*}
+	\begin{split}
+		K(q,t ; q_0,t_0)
+		&= \int dq_1 \dots dq_{n-1}\, K(q,t ; q_{n-1},t_{n-1}) \dots K(q_1,t_1 ; q_0,t_0) \\
+		&= \int dq_1 \dots dq_{n-1} \left( \frac{m}{2\pi i \varepsilon \hbar} \right)^n e^{\frac{i}{\hbar} ( d\mathcal{S}(t_{n-1}) + \dots + d\mathcal{S}(t_0) )}
+	\end{split}
+\end{equation*}
+Questo è un modo compatto di esprimere il principio quantistico di sovrapposizione, che detta come si compongono le ampiezze di transizione (il cui modulo quadro dà la probabilità di transizione): l'ampiezza di transizione da un certo stato iniziale ad un certo stato finale si calcola considerando tutti i possibili stati intermedi e sommando su tutte le traiettorie (i $ \virgolette{cammini} $ di Feynman). A differenza di un sistema classico, che percorre solo un insieme discreto di traiettorie (quelle che estremizzano l'azione), è come se il sistema quantistico percorresse tutte le traiettorie possibili.\\
+Prendendo il limite per $ n \rightarrow \infty $ si ottiene un integrale funzionale, o integrale di Kac, il quale associa un numero ad un funzionale (in questo caso l'azione): dato che quest'ultimo è una mappa da uno spazio di funzioni a $ \R $ (o anche $ \C $), la misura d'integrazione di un integrale di Kac è il differenziale di una funzione.
+
+\begin{proposition}
+	Dato un sistema quantistico con azione $ \mathcal{S}[q(t)] $ e definito l'insieme di possibili traiettorie da $ q_0 $ a $ q $ come $ \mathscr{P} \defeq \{q(t) : q(t_0) = q_0 \land q(t) = q\} $ , il propagatore $ K(q,t ; q_0,t_0) $ si può esprimere come un integrale di Kac, detto \textit{path integral}:
+	\begin{equation}
+		K(q,t ; q_0,t_0) = \int_{\mathscr{P}} \mathcal{D}q(t)\, e^{\frac{i}{\hbar} \mathcal{S}[q(t)]}
+		\label{eq:4.18}
+	\end{equation}
+	dove la misura $ \mathcal{D}q(t) $ è definita in modo da rispettare la condizione di normalizzazione Eq. \ref{eq:4.17}.
+\end{proposition}
+
+Quella del path integral è una formulazione alternativa della fisica quantistica che, con l'aggiunta della regola di Born (probabilità è modulo quadro della funzione d'onda), è completamente analoga a quella di Schrödinger: infatti, sia il principio di sovrapposizione che quello di ortonormalità degli stati fisici sono naturalmente soddisfatti dal path integral. Per quanto riguarda l'evoluzione temporale, si può mostrare che il path integral soddisfa l'equazione di Schrödinger.
+
+\begin{proposition}
+	Una funzione d'onda del tipo in Eq. \ref{eq:4.14}, con propagatore dato dall'Eq. \ref{eq:4.18}, soddisfa l'equazione di Schrödinger.
+\end{proposition}
+\begin{proof}
+	L'evoluzione temporale della funzione d'onda è data dal path integral:
+	\begin{equation*}
+		\psi(q,t) = \int dq_0 \int_{\mathscr{P}} \mathcal{D}q(t)\, e^{\frac{i}{\hbar}\mathcal{S}[q(t)]} \psi(q_0,t_0)
+	\end{equation*}
+	Si consideri un'evoluzione temporale infinitesima, con $ t = t_0 + \varepsilon $ e $ q = q_0 + \delta $ (Eq. \ref{eq:4.16}):
+	\begin{equation*}
+		\begin{split}
+			\psi(q,t)
+			&= \int d\delta\, \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} e^{\frac{i}{\hbar} (\frac{1}{2} m \frac{\delta^2}{\varepsilon^2} - V(q)) \varepsilon} \psi(q_0,t_0) = e^{-\frac{i}{\hbar} V(q) \varepsilon} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} \int d\delta\, e^{\frac{i}{\hbar} \frac{1}{2} m \frac{\delta^2}{\varepsilon}} \psi(q_0,t_0) \\
+			&= e^{-\frac{i}{\hbar} V(q)\varepsilon} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} \int d\delta\, e^{\frac{i}{\hbar} \frac{1}{2} m \frac{\delta^2}{\varepsilon}} \left[ \psi(q,t_0) - \delta \frac{\pa}{\pa q} \psi(q,t_0) + \frac{1}{2} \delta^2 \frac{\pa^2}{\pa q^2} \psi(q,t_0) + o(\delta^2) \right]
+		\end{split}
+	\end{equation*}
+	Si noti ora che l'integrale ha misura $ d\delta $, dunque il primo termine risulta in un integrale gaussiano, il secondo si annulla per parità dell'integranda (dispari su intervallo simmetrico) ed il termo è calcolato usando $ \int_{\R} dx\, x^2 \exp (-\alpha x^2) = \frac{1}{2\alpha} \sqrt{\frac{\pi}{\alpha}} $:
+	\begin{equation*}
+		\begin{split}
+			\psi(q,t)
+			&= e^{-\frac{i}{\hbar} V(q) \varepsilon} \sqrt{\frac{m}{2\pi i \varepsilon \hbar}} \left[ \sqrt{-\frac{2\pi \hbar \varepsilon}{i m}} \psi(q,t_0) + \frac{1}{2} \left( - \frac{1}{2} \frac{2\hbar \varepsilon}{im} \right) \sqrt{- \frac{2\pi\hbar \varepsilon}{im}} \frac{\pa^2}{\pa q^2} \psi(q,t_0) \right] \\
+			&= e^{-\frac{i}{\hbar} V(q) \varepsilon} \left[ \psi(q,t_0) + \frac{i \varepsilon \hbar}{2m} \frac{\pa^2}{\pa q^2} \psi(q,t_0) \right] = \left[ 1 - \frac{i}{\hbar} V(q) \varepsilon + o(\varepsilon) \right] \left[ \psi(q,t_0) + \frac{i \varepsilon \hbar}{2m} \frac{\pa^2}{\pa q^2} \psi(q,t_0) \right] \\
+			&= \left[ 1 - \frac{i}{\hbar} V(q) \varepsilon + o(\varepsilon) \right] \left[ \psi(q,t) - \varepsilon \frac{\pa}{\pa t} \psi(q,t) + \frac{i \varepsilon \hbar}{2m} \frac{\pa^2}{\pa q^2} \psi(q,t) + o(\varepsilon) \right] \\
+			&= \psi(q,t) + \varepsilon \left[ - \frac{i}{\hbar} V(q) \psi(q,t) - \frac{\pa}{\pa t} \psi(q,t) + \frac{i\hbar}{2m} \frac{\pa^2}{\pa q^2} \psi(q,t) \right] + o(\varepsilon)
+		\end{split}
+	\end{equation*}
+	Perché valga l'equazione, si deve avere proprio l'equazione di Schrödinger:
+	\begin{equation*}
+		i\hbar \frac{\pa}{\pa t} \psi(q,t) = -\frac{\hbar^2}{2m} \frac{\pa^2}{\pa q^2} \psi(q,t) + V(q) \psi(q,t)
+	\end{equation*}
+\end{proof}
+
+È particolarmente agevole trovare il limite semiclassico per $ \hbar \rightarrow 0 $. Si noti che per un tempo complesso $ t \mapsto it $ si ha $ \mathcal{S} \mapsto i\mathcal{S} $, quindi in tal caso il peso di ciasun cammino è $ \exp\left( - \frac{1}{\hbar} \mathcal{S}[q(t)] \right) $: la probabilità è esponenzialmente smorzata dall'azione, dunque l'unico cammino ad avere effettiva rilevanza fisica è quello di minima azione, ovvero la traiettoria classica. Per continuazione analitica si estende il risultato ai tempi reali: si ritrova il principio di corrispondenza.\\
+Anche senza invocare la continuazione analitica, si vede che la dipendenza del propagatore dall'azione è data da una fase: per $ \mathcal{S} $ grande rispetto ad $ \hbar $, si integra su una fase che oscilla in maniera estremamente veloce, risultando quindi in media nulla (questo è il fenomeno della decoerenza); d'altro canto, se $ \mathcal{S} $ è comparabile ad $ \hbar $, molti cammini contribuiscono al path integral e si hanno effetti di interferenza quantistica. Si vede dunque che, in generale, la fisica quantistica descrive sistemi con un basso numero di gradi di libertà: infatti, gli effetti quantistici si manifestano quando il valore numerico dell'azione, associato al volume occupato dal sistema nello spazio delle fasi e quindi al numero dei suoi gradi di libertà, è piccolo in unità di $ \hbar $.
 
 
 
