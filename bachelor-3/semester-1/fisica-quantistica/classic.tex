@@ -283,6 +283,172 @@ Quella del path integral è una formulazione alternativa della fisica quantistic
 È particolarmente agevole trovare il limite semiclassico per $ \hbar \rightarrow 0 $. Si noti che per un tempo complesso $ t \mapsto it $ si ha $ \mathcal{S} \mapsto i\mathcal{S} $, quindi in tal caso il peso di ciasun cammino è $ \exp\left( - \frac{1}{\hbar} \mathcal{S}[q(t)] \right) $: la probabilità è esponenzialmente smorzata dall'azione, dunque l'unico cammino ad avere effettiva rilevanza fisica è quello di minima azione, ovvero la traiettoria classica. Per continuazione analitica si estende il risultato ai tempi reali: si ritrova il principio di corrispondenza.\\
 Anche senza invocare la continuazione analitica, si vede che la dipendenza del propagatore dall'azione è data da una fase: per $ \mathcal{S} $ grande rispetto ad $ \hbar $, si integra su una fase che oscilla in maniera estremamente veloce, risultando quindi in media nulla (questo è il fenomeno della decoerenza); d'altro canto, se $ \mathcal{S} $ è comparabile ad $ \hbar $, molti cammini contribuiscono al path integral e si hanno effetti di interferenza quantistica. Si vede dunque che, in generale, la fisica quantistica descrive sistemi con un basso numero di gradi di libertà: infatti, gli effetti quantistici si manifestano quando il valore numerico dell'azione, associato al volume occupato dal sistema nello spazio delle fasi e quindi al numero dei suoi gradi di libertà, è piccolo in unità di $ \hbar $.
 
+\section{WKB approximation}
+
+Dalla formulazione del path integral si ha che nel limite semiclassico la funzione d'onda è determinata da un solo cammino, ed inoltre essa è esprimibile come una pura fase $ \psi \sim \exp (-\frac{i}{\hbar} \mathcal{S}) $, dove l'azione è valutata lungo tale cammino. Ciò suggerisce di scrivere la funzione d'onda nel limite semiclassico come:
+\begin{equation}
+	\psi(\ve{x},t) = e^{\frac{i}{\hbar} \Theta(\ve{x},t)}
+	\label{eq:4.19}
+\end{equation}
+dove $ \Theta(\ve{x},t) $ è un'opportuna funzione esprimibile come serie di potenze di $ \hbar $. Questa è nota come \textit{approssimazione WKB} (Wentzel, Kramers, Brillouin).
+
+\begin{proposition}
+	Per un sistema quantistico descritto dall'hamiltoniana $ \hat{\mathcal{H}} = \frac{\hat{p}^2}{2m} + \hat{V}(\hat{\ve{x}},t) $, la funzione $ \Theta(\hat{x},t) $ deve soddisfarre:
+	\begin{equation}
+		-\frac{\pa}{\pa t} \Theta(\ve{x},t) = \frac{1}{2m} \left( \nabla \Theta(\ve{x},t) \right)^2 + V(\ve{x},t) - \frac{i\hbar}{2m} \lap \Theta(\ve{x},t)
+		\label{eq:4.20}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Inserendo l'Ansatz Eq. \ref{eq:4.19} nell'equazione di Schrödinger:
+	\begin{equation*}
+		i\hbar e^{\frac{i}{\hbar}\Theta(\ve{x},t)} \frac{i}{\hbar} \frac{\pa}{\pa t} \Theta(\ve{x},t) = - \frac{\hbar^2}{2m} \nabla \left[ e^{\frac{i}{\hbar}\Theta(\ve{x},t)} \frac{i}{\hbar} \nabla \Theta(\ve{x},t) \right] + V(\ve{x},t) e^{\frac{i}{\hbar} \Theta(\ve{x},t)}
+	\end{equation*}
+	Svolgendo il gradiente e semplificando $ e^{\frac{i}{\hbar}\Theta(\ve{x},t)} $ si ottiene la tesi.
+\end{proof}
+
+L'approssimazione semiclassica di $ \Theta(\ve{x},t) $ si ottiene espandendo in serie di potenze di $ \hbar $:
+\begin{equation}
+	\Theta(\ve{x},t) = \mathcal{S}(\ve{x}.t) + \sum_{n = 1}^{\infty} \left( \frac{\hbar}{i} \right)^n S_n(\ve{x},t)
+	\label{eq:4.21}
+\end{equation}
+Il termine di ordine zero è fissato dal principio di corrispondenza. Infatti, per ordine zero l'Eq. \ref{eq:4.20} diventa:
+\begin{equation}
+	- \frac{\pa}{\pa t} \mathcal{S}(\ve{x},t) = \frac{1}{2m} (\nabla \mathcal{S}(\ve{x},t))^2 + V(\ve{x},t)
+	\label{eq:4.22}
+\end{equation}
+il che conferma l'identificazione di $ \mathcal{S}(\ve{x},t) $ con la funzione principale di Hamilton.
+
+\subsection{Sistemi invarianti per traslazioni temporali}
+
+Per potenziali invarianti per traslazioni temporali è noto dalla teoria classica di Hamilton-Jacobi che per un sistema di energia $ E $:
+\begin{equation}
+	\mathcal{S}(\ve{x},t) = -E t + \sigma_0(\ve{x})
+	\label{eq:4.23}
+\end{equation}
+dove $ \sigma_0(\ve{x}) $ è la funzione caratteristica di Hamilton. Questa soddisfa l'equazione:
+\begin{equation}
+	E = \frac{1}{2m} \left( \nabla \sigma_0(\ve{x}) \right) + V(\ve{x})
+	\quad \Rightarrow \quad
+	\nabla \sigma_0(\ve{x}) = \pm \sqrt{2m \left[ E - V(\ve{x}) \right]}
+	\label{eq:4.24}
+\end{equation}
+Nel caso unidimensionale la soluzione è data dall'Eq. \ref{eq:4.7}. Per quanto riguarda gli ordini superiori, si ricordi che, per un'hamiltoniana indipendente dal tempo, gli autostati sono stati stazionari:
+\begin{equation}
+	\psi(\ve{x},t) = e^{-\frac{i}{\hbar} E t} \psi(\ve{x})
+	\label{eq:4.25}
+\end{equation}
+Ne segue immediatamente che la funzione $ \Theta(\ve{x},t) $ può essere espansa come:
+\begin{equation}
+	\Theta(\ve{x},t) = -E t + \sigma_0(\ve{x}) + \sum_{n = 1}^{\infty} \left( \frac{\hbar}{i} \right)^n \sigma_n(\ve{x})
+	\label{eq:4.26}
+\end{equation}
+Tutti i contributi di ordine superiore sono indipendenti dal tempo. Al prim'ordine, l'Eq. \ref{eq:4.20} diventa:
+\begin{equation}
+	2 \nabla \sigma_0(\ve{x}) \cdot \nabla \sigma_1(\ve{x}) + \lap \sigma_0(\ve{x}) = \ve{0}
+	\label{eq:4.27}
+\end{equation}
+Al second'ordine, invece:
+\begin{equation}
+	2 \nabla \sigma_0(\ve{x}) \cdot \sigma_2(\ve{x}) + \left( \nabla \sigma_1(\ve{x}) \right)^2 + \lap \sigma_1(\ve{x}) = \ve{0}
+	\label{eq:4.28}
+\end{equation}
+In generale, $ \sigma_k $ può essere determinato a partire da ogni $ \sigma_j $ con $ j < k $, ai quali è legato da una equazione differenziale del prim'ordine.
+
+\subsubsection{Sistema unidimensionale}
+
+Nel caso unidimensionale indipendente dal tempo è possibile determinare esplicitamente la soluzione. Definendo l'\textit{impulso semiclassico} $ p(x) \defeq \frac{d}{dx} \sigma_0(x) $ (vedere Eq. \ref{eq:4.4}), l'Eq. \ref{eq:4.27} ha come soluzione:
+\begin{equation*}
+	\sigma_1(x) = -\frac{1}{2} \ln \abs{p(x)} + c_1
+\end{equation*}
+La soluzione semiclassica al prim'ordine può quindi essere scritta come:
+\begin{equation*}
+	\begin{split}
+		\psi(x,t)
+		&= \exp \left[ \frac{i}{\hbar} \left( -Et \pm \int_{x_0}^x d\xi\, p(\xi) - \frac{1}{2} \frac{\hbar}{i} \ln \abs{p(x)} + c_1 \right) \right] \\
+		&= \frac{\mathcal{N}}{\sqrt{\abs{p(x)}}} e^{\frac{1}{i\hbar} Et} \exp \left[ \pm \int_{x_0}^x d\xi\, p(\xi) \right]
+	\end{split}
+\end{equation*}
+dove $ \mathcal{N} $ è un fattore di normalizzazione. Si vede che ci sono due soluzioni linearmente indipendenti, corrispondenti a due stati di impulso semiclassico definito $ \pm p(x) $. La soluzione generale è quindi una sovrapposizione:
+\begin{equation}
+	\psi(x,t) = \frac{1}{\sqrt{\abs{p(x)}}} e^{\frac{1}{i\hbar} Et} \left[ \mathcal{A} \exp \left( \frac{i}{\hbar} \int_{x_0}^x d\xi\, p(\xi) \right) + \mathcal{B} \exp \left( - \frac{i}{\hbar} \int_{x_0}^x d\xi\, p(x) \right) \right]
+	\label{eq:4.29}
+\end{equation}
+Questa viene di solito chiamata \textit{soluzione approssimata WKB}.
+Tale soluzione ha un andamento diverso a seconda del valore dell'energia rispetto al potenziale. Infatti, dall'Eq. \ref{eq:4.24} si ha che:
+\begin{equation*}
+	p(x) = \pm \sqrt{2m \left[ E - V(x) \right]}
+\end{equation*}
+Di conseguenza, se $ E > V(x) $ l'impulso semiclassico è reale, dunque la soluzione è di tipo sinusoidale:
+\begin{equation*}
+	\psi(x,t) = \frac{\mathcal{N}}{\sqrt{\abs{p(x)}}} e^{\frac{i}{\hbar} Et} \sin \left( \frac{1}{\hbar} \int_{x_0}^x d\xi\, \sqrt{2m \left[ E - V(\xi) \right]} + \delta \right)
+\end{equation*}
+D'altro canto, se $ E < V(x) $ l'impulso semiclassico è immaginario, dunque la soluzione è data da due esponenziali.
+
+\paragraph{Validità dell'approssimazione}
+
+Dall'Eq. \ref{eq:4.20} è chiaro che le correzioni quantistiche all'equazione del moto classica sono date dal termine proporzionale ad $ \hbar $. L'approssimazione semiclassica richiede dunque che quest'ultimo sia piccolo rispetto al termine cinetico:
+\begin{equation}
+	\abs{\hbar \lap \Theta(\ve{x},t)} \ll \abs{(\nabla \Theta(\ve{x},t))^2}
+	\label{eq:4.30}
+\end{equation}
+Nel caso unidimensionale, ciò si riduce, ricordando la lunghezza d'onda di de Broglie ($ \lambda = \frac{2\pi\hbar}{p} $):
+\begin{equation*}
+	\abs{\hbar \frac{dp}{dx}} \ll \abs{p^2}
+	\quad \Rightarrow \quad
+	\abs{\frac{d(\lambda / 2\pi)}{dx}} \ll 1
+\end{equation*}
+L'approssimazione è dunque valida quando la scala di variazione della lunghezza d'onda delle oscillazioni di $ \psi(x,t) $ è piccola rispetto alla lunghezza d'onda stessa in unità di $ 2\pi $, ovvero quando la lunghezza d'onda varia poco nel corso di un periodo d'oscillazione.\\
+Dalla forma esplicita di $ p(x) $ si ricava una condizione sull'energia:
+\begin{equation*}
+	\frac{\hbar}{\sqrt{2m \left[ E - V(x) \right]}} \ll \frac{2 \abs{E - V(x)}}{V'(x)}
+\end{equation*}
+L'approssimazione è buona quando l'energia è molto maggiore o molto minore del potenziale nel punto, ovvero per stati molto legati o molto eccitati, mentre fallisce in prossimità dei punti d'inversione, quando $ E \approx V(x) $.
+
+\begin{example}
+	Si consideri una generica buca di potenziale unidimensionale (es: buca infinita di potenziale, oscillatore armonico, etc.): per un dato valore dell'energia $ E > V_{\text{min}} $ sono presenti due punti d'inversione, detti $ a $ e $ b $, soluzioni dell'equazione $ E - V(x) = 0 $. L'approssimazione semiclassica è valida nelle tre regioni che escludono gli intorni di $ a $ e $ b $: in questi ultimi, la soluzione può essere trovata considerando il potenziale lineare, dato che:
+	\begin{equation*}
+		V(x) = V(a) + V'(a) (x - a) + o(x - a)
+	\end{equation*}
+	ed idem con $ b $. La soluzione del problema del potenziale lineare è nota ed esattamente esprimibile in termini di funzioni di Airy: infatti, sulla base degli impulsi l'equazione di Schrödinger diventa:
+	\begin{equation*}
+		\left[ \frac{p^2}{2m} + i \lambda \frac{d}{dp} \right] \psi(p) = E \psi(p)
+	\end{equation*}
+	La risoluzione è banale e dalla conseguente trasformata di Fourier (per passare alla base delle coordinate) si ottengono appunto le funzioni di Airy.\\
+	Con l'approssimazione semiclassica, invece, nelle regioni esterne della buca ($ x \ll b $ e $ x \gg a $, assumendo WLOG $ a > b $) si hanno soluzioni di tipo esponenziale, mentre in quella interna ($ b \ll x \ll a $) la soluzione è di tipo sinusoidale. Le relazioni tra le normalizzazioni e la fase della sinusoide sono date dalle condizioni di raccordo (continuità e differenziabilità); per un potenziale prima decrescente e poi crescente si trovano:
+	\begin{equation*}
+		\psi_b(x) =
+		\begin{cases}
+			\frac{\mathcal{N}}{\sqrt{\beta(x)}} \exp \left( - \int_x^b d\xi\, \frac{\beta(\xi)}{\hbar} \right) & x \ll b \\
+			\frac{2\mathcal{N}}{\sqrt{p(x)}} \sin \left( \int_b^x d\xi\, \frac{p(\xi)}{\hbar} + \frac{\pi}{4} \right) & x \gg b
+		\end{cases}
+	\end{equation*}
+	\begin{equation*}
+		\psi_a(x) =
+		\begin{cases}
+			\frac{2\mathcal{N}'}{\sqrt{p(x)}} \sin \left( \int_x^a d\xi\, \frac{p(\xi)}{\hbar} + \frac{\pi}{4} \right) & x \ll a \\
+			\frac{\mathcal{N}'}{\sqrt{\beta(x)}} \exp \left( \int_x^a d\xi\, \frac{\beta(\xi)}{\hbar} \right) & x \gg a
+		\end{cases}
+	\end{equation*}
+	dove $ p(x) = i \beta(x) $ nelle regioni in cui $ E < V(x) $. Le soluzioni per $ x \gg b $ ed $ x \ll a $ devono essere uguali, poiché sono nella stessa regione, dunque si ha un'equazione del tipo $ \sin \alpha = \sin \beta $: questa ha come soluzioni $ \alpha = \beta $ o $ \alpha = \pi - \beta $, ma la prima non è possibile da soddisfare per ogni $ x $ nell'intervallo, dunque si deve avere che la somma degli argomenti delle sinusoidi sia $ \pi $. Inoltre, si nota che se la somma fosse $ 2\pi $ si avrebbe un segno di differenza tra le sinusoidi, il quale è assorbibile dalla normalizzazione. In generale, si ha:
+	\begin{equation*}
+		\mathcal{N}' = (-1)^{n + 1} \mathcal{N}
+		\qquad \qquad
+		\left( \int_b^x d\xi\, \frac{p(x)}{\hbar} + \frac{\pi}{4} \right) + \left( \int_x^a d\xi\, \frac{p(x)}{\hbar} + \frac{\pi}{4} \right) = n\pi
+	\end{equation*}
+	con $ n \in \N $. La condizione sugli integrali è una condizione di quantizzazione:
+	\begin{equation*}
+		\int_b^a d\xi\, p(\xi) = \left( n + \frac{1}{2} \right) \hbar \pi
+	\end{equation*}
+	Questa condizione di quantizzazione era stata già postulata da Bohr e Sommerfeld con considerazioni analoghe a quelle del modello di Bohr per l'atomo d'idrogeno (vedere Sec. \ref{bohr-hydrogen}), supponendo che ogni sistema hamiltoniano debba soddisfarre la \textit{condizione di Bohr-Sommerfeld}:
+	\begin{equation}
+		\oint p\,dq = 2\hbar \pi n
+		\label{eq:4.31}
+	\end{equation}
+	Per $ n \gg 1 $ questa coincide con la condizione trovara nell'approssimazione semiclassica (si ha un fattore 2 poiché l'integrale è lungo un loop chiuso, dunque percorre l'intervallo due volte).\\
+	Si vede inoltre il comportamento qualitativo dello spettro di una buca di potenziale generica: nella regione interna alla buca si ha $ \psi(x) \sim \sin (f(x) + \delta) $, con $ f(b) + \delta = \frac{\pi}{4} $ e $ f(a) + \delta = \frac{\pi}{4} + n\pi $. Ne segue che nello stato fondamentale il seno compie un semiperiodo, nel primo stato eccitato un periodo, nel secondo un periodo e mezzo, e così via: il numero di nodi della funzione d'onda cresce al crescere dell'energia e ad ogni stato eccitato si aggiunge un semiperiodo d'oscillazione aggiuntivo.
+\end{example}
+
 
 
 
