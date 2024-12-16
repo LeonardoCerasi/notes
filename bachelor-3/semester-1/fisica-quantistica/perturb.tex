@@ -1,0 +1,126 @@
+\selectlanguage{italian}
+
+\section{Perturbazioni indipendenti dal tempo}
+
+I metodi perturbativi indipendenti dal tempo vengono usati in tutti i casi in cui si cerca di determinare lo spettro di un operatore, ed in particolare un'hamiltoniana, che si può scrivere come la somma di un operatore, il cui spettro è noto, ed un termine di correzione indipendente dal tempo.\\
+Si consideri un'hamiltoniana del tipo:
+\begin{equation}
+	\hat{\mathcal{H}} = \hat{\mathcal{H}}_0 + \varepsilon \hat{\mathcal{H}}'
+	\label{eq:5.1}
+\end{equation}
+Si supponga che lo spettro si $ \hat{\mathcal{H}}_0 $ sia ortonormale e noto:
+\begin{equation}
+	\hat{\mathcal{H}} \ket{n_0} = E_n^{(0)} \ket{n_0}
+	\qquad \qquad
+	\braket{m_0 | n_0} = \delta_{mn}
+	\label{eq:5.2}
+\end{equation}
+Lo spettro dell'hamiltoniana completa è invece:
+\begin{equation}
+	\hat{\mathcal{H}} \ket{n} = E_n \ket{n}
+	\label{eq:5.3}
+\end{equation}
+L'idea del metodo perturbativo è determinare autofunzioni ed autovalori dell'hamiltoniana completa come serie di potenze di $ \varepsilon $:
+\begin{equation}
+	E_n = E_n^{(0)} + \sum_{k \ge 1} \varepsilon^k E_n^{(k)}
+	\label{eq:5.4}
+\end{equation}
+\begin{equation}
+	\ket{n} = \ket{n_0} + \sum_{k \ge 1} \varepsilon^k \ket{n_k}
+	\label{eq:5.5}
+\end{equation}
+È importante osservare che, in generale, $ \varepsilon $ non è necessariamente piccolo e le due serie perturbative non è garantito che convergano.
+
+\subsection{Spettro non-degenere}
+
+Si consideri lo spettro dell'hamiltoniana non-perturbata in Eq. \ref{eq:5.2} non-degenere, dunque $ E_n^{(0)} \neq E_k^{(0)} $ per $ n \neq k $. Sostituendo gli sviluppi perturbativi nell'Eq. \ref{eq:5.3}:
+\begin{equation*}
+	\left( \hat{\mathcal{H}}_0 + \varepsilon \hat{\mathcal{H}}' \right) \left( \ket{n_0} + \varepsilon \ket{n_1} + \dots \right) = \left( E_n^{(0)} + \varepsilon E_n^{(1)} + \dots \right) \left( \ket{n_0} + \varepsilon \ket{n_1} + \dots \right)
+\end{equation*}
+Identificando i termini dello stesso ordine in $ \varepsilon $ si trova una sequenza di equazioni:
+\begin{align*}
+	\varepsilon^0 : \,\left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_0} &= 0 \\
+	\varepsilon^1 : \,\left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_1} &= \left( E_n^{(1)} - \hat{\mathcal{H}}' \right) \ket{n_0} \\
+	\varepsilon^2 : \,\left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_2} &= \left( E_n^{(1)} - \hat{\mathcal{H}} \right) \ket{n_1} + E_n^{(2)} \ket{n_0} \\
+								 & \,\,\, \vdots
+\end{align*}
+In generale:
+\begin{equation}
+	\left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_k} = \left( E_n^{(1)} - \hat{\mathcal{H}}' \right) \ket{n_{k-1}} + \sum_{j = 2}^{k} E_n^{(j)} \ket{n_{k-j}}
+	\label{eq:5.6}
+\end{equation}
+
+\begin{proposition}\label{pert-non-deg-spec}
+	È possibile scegliere tutte le correzioni dell'autostato ortogonali all'autostato non-perturbato: $ \braket{n_0 | n_k} = 0 \,\forall k \in \N $.
+\end{proposition}
+\begin{proof}
+	Dato $ \ket{n_k} $, si consideri $ \ket{\tilde{n}_k} \equiv \ket{n_k} + \lambda \ket{n_0} $:
+	\begin{equation*}
+		\left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{\tilde{n}_k}  = \left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_k} + \lambda \left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_0} = \left( \hat{\mathcal{H}}_0 - E_n^{(0)} \right) \ket{n_k}
+	\end{equation*}
+	Dunque l'Eq. \ref{eq:5.6} rimane inalterata per $ \ket{n_k} \mapsto \ket{n_k} + \lambda \ket{n_0} $. Pertanto, data la soluzione $ \ket{n_k} : \braket{n_0 | n_k} \neq 0 $, è sempre possibile trovarne una $ \ket{\tilde{n}_k} : \braket{n_0 | \tilde{n}_k} = 0 $  scegliendo $ \lambda_k = - \braket{n_0 | n_k} $.
+\end{proof}
+
+Data la Prop. \ref{pert-non-deg-spec}, si può estrarre la correzione al $ k $-esimo ordine dell'autovalore $ E_n^{(k)} $ dall'Eq. \ref{eq:5.6} semplicemente proiettando su $ \ket{n_0} $: così facendo, tutti i termini nel lato destro si annullano, eccetto quello con $ \ket{n_0} $, lasciando solo il lato sinistro. Si trova quindi:
+\begin{equation}
+	E_n^{(k)} = \braket{n_0 | \hat{\mathcal{H}}' | n_{k-1}}
+	\label{eq:5.7}
+\end{equation}
+Si vede che la correzione all'ordine $ k $ è determinata da quella all'ordine $ k - 1 $. Per trovare la correzione al $ k $-esimo ordine dell'autostato, invece, è necessario applicare all'Eq. \ref{eq:5.6} l'inverso dell'operatore $ \hat{\mathcal{H}}_0 - E_n^{(0)} $; questo operatore, però, non è invertibile nello spazio degli autostati fisici, poiché $ \ket{n_0} $ ha autovalore nullo, essendo $ (\hat{\mathcal{H}}_0 - E_n^{(0)}) \ket{n_0} = 0 $. Il problema è risolto dalla Prop. \ref{pert-non-deg-spec}: tutte le correzioni $ \ket{n_k} $ appartengono al sottospazio ortogonale ad $ \ket{n_0} $, dunque l'operatore è invertibile in tale sottospazio. In generale si ha:
+\begin{equation}
+	\ket{n_j} = \sum_{k \neq n} \ket{k_0} \braket{k_0 | n_j}
+	\label{eq:5.8}
+\end{equation}
+Nel sottospazio ortogonale ad $ \ket{n_0} $, dunque, l'operatore $ \hat{\mathcal{H}}_0 - E_n^{(0)} $ si scrive in serie come:
+\begin{equation}
+	\frac{1}{\hat{\mathcal{H}}_0 - E_n^{(0)}} = \sum_{k \neq n} \frac{1}{E_k^{(0)} - E_n^{(0)}} \ket{k_0} \bra{k_0}
+	\label{eq:5.9}
+\end{equation}
+È possibile applicare questo operatore all'Eq. \ref{eq:5.6} per trovare la correzione dell'autostato a qualsiasi ordine. Per il prim'ordine:
+\begin{equation*}
+	\ket{n_1} = \sum_{k \neq n} \frac{1}{E_k^{(0)} - E_n^{(0)}} \ket{k_0} \braket{k_0 | \left( E_n^{(1)} - \hat{\mathcal{H}}' \right) | n_0} = \sum_{k \neq n} \frac{1}{E_k^{(0)} - E_n^{(0)}} \ket{k_0} \left[ \delta_{kn} E_n^{(1)} - \braket{k_0 | \hat{\mathcal{H}}' | n_0} \right]
+\end{equation*}
+La correzione al prim'ordine dell'autostato è dunque:
+\begin{equation}
+	\ket{n_1} = \sum_{k \neq n} \frac{\braket{k_0 | \hat{\mathcal{H}}' | n_0}}{E_n^{(0)} - E_k^{(0)}} \ket{k_0}
+	\label{eq:5.10}
+\end{equation}
+La correzione al prim'ordine dell'autovalore, invece, si trova banalmente dall'Eq. \ref{eq:5.7}:
+\begin{equation}
+	E_n^{(1)} = \braket{n_0 | \hat{\mathcal{H}} | n_0}
+	\label{eq:5.11}
+\end{equation}
+Per trovare la correzione al second'ordine dell'autovalore dall'Eq. \ref{eq:5.7}:
+\begin{equation*}
+	E_n^{(2)} = \braket{n_0 | \hat{\mathcal{H}}' \sum_{k \neq n} \frac{\braket{k_0 | \hat{\mathcal{H}}' | n_0}}{E_n^{(0)} - E_k^{(0)}} | k_0} = \sum_{k \neq n} \frac{\braket{n_0 | \hat{\mathcal{H}}' | k_0} \braket{k_0 | \hat{\mathcal{H}}' | n_0}}{E_n^{(0)} - E_k^{(0)}}
+\end{equation*}
+da cui:
+\begin{equation}
+	E_n^{(2)} = \sum_{k \neq n} \frac{\abs{\braket{k_0 | \hat{\mathcal{H}} | n_0}}^2}{E_n^{(0)} - E_k^{(0)}}
+	\label{eq:5.12}
+\end{equation}
+Si nota che la correzione al second'ordine per lo stato fondamentale, ossia quello di minima energia, è sempre negativa, proprio come ci si aspetterebbe.
+La correzione $ \ket{n_2} $ si trova invece come:
+\begin{equation*}
+	\begin{split}
+		\ket{n_2}
+		&= \sum_{k \neq n} \frac{1}{E_k^{(0)} - E_n^{(0)}} \ket{k_0} \bra{k_0} \left[ \left( E_n^{(1)} - \hat{\mathcal{H}}' \right) \ket{n_1} + E_n^{(2)} \ket{n_0} \right] \\
+		&= \sum_{k \neq n} \frac{1}{E_k^{(0)} - E_n^{(0)}} \ket{k_0} \left[ E_n^{(1)} \braket{k_0 | n_1} - \braket{k_0 | \hat{\mathcal{H}}' | n_1} + \delta_{kn} E_n^{(2)} \right] \\
+		&= \sum_{k \neq n} \frac{1}{E_n^{(0)} - E_k^{(0)}} \ket{k_0} \left[ \sum_{m \neq n} \frac{\braket{m_0 | \hat{\mathcal{H}}' | n_0}}{E_n^{(0)} - E_m^{(0)}} \braket{k_0 | \hat{\mathcal{H}}' | m_0} - E_n^{(1)} \sum_{m \neq n} \frac{\braket{m_0 | \hat{\mathcal{H}}' | n_0}}{E_n^{(0)} - E_m^{(0)}} \underbrace{\braket{k_0 | m_0}}_{\delta_{km}} \right]
+	\end{split}
+\end{equation*}
+La correzione al second'ordine dell'autostato è quindi:
+\begin{equation}
+	\ket{n_2} = \sum_{k \neq n} \frac{1}{E_n^{(0)} - E_k^{(0)}} \left[ \sum_{m \neq n} \frac{\braket{m_0 | \hat{\mathcal{H}}' | n_0} \braket{k_0 | \hat{\mathcal{H}}' | m_0}}{E_n^{(0)} - E_m^{(0)}} - \frac{\braket{k_0 | \hat{\mathcal{H}}' | n_0} \braket{n_0 | \hat{\mathcal{H}}' | n_0}}{E_n^{(0)} - E_k^{(0)}} \right] \ket{k_0}
+	\label{eq:5.13}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
