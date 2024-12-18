@@ -115,6 +115,23 @@ La correzione al second'ordine dell'autostato è quindi:
 	\label{eq:5.13}
 \end{equation}
 
+\subsubsection{Spettro degenere}
+
+Nel caso in cui lo spettro dell'hamiltoniana non-perturbata sia degenere, la trattazione diventa più complessa: in generale, la base di autostati di partenza e quella di arrivo saranno diverse.\\
+Ad esempio, si prenda l'oscillatore armonico isotropo: due possibili basi sono $ \ket{n_1,n_2,n_3} $ e $ \ket{n,\ell,m} $, ma ce ne sono infinite altre. La perturbazione potrebbe selezionare una base particolare: ad esempio, una perturbazione lungo l'asse $ x $ seleziona la base $ \ket{n_1,n_2,n_3} $, mentre una perturbazione dipendente dal momento angolare seleziona la base $ \ket{n,\ell,m} $.\\
+Si supponga che allo stesso autostato di energia $ E_n^{(0)} $ di $ \hat{\mathcal{H}} $ siano associati $ d $ autostati $ \ket{n^{(0)}_k} $, con $ k = 1, \dots, d $. Per effetto della perturbazione, le energie di questi stati possono in generale diventare diverse tra loro, riducendo o eliminando la degenerazione (o anche lasciandola invariata): gli stati perturbati $ \ket{n_k} = \ket{n^{(0)}_k} + \sum_{m \ge 1} \varepsilon^m \ket{n^{(m)}_k} $ avranno in generale energie $ E_{n,k} $ diverse tra loro.\\
+Di conseguenza, qualsiasi combinazione lineare di $ \ket{n^{(0)}_k} $ è ancora autostato di $ \hat{\mathcal{H}}_0 $ con autostato $ E^{(0)}_n $, ma soltanto una base degenere precisa è quella a cui si riduce lo sviluppo perturbativo per $ \varepsilon \rightarrow 0 $. Per determinarla, si moltiplichi l'Eq. \ref{eq:5.6} al prim'ordine per $ \bra{n_j^{(0)}} $:
+\begin{equation*}
+	\braket{n^{(0)}_j | \left( \hat{\mathcal{H}}_0 - E^{(0)}_n \right) | n^{(1)}_k} = \braket{n^{(0)}_j | \left( E^{(1)}_{n,k} - \hat{\mathcal{H}}' \right) | n^{(0)}_k}
+\end{equation*}
+Ricordando che $ \bra{n^{(0)}_j} \hat{\mathcal{H}}_0 = \bra{n^{(0)}_j} E^{(0)}_n $ e $ \braket{n^{(0)}_j | n^{(0)}_k} = \delta_{jk} $ (base degenere ortonormale), si trova la condizione sulla base di autostati degeneri di $ \hat{\mathcal{H}}_0 $:
+\begin{equation}
+	\braket{n^{(0)}_j | \hat{\mathcal{H}}' | n^{(0)}_k} = E^{(1)}_{n,k} \delta_{jk}
+	\label{eq:5.14}
+\end{equation}
+Bisogna dunque scegliere una base che diagonalizzi l'hamiltoniana perturbante (e, di conseguenza, quella perturbata completa): le correzioni al prim'ordine dell'energia sono gli autovalori così trovati, mentre gli autoket di ordine zero sono i rispettivi autovettori, ovvero la base diagonalizzante.\\
+Se a seguito di questa procedura tutti gli autovalori $ E^{(1)}_{n,k} $ sono diversi tra loro, ovvero se la degenerazione è completamente eliminata, le correzioni ad ordini successivi sono calcolate nel caso non-degenere. Se invece la degenerazione è ancora presente, si ripete questa procedura nel sottospazio rimasto degenere dopo l'introduzione della perturbazione all'ordine precedente.
+
 
 
 
