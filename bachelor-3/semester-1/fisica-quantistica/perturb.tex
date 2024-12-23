@@ -132,6 +132,169 @@ Ricordando che $ \bra{n^{(0)}_j} \hat{\mathcal{H}}_0 = \bra{n^{(0)}_j} E^{(0)}_n
 Bisogna dunque scegliere una base che diagonalizzi l'hamiltoniana perturbante (e, di conseguenza, quella perturbata completa): le correzioni al prim'ordine dell'energia sono gli autovalori così trovati, mentre gli autoket di ordine zero sono i rispettivi autovettori, ovvero la base diagonalizzante.\\
 Se a seguito di questa procedura tutti gli autovalori $ E^{(1)}_{n,k} $ sono diversi tra loro, ovvero se la degenerazione è completamente eliminata, le correzioni ad ordini successivi sono calcolate nel caso non-degenere. Se invece la degenerazione è ancora presente, si ripete questa procedura nel sottospazio rimasto degenere dopo l'introduzione della perturbazione all'ordine precedente.
 
+\section{Perturbazioni indipendenti dal tempo}
+
+La teoria delle perturbazioni indipendenti dal tempo si usa per affrontare quei problemi (es.: fenomeni di diffusione) in cui è necessario valutare la probabilità che il sistema subisca una transizione da un certo stato iniziale ad un certo stato finale per effetto di un potenziale.
+
+\subsection{Rappresentazione d'interazione}
+
+È conveniente introdurre una nuova rappresentazione, intermedia tra quella di Heisenberg e quella di Schrödinger.
+Si consideri un sistema descritto da una hamiltoniana del tipo:
+\begin{equation}
+	\hat{\mathcal{H}} = \hat{\mathcal{H}}_0 + \hat{V}(t)
+	\label{eq:5.15}
+\end{equation}
+composta da un termine imperturbato ed una perturbazione dipendente dal tempo. La \textit{rappresentazione d'interazione} consiste nel trattare $ \hat{\mathcal{H}}_0 $ in rappresentazione di Heisenberg e $ \hat{V}(t) $ in rappresentazione di Schrödinger. Denotando con $ \ket{\psi(t)}_{\text{S}} $ gli stati in rappresentazione di Schrödinger, si definisce la rappresentazione d'interazione come:
+\begin{equation}
+	\ket{\psi(t)}_{\text{I}} \defeq e^{-\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}_0} \ket{\psi(t)}_{\text{S}} \equiv \hat{S}_0^{-1}(t,t_0) \ket{\psi(t)}_{\text{S}}
+	\label{eq:5.16}
+\end{equation}
+
+\begin{proposition}
+	Gli operatori in rappresentazione d'interazione sono legati a quelli in rappresentazione di Schrödinger da:
+	\begin{equation}
+		\hat{O}_{\text{I}} = \hat{S}_0^{-1}(t,t_0) \hat{O}_{\text{S}} \hat{S}_0(t,t_0)
+		\label{eq:5.17}
+	\end{equation}
+\end{proposition}
+
+\begin{proposition}
+	La dipendenza temporale degli stati in rappresentazione d'interazione è data solo dal termine perturbativo:
+	\begin{equation}
+		\ket{\psi(t)}_{\text{I}} = \hat{S}_{\text{I}}(t,t_0) \ket{\psi(t_0)}_{\text{I}} \equiv \mathcal{T} \exp \left[ \frac{1}{i\hbar} \int_{t_0}^t dt'\, \hat{V}_{\text{I}}(t') \right] \ket{\psi(t_0)}_{\text{I}}
+		\label{eq:5.18}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Per calcolo esplicito:
+	\begin{equation*}
+		\begin{split}
+			i\hbar \frac{\pa}{\pa t} \ket{\psi(t)}_{\text{I}}
+			&= - e^{-\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}_0} \hat{\mathcal{H}}_0 \ket{\psi(t)}_{\text{S}} + i\hbar e^{-\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}_0} \frac{\pa}{\pa t} \ket{\psi(t)}_{\text{S}} \\
+			&= - e^{-\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}_0} \hat{\mathcal{H}}_0 \ket{\psi(t)}_{\text{S}} + e^{-\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}_0} ( \hat{\mathcal{H}}_0 + \hat{V}(t) ) \ket{\psi(t)}_{\text{S}} \\
+			&= e^{-\frac{1}{i\hbar} (t - t_0) \hat{\mathcal{H}}_0} \hat{V}(t) \ket{\psi(t)}_{\text{S}} = \hat{S}_0^{-1}(t,t_0) \hat{V}(t) \hat{S}_0(t,t_0) \ket{\psi(t)}_{\text{I}} = \hat{V}_{\text{I}}(t) \ket{\psi(t)}_{\text{I}}
+		\end{split}
+	\end{equation*}
+	In generale $ \hat{V}(t) $ non commuta a tempi diversi, da cui la necessità del prodotto cronologico $ \mathcal{T} $.
+\end{proof}
+
+Si può verificare che l'evoluzione temporale determinata dalla rappresentazione di Schrödinger coincide con quella in rappresentazione d'interazione: in particolare, si ottengono le stesse probabilità per i risultati delle misure.
+
+\begin{proposition}
+	La rappresentazione d'interazione è equivalente a quella di Schrödinger.
+\end{proposition}
+\begin{proof}
+	In rappresentazione di Schrödinger, l'ampiezza di probabilità che il sistema al tempo $ t $ si trovi in un autostato $ \ket{n} $ dell'operatore hermitiano $ \hat{O} $ è data da:
+	\begin{equation*}
+		\braket{n | \psi(t)}_{\text{S}} = \braket{n | \hat{S}(t,t_0) | \psi(t_0)}_{\text{S}}
+	\end{equation*}
+	In rappresentazione d'interazione, gli autostati di $ \hat{O} $ sono determinati come:
+	\begin{equation*}
+		\hat{O}_{\text{I}}(t) \ket{n(t)}_{\text{I}} = \lambda_n \ket{n(t)}_{\text{I}}
+	\end{equation*}
+	Dalle Eqq. \ref{eq:5.16}-\ref{eq:5.17}:
+	\begin{equation*}
+		\ket{n(t)}_{\text{I}} = \hat{S}^{-1}_0 (t,t_0) \ket{n}_{\text{S}} \equiv \ket{\tilde{n}(t)}
+	\end{equation*}
+	Si trova dunque:
+	\begin{equation*}
+		\braket{\tilde{n}(t) | \psi(t)}_{\text{I}} = \braket{n | \hat{S}_0 (t,t_0) \hat{S}^{-1}_0 (t,t_0) | \psi(t)}_{\text{S}} = \braket{n | \hat{S}(t,t_0) | \psi(t_0)}_{\text{S}}
+	\end{equation*}
+\end{proof}
+
+\subsection{Sviluppo perturbativo dipendente dal tempo}
+
+Si consideri lo spettro energetico dell'hamiltoniana non-perturbata, in generale degenere:
+\begin{equation*}
+	\hat{\mathcal{H}}_0 \ket{n} = E_n \ket{n}
+\end{equation*}
+Si supponga che, a seguito dell'interazione con la perturbazione $ \hat{V}(t) $, il sistema compia una transizione in $ \ket{m} $. L'ampiezza di probabilità della transizione è definita come:
+\begin{equation}
+	\mathscr{A}^{(\text{S})}_{nm}(t) \defeq \braket{m | \hat{S}(t,t_0) | n}
+	\label{eq:5.19}
+\end{equation}
+Si ricordi che la probabilità è definita come $ \mathscr{P} \defeq \abs{\mathscr{A}}^2 $.
+
+\begin{proposition}
+	$ \mathscr{P}^{(\text{I})}_{nm} = \mathscr{P}^{(\text{S})}_{nm} $.
+\end{proposition}
+\begin{proof}
+	Per calcolo esplicito, ricordando le Eqq. \ref{eq:5.16}-\ref{eq:5.17}:
+	\begin{equation*}
+		\begin{split}
+			\mathscr{A}^{(\text{S})}_{nm}(t)
+			&= \braket{\tilde{m} | \hat{S}_{\text{I}}(t,t_0) | \tilde{n}} = \braket{m | \hat{S}_0(t,t_o) \hat{S}_{\text{I}}(t,t_0) \hat{S}^{-1}_0 (t,t_o) | n} \\
+			&= e^{\frac{1}{i\hbar} \left( E_m t - E_n t_0 \right)} \braket{m | \hat{S}_{\text{I}}(t,t_0) | n} = e^{\frac{1}{i\hbar} \left( E_m t - E_n t_0 \right)} \mathscr{A}^{(\text{I})}_{nm}(t)
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+Si noti che in generale il tempo $ t_o $ da cui si definisce la rappresentazione d'interazione è diverso dal tempo $ t_0 $ in cui si trova lo stato iniziale.\\
+Dato che la probabilità è indipendente dalla rappresentazione usata, si calcola $ \mathscr{A}^{(\text{I})}_{nm}(t) $:
+\begin{equation*}
+	\begin{split}
+		\mathscr{A}^{(\text{I})}_{nm}(t)
+		&= \braket{m | \id + \frac{1}{i\hbar} \int_{t_0}^t dt'\, \hat{V}_{\text{I}}(t') + \frac{1}{2} \frac{1}{(i\hbar)^2} \mathcal{T} \int_{t_0}^t dt' dt''\, \hat{V}_{\text{I}}(t') \hat{V}_{\text{I}}(t'') + \dots | n} \\
+		&= \delta_{nm} + \frac{1}{i\hbar} \int_{t_0}^t dt' \braket{m | \hat{S}^{-1}_0 (t',t_o) \hat{V}(t') \hat{S}_0 (t',t_o) | n} + \dots
+	\end{split}
+\end{equation*}
+Si può interpretare questa come una serie perturbativa, detta \textit{serie di Dyson}:
+\begin{equation}
+	\mathscr{A}^{(\text{I})}_{nm}(t) = \sum_{i = 0}^{\infty} \mathscr{A}^{(i)}_{nm}(t)
+	\label{eq:5.20}
+\end{equation}
+Ricordando le proprietà del prodotto cronologico, si trovano i primi termini dello sviluppo:
+\begin{equation}
+	\mathscr{A}^{(0)}_{nm}(t) = \delta_{nm}
+	\label{eq:5.21}
+\end{equation}
+\begin{equation}
+	\mathscr{A}^{(1)}_{nm}(t) = \frac{1}{i\hbar} \int_{t_0}^t dt' \braket{m | \hat{V}(t') | n} e^{\frac{1}{i\hbar} \left( E_n - E_m \right) t'}
+	\label{eq:5.22}
+\end{equation}
+\begin{equation}
+	\mathscr{A}^{(2)}_{nm}(t) = \frac{1}{(i\hbar)^2} \int_{t_0}^t dt' \int_{t_0}^{t'} dt'' \sum_{k} \braket{m | \hat{V}(t') | k} e^{\frac{1}{i\hbar} \left( E_k - E_m \right) t'} \braket{k | \hat{V}(t'') | n} e^{\frac{1}{i\hbar} \left( E_n - E_k \right) t''}
+	\label{eq:5.23}
+\end{equation}
+dove la sommatoria è sullo spettro di $ \hat{\mathcal{H}}_0 $.
+
+\subsection{Regola aurea di Fermi}
+
+Si consideri il caso in cui la perturbazione sia indipendente dal tempo, ,a attiva solo per $ t > 0 $:
+\begin{equation}
+	V(t) = V \theta(t)
+	\label{eq:5.24}
+\end{equation}
+dove $ \theta $ è la distribuzione di Heaviside. Ciò permette di trattare il caso in cui il sistema viene preparato in uno stato iniziale in una regione in cui il potenziale è trascurabile, tipico degli esperimenti di scattering. In questo caso, ponendo $ V_{mn} \equiv \braket{m | \hat{V} | n} $, la serie di Dyson al prim'ordine per $ n \neq m $ coincide con:
+\begin{equation*}
+	\mathscr{A}^{(1)}_{mn}(t) = \frac{1}{i\hbar} \int_0^t dt'\, e^{\frac{1}{i\hbar} \left( E_n - E_m \right) t'} V_{mn} = - \frac{e^{\frac{1}{i\hbar} \left( E_n - E_m \right) t} - 1}{E_m - E_n} V_{mn}
+\end{equation*}
+Ponendo $ E_n = \hbar \omega_n $, si trova:
+\begin{equation*}
+	\begin{split}
+		\frac{1}{t} \mathscr{P}_{nm}
+		&= \frac{1}{t} \frac{\abs{V_{nm}}^2}{(\omega_m - \omega_n)^2 \hbar^2} \abs{e^{it \left( \omega_m - \omega_n \right)} - 1}^2 \\
+		&= \frac{1}{t} \frac{\abs{V_{nm}}^2}{(\omega_m - \omega_n)^2 \hbar^2} \abs{e^{\frac{it}{2} \left( \omega_m - \omega_n \right)} \left( e^{\frac{it}{2} \left( \omega_m - \omega_n \right)} - e^{-\frac{it}{2} \left( \omega_m - \omega_n \right)} \right)}^2 \\
+		&= \frac{\abs{V_{nm}}^2}{(\omega_m - \omega_n)^2 \hbar^2} \frac{4}{t} \sin^2 \left[ \frac{t}{2} \left( \omega_m - \omega_n \right) \right]
+	\end{split}
+\end{equation*}
+Di particolare interesse è il limite $ t \rightarrow \infty $: la particella incidente arriva da una regione lontana, dunque la perturbazione agisce per un tempo molto lungo rispetto alla scala di tempi tipici del potenziale stesso. La funzione $ x^{-2} \sin^2 (tx^2) $ diventa sempre più piccata nell'origine al crescere di $ t $, inoltre il suo integrale è costante:
+\begin{equation*}
+	\int_{-\infty}^{\infty} dx\, \frac{\sin^2 (tx^2)}{x^2} = t\pi
+	\qquad \Rightarrow \qquad
+	\lim_{t \rightarrow \infty} \frac{1}{\pi} \frac{\sin^2 (tx^2)}{tx^2} = \delta(x)
+\end{equation*}
+Nel limite per $ t \rightarrow \infty $ si ha dunque:
+\begin{equation*}
+	\frac{1}{t} \mathscr{P}_{nm} = \abs{V_{mn}}^2 \frac{\pi}{\hbar^2} \delta \left( \frac{\omega_m - \omega_n}{2} \right)
+\end{equation*}
+Ricordando che $ \delta(\alpha x) = \abs{\alpha}^{-1} \delta(x) $, si trova:
+\begin{equation}
+	\frac{1}{t} \mathscr{P}_{nm} = \frac{2\pi}{\hbar} \abs{V_{mn}}^2 \delta(E_m - E_n)
+	\label{eq:5.25}
+\end{equation}
+Questa è nota come \textit{regola aurea di Fermi}: essa fornisce la probabilità di transizione per unità di tempo ed esprime la conservazione dell'energia nei fenomeni d'urto.
+
 
 
 
