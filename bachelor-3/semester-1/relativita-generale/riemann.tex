@@ -1,0 +1,247 @@
+\selectlanguage{english}
+
+\section{Metric manifolds}
+
+\begin{definition}
+  A \textit{metric} $ g $ is a (0,2) tensor field on a manifold $ \mathcal{M} $ that is:
+  \begin{enumerate}
+    \item symmetric: $ g(X,Y) = g(Y,X) $;
+    \item non-degenerate: $ \exists p \in \mathcal{M} : g(X,Y)\vert_p = 0 \,\forall Y \in T_p \mathcal{M} \,\Rightarrow\, X_p = 0 $.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  A \textit{metric manifold} $ (\mathcal{M},g) $ is a manifold equipped with a metric.
+\end{definition}
+
+With a choice of coordinates, the metric can be written as:
+\begin{equation}
+  g = g_{\mu \nu}(x) dx^{\mu} \otimes dx^{\nu}
+  \label{eq:3.1}
+\end{equation}
+where:
+\begin{equation}
+  g_{\mu \nu} = g\left( \frac{\pa}{\pa x^{\mu}}, \frac{\pa}{\pa x^{\nu}} \right)
+  \label{eq:3.2}
+\end{equation}
+It is often written also as $ ds^2 = g_{\mu \nu}(x) dx^{\mu} dx^{\nu} $. The matrix $ g_{\mu \nu}(x) \in \R^{n \times n} $ is symmetric, and there's always a choice of basis on each tangent space such that this matrix is diagonal: the non-degeneracy condition implies that none of the diagonal elements vanish.
+
+\begin{proposition}
+  The \textit{signature} of a metric, i.e. the number of negative entries when diagonalized, is independent on the choice of basis.
+\end{proposition}
+\begin{proof}
+  From Sylvester's theorem of inertia.
+\end{proof}
+
+\paragraph{Riemannian manifolds}
+
+\begin{definition}
+  A \textit{Riemannian manifold} $ (\mathcal{M},g) $ is a manifold equipped with a metric with totally-positive signature.
+\end{definition}
+
+\begin{example}
+  The Euclidean space $ \R^n $, equipped with the metric $ g_{\mu \nu} = \delta_{\mu \nu} $ (in Cartesian coordinates), is a Riemannian manifold.
+\end{example}
+
+\begin{definition}
+  Given a Riemannian manifold $ (\mathcal{M},g) $ and $ X \in \xm $, the \textit{length} of $ X $ at $ p \in \mathcal{M} $ is:
+  \begin{equation}
+    \abs{X_p} \defeq \sqrt{g(X,X)\vert_p}
+    \label{eq:3.3}
+  \end{equation}
+  Given $ Y \in \xm $, the \textit{angle} between $ X $ and $ Y $ at $ p \in \mathcal{M} $ is:
+  \begin{equation}
+    \cos \theta \defeq \frac{g(X,Y) \vert_p}{\abs{X_p} \abs{Y_p}}
+    \label{eq:3.4}
+  \end{equation}
+\end{definition}
+
+This can be generalized to distances between points on a curve $ \sigma : \mathcal{\R} \rightarrow \mathcal{M} $:
+\begin{equation}
+  d(p,q) = \int_a^b dt \sqrt{g(X,X)\vert_{\sigma(t)}}
+  \label{eq:3.5}
+\end{equation}
+where $ \sigma(a) = p $, $ \sigma(b) = q $ and $ X $ is the tangent vector field of the curve. With parametrization $ x^{\mu}(t) $, the tangent vector has components $ X^{\mu} = \frac{dx^{\mu}}{dt} $, thus:
+\begin{equation}
+  d(p,q) = \int_a^b dt \sqrt{g_{\mu \nu}(x) \frac{dx^{\mu}}{dt} \frac{dx^{\nu}}{dt}}
+  \label{eq:3.6}
+\end{equation}
+It is important to note that this distance is independent of the parametrization.
+
+\paragraph{Lorentzian manifolds}
+
+\begin{definition}
+  A \textit{Lorentzian manifold} $ (\mathcal{M},g) $ is a manifold equipped with a metric which has a signature with a single negative sign.
+\end{definition}
+
+\begin{example}
+  The simplest Lorentzian manifold is $ \R^n $ with the \textit{Minkowski metric}:
+  \begin{equation}
+    \eta = - dx^0 \otimes dx^0 + dx^1 \otimes dx^1 + \dots + dx^{n-1} \otimes dx^{n-1}
+    \label{eq:3.7}
+  \end{equation}
+  Its components are $ \eta_{\mu \nu} = \diag (-1,+1,\dots,+1) $, thus this is a Lorentzian manifold.
+\end{example}
+
+On a general Lorentzian manifold, at any point $ p \in \mathcal{M} $ it is always possible to choose an orthonormal basis $ \{e_{\mu}\}_{\mu = 0,\dots,n-1} $ of $ T_p (\mathcal{M}) $ such that $ g_{\mu \nu} \vert_p = \eta_{\mu \nu} $: this fact is closely related to the equivalence principle. Consider a different basis $ \tilde{e}_{\mu} = \tensor{\Lambda}{^\nu _\mu} e_{\nu} $: the condition for it to leave the Minkowski metric unchanged is:
+\begin{equation}
+  \eta_{\mu \nu} = \tensor{\Lambda}{^\rho _\mu} \tensor{\Lambda}{^\sigma _\nu} \eta_{\rho \sigma}
+  \label{eq:3.8}
+\end{equation}
+This is the defining equation of a Lorentz transformation: on a Lorentzian manifold, the basic features of special relativity are locally recovered. Thus, other ideas from special relativity can be imported.
+
+\begin{definition}
+  Given a Lorentzian manifold $ (\mathcal{M},g) $ and $ X \in \xm $, at $ p \in \mathcal{M} $ the vector field is said to be:
+  \begin{itemize}
+    \item \textit{timelike} if $ g(X_p,X_p) < 0 $;
+    \item \textit{null} if $ g(X_p,X_p) = 0 $;
+    \item \textit{spacelike} if $ g(X_p,X_p) > 0 $.
+  \end{itemize}
+\end{definition}
+
+At each point $ p \in \mathcal{M} $ it is possible to draw \textit{lightcones}, i.e. the null tangent vectors at that point, which are past-directed or future-directed: these lightcones vary smoothly as the point is varied smoothly on the manifold, elucidating the causal structure of spacetime.\\
+The distance between two points on a curve depends on the nature of the tangent vector field of the curve: a \textit{timelike curve} is a curve whose tangent vector field is everywhere timelike, and analogously for the other cases. The distance on a spacelike curve is defined as in Eq. \ref{eq:3.5}, while that on a timelike curve gets a negative sign in the square root. With parametrization $ x^{\mu}(t) $, it is possible to define the \textit{proper time} on a timelike curve as:
+\begin{equation}
+  \tau = \int_a^b dt \sqrt{- g_{\mu \nu}(x) \frac{dx^{\mu}}{dt} \frac{dx^{\nu}}{dt}}
+  \label{eq:3.9}
+\end{equation}
+This is precisely the action of a free particle moving in spacetime.
+
+\subsection{Metric properties}
+
+The metric defines a natural isomorphism between vectors and covectors.
+
+\begin{proposition}\label{metric-isom}
+  Given a metric manifold $ (\mathcal{M},g) $, the metric defines for each $ p \in \mathcal{M} $ a \textit{natural isomorphism} $ g : X_p \in T_p (\mathcal{M}) \rightarrow \omega_p \in T^*_p (\mathcal{M}) : \omega_p(Y_p) = g(X_p,Y_p) \,\forall Y_p \in T_p (\mathcal{M}) $.
+\end{proposition}
+
+In a chosen coordinate basis, the vector $ X = X^{\mu} \pa_{\mu} $ is mapped to the one-form $ X = X_{\mu} dx^{\mu} $, thus the following identity holds:
+\begin{equation}
+  X_{\mu} = g_{\mu \nu} X^{\nu}
+  \label{eq:3.10}
+\end{equation}
+Being $ g $ non-degenerate, the matrix $ g_{\mu \nu} $ is invertible, with inverse $ g^{\mu \nu} $ such that:
+\begin{equation}
+  g^{\mu \nu} g_{\nu \rho} = \delta^{\mu}_{\rho}
+  \label{eq:3.11}
+\end{equation}
+Its elements are the components of a (2,0) symmetric tensor $ \hat{g} \defeq g^{\mu \nu} \pa_{\mu} \otimes \pa_{\nu} $, which defines the inverse of the natural isomorphism in Prop. \ref{metric-isom}:
+\begin{equation}
+  X^{\mu} = g^{\mu \nu} X_{\nu}
+  \label{eq:3.12}
+\end{equation}
+The metric also defines a natural volume form on the manifold.
+
+\begin{definition}
+  Given an $ n $-dimensional metric manifold $ (\mathcal{M},g) $, the \textit{volume form} is the $ n $-form:
+  \begin{equation}
+    v \defeq \sqg\, dx^1 \wedge \dots \wedge dx^n
+    \label{eq:3.13}
+  \end{equation}
+  where $ \tens{g} \defeq \abs{\det g_{\mu \nu}} $.
+\end{definition}
+
+\begin{proposition}
+  The volume form is basis-independent.
+\end{proposition}
+\begin{proof}
+  Consider a new set of coordinates $ y^{\mu} $ such that $ dx^{\mu} = \tensor{A}{^\mu _\nu} dy^{\nu} $, where $ \tensor{A}{^\mu _\nu} = \frac{\pa x^{\mu}}{\pa y^{\nu}} $. In general:
+  \begin{equation*}
+    dx^1 \wedge \dots \wedge dx^n = \tensor{A}{^1 _{\mu_1}} \dots \tensor{A}{^n _{\mu_n}} dy^{\mu_1} \wedge \dots \wedge dy^{\mu_n}
+  \end{equation*}
+  Recalling the anti-symmetry of the wedge product and the definition of determinant, this can be rewritten as:
+  \begin{equation*}
+    dx^1 \wedge \dots \wedge dx^n = \sum_{\pi \in S^n} \sgn{\pi} \tensor{A}{^1 _{\pi(1)}} \dots \tensor{A}{^n _{\pi(n)}} dy^1 \wedge \dots \wedge dy^n = \det A \, dy^1 \wedge \dots \wedge dy^n
+  \end{equation*}
+  Note the Jacobian factor which arises when changing the measure. On the other hand:
+  \begin{equation*}
+    g_{\mu \nu} = \frac{\pa y^{\rho}}{\pa x^{\mu}} \frac{\pa y^{\sigma}}{\pa x^{\nu}} \tilde{g}_{\rho \sigma} = \tensor{(A^{-1})}{^\rho _\mu} \tensor{(A^{-1})}{^\sigma _\nu} \tilde{g}_{\rho \sigma}
+    \quad \Rightarrow \quad
+    \det g_{\mu \nu} = \frac{\det \tilde{g}_{\mu \nu}}{\left( \det A \right)^2}
+  \end{equation*}
+  The factors $ \det A $ and $ \left( \det A \right)^{-1} $ cancel, thus yielding the thesis.
+\end{proof}
+
+The volume form can be rewritten as:
+\begin{equation}
+  v = \frac{1}{n!} v_{\mu_1 \dots \mu_n} dx^{\mu_1} \wedge \dots \wedge dx^{\mu_n} \equiv \frac{1}{n!} \sqg\, \epsilon_{\mu_1 \dots \mu_n} dx^{\mu_1} \wedge \dots \wedge dx^{\mu_n}
+  \label{eq:3.14}
+\end{equation}
+where $ \epsilon_{\mu_1 \dots \mu_n} $ is the totally-antisymmetric $ n $-dimensional symbol (generalization of the Levi-Civita symbol). $ \epsilon_{\mu_1 \dots \mu_n} $ cannot be considered a proper tensor, as its components are always $ +1,-1,0 $ indipendently if the indices are covariant or contravariant: it is, in fact, a \textit{tensor density}, i.e. a tensor divided by $ \sqg $. It can be shown that:
+\begin{equation}
+  v^{\mu_1 \dots \mu_n} = g^{\mu_1 \nu_1} \dots g^{\mu_n \nu_n} v_{\mu_1 \dots \mu_n} = \sigma \frac{1}{\sqg} \epsilon^{\mu_1 \dots \mu_n}
+  \label{eq:3.15}
+\end{equation}
+where $ \sigma $ is the sign of the signature (ex.: $ \sigma = +1 $ for Riemannian manifolds and $ \sigma = -1 $ for Lorentzian manifolds).
+As notation, the integral of a generic function $ f $ on $ \mathcal{M} $ is denoted as:
+\begin{equation}
+  \int_{\mathcal{M}} f v \equiv \int_{\mathcal{M}} d^n x \,\sqg f
+  \label{eq:3.16}
+\end{equation}
+
+\subsubsection{Hodge theory}
+
+\begin{definition}
+  Given an $ n $-dimensional oriented metric manifold $ (\mathcal{M},g) $, the \textit{Hodge dual} is defined as the map $ \star : \lm{p} \rightarrow \lm{n-p} : \omega \mapsto \star\, \omega $ such that:
+  \begin{equation}
+    \star\, \omega_{\mu_1 \dots \mu_{n-p}} \defeq \frac{1}{p!} \sqg\, \epsilon_{\mu_1 \dots \mu_{n-p} \nu_1 \dots \nu_p} \omega^{\nu_1 \dots \nu_p}
+    \label{eq:3.17}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}
+  The Hodge dual is basis-independent.
+\end{proposition}
+
+It is useful to state a lemma for future calculations.
+
+\begin{lemma}
+  $ v^{\mu_1 \dots \mu_p \rho_1 \dots \rho_{n-p}} v_{\nu_1 \dots \nu_p \rho_1 \dots \rho_{n-p}} = \sigma p! (n-p)! \delta^{\mu_1}_{[\nu_1} \dots \delta^{\mu_p}_{\nu_p]} $.
+\end{lemma}
+
+\begin{proposition}\label{hodge-hodge}
+  $ \star \left( \star\, \omega \right) = \sigma \left( -1 \right)^{p (n-p)} \omega $.
+\end{proposition}
+
+The Hodge dual defines an inner product on each $ \lm{p} $:
+\begin{equation}
+  \braket{\omega, \eta} \defeq \int_{\mathcal{M}} \omega \wedge \star\, \eta
+  \label{eq:3.18}
+\end{equation}
+This allows to define operators and their adjoints on the form spaces.
+
+\begin{proposition}
+  Given a metric manifold $ (\mathcal{M},g) $ and two forms $ \omega \in \lm{p}, \alpha \in \lm{p-1} $, then:
+  \begin{equation}
+    \braket{d\alpha,\omega} = \braket{\alpha,d^{\dagger}\omega}
+    \label{eq:3.19}
+  \end{equation}
+  where the adjoint of the exterior derivative $ d^{\dagger} : \lm{p} \rightarrow \lm{p-1} $ is defined as:
+  \begin{equation}
+    d^{\dagger} \defeq \sigma \left( -1 \right)^{np + n -1} \star d \, \star
+    \label{eq:3.20}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  To simplify the proof, consider a closed manifold; then, from Stokes' theorem and Eq. \ref{eq:2.38}:
+  \begin{equation*}
+    0 = \int_{\mathcal{M}} d ( \alpha \wedge \star\, \omega ) = \braket{d\alpha, \omega} + \int_{\mathcal{M}} \left( -1 \right)^{p-1} \alpha \wedge d \star \omega
+  \end{equation*}
+  The second term is proportional to $ \braket{\alpha, \star\, d \star \omega} $: to determine the relative sign, note that $ d \star \omega \in \lm{n-p+1} $, thus, from Prop. \ref{hodge-hodge}, $ \star \star d \star \omega = \sigma \left( -1 \right)^{(n-p+1)(p-1)} d \star \omega $. In conclusion:
+  \begin{equation*}
+    \braket{\alpha, \star\, d \star \omega} = \sigma \left( -1 \right)^{(n-p)(p-1)} \int_{\mathcal{M}} \left( -1 \right)^{p-1} \alpha \wedge d \star \omega
+    \quad \Rightarrow \quad
+    \braket{d\alpha, \omega} = \sigma \left( -1 \right)^{(n-p)(p-1) + 1} \braket{\alpha, \star\, d \star \omega}
+  \end{equation*}
+  Noting that $ \left( -1 \right)^{(n-p)(p-1) + 1} = \left( -1 \right)^{np + n - 1} $, as in general $ \left( -1 \right)^{-n} = \left( -1 \right)^n $ and $ \left( -1 \right)^{-p^2 + p + 1} = \left( -1 \right)^{-1} $ due to $ p (p-1) $ being always even, concludes the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
