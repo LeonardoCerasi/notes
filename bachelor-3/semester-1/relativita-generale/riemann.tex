@@ -133,7 +133,7 @@ Its elements are the components of a (2,0) symmetric tensor $ \hat{g} \defeq g^{
 The metric also defines a natural volume form on the manifold.
 
 \begin{definition}
-  Given an $ n $-dimensional metric manifold $ (\mathcal{M},g) $, the \textit{volume form} is the $ n $-form:
+  Given an $ n $-dimensional metric manifold $ (\mathcal{M},g) $, the \textit{volume form} is the top-form:
   \begin{equation}
     v \defeq \sqg\, dx^1 \wedge \dots \wedge dx^n
     \label{eq:3.13}
@@ -184,10 +184,12 @@ As notation, the integral of a generic function $ f $ on $ \mathcal{M} $ is deno
 \begin{definition}
   Given an $ n $-dimensional oriented metric manifold $ (\mathcal{M},g) $, the \textit{Hodge dual} is defined as the map $ \star : \lm{p} \rightarrow \lm{n-p} : \omega \mapsto \star\, \omega $ such that:
   \begin{equation}
-    \star\, \omega_{\mu_1 \dots \mu_{n-p}} \defeq \frac{1}{p!} \sqg\, \epsilon_{\mu_1 \dots \mu_{n-p} \nu_1 \dots \nu_p} \omega^{\nu_1 \dots \nu_p}
+    \star\, \omega_{\mu_1 \dots \mu_{n-p}} \defeq \frac{1}{(n-p)!} \sqg\, \epsilon_{\mu_1 \dots \mu_{n-p} \nu_1 \dots \nu_p} \omega^{\nu_1 \dots \nu_p}
     \label{eq:3.17}
   \end{equation}
 \end{definition}
+
+In this section, the orientedness and $ n $-dimensionality of the manifold are implied.
 
 \begin{proposition}
   The Hodge dual is basis-independent.
@@ -234,6 +236,87 @@ This allows to define operators and their adjoints on the form spaces.
     \braket{d\alpha, \omega} = \sigma \left( -1 \right)^{(n-p)(p-1) + 1} \braket{\alpha, \star\, d \star \omega}
   \end{equation*}
   Noting that $ \left( -1 \right)^{(n-p)(p-1) + 1} = \left( -1 \right)^{np + n - 1} $, as in general $ \left( -1 \right)^{-n} = \left( -1 \right)^n $ and $ \left( -1 \right)^{-p^2 + p + 1} = \left( -1 \right)^{-1} $ due to $ p (p-1) $ being always even, concludes the proof.
+\end{proof}
+
+\begin{definition}
+  Given a metric manifold $ (\mathcal{M},g) $, the \textit{Laplacian} $ \lap : \lm{p} \rightarrow \lm{p} $ is defined as the operator:
+  \begin{equation}
+    \lap \defeq ( d + d^{\dagger} )^2
+    \label{eq:3.21}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}
+  $ \lap = dd^{\dagger} + d^{\dagger}d = \{d,d^{\dagger}\} $.
+\end{proposition}
+\begin{proof}
+  Trivial, given $ d^2 = d^{\dagger 2} = 0 $.
+\end{proof}
+
+It is possible to calculate an explicit expression for the Laplacian of functions.
+
+\begin{lemma}\label{lap-calc}
+  Given $ f \in \cm $, then $ d^{\dagger} f = 0 $.
+\end{lemma}
+\begin{proof}
+  Trivial noting that $ \star\, f $ is a top-form.
+\end{proof}
+
+\begin{proposition}
+  Given $ f \in \cm $, then:
+  \begin{equation}
+    \lap f = - \frac{\sigma}{\sqg} \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right)
+    \label{eq:3.22}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Via direct calculation, using Lemma \ref{lap-calc}:
+  \begin{equation*}
+    \begin{split}
+      \lap f
+      &= \sigma \left( -1 \right)^{n^2 + n - 1} \star d \star \left( \pa_{\mu} f dx^{\mu} \right) = - \sigma \star d \left( \pa_{\mu} f \star dx^{\mu} \right) \\
+      &= - \frac{\sigma}{(n-1)!} \star d \left( \pa_{\mu} f g^{\mu \nu} \sqg\, \epsilon_{\nu \rho_1 \dots \rho_{n-1}} dx^{\rho_1} \wedge \dots \wedge dx^{\rho_{n-1}} \right) \\
+      &= - \frac{\sigma}{(n-1)!} \star \pa_{\alpha} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right) \epsilon_{\nu \rho_1 \dots \rho_{n-1}} dx^{\alpha} \wedge dx^{\rho_1} \wedge \dots \wedge dx^{\rho_{n-1}} \\
+      &= - \sigma \star \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right) dx^1 \wedge \dots dx^n = - \frac{\sigma}{\sqg} \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right)
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+The Laplacian operator is linked to the de Rham cohomology.
+
+\begin{definition}
+  Given $ \omega \in \lm{p} $, it is said to be \textit{harmonic} if $ \lap \omega = 0 $.
+\end{definition}
+
+\begin{definition}
+  The space of harmonic $ p $-forms on $ (\mathcal{M},g) $ is denoted as $ \hrm{p} $.
+\end{definition}
+
+\begin{proposition}\label{harm-closed}
+  A harmonic form is both \textit{closed} and \textit{co-closed}.
+\end{proposition}
+\begin{proof}
+  $ 0 = \braket{\omega, \lap \omega} = \braket{d\omega, d\omega} + \braket{d^{\dagger} \omega, d^{\dagger}{\omega}} $, thus $ d\omega = 0 $ and $ d^{\dagger} \omega = 0 $, for the inner product is positive-defined.
+\end{proof}
+
+\begin{theorem}\label{form-decomp}
+  Given a compact Riemannian manifold $ (\mathcal{M},g) $, any $ \omega \in \lm{p} $ can be uniquely decomposed as $ \omega = d\alpha + d^{\dagger}\beta + \gamma $, with $ \alpha \in \lm{p-1} $, $ \beta \in \lm{p+1} $ and $ \gamma \in \hrm{p} $.
+\end{theorem}
+
+\begin{theorem}[Hodge]
+  Given a compact Riemannian manifold $ (\mathcal{M},g) $, there is an isomorphism:
+  \begin{equation}
+    \hrm{p} \cong H^p(\mathcal{M})
+    \label{eq:3.23}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  From Prop. \ref{harm-closed} $ \hrm{p} \subset Z^p(\mathcal{M}) $, but the uniqueness of decomposition in Th. \ref{form-decomp} implies $ \forall \gamma \in \hrm{p} \,\exists \eta_{\gamma} \in \lm{p-1} : \gamma \neq d\eta_{\gamma} $, thus $ \hrm{p} \subset H^p(\mathcal{M}) $. \\
+  WTS that any equivalence class $ [\omega] \in H^p(\mathcal{M}) $ can be represented by a harmonic form. By Th, \ref{form-decomp} $ \omega = d\alpha + d^{\dagger}\beta + \gamma $, but $ \omega \in H^p(\mathcal{M}) $ implies $ d\omega = 0 $ by definition, so:
+  \begin{equation*}
+    0 = \braket{d\omega, \beta} = \braket{\omega, d^{\dagger} \beta} = \braket{d\alpha + d^{\dagger}\beta + \gamma, d^{\dagger}\beta} = \braket{d^{\dagger} \beta, d^{\dagger} \beta}
+  \end{equation*}
+  The inner product is positive-definite, thus $ d^{\dagger} \beta = 0 $, hence $ \omega = \gamma + d\alpha $. By definition $ H^p(\mathcal{M}) \defeq Z^p(\mathcal{M}) / B^p(\mathcal{M}) $, so $ [\omega] = \gamma $.
 \end{proof}
 
 
