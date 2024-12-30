@@ -319,6 +319,471 @@ The Laplacian operator is linked to the de Rham cohomology.
   The inner product is positive-definite, thus $ d^{\dagger} \beta = 0 $, hence $ \omega = \gamma + d\alpha $. By definition $ H^p(\mathcal{M}) \defeq Z^p(\mathcal{M}) / B^p(\mathcal{M}) $, so $ [\omega] = \gamma $.
 \end{proof}
 
+\begin{corollary}
+  $ B_p = \dim_{\R} \hrm{p} $.
+\end{corollary}
+
+\section{Connections}
+
+There's a different way to differentiate tensor fields distinct from the Lie derivative, associated to a different way to map different vector spaces at different points: the covariant derivative.\\
+From now on, $ \mathcal{M} $ is implied to be an $ n $-dimensional metric manifold with metric $ g $.
+
+\subsection{Covariant derivative}
+
+\begin{definition}
+  The \textit{connection} is a map $ \na : \xm \times \xm \rightarrow \xm $, usually written as $ \na(X,Y) \equiv \na_X Y $, where $ \na_X $ is called the \textit{covariant derivative}, satisfying the following properties for all $ X,Y,Z \in \xm $:
+  \begin{enumerate}
+    \item $ \na_X (Y + Z) = \na_X Y + \na_X Z $;
+    \item $ \na_{fX + gY} Z = f \na_X Z + g \na_Y Z \,\forall f,g \in \cm $;
+    \item $ \na_X (fY) = f \na_X Y + X(f) Y \,\forall f \in \cm $.
+  \end{enumerate}
+\end{definition}
+
+Usually $ X(f) \equiv \na_X f $. The covariant derivative endows the manifold with more structure: in particular, given a basis $ \{e_{\mu}\} $ of $ \xm $, its covariant derivative is expressed as:
+\begin{equation}
+  \na_{e_{\rho}} e_{\mu} \equiv \Gamma^{\mu}_{\rho \nu} e_{\mu}
+  \label{eq:3.24}
+\end{equation}
+The $ \Gamma^{\mu}_{\rho \nu} $ are the components of the connection on that basis. Usually $ \na_{e_{\mu}} \equiv \na_{\mu} $, thus resembling a partial derivative. To elucidate how the covariant derivative acts on vector fields:
+\begin{equation*}
+  \begin{split}
+    \na_X Y
+    &= \na_X (Y^\mu e_\mu) \\
+    &= X(Y^\mu) e_\mu + Y^\mu \na_X e_\mu \\
+    &= X^{\nu} e_{\nu} (Y^{\mu}) e_{\mu} + Y^{\mu} X^{\nu} \na_{\nu} e_{\mu} \\
+    &= X^{\nu} \left[ e_{\nu}(Y^{\mu}) + \Gamma^{\mu}_{\nu \rho} Y^{\rho} \right] e_{\mu} \\
+    &= X^{\nu} \na_{\nu} Y = X^{\nu} (\na_{\nu} Y)^{\mu} e_{\mu}
+  \end{split}
+\end{equation*}
+The dependency on $ X $ can therefore be eliminated, and in components:
+\begin{equation}
+  (\na_\nu Y)^\mu = e_\nu (Y^\mu) + \Gamma^\mu_{\nu \rho} Y^\rho
+  \label{eq:3.25}
+\end{equation}
+A sloppy notation is often used: $ (\na_\nu Y)^\mu \equiv \na_\nu Y^\mu $. This must not be confused as the covariant derivative of $ Y^\mu $. Moreover $ \na_\nu Y^\mu \equiv \tensor{Y}{^\mu_{;\nu}} $, while $ \pa_\mu f \equiv f_{,\mu} $. On the coordinate basis $ e_\mu = \pa_\mu $, then:
+\begin{equation}
+  \tensor{Y}{^\mu_{;\nu}} = \tensor{Y}{^\mu_{,\nu}} + \Gamma^\mu_{\nu \rho} Y^\rho
+  \label{eq:3.26}
+\end{equation}
+Note that $ \tensor{Y}{^\mu_{;\nu}} $ is the $ \mu^{\text{th}} $ component of $ \na_\nu Y $, while $ \tensor{Y}{^\mu_{,\nu}} $ is the partial derivative of $ Y^{\mu} $ along $ \pa_{\nu} $.\\
+The covariant derivative coincides with other derivatives on $ \cm $: it can be shown that $ \na_X f = \mathcal{L}_X f = X(f) $ and $ \na_\mu f = \pa_\mu f $. On $ \xm $, however, $ \na_X $ and $ \mathcal{L}_X $ are distinct: while $ \na_X = X^\mu \na_\mu $, there's no way to write the same relation for $ \mathcal{L}_X $, for it depends not only on $ X $ but on its first derivative too. The covariant derivative is thus the natural generalization of the partial derivative to curved manifolds.
+
+\begin{proposition}
+  $ \Gamma^\mu_{\rho \nu} $ are not components of a tensor.
+\end{proposition}
+\begin{proof}
+  Given the basis transformation $ \tilde{e}_\nu = \tensor{A}{^\mu _\nu} e_\mu $, with $ A $ and invertible matrix (if they're both coordinate basis, then $ \tensor{A}{^\mu _\nu} = \frac{\pa x^\mu}{\pa x^\nu} $), the components of a (1,2) tensor must transform as:
+  \begin{equation*}
+    \tensor{\tilde{T}}{^\mu _\rho _\nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \tensor{T}{^\tau _\sigma _\lambda}
+  \end{equation*}
+  In the new basis:
+  \begin{equation*}
+    \begin{split}
+      \tilde{\Gamma}^\mu_{\rho \nu} \tilde{e}_\mu
+      &= \na_{\tilde{e}_\rho}\tilde{e}_\nu = \na_{\tensor{A}{^\sigma _\rho} e_\sigma} (\tensor{A}{^\lambda _\nu} e_{\nu}) = \tensor{A}{^\sigma _\rho} \na_{e_\sigma} (\tensor{A}{^\lambda _\nu} e_\lambda) \\
+      &= \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} e_\tau + \tensor{A}{^\sigma _\rho} e_\lambda \pa_\sigma \tensor{A}{^\lambda _\nu} = \left[ \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} + \tensor{A}{^\sigma _\rho} \pa_\sigma \tensor{A}{^\tau _\nu} \right] e_\tau \\
+      &= \left[ \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} + \tensor{A}{^\sigma _\rho} \pa_\sigma \tensor{A}{^\tau _\nu} \right] \tensor{(A^{-1})}{^\mu _\tau} \tilde{e}_\mu
+    \end{split}
+  \end{equation*}
+  Thus, there's a second term proportional to $ \pa A $ which deviates from the transformation law:
+  \begin{equation*}
+    \tilde{\Gamma}^\mu_{\rho \nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \left[ \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} \pa_\sigma \tensor{A}{^\tau _\nu} \right]
+  \end{equation*}
+\end{proof}
+
+\subsection{Covariant derivative of tensors}
+
+First of all, it is necessary to elucidate how the covariant derivative acts on one-forms. Given a one-form $ \omega $, the one-form $ \na_X \omega $ is defined by its action on vector fields. By Leibniz rule:
+\begin{equation*}
+  \na_X (\omega(Y)) = (\na_X \omega)(Y) + \omega(\na_X Y)
+\end{equation*}
+Recalling that $ \omega(Y) $ is a function, $ \na_X (\omega(Y)) = X(\omega(Y)) $, therefore:
+\begin{equation}
+  (\na_X \omega)(Y) = X(\omega(Y)) - \omega(\na_X Y)
+  \label{eq:3.27}
+\end{equation}
+Expressing it in coordinates:
+\begin{equation*}
+  \begin{split}
+    X^\mu (\na_\mu \omega)_\nu Y^\nu
+    &= X^\mu \pa_\mu (\omega_\nu Y^\nu) - \omega_\nu X^\mu \left[ \pa_\mu Y^\nu + \Gamma^\nu_{\mu \rho} Y^\rho \right] \\
+    &= X^\mu \left[ \pa_\mu \omega_\rho - \Gamma^\nu_{\mu \rho} \omega_{\nu} \right] Y^\rho
+  \end{split}
+\end{equation*}
+Crucially, the $ \pa Y $ terms cancel out, allowing to define $ \na_X \omega $ without referencing $ Y $:
+\begin{equation}
+  (\na_\mu \omega)_\rho = \pa_\mu \omega_\rho - \Gamma^\nu_{\mu \rho} \omega_\nu
+  \label{eq:3.28}
+\end{equation}
+Using the same notation as for vector fields $ (\na_\mu \omega)_\rho \equiv \na_\mu \omega_\rho \equiv \omega_{\rho ; \mu} $:
+\begin{equation}
+  \omega_{\rho ;\mu} = \omega_{\rho,\mu} - \Gamma^\nu_{\mu \rho} \omega_\nu
+  \label{eq:3.29}
+\end{equation}
+This kind of argument can be extended to a general $ (p,q) $ tensor field:
+\begin{equation}
+  \begin{split}
+    \na_\rho \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\mu_q}} = \pa_\rho \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\nu_q}}
+    &+ \Gamma^{\mu_1}_{\rho \sigma} \tensor{T}{^\sigma ^{\mu_2} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\nu_q}} + \dots + \Gamma^{\mu_p}_{\rho \sigma} \tensor{T}{^{\mu_1} ^\dots ^{\mu_{p-1}} ^\sigma _{\nu_1} _\dots _{\nu_q}} \\
+    &- \Gamma^\sigma_{\rho \nu_1} \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _\sigma _{\nu_2} _\dots _{\nu_q}} - \dots - \Gamma^\sigma_{\rho \nu_q} \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\nu_{q-1}} _\sigma}
+  \end{split}
+  \label{eq:3.30}
+\end{equation}
+The pattern is clear: for each upper index $ \mu $ there's a $ + \Gamma^\mu_{\rho \sigma} T^\sigma $ term, while for each lower index $ \nu $ there's $ - \Gamma^\sigma_{\rho \nu} T_\sigma $ term. Furthermore, it is necessary to generalize the comma-notation: for example, $ \tensor{X}{^\mu _; _\nu _\rho} \equiv \na_\rho \na_\nu X^\mu $, so the rightmost index is the one whose covariant derivative acts first.
+
+\subsubsection{Torsion and curvature}
+
+Even though the connection is not a tensor, it is used to construct two important tensors.
+
+\begin{definition}
+  The \textit{torsion} is a (1,2) tensor defined on $ \lm{1} \times \xm \times \xm $ as:
+  \begin{equation}
+    T(\omega,X,Y) \defeq \omega (\na_X Y - \na_Y X - [X,Y])
+    \label{eq:3.31}
+  \end{equation}
+  Alternatively, the torsion can be viewed as a map $ T : \xm \times \xm \rightarrow \xm $ sucht that:
+  \begin{equation}
+    T(X,Y) = \na_X Y - \na_Y X - [X,Y]
+    \label{eq:3.32}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  The \textit{curvature} is a (1,3) tensor defined on $ \lm{1} \times \xm \times \xm \times \xm $ as:
+  \begin{equation}
+    R(\omega,X,Y,Z) \defeq \omega (\na_X \na_Y Z - \na_Y \na_X Z - \na_{[X,Y]} Z)
+    \label{eq:3.33}
+  \end{equation}
+  Alternatively, the curvature can be viewed as a map from $ \xm \times \xm $ to the space of differential operators on $ \xm $ such that:
+  \begin{equation}
+    R(X,Y) = \na_X \na_Y - \na_Y \na_X - \na_{[X,Y]}
+    \label{eq:3.34}
+  \end{equation}
+\end{definition}
+
+The fact that these are indeed tensors, i.e. they are linear in each argument, can be shown by direct calculation, recalling that $ [fX,Y] = f[X,Y] - Y(f) X $.
+
+\begin{proposition}
+  On the coordinate basis $ \{\pa_\mu\} $ and $ \{dx^\mu\} $ the torsion components are:
+  \begin{equation}
+    \tensor{T}{^\rho _\mu _\nu} = \Gamma^\rho_{\mu \nu} - \Gamma^\rho_{\nu \mu}
+    \label{eq:3.35}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  By direct calculation:
+  \begin{equation*}
+    \begin{split}
+      \tensor{T}{^\rho _\mu _\nu}
+      &= T(dx^\rho, \pa_\mu, \pa_\nu) = dx^\mu (\na_\mu \pa_\nu - \na_\nu \pa_\mu - [\pa_\mu, \pa_\nu]) \\
+      &= dx^\mu (\pa_\mu \pa_\nu - \Gamma^\sigma_{\mu \nu} \pa_\sigma - \pa_\nu \pa_\mu + \Gamma^\sigma_{\nu \mu} \pa_\sigma) \\
+      &= \left[ \Gamma^\sigma_{\mu \nu} - \Gamma^\sigma_{\nu \mu} \right] \delta^\mu_\sigma = \Gamma^\rho_{\mu \nu} - \Gamma^\rho_{\nu \mu}
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+Interestingly, even though $ \Gamma^\rho_{\mu \nu} $ is not a tensor, its anti-symmetric part $ \Gamma^\rho_{[\mu \nu]} = \frac{1}{2} \tensor{T}{^\sigma_\mu _\nu} $ is. Clearly, the torsion tensor is anti-symmetric in its lower indices, thus for connections which are symmetric in their lower indices the torsion is null: such connections are said to be \textit{torsion-free}.
+
+\begin{proposition}
+  On the coordiante basis $ \{\pa_\mu\} $ and $ \{dx^\mu\} $ the curvature components are:
+  \begin{equation}
+    \tensor{R}{^\sigma _\rho _\mu _\nu} = \pa_\mu \Gamma^\sigma_{\nu \rho} - \pa_\nu \Gamma^\sigma_{\mu \rho} + \Gamma^\lambda_{\nu \rho} \Gamma^\sigma_{\mu \lambda} - \Gamma^\lambda_{\mu \rho} \Gamma^\sigma_{\nu \lambda}
+    \label{eq:3.36}
+  \end{equation}
+\end{proposition}
+\begin{proposition}
+  By direct calculation:
+  \begin{equation*}
+    \begin{split}
+      R(dx^\sigma, \pa_\mu, \pa_\nu, \pa_\rho)
+      &= dx^\sigma (\na_\mu \na_\nu \pa_\rho - \na_\nu \na_\mu \pa_\rho - \na_{[\pa_\mu, \pa_\nu]} \pa_\rho) \\
+      &= dx^\sigma (\na_\mu \na_\nu \pa_\rho - \na_\nu \na_\mu \pa_\rho) = dx^\sigma (\na_\mu (\Gamma^\lambda_{\nu \rho} \pa_\lambda) - \na_\nu (\Gamma^\lambda_{\mu \rho} \pa_\lambda)) \\
+      &= dx^\sigma ((\pa_\mu \Gamma^\lambda_{\nu \rho}) \pa_\lambda + \Gamma^\lambda_{\nu \rho} \Gamma^\tau_{\mu \lambda} \pa_\tau - (\pa_\nu \Gamma^\lambda_{\mu \rho}) \pa_\lambda - \Gamma^\lambda_{\mu \rho} \Gamma^\tau_{\nu \lambda} \pa_{\tau}) \\
+      &= \pa_\mu \Gamma^\sigma_{\nu \rho} - \pa_\nu \Gamma^\sigma_{\mu \rho} + \Gamma^\lambda_{\nu \rho} \Gamma^\sigma_{\mu \lambda} - \Gamma^\lambda_{\mu \rho} \Gamma^\sigma_{\nu \lambda}
+    \end{split}
+  \end{equation*}
+\end{proposition}
+
+Clearly, the curvature tensor is anti-symmetric in its last two lower indices, i.e. $ \tensor{R}{^\sigma _\rho _\mu _\nu} = \tensor{R}{^\sigma _\rho _[ _\mu _\nu _]} $. It's also easy to show that:
+\begin{equation}
+  \tensor{R}{^\sigma _\rho _\mu _\nu} = 2 \pa_{[\mu} \Gamma^\sigma_{\nu] \rho} + 2 \Gamma^\sigma_{[\mu | \lambda |} \Gamma^\lambda_{\nu]\rho}
+  \label{eq:3.37}
+\end{equation}
+
+\begin{theorem}
+  The following idendity, known as the \textit{Ricci identity}, holds:
+  \begin{equation}
+    2 \na_{[\mu} \na_{\nu]} Z^\sigma = \tensor{R}{^\sigma _\rho _\mu _\nu} Z^\rho - \tensor{T}{^\rho_{\mu \nu}} \na_\rho Z^\sigma
+    \label{eq:3.38}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  By direct calculation:
+  \begin{equation*}
+    \begin{split}
+      \na_{[\mu} \na_{\nu]} Z^\sigma
+      &= \pa_{[\mu} (\na_{\nu]} Z^\sigma) + \Gamma^\sigma_{[\mu | \lambda |} \na_{\nu]} Z^\lambda - \Gamma^\rho_{[\mu \nu]} \na_\rho Z^\sigma \\
+      &= \pa_{[\mu} \pa_{\nu]} Z^\sigma + (\pa_{[\mu} \Gamma^\sigma_{\nu]\rho}) Z^\rho + (\pa_{[\mu} Z^\rho) \Gamma^\sigma_{\nu]\rho} + \Gamma^\sigma_{[\mu | \lambda |} \pa_{\nu]} Z\lambda + \Gamma^\sigma_{[\mu | \lambda |} \Gamma^\lambda_{\nu] \rho} Z^\rho - \frac{1}{2} \tensor{T}{^\rho_{\mu \nu}} \na_\rho Z^\sigma \\
+      &= \left( \pa_{[\mu} \Gamma^\sigma_{\nu]\rho} + \Gamma^\sigma_{[\mu | \lambda |} \Gamma^\lambda_{\nu]\rho} \right) Z^\rho - \frac{1}{2} \tensor{T}{^\rho_{\mu \nu}} \na_\rho Z^\sigma = \frac{1}{2} \tensor{R}{^\sigma_{\rho \mu \nu}} Z^\rho - \frac{1}{2} \tensor{T}{^\sigma_{\mu \nu}} \na_\rho Z^\sigma
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+\subsubsection{Levi-Civita connection}
+
+The discussion on the connection has so far been independent of the metric. Starting to consider it, an important result is the \textit{fundamental theorem of Riemannian geometry}.
+
+\begin{theorem}[Riemann]
+  On a metric manifold $ (\mathcal{M},g) $, there exists a unique torsion-free connection that is compatible with the metric, i.e. for all $ X \in \xm $:
+  \begin{equation}
+    \na_X g = 0
+    \label{eq:3.39}
+  \end{equation}
+  This is called the \textit{Levi-Civita connection}.
+\end{theorem}
+\begin{proof}
+  WTS uniqueness: suppose such a connection exists. Then, by Leibniz:
+  \begin{equation*}
+    X(g(Y,Z)) = \na_X (g(Y,Z)) = (\na_X g)(Y,Z) + g(\na_X Y, Z) + g(Y, \na_X, Z)
+  \end{equation*}
+  Since $ \na_X g = 0 $, by cyclic permutations of $ X $, $ Y $ and $ Z $:
+  \begin{equation*}
+    \begin{split}
+      X(g(Y,Z)) &= g(\na_X Y, Z) + g(Y, \na_X Z) \\
+      Y(g(Z,X)) &= g(\na_Y Z, X) + g(Z, \na_Y X) \\
+      Z(g(X,Y)) &= g(\na_Z X, Y) + g(X, \na_Z Y)
+    \end{split}
+  \end{equation*}
+  Since the connection is torsion-free, $ \na_X Y - \na_Y X = [X,Y] $, thus these equations become:
+  \begin{equation*}
+    \begin{split}
+      X(g(Y,Z)) &= g(\na_Y X, Z) + g(\na_X Z, Y) + g([X,Y], Z) \\
+      Y(g(Z,X)) &= g(\na_Z Y, X) + g(\na_Y X, Z) + g([Y,Z], X) \\
+      Z(g(X,Y)) &= g(\na_X Z, Y) + g(\na_Z Y, X) + g([Z,X], y)
+    \end{split}
+  \end{equation*}
+  Adding the first two and subtracting the third:
+  \begin{equation*}
+    \begin{split}
+      g(\na_Y X, Z) = \frac{1}{2} [ &X(g(Y,Z)) + Y(g(Z,X)) + Z(g(X,Y)) \\
+                                         &- g([X,Y],Z) - g([Y,Z],X) + g([Z,X],Y) ]
+    \end{split}
+  \end{equation*}
+  The metric is non-degenerate, thus this uniquely specifies the connection. By direct calculation it can be shown that it indeed satisfies all the properties of a connection.
+\end{proof}
+
+\begin{proposition}
+  On the coordinate basis $ \{\pa_\mu\} $ and $ \{dx^\mu\} $ the Levi-Civita connection's components, called \textit{Christoffel symbols}, are:
+  \begin{equation}
+    \Gamma^\lambda_{\mu \nu} = \frac{1}{2} g^{\lambda \rho} (\pa_\mu g_{\nu \rho} + \pa_\nu g_{\mu \rho} - \pa_\rho g_{\mu \nu})
+    \label{eq:3.40}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Recalling that $ [\pa_\mu, \pa_\nu] = 0 $:
+  \begin{equation*}
+    \Gamma^\lambda_{\mu \nu} g_{\lambda \rho} = g(\na_\mu \pa_\nu, \pa_\rho) = \frac{1}{2} (\pa_\nu g_{\mu \rho} + \pa_\mu g_{\nu \rho} - \pa_\rho g_{\mu \nu})
+  \end{equation*}
+\end{proof}
+
+\begin{example}
+  In flat space $ \R^n $, endowed with either Euclidean or Minkowski metric, it is always possibile to choose Cartesian coordinates, in which case the Christoffel symbols vanish. Being the Riemann tensor a genuine tensor, it therefore will vanish in all possibile coordinate systems on $ \R^n $, even in those with $ \Gamma^\rho_{\mu \nu} \neq 0 $: this expresses the flatness of $ \R^n $.
+\end{example}
+
+\subsubsection{Gauss' theorem}
+
+The divergence theorem (or Gauss' theorem) states that the integral of a total derivative is a boundary term. It is possible to express this theorem on curved manifolds in a convenient way.
+
+\begin{lemma}\label{gauss-lemma}
+  $ \Gamma^\mu_{\mu \nu} = \frac{1}{\sqg} \pa_\nu \sqg $.
+\end{lemma}
+\begin{proof}
+  A useful identity for diagonalizable matrices: $ \tr \log A = \log \det A $. Thus (WLOG $ \det g > 0 $):
+  \begin{equation*}
+    \begin{split}
+      \Gamma^\mu_{\mu \nu}
+      &= \frac{1}{2} g^{\mu \rho} \pa_\nu g_{\mu \rho} = \frac{1}{2} \tr (g^{-1} \pa_\nu g) = \frac{1}{2} \tr (\pa_\nu \log g) = \frac{1}{2} \pa_\nu \log \det g = \frac{1}{\sqrt{\det g}} \pa_\nu \sqrt{\det g}
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+\begin{theorem}[Gauss]
+  Given a Riemannian manifold $ (\mathcal{M},g) $, consider a region $ M \subseteq \mathcal{M} $ with boundary $ \pa M $ and let $ n^\mu $ be an outward-pointing unit vector orthogonal to $ \pa M $. Then, for any vector field $ X^\mu $ on $ M $:
+  \begin{equation}
+    \int_M d^n x \sqg\, \na_\mu X^\mu = \int_{\pa M} d^{n-1} x \sqrt{\gamma}\, n_\mu X^\mu
+    \label{eq:3.41}
+  \end{equation}
+  where $ \gamma_{ij} $ is the pull-back of the metric to $ \pa M $ and $ \gamma \equiv \det \gamma_{ij} $.
+\end{theorem}
+\begin{proof}
+  From Lemma \ref{gauss-lemma}:
+  \begin{equation*}
+    \sqg\, \na_\mu X^\mu = \sqg \left( \pa_\mu X^\mu + \Gamma^\mu_{\mu \nu} X^\nu \right) = \sqg \left( \pa_\mu X^\mu + X^\nu \frac{1}{\sqg} \pa_\nu \sqg \right) = \pa_\mu ( \sqg X^\mu )
+  \end{equation*}
+  The integral becomes:
+  \begin{equation*}
+    \int_M d^n x \sqg\, \na_\mu X^\mu = \int_M d^n x\, \pa_\mu (\sqg X^\mu)
+  \end{equation*}
+  This is the integral of an ordinary partial derivative, so the ordinary divergence theorem applies. To evaluate the integral on the boundary, it is convenient to pick coordinates so that $ \pa M $ is a surface at constant $ x^n $. Moreover, to simplify the proof, the possible metrics will be restricted to $ g_{\mu \nu} = \diag \left( \gamma_{ij}, N^2 \right) $. By usual integration rules:
+  \begin{equation*}
+    \int_M d^n x\, \pa_\mu ( \sqg X^\mu) = \int_{\pa M} d^{n-1} x \sqrt{\gamma N^2} X^n
+  \end{equation*}
+  The unit normal vector is $ n^\mu = (0,\dots,0,\frac{1}{N}) $, so that $ g_{\mu \nu} n^\mu n^\nu = 1 $, therefore $ n_\mu = g_{\mu \nu} n^\nu = (0,\dots,0,N) $. The proof is then concluded because:
+  \begin{equation*}
+    \int_{\pa M} d^{n-1} x\sqrt{\gamma N^2} X^n = \int_{\pa M} d^{n-1} x \sqrt{\gamma} n_\mu X^\mu
+  \end{equation*}
+\end{proof}
+
+Note that this theorem holds on Lorentzian manifolds too, with the condition that $ \pa M $ must be purely timelike or purely spacelike, ensuring that $ \gamma \neq 0 $ at any point.
+
+\subsubsection{Maxwell action}
+
+Consider spacetime as a manifold $ \mathcal{M} $. The electromagnetic field can be described by a form on this manifold: indeed, the electromagnetic gauge field $ A_\mu = (\phi,\ve{A}) $ is to be thought as the components of a one-form $ A = A_\mu(x) dx^\mu $. The exterior derivative of this form is a 2-form $ F = dA $:
+\begin{equation*}
+  F = \frac{1}{2} F_{\mu \nu} dx^\mu \wedge dx^\nu = \frac{1}{2} (\pa_\mu A_\nu - \pa_\nu A_\mu) dx^\mu \wedge dx^\nu
+\end{equation*}
+The components $ F_{\mu \nu} $ are in reality the components of a tensor, the \textit{Faraday tensor}. By construction, a useful identity holds, sometimes called the \textit{Bianchi identity}:
+\begin{equation}
+  dF = 0
+  \label{eq:3.42}
+\end{equation}
+From this identity derive two Maxwell equations: $ \nabla\cdot\ve{B} = 0 $ and $ \nabla\times\ve{E} + \pa_t \ve{B} = 0 $. Moreover, note that the gauge field is not unique: the gauge transformation $ A \mapsto A + d\alpha $, which equals $ A_\mu \mapsto A_\mu + \pa_\mu \alpha $, leaves $ F $ unchanged.\\
+To study the dynamics of these fields, an action is needed: Differential Geometry allows very few actions to be written down.\\
+For example, suppose that on the considered manifold no metric is defined. To integrate over $ \mathcal{M} $ a 4-form is needed, but $ F $ is a 2-form, thus the only possible action is:
+\begin{equation}
+  S_{\text{top}} = - \frac{1}{2} \int F \wedge F
+  \label{eq:3.43}
+\end{equation}
+The integrand become $ dx^0 dx^1 dx^2 dx^3 \ve{E}\cdot\ve{B} $. Actions of this kind, independent of the metric, are called \textit{topological actions} and are of no interest in classical physics: in fact, $ F \wedge F = d (A \wedge F) $, so the action is a total derivative and doesn0't affect the equations of motion.\\
+To construct an action of classical interest, a metric is needed. This allows to introduce a second 2-form, $ \star\, F $, so to construct the \textit{Maxwell action}:
+\begin{equation}
+  S_{\text{M}} = - \frac{1}{2} \int F \wedge \star\, F
+  \label{eq:3.44}
+\end{equation}
+The integrand can then be expanded as:
+\begin{equation*}
+  S_{\text{M}} = - \frac{1}{4} \int d^4 x \sqg\, g^{\mu \nu} g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} = - \frac{1}{4} \int d^4 x \sqg F^{\mu \nu} F_{\mu \nu}
+\end{equation*}
+In flat spacetime $ F^{\mu \nu} F_{\mu \nu} = 2 (\ve{B}^2 - \ve{E}^2) $. In a general curved spacetime, the equation of motion resulting from the variation of the Maxwell action is $ d \star F = 0 $.\\
+To complete the theory, consider a gauge field coupled to a current, described by a one-form $ J $. The Maxwell action then becomes:
+\begin{equation}
+  S_{\text{M}} = \int - \frac{1}{2} F \wedge \star\, F + A \wedge \star J
+  \label{eq:3.45}
+\end{equation}
+This action must retain its gauge invariance, but under $ A \mapsto A + d\alpha $ it transforms as $ S_{\text{M}} \mapsto S_{\text{M}} + \int d\alpha \wedge \star\, J $, therefore, after integrating by parts, the condition of gauge invariance translates to:
+\begin{equation}
+  d \star J = 0
+  \label{eq:3.46}
+\end{equation}
+This is current conservation in the language of forms. Varying the action in Eq. \ref{eq:3.44} now leads to the Maxwell equations with source terms:
+\begin{equation}
+  d \star F = \star\, J
+  \label{eq:3.47}
+\end{equation}
+To define electric and magnetic charges, integrate over submanifolds. Consider a three-dimensional spatial submanifold $ \Sigma $: the electric charge in $ \Sigma $ is defined as:
+\begin{equation}
+  Q_e(\Sigma) \defeq \int_{\Sigma} \star\, J
+  \label{eq:3.48}
+\end{equation}
+This agrees with the usual definition in flat spacetime $ Q_e = \int_{\Sigma} d^3 x J^0 $. Using the equations of motion and Stokes' theorem, a general form of Gauss' law is obtained:
+\begin{equation}
+  Q_e(\Sigma) = \int_{\pa \Sigma} \star\, F
+  \label{eq:3.49}
+\end{equation}
+Simiilarly, the magnetic charge in $ \Sigma $ is defined as:
+\begin{equation}
+  Q_m(\Sigma) \defeq \int_{\pa \Sigma} F
+  \label{eq:3.50}
+\end{equation}
+The non-existence of magnetic charges, following from Bianchi identity, can be evaded in topologically interesting manifolds.\\
+From charge conservation in Eq. \ref{eq:3.46}, it follows that the electric charge in a region cannot change, unless current flows in or out of that region. Consider a cylindrical region of spacetime $ V $, ending in two spatial hypersurfaces $ \Sigma_1 $ and $ \Sigma_2 $: its boundary is $ \pa V = \Sigma_1 \cup \Sigma_2 \cup B $, where $ B $ is a cylindrical timelike hypersurface. The statement that no current flows in or out of $ V $ means that $ J \vert_B = 0 $. Then:
+\begin{equation*}
+  Q_e(\Sigma_1) - Q_e(\Sigma_2) = \int_{\Sigma_1} \star\, J - \int_{\Sigma_2} \star\, J = \int_{\pa V} \star\, J - \int_B \star\, J = \int_{\pa V} \star\, J = \int_V d\star J = 0
+\end{equation*}
+Thus, electric charge in remains constant in time.
+
+\paragraph{Maxwell equations from connections} First note that, given the gauge field $ A \in \lm{1} $, the field strength can be expressed via covariant derivatives:
+\begin{equation*}
+  F_{\mu \nu} = \pa_\mu A_\nu - \pa_\nu A_\mu = \na_\mu A_\nu - \na_\nu A_\mu
+\end{equation*}
+The Christoffel symbols cancel out due to anti-symmetry: this is what allows to define the exterior derivative without introducing connections first.
+
+\begin{proposition}
+  Current conservation can be written as: $ d \star J = 0 \,\Leftrightarrow\, \na_\mu J^\mu = 0 $.
+\end{proposition}
+\begin{proof}
+  Recalling Lemma \ref{gauss-lemma}:
+  \begin{equation*}
+    \na_\mu J^\mu = \pa_\mu J^\mu + \Gamma^\mu_{\mu \rho} J^\rho = \pa_\mu J^\mu + \pa_\rho (\log \sqg) J^\rho = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) \propto d \star J
+  \end{equation*}
+\end{proof}
+
+As an aside, in general the divergence in different coordinate systems can be computed using the formula $ \na_\mu J^\mu = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) $.
+
+\begin{proposition}
+  $ d \star F = \star\, J \,\Leftrightarrow\, \na_\mu F^{\mu \nu} = J^\nu $.
+\end{proposition}
+\begin{proof}
+  Recalling Lemma \ref{gauss-lemma}:
+  \begin{equation*}
+    \na_\mu F^{\mu \nu} = \pa_\mu F^{\mu \nu} + \Gamma^\mu_{\mu \rho} F^{\rho \nu} + \Gamma^\nu_{\mu \rho} F^{\mu \rho} = \frac{1}{\sqg} \pa_\mu (\sqg F^{\mu \nu})
+  \end{equation*}
+  where $ \Gamma^\nu_{\mu \rho} F^{\mu \rho} = 0 $ because $ \Gamma^\nu_{\mu \rho} $ is symmetric in $ \mu $ and $ \rho $, while $ F^{\mu \rho} $ is anti-symmetric. The proof follows recalling the definition of the Hodge dual in Eq. \ref{eq:3.17}.
+\end{proof}
+
+\section{Parallel transport}
+
+The connection connects tangent spaces, or more generally any tensor vector space, at different points of the manifold: this map is called \textit{parallel transport} and it's necessary for the definition of differentiation.
+
+\begin{definition}
+  Consider a vector field $ X $ and some associated integral curve $ \gamma $, with coordinates $ x^\mu(\tau) $ such that:
+  \begin{equation*}
+    X^\mu \big\vert_\gamma = \frac{dx^\mu(\tau)}{d\tau}
+  \end{equation*}
+  A tensor field $ T $ is said to be \textit{parallely transported} along $ \gamma $ if:
+  \begin{equation}
+    \na_X T = 0
+    \label{eq:3.51}
+  \end{equation}
+\end{definition}
+
+Suppose that $ \gamma $ connects two points $ p,q \in \mathcal{M} $: Eq. \ref{eq:3.51} provides a map from the tensor vector space defined at $ p $ to that defined at $ q $. To illustrate this, consider the parallel transport of a vector field $ Y $:
+\begin{equation*}
+  X^\nu (\pa_\nu Y^\mu + \Gamma^\mu_{\nu \rho} Y^\rho) = 0
+\end{equation*}
+Evaluating this equation on $ \gamma $, considering $ Y^\mu = Y^\mu(x(\tau)) $:
+\begin{equation*}
+  \frac{dY^\mu}{d\tau} + X^\nu \Gamma^\mu_{\nu \rho} Y^\rho = 0
+\end{equation*}
+These are a set of coupled ODEs, thus, given an initial condition (ex.: at $ \tau = 0 $, i.e. at $ p $), these equations can be solved to find a unique vector at each point along the curve.\\
+Note that the parallel transport depends both on the path (characterized by the vector field $ X $) and on the connection.
+
+\begin{definition}
+  Given a vector field $ X $, a \textit{geodesic} is a curve tangent to $ X $ such that:
+  \begin{equation}
+    \na_X X = 0
+    \label{eq:3.52}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}
+  A geodesic is described by the \textit{geodesic equation}:
+  \begin{equation}
+    \frac{d^2 x^\mu}{d\tau^2} + \Gamma^\mu_{\nu \rho} \frac{dx^\nu}{d\tau} \frac{dx^\rho}{d\tau} = 0
+    \label{eq:3.53}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  From the above calculations, along $ \gamma $:
+  \begin{equation*}
+    0 = \frac{dX^\mu}{d\tau} + \Gamma^\mu_{\nu \rho} X^\nu X^\rho = \frac{d^2 x^\mu}{d\tau^2} + \Gamma^\mu_{\nu \rho} \frac{dx^\nu}{d\tau} \frac{dx^\rho}{d\tau}
+  \end{equation*}
+\end{proof}
+
+For the Levi-Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely transported along a geodesic associated to $ X \in \xm $, then $ \na_X Y = \na_X X = 0 $, therefore $ \frac{d}{d\tau} g(X,Y) = 0 $: this ensures that the two tangent vectors always make the same angles along the geodesic.
+
+\subsection{Normal coordinates}
+
 
 
 
