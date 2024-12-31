@@ -83,7 +83,7 @@ It is important to note that this distance is independent of the parametrization
   Its components are $ \eta_{\mu \nu} = \diag (-1,+1,\dots,+1) $, thus this is a Lorentzian manifold.
 \end{example}
 
-On a general Lorentzian manifold, at any point $ p \in \mathcal{M} $ it is always possible to choose an orthonormal basis $ \{e_{\mu}\}_{\mu = 0,\dots,n-1} $ of $ T_p (\mathcal{M}) $ such that $ g_{\mu \nu} \vert_p = \eta_{\mu \nu} $: this fact is closely related to the equivalence principle. Consider a different basis $ \tilde{e}_{\mu} = \tensor{\Lambda}{^\nu _\mu} e_{\nu} $: the condition for it to leave the Minkowski metric unchanged is:
+On a general Lorentzian manifold, at any point $ p \in \mathcal{M} $ it is always possible to choose an orthonormal basis $ \{e_{\mu}\}_{\mu = 0,\dots,n-1} $ of $ T_p \mathcal{M} $ such that $ g_{\mu \nu} \vert_p = \eta_{\mu \nu} $: this fact is closely related to the equivalence principle. Consider a different basis $ \tilde{e}_{\mu} = \tensor{\Lambda}{^\nu _\mu} e_{\nu} $: the condition for it to leave the Minkowski metric unchanged is:
 \begin{equation}
   \eta_{\mu \nu} = \tensor{\Lambda}{^\rho _\mu} \tensor{\Lambda}{^\sigma _\nu} \eta_{\rho \sigma}
   \label{eq:3.8}
@@ -112,7 +112,7 @@ This is precisely the action of a free particle moving in spacetime.
 The metric defines a natural isomorphism between vectors and covectors.
 
 \begin{proposition}\label{metric-isom}
-  Given a metric manifold $ (\mathcal{M},g) $, the metric defines for each $ p \in \mathcal{M} $ a \textit{natural isomorphism} $ g : X_p \in T_p (\mathcal{M}) \rightarrow \omega_p \in T^*_p (\mathcal{M}) : \omega_p(Y_p) = g(X_p,Y_p) \,\forall Y_p \in T_p (\mathcal{M}) $.
+  Given a metric manifold $ (\mathcal{M},g) $, the metric defines for each $ p \in \mathcal{M} $ a \textit{natural isomorphism} $ g : X_p \in T_p \mathcal{M} \rightarrow \omega_p \in T^*_p \mathcal{M} : \omega_p(Y_p) = g(X_p,Y_p) \,\forall Y_p \in T_p \mathcal{M} $.
 \end{proposition}
 
 In a chosen coordinate basis, the vector $ X = X^{\mu} \pa_{\mu} $ is mapped to the one-form $ X = X_{\mu} dx^{\mu} $, thus the following identity holds:
@@ -368,7 +368,7 @@ A sloppy notation is often used: $ (\na_\nu Y)^\mu \equiv \na_\nu Y^\mu $. This 
 Note that $ \tensor{Y}{^\mu_{;\nu}} $ is the $ \mu^{\text{th}} $ component of $ \na_\nu Y $, while $ \tensor{Y}{^\mu_{,\nu}} $ is the partial derivative of $ Y^{\mu} $ along $ \pa_{\nu} $.\\
 The covariant derivative coincides with other derivatives on $ \cm $: it can be shown that $ \na_X f = \mathcal{L}_X f = X(f) $ and $ \na_\mu f = \pa_\mu f $. On $ \xm $, however, $ \na_X $ and $ \mathcal{L}_X $ are distinct: while $ \na_X = X^\mu \na_\mu $, there's no way to write the same relation for $ \mathcal{L}_X $, for it depends not only on $ X $ but on its first derivative too. The covariant derivative is thus the natural generalization of the partial derivative to curved manifolds.
 
-\begin{proposition}
+\begin{proposition}\label{gamma-non-tens}
   $ \Gamma^\mu_{\rho \nu} $ are not components of a tensor.
 \end{proposition}
 \begin{proof}
@@ -387,7 +387,7 @@ The covariant derivative coincides with other derivatives on $ \cm $: it can be 
   \end{equation*}
   Thus, there's a second term proportional to $ \pa A $ which deviates from the transformation law:
   \begin{equation*}
-    \tilde{\Gamma}^\mu_{\rho \nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \left[ \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} \pa_\sigma \tensor{A}{^\tau _\nu} \right]
+    \tilde{\Gamma}^\mu_{\rho \nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \left[ \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} + \pa_\sigma \tensor{A}{^\tau _\nu} \right]
   \end{equation*}
 \end{proof}
 
@@ -752,9 +752,10 @@ Suppose that $ \gamma $ connects two points $ p,q \in \mathcal{M} $: Eq. \ref{eq
   X^\nu (\pa_\nu Y^\mu + \Gamma^\mu_{\nu \rho} Y^\rho) = 0
 \end{equation*}
 Evaluating this equation on $ \gamma $, considering $ Y^\mu = Y^\mu(x(\tau)) $:
-\begin{equation*}
+\begin{equation}
   \frac{dY^\mu}{d\tau} + X^\nu \Gamma^\mu_{\nu \rho} Y^\rho = 0
-\end{equation*}
+  \label{eq:3.52}
+\end{equation}
 These are a set of coupled ODEs, thus, given an initial condition (ex.: at $ \tau = 0 $, i.e. at $ p $), these equations can be solved to find a unique vector at each point along the curve.\\
 Note that the parallel transport depends both on the path (characterized by the vector field $ X $) and on the connection.
 
@@ -762,7 +763,7 @@ Note that the parallel transport depends both on the path (characterized by the 
   Given a vector field $ X $, a \textit{geodesic} is a curve tangent to $ X $ such that:
   \begin{equation}
     \na_X X = 0
-    \label{eq:3.52}
+    \label{eq:3.53}
   \end{equation}
 \end{definition}
 
@@ -770,7 +771,7 @@ Note that the parallel transport depends both on the path (characterized by the 
   A geodesic is described by the \textit{geodesic equation}:
   \begin{equation}
     \frac{d^2 x^\mu}{d\tau^2} + \Gamma^\mu_{\nu \rho} \frac{dx^\nu}{d\tau} \frac{dx^\rho}{d\tau} = 0
-    \label{eq:3.53}
+    \label{eq:3.54}
   \end{equation}
 \end{proposition}
 \begin{proof}
@@ -783,6 +784,434 @@ Note that the parallel transport depends both on the path (characterized by the 
 For the Levi-Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely transported along a geodesic associated to $ X \in \xm $, then $ \na_X Y = \na_X X = 0 $, therefore $ \frac{d}{d\tau} g(X,Y) = 0 $: this ensures that the two tangent vectors always make the same angles along the geodesic.
 
 \subsection{Normal coordinates}
+
+\begin{theorem}
+  Given a Riemannian manifold $ (\mathcal{M},g) $ and $ p \in \mathcal{M} $,in a neighbourhood of $ p $ it's always possible to find coordinates, called \textit{normal coordinates}, such that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $ and $ g_{\mu \nu , \rho}(p) = 0 $.
+\end{theorem}
+\begin{proof}
+  By brute force, consider initial coordinates $ y^\mu $ and find a change of coordinates $ x^\mu $ which satisfy the requirements:
+  \begin{equation*}
+    \frac{\pa y^\rho}{\pa x^\mu} \frac{\pa y^\sigma}{\pa x^\nu} \tilde{g}_{\rho \sigma} = g_{\mu \nu}
+  \end{equation*}
+  WLOG $ p $ is the origin of both sets of coordinates, so:
+  \begin{equation*}
+    y^\rho = \frac{\pa y^\rho}{\pa x^\mu}\bigg\vert_{x = 0} x^\mu + \frac{1}{2} \frac{\pa^2 y^\rho}{\pa x^\mu \pa x^\nu}\bigg\vert_{x = 0} x^\mu x^\nu + \dots
+  \end{equation*}
+  This, together with the Taylor expansion og $ \tilde{g}_{\rho \sigma} $, can be inserted in the transformation equation of the metric, thus finding a set of PDEs for each power of $ x $, which can be solved to characterize the normal coordinates. For example, the first condition is:
+  \begin{equation*}
+    \frac{\pa y^\rho}{\pa x^\mu}\bigg\vert_{x = 0} \frac{\pa y^\sigma}{\pa x^\nu}\bigg\vert_{x = 0} \tilde{g}_{\rho \sigma}(p) = \delta_{\mu \nu}
+  \end{equation*}
+  Given any $ \tilde{g}_{\rho \sigma}(p) $, it's always possible to find $ \frac{\pa y}{\pa x} $ that satisfies this condition. In fact, if $ \dim_{\R} \mathcal{M} = n $, the Jacobian of the transformation has $ n^2 $ independent elements and the equation above puts $ \frac{1}{2} n (n + 1) $ constraints: the remaining free parameters are $ \frac{1}{2} n (n - 1) $, which is precisely the dimension of $ \SOn{n} $, the symmetry group of the flat metric.
+  A similar counting shows that $ g_{\mu \nu , \rho}(p) = 0 $ puts $ \frac{1}{2} n^2 (n + 1) $ constraints, precisely the number of independent elements of the Hessian of the transformation.
+\end{proof}
+
+This theorem holds for Lorentzian manifolds too, but the flat metric is now $ \eta_{\mu \nu} $ and its symmetry group is $ \SOn{1, n-1} $. The condition $ g_{\mu \nu , \rho}(p) = 0 $ implies that $ \Gamma^\mu_{\nu \rho}(p) = 0 $, but generally the Christoffel symbols won't vanish away from $ p $. Note, however, that it's not generally possible to ensure the vanishing of second derivatives too: indeed, $ g_{\mu \nu , \rho \sigma}(p) = 0 $ would put $ \frac{1}{4} n^2 (n + 1)^2 $ constraints, but the independent $ \frac{\pa^3 y}{\pa^3 x} $ terms are $ \frac{1}{6} n^2 (n+1) (n+2) $, thus leaving $ \frac{1}{12} n^2 (n^2 - 1) $ free terms: this is precisely the number of indepedent components of the Riemann tensor, therefore in general it's not possible to pick coordinates as to make the Riemann tensor vanish too.
+
+\subsubsection{Exponential map}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{exp-map.png}
+  \caption{Visualization of the exponential map.}
+  \label{exp-map}
+\end{figure}
+
+A simple way to construct normal coordinates is the following: given a tangent vector $ X_p \in T_p \mathcal{M} $, there is a unique affinely parametrized geodesic through $ p $ with tangent vector $ X_p $ at $ p $; then, any point $ q $ in the neighbourhood of $ p $ is labelled by the coordinates of the geodesic that takes from $ p $ to $ q $ a fixed amount of time.\\
+Analytically, introducing a coordinate system (not necessarily normal) $ \tilde{x}^\mu $ in the neighbourhood of $ p $, an affinely parametrized geodesic solves Eq. \ref{eq:3.54}, with initial conditions $ \frac{\pa \tilde{x}^\mu}{\pa \tau}\vert_{\tau = 0} = \tilde{X}_p^\mu $ and $ \tilde{x}^\mu (\tau = 0) = 0 $ that make the solution unique. The uniqueness of the solution allows to define a map $ \Exp : T_p \mathcal{M} \rightarrow \mathcal{M} $, called the \textit{exponential map}, which acts as follows: given $ X_p \in T_p \mathcal{M} $, construct the appropriate geodesic as above and follow it for a fixed affine distance, conventionally $ \tau = 1 $, to get a new point $ q \in \mathcal{M} $. See Fig. \ref{exp-map} for visual aid. Obviously, there may be points which cannot be reached from $ p $ by geodesics, or there may be tangent vectors $ X_p $ for which $ \Exp $ is ill-defined: in General Relativity, this occurs when spacetime has singularities, but these are not relevant issues.\\
+Pick a basis $ \{e_\mu\} $ of $ T_p \mathcal{M} $. Then $ \Exp : T_p \mathcal{M} \ni X^\mu e_\mu \mapsto q \in \mathcal{M} $, thus it is possible to assign coordinates in the neighbourhood of $ p $ such that $ x^\mu(q) = X^\mu $: these are the normal coordinates. To show this, note that if $ \{e_\mu\} $ is orthonormal, then the geodesics will point in orthogonal directions, ensuring that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $. Now, fix a point $ q $ associated to a given tangent vector $ X_p \in T_p \mathcal{M} $: this means that $ q $ is at distance $ \tau = 1 $ from $ p $ along the given geodesic. Note that the geodesic equation is homogeneous in $ \tau $, thus in general $ \Exp : \tau X_p \mapsto x^\mu(\tau) = \tau X^\mu $, which means that geodesics take a simple form in these coordinates:
+\begin{equation*}
+  x^\mu (\tau) = \tau X^\mu
+\end{equation*}
+Being these geodesics, they must solve Eq. \ref{eq:3.54}, that is:
+\begin{equation*}
+  \Gamma^\mu_{\nu \rho}(x(\tau)) X^\nu X^\rho = 0
+\end{equation*}
+which holds at any point along the geodesic, i.e. at any $ \tau \in \R^+ $. At most points $ x(\tau) $, this equation only holds for those choices of $ X^\mu $ tangent to the geodesics. However, at $ x(0) = 0 $, i.e. at $ p $, it must hold for any tangent vector: this means that $ \Gamma^\mu_{(\nu \rho)}(p) = 0 $ which, for a torsion-free connection, ensures that $ \Gamma^\mu_{\nu \rho}(p) = 0 $. But vanishing Christoffel symbols imply a vanishing first derivative of the metric: for the Levi-Civita connection $ 2g_{\mu \sigma} \Gamma^\sigma_{\nu \rho} = g_{\mu \nu, \rho} + g_{\mu \rho, \nu} - g_{\nu \rho, \mu} $, thus symmetrizing $ (\mu \nu) $ cancels the last two terms, leaving an identity that, evaluated at $ p $, gives $ g_{\mu \nu, \rho}(p) = 0 $. Hence, these are indeed normal coordinates.
+
+\subsubsection{Equivalence principle}
+
+Normal coordinates are conceptually important in General Relativity: an observer at point $ p $ who parametrizes their immediate surroundings using coordinates constructed by geodesics will experience a locally flat metric. This is precisely Einstein's equivalence principle: any free-falling observer, performing local experiments, will not experience a gravitational field. The formal definition of free-falling observer is an observer which follows geodesics, while the local lack of gravitational field means $ g_{\mu \mu}(p) = \eta_{\mu \nu} $. In this context, normal coordinates are called \textit{local inertial frame}.\\
+To understand what $ \virgolette{local} $ means, note that there is a way to distinguish whether a gravitational field is present at $ p $: a non-vanishing Riemann tensor. This depends on the second derivatives of the metric, which in general will be non-vanishing. However, to measure the effects of the Riemann tensor, one needs to compare the results of experiments at $ p $ and at a nearby point $ q $: this is a non-local observation.
+
+\subsection{Curvature and torsion}
+
+\begin{figure}[!b]
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{parall-tr.png}
+  \caption{Parallel transport along different paths.}
+  \label{par-tr}
+\end{figure}
+
+With reference to Fig. \ref{par-tr}, consider a tangent vector $ Z_p \in T_p \mathcal{M} $ and two vector fields $ X,Y \in \xm : [X,Y] = 0 $, i.e. they are linearly independent. Construct two curved $ \gamma, \gamma' $ as in figure, both leading to a point $ r \in \mathcal{M} $ which, for simplicity, is close to $ p $. It is possible to impose normal coordinates centered at $ p $ such that $ x^\mu = (\tau, \sigma, \dots) $, so that $ X = \frac{\pa}{\pa \tau} $ and $ Y = \frac{\pa}{\pa \sigma} $: then $ x^\mu(p) = (0,0,0, \dots) $, $ X^\mu(q) = (\delta \tau, 0, 0, \dots) $, $ x^\mu(s) = (0, \delta \sigma, 0, \dots) $ and $ x^\mu(r) = (\delta \tau, \delta \sigma, 0, \dots)$, with $ \delta \tau, \delta \sigma $ small.\\
+First, parallel transport $ Z_p $ along $ X $ to $ Z_q $, so that $ Z^\mu $ solves:
+\begin{equation*}
+  \frac{dZ^\mu}{d\tau} + X^\nu \Gamma^\mu_{\nu \rho} Z^\rho = 0
+\end{equation*}
+In normal coordinates $ \Gamma^\mu_{\nu \rho}(p) = 0 $, thus $ \frac{dZ^\mu}{d\tau}\big\vert_{\tau = 0} = 0 $ and the Taylor expansion is:
+\begin{equation*}
+  \begin{split}
+    Z_q^\mu
+    &= Z_p^\mu + \frac{\delta \tau^2}{2} \frac{d^2 Z^\mu}{d\tau^2}\bigg\vert_{\tau = 0} + o(\delta\tau^3) \\
+    &= Z_p^\mu - \frac{\delta\tau^2}{s} \left[ X^\nu Z^\rho \frac{d\Gamma^\mu_{\nu \rho}}{d\tau} + \frac{dX^\nu}{d\tau} Z^\rho \Gamma^\mu_{\nu \rho} + X^\nu \frac{dZ^\rho}{d\tau} \Gamma^\mu_{\nu \rho} \right]_{\tau = 0} + o(\delta\tau^3) \\
+    &= Z_p^\mu - \frac{\delta\tau^2}{2} X^\nu Z^\rho \frac{d\Gamma^\mu_{\nu \rho}}{d\tau}\bigg\vert_{\tau = 0} + o(\delta\tau^3) = Z_p^\mu - \frac{\delta\tau^2}{2} \left[ X^\nu X^\sigma Z^\rho \Gamma^\mu_{\nu \rho , \sigma} \right]_p + o(\delta\tau^3)
+  \end{split}
+\end{equation*}
+where $ \frac{d}{d\tau} = X^\sigma \pa_\sigma $. Now, $ Z_q $ needs to be parallely transported along $ Y $ to $ Z_r $, but this time $ \frac{dZ^\mu}{d\sigma}\big\vert_{\sigma = 0} $ doesn't vanish, in general. From the parallel transport equation:
+\begin{equation*}
+  \frac{dZ^\mu}{d\sigma}\bigg\vert_{\sigma = 0} = - \left[ Y^\nu Z^\rho \Gamma^\mu_{\nu \rho} \right]_q = - \left[ Y^\nu Z^\rho X^\sigma \Gamma^\mu_{\nu \rho , \sigma} \right]_p \delta \tau + o(\delta\tau^2)
+\end{equation*}
+The expansions of $ Y^\nu $ and $ Z^\rho $ at leading order multiply $ \Gamma^\mu_{\nu \rho}(p) = 0 $, thus only contribute to higher order terms. Next order in $ \delta \sigma $:
+\begin{equation*}
+  \frac{d^2 Z^\mu}{d\sigma^2}\bigg\vert_{\sigma = 0} = - \left[ \left( \frac{dY^\nu}{d\sigma} Z^\rho + Y^\nu \frac{dZ^\rho}{d\sigma} \right) \Gamma^\mu_{\nu \rho} + Y^\nu Z^\rho \frac{d\Gamma^\mu_{\nu \rho}}{d\sigma} \right]_q = - \left[ Y^\nu Y^\sigma Z^\rho \Gamma^\mu_{\nu \rho , \sigma} \right]_p + o(\delta\tau)
+\end{equation*}
+The complete expansion thus is:
+\begin{equation*}
+  \begin{split}
+    Z_r^\mu
+    &= Z_q^\mu - \left[ Y^\nu Z^\rho X^\sigma \Gamma^\mu_{\nu \rho , \sigma} \right]_p \delta\tau \delta\sigma - \frac{1}{2} \left[ Y^\nu Y^\sigma Z^\rho \Gamma^\mu_{\nu \rho , \sigma} \right]_p \delta\sigma^2 + o(\delta^3) \\
+    &= Z_p^\mu - \frac{1}{2} \Gamma^\mu_{\nu \rho , \sigma}(p) \left[ X^\nu X^\sigma Z^\rho \delta\tau^2 + 2 Y^\nu Z^\rho X^\sigma \delta\tau \delta\sigma + Y^\nu Y^\sigma Z^\rho \delta\sigma^2 \right] + o(\delta^3)
+  \end{split}
+\end{equation*}
+Parallel transport along $ \gamma' $ leads to a similar expression (exchange of $ X $ and $ Y $):
+\begin{equation*}
+  {Z'_r}^\mu = Z_p^\mu - \frac{1}{2} \Gamma^\mu_{\nu \rho , \sigma}(p) \left[ Y^\nu Y^\sigma Z^\rho \delta\sigma^2 + 2 X^\nu Z^\rho Y^\sigma \delta\sigma \delta\tau + X^\nu X^\sigma Z^\rho \delta\tau^2 \right] + o(\delta^3)
+\end{equation*}
+The difference between the parallely transported tangent vectors to leading order is:
+\begin{equation*}
+  \Delta Z_r^\mu = Z_r^\mu - {Z'_r}^\mu = - \left[ \Gamma^\mu_{\nu \rho , \sigma} - \Gamma^\mu_{\sigma \rho , \nu} \right]_p \left[ Y^\nu Z^\rho X^\sigma \right]_p \delta\tau \delta\sigma + o(\delta^3)
+\end{equation*}
+Recalling that $ \Gamma^\mu_{\nu \rho}(p) = 0 $, it is possible to write:
+\begin{equation}
+  \Delta Z_r^\mu = - \left[ \tensor{R}{^\mu_{\rho \sigma \nu}} Y^\nu Z^\rho X^\sigma \right]_p \delta\sigma \delta\tau + o(\delta^3)
+  \label{eq:3.55}
+\end{equation}
+It would be possible to evaluate the expression at $ r $ too, as it would differ only by higher order terms. Although the calculation was carried in a particular choice of coordinates, Eq. \ref{eq:3.55} is a tensor relation, therefore it must hold in all coordinate systems: the Riemann tensor thus determines the path dependence of parallel transport.
+
+\subsubsection{Torsion}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{torsion.png}
+  \caption{Visualization of torsion.}
+  \label{torsion}
+\end{figure}
+
+Consider two tangent vectors $ X_p,Y_p \in T_p \mathcal{M} $ and a coordinate system $ x^\mu $ such that $ X_p = X^\mu \pa_\mu $ and $ Y_p = Y^\mu \pa_\mu $. If $ p : x^\mu $, as in Fig. \ref{torsion} construct $ r,s \in \mathcal{M} $ such that $ r : x^\mu + \varepsilon X^\mu $ and $ s : x^\mu + \varepsilon Y^\mu $, with $ \varepsilon $ an infinitesimal parameter. Now, parallel transport $ X_p \in T_p \mathcal{M} $ along the direction of $ Y_p $ to $ X'_s \in T_s \mathcal{M} $ and $ Y_p \in T_p \mathcal{M} $ along $ X_p $ to $ Y'_r \in T_r \mathcal{M} $; their components will be:
+\begin{equation*}
+  X'_s = \left( X^\mu - \varepsilon \Gamma^\mu_{\nu \rho} Y^\nu X^\rho \right)
+  \qquad \qquad
+  Y'_r = \left( Y^\mu - \varepsilon \Gamma^\mu_{\nu \rho} X^\nu Y^\rho \right)
+\end{equation*}
+Repeating this process, starting from point $ s $ and moving along the direction of $ X'_s $, a new point $ q \in \mathcal{M} $ is determined, with coordinates:
+\begin{equation*}
+  q : x^\mu + \varepsilon \left( X^\mu + Y^\mu \right) - \varepsilon^2 \Gamma^\mu_{\nu \rho} Y^\nu X^\rho
+\end{equation*}
+Analogously, starting at point $ r $ and moving along the direction of $ Y'_r $, a new point $ t \in \mathcal{M} $ is determined, with coordinates:
+\begin{equation*}
+  t : x^\mu + \varepsilon \left( X^\mu + Y^\mu \right) - \varepsilon^2 \Gamma^\mu_{\nu \rho} X^\nu Y^\rho
+\end{equation*}
+If the connection is torsion-free, then $ q \equiv t $. On the other hand, if $ T^\mu_{\nu \rho} \neq 0 $, the parallelogram fails to close, as in Fig. \ref{torsion}.
+
+\subsection{Geodesic deviation}
+
+\begin{definition}
+  Given a one-parameter family of geodesics $ \{x^\mu(\tau;s)\}_{s \in \R} $ on a manifold $ \mathcal{M} $, the tangent vector field and the \textit{deviation vector} field are defined as:
+  \begin{equation}
+    X^\mu \defeq \frac{\pa x^\mu}{\pa \tau}\bigg\vert_s
+    \qquad \qquad
+    S^\mu \defeq \frac{\pa x^\mu}{\pa s}\bigg\vert_\tau
+    \label{eq:3.56}
+  \end{equation}
+\end{definition}
+The meaning of these vector fields is evident: the tangent vector field fixes a particular geodesics (i.e. a particular $ s $) and assigns at each point of the geodesic its tangent vector, while the deviation vector field fixes a particular value of the affine parameter $ \tau $ and assigns at each point with this value a vector which takes to a nearby geodesic (at the same $ \tau $).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{geo-dev.png}
+  \caption{A one-parameter family of geodesics generated by $ X $.}
+  \label{geo-dev}
+\end{figure}
+
+The family of geodesics sweeps a surface embedded in the manifold, so there is freedom in the choice of coordinates $ s $ and $ \tau $. In particular, it's always possible to pick them so that $ X = \frac{\pa}{\pa \tau} $ and $ S = \frac{\pa}{\pa s} $, in order for them to be linearly independent: $ [X,S] = 0 $, as in Fig. \ref{geo-dev}. Consider a torsion-free connection, so that:
+\begin{equation*}
+  \na_X S - \na_S X = [X,S] = 0
+  \qquad \Rightarrow \qquad
+  \na_X \na_X S = \na_X \na_S X = \na_S \na_X X + R(X,S) X
+\end{equation*}
+But $ X $ is tangent to geodesics, so from Eq. \ref{eq:3.53} $ \na_X X = 0 $ and:
+\begin{equation}
+  \na_X \na_X S = R(X,S) X
+  \label{eq:3.57}
+\end{equation}
+Restricting to an integral curve $ \gamma $ of the vector field $ X $, i.e. $ X^\mu \vert_\gamma = \frac{dx^\mu}{d\tau} $, the covariant derivative along $ \gamma $ becomes:
+\begin{equation*}
+  \na_X\big\vert_\gamma = X^\mu\big\vert_\gamma \na_\mu = \frac{dx^\mu}{d\tau} \na_\mu \equiv \frac{D}{D\tau}
+\end{equation*}
+Hence, in index notation, the change of the deviation vector along the geodesic is expressed as:
+\begin{equation}
+  \frac{DS^\mu}{D\tau} = \tensor{R}{^\mu _{\nu \rho \sigma}} X^\rho S^\sigma X^\nu
+  \label{eq:3.58}
+\end{equation}
+This can be interpreted as the relative acceleration of neighbouring geodesics, and it is determined by the Riemann tensor. Experimentally, such geodesic deviations are called \textit{tidal forces}.
+
+\section{Riemann tensor}
+
+Recall Eq. \ref{eq:3.36} for the components of the Riemann tensor $ \tensor{R}{^\sigma _{\rho \mu \nu}} $: it is manifestly anti-symmetric in its last two indices, but there are also other subtle symmetries when using the Levi-Civita connection.
+
+\begin{proposition}
+  On a metric manifold with a Levi-Civita connection:
+  \begin{equation}
+    R_{\sigma \rho \mu \nu} = - R_{\sigma \rho \nu \mu} = - R_{\rho \sigma \mu \nu} = R_{\mu \nu \sigma \rho}
+    \label{eq:3.59}
+  \end{equation}
+  \begin{equation}
+    R_{\sigma [\rho \mu \nu]} = 0
+    \label{eq:3.60}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Set normal coordinates centered at a point $ p $: then, $ \Gamma^\mu_{\nu \rho} = 0 $ and $ \pa_\mu g^{\lambda \sigma} = 0 $ at that point. At $ p $, the Riemann tensor can be written as:
+  \begin{equation*}
+    \begin{split}
+      R_{\sigma \rho \mu \nu}
+      &= g_{\sigma \lambda} \tensor{R}{^\lambda _{\rho \mu \nu}} = g_{\sigma \lambda} \left[ \pa_\mu \Gamma^\lambda_{\nu \rho} - \pa_\nu \Gamma^\lambda_{\mu \rho} \right] \\
+      &= \frac{1}{2} \left[ \pa_\mu \left( \pa_\nu g_{\sigma \rho} + \pa_\rho g_{\nu \sigma} - \pa_\sigma g_{\nu \rho} \right) - \pa_\nu \left( \pa_\mu g_{\sigma \rho} + \pa_\rho g_{\mu \sigma} - \pa_\sigma g_{\mu \rho} \right) \right] \\
+      &= \frac{1}{2} \left[ \pa_\mu \pa_\rho g_{\nu \sigma} - \pa_\mu \pa_\sigma g_{\nu \rho} - \pa_\nu \pa_\rho g_{\mu \sigma} + \pa_\nu \pa_\sigma g_{\mu \rho} \right]
+    \end{split}
+  \end{equation*}
+  The symmetries are then manifest, and being these tensor equations they are valid in all coordinate systems.
+\end{proof}
+
+An important computation tool is the \textit{Bianchi identity}.
+
+\begin{theorem}[Bianchi]
+  On a metric manifold with a Levi-Civita connection:
+  \begin{equation}
+    \na_{[\lambda} R_{\sigma \rho] \mu \nu} = 0
+    \qquad \Leftrightarrow \qquad
+    \tensor{R}{^\sigma_{\rho [\mu \nu ; \lambda]}} = 0
+    \label{eq:3.61}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  The two equations are equivalent, so the proof is of the first one. In normal coordinates $ \na_\mu = \pa_\mu $ at $ p $, so schematically: $ R = \pa \Gamma + \Gamma \Gamma $, thus $ \na R = \pa R = \pa^2 \Gamma + \Gamma \pa \Gamma = \pa^2 \Gamma $. Explicitly:
+  \begin{equation*}
+    \pa_\lambda R_{\sigma \rho \mu \nu} = \frac{1}{2} \pa_\lambda \left[ \pa_\mu \pa_\rho g_{\nu \sigma} - \pa_\mu \pa_\sigma g_{\nu \rho} - \pa_\nu \pa_\rho g_{\mu \sigma} + \pa_\nu \pa_\sigma g_{\mu \rho} \right]
+  \end{equation*}
+  Anti-symmetrizing the appropriate indices yields the result.
+\end{proof}
+
+Note that Eq. \ref{eq:3.60}-\ref{eq:3.61} do not require that the connection is a Levi-Civita connection, but are valid for general torsion-free connections.
+
+\subsection{Ricci and Einstein tensors}
+
+\begin{definition}
+  On a metric manifold, the \textit{Ricci tensor} is defined as:
+  \begin{equation}
+    R_{\mu \nu} \defeq \tensor{R}{^\rho _{\mu \rho \nu}}
+    \label{eq:3.62}
+  \end{equation}
+  The \textit{Ricci scalar} is defined as:
+  \begin{equation}
+    R \defeq g^{\mu \nu} R_{\mu \nu}
+    \label{eq:3.63}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}
+  On a metric manifold with a Levi-Civita connection:
+  \begin{equation}
+    R_{\mu \nu} = R_{\nu \mu}
+    \label{eq:3.64}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Using Eq. \ref{eq:3.59}: $ R_{\mu \nu} = g^{\sigma \rho} R_{\sigma \mu \rho \nu} = g^{\rho \sigma} R_{\rho \nu \sigma \mu} = R_{\nu \mu} $.
+\end{proof}
+
+\begin{proposition}
+  On a metric manifold:
+  \begin{equation}
+    \na^\mu R_{\mu \nu} = \frac{1}{2} \na_\nu R
+    \label{eq:3.65}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Writing explicitly Bianchi identity:
+  \begin{equation*}
+    \na_\lambda R_{\sigma \rho \mu \nu} + \na_\sigma R_{\rho \lambda \mu \nu} + \na_\rho R_{\lambda \sigma \mu \nu} = 0
+  \end{equation*}
+  Contracting with $ g^{\mu \lambda} g^{\rho \nu} $:
+  \begin{equation*}
+    \na^\mu R_{\mu \sigma} - \na_\sigma R + \na^\nu R_{\nu \sigma} = 0
+  \end{equation*}
+  which yields the thesis.
+\end{proof}
+
+\begin{definition}
+  On a metric manifold, the \textit{Einstein tensor} is defined as:
+  \begin{equation}
+    G_{\mu \nu} \defeq R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu}
+    \label{eq:3.66}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}
+  On a metric manifold, the Einstein tensor is covariantly constant:
+  \begin{equation}
+    \na^\mu G_{\mu \nu} = 0
+    \label{eq:3.67}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Trivial from Eq. \ref{eq:3.65}.
+\end{proof}
+
+\subsection{Connection and curvature forms}
+
+This section is based on a Lorentzian manifold, but the discussion is equivalent on a Riemannian one: it's enough to swap $ \eta_{ab} $ with $ \delta_{ab} $ as the flat metric.
+
+\subsubsection{Vielbeins}
+
+Although typically calculations are carried on a coordinate basis $ \{e_\mu\} = \{\pa_\mu\} $, there are possible basis without such an interpretation. For example, a linear combination of a coordinate basis won't in general be a coordinate basis itself:
+\begin{equation}
+  \hat{e}_a = \tensor{e}{_a^\mu} \pa_\mu
+  \label{eq:3.68}
+\end{equation}
+A particularly useful non-coordinate basis is one such that:
+\begin{equation}
+  g(\hat{e}_a, \hat{e}_b) = g_{\mu \nu} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu} = \eta_{ab}
+  \label{eq:3.69}
+\end{equation}
+The components $ \tensor{e}{_a^\mu} $ are called \textit{vielbeins} or \textit{tetrads}. In this non-coordinate system, the manifold looks flat (or, at least, its patch covered by the given chart). In the following computations, greek indices are raised/lowered by the metric $ g_{\mu \nu} $, while latin indices by the metric $ \eta_{ab} $.\\
+The vielbeins aren't unique, for given a set of vielbeins $ \tensor{e}{_a^\mu} $ it is always possible to find a new one:
+\begin{equation}
+  \tensor{\tilde{e}}{_a^\mu} = \tensor{e}{_b^\mu} \tensor{(\Lambda^{-1})}{^b_a}
+  \label{eq:3.70}
+\end{equation}
+The transformation matrix must satisfy the condition imposed by Eq. \ref{eq:3.69}, i.e.:
+\begin{equation}
+  \tensor{\Lambda}{_a^c} \tensor{\Lambda}{_b^d} \eta_{cd} = \eta_{ab}
+  \label{eq:3.71}
+\end{equation}
+These are \textit{local Lorentz transformations}, because the condition is that of Lorentz transformation, but $ \Lambda $ is now allowed to vary over the manifold. The dual basis of one-forms $ \{\hat{\theta}^a\} $ is defined by $ \hat{\theta}^a(\hat{e}_b) = \delta^a_b $. The relation to the coordinate basis is:
+\begin{equation}
+  \hat{\theta}^a = \tensor{e}{^a_\mu} dx^\mu
+  \label{eq:3.72}
+\end{equation}
+where the coefficients satisfy:
+\begin{equation}
+  \tensor{e}{^a_\mu} \tensor{e}{_b^\mu} = \delta^a_b
+  \label{eq:3.73}
+\end{equation}
+\begin{equation}
+  \tensor{e}{^a_\mu} \tensor{e}{_a^\nu} = \delta_\mu^\nu
+  \label{eq:3.74}
+\end{equation}
+The metric is a tensor, so $ g = g_{\mu \nu} dx^\mu \otimes dx^\nu = \eta_{ab} \hat{\theta}^a \otimes \hat{\theta}^b $, thus it is related to the vielbeins by:
+\begin{equation}
+  g_{\mu \nu} = \tensor{e}{^a_\mu} \tensor{e}{^b_\nu} \eta_{ab}
+  \label{eq:3.75}
+\end{equation}
+
+\subsubsection{Connection 1-form}
+
+On a non-coordinate basis $ \{\hat{e}_a\} $, connection components are computed in the usual way:
+\begin{equation}
+  \na_{\hat{e}_c} \hat{e}_b = \Gamma^a_{cb} \hat{e}_a
+  \label{eq:3.76}
+\end{equation}
+However, these are not the same components $ \Gamma^\mu_{\nu \rho} $ as in a coordinate basis.
+
+\begin{definition}
+  On a metric manifold with vielbeins, the \textit{connection 1-form} is defined as:
+  \begin{equation}
+    \tensor{\omega}{^a_b} \defeq \Gamma^a_{cb} \hat{\theta}^c
+    \label{eq:3.77}
+  \end{equation}
+\end{definition}
+
+Note that these are really $ n^2 $ 1-forms, according to values of $ a,b = 1, \dots, n \equiv \dim_{\R} \mathcal{M} $. This is also known as the \textit{spin connection}, due to its relationship to spinors in curved spacetime.
+
+\begin{proposition}
+  Given a local Lorentzian transformation $ \Lambda $:
+  \begin{equation}
+    \tensor{\tilde{\omega}}{^a_b} = \tensor{\Lambda}{^a_c} \tensor{\omega}{^c_d} \tensor{(\Lambda^{-1})}{^d_b} + \tensor{\Lambda}{^a_c} \tensor{(d\Lambda^{-1})}{^c_b}
+    \label{eq:3.78}
+  \end{equation}
+\end{proposition}
+
+The second term reflects the second term in Prop. \ref{gamma-non-tens}, which involves the derivative of the coordinate transformation. Important results for connection 1-forms is the \textit{Cartan structure equation}.
+
+\begin{theorem}[Cartan]
+  On a metric manifold with a torsion-free connection:
+  \begin{equation}
+    d\hat{\theta}^a + \tensor{\omega}{^a_b} \wedge \hat{\theta}^b = 0
+    \label{eq:3.79}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  From Eq. \ref{eq:3.76} $ \Gamma^a_{cb} = \tensor{e}{^a_\rho} \tensor{e}{_c^\mu} \na_\mu \tensor{e}{_b^\rho} $, thus, remembering $ \Gamma^\rho_{[\mu \nu]} = 0 $ (torsion-free):
+  \begin{equation*}
+    \begin{split}
+      \tensor{\omega}{^a_b} \wedge \hat{\theta}^b
+      &= \Gamma^a_{cb} \left( \tensor{e}{^c_\mu} dx^\mu \right) \wedge \left( \tensor{e}{^b_\nu} dx^\nu \right) \\
+      &= \tensor{e}{^a_\rho} \tensor{e}{_c^\mu} \left( \pa_\mu \tensor{e}{_b^\rho} + \tensor{e}{_b^\nu} \Gamma^\rho_{\mu \nu} \right) \left( \tensor{e}{^c_\mu} dx^\mu \right) \wedge \left( \tensor{e}{^b_\nu} dx^\nu \right) \\
+      &= \tensor{e}{^a_\rho} \underbrace{\tensor{e}{_c^\lambda} \tensor{e}{^c_\mu}}_{\delta_\mu^\lambda} \tensor{e}{^b_\nu} \left( \pa_\lambda \tensor{e}{_b^\rho} + \tensor{e}{_b^\sigma} \Gamma^\rho_{\lambda \sigma} \right) dx^\mu \wedge dx^\nu = \tensor{e}{^a_\rho} \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} dx^\mu \wedge dx^\nu
+    \end{split}
+  \end{equation*}
+  But $ \tensor{e}{^b_\nu} \tensor{e}{_b^\rho} = \delta_\nu^\rho $, so $ \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} = - \tensor{e}{_b^\rho} \pa_\mu \tensor{e}{^n_\nu} $, hence:
+  \begin{equation*}
+    \tensor{\omega}{^a_b} \wedge \hat{\theta}^b = - \tensor{e}{^a_\rho} \tensor{e}{_b^\rho} \pa_\mu \tensor{e}{^b_\nu} dx^\mu \wedge dx^\nu = - \pa_\mu \tensor{e}{^a_\nu} dx^\mu \wedge dx^\nu = -d\hat{\theta}^a
+  \end{equation*}
+\end{proof}
+
+For a Levi-Civita connection, a stronger result holds.
+
+\begin{proposition}
+  On a metric manifold with a Levi-Civita connection:
+  \begin{equation}
+    \omega_{ab} = -\omega_{ba}
+    \label{eq:3.80}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Being the Levi-Civita connection compatible with the metric:
+  \begin{equation*}
+    \begin{split}
+      \Gamma_{abc}
+      &= \eta_{ad} \tensor{e}{^d_\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{_c^\rho} = -\eta_{ad} \tensor{e}{_c^\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{^d_\rho} = -\eta_{cf} \tensor{e}{^f_\sigma} \tensor{e}{_b^\mu} \na_\mu (\eta_{ad} g^{\rho \sigma} \tensor{e}{^d_\rho}) \\
+      &= -\eta_{cf} \tensor{e}{^f_\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{_a^\rho} = -\Gamma_{cba}
+    \end{split}
+  \end{equation*}
+  From Eq. \ref{eq:3.77} $ \omega_{ab} = \Gamma_{acb} \hat{\theta}^c $, thus completing the proof.
+\end{proof}
+
+Eq. \ref{eq:3.79}-\ref{eq:3.80} allow to quickly compute the spin connection, as they uniquely define it. Indeed, $ \omega_{ab} $ being anti-symmetric means that there are $ \frac{1}{2} n (n-1) $ independent 1-forms, i.e. $ \frac{1}{2} n^2 (n-1) $ independent components. The Cartan structure equation relates two 2-forms, each with $ \frac{1}{2} n (n-1) $ independent components, thus posing $ \frac{1}{2} n^2 (n-1) $ constraints (as there are $ n $ equations) and uniquely fixing the spin connection.
+
+\subsubsection{Curvature 2-form}
+
+Recall Eq. \ref{eq:3.59}, which holds for Levi-Civita connections. Computing the Riemann tensor in the non-coordinate basis $ \tensor{R}{^a_{bcd}} = R(\hat{\theta}^a, \hat{e}_b, \hat{e}_c, \hat{e}_d) $, the anti-symmetry of the last two indices persists: $ \tensor{R}{^a_{bcd}} = -\tensor{R}{^a_{bdc}} $.
+
+\begin{definition}
+  On a metric manifold with a Levi-Civita connection, the \textit{curvature 2-form} is defined as:
+  \begin{equation}
+    \tensor{\mathcal{R}}{^a_b} \defeq \frac{1}{2} \tensor{R}{^a_{bcd}} \hat{\theta}^c \wedge \hat{\theta}^d
+    \label{eq:3.81}
+  \end{equation}
+\end{definition}
+
+Again, these are really $ n^2 $ 2-forms. A second \textit{Cartan structure relation} holds.
+
+\begin{theorem}[Cartan]
+  On a metric manifold with a Levi-Civita connection:
+  \begin{equation}
+    \tensor{\mathcal{R}}{^a_b} = \tensor{d\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b}
+    \label{eq:3.82}
+  \end{equation}
+\end{theorem}
+
+Connection and curvature forms make computing the Riemann tensor less tedious, as exterior derivatives take significant less effort than covariant derivatives.
 
 
 
