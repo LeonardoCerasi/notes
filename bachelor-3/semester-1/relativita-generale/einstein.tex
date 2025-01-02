@@ -1,0 +1,382 @@
+\selectlanguage{english}
+
+The force of gravity is mediated by a gravitational field, which is identified with a metric $ g_{\mu \nu}(x) $ on a 4d Lorentzian manifold called spacetime. This metric is a dynamical object, as all other fields in Nature, thus the laws governing its dynamics must be studied.
+
+\section{Einstein-Hilbert action}
+
+Differential Geometry places strict limits to the possible actions that can be formulated, ensuring it is something intrinsic to the metric and independent on the particular choice of coordinates.\\
+Spacetime is a Lorentzian manifold $ \mathcal{M} $, thus, recalling the canonical volume form in Eq. \ref{eq:3.13}, there need to be metric-dependent scalar function on $ \mathcal{M} $: the obvious non-trivial choice is the Ricci scalar. The resulting action is the \textit{Einstein-Hilbert action}:
+\begin{equation}
+  \mathcal{S} = \int d^4 x \sqgm R
+  \label{eq:4.1}
+\end{equation}
+where the negative sign makes it manifest that the metric has signature $ (-,+,+,+) $. Schematically, the Riemann tensor is $ R \sim \pa \Gamma + \Gamma \Gamma $, while $ \Gamma \sim \pa g $, thus the Einstein-Hilbert action is second order in derivatives of the metric, like most other actions in physics.
+
+\subsection{Equations of motion}
+
+To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consider a fixed initial metric $ g_{\mu \nu}(x) $ and a perturbation $ g_{\mu \nu}(x) \mapsto g_{\mu \nu}(x) + \delta g_{\mu \nu}(x) $. For the inverse metric:
+\begin{equation*}
+  g_{\mu \nu} g^{\nu \rho} = \delta_\mu^\rho
+  \quad \Rightarrow \quad
+  \delta g_{\mu \nu} g^{\nu \rho} + g_{\mu \nu} \delta g^{\nu \rho} = 0
+  \quad \Rightarrow \quad
+  \delta g^{\mu \nu} = - g^{\mu \rho} g^{\nu \sigma} \delta g_{\rho \sigma}
+\end{equation*}
+
+\begin{lemma}
+  The variation of $ \sqgm $ is:
+  \begin{equation}
+    \delta \sqgm = - \frac{1}{2} \sqgm\, g_{\mu \nu} \delta g^{\mu \nu}
+    \label{eq:4.2}
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  Recalling that for a diagonalizable matrix $ \log \det A = \tr \log A $, then $ (\det A)^{-1} \delta (\det A) = \tr (A^{-1} \delta A) $. Applying this to the metric:
+  \begin{equation*}
+    \delta \sqgm = \frac{1}{2} \frac{1}{\sqgm} \delta (-\tens{g}) = \frac{1}{2} \frac{1}{\sqgm} (-\tens{g}) g^{\mu \nu} \delta g_{\mu \nu} = \frac{1}{2} \sqgm\, g^{\mu \nu} \delta g_{\mu \nu} = - \frac{1}{2} \sqgm\, g_{\mu \nu} g^{\mu \nu}
+  \end{equation*}
+\end{proof}
+
+\begin{lemma}
+  The variation of the Christoffel symbols is:
+  \begin{equation}
+    \delta \Gamma^\rho_{\mu \nu} = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
+    \label{eq:4.3}
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  First note that, although $ \Gamma^\rho_{\mu \nu} $ is not a tensor, $ \delta \Gamma^\rho_{\mu \nu} $ is, for it is the difference of two Christoffel symbols, one computed with $ g_{\mu \nu} $ and the other with $ g_{\mu \nu} + \delta g_{\mu \nu} $, but the extra term in the transformation law of $ \Gamma^\rho_{\mu \nu} $ is independent of the metric, thus cancels out.\\
+  This osservation allows to work in normal coordinates at $ p \in \mathcal{M} $, so that $ \pa_\rho g_{\mu \nu} = 0 $ and $ \Gamma^\rho_{\mu \nu} = 0 $ at that point. Then, to linear order in the variation, at $ p $:
+  \begin{equation*}
+    \delta \Gamma^\rho_{\mu \nu} = \frac{1}{2} g^{\rho \sigma} ( \pa_\mu \delta g_{\sigma \nu} + \pa_\nu \delta g_{\sigma \mu} - \pa_\sigma \delta g_{\mu \nu} ) = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
+  \end{equation*}
+  This is a tensor equation, hence valid in all coordinate system and, being $ p $ arbitrary, on all $ \mathcal{M} $.
+\end{proof}
+
+\begin{lemma}
+  The variation of the Ricci tensor is:
+  \begin{equation}
+    \delta R_{\mu \nu} = \na_\rho \delta \Gamma^\rho_{\rho \nu} - \na_\nu \delta \Gamma^\rho_{\rho \mu}
+    \label{eq:4.4}
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  Working in normal coordinates, the Riemann tensor becomes $ \tensor{R}{^\sigma_{\mu \rho \nu}} = \pa_\rho \Gamma^\sigma_{\nu \mu} - \pa_\nu \Gamma^\sigma_{\rho \mu} $, so:
+  \begin{equation*}
+    \delta \tensor{R}{^\sigma_{\mu \rho \nu}} = \pa_\rho \delta \Gamma^\sigma_{\nu \mu} - \pa_\nu \delta \Gamma^\sigma_{\rho \mu} = \na_\rho \delta \Gamma^\sigma_{\nu \mu} - \na_\nu \delta \Gamma^\sigma_{\rho \mu}
+  \end{equation*}
+  This is a tensor equation, hence valid in all coordinates systems and on all $ \mathcal{M} $. Contracting indices $ \sigma,\rho $ and working to leading order yields the result.
+\end{proof}
+
+\begin{proposition}\label{prop-einst-eq}
+  The Euler-Lagrange equations of the Einstein-Hilbert action are:
+  \begin{equation}
+    G_{\mu \nu} = 0
+    \label{eq:4.5}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Varying the Einstein-Hilbert action:
+  \begin{equation*}
+    \begin{split}
+      \delta \mathcal{S}
+      &= \delta \int d^4 x \sqgm\, g^{\mu \nu} R_{\mu \nu} \\
+      &= \int d^4 x \left[ \delta (\sqgm) g^{\mu \nu} R_{\mu \nu} + \sqgm (\delta g^{\mu \nu}) R_{\mu \nu} + \sqgm\, g^{\mu \nu} (\delta R_{\mu \nu}) \right] \\
+      &= \int d^4 x \sqgm \left[ \left( - \frac{1}{2} R g_{\mu \nu} + R_{\mu \nu} \right) \delta g^{\mu \nu} + g^{\mu \nu} \left( \na_\rho \delta \Gamma^\rho_{\mu \nu} - \na_\nu \Gamma^\rho_{\rho \mu} \right) \right] \\
+      &= \int d^4 x \sqgm \left[ \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \delta g^{\mu \nu} + \na_\mu \left( g^{\rho \nu} \nu \Gamma^\mu_{\rho \nu} - g^{\mu \nu} \delta \Gamma^\rho_{\rho \nu} \right) \right]
+    \end{split}
+  \end{equation*}
+  The last term is a total derivative, hence by the divergence theorem Eq. \ref{eq:3.41} it yields a boundary term which can be ignored (Gibbons-Hawking boundary term). The Euler-Lagrange equations are then found imposing $ \delta \mathcal{S} $ for arbitrary $ \delta g_{\mu \nu} $, so recalling the definition of the Einstein tensor Eq. \ref{eq:3.66} the proof is completed.
+\end{proof}
+
+These equations are called \textit{Einstein field equations} in the absence of any matter. For this reason, they can be further simplified: by contracting with $ g^{\mu \nu} $ one finds $ R = 0 $, thus:
+\begin{equation}
+  R_{\mu \nu} = 0
+  \label{eq:4.6}
+\end{equation}
+
+\subsubsection{Dimensional analysis}
+
+The Einstein-Hilbert action in Eq. \ref{eq:4.1} doesn't have the right dimensions, which will be necessary when considering the presence of matter.\\
+If $ x^\mu $ has dimension of length, then $ g_{\mu \nu} $ is dimensionless and the Ricci scalar is $ [R] = L^{-2} $. Including the integration measure $ [\mathcal{S}] = L^2 $, but it must have the same dimension of $ [\hbar] =  M L^2 T^{-1} $ (i.e. energy $ \times $ times). Thus, the action with the right dimension is:
+\begin{equation}
+  \mathcal{S} = \frac{c^3}{16 \pi G} \int d^4 x \sqgm R
+  \label{eq:4.7}
+\end{equation}
+In the following, natural units are adopted: $ c = \hbar = 1 $.
+
+\subsubsection{Cosmological constant}
+
+It reality, Eq. \ref{eq:4.1} is not the simplest action allowed by Differential Geometry: in fact, a constant term could be added to the Ricci scalar. The action then becomes:
+\begin{equation}
+  \mathcal{S} = \frac{1}{16 \alpha G} \int d^4 x \sqgm (R - 2 \Lambda)
+  \label{eq:4.8}
+\end{equation}
+$ \Lambda $ is called the \textit{cosmological constant} and has dimension $ [\Lambda] = L^{-2} $. The resulting field equations are:
+\begin{equation}
+  R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = - \Lambda g_{\mu \nu}
+  \label{eq:4.9}
+\end{equation}
+Contracting with $ g^{\mu \nu} $ yields $ R = 4\Lambda $, thus in the absence of matter:
+\begin{equation}
+  R_{\mu \nu} = \Lambda g_{\mu \nu}
+  \label{eq:4.10}
+\end{equation}
+
+\subsection{Diffeomorphisms}
+
+Being the metric a symmetric $ \R^{4,4} $ matrix, it should have $ \frac{1}{2} \times 4 \times 5 = 10 $ degrees of freedom. However, not all the components of $ g_{\mu \nu} $ are physical. Indeed, two metrics related by a change of coordinates $ x^\mu \mapsto \tilde{x}^\mu(x) $ describe the same physical spacetime, thus there is a redundancy in any given representation of the metric, which removes precisely 4 degrees of freedom, leaving with only 6 remaining degrees of freedom.\\
+Mathematically, given a diffeomorphism $ \phi : \mathcal{M} \rightarrow \mathcal{M} $, it maps all fields on $ \mathcal{M} $ to a new set of fields on $ \mathcal{M} $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theory.\\
+Consider a diffeomorphism $ x^\mu \mapsto \tilde{x}^\mu = x^\mu + \delta x^\mu $: this can be viewed as an active change, where points in spacetime are mapped from one another, or as a passive change, in which only the coordinates of each point are affected, but the two are equivalent. This change of coordinates can be thought as generated by an infinitesimal vector field $ X^\mu : \delta x^\mu = - X^\mu (x) $, so that the metric transforms as:
+\begin{equation*}
+  \begin{split}
+    \tilde{g}_{\mu \nu} (\tilde{x})
+    &= \frac{\pa x^\rho}{\pa \tilde{x}^\mu} \frac{\pa x^\sigma}{\pa \tilde{x}^\nu} g_{\rho \sigma}(x) = \left( \delta^\rho_\mu + \pa_\mu X^\rho \right) \left( \delta^\sigma_\nu + \pa_\nu X^\sigma \right) g_{\rho \sigma}(x) \\
+    &= g_{\mu \nu}(x) + g_{\mu \rho}(x) \pa_\nu X^\rho + g_{\nu \rho}(x) \pa_\mu X^\rho
+  \end{split}
+\end{equation*}
+Meanwhile, the Taylor expansion around $ \tilde{x} = x + \delta x $ is:
+\begin{equation*}
+  \tilde{g}_{\mu \nu} (\tilde{x}) = \tilde{g}_{\mu \nu} (x + \delta x) = \tilde{g}_{\mu \nu}(x) - X^\lambda \pa_\lambda \tilde{g}_{\mu \nu}(x)
+\end{equation*}
+Comparing the metrics at the same point, it is understood that it undergoes an infinitesimal change:
+\begin{equation*}
+  \delta g_{\mu \nu}(x) = \tilde{g}_{\mu \nu}(x) - g_{\mu \nu}(x) = X^\lambda \pa_\lambda g_{\mu \nu}(x) + g_{\mu \rho}(x) \pa_\nu X^\rho + g_{\nu \rho}(x) \pa_\mu X^\rho
+\end{equation*}
+By Eq. \ref{eq:2.23}, this is the Lie derivative of the metric:
+\begin{equation}
+  \delta g_{\mu \nu} = (\ld_X g)_{\mu \nu}
+  \label{eq:4.11}
+\end{equation}
+Thus, an infinitesimal diffeomorphism along $ X \in \xm $ makes the metric change by an infinitesimal amount given by its Lie derivative along $ X $. This can be viewed as the leading term in the Taylor expansion along $ X $. These equations can be rewritten in a simpler form:
+\begin{equation*}
+  \delta g_{\mu \nu} = X^\rho \pa_\rho g_{\mu \nu} + \pa_\nu X_\mu - X^\rho \pa_\nu g_{\mu \rho} + \pa_\mu X_\nu - X^\rho \pa_\mu g_{\nu \rho} = \pa_\mu X_\nu + \pa_\nu X_\mu + 2 g_{\rho \sigma} \Gamma^\sigma_{\mu \nu} X^\rho
+\end{equation*}
+Therefore:
+\begin{equation}
+  \delta g_{\mu \nu} = \na_\mu X_\nu + \na_\nu X_\mu
+  \label{eq:4.12}
+\end{equation}
+This equation can be used in the path integral. In fact, insisting that $ \delta \mathcal{S} = 0 $ for any $ \delta g_{\mu \nu} $ gives the equations of motion; on the other hand, those variations $ \delta g_{\mu \nu} $ for which $ \delta \mathcal{S} = 0 $ for any metric are the \textit{symmetries} of the action. From Prop. \ref{prop-einst-eq}:
+\begin{equation*}
+  \delta \mathcal{S} = \int d^4 x \sqgm\, G^{\mu \nu} \delta g_{\mu \nu} = 2 \int d^4 x \sqgm\, G^{\mu \nu} \na_\mu X_\nu
+\end{equation*}
+Invariance for $ x^\mu \mapsto x^\mu - X^\mu $ means that $ \delta \mathcal{S} = 0 $ for all $ X \in \xm $, hence, integrating by parts:
+\begin{equation}
+  \na_\mu G^{\mu \nu} = 0
+  \label{eq:4.13}
+\end{equation}
+This is Bianchi identity: although it is a result from Differential Geometry, is follows from diffeomorphism invariance of the Einstein-Hilbert action. Bianchi identity is comprised of 4 equations, which make the 10 Einstein equations not completely independent: in fact, only 6 of then are independent, the same number of independent components of the metric, thus ensuring that the field equations are not overdetermined.
+
+\section{Simple solutions}
+
+The Einstein equations in the absence of matter are:
+\begin{equation*}
+  R_{\mu \nu} = \Lambda g_{\mu \nu}
+\end{equation*}
+with $ \Lambda \in \R $.
+
+\subsection{Minkowski space}
+
+The simplest case is $ \Lambda = 0 $. The Einstein equations then reduce to $ R_{\mu \nu} = 0 $, with the condition of $ g_{\mu \nu} $ being non-degenerate, for it is a metric and the field equations require the existence of the inverse metric $ g^{\mu \nu} $. This restriction is physically unusual: it is not a holonomic constraint on the physical degrees of freedom, but an inequality $ \det g < 0 $ (with required signature $ (-,+,+,+) $) which is not found for other fields of the Standard Model.\\
+The simplest Ricci flat metric is Minkowski space $ ds^2 = -dt^2 + d\ve{x}^2 $, but it is not the only metric obeying $ R_{\mu \nu} = 0 $. Another example is Schwarzschild metric.
+
+\subsection{de Sitter space}
+
+Consider $ \Lambda > 0 $. A possible ansatz is:
+\begin{equation*}
+  ds^2 = - f(r)^2 dt^2 + f(r)^{-2} dr^2 + r^2 (d\vartheta^2 + \sin^2 \vartheta d\varphi^2)
+\end{equation*}
+
+\subsubsection{Riemann tensor}
+
+First, one needs to compute the Ricci tensor for this metric: a simple way is using the curvature form. The non-coordinate 1-forms satisfy $ d^2 = \eta_{ab} \hat{\theta}^a \otimes \hat{\theta}^b $, thus:
+\begin{equation*}
+  \hat{\theta}^0 = f dt
+  \qquad
+  \hat{\theta}^1 = f^{-1} dr
+  \qquad
+  \hat{\theta}^2 = r d\vartheta
+  \qquad
+  \hat{\theta}^3 = r \sin \vartheta d\varphi
+\end{equation*}
+\begin{equation*}
+  d\hat{\theta}^0 = f' dr \wedge dt
+  \qquad
+  d\hat{\theta}^1 = 0
+  \qquad
+  d\hat{\theta}^2 = dr \wedge d\vartheta
+  \qquad
+  d\hat{\theta}^3 = \sin \vartheta dr \wedge d\varphi + r \cos \vartheta d\vartheta \wedge d\varphi
+\end{equation*}
+The first Cartan structure relation Eq. \ref{eq:3.79}, together with Eq. \ref{eq:3.80}, allow to determine the connection 1-form. For example, the first equation is $ \tensor{\omega}{^0_1} = f' f dt = f' d\hat{\theta}^0 $, and then $ \tensor{\omega}{^1_0} = \omega_{10} = - \omega_{01} = \tensor{\omega}{^0_1} $. Using the other structure equation, the only non-vanishing components of the connection 1-form are:
+\begin{equation*}
+  \tensor{\omega}{^0_1} = \tensor{\omega}{^1_0} = f' \hat{\theta}^0
+  \qquad
+  \tensor{\omega}{^2_1} = - \tensor{\omega}{^1_2} = \frac{f}{r} \hat{\theta}^2
+  \qquad
+  \tensor{\omega}{^3_1} = - \tensor{\omega}{^1_3} = \frac{f}{r} \hat{\theta}^3
+  \qquad
+  \tensor{\omega}{^3_2} = - \tensor{\omega}{^2_3} = \frac{\cot \theta}{r} \hat{\theta}^3
+\end{equation*}
+The curvature 2-form can be computed from the second Cartan structure relation Eq. \ref{eq:3.82}. For example, $ \tensor{\mathcal{R}}{^0_1} = d\tensor{\omega}{^0_1} + \tensor{\omega}{^0_c} \wedge \tensor{\omega}{^c_1} $, but $ \tensor{\omega}{^0_c} \wedge \tensor{\omega}{^c_1} = \tensor{\omega}{^0_1} \wedge \tensor{\omega}{^1_1} = 0 $, thus $ \tensor{\mathcal{R}}{^0_1} = d\tensor{\omega}{^0_1} = ( (f')^2 + f'' f) dr \wedge dt $. From the curvature 2-form, the Riemann tensor can be calculated via Eq. \ref{eq:3.81} (recall the anti-symmetries of the Riemann tensor), finding the only non-vanishing components:
+\begin{equation*}
+  R_{0101} = f f'' + (f')^2
+  \qquad
+  R_{0202} = R_{0303} = \frac{f f'}{r}
+  \qquad
+  R_{1212} = R_{1313} = - \frac{f f'}{r}
+  \qquad
+  R_{2323} = \frac{1 - f^2}{r^2}
+\end{equation*}
+To convert back to $ x^\mu = (t,r,\vartheta,\varphi) $, use $ R_{\mu \nu \rho \sigma} = \tensor{e}{^a_\mu} \tensor{e}{^b_\nu} \tensor{e}{^c_\rho} \tensor{e}{^d_\sigma} R_{abcd} $, which is particularly easy given that the matrices $ \tensor{e}{_a^\mu} $ which define the non-coordiante 1-forms are diagonal:
+\begin{equation*}
+  R_{trtr} = f(r) f''(r) + f'(r)^2
+  \qquad
+  R_{t \vartheta t \vartheta} = f(r)^3 f'(r) r
+  \qquad
+  R_{t \varphi t \varphi} = f(r)^3 f'(r) r \sin^2 \vartheta
+\end{equation*}
+\begin{equation*}
+  R_{r \vartheta r \vartheta} = - \frac{f'(r) r}{f(r)}
+  \qquad
+  R_{r \varphi r \varphi} = - \frac{f'(r) r}{f(r)} \sin^2 \vartheta
+  \qquad
+  R_{\vartheta \varphi \vartheta \varphi} = (1 - f(r)^2) r^2 \sin^2 \vartheta
+\end{equation*}
+
+\subsubsection{Ricci tensor}
+
+Given the Riemann tensor, it is easy to check that the Ricci tensor is diagonal with components:
+\begin{equation*}
+  R_{tt} = - f(r)^4 R_{rr} = f(r)^3 \left[ f''(r) + \frac{2f'(r)}{r} + \frac{f'(r)^2}{f(r)} \right]
+\end{equation*}
+\begin{equation*}
+  R_{\varphi \varphi} = \sin^2 \vartheta R_{\vartheta \vartheta} = (1 - f(r)^2 - 2 f(r) f'(r) r) \sin^2 \vartheta
+\end{equation*}
+Imposing $ R_{\mu \nu} = \Lambda g_{\mu \nu} $ determines two constraints on $ f(r) $:
+\begin{equation*}
+  f''(r) + \frac{2f'(r)}{r} + \frac{f'(r)^2}{f(r)} = - \frac{\Lambda}{f(r)}
+  \qquad \qquad
+  1 - 2 f(r) f'(r) r - f(r)^2 = \Lambda r^2
+\end{equation*}
+A solution is:
+\begin{equation*}
+  f(r) = \sqrt{1 - \frac{r^2}{R^2}}
+  \qquad
+  R^2 = \frac{3}{\Lambda}
+\end{equation*}
+This determines the metric of \textit{de Sitter space}:
+\begin{equation}
+  ds^2 = - \left( 1 - \frac{r^2}{R^2} \right) dt^2 + \left( 1 - \frac{r^2}{R^2} \right)^{-1} dr^2 + r^2 (d\vartheta^2 + \sin^2 \vartheta d\varphi^2)
+  \label{eq:4.14}
+\end{equation}
+More precisely, this is the \textit{static patch} of de Sitter space.
+
+\subsubsection{de Sitter geodesics}
+
+To interpret the metric, it's useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
+\begin{equation}
+  \mathcal{S}_{\text{dS}} = \int d\sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \varphi^2) \right]
+  \label{eq:4.15}
+\end{equation}
+where $ \dot{x}^\mu \equiv \frac{dx^\mu}{d\sigma} $. This Lagrangian has two ignorable degrees of freedom which lead to conserved quantities: $ t(\sigma) $ and $ \varphi(\sigma) $, as they appear only with time derivatives. The first one has energy as the conserved quantity, while the second has angular momentum:
+\begin{equation}
+  E = - \frac{1}{2} \frac{\pa L}{\pa \dot{t}} = f(r)^2 \dot{t}
+  \label{eq:4.16}
+\end{equation}
+\begin{equation}
+  \ell = \frac{1}{2} \frac{\pa L}{\pa \dot{\varphi}} = r^2 \sin^2 \vartheta \dot{\varphi}
+  \label{eq:4.17}
+\end{equation}
+The $ \frac{1}{2} $ are due to the absence of the usual factor in the kinetic term. The equations of motion from the action Eq. \ref{eq:4.15} should be supplemented with a constraint to distinguish whether a particle is massive or massless. For a massive particle, the trajectory must be timelike, so:
+\begin{equation*}
+  - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dot{\varphi}^2) = -1
+\end{equation*}
+WLOG consider geodeiscs that lie in the $ \vartheta = \frac{\pi}{2} $ plane, so that $ \dot{\theta} = 0 $ and $ \sin^2 \vartheta = 1 $. Replacing $ (t,\varphi) $ with $ (E,\ell) $, the constraint becomes:
+\begin{equation}
+  \dot{r}^2 + V_{\text{eff}}(r) = E^2
+  \qquad
+  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) f(r)^2
+  \label{eq:4.18}
+\end{equation}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{geod-ds.png}
+  \caption{Effective potential for de Sitter geodesics, with $ \ell \neq 0 $ and $ \ell = 0 $ respectively.}
+  \label{geo-ds}
+\end{figure}
+
+For de Sitter space:
+\begin{equation*}
+  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 - \frac{r^2}{R^2} \right)
+\end{equation*}
+This effective potential is plotted in Fig. \ref{geo-ds}: immediately, on sees that the potential pushes the particle to larger values of $ r $. Focusing on geodesics with $ \ell = 0 $, the potential is a harmonic repulsor: a particle stationary at $ r = 0 $ is an unstable geodesic, for if it has non-zero initial velocity it will follow the trajectory:
+\begin{equation}
+  r(\sigma) = R \sqrt{E^2 - 1} \sinh \frac{\sigma}{R}
+  \label{eq:4.19}
+\end{equation}
+Note that the metric is singular at $ r = R $, a fact not manifest in the geodesic Eq. \ref{eq:4.19} which shows that any observer reaches $ r = R $ in finite proper time. Problems arise when studying the coordinate time $ t $, which has the interpretation of the time experienced by someone stationary at $ r = 0 $; from Eq. \ref{eq:4.16}:
+\begin{equation*}
+  \frac{dt}{d\sigma} = E \left( 1 - \frac{r^2}{R^2} \right)^{-1}
+\end{equation*}
+This shows that $ t(\sigma) \rightarrow \infty $ as $ r(\sigma) \rightarrow R $: in fact, if $ r(\sigma^*) = R $, then for $ \sigma = \sigma^* - \varepsilon $ one has $ \frac{dt}{d\sigma} = - \frac{\alpha}{\varepsilon} $, i.e. $ t(\varepsilon) = - \log (\varepsilon / R) $, so $ t(\varepsilon) \rightarrow \infty $ as $ \varepsilon \rightarrow 0 $. This means that a particle moving along the geodesic Eq. \ref{eq:4.19} will reach $ r = R $ in finite proper time, but a stationary observer at $ r = 0 $ will measure an infinite amount of time.\\
+This strange behaviour is similar to what happens at the horizon of a black hole ($ r = 2GM $): however, the Schwarzschild metric has a singularity at $ r = 0 $, while de Sitter metric looks flat at $ r = 0 $. de Sitter space seems like an inverted black hole in which particles are pushed outwars to $ r = R $.
+
+\subsubsection{de Sitter embeddings}
+
+de Sitter space can be nicely embedded as a submanifold of $ \R^{1,4} $ with metric:
+\begin{equation}
+  ds^2 = - (dX^0)^2 + \sum_{i = 1}^{4} (dX^i)^2
+  \label{eq:4.20}
+\end{equation}
+In particular, de Sitter metric Eq. \ref{eq:4.14} is a metric on the submanifold of $ \R^{1,4} $ defined by the timelike hyperboloid:
+\begin{equation}
+  -(X^0)^2 + \sum_{i = 1}^{4} (X^i)^2 = R^2
+  \label{eq:4.21}
+\end{equation}
+A way of parametrizing this constraint is by imposing that $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, so that:
+\begin{equation*}
+  R^2 - r^2 = (X^4)^2 - (X^0)^2
+\end{equation*}
+The solutions are parametrized as:
+\begin{equation*}
+  X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R}
+  \qquad
+  X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R}
+\end{equation*}
+Computing the respective variations, along with $ \sum_{i = 1}^{3} (dX^i)^2 = dr^2 + r^2 d\Omega_2^2 $, where $ d\Omega_n^2 $ is the metric element on $ \mathbb{S}^n $, allows to show that the pull-back of the Minkowski metric Eq. \ref{eq:4.20} on the hyperboloid Eq. \ref{eq:4.21} so parametrized gives the de Sitter metric Eq. \ref{eq:4.14} in the static patch coordinates.\\
+The coordinates $ \{X^i\}_{i = 0,\dots,4} $ so defined are not the most intuitive: they single out $ X^4 $ as special, when the constraint does no such thing, and they do not cover the whole hyperboloid, as they are limited to $ X^4 \ge 0 $. A better choice of parametrization is:
+\begin{equation*}
+  X^0 = R \sinh \frac{\tau}{T}
+  \qquad \qquad
+  X^i = y^i R \cosh \frac{\tau}{R}
+  \,:\,
+  \sum_{i = 1}^{4} (y^i)^2 = 1
+\end{equation*}
+Given this constraint, $ \{y^i\}_{i = 1, \dots, 4} $ parametrize $ \mathbb{S}^3 $. These coordinates retain more of the symmetry of de Sitter space and cover the whole space, thus are a better parametrization. The pull-back of Minkowski metric, however, gives a rather different metric on de Sitter space:
+\begin{equation}
+  ds^2 = - d\tau^2 + R^2 \cosh^2 \frac{\tau}{R}\, d\Omega_3^2
+  \label{eq:4.22}
+\end{equation}
+These are known as \textit{global coordinates}, as they cover the whole space (except for singularities at the poles for any choice of coordinates on $ \mathbb{S}^3 $). Since this metric is related to that in Eq. \ref{eq:4.14} by a change of coordinates, it too must obey the Einstein equations. Global coordiantes also show that the singularity which happens at $ X^4 $, i.e. at $ r = R $, is nothing but a coordinate singularity.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.30 \textwidth]{ds-space.png}
+  \caption{de Sitter space visualization with global coordinates.}
+  \label{ds-space}
+\end{figure}
+
+These coordinates provide a clearer intuition for the physics of de Sitter space: it is a time-dependent solution of the field equations in which a spatial $ \mathbb{S}^3 $ first shrinks to a minimal radius $ R $ and then expands, as shown in Fig. \ref{ds-space}. The expansionary phase is a good approximation to our current universe on large scales.
+
+
+
+
+
+
+
+
+
+
