@@ -1,0 +1,159 @@
+\selectlanguage{english}
+
+Although Einstein field equations are extremely difficult to solve, a possible ansatz is to consider an almost-flat metric with $ \Lambda = 0 $, which in the so called \textit{almos-inertial coordinates} $ x^\mu $ takes the form:
+\begin{equation}
+  g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}
+  \label{eq:5.1}
+\end{equation}
+where the perturbation of the metric is assumed to be small: $ h_{\mu \nu} \ll 1 $.
+
+\section{Linerarized gravity}
+
+The aim is to expand the field equations to linear order in $ h_{\mu \nu} $: at this order, gravity can be thought as a symmetric spin 2 field $ \eta_{\mu \nu} $ propagating through flat Minkowski spacetime. Therefore, indices are raised and lowered by Minkowski metric $ \eta_{\mu \nu} = \diag \left( -1,+1,+1,+1 \right) $, and the field theory inherits Lorentz invariance:
+\begin{equation*}
+  x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu
+  \quad \Rightarrow \quad
+  h^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma} h^{\rho \sigma} (\Lambda^{-1} x)
+\end{equation*}
+where $ \eta^{\mu \nu} = \eta^{\mu \rho} \eta^{\nu \sigma} h_{\rho \sigma} $. To leading order, the inverse metric is $ g^{\mu \nu} = \eta^{\mu \nu} - h^{\mu \nu} $, thus:
+\begin{equation}
+  \Gamma^\sigma_{\nu \rho} = \frac{1}{2} \eta^{\sigma \lambda} \left( \pa_\nu h_{\lambda \rho} + \pa_\rho h_{\nu \lambda} - \pa_\lambda h_{\nu \rho} \right)
+  \label{eq:5.2}
+\end{equation}
+Recalling Eq. \ref{eq:3.36}, the $ \Gamma \Gamma \sim h^2 $ terms of the Riemann tensor are negligible to first order, so:
+\begin{equation}
+  \tensor{R}{^\sigma_{\rho \mu \nu}} = \frac{1}{2} \eta^{\sigma \lambda} \left( \pa_\mu \pa_\rho h_{\nu \lambda} - \pa_\mu \pa_\lambda h_{\nu \rho} - \pa_\nu \pa_\rho h_{\mu \lambda} + \pa_\nu \pa_\lambda h_{\mu \rho} \right)
+  \label{eq:5.3}
+\end{equation}
+Contracting $ (\sigma,\rho) $, the Ricci tensor is:
+\begin{equation}
+  R_{\mu \nu} = \frac{1}{2} \left( \pa^\rho \pa_\mu h_{\nu \rho} + \pa^\rho \pa_\nu h_{\mu \rho} - \Box h_{\mu \nu} - \pa_\mu \pa_\nu h \right)
+  \label{eq:5.4}
+\end{equation}
+where $ \Box \defeq \pa^\mu \pa_\mu $ and $ h = \tensor{h}{^\mu_\mu} $ is the trace of $ h_{\mu \nu} $. The Ricci scalar is:
+\begin{equation}
+  R = \pa^\mu \pa^\nu h_{\mu \nu} - \Box h
+  \label{eq:5.5}
+\end{equation}
+Finally, the Einstein tensor can be expressed as:
+\begin{equation}
+  G_{\mu \nu} = \frac{1}{2} \left[ \pa^\rho \pa_\mu h_{\nu \rho} + \pa^\rho \pa_\nu h_{\mu \rho} - \Box h_{\mu \nu} - \pa_\mu \pa_\nu h - \left( \pa^\rho \pa^\sigma h_{\rho \sigma} - \Box h \right) \eta_{\mu \nu} \right]
+  \label{eq:5.6}
+\end{equation}
+For linearized gravity, Bianchi identity $ \na^\mu G_{\mu \nu} = 0 $ becomes $ \pa^\mu G_{\mu \nu} = 0 $, which is indeed obeyed by Eq. \ref{eq:5.6}. Einstein field equations with a source $ T_{\mu \nu} $, which, for consistency, must be suitably small, are then a set of linear PDEs:
+\begin{equation}
+  \pa^\rho \pa_\mu h_{\nu \rho} + \pa^\rho \pa_\nu h_{\mu \rho} - \Box h_{\mu \nu} - \pa_\mu \pa_\nu h - \left( \pa^\rho \pa^\sigma h_{\rho \sigma} - \Box h \right) \eta_{\mu \nu} = 16\pi G T_{\mu \nu}
+  \label{eq:5.7}
+\end{equation}
+This can be thought as $ \mathfrak{L}(h_{\mu \nu}) = 16\pi G T_{\mu \nu} $, where $ \mathfrak{L} $ is a linear differential operator known as \textit{Lichnerowicz operator}.
+
+\begin{proposition}
+  Eq. \ref{eq:5.7} are the equations of motion derived from the \textit{Fierz-Pauli action}:
+  \begin{equation}
+    \mathcal{S}_{\text{FP}} = \frac{1}{8\pi G} \int d^4 x \left[ - \frac{1}{4} \pa_\rho h_{\mu \nu} \pa^\rho h^{\mu \nu} + \frac{1}{2} \pa_\rho h_{\mu \nu} \pa^\nu h^{\rho \mu} + \frac{1}{4} \pa_\mu h \pa^\mu h - \frac{1}{2} \pa_\nu h^{\mu \nu} \pa_\mu h \right]
+    \label{eq:5.8}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Varying the action:
+  \begin{equation*}
+    \begin{split}
+      \delta \mathcal{S}_{\text{FP}}
+      &= \frac{1}{8\pi G} \int d^4 x \left[ \frac{1}{2} \pa_\rho \pa^\rho h_{\mu \nu} - \pa^\rho \pa_\nu h_{\rho \mu} - \frac{1}{2} \pa^\rho \pa_\rho h \eta_{\mu \nu} + \frac{1}{2} \pa_\nu \pa_\mu h + \frac{1}{2} \pa_\rho \pa_\sigma h^{\rho \sigma} \eta_{\mu \nu} \right] \delta h^{\mu \nu} \\
+      &= \frac{1}{8\pi G} \int d^4 x \left[ - G_{\mu \nu} \delta h^{\mu \nu} \right]
+    \end{split}
+  \end{equation*}
+  Hence, $ G_{\mu \nu} = 0 $. To get the matter coupling, add $ T_{\mu \nu} h^{\mu \nu} $ to the action.
+\end{proof}
+
+\subsection{Gauge symmetry}
+
+Linearized gravity inherits a useful gauge symmetry from the diffeomorphism invariance of the full theory. Under a change of coordinates $ x^\mu \mapsto x^\mu - \xi^\mu(x) $, where $ \xi(x) $ is assumed to be small, the metric changes by Eq. \ref{eq:4.11} as $ \delta g_{\mu \nu} = (\ld_\xi g)_{\mu \nu} = \na_\mu \xi_\nu + \na_\nu \xi_\mu $; for the linearized metric Eq. \ref{eq:5.1}, being both $ h $ and $ \xi $ small, the covariant derivatives take the vanishing connection of Minkowski spacetime, thus:
+\begin{equation}
+  h_{\mu \nu} \mapsto h_{\mu \nu} + \pa_\mu \xi_\nu + \pa_\nu \xi_\mu
+  \label{eq:5.9}
+\end{equation}
+This is similar to the gauge transformation of Maxwell theory $ A_\mu \mapsto A_\mu + \pa_\mu \alpha $: just like $ F_{\mu \nu} = 2 \pa_{[\mu} A_{\nu]} $ is gauge-invariant, so is the linearized Riemann tensor Eq. \ref{eq:5.3}.
+
+\begin{proposition}
+  The Fierz-Pauli action is invariant under the gauge symmetry Eq. \ref{eq:5.9}.
+\end{proposition}
+\begin{proof}
+  Recalling the linearized Bianchi identity $ \pa^\mu G_{\mu \nu} = 0 $:
+  \begin{equation*}
+    \delta \mathcal{S}_{\text{FP}} = - \frac{1}{8\pi G} \int d^4 x\, 2 G_{\mu \nu} \pa^\mu \xi^\nu = \frac{1}{4\pi G} d^4 x\, \pa^\mu G_{\mu \nu} \xi^\nu = 0
+  \end{equation*}
+\end{proof}
+
+As in Electromagnetism, it's useful to impose a gauge fixing condition.
+
+\begin{proposition}
+  It's always possible to pick \textit{de Donder gauge}:
+  \begin{equation}
+    \pa^\mu h_{\mu \nu} - \frac{1}{2} \pa_\nu h = 0
+    \label{eq:5.10}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Suppose that the doesn't obey de Donder condition, but WLOG $ \pa^\mu h_{\mu \nu} - \frac{1}{2} \pa_\nu h = f_\nu $ for some functions $ f_\nu $. After the gauge transformation Eq. \ref{eq:5.9}, this becomes $ \pa^\mu h_{\mu \nu} - \frac{1}{2} \pa_\nu h + \Box \xi_\nu = f_\nu $, thus one only needs to find $ \xi_\nu : \Box \xi_\nu = f_\nu $, which always has a solution.
+\end{proof}
+
+In de Donder gauge, the field equations Eq. \ref{eq:5.7} are greatly simplified:
+\begin{equation}
+  \Box h_{\mu \nu} - \frac{1}{2} \Box h \eta_{\mu \nu} = -16\pi G T_{\mu \nu}
+  \label{eq:5.11}
+\end{equation}
+To simplify these equations even more, it's useful to define:
+\begin{equation*}
+  \bar{h}_{\mu \nu} \equiv h_{\mu \nu} - \frac{1}{2} h \eta_{\mu \nu}
+  \quad \Rightarrow \quad
+  h_{\mu \nu} = \bar{h}_{\mu \nu} - \frac{1}{2} \bar{h} \eta_{\mu \nu}
+\end{equation*}
+as $ \bar{h} = - h $. With this choice, the linearized Einstein equations in de Donder gauge reduce to a set of wave equations:
+\begin{equation}
+  \Box \bar{h}_{\mu \nu} = -16\pi G T_{\mu \nu}
+  \label{eq:5.12}
+\end{equation}
+
+\paragraph{Non-linear theory}
+
+de Donder gauge can be extended to the full non-linear theory as the condition:
+\begin{equation}
+  g^{\mu \nu} \Gamma^\rho_{\mu \nu} = 0
+  \label{eq:5.13}
+\end{equation}
+Note that this isn't a tensor equation, as $ \Gamma^\rho_{\mu \nu} $ isn't a tensor, and indeed the point of gauge fixing is to set a preferred choice of coordinates. This gauge condition simplifies the expression of the d'Alembertian $ \Box \defeq \na^\mu \na_\mu = g^{\mu \nu} ( \pa_\mu \pa_\nu - \Gamma^\rho_{\mu \nu} \pa_\rho ) $, which simply becomes $ \Box = g^{\mu \nu} \pa_\mu \pa_\nu $; moreover, the same applies to 1-forms: $ \na^\mu \omega_\mu = g^{\mu \nu} \na_\mu \omega_\nu = g^{\mu \nu} ( \pa_\mu \omega _\nu - \Gamma^\rho_{\mu \nu} \omega_\rho ) = \pa^\mu \omega_\mu $.
+
+\subsection{Newtonian limit}
+
+In the presence of a low-density, slowly-moving distribution of matter, the linearized field equations reduce to the Newtonian theory of gravity. For a stationary matter configuration, the only non-vanishing component of the energy-momentum tensor is $ T_{00} = \rho(\ve{x}) $; moreover, since there's no time-dependence, $ \Box = -\pa_t^2 + \na^2 = \na^2 $. The Einstein equations become:
+\begin{equation*}
+  \na^2 \bar{h}_{00} = -16\pi G \rho(\ve{x})
+  \qquad
+  \na^2 \bar{h}_{0i} = \na^2 \bar{h}_{ij} = 0
+\end{equation*}
+With suitable boundary conditions, the solutions to these equations are:
+\begin{equation*}
+  \bar{h}_{00} = -4 \Phi(\ve{x})
+  \qquad
+  \bar{h}_{0i} = \bar{h}_{ij} = 0
+\end{equation*}
+where $ \Phi : \na^2 \Phi = 4\pi G \rho $ is the Newtonian gravitational potential. Then $ \bar{h} = 4 \Phi $ and:
+\begin{equation*}
+  h_{\mu \nu} = -2\Phi(\ve{x}) \delta_{\mu \nu}
+\end{equation*}
+The full metric $ g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu} $ it thus expressed as:
+\begin{equation*}
+  ds^2 = - \left( 1 + 2\Phi(\ve{x}) \right) dt^2 + \left( 1 - 2\Phi(\ve{x}) \right) d\ve{x}^2
+\end{equation*}
+This is exactly teh condition Eq. \ref{eq:1.29}. Interestingly, for a point particle $ \Phi(\ve{x}) = - \frac{GM}{r} $ and the metric coincides with the leading expansion of Schwarzschild metric (the $ g_{00} $ term is exact).
+
+
+
+
+
+
+
+
+
+
