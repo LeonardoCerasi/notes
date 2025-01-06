@@ -538,6 +538,75 @@ Far away from the source $ R^{(1)} $ can be neglected, since it vanishes by the 
 \end{equation}
 The linearized Bianchi identity is $ \pa^\mu \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(1)} = 0 $, hence, far away from sources, i.e. $ T_{\mu \nu} = 0 $, necessarily $ \pa^\mu t_{\mu \nu} = 0 $ as befits a conserved current. However, $ t_{\mu \nu} $ is still not gauge invariant.
 
+\subsubsection{Gauge invariance}
+
+Although none of the defined $ t_{\mu \nu} $ is gauge invariant, it is still possible to extract a gauge-invariant quantity from it, which has physical meaning.\\
+First, if the spacetime is asymptotically Minkowski, it could be possible to integrate $ t^{00} $ on an infinite spatial hypersurface, obtaining the so-called \textit{ADM energy}, which is shown to be constant in time and gauge.invariant. Alternatively, one could integrate $ t^{0i} $ on a sphere at $ \mathcal{I}^+ $, yielding the so-called \textit{Bondi energy}, which is gauge-invariant and time-dependent, and it can be defined in the full non-lnear theory too.\\
+Moreover, consider that, like any other waves, gravitational waves vary over some typical length $ \lambda $. Thus, averaging over these oscillations is possible by:
+\begin{equation*}
+  \braket{t_{\mu \nu}} \defeq \int_V d^4 y\, W(x - y) t_{\mu \nu}(y)
+\end{equation*}
+where $ V $ is a spacetime region of typical size $ a $ and $ W \in \mathcal{C}^{\infty}(V) : \int_V d^4 x\, W(x) = 1 \,\land\, W\vert_{\pa V} = 0 $. This integral averages total derivatives as $ \braket{\pa X} \sim 1/a $, so $ \braket{X \pa Y} = - \braket{Y \pa X} + o(1/a) $. Then:
+\begin{equation}
+  \braket{t_{\mu \nu}} = \frac{1}{32\pi G} \braket{\pa_\mu h_{\rho \sigma} \pa_\nu h^{\rho \sigma}}
+  \label{eq:5.31}
+\end{equation}
+This is indeed a conserved quantity:
+\begin{equation*}
+  \pa^\mu \braket{t_{\mu \nu}} = \frac{1}{32\pi G} \braket{(\Box h_{\rho \sigma}) \pa_\nu h^{\rho \sigma} + \frac{1}{2} \pa_\nu (\pa_\mu h_{\rho \sigma} \pa^\mu h^{\gamma \sigma})} = 0
+\end{equation*}
+as the first term vanishes by equations of motion and the second yields a negligible total derivative. Under a gauge transformation like Eq. \ref{eq:5.9}:
+\begin{equation*}
+  \delta \braket{t_{\mu \nu}} = \frac{1}{16\pi G} \braket{\pa_\mu h_{\rho \sigma} \pa_\nu (\pa^\rho \xi^\sigma + \pa^\sigma \xi^\rho)} = \frac{1}{16\pi G} \braket{\pa_\mu \pa^\rho h_{\rho \sigma} \pa_\nu \xi^\sigma + \pa_\mu \pa^\sigma h_{\rho \sigma} \pa_\nu \xi^\rho} + o(a^{-1}) = o(a^{-1})
+\end{equation*}
+where, after integration by parts, de Donder gauge condition $ \pa^\rho h_{\rho \sigma} = 0 $ was invoked. Hence, $ t_{\mu \nu} $ is almost gauge-invariant, and it is properly gauge-invariant if $ a \rightarrow \infty $, i.e. if the averaging is over all of spacetime. The power emitted by a gravitational wave at infinity is:
+\begin{equation*}
+  \mathcal{P} = \int_{\mathbb{S}^2_{\infty}} d^2 x\, \hat{n}_i \braket{t^{0i}}
+\end{equation*}
+with $ \hat{n}_i $ a normal versor to $ \mathbb{S}^2_{\infty} $. This indeed gives Eq. \ref{eq:5.29}.
+
+\subsubsection{Orders of magnitude}
+
+\paragraph{Black holes}
+
+Consider two masses $ M $, separated by a distance $ R $ and orbiting each other with frequency $ \omega $. Newtonian gravity approximation gives:
+\begin{equation*}
+  \omega^2 R \sim \frac{GM}{R^2}
+\end{equation*}
+The quadrupole is $ \mathcal{Q} \sim M R^2 $, hence $ \dddot{\mathcal{Q}} \sim \omega^3 M R^2 $, and the emitted power scales as:
+\begin{equation*}
+  \mathcal{P} \sim G \dddot{\mathcal{Q}}^2 \sim \frac{G^4 M^5}{R^5}
+\end{equation*}
+Returning to SI units, $ [G] = M^{-1} L^3 T^{-2} $ and, for a black hole, $ R_s = 2GM / c^2 $, thus:
+\begin{equation*}
+  \mathcal{P} = \left( \frac{R_s}{R} \right)^5 L_{\text{p}}
+\end{equation*}
+where the \textit{Plank luminosity} is defined as:
+\begin{equation*}
+  L_{\text{p}} \equiv \frac{c^5}{G} \approx 3.6 \cdot 10^{52} \,\text{J}\,\text{s}^{-1}
+\end{equation*}
+To get a sense of scale, the Sun emits $ L_{\odot} \approx 10^{-26} L_{\text{p}} $ and the Milky Way, with $ 10^{11} $ stars, emits $ L \approx 10^{-15} L_{\text{p}} $. Moreover, in the visible Universe there are roughly $ 10^{10} $ galaxies, so all the stars of the visible Universe shine with $ L \approx 10^{-5} L_{\text{p}} $. Yet, when two black holes spiral towards each other, when their separation is comparable to their Schwarzschild radius, they emit in gravitational waves $ 10^5 $ times the energy emitted by all the stars of the visible Universe.
+
+\paragraph{Solar System}
+
+If two objects with masses $ M_1 \gg M_2 $ orbit each other, then their gravitationally-radiated power is:
+\begin{equation*}
+  \mathcal{P} \sim \frac{G^4 M_1^3 M_2^2}{R^5}
+\end{equation*}
+Considering Jupiter, which has $ M \sim 10^{-3} M_{\odot} $ and orbits at $ R \approx 10^9\,\text{km} $ from the Sun, which has $ R_s \approx 3\,\text{km} $:
+\begin{equation*}
+  \mathcal{P} \approx 10^{-50} L_{\text{p}} \approx 10^{-24} L_{\odot}
+\end{equation*}
+This is completely negligible.
+
+\paragraph{Human body}
+
+Consider a human being shaking its arms around. The mass of a human arm is a few kg and moves a distance of around $ 1\,\text{m} $ with a frequency $ \omega \sim 1\,\text{Hz} $, so $ \mathcal{Q} \approx 1\,\text{kg}\,\text{m}^2 $ and $ \dddot{\mathcal{Q}} \approx 1\,\text{kg}\,\text{m}^2\,\text{s}^{-3} $, hence the gravitationally-radiated power is:
+\begin{equation*}
+  \mathcal{P} \sim \frac{G \dddot{\mathcal{Q}}^2}{c^5} \approx 10^{-52}\,\text{J}\,\text{s}^{-1 \approx 10^{-52}\,\text{J}\,\text{s}^{-1}}
+\end{equation*}
+Suppose the existence of gravitons with $ E = \hbar\omega $: to produce a single graviton with $ \omega = 1\,\text{Hz} $, i.e. $ E \approx 10^{-34}\,\text{J} $, a human needs to shake its arms around for $ t \approx 10^{18}\,\text{s} $: this is approximately the age of the Universe.
+
 
 
 
