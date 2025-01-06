@@ -397,6 +397,147 @@ Note that this expression, found integrating the preceding equation, contains an
   \label{eq:5.28}
 \end{equation}
 
+\begin{example}
+  Consider two objects of mass $ R $ and separated by a distance $ R $, orbiting in the $ (x,y) $ plane: by Newtonian gravity, the orbit frequency is $ \omega^2 = 2GM / R^3 $. Treating these objects as point particles, their energy density is:
+  \begin{equation*}
+    T^{00}(\ve{x},t) = M \delta(z) \left[ \delta \left( x - \frac{R}{2} \cos \omega t \right) \delta \left( y - \frac{R}{2} \sin \omega t \right) + \delta \left( x + \frac{R}{2} \cos \omega t \right) \delta \left( y + \frac{R}{2} \sin \omega t \right) \right]
+  \end{equation*}
+  The quadrupole moment then is:
+  \begin{equation*}
+    I_{ij} (t) = \frac{MR^2}{2}
+    \begin{bmatrix}
+      \cos^2 \omega t & \cos \omega t \sin \omega t & 0 \\
+      \cos \omega t \sin \omega t & \sin^2 \omega t & 0 \\
+      0 & 0 & 0
+    \end{bmatrix}
+    = \frac{MR^2}{4}
+    \begin{bmatrix}
+      1 + \cos 2 \omega t & \sin 2 \omega t & 0 \\
+      \sin 2 \omega t & 1 - \cos 2 \omega t & 0 \\
+      0 & 0 & 0
+    \end{bmatrix}
+  \end{equation*}
+  The resulting metric perturbation is:
+  \begin{equation*}
+    \bar{h}_{ij}(\ve{x},t) \approx - \frac{2GMR^2 \omega^2}{r}
+    \begin{bmatrix}
+      \cos 2 \omega t_r & \sin 2 \omega t_r & 0 \\
+      \sin 2 \omega t_r & - \cos 2 \omega t_r & 0 \\
+      0 & 0 & 0
+    \end{bmatrix}
+  \end{equation*}
+  with $ t_r = t - r $. This gravitational wave propagates approximately radially. To estimate its expected strength:
+  \begin{equation*}
+    \abs{h_{ij}} \sim \frac{2GMR^2 \omega^2}{r} \sim \frac{G^2 M^2}{Rr}
+  \end{equation*}
+  Thus, the signal is largest for large masses orbiting very tightly. The most dense objects are black holes, for which $ R_s = 2GM $, so considering two black holes orbiting at $ R \approx R_s $ then $ \abs{h_{ij}} \sim GM / r \sim R_s / r $: black holes of a few solar masses have $ R_s \sim 10\,\text{km} $, so if they are situated in a galaxy a billion light-years away from Earth $ r \sim 10^{21}\,\text{km} $, hence $ \abs{h} \sim 10^{-20} $.
+\end{example}
+
+\subsubsection{Multipole expansion}
+
+Comparing to Electromagnetism, recall the first multipoles of the charge distribution $ \rho(\ve{x}) $:
+\begin{equation*}
+  Q = \int_\Sigma d^3 x\, \rho(\ve{x})
+  \qquad
+  \ve{p} = \int_\Sigma d^3 x\, \rho(\ve{x}) \ve{x}
+  \qquad
+  \mathcal{Q}_{ij} = \int_\Sigma d^3 x\, \rho(\ve{x}) \left( 3 x_i x_j - \delta_{ij} x^2 \right)
+\end{equation*}
+Charge conservation $ \dot{Q} = 0 $ nullifies the monopole contribution to electromagnetic waves. The leading order contribution is that of the dipole:
+\begin{equation*}
+  \ve{A}(\ve{x},t) \approx \frac{\mu_0}{4\pi} \dot{\ve{p}}(t - r)
+\end{equation*}
+For gravity, the first multipoles of the energy distribution $ T_{00}(\ve{x}) $ are:
+\begin{equation*}
+  E = \int_\Sigma d^3 x\, T_{00}(\ve{x})
+  \qquad
+  \ve{X} = \frac{1}{E} \int_\Sigma d^3 x\, T_{00}(\ve{x}) \ve{x}
+  \qquad
+  I_{ij} = \int_\Sigma d^3 x\, T_{00}(\ve{x},t) x_i x_j
+\end{equation*}
+i.e. the total energy, the center of mass (energy) of the distribution and the quadrupole. Energy conservation $ \dot{E} = 0 $ is responsible for the lack of monopole contribution to gravitational radiation. But in contrast to Electromagnetism, the dipole contribution also vanishes due to momentum conservation $ \dot{\ve{P}} = \ve{0} $:
+\begin{equation*}
+  E \dot{X}_i = \int_\Sigma d^3 x\, (\pa_0 T_{00}) x_i = \int_\Sigma d^3 x\, (\pa_j T_{j0}) x_i = - \int_\Sigma d^3 x\, T_{i0} = P_i
+  \quad \Rightarrow \quad
+  E \ddot{\ve{X}} = \dot{\ve{P}} = \ve{0}
+\end{equation*}
+In Electromagnetism, another dipole contribution to the gauge potential is possible:
+\begin{equation*}
+  \ve{A}(\ve{x},t) = -\frac{\mu_0}{4\pi r} \hat{\ve{x}} \times \dot{\ve{m}}(t - r)
+  \qquad \qquad
+  \ve{m} \defeq \frac{1}{2} \int_\Sigma d^3 x\, \ve{x} \times \ve{J}(\ve{x})
+\end{equation*}
+For gravity, there's an equivalent contribution with the analogue of magnetic dipole being:
+\begin{equation*}
+  J_i = \int_\Sigma d^3 x\, \epsilon_{ijk} x_j T_{0k}
+\end{equation*}
+This is nothing other than the total angular momentum of the system, thus the dipole contribution to gravitational radiation is nullified by angular momentum conservation $ \dot{\ve{J}} = \ve{0} $ too. The leading order effect for gravitational waves is then the quadrupole.
+
+\subsection{Radiated power}
+
+In the context of Electromagnetism, the power radiated as electromagnetic waves are emitted is easily found defining the Poynting vector $ \ve{S} \defeq \frac{1}{\mu_0} \ve{E} \times \ve{B} $ and, using the dipole approximation, finding \textit{Larmor formula}:
+\begin{equation*}
+  \mathcal{P} = \int_{\mathbb{S}^2} d^2\ve{r} \cdot \ve{S} = \frac{\mu_0}{6\pi c} \abs{\ddot{p}}^2
+\end{equation*}
+Analogously, a source emitting gravitational waves loses energy which is carried by them. The problem of finding an equivalent to Larmor formula is that there's no local energy-momentum tensor for gravitational fields, so there's no analogue to the Poynting vector. A possible way forward is to define an energy-momentum tensor $ t_{\mu \nu} $ for gravitatonal waves which, in the linearized theory, obeys $ \pa^\mu t_{\mu \nu} = 0 $: Eq. \ref{eq:4.49} does not allow to do so in a diffeomorphism-invariant way, i.e. in the full non-linear theory $ t_{\mu \nu} $ is not a tensor and in the linearized theory it is not invariant under gauge transformations Eq. \ref{eq:5.9}. It turns out that there are a number of different ways to define such a tensor.
+
+\subsubsection{Fierz-Pauli action}
+
+Recall the Fierz-Pauli action Eq. \ref{eq:5.8} for linearized gravity: viewed as an action describing a spin 2 field propagating through Minkowski spacetime, it can be treated as any classical field theory and used to compute an energy-momentum tensor. In the transverse traceless gauge, i.e. with $ h = 0 $ and $ \pa^\mu h_{\mu \nu} = 0 $, after integration by parts the action becomes:
+\begin{equation*}
+  \mathcal{S}_{\text{FP}} = - \frac{1}{8\pi G} \int d^4 x\, \frac{1}{4} \pa_\rho h_{\mu \nu} \pa^\rho h^{\mu \nu}
+\end{equation*}
+This looks like the action for a set of massless scalar fields, hence the energy dentity takes the schematic form:
+\begin{equation*}
+  t^{00} \sim \frac{1}{G} \dot{h}_{\mu \nu} \dot{h}^{\mu \nu}
+\end{equation*}
+There are gradient terms too, but, due to the wave equation, they contribute as time derivatives. Note that $ t^{0i} $ scales in the same way. In the transverse traceless gauge, Eq. \ref{eq:5.26} becomes:
+\begin{equation*}
+  h_{ij}(\ve{x},t) \sim \frac{G}{r} \ddot{\mathcal{Q}}(t - r)
+  \qquad \qquad
+  \mathcal{Q}_{ij} \equiv I_{ij} - \frac{1}{3} I_{kk} \delta_{ij}
+\end{equation*}
+where $ \mathcal{Q}_{ij} $ is the traceless part of the quadrupole moment $ I_{ij} $. The energy density carried by gravitational waves should then be:
+\begin{equation*}
+  t^{00} \sim \frac{G}{r^2} \dddot{\mathcal{Q}}_{ij}^2
+\end{equation*}
+Integrating over a sphere at large distance suggests that $ \mathcal{P} \sim G \dddot{\mathcal{Q}}_{ij}^2 $, and this is indeed correct, as it can be shown that:
+\begin{equation}
+  \mathcal{P}(t) = \frac{G}{5} \dddot{\mathcal{Q}}_{ij}(t_r) \dddot{\mathcal{Q}}^{ij}(t_r)
+  \label{eq:5.29}
+\end{equation}
+This is the \textit{quadrupole formula} and it is analogous to Larmor formula. Note that $ r $ is the distance at which the gravitational waves are observed.
+
+\subsubsection{Conceptual issues}
+
+Although Eq. \ref{eq:5.29} is indeed correct, as the 1993 Nobel prize was awarded for data in agreement with it, there remains some conceptual issues in the definition of $ t_{\mu \nu} $, which can be improved.\\
+First, note that the definition of $ t_{\mu \nu} $ from the Fierz-Pauli action suffers a number of ambiguities: if one attempts to compute it as the Noether currents associated to spacetime translations, the result is neither symmetric nor gauge invariant, but this is also true for Maxwell theory. An idea could be to add a term: $ t_{\mu \nu} \mapsto t_{\mu \nu} + \pa^\rho \Theta_{\rho \mu \nu} $, with $ \Theta_{\rho \mu \nu} = - \Theta_{\mu \rho \nu} $ as to not violate current conservation; such a term would make $ t_{\mu \nu} $ symmetric, but still not gauge invariant.\\
+A different approach is to interpret the lack of energy conservation for matter fields as energy transferred to the gravitational field. Although covariant conservation is not actual conservation for $ T_{\mu \nu} $, it can be rewritten as:
+\begin{equation*}
+  0 = \na_\mu \tensor{T}{^\mu_\nu} = \frac{1}{\sqgm} \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) - \Gamma^\rho_{\mu \nu} \tensor{T}{^\mu_\rho} = \frac{1}{\sqgm} \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) - \frac{1}{2} \pa_\nu g_{\mu \rho} T^{\mu \rho}
+\end{equation*}
+where the symmetry of $ T_{\mu \nu} $ was used. Note that $ \Gamma^\rho_{\mu \nu} $ reduces to $ g_{\mu \rho , \nu} $ only when $ \nu $ is down: this reflects that this equation is non-covariant. Using the field equations:
+\begin{equation*}
+  \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) = \frac{1}{16\pi G} \sqgm\, \pa_\nu g_{\mu \rho} \left( R^{\mu \rho} - \frac{1}{2} R g^{\mu \rho} \right) = \frac{1}{16\pi G} \sqgm\, \pa_\nu g_{\mu \rho} R^{\mu \rho}
+\end{equation*}
+The idea is to express this equation as $ \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) = - \pa_\mu (\sqgm\, \tensor{t}{^\mu_\rho}) $, for some $ \tensor{t}{^\mu_\nu} $ referred to as \textit{Landau-Lifshitz pseudotensor}: this suggests that the sum of matter energy $ \tensor{T}{^\mu_\nu} $ and gravitational energy $ \tensor{t}{^\mu_\nu} $ is conserved, however it would be coordinate-dependent as $ \tensor{t}{^\mu_\nu} $ is not a real tensor.\\
+The final approach assumes that $ t_{\mu \nu} $ is quadratic in $ h_{\mu \nu} $, so, keeping $ g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu} $, expand the Einstein field equations to second order:
+\begin{equation*}
+  \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(1)} + \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(2)} = 8\pi G T_{\mu \nu}
+  \quad \Leftrightarrow \quad
+  \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(1)} = 8\pi G (T_{\mu \nu} + t_{\mu \nu})
+\end{equation*}
+where superscripts $ (n) $ denote a restriction to terms of order $ h^n $. The gravitational energy-momentum non-tensor thus is:
+\begin{equation*}
+  t_{\mu \nu} = - \frac{1}{8\pi G} \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(2)} = - \frac{1}{8\pi G} \left[ R^{(2)}_{\mu \nu} - \frac{1}{2} R^{(2)} \eta_{\mu \nu} - \frac{1}{2} R^{(1)} h_{\mu \nu} \right]
+\end{equation*}
+Far away from the source $ R^{(1)} $ can be neglected, since it vanishes by the equations of motion (at linear order), so:
+\begin{equation}
+  t_{\mu \nu} = - \frac{1}{8\pi G} \left[ R^{(2)}_{\mu \nu} - \frac{1}{2} R^{(2)} \eta_{\mu \nu} \right]
+  \label{eq:5.30}
+\end{equation}
+The linearized Bianchi identity is $ \pa^\mu \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(1)} = 0 $, hence, far away from sources, i.e. $ T_{\mu \nu} = 0 $, necessarily $ \pa^\mu t_{\mu \nu} = 0 $ as befits a conserved current. However, $ t_{\mu \nu} $ is still not gauge invariant.
+
 
 
 
