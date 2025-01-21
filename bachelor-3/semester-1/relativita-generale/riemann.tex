@@ -341,7 +341,7 @@ From now on, $ \mathcal{M} $ is implied to be an $ n $-dimensional metric manifo
 
 Usually $ X(f) \equiv \na_X f $. The covariant derivative endows the manifold with more structure: in particular, given a basis $ \{e_{\mu}\} $ of $ \xm $, its covariant derivative is expressed as:
 \begin{equation}
-  \na_{e_{\rho}} e_{\mu} \equiv \Gamma^{\mu}_{\rho \nu} e_{\mu}
+  \na_{e_{\rho}} e_{\nu} \equiv \Gamma^{\mu}_{\rho \nu} e_{\mu}
   \label{eq:3.24}
 \end{equation}
 The $ \Gamma^{\mu}_{\rho \nu} $ are the components of the connection on that basis. Usually $ \na_{e_{\mu}} \equiv \na_{\mu} $, thus resembling a partial derivative. To elucidate how the covariant derivative acts on vector fields:
@@ -372,7 +372,7 @@ The covariant derivative coincides with other derivatives on $ \cm $: it can be 
   $ \Gamma^\mu_{\rho \nu} $ are not components of a tensor.
 \end{proposition}
 \begin{proof}
-  Given the basis transformation $ \tilde{e}_\nu = \tensor{A}{^\mu _\nu} e_\mu $, with $ A $ and invertible matrix (if they're both coordinate basis, then $ \tensor{A}{^\mu _\nu} = \frac{\pa x^\mu}{\pa x^\nu} $), the components of a (1,2) tensor must transform as:
+  Given the basis transformation $ \tilde{e}_\nu = \tensor{A}{^\mu _\nu} e_\mu $, with $ A $ and invertible matrix (if they're both coordinate basis, then $ \tensor{A}{^\mu _\nu} = \frac{\pa x^\mu}{\pa y^\nu} $), the components of a (1,2) tensor must transform as:
   \begin{equation*}
     \tensor{\tilde{T}}{^\mu _\rho _\nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \tensor{T}{^\tau _\sigma _\lambda}
   \end{equation*}
@@ -393,7 +393,7 @@ The covariant derivative coincides with other derivatives on $ \cm $: it can be 
 
 \subsection{Covariant derivative of tensors}
 
-First of all, it is necessary to elucidate how the covariant derivative acts on one-forms. Given a one-form $ \omega $, the one-form $ \na_X \omega $ is defined by its action on vector fields. By Leibniz rule:
+First of all, it is necessary to elucidate how the covariant derivative acts on 1-forms. Given a 1-form $ \omega $, the 1-form $ \na_X \omega $ is defined by its action on vector fields. By Leibniz rule:
 \begin{equation*}
   \na_X (\omega(Y)) = (\na_X \omega)(Y) + \omega(\na_X Y)
 \end{equation*}
@@ -638,7 +638,7 @@ Note that this theorem holds on Lorentzian manifolds too, with the condition tha
 
 \subsubsection{Maxwell action}
 
-Consider spacetime as a manifold $ \mathcal{M} $. The electromagnetic field can be described by a form on this manifold: indeed, the electromagnetic gauge field $ A_\mu = (\phi,\ve{A}) $ is to be thought as the components of a one-form $ A = A_\mu(x) dx^\mu $. The exterior derivative of this form is a 2-form $ F = dA $:
+Consider spacetime as a manifold $ \mathcal{M} $. The electromagnetic field can be described by a form on this manifold: indeed, the electromagnetic gauge field $ A_\mu = (\phi,\ve{A}) $ is to be thought as the components of a 1-form $ A = A_\mu(x) dx^\mu $. The exterior derivative of this form is a 2-form $ F = dA $:
 \begin{equation*}
   F = \frac{1}{2} F_{\mu \nu} dx^\mu \wedge dx^\nu = \frac{1}{2} (\pa_\mu A_\nu - \pa_\nu A_\mu) dx^\mu \wedge dx^\nu
 \end{equation*}
@@ -654,7 +654,7 @@ For example, suppose that on the considered manifold no metric is defined. To in
   \mathcal{S}_{\text{top}} = - \frac{1}{2} \int F \wedge F
   \label{eq:3.43}
 \end{equation}
-The integrand become $ dx^0 dx^1 dx^2 dx^3 \ve{E}\cdot\ve{B} $. Actions of this kind, independent of the metric, are called \textit{topological actions} and are of no interest in classical physics: in fact, $ F \wedge F = d (A \wedge F) $, so the action is a total derivative and doesn0't affect the equations of motion.\\
+The integrand become $ dx^0 dx^1 dx^2 dx^3 \ve{E}\cdot\ve{B} $. Actions of this kind, independent of the metric, are called \textit{topological actions} and are of no interest in classical physics: in fact, $ F \wedge F = d (A \wedge F) $, so the action is a total derivative and doesn't affect the equations of motion.\\
 To construct an action of classical interest, a metric is needed. This allows to introduce a second 2-form, $ \star\, F $, so to construct the \textit{Maxwell action}:
 \begin{equation}
   \mathcal{S}_{\text{M}} = - \frac{1}{2} \int F \wedge \star\, F
@@ -665,7 +665,7 @@ The integrand can then be expanded as:
   \mathcal{S}_{\text{M}} = - \frac{1}{4} \int d^4 x \sqg\, g^{\mu \nu} g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} = - \frac{1}{4} \int d^4 x \sqg F^{\mu \nu} F_{\mu \nu}
 \end{equation*}
 In flat spacetime $ F^{\mu \nu} F_{\mu \nu} = 2 (\ve{B}^2 - \ve{E}^2) $. In a general curved spacetime, the equation of motion resulting from the variation of the Maxwell action is $ d \star F = 0 $.\\
-To complete the theory, consider a gauge field coupled to a current, described by a one-form $ J $. The Maxwell action then becomes:
+To complete the theory, consider a gauge field coupled to a current, described by a 1-form $ J $. The Maxwell action then becomes:
 \begin{equation}
   \mathcal{S}_{\text{M}} = \int - \frac{1}{2} F \wedge \star\, F + A \wedge \star J
   \label{eq:3.45}
@@ -690,7 +690,7 @@ This agrees with the usual definition in flat spacetime $ Q_e = \int_{\Sigma} d^
   Q_e(\Sigma) = \int_{\pa \Sigma} \star\, F
   \label{eq:3.49}
 \end{equation}
-Simiilarly, the magnetic charge in $ \Sigma $ is defined as:
+Similarly, the magnetic charge in $ \Sigma $ is defined as:
 \begin{equation}
   Q_m(\Sigma) \defeq \int_{\pa \Sigma} F
   \label{eq:3.50}
