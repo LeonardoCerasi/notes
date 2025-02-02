@@ -133,7 +133,7 @@ $ \Un{n} $ è il gruppo delle matrici che lasciano invariata la forma quadratica
 	Siano i punti $ A' $ e $ B' $ ottenuti dalla rotazione di $ A $ e $ B $ con un angolo $ \varphi_n = \frac{2\pi}{n} $ attorno rispettivamente a $ B $ ed $ A $: supponendo che la rotazione di $ \varphi_n $ sia una simmetria del reticolo, i punti $ A' $ e $ B' $ apparterranno al reticolo, dunque possono essere fatti coincidere con una traslazione.\\
 	Supponendo che $ l $ sia il più piccolo periodo di traslazione del reticolo, si deve avere che $ A'B' = pl $ con $ p \in \N $, ovvero:
 	\begin{equation*}
-		A'B' = l + 2l \sin \left( \varphi_n - \frac{\pi}{2} \right) = a \left( 1 - 2 \cos \varphi_n \right) = p l \quad \Rightarrow \quad \cos \varphi_n = \frac{1}{2} (1 - p)
+		A'B' = l + 2l \sin \left( \varphi_n - \frac{\pi}{2} \right) = l \left( 1 - 2 \cos \varphi_n \right) = p l \quad \Rightarrow \quad \cos \varphi_n = \frac{1}{2} (1 - p)
 	\end{equation*}
 	Dalla condizione $ \abs{\cos \varphi_n} \le 1 $ si trova che i valori possibili di $ p $ sono $ p = 0,1,2,3 $, che corrispondono a $ n = 1,2,3,4,6 $.
 \end{proof}
@@ -149,7 +149,7 @@ In realtà dei $ \virgolette{quasi-cristalli} $ con $ n = 5 $ sono stati scopert
 	Ponendo $ c \equiv C_n^1 $, si ha che $ C^n = \braket{c} $.
 \end{proposition}
 \begin{proof}
-	$ C_n^r = c^n \,\forall n = 0, \dots, n - 1 $.
+	$ C_n^r = c^r \,\forall r = 0, \dots, n - 1 $.
 \end{proof}
 
 \begin{proposition}
@@ -168,7 +168,7 @@ In realtà dei $ \virgolette{quasi-cristalli} $ con $ n = 5 $ sono stati scopert
 \end{proposition}
 
 \begin{example}
-	Il gruppo puntuale $ D^n $ di un poligono regolare di 4 lati è costituito dalle rotazioni attorno ad assi perpendicolati al piano descritte da $ C^4 $ e dalle rotazioni diedre attorno agli assi di simmetria nel piano, generabili a partire dalla riflessione $ b $ rispetto all'asse $ x $: $ b_x = b $, $ b_{y = -x} = bc $, $ b_y = bc^2 $, $ b_{y = x} = bc^3 $. Si vede subito che $ D^4 = \{e,c,c^2,c^3,b,bc,bc^2,bc^3\} $; inoltre, $ c^4 = b^2 = (bc)^2 = e $.
+	Il gruppo puntuale $ D^n $ di un poligono regolare di 4 lati è costituito dalle rotazioni attorno ad assi perpendicolari al piano descritte da $ C^4 $ e dalle rotazioni diedre attorno agli assi di simmetria nel piano, generabili a partire dalla riflessione $ b $ rispetto all'asse $ x $: $ b_x = b $, $ b_{y = -x} = bc $, $ b_y = bc^2 $, $ b_{y = x} = bc^3 $. Si vede subito che $ D^4 = \{e,c,c^2,c^3,b,bc,bc^2,bc^3\} $; inoltre, $ c^4 = b^2 = e $.
 \end{example}
 \begin{example}
 	Generalizzando l'esempio precedente, $ D^n = \{e,c,\dots,c^{n-1},b,bc,\dots,bc^{n-1}\} $.
@@ -370,7 +370,7 @@ In questo modo, le rotazioni vengono espresse come:
 \end{equation}
 A differenza delle rotazioni 2D, le rotazioni in $ \R^n : n > 2 $ non commutano:
 \begin{equation}
-	\tens{R}\tens{R}'\tens{R}^{-1} \simeq \left( \tens{I}_2 + \tens{A} \right) \left( \tens{I}_2 + \tens{B} \right) \left( \tens{I}_2 - \tens{B} \right) = \tens{I}_2 + \tens{B} + \tens{A}\tens{B} - \tens{B}\tens{A} \simeq \tens{R}' + \left[ \tens{A},\tens{B} \right]
+	\tens{R}\tens{R}'\tens{R}^{-1} \simeq \left( \tens{I}_2 + \tens{A} \right) \left( \tens{I}_2 + \tens{B} \right) \left( \tens{I}_2 - \tens{A} \right) = \tens{I}_2 + \tens{B} + \tens{A}\tens{B} - \tens{B}\tens{A} \simeq \tens{R}' + \left[ \tens{A},\tens{B} \right]
 \end{equation}
 La condizione di commutazione è dunque $ [\tens{A},\tens{B}] = 0 $, dove:
 \begin{equation}
@@ -393,13 +393,13 @@ L'algebra di Lie è determinata da relazioni del tipo:
 	\left[ T_{\alpha}, T_{\beta} \right] = \sum_{\gamma = 1}^{k} f_{\alpha \beta \gamma} T_{\gamma}
 	\label{eq:7.17}
 \end{equation}
-dove le $ f_{\alpha \beta \gamma} $ sono dette costanti di struttura dell'algebra.
+dove le $ f_{\alpha \beta \gamma} $ sono dette \textit{costanti di struttura} dell'algebra.
 
 \subsection{Rotazioni generiche}
 
 Le rotazioni in $ \R^n $ sono descritte da $ \SOn{n} $: questo è un gruppo di Lie dipendente da $ \frac{1}{2}n(n-1) $ angoli generalizzati $ \theta_{(ab)} : a = 1, \dots, n, \, b = 1, \dots, n-1 $, i quali hanno la proprietà $ \theta_{(ab)} = -\theta_{(ba)} $ (rotazione nel piano $ ab $ cambia di verso quando si prende $ ba $). I generatori di $ \SOn{n} $ sono dunque:
 \begin{equation}
-	J_{(ab)ij} = -i \left( \delta_{ai} \delta_{bj} - \delta_{mj} \delta_{ni} \right) =
+	J_{(ab)ij} = -i \left( \delta_{ai} \delta_{bj} - \delta_{aj} \delta_{bi} \right) =
 	\begin{cases}
 		-i & i = a, j = b \\
 		i & i = b, j = a \\

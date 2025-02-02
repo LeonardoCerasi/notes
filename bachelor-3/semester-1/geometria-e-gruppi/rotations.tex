@@ -163,7 +163,7 @@ Si mostra dunque che:
 		0 & \sin \phi & \cos \phi
 	\end{bmatrix}
 	\quad
-	\tens{R}_1(\phi) =
+	\tens{R}_2(\phi) =
 	\begin{bmatrix}
 		\cos \phi & 0 & \sin \phi \\
 		0 & 1 & 0 \\
@@ -299,7 +299,7 @@ Si nota che gli $ \hat{J}_k $ non sono compatibili (non commutano), dunque si de
 \end{equation}
 Gli operatori $ \hat{J}_{\pm} $ possono essere interpretati come operatori di scala:
 \begin{equation*}
-	\hat{J}_z \hat{J}_{\pm} \ket{\beta,m} = \left( \hat{J}_{\pm} \hat{J}_z + [\hat{J}_z, \hat{J}_{pm}] \right) \ket{\beta,m} = \left( \hat{J}_{\pm} m\hbar \pm \hbar \hat{J}_{\pm} \right) \ket{\beta,m} = (m \pm 1) \hbar \hat{J}_{\pm} \ket{\beta,m}
+	\hat{J}_z \hat{J}_{\pm} \ket{\beta,m} = \left( \hat{J}_{\pm} \hat{J}_z + [\hat{J}_z, \hat{J}_{\pm}] \right) \ket{\beta,m} = \left( \hat{J}_{\pm} m\hbar \pm \hbar \hat{J}_{\pm} \right) \ket{\beta,m} = (m \pm 1) \hbar \hat{J}_{\pm} \ket{\beta,m}
 \end{equation*}
 Si deve dunque avere $ \hat{J}_{\pm} \ket{\beta,m} \propto \ket{\beta,m \pm 1} $. Si dimostra anche che la ladder così creata è limitata:
 \begin{equation*}
@@ -315,13 +315,13 @@ dove l'ultimo passaggio è giustificato dal fatto che $ \braket{\beta,m | (\hat{
 \end{equation*}
 Si trova quindi $ \beta^2 = j (j + 1) $. Per trovare lo stato bottom, si scrive alternativamente:
 \begin{equation*}
-	\beta^2 \hbar^2 \ket{\beta,j} = \hat{J}^2 \ket{\beta,m} = \left( \hat{J}_+ \hat{J}_- + \hat{J}_z (\hat{J}_z - \hbar) \right) \ket{\beta,m} = j\hbar (j\hbar - \hbar) \ket{\beta,j}
+	\beta^2 \hbar^2 \ket{\beta,m} = \hat{J}^2 \ket{\beta,m} = \left( \hat{J}_+ \hat{J}_- + \hat{J}_z (\hat{J}_z - \hbar) \right) \ket{\beta,m} = m\hbar (m\hbar - \hbar) \ket{\beta,m}
 \end{equation*}
 L'equazione $ j(j + 1) = m(m - 1) $ ha come soluzioni $ m = -j, j+1 $, ma la seconda non ha senso poiché lo stato top è $ m = j $, dunque si trova il vincolo completo $ -j \le m \le j $.\\
 È risolto dunque il problema del grado delle rappresentazioni irriducibili di $ \SOn{3} $: distinguendole in base al valore di $ j $, esse hanno grado $ 2j + 1 $. Si deve avere necessariamente $ 2j + 1 \in \N $, dunque $ j $ deve essere intero o semi-intero.
 Per trovare le costanti di scala:
 \begin{equation*}
-	\norm{ \hat{J}_{\pm} \ket{j,m} }^2 = \braket{j,m | \hat{J}_{\mp} \hat{J}_{\pm} | j,m} \braket{j,m | \left( \hat{J}^2 - \hat{J}_z (\hat{J}_z \pm \hbar) \right) | j,m} = \left( (j (j + 1) - m (m \pm 1) \right) \hbar^2
+	\norm{ \hat{J}_{\pm} \ket{j,m} }^2 = \braket{j,m | \hat{J}_{\mp} \hat{J}_{\pm} | j,m} = \braket{j,m | \left( \hat{J}^2 - \hat{J}_z (\hat{J}_z \pm \hbar) \right) | j,m} = \left( (j (j + 1) - m (m \pm 1) \right) \hbar^2
 \end{equation*}
 Prendendo convenzionalmente la soluzione positiva, si trova:
 \begin{equation}
@@ -508,12 +508,12 @@ Nella base disaccoppiata $ \hat{U}_{\tens{R}} $ agisce separatamente su ciascun 
 
 Dalla meccanica classica è noto che una generica rotazione in $ \R^3 $ può essere parametrizzata da tre angoli $ \phi,\theta,\psi $, detti \textit{angoli di Eulero}, nel modo seguente: la prima rotazione di $ \phi $ è attorno all'asse $ z $, la successiva di $ \theta $ è attorno al nuovo asse $ y $ (ruotato) e l'ultima di $ \psi $ è attorno al nuovo asse $ z $ (ruotato due volte). In questo modo:
 \begin{equation}
-	\tens{R}(\phi,\theta,\psi) = \tens{R}_3(\phi) \tens{R}_2(\theta) \tens{R}_3(\psi)
+	\tens{R}(\phi,\theta,\psi) = \tens{R}_3(\psi) \tens{R}_2(\theta) \tens{R}_3(\phi)
 	\label{eq:9.36}
 \end{equation}
 In ambito quantistico, come si vede in Eq. \ref{eq:9.22}, le rotazioni attorno all'asse $ z $ hanno rappresentazione banale, poiché $ \tens{R}_3(\alpha) = \exp \left( -i \tens{X}_3 \alpha \right) $ con $ \tens{X}_3 $ diagonale; l'unica rotazione con rappresentazione non-banale in Eq. \ref{eq:9.36} è $ \tens{R}_2(\theta) $, per cui si definisce la \textit{matrice di Wigner} $ \tens{d}(\theta) \equiv \exp \left( -i \tens{X}_2 \theta \right) $, con $ \tens{X}_2 $ non-diagonale, di modo che:
 \begin{equation}
-	[\rho_j(\phi,\theta,\psi)]_{m',m} = e^{-i m' \phi} [\tens{d}_j(\theta)]_{m',m} e^{-i m \psi}
+	[\rho_j(\phi,\theta,\psi)]_{m',m} = e^{-i m' \psi} [\tens{d}_j(\theta)]_{m',m} e^{-i m \phi}
 	\label{eq:9.37}
 \end{equation}
 

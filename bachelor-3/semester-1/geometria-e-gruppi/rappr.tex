@@ -89,7 +89,7 @@ Una volta data la struttura topologica, si può stabilire la compattezza di un g
 \section{Rappresentazioni riducibili ed irriducibili}
 
 \begin{definition}
-	Dati un gruppo $ G $ ed un insieme $ \Omega $, si dice che $ G $ \textit{agisce} su $ \Omega $ se viene fissata una mappa $ \Omega \times G \rightarrow \Omega : (\alpha,g) \mapsto \alpha^g $ tale che $ \alpha^{st} = (\alpha^t)^s \,\forall \alpha \in \Omega, s,t \in G $ e $ \alpha^e = \alpha \,\forall \alpha \in \Omega $.
+	Dati un gruppo $ G $ ed un insieme $ \Omega $, si dice che $ G $ \textit{agisce} su $ \Omega $ se viene fissata una mappa $ \Omega \times G \rightarrow \Omega : (\alpha,g) \mapsto \alpha^g $ tale che $ \alpha^{st} = (\alpha^t)^s \,\forall \alpha \in \Omega, s,t \in G $ ed $ \alpha^e = \alpha \,\forall \alpha \in \Omega $.
 \end{definition}
 Si noti che si usa la convenzione di azione a sinistra.\\
 Si vede che una rappresentazione $ \rho $ di $ G $ suo spazio vettoriale $ V $ determina un'azione di $ G $ su $ V $ definita da $ \rho_g(v) = \rho(g) v \,\forall v \in V, g \in G $, dove nel lato destro si è usata la rappresentazione matriciale.
@@ -218,7 +218,7 @@ Un cambiamento di rappresentazione, dunque, equivale ad un cambio di base nello 
 \section{Teorema di Maschke}
 
 \begin{definition}
-	Dato uno spazio vettoriale $ V $ ed un suo sottospazio $ W \subset V $, si definisce il \textit{proiettore} su $ W $ la mappa $ \pi : V \rightarrow W : \pi(v) = v_W $, dove $ v_W $ è la componente di $ v \in V $ su $ W $.
+	Dato uno spazio vettoriale $ V $ ed un suo sottospazio $ W \subset V $, si definisce \textit{proiettore} su $ W $ una mappa $ \pi : V \rightarrow W : \pi(v) = v_W $, dove $ v_W $ è la componente di $ v \in V $ su $ W $.
 \end{definition}
 
 \begin{definition}
@@ -228,7 +228,7 @@ Un cambiamento di rappresentazione, dunque, equivale ad un cambio di base nello 
 C'è una corrispondenza biunivoca tra proiettori e complementari. Solitamente, si considera il proiettore tale per cui $ W^{\perp} = V / W $.
 
 \begin{proposition}
-	Data $ f \in \End{V}  $ e $ W \subset V $ sottospazio, se $ \im{\pi} = W \land \pi(w) = w \,\forall w \in W $, allora $ V = W \oplus \ker{f} $.
+	Data $ f \in \End{V}  $ e $ W \subset V $ sottospazio, se $ \im{f} = W \land f(w) = w \,\forall w \in W $, allora $ V = W \oplus \ker{f} $.
 \end{proposition}
 
 \begin{propcorollary}
@@ -245,15 +245,15 @@ C'è una corrispondenza biunivoca tra proiettori e complementari. Solitamente, s
 	\begin{equation*}
 		\pi^{\circ} \defeq \frac{1}{\abs{G}} \sum_{g \in G} \rho_g \circ \pi \circ \rho_{g^{-1}}
 	\end{equation*}
-	Si vede che $ \pi^{\circ} $ è un proiettore su $ W $: dati $ v \in V $, $ \rho_g \circ \pi \circ \rho_{g^{-1}} (v) = \rho_g (w) \in W $ per invarianza di $ W $, dove $ w \equiv \pi(\rho_{g^{-1}}(v)) \in W $; dato $ w \in W $, $ \rho_g \circ \pi \circ \rho_{g^{-1}}(w) = \rho_g \circ \pi(\rho_{g^{-1}}(w)) = \rho_g \circ \rho_{g^{-1}}(w) = w $ per invarianza di $ W $ e poiché $ \pi(w) = w \,\forall w \in W $, da cui segue che $ \pi^{\circ}(w) = \frac{1}{\abs{G}} \abs{G} w = w $; dunque, $ \pi^{\circ} $ è un proiettore di $ V $ su $ W $. Esso definisce allora un complementare $ W^{\perp} = \ker \pi^{\circ} $: per dimostrare che esso è $ G $-invariante, basta mostrare che, dato $ v \in V $, $ \pi^{\circ} = 0 \,\Rightarrow\, \pi^{\circ}(\rho_g(v)) = 0 \,\forall g \in G $, ovverosia che $ \pi^{\circ} $ permuta con l'azione di $ G $ (dato che in tal caso $ \pi \circ \rho_g (v) = \rho_g \circ \pi(v) = \rho_g (0) = 0 $):
+	Si vede che $ \pi^{\circ} $ è un proiettore su $ W $: dati $ v \in V $, $ \rho_g \circ \pi \circ \rho_{g^{-1}} (v) = \rho_g (w) \in W $ per invarianza di $ W $, dove $ w \equiv \pi(\rho_{g^{-1}}(v)) \in W $; dato $ w \in W $, $ \rho_g \circ \pi \circ \rho_{g^{-1}}(w) = \rho_g \circ \pi(\rho_{g^{-1}}(w)) = \rho_g \circ \rho_{g^{-1}}(w) = w $ per invarianza di $ W $ e poiché $ \pi(w) = w \,\forall w \in W $, da cui segue che $ \pi^{\circ}(w) = \frac{1}{\abs{G}} \abs{G} w = w $; dunque, $ \pi^{\circ} $ è un proiettore di $ V $ su $ W $. Esso definisce allora un complementare $ W^{\perp} = \ker \pi^{\circ} $: per dimostrare che esso è $ G $-invariante, basta mostrare che, dato $ v \in V $, $ \pi^{\circ}(v) = 0 \,\Rightarrow\, \pi^{\circ}(\rho_g(v)) = 0 \,\forall g \in G $, ovverosia che $ \pi^{\circ} $ permuta con l'azione di $ G $ (dato che in tal caso $ \pi \circ \rho_g (v) = \rho_g \circ \pi(v) = \rho_g (0) = 0 $):
 	\begin{equation*}
 		\begin{split}
-			\rho_g \circ \pi^{\circ} \rho_{g^{-1}} 
+			\rho_g \circ \pi^{\circ} \circ \rho_{g^{-1}} 
 			&= \rho_g \circ \left[ \frac{1}{\abs{G}} \sum_{t \in G} \rho_t \circ \pi \circ \rho_{t^{-1}} \right] \circ \rho_{g^{-1}} = \frac{1}{\abs{G}} \sum_{t \in G} \rho_g \circ \rho_t \circ \pi \circ \rho_{t^{-1}} \circ \rho_{g^{-1}}\\
 			&= \frac{1}{\abs{G}} \sum_{t \in G} \rho_{gt} \circ \pi \circ \rho_{(gt)^{-1}} = \frac{1}{\abs{G}} \sum_{s \in G} \rho_s \circ \pi \circ \rho_{s^{-1}} = \pi^{\circ}
 		\end{split}
 	\end{equation*}
-	Si vede allora che $ \rho = \rho_1 \oplus \rho_2 $, dove $ \rho_1,\rho_2 $ sono le restrizioni di $ \rho $ a $ W,W_0 $: se queste sono irriducibili, si è dimostrata la tesi, altrimenti si procede iterativamente fino a decomporre $ V $ in sottospazi invarianti irriducibili.
+	Si vede allora che $ \rho = \rho_1 \oplus \rho_2 $, dove $ \rho_1,\rho_2 $ sono le restrizioni di $ \rho $ a $ W,W^{\perp} $: se queste sono irriducibili, si è dimostrata la tesi, altrimenti si procede iterativamente fino a decomporre $ V $ in sottospazi invarianti irriducibili.
 \end{proof}
 
 L'ipotesi sulla caratteristica $ p $ del campo è necessaria in quanto $ \frac{1}{\abs{G}} $ perderebbe di senso nel caso in cui $ p $ dividesse $ \abs{G} $. È anche possibile estendere il teorema di Maschke ai gruppi compatti, equipaggiandoli con un'appropriata misura d'integrazione (per rendere convergente $ \sum_{g} \rightarrow \int d\mu(g) $).
@@ -267,7 +267,7 @@ Nel caso in cui $ \K = \C $, si può dare un'altra formulazione del Teorema di M
 	\begin{enumerate}
 		\item $ (u,v) = \overline{(v,u)} $;
 		\item $ (\alpha u + \beta v, w) = \alpha (u,w) + \beta (v,w) $;
-		\item $ (v,v) \ge 0 \land (v,v) = 0 \,\Leftrightarrow\, v = 0 $.
+		\item $ (v,v) \in \R^+_0 \land (v,v) = 0 \,\Leftrightarrow\, v = 0 $.
 	\end{enumerate}
 \end{definition}
 
@@ -292,7 +292,7 @@ Nel caso in cui $ \K = \C $, si può dare un'altra formulazione del Teorema di M
 
 In termini matriciali, la condizione in Eq. \ref{eq:8.7} equivale a dire che $ \rho(g) $ è una matrice unitaria:
 \begin{equation*}
-	(\rho_g(u),\rho_g(v)) = (\rho(g) u)^{\dagger}) (\rho(g) v) = u^{\dagger} \rho(g)^{\dagger} \rho(g) v = (u,v) = u^{\dagger} v \quad\Longleftrightarrow\quad \rho(g)^{\dagger} \rho(g) = \tens{I}
+	(\rho_g(u),\rho_g(v)) = (\rho(g) u)^{\dagger} (\rho(g) v) = u^{\dagger} \rho(g)^{\dagger} \rho(g) v = (u,v) = u^{\dagger} v \quad\Longleftrightarrow\quad \rho(g)^{\dagger} \rho(g) = \tens{I}
 \end{equation*}
 
 \begin{definition}
@@ -373,7 +373,7 @@ Per dimostrare il cosiddetto grande teorema di ortogonalità è necessario prima
 	\begin{equation*}
 		\frac{\abs{G}}{n_{\mu}} = \sum_{g \in G} \left[ \rho_{\mu}(g) \right]_{ir} \left[ \rho_{\mu}(g)^{\dagger} \right]_{ri} = \sum_{g \in G} \left[ \rho_{\mu}(g) \right]_{ir} \overline{\left[ \rho_{\mu}(g) \right]}_{ir}
 	\end{equation*}
-	la quale può essere vista come il prodotto scalare di un vettore $ v^{(\mu)}_{ij} \equiv \left( [\rho_{\mu}(g_1)]_{ir}, \dots, [\rho_{\mu}(g_{\abs{G}}]_{ir} \right) $ con sé stesso; in totale, ci sono $ \sum_{\mu} n_{\mu}^2 $ di questi vettori, e l'Eq. \ref{eq:8.9} determina la loro mutua ortogonalità. Dato che in uno spazio vettoriale di dimensione $ n $ un sistema ortogonale può avere al massimo $ n $ vettori, si deve avere $ \sum_{\mu} n_{\mu}^2 \le \abs{G} $, dato che i $ v^{(\mu)}_{ir} $ sono definiti in uno spazio di dimensione $ \abs{G} $.
+	la quale può essere vista come il prodotto scalare di un vettore $ v^{(\mu)}_{ij} \equiv \left( [\rho_{\mu}(g_1)]_{ir}, \dots, [\rho_{\mu}(g_{\abs{G}})]_{ir} \right) $ con sé stesso; in totale, ci sono $ \sum_{\mu} n_{\mu}^2 $ di questi vettori, e l'Eq. \ref{eq:8.9} determina la loro mutua ortogonalità. Dato che in uno spazio vettoriale di dimensione $ n $ un sistema ortogonale può avere al massimo $ n $ vettori, si deve avere $ \sum_{\mu} n_{\mu}^2 \le \abs{G} $, dato che i $ v^{(\mu)}_{ir} $ sono definiti in uno spazio di dimensione $ \abs{G} $.
 \end{proof}
 
 Si può dimostrare che vale l'uguaglianza. Inoltre, dai lemmi di Schur deriva un'importante proprietà dei gruppi abeliani.
@@ -752,7 +752,7 @@ Si trova dunque che $ \mathtt{V} = \mathtt{1}' \oplus \mathtt{2} $.
 \begin{definition}
 	Dato un gruppo $ G $, il \textit{prodotto diretto} di due sue rappresentazioni $ \rho_{\mu}, \rho_{\nu} $, indicato con $ \rho_{\mu \times \nu} \defeq \rho_{\mu} \otimes \rho_{\nu} $, è definito come:
 	\begin{equation}
-		[\rho_{\mu \times \nu}(g)]_{ai,bj} \defeq [\rho_{\mu}(g)]_{ab} [\rho_{\nu}(g)]_{ij}
+		[\rho_{\mu \times \nu}(g)]_{ab,ij} \defeq [\rho_{\mu}(g)]_{ab} [\rho_{\nu}(g)]_{ij}
 		\label{eq:8.29}
 	\end{equation}
 	con $ a,b = 1,\dots,n_{\mu} $ e $ i,j = 1,\dots,n_{\nu} $.
@@ -893,7 +893,7 @@ Le parti simmetrica e antisimmetrica formano due sottospazi invarianti, trasform
 \end{equation}
 Contraendo con $ \delta_{ik} \delta_{jl} $ si trova la relazione per i caratteri:
 \begin{equation}
-	\chi_{\mathtt{V} \otimes \mathtt{V}}^{\pm}(c) = \frac{1}{2} \left[ (\chi_{\mathtt{V}}(g))^2 \pm \chi_{\mathtt{V}}(g^2) \right]
+	\chi_{\mathtt{V} \otimes \mathtt{V}}^{\pm}(c) = \frac{1}{2} \left[ (\chi_{\mathtt{V}}(c))^2 \pm \chi_{\mathtt{V}}(c^2) \right]
 	\label{eq:8.36}
 \end{equation}
 La condizione sul tensore di conduttività è quindi che esso sia invariante rispetto alla rappresentazione $ (\mathtt{V} \otimes \mathtt{V})^+ $ del gruppo di simmetria $ G $ del reticolo cristallino.\\
@@ -970,7 +970,7 @@ dove $ \mathtt{E} = \mathtt{E}_1 \oplus \mathtt{E}_2 $. Si dimostra inoltre che 
 	\chi_{\ell}(\theta) = \frac{\sin \left( \left( \ell + \frac{1}{2} \right) \theta \right)}{\sin \left( \frac{1}{2} \theta \right)} = 1 + 2 \sum_{k = 1}^{\ell} \cos k\theta
 	\label{eq:8.37}
 \end{equation}
-Per esempio, si può mostrare lo splitting dei livelli energetici di un orbitale $ d $ ($ \ell = 2 $): dato che in $ \mathtt{T} $ le rotazioni possibili sono solo con $ \theta = 0, \frac{2\pi}{3}, \pi, \frac{4\pi}{3} $, si ha $ \chi_2 = (5,1,-1,-1) $. Dalla tavola dei caratteri:
+Per esempio, si può mostrare lo splitting dei livelli energetici di un orbitale $ d $ ($ \ell = 2 $): dato che in $ T $ le rotazioni possibili sono solo con $ \theta = 0, \frac{2\pi}{3}, \pi, \frac{4\pi}{3} $, si ha $ \chi_2 = (5,1,-1,-1) $. Dalla tavola dei caratteri:
 \begin{equation*}
 	\alpha_{\mathtt{A}} = \frac{1}{12} (1 \cdot 5 \cdot 1 + 3 \cdot 1 \cdot 1 + 4 \cdot (-1) \cdot 1 + 4 \cdot (-1) \cdot 1) = 0
 \end{equation*}
