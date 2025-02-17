@@ -1,0 +1,441 @@
+\selectlanguage{english}
+
+\section{Continuous limit}
+
+\subsection{One-dimensional harmonic crystal}
+
+Consider a simple one-dimensional model of a crystal where atoms of mass $ m \equiv 1 $ lie at rest on the $ x $-axis, with equilibrium positions labelled by $ n \in \N $ and equally spaced by a distance $ a $.\\
+Assuming these atoms are free to vibrate only in the $ x $ direction (longitudinal waves), and denoting the displacement of the atom at position $ n $ as $ \eta_n $, one can write the Lagrangian for a \textit{harmonic crystal} as:
+\begin{equation}
+  L = \sum_{n} \left[ \frac{1}{2} \dot{\eta}_n^2 - \frac{\lambda}{2} \left( \eta_n - \eta_{n-1} \right)^2 \right]
+  \label{eq:1.1}
+\end{equation}
+where $ \lambda $ is the spring constant. From the Lagrange equations, the classical equations of motions are:
+\begin{equation}
+  \ddot{\eta}_n = \lambda \left( \eta_{n+1} - 2 \eta_n + \eta_{n-1} \right)
+  \label{eq:1.2}
+\end{equation}
+The solutions can be written as complex travelling waves:
+\begin{equation}
+  \eta_n (t) = e^{i \left( k n - \omega t \right)}
+  \label{eq:1.3}
+\end{equation}
+where the dispersion relation is:
+\begin{equation}
+  \omega^2 = 2\lambda \left( 1 - \cos k \right) \approx \lambda k^2
+  \label{eq:1.4}
+\end{equation}
+Therefore, in the long-wavelength limit $ k \ll 1 $ waves propagate with velocity $ c = \sqrt{\lambda} $. To determine the normal modes, there need to be boundary conditions: imposing boundary conditions:
+\begin{equation}
+  \eta_{n + N} = \eta_n \qquad \Rightarrow \qquad k_m = \frac{2\pi m}{N} \,,\, m = 0, 1, \dots, N - 1
+  \label{eq:1.5}
+\end{equation}
+The normal-mode expansion can then be written as:
+\begin{equation}
+  \eta (t) = \sum_{m = 0}^{N - 1} \left[ \mathcal{A}_m e^{i \left( k_m n - \omega_m t \right)} + \mathcal{A}^* e^{-i \left( k_m n - \omega_m t \right)} \right]
+  \label{eq:1.6}
+\end{equation}
+where the complex conjugate is added to ensure that the total displacement is real. The momentum canonically-conjucated to the displacement is defined as:
+\begin{equation}
+  \pi_n \defeq \frac{\pa L}{\pa \dot{\eta}_n} = \dot{\eta}_n
+  \label{eq:1.7}
+\end{equation}
+In quantum mechanics, $ \eta_n $ and $ \Pi_n $ become operators with canonical commutator $ [ \hat{\eta}_j, \hat{\pi}_k ] = i \hbar \delta_{jk} $. Implementing time evolution with the \textit{Heisenberg picture}\footnote{Recall that $ \hat{\mathcal{O}}(t) = e^{\frac{i}{\hbar} \hat{\mathcal{H}} t} \hat{\mathcal{O}}(0) e^{-\frac{i}{\hbar} \hat{\mathcal{H}} t} $ and $ \frac{\dd \hat{\mathcal{O}}}{\dd t} = \frac{i}{\hbar} [ \hat{\mathcal{H}}, \hat{\mathcal{O}} ] $.}:
+\begin{equation}
+  [ \hat{\eta}_j(t), \hat{\pi}_k(t) ] = i \hbar \delta_{jk}
+  \label{eq:1.8}
+\end{equation}
+The commutator of operators evaluated at different times requires solving the dynamics of the system. It is useful to introduce \textit{annihilation} and \textit{creation operators} $\footnote{For a harmonic oscillator $ \hat{\mathcal{H}} = \frac{1}{2} \hat{p}^2 + \frac{1}{2} \omega^2 \hat{x}^2 $, so $ \frac{\dd \hat{x}}{\dd t} = \hat{p}(t) $ and $ \frac{\dd \hat{p}}{\dd t} = -\omega^2 \hat{x}(t) $ and the solution can be written as: $$ \hat{x}(t) = \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) + \hat{a}^\dagger(t) \right] \qquad \qquad \hat{p}(t) = -i \omega \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) - \hat{a}^\dagger(t) \right] $$ Inverting these expressions one finds $ [\hat{a}(t), \hat{a}^\dagger(t)] = 1 $ and $ \hat{\mathcal{H}} = \hbar \omega \left( \hat{a}^\dagger(t) \hat{a} + \frac{1}{2} \right) $. The time evolution $ \hat{a}(t) = e^{-i \omega t} \hat{a}(0) $ ensures that $ \hat{\mathcal{H}} $ is times-independent.} \hat{a}(t) $ and $ \hat{a}^\dagger(t) $, so that Eq. \ref{eq:1.6} becomes:
+\begin{equation}
+  \hat{\eta}_n(t) = \sum_{m = 0}^{N - 1} \sqrt{\frac{\hbar}{2 \omega_m}} \frac{1}{\sqrt{N}} \left[ e^{i \left( k_m n - \omega_m t \right)} \hat{a}_m + e^{-i \left( k_m n - \omega_m t \right)} \hat{a}_m^\dagger \right]
+  \label{eq:1.9}
+\end{equation}
+where $ [ \hat{a}_j, \hat{a}_k^\dagger ] = \delta_{jk} $ and the $ N^{-1/2} $ ensures the normalization of normal modes. The proof of Eq. \ref{eq:1.8} follows from the finite Fourier series identity (sum of a geometric progression):
+\begin{equation}
+  \sum_{m = 0}^{N - 1} e^{i k_m \left( n - n' \right)} = N \delta_{n n'}
+  \label{eq:1.10}
+\end{equation}
+The Hamiltonian of the system can be written as:
+\begin{equation}
+  \hat{\mathcal{H}} = \sum_{n} \left[ \frac{1}{2} \hat{\pi}_n^2 + \frac{\lambda}{2} \left( \hat{\eta}_n - \hat{\eta}_{n-1} \right)^2 \right] = \sum_{m = 0}^{N - 1} \hbar \omega_m \left( \hat{a}_m^\dagger \hat{a}_m + \frac{1}{2} \right)
+  \label{eq:1.11}
+\end{equation}
+Generalizing the harmonic oscillator operator algebra (proven unique by Von Neumann), one can construct the Hilbert space for the harmonic crystal as:
+\begin{equation}
+  \hat{a}_m \ket{0} \quad \forall m = 0, 1, \dots, N - 1
+  \label{eq:1.12}
+\end{equation}
+\begin{equation}
+  \ket{n_0, n_1, \dots, n_{N-1}} = \prod_{m = 0}^{N - 1} \frac{( \hat{a}_m^\dagger )^{n_m}}{\sqrt{n_m!}} \ket{0}
+  \label{eq:1.13}
+\end{equation}
+These are normalized eigenstates of Eq. \ref{eq:1.1} with energy eigenvalues:
+\begin{equation}
+  E_0 = \frac{1}{2} \sum_{m = 0}^{N - 1} \hbar \omega_m
+  \label{eq:1.14}
+\end{equation}
+\begin{equation}
+  E_{n_0, n_1, \dots, n_{N-1}} = E_0 + \sum_{m = 0}^{N - 1} n_m \hbar \omega_m
+  \label{eq:1.15}
+\end{equation}
+This Hilbert space is called \textit{Fock space} and the excited states \textit{phonons}: these can be thought as $ \virgolette{particles} $ and $ n_m $ is the number of phonons in the $ m^{\mathrm{th}} $ normal mode.
+
+\subsection{One-dimensional harmonic string}
+
+Taking the continuum limit, the crystal becomes a string: to achieve this, one takes the limits $ a \rightarrow 0 $ and $ N \rightarrow \infty $ while keeping the total length $ R \equiv N a $ fixed. In this context, the displacement becomes a field $ \eta(x,t) $ dependent on the continuous real coordinate $ x \in [0, R] $, therefore:
+\begin{equation*}
+  \left( \eta_{n + 1} - \eta_n \right)^2 \longrightarrow a^2 \left( \frac{\pa \eta}{\pa x} \right)^2
+  \qquad \qquad
+  \sum_{n} \longrightarrow \frac{1}{a} \int_0^R \dd x
+\end{equation*}
+
+\begin{proposition}\label{prop-delta-cont}
+  In the continuous limit:
+  \begin{equation*}
+    \frac{\delta_{nn'}}{a} \longrightarrow \delta(x - x') = \int_\R \frac{\dd k}{2\pi} e^{i k (x - x')}
+  \end{equation*}
+\end{proposition}
+\begin{proof}
+  By direct calculation:
+  \begin{equation*}
+    a \sum_{n} f(an) \frac{\delta_{nm}}{a} = f(ma) \longrightarrow f(y) = \int_0^R \dd x\, f(x) \delta(x - y)
+  \end{equation*}
+  Recalling Eq. \ref{eq:1.10}, since $ k_m n = \frac{k_m}{a} na \rightarrow k x $, symmetrizing $ k_m \in [-\pi, \pi] $ (instead of $ [0, 2\pi] $) one finds:
+  \begin{equation*}
+    \delta(x - x') \longleftarrow \frac{\delta_{nn'}}{a} = \frac{1}{Na} \sum_{m} e^{ik_m (n - n')} \longrightarrow \int_\R \frac{\dd k}{2\pi} e^{ik (x - x')}
+  \end{equation*}
+  where integration limits are $ \pm \frac{\pi}{a} \rightarrow \pm \infty $.
+\end{proof}
+\begin{proof}
+  The inverse Fourier transform of the Dirac Delta reads:
+  \begin{equation*}
+    \int_0^R \dd x\, e^{i (k - k') x} = 2\pi \delta(k - k')
+  \end{equation*}
+\end{proof}
+By these relations, it can be seen that $ \frac{\dd k}{2\pi} $ has the physical meaning of the number of normal modes per unit spatial volume with wavenumber between $ k $ and $ k + \dd k $, while the interpretation of the divergent $ \delta(0) $ varies: in $ x $ space, it is the reciprocal of the lattice spacing, i.e. the number of normal modes per unit spatial volume, but in $ k $ space $ 2\pi \delta(0) $ is the (hyper-)volume of the system.\\
+In the continuous limit, the Lagrangian of the harmonic string becomes:
+\begin{equation*}
+  L = \int_0^R \dd x \left[ \frac{1}{2} \rho_0 (\pa_t \eta)^2 - \frac{\kappa}{2} (\pa_x \eta)^2 \right]
+\end{equation*}
+where $ \rho_0 $ is the equilibrium mass density of the string. It is customary to absorb constants in the fields, thus, setting $ \phi(x,t) \equiv \sqrt{\rho_0} \eta(x,t) $ and $ \kappa = c^2 \rho_0 $ and adding a pinning term $ \propto \varphi^2 $, the Lagrangian can be written as:
+\begin{equation}
+  L = \int_0^R \dd x \left[ \frac{1}{2} (\pa_t \phi)^2 - \frac{c^2}{2} (\pa_x \phi)^2 - \frac{m^2 c^4}{2} \phi^2 \right]
+  \label{eq:1.16}
+\end{equation}
+The classical equation of motion of this field yields:
+\begin{equation}
+  \pa_t^2 \phi = c^2 \pa_x^2 \phi - m^2 c^4 \phi
+  \label{eq:1.17}
+\end{equation}
+The solutions of this wave equation can be written as:
+\begin{equation}
+  \phi(x,t) = e^{i \left( kx - \omega_k t \right)}
+  \label{eq:1.18}
+\end{equation}
+with dispersion relation:
+\begin{equation}
+  \omega_k^2 = c^2 k^2 + m^2 c^4
+  \label{eq:1.19}
+\end{equation}
+To quantize this system, one needs to compute the Hamiltonian. The canonical momentum field is:
+\begin{equation}
+  \Pi(x,t) \defeq \frac{\pa L}{\pa (\pa_t \phi)} = \pa_t \phi(x,t)
+  \label{eq:1.20}
+\end{equation}
+The classical Hamiltonian can then be found as:
+\begin{equation}
+  \hat{\mathcal{H}} = \int_0^R \dd x \left[ \frac{1}{2} \Pi^2 + \frac{c^2}{2} (\pa_x \phi)^2 + \frac{m^2 c^4}{2} \phi^2 \right]
+  \label{eq:1.21}
+\end{equation}
+The quantum field is analogous to Eq. \ref{eq:1.9}:
+\begin{equation}
+  \hat\phi(x,t) = \int_\R \frac{\dd k}{2\pi} \sqrt{\frac{\hbar}{2\omega_k}} \left[ e^{i \left( kx - \omega_k t \right)} \hat{a}_k + e^{-i \left( kx - \omega_k t \right)} \hat{a}_k^\dagger \right]
+  \label{eq:1.22}
+\end{equation}
+with commutation relations:
+\begin{equation}
+  [\hat{a}_k, \hat{a}_{k'}^\dagger] = 2\pi \delta(k - k')
+  \label{eq:1.23}
+\end{equation}
+\begin{equation}
+  [\hat\phi(x,t), \hat\Pi(x',t)] = i\hbar \delta(x - x')
+  \label{eq:1.24}
+\end{equation}
+The quantum Hamiltonian can be written as:
+\begin{equation}
+  \hat{\mathcal{H}} = \int_\R \frac{\dd k}{2\pi} \frac{1}{2} \hbar \omega_k \left( \hat{a}_k^\dagger \hat{a}_k + \hat{a}_k \hat{a}_k^\dagger \right) = E_0 + \int_\R \frac{\dd k}{2\pi} \hbar \omega_k \hat{a}_k^\dagger \hat{a}_k
+  \label{eq:1.25}
+\end{equation}
+The ground-state energy can be computed from Eq. \ref{eq:1.14}, defining $ \mathrm{Vol} \defeq 2\pi \delta(k = 0) $:
+\begin{equation}
+  E_0 = \mathrm{Vol} \int_\R \frac{\dd k}{2\pi} \frac{1}{2} \hbar \omega_k
+  \label{eq:1.26}
+\end{equation}
+For a strictly continuous system there is no cut-off in the $ k $ integral, thus the zero-point energy diverges: however, this is not necessarily a problem, as often only changes in $ E_0 $ are relevant (and experimentally accessible), and in this case it is known as \textit{Casimir energy}.
+
+\section{Spacetime symmetries}
+
+\subsection{Lie groups}
+
+\begin{definition}
+  A \textit{Lie group} is a group whose elements depend in a continuous and differentiable way on a set of real parameters $ \{\theta_a\}_{a = 1, \dots, d} \subset \R^d $.
+\end{definition}
+
+A Lie group can be seen both as a group and as a $ d $-dimensional differentiable manifold (with coordinates $ \theta_a $). WLOG it is always possible to choose $ g(0,\dots,0) = e $.
+
+\begin{definition}
+  Given a group $ G $ and a vector space $ V(\K) $, a \textit{representation} of $ G $ on $ V $ is a homomorphism $ \rho : G \rightarrow \mathrm{GL}(V) $.
+\end{definition}
+
+Given the isomorphism $ \mathrm{GL}(V) \rightarrow \K^{n \times n} $, with $ n \equiv \dim_\K V $, it is usual to \textit{de facto} represent $ G $ as matrices acting on elements of $ V $, i.e. $ \rho : G \rightarrow \K^{n \times n} $.
+
+\begin{proposition}
+  Given a Lie group $ G $ and $ g \in G $ connected with the identity, a representation of degree $ n $ on $ V(\C) $ as:
+  \begin{equation}
+    \rho(g(\theta)) = e^{i \theta_a T^a}
+    \label{eq:1.27}
+  \end{equation}
+  where $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ are the \textit{generators} of $ G $ on $ V $.
+\end{proposition}
+
+\begin{definition}
+  Given a Lie group $ G $ with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, its \textit{Lie algebra} is:
+  \begin{equation}
+    [T^a, T^b] = i \tensor{f}{^a^b_c} T^c
+    \label{eq:1.28}
+  \end{equation}
+  where $ \tensor{f}{^a^b_c} $ are called the \textit{structure constants}.
+\end{definition}
+
+\begin{proposition}
+  The Lie algebra of a Lie group is independent of the representation.
+\end{proposition}
+
+\begin{proposition}
+  Any $ d $-dimensional abelian Lie algebra is isomorphic to the direct sum of $ d $ one-dimensional Lie algebras.
+\end{proposition}
+
+As a consequence, all irreducible representations of an abelian Lie group are of degree $ n = 1 $.
+
+\begin{definition}
+  Given a Lie group with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, a \textit{Casimir operator} is an operator which commutes with each generator.
+\end{definition}
+
+Given an irreducible representation, Casimir operators are operators proportional to $ \id_V $, and the proportionality constants can be used to label the representation: they correspond to conserved physical quantities.
+
+\begin{proposition}
+  A non-compact group cannot have finite unitary representations, except for those with trivial non-compact generators.
+\end{proposition}
+
+This means that the non-compact component of a group cannot be represented with unitary operators of finite dimension.
+
+\subsection{Lorentz group}
+
+Consider the group of linear transformations $ x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu $ on $ \R^{1,3} $ which leave invariant the quantity $ \eta_{\mu \nu} x^\mu x^\nu $, i.e. the orthogonal group $ \On{1,3} $ (with signature $ (+,-,-,-) $). The condition that $ \tensor{\Lambda}{^\mu_\nu} $ must satisfy reads:
+\begin{equation}
+  \eta_{\rho \sigma} = \eta_{\mu \nu} \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma}
+  \label{eq:1.29}
+\end{equation}
+This implies that $ \det \Lambda = \pm 1 $: a transformation with $ \det \Lambda = -1 $ can always be written as the product of a transformation with $ \det \Lambda = 1 $ and a discrete transformation which reverses the sign of an odd number of coordinates. One further defines $ \SOn{1,3} \defeq \{\Lambda \in \On{1,3} : \det \Lambda = 1\} $.\\
+Writing explicitly the temporal component $ 1 = (\tensor{\Lambda}{^0_0})^2 - (\tensor{\Lambda}{^1_0})^2 - (\tensor{\Lambda}{^2_0})^2 - (\tensor{\Lambda}{^3_0})^2 $, it is clear that $ (\tensor{\Lambda}{^0_0})^2 \ge 1 $. Therefore, $ \On{1,3} $ has two disconnected components: the orthochronous component with $ \tensor{\Lambda}{^0_0} \ge 1 $ and the non-orthochronous component with $ \tensor{\Lambda}{^0_0} \le 1 $. Any non-orthochronous transformation can be written as the product of an orthochronous transformation and a dircrete transformation which reverses the sign of the temporal component.
+
+\begin{definition}
+  The \textit{Lorentz group} is the orthochronous component of $ \SOn{1,3} $.
+\end{definition}
+
+The discrete transformations are factored out of the Lorentz group. Considering the infinitesimal transformation and applying Eq. \ref{eq:1.29}:
+\begin{equation*}
+  \tensor{\Lambda}{^\mu_\nu} = \delta^\mu_\nu + \tensor{\omega}{^\mu_\nu}
+  \qquad \Rightarrow \qquad
+  \omega_{\mu \nu} = - \omega_{\nu \mu}
+\end{equation*}
+Anti-symmetry means that $ \omega_{\mu \nu} $ has only 6 parameters, which define the Lorentz group: these can be identified by the 3 angles of spherical rotations in the $ (x,y) $, $ (y,z) $ and $ (z,x) $ planes and the 3 rapidities of hyperbolic rotations in the $ (t,x) $, $ (t,y) $ and $ (t,z) $ planes.
+
+\begin{proposition}
+  The Lorentz group is a non-compact Lie group.
+\end{proposition}
+\begin{proof}
+  Spherical and hyperbolic rotations are continuous and differential w.r.t. angles and rapidities, but while angles vary in $ [0, 2\pi) $, rapidities vary in $ \R $, so the differentiable manifold associated to $ \SOn{1,3} $ is not compact.
+\end{proof}
+
+\subsubsection{Lorentz algebra}
+
+The 6 parameters of the Lorentz group correspond to 6 generators of the associated Lorentz algebra. Labelling these generators as $ J^{\mu \nu} : J^{\mu \nu} = - J^{\nu \mu} $, the generic element $ \Lambda \in \SOn{1,3} $ can be written as:
+\begin{equation}
+  \Lambda = e^{- \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}}
+  \label{eq:1.30}
+\end{equation}
+The $ \frac{1}{2} $ factor arises from each generator being counted twice (product of two anti-symmetric objects). Given a $ n $-dimensional representation of $ \SOn{1,3} $, both $ \tensor{[J^{\mu \nu}]}{^i_j} $ and $ \tensor{[\Lambda]}{^i_j} $ are $ \C^{n \times n} $ matrices ($ \Lambda $ is real): for example, the $ n = 1 $ representation acts on \textit{scalars}, which are invariant under Lorentz transformations, so $ J^{\mu \nu} \equiv 0 \,\forall \mu,\nu = 0, \dots, 3 $.
+
+\paragraph{4-vectors}
+
+The $ n = 4 $ representation acts on \textit{contravariant 4-vectors} $ v^\mu $, which transform according to $ v^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} v^\nu $, and \textit{covariant 4-vectors} $ v_\mu $, which transform according to $ v_\mu \mapsto \tensor{\Lambda}{_\mu^\nu} v_\nu $. In this representation, the generators are represented as $ \C^{4 \times 4} $ matrices:
+\begin{equation}
+  \tensor{[J^{\mu \nu}]}{^\rho_\sigma} = i \left( \eta^{\mu \rho} \delta^\nu_\sigma - \eta^{\nu \rho} \delta^\mu_\sigma \right)
+  \label{eq:1.31}
+\end{equation}
+This is an irreducible representation, and the associated Lie algebra $ \mathfrak{so}(1,3) $, called the \textit{Lorentz algebra}, is:
+\begin{equation}
+  [J^{\mu \nu}, J^{\sigma \rho}] = i \left( \eta^{\nu \rho} J^{\mu \sigma} - \eta^{\mu \rho} J^{\nu \sigma} - \eta^{\nu \sigma} J^{\mu \rho} + \eta^{\mu \rho} J^{\nu \sigma} \right)
+  \label{eq:1.32}
+\end{equation}
+It is convenient to rearrange the 6 components of $ J^{\mu \nu} $ into two spatial vectors:
+\begin{equation}
+  J^i \defeq \frac{1}{2} \epsilon^{ijk} J^{jk}
+  \qquad \qquad
+  K^i \defeq J^{i0}
+  \label{eq:1.33}
+\end{equation}
+The $ \mathfrak{so}(1,3) $ can then be rewritten as:
+\begin{equation}
+  [J^i, J^j] = i \epsilon^{ijk} J^k
+  \qquad \qquad
+  [J^i, K^j] = i \epsilon^{ijk} K^k
+  \qquad \qquad
+  [K^i, K^j] = - i \epsilon^{ijk} J^k
+  \label{eq:1.34}
+\end{equation}
+The first equation defines a $ \mathfrak{su}(2) $ sub-algebra, thus showing that $ J^i $ are the generators of angular momentum. Angles and rapidities are then defined as:
+\begin{equation}
+  \theta^i \defeq \frac{1}{2} \epsilon^{ijk} \omega^{jk}
+  \qquad \qquad
+  \eta^i \defeq \omega^{i0}
+  \label{eq:1.35}
+\end{equation}
+so that:
+\begin{equation}
+  \Lambda = \exp \left[ -i \boldsymbol{\theta} \cdot \ve{J} + i \boldsymbol{\eta} \cdot \ve{K} \right]
+  \label{eq:1.36}
+\end{equation}
+This definition reflect the \textit{alias} interpretation: the angles define counterclockwise rotations of vectors with respect to a fixed reference frame, while rapidities define boosts wich increase velocities with respect to said frame.
+
+\subsubsection{Tensor Representations}
+
+A generic $ (p,q) $-tensor transforms as:
+\begin{equation}
+  \tensor{T}{^{\mu_1 \dots \mu_p}_{\nu_1 \dots \nu_q}} \mapsto \tensor{\Lambda}{^{\mu_1}_{\alpha_1}} \dots \tensor{\Lambda}{^{\mu_p}_{\alpha_p}} \tensor{\Lambda}{_{\nu_1}^{\beta_1}} \dots \tensor{\Lambda}{_{\nu_q}^{\beta_q}} \tensor{T}{^{\alpha_1 \dots \alpha_p}_{\beta_1 \dots \beta_q}}
+  \label{eq:1.37}
+\end{equation}
+The representation of the Lorentz group which acts on $ (p,q) $-tensors is of degree $ n = 4^{p + q} $, however it is reducible into the direct product of $ p + q $ 4-dimensional representations as of Eq. \ref{eq:1.38}.\\
+Moreover, consider the action of the Lorentz group on $ (2,0) $-tensors: being $ T^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} T^{\alpha \beta} $, if $ T^{\mu \nu} $ is (anti-)symmetric it will remain so under a Lorentz transformation. Therefore, the 16-dimensional representation reduces to a 6-dimensional representation on anti-symmetric tensors and a 10-dimensional representation of symmetric tensors. Furthermore, the trace of a symmetric tensor is invariant, as $ T \equiv \eta_{\mu \nu} T^{\mu \nu} \mapsto \eta_{\mu \nu} \tensor{\Lambda}{^\mu _\alpha} \tensor{\Lambda}{^\nu _\beta} T^{\alpha \beta} = T $, so the latter representation further reduces into a 9-dimensional representation on symmetric traceless tensors and a 1-dimensional representation on scalars. This means that:
+\begin{equation}
+  \mathtt{4} \otimes \mathtt{4} = \mathtt{1} \oplus \mathtt{6} \oplus \mathtt{9}
+  \label{eq:1.38}
+\end{equation}
+These are irreducible representations which, given a generic tensor $ T^{\mu \nu} $, act on $ S $, $ A^{\mu \nu} $ and $ S^{\mu \nu} - \frac{1}{4} \eta^{\mu \nu} S $ respectively, with $ A^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} - T^{\nu \mu} \right) $ and $ S^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} + T^{\nu \mu} \right) $.
+
+\paragraph{Decomposition under rotations}
+
+Restricting the action to the $ \SOn{3} $ sub-group of $ \SOn{1,3} $, tensors can be decomposed according to irreducible representations of $ \SOn{3} $, which are labelled by the angular momentum $ j $ and are of degree $ n = 2j + 1 $. Also recall the Clebsh-Gordan composition of angular momenta:
+\begin{equation}
+  \ve{j}_1 \otimes \ve{j}_2 = \bigoplus_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \ve{j}
+  \label{eq:1.39}
+\end{equation}
+A Lorentz scalar $ \alpha $ is a scalar under rotations too, so $ \alpha \in \ve{0} $. A 4-vector $ v^\mu $ is irreducible under the action of $ \SOn{1,3} $, but under $ \SOn{3} $ it is decomposed into $ v^0 $ and $ \ve{v} $, so $ v^\mu \in \ve{0} \oplus \ve{1} $. A $ (2,0) $-tensor then is:
+\begin{equation*}
+  \begin{split}
+    T^{\mu \nu} \in \left( \ve{0} \oplus \ve{1} \right) \otimes \left( \ve{0} \oplus \ve{1} \right)
+    &= \left( \ve{0} \otimes \ve{0} \right) \oplus \left( \ve{0} \otimes \ve{1} \right) \oplus \left( \ve{1} \otimes \ve{0} \right) \oplus \left( \ve{1} \otimes \ve{1} \right) \\
+    &= \ve{0} \oplus \ve{1} \oplus \ve{1} \oplus \left( \ve{0} \oplus \ve{1} \oplus \ve{2} \right)
+  \end{split}
+\end{equation*}
+This is equivalent to Eq. \ref{eq:1.38}: the trace is a scalar, so $ S \in \ve{0} $, while the anti-symmetric part can be written as two spatial vectors $ A^{0i} $ and $ \frac{1}{2} \epsilon^{ijk} A^{jk} $, so $ A^{\mu \nu} \in \ve{1} \oplus \ve{1} $. The traceless symmetric part then decomposes as $ \bar{S}^{\mu \nu} \in \ve{0} \oplus \ve{1} \oplus \ve{2} $ under spatial rotations.\\
+Equivalently, $ T^{\mu \nu} $ can be decomposed into $ T^{00} \in \left( \ve{0} \otimes \ve{0} \right) $, $ T^{0i} \in \left( \ve{0} \otimes \ve{1} \right) $, $ T^{i0} \in \left( \ve{1} \otimes \ve{0} \right) $ and $ T^{ij} \in \left( \ve{1} \otimes \ve{1} \right) $: the formers are a scalar and two spatial vectors associated to $ \ve{0} \oplus \ve{1} \oplus \ve{1} $, while the latter can be decomposed into the trace, which is $ \ve{0} $, the anti-symmetric part, which is $ \ve{1} $ ($ \epsilon^{ijk} A^{jk} $), and the traceless symmetric part, which is $ \ve{2} $.
+
+\begin{example}
+  Gravitational waves in de Donder gauge are described by a traceless symmetric matrix, therefore they have $ j = 2 $ (spin of the graviton).
+\end{example}
+
+There are two \textit{invariant tensors} under $ \SOn{1,3} $: the metric $ \eta_{\mu \nu} $, by Eq. \ref{eq:1.29}, and the Levi-Civita symbol $ \epsilon^{\mu \nu \sigma \rho} $:
+\begin{equation*}
+  \epsilon^{\mu \nu \sigma \rho} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} \tensor{\Lambda}{^\sigma_\gamma} \tensor{\Lambda}{^\rho_\delta} \epsilon^{\alpha \beta \gamma \delta} = \left( \det \Lambda \right) \epsilon^{\mu \nu \sigma \rho} = \epsilon^{\mu \nu \sigma \rho}
+\end{equation*}
+
+
+\subsubsection{Spinor representations}
+
+
+
+
+\subsubsection{Field representations}
+
+Given a field $ \phi(x) $, under a Lorentz transformation $ x^\mu \mapsto {x'}^\mu = \tensor{\Lambda}{^\mu_\nu} x^\nu $ it transforms as $ \phi(x) \mapsto \phi'(x') $.
+
+\paragraph{Scalar fields}
+
+A scalar field transforms as:
+\begin{equation}
+  \phi'(x') = \phi(x)
+  \label{eq:1.40}
+\end{equation}
+Consider an infinitesimal transformation $ x'^\rho = x^\rho + \delta x^\rho $, with $ \delta x^\rho = - \frac{i}{2} \omega_{\mu \nu} \tensor{\left[ J^{\mu \nu} \right]}{^\rho_\sigma} x^\sigma $ as of Eq. \ref{eq:1.30}. Then, by definition, $ \delta \phi \equiv \phi'(x') - \phi(x) = 0 $, which corresponds to the fact that the scalar representation of $ \SOn{1,3} $ is the trivial one ($ J^{\mu \nu} = 0 $).\\
+However, one can consider the variation at fixed coordinate $ \delta_0 \phi \equiv \phi'(x) - \phi(x) $.
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Classical equations of motion}
+
+Consider a \textit{local field theory} of fields $ \{\phi_i(x)\}_{i \in \mathcal{I}} \equiv \phi(x) $, where $ x \in \R^{1,3} $ is a point in Minkoski spacetime. Its Lagrangian takes the form:
+\begin{equation}
+  L = \int \dd^3 x\, \mathcal{L}(\phi, \pa_\mu \phi)
+  \label{eq:1.27xxxxxxxxxxxxxxx}
+\end{equation}
+where $ \mathcal{L} $ is the \textit{Lagrangian density} of the theory (often referred to simply as the Lagrangian), which depends only on a finite number of derivatives. The action is then:
+\begin{equation}
+  \mathcal{S} = \int \dd t\, L = \int \dd^4 x\, \mathcal{L}(\phi, \pa_\mu \phi)
+  \label{eq:1.28xxxxxxxxxxxxxxxxx}
+\end{equation}
+The integration is carried on the whole space-time, with usual boundary conditions that all fields decrease sufficiently fast at infinity; this also allows to drop all boundary terms.
+
+\begin{proposition}
+  The \textit{stationary action principle} $ \delta \mathcal{S} = 0 $ determines the classical equations of motion:
+  \begin{equation}
+    \frac{\pa \mathcal{L}}{\pa \phi_i} - \pa_\mu \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} = 0
+    \label{eq:1.29xxxxxxxxxxxxxxxx}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Varying Eq. \ref{eq:1.28xxxxxxxxxxxxxxxxx}:
+  \begin{equation*}
+    \delta \mathcal{S} = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \mathcal{L}}{\pa \phi_i} \delta \phi_i + \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi)} \delta (\pa_\mu \phi_i) \right] = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \mathcal{L}}{\pa \phi_i} - \pa_\mu \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi)} \right] \delta \phi_i = 0
+  \end{equation*}
+\end{proof}
+
+\begin{proposition}
+  Two Lagrangians which differ by a total divergence $ \mathcal{L}' = \mathcal{L} + \pa_\mu K^\mu $ yield the same equations of motion.
+\end{proposition}
+\begin{proof}
+  This is a consequence of Stokes theorem:
+  \begin{equation*}
+    \int_\Sigma \dd^4 x\, \pa_\mu K^\mu = \int_{\pa \Sigma} \dd A\, n_\mu K^\mu
+  \end{equation*}
+\end{proof}
+
+From the Lagrangian, it is possible to define the conjugate momenta and the Hamiltonian density:
+\begin{equation}
+  \Pi_i(x) \defeq \frac{\pa \mathcal{L}}{\pa (\pa_0 \phi_i)}
+  \label{eq:1.30xxxxxxxxxxxxxxxxxxxxxx}
+\end{equation}
+\begin{equation}
+  \mathcal{H} = \sum_{i \in \mathcal{I}} \Pi_i(x) \pa_0 \phi(x) - \mathcal{L}
+  \label{eq:1.31xxxxxxxxxxxxxxxxxxxxxxxx}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
