@@ -383,10 +383,11 @@ $ \ve{\left( 0,0 \right)} $ is the trivial (scalar) representation, as both $ \v
 $ \ve{\left( \frac{1}{2},0 \right)} $ and $ \ve{\left( 0,\frac{1}{2} \right)} $ are 2-dimensional spinorial representations. These representations act on different spinors $ (\psi_\text{L})_\alpha \in \ve{\left( \frac{1}{2},0 \right)} $ and $ (\psi_\text{R})_\alpha \in \ve{\left( 0,\frac{1}{2} \right)} $, with $ \alpha = 1,2 $, which are called \textit{left-} and \textit{right-handed  Weyl spinors}. In $ \ve{\left( \frac{1}{2},0 \right)} $ the generators are $ \ve{J}_- = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{J}_+ = \ve{0} $, while in $ \ve{\left( 0,\frac{1}{2} \right)} $ they are $ \ve{J}_- = \ve{0} $ and $ \ve{J}_+ = \frac{\boldsymbol{\sigma}}{2} $, thus one finds $ \ve{J}_\text{L} = \ve{J}_\text{R} = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{K}_\text{L} = - \ve{K}_\text{R} = i \frac{\boldsymbol{\sigma}}{2} $, so that:
 \begin{equation}
   \psi_\text{L} \mapsto \Lambda_\text{L} \psi_\text{L} = \exp \left[ \left( -i \boldsymbol{\theta} - \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{L}
+  \label{eq:1.40}
 \end{equation}
 \begin{equation}
   \psi_\text{R} \mapsto \Lambda_\text{R} \psi_\text{R} = \exp \left[ \left( -i \boldsymbol{\theta} + \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{R}
-  \label{eq:1.40}
+  \label{eq:1.41}
 \end{equation}
 Note that the generators $ K^i $ are not hermitian, as expected from Prop. \ref{prop-non-comp-triv}. Furthermore, note that $ \Lambda_{\text{L},\text{L}} \in \C^{2 \times 2} $, therefore $ \psi_{\text{L},\text{R}} \in \C^2 $.
 
@@ -409,7 +410,7 @@ Note that the generators $ K^i $ are not hermitian, as expected from Prop. \ref{
     \psi_\text{L}^c \defeq i \sigma^2 \psi_\text{L}^*
     \qquad \qquad
     \psi_\text{R}^c \defeq -i \sigma^2 \psi_\text{R}^*
-    \label{eq:1.41}
+    \label{eq:1.42}
   \end{equation}
 \end{definition}
 
@@ -507,7 +508,7 @@ These equations uniquely determine the \textit{Poincaré algebra} $ \poa $:
     [J^{\mu \nu}, J^{\sigma \rho}] = i \left( \eta^{\nu \rho} J^{\mu \sigma} - \eta^{\mu \rho} J^{\nu \sigma} - \eta^{\nu \sigma} J^{\mu \rho} + \eta^{\mu \rho} J^{\nu \sigma} \right) \\
     [P^\mu,J^{\rho \sigma}] = i \left( \eta^{\mu \rho} P^\sigma - \eta^{\mu \sigma} P^\rho \right)
   \end{gathered}
-  \label{eq:1.52}
+  \label{eq:1.50}
 \end{equation}
 It's easy to check that $ [K^i,P^0] = i P^i $, while $ [J^i,P^0] = [P^i,P^0] = 0 $: given that $ P^0 $ generates time translations, linear and angular momentum are conserved quantities, while $ \ve{K} $ is not.
 
@@ -524,32 +525,72 @@ To represent $ P^\mu $ on fields, their transformation law must be specified: al
 It is clear then that:
 \begin{equation}
   P^\mu = +i \pa^\mu
-  \label{eq:1.53}
+  \label{eq:1.51}
 \end{equation}
 Explicitly, $ P^0 = i \pa_t $ and $ \ve{P} = - i \nabla $. It is trivial to check that these generators obey the Poincaré algebra.
 
 \subsubsection{Particle representations}
 
+The Poincaré group can also be represented using the Hilbert space $ \mathscr{H} $ of a free particle as a basis. Denoting a generic state as $ \ket{\ve{p},s} \in \mathscr{H} $, where $ \ve{p} $ is the particle's momentum and $ s $ collectively labels all other quantum numbers, it is clear that $ \mathscr{H} $ is infinite-dimensional, as $ \ve{p} $ is a continuous unbounded variable.
 
+\begin{theorem}[Wigner]
+  On the Hilbert space of physical states, any symmetry transformation can be represented by a linear and unitary or anti-linear and anti-unitary operator.
+\end{theorem}
 
+By this theorem, Poincaré transformations can be represented by unitary matrices, i.e. $ \ve{J} $, $ \ve{K} $, $ \ve{P} $ and $ P^0 $ can be represented by hermitian operators. These representations can be labeled by Casimir operators, which for $ \pog $ are easily found as $ P_\mu P^\mu $ and $ W_\mu W^\mu $, where $ W^\mu $ is the \textit{Pauli-Lubanski operator}:
+\begin{equation}
+  W^\mu \defeq -\frac{1}{2} \epsilon^{\mu \nu \sigma \rho} J_{\nu \sigma} P_\rho
+  \label{eq:1.52}
+\end{equation}
+On single-particle states $ P_\mu P^\mu = m^2 $, while $ W_\mu W^\mu $ can be conveniently computed in a particular frame (due to Lorentz invariance). If $ m \neq 0 $, this frame is the rest-frame of the particle:
+\begin{equation*}
+  W^\mu = - \frac{m}{2} \epsilon^{\mu \nu \sigma 0} J_{\nu \sigma} = \frac{m}{2} \delta^{\mu i} \epsilon^{ijk} J^{jk} = \delta^{\mu i} m J^i
+\end{equation*}
+Therefore, on single-particle states of mass $ m $ and spin $ j $, the Casimir operator takes the form:
+\begin{equation}
+  W_\mu W^\mu = - m^2 j \left( j + 1 \right)
+  \label{eq:1.53}
+\end{equation}
+If $ m = 0 $, the rest-frame does not exist, but it is possible to choose a frame where $ P^\mu = (\omega,0,0,\omega) $, where $ W^0 = W^3 = \omega J^3 $, $ W^1 = \omega \left( J^1 - K^2 \right) $ and $ W^2 = \omega \left( J^2 + K^1 \right) $, so that:
+\begin{equation}
+  W_\mu W^\mu = - \omega^2 \left[ \left( K^2 - J^1 \right)^2 + \left( K^1 + J^2 \right)^2 \right]
+  \label{eq:1.54}
+\end{equation}
+It is clear that the $ m \rightarrow 0 $ limit is not trivial, and massive and massless representation need to be studied separately.
 
+\paragraph{Massive representations}
 
+Restricting to $ m \in \R^+ $ ($ m^2 < 0 $ states, called tachyons, are excluded), the massive representations are labeled by mass $ m $ and spin $ j $: in fact, after a Lorentz transformation such that $ P^\mu = (m,\ve{0}) $, spatial rotations can still be performed, i.e. the subspace of single-particle states with momentum $ P^\mu = (m,\ve{0}) $ is still a basis for the representation of $ \SUn{2} $ (as spinors must be included too). The group of transformations which leaves invariant a certain choice of $ P^\mu $ is called the \textit{little group}, so $ \SUn{2} $ is the little group of massive single-particle states: massive representations are labelled by $ m $ and $ j $, which means that massive particles of spin $ j $ have $ 2j + 1 $ degrees of freedom.
 
+\paragraph{Massless representations}
 
+The little group for $ P^\mu = (\omega,0,0,\omega) $ clearly is $ \SOn{2} $, the group of rotations in the $ (x,y) $ plane generated by $ J^3 $: as for any abelian group, its irreducible representations are one-dimensional, and they are labeled by the eigenvalue $ h $ of $ J^3 $, which represents the angular momentum in the direction of propagation of the particle and is called \textit{helicity}. Helicity can be shown to be quantized as $ h \in \frac{1}{2}\Z_0 $ (by topologic considerations on $ \pog \equiv \R^4 \times \SL{2}{\C} / \Z_2 $).\\
+As a consequence, massless particles only have one degree of freedom and are characterized by their helicity $ h $. As $ \SOn{2} \equiv \Un{1} $, on a state of helicity $ h $ the little group is represented as:
+\begin{equation}
+  U(\theta) = e^{-i h \theta}
+  \label{eq:1.55}
+\end{equation}
+Although massless particles with opposite helicities are logically two different species of particles, it can be written as $ h = \hat{\ve{p}} \cdot \hat{\ve{J}} $ (unit vectors), so $ h $ is a pseudoscalar such that $ h \mapsto -h $ under parity: this means that, if the interaction conserves parity, $ h $ and $ -h $ must be symmetric.
 
-\newpage
+\begin{example}
+  The electromagnetic and gravitational interactions conserve parity, thus photons and gravitons must be a basis for the representation of both $ \pog $ and parity: photons can have $ h = \pm 1 $ (left- and right-handed), while gravitons have $ h = \pm 2 $.
+\end{example}
+
+\begin{example}
+  Neutrinos only interact via the weak interaction, which does not conserve parity, and in fact the two states $ h = \pm \frac{1}{2} $ are different particles: neutrinos have $ h = - \frac{1}{2} $, while antineutrinos have $ h = + \frac{1}{2} $.
+\end{example}
 
 \section{Classical equations of motion}
 
 Consider a \textit{local field theory} of fields $ \{\phi_i(x)\}_{i \in \mathcal{I}} \equiv \phi(x) $, where $ x \in \R^{1,3} $ is a point in Minkoski spacetime. Its Lagrangian takes the form:
 \begin{equation}
   L = \int \dd^3 x\, \mathcal{L}(\phi, \pa_\mu \phi)
-  \label{eq:1.27xxxxxxxxxxxxxxx}
+  \label{eq:1.56}
 \end{equation}
 where $ \mathcal{L} $ is the \textit{Lagrangian density} of the theory (often referred to simply as the Lagrangian), which depends only on a finite number of derivatives. The action is then:
 \begin{equation}
   \mathcal{S} = \int \dd t\, L = \int \dd^4 x\, \mathcal{L}(\phi, \pa_\mu \phi)
-  \label{eq:1.28xxxxxxxxxxxxxxxxx}
+  \label{eq:1.57}
 \end{equation}
 The integration is carried on the whole space-time, with usual boundary conditions that all fields decrease sufficiently fast at infinity; this also allows to drop all boundary terms.
 
@@ -557,11 +598,11 @@ The integration is carried on the whole space-time, with usual boundary conditio
   The \textit{stationary action principle} $ \delta \mathcal{S} = 0 $ determines the classical equations of motion:
   \begin{equation}
     \frac{\pa \mathcal{L}}{\pa \phi_i} - \pa_\mu \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} = 0
-    \label{eq:1.29xxxxxxxxxxxxxxxx}
+    \label{eq:1.58}
   \end{equation}
 \end{proposition}
 \begin{proof}
-  Varying Eq. \ref{eq:1.28xxxxxxxxxxxxxxxxx}:
+  Varying Eq. \ref{eq:1.57}:
   \begin{equation*}
     \delta \mathcal{S} = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \mathcal{L}}{\pa \phi_i} \delta \phi_i + \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi)} \delta (\pa_\mu \phi_i) \right] = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \mathcal{L}}{\pa \phi_i} - \pa_\mu \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi)} \right] \delta \phi_i = 0
   \end{equation*}
@@ -580,12 +621,13 @@ The integration is carried on the whole space-time, with usual boundary conditio
 From the Lagrangian, it is possible to define the conjugate momenta and the Hamiltonian density:
 \begin{equation}
   \Pi_i(x) \defeq \frac{\pa \mathcal{L}}{\pa (\pa_0 \phi_i)}
-  \label{eq:1.30xxxxxxxxxxxxxxxxxxxxxx}
+  \label{eq:1.59}
 \end{equation}
 \begin{equation}
   \mathcal{H} = \sum_{i \in \mathcal{I}} \Pi_i(x) \pa_0 \phi(x) - \mathcal{L}
-  \label{eq:1.31xxxxxxxxxxxxxxxxxxxxxxxx}
+  \label{eq:1.60}
 \end{equation}
+Unlike the Hamiltonian formalism, the Lagrangian formalism keeps Lorentz covariance explicit.
 
 
 
