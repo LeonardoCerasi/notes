@@ -650,6 +650,199 @@ From the Lagrangian, it is possible to define the conjugate momenta and the Hami
 \end{equation}
 Unlike the Hamiltonian formalism, the Lagrangian formalism keeps Lorentz covariance explicit.
 
+\subsection{Noether's theorem}
+
+\begin{definition}{Infinitesimal transformation}{}
+  Given a field theory with fields $ \{\phi_i\}_{i = 1, \dots, k} $ and action $ \mathcal{S}[\phi] $, an \textit{infinitesimal transformation} parametrized by $ \{\varepsilon^a\}_{a = 1, \dots, N} : \abs{\varepsilon^a} \ll 1 $ is defined by two sets of functions $ \{A^\mu_a(x)\}_{a = 1, \dots, N} $ and $ \{F_{i,a}(\phi,\pa \phi)\}_{i = 1, \dots, k ;\, a = 1, \dots, N} $ such that:
+  \begin{equation}
+    \begin{gathered}
+      x^\mu \mapsto x'^\mu = x^\mu + \varepsilon^a A^\mu_a(x) \\
+      \phi_i(x) \mapsto \phi'_i(x) = \phi_i(x) + \varepsilon^a F_{i,a}(\phi, \pa \phi)
+    \end{gathered}
+    \label{eq:1.61}
+  \end{equation}
+\end{definition}
+
+\begin{definition}{Symmetry transformation}{}
+  An infinitesimal transformation is a \textit{symmetry transformation} if it leaves $ \mathcal{S}[\phi] $ invariant, regardless of $ \phi $ being a solution of the equations of motion. It can further be classified as:
+  \begin{itemize}
+    \item \textit{global symmetry}, if $ \varepsilon^a \equiv \mathrm{const.} $;
+    \item \textit{local symmetry}, if $ \varepsilon^a = \varepsilon^a(x) $.
+  \end{itemize}
+\end{definition}
+
+Symmetry transformations which leave spacetime unchanged, i.e. with $ A^\mu_a(x) = 0 $, are called \textit{internal symmetries}.
+
+\begin{theorem}{Noether's theorem}{}
+  Given a global (but not local) symmetry parametrized by $ N $ generators, then there are $ N $ conserved currents $ \{j^\mu_a(\phi)\}_{a = 1, \dots, N} $ such that:
+  \begin{equation}
+    \pa_\mu j^\mu_a(\phi^\mathrm{cl}) = 0
+    \label{eq:1.62}
+  \end{equation}
+  where $ \phi^\mathrm{cl} $ is a classical solution of the equations of motion.
+
+  \tcblower
+
+  \begin{proof}
+    First, consider an infinitesimal transformation with slowly-varying parameters, i.e. $ l \abs{\pa_\mu \varepsilon^a} \ll \abs{\varepsilon^a} $ ($ l $ characteristic scale of the field theory): being it not a local symmetry, $ \delta \mathcal{S} \neq 0 $ at $ o(\varepsilon) $ and:
+    \begin{equation*}
+      \mathcal{S}[\phi'] = \mathcal{S}[\phi] + \int \dd^4 x\, \left[ \varepsilon^a(x) K_a(\phi) - \left( \pa_\mu \varepsilon^a(x) \right) j^\mu_a(\phi) + o(\pa \pa \varepsilon) \right] + o(\varepsilon^2)
+    \end{equation*}
+    If $ \varepsilon^a \equiv \mathrm{const.} $ (global symmetry) then $ \delta \mathcal{S}[\phi] = 0 \,\forall \phi $, therefore $ K_a(\phi) = 0 \,\forall \phi $ (independent of $ \varepsilon $). Assuming $ \varepsilon^a(x) \rightarrow 0 $ sufficiently fast as $ x \rightarrow \infty $, then integration by parts yields:
+    \begin{equation*}
+      \mathcal{S}[\phi'] = \mathcal{S}[\phi] + \int \dd^4 x\, \varepsilon^a(x) \pa_\mu j^\mu_a(\phi) + o(\pa \pa \varepsilon) + o(\varepsilon^2)
+    \end{equation*}
+    This expression is independent of the choice of $ \phi $. Moreover, note that Eq. \ref{eq:1.61} can be rewritten as an internal transformation by setting:
+    \begin{equation*}
+      \phi_i(x) \mapsto \phi'_i(x) = \phi_i(x - \varepsilon^a A_a) + \varepsilon^a F_{i,a} = \phi_i(x) + \varepsilon^a F_{i,a} - \varepsilon^a A^\mu_a \pa_\mu \phi_i \equiv \phi_i(x) + \delta \phi_i(x)
+    \end{equation*}
+    $ \delta \phi_i(x) $ vanishes at infinity, therefore it is the kind of variation used to derive the equations of motion: choosing $ \phi \equiv \phi^\mathrm{cl} $ classical solution then implies $ \delta \mathcal{S} = 0 $ independently of $ \varepsilon $, i.e. the thesis.
+  \end{proof}
+\end{theorem}
+
+These are often called \textit{Noether currents}, and the associated \textit{Noether charges} are defined as:
+\begin{equation}
+  Q_a \defeq \int \dd^3 x\, j^0_a(t,\ve{x})
+  \label{eq:1.63}
+\end{equation}
+These are time-independent, as $ \pa_0 Q_a = \int \dd^3 x\, \pa_0 j^0_a = - \int \dd^3 x\, \pa_i j^i_a $: on all spacetime it vanishes by divergence theorem (fields vanish at infinity), but on a finite volume it yields a boundary term interpreted as the incoming and outgoing flux.
+
+\begin{proposition}{Noether currents}{}
+  The explicit expression of Noether currents is:
+  \begin{equation}
+    j^\mu_a = \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} \left[ A^\nu_a(x) \pa_\nu \phi_i - F_{i,a}(\phi, \pa \phi) \right] - A^\mu_a(x) \mathcal{L}
+    \label{eq:1.64}
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    Varying the action at $ o(\pa \varepsilon) $:
+    \begin{equation*}
+        \delta_\varepsilon \mathcal{S} = \delta_\varepsilon \int \dd^4 x\, \mathcal{L} = \int \left[ \delta_\varepsilon (\dd^4 x) \mathcal{L} + \dd^4 x \left( \frac{\pa \mathcal{L}}{\pa \phi_i} \delta_\varepsilon \phi_i + \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} \delta_\varepsilon (\pa_\mu \phi_i) \right) \right]
+    \end{equation*}
+    The Jacobian of Eq. \ref{eq:1.61} gives $ \dd^4 x \mapsto \dd^4 x \left( 1 + A^\mu_a \pa_\mu \varepsilon^a \right) + o(\varepsilon) $, while $ \delta_\varepsilon \phi_i $ is not $ o(\pa \varepsilon) $ and:
+    \begin{equation*}
+      \delta_\varepsilon (\pa_\mu \phi_i) = \frac{\pa \phi'_i}{\pa x'^\mu} - \frac{\pa \phi_i}{\pa x^\mu} = \frac{\pa x^\nu}{\pa x'^\mu} \frac{\pa}{\pa x^\nu} \left( \phi_i + \varepsilon^a F_{i,a} \right) - \frac{\pa \phi_i}{\pa x^\mu} = - (\pa_\mu \varepsilon^a) \left( A^\nu_a \pa_\nu \phi_i - F_{i,a} \right) + o(\varepsilon)
+    \end{equation*}
+    The thesis follows from $ \delta_\varepsilon \mathcal{S} = - \int \dd^4 x\, (\pa_\mu \varepsilon^a) j^\mu_a + o(\pa \pa \varepsilon) + o(\varepsilon^2) $.
+  \end{proof}
+\end{proposition}
+
+If the considered infinitesimal transformation is not a global symmetry, then $ \delta_\varepsilon \mathcal{S} $ has a non-vanishing $ o(\varepsilon) $ term which gives rise to a quasi-conserved current:
+\begin{equation}
+  \pa_\mu j^a_\mu = - (\delta_a \mathcal{L})_\mathrm{global}
+  \label{eq:1.65}
+\end{equation}
+
+\subsubsection{Energy-momentum tensor}
+
+Consider spacetime translations: as all fields must be scalars under these transformations, they define a Noether current. In particular, translations have $ A^\mu_\nu = \delta^\mu_\nu $ and $ F_{i,\mu} = 0 $ (the parameter index is a Lorentz index), so the conserved current is the \textit{energy-momentum tensor} $ j^\mu_\nu \equiv \tensor{\theta}{^\mu_\nu} $:
+\begin{equation}
+  \theta^{\mu \nu} = \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} \pa_\nu \phi_i - \eta^{\mu \nu} \mathcal{L}
+  \label{eq:1.66}
+\end{equation}
+which is covariantly conserved on classical solutions of the equations of motion. The conserved Noether charge associated to the energy-momentum tensor is the \textit{four-momentum}:
+\begin{equation}
+  P^\mu \defeq \int \dd^3 x\, \theta^{0 \mu}
+  \label{eq:1.67}
+\end{equation}
+The energy-momentum tensor so defined is not symmetric, however it can be made to via a tensor $ A^{\rho \mu \nu} $ which is anti-symmetric w.r.t. $ (\rho,\mu) $: $ T^{\mu \nu} \equiv \theta^{\mu \nu} + \pa_\rho A^{\rho \mu \nu} $ is physically equivalent from $ \theta^{\mu \nu} $, as the second term is a vanishing spatial divergence in the definition of $ P^\mu $ and is contracted to 0 in the conservation law.
+
+\subsection{Real scalar fields}
+
+Consider a real scalar field $ \phi $: a non-trivial Poincaré-invariant action must contain $ \pa_\mu \phi $ and must saturate each Lorentz index. For example:
+\begin{equation}
+  \mathcal{S}[\phi] = \frac{1}{2} \int \dd^4 x \left( \pa_\mu \phi \pa^\mu \phi - m^2 \phi^2 \right)
+  \label{eq:1.68}
+\end{equation}
+The resulting equation of motion is the \textit{Klein-Gordon equation}:
+\begin{equation}
+  \left( \Box + m^2 \right) \phi = 0
+  \label{eq:1.69}
+\end{equation}
+where $ \Box \equiv \pa_\mu \pa^\mu $. A plane wave $ e^{\pm i p_\mu x^\mu} $ is a solution if $ p^2 = m^2 $, so the KG equation imposes the relativistic dispersion relation and $ m $ can be interpreted as the mass. As $ \phi $ must be real, the general solution is a superposition of waves:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3 p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a^*_\ve{p} e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:1.70}
+\end{equation}
+The positive energy solution has $ E_\ve{p} = + \sqrt{\ve{p}^2 + m^2} $, but it contains both \textit{positive} and \textit{negative frequency modes} $ e^{\mp i p_\mu x^\mu} $, while the $ (2E_\ve{p})^{-1/2} $ factor is a convenient normalization of the $ a_\ve{p} $ coefficients. The overall normalization of $ \mathcal{S}[\phi] $ does not influence the equations of motion, however it is important for obtaining a positive-definite Hamiltonian. As the momentum conjugate to $ \phi $ is $ \Pi_\phi = \pa_0 \phi $, the Hamiltonian density is found as:
+\begin{equation}
+  \mathcal{H} = \frac{1}{2} \left[ \Pi_\phi^2 + (\nabla \phi)^2 + m^2 \phi^2 \right]
+  \label{eq:1.71}
+\end{equation}
+The energy-momentum tensor is computed to be:
+\begin{equation}
+  \theta^{\mu \nu} = \pa^\mu \phi \pa^\nu \phi - \eta^{\mu \nu} \mathcal{L}
+  \label{eq:1.72}
+\end{equation}
+It is trivial to see that $ \theta^{00} = \mathcal{H} $: the Hamiltonian is the conserved charge related to the invariance under time translations.\\
+To compute the conserved currents associated to Lorentz invariance, it is convenient to label the transformation parameters $ \omega^{\mu \nu} $ by an anti-symmetric pair of Lorentz indices, so that Eq. \ref{eq:1.61} become:
+\begin{equation*}
+  x^\mu \mapsto x'^\mu = x^\mu + \tensor{\omega}{^\mu_\nu} x^\nu = x^\mu + \frac{1}{2} \tensor{\omega}{^\rho^\sigma} \left( \delta^\mu_\rho x_\sigma - \delta^\mu_\sigma x_\rho \right) \equiv x^\mu + \frac{1}{2} A^\mu_{(\rho \sigma)} \omega^{\rho \sigma}
+\end{equation*}
+As $ F_{i,a} = 0 $, from Eq. \ref{eq:1.64} the conserved currents are:
+\begin{equation}
+  j^{(\rho \sigma) \mu} = x^\rho \theta^{\mu \sigma} - x^\sigma \theta^{\mu \rho}
+  \label{eq:1.73}
+\end{equation}
+For spatial rotations, the conserved charge is:
+\begin{equation*}
+  M^{ij} = \int \dd^3 x \left( x^i \theta^{0j} - x^j \theta^{0i} \right) = \int \dd^3 x\, \pa_0 \phi \left( x^i \pa^j - x^j \pa^i \right) \phi = \frac{i}{2} \int \dd^3 x \left[ \phi L^{ij} (\pa_0 \phi) - (\pa_0 \phi) L^{ij} \phi \right]
+\end{equation*}
+where integration by parts was carried and $ L^{ij} $ is defined by Eq. \ref{eq:1.44}. This can be generalized.
+
+\begin{definition}{Scalar product}{}
+  Given two real scalar fields $ \phi_1 $ and $ \phi_2 $, their \textit{scalar product} is defined as:
+  \begin{equation}
+    \braket{\phi_1 | \phi_2} \defeq \frac{i}{2} \int \dd^3 x\, \phi_1 \overleftrightarrow{\pa_0} \phi_2
+    \label{eq:1.74}
+  \end{equation}
+  where $ f \overleftrightarrow{\pa_\mu} g \defeq f \pa_\mu g - (\pa_\mu f) g $.
+\end{definition}
+
+\begin{proposition}{}{}
+  If $ \phi_1 $ and $ \phi_2 $ are KG solutions, then $ \braket{\phi_1 | \phi_2} $ is time-independent.
+
+  \tcblower
+
+  \begin{proof}
+    By the KG equation:
+    \begin{equation*}
+      \pa_0 \left[ \phi_1 \pa_0 \phi_2 - (\pa_0 \phi_1) \phi_2 \right] = \phi_1 \pa_0^2 \phi_2 - (\pa_0^2 \phi_1) \phi_2 = \phi_1 \nabla^2 \phi_2 - (\nabla^2 \phi_1) \phi_2
+    \end{equation*}
+    which vanishes after integration by parts.
+  \end{proof}
+\end{proposition}
+
+Note that this scalar product is not positive-definite.
+
+\begin{theorem}{Conserved charges}{cons-charge-val}
+  Given a symmetry represented by a Lie group and a representation $ L^{\mu \nu} $ of its generators as operators acting on fields, the value of the associated conserved charges on a solution $ \phi $ of the equations of motion is:
+  \begin{equation}
+    M^{\mu \nu} = \braket{\phi | L^{\mu \nu} | \phi}
+    \label{eq:1.75}
+  \end{equation}
+\end{theorem}
+
+\begin{example}{Four-momentum}{}
+  Applying Th. \ref{th:cons-charge-val} to four-momentum $ P^\mu = \braket{\phi | i \pa^\mu | \phi} $; for example, the $ \mu = 0 $ component is:
+  \begin{equation*}
+    \begin{split}
+      P^0 &= \braket{\phi | i \pa^0 | \phi} = \braket{\phi | i \pa_0 | \phi} = \frac{i}{2} \int \dd^3 x \left[ \phi (i \pa_0) \pa_0 \phi - (\pa_0 \phi) i \pa_0 \phi \right] \\
+          &= \frac{1}{2} \int \dd^3 x \left[ - \phi \pa_0^2 \phi + (\pa_0 \phi)^2 \right] = \frac{1}{2} \int \dd^3 x \left[ - \phi \left( \nabla^2 - m^2 \right) \phi + (\pa_0 \phi)^2 \right] \\
+          &= \frac{1}{2} \int \dd^3 x \left[ (\nabla \phi)^2 + m^2 \phi^2 + (\pa_0 \phi)^2 \right] = \frac{1}{2} \int \dd^3 x\, \theta^{00}
+    \end{split}
+  \end{equation*}
+\end{example}
+
+The free KG action can be generalized to a self-interacting real scalar field introducing a general potential:
+\begin{equation}
+  \mathcal{S}[\phi] = \int \dd^4 x \left[ \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - V(\phi) \right]
+  \label{eq:1.76}
+\end{equation}
+The quadratic term in $ V(\phi) $ is the mass term, while higher-order terms describe the self-interaction.
+
 
 
 
