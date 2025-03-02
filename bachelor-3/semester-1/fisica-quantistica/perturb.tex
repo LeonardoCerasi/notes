@@ -132,9 +132,9 @@ Ricordando che $ \bra{n^{(0)}_j} \hat{\mathcal{H}}_0 = \bra{n^{(0)}_j} E^{(0)}_n
 Bisogna dunque scegliere una base che diagonalizzi l'hamiltoniana perturbante (e, di conseguenza, quella perturbata completa): le correzioni al prim'ordine dell'energia sono gli autovalori così trovati, mentre gli autoket di ordine zero sono i rispettivi autovettori, ovvero la base diagonalizzante.\\
 Se a seguito di questa procedura tutti gli autovalori $ E^{(1)}_{n,k} $ sono diversi tra loro, ovvero se la degenerazione è completamente eliminata, le correzioni ad ordini successivi sono calcolate nel caso non-degenere. Se invece la degenerazione è ancora presente, si ripete questa procedura nel sottospazio rimasto degenere dopo l'introduzione della perturbazione all'ordine precedente.
 
-\section{Perturbazioni indipendenti dal tempo}
+\section{Perturbazioni dipendenti dal tempo}
 
-La teoria delle perturbazioni indipendenti dal tempo si usa per affrontare quei problemi (es.: fenomeni di diffusione) in cui è necessario valutare la probabilità che il sistema subisca una transizione da un certo stato iniziale ad un certo stato finale per effetto di un potenziale.
+La teoria delle perturbazioni dipendenti dal tempo si usa per affrontare quei problemi (es.: fenomeni di diffusione) in cui è necessario valutare la probabilità che il sistema subisca una transizione da un certo stato iniziale ad un certo stato finale per effetto di un potenziale.
 
 \subsection{Rappresentazione d'interazione}
 
@@ -294,6 +294,99 @@ Ricordando che $ \delta(\alpha x) = \abs{\alpha}^{-1} \delta(x) $, si trova:
 	\label{eq:5.25}
 \end{equation}
 Questa è nota come \textit{regola aurea di Fermi}: essa fornisce la probabilità di transizione per unità di tempo ed esprime la conservazione dell'energia nei fenomeni d'urto.
+
+\subsection{Teoria d'urto}
+
+L'osservabile fondamentale in teoria d'urto è la \textit{sezione d'urto} $ \sigma $: dato un flusso costante di particelle incidenti su un bersaglio, essa è il numero di particelle diffuse per unità di flusso entrante ed unità di tempo. La sezione d'urto può essere vista come una generalizzazione quantistica della sezione geometrica di un bersaglio.
+
+\begin{example}
+	Nel caso classico, dato un flusso costante di particelle $ j = \frac{dn}{dt ds} $ incidenti in un intervallo $ \Delta t $ su un bersaglio di area $ S $, il numero di particelle diffuse sarà $ N = j S \Delta t $, dunque la sezione geometrica è $ S = \frac{N}{j \Delta t} $.
+\end{example}
+
+Nel caso quantistico, dove l'interazione ha natura probabilistica (e non deterministica), è utile definire la \textit{sezione d'urto differenziale}, ovvero la sezione d'urto per unità di spazio delle fasi finale, indicata con $ \frac{d \sigma}{d \Omega} $, dove $ \Omega $ è un osservabile (o più osservabili) che caratterizzano la cinematica dello stato finale.
+Dato un flusso $ j_a $ di particelle incidenti nello stato $ \ket{a} $, la sezione d'urto differenziale è definita come:
+\begin{equation}
+	d \sigma \defeq \lim_{t \rightarrow \infty} \frac{1}{j_a \Delta t} \abs{\braket{b | \hat{S}(t,-t) | a}}^2 db
+	\label{eq:5.26}
+\end{equation}
+dove $ \Delta t = 2t $ e $ \ket{b} $ è lo stato in cui il sistema viene misurato al tempo $ t $. L'elemento di matrice nel limite dei grandi tempi viene detto \textit{elemento di matrice} $ S $:
+\begin{equation}
+	S_{ab} \equiv \lim_{t \rightarrow \infty} \abs{\braket{b | \hat{S}(t,-t) | a}}^2
+	\label{eq:5.27}
+\end{equation}
+La matrice $ S $ è unitaria.
+
+\subsubsection{Spazio delle fasi}
+
+Si consideri la situazione tipica in cui stato iniziale e finale sono stati d'impulso definito:
+\begin{equation*}
+	\braket{\ve{x} | \ve{k}} = \psi_\ve{k}(\ve{x}) = \frac{1}{(2\pi)^{3/2}} e^{i \ve{k} \cdot \ve{x}} \,\, : \,\, \braket{\ve{k} | \ve{k}'} = \delta^{(3)}(\ve{k} - \ve{k}')
+\end{equation*}
+È conveniente passare in coordinate sferiche, dunque parametrizzando l'impulso col modulo $ k $ e gli angoli $ \vartheta_k $ e $ \varphi_k $; inoltre, essendo l'energia l'osservabile più comune negli esperimenti, conviene determinare il modulo $ k $ a partire dall'energia: si vuole dunque passare dagli stati $ \ket{\ve{k}} $ agli stati $ \ket{E, \Omega_k} $.\\
+Assumento che per $ t \rightarrow \pm \infty $ l'Hamiltoniana sia quella della particella libera, dunque che il potenziale di scattering sia acceso e spento solo in un intervallo di tempo finito $ [-T, T] $, si ha che:
+\begin{equation*}
+	E = \frac{\hbar^2 k^2}{2m}
+	\quad \Rightarrow \quad
+	\delta (E - E') = \frac{2m}{\hbar^2} \delta(k^2 - k'^2) = \frac{m}{\hbar k} \delta(k - k')
+\end{equation*}
+Inoltre, essendo l'elemento infinitesimo dello spazio delle fasi $ d^3\ve{k} = k^2 dk d \Omega_k $ ($ d\Omega_k \equiv d \cos \vartheta_k d \varphi_k $):
+\begin{equation*}
+	\delta^{(3)}(\ve{k} - \ve{k}') = \frac{1}{k^2} \delta(k - k') \delta^(2)(\Omega_k - \Omega_{k'})
+\end{equation*}
+Si ha dunque:
+\begin{equation*}
+	\braket{E, \Omega_k | E', \Omega_{k'}} = \delta(E - E') \delta^{(2)}(\Omega_k - \Omega_{k'}) = \frac{m}k{\hbar} \delta(\ve{k} - \ve{k}')
+\end{equation*}
+Gli stati differiscono dunque solo per una normalizzazione:
+\begin{equation}
+	\ket{E, \Omega_k} = \sqrt{\frac{mk}{\hbar}} \ket{\ve{k}}
+	\label{eq:5.28}
+\end{equation}
+Per quanto riguarda il flusso di particelle incidenti, a livello quantistico si parla di flusso di probabilità incidente, il quale è definito come:
+\begin{equation}
+	\ve{j} = - \frac{i\hbar}{2m} \left[ \psi^* \nabla \psi - \nabla \psi^* \psi \right]
+	\label{eq:5.29}
+\end{equation}
+Usando $ \psi = \braket{\ve{x} | E, \Omega_k} $ e prendendo il modulo, si trova:
+\begin{equation}
+	j_k = \frac{k^2}{\hbar (2\pi)^3}
+	\label{eq:5.30}
+\end{equation}
+La sezione d'urto differenziale diventa dunque:
+\begin{equation*}
+	d \sigma = \lim_{t \rightarrow \infty} \frac{(2\pi)^3 \hbar}{k^2} \frac{1}{\Delta t} \abs{\braket{E', \Omega_{k'} | \hat{S}(t,-t) | E, \Omega_k}}^2 dE' d \Omega_{k'}
+\end{equation*}
+Il rapporto $ \lim_{t \rightarrow \infty} S / \Delta t $ è la probabilità di transizione per unità di tempo, dunque dalla regola aurea di Fermi Eq. \ref{eq:5.25} si ottiene:
+\begin{equation*}
+	d \sigma = \frac{(2\pi)^4}{k^2} \abs{\braket{E' \Omega_{k'} | V | E, \Omega_k}}^2 \delta(E' - E) dE' d \Omega_{k'}
+\end{equation*}
+Integrando su tutti i possibili valori di $ E' $ si trova la sezione d'urto differenziale:
+\begin{equation*}
+	\frac{d \sigma}{d \Omega_{k'}} = \frac{(2\pi)^4}{k^2} \abs{\braket{E, \Omega_{k'} | V | E, \Omega_k}}^2
+\end{equation*}
+Questa è la sezione d'urto al primo ordine perturbativo, nota come \textit{approssimazione di Born}. Essendo $ E' = E $, si ha $ k' = k $ ed è possibile definire l'impulso trasferito $ \ve{q} \equiv \ve{k}' - \ve{k} $, così che:
+\begin{equation}
+	\frac{d \sigma}{d \Omega} = \frac{(2\pi)^4 m^2}{\hbar^4} \abs{f(\ve{q})}^2
+	\label{eq:5.31}
+\end{equation}
+dove si è definito il \textit{fattore di forma} del bersaglio:
+\begin{equation}
+	f(\ve{q}) \defeq \frac{1}{(2\pi)^3} \int d^3 \ve{x}\, V(\ve{x}) e^{i \ve{q} \cdot \ve{x}}
+	\label{eq:5.32}
+\end{equation}
+Questa non è altro che la trasformata di Fourier del potenziale che determina lo scattering.
+
+\begin{example}
+	Se si considera un potenziale centrale $ V = V(r) $, scrivendo $ q = 2k \sin \frac{\theta}{2} $, con $ \theta $ scattering angle, si trova:
+	\begin{equation*}
+		f(\ve{q}) = \frac{1}{(2\pi)^3} \int_0^\infty dr \int_{-1}^1 d \cos \vartheta \int_0^{2\pi} d \varphi\, r^2 V(r) e^{i qr \cos \theta} = \frac{1}{(2\pi)^2} \int_0^\infty dr\, r V(r) \frac{2 \sin (qr)}{q}
+	\end{equation*}
+	ovvero:
+	\begin{equation*}
+		\frac{d \sigma}{d \Omega} = \frac{4m^2}{q^2 \hbar^4} \abs{ \int_0^\infty dr\, r \sin(qr) V(r) }^2
+	\end{equation*}
+\end{example}
+Ad esempio, per il potenziale di Yukawa $ V(r) \sim \frac{1}{r} e^{-r / \lambda} $ si trova $ \frac{d \sigma}{d \Omega} \sim q^{-2} (q^2 + \lambda^{-2})^{-1} $, che nel limite Coulombiano $ \lambda \rightarrow \infty $ si riduce alla sezione d'urto di Rutherford $ \frac{d \sigma}{d \Omega} \sim \left( \sin \frac{\theta}{2} \right)^{-4} $.
 
 
 
