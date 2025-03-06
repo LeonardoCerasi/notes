@@ -1,3 +1,225 @@
 \selectlanguage{italian}
 
+\section{Indistinguibilità quantistica}
+
+In meccanica classica due oggetti non sono mai completamente indistinguibili: in linea di principio, è sempre possibile effettuare una misura di posizione che li distingua, in quanto essi seguono traiettorie differenti. In meccanica quantistica, invece, dato che il concetto di traiettoria perde di significato, misurare la posizione non identifica l'oggetto a tempi successivi senza ambiguità: quantisticamente, è possibile l'esistenza di oggetti completamente indistinguibili.
+
+\begin{definition}
+	Dato un sistema descritto da uno spazio di Hilbert $ \hilb = \hilb_1 \otimes \hilb_2 $, i due sottosistemi sono indistinguibili (o \textit{identici}) se valgono le seguenti condizioni:
+	\begin{enumerate}
+		\item $ \hilb_1 \cong \hilb_2 $;
+		\item lo scambio di numeri quantici relativi al primo ed al secondo sottosistema lascia invariati i risultati di qualunque misura eseguita sul sistema.
+	\end{enumerate}
+\end{definition}
+
+\subsection{Operatore di scambio}
+
+\subsubsection{Sistemi a due particelle}
+
+Date delle basi $ \{\ket{m}\} \subset \hilb_1 \cong \hilb_2 \supset \{\ket{n}\} $, il generico stato $ \ket{\psi} \in \hilb $ può essere scritto come:
+\begin{equation*}
+	\ket{\psi} = \sum_{m,n} c_{mn} \ket{m} \otimes \ket{n}
+\end{equation*}
+Si introduce l'operatore di scambio come:
+\begin{equation}
+	\hat{\mathcal{P}}_{1,2} \ket{m} \otimes \ket{n} = \ket{n} \otimes \ket{m}
+	\label{eq:6.1}
+\end{equation}
+La condizione d'identicità diventa quindi:
+\begin{equation*}
+	\hat{\mathcal{P}}_{1,2} \ket{\psi} = e^{i \alpha} \ket{\psi}
+\end{equation*}
+Dato che $ \hat{\mathcal{P}}_{1,2}^2 = \id $, si ha che $ e^{i \alpha} = \pm 1 $, ovvero:
+\begin{equation}
+	\hat{\mathcal{P}}_{1,2} \ket{\psi} = \pm \ket{\psi}
+	\label{eq:6.2}
+\end{equation}
+Di conseguenza $ \hat{\mathcal{P}}_{1,2}^{-1} = \hat{\mathcal{P}}_{1,2} $, ed è anche facile vedere che $ \hat{\mathcal{P}}_{1,2}^\dagger = \hat{\mathcal{P}}_{1,2} $: basta vedere che i suoi elementi di matrice sono reali dall'Eq. \ref{eq:6.1}: dunque, l'operatore di scambio è unitario.\\
+Poiché dopo la misura di un osservabile il sistema si trova in un autostato di quella osservabile, la condizione d'identicità implica che:
+\begin{equation}
+	\hat{\mathcal{P}}_{1,2} \hat{O} \hat{\mathcal{P}}_{1,2} = \hat{O}
+	\label{eq:6.3}
+\end{equation}
+Infatti:
+\begin{equation*}
+	\hat{\mathcal{P}}_{1,2} \hat{O} \hat{\mathcal{P}}_{1,2} \ket{\psi} = e^{i \alpha} \hat{\mathcal{P}}_{1,2} \hat{O} \ket{\psi} = e^{i \alpha} \lambda_O \hat{\mathcal{P}}_{1,2} \ket{\psi} = \lambda_O \ket{\psi} = \hat{O} \ket{\psi}
+\end{equation*}
+L'Eq. \ref{eq:6.3} equivale al dire che l'operatore di scambio commuta con qualunque osservabile del sistema, dunque è simultaneamente diagonalizzabile ad esso.
+
+\begin{example}
+	Si consideri un sistema di due particelle descritto dalla seguente Hamiltoniana:
+	\begin{equation*}
+		\hat{\mathcal{H}} = \frac{\hat{\ve{p}}_1^2}{2m_1} + \frac{\hat{\ve{p}}_2^2}{2m_2} + \hat{V}(\hat{\ve{x}}_1, \hat{\ve{x}}_2) + \hat{W}^{(1)}(\hat{\ve{x}}_1) + \hat{W}^{(2)}(\hat{\ve{x}}_2)
+	\end{equation*}
+	L'operatore di scambio agisce come:
+	\begin{equation*}
+		\hat{\mathcal{P}}_{1,2} \hat{\mathcal{H}} \hat{\mathcal{P}}_{1,2}^{-1} = \frac{\hat{\ve{p}}_2^2}{2m_1} + \frac{\hat{\ve{p}}_1^2}{2m_2} + \hat{V}(\hat{\ve{x}}_2, \hat{\ve{x}}_1) + \hat{W}^{(1)}(\hat{\ve{x}}_2) + \hat{W}^{(2)}(\hat{\ve{x}}_1)
+	\end{equation*}
+	La condizione d'identicità è dunque soddisfatta solo se $ m_1 = m_2 $, $ W^{(1)}(x) = W^{(2)}(x) $ e $ V(x,y) = V(y,x) $.
+\end{example}
+
+\subsubsection{Sistemi ad $ n $ particelle}
+
+Per un sistema di $ n $ particelle, il generico vettore di stato è:
+\begin{equation}
+	\ket{\psi} = \sum_{k_1, \dots, k_n} c_{k_1, \dots, k_n} \ket{k_1} \otimes \dots \otimes \ket{k_n}
+	\label{eq:6.4}
+\end{equation}
+
+\begin{definition}
+Dato un sistema descritto da $ \hilb = \bigotimes_{i = 1}^n \hilb_i $, con $ \hilb_i \cong \hilb_j \,\forall i,j = 1, \dots, n $, si definisce l'\textit{operatore di scambio} $ \hat{\mathcal{P}}_{i,j} \in \End{\hilb} $ come:
+\begin{equation}
+	\hat{\mathcal{P}}_{i,j} \ket{\psi} = \sum_{k_1, \dots, k_n} c_{k_1, \dots, k_j, \dots, k_i, \dots, k_n} \ket{k_1} \otimes \dots \otimes \ket{k_i} \otimes \dots \otimes \ket{k_j} \otimes \dots \otimes \ket{k_n}
+	\label{eq:6.5}
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+	Si possono definire $ \frac{1}{2} n (n - 1) $ operatore di scambio.
+\end{proposition}
+
+\begin{proposition}
+	Gli operatori di scambio non commutano tra loro per $ n > 2 $.
+\end{proposition}
+\begin{proof}
+	Basta mostrarlo per $ n = 3 $:
+	\begin{equation*}
+		\hat{\mathcal{P}}_{1,2} \hat{\mathcal{P}}_{1,3} \ket{k_1, k_2, k_3} = \ket{k_2, k_3, k_1} \neq \ket{k_3, k_1, k_2} = \hat{\mathcal{P}}_{1,3} \hat{\mathcal{P}}_{1,2} \ket{k_1, k_2, k_3}
+	\end{equation*}
+\end{proof}
+
+In questo caso, dunque, ci sono $ \frac{1}{2} n (n-1) $ operatori di scambio che non commutano tra loro, ma commutano con l'Hamiltoniana e qualunque altra osservabile: dato che ci sono $ n! $ permutazioni di $ n $ indici, ad ogni stato sono associati $ n! $ autostati degeneri e questa è nota come \textit{degenerazione da scambio}.
+
+\begin{example}
+	Nella buca di potenziale cubica $ E_{n_1, n_2, n_3} = \frac{\hbar^2 \pi^2}{8 m a^2} \left( n_1^2 + n_2^2 + n_3^2 \right) $, dunque per ogni stato $ \ket{n_1, n_2, n_3} $ ci sono 6 autostati degeneri associati alle permutazioni dei 3 indici.
+\end{example}
+
+\subsection{Statistiche quantistiche}
+
+Sebbene gli operatori di scambio non commutino in $ \hilb $, esistono due sottospazi nei quali essi commutano e sui quali la degenerazione da scambio sparisce: questi sottospazi sono gli spazi a definita simmetria, ovvero i sottospazi di stati completamente simmetrici o antisimetrici, tali per cui $ \hat{\mathcal{P}}_{i,j} \ket{\psi} = \pm \ket{\psi} \,\forall i,j = 1, \dots, n $. In generale:
+\begin{equation}
+	\ket{k_1, \dots, k_n}^{(\mathrm{s})} \defeq \sum_{\pi \in S^n} \frac{1}{\sqrt{n!}} \ket{k_{\pi(1)}, \dots, k_{\pi(n)}}
+	\label{eq:6.6}
+\end{equation}
+\begin{equation}
+	\ket{k_1, \dots, k_n}^{(\mathrm{a})} \defeq \sum_{\pi \in S^n} \frac{\sgn{\pi}}{\sqrt{n!}} \ket{k_{\pi(1)}, \dots, k_{\pi(n)}}
+	\label{eq:6.7}
+\end{equation}
+dove $ \sgn{\pi} $ è la segnatura della permutazione $ \pi \in S^n $. È sempre possibile costruire sottospazi completamente simmetrici o completamente antisimmetrici in uno spazio prodotto diretto: infatti, si dimostra che se una permutazione può essere ottenuta con un numero pari/dispari di scambi, allora qualunque altra sequenza che porti alla stessa permutazione avrà un numero pari/dispari di scambi, dunque la segnatura di una permutazione è univocamente determinata.
+
+\begin{proposition}
+	Gli autovalori degli operatori di scambio sono $ +1 $ su $ \hilb^{(\mathrm{s})} $ e $ -1 $ su $ \hilb^{(\mathrm{a})} $.
+\end{proposition}
+
+\begin{theorem}
+	$ \hilb^{(\mathrm{s})} $ e $ \hilb^{(\mathrm{a})} $ sono gli unici sottospazi di $ \hilb $ in cui gli operatori di scambio commutano.
+\end{theorem}
+\begin{proof}
+	Nel caso $ n = 3 $, se si considera un sottospazio a parità mista con autovalori $ +1 $ per $ \hat{\mathcal{P}}_{1,2} $ e $ -1 $ per $ \hat{\mathcal{P}}_{1,3} $, si ha che:
+	\begin{equation*}
+		\ket{k_1, k_2, k_3} = \ket{k_2, k_1, k_3} = - \ket{k_3, k_1, k_2} = - \ket{k_1, k_3, k_2} = \ket{k_2, k_3, k_1} = \ket{k_3, k_2, k_1} = - \ket{k_1, k_2, k_3}
+	\end{equation*}
+	il che è una contraddizione.
+\end{proof}
+
+\section{Spin e statistica}
+
+È un fatto empirico che in natura non si riscontra alcuna degenerazione da scambio: i sistemi di particelle identiche reali sono o completamente simmetrici o completamente antisimmetrici. La proprietà di trasformazione di un sistema di particelle identiche sotto scambio è detta \textit{statistica} delle particelle.
+
+\begin{theorem}[spin-statistica]
+	Le particelle simmetriche sotto scambio sono dette \textit{bosoni}, hanno spin intero e soddisfano la statistica di Bose-Einstein, mentre quelle antisimmetriche sotto scambio sono dette \textit{fermioni}, hanno spin semi-intero e soddisfano la statistica di Fermi-Dirac.
+\end{theorem}
+
+Questo teorema è necessario per poter formulare rigorosamente una teoria quantistica di campo, sebbene si basi su ipotesi non solidissime: in particolare, esso è necessario affinché la teoria di campo soddisfi una serie di assiomi ritenuti fondamentali, come la causalità (unitarietà) e la località.
+
+\subsection{Principio d'esclusione}
+
+La restrizione a funzioni d'onda simmetriche o antisimmetriche ha conseguenze sullo spettro di energia del sistema e può essere vista come un'interazione efficace non-separabile tra le particelle, anche in assenza di forze.\\
+Si consideri per semplicità un sistema di $ n = 2 $ particelle con Hamiltoniana completamente separabile $ \hat{\mathcal{H}} = \hat{\mathcal{H}}_1 + \hat{\mathcal{H}}_2 $: la funzione d'onda del sistema non è in generale fattorizzabile per i bosoni, mentre non è mai fattorizzabile per i fermioni. Supponendo noto lo spettro di $ \hat{\mathcal{H}}_1 $ e $ \hat{\mathcal{H}}_2 $, il ground state nel caso bosonico è:
+\begin{equation*}
+	\ket{0,0}^{(\mathrm{s})} = \ket{0,0}
+\end{equation*}
+Nel caso fermionico, invece, si ha in generale che $ \ket{k,k}^{(\mathrm{a})} = 0 $ (noto come \textit{principio d'esclusione} di Pauli), dunque il ground state è non separabile:
+\begin{equation*}
+	\ket{0,1}^{(\mathrm{a})} = \frac{1}{\sqrt{2}} \left( \ket{0,1} - \ket{1,0} \right)
+\end{equation*}
+Nel caso bosonico, la non-fattorizzabilità può emergere dal primo stato eccitato, in quanto:
+\begin{equation*}
+	\ket{0,1}^{(\mathrm{s})} = \frac{1}{\sqrt{2}} \left( \ket{0,1} + \ket{1,0} \right)
+\end{equation*}
+Risulta dunque che, anche in assenza di un potenziale d'interazione, la funzione d'onda del sistema è non-separabile.
+
+\begin{example}
+	Si consideri l'atomo di elio, ed in partiolare i suoi due elettroni: questi hanno spin $ s = \frac{1}{2} $, dunque sono fermioni e la funzione d'onda del sistema deve essere antisimmetrica. Quest'ultima è costituita da una parte spaziale ed una di spin, ovvero $ \psi = \phi(\ve{x}_1, \ve{x}_2) \chi(s^z_1, s^z_2) $: la funzione d'onda di spin ha quattro possibili stati, che sono un singoletto antisimmetrico ed un tripletto simmetrico (dalla composizione di Clebsch-Gordan), i quali sono rispettivamente noti come para-elio ed orto-elio.\\
+	Per determinare lo spettro del para-elio e dell'orto-elio, si consideri l'Hamiltoniana del sistema come:
+	\begin{equation*}
+		\mathcal{H} = - \frac{\hbar^2}{2m_e} \left( \nabla_1^2 + \nabla_2^2 \right) - \frac{2e^2}{r_1^2} - \frac{2e^2}{r_2^2} + \frac{e^2}{r_{1,2}^2} \equiv \mathcal{H}_0 + \mathcal{H}'
+	\end{equation*}
+\end{example}
+con perturbazione $ \mathcal{H}' \equiv e^2 / r_{1,2}^2 $ piccola. $ \mathcal{H}_0 $ è separabile in due Hamiltoniane idrogenoidi con spettri $ \mathcal{H}_i \ket{k,\ell} = E_k \ket{k,\ell} : E_k = \frac{Ze}{a_0 k^2} $, dunque il suo spettro opportunamente antisimmetrizzato è:
+\begin{equation*}
+	\ket{k_1, s_1^z} \otimes \ket{k_2, s_2^z} = \frac{1}{\sqrt{2}} \left( \ket{k_1, s_1^z, k_2, s_2^z} - \ket{k_2, s_2^z, k_1, s_1^z} \right)
+\end{equation*}
+con $ E_{k_1, k_2} = E_{k_1} + E_{k_2} $.La funzione d'onda del sistema, invece, è:
+\begin{equation*}
+	\psi^{(\mathrm{o},\mathrm{p})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2, s_1, s_2) = \chi^{(\mathrm{s},\mathrm{a})}(s_1^z, s_2^z) \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2)
+\end{equation*}
+\begin{equation*}
+	\chi^{(\mathrm{s},\mathrm{a})}(s^z_1, s^z_2) : s_\mathrm{tot} = 1,0
+	\qquad\qquad
+	\phi^{(\mathrm{s},\mathrm{a})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2) = \frac{1}{\sqrt{s}} \left( \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \pm \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) \right)
+\end{equation*}
+La perturbazione dell'interazione coulombiana sul sottospazio degenere è $ \braket{\psi^i | \hat{\mathcal{H}} | \psi^j} = \braket{\phi^i | \hat{\mathcal{H}}' | \phi^j} $, con $ i,j = \mathrm{o}/\mathrm{a}, \mathrm{p}/\mathrm{s} $; si vede che questa è diagonale (per antisimmetria):
+\begin{equation*}
+	\braket{\psi^{(\mathrm{p})} | \hat{\mathcal{H}}' | \psi^{(\mathrm{o})}} = \frac{e^2}{2} \int d^3 x_1 d^3 x_2 \, \phi^{(\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2)^* \frac{1}{\abs{\ve{x}_1 - \ve{x}_2}} \phi^{(\mathrm{a})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2) = 0
+\end{equation*}
+Gli stati degeneri vengono splittati in coppie secondo $ E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})} = E_{k_1, k_2} + \Delta E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})} $, con:
+\begin{equation*}
+	\begin{split}
+		\Delta E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})}
+		&=  \braket{\psi^{(\mathrm{o},\mathrm{p})} | \hat{\mathcal{H}}' | \psi^{(\mathrm{o},\mathrm{p})}} = \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2)^* \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2) \\
+		&= \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \abs{\phi_{k_1}(\ve{x}_1)}^2 \abs{\phi_{k_2}(\ve{x}_2)}^2 + \abs{\phi_{k_1}(\ve{x}_2)}^2 \abs{\phi_{k_2}(\ve{x}_1)}^2 \right] \\
+		&\quad\,\, \mp \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \phi_{k_1}(\ve{x}_1)^* \phi_{k_2}(\ve{x}_2)^* \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) + \phi_{k_2}(\ve{x}_1)^* \phi_{k_1}(\ve{x}_2)^* \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \right]\\
+		&= e^2 \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \abs{\phi_{k_1}(\ve{x}_1)}^2 \abs{\phi_{k_2}(\ve{x}_2)}^2 \\
+		&\quad\,\, \mp \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \phi_{k_1}(\ve{x}_1)^* \phi_{k_2}(\ve{x}_2)^* \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) + \phi_{k_2}(\ve{x}_1)^* \phi_{k_1}(\ve{x}_2)^* \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \right]\\
+		&\equiv E_c \mp E_s
+	\end{split}
+\end{equation*}
+$ E_c $ è l'energia classica determinata dalle due distribuzioni di carica che interagiscono per il potenziale coulombiano, mentre $ E_s $ è l'energia determinata dall'interazione di scambio. In particolare, si può dimostrare che l'energia del para-elio è maggiore di quella dell'orto-elio, ovvero che $ E_s \ge 0 $.
+
+\subsection{Sistemi planari}
+
+L'origine fisica del teorema spin-statisca può essere delucidata studiando i sistemi planari: nel caso bidimensionale sono possibili altre statistiche oltre quelle fermionica e bosonica.\\
+Il gruppo delle rotazioni nel piano è $ \SOn{2} \cong \Un{1} $ ed è possibile determinare il generatore di tale gruppo come:
+\begin{equation*}
+	\braket{\ve{x} | \hat{R}_\alpha | \psi} = \psi(r, \vartheta + \alpha) = e^{\alpha \frac{\pa}{\pa \vartheta}} \psi(r, \vartheta) = \braket{\ve{x} | e^{\frac{i}{\hbar} \alpha \hat{L}} | \psi}
+\end{equation*}
+dove si è introdotto l'operatore di momento angolare $ \hat{L} $ definito come:
+\begin{equation*}
+	\braket{\ve{x} | \hat{L} | \ve{x}'} = - i \hbar \frac{\pa}{\pa \vartheta} \delta^{(2)}(\ve{x} - \ve{x}')
+\end{equation*}
+Le sue autofunzioni sono $ \braket{\vartheta | n} = e^{in \vartheta} : \hat{L} \ket{n} = \hbar n \ket{n} $, dunque la monodromia della funzione d'onda spaziale implica che $ n \in \Z $. Allo stesso modo, lo spin ha un solo generatore $ \hat{s} \ket{s} = \hbar s \ket{s} $: in questo caso non ci sono restrizioni sul valore di $ s $, ma se si vuole immergere questo spazio bidimensionale in uno tridimensionale è necessario che $ s \in \frac{1}{2} \Z $.\\
+La funzione d'onda totale è $ \ket{\psi,s} = \ket{\psi} \otimes \ket{s} $, dunque $ \braket{\ve{x} | \psi, s} = \psi_s(\ve{x}) $ differisce da $ \psi(\ve{x}) $ per una pura fare, in quanto:
+\begin{equation*}
+	\braket{\ve{x} | \hat{R}_\alpha | \psi,s} = \braket{\ve{x} | e^{\frac{i}{\hbar} \alpha (\hat{L} + \hat{s})} | \psi,s} = e^{i \alpha s} \braket{\ve{x} | e^{\frac{i}{\hbar} \alpha \hat{L}} | \psi,s}
+\end{equation*}
+Quindi $ \psi_s(\ve{x}) = \chi_s \psi(\ve{x}) $ (in tre dimensioni $ \chi_s $ sarebbe uno spinore).\\
+Per un sistema di due particelle identiche si può passare alle coordinate del baricentro e relativa:
+\begin{equation*}
+	\braket{\ve{x}_1, \ve{x}_2 | \psi} = \psi(\ve{x}_1, \ve{x}_2) = \psi(\ve{r},\ve{R}) = \psi(r, \vartheta, \varphi)
+\end{equation*}
+con coordinata del baricentro $ \ve{R} = \frac{1}{2} (\ve{x}_1 + \ve{x}_2) = R \left( \cos \varphi, \sin \varphi \right) $ e coordinata relativa $ \ve{r} = \ve{x}_1 - \ve{x}_2 = r \left( \cos \vartheta, \sin \vartheta \right) $. Si noti che l'operatore di scambio tra le due particelle agisce come una rotazione di $ \pi $ attorno al baricentro del sistema, ovvero:
+\begin{equation*}
+	\braket{\ve{x} | \hat{\mathcal{P}}_{1,2} | \psi,s} = e^{2i \pi s} R_\pi \psi_s(\ve{x}_1, \ve{x}_2)
+\end{equation*}
+Essendo la statistica delle particelle indipendente dal loro momento angolare orbitale, si può assumere che $ L_\mathrm{tot} = 0 $, così che $ R_\pi = 1 $: si vede dunque che $ \ket{\psi,s} $ è un autostato dell'operatore di scambio con autovalore $ e^{2i \pi s} $, che per $ s \in \frac{1}{2} \Z $ equivale a $ \pm 1 $, ovvero alle statistiche bosonica e fermionica.
+
+
+
+
+
+
+
+
+
 
