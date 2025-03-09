@@ -502,7 +502,7 @@ A general vector field has a spin-0 and a spin-1 component, and it is acted on b
 \subsection{Poincaré group}
 
 \begin{definition}{Poincaré group}{}
-  The \textit{Poincaré group} is defined as $ \pog \defeq \mathrm{T}^{1,3} \times \lorg $, where $ \mathrm{T}^{1,3} \cong \R^{1,3} $ is the group of translations of $ \R^{1,3} $.
+  The \textit{Poincaré group} is defined as $ \pog \defeq \mathrm{T}^{1,3} \rtimes \lorg $, where $ \mathrm{T}^{1,3} \cong \R^{1,3} $ is the group of translations of $ \R^{1,3} $, with multiplication $ (a^\mu, \tensor{\Lambda}{^\mu_\nu}) \cdot (\bar{a}^\mu, \tensor{\bar{\Lambda}}{^\mu_\nu}) \equiv (a^\mu + \tensor{\Lambda}{^\mu_\nu} \bar{a}^\nu, \tensor{\Lambda}{^\mu_\rho} \tensor{\bar{\Lambda}}{^\rho_\nu}) $.
 \end{definition}
 
 Given a translation $ x^\mu \mapsto x^\mu + a^\mu $, the associated group element can be written as:
@@ -749,7 +749,9 @@ which is covariantly conserved on classical solutions of the equations of motion
 \end{equation}
 The energy-momentum tensor so defined is not symmetric, however it can be made to via a tensor $ A^{\rho \mu \nu} $ which is anti-symmetric w.r.t. $ (\rho,\mu) $: $ T^{\mu \nu} \equiv \theta^{\mu \nu} + \pa_\rho A^{\rho \mu \nu} $ is physically equivalent from $ \theta^{\mu \nu} $, as the second term is a vanishing spatial divergence in the definition of $ P^\mu $ and is contracted to 0 in the conservation law.
 
-\subsection{Real scalar fields}
+\subsection{Scalar fields}
+
+\subsubsection{Real scalar fields}
 
 Consider a real scalar field $ \phi $: a non-trivial Poincaré-invariant action must contain $ \pa_\mu \phi $ and must saturate each Lorentz index. For example:
 \begin{equation}
@@ -795,10 +797,10 @@ where integration by parts was carried and $ L^{ij} $ is defined by Eq. \ref{eq:
 \begin{definition}{Scalar product}{}
   Given two real scalar fields $ \phi_1 $ and $ \phi_2 $, their \textit{scalar product} is defined as:
   \begin{equation}
-    \braket{\phi_1 | \phi_2} \defeq \frac{i}{2} \int \dd^3 x\, \phi_1 \overleftrightarrow{\pa_0} \phi_2
+    \braket{\phi_1 | \phi_2} \defeq \frac{i}{2} \int \dd^3 x\, \phi_1 \smlra{\pa_0} \phi_2
     \label{eq:1.74}
   \end{equation}
-  where $ f \overleftrightarrow{\pa_\mu} g \defeq f \pa_\mu g - (\pa_\mu f) g $.
+  where $ f \smlra{\pa_\mu} g \defeq f \pa_\mu g - (\pa_\mu f) g $.
 \end{definition}
 
 \begin{proposition}{}{}
@@ -842,6 +844,78 @@ The free KG action can be generalized to a self-interacting real scalar field in
   \label{eq:1.76}
 \end{equation}
 The quadratic term in $ V(\phi) $ is the mass term, while higher-order terms describe the self-interaction.
+
+\subsubsection{Complex scalar fields}
+
+Consider now two real scalar fields $ \phi_1, \phi_2 $ with the same mass $ m $ and combine them into a single complex scalar field $ \phi \equiv \frac{1}{\sqrt{2}}(\phi_1 + i \phi_2) $. The KG action is the sum of the single actions and may be written as:
+\begin{equation}
+  \mathcal{S}[\phi] = \int \dd^4x \left( \pa_\mu \phi^* \pa^\mu \phi - m^2 \phi^* \phi \right)
+  \label{eq:1.77}
+\end{equation}
+Considering $ \phi $ and $ \phi^* $ as independent variables one obtains the KG equation, which yields the same mode expansion as Eq. \ref{eq:1.70}:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b^*_\ve{p} e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:1.78}
+\end{equation}
+Now $ a_\ve{p} $ and $ b_\ve{p} $ are independent, since there's no reality condition on $ \phi $.
+
+\paragraph{Electric charge}
+
+An interesting property of the complex KG field is the existence of a global $ \Un{1} $ symmetry of the action: $ \mathcal{S}[\phi] \mapsto \mathcal{S}[\phi] $ under $ \phi(x) \mapsto e^{i \theta} \phi(x) $. The associated Noether current can be computed from Eq. \ref{eq:1.64}, using $ \phi_i = (\phi, \phi^*) $, $ A^\nu_a = 0 $ and $ F_{i,a} = (i,-i) $:
+\begin{equation}
+  j_\mu = -i \left( \phi \pa_\mu \phi^* - \phi^* \pa_\mu \phi \right) = i \phi^* \smlra{\pa_\mu} \phi
+  \label{eq:1.79}
+\end{equation}
+The conserved $ \Un{1} $ charge is then $ Q_{\Un{1}} = i \int \dd^3x\, \phi^* \smlra{\pa_0} \phi = \braket{\phi | \phi} $, which is consistent with Th. \ref{th:cons-charge-val} as the generator of $ \Un{1} $ is the identity operator.
+
+\subsection{Spinor fields}
+
+\subsubsection{Weyl fields}
+
+Consider the theory of a left/right-handed Weyl field: recalling that $ \psi_\text{L}^\dagger \sigma^\mu \psi_\text{L} $ and $ \psi_\text{R} \bar{\sigma}^\mu \psi_\text{R} $ are 4-vectors, with $ \sigma^\mu \equiv (1, \boldsymbol{\sigma}) $ and $ \bar{\sigma}^\mu \equiv (1, - \boldsymbol{\sigma}) $, the kinetic term of the Lorentz-invariant lagrangian can be written as:
+\begin{equation}
+  \mathcal{L}_\text{L} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L}
+  \qquad \qquad
+  \mathcal{L}_\text{R} = i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R}
+  \label{eq:1.80}
+\end{equation}
+The $ i $ factor ensures the reality of the Lagrangian, as $ \sigma $ matrices are hermitian. The Lagrangian does not depend on $ \pa_\mu \psi^* $, thus the Euler-Lagrange equations are:
+\begin{equation}
+  (\pa_0 - \sigma^i \pa_i) \psi_\text{L} = 0
+  \qquad \qquad
+  (\pa_0 + \sigma^i \pa_i) \psi_\text{R} = 0
+  \label{eq:1.81}
+\end{equation}
+These are known as \textit{Weyl equations}: by $ \sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k $, these equations imply two massless KG equations (assuming regular functions, so that $ \pa_i \pa_j = \pa_j \pa_i $). Considering positive-energy plane-wave solutions of the form $ \psi_\text{L}(x) = u_\text{L} \exp(-i p_\mu x^\mu) = u_\text{L} \exp(-i E t + i \ve{p} \cdot \ve{x}) $, where $ u_\text{L} $ is a constant spinor, Weyl equations become:
+\begin{equation*}
+  \frac{\ve{p} \cdot \boldsymbol{\sigma}}{E} u_\text{L} = - u_\text{L}
+  \qquad \qquad
+  \frac{\ve{p} \cdot \boldsymbol{\sigma}}{E} u_\text{R} = u_\text{R}
+\end{equation*}
+As these are massless fields $ E = \abs{\ve{p}} $, and since for $ s = \frac{1}{2} $ fields $ \ve{J} = \frac{\boldsymbol{\sigma}}{2} $ these equations become:
+\begin{equation*}
+  (\hat{\ve{p}} \cdot \ve{J}) u_\text{L} = - \frac{1}{2} u_\text{L}
+  \qquad \qquad
+  (\hat{\ve{p}} \cdot \ve{J}) u_\text{R} = \frac{1}{2} u_\text{R}
+\end{equation*}
+These show that left/right-handed Weyl massless Weyl spinors have helicity $ h = \mp \frac{1}{2} $, consistent with the fact that massless particles are helicity eigenstates.\\
+The energy-momentum tensor can be computed from Eq. \ref{eq:1.66}, noting that on classical solutions (by Weyl equations) the Lagrangian of the theory vanishes:
+\begin{equation}
+  \theta^{\mu \nu} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa^\nu \psi_\text{L}
+  \qquad \qquad
+  \theta^{\mu \nu} = i \psi_\text{R}^\dagger \sigma^\mu \pa^\nu \psi_\text{R}
+  \label{eq:1.82}
+\end{equation}
+Moreover, note that the Lagrangian is invariant under a global $ \Un{1} $ internal transformation with Noether currents and conserved charges:
+\begin{align*}
+  j^\mu &= \psi_\text{L}^\dagger \bar{\sigma}^\mu \psi_\text{L} & j^\mu &= \psi_\text{R}^\dagger \sigma^\mu \psi_\text{R} \\
+  Q_\Un{1} &= \int \dd^3x\, \psi_\text{L}^\dagger \psi_\text{L} & Q_\Un{1} &= \int \dd^3x\, \psi_\text{R}^\dagger \psi_\text{R}
+\end{align*}
+Weyl Lagrangians are not invariant under parity, as $ \psi_\text{L} \leftrightarrow \psi_\text{R} $.
+
+\begin{example}{Neutrinos}{}
+  Neutrinos are divided into three leptonic families: $ \nu_e $, $ \nu_\mu $ and $ \nu_\tau $. Although they are massive $ s = \frac{1}{2} $, in most contexts their mass can be neglected, thus they can be described by Weyl spinors: in particular, neutrinos by left-handed Weyl spinors and antineutrinos by right-handed Weyl spinors.
+\end{example}
 
 
 

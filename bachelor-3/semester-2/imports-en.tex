@@ -179,6 +179,31 @@
 \DeclareMathOperator{\im}{Im}
 \newcommand{\dd}{\mathrm{d}}
 
+% small \overleftrightarrow
+\makeatletter
+\newcommand{\overleftrightsmallarrow}{\mathpalette{\overarrowsmall@\leftrightarrowfill@}}
+\newcommand{\overrightsmallarrow}{\mathpalette{\overarrowsmall@\rightarrowfill@}}
+\newcommand{\overleftsmallarrow}{\mathpalette{\overarrowsmall@\leftarrowfill@}}
+\newcommand{\overarrowsmall@}[3]{%
+  \vbox{%
+    \ialign{%
+      ##\crcr
+      #1{\smaller@style{#2}}\crcr
+      \noalign{\nointerlineskip}%
+      $\m@th\hfil#2#3\hfil$\crcr
+    }%
+  }%
+}
+\def\smaller@style#1{%
+  \ifx#1\displaystyle\scriptstyle\else
+    \ifx#1\textstyle\scriptstyle\else
+      \scriptscriptstyle
+    \fi
+  \fi
+}
+\makeatother
+\newcommand{\smlra}[1]{\overleftrightsmallarrow{#1}}
+
 % functions
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\Exp}{Exp}
