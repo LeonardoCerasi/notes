@@ -917,6 +917,248 @@ Weyl Lagrangians are not invariant under parity, as $ \psi_\text{L} \leftrightar
   Neutrinos are divided into three leptonic families: $ \nu_e $, $ \nu_\mu $ and $ \nu_\tau $. Although they are massive $ s = \frac{1}{2} $, in most contexts their mass can be neglected, thus they can be described by Weyl spinors: in particular, neutrinos by left-handed Weyl spinors and antineutrinos by right-handed Weyl spinors.
 \end{example}
 
+\subsubsection{Dirac fields}
+
+Consider a theory with both a left-handed and a right-handed Weyl spinor: one can construct two new Lorentz scalars, $ \psi_\text{L}^\dagger \psi_\text{R} $ and $ \psi_\text{R}^\dagger \psi_\text{L} $, as from Eqq. \ref{eq:1.40}-\ref{eq:1.41} it is easy to check that $ \Lambda_\text{L}^\dagger \Lambda_\text{R} = \Lambda_\text{R}^\dagger \Lambda_\text{L} = \id $. Two real combinations are $ \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} $ and $ i (\psi_\text{L}^\dagger \psi_\text{R} - \psi_\text{R}^\dagger \psi_\text{L}) $: under parity $ \psi_\text{L} \leftrightarrow \psi_\text{R} $, so the former is a scalar and the latter a pseudoscalar. The Dirac Lagrangian then is:
+\begin{equation}
+  \mathcal{L}_\text{D} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L} + i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R} - m ( \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} )
+  \label{eq:1.83}
+\end{equation}
+This Lagrangian is invariant under parity, as $ \bar{\sigma}^\mu \pa_\mu \leftrightarrow \sigma^\mu \pa_\mu $ ($ \pa_i \mapsto - \pa_i $). Considering $ \psi_i $ and $ \psi_i^* $ independent, the variation w.r.t. the latter yields:
+\begin{equation}
+  i \bar{\sigma}^\mu \pa_\mu \psi_\text{L} = m \psi_\text{R}
+  \qquad \qquad
+  i \sigma^\mu \pa_\mu \psi_\text{R} = m \psi_\text{L}
+  \label{eq:1.84}
+\end{equation}
+which is the \textit{Dirac equation} in terms of Weyl spinors.
+
+\begin{proposition}{}{}
+  Dirac equation implies two massive Klein-Gordon equations.
+
+  \tcblower
+
+  \begin{proof}
+    Applying $ i \sigma^\mu \pa_\mu $ to the first equation:
+    \begin{equation*}
+      - \sigma^\mu \bar{\sigma}^\nu \pa_\mu \pa_\nu \psi_\text{L} = m i \sigma^\mu \pa_\mu \psi_\text{R} = m^2 \psi_\text{L}
+    \end{equation*}
+    Assuming $ \pa_\mu \pa_\nu = \pa_\nu \pa_\mu $, $ \sigma^\mu \bar{\sigma}^\nu $ can be replaced by $ \frac{1}{2} (\sigma^\nu \bar{\sigma}^\mu + \sigma^\nu \bar{\sigma}^\mu) = \frac{1}{2} (2 \eta^{\mu \nu}) = \eta^{\mu \nu} $, yielding the thesis.
+  \end{proof}
+\end{proposition}
+
+The $ m $ parameter can thus be interpreted as a mass, and now the two spinors are no longer helicity eigenstates. It is convenient to rewrite this theory in terms of a Dirac spinor, which defines the chiral representation:
+\begin{equation*}
+  \Psi =
+  \begin{pmatrix}
+    \psi_\text{L} \\
+    \psi_\text{R}
+  \end{pmatrix}
+\end{equation*}
+In this representation, the four $ \gamma $ matrices are introduced:
+\begin{equation*}
+  \gamma^\mu \defeq
+  \begin{bmatrix}
+    0 & \sigma^\mu \\
+    \bar{\sigma}^\mu & 0
+  \end{bmatrix}
+\end{equation*}
+
+\begin{proposition}{Clifford algebra}{}
+  The $ \gamma $ matrices satisfy the \textit{Clifford algebra}:
+  \begin{equation}
+    \{\gamma^\mu, \gamma^\nu\} = 2 \eta^{\mu \nu}
+    \label{eq:1.85}
+  \end{equation}
+\end{proposition}
+
+Introducing the Feynman slash notation, so that $ \slashed{A} \equiv \gamma^\mu A_\mu $, the Dirac equation can be rewritten as:
+\begin{equation}
+  (i \slashed{\pa} - m) \Psi = 0
+  \label{eq:1.86}
+\end{equation}
+Defining the \textit{Dirac adjoint} $ \bar{\Psi} \equiv \Psi^\dagger \gamma^0 $, which in the chiral representation simply is $ \bar{\Psi} = (\psi_\text{R}^\dagger, \psi_\text{L}^\dagger) $, the Dirac Lagrangian can be rewritten as:
+\begin{equation}
+  \mathcal{L}_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi
+  \label{eq:1.87}
+\end{equation}
+Another $ \gamma $ matrix is defined as $ \gamma^5 \defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $, which in the chiral representation is:
+\begin{equation*}
+  \gamma^5 =
+  \begin{bmatrix}
+    -1 & 0 \\ 0 & 1
+  \end{bmatrix}
+\end{equation*}
+This allows to define projectors on Weyl spinors:
+\begin{equation}
+  \frac{1 - \gamma^5}{2} \Psi =
+  \begin{pmatrix}
+    \psi_\text{L} \\ 0
+  \end{pmatrix}
+  \qquad \qquad
+  \frac{1 + \gamma^5}{2} \Psi =
+  \begin{pmatrix}
+    0 \\ \psi_\text{R}
+  \end{pmatrix}
+  \label{eq:1.88}
+\end{equation}
+
+\begin{proposition}{Unitary equivalence}{dirac-spin-trans}
+  Given a constant $ \tens{U} \in \C^{2 \times 2} : \tens{U}^\dagger = \tens{U}^{-1} $, then under $ \Psi \mapsto \tens{U} \Psi $ the Lagrangian is invariant for $ \gamma^\mu \mapsto \tens{U} \gamma^\mu \tens{U}^\dagger $.
+
+  \tcblower
+
+  \begin{proof}
+    Inserting $ \Psi' = \tens{U}^\dagger \Psi $ in the Dirac Lagrangian:
+    \begin{equation*}
+      \mathcal{L}'_\text{D} = \Psi'^\dagger \tens{U} \gamma^0 (i \gamma^\mu \pa_\mu - m) \tens{U}^\dagger \Psi' = \Psi'^\dagger \tens{U} \gamma^0 \tens{U}^\dagger (i \tens{U} \gamma^\mu \tens{U}^\dagger \pa_\mu - m) \Psi' = \bar{\Psi}' (i \gamma'^\mu \pa_\mu - m) \Psi'
+    \end{equation*}
+    where $ \bar{\Psi}' = \Psi'^\dagger \gamma'^0 $. The Lagrangian is thus unchanged.
+  \end{proof}
+\end{proposition}
+
+It can be shown that the Clifford algebra is invariant under the transformation in Prop. \ref{prop:dirac-spin-trans}, thus it defines an equivalent representation of the algebra.
+
+\paragraph{Solutions}
+
+The general solution to the Dirac equation is a superposition of plane waves, both with positive and negative-frequency modes:
+\begin{equation*}
+  \Psi(x) = u(p) e^{-i p_\mu x^\mu}
+  \qquad \qquad
+  \Psi(x) = v(p) e^{i p_\mu x^\mu}
+\end{equation*}
+where $ u(p) $ and $ v(p) $ are Dirac spinors, which in the chiral representation both have a left-handed and a right-handed Weyl spinor component. The Dirac equation than becomes:
+\begin{equation*}
+  \left( \slashed{p} - m \right) u(p) = 0
+  \qquad \qquad
+  \left( \slashed{p} + m \right) v(p) = 0
+\end{equation*}
+Considering the massive positive-frequency solution in the rest frame, i.e. $ p^\mu = (m, \ve{0}) $, one finds $ (\gamma^0 - 1) u(p) = 0 $, which yields $ u_\text{L} = u_\text{R} $: the KG equation imposes the mass-shell condition $ p^2 = m^2 $, but the Dirac equation, being a first-order equation, halves the number of independent degrees of freedom. A convenient normalization is:
+\begin{equation*}
+  u(p_0) = \sqrt{m}
+  \begin{pmatrix}
+    \xi \\ \xi
+  \end{pmatrix}
+\end{equation*}
+where $ \xi : \xi^\dagger \xi = 1 $ is a two-component spinor which gives the spin orientation of the solution: $ \xi = \binom{1}{0} $ for the spin-up solution and $ \xi = \binom{0}{1} $ for the spin-down one.\\
+The solution in a generic frame is obtained via a boost of the rest-frame solution, using transformation properties of left/right-handed spinors.
+
+\begin{proposition}{}{}
+  The solution to the Dirac equation in a generic frame where $ \ve{p} \parallel \ve{e}_z $ is given by:
+  \begin{equation}
+    u(p) =
+    \begin{pmatrix}
+      \left[ \sqrt{E + p^3}\, \frac{1 - \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 + \sigma^3}{2} \right] \xi \\
+      \left[ \sqrt{E + p^3}\, \frac{1 + \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 - \sigma^3}{2} \right] \xi \\
+    \end{pmatrix}
+    \label{eq:1.89}
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    Consider a boost along $ \ve{e}_z $, parametrized by rapidity $ \eta $, by Eq. \ref{eq:1.36}:
+    \begin{equation*}
+      \begin{pmatrix}
+        E \\ p^3
+      \end{pmatrix}
+      = \exp \left( \eta
+        \begin{bmatrix}
+          0 & 1 \\ 1 & 0
+        \end{bmatrix}
+      \right)
+      \begin{pmatrix}
+        m \\ 0
+      \end{pmatrix}
+      = \left( \tens{I}_2 \cosh \eta + \sigma_3 \sinh \eta \right)
+      \begin{pmatrix}
+        m \\ 0
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        m \cosh \eta \\ m \sinh \eta
+      \end{pmatrix}
+    \end{equation*}
+    By Eqq. \ref{eq:1.40}-\ref{eq:1.41}, then:
+    \begin{equation*}
+      \begin{split}
+        u(p) &= \exp \left( - \frac{\eta}{2}
+          \begin{bmatrix}
+            \sigma_3 & 0 \\ 0 & - \sigma_3
+          \end{bmatrix}
+        \right) \sqrt{m}
+        \begin{pmatrix}
+          \xi \\ \xi
+        \end{pmatrix} = \left(
+                  \begin{bmatrix}
+                  1 & 0 \\ 0 & 1
+                  \end{bmatrix}
+                  \cosh \frac{\eta}{2} -
+                  \begin{bmatrix}
+                    \sigma_3 & 0 \\ 0 & - \sigma_3
+                  \end{bmatrix}
+                  \sinh \frac{\eta}{2}
+                \right) \sqrt{m}
+                \begin{pmatrix}
+                  \xi \\ \xi
+                \end{pmatrix} \\
+             &=
+             \begin{bmatrix}
+               e^{\eta / 2}\, \frac{1 - \sigma^3}{2} + e^{- \eta/2}\, \frac{1 + \sigma^3}{2} & 0 \\
+               0 & e^{\eta / 2}\, \frac{1 + \sigma^3}{2} + e^{- \eta/2}\, \frac{1 - \sigma^3}{2}
+             \end{bmatrix}
+             \sqrt{m}
+             \begin{pmatrix}
+              \xi \\ \xi
+             \end{pmatrix}
+      \end{split}
+    \end{equation*}
+    By the above Lorentz boost of four-momentum $ E + p^3 = e^\eta m $ and $ E - p^3 = e^{-\eta} m $, which yields the thesis.
+  \end{proof}
+\end{proposition}
+
+It is convenient to work with specific spinors $ \xi $: a useful choice are eigenvectors of $ \sigma^3 $, in particular $ \xi^1 = \binom{1}{0} $ (spin-up) and $ \xi^2 = \binom{0}{1} $ (spin-down). In the ultra-relativistic (or massless) limit $ p^\mu \rightarrow (E, 0, 0, E) $, so $ u^1 $ has only the right-handed component and $ u^2 $ only the left-handed one.\\
+The negative-frequency solution is equivalent:
+\begin{equation}
+  v^s(p) =
+    \begin{pmatrix}
+      \left[ \sqrt{E + p^3}\, \frac{1 - \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 + \sigma^3}{2} \right] \eta^s \\
+      - \left[ \sqrt{E + p^3}\, \frac{1 + \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 - \sigma^3}{2} \right] \eta^s \\
+    \end{pmatrix}
+  \label{eq:1.90}
+\end{equation}
+where the spin states are the same: $ \eta^s = \binom{1}{0} $ and $ \eta^s = \binom{0}{1} $.\\
+Recalling the Dirac adjoint $ \bar{u}^s(p) = u^{s \dagger}(p) \gamma^0 , \bar{v}^s(p) = v^{s \dagger}(p) \gamma^0 $ and the normalization choice $ \xi^{r \dagger} \xi^s = \delta^{rs} , \eta^{r \dagger} \eta^s = \delta^{rs} $, several properties follow:
+\begin{equation}
+  \bar{u}^r(p) u^s(p) = 2m \delta^{rs}
+  \qquad \qquad
+  \bar{v}^r(p) v^s(p) = -2m \delta^{rs}
+  \label{eq:1.91}
+\end{equation}
+\begin{equation}
+  u^{r \dagger}(p) u^s(p) = 2E_\ve{p} \delta^{rs}
+  \qquad \qquad
+  v^{r \dagger}(p) v^s(p) = 2E_\ve{p} \delta^{rs}
+  \label{eq:1.92}
+\end{equation}
+\begin{equation}
+  \bar{u}^r(p) v^s(p) = 0
+  \qquad \qquad
+  \bar{v}^r(p) u^s(p) = 0
+  \label{eq:1.93}
+\end{equation}
+Note that $ \bar{u}u \in \C $, while $ u\bar{u} \in \C^{4 \times 4} $.
+
+\begin{proposition}{Spinor sums}{}
+  The sum over possible polarizations of a fermion yields:
+  \begin{equation}
+    \sum_s u^s(p) \bar{u}^s(p) = \slashed{p} + m
+    \qquad \qquad
+    \sum_s v^s(p) \bar{v}^s(p) = \slashed{p} - m
+    \label{eq:1.94}
+  \end{equation}
+\end{proposition}
+
 
 
 
