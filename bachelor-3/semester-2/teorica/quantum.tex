@@ -1,0 +1,225 @@
+\selectlanguage{english}
+
+\section{Scalar fields}
+
+As for the quantization of a classical system in Quantum Mechanics, the quantization of a scalar field theory is performed promoting $ \phi(t,\ve{x}) $ and $ \Pi(t,\ve{x}) $ to hermitian operators in the Heisenberg picture and imposing the canonical equal-time commutation relation:
+\begin{equation}
+  [\phi(t,\ve{x}) , \Pi(t,\ve{y})] = i \delta^{(3)}(\ve{x} - \ve{y})
+  \label{eq:2.1}
+\end{equation}
+while of course $ [\phi(t,\ve{x}) , \phi(t,\ve{y})] = [\Pi(t,\ve{x}) , \Pi(t,\ve{y})] = 0 $.
+
+\subsection{Real scalar fields}
+
+A real scalar field is promoted to a real hermitian operator. In particular, by Eq. \ref{eq:1.70}:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:2.2}
+\end{equation}
+In terms of creation and annihilation operators, the commutator Eq. \ref{eq:2.1} reads:
+\begin{equation}
+  [a_\ve{p} , a_\ve{p}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
+  \label{eq:2.3}
+\end{equation}
+while $ [a_\ve{p} , a_\ve{q}] = [a_\ve{p}^\dagger , a_\ve{q}^\dagger] = 0 $. These can be regarded as the creation and annihilation operators of a collection of harmonic oscillators, one for each value of the momentum $ \ve{p} $: the \textit{Fock space} of the real scalar field can thus be constructed analogously to the Hilbert space of the harmonic oscillator.\\
+Defining the \textit{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \ve{p} $, suitably normalized as $ \braket{0 | 0} = 1 $, the generic state of the Fock space is:
+\begin{equation}
+  \ket{\ve{p}_1 , \dots , \ve{p}_n} = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}}\, a_{\ve{p}_1}^\dagger \dots a_{\ve{p}_n}^\dagger \ket{0}
+  \label{eq:2.4}
+\end{equation}
+
+\begin{proposition}{Normalization}{}
+  For one-particle states:
+  \begin{equation}
+    \braket{\ve{p}_1 | \ve{p}_2} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
+    \label{eq:2.5}
+  \end{equation}
+
+  \begin{proof}
+    By Eq. \ref{eq:2.3}:
+    \begin{equation*}
+      \braket{\ve{p}_1 | \ve{p}_2} = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | a_{\ve{p}_1} a_{\ve{p}_2}^\dagger | 0}
+      = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | [a_{\ve{p}_1} , a_{\ve{p}_2}^\dagger] | 0} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
+    \end{equation*}
+  \end{proof}
+\end{proposition}
+
+\begin{lemma}{}{}
+  The combination $ E_\ve{p} \delta^{(3)}(\ve{p} - \ve{q}) $ is Lorentz invariant.
+
+  \tcblower
+
+  \begin{proof}
+    Recall that:
+    \begin{equation}
+      \delta(f(x) - f(x_0)) = \frac{1}{\abs{f'(x_0)}} \delta(x - x_0)
+      \label{eq:2.6}
+    \end{equation}
+    A Lorentz boost along $ \ve{e}_i $ yields $ p'_i = \gamma (p_i + \beta E) $ and $ E' = \gamma (E + \beta p_i) $, so:
+    \begin{equation*}
+        \delta^{(3)}(\ve{p} - \ve{q})
+        = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\dd p'_i}{\dd p_i}
+        = \delta^{(3)}(\ve{p}' - \ve{q}') \gamma \left( 1 + \beta \frac{\dd E}{\dd p_i} \right)
+    \end{equation*}
+    Note that $ p^2 = E^2 - \ve{p}^2 $ is a Lorentz invariant, thus $ E \dd E = p_i \dd p_i $, so:
+    \begin{equation*}
+      \delta^{(3)}(\ve{p} - \ve{q})
+      = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\gamma (E + \beta p_i}{E}
+      = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{E'}{E}
+    \end{equation*}
+  \end{proof}
+\end{lemma}
+
+This explains the choice of normalization.
+
+\begin{proposition}{Hamiltonian}{}
+  The Hamiltonian of a real scalar field can be written as:
+  \begin{equation}
+    H = \int \frac{\dd^3 p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + \frac{1}{2} [a_\ve{p} , a_\ve{p}^\dagger] \right)
+    \label{eq:2.7}
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    First of all, from Eq. \ref{eq:2.2}:
+    \begin{equation*}
+      \begin{split}
+        \Pi(t,\ve{x}) = \pa_0 \phi(t,\ve{x})
+        &= -i \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} - a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
+        &= -i \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+      \end{split}
+    \end{equation*}
+    \begin{equation*}
+      \nabla \phi(t,\ve{x}) = i \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+    \end{equation*}
+    Inserting these expressions in Eq. \ref{eq:1.71}:
+    \begin{equation*}
+      \begin{split}
+        \mathcal{H}
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \frac{\dd^3 q}{(2\pi)^3} \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{i E_{\ve{q}} t} \right] + \\
+        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] \bigg\} e^{i (\ve{p} + \ve{q}) \cdot \ve{x}}
+      \end{split}
+    \end{equation*}
+    Recall the identity:
+    \begin{equation}
+      \int \frac{\dd^3x}{(2\pi)^3} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} = \delta^{(3)}(\ve{p} - \ve{q})
+      \label{eq:2.8}
+    \end{equation}
+    Then (using $ E_{-\ve{p}} = E_\ve{p} $):
+    \begin{equation*}
+      \begin{split}
+        H
+        &= \int \dd^3x\, \mathcal{H} \\
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \dd^3 q \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] + \\
+        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] \bigg\} \delta^{(3)}(\ve{p} + \ve{q}) \\
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \bigg\{ - \frac{E_\ve{p}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-i E_\ve{p} t} - a_\ve{p}^\dagger e^{i E_\ve{p} t} \right] + \\
+        & \qquad + \frac{\ve{p}^2 + m^2}{2E_\ve{p}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-i E_\ve{p} t} + a_\ve{p}^\dagger e^{i E_\ve{p} t} \right] \bigg\} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \frac{E_\ve{p}}{2} \bigg\{ - \left[ a_\ve{p} a_{-\ve{p}} e^{-2i E_\ve{p} t} - a_{-\ve{p}}^\dagger a_{-\ve{p}} - a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2i E_\ve{p} t} \right] \\
+        & \qquad + \left[ a_\ve{p} a_{-\ve{p}} e^{-2i E_\ve{p} t} + a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2i E_\ve{p} t} \right] \bigg\} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left[ a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger \right] = \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proposition}
+
+The second term in the Hamiltonian Eq. \ref{eq:2.7} is the sum of the zero-point energy of all oscillators and is proportional to $ (2\pi)^3 \delta^{(3)}(0) \rightarrow V $, thus:
+\begin{equation*}
+  E_\text{vac} = \frac{V}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p}
+\end{equation*}
+This energy shows two divergences: the one coming from the infinite-volume limit (i.e. small momentum), regularized introducing an \textit{infrared cutoff} in the form of a finite volume, and the one from the ultra-relativistic limit (i.e. large momentum), regularized introducing an \textit{ultraviolet cutoff} in the form of a maximum momentum $ \Lambda $. These divergences are retained in the expression for $ E_\text{vac} $, as $ E_\text{vac} \sim V $ and $ E_\text{vac} \sim \Lambda^4 $, but can be ignored (when ignoring gravity) since experiments are only sensitive to energy differences.\\
+Discarding the zero-point energy, the Hamiltonian becomes:
+\begin{equation}
+  H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} a_\ve{p}^\dagger a_\ve{p} \equiv \mathcal{N} \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
+  \label{eq:2.9}
+\end{equation}
+where the \textit{normal ordering operator} $ \mathcal{N} $ was introduced, which acts by moving all creation operators to the left and all annihilation operators to the right (ex.: $ \mathcal{N} a_\ve{p} a_\ve{p}^\dagger = a_\ve{p}^\dagger a_\ve{p} $). It is now straightforward to compute the energy of a generic state in the Fock space, as $ a_\ve{p}^\dagger a_\ve{p} $ is just a number operator:
+\begin{equation}
+  H \ket{\ve{p}_1 , \dots , \ve{p}_n} = \left( E_{\ve{p}_1} + \dots + E_{\ve{p}_n} \right) \ket{\ve{p}_1 , \dots , \ve{p}_n}
+  \label{eq:2.10}
+\end{equation}
+Computing the spatial momentum from Eq. \ref{eq:1.67} as $ P^i = \mathcal{N} \int \dd^3x\, \theta^{0i} = \int \dd^3x\, \mathcal{N} \pa_0 \phi \pa^i \phi $:
+\begin{equation}
+  P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i a_\ve{p}^\dagger a_\ve{p}
+  \label{eq:2.11}
+\end{equation}
+Therefore, the state $ a_\ve{p}^\dagger \ket{0} $ can correctly be interpreted as a one-particle state with momentum $ \ve{p} $, mass $ m $ and energy $ E_\ve{p} = \sqrt{\ve{p}^2 + m^2} $. The generic state in the Fock space is a multiparticle state, with total energy and momentum the sum of the individual energies and momenta.\\
+Finally, note that creation operators commute between themselves, hence multiparticle states are symmetric under exchange of pairs of particles, i.e. they obey the Bose-Einstein statistics: this agrees with the fact that quanta of a scalar field have no intrinsic spin. i.e. are spin-0 particles.
+
+\subsection{Complex scalar fields}
+
+When considering a complex scalar field, Eq. \ref{eq:1.78} becomes:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]
+  \label{eq:2.12}
+\end{equation}
+\begin{equation}
+  \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{i p_\mu x^\mu} + b_\ve{p} e^{-i p_\mu x^\mu} \right]
+  \label{eq:2.13}
+\end{equation}
+Now there are two independent sets of creation/annihilation operators, which obey the canonical commutation relation:
+\begin{equation}
+  [a_\ve{p} , a_\ve{q}^\dagger] = [b_\ve{p} , b_\ve{q}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
+  \label{eq:2.14}
+\end{equation}
+with all other commutators vanishing. The Fock space is constructed by defining a vacuum state $ \ket{0} : a_\ve{p} \ket{0} = b_\ve{p} \ket{0} = 0 $ and then acting repeatedly with both creation operators. With normal ordering, one finds:
+\begin{equation}
+  H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + b_\ve{p}^\dagger b_\ve{p} \right)
+  \label{eq:2.15}
+\end{equation}
+\begin{equation}
+  P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i \left( a_\ve{p}^\dagger a_\ve{p} + b_\ve{p}^\dagger b_\ve{p} \right)
+  \label{eq:2.16}
+\end{equation}
+The quanta of a complex scalar field are given by two different species of particles with the same mass.
+
+\begin{proposition}{$ \Un{1} $ charge}{}
+  The $ \Un{1} $ charge of the quantized complex scalar field is:
+  \begin{equation}
+    Q_{\Un{1}} = \int \frac{\dd^3p}{(2\pi)^3} \left( a_\ve{p}^\dagger a_\ve{p} - b_\ve{p}^\dagger b_\ve{p} \right)
+    \label{eq:2.17}
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    By Eq. \ref{eq:1.79}:
+    \begin{equation*}
+      \begin{split}
+        Q_{\Un{1}}
+        &= i \int \dd^3x\, \phi^\dagger \smlra{\pa_0} \phi = i \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \pa_0 \left( a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right) + \\
+        & \quad - \pa_0 \left( a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right) \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\}
+      \end{split}
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        Q_{\Un{1}}
+        &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} - b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] + \\
+        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} - b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
+        &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i E_\ve{q} t} + b_{-\ve{q}} e^{-i E_\ve{q} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] + \\
+        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i E_\ve{q} t} - b_{-\ve{q}} e^{-i E_\ve{q} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \bigg\} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \bigg\{ \left[ a_\ve{p}^\dagger e^{i E_\ve{p} t} + b_{-\ve{p}} e^{-i E_\ve{p} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] + \\
+        & \quad + \left[ a_\ve{p}^\dagger e^{i E_\ve{p} t} - b_{-\ve{p}} e^{-i E_\ve{p} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \bigg\} \\
+        &= \int \frac{\dd^3p}{(2\pi)^3} \left[ a_\ve{p}^\dagger a_\ve{p} - b_{-\ve{p}} b_{-\ve{p}}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \left( a_\ve{p}^\dagger a_\ve{p} - b_\ve{p} b_\ve{p}^\dagger \right)
+      \end{split}
+    \end{equation*}
+    Applying normal ordering yields the thesis.
+  \end{proof}
+\end{proposition}
+
+While normal ordering was justified when considering the Hamiltonian on the grounds that the vacuum energy is unobservable, a charged vacuum would have observable effects; however when promoting $ \phi $ to a quantum operator, the expression $ \phi^\dagger \smlra{\pa_0} \phi $ presents an ordering ambiguity (ex.: $ \phi^\dagger (\pa_0 \phi) $ or $ (\pa_0 \phi) \phi^\dagger $), which is removed requiring the charge of the vacuum to vanish.\\
+Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \textit{antiparticles}.\\
+For a real scalar field, the reality condition reads $ a_\ve{p} = b_\ve{p} $, thus it describes a field whose particle is its own antiparticle, and it is symmetric under any $ \Un{1} $ symmetry.
+
+
+
+
+
+
+
+
+
+

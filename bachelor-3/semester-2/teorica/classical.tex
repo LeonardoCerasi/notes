@@ -424,7 +424,7 @@ Note that the generators $ K^i $ are not hermitian, as expected from Prop. \ref{
 \end{definition}
 
 By Prop. \ref{prop:weyl-spin-par}, charge conjugation changes transforms a left-handed Weyl spinor into a right-handed one and vice versa. Moreover, the $ i $ factor ensures that applying this operator twice yields the identity operator.\\
-$ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is a 4-dimensional complex representation: as $ j = 0,1 $, this representation acts on complex 4-vectors of the form $ \left( (\psi_\text{L})_\alpha, (\xi_\text{R})_\beta \right) \in \C^4 $, called \textit{Dirac spinors}, and $ \Lambda = \diag \left( \Lambda_\text{L}, \Lambda_\text{R} \right) \in \C^{4 \times 4} $. To explicit this relation, set $ \psi_\text{R} \equiv i \sigma^2 \psi_\text{L}^* $, $ \xi_\text{L} \equiv -i \sigma^2 \xi_\text{R}^* $ and $ \sigma^\mu \equiv \left( 1, \boldsymbol{\sigma} \right) $, $ \bar\sigma^\mu \equiv \left( 1, -\boldsymbol{\sigma} \right) $: it can be shown, then, that $ \xi_\text{R}^\dagger \sigma^\mu \psi_\text{R} $ and $ \xi_\text{L}^\dagger \bar\sigma^\mu \psi_\text{L} $ are contravariant 4-vectors. Although these 4-vectors are complex by construction, being the matrix $ \tensor{\Lambda}{^\mu_\nu} $ which represents the Lorentz transformation of a 4-vector real, a reality condition $ v_\mu^* = v_\mu $ is Lorentz invariant.
+$ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is a 4-dimensional complex representation: as $ j = 0,1 $, this representation acts on complex 4-vectors of the form $ \Psi = \left( (\psi_\text{L})_\alpha, (\xi_\text{R})_\beta \right) \in \C^4 $, called \textit{Dirac spinors}, and $ \Lambda_\text{D} = \diag \left( \Lambda_\text{L}, \Lambda_\text{R} \right) \in \C^{4 \times 4} $. To explicit this relation, set $ \psi_\text{R} \equiv i \sigma^2 \psi_\text{L}^* $, $ \xi_\text{L} \equiv -i \sigma^2 \xi_\text{R}^* $ and $ \sigma^\mu \equiv \left( 1, \boldsymbol{\sigma} \right) $, $ \bar\sigma^\mu \equiv \left( 1, -\boldsymbol{\sigma} \right) $: it can be shown, then, that $ \xi_\text{R}^\dagger \sigma^\mu \psi_\text{R} $ and $ \xi_\text{L}^\dagger \bar\sigma^\mu \psi_\text{L} $ are contravariant 4-vectors. Although these 4-vectors are complex by construction, being the matrix $ \tensor{\Lambda}{^\mu_\nu} $ which represents the Lorentz transformation of a 4-vector real, a reality condition $ v_\mu^* = v_\mu $ is Lorentz invariant.
 
 \paragraph{Parity}
 
@@ -909,7 +909,7 @@ The energy-momentum tensor can be computed from Eq. \ref{eq:1.66}, noting that o
 Moreover, note that the Lagrangian is invariant under a global $ \Un{1} $ internal transformation with Noether currents and conserved charges:
 \begin{align*}
   j^\mu &= \psi_\text{L}^\dagger \bar{\sigma}^\mu \psi_\text{L} & j^\mu &= \psi_\text{R}^\dagger \sigma^\mu \psi_\text{R} \\
-  Q_\Un{1} &= \int \dd^3x\, \psi_\text{L}^\dagger \psi_\text{L} & Q_\Un{1} &= \int \dd^3x\, \psi_\text{R}^\dagger \psi_\text{R}
+  Q_{\Un{1}} &= \int \dd^3x\, \psi_\text{L}^\dagger \psi_\text{L} & Q_{\Un{1}} &= \int \dd^3x\, \psi_\text{R}^\dagger \psi_\text{R}
 \end{align*}
 Weyl Lagrangians are not invariant under parity, as $ \psi_\text{L} \leftrightarrow \psi_\text{R} $.
 
@@ -986,10 +986,10 @@ Another $ \gamma $ matrix is defined as $ \gamma^5 \defeq i \gamma^0 \gamma^1 \g
 \begin{equation*}
   \gamma^5 =
   \begin{bmatrix}
-    -1 & 0 \\ 0 & 1
+    -\tens{I}_2 & 0 \\ 0 & \tens{I}_2
   \end{bmatrix}
 \end{equation*}
-This allows to define projectors on Weyl spinors:
+This hermitian matrix has properties $ (\gamma^5)^2 = \tens{I}_4 $ and $ \{\gamma^5, \gamma^\mu\} = 0 $, and allows to define projectors on Weyl spinors:
 \begin{equation}
   \frac{1 - \gamma^5}{2} \Psi =
   \begin{pmatrix}
@@ -1003,7 +1003,7 @@ This allows to define projectors on Weyl spinors:
   \label{eq:1.88}
 \end{equation}
 
-\begin{proposition}{Unitary equivalence}{dirac-spin-trans}
+\begin{proposition}{Unitary equivalence}{dirac-unit-eq}
   Given a constant $ \tens{U} \in \C^{2 \times 2} : \tens{U}^\dagger = \tens{U}^{-1} $, then under $ \Psi \mapsto \tens{U} \Psi $ the Lagrangian is invariant for $ \gamma^\mu \mapsto \tens{U} \gamma^\mu \tens{U}^\dagger $.
 
   \tcblower
@@ -1017,7 +1017,7 @@ This allows to define projectors on Weyl spinors:
   \end{proof}
 \end{proposition}
 
-It can be shown that the Clifford algebra is invariant under the transformation in Prop. \ref{prop:dirac-spin-trans}, thus it defines an equivalent representation of the algebra.
+It can be shown that the Clifford algebra is invariant under the transformation in Prop. \ref{prop:dirac-unit-eq}, thus it defines an equivalent representation of the algebra.
 
 \paragraph{Solutions}
 
@@ -1048,8 +1048,12 @@ The solution in a generic frame is obtained via a boost of the rest-frame soluti
   \begin{equation}
     u(p) =
     \begin{pmatrix}
-      \left[ \sqrt{E + p^3}\, \frac{1 - \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 + \sigma^3}{2} \right] \xi \\
-      \left[ \sqrt{E + p^3}\, \frac{1 + \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 - \sigma^3}{2} \right] \xi \\
+      \begin{bmatrix}
+        \sqrt{E - p^3} & 0 \\ 0 & \sqrt{E + p^3}
+      \end{bmatrix} \xi \\
+      \begin{bmatrix}
+        \sqrt{E + p^3} & 0 \\ 0 & \sqrt{E - p^3}
+      \end{bmatrix} \xi
     \end{pmatrix}
     \label{eq:1.89}
   \end{equation}
@@ -1070,7 +1074,15 @@ The solution in a generic frame is obtained via a boost of the rest-frame soluti
       \begin{pmatrix}
         m \\ 0
       \end{pmatrix}
-      = \left( \tens{I}_2 \cosh \eta + \sigma_3 \sinh \eta \right)
+      = \left(
+        \begin{bmatrix}
+          1 & 0 \\ 0 & 1
+        \end{bmatrix}
+      \cosh \eta +
+        \begin{bmatrix}
+          0 & 1 \\ 1 & 0
+        \end{bmatrix}
+      \sinh \eta \right)
       \begin{pmatrix}
         m \\ 0
       \end{pmatrix}
@@ -1079,7 +1091,7 @@ The solution in a generic frame is obtained via a boost of the rest-frame soluti
         m \cosh \eta \\ m \sinh \eta
       \end{pmatrix}
     \end{equation*}
-    By Eqq. \ref{eq:1.40}-\ref{eq:1.41}, then:
+    Thus, $ E + p^3 = e^\eta m $ and $ E - p^3 = e^{-\eta} m $. By Eqq. \ref{eq:1.40}-\ref{eq:1.41}, then:
     \begin{equation*}
       \begin{split}
         u(p) &= \exp \left( - \frac{\eta}{2}
@@ -1110,22 +1122,40 @@ The solution in a generic frame is obtained via a boost of the rest-frame soluti
              \sqrt{m}
              \begin{pmatrix}
               \xi \\ \xi
+             \end{pmatrix} \\
+             &=
+             \begin{bmatrix}
+               \sqrt{E + p^3} \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix} + \sqrt{E - p^3} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} & 0 \\
+               0 & \sqrt{E + p^3} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} + \sqrt{E - p^3} \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}
+             \end{bmatrix}
+             \begin{pmatrix}
+              \xi \\ \xi
              \end{pmatrix}
       \end{split}
     \end{equation*}
-    By the above Lorentz boost of four-momentum $ E + p^3 = e^\eta m $ and $ E - p^3 = e^{-\eta} m $, which yields the thesis.
   \end{proof}
 \end{proposition}
+
+This expression can be generalized for an arbitrary direction of $ \ve{p} $:
+\begin{equation}
+  u^s(p) =
+  \begin{pmatrix}
+    \sqrt{p_\mu \sigma^\mu} \xi^s \\
+    \sqrt{p_\mu \bar{\sigma}^\mu} \xi^s
+  \end{pmatrix}
+  \label{eq:1.90}
+\end{equation}
+where the square root of a matrix is understood as taking the positive square root of its eigenvalues, and the polarization of $ \xi^s $ is made explicit.
 
 It is convenient to work with specific spinors $ \xi $: a useful choice are eigenvectors of $ \sigma^3 $, in particular $ \xi^1 = \binom{1}{0} $ (spin-up) and $ \xi^2 = \binom{0}{1} $ (spin-down). In the ultra-relativistic (or massless) limit $ p^\mu \rightarrow (E, 0, 0, E) $, so $ u^1 $ has only the right-handed component and $ u^2 $ only the left-handed one.\\
 The negative-frequency solution is equivalent:
 \begin{equation}
   v^s(p) =
     \begin{pmatrix}
-      \left[ \sqrt{E + p^3}\, \frac{1 - \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 + \sigma^3}{2} \right] \eta^s \\
-      - \left[ \sqrt{E + p^3}\, \frac{1 + \sigma^3}{2} + \sqrt{E - p^3}\, \frac{1 - \sigma^3}{2} \right] \eta^s \\
+      \sqrt{p_\mu \sigma^\mu} \xi^s \\
+      -\sqrt{p_\mu \bar{\sigma}^\mu} \xi^s
     \end{pmatrix}
-  \label{eq:1.90}
+  \label{eq:1.91}
 \end{equation}
 where the spin states are the same: $ \eta^s = \binom{1}{0} $ and $ \eta^s = \binom{0}{1} $.\\
 Recalling the Dirac adjoint $ \bar{u}^s(p) = u^{s \dagger}(p) \gamma^0 , \bar{v}^s(p) = v^{s \dagger}(p) \gamma^0 $ and the normalization choice $ \xi^{r \dagger} \xi^s = \delta^{rs} , \eta^{r \dagger} \eta^s = \delta^{rs} $, several properties follow:
@@ -1133,19 +1163,25 @@ Recalling the Dirac adjoint $ \bar{u}^s(p) = u^{s \dagger}(p) \gamma^0 , \bar{v}
   \bar{u}^r(p) u^s(p) = 2m \delta^{rs}
   \qquad \qquad
   \bar{v}^r(p) v^s(p) = -2m \delta^{rs}
-  \label{eq:1.91}
+  \label{eq:1.92}
 \end{equation}
 \begin{equation}
   u^{r \dagger}(p) u^s(p) = 2E_\ve{p} \delta^{rs}
   \qquad \qquad
   v^{r \dagger}(p) v^s(p) = 2E_\ve{p} \delta^{rs}
-  \label{eq:1.92}
+  \label{eq:1.93}
 \end{equation}
 \begin{equation}
   \bar{u}^r(p) v^s(p) = 0
   \qquad \qquad
   \bar{v}^r(p) u^s(p) = 0
-  \label{eq:1.93}
+  \label{eq:1.94}
+\end{equation}
+\begin{equation}
+  \bar{u}^r(p) \gamma^\mu u^s(p) = 2 p^\mu \delta^{rs}
+  \qquad \qquad
+  \bar{v}^r(p) \gamma^\mu v^s(p) = 2 p^\mu \delta^{rs}
+  \label{eq:1.95}
 \end{equation}
 Note that $ \bar{u}u \in \C $, while $ u\bar{u} \in \C^{4 \times 4} $.
 
@@ -1155,9 +1191,91 @@ Note that $ \bar{u}u \in \C $, while $ u\bar{u} \in \C^{4 \times 4} $.
     \sum_s u^s(p) \bar{u}^s(p) = \slashed{p} + m
     \qquad \qquad
     \sum_s v^s(p) \bar{v}^s(p) = \slashed{p} - m
-    \label{eq:1.94}
+    \label{eq:1.96}
+  \end{equation}
+  
+  \tcblower
+
+  \begin{proof}
+    Using $ \sum_{s = 1,2} \xi^s \xi^{s \dagger} = \tens{I}_2 $:
+    \begin{equation*}
+      \begin{split}
+        \sum_s u^s(p) \bar{u}^s(p)
+        &= \sum_s
+        \begin{pmatrix} \sqrt{p_\mu \sigma^\mu} \xi^s \\ \sqrt{p_\mu \bar{\sigma}^\mu} \xi^s \end{pmatrix}
+        \begin{pmatrix} \xi^{s \dagger} \sqrt{p_\mu \bar{\sigma}^\mu} & \xi^{s \dagger} \sqrt{p_\mu \sigma^\mu} \end{pmatrix} \\
+        &=
+        \begin{bmatrix}
+          \sqrt{p_\mu \sigma^\mu} \sqrt{p_\mu \bar{\sigma}^\mu} & \sqrt{p_\mu \sigma^\mu} \sqrt{p_\mu \sigma^\mu} \\
+          \sqrt{p_\mu \bar{\sigma}^\mu} \sqrt{p_\mu \bar{\sigma}^\mu} & \sqrt{p_\mu \bar{\sigma}^\mu} \sqrt{p_\mu \sigma^\mu} \\
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+          m & p_\mu \sigma^\mu \\ p_\mu \bar{\sigma}^\mu & m
+        \end{bmatrix}
+      \end{split}
+    \end{equation*}
+    where the identity $ (p_\mu \sigma^\mu) (p_\mu \bar{\sigma}^\mu) = p^2 = m^2 $ was used.
+  \end{proof}
+\end{proposition}
+
+\paragraph{Dirac bilinears}
+
+Expressions of the form $ \bar{\Psi} \Gamma \Psi $, with constant $ \Gamma \in \C^{4 \times 4} $, are known as \textit{Dirac bilinears}, and their properties can be studied by expressing $ \Gamma $ on a particular basis of $ \C^{4 \times 4} $, given by the $ 16 $ matrices:
+\begin{align*}
+  & \tens{I}_4 & \text{1 matrix}\,\,\,\, \\
+  & \gamma^\mu & \text{4 matrices} \\
+  & \gamma^{\mu \nu} \equiv \frac{1}{2} [\gamma^\mu, \gamma^\nu] \equiv \gamma^{[\mu} \gamma^{\nu]} \equiv -i \sigma^{\mu \nu} & \text{6 matrices} \\
+  & \gamma^{\mu \nu \rho} \equiv \gamma^{[\mu} \gamma^\nu \gamma^{\rho]} = i \epsilon^{\mu \nu \rho \sigma} \gamma_\sigma \gamma^5 & \text{4 matrices} \\
+  & \gamma^{\mu \nu \rho \sigma} \equiv \gamma^{[\mu} \gamma^\nu \gamma^\rho \gamma^{\sigma]} = - i \epsilon^{\mu \nu \rho \sigma} \gamma^5 & \text{1 matrix}\,\,\,\,
+\end{align*}
+The most general fermion bilinear is a linear combination of these basis bilinears:
+\begin{equation*}
+  \bar{\Psi} \Psi
+  \qquad
+  \bar{\Psi} \gamma^\mu \Psi
+  \qquad
+  \bar{\Psi} \gamma^5 \Psi
+  \qquad
+  \bar{\Psi} \gamma^5 \gamma^\mu \Psi
+  \qquad
+  \bar{\Psi} \sigma^{\mu \nu} \Psi
+\end{equation*}
+According to their transformation relations under the Lorentz group, these bilears are respectively called scalar, vector, pseudo-scalar, pseudo-vector and tensor bilinear.
+
+\begin{proposition}{Lorentz transformations}{}
+  In the chiral representation, the Lorentz transformation $ \Psi \mapsto \Lambda_\text{D} \Psi $ is represented as:
+  \begin{equation}
+    \Lambda_\text{D} = \exp \left[ - \frac{i}{4} \omega_{\mu \nu} \sigma^{\mu \nu} \right]
+    \label{eq:1.97}
   \end{equation}
 \end{proposition}
+
+This representation of the Lorentz transformation obeys unitary equivalence (Prop. \ref{prop:dirac-unit-eq}).
+
+\paragraph{Chiral symmetry}
+
+Consider the massless Dirac Lagrangian. In this case, the action has two global internal symmetries:
+\begin{equation*}
+  \psi_\text{L} \mapsto e^{i \theta_\text{L}} \psi_\text{L}
+  \qquad \qquad
+  \psi_\text{R} \mapsto e^{i \theta_\text{R}} \psi_\text{R}
+\end{equation*}
+Therefore, this theory is symmetric under $ \Un{1} \times \Un{1} $. These can be rewritten as two distinct transformations of the Dirac spinor:
+\begin{equation}
+  \Psi \mapsto e^{i \alpha} \Psi
+  \label{eq:1.98}
+\end{equation}
+\begin{equation}
+  \Psi \mapsto e^{i \beta \gamma^5} \Psi
+  \label{eq:1.99}
+\end{equation}
+where $ \alpha \equiv \theta_\text{L} = \theta_\text{R} $ and $ \beta \equiv - \theta_\text{L} = \theta_\text{R} $ respectively (to prove that the latter is a symmetry, from $ \{\gamma^5, \gamma^\mu\} = 0 $ it follows that $ \gamma^\mu e^{i \beta \gamma^5} = e^{-i \beta \gamma^5} \gamma^\mu $). The former symmetry is called the vector $ \Un{1}_\text{V} $ symmetry, with conserved Noether current the \textit{vector current} $ j^\mu_\text{V} \defeq \bar{\Psi} \gamma^\mu \Psi $, while the latter is called the axial $ \Un{1}_\text{A} $ symmetry, with conserved \textit{axial current} $ j^\mu_\text{A} \defeq \bar{\Psi} \gamma^\mu \gamma^5 \Psi $.\\
+While the vector symmetry is always a symmetry of the Dirac field, the axial symmetry is only for the massless Dirac field, as:
+\begin{equation}
+  \pa_\mu j^\mu_\text{A} = 2 i m \bar{\Psi} \gamma^5 \Psi
+  \label{eq:1.100}
+\end{equation}
 
 
 
