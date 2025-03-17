@@ -99,10 +99,10 @@ Per quanto riguarda la funzione d'onda radiale $ R_{n_r,\ell}(r) $, essa ha la f
 \begin{equation}
 	R_{n,\ell}(r) = \mathcal{N} (kr)^\ell L_{n+\ell}^{2\ell + 1}(kr) e^{-\frac{1}{2} kr}
 	\qquad
-	k \equiv \frac{2Z \mu}{a_0 m_e} \frac{1}{n}
+	k \equiv \frac{2Z}{a} \frac{1}{n}
 	\label{eq:1.5}
 \end{equation}
-dove $ L_{n+\ell}^{2\ell+1}(kr) $ è il polinomio di Laguerre, un polinomio di grado $ n - \ell - 1 $ (con termine noto non-nullo) che presenta un numero di nodi pari a $ n - \ell - 1 $. Si vedono subito i due limiti:
+dove $ L_{n+\ell}^{2\ell+1}(kr) $ è il polinomio di Laguerre, un polinomio di grado $ n - \ell - 1 $ (con termine noto non-nullo) che presenta un numero di nodi pari a $ n - \ell - 1 $, ed $ a \equiv \frac{m_e}{\mu} a_0 $ è la mass-rescaled atomic length. Si vedono subito i due limiti:
 \begin{equation*}
 	\lim_{r \rightarrow 0} R_{n,\ell}(r) \sim r^\ell
 	\qquad \qquad
@@ -117,7 +117,7 @@ La probabilità $ P_{n,0,0}(\ve{r}) $ ha un massimo assoluto in $ \ve{r} = \ve{0
 Si osserva inoltre che, all'aumentare di $ Z $, il massimo di $ \abs{R_{n,\ell}(r)}^2 $ e dunque di $ P_{n,\ell,m}(\ve{r}) $ si sposta verso l'origine\footnote{In particolare $ R_{n,\ell}^{[Z]}(r) = Z^{3/2} R_{n,\ell}^{[1]}(rZ) $, quindi $ P_{n,\ell,m}^{[Z]}(r) = Z P^{[1]}(rZ) $.}: ciò implica che la distanza elettrone-nucleo è $ \propto Z^{-1} $, dunque, dato che $ V \propto Z/r $, si trova l'andamento dell'energia $ E \propto Z^2 $.\\
 La funzione d'onda più semplice, quello dello stato $ 1\ch{s} $, si trova essere:
 \begin{equation}
-	\psi_{1,0,0}(\ve{r}) = \frac{1}{\sqrt{\pi}} \left( \frac{Z \mu}{a_0 m_e} \right)^{3/2} e^{- \frac{Z \mu}{a_0 m_e} r}
+	\psi_{1,0,0}(\ve{r}) = \frac{1}{\sqrt{\pi}} \left( \frac{Z}{a} \right)^{3/2} e^{- Z r / a}
 	\label{eq:1.7}
 \end{equation}
 
@@ -157,7 +157,170 @@ Ciò è consistente col teorema del viriale\footnote{Il teorema del viriale stab
 \end{equation*}
 Si ha dunque un accordo perfetto con lo spettro energetico osservato. Risulta però errato lo spettro del momento angolare: ad esempio, nel ground state il modello di Bohr richiede un momento angolare pari a $ \hbar $, mentre un elettrone nello stato $ 1\ch{s} $ ha momento angolare nullo. Ciò è anche evidente considerando che l'elettrone ha una probabilità non-nulla di trovarsi in $ \ve{r} = \ve{0} $, ovvero all'interno del nucleo (es.: cattura elettronica), il che sarebbe impossibile se esso fosse dotato di momento angolare non-nullo.
 
+\section{Momento magnetico e spin}
 
+Il momento angolare di una particella carica in un'orbita periodica è associato ad un momento di dipolo magnetico. Da un punto di vista puramente classico, considerando una particella di massa $ m $ e carica $ q $ in un'orbita circolare di raggio $ r $ con velocità $ v $, il suo momento angolare è $ \ve{L} = \ve{r} \times \ve{p} = mrv \hat{\ve{n}} $; inoltre, si può associare ad essa una corrente $ i = \frac{q}{T} = \frac{qv}{2\pi r} $, così che il momento magnetico ad esso associato sia:
+\begin{equation*}
+	\boldsymbol{\mu} = i \pi r^2 \hat{\ve{n}} = \frac{q}{2} vr \hat{\ve{n}} = \frac{q}{2m} \ve{L}
+\end{equation*}
+Si dimostra che questa relazione è indipendente dalla forma dell'orbita e che vale, sotto forma operatoriale ($ \ve{L} \equiv \hbar \boldsymbol{\ell} $), anche in ambito quantistico:
+\begin{equation}
+	\boldsymbol{\mu} = g_\ell \mu_m \boldsymbol{\ell}
+	\label{eq:1.9}
+\end{equation}
+dove $ \mu_m \equiv \frac{\hbar q}{2m} $ e $ g_\ell $ è detto coefficiente giromagnetico, che nel caso del momento angolare orbitale vale $ g_\ell = 1 $.
+
+\begin{example}{Momento magnetico orbitale dell'elettrone}{}
+	Nel caso dell'elettrone si ha:
+	\begin{equation*}
+		\boldsymbol{\mu} = - \mu_\text{B} \boldsymbol{\ell}
+		\qquad \qquad
+		\mu_\text{B} \equiv \frac{\hbar q_e}{2m_e} = 9.27401 \cdot 10^{-24} \,\text{J}\,\text{T}^{-1}
+	\end{equation*}
+	dove $ \mu_\text{B} $ è detto \textit{magnetone di Bohr}.
+\end{example}
+
+Ciò permette di misurare il momento angolare atomico facendo interagire il momento magnetico di un atomo con un campo magnetico esterno: in un campo magnetico uniforme, $ \boldsymbol{\mu} $ subirà una precessione attorno alla direzione di $ \ve{B} $ con frequenza $ \omega = \frac{q_e B}{2m_e} $ (frequenza di Larmor).
+
+\subsection{Esperimento di Stern-Gerlach}
+
+L'energia d'interazione di un momento magnetico con un campo magnetico è data da:
+\begin{equation}
+	\mathcal{H}_B = - \boldsymbol{\mu} \cdot \ve{B}
+	\label{eq:1.10}
+\end{equation}
+In assenza di fattori che alterino l'angolo tra $ \boldsymbol{\mu} $ e $ \ve{B} $, questa energia è conservata nel tempo. In presenza di un campo magnetico non uniforme, sul momento magnetico agisce una forza:
+\begin{equation*}
+	\ve{F} = - \nabla \mathcal{H}_B = \nabla (\boldsymbol{\mu} \cdot \ve{B})
+\end{equation*}
+Assumendo che la componente $ z $ sia dominante, si ha $ F_z \simeq \mu_z \frac{\pa B_z}{\pa z} $.\\
+Questa forza è alla base del funzionamento dell'apparato di Stern-Gerlach, che può essere visto come un dispositivo per misurare la componente $ z $ del momento magnetico atomico. Si consideri un fascio collimato di atomi neutri a velocità termiche emesso all'interno di una camera a vuoto: applicando un campo magnetico fortemente inomogeneo lungo l'asse $ z $, si va a deviare la traiettoria di ogni singolo atomo proporzionalmente al suo $ \mu_z $.\\
+Classicamente, ci si aspetterebbe di osservare una distribuzione continua di atomi deviati, a seconda di vari valori di $ \mu_z $ distribuiti continuamente (assumendo $ \boldsymbol{\mu} $ distribuito casualmente nello spazio): si osserva, però, che essi si dispongono in due picchi discreti ben definiti, suggerendo dunque che $ \mu_z $ sia quantizzato. Questo risultato va a confermare la predizione quanto-meccanica della quantizzazione del momento angolare.\\
+Effettuando l'esperimento di Stern-Gerlach con atomi di idrogeno, però si trovano comunque due picchi discreti: questo non è spiegabile tramite la quantizzazione del momento angolare orbitale, dato che $ \ch{H} $ ha $ \ell = 0 $, dunque $ L_z $ dovrebbe avere $ 2\ell + 1 = 1 $ possibili autovalori. Ciò suggerisce l'esistenza di un ulteriore grado di libertà negli atomi a singolo elettrone.
+
+\subsection{Spin elettronico}
+
+Il grado di libertà aggiuntivo sugegrito dall'esperimento di Stern-Gerlach è lo \textit{spin}, introdotto da Pauli come grado di libertà interno non-classico dell'elettrone. In particolare, lo spin può essere visto (in maniera imprecisa) come il momento angolare intrinseco dell'elettrone: matematicamente, esso si comporta come un momento angolare, ed in particolare $ \hat{S}^2 $ ha autovalori $ \hbar^2 s(s+1) $, mentre $ \hat{S}_z $ ha autovalori $ \hbar m_s $, con $ -s \le m_s \le s $.\\
+Dall'esperimento di Stern-Gerlach con l'idrogeno si evince che $ 2s + 1 = 2 $, ovvero per l'elettrone $ s = \frac{1}{2} $: si indicano i due stati $ m_s = + \frac{1}{2} $ ed $ m_s = - \frac{1}{2} $ come $ \uparrow $ e $ \downarrow $. La funzionde d'onda totale dell'elettrone in un atomo idrogenoide sarà dunque:
+\begin{equation}
+	\psi_{n,\ell,m,m_s}(r,\vartheta,\varphi,\sigma) = R_{n,\ell}(r) Y_{\ell,m}(\vartheta,\varphi) \chi_{m_s}(\sigma)
+	\label{eq:1.11}
+\end{equation}
+con $ \sigma \in \{-\frac{1}{2} , +\frac{1}{2}\} $ variabile relativo al grado di libertà di spin, così che $ \chi_{m_s}(\sigma) = \braket{\sigma | m_s} = \delta_{m_s , \sigma} $. Inoltre, si trova che la separazione dei due fasci in un apparato di Stern-Gerlach è compatibile con $ g_s = 2 $, che si trova essere vero per tutte le particelle fondamentali (structure-less): al momento magnetico orbitale va aggiunto un momento magnetico di spin.
+
+\begin{proposition}{Momento magnetico totale}{}
+	Detto $ \ve{j} = \boldsymbol{\ell} + \ve{s} $ il momento angolare totale, si ha:
+	\begin{equation}
+		\boldsymbol{\mu} = g_j \mu_m \ve{j}
+		\qquad \qquad
+		g_j = \frac{1}{2} \left( g_\ell + g_s \right) + \frac{1}{2} \frac{\ell (\ell + 1) - s (s + 1)}{j (j + 1)} \left( g_\ell - g_s \right)
+		\label{eq:1.12}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Per il momento magnetico totale si definisce\footnote{Questo è un caso specifico del teorema di Wigner-Eckardt: le quantità vettoriali medie di un oggetto a simmetria sferica liberamente rotante nello spazio sono proporzionali al suo momento angolare totale medio.}:
+		\begin{equation*}
+			\boldsymbol{\mu} = g_\ell \mu_m \boldsymbol{\ell} + g_s \mu_m \ve{s} \eqdef g_j \mu_m \ve{j}
+		\end{equation*}
+		Ricordando che $ \boldsymbol{\ell} \cdot \ve{s} = \frac{1}{2} ( \ve{j}^2 - \boldsymbol{\ell}^2 - \ve{s}^2 ) $, si ha:
+		\begin{equation*}
+			g_j J^2 = g_\ell \boldsymbol{\ell} \cdot \left( \boldsymbol{\ell} + \ve{s} \right) + g_s \ve{s} \cdot \left( \boldsymbol{\ell} + \ve{s} \right) = g_\ell \boldsymbol{\ell}^2 + g_s \ve{s}^2 + \left( g_\ell + g_s \right) \boldsymbol{\ell} \cdot \ve{s}
+		\end{equation*}
+		Promuovendo $ \boldsymbol{\ell} $, $ \ve{s} $ e $ \ve{j} $ ad operatori e sostituendoli con $ \braket{\hat{A}} \equiv \braket{j,m_j | \hat{A} | j,m_j} $:
+		\begin{equation*}
+			\begin{split}
+				g_j j (j + 1)
+				&= g_\ell \ell (\ell + 1) + g_s s (s + 1) + \frac{1}{2} \left( g_\ell + g_s \right) \left( j (j + 1) - \ell (\ell + 1) - s (s + 1) \right) \\
+				&= \frac{1}{2} \left( g_\ell + g_s \right) j (j + 1) + \frac{1}{2} \left( \ell (\ell + 1) - s (s + 1) \right) \left( g_\ell - g_s \right)
+			\end{split}
+		\end{equation*}
+	\end{proof}
+\end{proposition}
+
+\begin{definition}{Fattori di Landé}{}
+	Nel caso dell'elettrone ($ g_\ell = 1 $, $ g_s = 2 $) si definisce il \textit{fattore di Landé} come:
+	\begin{equation}
+		g_j = \frac{3 j (j + 1) + s (s + 1) - \ell (\ell + 1)}{2 j (j + 1)}
+		\label{eq:1.13}
+	\end{equation}
+\end{definition}
+
+\section{Struttura fine}
+
+Osservando sperimentalmente lo spettro dell'idrogeno, si osservano degli splitting delle linee spettrali molto piccoli ($ < 0.1 \,\text{meV} $) riconducibili a delle correzioni di natura relativistica.
+
+\subsection{Interazione spin-orbita}
+
+Considerando l'elettrone in orbita circolare attorno al nucleo con raggio $ \ve{r} $ e velocirà $ \ve{v} $, nel RF dell'elettrone il nucleo si muoverà con velocità $ -\ve{v} $, dunque gli sarà associata una corrente $ -Zq_e \ve{v} $. Per la legge di Biot-Savart, l'elettrone sarà quindi soggetto ad un campo magnetico:
+\begin{equation*}
+	\ve{B}(\ve{r}) = - \frac{1}{4\pi \epsilon_0 c^2} \frac{\ve{r} \times (-Zq_e \ve{v})}{r^3} = \frac{Zq_e}{4\pi \epsilon_0 c^2} \frac{\ve{r} \times \ve{v}}{r^3} = \frac{Zq_e}{4\pi \epsilon_0 c^2 m_e} r^{-3} \ve{L}
+\end{equation*}
+Si vede che questo è un effetto relativistico di ordine $ (v/c)^2 $.\\
+Per descrivere l'interazione tra lo spin dell'elettrone e questo campo magnetico, bisogna apportare una correzione all'Eq. \ref{eq:1.10}, dovuta al fatto che l'RF dell'elettrone è accellerato, il che determina un fattore di $ \frac{1}{2} $. Si ottiene dunque:
+\begin{equation*}
+	\mathcal{H}_\text{s-o} = - \frac{1}{2} \boldsymbol{\mu}_s \cdot \ve{B}(\ve{r}) = \frac{1}{2} g_s \mu_\text{B} \ve{s} \cdot \left( \frac{Zq_e \hbar}{4\pi \epsilon_0 c^2 m_e} r^{-3} \boldsymbol{\ell} \right) = \frac{Ze^2 \hbar^2}{2m_e^2 c^2} r^{-3} \ve{s} \cdot \boldsymbol{\ell}
+\end{equation*}
+Questo operatore d'\textit{interazione spin-orbita} presenta dei termini off-diagonal piccoli ma non-nulli del tipo $ \braket{n,\ell,m,m_s | \mathcal{H}_\text{s-o} | n',\ell,m',m_s'} \neq 0 $ tra stati con stesso $ \ell $: gli stati con $ n' \neq n $ hanno energie non-relativistiche molto diverse, dunque le perturbazioni alla diagonale di $ \mathcal{H}_\text{s-o} $ da essi indotte possono essere ignorate. 
+
+\begin{proposition}{Interazione spin-orbita}{}
+	L'operatore d'interazione spin-orbita può essere scritto come:
+	\begin{equation}
+		\mathcal{H}_\text{s-o} = \sum_{n \in \N} \sum_{\ell = 1}^{n - 1} \xi_{n,\ell} \ket{n,\ell} \bra{n,\ell} \ve{s} \cdot \boldsymbol{\ell}
+		\label{eq:1.14}
+	\end{equation}
+	dove il fattore $ \xi_{n,\ell} $ è dato da:
+	\begin{equation}
+		\xi_{n,\ell} = Z^4 \alpha^2 E_\text{Ha} \frac{(\mu / m_e)^3}{n^3 \ell (\ell + 1) (2\ell + 1)}
+		\label{eq:1.15}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		L'operatore d'interazione spin-orbita può quindi essere riscritto come:
+		\begin{equation*}
+			\mathcal{H}_\text{s-o} = \frac{Ze^2\hbar^2}{2m_e^2c^2} \sum_{n,\ell} \ket{n,\ell} \braket{n,\ell | r^{-3} | n,\ell} \bra{n,\ell} \ve{s} \cdot \boldsymbol{\ell}
+		\end{equation*}
+		Per $ \ell > 0 $ si ha:
+		\begin{equation*}
+			\braket{n,\ell | r^{-3} | n,\ell} = \int_0^\infty r^{-3} \abs{R_{n,\ell}(r)}^2 r^2 \dd r = \left( \frac{Z}{a} \right)^3 \frac{2}{n^3 \ell (\ell + 1) (2\ell + 1)}
+		\end{equation*}
+		La tesi segue ricordando le definizioni di $ E_\text{Ha} $ ed $ \alpha $.
+	\end{proof}
+\end{proposition}
+
+Con questa scrittura, si vedono immediatamente le caratteristiche dell'interazione spin-orbita:
+\begin{itemize}
+	\item $ \xi_{n,\ell} > 0 $, dunque $ \mathcal{H}_\text{s-o} $ favorisce le configurazioni con $ \ve{S} $ ed $ \ve{L} $ antiparalleli;
+	\item $ \mathcal{H}_\text{s-o} \sim \alpha^2 $, dunque è una correzione relativistica di ordine $ (v/c)^2 $, ed è $ \alpha^2 \simeq 5.3 \cdot 10^{-5} $ volte più piccola delle tipiche energie orbitali (es.: primo stato su cui influisce ha $ \xi_{2\ch{p}} = 0.0301 \,\text{meV} $);
+	\item $ \mathcal{H}_\text{s-o} \sim Z^4 $, dato che il campo generato dal nucleo va come $ \sim Z $ e la distanza nucleo-elettrone media va come $ \sim Z^{-1} $;
+	\item $ \mathcal{H}_\text{s-o} \sim n^{-3} $, dato che la distanza nucleo-elettrone media va come $ \sim n $;
+	\item $ \mathcal{H}_\text{s-o} \sim \ell^{-3} $, a causa dell'andamento $ R_{n,\ell} \sim r^\ell $ per $ r \rightarrow 0 $, regime in cui l'interazione spin-orbita è dominante.
+\end{itemize}
+Data la piccola energy scale, l'interazione spin-orbita può essere trattata perturbativamente al prim'ordine in $ \alpha^2 $. A tal fine, è utile ricordare gli elementi di matrice di $ \ve{s} \cdot \boldsymbol{\ell} $ nella coupled basis:
+\begin{equation*}
+	\braket{\ell,s,j,m_j | \ve{s} \cdot \boldsymbol{\ell} | \ell,s,j',m_{j'}} = \frac{1}{2} \left( j(j + 1) - \ell (\ell + 1) - s(s + 1) \right) \delta_{j,j'} \delta_{m_j, m_{j'}}
+\end{equation*}
+Nella coupled basis, dunque, l'interazione spin-orbita è diagonale e determina una correzione al prim'ordine dell'energia pari a:
+\begin{equation}
+	\Delta E^{(1)}_\text{s-o}(n,\ell,s,j) = Z^4 \alpha^2 E_\text{Ha} \left( \frac{\mu}{m_e} \right)^3 \frac{j(j + 1) - \ell(\ell + 1) - s(s + 1)}{2n^3 \ell (\ell + 1) (2\ell + 1)}
+	\label{eq:1.16}
+\end{equation}
+Si introduce la \textit{notazione spettroscopica} $ n ^{2s+1} [\ell] _j \equiv \ket{n,\ell,s,j, m_j} \,\,\forall m_j \in [-j,+j] $, la quale lascia indeterminato $ m_j $: l'interazione spin-orbita porta ad uno splitting degli orbitali $ ^{2s+1}[\ell] $ in dei multipletti $ ^{2s+1}[\ell]_j $ con $ j = \ell \pm \frac{1}{2} $, spiegando dunque lo sdoppiamento delle linee spettrali osservato sperimentalmente.
+
+\begin{example}{Splitting di orbitali p}{}
+	Per un orbitale $ \ch{^2 P} $ si trova:
+	\begin{equation*}
+		\braket{1, \tfrac{1}{2}, j, m_j | \ve{s} \cdot \boldsymbol{\ell} | 1, \tfrac{1}{2}, j, m_j} =
+		\begin{cases}
+			-1 & j = \frac{1}{2} \\
+			+ \frac{1}{2} & j = \frac{3}{2}
+		\end{cases}
+	\end{equation*}
+	Questo viene dunque splittato in un doppietto $ \ch{^2P_{1/2}} $ (energia più bassa) ed un quartetto $ \ch{^2P_{3/2}} $ (energia più alta), energeticamente separati da $ \frac{3}{2} \xi_{n,1} $. Ad esempio, l'orbitale $ \ch{2^2P} $ dell'idrogeno subisce uno splitting di $ 45.2 \,\mu\text{eV} $.
+\end{example}
 
 
 
