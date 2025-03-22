@@ -64,7 +64,7 @@ Defining the \textit{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall 
     Note that $ p^2 = E^2 - \ve{p}^2 $ is a Lorentz invariant, thus $ E \dd E = p_i \dd p_i $, so:
     \begin{equation*}
       \delta^{(3)}(\ve{p} - \ve{q})
-      = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\gamma (E + \beta p_i}{E}
+      = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\gamma (E + \beta p_i)}{E}
       = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{E'}{E}
     \end{equation*}
   \end{proof}
@@ -72,7 +72,7 @@ Defining the \textit{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall 
 
 This explains the choice of normalization.
 
-\begin{proposition}{Hamiltonian}{}
+\begin{proposition}{KG Hamiltonian}{}
   The Hamiltonian of a real scalar field can be written as:
   \begin{equation}
     H = \int \frac{\dd^3 p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + \frac{1}{2} [a_\ve{p} , a_\ve{p}^\dagger] \right)
@@ -91,7 +91,7 @@ This explains the choice of normalization.
       \end{split}
     \end{equation*}
     \begin{equation*}
-      \nabla \phi(t,\ve{x}) = i \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+      \bs{\nabla} \phi(t,\ve{x}) = i \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
     \end{equation*}
     Inserting these expressions in Eq. \ref{eq:1.71}:
     \begin{equation*}
@@ -150,11 +150,11 @@ Finally, note that creation operators commute between themselves, hence multipar
 
 When considering a complex scalar field, Eq. \ref{eq:1.78} becomes:
 \begin{equation}
-  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
   \label{eq:2.12}
 \end{equation}
 \begin{equation}
-  \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{i p_\mu x^\mu} + b_\ve{p} e^{-i p_\mu x^\mu} \right]
+  \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{i p_\mu x^\mu} + b_\ve{p} e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
   \label{eq:2.13}
 \end{equation}
 Now there are two independent sets of creation/annihilation operators, which obey the canonical commutation relation:
@@ -214,6 +214,96 @@ While normal ordering was justified when considering the Hamiltonian on the grou
 Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \textit{antiparticles}.\\
 For a real scalar field, the reality condition reads $ a_\ve{p} = b_\ve{p} $, thus it describes a field whose particle is its own antiparticle, and it is symmetric under any $ \Un{1} $ symmetry.
 
+\section{Spinor fields}
+
+A principle of QFT is the \textit{spin-statistic theorem}: integer-spin fields are to be quantized imposing equal-time commutation relations, while half-integer-spin with equal-time anticommutation relations.
+
+\subsection{Dirac fields}
+
+From the Dirac Lagrangian Eq. \ref{eq:1.87}, the conjugate momentum to the Dirac field $ \Psi $ is computed as:
+\begin{equation}
+  \Pi_\Psi = i \bar{\Psi} \gamma^0 = i \Psi^\dagger
+  \label{eq:2.18}
+\end{equation}
+Imposing the canonical anticommutation relation, according to the spin-statistic theorem:
+\begin{equation}
+  \{\Psi_a(t,\ve{x}) , \Psi_b^\dagger(t,\ve{y})\} = \delta^{(3)}(\ve{x} - \ve{y}) \delta_{ab}
+  \label{eq:2.19}
+\end{equation}
+where $ a,b = 1,2,3,4 $ are Dirac indices. Expanding the free Dirac field in plane waves:
+\begin{equation}
+  \Psi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:2.20}
+\end{equation}
+\begin{equation}
+  \bar{\Psi}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:2.21}
+\end{equation}
+where the spinor wave functions $ u^s(p) , v^s(p) $ are given by Eqq. \ref{eq:1.90}-\ref{eq:1.91}. Translating Eq. \ref{eq:2.19} in terms of creation/annihilation operators:
+\begin{equation}
+  \{a_\ve{p},s , a_{\ve{q},r}^\dagger\} = \{b_{\ve{p},s} , b_{\ve{q},r}^\dagger\} = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q}) \delta_{sr}
+  \label{eq:2.22}
+\end{equation}
+The Fock space is again constructed defining a vacuum state $ \ket{0} : a_{\ve{p},s} \ket{0} = b_{\ve{p},s} \ket{0} = 0 $ and then acting repeatedly on it with $ a_{\ve{p}.s}^\dagger , b_{\ve{p},s}^\dagger $. As these operators anticommute, states in this Fock space are antisymmetric under the exchange of particles, therefore spint-$ \frac{1}{2} $ obey the Fermi-Dirac statistics (as of the spin-statistic theorem).
+
+\begin{proposition}{Dirac Hamiltonian}{}
+  The Hamiltoniana for a Dirac field $ \Psi $ is:
+  \begin{equation}
+    H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right]
+    \label{eq:2.23}
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    By Eqq. \ref{eq:2.18}, the Hamiltonian density is:
+    \begin{equation*}
+      \mathcal{H} = \Pi_\Psi \pa_0 \Psi - \mathcal{L}_\text{D} = i \Psi^\dagger \pa_0 \Psi - \bar{\Psi} \left( i \gamma^0 \pa_0 + i \gamma^i \pa_i - m \right) \Psi = \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi
+    \end{equation*}
+    Therefore, using Eqq. \ref{eq:2.20}-\ref{eq:2.21} and Eq. \ref{eq:2.8}:
+    \begin{equation*}
+      \begin{split}
+        H
+        &= \int \dd^3x\, \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi = \int \dd^3x\, \bar{\Psi} \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \Psi \\
+        &= \mathcal{N} \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{ip_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-ip_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \left[ a_{\ve{q},r} u^r(q) e^{-iq_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{iq_\mu x^\mu} \right] \\
+        &= \mathcal{N} \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \times \left[ \left( \bs{\gamma} \cdot \ve{q} + m \right) a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + \left( - \bs{\gamma} \cdot \ve{q} + m \right) b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right]
+      \end{split}
+    \end{equation*}
+    Using the Dirac equation in the form $ (\slashed{p} - m) u(p) = (\slashed{p} + m) v(p) = 0 $:
+    \begin{equation*}
+      \left( \bs{\gamma} \cdot \ve{q} + m \right) u(q) = \gamma^0 E_\ve{q} u(q)
+      \qquad
+      \left( -\bs{\gamma} \cdot \ve{q} + m \right) v(q) = - \gamma^0 E_\ve{q} v(q)
+    \end{equation*}
+    Therefore, omitting the constraint $ p^0 = E_\ve{p} $ in the spinors' arguments and using Eq. \ref{eq:2.8}:
+    \begin{equation*}
+      \begin{split}
+        H
+        &= \mathcal{N} \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 E_\ve{q} \left[ a_{\ve{q},r} u^r(\ve{q}) e^{-i E_\ve{q} t} - b_{-\ve{q},r}^\dagger v^r(-\ve{q}) e^{i E_\ve{q} t} \right] e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \\
+        &= \mathcal{N} \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},s}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right] \\
+        &= \mathcal{N} \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \Big[ a_{\ve{p},s}^\dagger a_{\ve{p},r} u^{s\dagger}(\ve{p}) u^r(\ve{p}) + b_{-\ve{p},s} a_{\ve{p},r} v^{s\dagger}(-\ve{p}) u^r(\ve{p}) e^{-2i E_\ve{p} t} + \\
+        & \qquad \qquad \qquad \qquad \qquad \quad - a_{\ve{p},s}^\dagger b_{-\ve{p},r}^\dagger u^{s\dagger}(\ve{p}) v^r(-\ve{p}) e^{2i E_\ve{p} t} - b_{-\ve{p},s} b_{-\ve{p},r}^\dagger v^{s\dagger}(-\ve{p}) v^r(-\ve{p}) \Big]
+      \end{split}
+    \end{equation*}
+
+    \begin{lemma}{}{haml-lem}
+      \begin{equation*}
+        u^{s\dagger}(\ve{p}) v^r(-\ve{p}) = v^{s\dagger}(-\ve{p}) u^r(\ve{p}) = 0
+      \end{equation*}
+    \end{lemma}
+
+    Using Lemma \ref{lemma:haml-lem}, Eq. \ref{eq:1.93} and the antisymmetry $ \mathcal{N} b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
+    \begin{equation*}
+      H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \mathcal{N} \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right]
+    \end{equation*}
+  \end{proof}
+\end{proposition}
+
+It can be seen that, using anticommutators, the Hamiltonian and its interpretation are analogous to that of the complex scalar field: if commutators were used, instead, one would get a final $ - b_{\ve{p},s}^\dagger b_{\ve{p},s} $ term, which is problematic as it yields an energy unbounded from below.
 
 
 
