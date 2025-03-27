@@ -5,38 +5,36 @@
 As for the quantization of a classical system in Quantum Mechanics, the quantization of a scalar field theory is performed promoting $ \phi(t,\ve{x}) $ and $ \Pi(t,\ve{x}) $ to hermitian operators in the Heisenberg picture and imposing the canonical equal-time commutation relation:
 \begin{equation}
   [\phi(t,\ve{x}) , \Pi(t,\ve{y})] = i \delta^{(3)}(\ve{x} - \ve{y})
-  \label{eq:2.1}
+  \label{eq:scalar-quant-comm}
 \end{equation}
 while of course $ [\phi(t,\ve{x}) , \phi(t,\ve{y})] = [\Pi(t,\ve{x}) , \Pi(t,\ve{y})] = 0 $.
 
 \subsection{Real scalar fields}
 
-A real scalar field is promoted to a real hermitian operator. In particular, by Eq. \ref{eq:1.70}:
+A real scalar field is promoted to a real hermitian operator. In particular, by Eq. \ref{eq:scalar-field-exp}:
 \begin{equation}
   \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
-  \label{eq:2.2}
+  \label{eq:scalar-quant-exp}
 \end{equation}
-In terms of creation and annihilation operators, the commutator Eq. \ref{eq:2.1} reads:
+In terms of creation and annihilation operators, the commutator Eq. \ref{eq:scalar-quant-comm} reads:
 \begin{equation}
   [a_\ve{p} , a_\ve{p}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
-  \label{eq:2.3}
+  \label{eq:scalar-quant-op-comm}
 \end{equation}
 while $ [a_\ve{p} , a_\ve{q}] = [a_\ve{p}^\dagger , a_\ve{q}^\dagger] = 0 $. These can be regarded as the creation and annihilation operators of a collection of harmonic oscillators, one for each value of the momentum $ \ve{p} $: the \textit{Fock space} of the real scalar field can thus be constructed analogously to the Hilbert space of the harmonic oscillator.\\
 Defining the \textit{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \ve{p} $, suitably normalized as $ \braket{0 | 0} = 1 $, the generic state of the Fock space is:
 \begin{equation}
   \ket{\ve{p}_1 , \dots , \ve{p}_n} = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}}\, a_{\ve{p}_1}^\dagger \dots a_{\ve{p}_n}^\dagger \ket{0}
-  \label{eq:2.4}
 \end{equation}
 
 \begin{proposition}{Normalization}{}
   For one-particle states:
   \begin{equation}
     \braket{\ve{p}_1 | \ve{p}_2} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
-    \label{eq:2.5}
   \end{equation}
 
   \begin{proof}
-    By Eq. \ref{eq:2.3}:
+    By Eq. \ref{eq:scalar-quant-op-comm}:
     \begin{equation*}
       \braket{\ve{p}_1 | \ve{p}_2} = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | a_{\ve{p}_1} a_{\ve{p}_2}^\dagger | 0}
       = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | [a_{\ve{p}_1} , a_{\ve{p}_2}^\dagger] | 0} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
@@ -53,7 +51,6 @@ Defining the \textit{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall 
     Recall that:
     \begin{equation}
       \delta(f(x) - f(x_0)) = \frac{1}{\abs{f'(x_0)}} \delta(x - x_0)
-      \label{eq:2.6}
     \end{equation}
     A Lorentz boost along $ \ve{e}_i $ yields $ p'_i = \gamma (p_i + \beta E) $ and $ E' = \gamma (E + \beta p_i) $, so:
     \begin{equation*}
@@ -76,13 +73,13 @@ This explains the choice of normalization.
   The Hamiltonian of a real scalar field can be written as:
   \begin{equation}
     H = \int \frac{\dd^3 p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + \frac{1}{2} [a_\ve{p} , a_\ve{p}^\dagger] \right)
-    \label{eq:2.7}
+    \label{eq:kg-haml}
   \end{equation}
 
   \tcblower
 
   \begin{proof}
-    First of all, from Eq. \ref{eq:2.2}:
+    First of all, from Eq. \ref{eq:scalar-quant-exp}:
     \begin{equation*}
       \begin{split}
         \Pi(t,\ve{x}) = \pa_0 \phi(t,\ve{x})
@@ -93,7 +90,7 @@ This explains the choice of normalization.
     \begin{equation*}
       \bs{\nabla} \phi(t,\ve{x}) = i \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
     \end{equation*}
-    Inserting these expressions in Eq. \ref{eq:1.71}:
+    Inserting these expressions in Eq. \ref{eq:scalar-field-haml}:
     \begin{equation*}
       \begin{split}
         \mathcal{H}
@@ -104,7 +101,7 @@ This explains the choice of normalization.
     Recall the identity:
     \begin{equation}
       \int \frac{\dd^3x}{(2\pi)^3} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} = \delta^{(3)}(\ve{p} - \ve{q})
-      \label{eq:2.8}
+      \label{eq:fourier-delta}
     \end{equation}
     Then (using $ E_{-\ve{p}} = E_\ve{p} $):
     \begin{equation*}
@@ -123,7 +120,7 @@ This explains the choice of normalization.
   \end{proof}
 \end{proposition}
 
-The second term in the Hamiltonian Eq. \ref{eq:2.7} is the sum of the zero-point energy of all oscillators and is proportional to $ (2\pi)^3 \delta^{(3)}(0) \rightarrow V $, thus:
+The second term in the Hamiltonian Eq. \ref{eq:kg-haml} is the sum of the zero-point energy of all oscillators and is proportional to $ (2\pi)^3 \delta^{(3)}(0) \rightarrow V $, thus:
 \begin{equation*}
   E_\text{vac} = \frac{V}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p}
 \end{equation*}
@@ -131,45 +128,37 @@ This energy shows two divergences: the one coming from the infinite-volume limit
 Discarding the zero-point energy, the Hamiltonian becomes:
 \begin{equation}
   H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} a_\ve{p}^\dagger a_\ve{p} \equiv \mathfrak{N} \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
-  \label{eq:2.9}
 \end{equation}
 where the \textit{normal ordering operator} $ \mathfrak{N} $ was introduced, which acts by moving all creation operators to the left and all annihilation operators to the right (ex.: $ \mathfrak{N} a_\ve{p} a_\ve{p}^\dagger = a_\ve{p}^\dagger a_\ve{p} $). It is now straightforward to compute the energy of a generic state in the Fock space, as $ a_\ve{p}^\dagger a_\ve{p} $ is just a number operator:
 \begin{equation}
   H \ket{\ve{p}_1 , \dots , \ve{p}_n} = \left( E_{\ve{p}_1} + \dots + E_{\ve{p}_n} \right) \ket{\ve{p}_1 , \dots , \ve{p}_n}
-  \label{eq:2.10}
 \end{equation}
-Computing the spatial momentum from Eq. \ref{eq:1.67} as $ P^i = \mathfrak{N} \int \dd^3x\, \theta^{0i} = \int \dd^3x\, \mathfrak{N} \pa_0 \phi \pa^i \phi $:
+Computing the spatial momentum from Eq. \ref{eq:4-mom-def} as $ P^i = \mathfrak{N} \int \dd^3x\, \theta^{0i} = \int \dd^3x\, \mathfrak{N} \pa_0 \phi \pa^i \phi $:
 \begin{equation}
   P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i a_\ve{p}^\dagger a_\ve{p}
-  \label{eq:2.11}
 \end{equation}
 Therefore, the state $ a_\ve{p}^\dagger \ket{0} $ can correctly be interpreted as a one-particle state with momentum $ \ve{p} $, mass $ m $ and energy $ E_\ve{p} = \sqrt{\ve{p}^2 + m^2} $. The generic state in the Fock space is a multiparticle state, with total energy and momentum the sum of the individual energies and momenta.\\
 Finally, note that creation operators commute between themselves, hence multiparticle states are symmetric under exchange of pairs of particles, i.e. they obey the Bose-Einstein statistics: this agrees with the fact that quanta of a scalar field have no intrinsic spin. i.e. are spin-0 particles.
 
 \subsection{Complex scalar fields}
 
-When considering a complex scalar field, Eq. \ref{eq:1.82} becomes:
+When considering a complex scalar field, Eq. \ref{eq:compl-scal-field-exp} becomes:
 \begin{equation}
   \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
-  \label{eq:2.12}
 \end{equation}
 \begin{equation}
   \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{i p_\mu x^\mu} + b_\ve{p} e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
-  \label{eq:2.13}
 \end{equation}
 Now there are two independent sets of creation/annihilation operators, which obey the canonical commutation relation:
 \begin{equation}
   [a_\ve{p} , a_\ve{q}^\dagger] = [b_\ve{p} , b_\ve{q}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
-  \label{eq:2.14}
 \end{equation}
 with all other commutators vanishing. The Fock space is constructed by defining a vacuum state $ \ket{0} : a_\ve{p} \ket{0} = b_\ve{p} \ket{0} = 0 $ and then acting repeatedly with both creation operators. With normal ordering, one finds:
 \begin{equation}
   H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + b_\ve{p}^\dagger b_\ve{p} \right)
-  \label{eq:2.15}
 \end{equation}
 \begin{equation}
   P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i \left( a_\ve{p}^\dagger a_\ve{p} + b_\ve{p}^\dagger b_\ve{p} \right)
-  \label{eq:2.16}
 \end{equation}
 The quanta of a complex scalar field are given by two different species of particles with the same mass.
 
@@ -177,13 +166,12 @@ The quanta of a complex scalar field are given by two different species of parti
   The $ \Un{1} $ charge of the quantized complex scalar field is:
   \begin{equation}
     Q_{\Un{1}} = \int \frac{\dd^3p}{(2\pi)^3} \left( a_\ve{p}^\dagger a_\ve{p} - b_\ve{p}^\dagger b_\ve{p} \right)
-    \label{eq:2.17}
   \end{equation}
 
   \tcblower
 
   \begin{proof}
-    By Eq. \ref{eq:1.83}:
+    By Eq. \ref{eq:comp-scal-field-curr}:
     \begin{equation*}
       \begin{split}
         Q_{\Un{1}}
@@ -220,29 +208,28 @@ A principle of QFT is the \textit{spin-statistic theorem}: integer-spin fields a
 
 \subsection{Dirac fields}
 
-From the Dirac Lagrangian Eq. \ref{eq:1.91}, the conjugate momentum to the Dirac field $ \Psi $ is computed as:
+From the Dirac Lagrangian Eq. \ref{eq:dirac-lagrangian}, the conjugate momentum to the Dirac field $ \Psi $ is computed as:
 \begin{equation}
   \Pi_\Psi = i \bar{\Psi} \gamma^0 = i \Psi^\dagger
-  \label{eq:2.18}
+  \label{eq:dirac-conj-mom}
 \end{equation}
 Imposing the canonical anticommutation relation, according to the spin-statistic theorem:
 \begin{equation}
   \{\Psi_a(t,\ve{x}) , \Psi_b^\dagger(t,\ve{y})\} = \delta^{(3)}(\ve{x} - \ve{y}) \delta_{ab}
-  \label{eq:2.19}
+  \label{eq:dirac-anticomm}
 \end{equation}
 where $ a,b = 1,2,3,4 $ are Dirac indices. Expanding the free Dirac field in plane waves:
 \begin{equation}
   \Psi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
-  \label{eq:2.20}
+  \label{eq:dirac-exp}
 \end{equation}
 \begin{equation}
   \bar{\Psi}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
-  \label{eq:2.21}
+  \label{eq:dirac-bar-exp}
 \end{equation}
-where the spinor wave functions $ u^s(p) , v^s(p) $ are given by Eqq. \ref{eq:1.94}-\ref{eq:1.95}. Translating Eq. \ref{eq:2.19} in terms of creation/annihilation operators:
+where the spinor wave functions $ u^s(p) , v^s(p) $ are given by Eqq. \ref{eq:u-spinor-def}-\ref{eq:v-spinor-def}. Translating Eq. \ref{eq:dirac-anticomm} in terms of creation/annihilation operators:
 \begin{equation}
   \{a_\ve{p},s , a_{\ve{q},r}^\dagger\} = \{b_{\ve{p},s} , b_{\ve{q},r}^\dagger\} = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q}) \delta_{sr}
-  \label{eq:2.22}
 \end{equation}
 The Fock space is again constructed defining a vacuum state $ \ket{0} : a_{\ve{p},s} \ket{0} = b_{\ve{p},s} \ket{0} = 0 $ and then acting repeatedly on it with $ a_{\ve{p}.s}^\dagger , b_{\ve{p},s}^\dagger $:
 \begin{equation*}
@@ -257,17 +244,16 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
   The Hamiltoniana for a Dirac field $ \Psi $ is:
   \begin{equation}
     H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
-    \label{eq:2.23}
   \end{equation}
 
   \tcblower
 
   \begin{proof}
-    By Eqq. \ref{eq:2.18}, the Hamiltonian density is:
+    By Eqq. \ref{eq:dirac-conj-mom}, the Hamiltonian density is:
     \begin{equation*}
       \mathcal{H} = \Pi_\Psi \pa_0 \Psi - \mathcal{L}_\text{D} = i \Psi^\dagger \pa_0 \Psi - \bar{\Psi} \left( i \gamma^0 \pa_0 + i \gamma^i \pa_i - m \right) \Psi = \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi
     \end{equation*}
-    Therefore, using Eqq. \ref{eq:2.20}-\ref{eq:2.21} and Eq. \ref{eq:2.8}:
+    Therefore, using Eqq. \ref{eq:dirac-exp}-\ref{eq:dirac-bar-exp} and Eq. \ref{eq:fourier-delta}:
     \begin{equation*}
       \begin{split}
         H
@@ -284,7 +270,7 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
       \qquad
       \left( -\bs{\gamma} \cdot \ve{q} + m \right) v(q) = - \gamma^0 E_\ve{q} v(q)
     \end{equation*}
-    Therefore, omitting the constraint $ p^0 = E_\ve{p} $ in the spinors' arguments and using Eq. \ref{eq:2.8}:
+    Therefore, omitting the constraint $ p^0 = E_\ve{p} $ in the spinors' arguments and using Eq. \ref{eq:fourier-delta}:
     \begin{equation*}
       \begin{split}
         H
@@ -303,7 +289,7 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
       \end{equation*}
     \end{lemma}
 
-    Using Lemma \ref{lemma:haml-lem}, Eq. \ref{eq:1.97} and the antisymmetry $ \mathfrak{N} b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
+    Using Lemma \ref{lemma:haml-lem}, Eq. \ref{eq:uv-spin-id} and the antisymmetry $ \mathfrak{N} b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
     \begin{equation*}
       H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \mathfrak{N} \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
     \end{equation*}
@@ -318,17 +304,16 @@ The momentum operator too is analogous to that of the complex scalar field, with
   The momentum operator of a Dirac field $ \Psi $ is:
   \begin{equation}
     \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
-    \label{eq:2.24}
   \end{equation}
 
   \tcblower
 
   \begin{proof}
-    By Eq. \ref{eq:1.70}, the $ 0i $-component of energy-momentum tensor of the Dirac Lagrangian is:
+    By Eq. \ref{eq:en-mom-tensor}, the $ 0i $-component of energy-momentum tensor of the Dirac Lagrangian is:
     \begin{equation*}
       \theta^{0i} = \frac{\pa \mathcal{L}_\text{D}}{\pa (\pa_0 \Psi)} \pa^i \Psi = \bar{\Psi} i \gamma^0 \pa^i \Psi = - \Psi^\dagger i \pa_i \Psi
     \end{equation*}
-    Thus, according to Eq. \ref{eq:1.71}:
+    Thus, according to Eq. \ref{eq:4-mom-def}:
     \begin{equation*}
       \begin{split}
         \ve{P}
@@ -341,7 +326,7 @@ The momentum operator too is analogous to that of the complex scalar field, with
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},r}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right]
       \end{split}
     \end{equation*}
-    Using Lemma \ref{lemma:haml-lem}, Eq. \ref{eq:1.97} and the antisymmetry $ \mathfrak{N} b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
+    Using Lemma \ref{lemma:haml-lem}, Eq. \ref{eq:uv-spin-id} and the antisymmetry $ \mathfrak{N} b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
     \begin{equation*}
       \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \mathfrak{N} \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
     \end{equation*}
@@ -352,28 +337,27 @@ Thus, both $ a_{\ve{p},s}^\dagger $ and $ b_{\ve{p},s}^\dagger $ create particle
 
 \subsubsection{Quantum numbers}
 
-Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to Eq. \ref{eq:1.50}:
+Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to Eq. \ref{eq:dir-field-change}:
 \begin{equation}
   \Psi'(x) = e^{-\frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}} \Psi(x) \simeq \left[ \tens{I}_4 - \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu} \right] \Psi(x)
-  \label{eq:2.25}
+  \label{eq:dirac-inf-rot}
 \end{equation}
-where the Lorentz generator $ J^{\mu \nu} $ is defined in Eq. \ref{eq:1.51}.
+where the Lorentz generator $ J^{\mu \nu} $ is defined in Eq. \ref{eq:dir-field-tot-ang-mom}.
 
 \begin{proposition}{Angular momentum}{}
-  The conserved charge associated to the infinitesimal rotation Eq. \ref{eq:2.25} is:
+  The conserved charge associated to the infinitesimal rotation Eq. \ref{eq:dirac-inf-rot} is:
   \begin{equation}
     \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
-    \label{eq:2.26}
   \end{equation}
 
   \tcblower
 
   \begin{proof}
-    Consider a rotation of $ \theta $ around the $ z $-axis: it is described by $ \omega_{12} = - \omega_{21} = \theta $, so, by Eq. \ref{eq:1.50}:
+    Consider a rotation of $ \theta $ around the $ z $-axis: it is described by $ \omega_{12} = - \omega_{21} = \theta $, so, by Eq. \ref{eq:dir-field-change}:
     \begin{equation*}
       \delta_0 \Psi = \theta \left( x^1 \pa^2 - x^2 \pa^1 - \tfrac{i}{2} \Sigma^3 \right) \Psi = - \theta \left( x^1 \pa_2 - x^2 \pa_1 + \tfrac{i}{2} \Sigma^3 \right) \Psi \equiv \theta \Delta \Psi
     \end{equation*}
-    Using the same notation of Def. \ref{def:inf-trans}, $ \epsilon \equiv \theta $ and $ F = \Delta \Psi $, therefore, by Eq. \ref{eq:1.68}, the temporal component of the conserved Noether current is (without negative sign, as it is mathematically equivalent):
+    Using the same notation of Def. \ref{def:inf-trans}, $ \epsilon \equiv \theta $ and $ F = \Delta \Psi $, therefore, by Eq. \ref{eq:noether-current}, the temporal component of the conserved Noether current is (without negative sign, as it is mathematically equivalent):
     \begin{equation*}
       j^0 = \frac{\pa \mathcal{L}_\text{D}}{\pa (\pa_0 \Psi)} \Delta \Psi = - i \Psi^\dagger \left( (\ve{x} \times \bs{\nabla})^3 + \tfrac{i}{2} \Sigma^3 \right) \Psi
     \end{equation*}
@@ -398,7 +382,7 @@ Noting that $ S_z \ket{0} = 0 $ (by definition of vacuum), then $ S_z a_{\ve{0},
 \begin{equation*}
   \{a_{\ve{p},t}^\dagger a_{\ve{p},r} , a_{\ve{0},s}^\dagger\} = a_{\ve{p},t}^\dagger \{a_{\ve{p},r} , a_{\ve{0},s}^\dagger\} = (2\pi)^3 \delta^{(3)}(\ve{p}) \delta_{rs} a_{\ve{p},t}^\dagger
 \end{equation*}
-The $ S_z $ operator thus acts as (recall Eq. \ref{eq:1.94} with $ p^\mu = (m,0,0,0) $):
+The $ S_z $ operator thus acts as (recall Eq. \ref{eq:u-spinor-def} with $ p^\mu = (m,0,0,0) $):
 \begin{equation*}
   \begin{split}
     S_z a_{\ve{0},s}^\dagger \ket{0}
@@ -412,10 +396,9 @@ Using $ \sigma^3 \xi^1 = + \xi^1 $ and $ \sigma^3 \xi^2 = - \xi^2 $, by $ \xi^{r
   S_z a_{\ve{0},2}^\dagger \ket{0} = -\frac{1}{2} a_{\ve{0},2}^\dagger \ket{0}
 \end{equation*}
 which means that fermions are spin-$ \frac{1}{2} $ particles, with $ a_{\ve{0},1}^\dagger $ creating $ s = +\frac{1}{2} $ fermions and $ a_{\ve{0},2}^\dagger $ creating $ s = -\frac{1}{2} $ fermions. Conversely, it is equivalent to show that $ b_{\ve{0},1}^\dagger $ creates $ s = -\frac{1}{2} $ antifermions and $ b_{\ve{0},2}^\dagger $ creates $ s = +\frac{1}{2} $ antifermions (as $ b $ and $ b^\dagger $ are not in normal order in $ S_z $, so there's an extra negative sign due to antisymmetry).\\
-Another important conserved Noether charge of Dirac theory is that associated to the vector current $ j^\mu_\text{V} = \bar{\Psi} \gamma^\mu \Psi $ (recall Eq. \ref{eq:1.102}), which is (using $ j^0_\text{V} = \Psi^\dagger \Psi $):
+Another important conserved Noether charge of Dirac theory is that associated to the vector current $ j^\mu_\text{V} = \bar{\Psi} \gamma^\mu \Psi $ (recall Eq. \ref{eq:dirac-u1-symm}), which is (using $ j^0_\text{V} = \Psi^\dagger \Psi $):
 \begin{equation}
   Q_{\Un{1}_\text{V}} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
-  \label{eq:2.27}
 \end{equation}
 This means that fermions have $ \Un{1}_\text{V} $ charge of $ +1 $, while antifermions of $ -1 $.
 
@@ -448,11 +431,11 @@ The quantization of massless Weyl fields follows immediately from that of Dirac 
     0 \\ \psi_\text{R}
   \end{pmatrix}
 \end{equation*}
-Consider $ \Psi_\text{L} $. As for Eq. \ref{eq:2.20}:
+Consider $ \Psi_\text{L} $. As for Eq. \ref{eq:dirac-exp}:
 \begin{equation*}
   \Psi_\text{L}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u_\text{L}^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v_\text{L}^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
 \end{equation*}
-where the Dirac spinors now have the right-hand component vanishing, in the chiral representation. By Eqq. \ref{eq:1.93}-\ref{eq:1.94}-\ref{eq:1.95}, in the massless (ultra-relativistic) limit $ p^\mu = (E,0,0,E) $, so spinors with $ s = 1 $ have only the right-handed component, while those with $ s = 2 $ only the left-handed one: therefore, only $ s = 2 $ spinors contribute to $ \Psi_\text{L} $ (and only $ s = 1 $ to $ \Psi_\text{R} $).\\
+where the Dirac spinors now have the right-hand component vanishing, in the chiral representation. By Eqq. \ref{eq:u-spinor-p3-frame}-\ref{eq:u-spinor-def}-\ref{eq:v-spinor-def}, in the massless (ultra-relativistic) limit $ p^\mu = (E,0,0,E) $, so spinors with $ s = 1 $ have only the right-handed component, while those with $ s = 2 $ only the left-handed one: therefore, only $ s = 2 $ spinors contribute to $ \Psi_\text{L} $ (and only $ s = 1 $ to $ \Psi_\text{R} $).\\
 By Tab. \ref{tab:dirac-qn}, it is clear that in this context $ a_{\ve{p},2}^\dagger $ creates a particle with helicity $ h = - \frac{1}{2} $, while $ b_{\ve{p},2}^\dagger $ creates an antiparticle with $ h = + \frac{1}{2} $: in general, a left-handed massless Weyl field describes particles with $ h = - \frac{1}{2} $ and antiparticles with $ h = + \frac{1}{2} $, while a right-handed one describes particles with $ h = + \frac{1}{2} $ and antiparticles with $ h = - \frac{1}{2} $.
 
 \subsection{Discrete symmetries of fermionic fields}
@@ -462,7 +445,6 @@ By Tab. \ref{tab:dirac-qn}, it is clear that in this context $ a_{\ve{p},2}^\dag
 Under parity $ \mathcal{P} \ve{p} = - \ve{p} $ and $ \mathcal{P} s = s $, so, for a generic particle of type $ a $:
 \begin{equation}
   \mathcal{P} \ket{a; \ve{p},s} = \eta_a \ket{a; -\ve{p},s}
-  \label{eq:2.28}
 \end{equation}
 where $ \eta_a $ is a generic constant phase factor, since states in the Fock space which differ by a phase still represent the same physical state. As $ \mathcal{P}^2 = \id $, this means that $ \eta_a^2 = \pm 1 $, as observables are built from an even number of fermionic ladder operators.
 
@@ -475,7 +457,7 @@ It is possible to prove that, for non-Majorana spin-$ \frac{1}{2} $ fermions, it
     \mathcal{P} a_{\ve{p},s}^\dagger \mathcal{P} = \eta_a a_{-\ve{p},s}^\dagger
     \qquad \qquad
     \mathcal{P} b_{\ve{p},s}^\dagger \mathcal{P} = \eta_b b_{-\ve{p},s}^\dagger
-    \label{eq:2.29}
+    \label{eq:parity-op}
   \end{equation}
 
   \tcblower
@@ -495,10 +477,9 @@ It is possible to prove that, for non-Majorana spin-$ \frac{1}{2} $ fermions, it
   \end{proof}
 \end{proposition}
 
-According to Wigner's theorem (Th. \ref{th:wigner}), this symmetry can be represented by a unitary operator, i.e. $ \mathcal{P}^\dagger = \mathcal{P}^{-1} $, but $ \mathcal{P}^2 = \id $, therefore $ \mathcal{P}^\dagger = \mathcal{P} $. Then, Eq. \ref{eq:2.29} is valid for $ a_{\ve{p},s} , b_{\ve{p},s} $ too, thus parity acts as:
+According to Wigner's theorem (Th. \ref{th:wigner}), this symmetry can be represented by a unitary operator, i.e. $ \mathcal{P}^\dagger = \mathcal{P}^{-1} $, but $ \mathcal{P}^2 = \id $, therefore $ \mathcal{P}^\dagger = \mathcal{P} $. Then, Eq. \ref{eq:parity-op} is valid for $ a_{\ve{p},s} , b_{\ve{p},s} $ too, thus parity acts as:
 \begin{equation}
   \Psi(x) \mapsto \Psi'(x') = \mathcal{P} \Psi(x) \mathcal{P}
-  \label{eq:2.30}
 \end{equation}
 Explicitly:
 \begin{equation*}
@@ -508,7 +489,7 @@ Explicitly:
     &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-i E_\ve{p} t + i \ve{p} \cdot \ve{x}} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{i E_\ve{p} t - i \ve{p} \cdot \ve{x}} \right]_{p^0 = E_\ve{p}} \\
   \end{split}
 \end{equation*}
-Setting $ \ve{p}' \equiv - \ve{p} , \ve{x}' \equiv -\ve{x} $ and noting that, by Eqq. \ref{eq:1.94}-\ref{eq:1.95} $ \ve{p} \mapsto -\ve{p} $ exchanges the left-handed and the right-handed compontents of the spinors, i.e. $ u^s(p) \mapsto \gamma^0 u^s(p) $ and $ v^s(p) \mapsto - \gamma^0 v^s(p) $:
+Setting $ \ve{p}' \equiv - \ve{p} , \ve{x}' \equiv -\ve{x} $ and noting that, by Eqq. \ref{eq:u-spinor-p3-frame}-\ref{eq:v-spinor-def} $ \ve{p} \mapsto -\ve{p} $ exchanges the left-handed and the right-handed compontents of the spinors, i.e. $ u^s(p) \mapsto \gamma^0 u^s(p) $ and $ v^s(p) \mapsto - \gamma^0 v^s(p) $:
 \begin{equation*}
   \begin{split}
     \mathcal{P} \Psi(x) \mathcal{P}
@@ -519,12 +500,10 @@ Setting $ \ve{p}' \equiv - \ve{p} , \ve{x}' \equiv -\ve{x} $ and noting that, by
 Requiring that $ \Psi $ is a representation of parity, up to a phase, means that:
 \begin{equation}
   \eta_a = - \eta_b
-  \label{eq:2.31}
 \end{equation}
 so that:
 \begin{equation}
   \mathcal{P} \Psi(t,\ve{x}) \mathcal{P} = \eta_a \gamma^0 \Psi(t,-\ve{x})
-  \label{eq:2.32}
 \end{equation}
 This, in the chiral representation, agrees with the fact that parity exchanges left-handed and right-handed Weyl spinors. The $ \eta_a $ factor cancels in any fermion bilinear involving only one type of particles; however, the relative phase factors of different particles can be observed: in particular, the opposite intrinsic parity of fermions and antifermions.
 
@@ -534,7 +513,7 @@ As already noted, the scalar complex field is similar to the Dirac field, apart 
 
 \subsubsection{Charge conjugation}
 
-Recall Eq. \ref{eq:1.43}: charge conjugation acts on the classical Dirac field as $ \Psi \mapsto -i \gamma^2 \Psi^* $.
+Recall Eq. \ref{eq:dir-spin-charge-conj}: charge conjugation acts on the classical Dirac field as $ \Psi \mapsto -i \gamma^2 \Psi^* $.
 
 \begin{definition}{Quantized charge conjugation}{}
   The \textit{charge conjugation operator} is defined as:
@@ -542,19 +521,19 @@ Recall Eq. \ref{eq:1.43}: charge conjugation acts on the classical Dirac field a
     \mathcal{C} a_{\ve{p},s} \mathcal{C} = \eta_c b_{\ve{p},s}
     \qquad \qquad
     \mathcal{C} b_{\ve{p},s} \mathcal{C} = \eta_c a_{\ve{p},s}
-    \label{eq:2.33}
+    \label{eq:charge-conj-op}
   \end{equation}
   with $ \eta_c = \pm 1 $ for simplicity.
 \end{definition}
 
-Thus $ \mathcal{C}^2 = \id $ too, and its physical interpretation is the exchange of particles and antiparticles, while leaving $ \ve{p} $ and $ s $ unchanged: as $ a_{\ve{p},s} $ and $ b_{\ve{p},s} $ create particles with opposite spin, this means that charge conjugation reverses the helicity of particles.
+Thus, $ \mathcal{C}^2 = \id $ too, and its physical interpretation is the exchange of particles and antiparticles, while leaving $ \ve{p} $ and $ s $ unchanged: as $ a_{\ve{p},s} $ and $ b_{\ve{p},s} $ create particles with opposite spin, this means that charge conjugation reverses the helicity of particles.
 
 \begin{lemma}{Charge conjugation on spinors}{}
   \begin{equation}
     \mathcal{C} u^2(p) \mathcal{C} = -i \gamma^2 \left[ v^s(p) \right]^*
     \qquad \qquad
     \mathcal{C} v^2(p) \mathcal{C} = -i \gamma^2 \left[ u^s(p) \right]^*
-    \label{eq:2.34}
+    \label{eq:charge-conj-spin}
   \end{equation}
 \end{lemma}
 
@@ -562,13 +541,12 @@ Thus $ \mathcal{C}^2 = \id $ too, and its physical interpretation is the exchang
   Given a Dirac field $ \Psi(x) $:
   \begin{equation}
     \mathcal{C} \Psi(x) \mathcal{C} = -i \eta_c \gamma^2 [\Psi(x)]^*
-    \label{eq:2.35}
   \end{equation}
 
   \tcblower
 
   \begin{proof}
-    Using Eqq. \ref{eq:2.33}-\ref{eq:2.34}:
+    Using Eqq. \ref{eq:charge-conj-op}-\ref{eq:charge-conj-spin}:
     \begin{equation*}
       \begin{split}
         \mathcal{C} \Psi(x) \mathcal{C}
@@ -584,7 +562,6 @@ As for parity, the transformation of quantized fields is analogous to that of cl
 \begin{proposition}{Charge conjugation of the vector current}{}
   \begin{equation}
     \mathcal{C} \left( \bar{\Psi} \gamma^\mu \Psi \right) \mathcal{C} = - \bar{\Psi} \gamma^\mu \Psi
-    \label{eq:2.36}
   \end{equation}
 \end{proposition}
 
@@ -620,7 +597,6 @@ In particular, anti-linearity (second property) solves the absurdum in the proof
 Time reversal is expected to reverse the spin of particles, and this can be used to construct $ \mathcal{T} $. First, define:
 \begin{equation}
   \xi^{-s} \equiv -i \sigma^2 [\xi^s]^*
-  \label{eq:2.37}
 \end{equation}
 that is, $ \xi^{-1} = \binom{0}{1} $ and $ \xi^{-2} = \binom{-1}{0} $. This allows redefining $ \eta^s \equiv \xi^{-s} $, and also $ \xi^{-(-s)} = - \xi^s $.
 
@@ -629,7 +605,6 @@ that is, $ \xi^{-1} = \binom{0}{1} $ and $ \xi^{-2} = \binom{-1}{0} $. This allo
     u^{-s}(-\ve{p}) = - \gamma^1 \gamma^3 [u^s(\ve{p})]^*
     \qquad \qquad
     v^{-s}(-\ve{p}) = - \gamma^1 \gamma^3 [v^s(\ve{p})]^*
-    \label{eq:2.38}
   \end{equation}
 
   \tcblower
@@ -679,7 +654,6 @@ It is useful to define the reversed ladder operators:
   a_{\ve{p},-s} \equiv (a_{\ve{p},2} , -a_{\ve{p},1})
   \qquad \qquad
   b_{\ve{p},-s} \equiv (b_{\ve{p},2} , -b_{\ve{p},1})
-  \label{eq:2.39}
 \end{equation}
 
 \begin{definition}{Time reversal}{}
@@ -688,7 +662,6 @@ It is useful to define the reversed ladder operators:
     \mathcal{T} a_{\ve{p},s} \mathcal{T} = a_{-\ve{p},-s}
     \qquad \qquad
     \mathcal{T} b_{\ve{p},s} \mathcal{T} = b_{-\ve{p},-s}
-    \label{eq:2.40}
   \end{equation}
 \end{definition}
 
@@ -698,7 +671,6 @@ An additional overall phase is irrelevant. Moreover, as other discrete symmetrie
   Given a Dirac field $ \Psi(x) $:
   \begin{equation}
     \mathcal{T} \Psi(t,\ve{x}) \mathcal{T} = - \gamma^1 \gamma^3 \Psi(-t,\ve{x})
-    \label{eq:2.41}
   \end{equation}
 
   \begin{proof}
