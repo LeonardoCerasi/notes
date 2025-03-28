@@ -183,9 +183,9 @@ A representation $ \rho $ which is a isomorphism is called \textit{faithful}. As
 \begin{definition}{Lie algebras}{}
   Given a Lie group $ G $ with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, its \textit{Lie algebra} is:
   \begin{equation}
-    [T^a, T^b] = i f^{abc} T^c
+    [T^a, T^b] = i \tensor{f}{^a^b_c} T^c
   \end{equation}
-  where $ f^{abc} $ are called the \textit{structure constants}.
+  where $ \tensor{f}{^a^b_c} $ are called the \textit{structure constants}.
 \end{definition}
 
 The sum over repeated indices is understood.
@@ -346,7 +346,7 @@ The traceless condition can be generalized to all semi-simple Lie algebras.
 Therefore, the generators of $ \SUn{n} $ are $ \C^{n \times n} $ hermitian traceless matrices: the dimension of $ \mathfrak{su}(n) $ then is $ n^2 - 1 $.\\
 The adjoint representation can be is given by representing the generators of the Lie group (i.e. the basis of the Lie algebra) with the structure constants of the Lie algebra:
 \begin{equation}
-  (T^b_\text{ad})_{ac} = i f^{abc}
+  (T^b_\text{ad})_{ac} = i \tensor{f}{^a^b_c}
 \end{equation}
 
 \begin{proposition}{Structure constants}{}
@@ -355,19 +355,19 @@ The adjoint representation can be is given by representing the generators of the
   \tcblower
 
   \begin{proof}
-    As $ [T^a,T^b] = i f^{abc} T^c $, the Jacoby identity becomes (recalling that $ f^{abc} $ is totally antisymmetric):
+    As $ [T^a,T^b] = i \tensor{f}{^a^b_c} T^c $, the Jacoby identity becomes (recalling that $ \tensor{f}{^a^b_c} $ is totally antisymmetric):
     \begin{equation*}
-      [T^a,[T^b,T^c]] + [T^b,[T^c,T^a]] + [T^c,[T^a,T^b]] = 0
+      [[T^a,T^b],T^c] + [[T^b,T^c],T^a] + [[T^c,T^a],T^b] = 0
     \end{equation*}
     \begin{equation*}
-      \iff f^{ade} f^{bcd} + f^{bde} f^{cad} + f^{cde} f^{abd} = 0
+      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
     \end{equation*}
-    The condition $ ([T^b_\text{ad},T^c_\text{ad}])_{ae} = i f^{bcd} (T^d_\text{ad})_{ae} $ then gives:
+    The condition $ ([T^a_\text{ad},T^c_\text{ad}])_{be} = i \tensor{f}{^a^c_d} (T^d_\text{ad})_{be} $ then gives:
     \begin{equation*}
-      f^{abd} f^{dce} - f^{acd} f^{dbe} = f^{bcd} f^{ade}
+      \tensor{f}{^b^a_d} \tensor{f}{^d^c_e} - \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} = \tensor{f}{^a^c_d} \tensor{f}{^b^d_e}
     \end{equation*}
     \begin{equation*}
-      \iff f^{abd} f^{cde} + f^{cad} f^{bde} + f^{bcd} f^{ade} = 0
+      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
     \end{equation*}
     These two expressions are equal, hence the thesis.
   \end{proof}
@@ -379,7 +379,7 @@ Representation are labelled by their Casimir operators. For any simple Lie algeb
   T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
   \label{eq:quad-cas}
 \end{equation}
-This is called the \textit{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i f^{bac} \{T^c,T^a\} = 0 $ by antisymmetry).
+This is called the \textit{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
 
 \begin{proposition}{Quadratic Casimir operator}{}
   For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
@@ -416,11 +416,11 @@ This is called the \textit{quadratic Casimir operator}, as it is associated to $
     \begin{equation*}
       \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
     \end{equation*}
-    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of Eqq. \ref{eq:sun-herm}-\ref{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \mathtt{1} \oplus \mathtt{g} $ and the above identity becomes:
+    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of Eqq. \ref{eq:sun-herm}-\ref{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
     \begin{equation*}
-      (C_2(\mathtt{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
+      (C_2(\ve{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
     \end{equation*}
-    Using $ C_2(\mathtt{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
+    Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
     \begin{equation*}
       C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
     \end{equation*}
@@ -430,7 +430,7 @@ This is called the \textit{quadratic Casimir operator}, as it is associated to $
 
 \paragraph{$ \SUn{2} $ Lie group}
 
-The fundamental representation of $ \SUn{2} $ is $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\mathtt{2},T^b_\mathtt{2}] = i \epsilon^{abc} T^c_\mathtt{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \tens{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
+The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \tens{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
 \begin{equation}
   (T^a_\mathtt{g})_{ij} = i \epsilon^{iaj}
 \end{equation}
@@ -508,7 +508,7 @@ This is an irreducible representation, and the associated Lie algebra $ \lora $,
 \begin{equation}
   [J^{\mu \nu}, J^{\sigma \rho}] = i \left( \eta^{\nu \rho} J^{\mu \sigma} - \eta^{\mu \rho} J^{\nu \sigma} - \eta^{\nu \sigma} J^{\mu \rho} + \eta^{\mu \rho} J^{\nu \sigma} \right)
 \end{equation}
-It is convenient to rearrange the 6 components of $ J^{\mu \nu} $ into two spatial vectors:
+It is convenient to rearrange the 6 independent components of $ J^{\mu \nu} $ into two spatial vectors:
 \begin{equation}
   J^i \defeq \frac{1}{2} \epsilon^{ijk} J^{jk}
   \qquad \qquad
@@ -545,7 +545,7 @@ A generic $ (p,q) $-tensor transforms as:
 This shows that the representation of the Lorentz group which acts on $ (p,q) $-tensors, although being of degree $ n = 4^{p + q} $, is reducible into the direct product of $ p + q $ 4-dimensional representations.\\
 Moreover, consider the action of the Lorentz group on $ (2,0) $-tensors: being $ T^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} T^{\alpha \beta} $, if $ T^{\mu \nu} $ is (anti-)symmetric it will remain so under a Lorentz transformation. Therefore, the 16-dimensional representation reduces to a 6-dimensional representation on anti-symmetric tensors and a 10-dimensional representation of symmetric tensors. Furthermore, the trace of a symmetric tensor is invariant, as $ T \equiv \eta_{\mu \nu} T^{\mu \nu} \mapsto \eta_{\mu \nu} \tensor{\Lambda}{^\mu _\alpha} \tensor{\Lambda}{^\nu _\beta} T^{\alpha \beta} = T $, so the latter representation further reduces into a 9-dimensional representation on symmetric traceless tensors and a 1-dimensional representation on scalars. This means that:
 \begin{equation}
-  \mathtt{4} \otimes \mathtt{4} = \mathtt{1} \oplus \mathtt{6} \oplus \mathtt{9}
+  \ve{4} \otimes \ve{4} = \ve{1} \oplus \ve{6} \oplus \ve{9}
   \label{eq:lor-tens-dec}
 \end{equation}
 These are irreducible representations which, given a generic tensor $ T^{\mu \nu} $, act on $ S $, $ A^{\mu \nu} $ and $ S^{\mu \nu} - \frac{1}{4} \eta^{\mu \nu} S $ respectively, with $ A^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} - T^{\nu \mu} \right) $ and $ S^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} + T^{\nu \mu} \right) $.
@@ -585,29 +585,82 @@ The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ are the same, whi
 \end{example}
 
 \begin{proposition}{}{lorentz-algebra}
-  The Lorentz algebra $ \lora $ can be decomposed as $ \mathfrak{su}(2) \times \mathfrak{su}(2) $.
+  The Lorentz algebra $ \lora $ can be decomposed as $ \mathfrak{su}(2) \oplus \mathfrak{su}(2) $.
 
   \tcblower
 
   \begin{proof}
     Given the $ \lora $ algebra in Eq. \ref{eq:lor-better-gen}, it is possible to define:
-    \begin{equation*}
+    \begin{equation}
       \ve{J}_{\pm} \defeq \frac{1}{2} \left( \ve{J} \pm i \ve{K} \right)
-    \end{equation*}
-    The Lie algebra then becomes:
-    \begin{equation*}
-      [\ve{J}_{\pm}^i, \ve{J}_{\pm}^j] = i \epsilon^{ijk} \ve{J}_{\pm}^k
-      \qquad \qquad
-      [\ve{J}_{\pm}^i, \ve{J}_{\mp}^j] = 0
-    \end{equation*}
-    These are two commuting $ \mathfrak{su}(2) $ algebras, thus proving the thesis.
+      \label{eq:lora-su2-gen}
+    \end{equation}
+    The Lie algebra then becomes $ [\ve{J}_{\pm}^i, \ve{J}_{\pm}^j] = i \epsilon^{ijk} \ve{J}_{\pm}^k $ and $ [\ve{J}_{\pm}^i, \ve{J}_{\mp}^j] = 0 $: these are two commuting $ \mathfrak{su}(2) $ algebras, thus proving the thesis.
   \end{proof}
 \end{proposition}
 
-As observed before, this does not imply that $ \lorg $ is globally equivalent to $ \SUn{2} \times \SUn{2} $: in fact, $ \SUn{2} \times \SUn{2} / \Z_2 \cong \SOn{4} $, while the universal cover of $ \lorg $ is $ \SL{2}{\C} $, as it can be shown that $ \lorg \cong \SL{2}{\C} / \Z_2 $.\\
-By Prop. \ref{prop:lorentz-algebra}, representations of $ \lorg $ can be labelled by $ (j_-,j_+) \in \frac{1}{2} \N_0 \times \frac{1}{2} \N_0 $, with each index labelling a representation of $ \SUn{2} $: as $ \ve{J} = \ve{J}_+ + \ve{J}_- $, the $ (j_-,j_+) $ representation contains states with all possible spins $ \abs{j_+ - j_-} \le j \le j_+ + j_- $, and it is a representation of degree $ n = \left( 2j_- + 1 \right) \left( 2j_+ + 1 \right) $.\\
-$ \ve{\left( 0,0 \right)} $ is the trivial (scalar) representation, as both $ \ve{J}_{\pm} = 0 $ and $ \ve{J} = \ve{K} = 0 $.\\
-$ \ve{\left( \frac{1}{2},0 \right)} $ and $ \ve{\left( 0,\frac{1}{2} \right)} $ are 2-dimensional spinorial representations. These representations act on different spinors $ (\psi_\text{L})_\alpha \in \ve{\left( \frac{1}{2},0 \right)} $ and $ (\psi_\text{R})_\alpha \in \ve{\left( 0,\frac{1}{2} \right)} $, with $ \alpha = 1,2 $, which are called \textit{left-} and \textit{right-handed  Weyl spinors}. In $ \ve{\left( \frac{1}{2},0 \right)} $ the generators are $ \ve{J}_- = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{J}_+ = \ve{0} $, while in $ \ve{\left( 0,\frac{1}{2} \right)} $ they are $ \ve{J}_- = \ve{0} $ and $ \ve{J}_+ = \frac{\boldsymbol{\sigma}}{2} $, thus one finds $ \ve{J}_\text{L} = \ve{J}_\text{R} = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{K}_\text{L} = - \ve{K}_\text{R} = i \frac{\boldsymbol{\sigma}}{2} $, so that:
+As observed before, this does not imply that $ \lorg $ is globally equivalent to $ \SUn{2} \times \SUn{2} $: in fact, $ \SUn{2} \times \SUn{2} / \Z_2 \cong \SOn{4} $, while the universal cover of $ \lorg $ is $ \SL{2,\C} $, as it can be shown that $ \lorg \cong \SL{2,\C} / \Z_2 $.\\
+By Prop. \ref{prop:lorentz-algebra}, representations of $ \lorg $ can be labelled by $ (\ve{j}_-,\ve{j}_+) \in \frac{1}{2} \N_0 \times \frac{1}{2} \N_0 $, with each index labelling a representation of $ \SUn{2} $: as $ \ve{J} = \ve{J}_+ + \ve{J}_- $, the $ (\ve{j}_-,\ve{j}_+) $ representation contains states with all possible spins $ \abs{j_+ - j_-} \le j \le j_+ + j_- $, and it is a representation of degree $ n = \left( 2j_- + 1 \right) \left( 2j_+ + 1 \right) $.\\
+More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} : \lora \rightarrow \mathfrak{gl}(V_{(j_-,j_+)}) $, where $ V_{(j_-,j_+)} $ is a $ (2j_- + 1)(2j_+ + 1) $-dimensional vector space, defined as (recall Eq. \ref{eq:lora-su2-gen}):
+\begin{equation}
+  \begin{gathered}
+    \rho_{(j_-,j_+)}(J^i) = J^i_{(j_+)} \otimes \tens{I}_{(2j_- + 1)} + \tens{I}_{(2j_+ + 1)} \otimes J^i_{(j_-)} \\
+    \rho_{(j_-,j_+)}(K^i) = -i \left[ J^i_{(j_+)} \otimes \tens{I}_{(2j_ + 1)} - \tens{I}_{(2j_+ + 1)} \otimes J^i_{(j_-)} \right]
+  \end{gathered}
+  \label{eq:lorentz-su2-repr}
+\end{equation}
+where $ \ve{J}_{(j)} $ is the $ (2j + 1) $-dimensional irreducible representation of $ \mathfrak{su}(2) $ and $ \otimes $ is the tensor product\footnotemark.
+
+\footnotetext{Given two $ \K $-vector spaces $ V,W $ with bases $ \{\ve{e}_i\}_{i = 1,\dots,n} , \{\ve{f}_j\}_{i = 1,\dots,m} $, the tensor product $ V \otimes W $ is defined as:
+\begin{equation*}
+  \ve{v} \otimes \ve{w} = \sum_{i = 1}^{n} \sum_{j = 1}^{m} v^i w^j \ve{e}_i \otimes \ve{f}_j
+  \quad \iff \quad
+  \begin{pmatrix}
+    v_1 \\ \vdots \\ v_n
+  \end{pmatrix}
+  \otimes
+  \begin{pmatrix}
+    w_1 \\ \vdots \\ w_m
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    v_1 w_1 \\ \vdots \\ v_1 w_m \\ \vdots \\ v_n w_1 \\ \vdots \\ v_n w_m
+  \end{pmatrix}
+\end{equation*}
+Moreovere, given $ \K $-linear maps $ f : V \rightarrow V' , g : W \rightarrow W' $ represented by $ F \in \K^{n' \times n} , G \in \K^{m' \times m} $, the tensor product $ f \otimes g : V \otimes W \rightarrow V' \otimes W' $ is defined as $ F \otimes G \in \K^{(n'm') \times (nm)} $:
+\begin{equation*}
+  \begin{bmatrix}
+    f_{1,1} & \dots & f_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    f_{n',1} & \dots & f_{n',n} \\
+  \end{bmatrix}
+  \otimes
+  \begin{bmatrix}
+    g_{1,1} & \dots & g_{1,m} \\
+    \vdots & \ddots & \vdots \\
+    g_{m',1} & \dots & g_{m',m} \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    f_{1,1} g_{1,1} & \dots & f_{1,1} g_{1,m} &  & f_{1,n} g_{1,1} & \dots & f_{1,n} g_{1,m} \\
+    \vdots & \ddots & \vdots & \dots & \vdots & \ddots & \vdots \\
+    f_{1,1} g_{m',1} & \dots & f_{1,1} g_{m',m} &  & f_{1,n} g_{m',1} & \dots & f_{1,n} g_{m',m} \\
+     & \vdots &  & \ddots &  & \vdots &  \\
+    f_{n',1} g_{1,1} & \dots & f_{n',1} g_{1,m} &  & f_{n',n} g_{1,1} & \dots & f_{n',n} g_{1,m} \\
+    \vdots & \ddots & \vdots & \dots & \vdots & \ddots & \vdots \\
+    f_{n',1} g_{m',1} & \dots & f_{n',1} g_{m',m} &  & f_{n',n} g_{m',1} & \dots & f_{n',n} g_{m',m} \\
+  \end{bmatrix}
+\end{equation*}
+}
+
+\paragraph{Trivial representation}
+
+The trivial representation is $ \ve{\left( 0,0 \right)} $, as both $ \ve{J}_{\pm} = 0 $ and $ \ve{J} = \ve{K} = 0 $: this is the representation which acts on scalars.
+
+\paragraph{Weyl representations}
+
+$ \ve{\left( \frac{1}{2},0 \right)} $ and $ \ve{\left( 0,\frac{1}{2} \right)} $ are 2-dimensional spinorial representations. These representations act on different spinors $ (\psi_\text{L})_\alpha , (\psi_\text{R})_\beta \in \C^2 $, with $ \alpha,\beta = 1,2 $, which are called \textit{left-} and \textit{right-handed  Weyl spinors}.\\
+In $ \ve{\left( \frac{1}{2},0 \right)} $ the generators are $ \ve{J}_- = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{J}_+ = \ve{0} $, while in $ \ve{\left( 0,\frac{1}{2} \right)} $ they are $ \ve{J}_- = \ve{0} $ and $ \ve{J}_+ = \frac{\boldsymbol{\sigma}}{2} $, thus, by Eq. \ref{eq:lorentz-su2-repr}, $ \ve{J}_\text{L} = \ve{J}_\text{R} = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{K}_\text{L} = - \ve{K}_\text{R} = i \frac{\boldsymbol{\sigma}}{2} $, so that:
 \begin{equation}
   \psi_\text{L} \mapsto \Lambda_\text{L} \psi_\text{L} = \exp \left[ \left( -i \boldsymbol{\theta} - \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{L}
   \label{eq:lor-left-hand-weyl}
@@ -616,7 +669,7 @@ $ \ve{\left( \frac{1}{2},0 \right)} $ and $ \ve{\left( 0,\frac{1}{2} \right)} $ 
   \psi_\text{R} \mapsto \Lambda_\text{R} \psi_\text{R} = \exp \left[ \left( -i \boldsymbol{\theta} + \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{R}
   \label{eq:lor-right-hand-weyl}
 \end{equation}
-Note that the generators $ K^i $ are not hermitian, as expected from Prop. \ref{prop:non-compact-rep}. Furthermore, note that $ \Lambda_{\text{L},\text{L}} \in \C^{2 \times 2} $, therefore $ \psi_{\text{L},\text{R}} \in \C^2 $.
+Note that the generators $ K^i $ are not hermitian, as expected from Prop. \ref{prop:non-compact-rep}. Furthermore, as $ \psi_{\text{L}/\text{R}} \in \C^2 $, then $ \Lambda_{\text{L}/\text{R}} \in \C^{2 \times 2} $ (in general the spinorial representations are complex representations).
 
 \begin{proposition}{}{weyl-spin-par}
   Given $ \psi_\text{L} \in \ve{\left( \frac{1}{2},0 \right)} $ and $ \psi_\text{R} \in \ve{\left( 0,\frac{1}{2} \right)} $, then $ \sigma^2 \psi_\text{L}^* \in \ve{\left( 0,\frac{1}{2} \right)} $ and $ \sigma^2 \psi_\text{R}^* \in \ve{\left( \frac{1}{2},0 \right)} $.
@@ -634,17 +687,17 @@ Note that the generators $ K^i $ are not hermitian, as expected from Prop. \ref{
   \end{proof}
 \end{proposition}
 
-\begin{definition}{Charge conjugation on Weyl spinors}{}
-  On Weyl spinors, the \textit{charge conjugation operator} is defined as:
-  \begin{equation}
-    \psi_\text{L}^c \defeq i \sigma^2 \psi_\text{L}^*
-    \qquad \qquad
-    \psi_\text{R}^c \defeq -i \sigma^2 \psi_\text{R}^*
-  \end{equation}
-\end{definition}
+This allows to define \textit{charge conjugation} on Weyl spinors:
+\begin{equation}
+  \psi_\text{L}^c \defeq i \sigma^2 \psi_\text{L}^*
+  \qquad \qquad
+  \psi_\text{R}^c \defeq -i \sigma^2 \psi_\text{R}^*
+\end{equation}
+As of Prop. \ref{prop:weyl-spin-par}, charge conjugation transforms a left-handed Weyl spinor into a right-handed one and vice versa. Moreover, the $ i $ factor ensures that applying this operator twice yields the identity operator.
 
-By Prop. \ref{prop:weyl-spin-par}, charge conjugation changes transforms a left-handed Weyl spinor into a right-handed one and vice versa. Moreover, the $ i $ factor ensures that applying this operator twice yields the identity operator.\\
-$ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is a 4-dimensional complex representation: as $ j = 0,1 $, this representation acts on complex 4-vectors of the form $ \Psi = \left( (\psi_\text{L})_\alpha, (\xi_\text{R})_\beta \right) \in \C^4 $, called \textit{Dirac spinors}, and $ \Lambda_\text{D} = \diag \left( \Lambda_\text{L}, \Lambda_\text{R} \right) \in \C^{4 \times 4} $. To explicit this relation, set $ \psi_\text{R} \equiv i \sigma^2 \psi_\text{L}^* $, $ \xi_\text{L} \equiv -i \sigma^2 \xi_\text{R}^* $ and $ \sigma^\mu \equiv \left( 1, \boldsymbol{\sigma} \right) $, $ \bar\sigma^\mu \equiv \left( 1, -\boldsymbol{\sigma} \right) $: it can be shown, then, that $ \xi_\text{R}^\dagger \sigma^\mu \psi_\text{R} $ and $ \xi_\text{L}^\dagger \bar\sigma^\mu \psi_\text{L} $ are contravariant 4-vectors. Although these 4-vectors are complex by construction, being the matrix $ \tensor{\Lambda}{^\mu_\nu} $ which represents the Lorentz transformation of a 4-vector real, a reality condition $ v_\mu^* = v_\mu $ is Lorentz invariant.
+\paragraph{Dirac representation}
+
+$ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ is a 4-dimensional complex representation: this representation acts on bispinors of the form $ \Psi = \left( (\psi_\text{L})_\alpha, (\xi_\text{R})_\beta \right)^\intercal \in \C^4 $, called \textit{Dirac spinors}, with transformation $ \Lambda_\text{D} = \diag \left( \Lambda_\text{L}, \Lambda_\text{R} \right) \in \C^{4 \times 4} $.
 
 \begin{definition}{Charge conjugation on Dirac spinors}{}
   On Dirac spinors, the \textit{charge conjugation operator} is defined as:
@@ -845,7 +898,7 @@ Restricting to $ m \in \R^+ $ ($ m^2 < 0 $ states, called tachyons, are excluded
 \paragraph{Massless representations}
 
 The little group for $ P^\mu = (\omega,0,0,\omega) $ clearly is $ \SOn{2} $, the group of rotations in the $ (x,y) $ plane generated by $ J^3 $: as for any abelian group, its irreducible representations are one-dimensional, and they are labeled by the eigenvalue $ h $ of $ J^3 $, which represents the angular momentum in the direction of propagation of the particle and is called \textit{helicity}. Helicity can be shown to be quantized as $ h \in \frac{1}{2}\Z_0 $ (by topologic considerations on $ \pog \equiv \R^4 \times \SL{2}{\C} / \Z_2 $).\\
-As a consequence, massless particles only have one degree of freedom and are characterized by their helicity $ h $. As $ \SOn{2} \equiv \Un{1} $, on a state of helicity $ h $ the little group is represented as:
+As a consequence, massless particles only have one degree of freedom and are characterized by their helicity $ h $. As $ \SOn{2} \cong \Un{1} $, on a state of helicity $ h $ the little group is represented as:
 \begin{equation}
   U(\theta) = e^{-i h \theta}
 \end{equation}
@@ -1260,6 +1313,8 @@ This hermitian matrix has properties $ (\gamma^5)^2 = \tens{I}_4 $ and $ \{\gamm
 \end{proposition}
 
 It can be shown that the Clifford algebra is invariant under the transformation in Prop. \ref{prop:dirac-unit-eq}, thus it defines an equivalent representation of the algebra.
+
+\paragraph{Adjoint representation of $ \lorg $}
 
 \paragraph{Solutions}
 
