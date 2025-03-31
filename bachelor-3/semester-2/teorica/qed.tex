@@ -1,0 +1,122 @@
+\selectlanguage{english}
+
+\section{Maxwell theory}
+
+The electromagnetic field is described by a 4-vector $ A_\mu $, the \textit{gauge potential}. From this, the field strength tensor is defined as:
+\begin{equation}
+  F_{\mu \nu} \defeq \pa_\mu A_\nu - \pa_\nu A_\mu
+\end{equation}
+which is related to the electric and magnetic fields as $ F^{0i} = - E^i $ and $ F^{ij} = - \epsilon^{ijk} B^k $. The Lagrangian of the free electromagnetic field is:
+\begin{equation}
+  \lag_\text{M} = - \frac{1}{2} F_{\mu \nu} F^{\mu \nu}
+  \label{eq:maxw-lag}
+\end{equation}
+The associated equations of motion are:
+\begin{equation}
+  \pa_\mu F^{\mu \nu} = 0
+  \label{eq:maxw-1}
+\end{equation}
+Moreover, defining $ \tilde{F}^{\mu \nu} \equiv \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} F_{\rho \sigma} $ (the Hodge dual), it is trivial to check that, by Schwarz lemma:
+\begin{equation}
+  \pa_\mu \tilde{F}^{\mu \nu} = 0
+  \label{eq:maxw-2}
+\end{equation}
+Eqq. \ref{eq:maxw-1}-\ref{eq:maxw-2} are exactly Maxwell equations in the absence of sources: when written in terms of $ \ve{E} $ and $ \ve{B} $, Eq. \ref{eq:maxw-1} gives the equations for $ \bs{\nabla} \cdot \ve{E} $ and $ \bs{\nabla} \times \ve{B} $, while Eq. \ref{eq:maxw-2} those for $ \bs{\nabla} \times \ve{E} $ and $ \bs{\nabla} \cdot \ve{B} $.
+
+\subsection{Gauge invariance}
+
+A crucial local symmetry of the Maxwell Lagrangian is the symmetry under local gauge transformations like:
+\begin{equation}
+  A_\mu(x) \mapsto A_\mu(x) - \pa_\mu \alpha(x)
+\end{equation}
+with arbitrary $ \alpha \in \mathcal{C}^\infty(\R^{1,3}) $. Considering the free electromagnetic field, the global version of this transformation (that is, $ \alpha $ independent of $ x $) yields no conserved charge, as the associated Noether current vanishes identically.
+
+\begin{theorem}{Radiation gauge}{}
+  In the absence of sources, it is always possible to choose the \textit{radiation gauge}:
+  \begin{equation}
+    A_0 = 0
+    \qquad \qquad
+    \bs{\nabla} \cdot \ve{A} = 0
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    Starting from a general gauge potential $ A_\mu $, the condition $ A_0 = 0 $ is achieved through:
+    \begin{equation*}
+      A_\mu \mapsto A_\mu - \pa_\mu \int_{t_0}^t \dd\tau\, A_0(\tau,\ve{x})
+    \end{equation*}
+    Then, $ A_0 = 0 $ will remain unchanged if another gauge transformation with $ \alpha(x) = \alpha(\ve{x}) $ is performed. Consider:
+    \begin{equation*}
+      \alpha(\ve{x}) = - \int_{\R^3} \frac{\dd^3y}{4\pi \abs{\ve{x} - \ve{y}}} \pa_i A^i(t,\ve{y})
+    \end{equation*}
+    which is independent of $ t $ since $ E^i = -\pa_0 A^i $, as $ A_0 = 0 $, so $ \pa_i E^i = 0 $ implies $ \pa_0 \pa_i A^i = 0 $. Recall the identity:
+    \begin{equation}
+      \lap_\ve{x} \frac{1}{\abs{\ve{x} - \ve{y}}} = - 4\pi \delta^{(3)}(\ve{x} - \ve{y})
+    \end{equation}
+    Thus:
+    \begin{equation*}
+      \bs{\nabla} \cdot \ve{A} \mapsto \bs{\nabla} \cdot \ve{A} - \lap_\ve{x} \alpha = \pa_i A^i(t,\ve{x}) - \pa_i A^i(t,\ve{x}) = 0
+    \end{equation*}
+  \end{proof}
+\end{theorem}
+
+The radiation gauge clearly implies the \textit{Lorentz gauge}:
+\begin{equation}
+  \pa_\mu A^\mu = 0
+\end{equation}
+In this gauge, the equations of motions Eq. \ref{eq:maxw-1} become:
+\begin{equation}
+  \Box A^\mu = 0
+  \label{eq:maxw-lor}
+\end{equation}
+which are massless KG equations for each component of the gauge potential. Plane-wave solutions take the form:
+\begin{equation}
+  A_\mu(x) = \epsilon_\mu(k) e^{-i k_\mu x^\mu} + c.c.
+\end{equation}
+where $ \epsilon_\mu(x) $ is the \textit{polarization vector}. Then, Eq. \ref{eq:maxw-lor} gives $ k^2 = 0 $, while the chosen radiation gauge implies $ \epsilon_0 = 0 $ and $ \bs{\epsilon} \cdot \ve{k} = 0 $: therefore, an electromagnetic wave has only two degrees of freedom, represented by a polarization vector $ \bs{\epsilon} $ perpendicular to the direction of propagation.\\
+The advantage of the radiation gauge is that it exposes clearly the physical degrees of freedom of the electromagnetic field, while sacrificing explicit Lorentz covariance; on the other hand, the Lorentz gauge retains the explicit Lorentz covariance, at the cost of redundant degrees of freedom.
+
+\subsection{Energy-momentum tensor}
+
+By Eq. \ref{eq:en-mom-tensor}, writing Eq. \ref{eq:maxw-lag} explicitly in terms of $ A_\mu $, the energy-momentum tensor of the electromagnetic field is:
+\begin{equation}
+  \theta^{\mu \nu} = - F^{\mu \rho} \pa^\nu A_\rho + \frac{1}{4} \eta^{\mu \nu} F^2
+\end{equation}
+with $ F^2 \equiv F_{\mu \nu} F^{\mu \nu} $. To show the gauge-invariance of this tensor, recall Eq. \ref{eq:maxw-1}:
+\begin{equation*}
+  \theta^{\mu \nu} \mapsto \theta^{\mu \nu} + F^{\mu \rho} \pa^\nu \pa_\rho \alpha
+  \qquad \Rightarrow \qquad
+  P^\mu \mapsto P^\mu + \int \dd^3x\, \pa_\rho (F^{0 \rho} \pa^\mu \alpha) = P^\mu + \int \dd^3x\, \pa_i (F^{0i} \pa^\mu \alpha) = P^\mu
+\end{equation*}
+where the last term is a total spatial derivative, hence vanishing by divergence theorem provided that the field decreases sufficiently fast at infinity. To improve the energy-momentum tensor, add $ \pa_\rho (F^{\mu \rho} A^\nu) $, which is covariantly conserved by itself and whose $ \mu = 0 $ component is a total spatial derivative, so to obtain:
+\begin{equation}
+  T^{\mu \nu} = F^{\mu \rho} \tensor{F}{_\rho^\nu} + \frac{1}{4} \eta^{\mu \nu} F^2
+\end{equation}
+which is explicitly gauge-invariant and yields the usual expressions for the energy density $ T^{00} = \frac{1}{2} \left( \ve{E}^2 + \ve{B}^2 \right) $ and the momentum density $ T^{0i} = \left( \ve{E} \times \ve{B} \right)^i $.\\
+In a general field theory, the observable quantities are the charges, not the currents: two Lagrangian densities which differ by a total 4-divergence are physically equivalent and give the same equations of motion, but the conserved currents obtained through Noether theorem are different, while the associated Noether charges are the same.
+
+\subsection{Matter coupling}
+
+In the presence of an external current $ j^\mu $, Eq. \ref{eq:maxw-2} is not modified, as it is a consequence of the definition of $ F^{\mu \nu} $ (assuming regular gauge fields), while Eq. \ref{eq:maxw-1} becomes:
+\begin{equation}
+  \pa_\mu F^{\mu \nu} = j^\nu
+  \label{eq:maxw-3}
+\end{equation}
+By Schwarz lemma, this equation is consistent only if $ \pa_\mu j^\mu = 0 $. This can be understood in light of gauge invariance, considering the action:
+\begin{equation}
+  \mathcal{S}_\text{M} = - \int \dd^4x \left[ \frac{1}{4} F^2 + j^\mu A_\mu \right]
+\end{equation}
+A gauge transformation $ A_\mu \mapsto A_\mu - \pa_\mu \alpha $ implies $ \mathcal{S}_\text{M} \mapsto \mathcal{S}_\text{M} + \int \dd^4x\, j^\mu \pa_\mu \alpha $: integrating by parts, it is clear that $ \mathcal{S}_\text{M} $ is gauge invariant only if $ \pa_\mu j^\mu = 0 $.
+
+\subsubsection{Dirac field}
+
+
+
+
+
+
+
+
+
+
