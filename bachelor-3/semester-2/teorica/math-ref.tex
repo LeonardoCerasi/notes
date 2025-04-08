@@ -1,0 +1,395 @@
+\selectlanguage{english}
+
+\section{Lie groups}
+
+\begin{definition}{Lie groups}{}
+  A \textit{Lie group} is a group whose elements depend in a continuous and differentiable way on a set of real parameters $ \{\theta_a\}_{a = 1, \dots, d} \subset \R^d $.
+\end{definition}
+
+A Lie group can be seen both as a group and as a $ d $-dimensional differentiable manifold (with coordinates $ \theta_a $). WLOG it is always possible to choose $ g(0,\dots,0) = e $.
+
+\begin{definition}{Representations}{representation}
+  Given a group $ G $ and a vector space $ V(\K) $, a \textit{representation} of $ G $ on $ V $ is a homomorphism $ \rho : G \rightarrow \GL{V} $.
+\end{definition}
+
+A representation $ \rho $ which is a isomorphism is called \textit{faithful}. As $ \GL{V} \cong \K^{n \times n} $, with $ n \equiv \dim_\K V $, it is usual to represent $ G $ as matrices acting on elements of $ V $, i.e. $ \rho : G \rightarrow \K^{n \times n} $.
+
+\begin{theorem}{}{}
+  Given a Lie group $ G $ and $ g \in G $ connected with the identity, a representation of degree $ n $ on $ V(\C) $ is:
+  \begin{equation}
+    \rho(g(\theta)) = e^{i \theta_a T^a}
+  \end{equation}
+  where $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ are the \textit{generators} of $ G $ on $ V $.
+\end{theorem}
+
+\begin{definition}{Lie algebras}{}
+  Given a Lie group $ G $ with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, its \textit{Lie algebra} is:
+  \begin{equation}
+    [T^a, T^b] = i \tensor{f}{^a^b_c} T^c
+  \end{equation}
+  where $ \tensor{f}{^a^b_c} $ are called the \textit{structure constants}.
+\end{definition}
+
+The sum over repeated indices is understood.
+
+\begin{proposition}{}{}
+  The Lie algebra of a Lie group is independent of the representation.
+\end{proposition}
+
+\begin{proposition}{}{}
+  Any $ d $-dimensional abelian Lie algebra is isomorphic to the direct sum of $ d $ one-dimensional Lie algebras.
+\end{proposition}
+
+As a consequence, all irreducible representations of an abelian Lie group are of degree $ n = 1 $.
+
+\begin{definition}{Casimir operators}{}
+  Given a Lie group with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, a \textit{Casimir operator} is an operator which commutes with each generator.
+\end{definition}
+
+Given an irreducible representation on $ V $, Casimir operators are operators proportional to $ \id_V $, and the proportionality constants can be used to label the representation: they correspond to conserved physical quantities.
+
+\begin{proposition}{}{non-compact-rep}
+  A non-compact group cannot have finite unitary representations, except for those with trivial non-compact generators.
+\end{proposition}
+
+This means that the non-compact component of a group cannot be represented with unitary operators of finite dimension.
+
+\subsection{Adjoint representation}
+
+To define the adjoint representation of a Lie group, it is necessary to give more formal definitions.
+
+\begin{definition}{Lie algrebas}{}
+  An $ n $-dimensional $ \K $-\textit{Lie algebra} $ \mathfrak{g} $ is an $ n $-dimensional $ \K $-vector space equipped with a bilinear map $ [\cdot,\cdot] : \mathfrak{g} \times \mathfrak{g} \rightarrow \mathfrak{g} $ such that:
+  \begin{enumerate}
+    \item $ [X,Y] = - [Y,X] \,\,\forall X,Y \in \mathfrak{g} $;
+    \item $ [X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0 \,\,\forall X,Y,Z \in \mathfrak{g} $ (Jacobi identity).
+  \end{enumerate}
+\end{definition}
+
+A Lie algebra $ \mathfrak{g} $ is \textit{commutative} if $ [X,Y] = 0 \,\,\forall X,Y \in \mathfrak{g} $.
+
+\begin{example}{$ \R^3 $ as a Lie algebra}{}
+  Let $ \mathfrak{g} = \R^3 $ and $ [\cdot,\cdot] : \R^3 \times \R^3 \ni (\ve{x},\ve{y}) \mapsto [\ve{x} , \ve{y}] \equiv \ve{x} \times \ve{y} \in \R^3 $. Then $ \mathfrak{g} $ is a Lie algebra.
+\end{example}
+
+\begin{definition}{Lie algebra morphisms}{}
+  Let $ \mathfrak{g} , \mathfrak{h} $ be Lie algebras. A linear map $ \varphi : \mathfrak{g} \rightarrow \mathfrak{h} $ is a \textit{Lie algebra homomorphism} if:
+  \begin{equation*}
+    \varphi([X,Y]) = [\varphi(X),\varphi(Y)] \,\,\forall X,Y \in \mathfrak{g}
+  \end{equation*}
+  If $ \varphi $ is bijective, then it is a \textit{Lie algebra isomorphism}.
+\end{definition}
+
+A Lie algebra isomorphism $ \varphi : \mathfrak{g} \rightarrow \mathfrak{g} $ is a \textit{Lie algebra automorphism} $ \mathfrak{g} \in \Aut{\mathfrak{g}} $, where $ \Aut{\mathfrak{g}} $ is the \textit{automorphism group} of $ \mathfrak{g} $ (a group under the composition of morphisms).
+
+\begin{definition}{Adjoint map (pt. 1)}{adj-map-1}
+  Let $ \mathfrak{g} $ be a Lie group and, given $ X \in \mathfrak{g} $, define $ \ad_X : \mathfrak{g} \rightarrow \mathfrak{g} : Y \mapsto \ad_X(Y) \defeq [X,Y] $. Then the \textit{adjoint map} on $ \mathfrak{g} $ is the map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} : X \mapsto \ad_X $.
+\end{definition}
+
+By Jacobi identity, the adjoint map is a \textit{derivation} of the Lie bracket, as:
+\begin{equation*}
+  \ad_X([Y,Z]) = [\ad_X(Y),Z] + [Y,\ad_X(Z)]
+\end{equation*}
+
+\begin{proposition}{}{}
+  Given a Lie algebra $ \mathfrak{g} $, the adjoint map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} $ is a Lie algebra homomorphism.
+
+  \tcblower
+
+  \begin{proof}
+    Note that, by Jacobi identity:
+    \begin{equation*}
+      \ad_{[X,Y]}(Z) = [[X,Y],Z] = [X,[Y,Z]] + [Y,[Z,X]]
+    \end{equation*}
+    Moreover:
+    \begin{equation*}
+      [\ad_X,\ad_Y](Z) = [X,[Y,Z]] - [Y,[X,Z] = [X,[Y,Z]] + [Y,[Z,X]]
+    \end{equation*}
+    Therefore, $ \ad_{[X,Y]} = [\ad_X,\ad_Y] $, i.e. the thesis.
+  \end{proof}
+\end{proposition}
+
+Let $ \mathfrak{g} $ be an $ n $-dimensional $ \K $-Lie algebra and $ \{X_i\}_{i = 1,\dots,n} \subset \mathfrak{g} $ a basis of $ \mathfrak{g} $. Then there are unique constants $ c_{ijk} \in \K $:
+\begin{equation*}
+  [X_i , X_j] = \sum_{k = 1}^{n} c_{ijk} X_k
+\end{equation*}
+known as \textit{structure constants}.
+
+\begin{theorem}{Lie algebras from Lie groups}{}
+  Let $ G \subset \GL{n,\C} $ be a Lie group. Then $ \mathfrak{g} = \{X \in \C^{n \times n} : e^{t X} \in G \,\,\forall t \in \R \} $ is a Lie algebra.
+\end{theorem}
+
+Even if $ G $ is a complex Lie group, its Lie algebra can still be real.
+
+\begin{theorem}{Induced Lie algebra homomorphism}{ind-lie-alg-hom}
+  Let $ G,H $ be Lie groups, with Lie algebra $ \mathfrak{g},\mathfrak{h} $, and let $ \varphi : G \rightarrow H $ be a Lie group homomorphism. Then there exists a unique $ \R $-linear map $ \Phi : \mathfrak{g} \rightarrow \mathfrak{h} $ such that:
+  \begin{equation*}
+    \varphi(e^X) = e^{\Phi(X)} \,\,\forall X \in \mathfrak{g}
+  \end{equation*}
+  The map $ \Phi $ as additional properties:
+  \begin{enumerate}
+    \item $ \Phi(gXg^{-1}) = \varphi(g) \Phi(X) \varphi(g)^{-1} \,\,\forall X \in \mathfrak{g} , \forall g \in G $;
+    \item $ \Phi([X,Y]) = [\Phi(X),\Phi(Y)] \,\,\forall X,Y \in \mathfrak{g} $ (Lie algebra homomorphism);
+    \item $ \Phi(X) = \frac{\dd}{\dd t}\big\vert_{t = 0} \varphi(e^{tX}) \,\,\forall X \in \mathfrak{g} $.
+  \end{enumerate}
+\end{theorem}
+
+To phrase Th. \ref{th:ind-lie-alg-hom} in the language of manifolds, $ \Phi $ is the \textit{derivative} of $ \varphi $ at the identity: $ \Phi = d\varphi_e $.
+
+\begin{definition}{Adjoint map (pt. 2)}{adj-map-2}
+  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. The \textit{adjoint map} of $ g \in G $ is the linear map $ \Ad_g : \mathfrak{g} \rightarrow \mathfrak{g} : \Ad_g(X) \defeq g X g^{-1} $.
+\end{definition}
+
+As $ \Ad_g $ is clearly invertible, with $ \Ad_g^{-1} = \Ad_{g^{-1}} $, then $ \Ad_g \in \GL{\mathfrak{g}} \,\,\forall g \in G $. Furthermore, it is clear that $ \Ad_g([X,Y]) = [\Ad_g(X),\Ad_g(Y)] \,\,\forall X,Y \in \mathfrak{g} , \forall g \in G $, therefore each adjoint map is a Lie algebra homomorphism.
+
+\begin{proposition}{Adjoint representation}{}
+  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then the map $ \Ad : G \rightarrow \GL{\mathfrak{g}} : g \mapsto \Ad_g $ is a homomorphism.
+\end{proposition}
+
+Recalling Def. \ref{def:representation}, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a representation of $ G $ on $ \mathfrak{g} $, called the \textit{adjoint representation}.\\
+As $ \GL{\mathfrak{g}} \cong \GL{n,\K} $ (with $ n \equiv \dim_\K \mathfrak{g} $ and $ \K = \R $ or $ \C $), it can be viewed as a Lie group itself, and its Lie algebra is $ \mathfrak{gl}(\mathfrak{g}) $. Thus, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a Lie group homomorphism (as it can be shown to be continuous).
+
+\begin{proposition}{Adjoint maps}{}
+  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then, given the Lie group homomorphism $ \Ad : G \rightarrow \GL{\mathfrak{g}} $, the induced Lie algebra homomorphism is $ \ad : \mathfrak{g} \rightarrow \mathfrak{gl}(\mathfrak{g}) $ such that $ \ad_X(Y) = [X,Y] $.
+
+  \tcblower
+
+  \begin{proof}
+    By Th. \ref{th:ind-lie-alg-hom}, the Lie algebra homomorphism induced by $ \varphi \equiv \Ad $ is:
+    \begin{equation*}
+      \Phi(X) \equiv \ad_X = \frac{\dd}{\dd t}\bigg\vert_{t = 0} \Ad_{e^{tX}}
+    \end{equation*}
+    Hence:
+    \begin{equation*}
+      \ad_X(Y) = \frac{\dd}{\dd t}\bigg\vert_{t = 0} e^{tX} Y e^{-tX} = [X,Y]
+    \end{equation*}
+  \end{proof}
+\end{proposition}
+
+This result links the two adjoint maps in Deff. \ref{def:adj-map-1}-\ref{def:adj-map-2}.
+
+\subsection{\texorpdfstring{$ \SUn{n} $}{SU(2)} Lie group}
+
+The $ \SUn{n} $ group is the group of unitary transformations of $ n $-dimensional complex vectors. Its (faithful) fundamental representation thus is:
+\begin{equation*}
+  \SUn{n} = \{\tens{U} \in \C^{n \times n} : \tens{U}\tens{U}\dg = \tens{U}\dg\tens{U} = \tens{I}_n \land \det{\tens{U}} = +1 \}
+\end{equation*}
+The generators of $ \SUn{n} $ can be found setting $ \tens{U} = \exp \left( i \theta_a T^a \right) = \tens{I}_n + i \theta_a T^a $ and using $ \tens{U}\dg\tens{U} = \tens{I}_n $:
+\begin{equation}
+  T^a = T^{a\dagger}
+  \label{eq:sun-herm}
+\end{equation}
+Moreover, by the Jacobi formula $ (\det A(t)) \frac{\dd}{\dd t} (\det A(t)) = \tr (A(t)^{-1} \frac{\dd}{\dd t} A(t)) $ evaluated at $ t = 0 $:
+\begin{equation}
+  \tr T^a = 0
+  \label{eq:sun-trace}
+\end{equation}
+The traceless condition can be generalized to all semi-simple Lie algebras.
+Therefore, the generators of $ \SUn{n} $ are $ \C^{n \times n} $ hermitian traceless matrices: the dimension of $ \mathfrak{su}(n) $ then is $ n^2 - 1 $.\\
+The adjoint representation can be is given by representing the generators of the Lie group (i.e. the basis of the Lie algebra) with the structure constants of the Lie algebra:
+\begin{equation}
+  (T^b_\text{ad})_{ac} = i \tensor{f}{^a^b_c}
+\end{equation}
+
+\begin{proposition}{Structure constants}{}
+  The structure constants of a Lie algebra satisfy the Lie algebra.
+
+  \tcblower
+
+  \begin{proof}
+    As $ [T^a,T^b] = i \tensor{f}{^a^b_c} T^c $, the Jacoby identity becomes (recalling that $ \tensor{f}{^a^b_c} $ is totally antisymmetric):
+    \begin{equation*}
+      [[T^a,T^b],T^c] + [[T^b,T^c],T^a] + [[T^c,T^a],T^b] = 0
+    \end{equation*}
+    \begin{equation*}
+      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
+    \end{equation*}
+    The condition $ ([T^a_\text{ad},T^c_\text{ad}])_{be} = i \tensor{f}{^a^c_d} (T^d_\text{ad})_{be} $ then gives:
+    \begin{equation*}
+      \tensor{f}{^b^a_d} \tensor{f}{^d^c_e} - \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} = \tensor{f}{^a^c_d} \tensor{f}{^b^d_e}
+    \end{equation*}
+    \begin{equation*}
+      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
+    \end{equation*}
+    These two expressions are equal, hence the thesis.
+  \end{proof}
+\end{proposition}
+
+Moreover, since the structure constant are real, the adjoint representation is always a real representation: the adjoint representation of $ \SUn{n} $ has degree $ n^2 - 1 $.\\
+Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
+\begin{equation}
+  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
+  \label{eq:quad-cas}
+\end{equation}
+This is called the \textit{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
+
+\begin{proposition}{Quadratic Casimir operator}{}
+  For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
+  \begin{equation}
+    C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
+    \qquad \qquad
+    C_2(\mathtt{g}) = n
+  \end{equation}
+
+  \tcblower
+
+  \begin{proof}
+    First consider the fundamental representation. The $ \mathtt{n} $ of $ \SUn{2} $ is the spinor representation, with generators $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, hence they satisfy $ \tr(T^a_\mathtt{2} T^b_\mathtt{2}) = \frac{1}{2} \delta^{ab} $. It is possible to choose the generators of $ \SUn{n} $ such that, in $ \mathtt{n} $, the first three are $ T^a_\mathtt{n} = \frac{\sigma^a}{2} \,,\, a = 1,2,3 $ (they act on the first three component of $ \C^n $-vectors), so that the others can be chosen such that:
+    \begin{equation*}
+      \tr (T^a_\mathtt{n} T^b_\mathtt{n}) = \frac{1}{2} \delta^{ab}
+    \end{equation*}
+    Contracting Eq. \ref{eq:quad-cas} with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n) $) then:
+    \begin{equation*}
+      C_2(\mathtt{n}) n = \frac{1}{2} (n^2 - 1)
+    \end{equation*}
+    To compute the Casimir operator for the adjoint representation, first consider the decomposition of the direct product of two representations:
+    \begin{equation*}
+      \mathtt{r}_1 \otimes \mathtt{r}_2 = \bigoplus_i \mathtt{r}_i
+    \end{equation*}
+    In this representation $ T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2} = T^a_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} $, and it acts on tensor objects $ \Xi_{pq} $ whose first index transforms according to $ \mathtt{r}_1 $ and the second index according to $ \mathtt{r}_2 $. Recalling that $ \tr{T^a} = 0 $:
+    \begin{equation*}
+      \begin{split}
+        \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2
+        &= \tr ((T^a_{\mathtt{r}_1})^2 \otimes \id_{\mathtt{r}_2} + 2 T^a_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes (T^a_{\mathtt{r}_2})^2) \\
+        &= \tr (C_2(\mathtt{r}_1) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) + \tr (C_2(\mathtt{r}_2) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) = (C_2(\mathtt{r}_1) + C_2(\mathtt{r}_2)) n_{\mathtt{r}_1} n_{\mathtt{r}_2}
+      \end{split}
+    \end{equation*}
+    However, by the decomposition above:
+    \begin{equation*}
+      \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
+    \end{equation*}
+    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of Eqq. \ref{eq:sun-herm}-\ref{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
+    \begin{equation*}
+      (C_2(\ve{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
+    \end{equation*}
+    Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
+    \begin{equation*}
+      C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
+    \end{equation*}
+    which is completes the proof.
+  \end{proof}
+\end{proposition}
+
+\subsubsection{$ \SUn{2} $ Lie group}
+
+The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \tens{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
+\begin{equation}
+  (T^a_\mathtt{g})_{ij} = i \epsilon^{iaj}
+\end{equation}
+Explicitely:
+\begin{equation*}
+  T^1_\mathtt{g} =
+  \begin{bmatrix}
+    0 & 0 & 0 \\
+    0 & 0 & -i \\
+    0 & i & 0
+  \end{bmatrix}
+  \qquad
+  T^2_\mathtt{g} =
+  \begin{bmatrix}
+    0 & 0 & i \\
+    0 & 0 & 0 \\
+    -i & 0 & 0
+  \end{bmatrix}
+  \qquad
+  T^3_\mathtt{g} =
+  \begin{bmatrix}
+    0 & -i & 0 \\
+    i & 0 & 0 \\
+    0 & 0 & 0
+  \end{bmatrix}
+\end{equation*}
+As an aside, these are exactly the generators of the fundamental representation of $ \SOn{3} $: this is due to the adjoint map of $ \SUn{2} $ being also the double-covering map on $ \SOn{3} \cong \SUn{2} / \Z_2 $.
+
+\subsection{Clifford algebras}
+
+\begin{definition}{Associative algebras}{}
+  An $ n $-dimensional \textit{associative} $ \K $-\textit{algebra} $ \mathcal{A} $ is an $ n $-dimensional vector space $ V(\K) $ equipped with a bilinear map $ \mathcal{A} \times \mathcal{A} \ni (a,b) \mapsto ab \in \mathcal{A} $ such that:
+  \begin{enumerate}
+    \item $ (ab)c = a(bc) \,\,\forall a,b,c \in \mathcal{A} $ (associativity);
+    \item $ a(b + c) = ab + ac \,\land\, (a + b)c = ac + bc \,\,\forall a,b,c \in \mathcal{A} $;
+    \item $ \lambda (ab) = (\lambda a)b = a(\lambda b) \,\,\forall \lambda \in \K, \forall a,b \in \mathcal{A} $.
+  \end{enumerate}
+\end{definition}
+
+An algebra is said to be \textit{unital} if $ \exists \mathit{1} \in \mathcal{A} : \mathit{1}a = a\mathit{1} = a \,\,\forall a \in \mathcal{A} $, called \textit{identity element}.
+
+\begin{definition}{Algebra morphisms}{}
+  Given two associative $ \K $-algebras $ \mathcal{A} , \mathcal{B} $, a $ \K $-linear map $ \varphi : \mathcal{A} \rightarrow \mathcal{B} $ is an \textit{algebra morphism} if:
+  \begin{equation*}
+    \varphi(ab) = \varphi(a) \varphi(b) \quad\forall a,b \in \mathcal{A}
+  \end{equation*}
+\end{definition}
+
+If $ \varphi(\mathit{1}_\mathcal{A}) = \mathit{1}_\mathcal{B} $, then $ \varphi $ is a \textit{unital morphism}. An algebra morphism $ \varphi : \mathcal{A} \rightarrow \mathcal{A} $ is an \textit{endomorphism}, and if $ \varphi^2 = \id_\mathcal{A} $ it is an \textit{involution}.
+
+\begin{proposition}{Even subalgebras}{}
+  Given a unital associative $ \K $-algebra $ \mathcal{A} $ and an involution $ \varphi \in \End \mathcal{A} $, then:
+  \begin{equation*}
+    \mathcal{A} = \mathcal{A}^+ \oplus \mathcal{A}^-
+  \end{equation*}
+  where, defining $ \pi \defeq \frac{1}{2} (\id_\mathcal{A} + \varphi) $:
+  \begin{equation*}
+    \mathcal{A}^+ \defeq \pi(\mathcal{A}) = \{a \in \mathcal{A} : \varphi(a) = a\}
+  \end{equation*}
+  \begin{equation*}
+    \mathcal{A}^- \defeq (\id_\mathcal{A} - \pi)(\mathcal{A}) = \{a \in \mathcal{A} : \varphi(a) = -a\}
+  \end{equation*}
+\end{proposition}
+
+As $ \mathcal{A}^+ \mathcal{A}^+ , \mathcal{A}^- \mathcal{A}^- \subset \mathcal{A}^+ $ and $ \mathcal{A}^+ \mathcal{A}^- , \mathcal{A}^- \mathcal{A}^+ \subset \mathcal{A}^- $, then $ \mathcal{A}^+ $ is a subalgebra of $ \mathcal{A} $, the \textit{even subalgebra}.
+
+\begin{definition}{Clifford algebras}{}
+  Given an $ n $-dimensional vector space $ V(\K) $ with a quadratic form $ q $, associated linear form\footnotemark $ \omega $ and orthogonal basis $ \{e_i\}_{i = 1,\dots,n} $, and a unital associative $ \K $-algebra $ \mathcal{A} $, a \textit{Clifford mapping} is an injective $ \K $-linear map $ \rho : V \rightarrow \mathcal{A} : \mathit{1} \notin \rho(V) \land \rho(x)^2 = - q(x) \mathit{1} \,\,\forall x \in V $.\\
+  If $ \rho(V) $ generates $ \mathcal{A} $, then $ (\mathcal{A},\rho) $ is a \textit{Clifford algebra} for $ (V,q) $, and is denoted by $ \cla{V} $.
+\end{definition}
+
+\footnotetext{Given a vector space $ V(\K) $, a quadratic form is a map $ q : V \rightarrow \K $ such that $ q(\lambda x) = \lambda^2 q(x) \,\,\forall \lambda \in \K , \forall x \in V $, and the associated bilinear form is a $ \K $-bilinear map $ \omega : V \times V \rightarrow \K $ such that $ \omega(x,y) = \frac{1}{2} \left( q(x + y) - q(x) - q(y) \right) $, which is manifestly symmetric and $ q(x) = \omega(x,x) $.}
+
+\begin{lemma}{}{}
+  \begin{equation*}
+    \{\rho(x) , \rho(y)\} = - 2 \omega(x,y) \mathit{1} \quad \forall x,y \in V
+  \end{equation*}
+
+  \tcblower
+
+  \begin{proof}
+    \begin{equation*}
+      \rho(x) \rho(y) + \rho(y) \rho(x) = \rho(x + y)^2 - \rho(x)^2 - \rho(y)^2 = - \left( q(x + y) - q(x) - q(y) \right) \mathit{1} = - 2 \omega(x,y) \mathit{1}
+    \end{equation*}
+  \end{proof}
+\end{lemma}
+
+Setting for ease of reading $ \rho(x) \equiv x $, it is clear that $ x \perp y \,\,\Rightarrow\,\, xy = -yx $.\\
+More intuitively, the Clifford algebra $ \cla{V} $ can be seen as the associative algebra generated by $ V $ setting $ xy = - \omega(x,y)\mathit{1} \,\,\forall x,y \in V$, so that:
+\begin{equation}
+  \{x,y\} = 2 \omega(x,y)\mathit{1} \quad \forall x,y \in V
+  \label{eq:cliff-alg}
+\end{equation}
+In general, $ \clar{m,n} $ denotes the Clifford algebra associated to $ \R^{m,n} $ with quadratic form:
+\begin{equation*}
+  q(x_1,\dots,x_m,y_1,\dots,y_n) = \sum_{i = 1}^{m} x_i^2 - \sum_{j = 1}^{n} y_j^2
+\end{equation*}
+
+\begin{example}{Complex numbers}{}
+  Via Clifford algebras, $ \C \cong \clar{0,1} $. In fact, $ \R^{0,1} $ has orthonormal basis $ \{e_1\} $ such that $ q(e_1) = -1 $, i.e. $ e_1^2 = - \mathit{1} $, so elements of the Clifford algebra are generated by $ \{\mathit{1},e_1\} $: identifying $ e_1 \equiv i $ gives the desired isomorphism.
+\end{example}
+
+\begin{example}{Quaternions}{}
+  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by Eq. \ref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv i $, $ e_2 \equiv j $ and $ e_1 e_2 = k $ yields the result.
+\end{example}
+
+\subsubsection{Spin groups}
+\label{subsubsec:spin-groups}
+
+Given an $ n $-dimensional $ \K $-vector space, the Clifford algebra $ \cla{V} $ is finite dimensional and is naturaly $ \N $-graded\footnotemark as:
+\begin{equation}
+  \cla{V} = \bigoplus_{i = 1}^n \mathfrak{cl}^{(i)}(V)
+  \label{eq:cliff-alg-grade}
+\end{equation}
+where $ \mathfrak{cl}^{(0)}(V) = \K $, $ \mathfrak{cl}^{(1)}(V) = V $ and $ \mathfrak{cl}^{(2)}(V) \equiv \spin(V) $ is the \textit{spin group} of $ V $. The spin group is a Lie group and, via its natural action on $ V $, can be shown to be $ \spin(V) \cong \mathfrak{so}(V) $.
+
+\footnotetext{Given an index set $ I $ and a $ \K $-vector space, the latter is $ I $-\textit{graded} if there exists a family of subspaces $ \{V_i\}_{i \in I} $ of $ V $ such that:
+\begin{equation*}
+  V = \bigoplus_{i \in I} V_i
+\end{equation*}}

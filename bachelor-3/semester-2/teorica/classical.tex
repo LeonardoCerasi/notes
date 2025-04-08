@@ -158,398 +158,6 @@ For a strictly continuous system there is no cut-off in the $ k $ integral, thus
 
 \section{Spacetime symmetries}
 
-\subsection{Lie groups}
-
-\begin{definition}{Lie groups}{}
-  A \textit{Lie group} is a group whose elements depend in a continuous and differentiable way on a set of real parameters $ \{\theta_a\}_{a = 1, \dots, d} \subset \R^d $.
-\end{definition}
-
-A Lie group can be seen both as a group and as a $ d $-dimensional differentiable manifold (with coordinates $ \theta_a $). WLOG it is always possible to choose $ g(0,\dots,0) = e $.
-
-\begin{definition}{Representations}{representation}
-  Given a group $ G $ and a vector space $ V(\K) $, a \textit{representation} of $ G $ on $ V $ is a homomorphism $ \rho : G \rightarrow \GL{V} $.
-\end{definition}
-
-A representation $ \rho $ which is a isomorphism is called \textit{faithful}. As $ \GL{V} \cong \K^{n \times n} $, with $ n \equiv \dim_\K V $, it is usual to represent $ G $ as matrices acting on elements of $ V $, i.e. $ \rho : G \rightarrow \K^{n \times n} $.
-
-\begin{theorem}{}{}
-  Given a Lie group $ G $ and $ g \in G $ connected with the identity, a representation of degree $ n $ on $ V(\C) $ is:
-  \begin{equation}
-    \rho(g(\theta)) = e^{i \theta_a T^a}
-  \end{equation}
-  where $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ are the \textit{generators} of $ G $ on $ V $.
-\end{theorem}
-
-\begin{definition}{Lie algebras}{}
-  Given a Lie group $ G $ with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, its \textit{Lie algebra} is:
-  \begin{equation}
-    [T^a, T^b] = i \tensor{f}{^a^b_c} T^c
-  \end{equation}
-  where $ \tensor{f}{^a^b_c} $ are called the \textit{structure constants}.
-\end{definition}
-
-The sum over repeated indices is understood.
-
-\begin{proposition}{}{}
-  The Lie algebra of a Lie group is independent of the representation.
-\end{proposition}
-
-\begin{proposition}{}{}
-  Any $ d $-dimensional abelian Lie algebra is isomorphic to the direct sum of $ d $ one-dimensional Lie algebras.
-\end{proposition}
-
-As a consequence, all irreducible representations of an abelian Lie group are of degree $ n = 1 $.
-
-\begin{definition}{Casimir operators}{}
-  Given a Lie group with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, a \textit{Casimir operator} is an operator which commutes with each generator.
-\end{definition}
-
-Given an irreducible representation on $ V $, Casimir operators are operators proportional to $ \id_V $, and the proportionality constants can be used to label the representation: they correspond to conserved physical quantities.
-
-\begin{proposition}{}{non-compact-rep}
-  A non-compact group cannot have finite unitary representations, except for those with trivial non-compact generators.
-\end{proposition}
-
-This means that the non-compact component of a group cannot be represented with unitary operators of finite dimension.
-
-\subsubsection{Adjoint representation}
-
-To define the adjoint representation of a Lie group, it is necessary to give more formal definitions.
-
-\begin{definition}{Lie algrebas}{}
-  An $ n $-dimensional $ \K $-\textit{Lie algebra} $ \mathfrak{g} $ is an $ n $-dimensional $ \K $-vector space equipped with a bilinear map $ [\cdot,\cdot] : \mathfrak{g} \times \mathfrak{g} \rightarrow \mathfrak{g} $ such that:
-  \begin{enumerate}
-    \item $ [X,Y] = - [Y,X] \,\,\forall X,Y \in \mathfrak{g} $;
-    \item $ [X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0 \,\,\forall X,Y,Z \in \mathfrak{g} $ (Jacobi identity).
-  \end{enumerate}
-\end{definition}
-
-A Lie algebra $ \mathfrak{g} $ is \textit{commutative} if $ [X,Y] = 0 \,\,\forall X,Y \in \mathfrak{g} $.
-
-\begin{example}{$ \R^3 $ as a Lie algebra}{}
-  Let $ \mathfrak{g} = \R^3 $ and $ [\cdot,\cdot] : \R^3 \times \R^3 \ni (\ve{x},\ve{y}) \mapsto [\ve{x} , \ve{y}] \equiv \ve{x} \times \ve{y} \in \R^3 $. Then $ \mathfrak{g} $ is a Lie algebra.
-\end{example}
-
-\begin{definition}{Lie algebra morphisms}{}
-  Let $ \mathfrak{g} , \mathfrak{h} $ be Lie algebras. A linear map $ \varphi : \mathfrak{g} \rightarrow \mathfrak{h} $ is a \textit{Lie algebra homomorphism} if:
-  \begin{equation*}
-    \varphi([X,Y]) = [\varphi(X),\varphi(Y)] \,\,\forall X,Y \in \mathfrak{g}
-  \end{equation*}
-  If $ \varphi $ is bijective, then it is a \textit{Lie algebra isomorphism}.
-\end{definition}
-
-A Lie algebra isomorphism $ \varphi : \mathfrak{g} \rightarrow \mathfrak{g} $ is a \textit{Lie algebra automorphism} $ \mathfrak{g} \in \Aut{\mathfrak{g}} $, where $ \Aut{\mathfrak{g}} $ is the \textit{automorphism group} of $ \mathfrak{g} $ (a group under the composition of morphisms).
-
-\begin{definition}{Adjoint map (pt. 1)}{adj-map-1}
-  Let $ \mathfrak{g} $ be a Lie group and, given $ X \in \mathfrak{g} $, define $ \ad_X : \mathfrak{g} \rightarrow \mathfrak{g} : Y \mapsto \ad_X(Y) \defeq [X,Y] $. Then the \textit{adjoint map} on $ \mathfrak{g} $ is the map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} : X \mapsto \ad_X $.
-\end{definition}
-
-By Jacobi identity, the adjoint map is a \textit{derivation} of the Lie bracket, as:
-\begin{equation*}
-  \ad_X([Y,Z]) = [\ad_X(Y),Z] + [Y,\ad_X(Z)]
-\end{equation*}
-
-\begin{proposition}{}{}
-  Given a Lie algebra $ \mathfrak{g} $, the adjoint map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} $ is a Lie algebra homomorphism.
-
-  \tcblower
-
-  \begin{proof}
-    Note that, by Jacobi identity:
-    \begin{equation*}
-      \ad_{[X,Y]}(Z) = [[X,Y],Z] = [X,[Y,Z]] + [Y,[Z,X]]
-    \end{equation*}
-    Moreover:
-    \begin{equation*}
-      [\ad_X,\ad_Y](Z) = [X,[Y,Z]] - [Y,[X,Z] = [X,[Y,Z]] + [Y,[Z,X]]
-    \end{equation*}
-    Therefore, $ \ad_{[X,Y]} = [\ad_X,\ad_Y] $, i.e. the thesis.
-  \end{proof}
-\end{proposition}
-
-Let $ \mathfrak{g} $ be an $ n $-dimensional $ \K $-Lie algebra and $ \{X_i\}_{i = 1,\dots,n} \subset \mathfrak{g} $ a basis of $ \mathfrak{g} $. Then there are unique constants $ c_{ijk} \in \K $:
-\begin{equation*}
-  [X_i , X_j] = \sum_{k = 1}^{n} c_{ijk} X_k
-\end{equation*}
-known as \textit{structure constants}.
-
-\begin{theorem}{Lie algebras from Lie groups}{}
-  Let $ G \subset \GL{n,\C} $ be a Lie group. Then $ \mathfrak{g} = \{X \in \C^{n \times n} : e^{t X} \in G \,\,\forall t \in \R \} $ is a Lie algebra.
-\end{theorem}
-
-Even if $ G $ is a complex Lie group, its Lie algebra can still be real.
-
-\begin{theorem}{Induced Lie algebra homomorphism}{ind-lie-alg-hom}
-  Let $ G,H $ be Lie groups, with Lie algebra $ \mathfrak{g},\mathfrak{h} $, and let $ \varphi : G \rightarrow H $ be a Lie group homomorphism. Then there exists a unique $ \R $-linear map $ \Phi : \mathfrak{g} \rightarrow \mathfrak{h} $ such that:
-  \begin{equation*}
-    \varphi(e^X) = e^{\Phi(X)} \,\,\forall X \in \mathfrak{g}
-  \end{equation*}
-  The map $ \Phi $ as additional properties:
-  \begin{enumerate}
-    \item $ \Phi(gXg^{-1}) = \varphi(g) \Phi(X) \varphi(g)^{-1} \,\,\forall X \in \mathfrak{g} , \forall g \in G $;
-    \item $ \Phi([X,Y]) = [\Phi(X),\Phi(Y)] \,\,\forall X,Y \in \mathfrak{g} $ (Lie algebra homomorphism);
-    \item $ \Phi(X) = \frac{\dd}{\dd t}\big\vert_{t = 0} \varphi(e^{tX}) \,\,\forall X \in \mathfrak{g} $.
-  \end{enumerate}
-\end{theorem}
-
-To phrase Th. \ref{th:ind-lie-alg-hom} in the language of manifolds, $ \Phi $ is the \textit{derivative} of $ \varphi $ at the identity: $ \Phi = d\varphi_e $.
-
-\begin{definition}{Adjoint map (pt. 2)}{adj-map-2}
-  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. The \textit{adjoint map} of $ g \in G $ is the linear map $ \Ad_g : \mathfrak{g} \rightarrow \mathfrak{g} : \Ad_g(X) \defeq g X g^{-1} $.
-\end{definition}
-
-As $ \Ad_g $ is clearly invertible, with $ \Ad_g^{-1} = \Ad_{g^{-1}} $, then $ \Ad_g \in \GL{\mathfrak{g}} \,\,\forall g \in G $. Furthermore, it is clear that $ \Ad_g([X,Y]) = [\Ad_g(X),\Ad_g(Y)] \,\,\forall X,Y \in \mathfrak{g} , \forall g \in G $, therefore each adjoint map is a Lie algebra homomorphism.
-
-\begin{proposition}{Adjoint representation}{}
-  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then the map $ \Ad : G \rightarrow \GL{\mathfrak{g}} : g \mapsto \Ad_g $ is a homomorphism.
-\end{proposition}
-
-Recalling Def. \ref{def:representation}, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a representation of $ G $ on $ \mathfrak{g} $, called the \textit{adjoint representation}.\\
-As $ \GL{\mathfrak{g}} \cong \GL{n,\K} $ (with $ n \equiv \dim_\K \mathfrak{g} $ and $ \K = \R $ or $ \C $), it can be viewed as a Lie group itself, and its Lie algebra is $ \mathfrak{gl}(\mathfrak{g}) $. Thus, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a Lie group homomorphism (as it can be shown to be continuous).
-
-\begin{proposition}{Adjoint maps}{}
-  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then, given the Lie group homomorphism $ \Ad : G \rightarrow \GL{\mathfrak{g}} $, the induced Lie algebra homomorphism is $ \ad : \mathfrak{g} \rightarrow \mathfrak{gl}(\mathfrak{g}) $ such that $ \ad_X(Y) = [X,Y] $.
-
-  \tcblower
-
-  \begin{proof}
-    By Th. \ref{th:ind-lie-alg-hom}, the Lie algebra homomorphism induced by $ \varphi \equiv \Ad $ is:
-    \begin{equation*}
-      \Phi(X) \equiv \ad_X = \frac{\dd}{\dd t}\bigg\vert_{t = 0} \Ad_{e^{tX}}
-    \end{equation*}
-    Hence:
-    \begin{equation*}
-      \ad_X(Y) = \frac{\dd}{\dd t}\bigg\vert_{t = 0} e^{tX} Y e^{-tX} = [X,Y]
-    \end{equation*}
-  \end{proof}
-\end{proposition}
-
-This result links the two adjoint maps in Deff. \ref{def:adj-map-1}-\ref{def:adj-map-2}.
-
-\subsubsection{$ \SUn{n} $ Lie group}
-
-The $ \SUn{n} $ group is the group of unitary transformations of $ n $-dimensional complex vectors. Its (faithful) fundamental representation thus is:
-\begin{equation*}
-  \SUn{n} = \{\tens{U} \in \C^{n \times n} : \tens{U}\tens{U}\dg = \tens{U}\dg\tens{U} = \tens{I}_n \land \det{\tens{U}} = +1 \}
-\end{equation*}
-The generators of $ \SUn{n} $ can be found setting $ \tens{U} = \exp \left( i \theta_a T^a \right) = \tens{I}_n + i \theta_a T^a $ and using $ \tens{U}\dg\tens{U} = \tens{I}_n $:
-\begin{equation}
-  T^a = T^{a\dagger}
-  \label{eq:sun-herm}
-\end{equation}
-Moreover, by the Jacobi formula $ (\det A(t)) \frac{\dd}{\dd t} (\det A(t)) = \tr (A(t)^{-1} \frac{\dd}{\dd t} A(t)) $ evaluated at $ t = 0 $:
-\begin{equation}
-  \tr T^a = 0
-  \label{eq:sun-trace}
-\end{equation}
-The traceless condition can be generalized to all semi-simple Lie algebras.
-Therefore, the generators of $ \SUn{n} $ are $ \C^{n \times n} $ hermitian traceless matrices: the dimension of $ \mathfrak{su}(n) $ then is $ n^2 - 1 $.\\
-The adjoint representation can be is given by representing the generators of the Lie group (i.e. the basis of the Lie algebra) with the structure constants of the Lie algebra:
-\begin{equation}
-  (T^b_\text{ad})_{ac} = i \tensor{f}{^a^b_c}
-\end{equation}
-
-\begin{proposition}{Structure constants}{}
-  The structure constants of a Lie algebra satisfy the Lie algebra.
-
-  \tcblower
-
-  \begin{proof}
-    As $ [T^a,T^b] = i \tensor{f}{^a^b_c} T^c $, the Jacoby identity becomes (recalling that $ \tensor{f}{^a^b_c} $ is totally antisymmetric):
-    \begin{equation*}
-      [[T^a,T^b],T^c] + [[T^b,T^c],T^a] + [[T^c,T^a],T^b] = 0
-    \end{equation*}
-    \begin{equation*}
-      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
-    \end{equation*}
-    The condition $ ([T^a_\text{ad},T^c_\text{ad}])_{be} = i \tensor{f}{^a^c_d} (T^d_\text{ad})_{be} $ then gives:
-    \begin{equation*}
-      \tensor{f}{^b^a_d} \tensor{f}{^d^c_e} - \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} = \tensor{f}{^a^c_d} \tensor{f}{^b^d_e}
-    \end{equation*}
-    \begin{equation*}
-      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
-    \end{equation*}
-    These two expressions are equal, hence the thesis.
-  \end{proof}
-\end{proposition}
-
-Moreover, since the structure constant are real, the adjoint representation is always a real representation: the adjoint representation of $ \SUn{n} $ has degree $ n^2 - 1 $.\\
-Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
-\begin{equation}
-  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
-  \label{eq:quad-cas}
-\end{equation}
-This is called the \textit{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
-
-\begin{proposition}{Quadratic Casimir operator}{}
-  For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
-  \begin{equation}
-    C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
-    \qquad \qquad
-    C_2(\mathtt{g}) = n
-  \end{equation}
-
-  \tcblower
-
-  \begin{proof}
-    First consider the fundamental representation. The $ \mathtt{n} $ of $ \SUn{2} $ is the spinor representation, with generators $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, hence they satisfy $ \tr(T^a_\mathtt{2} T^b_\mathtt{2}) = \frac{1}{2} \delta^{ab} $. It is possible to choose the generators of $ \SUn{n} $ such that, in $ \mathtt{n} $, the first three are $ T^a_\mathtt{n} = \frac{\sigma^a}{2} \,,\, a = 1,2,3 $ (they act on the first three component of $ \C^n $-vectors), so that the others can be chosen such that:
-    \begin{equation*}
-      \tr (T^a_\mathtt{n} T^b_\mathtt{n}) = \frac{1}{2} \delta^{ab}
-    \end{equation*}
-    Contracting Eq. \ref{eq:quad-cas} with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n) $) then:
-    \begin{equation*}
-      C_2(\mathtt{n}) n = \frac{1}{2} (n^2 - 1)
-    \end{equation*}
-    To compute the Casimir operator for the adjoint representation, first consider the decomposition of the direct product of two representations:
-    \begin{equation*}
-      \mathtt{r}_1 \otimes \mathtt{r}_2 = \bigoplus_i \mathtt{r}_i
-    \end{equation*}
-    In this representation $ T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2} = T^a_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} $, and it acts on tensor objects $ \Xi_{pq} $ whose first index transforms according to $ \mathtt{r}_1 $ and the second index according to $ \mathtt{r}_2 $. Recalling that $ \tr{T^a} = 0 $:
-    \begin{equation*}
-      \begin{split}
-        \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2
-        &= \tr ((T^a_{\mathtt{r}_1})^2 \otimes \id_{\mathtt{r}_2} + 2 T^a_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes (T^a_{\mathtt{r}_2})^2) \\
-        &= \tr (C_2(\mathtt{r}_1) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) + \tr (C_2(\mathtt{r}_2) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) = (C_2(\mathtt{r}_1) + C_2(\mathtt{r}_2)) n_{\mathtt{r}_1} n_{\mathtt{r}_2}
-      \end{split}
-    \end{equation*}
-    However, by the decomposition above:
-    \begin{equation*}
-      \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
-    \end{equation*}
-    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of Eqq. \ref{eq:sun-herm}-\ref{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
-    \begin{equation*}
-      (C_2(\ve{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
-    \end{equation*}
-    Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
-    \begin{equation*}
-      C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
-    \end{equation*}
-    which is completes the proof.
-  \end{proof}
-\end{proposition}
-
-\paragraph{$ \SUn{2} $ Lie group}
-
-The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \tens{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
-\begin{equation}
-  (T^a_\mathtt{g})_{ij} = i \epsilon^{iaj}
-\end{equation}
-Explicitely:
-\begin{equation*}
-  T^1_\mathtt{g} =
-  \begin{bmatrix}
-    0 & 0 & 0 \\
-    0 & 0 & -i \\
-    0 & i & 0
-  \end{bmatrix}
-  \qquad
-  T^2_\mathtt{g} =
-  \begin{bmatrix}
-    0 & 0 & i \\
-    0 & 0 & 0 \\
-    -i & 0 & 0
-  \end{bmatrix}
-  \qquad
-  T^3_\mathtt{g} =
-  \begin{bmatrix}
-    0 & -i & 0 \\
-    i & 0 & 0 \\
-    0 & 0 & 0
-  \end{bmatrix}
-\end{equation*}
-As an aside, these are exactly the generators of the fundamental representation of $ \SOn{3} $: this is due to the adjoint map of $ \SUn{2} $ being also the double-covering map on $ \SOn{3} \cong \SUn{2} / \Z_2 $.
-
-\subsubsection{Clifford algebras}
-
-\begin{definition}{Associative algebras}{}
-  An $ n $-dimensional \textit{associative} $ \K $-\textit{algebra} $ \mathcal{A} $ is an $ n $-dimensional vector space $ V(\K) $ equipped with a bilinear map $ \mathcal{A} \times \mathcal{A} \ni (a,b) \mapsto ab \in \mathcal{A} $ such that:
-  \begin{enumerate}
-    \item $ (ab)c = a(bc) \,\,\forall a,b,c \in \mathcal{A} $ (associativity);
-    \item $ a(b + c) = ab + ac \,\land\, (a + b)c = ac + bc \,\,\forall a,b,c \in \mathcal{A} $;
-    \item $ \lambda (ab) = (\lambda a)b = a(\lambda b) \,\,\forall \lambda \in \K, \forall a,b \in \mathcal{A} $.
-  \end{enumerate}
-\end{definition}
-
-An algebra is said to be \textit{unital} if $ \exists \mathit{1} \in \mathcal{A} : \mathit{1}a = a\mathit{1} = a \,\,\forall a \in \mathcal{A} $, called \textit{identity element}.
-
-\begin{definition}{Algebra morphisms}{}
-  Given two associative $ \K $-algebras $ \mathcal{A} , \mathcal{B} $, a $ \K $-linear map $ \varphi : \mathcal{A} \rightarrow \mathcal{B} $ is an \textit{algebra morphism} if:
-  \begin{equation*}
-    \varphi(ab) = \varphi(a) \varphi(b) \quad\forall a,b \in \mathcal{A}
-  \end{equation*}
-\end{definition}
-
-If $ \varphi(\mathit{1}_\mathcal{A}) = \mathit{1}_\mathcal{B} $, then $ \varphi $ is a \textit{unital morphism}. An algebra morphism $ \varphi : \mathcal{A} \rightarrow \mathcal{A} $ is an \textit{endomorphism}, and if $ \varphi^2 = \id_\mathcal{A} $ it is an \textit{involution}.
-
-\begin{proposition}{Even subalgebras}{}
-  Given a unital associative $ \K $-algebra $ \mathcal{A} $ and an involution $ \varphi \in \End \mathcal{A} $, then:
-  \begin{equation*}
-    \mathcal{A} = \mathcal{A}^+ \oplus \mathcal{A}^-
-  \end{equation*}
-  where, defining $ \pi \defeq \frac{1}{2} (\id_\mathcal{A} + \varphi) $:
-  \begin{equation*}
-    \mathcal{A}^+ \defeq \pi(\mathcal{A}) = \{a \in \mathcal{A} : \varphi(a) = a\}
-  \end{equation*}
-  \begin{equation*}
-    \mathcal{A}^- \defeq (\id_\mathcal{A} - \pi)(\mathcal{A}) = \{a \in \mathcal{A} : \varphi(a) = -a\}
-  \end{equation*}
-\end{proposition}
-
-As $ \mathcal{A}^+ \mathcal{A}^+ , \mathcal{A}^- \mathcal{A}^- \subset \mathcal{A}^+ $ and $ \mathcal{A}^+ \mathcal{A}^- , \mathcal{A}^- \mathcal{A}^+ \subset \mathcal{A}^- $, then $ \mathcal{A}^+ $ is a subalgebra of $ \mathcal{A} $, the \textit{even subalgebra}.
-
-\begin{definition}{Clifford algebras}{}
-  Given an $ n $-dimensional vector space $ V(\K) $ with a quadratic form $ q $, associated linear form\footnotemark $ \omega $ and orthogonal basis $ \{e_i\}_{i = 1,\dots,n} $, and a unital associative $ \K $-algebra $ \mathcal{A} $, a \textit{Clifford mapping} is an injective $ \K $-linear map $ \rho : V \rightarrow \mathcal{A} : \mathit{1} \notin \rho(V) \land \rho(x)^2 = - q(x) \mathit{1} \,\,\forall x \in V $.\\
-  If $ \rho(V) $ generates $ \mathcal{A} $, then $ (\mathcal{A},\rho) $ is a \textit{Clifford algebra} for $ (V,q) $, and is denoted by $ \cla{V} $.
-\end{definition}
-
-\footnotetext{Given a vector space $ V(\K) $, a quadratic form is a map $ q : V \rightarrow \K $ such that $ q(\lambda x) = \lambda^2 q(x) \,\,\forall \lambda \in \K , \forall x \in V $, and the associated bilinear form is a $ \K $-bilinear map $ \omega : V \times V \rightarrow \K $ such that $ \omega(x,y) = \frac{1}{2} \left( q(x + y) - q(x) - q(y) \right) $, which is manifestly symmetric and $ q(x) = \omega(x,x) $.}
-
-\begin{lemma}{}{}
-  \begin{equation*}
-    \{\rho(x) , \rho(y)\} = - 2 \omega(x,y) \mathit{1} \quad \forall x,y \in V
-  \end{equation*}
-
-  \tcblower
-
-  \begin{proof}
-    \begin{equation*}
-      \rho(x) \rho(y) + \rho(y) \rho(x) = \rho(x + y)^2 - \rho(x)^2 - \rho(y)^2 = - \left( q(x + y) - q(x) - q(y) \right) \mathit{1} = - 2 \omega(x,y) \mathit{1}
-    \end{equation*}
-  \end{proof}
-\end{lemma}
-
-Setting for ease of reading $ \rho(x) \equiv x $, it is clear that $ x \perp y \,\,\Rightarrow\,\, xy = -yx $.\\
-More intuitively, the Clifford algebra $ \cla{V} $ can be seen as the associative algebra generated by $ V $ setting $ xy = - \omega(x,y)\mathit{1} \,\,\forall x,y \in V$, so that:
-\begin{equation}
-  \{x,y\} = 2 \omega(x,y)\mathit{1} \quad \forall x,y \in V
-  \label{eq:cliff-alg}
-\end{equation}
-In general, $ \clar{m,n} $ denotes the Clifford algebra associated to $ \R^{m,n} $ with quadratic form:
-\begin{equation*}
-  q(x_1,\dots,x_m,y_1,\dots,y_n) = \sum_{i = 1}^{m} x_i^2 - \sum_{j = 1}^{n} y_j^2
-\end{equation*}
-
-\begin{example}{Complex numbers}{}
-  Via Clifford algebras, $ \C \cong \clar{0,1} $. In fact, $ \R^{0,1} $ has orthonormal basis $ \{e_1\} $ such that $ q(e_1) = -1 $, i.e. $ e_1^2 = - \mathit{1} $, so elements of the Clifford algebra are generated by $ \{\mathit{1},e_1\} $: identifying $ e_1 \equiv i $ gives the desired isomorphism.
-\end{example}
-
-\begin{example}{Quaternions}{}
-  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by Eq. \ref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv i $, $ e_2 \equiv j $ and $ e_1 e_2 = k $ yields the result.
-\end{example}
-
-\paragraph{Spin groups}
-
-Given an $ n $-dimensional $ \K $-vector space, the Clifford algebra $ \cla{V} $ is finite dimensional and is naturaly $ \N $-graded\footnotemark as:
-\begin{equation}
-  \cla{V} = \bigoplus_{i = 1}^n \mathfrak{cl}^{(i)}(V)
-\end{equation}
-where $ \mathfrak{cl}^{(0)}(V) = \K $, $ \mathfrak{cl}^{(1)}(V) = V $ and $ \mathfrak{cl}^{(2)}(V) \equiv \spin(V) $ is the \textit{spin group} of $ V $. The spin group is a Lie group and, via its natural action on $ V $, can be shown to be $ \spin(V) \cong \mathfrak{so}(V) $.
-
-\footnotetext{Given an index set $ I $ and a $ \K $-vector space, the latter is $ I $-\textit{graded} if there exists a family of subspaces $ \{V_i\}_{i \in I} $ of $ V $ such that:
-\begin{equation*}
-  V = \bigoplus_{i \in I} V_i
-\end{equation*}}
-
 \subsection{Lorentz group}
 
 Consider the group of linear transformations $ x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu $ on $ \R^{1,3} $ which leave invariant the quantity $ \eta_{\mu \nu} x^\mu x^\nu $, i.e. the orthogonal group $ \On{1,3} $ (with signature $ (+,-,-,-) $). The condition that $ \tensor{\Lambda}{^\mu_\nu} $ must satisfy reads:
@@ -643,7 +251,7 @@ Moreover, consider the action of the Lorentz group on $ (2,0) $-tensors: being $
   \ve{4} \otimes \ve{4} = \ve{1} \oplus \ve{6} \oplus \ve{9}
   \label{eq:lor-tens-dec}
 \end{equation}
-These are irreducible representations which, given a generic tensor $ T^{\mu \nu} $, act on $ S $, $ A^{\mu \nu} $ and $ S^{\mu \nu} - \frac{1}{4} \eta^{\mu \nu} S $ respectively, with $ A^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} - T^{\nu \mu} \right) $ and $ S^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} + T^{\nu \mu} \right) $.
+These are irreducible representations which act on $ S $, $ A^{\mu \nu} $ and $ \bar{S}^{\mu \nu} \equiv S^{\mu \nu} - \frac{1}{4} \eta^{\mu \nu} S $ respectively, with $ A^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} - T^{\nu \mu} \right) $ and $ S^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} + T^{\nu \mu} \right) $.
 
 \paragraph{Decomposition under rotations}
 
@@ -681,7 +289,7 @@ The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ are the same, whi
 
 \begin{proposition}{}{lorentz-algebra}
   \begin{equation}
-    \lora \cong \sla{2,\C} \cong \sua{2} \oplus \sua{2}
+    \lora \cong \sua{2} \oplus \sua{2}
   \end{equation}
 
   \tcblower
@@ -690,15 +298,24 @@ The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ are the same, whi
     Given the $ \lora $ algebra in Eq. \ref{eq:lor-better-gen}, it is possible to define:
     \begin{equation}
       \ve{J}_{\pm} \defeq \frac{1}{2} \left( \ve{J} \pm i \ve{K} \right)
+      \qquad
+      \Rightarrow
+      \qquad
+      [\ve{J}_{\pm}^i , \ve{J}_{\pm}^j] = i \epsilon^{ijk} \ve{J}_{\pm}^k
+      \qquad
+      [\ve{J}_{\pm}^i , \ve{J}_{\mp}^j] = \ve{0}
       \label{eq:lora-su2-gen}
     \end{equation}
-    The Lie algebra then becomes $ [\ve{J}_{\pm}^i, \ve{J}_{\pm}^j] = i \epsilon^{ijk} \ve{J}_{\pm}^k $ and $ [\ve{J}_{\pm}^i, \ve{J}_{\mp}^j] = 0 $: these are two commuting $ \mathfrak{su}(2) $ algebras, and $ \sla{2,\C} \cong \sua{2} \oplus \sua{2} $ (complexification), thus proving the thesis.
+    These are two commuting $ \mathfrak{su}(2) $ algebras, thus proving the thesis\footnote{To be precise, $ \lora \cong \sla{2,\C} $, but complexification yields the following isomorphisms (with Eq. \ref{eq:lora-su2-gen}):
+    \begin{equation*}
+      \lora \hookrightarrow \lora_\C \cong \sua{2}_\C \oplus \sua{2}_\C \cong \sla{2,\C} \oplus \sla{2,\C} \cong \sla{2,\C}_\C \hookleftarrow \sla{2,\C}
+    \end{equation*}
+    Indeed, note that $ \lorg $ is not globally equivalent to $ \SUn{2} \times \SUn{2} $: instead, $ \SUn{2} \times \SUn{2} / \Z_2 \cong \SOn{4} $, while the universal cover of $ \lorg $ is $ \SL{2,\C} $, as $ \lorg \cong \SL{2,\C} / \Z_2 $.}.
   \end{proof}
 \end{proposition}
 
-As observed before, this does not imply that $ \lorg $ is globally equivalent to $ \SUn{2} \times \SUn{2} $: in fact, $ \SUn{2} \times \SUn{2} / \Z_2 \cong \SOn{4} $, while the universal cover of $ \lorg $ is $ \SL{2,\C} $, as it can be shown that $ \lorg \cong \SL{2,\C} / \Z_2 $.\\
 By Prop. \ref{prop:lorentz-algebra}, representations of $ \lorg $ can be labelled by $ (\ve{j}_-,\ve{j}_+) \in \frac{1}{2} \N_0 \times \frac{1}{2} \N_0 $, with each index labelling a representation of $ \SUn{2} $: as $ \ve{J} = \ve{J}_+ + \ve{J}_- $, the $ (\ve{j}_-,\ve{j}_+) $ representation contains states with all possible spins $ \abs{j_+ - j_-} \le j \le j_+ + j_- $, and it is a representation of degree $ n = \left( 2j_- + 1 \right) \left( 2j_+ + 1 \right) $.\\
-More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} : \lora \rightarrow \mathfrak{gl}(V_{(j_-,j_+)}) $, where $ V_{(j_-,j_+)} $ is a $ (2j_- + 1)(2j_+ + 1) $-dimensional vector space, defined as (recall Eq. \ref{eq:lora-su2-gen}):
+More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} : \lora \rightarrow \mathfrak{gl}(V_{(j_-,j_+)}) $, where $ V_{(j_-,j_+)} $ is a $ (2j_- + 1)(2j_+ + 1) $-dimensional $ \C $-vector space, defined as (recall Eq. \ref{eq:lora-su2-gen}):
 \begin{equation}
   \begin{gathered}
     \rho_{(j_-,j_+)}(J^i) = J^i_{(j_+)} \otimes \tens{I}_{(2j_- + 1)} + \tens{I}_{(2j_+ + 1)} \otimes J^i_{(j_-)} \\
@@ -835,7 +452,7 @@ To see how $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the 4-vector repre
       \end{pmatrix}
       = V \in \mathcal{H}(2)
     \end{equation*}
-    where the two isomorphisms are given by $ V = v_\mu \sigma^\mu $ and $ v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\tens{I}_2,\bs{\sigma}) $ and $ \bar{\sigma}^\mu = (\tens{I}_2,-\bs{\sigma}) $.
+    where the isomorphisms are $ V = v_\mu \sigma^\mu , v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\tens{I}_2,\bs{\sigma}) , \bar{\sigma}^\mu = (\tens{I}_2,-\bs{\sigma}) $.
   \end{proof}
 \end{lemma}
 
@@ -851,12 +468,16 @@ By Eq. \ref{eq:sun-trace} and Prop. \ref{prop:lorentz-algebra}, $ \sla{2,\C} = \
   \qquad
   \Lambda_\text{s}\dg = \exp \left[ \left( i \bs{\theta} + \bs{\eta} \right) \cdot \frac{\bs{\sigma}}{2} \right] = \sigma^2 \Lambda_\text{L}^\intercal \sigma^2
 \end{equation*}
-where $ \sigma^2 \bs{\sigma} \sigma^2 = - \bs{\sigma}^\intercal $ was used. This is exactly the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation, where the left component is considered in a unitarily-equivalent form $ \psi_\text{L}' \defeq \psi_\text{L}^\intercal \sigma^2 $ (so that $ \psi_\text{L}' \mapsto \psi_\text{L}' \Lambda_\text{s}\dg $ by transposing Eq. \ref{eq:lor-left-hand-weyl}).
+where $ \sigma^2 \bs{\sigma} \sigma^2 = - \bs{\sigma}^\intercal $ was used. This is exactly the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation, where the left component is considered in a unitarily-equivalent form $ \psi_\text{L}' \defeq \psi_\text{L}^\intercal \sigma^2 $ (so that $ \psi_\text{L}' \mapsto \psi_\text{L}' \Lambda_\text{s}\dg $ by transposing Eq. \ref{eq:lor-left-hand-weyl}).\\
+Moreover, note that by Clebsch-Gordan decomposition $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} \cong \ve{0} \oplus \ve{1} $, which is exactly the representation which acts on 4-vectors ($ v^0 \in \ve{0} $ and $ \ve{v} \in \ve{1} $).
 
 \paragraph{Parity}
 
-Note that $ \mathcal{P} \ve{K} = -\ve{K} $, as the velocity of the boost gets reversed, while $ \mathcal{P} \ve{J} = \ve{J} $: this means that $ \mathcal{P} \ve{J}_\pm = \ve{J}_\mp $, i.e. parity exchanges a $ \ve{\left( j_-,j_+ \right)} $ representation into a $ \ve{\left( j_+,j_- \right)} $ representation. Therefore, a $ \ve{\left( j_-,j_+ \right)} $ representation of $ \lorg $ is a basis for the representation of the parity transformation iff $ j_- = j_+ $.\\
-This motivates the introduction of Dirac spinors: Weyl spinors (separately) are not a basis for a representation of the parity transformation, but Dirac spinors are.
+Note that $ \mathcal{P} \ve{K} = -\ve{K} $, as the velocity of the boost gets reversed, while $ \mathcal{P} \ve{J} = \ve{J} $: this means that $ \mathcal{P} \ve{J}_\pm = \ve{J}_\mp $, i.e. parity exchanges a $ \ve{\left( j_-,j_+ \right)} $ representation into a $ \ve{\left( j_+,j_- \right)} $ representation. Therefore, a $ \ve{\left( j_-,j_+ \right)} $ representation of $ \lorg $ is a basis for the representation of the parity transformation iff $ j_- = j_+ $.
+
+\begin{example}{Parity on spinors}{}
+  While Weyl spinors (separately) are not a basis for a representation of the parity operator, Dirac spinors are.
+\end{example}
 
 \subsubsection{Dirac algebra}
 
@@ -872,27 +493,26 @@ The basis of this algebra is then given by:
   & \gamma^{\mu \nu \rho} \equiv \gamma^{[\mu} \gamma^\nu \gamma^{\rho]} = i \epsilon^{\mu \nu \rho \sigma} \gamma_\sigma \gamma^5 & \text{4 matrices} \\
   & \gamma^{\mu \nu \rho \sigma} \equiv \gamma^{[\mu} \gamma^\nu \gamma^\rho \gamma^{\sigma]} = - i \epsilon^{\mu \nu \rho \sigma} \gamma^5 & \text{1 matrix}\,\,\,\,
 \end{align*}
-where $ \gamma^5 \defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $ is an additional gamma matrix\footnotemark. Therefore, the Dirac algebra is a 16-dimensional unital associative $ \C $-algebra, and its generic component is:
-\begin{equation}
-  \Gamma = a \tens{I}_4 + a_\mu \gamma^\mu + \frac{1}{2} a_{\mu \nu} \gamma^{\mu \nu} + \frac{1}{3!} a_{\mu \nu \rho} \gamma^{\mu \nu \rho} + \frac{1}{4!} a_{\mu \nu \rho \sigma} \gamma^{\mu \nu \rho \sigma}
-\end{equation}
-where each coefficient is totally anti-symmetric.\\
-The quadratic subspace of the Dirac algebra is of particular interest. By convention, define its 6 generators as $ \sigma^{\mu \nu} \defeq \frac{i}{4} [\gamma^\mu , \gamma^\nu] $: it is straightforward to show that these generators satisfy Eq. \ref{eq:lor-comm}, thus they give a 4-dimensional representation of $ \lora $.
-
-\footnotetext{Note that this is not in the basis of $ \dira $. It has the following properties:
+where $ \gamma^5 \defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $ is an additional gamma matrix. Note that this matrix is not in the basis of $ \dira $. It has the following properties:
 \begin{equation*}
   (\gamma^5)\dg = \gamma^5
   \qquad
   (\gamma^5)^2 = \tens{I}_4
   \qquad
   \{\gamma^5 , \gamma^\mu\} = 0
-\end{equation*}}
+\end{equation*}
+Therefore, the Dirac algebra is a 16-dimensional unital associative $ \C $-algebra, and its generic component is:
+\begin{equation}
+  \Gamma = a \tens{I}_4 + a_\mu \gamma^\mu + \frac{1}{2} a_{\mu \nu} \gamma^{\mu \nu} + \frac{1}{3!} a_{\mu \nu \rho} \gamma^{\mu \nu \rho} + \frac{1}{4!} a_{\mu \nu \rho \sigma} \gamma^{\mu \nu \rho \sigma}
+\end{equation}
+where each coefficient is totally anti-symmetric.\\
+The quadratic subspace $ \mathfrak{cl}_{1,3}^{(2)}(\C) $ of the Dirac algebra is of particular interest. By convention, define its 6 generators as $ \sigma^{\mu \nu} \defeq \frac{i}{4} [\gamma^\mu , \gamma^\nu] $: it is straightforward to show that these generators satisfy Eq. \ref{eq:lor-comm}, thus they give a 4-dimensional representation of $ \lora $.
 
 \begin{proposition}{}{}
-  The generators of the quadratic subspace of $ \dira $ also give the $ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ representation of $ \lora $.
+  The generators of $ \mathfrak{cl}_{1,3}^{(2)}(\C) $ also give the $ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ representation of $ \lora $.
 \end{proposition}
 
-Moreover, the quadratic subspace of $ \dira $ is $ \spin(1,3) $, i.e. the spin group of $ \lorg $. Given a spinor $ \Psi \in \C^4 $, this spin group acts as:
+Moreover, $ \mathfrak{cl}_{1,3}^{(2)}(\C) \cong \spin(1,3) $ (Sec. \ref{subsubsec:spin-groups}). Given a spinor $ \Psi \in \C^4 $, this spin group acts as:
 \begin{equation*}
   \Psi \mapsto \Lambda_{\frac{1}{2}} \Psi = \exp \left[ -\frac{i}{2} \omega_{\mu \nu} \sigma^{\mu \nu} \right] \Psi
 \end{equation*}
@@ -909,6 +529,7 @@ The fact that $ \Psi $ and $ \bar{\Psi} $ transform inversely allows to define o
   The gamma matrices transform under the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation of $ \lorg $ as:
   \begin{equation}
     \tensor{\Lambda}{^\mu_\nu} \gamma^\nu = \Lambda_{\frac{1}{2}}^{-1} \gamma^\mu \Lambda_{\frac{1}{2}}
+    \label{eq:gamma-lor-tr}
   \end{equation}
 
   \tcblower
@@ -938,7 +559,74 @@ The fact that $ \Psi $ and $ \bar{\Psi} $ transform inversely allows to define o
   \end{proof}
 \end{theorem}
 
-This result means that, although they are matrices, the $ \mu $ in $ \gamma^\mu $ is effectively a Lorentz index, thus allowing to construct dot products with 4-vectors: given a 4-vector $ A^\mu $, its dot product with the gamma matrices is denoted by $ \slashed{A} \equiv \gamma^\mu A_\mu $.
+This result means that, although they are matrices, the $ \mu $ in $ \gamma^\mu $ is effectively a Lorentz index, thus allowing to construct dot products with 4-vectors; in this way, gamma matrices transform 4-vectors into operators on spinors\footnotemark: $ A^\mu \in \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $, but $ \slashed{A} \equiv \gamma^\mu A_\mu \in \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $.
+
+\footnotetext{More precisely: spinors are defined as left-modules (even more precisely, as minimal left-ideals) over $ \dira $, and $ \slashed{A} = \gamma^\mu A_\mu \in \dira $ (specifically $ \mathfrak{cl}_{1,3}^{(1)}(\C) $, with notation from Eq. \ref{eq:cliff-alg-grade}).\\
+Given a unital associative $ \K $-algebra $ \mathcal{A} $, a \textit{left-module} $ M $ is a $ \K $-vector space equipped with a $ \K $-bilinear multiplication map $ \mathcal{A} \times M \ni (a,m) \mapsto am \in M $ such that $ (ab)m = a(bm) \,\land\, \mathit{1}_\mathcal{A} m = m \,\,\forall a,b \in \mathcal{A} , \forall m \in M $.\\
+Given a unital associative $ \K $-algebra $ \mathcal{A} $, a \textit{left-ideal} is a subalgebra $ \mathcal{I} \subset \mathcal{A} $ such that $ aj \in \mathcal{I} \,\,\forall a \in \mathcal{A} , \forall j \in \mathcal{I} $. A left-ideal is said minimal if it is non-trivial and does not contain any non-trivial sub-left-ideal. A left-ideal of $ \mathcal{A} $ can be viewed as a left-module on $ \mathcal{A} $.}
+
+A \textit{Dirac bilinear} is an object $ \bar{\Psi} \Gamma \Psi $, with $ \Gamma \in \dira $. There are 5 basic bilinears:
+\begin{equation*}
+  \bar{\Psi} \Psi
+  \qquad
+  \bar{\Psi} \gamma^\mu \Psi
+  \qquad
+  \bar{\Psi} \gamma^5 \Psi
+  \qquad
+  \bar{\Psi} \gamma^5 \gamma^\mu \Psi
+  \qquad
+  \bar{\Psi} \sigma^{\mu \nu} \Psi
+\end{equation*}
+According to their transformation relations under the Lorentz group, these bilears are respectively called scalar, vector, pseudo-scalar, pseudo-vector and tensor bilinear.
+
+\subsubsection{Dual and adjoint representations}
+
+Recall that the adjoint representation of a Lie group is a representation acting on the associated Lie algebra: therefore, the adjoint representation of $ \lorg $ is 6-dimensional and, by Prop. \ref{prop:lorentz-algebra}, it can be decomposed as $ \ve{6} \cong \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+
+\paragraph{Dual representations}
+
+Consider a generic anti-symmetric tensor $ A^{\mu \nu} $: its \textit{dual tensor} is defined as $ A_\star^{\mu \nu} \defeq \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} $. Every anti-symmetric tensor can then be decomposed as:
+\begin{equation}
+  A^{\mu \nu}_{\pm} \equiv \frac{1}{2} \left( A^{\mu \nu} \pm i A_\star^{\mu \nu} \right)
+\end{equation}
+which are respectively called the \textit{self-dual} and \textit{anti-self-dual part} of $ A^{\mu \nu} $.
+
+\begin{lemma}{(Anti)-self-dual tensor}{}
+  An (anti)-self-dual tensor satisfies:
+  \begin{equation}
+    A^{\mu \nu} = \pm \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma}
+  \end{equation}
+
+  \begin{proof}
+    Consider $ A^{\mu \nu} = \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} $:
+    \begin{equation*}
+      A^{\mu \nu}_+ = \frac{1}{2} \left( A^{\mu \nu} + \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} \right) = \frac{1}{2} \left( i \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} \right) = A^{\mu \nu}
+      \qquad
+      A^{\mu \nu}_- = \frac{1}{2} \left( A^{\mu \nu} - \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} \right) = 0
+    \end{equation*}
+    The other case is trivially verified.
+  \end{proof}
+\end{lemma}
+
+Anti-symmetric tensors belong to the $ \ve{6} $ representation, but this is a reducible representation. Indeed, the subspaces of self-dual and anti-self-dual tensors are invariant subspaces:
+\begin{equation*}
+  A^{\mu \nu} = \pm \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma}
+  \qquad \Rightarrow \qquad
+  \pm \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} \left( \tensor{\Lambda}{_\rho^\alpha} \tensor{\Lambda}{_\sigma^\beta} A_{\alpha \beta} \right) = - \frac{1}{4} \underbrace{\epsilon^{\mu \nu \rho \sigma} \epsilon_{\alpha \beta \gamma \delta}}_{\delta^{\mu \nu \rho \sigma}_{\alpha \beta \gamma \delta}} \tensor{\Lambda}{_\rho^\alpha} \tensor{\Lambda}{_\sigma^\beta} A^{\gamma \delta} = \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} A^{\alpha \beta}
+\end{equation*}
+Therefore, $ \ve{6} = \ve{3} \oplus \bar{\ve{3}} \cong \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+
+\paragraph{Dual representation}
+
+To see explicitely that the adjoint representation of $ \lorg $ is exactly $ \ve{6} $, recall that the adjoint representation is $ \rho : \lorg \rightarrow \GL{\lora} $ and it acts on $ \lora $ as $ \rho(\Lambda) M = \Lambda M \Lambda^{-1} $, where $ \Lambda \in \lorg $ and $ M \in \lora $. As $ \tensor{[\Lambda^{-1}]}{^\mu_\nu} = \tensor{\Lambda}{_\nu^\mu} $ by Eq. \ref{eq:lor-def}:
+\begin{equation*}
+  M^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\alpha} M^{\alpha \beta} \tensor{[\Lambda^{-1}]}{_\beta^\nu} = \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} M^{\alpha \beta}
+\end{equation*}
+As $ M \in \lora $ is anti-symmetric, this is the transformation relation of an anti-symmetric tensor: the adjoint representation is the $ \ve{6} \cong \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+
+\begin{example}{Gauge theories}{}
+  In gauge theories (ex.: QED, QCD), the gauge potential $ A_\mu $ transforms according to the fundamental representation $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $, while the field strength $ F_{\mu \nu} $ according to the adjoint representation $ \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+\end{example}
 
 \subsubsection{Field representations}
 
@@ -1467,7 +1155,7 @@ The $ m $ parameter can thus be interpreted as a mass, and now the two spinors a
     \psi_\text{R}
   \end{pmatrix}
 \end{equation*}
-In this representation, the four $ \gamma $ matrices are introduced:
+The chiral representation of the Dirac algebra $ \dira $ is then found to be:
 \begin{equation*}
   \gamma^\mu \defeq
   \begin{bmatrix}
@@ -1475,31 +1163,23 @@ In this representation, the four $ \gamma $ matrices are introduced:
     \bar{\sigma}^\mu & 0
   \end{bmatrix}
 \end{equation*}
-
-\begin{proposition}{Clifford algebra}{}
-  The $ \gamma $ matrices satisfy the \textit{Clifford algebra}:
-  \begin{equation}
-    \{\gamma^\mu, \gamma^\nu\} = 2 \eta^{\mu \nu}
-  \end{equation}
-\end{proposition}
-
-Introducing the Feynman slash notation, so that $ \slashed{A} \equiv \gamma^\mu A_\mu $, the Dirac equation can be rewritten as:
+This allows to rewrite Dirac equation as:
 \begin{equation}
   (i \slashed{\pa} - m) \Psi = 0
 \end{equation}
-Defining the \textit{Dirac adjoint} $ \bar{\Psi} \equiv \Psi^\dagger \gamma^0 $, which in the chiral representation simply is $ \bar{\Psi} = (\psi_\text{R}^\dagger, \psi_\text{L}^\dagger) $, the Dirac Lagrangian can be rewritten as:
+In the chiral representation, the Dirac adjoint simply is $ \bar{\Psi} = (\psi_\text{R}^\dagger, \psi_\text{L}^\dagger) $, so the Dirac Lagrangian can be rewritten as:
 \begin{equation}
   \mathcal{L}_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi
   \label{eq:dirac-lagrangian}
 \end{equation}
-Another $ \gamma $ matrix is defined as $ \gamma^5 \defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $, which in the chiral representation is:
+The $ \gamma^5 $ matrix in the chiral representation is:
 \begin{equation*}
   \gamma^5 =
   \begin{bmatrix}
     -\tens{I}_2 & 0 \\ 0 & \tens{I}_2
   \end{bmatrix}
 \end{equation*}
-This hermitian matrix has properties $ (\gamma^5)^2 = \tens{I}_4 $ and $ \{\gamma^5, \gamma^\mu\} = 0 $, and allows to define projectors on Weyl spinors:
+This allows to define projectors on Weyl spinors:
 \begin{equation}
   \frac{1 - \gamma^5}{2} \Psi =
   \begin{pmatrix}
@@ -1526,7 +1206,27 @@ This hermitian matrix has properties $ (\gamma^5)^2 = \tens{I}_4 $ and $ \{\gamm
   \end{proof}
 \end{proposition}
 
-It can be shown that the Clifford algebra is invariant under the transformation in Prop. \ref{prop:dirac-unit-eq}, thus it defines an equivalent representation of the algebra.
+It can be shown that the Dirac algebra is invariant under the transformation in Prop. \ref{prop:dirac-unit-eq}, thus it defines an equivalent representation of the algebra.
+
+\begin{proposition}{Lorentz invariance}{}
+  Dirac equation is Lorentz invariant.
+
+  \tcblower
+
+  \begin{proof}
+    Recalling Eq. \ref{eq:gamma-lor-tr}:
+    \begin{equation*}
+      \begin{split}
+        \left( i \gamma^\mu \pa_\mu - m \right) \Psi(x)
+        &\mapsto \left( i \gamma^\mu \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Lambda_{\frac{1}{2}} \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \Lambda_{\frac{1}{2}}^{-1} \left( i \gamma^\mu \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Lambda_{\frac{1}{2}} \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \left( i \Lambda_{\frac{1}{2}}^{-1} \gamma^\mu \Lambda_{\frac{1}{2}} \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \left( i \tensor{\Lambda}{^\mu_\sigma} \gamma^\sigma \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \left( i \gamma^\nu \pa_\nu - m \right) \Psi(\Lambda^{-1}x) = 0
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proposition}
 
 \paragraph{Solutions}
 
@@ -1722,39 +1422,6 @@ Note that $ \bar{u}u \in \C $, while $ u\bar{u} \in \C^{4 \times 4} $.
     where the identity $ (p_\mu \sigma^\mu) (p_\mu \bar{\sigma}^\mu) = p^2 = m^2 $ was used.
   \end{proof}
 \end{proposition}
-
-\paragraph{Dirac bilinears}
-
-Expressions of the form $ \bar{\Psi} \Gamma \Psi $, with constant $ \Gamma \in \C^{4 \times 4} $, are known as \textit{Dirac bilinears}, and their properties can be studied by expressing $ \Gamma $ on a particular basis of $ \C^{4 \times 4} $, given by the $ 16 $ matrices:
-\begin{align*}
-  & \tens{I}_4 & \text{1 matrix}\,\,\,\, \\
-  & \gamma^\mu & \text{4 matrices} \\
-  & \gamma^{\mu \nu} \equiv \frac{1}{2} [\gamma^\mu, \gamma^\nu] \equiv \gamma^{[\mu} \gamma^{\nu]} \equiv -i \sigma^{\mu \nu} & \text{6 matrices} \\
-  & \gamma^{\mu \nu \rho} \equiv \gamma^{[\mu} \gamma^\nu \gamma^{\rho]} = i \epsilon^{\mu \nu \rho \sigma} \gamma_\sigma \gamma^5 & \text{4 matrices} \\
-  & \gamma^{\mu \nu \rho \sigma} \equiv \gamma^{[\mu} \gamma^\nu \gamma^\rho \gamma^{\sigma]} = - i \epsilon^{\mu \nu \rho \sigma} \gamma^5 & \text{1 matrix}\,\,\,\,
-\end{align*}
-The most general fermion bilinear is a linear combination of these basis bilinears:
-\begin{equation*}
-  \bar{\Psi} \Psi
-  \qquad
-  \bar{\Psi} \gamma^\mu \Psi
-  \qquad
-  \bar{\Psi} \gamma^5 \Psi
-  \qquad
-  \bar{\Psi} \gamma^5 \gamma^\mu \Psi
-  \qquad
-  \bar{\Psi} \sigma^{\mu \nu} \Psi
-\end{equation*}
-According to their transformation relations under the Lorentz group, these bilears are respectively called scalar, vector, pseudo-scalar, pseudo-vector and tensor bilinear.
-
-\begin{proposition}{Lorentz transformations}{}
-  In the chiral representation, the Lorentz transformation $ \Psi \mapsto \Lambda_\text{D} \Psi $ is represented as:
-  \begin{equation}
-    \Lambda_\text{D} = \exp \left[ - \frac{i}{4} \omega_{\mu \nu} \sigma^{\mu \nu} \right]
-  \end{equation}
-\end{proposition}
-
-This representation of the Lorentz transformation obeys unitary equivalence (Prop. \ref{prop:dirac-unit-eq}).
 
 \paragraph{Chiral symmetry}
 

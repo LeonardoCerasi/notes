@@ -2,6 +2,9 @@
 \usepackage[left=15mm, right=15mm, top=25mm]{geometry}
 \geometry{a4paper}
 
+% appendices
+\usepackage[toc,page]{appendix}
+
 % images
 \usepackage{graphicx}
 
@@ -49,6 +52,13 @@
 \fancypagestyle{contents}{%
   \fancyhead[LE,RO]{\thepage}%
   \fancyhead[RE,LO]{Contents}%
+}
+
+% special header for Appendix
+\fancypagestyle{append}{%
+  \fancyhead[LE,RO]{\thepage}%
+  \fancyhead[LO]{\appendixname\ \thechapter :\ \leftmark}%
+  \fancyhead[RE]{Appendices}%
 }
 
 % no blank pages
@@ -100,8 +110,14 @@
 %\theoremstyle{remark}
 %\newtheorem{example}{Example}[section]
 
+% footnotes
+\usepackage{footnote}
+
 % fancy environments
 \usepackage[many]{tcolorbox}
+\BeforeBeginEnvironment{tcolorbox}{\savenotes}
+\AfterEndEnvironment{tcolorbox}{\spewnotes}
+
 \tcbuselibrary{theorems}
 
 \NewTcbTheorem[number within=section]{definition}{Definition}%
