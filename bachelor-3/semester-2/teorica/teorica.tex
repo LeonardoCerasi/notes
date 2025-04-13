@@ -7,6 +7,31 @@
 \usepackage{overarrows}
 \usepackage{slashed}
 
+% bibliography
+
+\usepackage{csquotes}
+\usepackage[
+backend = biber,
+style = numeric-comp,
+sorting = ynt
+]{biblatex}
+\addbibresource{bibl.bib}
+
+\renewbibmacro{in:}{}
+
+\AtEveryBibitem{%
+	\clearfield{publisher}%
+	\clearfield{month}%
+	\clearfield{numpages}%
+	\clearfield{issue}%
+	\clearfield{isbn}%
+}
+
+\DeclareFieldFormat[book,article]{journaltitle}{#1}
+\DeclareFieldFormat[book,article]{volume}{\mkbibbold{#1}}
+
+%macros
+
 \newcommand{\lorg}{\mathrm{SO}^+(1,3)}
 \newcommand{\lora}{\mathfrak{so}^+(1,3)}
 \newcommand{\pog}{\mathrm{ISO}^+(1,3)}
@@ -57,5 +82,8 @@
 
 \clearpage
 \end{appendices}
+
+\pagestyle{biblio}
+\printbibliography[heading = bibintoc, title = {Bibliography}]
 
 \end{document}
