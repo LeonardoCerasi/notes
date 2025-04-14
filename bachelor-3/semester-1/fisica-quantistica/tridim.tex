@@ -244,7 +244,7 @@ In questo modo, è possibile costruire l'intero spettro, ricordando che $ \mathc
 \begin{equation*}
 	\begin{split}
 		&\hat{D}_1 \hat{d}_1^{\dagger} \ket{k,0} = (\mathcal{E}_{k,0} + 2) \hat{d}_1^{\dagger} \ket{k,0} = (2k + 3) \hat{d}_1^{\dagger} \ket{k,0}\\
-		&\hat{D}_2 \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{n,0} = (\mathcal{E}_{k,0} + 4) \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{k,0} = (2k + 5) \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{k,0}\\
+		&\hat{D}_2 \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{k,0} = (\mathcal{E}_{k,0} + 4) \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{k,0} = (2k + 5) \hat{d}_2^{\dagger} \hat{d}_1^{\dagger} \ket{k,0}\\
 		&\qquad\quad\vdots\\
 		&\hat{D}_{\ell + 1} \hat{d}_{\ell + 1}^{\dagger} \dots \hat{d}_1^{\dagger} \ket{k,0} = (2k + 2\ell + 1) \hat{d}_{\ell + 1}^{\dagger} \dots \hat{d}_1^{\dagger} \ket{k,0}
 	\end{split}
@@ -282,7 +282,7 @@ Dunque, sia che gli stati vengano scritti in coordinate cartesiane come $ \ket{n
 Questo risultato deriva dal teorema di degenerazione.
 
 \begin{theorem}
-	Data una Hamiltoniana $ \hat{\mathcal{H}} $ e due operatori $ \hat{A}, \hat{B} : [\hat{A},\hat{\mathcal{H}}] = [\hat{B},\hat{\mathcal{H}}] = 0 $, allora $ [\hat{A},\hat{B}] = 0 \,\Rightarrow\, \hat{\mathcal{H}} $ ha spettro degenere.
+	Data una Hamiltoniana $ \hat{\mathcal{H}} $ e due operatori $ \hat{A}, \hat{B} : [\hat{A},\hat{\mathcal{H}}] = [\hat{B},\hat{\mathcal{H}}] = 0 $, allora $ [\hat{A},\hat{B}] \neq 0 \,\Rightarrow\, \hat{\mathcal{H}} $ ha spettro degenere.
 \end{theorem}
 \begin{proof}
 	Per assurdo sia lo spettro di $ \hat{\mathcal{H}} $ non degenere, ovvero per ogni autovalore $ E_n $ ci sia un solo autostato $ \ket{n} : \hat{\mathcal{H}}\ket{n} = E_n\ket{n} $. Dato che $ [\hat{A},\hat{\mathcal{H}}] = 0 $, essi sono diagonalizzabili simultaneamente, e la stessa cosa vale per $ \hat{B} $: essi hanno la comune base di autostati $ \ket{n} $, dunque commutano, il che contraddice l'ipotesi.
@@ -638,7 +638,7 @@ Le relazioni di commutazione degli operatori $ \hat{L}_i $ e $ \hat{N}_i $ ricor
 \end{proof}
 
 Si riconoscono le relazioni di commutazione tra due operatori di momento angolare indipendenti: i 6 operatori $ \hat{F}_{\pm}^i $ possono essere presi come invarianti del sistema, dunque le simmetrie del problema portano ad avere due operatori compatibili $ \hat{\ve{F}}_{\pm} $ le cui componenti commutano con l'Hamiltoniana. Un insieme completo di operatori diagonalizzabili simultaneamente all'Hamiltoniana è quindi $ \hat{F}_+^2 $, $ \hat{F}_-^2 $, $ \hat{F}_+^z $ ed $ \hat{F}_-^z $.\\
-Dato che $ \hat{\ve{F}}_{\pm} $ si comportano come operatori di momento angolare, si può affermare che la simmetria dell'Hamiltoniana \ref{eq:3.52} è data dal gruppo $ \On{3} \times \On{3} \cong \On{4} $, e da qui si capisce la somiglianza coi generatori del gruppo di Lorentz: $ \On{4} $ è il gruppo di tutte le isometrie di $ \R^4 $, ovvero quelle trasformazioni che lasciano invariata la forma quadratica $ x_1^2 + x_2^2 + x_3^2 + x_4^2 $, mentre $ \SOn{3,1} $ è il gruppo di tutte le isometrie di $ \R^{3,1} $, che lasciano invariata $ x_1^2 + x_2^2 + x_3^2 - x_0^2 $.
+Dato che $ \hat{\ve{F}}_{\pm} $ si comportano come operatori di momento angolare, si può affermare che la simmetria dell'Hamiltoniana \ref{eq:3.52} è data dal gruppo $ \SOn{3} \times \SOn{3} \cong \SOn{4} $, e da qui si capisce la somiglianza coi generatori del gruppo di Lorentz: $ \SOn{4} $ è il gruppo di tutte le isometrie di $ \R^4 $, ovvero quelle trasformazioni che lasciano invariata la forma quadratica $ x_1^2 + x_2^2 + x_3^2 + x_4^2 $, mentre $ \SOn{3,1} $ è il gruppo di tutte le isometrie di $ \R^{3,1} $, che lasciano invariata $ x_1^2 + x_2^2 + x_3^2 - x_0^2 $.
 
 \begin{proposition}\label{f-p-f-m}
 	$ \hat{F}_+^2 = \hat{F}_-^2 = \frac{1}{4} (\hat{L}^2 + \hat{N}^2) $.
@@ -683,14 +683,14 @@ Dall'Eq. \ref{eq:3.45} si può ripristinare la giusta dimensionalità dell'autov
 
 \subsubsection{Degenerazione}
 
-Dato che tutti gli autostati $ \ket{n,f_+,f_-} $ a fisso $ n $ sono associati allo stesso autovalore di energia, la degenerazione è determinata dai valori possibili di $ f_+ $ ed $ f_- $ (si ricordi $ -f \le f_{pm} \le f $):
+Dato che tutti gli autostati $ \ket{n,f_+,f_-} $ a fisso $ n $ sono associati allo stesso autovalore di energia, la degenerazione è determinata dai valori possibili di $ f_+ $ ed $ f_- $ (si ricordi $ -f \le f_{\pm} \le f $):
 \begin{equation}
 	d(n) = (2f + 1) (2f + 1) = n^2
 	\label{eq:3.63}
 \end{equation}
 È preferibile esprimere gli autostati su una base che diagonalizzi operatori con un'interpretazione fisica immediata. Dato che $ \hat{\ve{F}}_+ + \hat{\ve{F}}_- = \hat{\ve{L}} $, è possibile scrivere gli autostati di $ \hat{F}_{\pm} $, $ \hat{F}_+^z $ ed $ \hat{F}_-^z $ sulla base di $ \hat{F}_{\pm} $, $ \hat{L}^2 $ ed $ \hat{L}_z $ grazie ai coefficienti di Clebsch-Gordan:
 \begin{equation}
-	\ket{n,f_+^z,f_-^z} = \sum_{\ell \ge 1} \sum_{m = -\ell}^{\ell} \ket{n,\ell,m} \braket{n,\ell,m | n,f_+^z,f_-^z}
+	\ket{n,f_+^z,f_-^z} = \sum_{\ell \ge 0} \sum_{m = -\ell}^{\ell} \ket{n,\ell,m} \braket{n,\ell,m | n,f_+^z,f_-^z}
 	\label{eq:3.64}
 \end{equation}
 Dato che la condizione sulla somma di momenti angolari $ \hat{\ve{J}} = \hat{\ve{L}}_1 + \hat{\ve{L}}_2 $ è $ \abs{\ell_1 - \ell_2} \le j \le \ell_1 + \ell_2 $, poiché in questo caso $ f_+^z $ ed $ f_-^z $ variano entrambi tra $ -f $ ed $ f $ si ha che, fissato $ n $, $ \ell $ può variare tra $ 0 $ e $ 2f $:
@@ -715,7 +715,7 @@ Queste possono essere costruite anche come autofunzioni di $ \hat{\ve{F}}_{\pm} 
 	(\hat{F}_+^i \pm \hat{F}_-^i) \ket{1,0,0} = 0
 	\label{eq:3.67}
 \end{equation}
-Per facilitare l'espressione sulla base delle coordiante:
+Per facilitare l'espressione sulla base delle coordinate:
 \begin{equation}
 	\hat{L}_i \ket{1,0,0} = 0
 	\label{eq:3.68}
