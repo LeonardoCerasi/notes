@@ -150,42 +150,42 @@ Nel caso bosonico, la non-fattorizzabilità può emergere dal primo stato eccita
 Risulta dunque che, anche in assenza di un potenziale d'interazione, la funzione d'onda del sistema è non-separabile.
 
 \begin{example}
-	Si consideri l'atomo di elio, ed in partiolare i suoi due elettroni: questi hanno spin $ s = \frac{1}{2} $, dunque sono fermioni e la funzione d'onda del sistema deve essere antisimmetrica. Quest'ultima è costituita da una parte spaziale ed una di spin, ovvero $ \psi = \phi(\ve{x}_1, \ve{x}_2) \chi(s^z_1, s^z_2) $: la funzione d'onda di spin ha quattro possibili stati, che sono un singoletto antisimmetrico ed un tripletto simmetrico (dalla composizione di Clebsch-Gordan), i quali sono rispettivamente noti come para-elio ed orto-elio.\\
+	Si consideri l'atomo di elio, ed in particolare i suoi due elettroni: questi hanno spin $ s = \frac{1}{2} $, dunque sono fermioni e la funzione d'onda del sistema deve essere antisimmetrica. Quest'ultima è costituita da una parte spaziale ed una di spin, ovvero $ \psi = \phi(\ve{x}_1, \ve{x}_2) \chi(s^z_1, s^z_2) $: la funzione d'onda di spin ha quattro possibili stati, che sono un singoletto antisimmetrico ed un tripletto simmetrico (dalla composizione di Clebsch-Gordan), i quali sono rispettivamente noti come para-elio ed orto-elio.\\
 	Per determinare lo spettro del para-elio e dell'orto-elio, si consideri l'Hamiltoniana del sistema come:
 	\begin{equation*}
 		\mathcal{H} = - \frac{\hbar^2}{2m_e} \left( \nabla_1^2 + \nabla_2^2 \right) - \frac{2e^2}{r_1^2} - \frac{2e^2}{r_2^2} + \frac{e^2}{r_{1,2}^2} \equiv \mathcal{H}_0 + \mathcal{H}'
 	\end{equation*}
+	con perturbazione $ \mathcal{H}' \equiv e^2 / r_{1,2}^2 $ piccola. $ \mathcal{H}_0 $ è separabile in due Hamiltoniane idrogenoidi con spettri $ \mathcal{H}_i \ket{k,\ell} = E_k \ket{k,\ell} : E_k = \frac{Ze}{a_0 k^2} $, dunque il suo spettro opportunamente antisimmetrizzato è:
+	\begin{equation*}
+		\ket{k_1, s_1^z} \otimes \ket{k_2, s_2^z} = \frac{1}{\sqrt{2}} \left( \ket{k_1, s_1^z, k_2, s_2^z} - \ket{k_2, s_2^z, k_1, s_1^z} \right)
+	\end{equation*}
+	con $ E_{k_1, k_2} = E_{k_1} + E_{k_2} $. La funzione d'onda del sistema, invece, è:
+	\begin{equation*}
+		\psi^{(\mathrm{o},\mathrm{p})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2, s_1, s_2) = \chi^{(\mathrm{s},\mathrm{a})}(s_1^z, s_2^z) \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2)
+	\end{equation*}
+	\begin{equation*}
+		\chi^{(\mathrm{s},\mathrm{a})}(s^z_1, s^z_2) : s_\mathrm{tot} = 1,0
+		\qquad\qquad
+		\phi^{(\mathrm{s},\mathrm{a})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2) = \frac{1}{\sqrt{s}} \left( \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \pm \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) \right)
+	\end{equation*}
+	La perturbazione dell'interazione coulombiana sul sottospazio degenere è $ \braket{\psi^i | \hat{\mathcal{H}} | \psi^j} = \braket{\phi^i | \hat{\mathcal{H}}' | \phi^j} $, con $ i,j = \mathrm{o}/\mathrm{a}, \mathrm{p}/\mathrm{s} $; si vede che questa è diagonale (per antisimmetria):
+	\begin{equation*}
+		\braket{\psi^{(\mathrm{p})} | \hat{\mathcal{H}}' | \psi^{(\mathrm{o})}} = \frac{e^2}{2} \int d^3 x_1 d^3 x_2 \, \phi^{(\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2)^* \frac{1}{\abs{\ve{x}_1 - \ve{x}_2}} \phi^{(\mathrm{a})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2) = 0
+	\end{equation*}
+	Gli stati degeneri vengono splittati in coppie secondo $ E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})} = E_{k_1, k_2} + \Delta E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})} $, con:
+	\begin{equation*}
+		\begin{split}
+			\Delta E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})}
+			&=  \braket{\psi^{(\mathrm{o},\mathrm{p})} | \hat{\mathcal{H}}' | \psi^{(\mathrm{o},\mathrm{p})}} = \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2)^* \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2) \\
+			&= \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \abs{\phi_{k_1}(\ve{x}_1)}^2 \abs{\phi_{k_2}(\ve{x}_2)}^2 + \abs{\phi_{k_1}(\ve{x}_2)}^2 \abs{\phi_{k_2}(\ve{x}_1)}^2 \right] \\
+			&\quad\,\, \mp \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \phi_{k_1}(\ve{x}_1)^* \phi_{k_2}(\ve{x}_2)^* \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) + \phi_{k_2}(\ve{x}_1)^* \phi_{k_1}(\ve{x}_2)^* \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \right]\\
+			&= e^2 \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \abs{\phi_{k_1}(\ve{x}_1)}^2 \abs{\phi_{k_2}(\ve{x}_2)}^2 \\
+			&\quad\,\, \mp \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \phi_{k_1}(\ve{x}_1)^* \phi_{k_2}(\ve{x}_2)^* \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) + \phi_{k_2}(\ve{x}_1)^* \phi_{k_1}(\ve{x}_2)^* \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \right]\\
+			&\equiv E_c \mp E_s
+		\end{split}
+	\end{equation*}
+	$ E_c $ è l'energia classica determinata dalle due distribuzioni di carica che interagiscono per il potenziale coulombiano, mentre $ E_s $ è l'energia determinata dall'interazione di scambio. In particolare, si può dimostrare che l'energia del para-elio è maggiore di quella dell'orto-elio, ovvero che $ E_s \ge 0 $.
 \end{example}
-con perturbazione $ \mathcal{H}' \equiv e^2 / r_{1,2}^2 $ piccola. $ \mathcal{H}_0 $ è separabile in due Hamiltoniane idrogenoidi con spettri $ \mathcal{H}_i \ket{k,\ell} = E_k \ket{k,\ell} : E_k = \frac{Ze}{a_0 k^2} $, dunque il suo spettro opportunamente antisimmetrizzato è:
-\begin{equation*}
-	\ket{k_1, s_1^z} \otimes \ket{k_2, s_2^z} = \frac{1}{\sqrt{2}} \left( \ket{k_1, s_1^z, k_2, s_2^z} - \ket{k_2, s_2^z, k_1, s_1^z} \right)
-\end{equation*}
-con $ E_{k_1, k_2} = E_{k_1} + E_{k_2} $. La funzione d'onda del sistema, invece, è:
-\begin{equation*}
-	\psi^{(\mathrm{o},\mathrm{p})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2, s_1, s_2) = \chi^{(\mathrm{s},\mathrm{a})}(s_1^z, s_2^z) \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2)
-\end{equation*}
-\begin{equation*}
-	\chi^{(\mathrm{s},\mathrm{a})}(s^z_1, s^z_2) : s_\mathrm{tot} = 1,0
-	\qquad\qquad
-	\phi^{(\mathrm{s},\mathrm{a})}_{k_1, k_2} (\ve{x}_1, \ve{x}_2) = \frac{1}{\sqrt{s}} \left( \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \pm \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) \right)
-\end{equation*}
-La perturbazione dell'interazione coulombiana sul sottospazio degenere è $ \braket{\psi^i | \hat{\mathcal{H}} | \psi^j} = \braket{\phi^i | \hat{\mathcal{H}}' | \phi^j} $, con $ i,j = \mathrm{o}/\mathrm{a}, \mathrm{p}/\mathrm{s} $; si vede che questa è diagonale (per antisimmetria):
-\begin{equation*}
-	\braket{\psi^{(\mathrm{p})} | \hat{\mathcal{H}}' | \psi^{(\mathrm{o})}} = \frac{e^2}{2} \int d^3 x_1 d^3 x_2 \, \phi^{(\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2)^* \frac{1}{\abs{\ve{x}_1 - \ve{x}_2}} \phi^{(\mathrm{a})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2) = 0
-\end{equation*}
-Gli stati degeneri vengono splittati in coppie secondo $ E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})} = E_{k_1, k_2} + \Delta E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})} $, con:
-\begin{equation*}
-	\begin{split}
-		\Delta E_{k_1, k_2}^{(\mathrm{o},\mathrm{p})}
-		&=  \braket{\psi^{(\mathrm{o},\mathrm{p})} | \hat{\mathcal{H}}' | \psi^{(\mathrm{o},\mathrm{p})}} = \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2)^* \phi^{(\mathrm{a},\mathrm{s})}_{k_1, k_2}(\ve{x}_1, \ve{x}_2) \\
-		&= \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \abs{\phi_{k_1}(\ve{x}_1)}^2 \abs{\phi_{k_2}(\ve{x}_2)}^2 + \abs{\phi_{k_1}(\ve{x}_2)}^2 \abs{\phi_{k_2}(\ve{x}_1)}^2 \right] \\
-		&\quad\,\, \mp \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \phi_{k_1}(\ve{x}_1)^* \phi_{k_2}(\ve{x}_2)^* \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) + \phi_{k_2}(\ve{x}_1)^* \phi_{k_1}(\ve{x}_2)^* \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \right]\\
-		&= e^2 \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \abs{\phi_{k_1}(\ve{x}_1)}^2 \abs{\phi_{k_2}(\ve{x}_2)}^2 \\
-		&\quad\,\, \mp \frac{e^2}{2} \int \frac{d^3 x_1 d^3 x_2}{\abs{\ve{x}_1 - \ve{x}_2}} \, \left[ \phi_{k_1}(\ve{x}_1)^* \phi_{k_2}(\ve{x}_2)^* \phi_{k_2}(\ve{x}_1) \phi_{k_1}(\ve{x}_2) + \phi_{k_2}(\ve{x}_1)^* \phi_{k_1}(\ve{x}_2)^* \phi_{k_1}(\ve{x}_1) \phi_{k_2}(\ve{x}_2) \right]\\
-		&\equiv E_c \mp E_s
-	\end{split}
-\end{equation*}
-$ E_c $ è l'energia classica determinata dalle due distribuzioni di carica che interagiscono per il potenziale coulombiano, mentre $ E_s $ è l'energia determinata dall'interazione di scambio. In particolare, si può dimostrare che l'energia del para-elio è maggiore di quella dell'orto-elio, ovvero che $ E_s \ge 0 $.
 
 \subsection{Sistemi planari}
 
