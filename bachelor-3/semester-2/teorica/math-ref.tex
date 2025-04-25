@@ -66,7 +66,7 @@ To define the adjoint representation of a Lie group, it is necessary to give mor
   \end{enumerate}
 \end{definition}
 
-A Lie algebra $ \mathfrak{g} $ is \textit{commutative} if $ [X,Y] = 0 \,\,\forall X,Y \in \mathfrak{g} $.
+A Lie algebra $ \mathfrak{g} $ is \textit{commutative} if $ [X,Y] = 0 \,\,\forall X,Y \in \mathfrak{g} $. Note the link with Lie groups (to be formalized later): given a Lie group $ G $ , denoting as $ \mathcal{G} $ the associated differentiable manifold, then the Lie algebra $ \mathfrak{g} $ associated to $ G $ is $ \mathfrak{g} \defeq T_e\mathcal{G} $ (tangent space at the identity).
 
 \begin{example}{$ \R^3 $ as a Lie algebra}{}
   Let $ \mathfrak{g} = \R^3 $ and $ [\cdot,\cdot] : \R^3 \times \R^3 \ni (\ve{x},\ve{y}) \mapsto [\ve{x} , \ve{y}] \equiv \ve{x} \times \ve{y} \in \R^3 $. Then $ \mathfrak{g} $ is a Lie algebra.
@@ -93,9 +93,9 @@ By Jacobi identity, the adjoint map is a \textit{derivation} of the Lie bracket,
 
 \begin{proposition}{}{}
   Given a Lie algebra $ \mathfrak{g} $, the adjoint map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} $ is a Lie algebra homomorphism.
+\end{proposition}
 
-  \tcblower
-
+\begin{proofbox}
   \begin{proof}
     Note that, by Jacobi identity:
     \begin{equation*}
@@ -107,7 +107,7 @@ By Jacobi identity, the adjoint map is a \textit{derivation} of the Lie bracket,
     \end{equation*}
     Therefore, $ \ad_{[X,Y]} = [\ad_X,\ad_Y] $, i.e. the thesis.
   \end{proof}
-\end{proposition}
+\end{proofbox}
 
 Let $ \mathfrak{g} $ be an $ n $-dimensional $ \K $-Lie algebra and $ \{X_i\}_{i = 1,\dots,n} \subset \mathfrak{g} $ a basis of $ \mathfrak{g} $. Then there are unique constants $ c_{ijk} \in \K $:
 \begin{equation*}
@@ -134,7 +134,7 @@ Even if $ G $ is a complex Lie group, its Lie algebra can still be real.
   \end{enumerate}
 \end{theorem}
 
-To phrase Th. \ref{th:ind-lie-alg-hom} in the language of manifolds, $ \Phi $ is the \textit{derivative} of $ \varphi $ at the identity: $ \Phi = d\varphi_e $.
+To phrase \tref{th:ind-lie-alg-hom} in the language of manifolds, $ \Phi $ is the \textit{derivative} of $ \varphi $ at the identity: $ \Phi = d\varphi_e $.
 
 \begin{definition}{Adjoint map (pt. 2)}{adj-map-2}
   Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. The \textit{adjoint map} of $ g \in G $ is the linear map $ \Ad_g : \mathfrak{g} \rightarrow \mathfrak{g} : \Ad_g(X) \defeq g X g^{-1} $.
@@ -146,16 +146,16 @@ As $ \Ad_g $ is clearly invertible, with $ \Ad_g^{-1} = \Ad_{g^{-1}} $, then $ \
   Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then the map $ \Ad : G \rightarrow \GL{\mathfrak{g}} : g \mapsto \Ad_g $ is a homomorphism.
 \end{proposition}
 
-Recalling Def. \ref{def:representation}, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a representation of $ G $ on $ \mathfrak{g} $, called the \textit{adjoint representation}.\\
+Recalling \dref{def:representation}, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a representation of $ G $ on $ \mathfrak{g} $, called the \textit{adjoint representation}.\\
 As $ \GL{\mathfrak{g}} \cong \GL{n,\K} $ (with $ n \equiv \dim_\K \mathfrak{g} $ and $ \K = \R $ or $ \C $), it can be viewed as a Lie group itself, and its Lie algebra is $ \mathfrak{gl}(\mathfrak{g}) $. Thus, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a Lie group homomorphism (as it can be shown to be continuous).
 
 \begin{proposition}{Adjoint maps}{}
   Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then, given the Lie group homomorphism $ \Ad : G \rightarrow \GL{\mathfrak{g}} $, the induced Lie algebra homomorphism is $ \ad : \mathfrak{g} \rightarrow \mathfrak{gl}(\mathfrak{g}) $ such that $ \ad_X(Y) = [X,Y] $.
+\end{proposition}
 
-  \tcblower
-
+\begin{proofbox}
   \begin{proof}
-    By Th. \ref{th:ind-lie-alg-hom}, the Lie algebra homomorphism induced by $ \varphi \equiv \Ad $ is:
+    By \tref{th:ind-lie-alg-hom}, the Lie algebra homomorphism induced by $ \varphi \equiv \Ad $ is:
     \begin{equation*}
       \Phi(X) \equiv \ad_X = \frac{\dd}{\dd t}\bigg\vert_{t = 0} \Ad_{e^{tX}}
     \end{equation*}
@@ -164,9 +164,9 @@ As $ \GL{\mathfrak{g}} \cong \GL{n,\K} $ (with $ n \equiv \dim_\K \mathfrak{g} $
       \ad_X(Y) = \frac{\dd}{\dd t}\bigg\vert_{t = 0} e^{tX} Y e^{-tX} = [X,Y]
     \end{equation*}
   \end{proof}
-\end{proposition}
+\end{proofbox}
 
-This result links the two adjoint maps in Deff. \ref{def:adj-map-1}-\ref{def:adj-map-2}.
+This result links the two adjoint maps in \ddref{def:adj-map-1}{def:adj-map-2}.
 
 \subsection{\texorpdfstring{$ \SUn{n} $}{SU(2)} Lie group}
 
@@ -193,9 +193,9 @@ The adjoint representation can be is given by representing the generators of the
 
 \begin{proposition}{Structure constants}{}
   The structure constants of a Lie algebra satisfy the Lie algebra.
+\end{proposition}
 
-  \tcblower
-
+\begin{proofbox}
   \begin{proof}
     As $ [T^a,T^b] = i \tensor{f}{^a^b_c} T^c $, the Jacoby identity becomes (recalling that $ \tensor{f}{^a^b_c} $ is totally antisymmetric):
     \begin{equation*}
@@ -213,7 +213,7 @@ The adjoint representation can be is given by representing the generators of the
     \end{equation*}
     These two expressions are equal, hence the thesis.
   \end{proof}
-\end{proposition}
+\end{proofbox}
 
 Moreover, since the structure constant are real, the adjoint representation is always a real representation: the adjoint representation of $ \SUn{n} $ has degree $ n^2 - 1 $.\\
 Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
@@ -230,9 +230,9 @@ This is called the \textit{quadratic Casimir operator}, as it is associated to $
     \qquad \qquad
     C_2(\mathtt{g}) = n
   \end{equation}
+\end{proposition}
 
-  \tcblower
-
+\begin{proofbox}
   \begin{proof}
     First consider the fundamental representation. The $ \mathtt{n} $ of $ \SUn{2} $ is the spinor representation, with generators $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, hence they satisfy $ \tr(T^a_\mathtt{2} T^b_\mathtt{2}) = \frac{1}{2} \delta^{ab} $. It is possible to choose the generators of $ \SUn{n} $ such that, in $ \mathtt{n} $, the first three are $ T^a_\mathtt{n} = \frac{\sigma^a}{2} \,,\, a = 1,2,3 $ (they act on the first three component of $ \C^n $-vectors), so that the others can be chosen such that:
     \begin{equation*}
@@ -258,7 +258,7 @@ This is called the \textit{quadratic Casimir operator}, as it is associated to $
     \begin{equation*}
       \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
     \end{equation*}
-    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of Eqq. \ref{eq:sun-herm}-\ref{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
+    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of \eeref{eq:sun-herm}{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
     \begin{equation*}
       (C_2(\ve{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
     \end{equation*}
@@ -266,9 +266,9 @@ This is called the \textit{quadratic Casimir operator}, as it is associated to $
     \begin{equation*}
       C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
     \end{equation*}
-    which is completes the proof.
+    which completes the proof.
   \end{proof}
-\end{proposition}
+\end{proofbox}
 
 \subsubsection{$ \SUn{2} $ Lie group}
 
@@ -346,19 +346,19 @@ As $ \mathcal{A}^+ \mathcal{A}^+ , \mathcal{A}^- \mathcal{A}^- \subset \mathcal{
 
 \footnotetext{Given a vector space $ V(\K) $, a quadratic form is a map $ q : V \rightarrow \K $ such that $ q(\lambda x) = \lambda^2 q(x) \,\,\forall \lambda \in \K , \forall x \in V $, and the associated bilinear form is a $ \K $-bilinear map $ \omega : V \times V \rightarrow \K $ such that $ \omega(x,y) = \frac{1}{2} \left( q(x + y) - q(x) - q(y) \right) $, which is manifestly symmetric and $ q(x) = \omega(x,x) $.}
 
-\begin{lemma}{}{}
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
   \begin{equation*}
     \{\rho(x) , \rho(y)\} = - 2 \omega(x,y) \mathit{1} \quad \forall x,y \in V
   \end{equation*}
+\end{lemma}
 
-  \tcblower
-
+\begin{proofbox}
   \begin{proof}
     \begin{equation*}
       \rho(x) \rho(y) + \rho(y) \rho(x) = \rho(x + y)^2 - \rho(x)^2 - \rho(y)^2 = - \left( q(x + y) - q(x) - q(y) \right) \mathit{1} = - 2 \omega(x,y) \mathit{1}
     \end{equation*}
   \end{proof}
-\end{lemma}
+\end{proofbox}
 
 Setting for ease of reading $ \rho(x) \equiv x $, it is clear that $ x \perp y \,\,\Rightarrow\,\, xy = -yx $.\\
 More intuitively, the Clifford algebra $ \cla{V} $ can be seen as the associative algebra generated by $ V $ setting $ xy = - \omega(x,y)\mathit{1} \,\,\forall x,y \in V$, so that:
@@ -376,7 +376,7 @@ In general, $ \clar{m,n} $ denotes the Clifford algebra associated to $ \R^{m,n}
 \end{example}
 
 \begin{example}{Quaternions}{}
-  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by Eq. \ref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv i $, $ e_2 \equiv j $ and $ e_1 e_2 = k $ yields the result.
+  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by \eref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv i $, $ e_2 \equiv j $ and $ e_1 e_2 = k $ yields the result.
 \end{example}
 
 \subsubsection{Spin groups}
@@ -389,7 +389,7 @@ Given an $ n $-dimensional $ \K $-vector space, the Clifford algebra $ \cla{V} $
 \end{equation}
 where $ \mathfrak{cl}^{(0)}(V) = \K $, $ \mathfrak{cl}^{(1)}(V) = V $ and $ \mathfrak{cl}^{(2)}(V) \equiv \spin(V) $ is the \textit{spin group} of $ V $. The spin group is a Lie group and, via its natural action on $ V $, can be shown to be $ \spin(V) \cong \mathfrak{so}(V) $.
 
-\footnotetext{Given an index set $ I $ and a $ \K $-vector space, the latter is $ I $-\textit{graded} if there exists a family of subspaces $ \{V_i\}_{i \in I} $ of $ V $ such that:
+\footnotetext{Given an index set $ \mathcal{I} $ and a $ \K $-vector space, the latter is $ \mathcal{I} $-\textit{graded} if there exists a family of subspaces $ \{V_i\}_{i \in \mathcal{I}} $ of $ V $ such that:
 \begin{equation*}
-  V = \bigoplus_{i \in I} V_i
+  V = \bigoplus_{i \in \mathcal{I}} V_i
 \end{equation*}}

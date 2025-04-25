@@ -8,6 +8,78 @@
 % images
 \usepackage{graphicx}
 
+% colored headings
+\usepackage{xcolor}
+
+% equation numbering
+\usepackage{amsmath}
+\makeatletter
+\def\tagform@#1{\maketag@@@{\ignorespaces\sffamily(#1)\unskip\@@italiccorr}}
+\makeatother
+
+% sectioning
+\usepackage{titlesec}
+
+% titleformat{name}
+% {title style}
+% {number style}
+% {space between number and title}
+% {before-title code}
+
+\titleformat{\part}[display]
+  {\normalfont \sffamily \bfseries \centering}
+  {\color{blue!70!black} \Large \partname \, \thepart}
+  {10pt} % vertical spacing
+  {\Huge}
+
+\titleformat{\chapter}[display]
+  {\normalfont \sffamily \bfseries}
+  {\color{blue!70!black} \large \chaptertitlename \, \thechapter}
+  {1pt}
+  {\titlerule[1pt] \vspace{7pt} \Huge}
+
+\titleformat{\section}
+  {\normalfont \sffamily \Large}
+  {\color{red!70!black} §\bfseries\thesection}
+  {10pt}
+  {\bfseries}
+
+\titleformat{\subsection}
+  {\normalfont \sffamily \large}
+  {\color{red!70!black} §\bfseries\thesubsection}
+  {10pt}
+  {\bfseries}
+
+\titleformat{\subsubsection}
+  {\normalfont \sffamily}
+  {\color{red!70!black} §\bfseries\thesubsubsection}
+  {10pt}
+  {\bfseries}
+
+\renewcommand{\appendixtocname}{\sffamily Appendices}
+\renewcommand{\appendixpagename}{\sffamily \Huge \bfseries Appendices}
+
+% custom table of contents
+\usepackage{tocloft}
+
+\renewcommand{\cfttoctitlefont}{\sffamily \Huge \bfseries} % title font
+% part
+\renewcommand{\cftpartfont}{\sffamily \large \bfseries}
+\renewcommand{\cftpartpagefont}{\sffamily \large \bfseries}
+\renewcommand{\cftpartpresnum}{\sffamily \color{blue!70!black}}
+% chapter
+\renewcommand{\cftchapfont}{\sffamily \bfseries}
+\renewcommand{\cftchappagefont}{\sffamily \bfseries}
+\renewcommand{\cftchappresnum}{\sffamily \color{blue!70!black}}
+% section
+\renewcommand{\cftsecfont}{\sffamily}
+\renewcommand{\cftsecpagefont}{\sffamily}
+\renewcommand{\cftsecpresnum}{\sffamily \color{red!70!black}}
+% subsection
+\renewcommand{\cftsubsecfont}{\sffamily}
+\renewcommand{\cftsubsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecpresnum}{\sffamily \color{red!70!black}}
+
 % headers and foooters
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
@@ -19,7 +91,7 @@
 
 % no random page numbers
 \fancypagestyle{plain}{%
-  \fancyhf{}                          % clear all header and footer fields
+  \fancyhf{} % clear all header and footer fields
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -31,40 +103,34 @@
 \fancyfoot{}
 
 \fancypagestyle{body}{%
-  \fancyhead[LE,RO]{\thepage}%
-  \fancyhead[LO]{\chaptername\ \thechapter:\ \leftmark}%
-  \fancyhead[RE]{\partname\ \thepart:\ \parttitle}%
+  \fancyhead[LE,RO]{\sffamily\thepage}%
+  \fancyhead[LO]{\sffamily \color{blue!70!black}\chaptername\ \thechapter\color{black} :\ \leftmark}%
+  \fancyhead[RE]{\sffamily \color{blue!70!black}\partname\ \thepart\color{black} :\ \parttitle}%
 }
 
-% special header for Introduzione
+% special header for Introduction
 \fancypagestyle{introd}{%
-  \fancyhead[LE,RO]{\thepage}%
-  \fancyhead[RE,LO]{\leftmark}%
-}
-
-% special header for Indice
-\fancypagestyle{indice}{%
-  \fancyhead[LE,RO]{\thepage}%
-  \fancyhead[RE,LO]{Indice}%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[RE,LO]{\sffamily \leftmark}%
 }
 
 % special header for Contents
 \fancypagestyle{contents}{%
-  \fancyhead[LE,RO]{\thepage}%
-  \fancyhead[RE,LO]{Contents}%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[RE,LO]{\sffamily Contents}%
 }
 
 % special header for Appendix
 \fancypagestyle{append}{%
-  \fancyhead[LE,RO]{\thepage}%
-  \fancyhead[LO]{\appendixname\ \thechapter :\ \leftmark}%
-  \fancyhead[RE]{Appendices}%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[LO]{\sffamily \color{blue!70!black}\appendixname\ \thechapter \color{black}:\ \leftmark}%
+  \fancyhead[RE]{\sffamily Appendices}%
 }
 
 % special header for Bibliography
 \fancypagestyle{biblio}{%
-  \fancyhead[LE,RO]{\thepage}%
-  \fancyhead[RE,LO]{Bibliography}%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[RE,LO]{\sffamily Bibliography}%
 }
 
 % no blank pages
@@ -89,33 +155,6 @@
 % chemistry
 \usepackage{chemformula}
 
-% custom environments
-%\newtheoremstyle{theorem}{}{}{\slshape}{}{\bfseries}{.}{ }{}
-
-%\theoremstyle{definition}
-%\newtheorem{definition}{Definition}[section]
-
-%\theoremstyle{theorem}
-%\newtheorem{theorem}{Theorem}[section]
-
-%\theoremstyle{theorem}
-%\newtheorem{corollary}{Corollary}[theorem]
-
-%\theoremstyle{theorem}
-%\newtheorem{lemma}{Lemma}[section]
-
-%\theoremstyle{theorem}
-%\newtheorem{lemcorollary}{Corollary}[lemma]
-
-%\theoremstyle{theorem}
-%\newtheorem{proposition}{Proposition}[section]
-
-%\theoremstyle{theorem}
-%\newtheorem{propcorollary}{Corollary}[proposition]
-
-%\theoremstyle{remark}
-%\newtheorem{example}{Example}[section]
-
 % footnotes
 \usepackage{footnote}
 
@@ -126,41 +165,196 @@
 
 \tcbuselibrary{theorems}
 
-\NewTcbTheorem[number within=section]{definition}{Definition}%
-{enhanced, breakable, colback=green!5, colframe=green!35!black, fonttitle=\bfseries}{def}
+\NewTcbTheorem[number within=section]{definition}{Definition}{%
+  enhanced,%
+  breakable,%
+  colback = green!5,%
+  colframe = green!5,%
+  coltitle = green!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{def}
 
-\newtcbtheorem[number within=section]{theorem}{Theorem}%
-{enhanced, breakable, colback=red!5, colframe=red!35!black, fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=section]{theorem}{Theorem}{%
+  enhanced,%
+  breakable,%
+  colback = red!5,%
+  colframe = red!5,%
+  coltitle = red!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{th}
 
-\newtcbtheorem[number within=tcb@cnt@theorem]{corollary}{Corollary}%
-{enhanced, breakable, colback=red!5, colframe=red!35!black, fonttitle=\bfseries}{cor}
+\newtcbtheorem[number within=tcb@cnt@theorem]{corollary}{Corollary}{%
+  enhanced,%
+  breakable,%
+  colback = red!5,%
+  colframe = red!5,%
+  coltitle = red!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{cor}
 
-\newtcbtheorem[number within=section]{lemma}{Lemma}%
-{enhanced, breakable, colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{lemma}
+\newtcbtheorem[number within=section]{lemma}{Lemma}{%
+  enhanced,%
+  breakable,%
+  colback = blue!5,%
+  colframe = blue!5,%
+  coltitle = blue!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{lemma}
 
-\newtcbtheorem[number within=lemma]{lemcorollary}{Corollary}%
-{enhanced, breakable, colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{cor}
+\newtcbtheorem[number within=lemma]{lemcorollary}{Corollary}{%
+  enhanced,%
+  breakable,%
+  colback = blue!5,%
+  colframe = blue!5,%
+  coltitle = blue!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{cor}
 
-\newtcbtheorem[number within=section]{proposition}{Proposition}%
-{enhanced, breakable, colback=cyan!5, colframe=cyan!35!black, fonttitle=\bfseries}{prop}
+\newtcbtheorem[number within=section]{proposition}{Proposition}{%
+  enhanced,%
+  breakable,%
+  colback = cyan!5,%
+  colframe = cyan!5,%
+  coltitle = cyan!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{prop}
 
-\newtcbtheorem[number within=proposition]{propcorollary}{Corollary}%
-{enhanced, breakable, colback=cyan!5, colframe=cyan!35!black, fonttitle=\bfseries}{cor}
+\newtcbtheorem[number within=proposition]{propcorollary}{Corollary}{%
+  enhanced,%
+  breakable,%
+  colback = cyan!5,%
+  colframe = cyan!5,%
+  coltitle = cyan!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{cor}
 
-\newtcbtheorem[number within=section]{example}{Example}%
-{enhanced, breakable, colback=yellow!5, colframe=yellow!35!black,fonttitle=\bfseries}{ex}
+\newtcbtheorem[number within=section]{example}{Example}{%
+  enhanced,%
+  breakable,%
+  colback = yellow!5,%
+  colframe = yellow!5,%
+  coltitle = yellow!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{ex}
 
-% sectioning
-\usepackage{titlesec}
+\newtcolorbox{proofbox}{%
+  enhanced,%
+  breakable,%
+  colback = black!5,%
+  colframe = black!5,%
+  sharp corners,%
+  boxrule = 0pt,%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  borderline west = {1pt}{0pt}{black!70},%
+}
 
 % hyper-references
 \usepackage{hyperref}
 
+% custom references
+\newcommand{\eref}[1]{\textsf{Eq.\,\ref{#1}}}
+\newcommand{\eeref}[2]{\textsf{Eq.\,\ref{#1}-\ref{#2}}}
+\newcommand{\dref}[1]{\textsf{Def.\,\ref{#1}}}
+\newcommand{\ddref}[2]{\textsf{Def.\,\ref{#1}-\ref{#2}}}
+\newcommand{\tref}[1]{\textsf{Th.\,\ref{#1}}}
+\newcommand{\pref}[1]{\textsf{Prop.\,\ref{#1}}}
+\newcommand{\lref}[1]{\textsf{Lemma\,\ref{#1}}}
+
+\newcommand{\secref}[1]{\textcolor{red!70!black}{\textsf{§\ref{#1}}}}
+
 % extended integral symbols
 \usepackage{esint}
-
-% add table of contents, index and bibliography to table of contents
-\usepackage{tocbibind}
 
 % text
 \newcommand{\virgolette}[1]{``\text{#1}"}
@@ -274,17 +468,8 @@
 \newcommand{\w}{\mathrm{W}}
 \newcommand{\z}{\mathrm{Z}}
 
-% custom chapter heading
-\titleformat{\chapter}[display]
-{\normalfont\bfseries}
-{\large\chaptertitlename \, \thechapter}
-{1ex}
-{\titlerule[1pt]
-\vspace{2ex}%
-\Huge}
-
 % frontmatters defaults
 \author{Leonardo Cerasi%
-	\thanks{\scriptsize\href{mailto:leonardo.cerasi@studenti.unimi.it}{leo.cerasi@pm.me}}\\
-	\small GitHub repository: \href{https://github.com/LeonardoCerasi/notes}{LeonardoCerasi/notes}}
+  \thanks{\scriptsize\href{mailto:leonardo.cerasi@studenti.unimi.it}{leo.cerasi@pm.me}}\\
+  \small GitHub repository: \href{https://github.com/LeonardoCerasi/notes}{LeonardoCerasi/notes}}
 \date{}
