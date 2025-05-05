@@ -1,0 +1,178 @@
+\selectlanguage{italian}
+
+La trattazione degli atomi a molti elettroni (Many-Electron Atoms) è resa non banale dall'interazione elettrone-elettrone, la quale rende impossibile la risoluzione esatta del problema\footnotemark. È dunque necessario adottare alcune semplificazioni.
+
+\footnotetext{La funzione d'onda di ciascun elettrone dipende da tre variabili spaziali, dunque discretizzando ciascuna di esse in una griglia di 10 numeri reali, la descrizione di un sistema a $ N $ elettroni richiede di trattare $ (10^3)^N $ numeri reali: già per $ N = 4 $ ciò necessiterebbe di qualche Tb, mentre per $ N = 27 $ si raggiunge l'ordine di grandezza del numero totale di atomi nell'Universo. La trattazione numerica del problema è dunque impossibile.}
+
+\section{Approssimazione a particelle indipendenti}
+
+È possibile trovare soluzioni approssimate per MEAs costruendo il relativo spazio di Hilber a partire dagli stati single-particle.
+
+\subsection{Particelle identiche}
+
+Gli elettroni sono particelle indistinguibili tra loro, dunque è necessario ricordare le proprietà dei sistemi quantistici di particelle identiche. \\
+Dato un sistema di $ N $ particelle identiche, ciascuna descritta da uno spazio di Hilbert $ \hilb $, il sistema totale sarà descritto da un sottospazio del prodotto diretto di tali spazi. In particolare, definendo l'operatore di scampio $ \pi_{ij} $ che scambia le particelle $ i \leftrightarrow j $, dato che $ \pi_{ij}^2 $ si ha che i suoi autovalori possibili sono $ \pm 1 $: stati $ \pi_{ij} \ket{\psi} = + \ket{\psi} $ sono detti \textit{stati bosonici}, sono simmetrici per scambio di particelle e descrivono sistemi di spin intero; stati $ \pi_{ij} \ket{\psi} = - \ket{\psi} $ sono detti \textit{stati fermionici}, sono antisimmetrici per scambio di particelle e descrivono sistemi di spin semi-intero. La definizione degli stati bosonici/fermionici a partire dagli stati single-particle è dunque data rispettivamente da:
+\begin{equation}
+	\ket{\alpha_1 , \dots , \alpha_N}^\text{(s)} \defeq \frac{1}{\sqrt{N!}} \sum_{\pi \in S^N} \ket{\alpha_{\pi(1)} , \dots , \alpha_{\pi(N)}}
+\end{equation}
+\begin{equation}
+	\ket{\alpha_1 , \dots , \alpha_N}^\text{(a)} \defeq \frac{1}{\sqrt{N!}} \sum_{\pi \in S^N} (-1)^{\{\pi\}} \ket{\alpha_{\pi(1)} , \dots , \alpha_{\pi(N)}}
+\end{equation}
+dove $ \{\pi\} $ è il carattere della permutazione e $ \alpha_n $ indica il set completo di quantum numbers dell'$ n $-esima particella. Come si può vedere, il principio d'esclusione di Pauli discende banalmente da queste definizioni: un sistema bosonico non ha restrizioni sui quantum numbers dei singoli bosoni che lo compongono, mentre un sistema fermionico, dato il fattore $ (-1)^{\{\pi\}} $, risulta avere $ \ket{\psi} = 0 $ se si considerano due fermioni con gli stessi quantum numbers.
+
+\begin{example}{Identicità degli atomi}{}
+	Si consideri un atomo di $ \ch{^3He} $: esso è composto da 2 protoni, 1 neutrone e 2 elettroni, dunque overall è un sistema fermionico: se si scambiano tra loro due tali atomi, si ottiene un fattore $ (-1)\cdot(-1) = +1 $ per i protoni, idem per gli elettroni, e $ (-1) $ per i neutroni, risultando in un fattore totale $ (-1) $. \\
+	D'altro canto, un atomo di $ \ch{^{238}U} $, composto da 92 protoni, 146 neutroni e 92 elettroni, è un sistema bosonico per un ragionamento analogo. \\
+	In generale, atomi con $ A + Z $ pari sono bosoni, mentre atomi con $ A + Z $ dispari sono fermioni.
+\end{example}
+
+L'antisimmetria per scambio dei sistemi a molti elettroni ne condiziona fortemente al dinamica, in quanto la repulsione tra elettroni data dall'antisimettrizzazione della funzione d'onda è spesso più efficace della repulsione elettromagnetica tra di essi: senza antisimmetria, gli elettroni nel ground state occuperebbero tutti la shell $ \text{1s} $.
+
+\subsubsection{Funzione d'onda fermionica}
+
+Si consideri un sistema di $ N $ fermioni, ciascuno descritto da uno spazio di Hilber con ket base $ \ket{w_n} = \ket{\ve{r}_n , \sigma_n} $ di posizione e spin.
+
+\begin{theorem}{Determinante di Slater}{}
+	La base dello spazio di Hilber di un sistema di $ N $ fermioni è data dal \textit{determinante di Slater}:
+	\begin{equation}
+		\Psi_{\alpha_1 , \dots , \alpha_N}(w_1 , \dots , w_N) = \frac{1}{\sqrt{N!}}
+		\begin{vmatrix}
+			\psi_{\alpha_1}(w_1) & \dots & \psi_{\alpha_1}(w_N) \\
+			\vdots & \ddots & \vdots \\
+			\psi_{\alpha_N}(w_1) & \dots & \psi_{\alpha_N}(w_N)
+		\end{vmatrix}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Essendo lo spazio di Hilbert totale $ \hilb^\text{(a)} $, la funzione d'onda dello stato fermionico generico $ \ket{\alpha_1 , \dots , \alpha_N}^\text{(a)} $ sarà:
+		\begin{equation*}
+			\begin{split}
+				\Psi_{\alpha_1 , \dots , \alpha_N}(w_1 , \dots , w_N)
+				& = {^\text{(a)}\langle}w_1 , \dots , w_N | \alpha_1 , \dots , \alpha_N{\rangle^\text{(a)}} \\
+				& = \frac{1}{N!} \sum_{\pi,\rho \in S^N} (-1)^{\{\pi\}} (-1)^{\{\rho\}} \braket{w_{\rho(1)} , \dots , w_{\rho(N)} | \alpha_{\pi(1)} , \dots , \alpha_{\pi(N)}} \\
+				& = \sum_{\pi \in S^N} (-1)^{\{\pi\}} \frac{1}{N!} \sum_{\rho \in S^N} (-1)^{\{\rho\}} \psi_{\alpha_{\pi(1)}}(w_{\rho(1)}) \dots \psi_{\alpha_{\pi(N)}}(w_{\rho(N)}) \\
+				& = \sum_{\pi \in S^n} (-1)^{\{\pi\}} \psi_{\alpha_{\pi(1)}}(w_1) \dots \psi_{\alpha_{\pi(N)}}(w_N)
+			\end{split}
+		\end{equation*}
+		Questa è proprio la definizione di determinante della matrice $ A_{ij} = \psi_{\alpha_i}(w_j) $. Aggiungendo un fattore di normalizzazione $ (N!)^{-1/2} $ si ottiene la tesi\footnote{Ciò permette di usare come dominio d'integrazione tutto lo spazio di definizione delle $ w_n $, e non solo l'iper-triangolo $ w_1 > \dots > w_n $.}.
+	\end{proof}
+\end{theorem}
+
+In questo modo diventa possibile trattare numericamente il problema\footnotemark. La complessità del problema viene relegata ai coefficienti dell'espansione dello stato generico su tale base:
+\begin{equation}
+	\ket{\Psi} = \sum_{\alpha_1 , \dots , \alpha_N} c_{\alpha_1 , \dots , \alpha_N} \ket{\alpha_1 , \dots , \alpha_N}^\text{(a)}
+\end{equation}
+con $ c_{\alpha_1 , \dots , \alpha_N} \in \C $. In questo modo, dunque, si ottiene lo stato del sistema totale a partire dagli stati single-particle: da qui l'\textit{approssimazione a particelle indipendenti}.
+
+\footnotetext{I ket di base ottenuti tramite il determinante di Slater contengono una quantità d'informazione che, seguengo l'esempio della nota precedente, scala come $ N \cdot 10^3 $, dunque linearmente.}
+
+\subsection{Elettroni non-interagenti}
+
+Si consideri il potenziale d'interazione elettrone-elettrone $ V_{ee} $ completamente trascurabile: in tal caso, il problema ad $ N $ elettroni si fattorizza completamente, poiché ciascun elettrone si muove indipendentemente dagli altri nel potenziale $ V_{ne} $. Trascurando gli effetti relativistici, gli autostati dei singoli elettroni sono rappresentati dalla funzione d'onda idrogenoide\footnotemark: si ha dunque $ \alpha_i \equiv \{n_i, \ell_i, m_i, m_{s_i}\} $.
+
+\footnotetext{Nel caso dei MEAs, si può ignorare la dimensione finita del nucleo, assumendo $ \mu \equiv m_e $ e $ a \equiv a_0 $.}
+
+\begin{example}{Notazione spettroscopica}{}
+	In notazione spettroscopica si perde l'informazione su $ m_i $ ed $ m_{s_i} $. Ad esempio:
+	\begin{equation*}
+		\ket{1,0,0,\uparrow ; 3,1,-1,\uparrow ; 3,1,0,\uparrow ; 3,1,1,\downarrow}^\text{(a)} \equiv \text{1s}^1 \text{3p}^3
+	\end{equation*}
+\end{example}
+
+\subsubsection{Energia totale}
+
+La binding energy di un atomo è definita come il lavoro necessario a separare l'atomo in un nucleo isolato e nei suoi $ N $ elettroni, tutti a riposo e all'infinito. La sua energia totale è invece $ E = - E_\text{bind} $. \\
+Nel caso di elettroni non-interagenti, l'energia totale è semplicemente la somma delle loro singole energie (che sono negative).
+
+\begin{example}{}{}
+	L'energia dello stato $ \text{1s}^1 \text{3p}^3 $ è (dall'Eq. \ref{eq:1-e-en}:
+	\begin{equation*}
+		E[\text{1s}^1 \text{3p}^3] = E_1 + 3 E_3 = - \frac{1}{2} \left( \frac{1}{1^2} + 3 \cdot \frac{1}{3^2} \right) Z^2 E_\text{Ha} = - \frac{2}{3} Z^2 E_\text{Ha}
+	\end{equation*}
+	Gli stati ad energia minima per un sistema di $ N = 4 $ elettroni sono però quelli con $ 2 $ elettroni in $ n = 1 $ (massimo numero nell'unica shell con $ n = 1 $, ovvero $ \text{1s} $) e $ 2 $ elettroni in $ n = 2 $; ad esempio:
+	\begin{equation*}
+		E[\text{1s}^2 \text{2s}^2] = 2 E_1 + 2 E_2 = - \frac{5}{4} Z^2 E_\text{Ha}
+	\end{equation*}
+\end{example}
+
+\subsubsection{Elettroni reali}
+
+In sistemi reali, l'approssimazione $ V_{ee} \equiv 0 $ può risultare estremamente fallace: ad esempio, per un atomo neutro in cui $ N = Z $ si ha che $ V_{ee} $ è dello stesso ordine di grandezza, ma di segno opposto, di $ V_{ne} $, così da cancellarne gli effetti: in tal caso, trascurare $ V_{ee} $ porterebbe a risultati fisicamente insensati.
+
+\section{Atomi a 2 elettroni}
+
+Gli atomi polielettronici più semplici sono quelli con $ N = 2 $ (es.: $ \ch{He} $, $ \ch{Li}^+ $, $ \ch{Be}^{2+} $, ...). L'Hamiltoniana di questo sistema è:
+\begin{equation*}
+	\mathcal{H} = T + V_{ne} + V_{ee} = - \frac{\hbar^2}{2m_e} \lap_1 + - \frac{\hbar^2}{2m_e} \lap_2 - \frac{Ze^2}{r_1} - \frac{Ze^2}{r_2} + \frac{e^2}{\abs{\ve{r}_1 - \ve{r}_2}} = \mathcal{H}_1 + \mathcal{H}_2 + V_{ee}
+\end{equation*}
+Questa Hamiltoniana è resa non-fattorizzabile dal termine $ V_{ee} $, il quale può però essere trattato perturbativamente nel caso $ N = 2 $; per $ N \ge 3 $, invece, bisogna tener conto della schermatura del potenziale $ V_{ne} $ da parte di quello $ V_{ee} $. \\
+La funzione d'onda per elettroni indipendenti ($ V_{ee} \equiv 0 $) in questo è:
+\begin{equation*}
+	\Psi_{\alpha_1 , \alpha_2}(w_1 , w_2) = \frac{1}{\sqrt{2}} \left[ \psi_{\alpha_1}(w_1) \psi_{\alpha_2}(w_2) - \psi_{\alpha_1}(w_2) \psi_{\alpha_2}(w_1) \right]
+\end{equation*}
+con:
+\begin{equation*}
+	\psi_{\alpha_i}(w_i) = R_{n_i, \ell_i}(r_i) Y_{\ell_i, m_i}(\vartheta_i, \varphi_i) \chi_{m_{s_i}}(\sigma_i) \equiv \psi_{n_i, \ell_i, m_i}(\ve{r}_i) \chi_{m_{s_i}}(\sigma_i)
+\end{equation*}
+Si nota però che gli stati $ \Psi_{\alpha_1, \alpha_2} $ così definiti non sono necessariamente autostati dello spin totale $ S^2 $ (con $ \bs{S} \defeq \bs{s}_1 + \bs{s}_2 $): è utile lavorare con autostati di $ S^2 $, poiché la perturbazione $ V_{ee} \equiv V_{ee} \otimes \id_\text{spin} $ agisce solo sullo spazio orbitale, dunque il suo elemento di matrice si annulla tra stati con $ S $ diverso. \\
+Per ottenere tali autostati, è utile separare la parte spaziale della funzione d'onda da quella di spin: si ottengono così un singoletto $ S = 0 $ (con funzione d'onda di spin antisimmetrica) ed un tripletto simmetrico $ S = 1 $ (con funzione d'onda di spin simmetrica). Si definiscono i relativi spinori $ \mathcal{X}^{S,M_S} $:
+\begin{align*}
+	\mathcal{X}^{0,0}(\sigma_1, \sigma_2) &= \frac{1}{\sqrt{2}} \left[ \chi_\uparrow(\sigma_1) \chi_\downarrow(\sigma_2) - \chi_\uparrow(\sigma_2) \chi_\downarrow(\sigma_1) \right] \\
+	\mathcal{X}^{1,-1}(\sigma_1, \sigma_2) &= \chi_\downarrow(\sigma_1) \chi_\downarrow(\sigma_2) \\
+	\mathcal{X}^{1,0}(\sigma_1, \sigma_2) &= \frac{1}{\sqrt{2}} \left[ \chi_\uparrow(\sigma_1) \chi_\downarrow(\sigma_2) + \chi_\uparrow(\sigma_2) \chi_\downarrow(\sigma_1) \right] \\
+	\mathcal{X}^{1,1}(\sigma_1, \sigma_2) &= \chi_\uparrow(\sigma_1) \chi_\downarrow(\sigma_2)
+\end{align*}
+Le parti spaziali devono essere coerentemente (anti)simmetrizzate, così da ottenere:
+\begin{equation*}
+	\Psi^{0,0}_{n_1, \ell_1, m_1 ; n_2, \ell_2, m_2}(w_1, w_2) = \frac{1}{\sqrt{2}} \left[ \psi_{n_1, \ell_1, m_1}(\ve{r}_1) \psi_{n_2, \ell_2, m_2}(\ve{r}_2) + \psi_{n_1, \ell_1, m_1}(\ve{r}_2) \psi_{n_2, \ell_2, m_2}(\ve{r}_1) \right] \mathcal{X}^{0,0}(\sigma_1, \sigma_2)
+\end{equation*}
+\begin{equation*}
+	\Psi^{1,M_S}_{n_1, \ell_1, m_1 ; n_2, \ell_2, m_2}(w_1, w_2) = \frac{1}{\sqrt{2}} \left[ \psi_{n_1, \ell_1, m_1}(\ve{r}_1) \psi_{n_2, \ell_2, m_2}(\ve{r}_2) - \psi_{n_1, \ell_1, m_1}(\ve{r}_2) \psi_{n_2, \ell_2, m_2}(\ve{r}_1) \right] \mathcal{X}^{1,M_S}(\sigma_1, \sigma_2)
+\end{equation*}
+Gli stati dello spin-singlet non hanno condizioni sui quantum numbers orbitali, ma devono necessariamente avere $ m_{s_1} = - m_{s_2} $, mentre, al contrario, gli stati dello spin-triplet non hanno condizioni sui quantum numbers di spin, ma devono avere $ (n_1,\ell_1,m_1) \neq (n_2,\ell_2,m_2) $.
+
+\subsection{Stati eccitati}
+
+Trascurando l'interazione elettronica, le energie non-pertubate dipendono solo da $ n_1,n_2 $:
+\begin{equation*}
+	E_{n_1,n_2}^{(0)} = - \frac{1}{2} \left( \frac{1}{n_1^2} + \frac{1}{n_2^2} \right) Z^2 E_\text{Ha}
+\end{equation*}
+Si vede che il ground state è uno stato dello spin-singlet: infatti esso ha entrambi gli elettroni in $ \text{1s} $, dunque $ \uparrow\downarrow $ o $ \downarrow\uparrow $, ovvero descritti da $ \mathcal{X}^{0,0} $. \\
+Ricordando le selection rules sullo spin per le transizioni di dipolo elettrico (Eq. \ref{eq:1-e-el-dip-tr-spin}), si vede che queste avvengono soltanto tra stati appartenenti entrambi al singoletto o entrambi al tripletto, come si può vedere in Fig. \ref{helium} nel caso dell'elio: storicamente, si pensava ci fossero due specie distinte di elio, l'orto-elio ($ S = 1 $) ed il para-elio ($ S = 0 $).
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.40 \textwidth]{ortho-para-he.png}
+	\caption{Energy levels and electric-dipole transitions of atomic $ \ch{He} $.}
+	\label{helium}
+\end{figure}
+
+\subsection{Elettroni interagenti}
+
+Trattando in maniera perturbativa il potenziale d'interazione $ V_{ee} $, al prim'ordine si ha una correzione all'energia (nelle configurazioni para- o orto-) data da:
+\begin{equation*}
+	\begin{split}
+		\Delta E_{k_1,k_2}^\text{(p,o)}
+		& = \braket{\Psi_{k_1,k_2}^\text{(p,o)} | V_{ee} | \Psi_{k_1,k_2}^\text{(p,o)}} = \frac{e^2}{2} \int_{\R^6} \frac{d^3r_1 d^3r_2}{\abs{\ve{r}_1 - \ve{r}_2}}  \abs{\psi_{k_1}(\ve{r}_1) \psi_{k_2}(\ve{r}_2) \pm \psi_{k_1}(\ve{r}_2) \psi_{k_2}(\ve{r}_1)}^2 \\
+		& = \frac{e^2}{2} \int_{\R^6} \frac{d^3r_1 d^3r_2}{\abs{\ve{r}_1 - \ve{r}_2}} \left[ \abs{\psi_{k_1}(\ve{r}_1)}^2 \abs{\psi_{k_2}(\ve{r}_2)}^2 + \abs{\psi_{k_1}(\ve{r}_2)}^2 \abs{\psi_{k_2}(\ve{r}_1)}^2 \right] \\
+		& \quad \pm \frac{e^2}{2} \int_{\R^6} \frac{d^3r_1 d^3r_2}{\abs{\ve{r}_1 - \ve{r}_2}} \left[ \psi_{k_1}^*(\ve{r}_1) \psi_{k_2}^*(\ve{r}_2) \psi_{k_1}(\ve{r}_2) \psi_{k_2}(\ve{r}_1) + \psi_{k_1}(\ve{r}_1) \psi_{k_2}(\ve{r}_2) \psi_{k_1}^*(\ve{r}_2) \psi_{k_2}^*(\ve{r}_1) \right] \\
+		& \equiv E_{k_1,k_2}^\text{(c)} \pm E_{k_1,k_2}^\text{(s)}
+	\end{split}
+\end{equation*}
+dove $ k_i \equiv \{n_i,\ell_i,m_i\} $. $ E^\text{(c)} $ è l'energia dovuta all'interazione Coulombiana, mentre $ E^\text{(s)} $ è dovuta all'interazione di scambio: si dimostra che $ E^\text{(s)} \ge 0 $, dunque la configurazione para- ha un'energia superiore a quella orto- (come si vede in Fig. \ref{helium}). \\
+Il fatto che la configurazione orto- sia energeticamente inferiore a quella para- può anche essere dedotto intuitivamente dalla simmetria della funzione d'onda: nel caso orto-, poiché la funzione d'onda spaziale è antisimmetrica, si ha $ \psi(\ve{r},\ve{r}) = 0 $, dunque è molto meno probabile che i due elettroni si trovino vicini rispetto al caso para-. Poiché $ V_{ee} \sim \abs{\ve{r}_1 - \ve{r}_2}^{-1} $, ciò significa che la correzione al prim'ordine dell'energia sarà maggiore nel caso para- rispetto a quello orto-. \\
+Gli stati $ (n_1[\ell_1])(n_2[\ell_2]) $ subiscono dunque uno splitting energetico pari a $ 2E^\text{(s)}_{n_1,\ell_1 ; n_2,\ell_2} $ (la dipendenza da $ m $ c'è solo in presenza di campi elettromagnetici esterni che perturbano la simmetria sferica), noto come \textit{splitting da scambio}. Questo splitting è molto importante, poiché sta alla base della \textit{prima regola di Hund}: lo stato energeticamente più basso è sempre quello che massimizza lo spin\footnotemark.
+
+\footnotetext{Ciò nel caso dell'atomo a 2 elettroni non ha alcun effetto sul ground state, poiché esso ha configurazione elettronica $ \text{1s}^2 $, dunque necessariamente $ S = 0 $.}
+
+
+
+
+
+
+
+
+
+
