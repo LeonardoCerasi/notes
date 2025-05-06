@@ -150,6 +150,7 @@ Ricordando le selection rules sullo spin per le transizioni di dipolo elettrico 
 \end{figure}
 
 \subsection{Elettroni interagenti}
+\label{he-inter-electr}
 
 Trattando in maniera perturbativa il potenziale d'interazione $ V_{ee} $, al prim'ordine si ha una correzione all'energia (nelle configurazioni para- o orto-) data da:
 \begin{equation*}
@@ -166,6 +167,176 @@ Il fatto che la configurazione orto- sia energeticamente inferiore a quella para
 Gli stati $ (n_1[\ell_1])(n_2[\ell_2]) $ subiscono dunque uno splitting energetico pari a $ 2E^\text{(s)}_{n_1,\ell_1 ; n_2,\ell_2} $ (la dipendenza da $ m $ c'è solo in presenza di campi elettromagnetici esterni che perturbano la simmetria sferica), noto come \textit{splitting da scambio}. Questo splitting è molto importante, poiché sta alla base della \textit{prima regola di Hund}: lo stato energeticamente più basso è sempre quello che massimizza lo spin\footnotemark.
 
 \footnotetext{Ciò nel caso dell'atomo a 2 elettroni non ha alcun effetto sul ground state, poiché esso ha configurazione elettronica $ \text{1s}^2 $, dunque necessariamente $ S = 0 $.}
+
+\section{Atomi a \texorpdfstring{$ N $}{N} elettroni}
+
+L'approccio perturbativo non dà un buon accordo coi dati sperimentali per $ N \ge 3 $: di conseguenza, è necessario adottare un altro metodo. Un'opzione è sfruttare il principio di Ritz (Th. \ref{th:ritz}): supponendo di avere un set di autofunzioni single-particle $ \{\phi_{\alpha_i}(w_i)\}_{i = 1, \dots, N} $ note, è possibile cercare un set di autofunzioni che fungono da base per lo spazio di Hilbert del sistema considerato andando a minimizzare il funzionale energia:
+\begin{equation}
+	E[\phi_{\alpha_1}, \dots, \phi_{\alpha_N}] = \frac{\braket{\Phi_{\alpha_1, \dots, \alpha_N} | \mathcal{H}_\text{MEA} | \Phi_{\alpha_1, \dots, \alpha_N}}}{\braket{\Phi_{\alpha_1, \dots, \alpha_N} | \Phi_{\alpha_1, \dots, \alpha_N}}}
+	\label{eq:en-functional-def}
+\end{equation}
+dove $ \Phi_{\alpha_1, \dots, \alpha_N} $ è il determinante di Slater delle $ {\phi_{\alpha_i}}_{i = 1, \dots, N} $, le quali sono dette \textit{orbitali atomici}. Essendo $ \mathcal{H}_\text{MEA} = T + V_{ne} + V_{ee} $, si può esplicitare il funzionale come:
+\begin{equation}
+	\begin{split}
+		E[\phi_{\alpha_1}, \dots, \phi_{\alpha_N}]
+		& = \sum_{i = 1}^{N} \braket{\alpha_i | \mathcal{H}_0 | \alpha_i} \\
+		& \quad + \frac{1}{2} \sum_{i,j = 1}^{N} \int dw\,dw'\, \abs{\phi_{\alpha_i}(w)}^2 v_{ee}(w,w') \abs{\phi_{\alpha_j}(w')}^2 \\
+		& \quad - \frac{1}{2} \sum_{i,j = 1}^{N} \int dw\,dw'\, \phi_{\alpha_i}^*(w) \phi_{\alpha_i}(w') v_{ee}(w,w') \phi_{\alpha_j}^*(w') \phi_{\alpha_j}(w)
+	\end{split}
+	\label{eq:en-functional}
+\end{equation}
+dove si è assunta l'ortonormalità $ \braket{\alpha_i | \alpha_j} = \delta_{ij} $ e si sono definiti:
+\begin{equation}
+	\mathcal{H}_0(w) \equiv \left[ -\frac{\hbar^2}{2m_e} \lap_\ve{r} - \frac{Ze^2}{r} \right] \otimes \id_\text{spin}
+	\qquad \qquad
+	v_{ee}(w,w') \equiv \frac{e^2}{\abs{\ve{r} - \ve{r}'}} \otimes \id_\text{spin}
+\end{equation}
+Il primo termine del funzionale energia contiene il moto indipendente di ogni elettrone nel potenziale generato dal nucleo, il secondo termine contiene l'interazione Coulombiana tra ciascun elettrone ed la distribuzione di carica media dovuta a tutti gli elettroni, e il terzo termine è un termine di natura non-classica e non-locale dovuto all'antisimmetria per scambio: si noti che il secondo termine contiene anche un'interazione di ciascun elettrone con sé stesso, la quale non ha senso fisico, che viene giustamente cancellata da un addendo nel terzo termine.
+
+\begin{theorem}{Equazione di Hartree-Fock}{eq-hf}
+	Il set di autofunzioni $ \{\psi_{\alpha_i}\}_{i = 1, \dots, N} $ che minimizza il funzionale energia soddisfa:
+	\begin{equation}
+		\mathcal{H}_0(w) \psi_\alpha(w) + V_\text{Ha}(w) \psi_\alpha(w) - \int dw'\, V_\text{Fock}(w,w') \psi_\alpha(w') = E_\alpha \psi_\alpha(w)
+	\end{equation}
+	dove i potenziali di Hartree e Fock sono definiti come:
+	\begin{equation}
+		V_\text{Ha}(w) \defeq \int dw'\, \sum_\beta \abs{\phi_\beta(w')}^2 v_{ee}(w,w')
+	\end{equation}
+	\begin{equation}
+		V_\text{Fock}(w,w') \defeq \sum_\beta \phi_\beta^*(w') \phi_\beta(w) v_{ee}(w,w')
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Partendo dall'Eq. \ref{eq:en-functional-def}, si noti che in generale:
+		\begin{equation*}
+			\frac{\pa E(p)}{\pa p_i} = \frac{\pa}{\pa p_i} \frac{N(p)}{D(p)} = 0
+			\quad \Leftrightarrow \quad
+			\frac{1}{D(p)} \frac{\pa N(p)}{\pa p_i} - \frac{N(p)}{D^2(p)} \frac{\pa D(p)}{\pa p_i}
+			\quad \Leftrightarrow \quad
+			\frac{\pa N(p)}{\pa p_i} = E(p) \frac{\pa D(p)}{\pa p_i}
+		\end{equation*}
+		Applicando la derivata funzionale $ \frac{\delta}{\delta \phi_\alpha^*(w)} $:
+		\begin{equation*}
+			\frac{\delta}{\delta \phi_\alpha^*(w)} \braket{\Phi_{\alpha_1, \dots, \alpha_N} | \mathcal{H}_\text{MEA} | \Phi_{\alpha_1, \dots, \alpha_N}} = E[\alpha_1, \dots, \alpha_N] \frac{\delta}{\delta \phi_\alpha^*(w)} \braket{\Phi_{\alpha_1, \dots, \alpha_N} | \Phi_{\alpha_1, \dots, \alpha_N}} = E_\alpha \phi_\alpha(w)
+		\end{equation*}
+		Si calcola la derivata funzionale per ogni termine dell'Eq. \ref{eq:en-functional}:
+		\begin{equation*}
+			\frac{\delta}{\delta \phi_\alpha^*(w)} \sum_{i = 1}^{N} \braket{\alpha_i | \mathcal{H}_0 | \alpha_i} = \sum_{i = 1}^{N} \delta_{\alpha_i,\alpha} \mathcal{H}_0(w) \phi_{\alpha_i}(w) = \mathcal{H}_0 \phi_\alpha(w)
+		\end{equation*}
+		\begin{equation*}
+			\begin{split}
+				\frac{\delta}{\delta \phi_\alpha^*(w)}
+				& \frac{1}{2} \sum_{i,j = 1}^{N} \int dw\,dw'\, \abs{\phi_{\alpha_i}(w)}^2 v_{ee}(w,w') \abs{\phi_{\alpha_j}(w')}^2 \\
+				& = \frac{1}{2} \sum_{i,j = 1}^{N} \int dw' \left[ \delta_{\alpha_i,\alpha} \phi_{\alpha_i}(w) \abs{\phi_{\alpha_j}(w')}^2 + \abs{\phi_{\alpha_i}(w)}^2 \delta_{\alpha_j,\alpha} \phi_{\alpha_j}(w) \right] v_{ee}(w,w') \\
+				& = \sum_{i = 1}^{N} \int dw'\, \abs{\phi_{\alpha_i}(w')}^2 v_{ee}(w,w') \phi_\alpha(w)
+			\end{split}
+		\end{equation*}
+		\begin{equation*}
+			\begin{split}
+				\frac{\delta}{\delta \phi_\alpha^*(w)}
+				& \frac{1}{2} \sum_{i,j = 1}^{N} \int dw\,dw'\, \phi_{\alpha_i}^*(w) \phi_{\alpha_i}(w') v_{ee}(w,w') \phi_{\alpha_j}^*(w') \phi_{\alpha_j}(w) \\
+				& = \sum_{i = 1}^{N} \int dw' \phi_{\alpha_i}^*(w') \phi_{\alpha_i}(w) v_{ee}(w,w') \phi_\alpha(w')
+			\end{split}
+		\end{equation*}
+		Rinominando $ \phi_\alpha \equiv \psi_\alpha $ e $ \phi_{\alpha_i} \equiv \phi_\beta $ di ottiene la tesi.
+	\end{proof}
+\end{theorem}
+
+Si vede che l'equazione HF dipende comunque da un set di autofunzioni $ \{\phi_\beta\} $ ignoto: la strategia di risoluzione consiste nell'assumere che $ \{\phi_\beta\} $ sia un set arbitrario di $ N $ autofunzioni single-particle, risolvere l'equazione HF, scegliere come autofunzioni $ \{\psi_\alpha\} $ le $ N $ soluzioni con autovalore energetico $ E_\alpha $ più basso (\textit{regola dell'Aufbau}) e confrontare i sets $ \{\phi_\beta\} $ e $ \{\psi_\alpha\} $: se essi non variano in maniera apprezzabile (autoconsistenza), si è trovata una soluzione (approssimata) del problema, altrimenti si reitera il processo, assumendo ora $ \{\phi_\beta\} \equiv \{\psi_\alpha\} $. Generalmente si raggiunge l'autoconsistenza in $ 10-100 $ iterazioni. \\
+Si noti che non si possono fare assunzioni a priori sul potenziale autoconsistente $ V_\text{HF} $: in  generale, esso non avrà simmetria sferica. Ciò significa che $ E_\alpha $ non avranno l'andamento dell'Eq. \ref{eq:1-e-en}, ma in generale $ E_\alpha = E_{n,\ell} $: ciò spiega l'ordinamento energetico $ n\text{s} < n\text{p} < n\text{d} < \dots $ osservato per gli orbitali atomiche.
+
+\begin{example}{Ground state dell'Argon}{}
+	La configurazione elettronica del ground state dell'$ \ch{Ar} $ ($ N = Z = 18 $) è data dalla regola dell'Aufbau e derivata dall'equazione HF: $ \text{1s}^2 \text{2s}^2 \text{2p}^6 \text{3s}^2 \text{3p}^6 $.
+\end{example}
+
+\subsection{Atomi idrogenoidi}
+
+Il metodo HF è applicabile anche al caso di un atomo idrogenoide. In tal caso, si considera una generica combinazione di autofunzioni single-particle e si cercano i coefficienti che danno la miglior stima:
+\begin{equation*}
+	\Psi = \sum_\alpha c_\alpha \phi_\alpha
+	\qquad \qquad
+	E[\{c_\alpha\}] = \frac{\sum_{\alpha,\beta} c_\alpha^* c_\beta \braket{\phi_\alpha | \mathcal{H} | \phi_\beta}}{\sum_{\alpha,\beta} c_\alpha^* c_\beta \braket{\phi_\alpha | \phi_\beta}} = \frac{\sum_{\alpha,\beta} c_\alpha^* c_\beta \braket{\phi_\alpha | \mathcal{H} | \phi_\beta}}{\sum_\alpha \abs{c_\alpha}^2}
+\end{equation*}
+assumendo autofunzioni ortonormali $ \braket{\phi_\alpha | \phi_\beta} = \delta_{\alpha\beta} $. Applicando lo stesso ragionamento della dimostrazione del Th. \ref{th:eq-hf}:
+\begin{equation*}
+	\frac{\pa}{\pa c_k^*} \sum_{\alpha,\beta} c_\alpha^* c_\beta \braket{\phi_\alpha | \mathcal{H} | \phi_\beta} = E[\{c_\alpha\}] \frac{\pa}{\pa c_k^*} \sum_\alpha \abs{c_\alpha}^2
+	\quad \Leftrightarrow \quad
+	\braket{\phi_k | \mathcal{H} | \Psi} = E_k c_k = E_k \braket{\phi_k | \Psi}
+\end{equation*}
+L'equazione HF si riduce dunque all'equazione di Schrödinger $ \mathcal{H} \ket{\phi_k} = E_k \ket{\phi_k} $.
+
+\subsection{Tavola periodica}
+
+L'equazione HF permette di predire le configurazioni elettroniche degli elementi della tavola periodiche e le relative proprietà periodiche.
+
+\subsubsection{Configurazioni elettroniche}
+
+Negli elementi fino al $ \ch{Be} $ ($ N \le 4 $) il campo HF gode di simmetria sferica, poiché gli elettroni si dispongono su orbitali $ \text{s} $ perfettamente simmetrici. Per gli elementi successivi, la simmetria sferica è presente soltanto nei gas nobili. \\
+Fino all'$ \ch{Ar} $ ($ Z = N = 18 $) gli orbitali vengono riempiti nel consueto ordine, ed infatti la sua configurazione elettronica è $ [\ch{Ar}] = \text{1s}^2 \text{2s}^2 \text{2p}^6 \text{3s}^2 \text{3p}^6 $. Da questo valore di $ Z $, però, la diepndenza di $ E_{n,\ell} $ da $ \ell $ si fa così forte da rendere $ E_\text{3d} > E_\text{4s} $: ciò è sperimentalmente confermato dalla configurazione atomica del potassio $ [\ch{Na}] = [\ch{Ar}] \text{4s}^1 $. Dopo il riempimento della shell $ \text{4s} $ e prima di quello della $ \text{4p} $ avviene il riempimento della $ \text{3d} $: alcune inversioni (es.: $ \ch{Cr} $, $ \ch{Cu} $) mostrano come $ \text{3d} $ e $ \text{4s} $ siano energeticamente molto vicini, così da rendere importanti fenomeni di correlazione elettronica; fenomeni analoghi sono messi in luce anche nel riempimento delle shell $ \text{4d} $, $ \text{4f} $, $ \text{5d} $ e $ \text{5f} $.
+
+\subsubsection{Proprietà periodiche}
+
+L'andamento dell'energia di prima ionizzazione e del raggio atomico degli atomi neutri conferma l'organizzazioni in gruppi della tavola periodica: infatti, atomi con gli stessi elettroni di valenza tendono a comportarsi analogamente.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.45 \textwidth]{ionization-energy.png}
+	\includegraphics[width = 0.45 \textwidth]{atomic-radius.png}
+	\caption{First ionization energy and atomic radius across the periodic table.}
+	\label{ion-en-atom-rad}
+\end{figure}
+
+Come si può vedere in Fig. \ref{ion-en-atom-rad}, sperimentalmente viene confermato il fatto che i gas nobili hanno shell di valenza complete, poiché presentano energia di prima ionizzazione massima e raggio atomico minimo rispetto agli elementi del loro gruppo. Al contrario, i metalli alcalini hanno un solo elettrone di valenza, per di più molto distante dalle shell interne, come si evince da considerazioni analoghe. \\
+Si vede inoltre che gli atomi con shell $ \text{d} $ o $ \text{f} $ incomplete tendono ad avere proprietà (a basse energie) piuttosto uniformi: vengono perciò ragguppati in metalli di transizione ($ \text{3d} $, $ \text{4d} $ e $ \text{5d} $), lantanidi ($ \text{4f} $) ed attinidi ($ \text{5f} $).
+
+\begin{example}{Energia di prima ionizzazione dell'elio}{}
+	Se si considera l'$ \ch{He} $, dallo studio della sua energia di ionizzazione si vede come sia necessario considerare l'interazione tra elettroni. Mentre l'energia del catione $ \ch{He}^+ $ è calcolabile usando lo spettro idrogenoide (Eq. \ref{eq:1-e-en}), trovando $ E(\ch{He}^+) = -54\ev $, se si usasse quest'ultimo per calcolare anche l'energia di $ \ch{He} $ si troverebbe $ E(\ch{He}) = 2 E(\ch{He}^+) = - 108\ev $, per un'energia di prima ionizzazione $ E_1(\ch{He}) = 54\ev $ in contrasto col dato sperimentale $ E_1(\ch{He}^+) \simeq 24\ev $. Tenendo conto dell'interazione elettronica, ovvero della correzione in Sec. \ref{he-inter-electr}, si trova $ E(\ch{He}) = -77.8\ev $, ovvero $ E_1(\ch{He}) = 24.2\ev $, dunque in perfetto accordo con le osservazioni.
+\end{example}
+
+\newpage
+
+\section{Spettroscopia}
+
+\subsection{Transizioni di dipolo elettrico}
+
+Nel caso di un sistema ad $ N $ elettroni, l'operatore dipolo elettrico è definito come la somma degli operatori single-particle:
+\begin{equation}
+	\ve{d} \defeq \sum_{i = 1}^{N} \ve{d}_i = - q_e \sum_{i = 1}^{N} \ve{r}_i
+\end{equation}
+
+\begin{proposition}{Transizioni di dipolo elettrico}{}
+	Nei sistemi ad $ N $ elettroni, le transizioni di dipolo elettrico sono realizzate da un \textit{singolo elettrone} che transiziona, mentre gli altri rimangono nello stato single-particle iniziale.
+
+	\tcblower
+
+	\begin{proof}
+		Nell'approssimazione HF di campo medio:
+		\begin{equation*}
+			\begin{split}
+				& {^\text{(a)}\langle} \beta_1, \dots, \beta_N | \sum_{i = 1}^{N} \ve{d}_i | \alpha_1, \dots, \alpha_N {\rangle^\text{(a)}} = \\
+				& \qquad \qquad \qquad = \frac{1}{N!} \sum_{i = 1}^{N} \sum_{\pi,\rho \in S^N} (-1)^{\{\pi\} + \{\rho\}} \braket{\beta_{\pi(1)} | \alpha_{\rho(1)}} \dots \braket{\beta_{\pi(i)} | \ve{d}_i | \alpha_{\rho(i)}} \dots \braket{\beta_{\pi(N)} | \alpha_{\rho(N)}} \\
+				& \qquad \qquad \qquad = \frac{1}{N!} \sum_{i = 1}^{N} \sum_{\pi,\rho \in S^N} (-1)^{\{\pi\} + \{\rho\}} \braket{\beta_{\pi(i)} | \ve{d}_i | \alpha_{\rho(i)}} \prod_{j \neq i} \delta_{\beta_{\pi(j)} , \alpha_{\rho(j)}}
+			\end{split}
+		\end{equation*}
+		Si noti che queste $ N - 1 $ delta di Kronecker fissano completamente la permutazione $ \rho \equiv \pi $, dunque:
+		\begin{equation*}
+			\begin{split}
+				{^\text{(a)}\langle} \beta_1, \dots, \beta_N | \sum_{i = 1}^{N} \ve{d}_i | \alpha_1, \dots, \alpha_N {\rangle^\text{(a)}}
+				& = \frac{1}{N!} \sum_{i = 1}^{N} \sum_{\pi \in S^N} \braket{\beta_{\pi(i)} | \ve{d}_i | \alpha_{\pi(i)}} \prod_{i \neq j} \delta_{\beta_{\pi(j)} , \alpha_{\pi(j)}} \\
+				& = \sum_{i = 1}^{N} \braket{\beta_i | \ve{d}_i | \alpha_i} \prod_{j \neq i} \delta_{\beta_j , \alpha_j}
+			\end{split}
+		\end{equation*}
+		Ciò equivale alla tesi.
+	\end{proof}
+\end{proposition}
+
+Dato che le transizioni di dipolo-elettrico di un sistema ad $ N $ elettroni si riducono a quelle single-particle, si ha che le transizioni ammesse sono quelle in cui la configurazione elettronica dell'atomo cambia per un solo elettrone, tale per cui $ \Delta \ell_i = \pm 1 $ (più le altre condizioni in Eq. \ref{eq:1-e-el-dip-tr-m}-\ref{eq:1-e-el-dip-tr-spin}).
+
+\begin{example}{Transizioni di dipolo elettrico del berillio}{}
+	La configurazione elettronica del ground state del berillio è $ [\ch{Be}] = \text{1s}^2 \text{2s}^2 $. Possibili transizioni di dipolo elettrico ammesse sono $ \text{1s}^2 \text{2s}^2 \rightarrow \text{1s}^2 \text{2s}^1 \text{2p}^1 $ o $ \text{1s}^1 \text{2s}^2 \text{2p}^1 \rightarrow \text{1s}^1 \text{2s}^2 \text{4d}^1 $; transizioni proibite sono invece $ \text{1s}^2 \text{2s}^2 \rightarrow \text{1s}^2 \text{2s}^1 \text{3d}^1 $ o $ \text{1s}^2 \text{2s}^2 \rightarrow \text{1s}^1 \text{2s}^1 \text{2p}^1 \text{3p}^1 $.
+\end{example}
 
 
 
