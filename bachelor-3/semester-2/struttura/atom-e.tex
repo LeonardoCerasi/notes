@@ -282,8 +282,8 @@ L'andamento dell'energia di prima ionizzazione e del raggio atomico degli atomi 
 
 \begin{figure}
 	\centering
-	\includegraphics[width = 0.45 \textwidth]{ionization-energy.png}
-	\includegraphics[width = 0.45 \textwidth]{atomic-radius.png}
+	\includegraphics[width = 0.49 \textwidth]{ionization-energy.png}
+	\includegraphics[width = 0.49 \textwidth]{atomic-radius.png}
 	\caption{First ionization energy and atomic radius across the periodic table.}
 	\label{ion-en-atom-rad}
 \end{figure}
@@ -295,7 +295,36 @@ Si vede inoltre che gli atomi con shell $ \text{d} $ o $ \text{f} $ incomplete t
 	Se si considera l'$ \ch{He} $, dallo studio della sua energia di ionizzazione si vede come sia necessario considerare l'interazione tra elettroni. Mentre l'energia del catione $ \ch{He}^+ $ è calcolabile usando lo spettro idrogenoide (Eq. \ref{eq:1-e-en}), trovando $ E(\ch{He}^+) = -54\ev $, se si usasse quest'ultimo per calcolare anche l'energia di $ \ch{He} $ si troverebbe $ E(\ch{He}) = 2 E(\ch{He}^+) = - 108\ev $, per un'energia di prima ionizzazione $ E_1(\ch{He}) = 54\ev $ in contrasto col dato sperimentale $ E_1(\ch{He}^+) \simeq 24\ev $. Tenendo conto dell'interazione elettronica, ovvero della correzione in Sec. \ref{he-inter-electr}, si trova $ E(\ch{He}) = -77.8\ev $, ovvero $ E_1(\ch{He}) = 24.2\ev $, dunque in perfetto accordo con le osservazioni.
 \end{example}
 
-\newpage
+\subsubsection{Regole di Hund}
+
+Per ottenere la configurazione elettronica del ground state (o degli stati eccitati) di un atomo è necessario svolgere la trattazione HF completa. È però possibile approssimare il risultato utilizzando delle regole semi-empiriche, dette regole di Hund, per stabilire quale, tra tutti gli stati possibili\footnotemark, è il ground state; in ordine di importanza:
+\begin{enumerate}
+	\item massimizzare lo spin totale $ \bs{S} $;
+	\item massimizzare il momento angolare orbitale totale $ \bs{L} $;
+	\item per il momento angolare totale $ \bs{J} $, in base al riempimento della shell:
+		\begin{itemize}
+			\item se è meno di semipiena, minimizzare $ \bs{J} $;
+			\item se è più di semipiena, massimizzare $ \bs{J} $.
+		\end{itemize}
+\end{enumerate}
+Queste regole si basano sul minimizzare l'energia del sistema. Per quanto riguarda la prima regola, gli stati atomici a spin più basso hanno energia maggiore poiché, essendo il moto degli elettroni poco correlato, questi tendono a trovarsi in media vicini gli uni agli altri più spesso rispetto agli stati atomici a spin più alto, risultando in una maggiore energia Coulombiana. \\
+La seconda regola, invece, deriva dal fatto che, a parità di spin, gli elettroni si evitano più efficientemente quando ruotano in maniera coordinata, ovvero in stati atomici ad alto momento angolare orbitale (a parità di spin, massimizzato dalla prima regola). \\
+Infine, massimizzati $ \bs{S} $ ed $ \bs{L} $, rimane da determinare $ \bs{J} $ (poiché $ \bs{S} $ ed $ \bs{L} $ vengono accoppiati dall'interazione spin-orbita): lo stato ad energia minore viene determianto dal segno del coefficiente spin-orbita. Se si considera una shell meno che semipiena, questo sarà naturalmente positivo, ma, se si considera una shell più che semipiena, gli elettroni mancanti possono essere interpretati come particelle di carica opposta, così da avere:
+\begin{equation*}
+	\mathcal{H}_\text{s-o} = \xi_{n,\ell} \sum_{i = 1}^{n_e} \bs{s}_i \cdot \bs{\ell}_i = \xi_{n,\ell} \underbrace{\sum_{i = 1}^{t} \bs{s}_i \cdot \bs{\ell}_i}_{0} - \xi_{n,\ell} \sum_{i = n_e+1}^{t} \bs{s}_i \cdot \bs{\ell}_i = - \xi_{n,\ell} \sum_{i = n_e + 1}^{t} \bs{s}_i \cdot \bs{\ell}_i
+\end{equation*}
+Dunque, si vede che nelle shell meno che semipiene va minimizzato $ \bs{J} $, mentre in quelle più che semipiene esso va massimizzato. \\
+Si noti che queste regole hanno natura fenomenologica e, sebbene risultino alquanto accurate nel predire i ground states atomici, risultano molto spesso fallaci nella trattazione degli stati eccitati.
+
+\footnotetext{In questo caso, si considerano solo i microstati associati all'ultima shell non completamente riempita: detti $ t $ il numero massimo di elettroni allocabili in tale shell ed $ n_e $ il numero di elettroni da collocarvi, il numero totale di microstati possibili è $ \binom{t}{n_e} $.}
+
+\paragraph{Coupling schemes}
+
+Le regole di Hund si basano sul cosiddetto \textit{Russell-Saunders coupling}, il quale prevede che vengano prima vengano accoppiati i vari $ \bs{s}_i $ a dare $ \bs{S} $ ed i vari $ \bs{\ell}_i $ a dare $ \bs{L} $, e successivamente $ \bs{S} $ ed $ \bs{L} $ vengano accoppiati a dare $ \bs{J} $. Questo coupling scheme risulta efficacie in atomi a basso $ Z $, in cui il potenziale HF (Coulombiano + scambio) è dominante rispetto a quello spin-orbita. \\
+Al contrario, per atomi con $ Z \ge 50 $ il potenziale spin-orbita diventa dominante\footnotemark: in questo caso, è necessario prima accoppiare i vari $ \bs{s}_i $ e $ \bs{\ell}_i $, ottenendo i $ \bs{j}_i $ individuali, e poi accoppiare quest'ultimi per ottenere $ \bs{J} $. Questo è noto come \textit{jj coupling}. \\
+Mentre la base LS è quasi-diagonale per basso $ Z $ e quella jj lo è per alto $ Z $, a $ Z $ intermedi è necessario diagonalizzare opportunamente sia il termine Coulombiano che quello di spin-orbita.
+
+\footnotetext{Mentre l'energia d'interazione spin-orbita cresce all'aumentare di $ Z $, l'energia d'interazione Coulombiana rimane pressoché costante, risultando addirittura attenuata dal progressivo allontanamento degli elettroni di valenza dal nucleo.}
 
 \section{Spettroscopia}
 
@@ -337,6 +366,59 @@ Dato che le transizioni di dipolo-elettrico di un sistema ad $ N $ elettroni si 
 \begin{example}{Transizioni di dipolo elettrico del berillio}{}
 	La configurazione elettronica del ground state del berillio è $ [\ch{Be}] = \text{1s}^2 \text{2s}^2 $. Possibili transizioni di dipolo elettrico ammesse sono $ \text{1s}^2 \text{2s}^2 \rightarrow \text{1s}^2 \text{2s}^1 \text{2p}^1 $ o $ \text{1s}^1 \text{2s}^2 \text{2p}^1 \rightarrow \text{1s}^1 \text{2s}^2 \text{4d}^1 $; transizioni proibite sono invece $ \text{1s}^2 \text{2s}^2 \rightarrow \text{1s}^2 \text{2s}^1 \text{3d}^1 $ o $ \text{1s}^2 \text{2s}^2 \rightarrow \text{1s}^1 \text{2s}^1 \text{2p}^1 \text{3p}^1 $.
 \end{example}
+
+\subsection{Eccitazioni di core}
+
+Secondo la teoria HF, gli stati di core (single-particle), ovvero tutti gli elettroni non di valenza, subiscono una schermatura del potenziale del nucleo trascurabile, dunque la loro energia è molto negativa ($ \propto - Z^2 $): ciò è confermato dal fatto che, se per esempio si considera un eccitazione del $ \ch{Na} $ del tipo $ \text{1s}^2 \text{2s}^2 \text{2p}^6 \text{3s}^1 \rightarrow \text{1s}^1 \text{2s}^2 \text{2p}^6 \text{3s}^2 $, sono necessarie energie dell'ordine $ \sim 1\kev $ per eccitare gli stati di core al primo stato eccitato disponibile (a causa del principio d'esclusione). \\
+Ne consegue che, data la dipendenza del decay rate da $ E_\text{if}^3 $, le eccitazioni di core presentano delle linee spettrali estremamente allargate, oltre $ \hbar \gamma \sim 1\ev $. Inoltre, dall'Eq. \ref{eq:electric-dipole-decay-rate}, si vede che $ \gamma \sim Z^4 $.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.45 \textwidth]{core-exc-x-rays.png}
+	\includegraphics[width = 0.45 \textwidth]{core-exc-spectr.png}
+	\caption{Observed X-ray absorption for third-period elements and observed core-level structure of $ \ch{U} $.}
+	\label{core-exc}
+\end{figure}
+
+Le eccitazioni di core sono molto studiate a livello sperimentale: as esempio, i dati relativi all'assorbimento di raggi X (Fig. \ref{core-exc}) mostrano una certa regolarità per $ E_\gamma > 50\ev $, con un andamento sistematico rispetto a $ Z $. In particolare, si vede che negli spettri d'assorbimento di raggi X i picchi hanno una forma asimmetrica: per quanto riguarda l'estremità energeticamente inferiore, non può avvenire alcun assorbimento, in quanto l'energia non sarebbe sufficiente ad eccitare l'elettrone di core al primo stato eccitato libero (e, per il principio d'esclusione, esso non può essere eccitato a nessuno stato al di sotto di questo); superata la soglia d'assorbimento, invece, l'elettrone può essere eccitato a vari stati non-occupati, sia legati che non, risultando in uno spettro d'assorbimento continuo. \\
+Si noti, inoltre, che all'aumentare dell'energia del fotone assorbito aumenta anche l'energia cinetica dell'elettrone ($ K_e = E_\gamma - E_\text{exc} $): conseguentemente, lo stato eccitato finale diventa progressivamente più ortogonale a quello iniziale. Ciò determina una rapida diminuzione di $ \gamma_\text{if} \propto \braket{\text{i} | \ve{d} | \text{f}} $, ovvero un rallentamento del decadimento. Per lo stesso motivo, inoltre, si capisce perché l'assorbimento di raggi X genera eccitazioni di core: se il fotone fosse assorbito da un elettrone di valenza, il quale è debolmente legato, la sua energia cinetica sarebbe molto alta, rendendo lo stato eccitato molto ortogonale rispetto a quello iniziale e rendendo $ \gamma $ trascurabile.
+
+\subsubsection{Legge di Moseley}
+
+Per quanto riguarda le transizioni tra stati di core, si adotta la seguente notazione: un \textit{hole} (elettrone mancante) in una shell $ n = 1,2,3,4,\dots$ è indicato da $ K,L,M,N,\dots $, mentre il numero di salti di shell è indicato da $ \alpha,\beta,\gamma,\dots$.
+
+\begin{example}{Transizioni di core}{}
+	Una transizione del tipo $ \text{1s}^1 \text{2s}^2 \text{2p}^6 \dots \rightarrow \text{1s}^2 \text{2s}^2 \text{2p}^5 \dots $ è indicata come $ K_\alpha \equiv K \rightarrow L $. Una transizione del tipo $ \text{1s}^2 \text{2s}^2 \text{2p}^5 \text{3s}^2 \text{3p}^6 \text{4s}^2 \dots \rightarrow \text{1s}^2 \text{2s}^2 \text{2p}^6 \text{3s}^2 \text{3p}^6 \text{4s}^1 \dots $ è $ L_\beta \equiv L \rightarrow N $.
+\end{example}
+
+Per quanto riguarda le linee spettrali $ K_\alpha $, dai dati sperimentali si evince una legge fenomenologica, detta \textit{legge di Moseley}:
+\begin{equation}
+	\frac{1}{\lambda_{K_\alpha}} \approx C \left( Z - a \right)^2
+\end{equation}
+dove $ C \approx \frac{3}{8} \frac{E_\text{Ha}}{2\pi \hbar c} \simeq 8.25 \cdot 10^6 \,\text{m}^{-1} $ ed $ a $ è il \textit{parametro di screening}. Quest'ultimo tiene conto dello screening che la carica nucleare subisce a causa degli elettroni di core (vedere Fig. \ref{screening}): non c'è una definizione ben precisa di $ a $, in quanto è un parametro fenomenologico, ma un buon accordo coi dati sperimentali è dato dal numero di elettroni nelle shell più interne a quelle considerate, includendo anche quella in esame (dunque $ (n,a) = (1,2) , (2,10), (3,28), \dots $).
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{screening.png}
+	\caption{HF effective potential for atomic $ \ch{O} $ ($ N = Z = 8 $).}
+	\label{screening}
+\end{figure}
+
+\subsection{Campo magnetico esterno}
+
+Quando viene applicato un campo magnetico ad un MAE, si osserva un comportamento diverso in base alla presenza o meno di un momento magnetico. \\
+Se si considera un atomo con $ J = 0 $, esso non ha alcun momento magnetico permanente: il campo esterno induce un piccolo momento magnetico $ \mu \sim \mu_\text{B} \frac{\mu_\text{B} B}{\Delta} $, dove $ \Delta $ è la differenza energetica tra il ground state ed il primo stato eccitato con $ J \neq 0 $, ma questi effetti sono trascurabili. \\
+Al contrario, atomi con $ J \neq 0 $ hanno un momento magnetico permanente:
+\begin{equation}
+	\bs{\mu} = - g_J \mu_\text{B} \bs{J}
+\end{equation}
+dove $ g_J $ è il fattore di Landé (Eq. \ref{eq:lande-g-factor} con $ S,L,J $, nel LS coupling). Questo momento mangetico è rilevante nel limite Zeeman di campo esterno debole, che nella pratica è quello più importante in quanto difficilmente in laboratorio di riescono a produrre campi magnetici tali da dominare sull'interazione spin-orbita. \\
+Per quanto riguarda lo splitting delle linee spettrali, si distingue tra \textit{regular Zeeman splitting}, nel caso in cui esse vengano splittate regolamente in $ 2J + 1 $ linee spettrali (quando i fattori di Landé dello stato iniziale e finale sono uguali), e \textit{anomalous Zeeman splitting}, nel caso in cui lo splitting pattern sia più complesso (quando i fattori di Landé dello stato iniziale e finale sono diversi). \\
+Un'importante strumento sperimentale per studiare la degenerazione dei ground states dei MAE è l'apparato di Stern-Gerlach, nel quale gli atomi vengono deflessi (Eq. \ref{eq:stern-gerlach}) secondo:
+\begin{equation*}
+	F_z = \mu_z \frac{\pa B_z}{\pa z} = - g_J \mu_\text{B} M_J \frac{\pa B_z}{\pa z}
+\end{equation*}
+Il numero di sotto-fasci in cui viene splittato il fascio iniziale dà dunque una misura diretta dei possibili valori di $ M_J $, ovvero della degenerazione $ 2J + 1 $ del ground state.
 
 
 
