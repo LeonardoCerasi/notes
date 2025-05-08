@@ -1,1 +1,168 @@
 \selectlanguage{english}
+
+\section{Time evolution}
+
+Consider a system described by a Hamiltonian $ H $. Two different ways of describing its time evolution are possible.
+
+\subsection{Schrödinger picture}
+
+In the Schrödinger picture, states are considered time-dependent and operators time-independent. Consider an initial state $ \ket{\psi(0)} \equiv \ket{\psi} $: its time-evolution is:
+\begin{equation}
+  \ket{\psi(t)} = e^{-i H t} \ket{\psi}
+\end{equation}
+In this picture, the amplitude for a process $ \ket{a(t_0)} \rightarrow \ket{b(t)} $ is:
+\begin{equation}
+  \mathcal{A} = \braket{b | e^{-i H (t - t_0)} | a} \eqdef \braket{b | S(t,t_0) | a}
+\end{equation}
+In the $ t - t_0 \rightarrow \infty $ limit, $ S $ is known as $ S $\textit{-matrix}, and scattering amplitudes simply are its elements. This can be seen as an operator which realizes time evolution, as:
+\begin{equation}
+  \braket{\psi(t)} = S(t) \ket{\psi}
+\end{equation}
+where $ S(t) \equiv S(t,0) $.
+
+\begin{proposition}{Unitarity of time evolution}{}
+  $ S(t,t_0) $ is a unitary operator on $ \hilb $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a normalized initial state $ \ket{\psi} : \braket{\psi | \psi} = 1 $. Given a complete orthonormal eigenbasis $ \{\ket{n}\}_{n \in \N} $ of $ \hilb $, then it must be:
+    \begin{equation}
+      \sum_{n \in \N} \abs{\braket{n | S | \psi}}^2 = 1
+    \end{equation}
+    This can also be written as:
+    \begin{equation}
+      \sum_{n \in \N} \abs{\braket{n | S | \psi}}^2 = \sum_{n \in \N} \braket{\psi | S\dg | n} \braket{n | S | \psi} = \braket{\psi | S\dg S | \psi}
+    \end{equation}
+    Being $ \ket{\psi} $ arbitrary, it must be $ S\dg S = S S\dg = \id_\hilb $.
+  \end{proof}
+\end{proofbox}
+
+The unitarity of the $ S $-matrix expresses the conservation of probabilities.
+
+\subsection{Heisenberg picture}
+
+In the Heisenberg picture, states are considered time-independent and operators time-dependent. This picture is better suited for QFT, as fields (which are operators) depend both on $ \ve{x} $ and $ t $, therefore the Heisenberg picture is natural in light of Lorentz covariance. \\
+Given a state $ \ket{\psi(t)} $ in the Schrödinger picture, in the Heisenberg picture it is defined as:
+\begin{equation}
+  \ket{\psi,t} \defeq e^{i H t} \ket{\psi(t)}
+\end{equation}
+which is manifestly time-independent. An operator $ \mathcal{O} $ in the Schrödinger picture instead becomes:
+\begin{equation}
+  \mathcal{O}(t) \defeq e^{i H t} \mathcal{O} e^{-i H t}
+\end{equation}
+The label $ t $ in the definition of state is necessary to distinguish whose operator the state is eigenstate of: in fact, in general $ \mathcal{O}(t) \neq \mathcal{O}(t') $ for $ t \neq t' $, so they will have different eigenstates too. \\
+In the Heisenberg picture, the $ S $-matrix becomes:
+\begin{equation}
+  \braket{b | S(t,t_0) | a} = \braket{b,t | a,t_0}
+\end{equation}
+
+\section{Path integrals}
+
+In contrast to canonical quantization, in which fields are promoted to operators, in path-integral quantization they remain ordinary functions. While the former allows for a more direct understanding of the notion of particle (thanks to ladder operators), the latter has the advantage of not being intrinsically perturbative, thus better describing theories with non-perturbative effects.
+
+\subsection{Path integral in Quantum Mechanics}
+
+Consider a system described by a Hamiltonian $ H $ and coordinate eigenstates:
+\begin{equation}
+  \hat q \ket{q,t} = q \ket{q,t}
+  \qquad \qquad
+  \int_\R \dd q\, \ket{q,t} \bra{q,t} = \id
+  \label{eq:coord-eigen}
+\end{equation}
+
+\begin{theorem}{Path integral}{}
+  The amplitude of $ \ket{q_\text{i},t_\text{i}} \rightarrow \ket{q_\text{f},t_\text{f}} $ is a functional integral:
+  \begin{equation}
+    \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, e^{\frac{i}{\hbar} \act[q,\dot q]}
+  \end{equation}
+  where $ [dq] $ is a suitably-normalized integration measure.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a partition $ \{t_m\}_{m = 0, \dots, N} : t_m < t_j \,\,\forall m < j $ of the interval $ [t_\text{i} , t_\text{f}] $, so that $ t_0 \equiv t_\text{i} $ and $ t_N \equiv t_\text{f} $: for simplicity, take them equally spaced, i.e. $ t_m = t_0 + m \epsilon $, with $ N \epsilon = t_\text{f} - t_\text{i} $. The amplitude for $ \ket{q_\text{i},t_\text{i}} \rightarrow \ket{q_\text{f},t_\text{f}} $ can thus be computed as:
+    \begin{equation*}
+      \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{\R^{N-1}} \dd q_1 \dots \dd q_{N-1} \prod_{m = 0}^{N-1} \braket{q_{m+1} , t_{m+1} | q_m , t_m}
+    \end{equation*}
+    where the completeness relation in \eqref{eq:coord-eigen} was repeatedly used. Switching to the Schrödinger picture:
+    \begin{equation*}
+      \begin{split}
+        \braket{q_{m+1} , t_{m+1} | q_m , t_m}
+        & = \braket{q_{m+1} | e^{-i \hat H (t_{m+1} - t_m)} | q_m} \\
+        & = \braket{q_{m+1} | e^{-i \hat H \epsilon} | q_m} = \int_\R \dd p_m \braket{q_{m+1} | p_m} \braket{p_m | e^{-i \hat H \epsilon} | q_m}
+      \end{split}
+    \end{equation*}
+    The Hamiltonian is understood to be normal-ordered, so that $ \hat p $ are always on the left of $ \hat q $. Recalling $ \braket{q | p} = \frac{1}{\sqrt{2\pi}} e^{iqp} $:
+    \begin{equation*}
+      \braket{q_{m+1} , t_{m+1} | q_m , t_m} = \int_\R \frac{\dd p_m}{\sqrt{2\pi}} e^{iq_{m+1} p_m} \braket{p_m | e^{-i \hat H(\hat q, \hat p) \epsilon} | q_m} = \int_\R \frac{\dd p_m}{2\pi} e^{i (q_{m+1} - q_m) p_m} e^{-i H(q_m,p_m) \epsilon}
+    \end{equation*}
+    To explicit the calculation, consider $ H(q,p) = \frac{p^2}{2m} + V(q) $, so that the resulting integral is of Gaussian type (recall \eqref{eq:gauss-int}):
+    \begin{equation*}
+      \begin{split}
+        \braket{q_{m+1} , t_{m+1} | q_m , t_m}
+        & = \frac{1}{2\pi} e^{-i \epsilon V(q_m)} \int_\R \dd p_m\, e^{i (q_{m+1} - q_m) p_m - \frac{i \epsilon}{2m} p_m^2} \\
+        & = \sqrt{\frac{m}{2\pi i\epsilon}} e^{-i \epsilon V(q_m)} e^{- \frac{m}{2i\epsilon} (q_{m+1} - q_m)^2} = \sqrt{\frac{m}{2\pi i \epsilon}} e^{i \epsilon \left[ \frac{m}{2} \left( \frac{q_{m+1} - q_m}{\epsilon} \right)^2 - V(q_m) \right]}
+      \end{split}
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \left( \frac{m}{2\pi i \epsilon} \right)^{N/2} \int_{\R^{N-1}} \dd q_1 \dots \dd q_{N-1} \exp \sum_{m = 0}^{N - 1} i \epsilon \left[ \frac{m}{2} \left( \frac{q_{m+1} - q_m}{\epsilon} \right)^2 - V(q_m) \right]
+    \end{equation*}
+    Consider now the $ \epsilon \rightarrow 0 $ limit, i.e. $ N \rightarrow \infty $: the integration is then performed on an infinite number of variables, hence becoming a functional integral. The integration is carried on the set of functions $ \{q(t) : \R \rightarrow \R : q(t_\text{i}) = q_\text{i} \land q(t_\text{f}) = q_\text{f}\} $, with an integration measure which absorbes the normalization factor; moreover, note that, in the $ \epsilon \rightarrow 0 $ limit, the sum becomes a Riemann integral:
+    \begin{equation*}
+      \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [dq] \exp \left[ i \int_{t_\text{i}}^{t_\text{f}} \dd t\, L(q(t),\dot q(t)) \right] \eqdef \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, e^{i \act[q,\dot q]}
+    \end{equation*}
+    Reinstating explicitly $ \hbar $ yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+This formulation elucidates the classical limit $ \hbar \rightarrow 0 $: while quantistically a particle explores all possible trajectories, which are then weighted by a phase $ e^{i\act} $, classically only trajectories which extremize the action are relevant, as those which are far from the extrema get extremely-oscillating phases under small deformations. Thus, the least-action principle has been recovered.
+
+\newpage
+
+\begin{lemma}{Time-ordered products}{}
+  Given $ \{t_k\}_{k = 1, \dots, n} \subset [t_\text{i} , t_\text{f}] $, $ n \in \N $, then:
+  \begin{equation*}
+    \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, q(t_1) \dots q(t_n) e^{i \act} = \braket{q_\text{f},t_\text{f} | \tempord\{\hat{q}(t_1) \dots \hat{q}(t_n)\} | q_\text{i},t_\text{i}}
+  \end{equation*}
+  where $ \tempord $ is the time-ordered product.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    First, note that:
+    \begin{equation*}
+      \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q] = \int_\R \dd\bar{q} \int_{q(t_\text{i}) = q_\text{i}}^{q(t) = \bar{q}} [\dd q] \int_{q(t) = \bar{q}}^{q(t_\text{f}) = q_\text{f}} [\dd q]
+    \end{equation*}
+    so that (thanks to the additivity of the action integral):
+    \begin{equation*}
+      \begin{split}
+        \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, q(t) e^{i \act}
+        & = \int_\R \dd\bar{q} \underbrace{\int_{q(t_\text{i}) = q_\text{i}}^{q(t) = \bar{q}} [\dd q] \exp \left[ i \int_{t_\text{i}}^t \dd t\, L \right]}_{\braket{\bar{q},t | q_\text{i},t_\text{i}}} \bar{q} \underbrace{\int_{q(t) = \bar{q}}^{q(t_\text{f}) = q_\text{f}} [\dd q] \left[ i \int_t^{t_\text{f}} \dd t\, L \right]}_{\braket{q_\text{f},t_\text{f} | \bar{q},t}} \\
+        & = \int_\R \dd\bar{q}\, \braket{q_\text{f},t_\text{f} | \bar{q},t} \bar{q} \braket{\bar{q},t | q_\text{i},t_\text{i}} = \int_\R \dd\bar{q}\, \braket{q_\text{f},t_\text{f} | \hat{q}(t) | \bar{q},t} \braket{\bar{q},t | q_\text{i},t_\text{i}} \\
+        & = \braket{q_\text{f},t_\text{f} | \hat{q}(t) | q_\text{i},t_\text{i}}
+      \end{split}
+    \end{equation*}
+    This links the matrix element of the operator $ \hat{q}(t) $ to the path integral of the function $ q(t) $. Consider now that, being $ q(t) \in \C $, i.e. commuting:
+    \begin{equation*}
+      \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, q(t_1) \dots q(t_n) e^{i \act} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, q(\bar{t}_1) \dots q(\bar{t}_n) e^{i \act}
+    \end{equation*}
+    where $ \{\bar{t}_k\}_{k = 1, \dots, n} $ is a time-ordered permutation of $ \{t_k\}_{k = 1, \dots, n} $, i.e. such that $ \bar{t}_1 \ge \dots \ge \bar{t}_n $. Applying the above result:
+    \begin{equation*}
+      \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, q(t_1) \dots q(t_n) e^{i \act} = \braket{q_\text{f},t_\text{f} | \hat{q}(\bar{t}_1) \dots \hat{q}(\bar{t}_n) | q_\text{i},t_\text{i}}
+    \end{equation*}
+    But $ \hat{q}(\bar{t}_1) \dots \hat{q}(\bar{t}_n) \eqdef \tempord \{\hat{q}(t_1) \dots \hat{q}(t_n)\} $, thus completing the proof.
+  \end{proof}
+\end{proofbox}
+
+
+
+
+
+
+
+
+
+
+
