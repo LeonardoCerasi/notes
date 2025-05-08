@@ -35,14 +35,14 @@ where the complex conjugate is added to ensure that the total displacement is re
 \begin{equation}
   \pi_n \defeq \frac{\pa L}{\pa \dot{\eta}_n} = \dot{\eta}_n
 \end{equation}
-In quantum mechanics, $ \eta_n $ and $ \Pi_n $ become operators with canonical commutator $ [ \hat{\eta}_j, \hat{\pi}_k ] = i \hbar \delta_{jk} $. Implementing time evolution with the \textit{Heisenberg picture}\footnote{Recall that $ \hat{\mathcal{O}}(t) = e^{\frac{i}{\hbar} \hat{\mathcal{H}} t} \hat{\mathcal{O}}(0) e^{-\frac{i}{\hbar} \hat{\mathcal{H}} t} $ and $ \frac{\dd \hat{\mathcal{O}}}{\dd t} = \frac{i}{\hbar} [ \hat{\mathcal{H}}, \hat{\mathcal{O}} ] $.}:
+In quantum mechanics, $ \eta_n $ and $ \Pi_n $ become operators with canonical commutator $ [ \hat{\eta}_j, \hat{\pi}_k ] = i \hbar \delta_{jk} $. Implementing time evolution with the \textit{Heisenberg picture}\footnote{Recall that $ \hat{\mathcal{O}}(t) = e^{\frac{i}{\hbar} \hat{H} t} \hat{\mathcal{O}}(0) e^{-\frac{i}{\hbar} \hat{H} t} $ and $ \frac{\dd \hat{\mathcal{O}}}{\dd t} = \frac{i}{\hbar} [ \hat{H}, \hat{\mathcal{O}} ] $.}:
 \begin{equation}
   [ \hat{\eta}_j(t), \hat{\pi}_k(t) ] = i \hbar \delta_{jk}
   \label{eq:first-comm}
 \end{equation}
 The commutator of operators evaluated at different times requires solving the dynamics of the system. It is useful to introduce \textit{annihilation} and \textit{creation operators}\footnotemark $\, \hat{a}(t) $ and $ \hat{a}^\dagger(t) $, so that \eref{eq:first-exp} becomes:
 
-\footnotetext{For a harmonic oscillator $ \hat{\mathcal{H}} = \frac{1}{2} \hat{p}^2 + \frac{1}{2} \omega^2 \hat{x}^2 $, so $ \frac{\dd \hat{x}}{\dd t} = \hat{p}(t) $ and $ \frac{\dd \hat{p}}{\dd t} = -\omega^2 \hat{x}(t) $ and the solution can be written as: $$ \hat{x}(t) = \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) + \hat{a}^\dagger(t) \right] \qquad \qquad \hat{p}(t) = -i \omega \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) - \hat{a}^\dagger(t) \right] $$ Inverting these expressions one finds $ [\hat{a}(t), \hat{a}^\dagger(t)] = 1 $ and $ \hat{\mathcal{H}} = \hbar \omega \left( \hat{a}^\dagger(t) \hat{a} + \frac{1}{2} \right) $. The time evolution $ \hat{a}(t) = e^{-i \omega t} \hat{a}(0) $ ensures that $ \hat{\mathcal{H}} $ is times-independent.}
+\footnotetext{For a harmonic oscillator $ \hat{H} = \frac{1}{2} \hat{p}^2 + \frac{1}{2} \omega^2 \hat{x}^2 $, so $ \frac{\dd \hat{x}}{\dd t} = \hat{p}(t) $ and $ \frac{\dd \hat{p}}{\dd t} = -\omega^2 \hat{x}(t) $ and the solution can be written as: $$ \hat{x}(t) = \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) + \hat{a}^\dagger(t) \right] \qquad \qquad \hat{p}(t) = -i \omega \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) - \hat{a}^\dagger(t) \right] $$ Inverting these expressions one finds $ [\hat{a}(t), \hat{a}^\dagger(t)] = 1 $ and $ \hat{H} = \hbar \omega \left( \hat{a}^\dagger \hat{a} + \frac{1}{2} \right) $. The time evolution $ \hat{a}(t) = e^{-i \omega t} \hat{a}(0) $ ensures that $ \hat{H} $ is times-independent.}
 
 \begin{equation}
   \hat{\eta}_n(t) = \sum_{m = 0}^{N - 1} \sqrt{\frac{\hbar}{2 \omega_m}} \frac{1}{\sqrt{N}} \left[ e^{i \left( k_m n - \omega_m t \right)} \hat{a}_m + e^{-i \left( k_m n - \omega_m t \right)} \hat{a}_m^\dagger \right]
@@ -55,7 +55,7 @@ where $ [ \hat{a}_j, \hat{a}_k^\dagger ] = \delta_{jk} $ and the $ N^{-1/2} $ en
 \end{equation}
 The Hamiltonian of the system can be written as:
 \begin{equation}
-  \hat{\mathcal{H}} = \sum_{n} \left[ \frac{1}{2} \hat{\pi}_n^2 + \frac{\lambda}{2} \left( \hat{\eta}_n - \hat{\eta}_{n-1} \right)^2 \right] = \sum_{m = 0}^{N - 1} \hbar \omega_m \left( \hat{a}_m^\dagger \hat{a}_m + \frac{1}{2} \right)
+  \hat{H} = \sum_{n} \left[ \frac{1}{2} \hat{\pi}_n^2 + \frac{\lambda}{2} \left( \hat{\eta}_n - \hat{\eta}_{n-1} \right)^2 \right] = \sum_{m = 0}^{N - 1} \hbar \omega_m \left( \hat{a}_m^\dagger \hat{a}_m + \frac{1}{2} \right)
 \end{equation}
 Generalizing the harmonic oscillator operator algebra (proven unique by Von Neumann), one can construct the Hilbert space for the harmonic crystal as:
 \begin{equation}
@@ -116,7 +116,7 @@ In the continuous limit, the Lagrangian of the harmonic string becomes:
 \begin{equation*}
   L = \int_0^R \dd x \left[ \frac{1}{2} \rho_0 (\pa_t \eta)^2 - \frac{\kappa}{2} (\pa_x \eta)^2 \right]
 \end{equation*}
-where $ \rho_0 $ is the equilibrium mass density of the string. It is customary to absorb constants in the fields, thus, setting $ \phi(x,t) \equiv \sqrt{\rho_0} \eta(x,t) $ and $ \kappa = c^2 \rho_0 $ and adding a pinning term $ \propto \varphi^2 $, the Lagrangian can be written as:
+where $ \rho_0 $ is the equilibrium mass density of the string. It is customary to absorb constants in the fields, thus, setting $ \phi(x,t) \equiv \sqrt{\rho_0} \eta(x,t) $ and $ \kappa = c^2 \rho_0 $ and adding a pinning term $ \propto \phi^2 $, the Lagrangian can be written as:
 \begin{equation}
   L = \int_0^R \dd x \left[ \frac{1}{2} (\pa_t \phi)^2 - \frac{c^2}{2} (\pa_x \phi)^2 - \frac{m^2 c^4}{2} \phi^2 \right]
 \end{equation}
@@ -138,7 +138,7 @@ To quantize this system, one needs to compute the Hamiltonian. The canonical mom
 \end{equation}
 The classical Hamiltonian can then be found as:
 \begin{equation}
-  \hat{\mathcal{H}} = \int_0^R \dd x \left[ \frac{1}{2} \Pi^2 + \frac{c^2}{2} (\pa_x \phi)^2 + \frac{m^2 c^4}{2} \phi^2 \right]
+  H = \int_0^R \dd x \left[ \frac{1}{2} \Pi^2 + \frac{c^2}{2} (\pa_x \phi)^2 + \frac{m^2 c^4}{2} \phi^2 \right]
 \end{equation}
 The quantum field is analogous to \eref{eq:first-quant}:
 \begin{equation}
@@ -153,7 +153,7 @@ with commutation relations:
 \end{equation}
 The quantum Hamiltonian can be written as:
 \begin{equation}
-  \hat{\mathcal{H}} = \int_\R \frac{\dd k}{2\pi} \frac{1}{2} \hbar \omega_k \left( \hat{a}_k^\dagger \hat{a}_k + \hat{a}_k \hat{a}_k^\dagger \right) = E_0 + \int_\R \frac{\dd k}{2\pi} \hbar \omega_k \hat{a}_k^\dagger \hat{a}_k
+  \hat{H} = \int_\R \frac{\dd k}{2\pi} \frac{1}{2} \hbar \omega_k \left( \hat{a}_k^\dagger \hat{a}_k + \hat{a}_k \hat{a}_k^\dagger \right) = E_0 + \int_\R \frac{\dd k}{2\pi} \hbar \omega_k \hat{a}_k^\dagger \hat{a}_k
 \end{equation}
 The ground-state energy can be computed from \eref{eq:first-harm}, defining $ \mathrm{Vol} \defeq 2\pi \delta(k = 0) $:
 \begin{equation}
@@ -775,7 +775,7 @@ Explicitly, $ P^0 = i \pa_t $ and $ \ve{P} = - i \bs{\nabla} $. It is trivial to
 
 \subsubsection{Particle representations}
 
-The Poincaré group can also be represented using the Hilbert space $ \mathscr{H} $ of a free particle as a basis. Denoting a generic state as $ \ket{\ve{p},s} \in \mathscr{H} $, where $ \ve{p} $ is the particle's momentum and $ s $ collectively labels all other quantum numbers, it is clear that $ \mathscr{H} $ is infinite-dimensional, as $ \ve{p} $ is a continuous unbounded variable.
+The Poincaré group can also be represented using the Hilbert space $ \hilb $ of a free particle as a basis. Denoting a generic state as $ \ket{\ve{p},s} \in \hilb $, where $ \ve{p} $ is the particle's momentum and $ s $ collectively labels all other quantum numbers, it is clear that $ \hilb $ is infinite-dimensional, as $ \ve{p} $ is a continuous unbounded variable.
 
 \begin{theorem}{Wigner's theorem}{wigner}
   On the Hilbert space of physical states, any symmetry transformation can be represented by a linear and unitary or anti-linear and anti-unitary operator.
@@ -824,19 +824,19 @@ Although massless particles with opposite helicities are logically two different
 
 Consider a \textit{local field theory} of fields $ \{\phi_i(x)\}_{i \in \mathcal{I}} \equiv \phi(x) $, where $ x \in \R^{1,3} $ is a point in Minkoski spacetime. Its Lagrangian takes the form:
 \begin{equation}
-  L = \int \dd^3 x\, \mathcal{L}(\phi, \pa_\mu \phi)
+  L = \int \dd^3 x\, \lag(\phi, \pa_\mu \phi)
 \end{equation}
-where $ \mathcal{L} $ is the \textit{Lagrangian density} of the theory (often referred to simply as the Lagrangian), which depends only on a finite number of derivatives. The action is then:
+where $ \lag $ is the \textit{Lagrangian density} of the theory (often referred to simply as the Lagrangian), which depends only on a finite number of derivatives. The action is then:
 \begin{equation}
-  \mathcal{S} = \int \dd t\, L = \int \dd^4 x\, \mathcal{L}(\phi, \pa_\mu \phi)
+  \act = \int \dd t\, L = \int \dd^4 x\, \lag(\phi, \pa_\mu \phi)
   \label{eq:def-action}
 \end{equation}
 The integration is carried on the whole space-time, with usual boundary conditions that all fields decrease sufficiently fast at infinity; this also allows to drop all boundary terms.
 
 \begin{theorem}{}{}
-  The \textit{stationary action principle} $ \delta \mathcal{S} = 0 $ determines the classical equations of motion:
+  The \textit{stationary action principle} $ \delta \act = 0 $ determines the classical equations of motion:
   \begin{equation}
-    \frac{\pa \mathcal{L}}{\pa \phi_i} - \pa_\mu \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} = 0
+    \frac{\pa \lag}{\pa \phi_i} - \pa_\mu \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} = 0
   \end{equation}
 \end{theorem}
 
@@ -844,13 +844,13 @@ The integration is carried on the whole space-time, with usual boundary conditio
   \begin{proof}
     Varying \eref{eq:def-action}:
     \begin{equation*}
-      \delta \mathcal{S} = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \mathcal{L}}{\pa \phi_i} \delta \phi_i + \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi)} \delta (\pa_\mu \phi_i) \right] = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \mathcal{L}}{\pa \phi_i} - \pa_\mu \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi)} \right] \delta \phi_i = 0
+      \delta \act = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \lag}{\pa \phi_i} \delta \phi_i + \frac{\pa \lag}{\pa (\pa_\mu \phi)} \delta (\pa_\mu \phi_i) \right] = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \lag}{\pa \phi_i} - \pa_\mu \frac{\pa \lag}{\pa (\pa_\mu \phi)} \right] \delta \phi_i = 0
     \end{equation*}
   \end{proof}
 \end{proofbox}
 
 \begin{corollary}{}{}
-  Two Lagrangians which differ by a total divergence $ \mathcal{L}' = \mathcal{L} + \pa_\mu K^\mu $ yield the same equations of motion.
+  Two Lagrangians which differ by a total divergence $ \lag' = \lag + \pa_\mu K^\mu $ yield the same equations of motion.
 \end{corollary}
 
 \begin{proofbox}
@@ -859,22 +859,23 @@ The integration is carried on the whole space-time, with usual boundary conditio
     \begin{equation*}
       \int_\Sigma \dd^4 x\, \pa_\mu K^\mu = \int_{\pa \Sigma} \dd A\, n_\mu K^\mu
     \end{equation*}
+    with $ n_\mu $ normal vector to the $ \pa \Sigma $ hypersurface.
   \end{proof}
 \end{proofbox}
 
 From the Lagrangian, it is possible to define the conjugate momenta and the Hamiltonian density:
 \begin{equation}
-  \Pi_i(x) \defeq \frac{\pa \mathcal{L}}{\pa (\pa_0 \phi_i)}
+  \Pi_i(x) \defeq \frac{\pa \lag}{\pa (\pa_0 \phi_i)}
 \end{equation}
 \begin{equation}
-  \mathcal{H} = \sum_{i \in \mathcal{I}} \Pi_i(x) \pa_0 \phi(x) - \mathcal{L}
+  \ham = \sum_{i \in \mathcal{I}} \Pi_i(x) \pa_0 \phi(x) - \lag
 \end{equation}
 Unlike the Hamiltonian formalism, the Lagrangian formalism keeps Lorentz covariance explicit.
 
 \subsection{Noether's theorem}
 
 \begin{definition}{Infinitesimal transformation}{inf-trans}
-  Given a field theory with fields $ \{\phi_i\}_{i = 1, \dots, k} $ and action $ \mathcal{S}[\phi] $, an \textit{infinitesimal transformation} parametrized by $ \{\varepsilon^a\}_{a = 1, \dots, N} : \abs{\varepsilon^a} \ll 1 $ is defined by two sets of functions $ \{A^\mu_a(x)\}_{a = 1, \dots, N} $ and $ \{F_{i,a}(\phi,\pa \phi)\}_{i = 1, \dots, k ;\, a = 1, \dots, N} $ such that:
+  Given a field theory with fields $ \{\phi_i\}_{i = 1, \dots, k} $ and action $ \act[\phi] $, an \textit{infinitesimal transformation} parametrized by $ \{\varepsilon^a\}_{a = 1, \dots, N} : \abs{\varepsilon^a} \ll 1 $ is defined by two sets of functions $ \{A^\mu_a(x)\}_{a = 1, \dots, N} $ and $ \{F_{i,a}(\phi,\pa \phi)\}_{i = 1, \dots, k ;\, a = 1, \dots, N} $ such that:
   \begin{equation}
     \begin{gathered}
       x^\mu \mapsto x'^\mu = x^\mu + \varepsilon^a A^\mu_a(x) \\
@@ -885,7 +886,7 @@ Unlike the Hamiltonian formalism, the Lagrangian formalism keeps Lorentz covaria
 \end{definition}
 
 \begin{definition}{Symmetry transformation}{}
-  An infinitesimal transformation is a \textit{symmetry transformation} if it leaves $ \mathcal{S}[\phi] $ invariant, regardless of $ \phi $ being a solution of the equations of motion. It can further be classified as:
+  An infinitesimal transformation is a \textit{symmetry transformation} if it leaves $ \act[\phi] $ invariant, regardless of $ \phi $ being a solution of the equations of motion. It can further be classified as:
   \begin{itemize}
     \item \textit{global symmetry}, if $ \varepsilon^a \equiv \mathrm{const.} $;
     \item \textit{local symmetry}, if $ \varepsilon^a = \varepsilon^a(x) $.
@@ -904,19 +905,19 @@ Symmetry transformations which leave spacetime unchanged, i.e. with $ A^\mu_a(x)
 
 \begin{proofbox}
   \begin{proof}
-    First, consider an infinitesimal transformation with slowly-varying parameters, that is $ l \abs{\pa_\mu \varepsilon^a} \ll \abs{\varepsilon^a} $ ($ l $ characteristic scale of the field theory): being it not a local symmetry, $ \delta \mathcal{S} \neq 0 $ at $ o(\varepsilon) $ and:
+    First, consider an infinitesimal transformation with slowly-varying parameters, that is $ l \abs{\pa_\mu \varepsilon^a} \ll \abs{\varepsilon^a} $ ($ l $ characteristic scale of the field theory): being it not a local symmetry, $ \delta \act \neq 0 $ at $ o(\varepsilon) $ and:
     \begin{equation*}
-      \mathcal{S}[\phi'] = \mathcal{S}[\phi] + \int \dd^4 x\, \left[ \varepsilon^a(x) K_a(\phi) - \left( \pa_\mu \varepsilon^a(x) \right) j^\mu_a(\phi) + o(\pa \pa \varepsilon) \right] + o(\varepsilon^2)
+      \act[\phi'] = \act[\phi] + \int \dd^4 x\, \left[ \varepsilon^a(x) K_a(\phi) - \left( \pa_\mu \varepsilon^a(x) \right) j^\mu_a(\phi) + o(\pa \pa \varepsilon) \right] + o(\varepsilon^2)
     \end{equation*}
-    If $ \varepsilon^a \equiv \mathrm{const.} $ (global symmetry) then $ \delta \mathcal{S}[\phi] = 0 \,\forall \phi $, therefore $ K_a(\phi) = 0 \,\forall \phi $ (independent of $ \varepsilon $). Assuming $ \varepsilon^a(x) \rightarrow 0 $ sufficiently fast as $ x \rightarrow \infty $, then integration by parts yields:
+    If $ \varepsilon^a \equiv \mathrm{const.} $ (global symmetry) then $ \delta \act[\phi] = 0 \,\forall \phi $, therefore $ K_a(\phi) = 0 \,\forall \phi $ (independent of $ \varepsilon $). Assuming $ \varepsilon^a(x) \rightarrow 0 $ sufficiently fast as $ x \rightarrow \infty $, then integration by parts yields:
     \begin{equation*}
-      \mathcal{S}[\phi'] = \mathcal{S}[\phi] + \int \dd^4 x\, \varepsilon^a(x) \pa_\mu j^\mu_a(\phi) + o(\pa \pa \varepsilon) + o(\varepsilon^2)
+      \act[\phi'] = \act[\phi] + \int \dd^4 x\, \varepsilon^a(x) \pa_\mu j^\mu_a(\phi) + o(\pa \pa \varepsilon) + o(\varepsilon^2)
     \end{equation*}
     This expression is independent of the choice of $ \phi $. Moreover, note that \eref{eq:inf-transf} can be rewritten as an internal transformation by setting:
     \begin{equation*}
       \phi_i(x) \mapsto \phi'_i(x) = \phi_i(x - \varepsilon^a A_a) + \varepsilon^a F_{i,a} = \phi_i(x) + \varepsilon^a F_{i,a} - \varepsilon^a A^\mu_a \pa_\mu \phi_i \equiv \phi_i(x) + \delta \phi_i(x)
     \end{equation*}
-    $ \delta \phi_i(x) $ vanishes at infinity, therefore it is the kind of variation used to derive the equations of motion: choosing $ \phi \equiv \phi^\mathrm{cl} $ classical solution then implies $ \delta \mathcal{S} = 0 $ independently of $ \varepsilon $, i.e. the thesis.
+    $ \delta \phi_i(x) $ vanishes at infinity, therefore it is the kind of variation used to derive the equations of motion: choosing $ \phi \equiv \phi^\mathrm{cl} $ classical solution then implies $ \delta \act = 0 $ independently of $ \varepsilon $, i.e. the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -929,7 +930,7 @@ These are time-independent, as $ \pa_0 Q_a = \int \dd^3 x\, \pa_0 j^0_a = - \int
 \begin{proposition}{Noether currents}{}
   The explicit expression of Noether currents is:
   \begin{equation}
-    j^\mu_a = \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} \left[ A^\nu_a(x) \pa_\nu \phi_i - F_{i,a}(\phi, \pa \phi) \right] - A^\mu_a(x) \mathcal{L}
+    j^\mu_a = \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} \left[ A^\nu_a(x) \pa_\nu \phi_i - F_{i,a}(\phi, \pa \phi) \right] - A^\mu_a(x) \lag
     \label{eq:noether-current}
   \end{equation}
 \end{proposition}
@@ -938,26 +939,26 @@ These are time-independent, as $ \pa_0 Q_a = \int \dd^3 x\, \pa_0 j^0_a = - \int
   \begin{proof}
     Varying the action at $ o(\pa \varepsilon) $:
     \begin{equation*}
-        \delta_\varepsilon \mathcal{S} = \delta_\varepsilon \int \dd^4 x\, \mathcal{L} = \int \left[ \delta_\varepsilon (\dd^4 x) \mathcal{L} + \dd^4 x \left( \frac{\pa \mathcal{L}}{\pa \phi_i} \delta_\varepsilon \phi_i + \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} \delta_\varepsilon (\pa_\mu \phi_i) \right) \right]
+        \delta_\varepsilon \act = \delta_\varepsilon \int \dd^4 x\, \lag = \int \left[ \delta_\varepsilon (\dd^4 x) \lag + \dd^4 x \left( \frac{\pa \lag}{\pa \phi_i} \delta_\varepsilon \phi_i + \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} \delta_\varepsilon (\pa_\mu \phi_i) \right) \right]
     \end{equation*}
     The Jacobian of \eref{eq:inf-transf} gives $ \dd^4 x \mapsto \dd^4 x \left( 1 + A^\mu_a \pa_\mu \varepsilon^a \right) + o(\varepsilon) $, while $ \delta_\varepsilon \phi_i $ is not $ o(\pa \varepsilon) $ and:
     \begin{equation*}
       \delta_\varepsilon (\pa_\mu \phi_i) = \frac{\pa \phi'_i}{\pa x'^\mu} - \frac{\pa \phi_i}{\pa x^\mu} = \frac{\pa x^\nu}{\pa x'^\mu} \frac{\pa}{\pa x^\nu} \left( \phi_i + \varepsilon^a F_{i,a} \right) - \frac{\pa \phi_i}{\pa x^\mu} = - (\pa_\mu \varepsilon^a) \left( A^\nu_a \pa_\nu \phi_i - F_{i,a} \right) + o(\varepsilon)
     \end{equation*}
-    The thesis follows from $ \delta_\varepsilon \mathcal{S} = - \int \dd^4 x\, (\pa_\mu \varepsilon^a) j^\mu_a + o(\pa \pa \varepsilon) + o(\varepsilon^2) $.
+    The thesis follows from $ \delta_\varepsilon \act = - \int \dd^4 x\, (\pa_\mu \varepsilon^a) j^\mu_a + o(\pa \pa \varepsilon) + o(\varepsilon^2) $.
   \end{proof}
 \end{proofbox}
 
 If the considered infinitesimal transformation is not a global symmetry, then $ \delta_\varepsilon \mathcal{S} $ has a non-vanishing $ o(\varepsilon) $ term which gives rise to a quasi-conserved current:
 \begin{equation}
-  \pa_\mu j^a_\mu = - (\delta_a \mathcal{L})_\mathrm{global}
+  \pa_\mu j^a_\mu = - (\delta_a \lag)_\mathrm{global}
 \end{equation}
 
 \subsubsection{Energy-momentum tensor}
 
 Consider spacetime translations: as all fields must be scalars under these transformations, they define a Noether current. In particular, translations have $ A^\mu_\nu = \delta^\mu_\nu $ and $ F_{i,\mu} = 0 $ (the parameter index is a Lorentz index), so the conserved current is the \textit{energy-momentum tensor} $ j^\mu_\nu \equiv \tensor{\theta}{^\mu_\nu} $:
 \begin{equation}
-  \theta^{\mu \nu} = \frac{\pa \mathcal{L}}{\pa (\pa_\mu \phi_i)} \pa^\nu \phi_i - \eta^{\mu \nu} \mathcal{L}
+  \theta^{\mu \nu} = \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} \pa^\nu \phi_i - \eta^{\mu \nu} \lag
   \label{eq:en-mom-tensor}
 \end{equation}
 which is covariantly conserved on classical solutions of the equations of motion. The conserved Noether charge associated to the energy-momentum tensor is the \textit{four-momentum}:
@@ -973,7 +974,7 @@ The energy-momentum tensor so defined is not symmetric, however it can be made t
 
 Consider a real scalar field $ \phi $: a non-trivial Poincaré-invariant action must contain $ \pa_\mu \phi $ and must saturate each Lorentz index. For example:
 \begin{equation}
-  \mathcal{S}[\phi] = \frac{1}{2} \int \dd^4 x \left( \pa_\mu \phi \pa^\mu \phi - m^2 \phi^2 \right)
+  \act[\phi] = \frac{1}{2} \int \dd^4 x \left( \pa_\mu \phi \pa^\mu \phi - m^2 \phi^2 \right)
 \end{equation}
 The resulting equation of motion is the \textit{Klein-Gordon equation}:
 \begin{equation}
@@ -984,17 +985,17 @@ where $ \Box \equiv \pa_\mu \pa^\mu $. A plane wave $ e^{\pm i p_\mu x^\mu} $ is
   \phi(x) = \int \frac{\dd^3 p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a^*_\ve{p} e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
   \label{eq:scalar-field-exp}
 \end{equation}
-The positive energy solution has $ E_\ve{p} = + \sqrt{\ve{p}^2 + m^2} $, but it contains both \textit{positive} and \textit{negative frequency modes} $ e^{\mp i p_\mu x^\mu} $, while the $ (2E_\ve{p})^{-1/2} $ factor is a convenient normalization of the $ a_\ve{p} $ coefficients. The overall normalization of $ \mathcal{S}[\phi] $ does not influence the equations of motion, however it is important for obtaining a positive-definite Hamiltonian. As the momentum conjugate to $ \phi $ is $ \Pi_\phi = \pa_0 \phi $, the Hamiltonian density is found as:
+The positive energy solution has $ E_\ve{p} = + \sqrt{\ve{p}^2 + m^2} $, but it contains both \textit{positive} and \textit{negative frequency modes} $ e^{\mp i p_\mu x^\mu} $, while the $ (2E_\ve{p})^{-1/2} $ factor is a convenient normalization of the $ a_\ve{p} $ coefficients. The overall normalization of $ \act[\phi] $ does not influence the equations of motion, however it is important for obtaining a positive-definite Hamiltonian. As the momentum conjugate to $ \phi $ is $ \Pi_\phi = \pa_0 \phi $, the Hamiltonian density is found as:
 \begin{equation}
-  \mathcal{H} = \frac{1}{2} \left[ \Pi_\phi^2 + (\bs{\nabla} \phi)^2 + m^2 \phi^2 \right]
+  \ham = \frac{1}{2} \left[ \Pi_\phi^2 + (\bs{\nabla} \phi)^2 + m^2 \phi^2 \right]
   \label{eq:scalar-field-haml}
 \end{equation}
 The energy-momentum tensor is computed to be:
 \begin{equation}
-  \theta^{\mu \nu} = \pa^\mu \phi \pa^\nu \phi - \eta^{\mu \nu} \mathcal{L}
+  \theta^{\mu \nu} = \pa^\mu \phi \pa^\nu \phi - \eta^{\mu \nu} \lag
   \label{eq:scalar-field-en-mom-tens}
 \end{equation}
-It is trivial to see that $ \theta^{00} = \mathcal{H} $: the Hamiltonian is the conserved charge related to the invariance under time translations.\\
+It is trivial to see that $ \theta^{00} = \ham $: the Hamiltonian is the conserved charge related to the invariance under time translations.\\
 To compute the conserved currents associated to Lorentz invariance, it is convenient to label the transformation parameters $ \omega^{\mu \nu} $ by an anti-symmetric pair of Lorentz indices, so that \eref{eq:inf-transf} become:
 \begin{equation*}
   x^\mu \mapsto x'^\mu = x^\mu + \tensor{\omega}{^\mu_\nu} x^\nu = x^\mu + \frac{1}{2} \tensor{\omega}{^\rho^\sigma} \left( \delta^\mu_\rho x_\sigma - \delta^\mu_\sigma x_\rho \right) \equiv x^\mu + \frac{1}{2} A^\mu_{(\rho \sigma)} \omega^{\rho \sigma}
@@ -1061,7 +1062,7 @@ The quadratic term in $ V(\phi) $ is the mass term, while higher-order terms des
 
 Consider now two real scalar fields $ \phi_1, \phi_2 $ with the same mass $ m $ and combine them into a single complex scalar field $ \phi \equiv \frac{1}{\sqrt{2}}(\phi_1 + i \phi_2) $. The KG action is the sum of the single actions and may be written as:
 \begin{equation}
-  \mathcal{S}[\phi] = \int \dd^4x \left( \pa_\mu \phi^* \pa^\mu \phi - m^2 \phi^* \phi \right)
+  \act[\phi] = \int \dd^4x \left( \pa_\mu \phi^* \pa^\mu \phi - m^2 \phi^* \phi \right)
   \label{eq:compl-scalar-lag}
 \end{equation}
 Considering $ \phi $ and $ \phi^* $ as independent variables one obtains the KG equation, which yields the same mode expansion as \eref{eq:scalar-field-exp}:
@@ -1073,7 +1074,7 @@ Now $ a_\ve{p} $ and $ b_\ve{p} $ are independent, since there's no reality cond
 
 \paragraph{Electric charge}
 
-An interesting property of the complex KG field is the existence of a global $ \Un{1} $ symmetry of the action: $ \mathcal{S}[\phi] \mapsto \mathcal{S}[\phi] $ under $ \phi(x) \mapsto e^{i \theta} \phi(x) $. The associated Noether current can be computed from \eref{eq:noether-current}, using $ \phi_i = (\phi, \phi^*) $, $ A^\nu_a = 0 $ and $ F_{i,a} = (i,-i) $:
+An interesting property of the complex KG field is the existence of a global $ \Un{1} $ symmetry of the action: $ \act[\phi] \mapsto \act[\phi] $ under $ \phi(x) \mapsto e^{i \theta} \phi(x) $. The associated Noether current can be computed from \eref{eq:noether-current}, using $ \phi_i = (\phi, \phi^*) $, $ A^\nu_a = 0 $ and $ F_{i,a} = (i,-i) $:
 \begin{equation}
   j_\mu = -i \left( \phi \pa_\mu \phi^* - \phi^* \pa_\mu \phi \right) = i \phi^* \smlra{\pa_\mu} \phi
   \label{eq:comp-scal-field-curr}
@@ -1084,11 +1085,11 @@ The conserved $ \Un{1} $ charge is then $ Q_{\Un{1}} = i \int \dd^3x\, \phi^* \s
 
 \subsubsection{Weyl fields}
 
-Consider the theory of a left/right-handed Weyl field: recalling that $ \psi_\text{L}^\dagger \sigma^\mu \psi_\text{L} $ and $ \psi_\text{R} \bar{\sigma}^\mu \psi_\text{R} $ are 4-vectors, with $ \sigma^\mu \equiv (1, \boldsymbol{\sigma}) $ and $ \bar{\sigma}^\mu \equiv (1, - \boldsymbol{\sigma}) $, the kinetic term of the Lorentz-invariant lagrangian can be written as:
+Consider the theory of a left/right-handed Weyl field: recalling that $ \psi_\text{L}^\dagger \sigma^\mu \psi_\text{L} $ and $ \psi_\text{R} \bar{\sigma}^\mu \psi_\text{R} $ are 4-vectors, with $ \sigma^\mu \equiv (1, \boldsymbol{\sigma}) $ and $ \bar{\sigma}^\mu \equiv (1, - \boldsymbol{\sigma}) $, the kinetic term of the Lorentz-invariant Lagrangian can be written as:
 \begin{equation}
-  \mathcal{L}_\text{L} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L}
+  \lag_\text{L} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L}
   \qquad \qquad
-  \mathcal{L}_\text{R} = i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R}
+  \lag_\text{R} = i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R}
 \end{equation}
 The $ i $ factor ensures the reality of the Lagrangian, as $ \sigma $ matrices are hermitian. The Lagrangian does not depend on $ \pa_\mu \psi^* $, thus the Euler-Lagrange equations are:
 \begin{equation}
@@ -1130,7 +1131,7 @@ Weyl Lagrangians are not invariant under parity, as $ \psi_\text{L} \leftrightar
 
 Consider a theory with both a left-handed and a right-handed Weyl spinor: one can construct two new Lorentz scalars, $ \psi_\text{L}^\dagger \psi_\text{R} $ and $ \psi_\text{R}^\dagger \psi_\text{L} $, as from \eeref{eq:lor-left-hand-weyl}{eq:lor-right-hand-weyl} it is easy to check that $ \Lambda_\text{L}^\dagger \Lambda_\text{R} = \Lambda_\text{R}^\dagger \Lambda_\text{L} = \id $. Two real combinations are $ \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} $ and $ i (\psi_\text{L}^\dagger \psi_\text{R} - \psi_\text{R}^\dagger \psi_\text{L}) $: under parity $ \psi_\text{L} \leftrightarrow \psi_\text{R} $, so the former is a scalar and the latter a pseudoscalar. The Dirac Lagrangian then is:
 \begin{equation}
-  \mathcal{L}_\text{D} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L} + i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R} - m ( \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} )
+  \lag_\text{D} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L} + i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R} - m ( \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} )
 \end{equation}
 This Lagrangian is invariant under parity, as $ \bar{\sigma}^\mu \pa_\mu \leftrightarrow \sigma^\mu \pa_\mu $ ($ \pa_i \mapsto - \pa_i $). Considering $ \psi_i $ and $ \psi_i^* $ independent, the variation w.r.t. the latter yields:
 \begin{equation}
@@ -1176,7 +1177,7 @@ This allows to rewrite Dirac equation as:
 \end{equation}
 In the chiral representation, the Dirac adjoint simply is $ \bar{\Psi} = (\psi_\text{R}^\dagger, \psi_\text{L}^\dagger) $, so the Dirac Lagrangian can be rewritten as:
 \begin{equation}
-  \mathcal{L}_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi
+  \lag_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi
   \label{eq:dirac-lagrangian}
 \end{equation}
 The $ \gamma^5 $ matrix in the chiral representation is:
@@ -1207,7 +1208,7 @@ This allows to define projectors on Weyl spinors:
   \begin{proof}
     Inserting $ \Psi = \tens{U}^\dagger \Psi' $ (and $ \bar{\Psi} = \Psi'^\dagger \tens{U} \gamma^0 $) in the Dirac Lagrangian:
     \begin{equation*}
-      \mathcal{L}_\text{D} = \Psi'^\dagger \tens{U} \gamma^0 (i \gamma^\mu \pa_\mu - m) \tens{U}^\dagger \Psi' = \Psi'^\dagger \tens{U} \gamma^0 \tens{U}^\dagger (i \tens{U} \gamma^\mu \tens{U}^\dagger \pa_\mu - m) \Psi' = \bar{\Psi}' (i \gamma'^\mu \pa_\mu - m) \Psi'
+      \lag_\text{D} = \Psi'^\dagger \tens{U} \gamma^0 (i \gamma^\mu \pa_\mu - m) \tens{U}^\dagger \Psi' = \Psi'^\dagger \tens{U} \gamma^0 \tens{U}^\dagger (i \tens{U} \gamma^\mu \tens{U}^\dagger \pa_\mu - m) \Psi' = \bar{\Psi}' (i \gamma'^\mu \pa_\mu - m) \Psi'
     \end{equation*}
     where $ \bar{\Psi}' \equiv \Psi'^\dagger \gamma'^0 $. The Lagrangian is thus unchanged.
   \end{proof}

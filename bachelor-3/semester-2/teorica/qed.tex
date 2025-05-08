@@ -107,9 +107,9 @@ In the presence of an external current $ j^\mu $, \eref{eq:maxw-2} is not modifi
 \end{equation}
 By Schwarz lemma, this equation is consistent only if $ \pa_\mu j^\mu = 0 $. This can be understood in light of gauge invariance, considering the action:
 \begin{equation}
-  \mathcal{S}_\text{M} = - \int \dd^4x \left[ \frac{1}{4} F^2 + j^\mu A_\mu \right]
+  \act_\text{M} = - \int \dd^4x \left[ \frac{1}{4} F^2 + j^\mu A_\mu \right]
 \end{equation}
-A gauge transformation $ A_\mu \mapsto A_\mu - \pa_\mu \alpha $ implies $ \mathcal{S}_\text{M} \mapsto \mathcal{S}_\text{M} + \int \dd^4x\, j^\mu \pa_\mu \alpha $: integrating by parts, it is clear that $ \mathcal{S}_\text{M} $ is gauge invariant only if $ \pa_\mu j^\mu = 0 $.
+A gauge transformation $ A_\mu \mapsto A_\mu - \pa_\mu \alpha $ implies $ \act_\text{M} \mapsto \act_\text{M} + \int \dd^4x\, j^\mu \pa_\mu \alpha $: integrating by parts, it is clear that $ \act_\text{M} $ is gauge invariant only if $ \pa_\mu j^\mu = 0 $.
 
 \subsubsection{Dirac field}
 
@@ -120,23 +120,23 @@ The coupling of the electromagnetic field to the Dirac field is an example of th
 \end{equation}
 with $ q \in \R $. This no longer is a symmetry of the Dirac action, however it can be combined with \eref{eq:qed-gauge-inv} defining the \textit{covariant derivative}:
 \begin{equation}
-  D_\mu \Psi \defeq (\pa_\mu + i q A_\mu) \Psi
+  \covder_\mu \Psi \defeq (\pa_\mu + i q A_\mu) \Psi
 \end{equation}
 
 \begin{proposition}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    D_\mu \Psi(x) \mapsto e^{i q \alpha(x)} D_\mu \Psi(x)
+    \covder_\mu \Psi(x) \mapsto e^{i q \alpha(x)} \covder_\mu \Psi(x)
     \label{eq:qed-cov-der}
   \end{equation}
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-      $ D_\mu \Psi \mapsto \left[ \pa_\mu + i q (A_\mu - \pa_\mu \alpha) \right] e^{i q \alpha} \Psi = e^{i q \alpha} \left[ i q \pa_\mu \alpha + \pa_\mu + i q A_\mu - i q \pa_\mu \alpha \right] \Psi = e^{i q \alpha} D_\mu \Psi $
+      $ \covder_\mu \Psi \mapsto \left[ \pa_\mu + i q (A_\mu - \pa_\mu \alpha) \right] e^{i q \alpha} \Psi = e^{i q \alpha} \left[ i q \pa_\mu \alpha + \pa_\mu + i q A_\mu - i q \pa_\mu \alpha \right] \Psi = e^{i q \alpha} \covder_\mu \Psi $
   \end{proof}
 \end{proofbox}
 
-The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto D_\mu $ (\textit{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $. \\
+The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto \covder_\mu $ (\textit{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $. \\
 Applying this to \eref{eq:dirac-lagrangian}:
 \begin{equation}
   \lag_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi - q A_\mu \bar{\Psi} \gamma^\mu \Psi
@@ -239,14 +239,14 @@ Defining angular momentum and boost generators too in terms of ladder operators,
 
 \paragraph{Discrete transformations}
 
-It is possible to define parity and charge conjugation on photon states. The electric field is a true vector, while the magnetic field is a pseudovector, thus the gauge potential is a true vector: $ \mathcal{P} \ve{A}(t,\ve{x}) = - \ve{A}(t,-\ve{x}) $. In terms of photon states:
+It is possible to define parity and charge conjugation on photon states. The electric field is a true vector, while the magnetic field is a pseudovector, thus the gauge potential is a true vector: $ \parity \ve{A}(t,\ve{x}) = - \ve{A}(t,-\ve{x}) $. In terms of photon states:
 \begin{equation}
-  \mathcal{P} \ket{\gamma ; \ve{k}, \ve{s}} = - \ket{\gamma ; -\ve{k}, \ve{s}}
+  \parity \ket{\gamma ; \ve{k}, \ve{s}} = - \ket{\gamma ; -\ve{k}, \ve{s}}
 \end{equation}
 so the intrinsic parity of physical photon states is $ -1 $. \\
-As the fermionic current changes sign under charge conjugation (\eref{eq:charge-conj-fermion-curr}), it is a symmetry of the QED Lagrangian if $ \mathcal{C} A^\mu \mathcal{C} = - A^\mu $, i.e. $ \mathcal{C} a_{\ve{k},\lambda}\dg \mathcal{C} = - a_{\ve{k},\lambda}\dg $. As $ \mathcal{C} \ket{0} = +\ket{0} $ and $ \mathcal{C}^2 = \id $ by definition, then $ \mathcal{C} a_{\ve{k},\lambda}\dg \ket{0} = \mathcal{C} a_{\ve{k},\lambda} \mathcal{C} \mathcal{C} \ket{0} = - a_{\ve{k},\lambda}\dg \ket{0} $, or:
+As the fermionic current changes sign under charge conjugation (\eref{eq:charge-conj-fermion-curr}), it is a symmetry of the QED Lagrangian if $ \chargec A^\mu \chargec = - A^\mu $, i.e. $ \chargec a_{\ve{k},\lambda}\dg \chargec = - a_{\ve{k},\lambda}\dg $. As $ \chargec \ket{0} = +\ket{0} $ and $ \chargec^2 = \id $ by definition, then $ \chargec a_{\ve{k},\lambda}\dg \ket{0} = \chargec a_{\ve{k},\lambda} \chargec \chargec \ket{0} = - a_{\ve{k},\lambda}\dg \ket{0} $, or:
 \begin{equation}
-  \mathcal{C} \ket{\gamma ; \ve{k} , \ve{s}} = - \ket{\gamma ; \ve{k} , \ve{s}}
+  \chargec \ket{\gamma ; \ve{k} , \ve{s}} = - \ket{\gamma ; \ve{k} , \ve{s}}
 \end{equation}
 
 \subsection{Covariant quantization}
