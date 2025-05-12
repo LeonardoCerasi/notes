@@ -142,6 +142,82 @@ Computing the spatial momentum from \eref{eq:4-mom-def} as $ P^i = \normord \int
 Therefore, the state $ a_\ve{p}^\dagger \ket{0} $ can correctly be interpreted as a one-particle state with momentum $ \ve{p} $, mass $ m $ and energy $ E_\ve{p} = \sqrt{\ve{p}^2 + m^2} $. The generic state in the Fock space is a multiparticle state, with total energy and momentum the sum of the individual energies and momenta.\\
 Finally, note that creation operators commute between themselves, hence multiparticle states are symmetric under exchange of pairs of particles, i.e. they obey the Bose-Einstein statistics: this agrees with the fact that quanta of a scalar field have no intrinsic spin. i.e. are spin-0 particles.
 
+\subsubsection{Ladder operators}
+
+Recalling \dref{def:kg-scal-prod}, it is possible to relate the Fourier modes through the KG inner product, defined as:
+\begin{equation}
+  \braket{f,g} \defeq i \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = i \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv i \int \dd^3x\, W_0[f^*,g](x)
+\end{equation}
+where $ W_0[f^*,g](x) $ is the ($ t $-)Wronskian\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
+%
+\footnotetext{Given $ \{f_k(x)\}_{k = 1,\dots,N} \subset \mathcal{C}^N(I,\C) $, with $ I \subset \R^n $ and $ N \in \N $, their ($ i^\text{th} $-)Wronskian is $ W_i \in \mathcal{C}(I,\C) $ defined as:
+\begin{equation}
+  W[f_1, \dots, f_N](x) \defeq
+  \begin{vmatrix}
+    f_1(x) & f_2(x) & \dots & f_N(x) \\
+    \pa_i f_1(x) & \pa_i f_2(x) & \dots & \pa_i f_N(x) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \pa_i^{N-1} f_1(x) & \pa_i^{N-1} f_2(x) & \dots & \pa_i^{N-1} f_N(x)
+  \end{vmatrix}
+\end{equation}
+If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of the Wronskian (as $ \pa_i $ is a linear operator), hence it vanishes: to show that a set of differentiable functions is linearly independent on a given set, it suffices to show that their Wronskian does not vanish identically on said set (although it may vanish on a zero-measure subset).}
+
+\begin{proposition}{Orthonormality of Fourier modes}{fourier-orthonorm}
+  Given positive- and negative-frequency Fourier modes:
+  \begin{equation}
+    f_\ve{p}(x) \equiv \frac{e^{-i p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
+    \qquad \qquad
+    f^*_\ve{p}(x) \equiv \frac{e^{i p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
+    \label{eq:fourier-modes}
+  \end{equation}
+  then:
+  \begin{equation}
+    \braket{f_\ve{p} , f_\ve{q}} = - \braket{f^*_\ve{p} , f^*_\ve{q}} = \delta^{(3)}(\ve{p} - \ve{q})
+    \qquad \qquad
+    \braket{f_\ve{p} , f^*_\ve{q}} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct calculation (using \eref{eq:fourier-delta}):
+    \begin{equation*}
+      \begin{split}
+        \braket{f_\ve{p} , f_\ve{q}}
+        & = i \int \dd^3x\, f^*_\ve{p}(x) \smlra{\pa}_0 f_\ve{q}(x) = i \int \frac{\dd^3x}{(2\pi)^3 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \left( e^{i E_\ve{p} t} \smlra{\pa}_0 e^{-i E_\ve{q} t}  \right) \\
+        & = i \frac{\delta^{(3)}(\ve{q} - \ve{p})}{\sqrt{4 E_\ve{p} E_\ve{q}}} (-i E_\ve{q} - i E_\ve{p}) e^{i (E_\ve{p} - E_\ve{q}) t} = \delta^{(3)}(\ve{p} - \ve{q})
+      \end{split}
+    \end{equation*}
+    as $ \delta(x - x_0) f(x) = \delta(x - x_0) f(x_0) $. Other products are equivalent.
+  \end{proof}
+\end{proofbox}
+
+Using the KG inner product it is possible to explicit the ladder operators.
+
+\begin{theorem}{Ladder operators}{kg-ladder-op}
+  The ladder operators for a real scalar field are:
+  \begin{equation}
+    \sqrt{2E_\ve{p}} a_\ve{p} = i \int \dd^3x\, e^{i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \qquad \qquad
+    \sqrt{2E_\ve{p}} a_\ve{p}\dg = -i \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \label{eq:frsf-ladder}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    \eref{eq:scalar-quant-exp} can be cast in the form:
+    \begin{equation*}
+      \phi(x) = \frac{1}{\sqrt{(2\pi)^3}} \int \dd^3p \left[ f_\ve{p}(x) a_\ve{p} + f^*_\ve{p}(x) a_\ve{p}\dg \right]
+    \end{equation*}
+    Then, using \pref{prop:fourier-orthonorm}:
+    \begin{equation*}
+      \braket{f_\ve{p},\phi} = \frac{1}{\sqrt{(2\pi)^3}} \int \dd^3q\, \delta^{(3)}(\ve{q} - \ve{p}) a_\ve{q} = \frac{a_\ve{p}}{\sqrt{(2\pi)^3}}
+    \end{equation*}
+    Inserting \eref{eq:fourier-modes} yields the thesis ($ a_\ve{p}\dg $ is analogous).
+  \end{proof}
+\end{proofbox}
+
 \subsection{Complex scalar fields}
 
 When considering a complex scalar field, \eref{eq:compl-scal-field-exp} becomes:
@@ -179,12 +255,7 @@ The quanta of a complex scalar field are given by two different species of parti
         Q_{\Un{1}}
         &= i \int \dd^3x\, \phi^\dagger \smlra{\pa_0} \phi = i \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
         & \quad \times \bigg\{ \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \pa_0 \left( a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right) + \\
-        & \quad - \pa_0 \left( a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right) \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\}
-      \end{split}
-    \end{equation*}
-    \begin{equation*}
-      \begin{split}
-        Q_{\Un{1}}
+        & \quad - \pa_0 \left( a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right) \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
         &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
         & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} - b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] + \\
         & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} - b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
@@ -203,6 +274,8 @@ The quanta of a complex scalar field are given by two different species of parti
 While normal ordering was justified when considering the Hamiltonian on the grounds that the vacuum energy is unobservable, a charged vacuum would have observable effects; however when promoting $ \phi $ to a quantum operator, the expression $ \phi^\dagger \smlra{\pa_0} \phi $ presents an ordering ambiguity (ex.: $ \phi^\dagger (\pa_0 \phi) $ or $ (\pa_0 \phi) \phi^\dagger $), which is removed requiring the charge of the vacuum to vanish.\\
 Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \textit{antiparticles}.\\
 For a real scalar field, the reality condition reads $ a_\ve{p} = b_\ve{p} $, thus it describes a field whose particle is its own antiparticle, and it is symmetric under any $ \Un{1} $ symmetry.
+
+\newpage
 
 \section{Spinor fields}
 
@@ -301,9 +374,9 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
 
 It can be seen that, using anticommutators, the Hamiltonian and its interpretation are analogous to that of the complex scalar field: if commutators were used, instead, one would get a final $ - b_{\ve{p},s}^\dagger b_{\ve{p},s} $ term, which is problematic as it yields an energy unbounded from below\footnotemark{}.\\
 The momentum operator too is analogous to that of the complex scalar field, with the additional spin degree of freedom.
-
+%
 \footnotetext{This hints to a more profound meaning of the spin-statistic theorem: as shown by Pauli in \cite{pauli}, this theorem is implied by the conditions of Lorentz invariance, positive energies and causality.}
-
+%
 \begin{proposition}{Momentum operator}{}
   The momentum operator of a Dirac field $ \Psi $ is:
   \begin{equation}
@@ -420,6 +493,14 @@ This means that fermions have $ \Un{1}_\text{V} $ charge of $ +1 $, while antife
   \caption{Quantum numbers for fermions in the Dirac theory.}
   \label{tab:dirac-qn}
 \end{table}
+
+\subsubsection{Ladder operators}
+
+As for the KG field, the ladder operators of the Dirac field can be made explicit too.
+
+\begin{proposition}{Ladder operators}{}
+  The ladder operators for a Dirac field are:
+\end{proposition}
 
 \subsection{Massless Weyl fields}
 
@@ -699,7 +780,7 @@ An additional overall phase is irrelevant. Moreover, as other discrete symmetrie
 
  In order to study the invariance properties of fermionic Lagrangians, it is necessary to state the transformation relations of fermion bilinears (see Sec. 3.6 of \cite{peskin} for details).
 
- \begin{table}[h!]
+ \begin{table}
   \centering
   \begin{tabular}{ccccccc}
     \hline

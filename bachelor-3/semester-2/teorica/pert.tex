@@ -1,0 +1,254 @@
+\selectlanguage{english}
+
+In the case of free Hamiltonians/Lagrangians, free-particle states are eigenstates of the Hamiltonian and they cannot interact. To describe interactions between particles, non-linear terms must be included in $ \ham / \lag $, which will couple Fourier modes (and particles that occupy them) to one another. \\
+To preserve causality, these interaction terms must include only products of fields at the same spacetime point. Moreover, the discussion is restricted to terms which do not include derivatives of fields, so that $ \ham_\text{int} = - \lag_\text{int} $.
+
+\begin{example}{$ \phi^4 $ theory}{}
+  The so-called $ \phi^4 $ theory is a scalar field theory with an interaction term of the kind:
+  \begin{equation}
+    \lag = \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - \frac{1}{2} m^2 \phi^2 - \frac{\lambda}{4!} \phi^4
+  \end{equation}
+  for $ \lambda \in \R $ a dimensionless coupling constant. This interaction describes the Higgs self-interaction in the Standard Model.
+\end{example}
+
+\section{Time evolution}
+
+Consider a system described by a Hamiltonian $ H $. Two different ways of describing its time evolution are possible.
+
+\subsection{Schrödinger picture}
+
+In the Schrödinger picture, states are considered time-dependent and operators time-independent. Consider an initial state $ \ket{\psi(0)} \equiv \ket{\psi} $: its time-evolution is:
+\begin{equation}
+  \ket{\psi(t)} = e^{-i H t} \ket{\psi}
+\end{equation}
+In this picture, the amplitude for a process $ \ket{a(t_0)} \rightarrow \ket{b(t)} $ is:
+\begin{equation}
+  \mathcal{A} = \braket{b | e^{-i H (t - t_0)} | a} \eqdef \braket{b | S(t,t_0) | a}
+  \label{eq:schr-ampl}
+\end{equation}
+In the $ t - t_0 \rightarrow \infty $ limit, $ S $ is known as $ S $\textit{-matrix}, and scattering amplitudes simply are its elements. This can be seen as an operator which realizes time evolution, as:
+\begin{equation}
+  \ket{\psi(t)} = S(t) \ket{\psi}
+\end{equation}
+where $ S(t) \equiv S(t,0) $.
+
+\begin{proposition}{Unitarity of time evolution}{}
+  $ S(t,t_0) $ is a unitary operator on $ \hilb $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a normalized initial state $ \ket{\psi} : \braket{\psi | \psi} = 1 $. Given a complete orthonormal eigenbasis $ \{\ket{n}\}_{n \in \N} $ of $ \hilb $, then it must be:
+    \begin{equation}
+      \sum_{n \in \N} \abs{\braket{n | S | \psi}}^2 = 1
+    \end{equation}
+    This can also be written as:
+    \begin{equation}
+      \sum_{n \in \N} \abs{\braket{n | S | \psi}}^2 = \sum_{n \in \N} \braket{\psi | S\dg | n} \braket{n | S | \psi} = \braket{\psi | S\dg S | \psi}
+    \end{equation}
+    Being $ \ket{\psi} $ arbitrary, it must be $ S\dg S = S S\dg = \id_\hilb $.
+  \end{proof}
+\end{proofbox}
+
+The unitarity of the $ S $-matrix expresses the conservation of probabilities. Moreover, it can be decomposed as:
+\begin{equation}
+  S = \tens{I} + i T
+\end{equation}
+where the $ T $\textit{-matrix} contains the information on the interactions, while the identity $ \tens{I} $ only represents a part of the incident wave-packet unaffected by interactions.
+
+\subsection{Heisenberg picture}
+
+In the Heisenberg picture, states are considered time-independent and operators time-dependent. This picture is better suited for QFT, as fields (which are operators) depend both on $ \ve{x} $ and $ t $, therefore the Heisenberg picture is natural in light of Lorentz covariance. \\
+Given a state $ \ket{\psi(t)} $ in the Schrödinger picture, in the Heisenberg picture it is defined as:
+\begin{equation}
+  \ket{\psi,t} \defeq e^{i H t} \ket{\psi(t)}
+\end{equation}
+which is manifestly time-independent. An operator $ \mathcal{O} $ in the Schrödinger picture instead becomes:
+\begin{equation}
+  \mathcal{O}(t) \defeq e^{i H t} \mathcal{O} e^{-i H t}
+\end{equation}
+The label $ t $ in the definition of state is necessary to distinguish whose operator the state is eigenstate of: in fact, in general $ \mathcal{O}(t) \neq \mathcal{O}(t') $ for $ t \neq t' $, so they will have different eigenstates too. \\
+In the Heisenberg picture, the $ S $-matrix becomes:
+\begin{equation}
+  \braket{b | S(t,t_0) | a} = \braket{b,t | a,t_0}
+\end{equation}
+
+\section{Asymptotic theory}
+
+On a macroscopic scale, interaction times are extremely small. Therefore, it is convenient to make an assumption, the \textit{adiabatic hypothesis}: while the interaction is described by $ \ham = \ham_0 + \ham_\text{int} $, where $ \ham_0 $ is the free Hamiltonian, in the far past and the far future $ \ham_\text{int} $ is adiabatically turned off, i.e. $ \ham \rightarrow \ham_0 $ as $ t \rightarrow \pm \infty $. Moreover, as the out-going states can represent in-coming states for a successive process, the two Fock spaces\footnotemark must be isomorphic, i.e. $ \fock_\text{in} \cong \fock_\text{out} $: in particular, this implies the uniqueness of the vacuum, as $ \ket{0_\text{in}} = \ket{0_\text{out}} \equiv \ket{0} $. This isomorphism is realized by $ S $-matrix $ S \equiv S(+\infty,-\infty) $ (recall \eref{eq:schr-ampl}):
+%
+\footnotetext{Formally, given a single-particle Hilbert space $ \hilb $, the Fock space is defined as the following completion:
+\begin{equation}
+  \fock_\nu(\hilb) \defeq \overline{\bigoplus_{n = 0}^\infty S_\nu \hilb^{\otimes n}}
+\end{equation}
+where $ S_\nu $ is the operator which symmetrizes ($ \nu = + $, for bosons) or antisymmetrizes ($ \nu = - $, for fermions) the tensors it acts upon. In general:
+\begin{equation*}
+  \fock_\nu(\hilb) = \C \oplus \hilb \oplus S_\nu(\hilb \otimes \hilb) \oplus S_\nu(\hilb \otimes \hilb \otimes \hilb) \oplus \dots
+\end{equation*}
+where $ S_\nu \hilb^{\otimes n} $ consists of $ n $-particle states ($ \C $ is the vacuum). A general state then is:
+\begin{equation*}
+  \ket{\Psi}_\nu = \sum_{n = 0}^{\infty} \ket{\Psi_n}_\nu = a \ket{0} \oplus \sum_{i} a_i \ket{\psi_i} \oplus \sum_{i,j} a_{ij} \ket{\psi_i , \psi_j}_\nu \oplus \dots
+\end{equation*}
+The need for this infinite sum to converge in $ \fock_\nu(\hilb) $ is solved by the completion, as it restricts the Fock space only to states with a finite inner-product-induced norm:
+\begin{equation*}
+  \norm{\ket{\Psi}_\nu}^2 = \sum_{n = 0}^{\infty} \braket{\Psi_n | \Psi_n}_\nu < \infty
+\end{equation*}}
+%
+\begin{equation*}
+  \braket{\beta_\text{out} | \alpha_\text{in}} = \braket{\beta_\text{in} | S\dg | \alpha_\text{in}}
+  \qquad \Rightarrow \qquad
+  \ket{\beta_\text{out}} = S \ket{\beta_\text{in}}
+  \qquad \Rightarrow \qquad
+  \phi_\text{out}(x) = S \phi_\text{in}(x) S\dg
+\end{equation*}
+where $ \phi_\text{in}(x) , \phi_\text{out}(x) $ are the free fields which generate $ \fock_\text{in} , \fock_\text{out} $. Note that, to preserve covariance, the $ S $-matrix must commute with Poincaré transformations.
+The adiabatic hypothesis asserts then:
+\begin{equation}
+  \phi(x) \xrightarrow[t \rightarrow -\infty]{} \sqrt{Z} \phi_\text{in}(x)
+  \qquad \qquad
+  \phi(x) \xrightarrow[t \rightarrow +\infty]{} \sqrt{Z} \phi_\text{out}(x)
+  \label{eq:adiabatic-hyp}
+\end{equation}
+where $ Z \in \C $ is a renormalization factor. These limits must be understood in the weak sense, as they are not operator equations, but they are only valid for each matrix element separately\footnotemark.
+%
+\footnotetext{If that wasn't the case, then canonical quantization would imply $ Z = 1 $, i.e. that $ \phi(x) $ is a free field.}
+
+\subsection{LSZ reduction formula}
+
+\subsubsection{Scalar fields}
+
+Consider a scattering process of a single species of neutral scalar particles. As the ladder operators of a free real scalar field can be expressed via \eref{eq:frsf-ladder} (which is time-independent, as of \pref{prop:kg-scal-prod-ind}), in the adiabatic hypothesis it is possible to define \textit{in-} and \textit{out-ladder operators}:
+\begin{equation}
+  \sqrt{2E_\ve{p}} {a_\ve{p}^\text{in,out}}\dg = -i \int_{t \rightarrow \mp \infty} \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi_\text{in,out}(x) = - \frac{i}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+  \label{eq:in-out-lad-op}
+\end{equation}
+These operators respectively act on $ \fock_\text{in,out} $. Note that now these integrals are time-dependent, as they contain the interacting field and not the free fields: the relation between in- and out-ladder operators is therefore not trivial.
+
+\begin{lemma}[before upper = {\tcbtitle}]{}{in-out-rel}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i k_\mu x^\mu} (\Box + m^2) \phi(x)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    For any integrable $ f(t,\ve{x}) $ the following identity holds:
+    \begin{equation*}
+      \left( \lim_{t \rightarrow +  \infty} - \lim_{t \rightarrow -\infty} \right) \int \dd^3x\, f(t,\ve{x}) = \int_{-\infty}^{+\infty} \dd t\, \frac{\pa}{\pa t} \int \dd^3x\, f(t,\ve{x})
+    \end{equation*}
+    Applying this to $ f(t,\ve{x}) = -i Z^{-1/2} e^{-i k_\mu x^\mu} \smlra{\pa}_0 \phi(x) $ and using \eref{eq:in-out-lad-op}:
+    \begin{equation*}
+      \begin{split}
+        \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg)
+        & = \frac{i}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i k_\mu x^\mu} \smlra{\pa}_0 \phi(x) \right] \\
+        & = \frac{i}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i k_\mu x^\mu} \pa_0 \phi(x) - \phi(x) \pa_0 e^{-i k_\mu x^\mu} \right] \\
+        & = \frac{i}{\sqrt{Z}} \int \dd^4x \left[ e^{-i k_\mu x^\mu} \pa_0^2 \phi(x) - \phi(x) \pa_0^2 e^{-i k_\mu x^\mu} \right] \\
+        & = \frac{i}{\sqrt{Z}} \int \dd^4x \left[ e^{-i k_\mu x^\mu} \pa_0^2 \phi(x) - \phi(x) (\bs{\nabla}^2 - m^2) e^{-i k_\mu x^\mu} \right]
+      \end{split}
+    \end{equation*}
+    where the last line follows from $ \pa_0^2 e^{-i k_\mu x^\mu} = - k_0^2 e^{-i k_\mu x^\mu} = (\ve{k}^2 - k^2) e^{-i k_\mu x^\mu} = (\bs{\nabla}^2 - m^2) e^{-i k_\mu x^\mu} $. In order to perform integration by parts, note that initial and final particle states are understood to be convoluted to form wave-packets, which are localized in space, while $ \phi(x) $ is not localized in time; hence, the second term can be integrated by parts twice, resulting in:
+    \begin{equation*}
+      \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i k_\mu x^\mu} (\pa_0^2 - \bs{\nabla}^2 + m^2) \phi(x)
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+It is now possible to write the amplitude for a generic scattering process (i.e. $ S $-matrix element). In particular, consider a process $ \ket{\ve{k}_1, \dots, \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_m; + \infty} $ with $ \ve{k}_i \neq \ve{p}_j \,\,\forall i = 1, \dots, n,\, j = 1, \dots, m $: in this case, as there are no particles which remain unchanged by the interaction, the $ S $-matrix reduces to the $ T $-matrix.
+
+\begin{theorem}{LSZ reduction formula for scalar fields}{}
+  The amplitude for $ \ket{\ve{k}_1 , \dots , \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1 , \dots , \ve{p}_m; +\infty} : \ve{k}_i \neq \ve{p}_j $ is:
+  \begin{equation*}
+    \begin{split}
+      \braket{\ve{p}_1 , \dots , \ve{p}_m ; +\infty | \ve{k}_1 , \dots , \ve{k}_n ; -\infty}
+      & = \prod_{j = 1}^n \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{p_k^2 - m^2}{i \sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {y_k}^\mu} \times \\
+      & \quad \times \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
+    \end{split}
+  \end{equation*}
+  where $ \tempord $ is the chronological product:
+  \begin{equation}
+    \tempord\{f(x) g(y)\} \defeq
+    \begin{cases}
+      g(y) f(x) & y^0 > x^0 \\
+      f(x) g(y) & y^0 < x^0
+    \end{cases}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:in-out-lad-op} it is possible to extract a particle from the initial state:
+    \begin{equation*}
+      \begin{split}
+        \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | \ve{k}_1,\dots,\ve{k}_n;-\infty}
+        & = \sqrt{2E_{\ve{k}_1}} \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | {a_{\ve{k}_1}^\text{in}}\dg | \ve{k}_2,\dots,\ve{k}_n;-\infty} \\
+        & = \sqrt{2E_{\ve{k}_1}} \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | {a_{\ve{k}_1}^\text{in}}\dg - {a_{\ve{k}_1}^\text{out}}\dg | \ve{k}_2,\dots,\ve{k}_n;-\infty}
+      \end{split}
+    \end{equation*}
+    as $ {a_{\ve{k}_1}^\text{out}} \ket{\ve{p}_1,\dots,\ve{p}_n;+\infty} = 0 $ since $ \ve{k}_i \neq \ve{p}_j $. Then, by \lref{lemma:in-out-rel}:
+    \begin{equation*}
+      \begin{split}
+        \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | \ve{k}_1,\dots,\ve{k}_n;-\infty}
+        & = \frac{i}{\sqrt{Z}} \int \dd^4x_1\, e^{-i {k_1}_\mu {x_1}^\mu} (\Box_{x_1} + m^2) \times \\
+        & \qquad \qquad \times \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | \phi(x_1) | \ve{k}_2,\dots,\ve{k}_n;-\infty}
+      \end{split}
+    \end{equation*}
+    Using the same argument (noting that $ \tempord\{a_{\ve{p}_1}^\text{in} \phi(x_1)\} = \phi(x_1) a_{\ve{p}_1}^\text{in} $, $ \tempord\{a_{\ve{p}_1}^\text{out} \phi(x_1)\} = a_{\ve{p}_1}^\text{out} \phi(x_1) $):
+    \begin{equation*}
+      \begin{split}
+        & \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | \phi(x_1) | \ve{k}_2,\dots,\ve{k}_n;-\infty} = \\
+        & \qquad = \sqrt{2E_{\ve{p}_1}} \braket{\ve{p}_2,\dots,\ve{p}_m;+\infty | \tempord\{(a_{\ve{p}_1}^\text{out} - a_{\ve{p}_1}^\text{in}) \phi(x_1)\} | \ve{k}_2,\dots,\ve{k}_n;-\infty} \\
+        & \qquad = \frac{i}{\sqrt{Z}} \int \dd^4y_1\, e^{+i {p_1}_\mu {y_1}^\mu} (\Box_{y_1} + m^2) \braket{\ve{p}_2,\dots,\ve{p}_m;+\infty | \tempord\{\phi(y_1) \phi(x_1)\} | \ve{k}_2,\dots,\ve{k}_n;-\infty}
+      \end{split}
+    \end{equation*}
+    This procedure can be iterated\footnotemark, obtaining:
+    \begin{equation*}
+      \begin{split}
+        & \braket{\ve{p}_1,\dots\ve{p}_m;+\infty | \ve{k}_1,\dots,\ve{k}_n;-\infty} = \prod_{j = 1}^n \frac{i}{\sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{i}{\sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {x_k}^\mu} \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \times (\Box_{x_j} + m^2) (\Box_{y_k} + m^2) \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
+      \end{split}
+    \end{equation*}
+    It is possible to define the $ N $\textit{-point Green function} as:
+    \begin{equation}
+      G(x_1, \dots, x_N) \equiv \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_N)\} | 0}
+    \end{equation}
+    In terms of its (4-dimensional) Fourier transform it reads:
+    \begin{equation*}
+      G(x_1, \dots, x_N) = \prod_{j = 1}^N \int \frac{\dd^4\xi_j}{(2\pi)^4} e^{i {\xi_j}_\mu {x_j}^\mu} \tilde{G}(\xi_1, \dots, \xi_N)
+    \end{equation*}
+    Then:
+    \begin{equation*}
+      (\Box_{x_j} + m^2) G(x_1, \dots, x_N) = - \prod_{j = 1}^N \int \frac{\dd^4\xi_j}{(2\pi)^4} e^{i {\xi_j}_\mu {x_j}^\mu} (\xi_j^2 - m^2) \tilde{G}(\xi_1, \dots, \xi_N)
+    \end{equation*}
+    Substituting into the above expression:
+    \begin{equation*}
+      \begin{split}
+        & \prod_{j = 1}^N \frac{i}{\sqrt{Z}} \int \dd^4x_j e^{-i {k_j}_\mu {x_j}^\mu} (\Box_{x_j} + m^2) G(x_1, \dots, x_N) = \\
+        & \qquad \qquad = - \prod_{j = 1} \frac{i}{\sqrt{Z}} \int \frac{\dd^4x_j \dd^4\xi_j}{(2\pi)^4} e^{i (\xi_j - k_j)_\mu x^\mu} (\xi_j^2 - m^2) \tilde{G}(\xi_1, \dots, \xi_N) \\
+        & \qquad \qquad = \prod_{j = 1}^N \frac{1}{i \sqrt{Z}} \int \dd^4\xi_j\, \delta^{(4)}(\xi_j - k_j) (\xi_j^2 - m^2) \tilde{G}(\xi_1, \dots, \xi_N) \\
+        & \qquad \qquad = \prod_{j = 1}^N \frac{k_j^2 - m^2}{i \sqrt{Z}} \tilde{G}(k_1, \dots, k_N) = \prod_{j = 1}^N \frac{k_j^2 - m^2}{i\sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} G(x_1, \dots, x_N)
+      \end{split}
+    \end{equation*}
+    Using $ G(x_1, \dots, x_n , y_1, \dots, y_m) =  \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0} $ yields the thesis.
+
+    \footnotetext{Technically, $ \Box_{y_1} $ cannot be extracted from $ \tempord $, as it does not commute with the Heaviside function in its definition:
+      \begin{equation}
+        \tempord\{f(x) g(y)\} = \theta(y^0 - x^0) g(y) f(x) + \theta(x^0 - y^0) f(x) g(y)
+    \end{equation}
+  However, the extraction of $ \Box_{y_1} $ can be performed accounting for an additional term proportional to $ \pa_0 \theta({y_1}^0 - {x_1}^0) [\pa_0 \phi(y_1),\phi(x_1)] \sim \delta^{(4)}(y_1 - x_1) $, which does not alter the singular structure of the LSZ formula, thus leaving it unchanged.}
+  \end{proof}
+\end{proofbox}
+
+Going on mass-shell $ p^2 \rightarrow m^2 $, the Green function (or \textit{correlation function} can be shown to have singularities $ \sim (p^2 - m^2)^{-1} $ for each particle involved: this poles are precisely cancelled by the factors in the LSZ reduction formula, thus leaving a finite result. In this sense, the amplitude of the process can be seen as the multi-pole residue of the Green function.
+
+\subsubsection{Spinor fields}
+
+
+
+
+
+
+
+
+
+
