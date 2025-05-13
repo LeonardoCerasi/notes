@@ -127,15 +127,17 @@ These operators respectively act on $ \fock_\text{in,out} $. Note that now these
 \begin{lemma}[before upper = {\tcbtitle}]{}{in-out-rel}
   \begin{equation}
     \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i k_\mu x^\mu} (\Box + m^2) \phi(x)
+    \label{eq:lsz-scal-op}
   \end{equation}
 \end{lemma}
 
 \begin{proofbox}
   \begin{proof}
     For any integrable $ f(t,\ve{x}) $ the following identity holds:
-    \begin{equation*}
+    \begin{equation}
       \left( \lim_{t \rightarrow +  \infty} - \lim_{t \rightarrow -\infty} \right) \int \dd^3x\, f(t,\ve{x}) = \int_{-\infty}^{+\infty} \dd t\, \frac{\pa}{\pa t} \int \dd^3x\, f(t,\ve{x})
-    \end{equation*}
+      \label{eq:int-func-lemma}
+    \end{equation}
     Applying this to $ f(t,\ve{x}) = -i Z^{-1/2} e^{-i k_\mu x^\mu} \smlra{\pa}_0 \phi(x) $ and using \eref{eq:in-out-lad-op}:
     \begin{equation*}
       \begin{split}
@@ -154,25 +156,28 @@ These operators respectively act on $ \fock_\text{in,out} $. Note that now these
   \end{proof}
 \end{proofbox}
 
+Note that if $ \phi(x) $ were a free field, this operator would identically vanish: this is because the KG scalar product is time-independent in a free field theory, therefore the ladder operators too are time-independent. \\
 It is now possible to write the amplitude for a generic scattering process (i.e. $ S $-matrix element). In particular, consider a process $ \ket{\ve{k}_1, \dots, \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_m; + \infty} $ with $ \ve{k}_i \neq \ve{p}_j \,\,\forall i = 1, \dots, n,\, j = 1, \dots, m $: in this case, as there are no particles which remain unchanged by the interaction, the $ S $-matrix reduces to the $ T $-matrix.
 
-\begin{theorem}{LSZ reduction formula for scalar fields}{}
+\begin{theorem}{LSZ reduction formula for scalar fields}{lsz-scalar}
   The amplitude for $ \ket{\ve{k}_1 , \dots , \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1 , \dots , \ve{p}_m; +\infty} : \ve{k}_i \neq \ve{p}_j $ is:
-  \begin{equation*}
-    \begin{split}
-      \braket{\ve{p}_1 , \dots , \ve{p}_m ; +\infty | \ve{k}_1 , \dots , \ve{k}_n ; -\infty}
-      & = \prod_{j = 1}^n \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{p_k^2 - m^2}{i \sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {y_k}^\mu} \times \\
-      & \quad \times \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
-    \end{split}
-  \end{equation*}
+  \begin{multline}
+    \braket{\ve{p}_1 , \dots , \ve{p}_m ; +\infty | \ve{k}_1 , \dots , \ve{k}_n ; -\infty} = \\
+    = \prod_{j = 1}^n \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{p_k^2 - m^2}{i \sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {y_k}^\mu} \times \\
+    \times \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
+  \end{multline}
   where $ \tempord $ is the chronological product:
   \begin{equation}
-    \tempord\{f(x) g(y)\} \defeq
-    \begin{cases}
-      g(y) f(x) & y^0 > x^0 \\
-      f(x) g(y) & y^0 < x^0
-    \end{cases}
+    \begin{split}
+      \tempord\{f(x) g(y)\} & \defeq
+      \begin{cases}
+        g(y) f(x) & y^0 > x^0 \\
+        f(x) g(y) & y^0 < x^0
+      \end{cases} \\
+      & = \theta(y^0 - x^0) g(y) f(x) + \theta(x^0 - y^0) f(x) g(y)
+    \end{split}
   \end{equation}
+  where $ \theta(x) $ is the Heaviside distribution.
 \end{theorem}
 
 \begin{proofbox}
@@ -201,7 +206,7 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
         & \qquad = \frac{i}{\sqrt{Z}} \int \dd^4y_1\, e^{+i {p_1}_\mu {y_1}^\mu} (\Box_{y_1} + m^2) \braket{\ve{p}_2,\dots,\ve{p}_m;+\infty | \tempord\{\phi(y_1) \phi(x_1)\} | \ve{k}_2,\dots,\ve{k}_n;-\infty}
       \end{split}
     \end{equation*}
-    This procedure can be iterated\footnotemark, obtaining:
+    This procedure can be iterated\footnote{Technically, $ \Box_{y_1} $ cannot be extracted from $ \tempord $, as it does not commute with the Heaviside distribution in its definition. However, the extraction of $ \Box_{y_1} $ can be performed accounting for an additional term proportional to $ \pa_0 \theta({y_1}^0 - {x_1}^0) [\pa_0 \phi(y_1),\phi(x_1)] \sim \delta^{(4)}(y_1 - x_1) $, which does not alter the singular structure of the LSZ formula, thus leaving the residue and the resulting amplitude unchanged.}, obtaining:
     \begin{equation*}
       \begin{split}
         & \braket{\ve{p}_1,\dots\ve{p}_m;+\infty | \ve{k}_1,\dots,\ve{k}_n;-\infty} = \prod_{j = 1}^n \frac{i}{\sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{i}{\sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {x_k}^\mu} \times \\
@@ -230,18 +235,81 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
       \end{split}
     \end{equation*}
     Using $ G(x_1, \dots, x_n , y_1, \dots, y_m) =  \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0} $ yields the thesis.
-
-    \footnotetext{Technically, $ \Box_{y_1} $ cannot be extracted from $ \tempord $, as it does not commute with the Heaviside function in its definition:
-      \begin{equation}
-        \tempord\{f(x) g(y)\} = \theta(y^0 - x^0) g(y) f(x) + \theta(x^0 - y^0) f(x) g(y)
-    \end{equation}
-  However, the extraction of $ \Box_{y_1} $ can be performed accounting for an additional term proportional to $ \pa_0 \theta({y_1}^0 - {x_1}^0) [\pa_0 \phi(y_1),\phi(x_1)] \sim \delta^{(4)}(y_1 - x_1) $, which does not alter the singular structure of the LSZ formula, thus leaving it unchanged.}
   \end{proof}
 \end{proofbox}
 
-Going on mass-shell $ p^2 \rightarrow m^2 $, the Green function (or \textit{correlation function} can be shown to have singularities $ \sim (p^2 - m^2)^{-1} $ for each particle involved: this poles are precisely cancelled by the factors in the LSZ reduction formula, thus leaving a finite result. In this sense, the amplitude of the process can be seen as the multi-pole residue of the Green function.
+Going on mass-shell $ p^2 \rightarrow m^2 $, the Green function (or \textit{correlation function} can be shown to have singularities $ \sim (p^2 - m^2)^{-1} $ for each particle involved: these poles are precisely cancelled by the factors in the LSZ reduction formula, thus leaving a finite result. In this sense, the amplitude of the process can be seen as the multi-pole residue of the Green function.
 
 \subsubsection{Spinor fields}
+
+Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ particles (and anti-particles). The adiabatic hypothesis now yields (recall \eeref{eq:dirac-ladd-op-a}{eq:dirac-ladd-op-b}):
+\begin{equation}
+  \sqrt{2E_\ve{p}} {a_{\ve{p},s}^\text{in,out}}\dg = \int_{t \rightarrow \mp \infty} \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}_\text{in,out}(x) \gamma^0 u^s(p) = \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p)
+\end{equation}
+\begin{equation}
+  \sqrt{2E_\ve{p}} {b_{\ve{p},s}^\text{in,out}}\dg = \int_{t \rightarrow \mp \infty} \dd^3x\, e^{i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi_\text{in,out}(x) = \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x)
+\end{equation}
+
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) ( i \smla{\slashed{\pa}} + m ) u^s(p) e^{-i p_\mu x^\mu}
+  \end{equation}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}} - {a_{\ve{p},s}^\text{out}}) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{i p_\mu x^\mu} \bar{u}^s(p) ( - i \smra{\slashed{\pa}} + m ) \Psi(x)
+  \end{equation}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} ({b_{\ve{p},s}^\text{in}}\dg - {b_{\ve{p},s}^\text{out}}\dg) = - \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{i p_\mu x^\mu} \bar{v}^s(p) ( - i \smra{\slashed{\pa}} + m ) \Psi(x)
+  \end{equation}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} ({b_{\ve{p},s}^\text{in}} - {b_{\ve{p},s}^\text{out}}) = - \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) ( i \smla{\slashed{\pa}} + m ) v^s(p) e^{-i p_\mu x^\mu}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:int-func-lemma}:
+    \begin{equation*}
+      \begin{split}
+        \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg)
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p) \right] \\
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x \left[ \pa_0 e^{-i p_\mu x^\mu} \bar{\Psi}(x) + e^{-i p_\mu x^\mu} \pa_0 \bar{\Psi}(x) \right] \gamma^0 u^s(p) \\
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ -i \gamma ^0 p_0 + \gamma^0 \smla{\pa}_0 \right] u^s(p) e^{-i p_\mu x^\mu}
+      \end{split}
+    \end{equation*}
+    By \eref{eq:dirac-eq-spinors} $ (\gamma^0 p_0 - \gamma^k p_k - m) u^s(p) = 0 $, so:
+    \begin{equation*}
+      \begin{split}
+        \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg)
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ -i \gamma ^k p_k - i m + \gamma^0 \smla{\pa}_0 \right] u^s(p) e^{-i p_\mu x^\mu} \\
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ \gamma^0 \smla{\pa}_0 + \gamma^k \smra{\pa}_k - im \right] u^s(p) e^{-i p_\mu x^\mu}
+      \end{split}
+    \end{equation*}
+    Assuming that initial and final particle states are convoluted to form wave-packets, integartion by parts in spatial dimensions can be carried out, yielding:
+    \begin{equation*}
+      \begin{split}
+        \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg)
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ \gamma^0 \smla{\pa}_0 - \gamma^k \smla{\pa}_k - im \right] u^s(p) e^{-i p_\mu x^\mu} \\
+        & = \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ i \smla{\slashed{\pa}} + m \right] u^s(p) e^{-i p_\mu x^\mu}
+      \end{split}
+    \end{equation*}
+    Other operators are found analogously.
+  \end{proof}
+\end{proofbox}
+
+Note that, like \eref{eq:lsz-scal-op}, these operators vanish identically when dealing with a free field. \\
+Consider now a general scattering process involving both fermions and anti-fermions (quantities denoted by a tilde) $ \ket{\ve{k}_1, \dots, \ve{k}_{n_1} , \tilde{\ve{k}}_1, \dots, \tilde{\ve{k}}_{n_2} ; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_{m_1} , \tilde{\ve{p}}_1, \dots, \tilde{\ve{p}}_{m_2} ; +\infty} $ in which no particles remain unchanged by the interaction, i.e. $ \ve{k}_i \neq \ve{p}_j , \tilde{\ve{k}}_k \neq \tilde{\ve{p}}_l \,\,\forall i = 1,\dots,n_1 ,\, j = 1,\dots,m_1 ,\, k = 1,\dots,n_2 ,\, l = 1,\dots,m_2 $, so that the $ S $-matrix reduces to the $ T $-matrix. By the same reasoning of \tref{th:lsz-scalar}, it is clear how to extract particles from this generic amplitude:
+\begin{align}
+  \braket{\beta_\text{fin} ; + \infty | \ve{k},s ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4x \sum_{\sigma = 1}^{4} \braket{\beta_\text{fin} | [\bar{\Psi}(x)]_\sigma | 0} [( i\smla{\slashed{\pa}} + m ) u^s(k)]_\sigma e^{-i k_\mu x^\mu} \\
+  \braket{\beta_\text{fin} ; + \infty | \tilde{\ve{k}},\tilde{s} ; -\infty} &\mapsto -\frac{i}{\sqrt{Z}} \int \dd^4\tilde{x} \sum_{\sigma = 1}^{4} e^{i \tilde{k}_\mu \tilde{x}^\mu} [\bar{v}^{\tilde{s}}(\tilde{k})( -i\smra{\slashed{\pa}} + m )]_\sigma \braket{\beta_\text{fin} | [\Psi(\tilde{x})]_\sigma | 0} \\
+  \braket{\ve{p},s ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4y \sum_{\sigma = 1}^{4} e^{i p_\mu y^\mu} [\bar{u}^s(p) ( -i \smra{\slashed{\pa}} + m )]_\sigma \braket{0 | [\Psi(y)]_\sigma | \alpha_\text{in}} \\
+  \braket{\tilde{\ve{p}},\tilde{s} ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto -\frac{i}{\sqrt{Z}} \int \dd^4\tilde{y} \sum_{\sigma = 1}^{4} \braket{0 | [\bar{\Psi}(\tilde{y})]_\sigma | \alpha_\text{in}} [( i \smla{\slashed{\pa}} + m ) v^{\tilde{s}}(\tilde{p})]_\sigma e^{-i \tilde{p}_\mu \tilde{y}^\mu}
+\end{align}
+In general, the final $ \virgolette{reduced} $ amplitude formula will contain a $ (n_1 + n_2 + m_1 + m_2) $-point Green function like (omitting spinor indices):
+\begin{equation*}
+  \braket{0 | \tempord\{\bar{\Psi}(x_1) \dots \bar{\Psi}(x_{n_1}) \Psi(\tilde{x}_1) \dots \Psi(\tilde{x}_{n_2}) \Psi(y_1) \dots \Psi(y_{m_1}) \bar{\Psi}(\tilde{y}_1) \dots \bar{\Psi}(\tilde{y}_{m_2})\} | 0}
+\end{equation*}
+
+\subsection{Correlation functions}
 
 
 
