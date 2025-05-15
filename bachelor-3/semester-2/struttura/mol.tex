@@ -80,14 +80,14 @@ Per quanto riguarda l'equazione nucleare, essa esprime il moto dei nuclei all'in
 
 L'andamento del potenziale adiabatico in Fig. \ref{ad-pot} è alquanto generale, anche per molecole con $ M > 2 $, e pone le basi per lo studio di strutture molecolari complesse.
 
-\subsection{\texorpdfstring{$ \ch{H_2} $}{H2}}
+\subsection{\texorpdfstring{$ \ch{H_2^+} $}{H2+}}
 
-Si consideri ad esempio la più semplice molecola diatomica: $ \ch{H_2} $. In questo caso non è presente alcune repulsione elettrone-elettrone, dunque sull'unic elettrone agisce esclusivamente $ V_{ne} = V_\text{L} + V_\text{R} $, dove $ \text{L},\text{R} $ si riferiscono rispettivamente al nucleo sinistro o destro (arbitrariamente scelto il verso dell'asse molecolare $ \hat{\ve{e}}_z $): questi possono essere assunti fissi e posti a $ \pm R_{12}/2 $ lungo $ \hat{\ve{e}}_z $, dove $ \ve{R}_{12} \equiv \abs{\ve{R}_\text{L} - \ve{R}_\text{R}} $.
+Si consideri ad esempio la più semplice molecola diatomica: $ \ch{H_2^+} $. In questo caso non è presente alcune repulsione elettrone-elettrone, dunque sull'unic elettrone agisce esclusivamente $ V_{ne} = V_\text{L} + V_\text{R} $, dove $ \text{L},\text{R} $ si riferiscono rispettivamente al nucleo sinistro o destro (arbitrariamente scelto il verso dell'asse molecolare $ \hat{\ve{e}}_z $): questi possono essere assunti fissi e posti a $ \pm R_{12}/2 $ lungo $ \hat{\ve{e}}_z $, dove $ \ve{R}_{12} \equiv \abs{\ve{R}_\text{L} - \ve{R}_\text{R}} $.
 
 \begin{figure}[!b]
 	\centering
 	\includegraphics[width = 0.40 \textwidth]{ne-potential-h2.png}
-	\caption{$ V_{ne} $ potential for the $ \ch{H_2} $ molecule.}
+	\caption{$ V_{ne} $ potential for the $ \ch{H_2^^+} $ molecule.}
 	\label{ne-h2}
 \end{figure}
 
@@ -96,12 +96,13 @@ Con riferimento alla Fig. \ref{ne-h2}, si noti che per $ -R_{12}/2 < r_z < R_{12
 	\ket{\text{S}} = [2(1 + \braket{\text{L} | \text{R}})]^{-1/2} (\ket{\text{L}} + \ket{\text{R}})
 	\qquad \qquad
 	\ket{\text{A}} = [2(1 - \braket{\text{L} | \text{R}})]^{-1/2} (\ket{\text{L}} - \ket{\text{R}})
+	\label{eq:h2-kets}
 \end{equation}
 
 \begin{figure}[!b]
 	\centering
 	\includegraphics[width = 0.50 \textwidth]{symm-asymm-h2.png}
-	\caption{Symmetric and antisymmetric LCAO for the ground state of $ \ch{H_2} $.}
+	\caption{Symmetric and antisymmetric LCAO for the ground state of $ \ch{H_2^+} $.}
 	\label{gs-h2}
 \end{figure}
 
@@ -111,6 +112,7 @@ Per il principio variazionale, per l'energia del ground state vale $ E_e^{(\text
 	A grande distanza $ R_{12} \gg a_0 $ si ha:
 	\begin{equation}
 		\mathcal{E}_{\text{S},\text{A}} + \frac{E_\text{Ha}}{2} \simeq - \frac{e^2}{R_{12}} (1 \pm \braket{\text{L} | \text{R}})
+		\label{eq:h2-symm-asymm}
 	\end{equation}
 
 	\tcblower
@@ -139,6 +141,146 @@ Per il principio variazionale, per l'energia del ground state vale $ E_e^{(\text
 		che è il risultato cercato.
 	\end{proof}
 \end{proposition}
+
+L'Eq. \ref{eq:h2-symm-asymm} mostra come $ \mathcal{E} + \frac{E_\text{Ha}}{2} + V_{nn} $, con $ V_{nn} = \frac{e^2}{R_{12}} $, sia negativo per $ \ket{\text{S}} $ e positivo per $ \ket{\text{A}} $: ciò significa che la repulsione tra i due nuclei è vinta solo dalla LCAO simmetrica, nel qual caso di forma effettivamente un \textit{legame}. \\
+Si può anche considerare il risultato esatto per $ R_{12} $ generico (plottato in Fig. \ref{h2-en}):
+\begin{equation}
+	\mathcal{E}_{\text{S},\text{A}} = - \frac{E_\text{Ha}}{2} + \frac{\braket{\text{L} | V_\text{R} | \text{L}} \pm \braket{\text{R} | V_\text{R} | \text{L}}}{1 \pm \braket{\text{L} | \text{R}}}
+\end{equation}
+
+\begin{figure}[!b]
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{h2-en.png}
+	\caption{Total adiabatic potential for $ \ket{\text{S}} $ and $ \ket{\text{A}} $.}
+	\label{h2-en}
+\end{figure}
+
+Si possono fare alcune osservazioni:
+\begin{enumerate}
+	\item $ V_\text{ad}^{(\text{S})}(R_{12}) $ presenta un minimo per $ R_{12} = R_\text{m} \simeq 2.5 a_0 $, e questa buca di potenziale è abbastanza profonda da legare i due protoni, pertanto $ \ket{\text{S}} $ è detto \textit{stato legante};
+	\item $ V_\text{ad}^{(\text{A})}(R_{12}) $ è monotonamente decrescente, ovvero è un potenziale puramente repulsivo, dunque $ \ket{\text{A}} $ è detto \textit{stato anti-legante};
+	\item per $ R_{12} < R_\text{m} $ entrambi i potenziali adiabatici divergono a causa di una singolarità in $ V_{nn} $, il quale non è più efficacemente schermato, ed anche perché gli elettroni sono costretti a muoversi in una buca di potenziale più stretta, dunque con un'energia cinetica maggiore (per il principio d'indeterminazione).
+\end{enumerate}
+In definitiva, il legame in $ \ch{H_2^+} $ è dovuto sia ad un abbassamento dell'energia cinetica elettronica (poiché l'elettrone si muove in una buca di potenziale più larga) e ad un abbassamento dell'energia potenziale del sistema (poiché l'elettrone scherma la repulsione tra i due nuclei tramite una distribuzione di probabilità piccata nel mezzo). \\
+Questo modello variazionale è valido per $ \braket{\text{L} | \text{R}} \ll 1 $, ovvero $ R_{12} \gg a_0 $, ma diventa particolarmente inaccurato per $ R_{12} $ piccolo, poiché in tal caso nella LCAO vanno considerati anche gli stati diversi da $ \text{1s} $: il modello variazionale dà energia di legame molecolare $ V_\text{ad}^{(\text{S})}(\infty) - V_\text{ad}^{(\text{S})}(R_\text{m}) \simeq 1.76\ev $ con $ R_\text{m} = 2.50 a_0 $, mentre il valore sperimentale è $ 2.79\ev $ con $ R_\text{m} = 2.00 a_0 $.
+
+\paragraph{Numeri quantici}
+
+La simmetria di $ \ch{H_2^+} $ è cilindrica, dunque soltanto $ L_z $ può essere diagonalizzato\footnote{In coordinate cilindriche $ \ve{r} = (\rho \cos \varphi, \rho \sin \varphi, z) $ e $ \hat{L}_z \defeq -i\hbar (x \pa_y - y \pa_x) = -i \hbar \pa_\varphi $, quindi le sue autofunzioni sono $ f(\varphi) = \mathcal{N} e^{i m \varphi} $. La condizione di periodicità $ f(\varphi) = f(\varphi + 2\pi) $ impone $ m \in \Z $.}: l'unico numerico quantico $ \virgolette{buono} $ è $ m $. In base al valore di $ \abs{m} = 0, 1, 2, \dots $ si indicano gli stati con $ \sigma, \pi, \delta, \dots $; inoltre, gli stati anti-leganti acquistano un asterisco. Si noti che, a parte gli stati $ \sigma $, tutti questi stati sono doppiamente degeneri\footnotemark ($ \pm m $).
+
+\begin{example}{Stati $ \ket{\text{S}},\ket{\text{A}} $ in $ \ch{H_2^+} $}{}
+	Gli stati $ \ket{\text{S}},\ket{\text{A}} $, definiti in Eq. \ref{eq:h2-kets}, sono LCAO di soli stati $ \text{1s} $, dunque sono stati $ \sigma $: in particolare, $ \ket{\text{S}} \equiv 1\sigma $ e $ \ket{\text{A}} \equiv 1\sigma^* $.
+\end{example}
+
+\footnotetext{Questa degenerazione è dovuta ad una simmetria dell'Hamiltoniana. In particolare, in assenza di campi magnetici esterni, essa è simmetrica per $ \sigma_\text{v} : \varphi \mapsto -\varphi $, la quale implica che l'energia sia $ E = E(\abs{m}) $. Nel caso di molecole diatomiche omonucleari si ha un'ulteriore simetria $ \sigma_\text{h} : x \mapsto -x, y \mapsto -y $, ovvero una rotazione di $ \pi $, la quale combinata con $ \sigma_\text{v} $ dà l'inversione $ \sigma_\text{i} \equiv \sigma_\text{h} \circ \sigma_\text{v} : \ve{r} \mapsto -\ve{r} $: in base all'autovalore di $ \sigma_\text{i} $ si distingue tra stati $ g $ (gerade, con $ +1 $) e $ u $ (ungerade, con $ -1 $).}
+
+\subsubsection{Derivazione alternativa}
+
+Si consideri la generica combinazione lineare $ \psi_e(r_1,r_2,R) = c_1 \psi_\text{1s}^{(1)}(r_1) + c_2 \psi_\text{1s}^{(2)}(r_2) $, con $ \ve{r}_{1,2} \equiv \ve{r} - \ve{R}_{1,2} $ e dipendenza parametrica da $ \ve{R} \equiv \ve{R}_1 - \ve{R}_2 $ (ricordare che $ \psi_\text{1s}(r) = \frac{1}{\sqrt{4\pi}} \frac{2}{a_0^{2/3}} \exp -r/a_0 $). Il metodo variazionale impone:
+\begin{equation}
+	\delta( \braket{\psi_e | \mathcal{H} | \psi_e} - E \braket{\psi | \psi}) = 0
+	\label{eq:h2-var}
+\end{equation}
+Innanzitutto, si calcola:
+\begin{equation*}
+	\begin{split}
+		\braket{\psi_e | \psi_e}
+		& = \abs{c_1}^2 + \abs{c_2}^2 + c_1^* c_2 \int d^3r\, \psi_\text{1s}^{(1)*}(r_1) \psi_\text{1s}^{(2)}(r_2) + c_1 c_2^* \int d^3r\, \psi_\text{1s}^{(1)}(r_1) \psi_\text{1s}^{(2)*}(r_2) \\
+		& \equiv \abs{c_1}^2 + \abs{c_2}^2 + c_1^* c_2 S_{12}(R) + c_1 c_2^* S_{12}^*(R)
+	\end{split}
+\end{equation*}
+Inoltre, si trova:
+\begin{equation*}
+	\braket{\psi_e | \mathcal{H} | \psi_e} = \abs{c_1}^2 H_{11} + \abs{c_2}^2 H_{22} + c_1^* c_2 H_{12} + c_1 c_2^* H_{12}^*
+\end{equation*}
+con:
+\begin{equation*}
+	\begin{split}
+		H_{11} = \int d^3r\, \psi_\text{1s}^{(1)*}(r_1) \left[ - \frac{\hbar^2 \lap}{2m_e} - \frac{e^2}{r_1} - \frac{e^2}{r_2} \right] \psi_\text{1s}^{(1)}(r_1)
+		& = - \frac{E_\text{Ha}}{2} + \int d^3\, \psi_\text{1s}^{(1)*}(r_1) \left( -\frac{e^2}{r_2} \right) \psi_\text{1s}^{(1)}(r_1) \\
+		& \equiv - \frac{E_\text{Ha}}{2} + J_1(R)
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		H_{12} = \int d^3r\, \psi_\text{1s}^{(1)*}(r_1) \left[ - \frac{\hbar^2 \lap}{2m_e} - \frac{e^2}{r_1} - \frac{e^2}{r_2} \right] \psi_\text{1s}^{(2)}(r_2)
+		& = - \frac{E_\text{Ha}}{2} S_{12}(R) + \int d^3r\, \psi_\text{1s}^{(1)*}(r_1) \left( - \frac{e^2}{r_1} \right) \psi_\text{1s}^{(2)}(r_2) \\
+		\equiv - \frac{E_\text{Ha}}{2} S_{12}(R) + K_{12}(R)
+	\end{split}
+\end{equation*}
+Per molecole omonucleari si trova $ H_{22} = H_{11} $, mentre in generale essi saranno diversi.
+La variazione in Eq. \ref{eq:h2-var} avviene rispetto a $ c_1 $ e $ c_2 $, dunque imponendo le derivate parziali rispetto ad entrambi nulle si trova:
+\begin{equation*}
+	\begin{cases}
+		c_1^* H_{11} + c_2^* H_{12}^* - E (c_1^* + c_2^* S_{12}^*) = 0 \\
+		c_2^* H_{22} + c_1^* H_{12} - E (c_2^* - c_1^* S_{12}) = 0
+	\end{cases}
+	\qquad \iff \qquad
+	\begin{vmatrix}
+		H_{11} - E & H_{12}^* - E S_{12}^* \\
+		H_{12} - E S_{12} & H_{22} - E
+	\end{vmatrix}
+	= 0
+\end{equation*}
+Questa matrice ha due autovalori (e due autovettori), che nel caso omonucleare sono:
+\begin{equation*}
+	E_\pm = \frac{H_{12} \mp H_{12}}{1 \mp S_{12}}
+	\qquad \qquad
+	\begin{pmatrix}
+		c_1 \\ c_2
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1 \\ \pm 1
+	\end{pmatrix}
+\end{equation*}
+In maniera esplicita:
+\begin{equation}
+	E_\pm(R) = - \frac{E_\text{Ha}}{2} + \frac{J_{1}(R) \mp K_{12}(R)}{1 \mp S_{12}(R)}
+\end{equation}
+che equivale all'Eq. \ref{eq:h2-symm-asymm}. Si vede che il legame non è dovuto all'integrale Coulombiano $ J_1(R) $, bensì all'integrale di risonanza $ K_{12}(R) $, il quale non ha un'interpretazione classica). Ovviamente tale modello è solo approssimato, ed una maggiore sovrapposizione coi dati sperimentali si potrebbe ottenere considerando altri stati oltre $ \text{1s} $ nella LCAO.
+
+\subsection{Legami covalenti e ionici}
+
+\subsubsection{Dimeri}
+
+Il legame in $ \ch{H_2^+} $ non è un vero e proprio legame chimico, in quanto non c'è una coppia di elettroni che occupa lo stesso orbitale legante (legame covalente): questo è invece il caso di $ \ch{H_2} $, le cui autofunzioni per gli orbitali vanno determinate con metodi che considerino la repulsione elettrone-elettrone (come il metodo HF). Ad ogni modo, si trova un potenziale simile al potenziale adiabatico in Fig. \ref{ad-pot}; un tale potenziale ammette anche elettroni in stati eccitati: se entrambi si trovano nello stesso orbitale legante, allora la molecola esiste in uno stato legato, sebbene con binding energy minore rispetto a $ 1\sigma $. \\
+Considerando atomi con $ Z $ via via maggiore, si vengono a formare molecole diatomiche omonucleari (o \textit{dimeri}) con un maggior numero di orbitali leganti/anti-leganti. Si evidenziano alcune proprietà:
+\begin{enumerate}
+	\item gli orbitali leganti sono sempre energeticamente inferiori rispetto ai corrispettivi anti-leganti;
+	\item la forza di un legame covalente aumenta all'aumentare dell'ordine di legame, ovvero del numero di coppie di elettroni (di spin opposto, per il principio d'esclusione\footnotemark) presenti nell'orbitale legante ed assenti nel corrispettivo orbitale anti-legante (il più forte è $ \ch{N_2} $, con $ 10\ev $);
+	\item nel riempimento della shell $ \text{2p} $, si ha un inversione per la quale gli orbitali $ 2\pi $ sono energeticamente inferiori a quelli $ 2\sigma $ (nonostante ci sia più overlap tra gli orbitali $ 2p_z $ (lungo l'asse molecolare) che formano $ 2\sigma $ rispetto agli orbitali $ 2p_x , 2p_y $ che formano $ 2\pi $); l'ordinamento $ \virgolette{normale} $ viene ristabilito da $ \ch{O_2} $ in poi.
+\end{enumerate}
+
+\footnotetext{Si noti che, considerando lo spin, gli orbitali $ \sigma $ possono contenere 2 elettroni, tutti gli altri orbitali 4 (poiché già doppiamente degeneri per $ \pm m $).}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{sigma-pi-b2.jpg}
+	\caption{Bonding orbitals (only for valence electrons) for $ \ch{B_2} $.}
+	\label{bond-b2}
+\end{figure}
+
+Prendendo il caso di $ \ch{B_2} $ (o anche $ \ch{O_2} $), gli ultimi due elettroni di valenza vanno disposti per l'Aufbau su un orbitale $ \pi $ (o $ \pi^* $), il quale può però ospitare quattro elettroni: di conseguenza, per la prima regola di Hund essi occupano l'orbitale con spin paralleli. \\
+Vengono osservati anche dimeri come $ \ch{Be_2} $ e $ \ch{Ne_2} $ che, nonostante un ordine di legame nullo, manifestano un debole legame non chimico (legame di van der Waals).
+
+\subsubsection{Molecole diatomiche eteronucleari}
+
+Sebbene i dimeri godano di una particolare simmetria per riflessioni, esistono anche molecole diatomiche eteronucleari. In questi casi, c'è un'asimmetria nella distribuzione di carica, poiché gli elettroni saranno maggiormente attratti da uno dei due atomi: come si vede in Fig. \ref{etero}, gli orbitali leganti si trovano energeticamente più vicini agli orbitali dell'atomo che li ha energeticamente più bassi, fino a casi limite come $ \ch{HF} $ in cui gli orbitali coincidono energeticamente. Si distingue quindi tra legami covalenti polari e legami ionici: di quest'ultimi si può dare una descrizione approssimata come di un completo trasferimento di carica dall'atomo meno elettronegativo a quello più elettronegativo (come in $ \ch{HF} $).
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{eteronuclear.png}
+	\caption{Bonding orbitals for eteronuclear diatomic molecules.}
+	\label{etero}
+\end{figure}
+
+\subsection{Classificazione}
+
+Nonostante la generale tendenza degli atomi ad attrarsi a grandi distanze e respingersi a corte distanza (Fig. \ref{ad-pot}), ci sono grosse differenze di distanze di equilibrio e profondità della buca di potenziale per i vari meccanismi di legame. \\
+Se uno (o entrambi) dei due atomi è un gas nobile, allora il legame è di tipo dipolo-dipolo indotto (van der Waals), con una distanze d'equilibrio $ R_\text{m} \sim 250-400 \,\text{pm} $ grande ed energia di legame nell'ordine dei $ \text{meV} $. I gas nobili mantengono la forma di gas monoatomico fino a temperature relativamente basse, per poi formare dimeri in grado di condensarsi e solidificarsi. \\
+Al contrario, alcuni atomi con shell non complete ($ \ch{N} $, $ \ch{O} $, $ \ch{F} $) tendono a formare molecole diatomiche con legami covalenti corti e molto forti (binding energy $ \sim \text{eV} $), molecole mantenute anche nelle fasi liquide e solide a basse temperature. Per la maggior parte degli altri atomi, l'energia extra guadagnata formando legami chimici multipli rende energeticamente conveniente formare legami metallici estesi (o anche solidi covalenti), piuttosto che molecole diatomiche.\\
+Nel caso di molecole eteronucleari fortemente polari si può arrivare alla formazione di legami ionici, con un transferimento (totale o parziale) di carica da un'atomo all'altro: al pari dei legami covalenti e metallici, le distanze d'equilibrio sono $ R_\text{m} \sim 80-250 \,\text{pm} $ e le binding energies $ \sim 1-10\ev $.
 
 
 
