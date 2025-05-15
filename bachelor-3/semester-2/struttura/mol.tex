@@ -71,10 +71,74 @@ Per quanto riguarda l'equazione nucleare, essa esprime il moto dei nuclei all'in
 
 \begin{figure}
 	\centering
-	\includegraphics[width = 0.50 \textwidth]{adiabatic-potential.png}
+	\includegraphics[width = 0.40 \textwidth]{adiabatic-potential.png}
 	\caption{Adiabatic potential for a diatomic molecule.}
 	\label{ad-pot}
 \end{figure}
+
+\section{Legami}
+
+L'andamento del potenziale adiabatico in Fig. \ref{ad-pot} è alquanto generale, anche per molecole con $ M > 2 $, e pone le basi per lo studio di strutture molecolari complesse.
+
+\subsection{\texorpdfstring{$ \ch{H_2} $}{H2}}
+
+Si consideri ad esempio la più semplice molecola diatomica: $ \ch{H_2} $. In questo caso non è presente alcune repulsione elettrone-elettrone, dunque sull'unic elettrone agisce esclusivamente $ V_{ne} = V_\text{L} + V_\text{R} $, dove $ \text{L},\text{R} $ si riferiscono rispettivamente al nucleo sinistro o destro (arbitrariamente scelto il verso dell'asse molecolare $ \hat{\ve{e}}_z $): questi possono essere assunti fissi e posti a $ \pm R_{12}/2 $ lungo $ \hat{\ve{e}}_z $, dove $ \ve{R}_{12} \equiv \abs{\ve{R}_\text{L} - \ve{R}_\text{R}} $.
+
+\begin{figure}[!b]
+	\centering
+	\includegraphics[width = 0.40 \textwidth]{ne-potential-h2.png}
+	\caption{$ V_{ne} $ potential for the $ \ch{H_2} $ molecule.}
+	\label{ne-h2}
+\end{figure}
+
+Con riferimento alla Fig. \ref{ne-h2}, si noti che per $ -R_{12}/2 < r_z < R_{12}/2 $ il potenziale $ V_{ne}(r,R_{12}) $ è circa doppiamente negativo rispetto al caso atomico, suggerendo che l'elettrone potrebbe abbassare la propria energia potenziale media avendo una distribuzione di probabilità piccata nel mezzo dei due nuclei. Per verificare se ciò permette la formazione di un legame, bisogna confrontare che $ V_\text{ad}(R_{12}) < V_\text{ad}(\infty) = E_\text{1s} = -\frac{1}{2} E_\text{Ha} $ (poiché in tale limite si hanno praticamente un protone ed un atomo di idrogeno infinitamente separati, e $ \mu/m_e \approx 1 $). A tal fine, si adotta un approccio variazionale per verificare il valore dell'energia tramite la LCAO (Linear Combination of Atomic Orbitals): si considerino i due ground state atomici $ \ket{\text{1s};\text{L}} \equiv \ket{\text{L}} $ e $ \ket{\text{1s};\text{R}} \equiv \ket{\text{R}} $, assumendo $ \braket{\text{L} | \text{R}} > 0 $, e, data la simmetria assiale (cilindrica attorno $ \hat{\ve{e}}_z $) del problema, si considerino le combinazioni lineari opportunamente normalizzate (plottate in Fig. \ref{gs-h2}):
+\begin{equation}
+	\ket{\text{S}} = [2(1 + \braket{\text{L} | \text{R}})]^{-1/2} (\ket{\text{L}} + \ket{\text{R}})
+	\qquad \qquad
+	\ket{\text{A}} = [2(1 - \braket{\text{L} | \text{R}})]^{-1/2} (\ket{\text{L}} - \ket{\text{R}})
+\end{equation}
+
+\begin{figure}[!b]
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{symm-asymm-h2.png}
+	\caption{Symmetric and antisymmetric LCAO for the ground state of $ \ch{H_2} $.}
+	\label{gs-h2}
+\end{figure}
+
+Per il principio variazionale, per l'energia del ground state vale $ E_e^{(\text{gs})}(R_{12}) \le \braket{\text{S}/\text{A} | T_e + V_{ne} | \text{S}/\text{A}} \equiv \mathcal{E}_{\text{S},\text{A}} \,\,\forall R_{12} \in \R_+ $.
+
+\begin{proposition}{}{}
+	A grande distanza $ R_{12} \gg a_0 $ si ha:
+	\begin{equation}
+		\mathcal{E}_{\text{S},\text{A}} + \frac{E_\text{Ha}}{2} \simeq - \frac{e^2}{R_{12}} (1 \pm \braket{\text{L} | \text{R}})
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Per calcolo diretto:
+		\begin{equation*}
+			\begin{split}
+				\mathcal{E}_\text{\text{S},\text{A}}
+				& = \braket{\text{S}/\text{A} | T_e + V_{ne} | \text{S}/\text{A}} = \frac{\braket{\text{L} | T_e + V_{ne} | \text{L}} \pm \braket{\text{R} | T_e + V_{ne} | \text{L}} + (\text{L} \leftrightarrow \text{R})}{2 (1 \pm \braket{\text{L} | \text{R}})} \\
+				& = \frac{\braket{\text{L} | T_e + V_\text{L} | \text{L}} + \braket{\text{L} | V_\text{R} | \text{L}} \pm \braket{\text{R} | T_e + V_\text{L} | \text{L}} \pm \braket{\text{R} | V_\text{R} | \text{L}}}{1 \pm \braket{\text{L} | \text{R}}} = - \frac{E_\text{Ha}}{2} + \frac{\braket{\text{L} | V_\text{R} | \text{L}} \pm \braket{\text{R} | V_\text{R} | \text{L}}}{1 \pm \braket{\text{L} | \text{R}}}
+			\end{split}
+		\end{equation*}
+		essendo $ \ket{\text{L}} $ autostato di $ T_e + V_\text{L} $ con autovalore $ -E_\text{Ha}/2 $. I due elementi di matrice di $ V_\text{R} $ sono entrambi funzioni reali e negative di $ R_{12} $: il termine $ \braket{\text{L} | V_\text{R} | \text{L}} $ rappresenta l'attrazione che il nucleo destro esercita sull'elettrone orbitante attorno al nucleo sinistro, dunque per $ R_{12} $ abbastanza grande si ha:
+		\begin{equation*}
+			\braket{\text{L} | V_\text{R} | \text{L}} \simeq - \frac{e^2}{R_{12}}
+		\end{equation*}
+		Il termine $ \braket{\text{R} | V_\text{R} | \text{L}} $, d'altro canto, può essere approssimato considerando che la distribuzione $ \psi_\text{L}(\ve{r}) \psi_\text{R}(\ve{r}) $ è piccata nella regione assiale tra i due nuclei, al centro della quale $ V_\text{R} \simeq - \frac{e^2}{R_{12}/2} $, così che:
+		\begin{equation*}
+			\braket{\text{R} | V_\text{R} | V_\text{L}} \simeq - \frac{e^2}{R_{12}} 2\braket{\text{L} | \text{R}}
+		\end{equation*}
+		Si può quindi espandere l'espressione totale considerando $ \braket{\text{L} | \text{R}} $ sufficientemente piccolo:
+		\begin{equation*}
+			\mathcal{E}_{\text{S},\text{A}} + \frac{E_\text{Ha}}{2} \simeq - \frac{e^2}{R_{12}} \frac{1 \pm 2 \braket{\text{L} | \text{R}}}{1 \pm \braket{\text{L} | \text{R}}} \simeq - \frac{e^2}{R_{12}} (1 \pm \braket{\text{L} | \text{R}})(1 \mp \braket{\text{L} | \text{R}}) \simeq - \frac{e^2}{R_{12}} (1 \pm \braket{\text{L} | \text{R}})
+		\end{equation*}
+		che è il risultato cercato.
+	\end{proof}
+\end{proposition}
 
 
 
