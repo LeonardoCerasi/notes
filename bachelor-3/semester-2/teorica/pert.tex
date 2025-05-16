@@ -311,6 +311,168 @@ In general, the final $ \virgolette{reduced} $ amplitude formula will contain a 
 
 \subsection{Correlation functions}
 
+With the LSZ reduction formulae, the problem of computing scattering amplitudes is reduced to that of computing correlation functions. \\
+Consider a generic quantum field $ \phi(x) $ described by a Hamiltonian $ \ham = \ham_0 + \ham_\text{int} $: the exact form of $ \phi(x) $ is in general too difficult to obtain, as it satisfies a complicated non-linear equation of motion, so it cannot be written through an expansion in plane waves. To compute correlation functions, then, it is convenient to define a field related to $ \phi(x) $:
+\begin{equation}
+  \phi_I(t,\ve{x}) \defeq e^{i H_0 (t-t_0)} \phi(t_0, \ve{x}) e^{-i H_0 (t-t_0)}
+\end{equation}
+This field evolves with $ H_0 $, i.e. is a free field, and it is called the \textit{interaction picture} field. Being this a free field, it can be expanded as:
+\begin{equation}
+  \phi_I(t,\ve{x}) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a_\ve{p}\dg e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p} ,\, x^0 = t - t_0}
+\end{equation}
+
+\begin{proposition}{Interaction picture}{}
+  The transformation from the interaction picture to the Heisenberg picture is given by a unitary operator:
+  \begin{equation}
+    \phi(t,\ve{x}) = \tens{U}\dg(t,t_0) \phi_I \tens{U}(t,t_0)
+    \label{eq:int-heis-pic}
+  \end{equation}
+  with:
+  \begin{equation}
+    \tens{U}(t,t_0) \equiv e^{i H_0 (t-t_0)} e^{-i H (t-t_0)}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct calculation:
+    \begin{equation*}
+      \begin{split}
+        \phi(t,\ve{x})
+        & = e^{i H (t-t_0)} \phi(t_0,\ve{x}) e^{-i H (t-t_0)} \\
+        & = e^{i H (t-t_0)} e^{-i H_0 (t-t_0)} \left[ e^{i H_0 (t-t_0)} \phi(t_0,\ve{x}) e^{-i H_0 (t-t_0)} \right] e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \\
+        & = e^{i H (t-t_0)} e^{-i H_0 (t-t_0)} \phi_I(t,\ve{x}) e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \equiv \tens{U}\dg(t,t_0) \phi_I(t,\ve{x}) \tens{U}(t,t_0)
+      \end{split}
+    \end{equation*}
+    Unitarity is obvious, as $ H $ is a Hermitian operator.
+  \end{proof}
+\end{proofbox}
+
+Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials cannot be combined trivially (the Baker-Campbell-Hausdorff formula should be used).
+
+\begin{proposition}{Time evolution operator}
+  The time evolution operator is:
+  \begin{equation}
+    \tens{U}(t,t_0) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
+  \end{equation}
+  where:
+  \begin{equation}
+    H_I(t) \equiv e^{i H_0 (t-t_0)} H_\text{int} e^{-i H_0 (t-t_0)}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First of all, the time evolution operator solves the Schrödinger equation:
+    \begin{equation*}
+      \begin{split}
+        i \frac{\pa}{\pa t} \tens{U}(t,t_0)
+        & = e^{i H_0 (t-t_0)} (H - H_0) e^{-i H (t-t_0)} = e^{i H_0 (t-t_0)} H_\text{int} e^{-i H (t-t_0)} \\
+        & = e^{i H_0 (t-t_0)} H_\text{int} e^{-i H_0 (t-t_0)} e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \equiv H_I(t) \tens{U}(t,t_0)
+      \end{split}
+    \end{equation*}
+    The solution to this equation which satisfies the initial condition $ \tens{U}(t_0,t_0) = 1 $ is unique:
+    \begin{equation*}
+      \begin{split}
+        \tens{U}(t,t_0)
+        & = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right] = \sum_{n = 0}^{\infty} \frac{(-i)^n}{n!} \int_{[t_0,t]^n} \dd t_1 \dots \dd t_n\, \tempord\{H_I(t_1) \dots H_I(t_n)\} \\
+        & = \sum_{n = 0}^{\infty} (-i)^n \int_{t_0}^t \dd t_1 \int_{t_0}^{t_1} \dd t_2 \dots \int_{t_0}^{t_{n-1}} \dd t_n\, H_I(t_1) \dots H_I(t_n)
+      \end{split}
+    \end{equation*}
+    It is in fact clear that:
+    \begin{equation*}
+      \frac{\pa}{\pa t} \tens{U}(t,t_0) = \sum_{n = 0}^{\infty} (-i)^n \int_{t_0}^{t} \dd t_2 \dots \int_{t_0}^{t_{n-1}} \dd t_n\, H_I(t) H_I(t_2) \dots H_I(t_n) = -i H_I(t) \tens{U}(t,t_0)
+    \end{equation*}
+    Hence, this is a solution to the above equation.
+  \end{proof}
+\end{proofbox}
+
+\begin{lemma}[before upper = {\tcbtitle}]{}{time-evol-func}
+  \begin{equation}
+    \tens{U}(t_1,t_0) \tens{U}(t_0,t_2) = \tens{U}(t_1,t_2)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Observe that:
+    \begin{equation*}
+      i \frac{\pa}{\pa t} [\tens{U}(t,t_0) \tens{U}(t_0,t_2)] = \left[ i \frac{\pa}{\pa t} \tens{U}(t,t_0) \right] \tens{U}(t_0,t_2) = H_I(t) \tens{U}(t,t_0) \tens{U}(t_0,t_2)
+    \end{equation*}
+    The boundary condition now reads $ [\tens{U}(t,t_0) \tens{U}(t_0,t_2)]_{t = t_0} = \tens{U}(t_0,t_2) $, and the unique solution for this boundary condition is:
+    \begin{equation*}
+      \tens{U}(t,t_0) \tens{U}(t_0,t_2) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
+    \end{equation*}
+    which is precisely $ \tens{U}(t,t_2) $.
+  \end{proof}
+\end{proofbox}
+
+It is now possible to compute correlation functions.
+
+\begin{theorem}{Correlation functions}{}
+  Given a quantum field $ \phi(x) $ described by a Hamiltonian $ \ham = \ham_0 + \ham_\text{int} $, then:
+  \begin{equation}
+    \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} = \frac{\braket{0 | \tempord\{\phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int \dd^4x\, \ham_I \right]\} | 0}}{\braket{0 | \tempord\{\exp \left[ -i \int \dd^4x\, \ham_I \right]\} |0}}
+    \label{eq:corr-func-pert}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider WLOG $ \{t_k\}_{k = 1,\dots,n} : t_i < t_j $. Using \eref{eq:int-heis-pic} and \lref{lemma:time-evol-func}:
+    \begin{equation*}
+      \begin{split}
+        \braket{0 | \phi(x_1) \dots \phi(x_n) | 0}
+        & = \braket{0 | \tens{U}\dg(t_1,t_0) \phi_I(x_1) \tens{U}(t_1,t_0) \tens{U}\dg(t_2,t_0) \dots \tens{U}\dg(t_n,t_0) \phi_I(x_n) \tens{U}(t_n,t_0) | 0} \\
+        & = \braket{0 | \tens{U}\dg(t_1,t_0) \phi_I(x_1) \tens{U}(t_1,t_2) \dots \tens{U}(t_{n-1},t_n) \phi_I(x_n) \tens{U}(t_n,t_0) | 0}
+      \end{split}
+    \end{equation*}
+    Consider $ t \in \R : t \gg t_1 > \dots > t_n \gg -t $, so that $ \tens{U}(t_n,t_0) = \tens{U}(t_n,-t) \tens{U}(-t,t_0) $ and $ \tens{U}\dg(t_1,t_0) = \tens{U}\dg(t,t_0) \tens{U}(t,t_1) $. Therefore:
+    \begin{equation*}
+      \begin{split}
+        & \braket{0 | \phi(x_1) \dots \phi(x_n) | 0} \\
+        & = \braket{0 | \tens{U}\dg(t,t_0) [\tens{U}(t,t_1) \phi_I(x_1) \tens{U}(t_1,t_2) \phi_I(x_2) \tens{U}(t_2,t_3) \dots \tens{U}(t_{n-1},t_n) \phi_I(x_n) \tens{U}(t_n,-t)] \tens{U}(-t,t_0) | 0}
+      \end{split}
+    \end{equation*}
+    Note that this expression inside the square brackets is automatically time-ordered, so it may be rewritten as:
+    \begin{equation*}
+      \begin{split}
+        [\dots]
+        & = \tempord\{\phi_I(x_1) \dots \phi_I(x_n) \tens{U}(t,t_1) \tens{U}(t_1,t_2) \dots \tens{U}(t_n,-t)\} \\
+        & = \tempord\bigg\{ \phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int_{-t}^t \dd\tau\, H_I(\tau) \right]\bigg\}
+      \end{split}
+    \end{equation*}
+    These considerations hold for arbitrary $ t_0 $, so it can be set $ t_0 = -t \rightarrow -\infty $. Then:
+    \begin{equation*}
+      \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} = \braket{0 | \tens{U}\dg(+\infty,-\infty) \tempord\bigg\{ \phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int \dd^4x\, \ham_I \right] \bigg\} | 0}
+    \end{equation*}
+    Note that $ \bra{0} \tens{U}\dg(\infty,-\infty) $ is the Hermitian conjugate of $ \tens{U}(\infty,-\infty) \ket{0} $, i.e. the state obtained evolving in time the vacuum state. As it was already assumed, the initial-state vacuum coincides physically to the final-state vacuum, i.e.:
+    \begin{equation*}
+      \tens{U}(\infty,-\infty) \ket{0} = e^{i\alpha} \ket{0}
+      \qquad \Rightarrow \qquad
+      e^{-i \alpha} = \left( \braket{0 | \tempord\bigg\{ \exp \left[ -i \int \dd^4x\, \ham_I \right] \bigg\} | 0} \right)^{-1}
+    \end{equation*}
+    Finally:
+    \begin{equation*}
+    \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} = \frac{\braket{0 | \tempord\{\phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int \dd^4x\, \ham_I \right]\} | 0}}{\braket{0 | \tempord\{\exp \left[ -i \int \dd^4x\, \ham_I \right]\} |0}}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+This allows to compute correlation functions from free fields, rather than interaction fields. Moreover, note that the functional dependence of $ \ham_I $ in terms of $ \phi_I(x) $ is the same as that of $ \ham_\text{int} $ in terms of $ \phi(x) $.
+
+\begin{example}{$ \phi^4 $ potential}{}
+  Consider the $ \phi^4 $-interaction Hamiltonian $ \ham_\text{int} = \frac{\lambda}{4!} \phi^4 $. Then:
+  \begin{equation*}
+    \begin{split}
+      \ham_I = \frac{\lambda}{4!} e^{i H_0 (t-t_0)} \phi^4 e^{-i H_0 (t-t_0)} = \frac{\lambda}{4!} \left[ e^{i H_0 (t-t_0)} \phi e^{-i H_0 (t-t_0)} \right]^4 = \frac{\lambda}{4!} \phi_I^4
+    \end{split}
+  \end{equation*}
+\end{example}
+
+Note that \eref{eq:corr-func-pert} is naturally suited for perturbative evaluation with respect to coupling constants which appear in $ \ham_\text{int} $, thanks to the exponential function.
+
 
 
 
