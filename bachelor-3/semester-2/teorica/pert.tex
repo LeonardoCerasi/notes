@@ -473,6 +473,87 @@ This allows to compute correlation functions from free fields, rather than inter
 
 Note that \eref{eq:corr-func-pert} is naturally suited for perturbative evaluation with respect to coupling constants which appear in $ \ham_\text{int} $, thanks to the exponential function.
 
+\section{Feynman diagrams}
+
+The problem of computing scattering amplitudes has been further reduced to that of computing $ n $-point Green functions of free (interaction picture) fields.
+
+\subsection{Feynman propagator}
+
+\begin{theorem}{Feynman propagator}{}
+  Given a real scalar field $ \phi(x) $, the \bcth{Feynman propagator} is computed as:
+  \begin{equation}
+    D_\text{F}(x-y) \defeq \braket{0 | \tempord\{\phi_I(x) \phi_I(y)\} | 0} = \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m^2 + i \epsilon} e^{-i p_\mu (x - y)^\mu}
+    \label{eq:feynm-prop}
+  \end{equation}
+  with $ \epsilon \rightarrow 0^+ $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, decompose $ \phi_I(x) $ into its positive- and negative-frequency parts (i.e. annihilation and creation parts):
+    \begin{equation*}
+      \phi_I^+(x) \equiv \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} a_\ve{p} e^{-i p_\mu x^\mu}
+      \qquad \qquad
+      \phi_I^-(x) \equiv \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} a_\ve{p}\dg e^{i p_\mu x^\mu}
+    \end{equation*}
+    Clearly $ \phi_I(x)^+ \ket{0} = 0 $ and $ \bra{0} | \phi_I^-(x) = 0 $. Consider first the case $ x^0 > y^0 $:
+    \begin{equation*}
+      \begin{split}
+        \tempord\{\phi_I(x) \phi_I(y)\}
+        & = \phi_I^+(x) \phi_I^+(y) + \phi_I^+(x) \phi_I^-(y) + \phi_I^-(x) \phi_I^+(y) + \phi_I^-(x) \phi_I^-(y) \\
+        & = \phi_I^+(x) \phi_I^+(y) + \phi_I^-(y) \phi_I^+(x) + \phi_I^-(x) \phi_I^+(y) + \phi_I^-(x) \phi_I^-(y) + [\phi_I^+(x) , \phi_I^-(y)] \\
+        & = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(x) , \phi^-(y)]
+      \end{split}
+    \end{equation*}
+    Similarly, for $ 0 > x^0 $:
+    \begin{equation*}
+      \tempord\{\phi_I(x) \phi_I(y)\} = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(y) , \phi^-(x)]
+    \end{equation*}
+    Therefore, in general:
+    \begin{equation*}
+      \begin{split}
+        \tempord\{\phi_I(x) \phi_I(y)\}
+        & = \normord\{\phi_I(x) \phi_I(y)\} + \theta(x^0 - y^0) [\phi_I^+(x) , \phi_I^-(y)] + \theta(y^0 - x^0) [\phi_I^+(y) , \phi_I^-(x)] \\
+        & \equiv \normord\{\phi_I(x) \phi_I(y)\} + D_\text{F}(x-y)
+      \end{split}
+    \end{equation*}
+    Now, observe that $ \braket{0 | \normord\{\phi_I(x) \phi_I(y)\} | 0} = 0 $, as there is always either an annihilation operator acting on $ \ket{0} $ or a creation operator acting on $ \bra{0} $. On the other hand, $ D_\text{F}(x-y) \in \C $, as $ [a_\ve{p} , a\dg_\ve{q}] \in \C $, therefore $ \braket{0 | D_\text{F}(x-y) | 0} = D_\text{F}(x-y) \braket{0 | 0} = D_\text{F}(x-y) $. There only remains to compute the commutators:
+    \begin{equation*}
+      \begin{split}
+        D_\text{F}(x-y)
+        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^6 \sqrt{4E_\ve{p}E_\ve{q}}} \left[ \theta(x^0 - y^0) [a_\ve{p} , a\dg_\ve{q}] e^{-i p_\mu x^\mu + i q_\mu y^\mu} + \theta(y^0 - x^0) [a_\ve{p} , a\dg_\ve{q}] e^{-i p_\mu y^\mu + i q_\mu x^\mu} \right] \\
+        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^3 \sqrt{4E_\ve{p}E_\ve{q}}} \delta^{(3)}(\ve{p} - \ve{q}) \left[ \theta(x^0 - y^0) e^{-i p_\mu x^\mu + i q_\mu y^\mu} + \theta(y^0 - x^0) e^{-i p_\mu y^\mu + i q_\mu x^\mu} \right] \\
+        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \left[ \theta(x^0 - y^0) e^{-i p_\mu (x-y)^\mu} + \theta(y^0 - x^0) e^{i p_\mu (x-y)^\mu} \right]
+      \end{split}
+    \end{equation*}
+    To show that this is equivalent to the thesis, note that \eref{eq:feynm-prop} can be rewritten as:
+    \begin{equation*}
+      D_\text{F}(x-y) = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \int_\R \frac{\dd p^0}{2\pi} \frac{i}{(p^0)^2 - E_\ve{p}^2 + i\epsilon} e^{-i p^0 (x^0 - y^0)}
+    \end{equation*}
+    as $ E_\ve{p} = + \sqrt{\ve{p}^2 + m^2} $. The integral in $ \dd p^0 $ can be computed in the complex $ p^0 $-plane\footnote{As the integrand is $ \sim (p^0)^{-2} $, the contribution of the curved part of a semicircular contour vanishes, only leaving the integral over the real axis.}: the $ i\epsilon $-prescription slightly displaces the poles from the real axis\footnote{The poles are $ p^0 = \pm \sqrt{E_\ve{p}^2 - i\epsilon} \simeq \pm \left( E_\ve{p} - \frac{i\epsilon}{2E_\ve{p}} \right) $.}, and in particular that in $ p^0 = + E_\ve{p} $ is slightly below it while that in $ p^0 = - E_\ve{p} $ is slightly above it. If $ x^0 - y^0 > 0 $, choose a semicircular (clockwise) contour in the lower-half plane, so that only the $ p^0 = E_\ve{p} $ singularity is enclosed:
+    \begin{equation*}
+      D_\text{F}(x-y)\vert_{x^0 > y^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (-2\pi i) \frac{e^{-i E_\ve{p} (x-y)}}{2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{-i p_\mu (x-y)^\mu}
+    \end{equation*}
+    If instead $ x^0 - y^0 < 0 $, choose a semicircular (counter-clockwise) contour in the upper-half plane:
+    \begin{equation*}
+      D_\text{F}(x-y)\vert_{y^0 > x^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (2\pi i) \frac{e^{i E_\ve{p} (x^0 - y^0)}}{-2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu (x-y)^\mu}
+    \end{equation*}
+    where in the last integral $ \ve{p} \rightarrow -\ve{p} $ was renamed. The proof is complete.
+  \end{proof}
+\end{proofbox}
+
+The expression for the Feynman propagator in momentum space is trivially found:
+\begin{equation}
+  \tilde{D}_\text{F}(p) = \frac{i}{p^2 - m^2 + i\epsilon}
+\end{equation}
+Moreover, the Feynman propagator is just a Green function for the KG operator:
+\begin{equation*}
+  (\Box_x + m^2) D_\text{F}(x-y) = \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m^2 + i\epsilon} (-p^2 + m^2) e^{-i p_\mu (x-y)^\mu} = -i \delta^{(4)}(x-y)
+\end{equation*}
+Note that this result is independent of the $ i\epsilon $-prescription.
+
+\subsection{Wick's theorem}
+
 
 
 
