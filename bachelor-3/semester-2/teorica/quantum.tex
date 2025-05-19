@@ -21,8 +21,8 @@ In terms of creation and annihilation operators, the commutator \eref{eq:scalar-
   [a_\ve{p} , a_\ve{q}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
   \label{eq:scalar-quant-op-comm}
 \end{equation}
-while $ [a_\ve{p} , a_\ve{q}] = [a_\ve{p}^\dagger , a_\ve{q}^\dagger] = 0 $. These can be regarded as the creation and annihilation operators of a collection of harmonic oscillators, one for each value of the momentum $ \ve{p} $: the \textit{Fock space} of the real scalar field can thus be constructed analogously to the Hilbert space of the harmonic oscillator.\\
-Defining the \textit{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \ve{p} $, suitably normalized as $ \braket{0 | 0} = 1 $, the generic state of the Fock space is:
+while $ [a_\ve{p} , a_\ve{q}] = [a_\ve{p}^\dagger , a_\ve{q}^\dagger] = 0 $. These can be regarded as the creation and annihilation operators of a collection of harmonic oscillators, one for each value of the momentum $ \ve{p} $: the \bctxt{Fock space} of the real scalar field can thus be constructed analogously to the Hilbert space of the harmonic oscillator.\\
+Defining the \bctxt{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \ve{p} $, suitably normalized as $ \braket{0 | 0} = 1 $, the generic state of the Fock space is:
 \begin{equation}
   \ket{\ve{p}_1 , \dots , \ve{p}_n} = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}}\, a_{\ve{p}_1}^\dagger \dots a_{\ve{p}_n}^\dagger \ket{0}
 \end{equation}
@@ -126,16 +126,16 @@ The second term in the Hamiltonian \eref{eq:kg-haml} is the sum of the zero-poin
 \begin{equation*}
   E_\text{vac} = \frac{V}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p}
 \end{equation*}
-This energy shows two divergences: the one coming from the infinite-volume limit (i.e. small momentum), regularized introducing an \textit{infrared cutoff} in the form of a finite volume, and the one from the ultra-relativistic limit (i.e. large momentum), regularized introducing an \textit{ultraviolet cutoff} in the form of a maximum momentum $ \Lambda $. These divergences are retained in the expression for $ E_\text{vac} $, as $ E_\text{vac} \sim V $ and $ E_\text{vac} \sim \Lambda^4 $, but can be ignored (when ignoring gravity) since experiments are only sensitive to energy differences.\\
+This energy shows two divergences: the one coming from the infinite-volume limit (i.e. small momentum), regularized introducing an \bctxt{infrared cutoff} in the form of a finite volume, and the one from the ultra-relativistic limit (i.e. large momentum), regularized introducing an \bctxt{ultraviolet cutoff} in the form of a maximum momentum $ \Lambda $. These divergences are retained in the expression for $ E_\text{vac} $, as $ E_\text{vac} \sim V $ and $ E_\text{vac} \sim \Lambda^4 $, but can be ignored (when ignoring gravity) since experiments are only sensitive to energy differences.\\
 Discarding the zero-point energy, the Hamiltonian becomes:
 \begin{equation}
   H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} a_\ve{p}^\dagger a_\ve{p} \equiv \normord \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
 \end{equation}
-where the \textit{normal ordering operator} $ \normord $ was introduced, which acts by moving all creation operators to the left and all annihilation operators to the right (ex.: $ \normord a_\ve{p} a_\ve{p}^\dagger = a_\ve{p}^\dagger a_\ve{p} $). It is now straightforward to compute the energy of a generic state in the Fock space, as $ a_\ve{p}^\dagger a_\ve{p} $ is just a number operator:
+where the \bctxt{normal ordering operator} $ \normord $ was introduced, which acts by moving all creation operators to the left and all annihilation operators to the right (ex.: $ \normord\{a_\ve{p} a_\ve{p}^\dagger\} = a_\ve{p}^\dagger a_\ve{p} $). It is now straightforward to compute the energy of a generic state in the Fock space, as $ a_\ve{p}^\dagger a_\ve{p} $ is just a number operator:
 \begin{equation}
   H \ket{\ve{p}_1 , \dots , \ve{p}_n} = \left( E_{\ve{p}_1} + \dots + E_{\ve{p}_n} \right) \ket{\ve{p}_1 , \dots , \ve{p}_n}
 \end{equation}
-Computing the spatial momentum from \eref{eq:4-mom-def} as $ P^i = \normord \int \dd^3x\, \theta^{0i} = \int \dd^3x\, \mathfrak{N} \pa_0 \phi \pa^i \phi $:
+Computing the spatial momentum from \eref{eq:4-mom-def} as $ P^i = \normord \int \dd^3x\, \theta^{0i} = \int \dd^3x\, \normord\{\pa_0 \phi \pa^i \phi\} $:
 \begin{equation}
   P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i a_\ve{p}^\dagger a_\ve{p}
 \end{equation}
@@ -148,9 +148,9 @@ Recalling \dref{def:kg-scal-prod}, it is possible to relate the Fourier modes th
 \begin{equation}
   \braket{f,g} \defeq i \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = i \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv i \int \dd^3x\, W_0[f^*,g](x)
 \end{equation}
-where $ W_0[f^*,g](x) $ is the ($ t $-)Wronskian\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
+where $ W_0[f^*,g](x) $ is the ($ t $-)\bctxt{Wrońskian}\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
 %
-\footnotetext{Given $ \{f_k(x)\}_{k = 1,\dots,N} \subset \mathcal{C}^N(I,\C) $, with $ I \subset \R^n $ and $ N \in \N $, their ($ i^\text{th} $-)Wronskian is $ W_i \in \mathcal{C}(I,\C) $ defined as:
+\footnotetext{Given $ \{f_k(x)\}_{k = 1,\dots,N} \subset \mathcal{C}^N(I,\C) $, with $ I \subset \R^n $ and $ N \in \N $, their ($ i^\text{th} $-)\textit{Wrońskian} is $ W_i \in \mathcal{C}(I,\C) $ defined as:
 \begin{equation}
   W[f_1, \dots, f_N](x) \defeq
   \begin{vmatrix}
@@ -160,7 +160,7 @@ where $ W_0[f^*,g](x) $ is the ($ t $-)Wronskian\footnotemark of $ f^*(x),g(x) $
     \pa_i^{N-1} f_1(x) & \pa_i^{N-1} f_2(x) & \dots & \pa_i^{N-1} f_N(x)
   \end{vmatrix}
 \end{equation}
-If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of the Wronskian (as $ \pa_i $ is a linear operator), hence it vanishes: to show that a set of differentiable functions is linearly independent on a given set, it suffices to show that their Wronskian does not vanish identically on said set (although it may vanish on a zero-measure subset).}
+If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of the Wrońskian (as $ \pa_i $ is a linear operator), hence it vanishes: to show that a set of differentiable functions is linearly independent on a given set, it suffices to show that their Wrońskian does not vanish identically on said set (although it may vanish on a zero-measure subset).}
 
 \begin{proposition}{Orthonormality of Fourier modes}{fourier-orthonorm}
   Given positive- and negative-frequency Fourier modes:
@@ -272,14 +272,14 @@ The quanta of a complex scalar field are given by two different species of parti
 \end{proofbox}
 
 While normal ordering was justified when considering the Hamiltonian on the grounds that the vacuum energy is unobservable, a charged vacuum would have observable effects; however when promoting $ \phi $ to a quantum operator, the expression $ \phi^\dagger \smlra{\pa_0} \phi $ presents an ordering ambiguity (ex.: $ \phi^\dagger (\pa_0 \phi) $ or $ (\pa_0 \phi) \phi^\dagger $), which is removed requiring the charge of the vacuum to vanish.\\
-Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \textit{antiparticles}.\\
+Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \bctxt{antiparticles}.\\
 For a real scalar field, the reality condition reads $ a_\ve{p} = b_\ve{p} $, thus it describes a field whose particle is its own antiparticle, and it is symmetric under any $ \Un{1} $ symmetry.
 
 \newpage
 
 \section{Spinor fields}
 
-A principle of QFT is the \textit{spin-statistic theorem}: integer-spin fields are to be quantized imposing equal-time commutation relations, while half-integer-spin with equal-time anticommutation relations.
+A principle of QFT is the \bctxt{spin-statistic theorem}: integer-spin fields are to be quantized imposing equal-time commutation relations, while half-integer-spin with equal-time anticommutation relations.
 
 \subsection{Dirac fields}
 
@@ -358,25 +358,26 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
       \end{split}
     \end{equation*}
 
-    \begin{lemma}[before upper = {\tcbtitle}]{}{haml-lem}
+    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{haml-lem}
       \begin{equation*}
         u^{s\dagger}(\ve{p}) v^r(-\ve{p}) = v^{s\dagger}(-\ve{p}) u^r(\ve{p}) = 0
       \end{equation*}
     \end{lemma}
 
-    Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
+    Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord\{b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
     \begin{equation*}
-      H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \normord \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+      H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \normord\{a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
     \end{equation*}
   \end{proof}
 
 \end{proofbox}
 
-It can be seen that, using anticommutators, the Hamiltonian and its interpretation are analogous to that of the complex scalar field: if commutators were used, instead, one would get a final $ - b_{\ve{p},s}^\dagger b_{\ve{p},s} $ term, which is problematic as it yields an energy unbounded from below\footnotemark{}.\\
+It can be seen that, using anticommutators, the Hamiltonian and its interpretation are analogous to that of the complex scalar field: if commutators were used, instead, one would get a final $ - b_{\ve{p},s}^\dagger b_{\ve{p},s} $ term, which is problematic as it yields an energy unbounded from below\footnotemark{}.
+%
+\footnotetext{The spin-statistics theorem is implied by Lorentz invariance, positive energies and causality (as shown in \cite{pauli}).}
+
 The momentum operator too is analogous to that of the complex scalar field, with the additional spin degree of freedom.
-%
-\footnotetext{This hints to a more profound meaning of the spin-statistic theorem: as shown by Pauli in \cite{pauli}, this theorem is implied by the conditions of Lorentz invariance, positive energies and causality.}
-%
+
 \begin{proposition}{Momentum operator}{}
   The momentum operator of a Dirac field $ \Psi $ is:
   \begin{equation}
@@ -405,12 +406,12 @@ The momentum operator too is analogous to that of the complex scalar field, with
     \end{equation*}
     Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
     \begin{equation*}
-      \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \normord \left[ a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+      \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \normord\{a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
     \end{equation*}
   \end{proof}
 \end{proofbox}
 
-Thus, both $ a_{\ve{p},s}^\dagger $ and $ b_{\ve{p},s}^\dagger $ create particles with energy $ +E_\ve{p} $ and momentum $ \ve{p} $: these are respectively called \textit{fermions} and \textit{antifermions}.
+Thus, both $ a_{\ve{p},s}^\dagger $ and $ b_{\ve{p},s}^\dagger $ create particles with energy $ +E_\ve{p} $ and momentum $ \ve{p} $: these are respectively called \bctxt{fermions} and \bctxt{antifermions}.
 
 \subsubsection{Quantum numbers}
 
@@ -530,7 +531,7 @@ As for the KG field, the ladder operators of the Dirac field can be made explici
       \end{split}
     \end{equation*}
 
-    \begin{lemma}[before upper = {\tcbtitle}]{}{spinor-gamma-0}
+    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{spinor-gamma-0}
       \begin{equation}
         \bar{u}^s(\ve{p}) \gamma^0 v^r(-\ve{p}) = 0
         \qquad \qquad
@@ -634,11 +635,7 @@ Setting $ \ve{p}' \equiv - \ve{p} , \ve{x}' \equiv -\ve{x} $ and noting that, by
     &= \gamma^0 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p},s} u^s(p) e^{-i p_\mu x'^\mu} - \eta_b b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x'^\mu} \right]_{p^0 = E_\ve{p}}
   \end{split}
 \end{equation*}
-Requiring that $ \Psi $ is a representation of parity, up to a phase, means that:
-\begin{equation}
-  \eta_a = - \eta_b
-\end{equation}
-so that:
+Requiring that $ \Psi $ is a representation of parity, up to a phase, means $ \eta_a = - \eta_b $, so that:
 \begin{equation}
   \parity \Psi(t,\ve{x}) \parity = \eta_a \gamma^0 \Psi(t,-\ve{x})
 \end{equation}
@@ -653,7 +650,7 @@ As already noted, the scalar complex field is similar to the Dirac field, apart 
 Recall \eref{eq:dir-spin-charge-conj}: charge conjugation acts on the classical Dirac field as $ \Psi \mapsto -i \gamma^2 \Psi^* $.
 
 \begin{definition}{Quantized charge conjugation}{}
-  The \textit{charge conjugation operator} is defined as:
+  The \bcdef{charge conjugation operator} is defined as:
   \begin{equation}
     \chargec a_{\ve{p},s} \chargec = \eta_c b_{\ve{p},s}
     \qquad \qquad
@@ -795,7 +792,7 @@ It is useful to define the reversed ladder operators:
 \end{equation}
 
 \begin{definition}{Time reversal}{}
-  The \textit{time reversal operator} is defined as:
+  The \bcdef{time reversal operator} is defined as:
   \begin{equation}
     \timer a_{\ve{p},s} \timer = a_{-\ve{p},-s}
     \qquad \qquad
@@ -847,7 +844,7 @@ An additional overall phase is irrelevant. Moreover, as other discrete symmetrie
   \label{tab:ferm-bil-eigen}
  \end{table}
 
- This shows that it is not possible to construct a Lorentz-invariant Lagrangian which violates CPT simmetry: this is an example of the \textit{CPT theorem}, which states that, independently of the spin of the particle, a (locale) Lorentz-invariant field theory with a hermitian Hamiltonian cannot violate CPT symmetry.\\
+ This shows that it is not possible to construct a Lorentz-invariant Lagrangian which violates CPT symmetry: this is an example of the \bctxt{CPT theorem}, which states that, independently of the spin of the particle, a (locale) Lorentz-invariant field theory with a hermitian Hamiltonian cannot violate CPT symmetry.
  A consequence of this theorem is that particles and antiparticles have exactly the same mass, which has been so far empirically confirmed.
 
 
