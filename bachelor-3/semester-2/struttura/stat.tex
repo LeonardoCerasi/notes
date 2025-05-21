@@ -121,6 +121,7 @@ L'operatore densità dell'ensemble canonico (di Gibbs) è diagonale nell'autobas
 	L'energia interna media è:
 	\begin{equation}
 		U = - \frac{\pa}{\pa \beta} \ln Z
+		\label{eq:int-en-z}
 	\end{equation}
 
 	\tcblower
@@ -162,6 +163,7 @@ Essendo $ \ln Z $ additivo su sistemi isolati, l'energia interna è correttament
 	Il calore specifico (a volume costante) è:
 	\begin{equation}
 		c_V = k_\text{B} \beta^2 \frac{\pa^2}{\pa \beta^2} \ln Z
+		\label{eq:cal-spec-z}
 	\end{equation}
 
 	\tcblower
@@ -219,9 +221,10 @@ Un sistema di $ N $ particelle si dice \textit{ideale} se si può separare:
 \begin{equation}
 	\mathcal{H} = \sum_{i = 1}^N \mathcal{H}_i \,:\, [\mathcal{H}_i , \mathcal{H}_j] = 0
 \end{equation}
-dove $ \mathcal{H}_i $ descrive soltanto i gradi di libertà della particella $ i $-esima. Lo spettro di questa Hamiltoniana è $ E_{\alpha_1, \dots, \alpha_N} = E_{\alpha_1} + \dots + E_{\alpha_N} $, ed inoltre si definisce il numero di occupazione $ n_k $ del livello energetico $ E_k $, $ I \in \mathcal{N} \subset \N $, così da poter scrivere la funzione di partizione del sistema come:
+dove $ \mathcal{H}_i $ descrive soltanto i gradi di libertà della particella $ i $-esima. Lo spettro di questa Hamiltoniana è $ E_{\alpha_1, \dots, \alpha_N} = E_{\alpha_1} + \dots + E_{\alpha_N} $, ed inoltre si definisce il numero di occupazione $ n_k $ del livello energetico $ E_k $, $ k \in \mathcal{I} \subset \N $, così da poter scrivere la funzione di partizione del sistema come:
 \begin{equation}
 	Z = \sum_{\alpha_1, \dots, \alpha_N \in \mathcal{I}} \frac{\prod_{k \in \mathcal{I}} n_k!}{N!} \exp \left( - \beta \sum_{i = 1}^N E_{\alpha_i} \right)
+	\label{eq:z-sing-part}
 \end{equation}
 Per un sistema bosonico la sommatoria su $ \alpha_1, \dots, \alpha_N $ non ha condizioni, mentre per un sistema fermionico essa è solo su $ \alpha_1 \neq \dots \neq \alpha_N $ (ed in tal caso $ n_k \in \{0,1\} \,\,\forall k \in \mathcal{I} $, ovvero $ n_k! = 1 \,\,\forall k \in \mathcal{I} $). Questa funzione di partizione non è fattorizzabile in generale, a causa della produttoria per i bosoni e del principio di Pauli per i fermioni, ma diventa fattorizzabile in particolari regimi. \\
 Si assuma che lo spettro enegetico del sistema non abbia limite superiore: a bassa temperatura, il fattore esponenziale nella distribuzione di Boltzmann tende a favorire stati con energia totale $ \sum_{i = 1}^N E_{\alpha_i} = \sum_{\alpha \in \mathcal{I}} n_\alpha E_\alpha $ più bassa; d'altro canto, ad alta temperatura, tutti gli stati single-particle con $ E_\alpha \lesssim k_\text{B} T $ hanno una probabilità pressoché eguale di essere occupati, e per $ T $ molto grande il numero di tali possibili stati è $ \gg N $, dunque la praticamente totalità degli stati a $ N $ particelle avranno soltanto stati con $ n_\alpha \in \{0,1\} $, indipendentemente dalla natura fermionica o bosonica del sistema. Ciò è riportato in Fig. \ref{boson-temp}. \\
@@ -346,6 +349,7 @@ Si ottiene dunque:
 ovvero:
 \begin{equation}
 	g_\text{tr}(E) = \frac{V M^{3/2}}{\sqrt{2} \pi^2 \hbar^3} \sqrt{E}
+	\label{eq:en-deg}
 \end{equation}
 La distribuzione di probabilità che descrive l'energia di una singola particella si può trovare come:
 \begin{equation*}
@@ -368,6 +372,335 @@ Sostituendo $ E = \frac{1}{2} M v^2 $ si trova la \textit{distribuzione di Maxwe
 \begin{equation}
 	\frac{\dd P(v)}{\dd v} = \sqrt{\frac{2 M^3}{\pi (k_\text{B} T)^3}} v^2 \exp \left( - \frac{M}{2 k_\text{B} T} v^2 \right)
 \end{equation}
+
+\subsubsection{Gradi di libertà interni}
+
+Per quanto riguarda $ \mathcal{H}_{i,\text{int}} $, si può assumere una separazione netta tra i gradi di libertà rotazionali e quelli vibrazionali (al pari delle molecole), così da poter scrivere $ \mathcal{H}_{i,\text{int}} = \mathcal{H}_{i,\text{vib}} + \mathcal{H}_{i,\text{rot}} $ e dunque $ Z_{1,\text{int}} = Z_{1,\text{vib}} Z_{1,\text{rot}} $.
+
+\paragraph{Componente vibrazionale}
+
+Addottando l'approssimazione armonica, l'Hamiltoniana vibrazionale si riduce a quella di oscillatore armonico $ E_{1,\text{vib}} = \hbar \omega \left( v + \frac{1}{2} \right) $, con $ \omega \defeq\sqrt{\kappa / \mu} $ e $ \kappa \equiv \frac{\pa^2 V_\text{ad}}{\pa R^2}\vert_{R = R_\text{m}} $.
+
+\begin{proposition}{Funzione di partizione vibrazionale}{}
+	Definendo $ x \equiv \theta_\text{vib} / T $, si ha:
+	\begin{equation}
+		Z_{1,\text{vib}} = \frac{1}{2 \sinh(x/2)}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		\begin{equation*}
+			Z_{1,\text{vib}} = \sum_{v \in \N_0} \exp \left[ -\beta \hbar \omega \left( v + \frac{1}{2} \right) \right] = \exp \left( - \frac{x}{2} \right) \sum_{v = 0}^\infty \exp \left( -v x \right) = \frac{e^{-x/2}}{1 - e^{-x}} = \frac{1}{2 \sinh(x/2)}
+		\end{equation*}
+	\end{proof}
+\end{proposition}
+
+Dall'Eqq. \ref{eq:int-en-z}-\ref{eq:cal-spec-z} si ricavano:
+\begin{equation}
+	U_{1,\text{vib}} = \hbar \omega \left( \frac{1}{2} + \frac{1}{e^x - 1} \right)
+\end{equation}
+\begin{equation}
+	c_{V,1,\text{vib}} = k_\text{B} \left[ \frac{x/2}{\sinh(x/2)} \right]^2
+\end{equation}
+Si ricordi che, in quanto grandezze estensive, $ U_\text{vib} = N U_{1,\text{vib}} $ e $ c_{V,\text{vib}} = N c_{V,1,\text{vib}} $. Gli andamenti di queste quantità sono riportati in Fig. \ref{vib-heat-int}: si vede che $ U_{1,\text{vib}} $ è asintoticamente lineare in $ T $ (come ci si aspetterebbe, contibuendo per $ 2 \cdot \frac{1}{2} k_\text{B} T $ all'energia interna totale), ed anche $ c_{V,1,\text{vib}} $ tende asintoticamente al suo valore classico. Questo comportamente è detto $ \virgolette{scongelamento} $ dei gradi di libertà rotazionali ed avviene una volta superata la soglia $ \theta_\text{vib} \sim 10^3-10^4 \,\text{K} $.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{vib-heat-int.png}
+	\caption{Temperature dependence of $ U_{1,\text{vib}} $ and $ c_{V,1,\text{vib}} $.}
+	\label{vib-heat-int}
+\end{figure}
+
+\paragraph{Componente rotazionale}
+
+Nell'approssimazione di rotatore rigido libero, la funzione d'onda rotazionale è un'armonica sferica e lo spettro energetico è $ E_\text{rot} = \frac{\hbar^2}{2I} \ell (\ell + 1) $, con $ I \equiv \mu R_\text{m}^2 $. In questo caso non c'è una forma analitica compatta:
+\begin{equation*}
+	Z_{1,\text{rot}} = \sum_{\ell \in \N_0} \sum_{m = -\ell}^{\ell} e^{- \frac{\beta \hbar^2}{2I} \ell (\ell + 1)} = \sum_{\ell = 0}^\infty (2\ell + 1) \exp \left[ -\frac{\theta_\text{rot}}{T} \ell (\ell + 1) \right]
+\end{equation*}
+La temperatura caratteristica $ \theta_\text{rot} $ è tendenzialmente molto bassa ($ \sim 1-10 \,\text{K} $, la più alta è $ 85 \,\text{K} $ per $ \ch{H_2} $), dunque, dato che nel regime $ \theta_\text{rot} / T \ll 1 $ l'esponenziale decade lentamente e molti termini contribuiscono a $ Z_{1,\text{rot}} $, si può approssimare:
+\begin{equation*}
+	Z_{1,\text{rot}} \simeq \int_0^\infty \dd\ell\, (2\ell + 1) \exp \left[ - \frac{\theta_\text{rot}}{T} \ell (\ell + 1) \right] = \int_0^\infty \dd y\, e^{- \frac{\theta_\text{rot}}{T} y}
+\end{equation*}
+Si trova quindi che, per $ T \gg \theta_\text{rot} $:
+\begin{equation}
+	Z_{1,\text{rot}} \simeq \frac{T}{\theta_\text{rot}}
+\end{equation}
+Dall'Eqq. \ref{eq:int-en-z}-\ref{eq:cal-spec-z} si ricavano:
+\begin{equation}
+	U_{1,\text{rot}} \simeq k_\text{B} T
+\end{equation}
+\begin{equation}
+	c_{V,1,\text{rot}} \simeq k_\text{B}
+\end{equation}
+che sono proprio i valori classicamente attesi (confermando il limite ad alta temperatura come il limite classico con $ \virgolette{scongelamento} $ dei gradi di libertà interni). Per $ T \ll \theta_\text{rot} $, invece, l'esponenziale decade velocemente e $ Z_{1,\text{rot}} $ è ottenuto troncando la serie ai primi termini (tendenzialmente si tengono $ \ell = 0 $ e $ \ell = 1 $): l'andamento a tutte le temperature è riportato in Fig. \ref{rot-heat-int}. \\
+L'espanzione in serie di $ Z_{1,\text{rot}} $ fornisce anche un metodo quantitativo per calcolare le intensità relative dei picchi di uno spettro roto-vibrazionale, poiché dà la probabilità di occupazione di un livello $ (\ell,m) $ o complessivamente $ \ell $:
+\begin{equation}
+	P_{\ell,m} = \frac{e^{- \frac{\beta \hbar^2}{2I} \ell (\ell + 1)}}{Z}
+	\qquad \qquad
+	P_\ell = \frac{2\ell + 1}{Z} e^{- \frac{\theta_\text{rot}}{T} \ell (\ell + 1)}
+\end{equation}
+
+\begin{proposition}{}{}
+	La riga più intensa in uno spettro roto-vibrazionale è quella associata a $ \ell_\text{max} \rightarrow \ell_\text{max} \pm 1 $, con:
+	\begin{equation}
+		\ell_\text{max} = \frac{1}{2} \left[ \sqrt{\frac{2T}{\theta_\text{rot}}} - 1 \right]
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		La riga più intensa è quella associata al livello rotazionale più popolato. Quest'ultimo si trova ponendo:
+		\begin{equation*}
+			\frac{\dd P_\ell}{\dd \ell}\bigg\vert_{\ell = \ell_\text{max}} = 0
+			\quad \Rightarrow \quad
+			2 - (2 \ell_\text{max} + 1)^2 \frac{\theta_\text{rot}}{T} = 0
+			\quad \Rightarrow \quad
+			\ell_\text{max} = \frac{1}{2} \left[ \sqrt{\frac{2T}{\theta_\text{rot}}} - 1 \right]
+		\end{equation*}
+	\end{proof}
+\end{proposition}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{rot-heat-int.png}
+	\caption{Temperature dependence of $ U_{1,\text{vib}} $ and $ c_{V,1,\text{vib}} $.}
+	\label{rot-heat-int}
+\end{figure}
+
+\paragraph{Calore specifico totale}
+
+Mettendo insieme il contributo rotazionale e quello vibrazionale al calore specifico, si ottiene l'andamento in Fig. \ref{vib-rot-c}: a $ T = 0 \,\text{K} $ è presente il solo contributo traslazionale, mentre aumentando la temperatura si scongelano prima i gradi di libertà rotazionali e poi, a temperature sufficientemente elevate, quelli vibrazionali.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.80 \textwidth]{vib-rot-c.png}
+	\caption{Temperature dependence of $ c_{V,1} = c_{V,1,\text{tr}} + c_{V,1,\text{rot}} + c_{V,1,\text{vib}} $ for biatomic molecules.}
+	\label{vib-rot-c}
+\end{figure}
+
+\subsection{Limite a bassa temperatura}
+
+Mentre ad alte temperature sia i sistemi fermionici che quelli bosonici si comportano come dei gas ideali classici, a basse temperature il loro comportamento diverge a causa dei differenti vincoli sull'occupazione dei livelli energetici. \\
+Riscrivendo l'Eq. \ref{eq:z-sing-part} rispetto ai numeri d'occupazione (quindi abbandonando la descrizione rispetto alle singole particelle):
+\begin{equation}
+	Z = \sum_{\alpha_1, \dots, \alpha_N \in \mathcal{I}} \frac{\prod_{k \in \mathcal{I}} n_k!}{N!} \exp \left( -\beta \sum_{i = 1}^N E_{\alpha_i} \right) = \sum_{\{n_\alpha\}} \prod_{\alpha \in \mathcal{I}} \left( e^{-\beta E_\alpha} \right)^{n_\alpha}
+	\label{eq:z-n-occ}
+\end{equation}
+dove $ \{n_\alpha\} \equiv \{n_\alpha \in \mathcal{N}, \alpha \in \mathcal{I} : \sum_{\alpha \in \mathcal{I}} n_\alpha = N\} $, con $ \mathcal{N} = \{0,1\} $ per fermioni e $ \mathcal{N} = \N_0 $ per bosoni. Il vincolo $ \sum_{\alpha \in \mathcal{I}} n_\alpha = N $ rende impossibile dare una forma esplicita a tale sommatoria: per ovviare al problema si introduce un nuovo ensemble, l'\textit{ensemble gran-canonico}, il quale scambia debolmente con l'ambiente non solo energia ma anche particelle. Per mantenere costante e pari a $ N $ il numero medio di particelle, ovvero $ [\hat{N}] = N $, si aggiunge un termine all'autovalore energetico, ottenendo la \textit{funzione di gran-partizione}:
+\begin{equation}
+	Q \defeq \sum_{N = 0}^\infty \sum_{m(N)} e^{- \beta (E_{m(N)} - \mu N)} \equiv \sum_{N = 0}^\infty \tr e^{- \beta (\mathcal{H} - \mu \hat{N})}
+\end{equation}
+dove la seconda sommatoria è su tutti gli autostati $ \ket{m(N)} $ di un sistema a $ N $ particelle e $ \mu $ è il potenziale chimico. Essendo $ E_{m(N)} $ una funzione crescente in $ N $, l'esponente $ E_{m(N)} - \mu N $ avrà un minimo per un certo $ N $. Il numero medio di particelle risulta essere:
+\begin{equation*}
+	[\hat{N}] = \frac{1}{Q} \sum_{N = 0}^\infty \sum_{m(N)} N e^{-\beta (E_{m(N)} - \mu N)} = \frac{1}{\beta} \frac{\pa}{\pa \mu} \ln Q
+\end{equation*}
+
+\begin{definition}[before upper = {\tcbtitle}]{Potenziale gran-canonico}{}
+	\begin{equation}
+		\Omega \defeq - \frac{1}{\beta} \ln Q = - PV
+	\end{equation}
+\end{definition}
+
+\begin{proposition}{Quantità termodinamiche}{gran-canon-term}
+	Si trovano le seguenti relazioni\footnote{L'energia intera si trova da $ U = F + TS $.}:
+	\begin{itemize}
+		\item numero medio di particelle $ [\hat{N}] = - \frac{\pa \Omega}{\pa \mu}\big\vert_{T,V} $;
+		\item entropia $ S = - \frac{\pa \Omega}{\pa T}\big\vert_{\mu,V} $;
+		\item energia libera $ F = \Omega + \mu [\hat{N}] $;
+		\item potenziale di Gibbs $ G = \mu [\hat{N}] $;
+	\end{itemize}
+\end{proposition}
+
+Si può calcolare esplicitamente la funzione di gran-partizione per un sistema di bosoni/fermioni non-interagenti.
+
+\begin{theorem}{Gran-partizioni ideali}{}
+	Per un sistema di bosoni/fermioni non-interagenti si ha:
+	\begin{equation}
+		Q = \prod_{\alpha \in \mathcal{I}} \left( 1 - \theta e^{\beta (\mu - E_\alpha)} \right)^{-\theta}
+	\end{equation}
+	dove $ \theta = +1 $ per sistemi bosonici e $ \theta = -1 $ per sistemi fermionici.
+
+	\tcblower
+
+	\begin{proof}
+		Rielaborando l'Eq. \ref{eq:z-n-occ}:
+		\begin{equation*}
+			\begin{split}
+				Q
+				& = \sum_{N = 0}^\infty \sum_{\{n_\alpha\}} e^{-\beta ( \sum_{\alpha \in \mathcal{I}} n_\alpha E_\alpha - \mu N)} = \sum_{N = 0}^\infty \sum_{\{n_\alpha\}} e^{-\beta \sum_{\alpha \in \mathcal{I}} n_\alpha (E_\alpha - \mu)} \\
+				& = \sum_{n_\alpha \in \mathcal{N}} \prod_{\alpha \in \mathcal{I}} e^{\beta (\mu - E_\alpha) n_\alpha} = \prod_{\alpha \in \mathcal{I}} \sum_{n_\alpha \in \mathcal{N}} \left( e^{\beta (\mu - E_\alpha)} \right)^{n_\alpha}
+			\end{split}
+		\end{equation*}
+		Per fermioni $ \mathcal{N} \equiv \{0,1\} $, quindi:
+		\begin{equation*}
+			Q = \prod_{\alpha \in \mathcal{I}} \left( 1 + e^{\beta (\mu - E_\alpha)} \right)
+		\end{equation*}
+		Per bosoni $ \mathcal{N} \equiv \N_0 $, quindi\footnote{Perché la serie geometria coverga, bisogna avere $ \mu - E_\alpha < 0 $, ovvero $ \mu < E_\alpha \,\,\forall \alpha \in \mathcal{I} $. Tipicamente l'energia minima è $ E_\text{min} = 0 $, dunque il potenziale chimico per i bosoni deve essere negativo}:
+		\begin{equation*}
+			Q = \prod_{\alpha \in \mathcal{I}} \frac{1}{1 - e^{\beta (\mu - E_\alpha)}}
+		\end{equation*}
+		Definendo il parametro $ \theta $ si ottiene la tesi.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}{Statistiche quantistiche}{}
+	Per un sistema di bosoni/fermioni non-interagenti si ha:
+	\begin{equation}
+		[n_\alpha] = \frac{1}{e^{\beta (E_\alpha - \mu)} - \theta}
+	\end{equation}
+	dove $ \theta = +1 $ per sistemi bosonici e $ \theta = -1 $ per sistemi fermionici.
+
+	\tcblower
+
+	\begin{proof}
+		Usando la Prop. \ref{prop:gran-canon-term}:
+		\begin{equation*}
+			\begin{split}
+				[\hat{N}]
+				& = \frac{1}{\beta} \frac{\pa}{\pa \mu} \ln Q = \frac{1}{\beta} \frac{\pa}{\pa \mu} \sum_{\alpha \in \mathcal{I}} -\theta \ln \left( 1 - \theta e^{\beta (\mu - E_\alpha)} \right) \\
+				& = - \frac{\theta}{\beta} \sum_{\alpha \in \mathcal{I}} \frac{-\theta \beta e^{\beta (\mu - E_\alpha)}}{1 - \theta e^{\beta (\mu - E_\alpha)}} = \sum_{\alpha \in \mathcal{I}} \frac{1}{e^{\beta (E_\alpha - \mu)} - \theta}
+			\end{split}
+		\end{equation*}
+		Dato che $ [\hat{N}] = \sum_{\alpha \in \mathcal{I}} [n_\alpha] $ si trova la tesi.
+	\end{proof}
+\end{theorem}
+
+Queste sono le distribuzioni di Bose-Einstein (bosoni) e Fermi-Dirac (fermioni). Si vede che a $ T $ e $ \mu $ fissati, l'occupazione media di uno stato è determinato esclusivamente dalla sua energia\footnotemark. Inoltre, la presenza di altre particelle influenza l'occupazione media di uno stato tramite il potenziale chimico $ \mu $, il quale è funzione della densità totale media $ [\hat{N}]/V $ e della temperatura $ T $.
+
+\footnotetext{In particolare, in assenza di campi magnetici esterni, $ [n_\alpha] $ è indipendente da $ m_s $: si conseguenza, gas ideali di bosoni/fermioni rimangono in uno stato complessivo non-magnetizzato e non-polarizzato a qualsiasi temperatura.}
+
+Si noti che giustamente $ [n_\alpha]_\text{Fermi} \in [0,1] $ e che entrambe, per $ E_\alpha \gg \mu $, possono essere approssimate da $ [n_\alpha] \approx e^{-\beta (E_\alpha - \mu)} $, ovvero una distribuzione di Boltzmann (limite classico\footnotemark, opposto al limite degenere a bassa temperatura).
+
+\footnotetext{Considerando un gas perfettamente ideale, ovvero non-interagente, allora se esso venisse preparato in uno stato iniziale lontano dall'equilibrio non raggiungerebbe mai quest'ultimo, in quanto è necessaria un'interazione almeno con l'ambiente.}
+
+\subsubsection{Fermioni}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{fermi-distr.png}
+	\caption{Fermi distribution at various temperatures and filling of single-particle states.}
+	\label{fermi-distr}
+\end{figure}
+
+Come si vede in Fig. \ref{fermi-distr}, per a $ T = 0 \,\text{K} $ la distribuzione di Fermi-Dirac diventa una funzione a gradino. A questa temperatura, il comportamento del gas di Femi è quello del ground state di un sistema di $ N \equiv [\hat{N}] $ fermioni liberi non-interagenti: questo è ottenuto antisimmetrizzando gli stati in cui vengono riempiti gli $ N $ livelli energetici single-particle con energia più bassa, fino ad un'energia massima $ \varepsilon_\text{F} $ detta \textit{energia di Fermi}.
+
+\begin{theorem}{Energia di Fermi}{}
+	L'energia di Fermi è:
+	\begin{equation}
+		\varepsilon_\text{F} \equiv \mu(T = 0) = \frac{\hbar^2}{2M} \left( \frac{6\pi^2}{g_s} \frac{N}{V} \right)^{2/3}
+	\end{equation}
+	dove $ g_s $ è la degenerazione da spin dei livelli energetici single-particle.
+
+	\tcblower
+
+	\begin{proof}
+		Si noti che, ponendo $ \mu \equiv \mu(T = 0) $:
+		\begin{equation*}
+			\lim_{T \rightarrow 0} [n_\alpha]_\text{F} =
+			\begin{cases}
+				1 & E_\alpha < \mu \\
+				\frac{1}{2} & E_\alpha = \mu \\
+				0 & E_\alpha > \mu
+			\end{cases}
+		\end{equation*}
+		Ricordando l'Eq. \ref{eq:en-deg}:
+		\begin{equation*}
+			N \equiv [\hat{N}] = \int_0^\infty \dd E\, g(E) [n_\alpha]_\text{F} = \int_0^\mu \dd E\, g(E) = g_s \frac{V M^{3/2}}{\sqrt{2} \pi^2 \hbar^3} \int_0^\mu \dd E\, \sqrt{E} = \frac{(2M)^{3/2} V g_s}{4\pi^2 \hbar^3} \frac{2}{3} \mu^{3/2}
+		\end{equation*}
+		Risolvendo per $ \mu $ e contando che $ \varepsilon_\text{F} \equiv \mu $ si ha la tesi.
+	\end{proof}
+\end{theorem}
+
+Passando allo spazio dei momenti, si trova il momento di Fermi:
+\begin{equation}
+	k_\text{F} = \sqrt[3]{\frac{6\pi^2}{g_s} \frac{N}{V}}
+\end{equation}
+che è concorde con $ N = \frac{4}{3} \pi k_\text{F}^3 \cdot g_s \cdot \frac{V}{8\pi^3} $ (volume $ \cdot $ degenerazione $ \cdot $ densità nello spazio dei momenti).
+
+\begin{example}{Gas di elettroni liberi}{}
+	Un esempio di gas di Fermi è l'insieme degli elettroni di conduzione di un metallo, che è un gas di elettroni liberi: per esso $ \frac{N}{V} \sim 10^{29}-10^{30} \,\text{m}^{-3} $, quindi $ k_\text{F} \sim 10^{10} \,\text{m}^{-1} $ ($ v_\text{F} \sim 10^6 \,\text{m}/\text{s} $) e $ \varepsilon_\text{F} \sim 5-10 \ev $.
+\end{example}
+
+\begin{proposition}{Energia interna}{}
+	A $ T = 0 $ l'energia interna di un gas di Fermi è:
+	\begin{equation}
+		U(T = 0) = \frac{3}{5} N \varepsilon_\text{F}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Per calcolo diretto:
+		\begin{equation*}
+			U(T = 0) = \int_0^\infty \dd E\, E g(E) [n_\alpha]_\text{F} = \int_0^\mu \dd E\, E g(E) = \frac{(2M)^{3/2} V g_s}{4\pi^2 \hbar^3} \frac{2}{5} \varepsilon_\text{F}^{5/2} = \frac{3}{5} N \varepsilon_\text{F}
+		\end{equation*}
+	\end{proof}
+\end{proposition}
+
+Si vede quindi che l'energia interna media per elettrone $ \frac{U}{N} = \frac{3}{5} \varepsilon_\text{F} $ non va a zero per $ T \rightarrow 0 $: questa è una conseguenza del principio di Pauli.
+
+\begin{proposition}{Pressione}{}
+	A $ T = 0 $ la pressione di un gas di Fermi è:
+	\begin{equation}
+		P(T = 0) = \frac{2}{3} \frac{U}{V}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		A $ T = 0 $ si ha $ U = F $, quindi:
+		\begin{equation*}
+			\begin{split}
+				P
+				& \defeq - \frac{\pa F}{\pa V}\bigg\vert_{T,\mu} = - \frac{\pa U}{\pa V}\bigg\vert_{T,\mu} = - \frac{\pa}{\pa V}\bigg\vert_{T,\mu} \left[ \frac{(2M)^{3/2} V g_s}{4\pi^2 \hbar^3} \frac{2}{5} \varepsilon_\text{F}^{5/2} \right] \\
+				& = - \frac{\pa}{\pa V}\bigg\vert_{T,\mu} \left[ \frac{(2M)^{3/2} V g_s}{4\pi^2 \hbar^3} \frac{2}{5} \left( \frac{\hbar^2}{2M} \right)^{5/2} \left( \frac{6\pi^2}{g_s} \frac{N}{V} \right)^{5/3} \right] \\
+				& = \left[ \frac{(2M)^{3/2} g_s}{4\pi^2 \hbar^3} \frac{2}{5} \left( \frac{\hbar^2}{2M} \right)^{5/2} \left( \frac{6\pi^2}{g_s} N \right)^{5/3} \right] \frac{2}{3} V^{-1/3} \\
+				& = \left[ \frac{(2M)^{3/2} V g_s}{4\pi^2 \hbar^3} \frac{2}{5} \left( \frac{\hbar^2}{2M} \right)^{5/2} \left( \frac{6\pi^2}{g_s} \frac{N}{V} \right)^{5/3} \right] \frac{2}{3} \frac{1}{V} = \frac{2}{3} \frac{U}{V}
+			\end{split}
+		\end{equation*}
+	\end{proof}
+\end{proposition}
+
+Questa relazione è valida in generale: non dipende dalla natura delle particelle (fermioni o bosoni), ma soltanto dall'essere particelle libere in 3 dimensioni, dunque vale per tutti i gas ideali a tutte le temperature, a patto che $ U $ sia puramente cinetica e che la relazione di dispersione sia $ E \propto k^2 $ (bosoni/fermioni con massa non-nulla). \\
+Nel caso di un gas classico (non-degenere) si ha $ U = \frac{3}{2} N k_\text{B} T $, ovvero $ P = \frac{N}{V} k_\text{B} T $ (equazione di stato dei gas perfetti). Nel caso non-classico (degenere) si può esprimere la correzione al prim'ordine dell'equazione di stato come:
+\begin{equation}
+	P \simeq \frac{N}{V} k_\text{B} T \left[ 1 - \theta 2^{-5/2} \delta + o(\delta^2) \right]
+\end{equation}
+dove si è definito il \textit{parametro di degenerazione}:
+\begin{equation}
+	\delta \equiv \frac{\Lambda^3 N}{g_s V} = \frac{(2\pi)^{3/2} \hbar^3}{(M k_\text{B} T)^{3/2}} \frac{N}{g_s V}
+\end{equation}
+
+\paragraph{Espansione di Sommerfeld}
+
+È possibile estendere l'analisi del gas di Fermi a temperatura finita tramite la cosiddetta \textit{espansione di Sommerfeld}, ovvero trattando perturbativamente in $ T / T_\text{F} $ le quantità che dipendono dalla temperatura: $ T_\text{F} \equiv \varepsilon_\text{F} / k_\text{B} $ è la \textit{temperatura di Fermi} e dà una scala di quando la distribuzione di Fermi si inizia a scostare dalla funzione gradino ($ T_\text{F} \sim 10^4-10^5 \,\text{K} $, dunque a temperatura ambiente si può assumere $ T \approx 0 \,\text{K} $). \\
+Si vede innanzitutto che $ \mu = \mu(T) $: poiché variando la temperatura si deve conservare il numero di particelle, ovvero $ \int_0^\infty \dd E\, g(E) [n_\alpha]_\text{F} $, si trova che, perché ciò avvenga, all'aumentare di $ T $ deve diminuire $ \mu(T) $ (il $ \virgolette{centro} $ della distribuzione si deve spostare verso l'origine). L'espansione di Sommerfeld per il potenziale chimico è:
+\begin{equation}
+	\mu(T) = \varepsilon_\text{F} \left[ 1 - \frac{\pi^2}{12} \left( \frac{T}{T_\text{F}} \right)^2 + \dots \right]
+\end{equation}
+Per l'energia interna, invece:
+\begin{equation}
+	U(T) = \frac{3}{5} N \varepsilon_\text{F} \left[ 1 + \frac{5\pi^2}{12} \left( \frac{T}{T_\text{F}} \right)^2 + \dots \right]
+\end{equation}
+Dato che $ c_V = \frac{\pa U}{\pa T} $, si trova che esso è lineare in $ T $:
+\begin{equation}
+	C_V(T) = N k_\text{B} \frac{\pi^2}{2} \frac{T}{T_\text{F}} + \dots
+\end{equation}
+Si noti che, rispetto al valore classico (ad alta temperatura) $ \frac{3}{2} N k_\text{B} $, per $ T \ll T_\text{F} $ questo valore risulta soppresso da $ T / T_\text{F} $: questo è dovuto al fatto che solo i pochi fermioni con energia vicina al potenziale chimico partecipano alle eccitazioni termiche, mentre la maggior parte rimane $ \virgolette{congelata} $ negli livelli energetici più profondi. Inoltre, questo contributo elettronico lineare è presente anche nel calore specifico dei solidi, sebbene sia molto più piccolo dei contributi vibrazionali delle molecole e risulti misurabile solo a basse temperature.
+
+\paragraph{Campi magnetici esterni}
+
+Si consideri un gas di elettroni ($ g_s = 2 $, $ m_s = \pm \frac{1}{2} $). Applicando un campo magnetico WLOG $ \ve{B} = B \hat{\ve{e}}_z $, con $ B > 0 $, si vanno a splittare le energie per elettroni $ \uparrow $ ($ m_s = + \frac{1}{2} $) ed elettroni $ \downarrow $ ($ m_2 = - \frac{1}{2} $). In particolare:
+\begin{equation*}
+	\mathcal{H}_\text{mag} = - \bs{\mu} \cdot \ve{B} = - \mu_z B = - 2 \mu_\text{B} m_s B = \mp \mu_\text{B} B
+\end{equation*}
+Si vede dunque che aumenta il numero di elettroni $ \uparrow $ (paralleli a $ \ve{B} $) e diminuisce quello di elettroni $ \downarrow $ (antiparalleli a $ \ve{B} $) il livello energetico con $ m_s = + \frac{1}{2} $ viene splittato in basso rispetto a quello con $ m_s = - \frac{1}{2} $. \\
+Questo splitting è molto piccolo ($ \mu_\text{B} \sim 10^{-5} \ev/\text{T} $), ma elimina la degenerazione da spin: $ g_\pm(E) = g(E \mp \mu_\text{B} B)\vert_{g_2 = 1} $. Si ha inoltre $ [\mathcal{H}_\text{mag}] = - [\mu_z] B $, con:
+\begin{equation}
+	[\mu_z] = -\mu_\text{B} [N_+ - N_-] = \frac{\sqrt[3]{3}}{4\pi^{4/3}} \frac{q_e^2 V}{m_e} \sqrt[3]{\frac{N}{V}} B
+\end{equation}
+Questo andamento ($ E_\text{mag} \propto B^2 $) è diverso dal caso classico e si parla di \textit{magnetizzazione di Pauli}. Affinché tutti gli elettroni risultino polarizzati $ \uparrow $, bisogna abbassare talmente tanto il livello energetico con $ m_s = + \frac{1}{2} $ da non avere elettroni con $ m_s = - \frac{1}{2} $: la condizione di magnetizzazione totale è dunque $ 2\mu_\text{B} B = \varepsilon_\text{F} $ (splitting energetico).
 
 
 
