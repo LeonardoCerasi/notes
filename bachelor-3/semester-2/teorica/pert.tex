@@ -165,6 +165,7 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
     \braket{\ve{p}_1 , \dots , \ve{p}_m ; +\infty | \ve{k}_1 , \dots , \ve{k}_n ; -\infty} = \\
     = \prod_{j = 1}^n \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{p_k^2 - m^2}{i \sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {y_k}^\mu} \times \\
     \times \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
+    \label{eq:lsz-scalar-field}
   \end{multline}
   where $ \tempord $ is the chronological product:
   \begin{equation}
@@ -479,7 +480,7 @@ The problem of computing scattering amplitudes has been further reduced to that 
 
 \subsection{Feynman propagator}
 
-\begin{theorem}{Feynman propagator}{}
+\begin{theorem}{Feynman propagator}{feynman-prop}
   Given a real scalar field $ \phi(x) $, the \bcth{Feynman propagator} is computed as:
   \begin{equation}
     D_\text{F}(x-y) \defeq \braket{0 | \tempord\{\phi_I(x) \phi_I(y)\} | 0} = \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m^2 + i \epsilon} e^{-i p_\mu (x - y)^\mu}
@@ -505,7 +506,7 @@ The problem of computing scattering amplitudes has been further reduced to that 
         & = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(x) , \phi^-(y)]
       \end{split}
     \end{equation*}
-    Similarly, for $ 0 > x^0 $:
+    Similarly, for $ y^0 > x^0 $:
     \begin{equation*}
       \tempord\{\phi_I(x) \phi_I(y)\} = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(y) , \phi^-(x)]
     \end{equation*}
@@ -553,6 +554,243 @@ Moreover, the Feynman propagator is just a Green function for the KG operator:
 Note that this result is independent of the $ i\epsilon $-prescription.
 
 \subsection{Wick's theorem}
+
+It is possible to simplify the computation of a general $ n $-point Green function in terms of $ 2 $-point Green functions. In the following, the subscript $ I $ for the interaction-picture field is omitted.
+
+\begin{definition}{Contraction}{}
+  Given a bosonic field $ \phi(x) $, it's \bcdef{contraction} is defined as:
+  \begin{equation}
+    \wick{\c\phi(x) \c\phi(y)} \defeq
+    \begin{cases}
+      [\phi^+(x) , \phi^-(y)] & x^0 > y^0 \\
+      [\phi^+(y) , \phi^-(x)] & y^0 > x^0
+    \end{cases}
+  \end{equation}
+\end{definition}
+
+Recalling the proof of \tref{th:feynman-prop}, it is clear that:
+\begin{equation}
+  \tempord\{\phi(x) \phi(y)\} = \normord\{\phi(x) \phi(y)\} + \wick{\c\phi(x) \c\phi(y)}
+  \label{eq:wick-th-2}
+\end{equation}
+This relation can be generalized to $ n $-point Green functions.
+
+\begin{theorem}{Wick's theorem}{}
+  Given a bosonic field $ \phi(x) $:
+  \begin{equation}
+    \tempord\{\phi(x_1) \dots \phi(x_n)\} = \normord\{\phi(x_1) \dots \phi(x_n) + \text{all possible contractions}\}
+    \label{eq:wick-th}
+  \end{equation}
+  where both partially-contracted and fully-contracted terms are considered.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Use induction on $ n $. \eref{eq:wick-th-2} proves the $ n = 2 $ case, so assume the theorem true for generic $ n-1 $ and consider the $ n $ case. WLOG $ x_1^0 \ge \dots \ge x_n^0 $ (if that's not the case, just relabel the points, as it does not affect \eref{eq:wick-th}), so, using the inductive step:
+    \begin{equation*}
+      \begin{split}
+        \tempord\{\phi(x_1) \dots \phi(x_n)\}
+        & = \phi(x_1) \tempord\{\phi(x_2) \dots \phi(x_n)\} \\
+        & = (\phi^+(x_1) + \phi^-(x_1)) \normord\{\phi(x_2) \dots \phi(x_n) + \text{all contr. without } \phi(x_1)\}
+      \end{split}
+    \end{equation*}
+    $ \phi^-(x_1) $ is already in normal order (on the left), while $ \phi^+(x_1) $ must be commuted with all other $ \phi(x_i) $. For the term without contractions:
+    \begin{equation*}
+      \begin{split}
+        \phi^+(x_1) \normord\{\phi(x_2) \dots \phi(x_n)\}
+        & = \normord\{\phi(x_2) \dots \phi(x_n)\} \phi^+(x_1) + [\phi^+(x_1) , \normord\{\phi(x_2) \dots \phi(x_n)\}] \\
+        & = \normord\{\phi^+(x_1) \phi(x_2) \dots \phi(x_n)\} \\
+        & \quad + \normord\{\dots + \phi(x_2) \dots [\phi^+(x_2) , \phi^-(x_i)] \dots \phi(x_n) + \dots\} \\
+        & = \normord\{\phi^+(x_1) \phi(x_2) \dots \phi(x_n) + \dots \wick{\c\phi^+(x_1) \phi(x_2) \dots \c\phi(x_i) \dots \phi(x_n)} + \dots\}
+      \end{split}
+    \end{equation*}
+    Analogously, all possible contractions are obtained, proving the theorem.
+  \end{proof}
+\end{proofbox}
+
+Note that only fully-contracted terms contribute to the $ n $-point Green function: as every term with at least an uncontracted field vanishes when put between $ \braket{0||0} $, as there will be an annihilation operator acting on $ \ket{0} $ or a creation operator acting on $ \bra{0} $.
+
+\begin{example}{4-point Green function}{4-green-func}
+  Applying Wick's theorem to a 4-point Green function yields:
+  \begin{equation*}
+    \begin{split}
+      &\tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} = \normord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) + \\
+      & \qquad \qquad + \wick{\c\phi(x_1) \c\phi(x_2) \phi(x_3) \phi(x_4)} + \wick{\c\phi(x_1) \phi(x_2) \c\phi(x_3) \phi(x_4)} + \wick{\c\phi(x_1) \phi(x_2) \phi(x_3) \c\phi(x_4)} \\
+      & \qquad \qquad + \wick{\phi(x_1) \c\phi(x_2) \c\phi(x_3) \phi(x_4)} + \wick{\phi(x_1) \c\phi(x_2) \phi(x_3) \c\phi(x_4)} + \wick{\phi(x_1) \phi(x_2) \c\phi(x_3) \c\phi(x_4)} \\
+      & \qquad \qquad + \wick{\c\phi(x_1) \c\phi(x_2) \c\phi(x_3) \c\phi(x_4)} + \wick{\c1\phi(x_1) \c2\phi(x_2) \c1\phi(x_3) \c2\phi(x_4)} + \wick{\c2\phi(x_1) \c1\phi(x_2) \c1\phi(x_3) \c2\phi(x_4)}
+    \end{split}
+  \end{equation*}
+  Only the last three terms contribute to the 4-point Green function. If $ \phi(x) $ is a scalar field, then:
+  \begin{equation*}
+    \begin{split}
+      \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0}
+      & = D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) + D_\text{F}(x_1 - x_3) D_\text{F}(x_2 - x_4) + \\
+      & \qquad \qquad \qquad \qquad \qquad \qquad + D_\text{F}(x_1 - x_4) D_\text{F}(x_2 - x_3)
+    \end{split}
+  \end{equation*}
+  This expression has immediate physical interpretation: indeed, $ D_\text{F}(x_1 - x_2) $ can be interpreted as the amplitude for the propagation of a particle from spacetime point $ x_1 $ to $ x_2 $, while $ D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) $ is the amplitude for the propagation of a particle from $ x_1 $ to $ x_2 $ and one from $ x_3 $ to $ x_3 $, without interacting with each other. \\
+  It is possible to associate intuitive graphs, called \bcex{Feynman diagrams}, to these kind of expressions; for example:
+  \begin{equation*}
+    D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4)
+    =
+    \begin{tikzpicture}[baseline=(r.base)]
+      \begin{feynman}[inline=(r.base)]
+        \vertex[dot] (a1) {};
+        \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+        \vertex[right=2cm of a1, dot] (a2) {};
+        \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+        \vertex[below=2em of a1, dot] (b1) {};
+        \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+        \vertex[below=2em of a2, dot] (b2) {};
+        \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+
+        \vertex[below=1.2em of a1] (r);
+
+        \diagram* {
+          (a1) [dot] -- (a2) [particle = \(x_2\)],
+          (b1) [dot] -- (b2) [dot],
+        };
+      \end{feynman}
+    \end{tikzpicture}
+   \end{equation*}
+   Then, the 4-point Green function can be represented as:
+   \begin{equation*}
+     \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\}
+     =
+    \begin{tikzpicture}[baseline=(r.base)]
+      \begin{feynman}[inline=(r.base)]
+        \vertex[dot] (a1) {};
+        \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+        \vertex[right=2cm of a1, dot] (a2) {};
+        \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+        \vertex[below=2em of a1, dot] (b1) {};
+        \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+        \vertex[below=2em of a2, dot] (b2) {};
+        \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+
+        \vertex[below=1.1em of a1] (r);
+
+        \diagram* {
+          (a1) [dot] -- (a2) [dot],
+          (b1) [dot] -- (b2) [dot],
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \ + \
+    \begin{tikzpicture}[baseline=(r.base)]
+      \begin{feynman}[inline=(r.base)]
+        \vertex[dot] (a1) {};
+        \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+        \vertex[right=1cm of a1, dot] (a2) {};
+        \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+        \vertex[below=2em of a1, dot] (b1) {};
+        \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+        \vertex[below=2em of a2, dot] (b2) {};
+        \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+
+        \vertex[below=1.1em of a1] (r);
+
+        \diagram* {
+          (a1) [dot] -- (b1) [dot],
+          (a2) [dot] -- (b2) [dot],
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \ + \
+    \begin{tikzpicture}[baseline=(r.base)]
+      \begin{feynman}[inline=(r.base)]
+        \vertex[dot] (a1) {};
+        \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+        \vertex[right=2cm of a1, dot] (a2) {};
+        \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+        \vertex[below=2em of a1, dot] (b1) {};
+        \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+        \vertex[below=2em of a2, dot] (b2) {};
+        \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+
+        \vertex[below=1.1em of a1] (r);
+
+        \diagram* {
+          (a1) [dot] -- (b2) [dot],
+          (b1) [dot] -- (a2) [dot],
+        };
+      \end{feynman}
+    \end{tikzpicture}
+   \end{equation*}
+\end{example}
+
+Using this formalism to compute \eref{eq:corr-func-pert}, when expanding the exponential in powers of $ \ham_I $, each term contains fields at the same spacetime point: this gives rise to less trivial Feynman diagrams.
+
+\subsubsection{Scattering in $ \lambda \phi^4 $-theory}
+
+Consider a real scalar field theory with $ \ham_I = \frac{\lambda}{4!} \phi^4 $ and consider a scattering process with two initial particles with momenta $ \ve{k}_1 , \ve{k}_2 $ and two final particles with momenta $ \ve{p}_1 , \ve{p}_2 $. \eref{eq:lsz-scalar-field} and \eref{eq:corr-func-pert} give the amplitude:
+\begin{equation*}
+  \begin{split}
+    \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2}
+    & = \frac{k_1^2 - m^2}{i \sqrt{Z}} \frac{k_2^2 - m^2}{i \sqrt{Z}} \frac{p_1^2 - m^2}{i \sqrt{Z}} \frac{p_2^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \times \\
+    & \qquad \qquad \times \frac{\braket{0 | \tempord\{ \phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \exp \left[ -i \frac{\lambda}{4!} \int \dd^4x\, \phi(x) \right] \} | 0}}{\braket{0 | \tempord\{\exp \left[ - i \frac{\lambda}{4!} \int \dd^4x\, \phi(x) \right]\} | 0}}
+  \end{split}
+\end{equation*}
+To compute this expression up to $ o(\lambda) $, consider that for $ \lambda \phi^4 $-theory $ Z = 1 + o(\lambda^2) $, thus it is safe to set $ Z \equiv 1 $. \\
+The $ o(\lambda^0) $ term is obtained setting $ \lambda = 0 $, i.e. no coupling, but in the absence of coupling there is no scattering either and the amplitude must be trivial. Recalling \exref{ex:4-green-func}:
+\begin{equation*}
+  \begin{split}
+    & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
+    & \qquad = \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left[ D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) + \dots \right] \\
+    & \qquad = \left[ \int \dd^4x \dd^4X\, e^{i (p_1 + p_2)_\mu X^\mu + i (p_1 - p_2)_\mu x^\mu/2} D(x) \right] \left[ \int \dd^4y \dd^4Y\, e^{- i (k_1 + k_2)_\mu Y^\mu - i (k_1 - k_2)_\mu y^\mu/2} D(y) \right] + \dots \\
+    & \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) \frac{i}{\left( \frac{p_1 - p_2}{2} \right)^2 - m^2} (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{\left( \frac{k_1 - k_2}{2} \right)^2 - m^2} + \dots
+  \end{split}
+\end{equation*}
+Using $ f(x) \delta(x - x_0) = f(x_0) \delta(x - x_0) $:
+\begin{equation*}
+  \begin{split}
+    & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
+    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{p_1^2 - m^2} \frac{i}{k_1^2 - m^2} + \dots
+  \end{split}
+\end{equation*}
+Note that the $ i\epsilon $ term must be retained while $ p $ is an integration variable, as it gives the prescription of going around the poles, but it can be dropped when $ p $ is the momentum on an external leg, i.e. fixed. This expression only has two poles, therefore:
+\begin{equation*}
+  \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2} = - (2\pi)^8 \delta^{(4)}(p_1 + p_2) \delta^{(4)}(k_1 + k_2) (p_2^2 - m^2) (k_2^2 - m^2) + \dots + o(\lambda)
+\end{equation*}
+These terms vanish when going on mass-shell, confirming that at $ o(\lambda^0) $ there is no interaction, i.e. no contribution to the scattering amplitude. This is a general feature of $ n \rightarrow m $ scattering amplitudes: \textit{disconnected graphs do not contribute to the amplitude}, as they do not provide enough pole factors to cancel those in the LSZ formula. \\
+The first non-trivial contribution is that at $ o(\lambda) $. The denominator of \eref{eq:corr-func-pert} is:
+\begin{equation*}
+  \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left( - i \frac{\lambda}{4!} \right) \int \dd^4x \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x)\} | 0}
+\end{equation*}
+The only non-vanishing contribution is the fully-contracted term:
+\begin{equation*}
+  \braket{0 | \wick{\c1\phi(x_1) \c2\phi(x_2) \c3\phi(x_3) \c4\phi(x_4) \c1\phi(x) \c2\phi(x) \c3\phi(x) \c4\phi(x)} | 0}
+  \quad = \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[right=2cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+      \vertex[below=2em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+      \vertex[below=2em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+      \vertex[below=1em of a1] (c1) {};
+      \vertex[right=1cm of c1, dot] (c2) {};
+      \vertex (l5) at ($(c2)+(0,+0.3)$) {\(x\)};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) [dot] -- (b2) [dot],
+        (b1) [dot] -- (a2) [dot],
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+as it is the only connected diagram between the possible ones. Note that this diagram corresponds to $ 4! $ equal contractions (only one is shown), therefore the denominator becomes:
+\begin{equation*}
+  \begin{split}
+    & -i \lambda \int \dd^4x \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x_3 - x) D_\text{F}(x_4 - x) \\
+    & = 
+  \end{split}
+\end{equation*}
 
 
 
