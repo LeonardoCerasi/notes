@@ -741,7 +741,7 @@ The $ o(\lambda^0) $ term is obtained setting $ \lambda = 0 $, i.e. no coupling,
     & \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) \frac{i}{\left( \frac{p_1 - p_2}{2} \right)^2 - m^2} (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{\left( \frac{k_1 - k_2}{2} \right)^2 - m^2} + \dots
   \end{split}
 \end{equation*}
-Using $ f(x) \delta(x - x_0) = f(x_0) \delta(x - x_0) $:
+with $ x = x_1 - x_2 , 2X = x_1 + x_2 $ and $ y = x_3 - x_4 , 2Y = x_3 + x_4 $. Using $ f(x) \delta(x - x_0) = f(x_0) \delta(x - x_0) $:
 \begin{equation*}
   \begin{split}
     & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
@@ -753,7 +753,7 @@ Note that the $ i\epsilon $ term must be retained while $ p $ is an integration 
   \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2} = - (2\pi)^8 \delta^{(4)}(p_1 + p_2) \delta^{(4)}(k_1 + k_2) (p_2^2 - m^2) (k_2^2 - m^2) + \dots + o(\lambda)
 \end{equation*}
 These terms vanish when going on mass-shell, confirming that at $ o(\lambda^0) $ there is no interaction, i.e. no contribution to the scattering amplitude. This is a general feature of $ n \rightarrow m $ scattering amplitudes: \textit{disconnected graphs do not contribute to the amplitude}, as they do not provide enough pole factors to cancel those in the LSZ formula. \\
-The first non-trivial contribution is that at $ o(\lambda) $. The denominator of \eref{eq:corr-func-pert} is:
+The first non-trivial contribution is that at $ o(\lambda) $. The numerator of \eref{eq:corr-func-pert} is:
 \begin{equation*}
   \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left( - i \frac{\lambda}{4!} \right) \int \dd^4x \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x)\} | 0}
 \end{equation*}
@@ -784,13 +784,586 @@ The only non-vanishing contribution is the fully-contracted term:
     \end{feynman}
   \end{tikzpicture}
 \end{equation*}
-as it is the only connected diagram between the possible ones. Note that this diagram corresponds to $ 4! $ equal contractions (only one is shown), therefore the denominator becomes:
+as it is the only connected diagram between the possible ones. Note that this diagram corresponds to $ 4! $ equal contractions (only one is shown), therefore the numerator becomes:
 \begin{equation*}
   \begin{split}
     & -i \lambda \int \dd^4x \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x_3 - x) D_\text{F}(x_4 - x) \\
-    & = 
+    & = -i \lambda \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x\, e^{i (p_1 + p_2 - k_1 - k_2)_\mu x^\mu} \\
+    & = -i \lambda (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \frac{i}{p_1^2 - m^2} \frac{i}{p_2^2 - m^2} \frac{i}{k_1^2 - m^2} \frac{i}{k_2^2 - m^2}
   \end{split}
 \end{equation*}
+There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to-vacuum transitions}, i.e. diagrams with no external legs. To account for these, note that each connected diagram which contributes to the numerator can be $ \virgolette{dressed} $ with all possible vacuum-to-vacuum transitions; indeed, to be precise:
+\begin{equation*}
+  \braket{0 | \wick{\c1\phi(x_1) \c2\phi(x_2) \c3\phi(x_3) \c4\phi(x_4) \c1\phi(x) \c2\phi(x) \c3\phi(x) \c4\phi(x)} | 0} =
+\end{equation*}
+\begin{equation*}
+  = \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[right=2cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+      \vertex[below=2em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+      \vertex[below=2em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+      \vertex[below=1em of a1] (c1) {};
+      \vertex[right=1cm of c1, dot] (c2) {};
+      \vertex (l5) at ($(c2)+(0,+0.3)$) {\(x\)};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) [dot] -- (b2) [dot],
+        (b1) [dot] -- (a2) [dot],
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[right=2cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+      \vertex[below=2em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+      \vertex[below=2em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+      \vertex[below=1em of a1] (c1) {};
+      \vertex[right=1cm of c1, dot] (c2) {};
+      \vertex (l5) at ($(c2)+(0,+0.3)$) {\(x\)};
+
+      \vertex[above=3em of c2, dot] (d1) {};
+      \vertex[right=1cm of d1, empty dot] (d2) {};
+      \vertex[left=1cm of d1, empty dot] (d3) {};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) [dot] -- (b2) [dot],
+        (b1) [dot] -- (a2) [dot],
+
+        (d1) -- [half right] (d2) -- [half right] (d1),
+        (d1) -- [half left] (d3) -- [half left] (d1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[right=2cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+      \vertex[below=2em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+      \vertex[below=2em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+      \vertex[below=1em of a1] (c1) {};
+      \vertex[right=1cm of c1, dot] (c2) {};
+      \vertex (l5) at ($(c2)+(0,+0.3)$) {\(x\)};
+
+      \vertex[above=3em of c2] (d0) {};
+      \vertex[left=0.5cm of d0, dot] (d1) {};
+      \vertex[right=1cm of d1, dot] (d2) {};
+      \vertex[left=1cm of d1, empty dot] (d3) {};
+      \vertex[right=1cm of d2, empty dot] (d4) {};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) [dot] -- (b2) [dot],
+        (b1) [dot] -- (a2) [dot],
+
+        (d1) -- [half right] (d2) -- [half right] (d1),
+        (d1) -- [half left] (d3) -- [half left] (d1),
+        (d2) -- [half right] (d4) -- [half right] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad \dots
+\end{equation*}
+\begin{equation*}
+  = \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[right=2cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(x_2\)};
+      \vertex[below=2em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(x_3\)};
+      \vertex[below=2em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(x_4\)};
+      \vertex[below=1em of a1] (c1) {};
+      \vertex[right=1cm of c1, dot] (c2) {};
+      \vertex (l5) at ($(c2)+(0,+0.3)$) {\(x\)};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) [dot] -- (b2) [dot],
+        (b1) [dot] -- (a2) [dot],
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad \times \quad \bigg[ \ 1 \quad + \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (d1) {};
+      \vertex[right=1cm of d1, empty dot] (d2) {};
+      \vertex[left=1cm of d1, empty dot] (d3) {};
+
+      \vertex[below=0.3em of d1] (r);
+
+      \diagram* {
+        (d1) -- [half right] (d2) -- [half right] (d1),
+        (d1) -- [half left] (d3) -- [half left] (d1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (d0) {};
+      \vertex[left=0.5cm of d0, dot] (d1) {};
+      \vertex[right=1cm of d1, dot] (d2) {};
+      \vertex[left=1cm of d1, empty dot] (d3) {};
+      \vertex[right=1cm of d2, empty dot] (d4) {};
+
+      \vertex[below=0.3em of d0] (r);
+
+      \diagram* {
+        (d1) -- [half right] (d2) -- [half right] (d1),
+        (d1) -- [half left] (d3) -- [half left] (d1),
+        (d2) -- [half right] (d4) -- [half right] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad \dots \ \bigg]
+\end{equation*}
+This is nothing but the perturbative expansion of the denominator of \eref{eq:corr-func-pert}, therefore they cancel out leaving only the already computed diagram\footnotemark. Thus, the transition amplitude at $ o(\lambda) $ is:
+\begin{equation}
+  \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2} = -i \lambda (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2)
+\end{equation}
+
+\footnotetext{This too is a general statement. Consider a generic process with possible connected diagrams $ \{C_i\}_{i \in \mathcal{I}} $ and possible vacuum-to-vacuum diagrams $ \{V_j\}_{j \in \mathcal{J}} $. Then, as shown above, the contribution of a connected diagram $ C_i $ is really:
+\begin{equation*}
+  C_i \times \sum_{\{n_j\} \subset \N_0} \prod_{j \in \mathcal{J}} \frac{1}{n_j!} V_j^{n_j}
+\end{equation*}
+with $ \{n_j\}_{j \in \mathcal{J}} \subset \N_0 $ (the symmetry factor is due to the swap of identical diagrams). The sum of all non-vanishing diagrams thus is:
+\begin{equation*}
+  \begin{split}
+    \sum (\text{diagrams})
+    & = \sum_{i \in \mathcal{I}} C_i \times \sum_{\{n_j\} \subset \N_0} \prod_{j \in \mathcal{J}} \frac{1}{n_j!} V_j^{n_j} = \sum_{i \in \mathcal{I}} C_i \times \prod_{j \in \mathcal{J}} \sum_{n = 1}^\infty \frac{1}{n!} V_j^n = \sum_{i \in \mathcal{I}} C_i \times \prod_{j \in \mathcal{J}} \exp V_j = \sum_{i \in \mathcal{I}} C_i \times \exp \sum_{j \in \mathcal{J}} V_j
+  \end{split}
+\end{equation*}
+which can be recast in the form:
+\begin{equation}
+  \sum (\text{diagrams}) = \sum (\text{connected}) \times \exp \sum (\text{vacuum-to-vacuum})
+\end{equation}
+The exponential exactly cancels $ \braket{0 | \tempord\{\exp \left[ -i \int \dd^4x\, \ham_I \right]\} | 0} $, leaving only connected diagrams in the calculation.}
+
+\subsubsection{Scattering in $ \lambda \phi^3 $-theory}
+
+To illustrate the case of internal lines, it is useful to consider a real scalar field theory with $ \ham_I = \frac{\lambda}{3!} \phi^3 $: in this case, 3 lines meet at each vertex, instead of 4. The $ 2 \rightarrow 2 $ scattering amplitude is:
+\begin{equation*}
+  \begin{split}
+    \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2}
+    & = \prod_{i = 1,2} \frac{p_i^2 - m^2}{i \sqrt{Z}} \prod_{j = 1,2} \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+    & \qquad \qquad \qquad \qquad \times \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \exp \left[ -i \frac{\lambda}{3!} \int \dd^4x\, \phi^3(x) \right]\} | 0}
+  \end{split}
+\end{equation*}
+where the denominator was omitted by implicitly considering only connected graphs with 4 external legs. This amplitude does not have a $ o(\lambda^0) $ contribution (as it only has disconnected diagrams) nor an $ o(\lambda) $ contribution (as the product of an odd number of fields cannot be fully contracted). At $ o(\lambda^2) $ the integral becomes:
+\begin{equation*}
+    \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \frac{1}{2!} \left( -i \frac{\lambda}{3!} \right)^2 \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^3(x) \phi^3(y)\} | 0}
+\end{equation*}
+In order to obtain a fully connected diagrams, there needs to be a contraction $ \wick{\c\phi(x) \c\phi(y)} $ between the two vertices, creating an internal line. Note that the $ 1/2! $ factor accounts for the symmetry $ x \leftrightarrow y $, while $ 1/3! $ accounts for sets of equivalent contractions. Examples of possible diagrams are:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (x) {};
+      \vertex (lx) at ($(x)+(0,0.4)$) {\(x\)};
+      \vertex[right=4.242em of x, dot] (y) {};
+      \vertex (ly) at ($(y)+(0,0.4)$) {\(y\)};
+
+      \vertex[above=3em of x] (p1) {};
+      \vertex[left=3em of p1, dot] (x1) {};
+      \vertex (l1) at ($(x1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[below=6em of x1, dot] (x2) {};
+      \vertex (l2) at ($(x2)+(-0.4,0)$) {\(x_2\)};
+
+      \vertex[above=3em of y] (p2) {};
+      \vertex[right=3em of p2, dot] (x3) {};
+      \vertex (l3) at ($(x3)+(0.4,0)$) {\(x_3\)};
+      \vertex[below=6em of x3, dot] (x4) {};
+      \vertex (l4) at ($(x4)+(0.4,0)$) {\(x_4\)};
+
+      \vertex[below=0.3em of x] (r) {};
+
+      \diagram* {
+        (x1) -- (x) -- (y) -- (x3),
+        (x2) -- (x),
+        (y) -- (x4),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad
+  D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x_3) D_\text{F}(y - x_4)
+\end{equation*}
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (x) {};
+      \vertex (lx) at ($(x)+(0.4,0)$) {\(x\)};
+      \vertex[above=2em of x, dot] (y) {};
+      \vertex (ly) at ($(y)+(0.4,0)$) {\(y\)};
+
+      \vertex[above=2em of y] (p1) {};
+      \vertex[left=3em of p1, dot] (x1) {};
+      \vertex (l1) at ($(x1)+(-0.4,0)$) {\(x_1\)};
+      \vertex[below=6em of x1, dot] (x2) {};
+      \vertex (l2) at ($(x2)+(-0.4,0)$) {\(x_2\)};
+
+      \vertex[right=3em of p1, dot] (x3) {};
+      \vertex (l3) at ($(x3)+(0.4,0)$) {\(x_3\)};
+      \vertex[below=6em of x3, dot] (x4) {};
+      \vertex (l4) at ($(x4)+(0.4,0)$) {\(x_4\)};
+
+      \vertex[above=0.7em of x] (r) {};
+
+      \diagram* {
+        (x1) -- (y) -- (x3),
+        (x) -- (y),
+        (x2) -- (x) -- (x4),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad
+  D_\text{F}(x_1 - y) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x_3) D_\text{F}(x - x_4)
+\end{equation*}
+These diagrams are inequivalent, as they correspond to different sets of contractions. Computing for example the first one:
+\begin{equation*}
+  \begin{split}
+    & (-i \lambda)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+    & \qquad \qquad \qquad \qquad \qquad \qquad \times \int \dd^4x \dd^4y\, D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x_3) D_\text{F}(y - x_4) \\
+    & = (-i \lambda)^2 \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D_\text{F}(x - y) \\
+    & = (-i \lambda)^2 \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4X \dd^4Y\, e^{i (p_1 + p_2 - k_1 - k_2)_\mu Y^\mu + i (p_1 + p_2 + k_1 + k_2)_\mu X^\mu / 2} D_\text{F}(X) \\
+    & = (-i \lambda)^2 (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}(p_1 + p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2)
+  \end{split}
+\end{equation*}
+with $ X = x - y , 2Y = x + y $. As expected, momentum-space propagators associated to external legs are canceled by pole terms in the LSZ formula: now there remains only the $ \tilde{D}_\text{F}(p_1 + p_2) $ factor associated to the internal line. \\
+It is useful to work in momentum space, rather than coordinate space. For example, in momentum space the above diagrams become:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (x) {};
+      \vertex[right=5em of x, dot] (y) {};
+
+      \vertex[above=3em of x] (p1) {};
+      \vertex[left=3em of p1, dot] (x1) {};
+      \vertex[below=6em of x1, dot] (x2) {};
+
+      \vertex[above=3em of y] (p2) {};
+      \vertex[right=3em of p2, dot] (x3) {};
+      \vertex[below=6em of x3, dot] (x4) {};
+
+      \vertex[below=0.3em of x] (r) {};
+
+      \diagram* {
+        (x1) -- [momentum = \(p_1\)] (x) -- [momentum = \(p_1 + p_2\)] (y) -- [momentum = \(k_1\)] (x3),
+        (x2) -- [momentum' = \(p_2\)] (x),
+        (y) -- [momentum' = \(k_2\)] (x4),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad \qquad \qquad \qquad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex[dot] (x) {};
+      \vertex[above=4em of x, dot] (y) {};
+
+      \vertex[above=2em of y] (p1) {};
+      \vertex[left=5em of p1, dot] (x1) {};
+      \vertex[below=8em of x1, dot] (x2) {};
+
+      \vertex[right=5em of p1, dot] (x3) {};
+      \vertex[below=8em of x3, dot] (x4) {};
+
+      \vertex[above=1.7em of x] (r) {};
+
+      \diagram* {
+        (x1) -- [momentum = \(p_1\)] (y) -- [momentum' = \(k_1\)] (x3),
+        (x) -- [momentum = \(p_2 - k_2\)] (y),
+        (x2) -- [momentum' = \(p_2\)] (x) -- [momentum = \(k_2\)] (x4),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+
+\subsubsection{General considerations}
+
+The example calculations carried for $ \lambda \phi^3 $- and $ \lambda \phi^4 $-theory hint to the general technique to compute general \bctxt{tree diagrams}, i.e. connected diagrams without internal loops. For a scalar field theory, in momentum space:
+\begin{enumerate}
+  \item draw all possible connected graphs corresponding to the given initial and final states;
+  \item each external leg is associated to a pole factor in the LSZ reduction formula, hence they can be omitted directly ($ \virgolette{leg amputation} $);
+  \item as there is always a momentum-conserving $ \delta $-function, it is convenient to define the matrix element $ \mat_\text{if} $ for the process $ \ket{\text{i}} \rightarrow \ket{\text{f}} $ as:
+    \begin{equation}
+      \braket{\ve{p}_1 , \dots , \ve{p}_m | i T | \ve{k}_1 , \dots , \ve{k}_n} \equiv (2\pi)^4 \delta^{(4)}\left( \sum_{i = 1}^{m} p_i - \sum_{j = 1}^{n} k_j \right) i \mat_\text{if}
+    \end{equation}
+  \item energy-momentum conservation must be imposed separately at each vertex;
+  \item each vertex is associated to a $ -i \lambda $ factor, where $ \lambda $ is the coupling constant of the interaction;
+  \item check if that symmetry factors cancel fully or partially with the $ 1/n! $ factor at $ o(\lambda^n) $ and possible numerical factors in the definition of $ \ham_I $.
+\end{enumerate}
+
+\subsection{Loop diagrams}
+
+To illustrate how loop diagrams are treated, consider the $ o(\lambda^2) $ corrections to the $ 2 \rightarrow 2 $ scattering in $ \lambda \phi^4 $-theory:
+\begin{multline*}
+  \frac{1}{2!} \left( -i \frac{\lambda}{4!} \right)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+  \times \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x) \phi^4(y)\} | 0}
+\end{multline*}
+There are three possible inequivalent full contractions, associated to the connected diagrams:
+\begin{equation*}
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (x1) {};
+      \vertex[below=3em of x1] (p1) {};
+      \vertex[below=3em of p1, dot] (x2) {};
+
+      \vertex[right=3em of p1, dot] (v1) {};
+      \vertex[right=5em of v1, dot] (v2) {};
+
+      \vertex[right=3em of v2] (p2) {};
+      \vertex[above=3em of p2, dot] (x3) {};
+      \vertex[below=3em of p2, dot] (x4) {};
+
+      \vertex[above=0.5em of v1] (r) {};
+
+      \diagram* {
+        (x1) -- [momentum = \(p_1\)] (v1),
+        (x2) -- [momentum' = \(p_2\)] (v1),
+        (v2) -- [momentum = \(k_1\)] (x3),
+        (v2) -- [momentum' = \(k_2\)] (x4),
+
+        (v1) -- [half left, momentum' = \(p\)] (v2),
+        (v2) -- [half left, momentum' = \(p'\)] (v1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (x1) {};
+      \vertex[right=4em of x1] (p1) {};
+      \vertex[right=4em of p1, dot] (x3) {};
+
+      \vertex[below=2em of p1, dot] (v1) {};
+      \vertex[below=5em of v1, dot] (v2) {};
+
+      \vertex[below=9em of x1, dot] (x2) {};
+      \vertex[below=9em of x3, dot] (x4) {};
+
+      \vertex[below=2em of v1] (r) {};
+
+      \diagram* {
+        (x1) -- [momentum = \(p_1\)] (v1) -- [momentum = \(k_1\)] (x3),
+        (x2) -- [momentum' = \(p_2\)] (v2) -- [momentum' = \(k_2\)] (x4),
+
+        (v1) -- [half left, momentum = \(p\)] (v2),
+        (v2) -- [half left, momentum = \(p + k_1 - p_1\)] (v1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (x1) {};
+      \vertex[right=4em of x1] (p1) {};
+      \vertex[right=4em of p1, dot] (x3) {};
+
+      \vertex[below=2em of p1, dot] (v1) {};
+      \vertex[below=5em of v1, dot] (v2) {};
+
+      \vertex[below=9em of x1, dot] (x2) {};
+      \vertex[below=9em of x3, dot] (x4) {};
+
+      \vertex[below=2em of v1] (r) {};
+
+      \diagram* {
+        (x1) -- [momentum = \(p_1\)] (v1) -- [momentum = \(k_2\)] (x3),
+        (x2) -- [momentum' = \(p_2\)] (v2) -- [momentum' = \(k_1\)] (x4),
+
+        (v1) -- [half left, momentum = \(p\)] (v2),
+        (v2) -- [half left, momentum = \(p + k_2 - p_1\)] (v1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+with $ p' = p_1 + p_2 - p $. It is clear that energy conservation does not completely fix momenta of internal lines, and in particular of loops.
+Consider for example the first diagram: it is obtained contracting $ \phi(x_1) $ and $ \phi(x_2) $ with two $ \phi(x) $ ($ 4 \cdot 3 $ ways), $ \phi(x_3) $ and $ \phi(x_4) $ with two $ \phi(y) $ ($ 4 \cdot 3 $ ways) and two $ \phi(x) $ with two $ \phi(y) $ ($ 2 $ ways), so, considering another $ 2 $ factor for $ x \leftrightarrow y $ symmetry, this diagram has symmetry number $ S = (4!)^2 $. The resulting contribution is:
+\begin{equation*}
+  \begin{split}
+    & \frac{(-i \lambda)^2}{2} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \int \dd^4x \dd^4y D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x) \\
+    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D^2(x - y) \\
+    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \int \frac{\dd^4k}{(2\pi)^4} \tilde{D}_\text{F}(k) \tilde{D}_\text{F}(p_1 + p_2 - k)
+  \end{split}
+\end{equation*}
+Therefore, the additional feature of loop integrals is the integration over unfixed momenta, assigning the right propagators to each internal line. It is possible to define the \bctxt{loop-amplitude} for $ \lambda \phi^4 $-theory:
+\begin{equation}
+  \mathcal{A}(p) \defeq \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{i}{k^2 - m^2 + i \epsilon} \frac{i}{(p - k)^2 - m^2 + i \epsilon}
+  \label{eq:f4-loop-ampl}
+\end{equation}
+so that the $ 2 \rightarrow 2 $ scattering amplitude at one-loop level (i.e. $ o(\lambda^2) $) is:
+\begin{equation}
+  i \mat_{2 \rightarrow 2} = -i \lambda + \mathcal{A}(p_1 + p_2) + \mathcal{A}(p_1 - k_1) + \mathcal{A}(p_1 - k_2)
+\end{equation}
+
+\subsubsection{Divergences}
+
+The integral in \eref{eq:f4-loop-ampl} diverges at large $ k $, which is an example of \bctxt{UV divergence}. To study this divergence, first of all note that $ (p - k)^2 \rightarrow k^2 $ as $ k \rightarrow \infty $, so that it is safe to set $ p = 0 $. Due to the $ i\epsilon $-presciption, in the complex $ k^0 $-plane the pole in $ k^0 > 0 $ is below the real axis, while that in $ k^0 < 0 $ is above it: the integration path can then be rotated counterclockwise from the real axis to the imaginary axis by $ k^0 \mapsto i k^0 $, which is called a \bctxt{Wick rotation}. The amplitude then becomes:
+\begin{equation*}
+    \mathcal{A}(0) = \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \left( \frac{i}{k^2 - m^2 + i\epsilon} \right)^2 \mapsto i \frac{\lambda^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{(k^2 + m^2)^2}
+\end{equation*}
+where $ k^2 = k_0^2 + \ve{k}^2 $ is now a Euclidean momentum. To regulate the UV divergence, a cutoff $ \Lambda : k^2 < \Lambda^2 $ is introduced, so that:
+\begin{equation*}
+  \begin{split}
+    \mathcal{A}(0)
+    & = i \frac{\lambda^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{k^4} + \text{finite terms} = i \frac{\lambda^2}{2} \frac{1}{(2\pi)^4} 2\pi^2 \int^\Lambda \frac{\dd k}{k} + \text{finite terms}\\
+    & = \frac{i \lambda^2}{16 \pi^2} \log \Lambda + \text{finite terms}
+  \end{split}
+\end{equation*}
+where $ 2\pi^2 $ is the solid angle in $ \R^4 $. It can be shown that, for general $ p $, the singular part of $ \mathcal{A}(p) $ does not depend on $ p $; hence, it can be written:
+\begin{equation*}
+  i \mat_{2 \rightarrow 2} = -i \lambda + i \lambda^2 \left( \beta_0 \log \Lambda + \text{finite terms} \right)
+\end{equation*}
+where:
+\begin{equation}
+  \beta_0 \equiv \frac{3}{16 \pi^2}
+\end{equation}
+Another example of loop divergence in $ \lambda \phi^4 $-theory is that associated to the 2-point Green function at $ o(\lambda^1) $:
+\begin{equation*}
+  \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi^4(x)\} | 0} = 4\cdot3 \cdot \wick{\c1\phi(x_1) \c2\phi(x_2) \c1\phi(x) \c2\phi(x) \c1\phi(x) \c1\phi(x)} = \ 4\cdot3 \ \times \
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (x1) {};
+      \vertex[right=5em of x1, dot] (v1) {};
+      \vertex[above=4em of v1, empty dot] (v2) {};
+      \vertex[right=5em of v1, dot] (x2) {};
+
+      \vertex[below=0.2em of v1] (r) {};
+
+      \diagram* {
+        (x1) -- [momentum' = \(p\)] (v1) -- [momentum' = \(p\)] (x2),
+        (v1) -- [half left, momentum' = \(k\)] (v2),
+        (v2) -- [half left, momentum' = \(k\)] (v1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+This diagram is typically called a \bctxt{tadpole}. Its contribution can be computed in momentum performing a Wick rotation:
+\begin{equation}
+  -i B \equiv \frac{-i \lambda}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{k^2 + m^2} = - i \frac{\lambda}{32\pi^2} \left( \Lambda^2 - m^2 \log \frac{\Lambda^2 + m^2}{m^2} \right)
+\end{equation}
+Note that the tadpole is independent of $ p $, and it has both a quadratic and logarithmic UV divergence.
+
+\begin{lemma}{Tadpole resummation}{}
+  In $ \lambda \phi^4 $-theory, for a $ \ket{\ve{p}} \rightarrow \ket{\ve{p}} $ scattering, tadpole diagrams collectively contribute as:
+  \begin{equation*}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x1) {};
+        \vertex[right=2em of x1, dot] (v1) {};
+        \vertex[above=2em of v1, empty dot] (v2) {};
+        \vertex[right=2em of v1, dot] (x2) {};
+
+        \vertex[below=0.2em of v1] (r) {};
+
+        \diagram* {
+          (x1) -- (v1) -- (x2),
+          (v1) -- [half left] (v2),
+          (v2) -- [half left] (v1),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \quad + \quad
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x1) {};
+        \vertex[right=2em of x1, dot] (v1) {};
+        \vertex[above=2em of v1, empty dot] (v2) {};
+        \vertex[right=2em of v1, dot] (x2) {};
+        \vertex[right=2em of x2, dot] (v3) {};
+        \vertex[above=2em of v3, empty dot] (v4) {};
+        \vertex[right=2em of v3, dot] (x3) {};
+
+        \vertex[below=0.2em of v1] (r) {};
+
+        \diagram* {
+          (x1) -- (v1) -- (x2),
+          (v1) -- [half left] (v2),
+          (v2) -- [half left] (v1),
+
+          (x2) -- (v3) -- (x3),
+          (v3) -- [half left] (v4),
+          (v4) -- [half left] (v3),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \quad + \quad
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x1) {};
+        \vertex[right=2em of x1, dot] (v1) {};
+        \vertex[above=2em of v1, empty dot] (v2) {};
+        \vertex[right=2em of v1, dot] (x2) {};
+        \vertex[right=2em of x2, dot] (v3) {};
+        \vertex[above=2em of v3, empty dot] (v4) {};
+        \vertex[right=2em of v3, dot] (x3) {};
+        \vertex[right=2em of x3, dot] (v5) {};
+        \vertex[above=2em of v5, empty dot] (v6) {};
+        \vertex[right=2em of v5, dot] (x4) {};
+
+        \vertex[below=0.2em of v1] (r) {};
+
+        \diagram* {
+          (x1) -- (v1) -- (x2),
+          (v1) -- [half left] (v2),
+          (v2) -- [half left] (v1),
+
+          (x2) -- (v3) -- (x3),
+          (v3) -- [half left] (v4),
+          (v4) -- [half left] (v3),
+
+          (x3) -- (v5) -- (x4),
+          (v5) -- [half left] (v6),
+          (v6) -- [half left] (v5),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \quad + \quad \dots
+  \end{equation*}
+  \begin{equation*}
+    = \frac{i}{p^2 - m^2 - B}
+  \end{equation*}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    The represented diagram series reduces to a geometric series in momentum space:
+    \begin{equation*}
+      \begin{split}
+        & \tilde{D}_\text{F}(p) + \tilde{D}_\text{F}(p) (-iB) \tilde{D}_\text{F}(p) + \tilde{D}_\text{F}(p) (-iB) \tilde{D}_\text{F}(p) (-iB) \tilde{D}_\text{F}(p) + \dots \\
+        & = \tilde{D}_\text{F}(p) \sum_{n = 0}^{\infty} \left[ -i B \tilde{D}_\text{F}(p) \right]^n = \tilde{D}_\text{F} \frac{1}{1 + i B \tilde{D}_\text{F}(p)} = \frac{i}{p^2 - m^2} \left[ 1 - \frac{B}{p^2 - m^2} \right]^{-1} = \frac{i}{p^2 - m^2 - B}
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+This shows that accounting for tadpole diagrams is equivalent to shifting the mass $ m^2 \mapsto m^2 + B $.
 
 
 
