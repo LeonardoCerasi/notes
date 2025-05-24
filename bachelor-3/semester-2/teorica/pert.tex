@@ -111,7 +111,7 @@ The adiabatic hypothesis asserts then:
 \end{equation}
 where $ Z \in \C $ is a renormalization factor. These limits must be understood in the weak sense, as they are not operator equations, but they are only valid for each matrix element separately\footnotemark.
 %
-\footnotetext{If that wasn't the case, then canonical quantization would imply $ Z = 1 $, i.e. that $ \phi(x) $ is a free field.}
+\footnotetext{If that wasn't the case, then canonical quantization would imply $ Z = 1 $, i.e. that $ \phi(x) $ is a free field. For details, see Sec. 5.1.2 of \cite{itz-zub}.}
 
 \subsection{LSZ reduction formula}
 
@@ -478,7 +478,9 @@ Note that \eref{eq:corr-func-pert} is naturally suited for perturbative evaluati
 
 The problem of computing scattering amplitudes has been further reduced to that of computing $ n $-point Green functions of free (interaction picture) fields.
 
-\subsection{Feynman propagator}
+\subsection{Propagators}
+
+\subsubsection{Feynman propagator}
 
 \begin{theorem}{Feynman propagator}{feynman-prop}
   Given a real scalar field $ \phi(x) $, the \bcth{Feynman propagator} is computed as:
@@ -497,7 +499,7 @@ The problem of computing scattering amplitudes has been further reduced to that 
       \qquad \qquad
       \phi_I^-(x) \equiv \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} a_\ve{p}\dg e^{i p_\mu x^\mu}
     \end{equation*}
-    Clearly $ \phi_I(x)^+ \ket{0} = 0 $ and $ \bra{0} | \phi_I^-(x) = 0 $. Consider first the case $ x^0 > y^0 $:
+    Clearly $ \phi_I^+(x) \ket{0} = 0 $ and $ \bra{0} \phi_I^-(x) = 0 $. Consider first the case $ x^0 > y^0 $:
     \begin{equation*}
       \begin{split}
         \tempord\{\phi_I(x) \phi_I(y)\}
@@ -533,13 +535,13 @@ The problem of computing scattering amplitudes has been further reduced to that 
     \end{equation*}
     as $ E_\ve{p} = + \sqrt{\ve{p}^2 + m^2} $. The integral in $ \dd p^0 $ can be computed in the complex $ p^0 $-plane\footnote{As the integrand is $ \sim (p^0)^{-2} $, the contribution of the curved part of a semicircular contour vanishes, only leaving the integral over the real axis.}: the $ i\epsilon $-prescription slightly displaces the poles from the real axis\footnote{The poles are $ p^0 = \pm \sqrt{E_\ve{p}^2 - i\epsilon} \simeq \pm \left( E_\ve{p} - \frac{i\epsilon}{2E_\ve{p}} \right) $.}, and in particular that in $ p^0 = + E_\ve{p} $ is slightly below it while that in $ p^0 = - E_\ve{p} $ is slightly above it. If $ x^0 - y^0 > 0 $, choose a semicircular (clockwise) contour in the lower-half plane, so that only the $ p^0 = E_\ve{p} $ singularity is enclosed:
     \begin{equation*}
-      D_\text{F}(x-y)\vert_{x^0 > y^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (-2\pi i) \frac{e^{-i E_\ve{p} (x-y)}}{2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{-i p_\mu (x-y)^\mu}
+      D_\text{F}(x-y)\vert_{x^0 > y^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (-2\pi i) \frac{e^{-i E_\ve{p} (x^0 - y^0)}}{2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{-i p_\mu (x-y)^\mu}
     \end{equation*}
     If instead $ x^0 - y^0 < 0 $, choose a semicircular (counter-clockwise) contour in the upper-half plane:
     \begin{equation*}
       D_\text{F}(x-y)\vert_{y^0 > x^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (2\pi i) \frac{e^{i E_\ve{p} (x^0 - y^0)}}{-2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu (x-y)^\mu}
     \end{equation*}
-    where in the last integral $ \ve{p} \rightarrow -\ve{p} $ was renamed. The proof is complete.
+    where in the last integral $ \ve{p} \mapsto -\ve{p} $ was renamed. The proof is complete.
   \end{proof}
 \end{proofbox}
 
@@ -553,12 +555,137 @@ Moreover, the Feynman propagator is just a Green function for the KG operator:
 \end{equation*}
 Note that this result is independent of the $ i\epsilon $-prescription.
 
+\subsubsection{Dirac propagator}
+
+To explicitly compute the propagator for the Dirac field, it is necessary to include fermionic anti-symmetry when resolving time-ordering and normal-ordering, i.e. a factor of $ (-1) $ for each exchange of fermionic operators: for example, $ \tempord\{\Psi(x_1) \Psi(x_2) \Psi(x_3) \Psi(x_4)\} = (-1)^3 \Psi(x_3) \Psi(x_1) \Psi(x_4) \Psi(x_2) $ if $ x_3^0 > x_1^0 > x_4^0 > x_2^0 $, or $ \normord\{a_\ve{p} a_\ve{q} a_\ve{r}\dg\} = (-1)^2 a_\ve{r}\dg a_\ve{p} a_\ve{q} = (-1)^3 a_\ve{r}\dg a_\ve{q} a_\ve{p} $ (equal expressions).
+
+\begin{definition}{Fermionic time-ordering}{}
+  Given a Dirac field $ \Psi(x) $, the \bcdef{time-ordering operator} acts as:
+  \begin{equation}
+    \tempord\{\Psi(x) \bar{\Psi}(y)\} \defeq
+    \begin{cases}
+      \Psi(x) \bar{\Psi}(y) & x^0 > y^0 \\
+      \bar{\Psi}(y) \Psi(x) & y^0 > x^0 \\
+    \end{cases}
+  \end{equation}
+\end{definition}
+
+\begin{theorem}{Dirac propagator}{dirac-prop}
+  Given a Dirac field $ \Psi(x) $, the \bcth{Dirac propagator} is computed as:
+  \begin{equation}
+    S_\text{D}(x - y) \defeq \braket{0 | \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\} | 0} = \int \frac{\dd^4p}{(2\pi)^4} \frac{i (\slashed{p} + m)}{p^2 - m^2 + i\epsilon} e^{-i p_\mu (x - y)^\mu}
+    \label{eq:dirac-prop}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, decompose $ \Psi_I(x) $ and $ \Psi_I(y) $ into positive- and negative-frequency parts:
+    \begin{align*}
+      \Psi_I^+(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu}
+      \qquad
+      \Psi_I^-(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} b_{\ve{p},s}\dg v^s(p) e^{i p_\mu x^\mu}
+      \\
+      \bar{\Psi}_I^+(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu}
+      \qquad
+      \bar{\Psi}_I^-(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} a_{\ve{p},s}\dg \bar{u}^s(p) e^{i p_\mu x^\mu}
+    \end{align*}
+    Clearly $ \Psi_I^+(x) \ket{0} = 0 = \bar{\Psi}_I^+(x) \ket{0} $ and $ \bra{0} \Psi_I^-(x) = 0 = \bra{0} \bar{\Psi}_I^-(x) $. Consider first the case $ x^0 > y^0 $:
+    \begin{equation*}
+      \begin{split}
+        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
+        & = \Psi_I^+(x) \bar{\Psi}_I^+(y) + \Psi_I^+(x) \bar{\Psi}_I^-(y) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) \\
+        & = \Psi_I^+(x) \bar{\Psi}_I^+(y) - \bar{\Psi}_I^-(y) \Psi_I^+(x) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) + \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\} \\
+        & \equiv \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\}
+      \end{split}
+    \end{equation*}
+    Similarly, for $ y^0 > x^0 $:
+    \begin{equation*}
+      \begin{split}
+        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
+        & = -\bar{\Psi}_I^+(y) \Psi_I^+(x) - \bar{\Psi}_I^-(y) \Psi_I^+(x) - \bar{\Psi}_I^+(y) \Psi_I^-(x) - \bar{\Psi}_I^-(y) \Psi_I^-(x) \\
+        & = \Psi_I^+(x) \bar{\Psi}_I^+(y) - \bar{\Psi}_I^-(y) \Psi_I^+(x) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) - \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\} \\
+        & \equiv \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} - \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\}
+      \end{split}
+    \end{equation*}
+    Therefore, in general\footnote{To be precise, all these quantities should have spinor indices: indeed, $ \Psi \bar{\Psi} \in \C^{4 \times 4} $ while $ \bar{\Psi} \Psi \in \C $, so the anti-commutator $ \{\Psi , \bar{\Psi}\} $ is only defined with spinor indices, i.e. $ \{\Psi_\alpha , \bar{\Psi}_\beta\} $. To shorten the notation, spinor indices are suppressed, and $ \{\Psi , \bar{\Psi}\} , \{\bar{\Psi} , \Psi\} $ are treated as $ \C^{4 \times 4} $ matrices, always writing Dirac adjoints on the right in the explicit expressions.}:
+    \begin{equation*}
+      \begin{split}
+        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
+        & = \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + \theta(x^0 - y^0) \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\} - \theta(y^0 - x^0) \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\} \\
+        & = \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + S_\text{D}(x - y)
+      \end{split}
+    \end{equation*}
+    By the same observations as in the previous proof $ \braket{0 | \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\} | 0} = S_\text{D}(x - y) $, so explicitly computing the anti-commutators:
+    \begin{equation*}
+      \begin{split}
+        S_\text{D}(x - y)
+        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^6 \sqrt{4E_\ve{p}E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \big[ \theta(x^0 - y^0) \{a_{\ve{p},s} , a_{\ve{q},r}\dg\} u^s(p) \bar{u}^r(q) e^{-i p_\mu x^\mu + i q_\mu y^\mu} + \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad - \theta(y^0 - x^0) \{b_{\ve{p},s} , b_{\ve{q},r}\dg\} v^r(q) \bar{v}^s(p) e^{-i p_\mu x^\mu + i q_\mu y^\mu} \big] \\
+        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^3 \sqrt{4E_\ve{p}E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \delta^{(3)}(\ve{p} - \ve{q}) \delta_{sr} \big[ \theta(x^0 - y^0) u^s(p) \bar{u}^r(q) e^{-i p_\mu y^\mu + i q_\mu x^\mu} + \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad - \theta(y^0 - x^0) v^r(q) \bar{v}^s(p) e^{-i p_\mu x^\mu + i q_\mu y^\mu} \big] \\
+        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \sum_{s = 1,2} \left[ \theta(x^0 - y^0) u^s(p) \bar{u}^s(p) e^{-i p_\mu (x-y)^\mu} - \theta(y^0 - x^0) v^s(p) \bar{v}^s(p) e^{i p_\mu (x-y)^\mu} \right]
+      \end{split}
+    \end{equation*}
+    Recalling \eref{eq:spinor-sums}:
+    \begin{equation*}
+      S_\text{D}(x - y) = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \left[ \theta(x^0 - y^0) (\slashed{p} + m) e^{-i p_\mu (x-y)^\mu} - \theta(y^0 - x^0) (\slashed{p} - m) e^{i p_\mu (x-y)^\mu} \right]
+    \end{equation*}
+    By the same technique in the previous proof, to show that this expression is equal to the thesis, rewrite \eref{eq:dirac-prop} as:
+    \begin{equation*}
+      S_\text{D}(x - y) = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \int \frac{\dd p^0}{2\pi} \frac{i (p^0 \gamma^0 - \ve{p} \cdot \bs{\gamma} + m)}{(p^0)^2 - E_\ve{p}^2 + i\epsilon} e^{-i p^0 (x^0 - y^0)}
+    \end{equation*}
+    The $ i\epsilon $-prescription shifts the pole in $ p^0 > 0 $ below the real axis and that in $ p^0 < 0 $ above it. If $ x^0 > y^0 $, chose a semicircular (clockwise) contour in the lower-hald plane, so that only the $ p^0 = E_\ve{p} $ singularity is enclosed:
+    \begin{equation*}
+      \begin{split}
+        S_\text{D}(x - y)\vert_{x^0 > y^0}
+        & = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (-2\pi i) \frac{E_\ve{p} \gamma^0 - \ve{p} \cdot \bs{\gamma} + m}{2E_\ve{p}} e^{-i E_\ve{p} (x^0 - y^0)} \right] \\
+        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (E_\ve{p} \gamma^0 - \ve{p} \cdot \bs{\gamma} + m) = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (\slashed{p} + m)
+      \end{split}
+    \end{equation*}
+    If instead $ y^0 > x^0 $, chose a semicircular (counter-clockwise) contour in the upper-half plane:
+    \begin{equation*}
+      \begin{split}
+        S_\text{D}(x - y)\vert_{y^0 > x^0}
+        & = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (2\pi i) \frac{-E_\ve{p} \gamma^0 - \ve{p} \cdot \bs{\gamma} + m}{-2E_\ve{p}} e^{i E_\ve{p} (x^0 - y^0)} \right] \\
+        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (-E_\ve{p} \gamma^0 + \ve{p} \cdot \bs{\gamma} + m) = - \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (\slashed{p} - m)
+      \end{split}
+    \end{equation*}
+    where in the second equality $ \ve{p} \mapsto -\ve{p} $ was renamed. The proof is complete.
+  \end{proof}
+\end{proofbox}
+
+Note that $ S_\text{D}(x - y) \in \C^{4 \times 4} $, with two Dirac indices: $ S_{\alpha \beta}(x-y) \equiv \braket{0 | \tempord\{\Psi_{I,\alpha}(x) \bar{\Psi}_{I,\beta}(y)\} | 0} $. It is straightforward to see that the Feynman propagator in momentum space is:
+\begin{equation}
+  \tilde{S}_\text{D}(x-y) = \frac{i (\slashed{p} + m)}{p^2 - m^2 + i\epsilon}
+\end{equation}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Dirac propagator in momentum space}{}
+  \begin{equation}
+    \tilde{S}_\text{D}(x-y) = \frac{i}{\slashed{p} - m}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\slashed{p} + m) (\slashed{p} - m) = \gamma^\mu \gamma^\nu p_\mu p_\nu - m^2 = \frac{1}{2} \{\gamma^\mu , \gamma^\nu\} p_\mu p_\nu - m^2 = \eta^{\mu \nu} p_\mu p_\nu - m^2 = p^2 - m^2 $.
+  \end{proof}
+\end{proofbox}
+
+This is interpreted as the inverse matrix $ i (\slashed{p} - m)^{-1} $.
+As for the Feynman propagator, the Dirac propagator too is a Green function for the Dirac operator:
+\begin{equation*}
+  (i \slashed{\pa}_x - m) S_\text{D}(x-y) = \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{\slashed{p} - m} (\gamma^\mu p_\mu - m) e^{-i p_\mu (x-y)^\mu} = i \delta^{(4)}(x - y)
+\end{equation*}
+
 \subsection{Wick's theorem}
 
 It is possible to simplify the computation of a general $ n $-point Green function in terms of $ 2 $-point Green functions. In the following, the subscript $ I $ for the interaction-picture field is omitted.
 
+\subsubsection{Bosonic fields}
+
 \begin{definition}{Contraction}{}
-  Given a bosonic field $ \phi(x) $, it's \bcdef{contraction} is defined as:
+  Given a bosonic field $ \phi(x) $, its \bcdef{contraction} is defined as:
   \begin{equation}
     \wick{\c\phi(x) \c\phi(y)} \defeq
     \begin{cases}
@@ -575,10 +702,10 @@ Recalling the proof of \tref{th:feynman-prop}, it is clear that:
 \end{equation}
 This relation can be generalized to $ n $-point Green functions.
 
-\begin{theorem}{Wick's theorem}{}
+\begin{theorem}{Wick's theorem}{wick-boson}
   Given a bosonic field $ \phi(x) $:
   \begin{equation}
-    \tempord\{\phi(x_1) \dots \phi(x_n)\} = \normord\{\phi(x_1) \dots \phi(x_n) + \text{all possible contractions}\}
+    \tempord\{\phi(x_1) \dots \phi(x_n)\} = \normord\{\phi(x_1) \dots \phi(x_n) \,+\, \text{all possible contractions}\}
     \label{eq:wick-th}
   \end{equation}
   where both partially-contracted and fully-contracted terms are considered.
@@ -608,7 +735,7 @@ This relation can be generalized to $ n $-point Green functions.
   \end{proof}
 \end{proofbox}
 
-Note that only fully-contracted terms contribute to the $ n $-point Green function: as every term with at least an uncontracted field vanishes when put between $ \braket{0||0} $, as there will be an annihilation operator acting on $ \ket{0} $ or a creation operator acting on $ \bra{0} $.
+Note that only fully-contracted terms contribute to the $ n $-point Green function: as every term with at least an uncontracted field vanishes when put between $ \braket{0| \cdot |0} $, as there will be an annihilation operator acting on $ \ket{0} $ or a creation operator acting on $ \bra{0} $.
 
 \begin{example}{4-point Green function}{4-green-func}
   Applying Wick's theorem to a 4-point Green function yields:
@@ -720,6 +847,42 @@ Note that only fully-contracted terms contribute to the $ n $-point Green functi
 \end{example}
 
 Using this formalism to compute \eref{eq:corr-func-pert}, when expanding the exponential in powers of $ \ham_I $, each term contains fields at the same spacetime point: this gives rise to less trivial Feynman diagrams.
+
+\subsubsection{Fermionic fields}
+
+\begin{definition}{Contraction}{}
+  Given a fermionic $ \Psi(x) $, its \bcdef{contraction} is defined as:
+  \begin{equation}
+    \wick{\c\Psi(x) \c{\bar{\Psi}}(y)} \defeq
+    \begin{cases}
+      \{\Psi^+(x) , \bar{\Psi}^-(y)\} & x^0 > y^0 \\
+      -\{\bar{\Psi}^+(y) , \Psi^-(x)\} & y^0 > x^0
+    \end{cases}
+  \end{equation}
+  and $ \wick{\c\Psi(x) \c\Psi(y)} = \wick{\c{\bar{\Psi}}(x) \c{\bar{\Psi}}(y)} = 0 $.
+\end{definition}
+
+By the proof of \tref{th:dirac-prop}, it is clear that:
+\begin{equation}
+  \tempord\{\Psi(x) \bar{\Psi}(y)\} = \normord\{\Psi(x) \bar{\Psi}(y)\} + \wick{\c\Psi(x) \c{\bar{\Psi}}(y)}
+\end{equation}
+Wick's theorem remains basically unchanged for fermions.
+
+\begin{theorem}{Wick's theorem}{wick-fermion}
+  Given a fermionic field $ \Psi(x) $:
+  \begin{equation}
+    \tempord\{\Psi(x_1) \bar{\Psi}(x_2) \dots\} = \normord\{\Psi(x_1) \bar{\Psi}(x_2) \dots \,+\, \text{all possible contractions}\}
+  \end{equation}
+  where both partially-contracted and fully-contracted terms are considered.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Inserting everything inside $ \normord\{\cdot\} $ ensures that the correct signs are considered due to fermionic anti-symmetry, therefore the proof is analogous to that of \tref{th:wick-boson}.
+  \end{proof}
+\end{proofbox}
+
+As for the bosonic counterparts, only fully-contracted terms contribute to the $ n $-point Green function, as each partially-contracted term will have either an annihilation operator acting on $ \ket{0} $ or a creation operator acting on $ \bra{0} $ (or both).
 
 \subsubsection{Scattering in $ \lambda \phi^4 $-theory}
 
@@ -1063,12 +1226,12 @@ It is useful to work in momentum space, rather than coordinate space. For exampl
       \vertex[right=5em of x, dot] (y) {};
 
       \vertex[above=3em of x] (p1) {};
-      \vertex[left=3em of p1, dot] (x1) {};
-      \vertex[below=6em of x1, dot] (x2) {};
+      \vertex[left=3em of p1] (x1) {};
+      \vertex[below=6em of x1] (x2) {};
 
       \vertex[above=3em of y] (p2) {};
-      \vertex[right=3em of p2, dot] (x3) {};
-      \vertex[below=6em of x3, dot] (x4) {};
+      \vertex[right=3em of p2] (x3) {};
+      \vertex[below=6em of x3] (x4) {};
 
       \vertex[below=0.3em of x] (r) {};
 
@@ -1086,11 +1249,11 @@ It is useful to work in momentum space, rather than coordinate space. For exampl
       \vertex[above=4em of x, dot] (y) {};
 
       \vertex[above=2em of y] (p1) {};
-      \vertex[left=5em of p1, dot] (x1) {};
-      \vertex[below=8em of x1, dot] (x2) {};
+      \vertex[left=5em of p1] (x1) {};
+      \vertex[below=8em of x1] (x2) {};
 
-      \vertex[right=5em of p1, dot] (x3) {};
-      \vertex[below=8em of x3, dot] (x4) {};
+      \vertex[right=5em of p1] (x3) {};
+      \vertex[below=8em of x3] (x4) {};
 
       \vertex[above=1.7em of x] (r) {};
 
@@ -1112,6 +1275,7 @@ The example calculations carried for $ \lambda \phi^3 $- and $ \lambda \phi^4 $-
   \item as there is always a momentum-conserving $ \delta $-function, it is convenient to define the matrix element $ \mat_\text{if} $ for the process $ \ket{\text{i}} \rightarrow \ket{\text{f}} $ as:
     \begin{equation}
       \braket{\ve{p}_1 , \dots , \ve{p}_m | i T | \ve{k}_1 , \dots , \ve{k}_n} \equiv (2\pi)^4 \delta^{(4)}\left( \sum_{i = 1}^{m} p_i - \sum_{j = 1}^{n} k_j \right) i \mat_\text{if}
+      \label{eq:mat-el}
     \end{equation}
   \item energy-momentum conservation must be imposed separately at each vertex;
   \item each vertex is associated to a $ -i \lambda $ factor, where $ \lambda $ is the coupling constant of the interaction;
@@ -1129,16 +1293,16 @@ There are three possible inequivalent full contractions, associated to the conne
 \begin{equation*}
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
-      \vertex[dot] (x1) {};
+      \vertex (x1) {};
       \vertex[below=3em of x1] (p1) {};
-      \vertex[below=3em of p1, dot] (x2) {};
+      \vertex[below=3em of p1] (x2) {};
 
       \vertex[right=3em of p1, dot] (v1) {};
       \vertex[right=5em of v1, dot] (v2) {};
 
       \vertex[right=3em of v2] (p2) {};
-      \vertex[above=3em of p2, dot] (x3) {};
-      \vertex[below=3em of p2, dot] (x4) {};
+      \vertex[above=3em of p2] (x3) {};
+      \vertex[below=3em of p2] (x4) {};
 
       \vertex[above=0.5em of v1] (r) {};
 
@@ -1156,15 +1320,15 @@ There are three possible inequivalent full contractions, associated to the conne
   \qquad
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
-      \vertex[dot] (x1) {};
+      \vertex (x1) {};
       \vertex[right=4em of x1] (p1) {};
-      \vertex[right=4em of p1, dot] (x3) {};
+      \vertex[right=4em of p1] (x3) {};
 
       \vertex[below=2em of p1, dot] (v1) {};
       \vertex[below=5em of v1, dot] (v2) {};
 
-      \vertex[below=9em of x1, dot] (x2) {};
-      \vertex[below=9em of x3, dot] (x4) {};
+      \vertex[below=9em of x1] (x2) {};
+      \vertex[below=9em of x3] (x4) {};
 
       \vertex[below=2em of v1] (r) {};
 
@@ -1180,15 +1344,15 @@ There are three possible inequivalent full contractions, associated to the conne
   \qquad
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
-      \vertex[dot] (x1) {};
+      \vertex (x1) {};
       \vertex[right=4em of x1] (p1) {};
-      \vertex[right=4em of p1, dot] (x3) {};
+      \vertex[right=4em of p1] (x3) {};
 
       \vertex[below=2em of p1, dot] (v1) {};
       \vertex[below=5em of v1, dot] (v2) {};
 
-      \vertex[below=9em of x1, dot] (x2) {};
-      \vertex[below=9em of x3, dot] (x4) {};
+      \vertex[below=9em of x1] (x2) {};
+      \vertex[below=9em of x3] (x4) {};
 
       \vertex[below=2em of v1] (r) {};
 
@@ -1248,10 +1412,10 @@ Another example of loop divergence in $ \lambda \phi^4 $-theory is that associat
   \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi^4(x)\} | 0} = 4\cdot3 \cdot \wick{\c1\phi(x_1) \c2\phi(x_2) \c1\phi(x) \c2\phi(x) \c1\phi(x) \c1\phi(x)} = \ 4\cdot3 \ \times \
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
-      \vertex[dot] (x1) {};
+      \vertex (x1) {};
       \vertex[right=5em of x1, dot] (v1) {};
       \vertex[above=4em of v1, empty dot] (v2) {};
-      \vertex[right=5em of v1, dot] (x2) {};
+      \vertex[right=5em of v1] (x2) {};
 
       \vertex[below=0.2em of v1] (r) {};
 
@@ -1274,15 +1438,16 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
   \begin{equation*}
     \begin{tikzpicture}[baseline = (r.base)]
       \begin{feynman}[inline = (r.base)]
-        \vertex[dot] (x1) {};
+        \vertex (x1) {};
         \vertex[right=2em of x1, dot] (v1) {};
         \vertex[above=2em of v1, empty dot] (v2) {};
-        \vertex[right=2em of v1, dot] (x2) {};
+        \vertex[right=2em of v1] (x2) {};
 
         \vertex[below=0.2em of v1] (r) {};
 
         \diagram* {
           (x1) -- (v1) -- (x2),
+
           (v1) -- [half left] (v2),
           (v2) -- [half left] (v1),
         };
@@ -1291,22 +1456,21 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
     \quad + \quad
     \begin{tikzpicture}[baseline = (r.base)]
       \begin{feynman}[inline = (r.base)]
-        \vertex[dot] (x1) {};
+        \vertex (x1) {};
         \vertex[right=2em of x1, dot] (v1) {};
         \vertex[above=2em of v1, empty dot] (v2) {};
-        \vertex[right=2em of v1, dot] (x2) {};
-        \vertex[right=2em of x2, dot] (v3) {};
+        \vertex[right=4em of v1, dot] (v3) {};
         \vertex[above=2em of v3, empty dot] (v4) {};
-        \vertex[right=2em of v3, dot] (x3) {};
+        \vertex[right=2em of v3] (x2) {};
 
         \vertex[below=0.2em of v1] (r) {};
 
         \diagram* {
-          (x1) -- (v1) -- (x2),
+          (x1) -- (v1) -- (v3) -- (x2),
+
           (v1) -- [half left] (v2),
           (v2) -- [half left] (v1),
 
-          (x2) -- (v3) -- (x3),
           (v3) -- [half left] (v4),
           (v4) -- [half left] (v3),
         };
@@ -1315,29 +1479,26 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
     \quad + \quad
     \begin{tikzpicture}[baseline = (r.base)]
       \begin{feynman}[inline = (r.base)]
-        \vertex[dot] (x1) {};
+        \vertex (x1) {};
         \vertex[right=2em of x1, dot] (v1) {};
         \vertex[above=2em of v1, empty dot] (v2) {};
-        \vertex[right=2em of v1, dot] (x2) {};
-        \vertex[right=2em of x2, dot] (v3) {};
+        \vertex[right=4em of v1, dot] (v3) {};
         \vertex[above=2em of v3, empty dot] (v4) {};
-        \vertex[right=2em of v3, dot] (x3) {};
-        \vertex[right=2em of x3, dot] (v5) {};
+        \vertex[right=4em of v3, dot] (v5) {};
         \vertex[above=2em of v5, empty dot] (v6) {};
-        \vertex[right=2em of v5, dot] (x4) {};
+        \vertex[right=2em of v5] (x2) {};
 
         \vertex[below=0.2em of v1] (r) {};
 
         \diagram* {
-          (x1) -- (v1) -- (x2),
+          (x1) -- (v1) -- (v3) -- (v5) -- (x2),
+
           (v1) -- [half left] (v2),
           (v2) -- [half left] (v1),
 
-          (x2) -- (v3) -- (x3),
           (v3) -- [half left] (v4),
           (v4) -- [half left] (v3),
 
-          (x3) -- (v5) -- (x4),
           (v5) -- [half left] (v6),
           (v6) -- [half left] (v5),
         };
@@ -1364,6 +1525,74 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
 \end{proofbox}
 
 This shows that accounting for tadpole diagrams is equivalent to shifting the mass $ m^2 \mapsto m^2 + B $.
+
+\subsection{Feynman rules}
+
+To compute amplitudes up to a desired order, it is not necessary to explicitly expanding the exponential each time and then performing Wick contractions, as these steps are summarized by a simple set of rules.
+
+\subsubsection{$ \lambda \phi^n $-theory}
+
+Consider a scalar field theory with Hamiltonian:
+\begin{equation}
+  \ham = \ham_\text{KG} + \frac{\lambda}{n!} \phi^n
+\end{equation}
+The Feynman rules in momentum space for this theory are:
+\begin{enumerate}
+  \item for each internal line:
+    $
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x) {};
+        \vertex[right=4em of x, dot] (y) {};
+
+        \vertex[below=0.2em of x] (r) {};
+
+        \diagram* {
+          (x) -- [momentum = \(p\)] (y),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    = \tilde{D}_\text{F}(p)
+    $;
+  \item for each external leg:
+    $
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x) {};
+        \vertex[right=4em of x] (y) {};
+
+        \vertex[below=0.2em of x] (r) {};
+
+        \diagram* {
+          (x) -- (y),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    = 1
+    $;
+  \item for each vertex:
+    $
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x) {};
+      \end{feynman}
+    \end{tikzpicture}
+    = -i \lambda
+    $;
+  \item impose momentum conservation at each vertex;
+  \item integrate over each undetermined loop momentum $ p $ with measure $ \frac{\dd^4p}{(2\pi)^4} $;
+  \item divide by the symmetry factor of the diagram.
+\end{enumerate}
+
+The problem of computing scattering amplitude is thus reduced to that of drawing every inequivalent fully-connected Feynman diagram (modulo void-to-void diagrams). These rules allow to compute the matrix element $ \mat_\text{if} $, which is related to the $ T $-matrix element by \eref{eq:mat-el} and to the $ S $-matrix element by $ S = 1 + i T $.
+
+\subsubsection{Yukawa theory}
+
+Consider a field theory with a real scalar field $ \phi(x) $ and a Dirac field $ \Psi(x) $. The \bctxt{Yukawa Hamiltonian} is:
+\begin{equation}
+  \ham = \ham_\text{KG} + \ham_\text{D} + g \bar{\Psi} \Psi \phi
+\end{equation}
+where $ g $ is a dimensionless coupling constant. This is a simplified model of QED. Consider the $ 2 \rightarrow 2 $ scattering of fermions.
 
 
 
