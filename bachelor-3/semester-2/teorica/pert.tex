@@ -878,7 +878,7 @@ Wick's theorem remains basically unchanged for fermions.
 
 \begin{proofbox}
   \begin{proof}
-    Inserting everything inside $ \normord\{\cdot\} $ ensures that the correct signs are considered due to fermionic anti-symmetry, therefore the proof is analogous to that of \tref{th:wick-boson}.
+    Inserting everything inside $ \normord\{\cdot\} $ ensures that the correct signs are considered due to fermionic anti-commutation, therefore the proof is analogous to that of \tref{th:wick-boson}.
   \end{proof}
 \end{proofbox}
 
@@ -1592,7 +1592,428 @@ Consider a field theory with a real scalar field $ \phi(x) $ and a Dirac field $
 \begin{equation}
   \ham = \ham_\text{KG} + \ham_\text{D} + g \bar{\Psi} \Psi \phi
 \end{equation}
-where $ g $ is a dimensionless coupling constant. This is a simplified model of QED. Consider the $ 2 \rightarrow 2 $ scattering of fermions.
+where $ g $ is a dimensionless coupling constant. This is a simplified model of QED. Note that the form of $ \ham_\text{int} $ allows interaction vertices with two fermion lines and one scalar line. The Feynman rules in momentum space for this theory are:
+\begin{enumerate}
+  \item propagators:
+    \begin{enumerate}
+      \item scalar:
+      $
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex[dot] (x) {};
+          \vertex[right=4em of x, dot] (y) {};
+
+          \vertex[below=0.2em of x] (r) {};
+
+          \diagram* {
+            (x) -- [scalar, momentum = \(q\)] (y),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \,=\, \displaystyle\frac{i}{q^2 - m_\phi^2 + i\epsilon} = \tilde{D}_\text{F}(q)
+      $;
+      \item fermion:
+      $
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex[dot] (x) {};
+          \vertex[right=4em of x, dot] (y) {};
+
+          \vertex[below=0.2em of x] (r) {};
+
+          \diagram* {
+            (x) -- [fermion, momentum = \(p\)] (y),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \,=\, \displaystyle\frac{i(\slashed{p} + m)}{p^2 - m^2 + i\epsilon} = \tilde{S}_\text{D}(p)
+      $;
+    \end{enumerate}
+  \item vertex:
+    $
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x) {};
+        \vertex[right=4em of x] (y) {};
+
+        \vertex[above=2em of x] (p) {};
+        \vertex[left=2em of p] (p1) {};
+        \vertex[below=4em of p1] (p2) {};
+
+        \vertex[below=0.2em of x] (r) {};
+
+        \diagram* {
+          (x) -- [scalar] (y),
+          (p2) -- [fermion] (x) -- [fermion] (p1),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \,=\, -i g
+    $;
+  \item external legs:
+    \begin{enumerate}
+      \item initial state:
+        \begin{enumerate}
+          \item scalar:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (y) -- [scalar, momentum = \(q\)] (x),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, 1
+            $;
+          \item fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (y) -- [fermion, momentum = \(p\)] (x),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, u^s(p)
+            $;
+          \item anti-fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (y) -- [anti fermion, momentum = \(k\)] (x),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, \bar{v}^s(k)
+            $;
+        \end{enumerate}
+      \item final state:
+        \begin{enumerate}
+          \item scalar:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (x) -- [scalar, momentum' = \(q\)] (y),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, 1
+            $;
+          \item fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (x) -- [fermion, momentum' = \(p\)] (y),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, \bar{u}^s(p)
+            $;
+          \item anti-fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (x) -- [anti fermion, momentum' = \(k\)] (y),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, v^s(k)
+            $;
+        \end{enumerate}
+    \end{enumerate}
+  \item impose momentum conservation at each vertex;
+  \item integrate over each undetermined loop momentum $ p $ with measure $ \frac{\dd^4p}{(2\pi)^4} $ (each closed fermionic loop determines an additional $ (-1) $ factor due to anti-commutation);
+  \item divide by the symmetry factor of the diagram.
+\end{enumerate}
+Note that for the Yukawa interaction $ g \bar{\Psi} \Psi \phi $ the symmetry factor of each diagram is $ S = 1 $, as the three field in $ \ham_\text{int} $ cannot substitute for one another in contractions. Moreover, Dirac indices are always contracted together along fermionic lines. \\
+It can be shown that an interaction mediated by a scalar field is always attractive, both for $ ff $, $ f\bar{f} $ and $ \bar{f}\bar{f} $ scattering.
+
+\subsubsection{Quantum Electrodynamics}
+
+Consider a field theory with a Dirac field $ \Psi(x) $ and a vector (gauge) field $ A_\mu(x) $. The \bctxt{QED interaction Hamiltonian} is:
+\begin{equation}
+  \ham_\text{int} = e \bar{\Psi} \gamma^\mu \Psi A_\mu
+\end{equation}
+This interaction term determines interaction vertices with two fermionic lines and one vector line.
+The photon propagator is introduced:
+\begin{equation}
+  D_{\mu \nu}(x-y) \defeq \braket{0 | \tempord\{A_\mu(x) A_\nu(y)\} | 0}
+  \qquad \Rightarrow \qquad
+  \tilde{D}_{\mu \nu}(k) = \frac{-i}{k^2 + i\epsilon} \eta_{\mu \nu}
+\end{equation}
+Note that the spatial components $ A_i(x) $ have the same propagator as a massless real scalar field, while $ A_0(x) $ has an additional negative sign.
+The Feynman rules in momentum space for QED are:
+\begin{enumerate}
+  \item propagators:
+    \begin{enumerate}
+      \item vector:
+      $
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex[dot] (x) {};
+          \vertex[right=4em of x, dot] (y) {};
+
+          \vertex (l1) at ($(x)+(-0.4,0)$) {\(\mu\)};
+          \vertex (l2) at ($(y)+(0.4,0)$) {\(\nu\)};
+
+          \vertex[below=0.2em of x] (r) {};
+
+          \diagram* {
+            (x) -- [photon, momentum = \(q\)] (y),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \,=\, \tilde{D}_{\mu \nu}(q)
+      $;
+      \item fermion:
+      $
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex[dot] (x) {};
+          \vertex[right=4em of x, dot] (y) {};
+
+          \vertex[below=0.2em of x] (r) {};
+
+          \diagram* {
+            (x) -- [fermion, momentum = \(p\)] (y),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \,=\, \tilde{S}_\text{D}(p)
+      $;
+    \end{enumerate}
+  \item vertex:
+    $
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (x) {};
+        \vertex[right=4em of x] (y) {};
+
+        \vertex[above=2em of x] (p) {};
+        \vertex[left=2em of p] (p1) {};
+        \vertex[below=4em of p1] (p2) {};
+
+        \vertex (l1) at ($(y)+(0.4,0)$) {\(\mu\)};
+
+        \vertex[below=0.2em of x] (r) {};
+
+        \diagram* {
+          (x) -- [photon] (y),
+          (p2) -- [fermion] (x) -- [fermion] (p1),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \,=\, -i e \gamma^\mu
+    $;
+  \item external legs:
+    \begin{enumerate}
+      \item initial state:
+        \begin{enumerate}
+          \item vector:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex (l1) at ($(y)+(0.4,0)$) {\(\mu\)};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (y) -- [photon, momentum = \(q\)] (x),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, \epsilon_\mu(q)
+            $;
+          \item fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (y) -- [fermion, momentum = \(p\)] (x),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, u^s(p)
+            $;
+          \item anti-fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (y) -- [anti fermion, momentum = \(k\)] (x),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, \bar{v}^s(k)
+            $;
+        \end{enumerate}
+      \item final state:
+        \begin{enumerate}
+          \item scalar:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex (l1) at ($(y)+(0.4,0)$) {\(\mu\)};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (x) -- [photon, momentum' = \(q\)] (y),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, \epsilon_\mu^*(q)
+            $;
+          \item fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (x) -- [fermion, momentum' = \(p\)] (y),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, \bar{u}^s(p)
+            $;
+          \item anti-fermion:
+            $
+            \begin{tikzpicture}[baseline = (r.base)]
+              \begin{feynman}[inline = (r.base)]
+                \vertex[dot] (x) {};
+                \vertex[right=4em of x] (y) {};
+
+                \vertex[above=1em of x] (p) {};
+                \vertex[left=1em of p] (p1) {};
+                \vertex[below=2em of p1] (p2) {};
+
+                \vertex[below=0.2em of x] (r) {};
+
+                \diagram* {
+                  (x) -- [anti fermion, momentum' = \(k\)] (y),
+                  (p2) -- (x) -- (p1),
+                };
+              \end{feynman}
+            \end{tikzpicture}
+            \,=\, v^s(k)
+            $;
+        \end{enumerate}
+    \end{enumerate}
+  \item impose momentum conservation at each vertex;
+  \item integrate over each undetermined loop momentum $ p $ with measure $ \frac{\dd^4p}{(2\pi)^4} $ (each closed fermionic loop determines an additional $ (-1) $ factor due to anti-commutation);
+  \item divide by the symmetry factor of the diagram.
+\end{enumerate}
+Of course, when considering fermions with charge $ Q $ (in units of $ \abs{e} $), substitute $ e \mapsto Q\abs{e} $ in the above formulae. \\
+It can be shown that the interaction mediated by a vector field is attractive for $ f\bar{f} $ scattering and repulsive for $ ff $ and $ \bar{f} \bar{f} $ scattering.
 
 
 
