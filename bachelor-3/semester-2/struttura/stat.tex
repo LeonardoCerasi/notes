@@ -548,6 +548,7 @@ Si può calcolare esplicitamente la funzione di gran-partizione per un sistema d
 	Per un sistema di bosoni/fermioni non-interagenti si ha:
 	\begin{equation}
 		[n_\alpha] = \frac{1}{e^{\beta (E_\alpha - \mu)} - \theta}
+		\label{eq:fer-dir-bos-ein}
 	\end{equation}
 	dove $ \theta = +1 $ per sistemi bosonici e $ \theta = -1 $ per sistemi fermionici.
 
@@ -567,9 +568,9 @@ Si può calcolare esplicitamente la funzione di gran-partizione per un sistema d
 \end{theorem}
 
 Queste sono le distribuzioni di Bose-Einstein (bosoni) e Fermi-Dirac (fermioni). Si vede che a $ T $ e $ \mu $ fissati, l'occupazione media di uno stato è determinato esclusivamente dalla sua energia\footnotemark. Inoltre, la presenza di altre particelle influenza l'occupazione media di uno stato tramite il potenziale chimico $ \mu $, il quale è funzione della densità totale media $ [\hat{N}]/V $ e della temperatura $ T $.
-
+%
 \footnotetext{In particolare, in assenza di campi magnetici esterni, $ [n_\alpha] $ è indipendente da $ m_s $: si conseguenza, gas ideali di bosoni/fermioni rimangono in uno stato complessivo non-magnetizzato e non-polarizzato a qualsiasi temperatura.}
-
+%
 Si noti che giustamente $ [n_\alpha]_\text{Fermi} \in [0,1] $ e che entrambe, per $ E_\alpha \gg \mu $, possono essere approssimate da $ [n_\alpha] \approx e^{-\beta (E_\alpha - \mu)} $, ovvero una distribuzione di Boltzmann (limite classico\footnotemark, opposto al limite degenere a bassa temperatura).
 
 \footnotetext{Considerando un gas perfettamente ideale, ovvero non-interagente, allora se esso venisse preparato in uno stato iniziale lontano dall'equilibrio non raggiungerebbe mai quest'ultimo, in quanto è necessaria un'interazione almeno con l'ambiente.}
@@ -701,6 +702,156 @@ Questo splitting è molto piccolo ($ \mu_\text{B} \sim 10^{-5} \ev/\text{T} $), 
 	[\mu_z] = -\mu_\text{B} [N_+ - N_-] = \frac{\sqrt[3]{3}}{4\pi^{4/3}} \frac{q_e^2 V}{m_e} \sqrt[3]{\frac{N}{V}} B
 \end{equation}
 Questo andamento ($ E_\text{mag} \propto B^2 $) è diverso dal caso classico e si parla di \textit{magnetizzazione di Pauli}. Affinché tutti gli elettroni risultino polarizzati $ \uparrow $, bisogna abbassare talmente tanto il livello energetico con $ m_s = + \frac{1}{2} $ da non avere elettroni con $ m_s = - \frac{1}{2} $: la condizione di magnetizzazione totale è dunque $ 2\mu_\text{B} B = \varepsilon_\text{F} $ (splitting energetico).
+
+\subsubsection{Bosoni}
+
+Il ground state di un sistema di $ N $ bosoni è più semplice rispetto a quello di un equivalente fermionico: non valendo alcun principio d'esclusione, tutti i bosoni occupano lo stato di minima energia $ \ket{\ve{k}} = \ket{\ve{0}} $ con $ E_\ve{0} = 0 $; in presenza di una degenerazione da spin $ g_s $, ciascuno stato di spin sarà popolato in media da $ N / g_s $ bosoni. Questo comportamento è confermato dall'Eq. \ref{eq:fer-dir-bos-ein} (con $ \theta = +1 $: per $ T \rightarrow 0 $, $ [n_\alpha] \rightarrow 0 \,\,\forall E_\alpha > \mu $, mentre la singolarità in $ E_\alpha = \mu $ permane. Inoltre, si dimostra che per i bosoni $ \mu = 0 $: infatti, non c'è alcuna legge di conservazione sul numero di bosoni, dunque non c'è alcuna relazione tra l'energia libera ed il numero di particelle del sistema, ovvero $ \mu = \frac{\pa F}{\pa N} = 0 $. \\
+Lo spettro energatico di un sistema bosonico è:
+\begin{equation}
+	E(n_1, n_2, \dots) = \sum_\alpha n_\alpha E_\alpha
+\end{equation}
+Se comparato con lo spettro di una collezione di oscillatori armonici:
+\begin{equation*}
+	E(v_1, v_2, \dots) = \sum_\alpha \left( v_\alpha + \frac{1}{2} \right) \hbar \omega_\alpha
+\end{equation*}
+si vede che questi sono uguali, a meno dell'energia di punto-zero degli oscillatori. In particolare, $ \alpha $ individua o lo specifico oscillatore di pulsazione $ \omega_\alpha $, o lo stato single-particle di energia $ E_\alpha $: l'analogia ha quindi senso, poiché $ v_\alpha \in \N $ e $ n_\alpha \in \N $ (per bosoni). Questa uguaglianza spettrale dà un'analogo comportamento statistico tra i due sistemi: si associa ad ogni eccitazione di un oscillatore armonico una particella (es.: fononi, fotoni, etc.).
+
+\paragraph{Gas di fotoni}
+
+Si può vedere il campo elettromagnetico come un gas di fotoni, ovverosia l'insieme dei modi normali d'oscillazione del campo stesso. Si noti che anche i fotoni hanno $ g_s = 2 $, dato dalle due possibili polarizzazioni circolari. La relazione di dispersione per i fotoni è:
+\begin{equation}
+	E(\ve{p}) = c \abs{\ve{p}}
+	\qquad \Leftrightarrow \qquad
+	\omega(\ve{k}) = c \abs{\ve{k}}
+\end{equation}
+dove il numero d'onda è $ \ve{k} = \frac{\ve{p}}{\hbar} $.
+
+\begin{proposition}{Densità di stati}{}
+	La densità di stati di un gas di fotoni è:
+	\begin{equation}
+		g(E) = \frac{V}{\pi^2 c^3 \hbar^3} E^2
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Dalla relazione di dispersione (assumendo $ V = L^3 $ e condizioni periodiche al contorno):
+		\begin{equation*}
+			E = c \abs{\ve{p}} = c \hbar \abs{\ve{k}} = c \hbar \frac{2\pi}{L} \abs{\ve{n}}
+		\end{equation*}
+		Il numero di stati per una data energia è quindi:
+		\begin{equation*}
+			N = \frac{4}{3} \pi \abs{\ve{n}}^3 = \frac{V E^3}{6 \pi^2 c^3 \hbar^3}
+		\end{equation*}
+		La densità di stati sarà:
+		\begin{equation*}
+			\frac{\pa N}{\pa E} = \frac{V}{2 \pi^2 c^3 \hbar^3} E^2
+		\end{equation*}
+		La tesi si trova contando che $ g(E) = g_s \frac{\pa N}{\pa E} $.
+	\end{proof}
+\end{proposition}
+
+Si noti che per passare da $ g(E) $ a $ g(\omega) $ o $ g(\nu) $ bisogna imporre $ g(E) \dd E = g(\omega) \dd \omega = g(\nu) \dd \nu $, trovando (con i relativi cambi di misura):
+\begin{equation}
+	g(\nu) = \frac{8\pi}{c^5} V \nu^2
+	\qquad \qquad
+	g(\omega) = \frac{V}{\pi^2 c^3} \omega^2
+\end{equation}
+
+\begin{theorem}{Densità spettrale (di Planck)}{}
+	L'energia interna di un gas di fotoni all'equilibrio in un volume $ V $ a temperatura $ T $ è:
+	\begin{equation}
+		U = V \int_0^\infty \dd E\, u(E,T) = V \frac{\pi^2 (k_\text{B} T)^4}{15 \hbar^3 c^3}
+	\end{equation}
+	dove la \textit{densità d'energia spettrale} (o funzione di Planck) è:
+	\begin{equation}
+		u(E,t) = \frac{1}{\pi^2 c^3 \hbar^3} \frac{E^3}{e^{\beta E} - 1}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		La densità d'energia spettrale è definita come:
+		\begin{equation*}
+			u(E,T) \defeq \frac{1}{V} g(E) [n_E(T)] E = \frac{1}{\pi^2 c^3 \hbar^3} \frac{E^3}{e^{\beta E} - 1}
+		\end{equation*}
+		L'energia interna viene quindi espressa come:
+		\begin{equation*}
+			\begin{split}
+				U
+				& = \int_0^\infty \dd E\, E g(E) [n_E(T)] = V \int_0^\infty \dd E\, u(E,T) \\
+				& = \frac{V}{\pi^2 c^3 \hbar^3} \int_0^\infty \dd E\, \frac{E^3}{e^{\beta E} - 1} = \frac{V}{\pi^2 c^3 \hbar^3} \frac{1}{\beta^4} \int_0^\infty \dd x\, \frac{x^3}{e^x - 1}
+			\end{split}
+		\end{equation*}
+		La tesi si ottiene ricordando che:
+		\begin{equation}
+			\int_0^\infty \dd x\, \frac{x^3}{e^x - 1} = \frac{\pi^4}{15}
+			\label{eq:zeta-3}
+		\end{equation}
+	\end{proof}
+\end{theorem}
+
+La densità d'energia spettrale è più frequentemente trovata in funzione della frequenza:
+\begin{equation}
+	u(\nu,T) = \frac{8\pi h}{c^3} \frac{\nu^3}{e^{\beta h \nu} - 1}
+\end{equation}
+Mentre $ u(E,T) $ è una densità d'energia per unità d'energia, dunque ha u.d.m. $ \text{J}/\text{m}^3 \cdot \text{J}^{-1} = \text{m}^{-3} $, $ u(\nu,T) $ è una densità d'energia per unità di frequenza, ovvero ha u.d.m. $ \text{J}/\text{m}^3 \cdot \text{Hz}^{-1} = \text{J}/\text{m}^3 \cdot \text{s} $. \\
+La forma della funzione di Planck varia con la temperatura, ma la posizione del suo massimo dipende linearmente da essa. Infatti, imponendo $ \frac{\dd}{\dd \nu} u(\nu, T)\vert_{\nu = \nu_\text{max}} = 0 $ si trova:
+\begin{equation*}
+	3 \nu_\text{max}^2 (e^{\beta h \nu_\text{max}} - 1) - \nu_\text{max}^3 \beta h e^{\beta h \nu_\text{max}} = 0
+	\qquad \Rightarrow \qquad
+	x e^x = 3 (e^x - 1)
+	\qquad \Rightarrow \qquad
+	x \simeq 2.82144\dots
+\end{equation*}
+dove $ x \equiv \beta h \nu_\text{max} $. Si trova così la \textit{legge di Wien}:
+\begin{equation}
+	h \nu_\text{max} \simeq 2.82 \cdot k_\text{B} T
+\end{equation}
+
+\begin{example}{Misura della temperatura ambientale}{}
+	Per $ T = 300 \,\text{K} $ si ha dalla legge di Wien $ \nu_\text{max} \simeq 1.76 \cdot 10^{13} \,\text{Hz} $, ovvero $ h \nu_\text{max} \simeq 71 \,\text{meV} $ (infrarosso): per misurare la temperatura ambientale si può quindi ricorrere alla misura della radiazione infrarossa.
+\end{example}
+
+Si noti che parlare di equilibrio termodinamico per un campo elettromagnetico in un volume finito, ad esempio all'interno di una cavità, ciò significa considerare emissione ed assorbimento di fotoni da parte della cavità in modo da mantenerne l'equilibrio termodinamico; nel caso di un volume infinito, invece, si considera un corpo che emette ed assorbe fotoni e che si trova all'equilibrio rispetto all'ambiente. \\
+Si consideri per semplicità una cavità di volume finito, definita da una superficie chiusa $ \Sigma $. La potenza netta entrante/uscente dalla cavità è dunque dato dal flusso di energia (trasportata da fotoni) che lo attraversa:
+\begin{equation*}
+	P(\nu,T) = \int_\Sigma u(\nu,T) \ve{v} \cdot \dd \ve{S} \equiv \int_\Sigma \dd S\, R(\nu,T)
+\end{equation*}
+dove è stata introdotta la \textit{radianza spettrale}, ovvero una potenza per unità di superficie e di frequenza(u.d.m. $ \text{W}/\text{m}^2 \cdot \text{s} $). Il prodotto scalare determina un fattore $ c \cos \theta $, con $ \theta $ angolo tra la direzione d'incidenza del fotone e la normale alla superficie, il cui valor medio può essere espresso come:
+\begin{equation*}
+	c \cdot \frac{1}{4\pi} \int_0^{\pi/2} \dd \theta \sin \theta \int_0^{2\pi} \dd \varphi\, \cos \theta = \frac{c}{4}
+\end{equation*}
+Si trova quindi:
+\begin{equation}
+	R(\nu,T) = \frac{c}{4} u(\nu,T)
+\end{equation}
+L'andamento di $ R(E,T) $ è riportato in Fig. \ref{spec-rad}.
+Si noti che questa trattazione assume l'assenza di una componente riflessa: tutti i fotoni entranti vengono assorbiti, tutti i fotoni con energia sufficiente vengono emessi. Un corpo (ideale) siffatto è detto \textit{corpo nero}.
+
+\begin{theorem}{Legge di Stefan-Boltzmann}{}
+	La \textit{radianza totale} vale:
+	\begin{equation}
+		R(T) \defeq \int_0^\infty \dd \nu\, R(\nu,T) = \sigma T^4
+	\end{equation}
+	dove $ \sigma \simeq 5.879 \cdot 10^{-8} \,\text{W}/\text{m}^2 \cdot \text{K}^{-4} $ è la costante di Stefan-Boltzmann.
+
+	\tcblower
+
+	\begin{proof}
+		Dalla definizione (ed utilizzando Eq. \ref{eq:zeta-3}:
+		\begin{equation*}
+			R(T) = \frac{2\pi h}{c^2} \int_0^\infty \dd \nu\, \frac{\nu^3}{e^{\beta h \nu} - 1} = \frac{2\pi h}{c^2} \frac{1}{\beta^4 h^4} \frac{\pi^4}{15} = \frac{2\pi^5}{15 c^2 h^3} k_\text{B}^4 T^4 = \frac{\pi^2 k_\text{B}^4}{60 c^2 \hbar^3} T^4 \equiv \sigma T^4
+		\end{equation*}
+	\end{proof}
+\end{theorem}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.44 \textwidth]{spec-rad.png}
+	\caption{Spectral irradiance $ R(E,T) $ of a black body at various temperatures.}
+	\label{spec-rad}
+\end{figure}
 
 
 
