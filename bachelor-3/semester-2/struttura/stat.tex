@@ -839,7 +839,7 @@ Si noti che questa trattazione assume l'assenza di una componente riflessa: tutt
 	\tcblower
 
 	\begin{proof}
-		Dalla definizione (ed utilizzando Eq. \ref{eq:zeta-3}:
+		Dalla definizione (ed utilizzando Eq. \ref{eq:zeta-3}):
 		\begin{equation*}
 			R(T) = \frac{2\pi h}{c^2} \int_0^\infty \dd \nu\, \frac{\nu^3}{e^{\beta h \nu} - 1} = \frac{2\pi h}{c^2} \frac{1}{\beta^4 h^4} \frac{\pi^4}{15} = \frac{2\pi^5}{15 c^2 h^3} k_\text{B}^4 T^4 = \frac{\pi^2 k_\text{B}^4}{60 c^2 \hbar^3} T^4 \equiv \sigma T^4
 		\end{equation*}
@@ -851,6 +851,74 @@ Si noti che questa trattazione assume l'assenza di una componente riflessa: tutt
 	\includegraphics[width = 0.44 \textwidth]{spec-rad.png}
 	\caption{Spectral irradiance $ R(E,T) $ of a black body at various temperatures.}
 	\label{spec-rad}
+\end{figure}
+
+Si può dare consistenza al corpo nero considerando la presenza di radiazione riflessa da parte della sua superficie. Si introduce quindi un coefficiente d'assorbimento $ \alpha(\nu) \in [0,1] $, tale per cui:
+\begin{equation}
+	R_\text{ass}(\nu,T) = \alpha(\nu) R(\nu,T)
+	\qquad \qquad
+	R_\text{rif}(\nu,T) = (1 - \alpha(\nu)) R(\nu,T)
+\end{equation}
+dove $ R(\nu,T) $ è la radianza spettrale incidente. Il corpo nero ha $ \alpha(\nu) \equiv 1 $.
+
+\begin{proposition}{Radianza spettrale emessa}{}
+	La radianza spettrale emessa da un corpo non-nero con coefficiente d'assorbimento $ \alpha(\nu) $ è:
+	\begin{equation}
+		R_\text{em}(\nu,T) = \alpha(\nu) R(\nu,T)
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Dalla conservazione dell'energia $ R(\nu,T) = R_\text{em}(\nu,t) + R_\text{rif}(\nu,T) $, da cui la tesi.
+	\end{proof}
+\end{proposition}
+
+Si vede dunque che, in generale, $ R_\text{em}(\nu,T) \le R(\nu,T) $, dove l'uguaglianza vale solo per il corpo nero: detta $ R_0(\nu,T) $ la radianza spettrale di corpo nero, si ha $ R_\text{em}(\nu,T) \le R_0(\nu,T) $, dunque non solo i corpi non-neri riflettono parte della radiazione incidente, ma ne emettono anche meno rispetto al corpo nero di uguale temperatura. \\
+Tutte queste considerazioni valgono per un sistema all'equilibrio, in cui l'equilibrio termodinamico tra campo elettromagnetico e corpo viene mantenuto dallo scambio di fotoni. Se il corpo viene posto in una regione in cui il campo elettromagnetico è assente, esso perderà energia emettendo fotoni, raffreddandosi di conseguenza: lo spettro di fotoni emessi sarà $ R(\nu,T) = \alpha(\nu) R_0(\nu,T) $, dunque in condizioni di non-equilibrio il corpo nero è quello che si raffredda più velocemente (per irraggiamento); al contrario, il corpo bianco ($ \alpha(\nu) \equiv 0 $) non si raffredderà affatto, in quanto un corpo ideale completamente riflettente non emetterà alcuna radiazione.
+
+\subsection{Interazione radiazione-materia}
+
+Si consideri un ensemble di particelle identiche non-interagenti e, nello spettro single-particle, si considerino soltanto due stati $ \ket{1} , \ket{2} : E_1 < E_2 $. Fotoni risonanti con $ E \approx E_2 - E_1 $ inducono delle transizioni tra questi livelli (si ignorano le transizioni non-risonanti, che avvengono a rate estremamente più bassi). In particolare, la presenza di radiazione induce l'eccitazione $ \ket{1} \rightarrow \ket{2} $ (assorbimento), dunque, definendo la densità d'energia spettrale $ \rho(E) $ (energia per unità di volume ed intervallo spettrale, u.d.m. $ \text{m}^{-3} $), si ha un rate di transizione (u.d.m. $ \text{s}^{-1} $):
+\begin{equation}
+	R_{1 \rightarrow 2} = B_{12} \rho(E)
+\end{equation}
+dove $ B_{12} $ è un'opportuna costante dipendente dalle caratteristiche elettro-meccaniche del sistema (si ignorano gli effetti non lineari $ \sim o(\rho^2) $). Per quanto riguarda invece il decadimento $ \ket{2} \rightarrow \ket{1} $ (emissione), esso avviene sia in maniera spontanea che in maniera stimolata, dunque si avrà:
+\begin{equation}
+	R_{2 \rightarrow 1} = A_{21} + B_{21} \rho(E)
+\end{equation}
+dove $ B_{21} $ è analoga a $ B_{12} $ ed $ A_{21} $ dà il rate di decadimento spontaneo (in approssimazione di dipolo-elettrico $ A_{21} $ è dato dall'Eq. \ref{eq:electron-trans-prob}). Si noti che, quando un fotone induce un decadimento, il fotone emesso avrà la stessa fase e gli stessi numeri quantici di quello incidente. \\
+Queste relazioni valgono indipendentemente dalla condizione del sistema, in quanto i coefficienti dipendono solo dalle sue proprietà microscopiche. In particolare, esse sono valide quando l'ensemble è all'equilibrio rispetto al campo elettromagnetico, nel qual caso $ \rho(E) \equiv u(E,T) $ (funzione di Planck); inoltre, in tale condizione, il numero medio delle particelle nei due stati è uguale, dunque:
+\begin{equation}
+	[n_1] R_{1 \rightarrow 2} = [n_2] R_{2 \rightarrow 1}
+\end{equation}
+Inserendo le relative espressioni e risolvendo per $ \rho(E) \equiv u(E,T) $ si trova:
+\begin{equation*}
+	\frac{\frac{A_{21}}{B_{21}}}{\frac{[n_1]}{[n_2]} \frac{B_{12}}{B_{21}} - 1} = u(E,T) = \frac{1}{\pi^2 c^3 \hbar^3} \frac{E^3}{e^{\beta E} - 1}
+\end{equation*}
+Dato che all'equilibrio vale la distribuzione di Boltzmann, ovvero $ [n_1] / [n_2] = P_1 / P_2 = e^{\beta (E_2 - E_1)} = e^{\beta E} $, si ottengono così le \textit{relazioni di Einstein}:
+\begin{equation}
+	B_{12} = B_{21}
+	\qquad \qquad
+	A_{21} = \frac{E^3}{\pi^2 c^3 \hbar^3} B_{21}
+\end{equation}
+Ciò conferma le Eqq. \ref{eq:electron-trans-prob}-\ref{eq:stimul-trans-prob}: la prima relazione mostra che il rate stimolato $ \ket{1} \rightarrow \ket{2} $ è uguale a quello $ \ket{2} \rightarrow \ket{1} $, mentre la seconda mostra che, rispetto a quello stimolato, il rate spontaneo ha una dipendenza $ \propto E^3 $.
+
+\subsubsection{Laser}
+
+Le onde elettromagnetiche vengono attenuate quando attraversano un mezzo diverso dal vuoto. Un dispositivo ottico in grado di amplificare la radiazione incidente, piuttosto che ridurla, dovrebbe avere un rate d'emissione superiore a quello d'assorbimento, ovvero:
+\begin{equation*}
+	\frac{[n_2] R_{2 \rightarrow 1}}{[n_1] R_{1 \rightarrow 2}} = \frac{[n_2]}{[n_1]} \left[ 1 + \frac{A_{21}}{B_{21} \rho(E)} \right] > 1
+\end{equation*}
+Per un campo elettromagnetico sufficientemente intenso questo rapporto diventa $ [n_2] / [n_1] > 1 $ (infatti $ _{1 \rightarrow 2} \approx R_{2 \rightarrow 1} $ per campi abbastanza intensi), ovvero un'inversione di popolazione rispetto all'equilibrio $ [n_2] / [n_1] < 1 $. \\
+Con un sistema a due livelli non si può avere un laser, in quanto $ 1 < [n_2] / [n_1] = e^{-\beta E} $ implicherebbe $ T < 0 $. Considerando invece un sistema a tre livelli (Fig. \ref{laser}), si devono prendere $ \ket{1},\ket{2},\ket{3} $ tali per cui la transizione $ \ket{1} \rightarrow \ket{3} $, stimolata dal pompaggio ottico, deve essere favorita (elemento di matrice significativamente diverso da 0), $ \ket{3} \rightarrow \ket{2} $ deve essere spontaneamente molto probabile e $ \ket{2} \rightarrow \ket{1} $ deve essere possibile ma poco probabile (ovvero $ \ket{2} $ deve essere uno stato metastabile). In un sistema siffatto è possibile ottenere l'inversione di popolazione $ [n_2] / [n_1] > 1 $. \\
+La condizione di metastabilità, che permette di trascurare il decadimento spontaneo $ \ket{2} \rightarrow \ket{1} $, è tanto più difficile da ottenere quanto più è grande $ \Delta E = E_2 - E_1 $, data la dipendenza $ \gamma_{2 \rightarrow 1} \propto \Delta E^3 $: per questo motivo, sono stati prima creati i MASER (Microwave Amplification by Stimulated Emission of Radiation), e solo successivamente i LASER (Light Amplification by Stimulated Emission of Radiation). Si ricordi, infatti, che l'emissione spontanea è per sua natura incoerente, dunque in un laser è necessario avere una dominanza dell'emissione stimolata, che invece è coerente e direzionale\footnote{Dall'equivalenza tra fotoni e oscillatori armonici deriva che l'ampiezza di probabilità per la creazione di un nuovo fotone dipende dall'elemento di matrice dell'operatore di creazione $ \braket{N + 1 | a\dg | N} = \sqrt{N + 1} $ che aumenta all'aumentare di $ N $: nel limite del numero di Avogadro, tale ampiezza tende a $ 1 $, ovvero vengono creati fotoni identici.}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{laser.png}
+	\caption{Example schemes of lasers.}
+	\label{laser}
 \end{figure}
 
 
