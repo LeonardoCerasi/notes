@@ -122,6 +122,7 @@ dove $ R = na $ sono le traslazioni del reticolo diretto. Si trova quindi $ \ell
 Queste definizioni sono generalizzabili al caso 3D, in cui $ \ve{R} = n_1 \ve{a}_1 + n_2 \ve{a}_2 + n_3 \ve{a}_3 $. In questo caso, la condizione di reciprocità diventa:
 \begin{equation}
 	e^{i \ve{G} \cdot \ve{R}} = 1
+	\label{eq:rec-ret}
 \end{equation}
 In 3D si trova che:
 \begin{equation}
@@ -150,6 +151,112 @@ Il volume della cella primitiva del reticolo reciproco è $ \tilde{V}_c = (\ve{b
 Ciascun $ \ve{G} $ nel reticolo reciproco definisce un'onda piana $ e^{i \ve{G} \cdot \ve{x}} $ (nello spazio diretto) con la stessa periodicità del reticolo diretto. Se si considerano i fronti d'onda fissati, per esempio, da $ e^{i \ve{G} \cdot \ve{x}} = 1 $, questi formano una famiglia di piani paralleli tra loro e perpendicolari a $ \ve{G} $ (che ne dà la direzione di propagazione), separati tra loro da una distanza $ \lambda = 2\pi / \abs{\ve{G}} $. \\
 Alcuni di questi piani passano per punti del reticolo reciproco; in particolare, tutti questi piani passano per punti del reticolo reciproco se gli indici interi $ (\ell_1 \, \ell_2 \, \ell_3) $ che definiscono $ \ve{G} $ non hanno divisori non-banali comuni: questi vengono detti \textit{indici di Miller} della famiglia di piani considerata. Se invece $ \ve{G} $ è determinato da $ (n\ell_1 \, n\ell_2 \, n\ell_3) $, con $ n \in \Z - \{0\} $, allora soltanto un piano ogni $ n $ passerà per punti del reticolo diretto. \\
 Si dimostra che gli indici di Miller sono proporzionali ai reciproci delle intercette dei piani con le direzioni dei vettori primitivi del reticolo diretto.
+
+\subsection{Diffrazione}
+
+La diffrazione da sonde wave-like è il principale mezzo d'indagine della struttura interna dei cristalli, data la loro natura periodica. La lunghezza d'onda di tali sonde deve essere comparabile con la tipica dimensione delle celle primarie del cristallo, tipicamente $ \sim 0.1 - 1 \,\text{nm} $: ciò corrisponde ad elettroni con energia cinetica $ \sim 1.5 - 150 \ev $, raggi X nel range $ \sim 1 - 10 \kev $ o neutroni con energia cinetica $ \sim 1 - 100 \,\text{meV} $. Gli elettroni interagiscono fortemente con la materia, dunque sono sensibili solo agli strati superficiali del cristallo; se si escludono energie risonanti con stati di core atomici, i raggi X riescono a penetrare anche per migliaia di celle primarie, andando a sondare le proprietà di bulk del cristallo; infine i neutroni, interagendo solo coi nuclei (dunque con sezione d'urto molto piccola), riescono a penetrare anche nell'ordine del centimetro. \\
+Si assuma che il raggio incidente sia prodotto da una sorgente lontana, così da avere un vettore d'onda $ \ve{k} $ ben definito (con $ \abs{\ve{k}} = 2\pi/\lambda) $, e che il raggio uscente sia rilevato da un detector lontano, così da rilevare un $ \ve{k}' $ ben definito. Nell'ipotesi di scattering elastico, si ha $ \abs{k} = \abs{k}' $ (ovvero $ \lambda = \lambda' $) e si definisce il vettore d'onda trasferito come $ \ve{q} \equiv \ve{k}' - \ve{k} $. Dato che ogni volume infinitesimo $ \dd^3r $ scattera il raggio incidente in porporzione al numero di scatterers in esso presente $ n(\ve{r}) \dd^3r $ (con $ n(\ve{r}) $ densità numerica), la probabilità totale di osservare lo scattering $ \ve{k} \rightarrow \ve{k}' $ è (ricordando che sono onde):
+\begin{equation*}
+	P_{\ve{k} \rightarrow \ve{k}'} \propto \abs{\int_V \dd^3r\, n(\ve{r}) e^{-i \ve{k}' \cdot \ve{r}} e^{i \ve{k} \cdot \ve{r}}}^2 = \abs{\int_V \dd^3r\, n(\ve{r}) e^{-i \ve{q} \cdot \ve{r}}}^2 \propto \abs{\tilde{n}(\ve{q})}^2
+\end{equation*}
+dove $ \tilde{n}(\ve{q}) $ è la trasformata di Fourier della densità numerica di scatterers $ n(\ve{r}) $ (a seconda della sonda, sarà la densità numerica di nuclei $ n_\text{nucl}(\ve{r}) $ se la sonda è composta da neutroni, mentre sarà quella di elettroni $ n_\text{el}(\ve{r}) $ se composta da raggi X). Si trova quindi che l'intensità del fascio scatterato va come:
+\begin{equation}
+	I(\ve{q}) \propto \abs{\tilde{n}(\ve{q})}^2
+\end{equation}
+La densità numerica di un solo atomo è una $ \delta $ di Dirac, ed infatti l'intesità da scatter neutronico di un solo atomo è essenzialmente indipendente da $ \ve{q} $, come si vede in Fig. \ref{diffr}. \\
+Se invece si considerano due atomi, si avrà inferferenza tra i raggi scatterati dai due centri di diffusione. Considerando le posizioni $ \ve{R}_1 , \ve{R}_2 $ dei due atomi, si ha qualitativamente che:
+\begin{equation*}
+	\begin{split}
+		\abs{\tilde{n}(\ve{q})}^2
+		& \propto \abs{e^{-i \ve{R}_1 \cdot \ve{q}} + e^{-i \ve{R}_2 \cdot \ve{q}}}^2 = \abs{\exp \left( -i \frac{\ve{R}_1 + \ve{R}_2}{2} \cdot \ve{q} \right) 2 \cos \left( \frac{\ve{R}_1 - \ve{R}_2}{2} \cdot \ve{q} \right)}^2 \\
+		& = 2 \left[ 1 + \cos \left( (\ve{R}_1 - \ve{R}_2) \cdot \ve{q} \right) \right] = 2 \left[ 1 + \cos (a q_x) \right]
+	\end{split}
+\end{equation*}
+dove si è supposto che $ \ve{R}_1 - \ve{R}_2 = a \hat{\ve{e}}_x $ e $ \hat{\ve{e}}_x \cdot \ve{q} = q_x $. Si vede dunque che la condizione di interferenza costruttiva (così da avere picchi di diffrazione) è:
+\begin{equation*}
+	aq_x = 2\pi \ell
+	\qquad \Rightarrow \qquad
+	q_x = \frac{2\pi}{a} \ell
+\end{equation*}
+Considerando un reticolo 3D di $ N $ atomi, quindi, la trasformata della densità numerica va come:
+\begin{equation*}
+\abs{\tilde{n}(\ve{q})}^2 \propto \abs{\sum_{j = 1}^N e^{-i \ve{R}_j \cdot \ve{q}}}^2
+\end{equation*}
+La condizione d'interferenza costruttiva è quindi:
+\begin{equation}
+	e^{-i \ve{R} \cdot \ve{q}} = 1 \quad \forall \ve{R} \in \text{reticolo}
+	\label{eq:cond-int-cos}
+\end{equation}
+Questa non è altro che l'Eq. \ref{eq:rec-ret}: si trova quindi che i picchi di diffrazione, detti \textit{picchi di Bragg}, si hanno per vettori d'onda trasferiti appartenente al reticolo recièroco, ovvero per $ \ve{q} = \ve{G} $. Si noti che può accadere che la condizione \ref{eq:cond-int-cos} può essere verificata anche solo per alcuni $ \ve{R} \in \text{reticolo} $: in tal caso, si hanno dei picchi di diffrazione secondari, la cui intensità decresce rapidamente all'aumentare del numero di atomi nel reticolo (si veda Fig. \ref{diffr}).
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{diffr-1.png}
+	\includegraphics[width = 0.70 \textwidth]{diffr-2.png}
+	\includegraphics[width = 0.70 \textwidth]{diffr-3.png}
+	\caption{Diffraction patterns of various 1D chains of $ \ch{Si} $ atoms.}
+	\label{diffr}
+\end{figure}
+
+\subsubsection{Fattori di forma}
+
+Raggi X che scatterano su un singolo atomo ne sondano la distribuzione di densità elettronica $ n_\text{at}(\ve{r}) $, tramite il \textit{fattore di forma atomico} $ f_\text{at}(\ve{q}) = \tilde{n}_\text{at}(\ve{q}) $: questo ha una caratteristica forma a campana con $ f_\text{at}(\ve{0}) $ pari al quadrato del numero di elettroni. \\
+Per $ Z \gg 1 $, gli elettroni di core scatterano di più i raggi X rispetto ai meno numerosi elettroni di valenza, così che, per un insieme di atomi, la distribuzione elettronica vista dai raggi X possa essere approssimata come la somma delle individuali distribuzioni atomiche:
+\begin{equation}
+	n_\text{el}(\ve{r}) = \sum_\ve{R} n_\text{at}(\ve{r} - \ve{R})
+\end{equation}
+La presenza di legami chimici deforma soltanto i relativamente pochi elettroni di valenza, così che tale approssimazione dia un buon accordo sperimentale. Calcolando la trasformata di Fourier:
+\begin{equation*}
+	\begin{split}
+		\tilde{n}_\text{el}(\ve{q})
+		& = \sum_\ve{R} \int \dd^3r\, n_\text{at}(\ve{r} - \ve{R}) e^{-i \ve{q} \cdot \ve{r}} = \sum_\ve{R} \int \dd^3r'\, n_\text{at}(\ve{r}') e^{-i \ve{q} \cdot (\ve{r}' + \ve{R})} \\
+		& = \sum_\ve{R} e^{-i \ve{q} \cdot \ve{R}} \int \dd^3r\, n_\text{at}(\ve{r}) e^{-i \ve{q} \cdot \ve{r}} \equiv \tilde{n}_\text{ret}(\ve{q}) f_\text{at}(\ve{q})
+	\end{split}
+\end{equation*}
+Si hanno dunque due contributi moltiplicativi (si ricordi che un prodotto nello spazio reciproco è una convoluzione nello spazio reale): $ \tilde{n}_\text{ret}(\ve{q}) $, che descrive lo scattering da oggetti puntiformi posti nei nodi del reticolo di Bravais, ed $ f_\text{at}(\ve{q}) $, che descrive lo scattering dagli atomi singoli. Dato che $ n_\text{nuc}(\ve{r}) \propto n_\text{ret}(\ve{r}) $, si trova una relazione tra l'intensità della diffrazione da raggi X e quella da neutroni:
+\begin{equation}
+	I_\text{X}(\ve{q}) \propto \abs{f_\text{at}(\ve{q})}^2 \abs{\tilde{n}_\text{nuc}(\ve{q})}^2 \propto \abs{f_\text{at}(\ve{q})}^2 I_\text{n}(\ve{q})
+\end{equation}
+Questa relazione di proporzionalità è confermata in Fig. \ref{diffr}: i raggi X scatterano nelle stesse direzioni e con le stesse lunghezze d'onda dei neutroni, ma l'intensità dei picchi è modulata da $ \abs{f_\text{at}(\ve{q})}^2 $. \\
+Se si considerano cristalli poliatomici la cui cella primitiva contiene $ n_d $ atomi, la derivazione rimane invariata, sommando anche su questi atomi:
+\begin{equation}
+	n_\text{el}(\ve{r}) = \sum_\ve{R} \sum_{j = 1}^{n_d} n_{\text{at},j}(\ve{r} - \ve{d}_j - \ve{R})
+\end{equation}
+Si trova così che il fattore di forma atomico va sostituito con un \textit{fattore di struttura}:
+\begin{equation}
+	S(\ve{q}) = \sum_{j = 1}^{n_d} e^{-i \ve{q} \cdot \ve{d}_j} f_{\text{at},j}(\ve{q})
+\end{equation}
+rappresentante la trasformata di Fourier della distribuzione elettronica degli $ n_d $ atomi nella cella primaria. Nello scattering di neutroni, gli $ f_{\text{at},j}(\ve{q}) $ sono sostituiti da ampiezze di scattering neutronico indipendenti da $ \ve{q} $. Si trova dunque che, posto $ \abs{f_\text{at}(\ve{q})}^2 \mapsto \abs{S(\ve{q})}^2 $, la forma di $ I(\ve{q}) $ rimane pressoché invariata: ciò significa che il pattern di diffrazione è sostanzialmente indipendente dal numero di atomi nella cella primaria, ma è determinato dal reticolo di Bravais del cristallo; gli atomi nella cella primaria vanno soltanto a modificare moltiplicativamente l'intensità, senza modificarne la forma.
+
+\subsubsection{Scattering di Bragg}
+
+Come si è visto, la condizione per cui si hanno picchi di diffrazione è $ \ve{q} = \ve{G} $. In aggiunta a ciò, per avere scattering elastico è necessario che $ \abs{\ve{k}} = \abs{\ve{k}'} $, ovvero:
+\begin{equation}
+	\abs{\ve{k}} = \abs{\ve{k} + \ve{G}}
+\end{equation}
+Questa condizione corrisponde geometricamente ad una sfera nello spazio reciproco, rappresentata dalla \textit{costruzione di Ewald} (Fig. \ref{diffr-e}): se questa sfera interseca più punti del reticolo reciproco, allora è possibile avere interferenza costruttiva e dunque diffrazione.
+Elevando al quadrato si trova $ 2 \ve{k} \cdot \ve{G} + \abs{\ve{G}}^2 = 0 $, ovvero:
+\begin{equation}
+	\ve{k} \cdot \hat{\ve{G}} = - \frac{\abs{\ve{G}}}{2}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{diffr-e.png}
+	\caption{Ewald construction.}
+	\label{diffr-e}
+\end{figure}
+
+Come si vede in Fig. \ref{diffr-e}, vale la relazione $ \ve{k} \cdot \hat{\ve{G}} = - \sin \theta $, dove l'angolo di scattering tra $ \ve{k} $ e $ \ve{k}' $ è $ 2\theta $. Essendo i piani nel reticolo associati a $ \ve{G} $ separati da una distanza $ d = n \frac{2\pi}{\abs{\ve{G}}} $, dove $ n $ è il massimo comun divisore degli indici di Miller di $ \ve{G} $, ed valendo la relazione $ \abs{\ve{k}} = \frac{2\pi}{\lambda} $, dove $ \lambda $ è la lunghezzaq d'onda della radiazione incidente, si trova la \textit{condizione di Bragg} per la diffrazione:
+\begin{equation}
+	2 d \sin \theta = n \lambda
+\end{equation}
+Secondo questa equazione (e come confermato in Fig. \ref{diffr-e}), non avviene diffrazione per $ \lambda > 2d $. Nella pratica, per generare dei raggi diffratti da un singolo cristallo, si muove il reticolo reciproco rispetto alla sfera di Ewald fino a quando non ci sono almeno due punti che la intersecano: per fare ciò, o si varia la lunghezza d'onda incidente, andando a modificare il raggio della sfera di Ewald, o si ruota il cristallo (dato che il reticolo reciproco ruota della stessa quantità di quello reale). \\
+Solitamente si studiano le \textit{polveri}, ovvero insiemi di microcristalli ruotati randomicamente nello spazio: la distribuzione uniforme di orientazioni equivale ad una media sulle possibili rotazioni del reticolo reciproco. Di conseguenza, nella costruzione della sfera di Ewald per una polvere, si possono considerare non solo i punti che intersecano la sfera, ma anche le intersezioni delle possibili rotazioni di tale sfera, ottenendo una maggiore possibilità di ottenere un pattern di diffrazione. \\
+Infine, si noti che difetti e dimensione finita del cristallo pongono i picchi di Bragg su un background continuo diffuso: all'aumentare del disordine l'intensità del background cresce, fino a quando non sono più presenti picchi di Bragg (solidi amorfi, liquidi).
+
+
+
 
 
 
