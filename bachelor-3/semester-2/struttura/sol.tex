@@ -255,6 +255,154 @@ Secondo questa equazione (e come confermato in Fig. \ref{diffr-e}), non avviene 
 Solitamente si studiano le \textit{polveri}, ovvero insiemi di microcristalli ruotati randomicamente nello spazio: la distribuzione uniforme di orientazioni equivale ad una media sulle possibili rotazioni del reticolo reciproco. Di conseguenza, nella costruzione della sfera di Ewald per una polvere, si possono considerare non solo i punti che intersecano la sfera, ma anche le intersezioni delle possibili rotazioni di tale sfera, ottenendo una maggiore possibilità di ottenere un pattern di diffrazione. \\
 Infine, si noti che difetti e dimensione finita del cristallo pongono i picchi di Bragg su un background continuo diffuso: all'aumentare del disordine l'intensità del background cresce, fino a quando non sono più presenti picchi di Bragg (solidi amorfi, liquidi).
 
+\section{Elettroni}
+
+All'interno dei solidi, gli elettroni si muovo secondo l'equazione elettronica Eq. \ref{eq:mol-el-eq}: perciò, è possibile definire un potenziale adiabatico (Eq. \ref{eq:ad-pot}) che descrive il moto dei nuclei (Eq. \ref{eq:mol-nucl-eq}).
+
+\subsection{Elettroni nei cristalli}
+
+Nei solidi cristallini a basse temperature, il potenziale adiabatico la configurazione atomica in un intorno del minimo di potenziale, ovverosia mantiene i nuclei fissi nelle posizioni reticolari. Invocando la separazione adiabatica, dunque, si assume che i nuclei abbiano energia cinetica trascurabile e siano fissi nel reticolo, così da ridurre il problema a quello elettronico. \\
+Innanzitutto, data la simmetria reticolare del cristallo, si ha che l'Hamiltoniana elettronica è invariante per le traslazioni discrete del reticolo:
+\begin{equation}
+	[\hat{\mathcal{H}} , \hat{T}_\ve{R}] = 0 \quad \forall \ve{R} \in \text{reticolo}
+\end{equation}
+Di conseguenza, le autofunzioni $ \phi(\ve{r}) $ dell'Hamiltoniana devono soddisfarre:
+\begin{equation}
+	\hat{T}_\ve{R} \phi(\ve{r}) = \alpha_\ve{R} \phi(\ve{r})
+\end{equation}
+con $ \alpha_\ve{R} \in \C $. Essendo il cristallo un sistema periodico, si deve poter applicare $ \hat{T}_\ve{R} $ un numero arbitrario di volte: se $ \abs{\alpha_\ve{R}} < 1 $ la densità di probabilità tende ad annullarsi, all'aumentare del numero di $ \hat{T}_\ve{R} $ applicati, mentre se $ \abs{\alpha_\ve{R}} > 1 $ tende a divergere. L'unica possibilità, dunque, è:
+\begin{equation*}
+	\abs{\alpha_\ve{R}} = 1
+	\qquad \Rightarrow \qquad
+	\alpha_\ve{R} = e^{-i \varphi_\ve{R}}
+\end{equation*}
+Un'altra proprietà che $ \hat{T}_\ve{R} $ deve soddisfare è la legge compositiva del gruppo:
+\begin{equation*}
+	\hat{T}_{\ve{R}_1} \hat{T}_{\ve{R}_2} = \hat{T}_{\ve{R}_1 + \ve{R}_2}
+	\qquad \Rightarrow \qquad
+	\varphi_{\ve{R}_1} \varphi_{\ve{R}_2} = \varphi_{\ve{R}_1 + \ve{R}_2}
+\end{equation*}
+Si può prendere WLOG $ \varphi_\ve{R} = \ve{q} \cdot \ve{R} $, con $ \ve{q} \in \R $, ma si noti che esso non è univocamente determinato: infatti, dall'Eq. \ref{eq:rec-ret}, si ha che:
+\begin{equation*}
+	e^{-i \ve{q} \cdot \ve{R}} = e^{-i (\ve{q} + \ve{G}) \cdot \ve{R}} \quad \forall \ve{G} \in \text{reticolo reciproco}
+\end{equation*}
+Ciò significa che $ \ve{q} $ è definito a meno di un qualsiasi vettore $ \ve{G} $ del reticolo reciproco. Questo permette di ridurre $ \ve{q} $ ad un vettore $ \ve{k} $ nella prima BZ scegliendo un opportuno $ \ve{G} $. La trattazione dell'intero cristallo è così ridotta alla sola prima BZ, e l'operatore traslazione agisce come:
+\begin{equation}
+	\hat{T}_\ve{R} \phi(\ve{r}) = \phi(\ve{r} - \ve{R}) = e^{-i \ve{k} \cdot \ve{R}} \phi(\ve{r})
+	\label{eq:trasl-op}
+\end{equation}
+
+\begin{theorem}{Teorema di Bloch}{}
+	In un reticolo cristallino, ogni funzione d'onda elettronica è un'onda piana modulata da una funzione periodica:
+	\begin{equation}
+		\phi(\ve{r}) = e^{i \ve{k} \cdot \ve{r}} u_\ve{k}(\ve{r})
+		\qquad \qquad
+		u_\ve{k}(\ve{r}) = u_\ve{k}(\ve{r} - \ve{R})
+		\label{eq:bloch-th}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Dall'Eq. \ref{eq:trasl-op}:
+		\begin{equation*}
+			\begin{split}
+				\phi(\ve{r} - \ve{R})
+				& = e^{-i \ve{k} \cdot \ve{R}} \phi(\ve{r}) \\
+				& = e^{i \ve{k} \cdot (\ve{r} - \ve{R})} u_\ve{k}(\ve{r} - \ve{R}) = e^{-i \ve{k} \cdot \ve{R}} e^{i \ve{k} \cdot \ve{r}} u_\ve{k}(\ve{r}) = e^{-i \ve{k} \cdot \ve{R}} \phi(\ve{r})
+			\end{split}
+		\end{equation*}
+	\end{proof}
+\end{theorem}
+
+È possibile esprimere la funzione periodica $ u_\ve{k}(\ve{r}) $ in serie di Fourier discreta:
+\begin{equation}
+	u_\ve{k}(\ve{r}) = \sum_\ve{G} c_{\ve{G},\ve{k}} e^{i \ve{G} \cdot \ve{r}}
+	\qquad \Rightarrow \qquad
+	\phi(\ve{r}) = \sum_\ve{G} c_{\ve{G},\ve{k}} e^{i (\ve{G} + \ve{k}) \cdot \ve{r}}
+\end{equation}
+
+\begin{proposition}{Equazione elettronica}{}
+	L'equazione elettronica in un cristallo è:
+	\begin{equation}
+		\left[ -\frac{\hbar^2}{2m_e} (\nabla + i\ve{k})^2 + V_\text{eff}(\ve{r}) \right] u_{j,\ve{k}}(\ve{r}) = E_{j,\ve{k}} u_{j,\ve{k}}(\ve{r})
+		\label{eq:lat-el-eq}
+	\end{equation}
+	con $ V_\text{eff} \equiv V_{ee} + V_{ne} $ nella prima BZ.
+
+	\tcblower
+
+	\begin{proof}
+		Dall'Eqq. \ref{eq:mol-el-eq}-\ref{eq:bloch-th}, l'equazione elettronica può essere scritta nella prima BZ come:
+		\begin{equation*}
+			\left[ -\frac{\hbar^2}{2m_e} \nabla^2 + V_\text{eff}(\ve{r}) \right] e^{i \ve{k} \cdot \ve{r}} u_{j,\ve{k}}(\ve{r}) = E_{j,\ve{k}} e^{i \ve{k} \cdot \ve{r}} u_{j,\ve{k}}(\ve{r})
+		\end{equation*}
+		Il termine cinetico viene riscritto come:
+		\begin{equation*}
+			\begin{split}
+				\nabla^2 \left[ e^{i \ve{k} \cdot \ve{r}} u_{j,\ve{k}}(\ve{r}) \right]
+				& = \nabla \cdot \left[ e^{i \ve{k} \cdot \ve{r}} \nabla u_{j,\ve{k}}(\ve{r}) + i \ve{k} e^{i \ve{k} \cdot \ve{r}} u_{j,\ve{k}}(\ve{r}) \right] \\
+				& = e^{i \ve{k} \cdot \ve{r}} \nabla^2 u_{j,\ve{k}}(\ve{r}) + 2 e^{i \ve{k} \cdot \ve{r}} i \ve{k} \cdot \nabla u_{j,\ve{k}}(\ve{r}) - \abs{\ve{k}}^2 e^{i \ve{k} \cdot \ve{r}} u_{j,\ve{k}}(\ve{r}) \\
+				& = e^{i \ve{k} \cdot \ve{r}} (\nabla + i \ve{k})^2 u_{j,\ve{k}}(\ve{r})
+			\end{split}
+		\end{equation*}
+		Questo dimostra la tesi.
+	\end{proof}
+\end{proposition}
+
+L'equazione elettronica permette dunque di calcolare gli stati stazionari di qualsiasi elettrone nel cristallo, dato il suo vettore d'onda $ \ve{k} $, e permette di farlo risolvendo tale equazione all'interno di una singola cella (la prima BZ, con opportune condizioni al contorno periodiche), senza dover considerare l'intero volume del cristallo. \\
+Si noti che l'Eq. \ref{eq:lat-el-eq}, a parte per lo shift immaginario dell'operatore $ \nabla $, è analoga all'usuale equazione di Schrödinger stazionaria: le soluzioni, dunque, saranno una serie di autofunzioni $ u_{j,\ve{k}}(\ve{r}) $, con $ j \in \N $, associate ad uno spettro di autovalori energetici crescenti $ E_{j,\ve{k}} $. \\
+Tipicamente, l'Eq. \ref{eq:lat-el-eq} è risolta tramite una valutazione auto-consistente del potenziale di campo-medio $ V_\text{eff}(\ve{r}) $, trovando soluzioni numeriche per $ u_{j,\ve{k}}(\ve{r}) $ ed $ E_{j,\ve{k}} $ nella prima BZ (con condizioni al contorno periodiche).
+
+\begin{figure}[!b]
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{en-band.png}
+	\caption{First three energy bands for a 1D lattice.}
+	\label{en-band}
+\end{figure}
+
+\subsection{Energy bands}
+
+Facendo variare $ \ve{k} $ nella prima BZ, gli stati stazionari $ u_{j,\ve{k}}(\ve{r}) $ cambiano analiticamente con $ \ve{k} $, così da poter assumere una dipendenza liscia di $ u_{j,\ve{k}}(\ve{r}) $ da $ \ve{k} $. Di conseguenza, anche $ E_{j,\ve{k}} = E_j(\ve{k}) $ è una funzione liscia di $ \ve{k} $: per al variare di $ j \in \N $, si parla di \textit{energy bands}, in quanto fissato $ j \in \N $ gli autovalori $ E_j(\ve{k}) $ spannano un intervallo continuo di energie al variare di $ \ve{k} $ nella prima BZ. Come si vede in Fig. \ref{en-band}, i range spannati da due bands successive $ E_j(\ve{k} $ ed $ E_{j+1}(\ve{k}) $ possono sia sovrapporsi che rimanere separati: nel secondo caso, si parla di \textit{band gaps}. Si vede quindi che la principale conseguenza del teorema di Bloch è che lo spettro energetico degli elettroni in un solido cristallino è formato da energy bands continue separate da intervalli di energie proibite (band gaps): questo è un comportamento intermedio tra gli elettroni negli atomi (spettro discreto) e gli elettroni liberi (spettro continuo).
+
+\subsubsection{Modello a onde piane}
+
+Dato che all'interno del cristallo il potenziale nucleare $ V_{ne} $ è schermato dalla repulsione elettronica $ V_{ee} $, il potenziale effettivo $ V_\text{eff} $ è abbastanza piccolo (eccetto che vicino ai nuclei atomici) da poter approssimare gli autostati degli elettroni con quelli di particella libera. Questi sono gli autostati del momento lineare $ \ket{\ve{k}} : \hat{\ve{p}} \ket{\ve{k}} = \hbar \ve{k} \ket{\ve{k}} $ (opportunamente normalizzati come $ \braket{\ve{k} | \ve{k}'} = \delta_{\ve{k}, \ve{k}'} $), così da poter scrivere gli autostati elettronici come:
+\begin{equation}
+	\ket{\phi} = \sum_\ve{k} c_\ve{k} \ket{\ve{k}}
+\end{equation}
+L'equazione elettronica può quindi essere riscritta come (proiettando su $ \ket{\ve{k}} $):
+\begin{equation}
+	\sum_{\ve{k}'} \left[ \frac{\hbar^2 k^2}{2m_e} \delta_{\ve{k},\ve{k}'} + \braket{\ve{k} | V_\text{eff} | \ve{k}'} \right] c_{\ve{k}'} = E_\ve{k} \sum_{\ve{k}'} \delta_{\ve{k},\ve{k}'} c_{\ve{k}'}
+\end{equation}
+Per l'elemento di matrice del potenziale effettivo si trova:
+\begin{equation}
+	\braket{\ve{k} | V_\text{eff} | \ve{k}'} = \mathcal{N} \int \dd^3r\, e^{i (\ve{k}' - \ve{k}) \cdot \ve{r}} V_\text{eff}(\ve{r}) \eqdef \tilde{V}_\text{eff}(\ve{k} - \ve{k}')
+\end{equation}
+Essendo il potenziale periodico con stessa periodicità del reticolo cristallino, la sua trasformata di Fourier è in realtà una serie discreta sul reticolo reciproco: $ \tilde{V}_\text{eff}(\ve{k} - \ve{k}') $ si annulla a meno che $ \ve{k} - \ve{k}' = \ve{G} $. Ciò significa che la maggior parte degli elementi off-diagonal di $ V_\text{eff} $ si annullano: dato un $ \ve{k} $ nella prima BZ, il potenziale accoppia lo stato $ \ket{\ve{k}} $ solo a stati $ \ket{\ve{k}'} : \ve{k}' = \ve{k} - \ve{G} $, con $ \ve{G} $ nel reticolo reciproco. Trattando separatamente ciascun sottospazio a $ \ve{k} $ fissato (ovvero l'insieme $ \{\ket{\ve{k} + \ve{G}} : \ve{G} \in \text{reticolo reciproco}\} $), quindi, l'equazione elettronica può essere espressa come:
+\begin{equation}
+	\begin{bmatrix}
+		\ddots & \vdots & \vdots & \vdots &  \\
+		\dots & E_{\ve{k} + \ve{G}_1}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) & \tilde{V}_\text{eff}(\ve{G}_1 - \ve{G}_2) & \tilde{V}_\text{eff}(\ve{G}_1 - \ve{G}_2) & \dots \\
+		\dots & \tilde{V}_\text{eff}(\ve{G}_2 - \ve{G}_1) & E_{\ve{k} + \ve{G}_2}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) & \tilde{V}_\text{eff}(\ve{G}_2 - \ve{G}_3) & \dots \\
+		\dots & \tilde{V}_\text{eff}(\ve{G}_3 - \ve{G}_1) & \tilde{V}_\text{eff}(\ve{G}_3 - \ve{G}_2) & E_{\ve{k} + \ve{G}_3}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) & \dots \\
+		 & \vdots & \vdots & \vdots & \ddots
+	\end{bmatrix}
+	\begin{pmatrix}
+		\vdots \\ c_{\ve{k} + \ve{G}_1} \\ c_{\ve{k} + \ve{G}_2} \\ c_{\ve{k} + \ve{G}_3} \\ \vdots
+	\end{pmatrix}
+	= E_\ve{k}
+	\begin{pmatrix}
+		\vdots \\ c_{\ve{k} + \ve{G}_1} \\ c_{\ve{k} + \ve{G}_2} \\ c_{\ve{k} + \ve{G}_3} \\ \vdots
+	\end{pmatrix}
+	\label{eq:mat-el-eq}
+\end{equation}
+dove l'energia all'ordine zero è quella dell'elettrone libero:
+\begin{equation}
+	E_\ve{k}^{(0)} = \frac{\hbar^2 k^2}{2m_e}
+\end{equation}
+L'Eq. \ref{eq:mat-el-eq} va diagonalizzata separatamente per ciascun $ \ve{k} $ nella prima BZ. La diagonalizzazione è banale nel caso di potenziale costante senza elementi off-diagonal $ \tilde{V}_\text{eff}(\ve{G} \neq \ve{0}) = 0 $: in tal caso, gli autostati energetici sono proprio le onde piane $ \ket{\ve{k} + \ve{G}_j} $, con autovalori energetici shiftati dal potenziale $ E_{j,\ve{k}} = E_{\ve{k} + \ve{G}_j}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) $. \\
+Nei cristalli reali, però, ci saranno molti termini off-diagonal non-nulli: in tal caso, gli autostati energetici sono combinazioni lineari delle onde piane $ \ket{\ve{k} + \ve{G}_j} $ e vengono trovati numericamente.
 
 
 
