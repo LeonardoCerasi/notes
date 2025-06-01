@@ -233,6 +233,7 @@ rappresentante la trasformata di Fourier della distribuzione elettronica degli $
 Come si è visto, la condizione per cui si hanno picchi di diffrazione è $ \ve{q} = \ve{G} $. In aggiunta a ciò, per avere scattering elastico è necessario che $ \abs{\ve{k}} = \abs{\ve{k}'} $, ovvero:
 \begin{equation}
 	\abs{\ve{k}} = \abs{\ve{k} + \ve{G}}
+	\label{eq:bragg-diffr}
 \end{equation}
 Questa condizione corrisponde geometricamente ad una sfera nello spazio reciproco, rappresentata dalla \textit{costruzione di Ewald} (Fig. \ref{diffr-e}): se questa sfera interseca più punti del reticolo reciproco, allora è possibile avere interferenza costruttiva e dunque diffrazione.
 Elevando al quadrato si trova $ 2 \ve{k} \cdot \ve{G} + \abs{\ve{G}}^2 = 0 $, ovvero:
@@ -402,7 +403,134 @@ dove l'energia all'ordine zero è quella dell'elettrone libero:
 	E_\ve{k}^{(0)} = \frac{\hbar^2 k^2}{2m_e}
 \end{equation}
 L'Eq. \ref{eq:mat-el-eq} va diagonalizzata separatamente per ciascun $ \ve{k} $ nella prima BZ. La diagonalizzazione è banale nel caso di potenziale costante senza elementi off-diagonal $ \tilde{V}_\text{eff}(\ve{G} \neq \ve{0}) = 0 $: in tal caso, gli autostati energetici sono proprio le onde piane $ \ket{\ve{k} + \ve{G}_j} $, con autovalori energetici shiftati dal potenziale $ E_{j,\ve{k}} = E_{\ve{k} + \ve{G}_j}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) $. \\
-Nei cristalli reali, però, ci saranno molti termini off-diagonal non-nulli: in tal caso, gli autostati energetici sono combinazioni lineari delle onde piane $ \ket{\ve{k} + \ve{G}_j} $ e vengono trovati numericamente.
+Nei cristalli reali, però, ci saranno molti termini off-diagonal non-nulli: in tal caso, gli autostati energetici sono combinazioni lineari delle onde piane $ \ket{\ve{k} + \ve{G}_j} $ e vengono trovati numericamente. \\
+Un caso analiticamente affrontabile è quello di potenziale debole: precisamente, esso si verifica quando i termini off-diagonal sono piccoli rispetto alle separazioni diagonali, ovvero:
+\begin{equation}
+	\abs{\tilde{V}_\text{eff}(\ve{G}_1 - \ve{G}_2)} \ll \abs{E_{\ve{k} + \ve{G}_1}^{(0)} - E_{\ve{k} + \ve{G}_2}^{(0)}}
+\end{equation}
+In tale condizione, l'energia al prim'ordine è $ E_{j,\ve{G}}^{(1)} \approx E_{\ve{k} + \ve{G}_j}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) $ e gli elementi off-diagonal determinano una piccola perturbazione al second'ordine:
+\begin{equation}
+	E_{j,\ve{k}}^{(2)} = E_{j,\ve{k}}^{(1)} + \sum_{\ell \neq j} \frac{\abs{\braket{\ve{k} + \ve{G}_j | V_\text{eff} | \ve{k} + \ve{G}_\ell}}^2}{E_{\ve{k} + \ve{G}_j}^{(0)} - E_{\ve{k} + \ve{G}_\ell}^{(0)}} = E_{j,\ve{k}}^{(1)} + \sum_{\ell \neq j} \frac{\abs{\tilde{V}_\text{eff}(\ve{G}_j - \ve{G}_\ell)}^2}{E_{\ve{k} + \ve{G}_j}^{(0)} - E_{\ve{k} + \ve{G}_\ell}^{(0)}}
+\end{equation}
+Questa correzione, però, non è applicabile nei punti in cui $ E_{\ve{k} + \ve{G}_j}^{(0)} \simeq E_{\ve{k} + \ve{G}_\ell}^{(0)} $ (evidenziati in Fig. \ref{band-par}): in questi punti, i termini off-diabonal diventano grandi e l'andamento risulta molto diverso da quello parabolico. Nei punti in cui due stati $ \ket{\ve{k} + \ve{G}_j} , \ket{\ve{k} + \ve{G}_\ell} $ diventano quasi degeneri, le band energies approssimate si possono calcolare diagonalizzando le (sotto)matrice:
+\begin{equation*}
+	\begin{bmatrix}
+		E_{\ve{k} + \ve{G}_j}^{(0)} + \tilde{V}_\text{eff}(\ve{0}) & \tilde{V}_\text{eff}(\ve{G}_j - \ve{G}_\ell) \\
+		\tilde{V}_\text{eff}(\ve{G}_\ell - \ve{G}_j) & E_{\ve{k} + \ve{G}_\ell}^{(0)} + \tilde{V}_\text{eff}(\ve{0})
+	\end{bmatrix}
+	\equiv
+	\begin{bmatrix}
+		E_{j,\ve{k}}^{(1)} & \Delta \\
+		\Delta^* & E_{\ell,\ve{k}}^{(1)}
+	\end{bmatrix}
+\end{equation*}
+Si trova che il coupling term $ \Delta $ induce una repulsione tra bande (formando gaps), le quali si trovano sempre a distanze energetiche pari o superiori a $ 2\abs{\Delta} = \abs{2\tilde{V}_\text{eff}(\ve{G}_j - \ve{G}_\ell} $, come riportato in Fig. \ref{band-gap}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{band-par.png}
+	\caption{1D free-electron parabolas $ E_{k + G_j}^{(0)} $, with $ G_j = \frac{2\pi}{a} j $: $ j = 0 $ in black, $ j = 1 $ in blue, $ j = 2 $ dashed in blue, $ j = -1 $ in red and $ j = -2 $ dashed in red.}
+	\label{band-par}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{band-gap.png}
+	\caption{$ \abs{2\tilde{V}_\text{eff}(G_j)} $-wide gaps at each degeneracy point $ k = \frac{1}{2} G_j $, with the first BZ in detail.}
+	\label{band-gap}
+\end{figure}
+
+Il modello a onde piane mostra chiaramente la formazione di band gaps, ovvero intervalli di energie proibite che separando le energy bands. In Fig. \ref{band-par}-\ref{band-gap} si vede come in 1D il potenziale periodico apre dei gap in tutti i punti $ k = \frac{1}{2} G $. In generale, in 3D, i gap si aprono in tutti i punti $ \ve{k} : \abs{\ve{k} + \ve{G}} = \abs{\ve{k}} $, per un qualche $ \ve{G} \in \text{reticolo reciproco} $: questa è proprio la condizione di Bragg per la diffrazione (Eq. \ref{eq:bragg-diffr}). Si noti che non sempre il potenziale periodico va a creare delle band gaps ben definite: può capitare, infatti, che un range di energie proibite per una certa direzione $ \ve{k} $ sia invece permessa per un'altra direzione $ \ve{k}' $. \\
+Si vede che, nel modello a onde piane, l'indice $ j $ di una banda rappresenta semplicemente il numero di bande energeticamente sottostanti ad essa.
+
+\subsubsection{Modello di Kronig-Penney}
+
+\begin{figure}[!b]
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{kr-pen.png}
+	\caption{Kronig-Penney model for the periodic potential.}
+	\label{kr-pen}
+\end{figure}
+
+Una trattazione diversa è possibile grazie al modello di Kronig-Penney per il potenziale periodico. Grazie alle condizioni di periodicità, si può restringere la trattazione alla cella primaria, e nel caso 1D vale:
+\begin{equation}
+	V(x) =
+	\begin{cases}
+		-V_0 & -b < x < 0 \\
+		0 & 0 < x < a-b
+	\end{cases}
+\end{equation}
+La trattazione è analoga a quella della particella in una buca finita di potenziale, ma con diverse condizioni al contorno. In particolare, per un elettrone di energia $ E $, si trova:
+\begin{equation}
+	\psi(x) =
+	\begin{cases}
+		A e^{i \alpha x} + B e^{-i \alpha x} & -b < x < 0 \\
+		C e^{i \beta x} + D e^{-i \beta x} & 0 < x < a-b
+	\end{cases}
+\end{equation}
+con:
+\begin{equation}
+	\alpha^2 \equiv \frac{2m (E + V_0)}{\hbar^2}
+	\qquad \qquad
+	\beta^2 \equiv \frac{2m E}{\hbar^2}
+\end{equation}
+Si devono imporre condizioni di raccordo e periodicità, ovvero:
+\begin{equation}
+	\psi(0^-) = \psi(0^+)
+	\qquad \qquad
+	\psi'(0^-) = \psi'(0^+)
+\end{equation}
+\begin{equation}
+	\psi(-b) = \psi(a-b)
+	\qquad \qquad
+	\psi'(-b) = \psi'(a-b)
+\end{equation}
+Dal teorema di Bloch $ \psi(x) = e^{ikx} u_k(x) $, dunque imponendo le condizioni periodiche si trova la condizione:
+\begin{equation}
+	\cos (ka) = \cos(\beta b) \cos (\alpha(a-b)) - \frac{\alpha^2 + \beta^2}{2\alpha \beta} \sin(\beta b) \sin(\alpha (a-b))
+\end{equation}
+Prendendo il limite di queste barriere di potenziale a $ \delta $ di Dirac, ovvero $ b \rightarrow 0 , V_0 \rightarrow \infty : bV_0 = \text{const.} $, si trova:
+\begin{equation}
+	\cos(ka) = \cos(\alpha a) + p \sinc(\alpha a)
+	\qquad \qquad
+	p \equiv \frac{m V_0 ba}{\hbar^2}
+\end{equation}
+Questa equazione ha soluzione solo se $ \abs{\cos(\alpha a) + p \sinc(\alpha a)} \le 1 $: essendo $ \alpha a \propto \sqrt{E} $, ciò significa che ci sono dei valori energetici per cui non c'è soluzione, ovvero si formano delle band gaps (Fig. \ref{kr-pen-en}).
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.30 \textwidth]{kr-pen-en.png}
+	\caption{Energy bands for the Kronig-Penney model.}
+	\label{kr-pen-en}
+\end{figure}
+
+\subsubsection{Tight-binding model}
+
+Si consideri un reticolo cristallino 1D con atomi posizionati in punti equispaziati $ t_n \equiv na $: vicino ciascuno di essi, il potenziale effettivo sarà approssimato da quello di un singolo nucleo isolato, dunque è possibile ottenere la funzione d'onda elettronica a partire da quelle atomiche. In questo modo, le funzioni d'onda di Bloch sono delle generalizzazioni degli orbitali leganti/anti-leganti ottenuti tramite LCAO (si pensa al solido come ad una grossa molecola): questo sistema è appropriato per elementi che contengono solo orbitali $ \text{s} $, mentre risulta poco adatto a descrivere stati metallici estesi. \\
+Si considerino le funzioni d'onda atomiche per ciascun atomo $ \phi_\text{a}(x-t_n) $. Essendo il sistema invariante per traslazioni, gli elementi diabonali di matrice dell'Hamiltoniana sono tutti uguali:
+\begin{equation}
+	\braket{\phi_\text{a}(x-t_n) | \mathcal{H} | \phi_\text{a}(x-t_n)} = E_0
+\end{equation}
+Si definisce inoltre l'\textit{integrale di Hopping}:
+\begin{equation}
+	\gamma \defeq \braket{\phi_\text{a}(x-t_n) | \mathcal{H} | \phi_\text{a}(x-t_{n+1})}
+\end{equation}
+Essendo i potenziali atomici attrattivi, si ha $ \gamma < 0 $. Per costruire una funzione d'onda periodica estesa a partire da questi orbitali atomici localizzati, si può utilizzare il teorema di Bloch, trovando la \textit{somma di Bloch}:
+\begin{equation}
+	\phi_k(x) = \frac{1}{\sqrt{N}} \sum_{n = 1}^N e^{i k t_n} \phi_\text{a}(x-t_n)
+\end{equation}
+Si vede infatti che $ \phi_k(x+a) = e^{ika} \phi_k(x) $, rispettando il teorema di Bloch. Lo spettro energetico sarà:
+\begin{equation}
+	E(k) = \braket{\phi_k | \mathcal{H} | \phi_k} = E_0 + 2 \gamma \cos(ka)
+\end{equation}
+Attorno al minimo si recupera la forma parabolica:
+\begin{equation}
+	E(k) \simeq E_0 + 2\gamma - \gamma a^2 k^2 \equiv E_0 + 2\gamma + \frac{\hbar^2 k^2}{2\mu}
+	\qquad \qquad
+	\mu \equiv \frac{\hbar^2}{2 \abs{\gamma} a^2}
+\end{equation}
+dove si è definita la massa efficace $ \mu $. Si vede che $ \mu $ è piccola per $ \abs{\gamma} $ grande: le masse piccole sono più soggette ai campi esterni (in quanto accellerano più facilmente).
+
+\subsection{Riempimento delle bands}
 
 
 
