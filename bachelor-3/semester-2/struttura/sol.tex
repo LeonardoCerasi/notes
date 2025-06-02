@@ -530,7 +530,183 @@ Attorno al minimo si recupera la forma parabolica:
 \end{equation}
 dove si è definita la massa efficace $ \mu $. Si vede che $ \mu $ è piccola per $ \abs{\gamma} $ grande: le masse piccole sono più soggette ai campi esterni (in quanto accellerano più facilmente).
 
-\subsection{Riempimento delle bands}
+\subsection{Riempimento delle bande}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{met-ins.png}
+	\caption{The two fundamental $ T = 0 $ band-fillinf schemes: metal and insulator.}
+	\label{met-ins}
+\end{figure}
+
+Il ground state ($ T = 0 $) di un sistema di elettroni indipendenti in un potenziale periodico si ottiene riempiendo gli stati single-particle nelle energy bands fino all'energia di Fermi $ \mu $, come nel modello a fermioni liberi. \\
+In base al numero di elettroni nel solido, l'energia di Fermi può intersecare una o più energy bands o capitare in mezzo ad una band gap (vedere Fig. \ref{met-ins}): nel primo caso, gli elettroni nelle band occupate parzialmente possono acquisire energia d'eccitazione da campi esterni, così accellerando e conducendo corrente elettrica (\textit{metallo}); nel secondo caso, invece, gli elettroni in una band completa rimangono congelati per il principio d'esclusione, e le eccitazioni richiedono energie dell'ordine della band gap (\textit{isolante}). In generale, l'energy band completamente riempita più alta viene detta \textit{banda di valenza}, mentre quella parzialmente riempita più bassa \textit{banda di conduzione}. \\
+Per capire come si distribuiscono gli elettroni nelle energy bands, si consideri una porzione di cristallo di volume $ V = N_1 N_2 N_3 V_c $, la quale si estende per $ N_1 / N_2 / N_3 $ periodi nella direzione $ \ve{a}_1 / \ve{a}_2 / \ve{a}_3 $. Applicando la condizione di periodicità $ \psi-{j,\ve{k}}(\ve{r}) = \psi_{j,\ve{k}}(\ve{r} + N_i \ve{a}_i) $ si trova:
+\begin{equation*}
+	\ve{k} = \frac{n_1}{N_1} \ve{b}_1 + \frac{n_2}{N_2} \ve{b}_2 + \frac{n_3}{N_3} \ve{b}_3
+	\qquad \qquad
+	n_i = - \frac{N_i}{2} + 1 , - \frac{N_i}{2} + 2 , \dots , \frac{N_i}{2} -1 , \frac{N_i}{2}
+\end{equation*}
+I valori possibili di $ \ve{k} $ sono quindi $ N = N_1 N_2 N_3 $: questi diventano densi e riempiono la prima BZ nel limite $ N_i \rightarrow \infty $ (cristallo ideale infinito). Ciascuno stato nella banda $ j $ può ospitare due elettroni (degenerazione da spin), dunque in totale la banda ha $ 2N $ stati single-particle.
+
+\begin{proposition}{Occupazione delle bande}{}
+	Detto $ m $ il numero di elettroni in ciascun atomo ed $ n_c $ il numero di atomi per cella, il numero di bande occupate è $ \frac{1}{2} m n_c $.
+
+	\tcblower
+
+	\begin{proof}
+		Essendo presenti $ N $ celle nel volume $ V $, il numero totale di atomi in $ V $ è $ m n_c N $: ciascuna banda può ospitare $ 2N $ elettroni, dunque il numero di bande occupate è $ \frac{m n_c N}{2N} = \frac{1}{2} m n_c $.
+	\end{proof}
+\end{proposition}
+
+Si hanno dunque due possibili casi, a seconda che il numero di elettroni per cella $ m n_c $ sia pari o dispari (vedere Fig. \ref{ne-na}):
+\begin{itemize}
+	\item $ m n_c $ pari: viene occupato un numero intero di bande, ovvero la banda di conduzione è vuota;
+	\item $ m n_c $ dispari: l'ultima banda è semi-piena, ovvero ci sono degli elettroni nella banda di conduzione.
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{ne-na.png}
+	\caption{Filling of bands for 1D crystals of $ N = 6 $ atoms of $ \ch{Ne} $ and $ \ch{Na} $.}
+	\label{ne-na}
+\end{figure}
+
+Si vede dunque che i cristalli con un numero dispari di elettroni per cella sono dei metalli, mentre quelli che ne hanno un numero pari possono essere sia isolanti che metalli: quest'ultimo caso si verifica quando la banda di valenza e quella di conduzione non sono separate da gap, dunque parte della banda di valenza è al di sopra dell'energia di Fermi e parte della banda di conduzione al di sotto di essa (si verifica nel gruppo 2 (metalli alcalino-terrosi) e nel gruppo 12 ($ \ch{Zn} $, $ \ch{Cd} $ e $ \ch{Hg} $)).
+
+\subsubsection{Metalli}
+
+I metalli presentano una particolare capacità di condurre corrente elettrica\footnotemark: in particolare, mostrano una conducibilità elettrica che decresce con $ T $.
+A $ T = 0 $, la \textit{superficie di Fermi} $ E = \mu $ separa gli stati pieni da quelli vuoti nello spazio reciproco (dei $ \ve{k} $), generalizzando la sfera di Fermi per il gas ideale di fermioni.
+
+\footnotetext{In realtà tutti i solidi possono condurre corrente elettrica: ciò che caratterizza i metalli è l'andamento decrescente della conducibilità elettrica all'aumentare della temperatura, a differenza della (piccola) conducibilità elettrica degli isolanti che invece aumenta con $ T $.}
+
+Adottando un approccio semiclassico, si può studiare il moto degli elettroni rappresentandoli come pacchetti d'onda, ovvero sovrapposizioni di stati di Bloch relativi ad una stessa banda $ j $. Il moto di un pacchetto d'onda soggetto ad un campo elettromagnetico esterno è governato da:
+\begin{equation}
+	\dot{\ve{r}} \equiv \ve{v}_j(\ve{k}) = \frac{1}{\hbar} \nabla_\ve{k} E_{j,\ve{k}}
+	\label{eq:met-1}
+\end{equation}
+\begin{equation}
+	\hbar \dot{\ve{k}} = -q_e \left[ \ve{E}_\text{ext}(t,\ve{r}) + \ve{v}_j(\ve {k}) \times \ve{B}_\text{ext}(t,\ve{r}) \right]
+	\label{eq:met-2}
+\end{equation}
+dove si assume che il campo esterno vari lentamente nel tempo sulla scala della grandezza del pacchetto (tipicamente molto maggiore della dimensione della cella primaria del reticolo, in quanto si suppone il pacchetto centrato in un valore di del numero d'onda ben definito). \\
+La velocità $ \ve{v}_j $ è la velocità del centro di massa dell'elettrone, ovvero la velocità di gruppo del wave-packet: l'Eq. \ref{eq:met-1} esprime il fatto che un pacchetto d'onda con relazione di dispersione $ \omega = \omega(\ve{k}) $ ha una velocità di gruppo $ \ve{v}_g = \nabla_\ve{k} \omega(\ve{k}) $, dato che per l'elettrone $ \omega(\ve{k}) = \frac{1}{\hbar} E_{j,\ve{k}} $ (si noti che per l'elettrone libero $ E_{j,\ve{k}} = \hbar^2 k^2 / (2m_e) $, quindi si trova giustamente $ \ve{v}_j(\ve{k}) = \hbar \ve{k} / m_e $). \\
+L'Eq. \ref{eq:met-2} ricorda l'equazione classica per una particella carica in un campo elettromagnetico esterno (forza di Lorentz): il potenziale periodico del cristallo induce una dipendenza non-banale $ \ve{v}_j = \ve{v}_j(\ve{k}) $, dunque il \textit{momento cristallino} $ \hbar \ve{k} $ non rappresenta il momento reale dell'elettrone\footnotemark. Ciò nonostante, $ \ve{k} $ è comunque una costante del moto, dunque continua ad essere un buon numero quantico.
+
+\footnotetext{Il momento cristallino non è autovalore dell'operatore $ -i \hbar \nabla_\ve{r} $, dato che:
+\begin{equation*}
+	-i \hbar \nabla_\ve{r} \left[ e^{i \ve{k} \cdot \ve{r}} u_\ve{k}(\ve{r}) \right] = \hbar \ve{k} e^{i \ve{k} \cdot \ve{r}} u_\ve{k}(\ve{r}) -i \hbar e^{i \ve{k} \cdot \ve{r}} \nabla_\ve{r} u_\ve{k}(\ve{r}) \neq \hbar \ve{k} e^{i \ve{k} \cdot \ve{r}} u_\ve{k}(\ve{r})
+\end{equation*}
+Prendendo il valore d'aspettazione, si vede che il momento dell'elettrone è il momento cristallino diminuito di una quantità che può essere vista come un momento medio efficace: quest'ultimo viene interpretato come un momento medio trasferito dall'elettrone al cristallo.
+}
+
+È possibile calcolare l'accellerazione di un elettrone, a partire dall'Eq. \ref{eq:met-1}:
+\begin{equation*}
+	\frac{\dd^2 \ve{r}}{\dd t^2} = \frac{\dd \ve{k}}{\dd t} \cdot \nabla_\ve{k} \ve{v}_j(\ve{k}) = \frac{1}{\hbar^2} \sum_{\alpha,\beta = 1}^3 \hat{\ve{e}}_\alpha \frac{\pa^2 E_{j,\ve{k}}}{\pa k_\alpha \pa k_\beta} \frac{\dd (\hbar k_\beta)}{\dd t} \equiv \sum_{\alpha,\beta = 1}^3 \hat{\ve{e}}_\alpha [m_\text{eff}^{-1}]_{\alpha,\beta} F_\beta
+\end{equation*}
+dove sono state definite la forza totale esterna agente sull'elettrone $ \ve{F} = \hbar \dot{\ve{k}} $ (Eq. \ref{eq:met-2}) e la \textit{massa efficace} $ m_\text{eff} $, definita tensorialmente tramite il suo inverso:
+\begin{equation}
+	[m_\text{eff}^{-1}]_{\alpha,\beta} = \frac{1}{\hbar^2} \frac{\pa^2 E_{j,\ve{k}}}{\pa k_\alpha \pa k_\beta}
+\end{equation}
+Questa massa può anche essere negativa o divergere, e per l'elettrone libero si trova correttamente $ m_\text{eff} = m_e $. In particolare, sulla superficie di Fermi (dove avviene il moto), gli elettroni si comportano come se avessero massa $ m_\text{eff} $ (opportuna media sulle componenti del tensore), la quale è proporzionale alla curvatura dell'energy band.
+
+\paragraph{Corrente elettrica}
+
+Con l'approccio semiclassico, è facile vedere che un'energy band completamente piena non conduce corrente. Essendo la densità di corrente trasportata da un wave-packet $ \ve{j}_p(\ve{k}) = -q_e \ve{v}_j(\ve{k}) / V $ e ricordando l'Eq. \ref{eq:dens-k}, si trova:
+\begin{equation*}
+	\ve{J} = \int_\text{BZ} \dd^3k\, \ve{j}_p(\ve{k}) g_s g(\ve{k}) = - \frac{q_e}{4\pi^3 \hbar} \int_\text{BZ} \dd^3k\, \nabla_\ve{k} E_{j,\ve{k}} = \ve{0}
+\end{equation*}
+che si annulla poiché è l'integrale sul periodo del gradiente di una funzione periodica. Ciò spiega perché non si osserva un aumento della conducibilità elettrica negli elementi cristallini all'aumentare di $ Z $: ad esempio, $ \ch{Cu} $, $ \ch{Ag} $ ed $ \ch{Au} $ hanno conducibilità simili, nonostante il numero totale di elettroni molto diverso. \\
+Concentrandosi sulle bande semi-piene, si noti che gli stati di Bloch sono stati stazionari in un cristallo perfetto: di conseguenza, se un wave-packet ha velocità di gruppo finita ($ \nabla_\ve{k} E_{l,\ve{k}} \neq \ve{0} $), allora essa rimarrà immutata mentre l'elettrone si sposta nel cristallo. Ciò significa che, nell'approccio semiclassico, le correnti si dovrebbero propagare nel metallo come fossero nel vuoto, anche in assenza di un campo elettrico esterno: queste persistent current non vengono però osservate negli esperimenti.
+Inoltre, secondo l'Eq. \ref{eq:met-2}, sotto l'effetto di un campo elettrico costante uniforme l'elettrone ha un moto ciclico nella prima BZ (ricordando le condizioni periodiche, si veda Fig. \ref{k-cycle}): queste sono note come \textit{oscillazioni di Bloch}. Di conseguenza, per l'Eq. \ref{eq:met-1}, la velocità è oscillante e genera correnti positive e negative per lo stesso periodo di tempo: ciò significa, che applicando un campo elettrico DC ad un filo metallico, si dovrebbe osservare una corrente AC. Questa è un'altra discrepanza con quanto viene osservato, in quanto la risposta dei metalli ad un campo elettrico esterno è dettata dalla legge di Ohm: $ \ve{J} = \sigma \ve{E} $, con $ \sigma $ conducibilità elettrica. \\
+Queste discrepanza tra teoria semiclassica e realtà sono dovute al fatto che gli elettroni di Bloch, rappresentati da pacchetti d'onda, posti in un cristallo ideale possono muoversi all'infinito, senza dispersione d'energia. I cristalli reali, però, deviano da quelli ideali per la presenza di difetti e per il fatto che gli atomi non sono fissi nelle posizioni reticolari, ma possono oscillare attorno ad esse: ciò determina che gli elettroni di conduzione siano soggetti a fenomeni di scattering, in particolare a causa dell'interazione elettrone-fonone.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.40 \textwidth]{k-cycle.png}
+	\caption{Motion of an electron in the reciprocal lattice of a 1D crystal, under the action of a constant uniform electric field.}
+	\label{k-cycle}
+\end{figure}
+
+Per metalli cristallini, il tempo medio $ \tau $ tra due collissioni di un elettrone (\textit{tempo libero medio} o tempo di rilassamento) è dell'ordine $ \tau \sim 10^{-13} \,\text{s} $, troppo breve perché l'elettrone raggiunga il bordo della prima BZ e mostri oscillazioni di Bloch\footnotemark.
+
+\footnotetext{Per osservare le oscillazioni di Bloch servirebbe un cristallo estremamente puro a temperatura molto bassa, condizioni difficilmente ottenibili. In alternativa, si possono considerare i \textit{super-reticoli}, ovvero reticoli sovrapposti di materiali diversi, le cui celle si vanno ad alternare: ciò permette di rendere la cella primitiva più grande, ovvero di rimpicciolire la prima BZ. Si noti che sono necessari materiali tali per cui all'interfaccia non ci sia una grossa differenza di passi reticolari, così da non introdurre difetti.}
+
+Mentre il campo elettrico esterno spinge gli elettroni ad occupare stati nella direzione di $ -q_e \ve{E}_\text{ext} $, le collisioni con difetti del cristallo e fononi tendono a riportare gli elettroni verso gli stati occupati all'equilibrio termico: dopo un transiente, l'effetto di $ \ve{E}_\text{eff} $ viene ridotto ad un piccolo shift $ \delta \ve{k} $ costante della superficie di Fermi rispetto alla sua configurazione all'equilibrio. Definendo $ \delta^3k $ il volume tra la superficie di Fermi all'equilibrio e quella shiftata, si può stimare la densità di corrente indotta da $ \ve{E}_\text{eff} $ come:
+\begin{equation*}
+	\ve{J} = - \frac{q_e}{4\pi^3} \int_{\delta^3k} \dd^3k\, \ve{v}_j(\ve{k}) \simeq - q_e \int_{\delta^3k} \dd^3k\, \hat{\ve{E}}_\text{ext} v_\text{F} \simeq -q_e v_\text{F} \hat{\ve{E}}_\text{eff} \delta^3k
+\end{equation*}
+dove si è approssimato l'integrale con la velocità di Fermi nella direzione del campo poiché sono coinvolti solo gli \textit{elettroni attivi}, ovvero quelli sulla superficie di Fermi. Osservando che nel tempo libero medio $ \tau $ l'elettrone varia il suo numero d'onda come $ \delta\ve{k} = -q_e \tau \ve{E}_\text{ext} / \hbar $ (Eq. \ref{eq:met-2}), si può stimare:
+\begin{equation*}
+	\delta^3k \simeq - \abs{\delta\ve{k}} k_\text{F}^2 \simeq - q_e \frac{\tau}{\hbar} \abs{\ve{E}_\text{ext}} k_\text{F}^2
+\end{equation*}
+dove il segno negativo indica che lo shift è opposto ad $ \ve{E}_\text{ext} $. Essendo $ v_\text{F} \simeq \hbar k_\text{F} / m_\text{eff} $ e ricordando l'Eq. \ref{eq:k-f}, si trova:
+\begin{equation*}
+	\ve{J} \simeq \frac{q_e^2 \tau}{m_e} \hat{\ve{E}}_\text{ext} \abs{\ve{E}_\text{ext}} k_\text{F}^3 \simeq \frac{q_e^2 \tau}{m_e} \frac{N}{V} \ve{E}
+\end{equation*}
+Ciò non è altro che la legge di Ohm con conducibilità elettrica pari a:
+\begin{equation}
+	\sigma = \frac{q_e^2 \tau}{m_e} \frac{N}{V}
+\end{equation}
+Grandezze tipiche sono $ \tau \sim 10^{-13} \,\text{s} $, $ v_\text{F} \sim 10^6 \,\text{m}/\text{s} $ e $ N/V \sim 10^{29} \,\text{m}^{-3} $: si stima dunque il cammino libero medio $ l \simeq \tau v_\text{F} \sim 100 \,\text{nm} $. All'aumentare della temperatura si osserva un aumento della resistivistà $ \rho = \sigma^{-1} $, ovvero una diminuzione del tempo libero medio $ \tau $: le collisioni diventano più frequenti quando il moto termico determina grandi spostamenti dei nuclei dalla loro posizione d'equilibrio\footnote{Il tempo libero medio è inversamente proporzionale al numero di fononi: $ \tau^{-1} \propto \sum_\varepsilon [n_\varepsilon]_\text{B} $. Ad energie termiche $ k_\text{B} T $ molto al di sopra dell'energia caratteristica dei fononi ($ \varepsilon \lesssim 100 \,\text{meV} $), il numero totale di fononi è lineare in $ T $: dall'Eq. \ref{eq:fer-dir-bos-ein} $ [n_\varepsilon]_\text{B} = (e^{\beta \varepsilon} - 1)^{-1} \simeq (\beta \varepsilon)^{-1} = k_\text{B} T / \varepsilon $. Di conseguenza, ad alte tempreature la resistività è lineare in $ T $, fatto osservato sperimentalmente.}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.70 \textwidth]{therm-eq.png}
+	\caption{Band occupation under the competing action oa a static electric field and collition with crystal defects and phonons.}
+	\label{therm-eq}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.30 \textwidth]{fermi-sphere.png}
+	\caption{Shift of the Fermi surface induced by a static electric field.}
+	\label{f-sph}
+\end{figure}
+
+\subsubsection{Semiconduttori}
+
+Negli isolanti, a differenza dei metalli, la densità dei portatori di carica (e dunque la conduttività elettrica) è proporzionale alla temperatura: oltre una certa temperatura, però, il moto dei portatori viene fortemente perturbato dall'agitazione termica, dunque $ \sigma $ torna a diminuire con l'aumentare di $ T $. Gli isolanti che a temperatura ambiente presentano una piccola conducibilità elettrica a temperatura ambiente (invece di $ \sigma = 0 $) vengono chiamati \textit{semiconduttori}: questi sono tipicamente cristalli in cui la gap tra la banda di valenza e quella di conduzione è larga $ \sim 1\ev $ a temperatura ambiente (es.: $ \ch{Si} $, $ \ch{Ge} $, etc.). \\
+I semiconduttori presentano delle strutture cristalline diverse tra loro e, in virtù di queste differenze chimico-strutturali, le energy bands elettroniche di semiconduttori diversi presentano differenze qualitative e quantitative. In particolare, detti $ E_c $ il minimo della banda di conduzione ed $ E_v $ il massimo della banda di valenza, la gap $ \Delta = E_c - E_v $ può essere diretta, se $ E_c $ ed $ E_v $ sono nello stesso punto $ \ve{k} $, o indiretta, se si trovano in punti differenti. Dato che i fotoni, essendo massless, trasportano un momento piccolo, le transizioni ottiche coinvolgono sempre gap dirette: le transizioni indirette sono invece mediate da fononi, i quali però determinano interazioni al second'ordine poco probabili. I materiali a \textit{gap diretta} sono quelli in cui la gap più piccola è quella diretta, mentre i materiali a \textit{gap indiretta} hanno come gap minima quella indiretta: un esempio di quest'ultimi è il silicio, che ha una gap diretta $ \sim 3\ev $ ed una indiretta $ \sim 1\ev $.
+
+\paragraph{Semiconduttori intrinseci}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{band-dens.png}
+	\caption{Sketch of the density of electronic states in a crystal.}
+	\label{band-dens}
+\end{figure}
+
+Nei semiconduttori intrinseci, ovvero cristalli perfetti (a meno di impurità entropiche), la conducibillità elettrica è determinata dall'eccitazione termica di una parte di elettroni dalla banda di valenza a quella di conduzione. La densità numerica media di elettroni attivi è quindi:
+\begin{equation*}
+	\frac{[n_c]}{V} = \frac{1}{V} \int_{E_c}^\infty \dd E\, g(E) [n_E]_\text{F} = \frac{1}{V} \int_{E_c}^\infty \dd E \frac{g(E)}{e^{\beta (E - \mu)} + 1}
+\end{equation*}
+Uno sketch della densità di stati $ g(E) $ è riportato in Fig. \ref{band-dens}. Inoltre, si può approssimare il potenziale chimico nei pressi del punto medio della gap tra banda di valenza e banda di conduzione: essendo $ \Delta \gg k_\text{B} T $ (si noti che $ 1\ev $ corrisponde a circa $ 12'000 \,\text{K} $), allora $ E_c - \mu \approx \frac{\Delta}{2} \gg k_\text{B} T $. Si può dunque approssimare:
+\begin{equation*}
+	[n_E]_\text{F} = \frac{1}{e^{\beta (E - \mu)} + 1} \simeq e^{- \beta (E - \mu)} = e^{- \beta (E_c - \mu)} e^{- \beta (E - E_c)}
+\end{equation*}
+Il prefattore è piccolo ed indipendente dall'energia, dunque è uguale per tutti gli elettroni nella banda: la distribuzione elettronica si riduce quindi ad una distribuzione di Boltzmann (limite a bassa densità, in quanto il gas elettronico è estremamente rarefatto in questo contesto). Espandendo attorno al minimo della banda di conduzione, inoltre, si trova:
+\begin{equation*}
+	E = E_c + \frac{1}{2} \sum_{\alpha,\beta = 1}^3 \frac{\pa^2 E_{c,\ve{k}}}{\pa k_\alpha \pa k_\beta}\bigg\vert_{\ve{k}_\text{min}} (\ve{k} - \ve{k}_\text{min})_\alpha (\ve{k} - \ve{k}_\text{min})_\beta + \dots \,= E_c + \frac{\hbar^2}{2m_\text{eff}} \abs{\ve{k} - \ve{k}_\text{min}}^2 + \dots
+\end{equation*}
+L'energia d'eccitazione $ \Delta E = E - E_c $ ha quindi la forma dell'energia cinetica di una particella libera di massa $ m_\text{eff} $ (massa effettiva valutata in $ \ve{k}_\text{min} $) e numero d'onda calcolato rispetto a $ \ve{k}_\text{min} $. Di conseguenza, la densità degli stati di conduzione (a meno dello spin) è data dall'Eq. \ref{eq:en-deg}:
+\begin{equation*}
+	g_\text{tr}(E) = \frac{V m_\text{eff}^{3/2}}{\sqrt{2} \pi^2 \hbar^3} \sqrt{E - E_c}
+\end{equation*}
+Si può così esplicitare la densità numerica degli elettroni attivi:
+\begin{equation*}
+	\begin{split}
+		\frac{[n_c]}{V}
+		& = \frac{1}{V} \int_{E_c}^\infty \dd E \frac{g(E)}{e^{\beta (E - \mu) + 1}} \simeq \frac{e^{-\beta (E_c - \mu)}}{V} \int_{E_c}^\infty \dd E\, g_s g_\text{tr}(E) e^{-\beta (E - E_c)} \\
+		& = e^{\beta (E_c - \mu)} \frac{\sqrt{2} m_\text{eff}^{3/2}}{\pi^2 \hbar^3} \int_0^\infty \dd E\, \sqrt{E} e^{-\beta E} = e^{\beta (E_c - \mu)} \frac{\sqrt{2} m_\text{eff}^{3/2}}{\pi^2 \hbar^3} \frac{\sqrt{\pi}}{2 \beta^{3/2}} = e^{\beta (E_c - \mu)} \left[ \frac{m_\text{eff} k_\text{B} T}{\sqrt[3]{2} \pi \hbar^2} \right]^{3/2}
+	\end{split}
+\end{equation*}
+Per il silicio a $ T = 300 \,\text{K} $ si trova una densità numerica di elettroni attivi $ \sim 10^{15} \,\text{m}^{-3} $, 14 ordini di grandezza più piccola della tipica densità per i metalli. Si noti, però, che questa densità dipende esponenzialmente da $ T^{-1} $, ed infatti già a $ T = 600\,\text{K} $ si ha densità $ \sim 10^{29} \,\text{m}^{-3} $: a temperatura ambiente, i semiconduttori hanno resistività di vari ordini di grandezza maggiori rispetto ai metalli, ma la forte sensibilità dalla temperatura li rende ottimi sensori termici.
+
+\paragraph{Semiconduttori estrinseci}
+
+Dato che a temperatura ambiente la resistività dei semiconduttori intrinseci è talmente alta che si comportano da isolanti, per aumentarne la conduttività si aggiungono elementi di altro tipo in un processo detto \textit{drogaggio} (inserzione di impurità nel cristallo).
 
 
 
