@@ -192,6 +192,7 @@ Note that \lref{lemma:time-ord-prod} still holds: it allows to compute $ n $-poi
   Given a (bosonic) quantum field $ q(x) $, described by a Lagrangian $ \lag $, the $ n $-point Green function can be computed as:
   \begin{equation}
     \braket{0 | \tempord\{\hat{q}(x_1) \dots \hat{q}(x_n)\} | 0} = \frac{\int \mathcal{D}q\, q(x_1) \dots q(x_n) e^{i \act}}{\int \mathcal{D}q\, e^{i \act}}
+    \label{eq:corr-func-path}
   \end{equation}
   where $ \hat{q} $ denotes the field in the Heisenberg picture and the integrals are performed over field configurations $ q(x) : q(\pm \infty, \ve{x}) = 0 $.
 \end{proposition}
@@ -223,7 +224,263 @@ This is the equivalent of \eref{eq:corr-func-pert} evaluated with path integrals
 
 \subsection{Scalar fields}
 
-\subsection{Electromagnetic field (?)}
+First of all, consider a free scalar field theory:
+\begin{equation*}
+  G(x_1, \dots, x_n) = \frac{\int \mathcal{D}\phi\, \phi(x_1) \dots \phi(x_n) e^{i\act}}{\int \mathcal{D}\phi\, e^{i\act}}
+  \qquad \qquad
+  \act = \frac{1}{2} \int \dd^4x \left( \pa_\mu \phi \pa^\mu \phi - m^2 \phi^2 \right)
+\end{equation*}
+An integral so defined is not assured to converge, as the oscillating factor $ e^{i\act} $ is not necessarily sufficient to provide convergence over large fluctuations, i.e. over field configurations with large action value. To ensure convergence, it is conventional to add a small convergence factor to the free Lagrangian:
+\begin{equation}
+  \lag_0 = \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - \frac{1}{2} m^2 \phi^2 + \frac{i \epsilon}{2} \phi^2
+\end{equation}
+with $ \epsilon \rightarrow 0^+ $. This renders $ G(x_1, \dots, x_n) $ a Gaussian integral, ensuring its convergence. The convergence factor can be viewed as an imaginary displacement of the mass $ m^2 \mapsto m^2 - i \epsilon $: this is precisely the $ i\epsilon $-prescription for the Feynman propagator.
+
+\begin{definition}{Generating functional}{gen-func}
+  Given a scalar field theory with Lagrangian $ \lag $, the \bcdef{generating functional} is defined as:
+  \begin{equation}
+    Z[J] \defeq \int \mathcal{D}\phi\, \exp\left[ i \int \dd^4x \left( \lag + J(x) \phi(x) \right) \right]
+  \end{equation}
+\end{definition}
+
+The generating functional is a functional of the \bctxt{source function} $ J(x) $, and its functional derivatives\footnotemark are the correlation functions of the theory.
+
+\footnotetext{The \textit{functional derivative} is a formal manipulation which, given $ J : \R^n \rightarrow \R $, is defined by:
+  \begin{equation}
+    \frac{\delta}{\delta J(x)} J(y) \equiv \delta^{(n)}(x - y)
+  \end{equation}
+  It is clear, then, that given $ f : \R^n \rightarrow \C^m $:
+  \begin{equation}
+    \frac{\delta}{\delta J(x)} \int_{\R^n} \dd^ny\, J(y) f(y) = f(x)
+    \label{eq:func-der}
+  \end{equation}
+  It also follows the usual derivative rules.
+}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Correlation functions from generating functionals}{corr-gen-func}
+  \begin{equation}
+    G(x_1, \dots, x_n) = \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) Z[J] \right]_{J = 0}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:func-der}:
+    \begin{equation*}
+      \begin{split}
+        & \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) Z[J] \right]_{J = 0} \\
+        & \qquad \qquad \qquad \qquad = \frac{1}{Z[0]} \int \dd^4x \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) e^{i \int \dd^4y\, J(y) \phi(y)} \right]_{J = 0} e^{i\act} \\
+        & \qquad \qquad \qquad \qquad = \frac{1}{Z[0]} \int \dd^4x\, \phi(x_1) \dots \phi(x_n) e^{i\act}
+      \end{split}
+    \end{equation*}
+    which is precisely \eref{eq:corr-func-path}.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Free theory}
+
+The generating functional for a free scalar theory can be written explicitly.
+
+\begin{proposition}{Free generating functional}{scal-func-free}
+  The generating functional for a free KG field $ \phi $ is:
+  \begin{equation}
+    Z[J] = Z[0] \exp \left[ -\frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]
+    \label{eq:func-free}
+  \end{equation}
+  where $ D_\text{F}(x-y) $ is the Feynman propagator.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Integrating by parts the kinetic term of the action:
+    \begin{equation*}
+      \int \dd^4x \left[ \lag_0 + J \phi \right] = \int \dd^4x \left[ - \frac{1}{2} \phi(x) (\Box + m^2 - i\epsilon) \phi(x) + J(x) \phi(x) \right] \equiv - \frac{1}{2} \braket{\phi | \hat{A} | \phi} + \braket{J | \phi}
+    \end{equation*}
+    (with abuse of notation) where the shifted KG operator $ \hat{A} \equiv \Box + m^2 - i\epsilon $ was introduced (Hermitian as $ \epsilon \rightarrow 0^+ $). Introducing a momentum-space basis:
+    \begin{equation}
+      \ket{k} : \braket{x | k} = e^{-i k_\mu x^\mu}
+      \qquad \qquad
+      \int_{\R^4} \frac{\dd^4k}{(2\pi)^4} \ket{k} \bra{k} = \id
+    \end{equation}
+    it is possible to switch to momentum space through a 4D Fourier transform\footnote{The Fourier transform is on all spacetime dimensions, as all possible paths contribute to the path integral, not just the solutions to the equations of motion.}:
+    \begin{equation*}
+      \phi(x) = \int \frac{\dd^4k}{(2\pi)^4} \braket{x | k} \braket{k | \phi} = \int \frac{\dd^4k}{(2\pi)^4} \phi(k) e^{-i k_\mu x^\mu}
+      \qquad \qquad
+      \hat{A} \ket{k} = (-k^2 + m^2 - i\epsilon) \ket{k}
+    \end{equation*}
+    It is then possible to rewrite the integral above in momentum space:
+    \begin{equation*}
+      \int \dd^4x \left[ \lag_0 + J \phi \right] = \int \frac{\dd^4k}{(2\pi)^4} \left[ \frac{1}{2} \phi^*(k) (k^2 - m^2 + i\epsilon) \phi(k) + J^*(k) \phi(k) \right]
+    \end{equation*}
+    Note that $ \phi^*(k) = \phi(-k) $, $ J^*(k) = J(-k) $ and $ \braket{J|x} = \braket{x|J} $. To further simplify the integral, define a shifted field:
+    \begin{equation*}
+      \ket{\chi} = \ket{\phi} - \hat{A}^{-1} \ket{J}
+    \end{equation*}
+    The Jacobian of this transformation is trivially $ 1 $, thus:
+    \begin{equation*}
+      \begin{split}
+        \int \dd^4x \left[ \lag_0 + J\phi \right]
+        & = - \frac{1}{2} (\bra{\chi} + \bra{J} \hat{A}^{-1}) \hat{A} (\ket{\chi} + \hat{A}^{-1} \ket{J}) + \braket{J | \chi} + \braket{J | \hat{A}^{-1} | J} \\
+        & = - \frac{1}{2} \braket{\chi | \hat{A} | \chi} + \frac{1}{2} \braket{J | \hat{A}^{-1} | J}
+      \end{split}
+    \end{equation*}
+    As the second term is independent of the free field, it is then clear that:
+    \begin{equation*}
+      Z[J] = \int \mathcal{D}\chi\, \exp \left[ - \frac{i}{2} \braket{\chi | \hat{A} | \chi} + \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right] = Z[0] \exp \left[ \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right]
+    \end{equation*}
+    Recall that the Green's function of the KG operator is the Feynman propagator \eref{eq:feynm-prop}, thus:
+    \begin{equation*}
+      \hat{A}^{-1} J(x) = i \int \dd^4y\, D_\text{F}(x - y) J(y)
+    \end{equation*}
+    as $ \hat{A} D_\text{F}(x-y) = -i \delta^{(4)}(x-y) $. Then:
+    \begin{equation*}
+      \exp \left[ \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right] = \exp \left[ \frac{i}{2} \int \dd^4x\, J(x) \hat{A}^{-1} J(x) \right] = \exp \left[ -\frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]
+    \end{equation*}
+    This completes the proof.
+  \end{proof}
+\end{proofbox}
+
+Therefore, the propagator is a bi-local distribution. It is possible to express the integral in momentum space too, using $ \hat{A}^{-1} \ket{k} = (-k^2 + m^2 -i\epsilon)^{-1} \ket{k} = i \tilde{D}_\text{F}(k) \ket{k} $:
+\begin{equation}
+  Z[J] = Z[0] \exp \left[ - \frac{1}{2} \int \frac{\dd^4k}{(2\pi)^4} J^*(k) \tilde{D}_\text{F}(k) J(k) \right]
+\end{equation}
+Using \lref{lemma:gauss-ve-int}, it is possible to make $ Z[0] $ explicit:
+\begin{equation}
+  Z[0] = \int \mathcal{D}\phi\, \exp \left[ - \frac{i}{2} \braket{\phi | \hat{A} | \phi} \right] = \mathcal{N} (\det \hat{A})^{-1/2}
+\end{equation}
+where $ \det\hat{A} $ is known as a \bctxt{functional determinant}. Although it has a physical meaning, as $ Z[0] = \braket{0 | 0} $ represents the vacuum-to-vacuum amplitude, the functional determinant cancels in the expression for the correlation functions ($ \virgolette{undressing} $ of vacuum-to-vacuum diagrams).
+
+\subsubsection{Interacting theory}
+
+Consider now a scalar field theory with interaction Lagrangian $ \lag_\text{int} = V[\phi] $. \lref{lemma:corr-gen-func} is independent on whether the theory is free or not, so the generating integral needs only to be generalized in a way which suits the formalism of correlation functions and Wick's theorem.
+
+\begin{proposition}{Interacting generating functional}{}
+  The generating functional for an interacting KG field $ \phi $ with $ \lag_\text{int} = - V[\phi] $ can be written as:
+  \begin{equation}
+    Z[J] = \sum_{n \in \N} \frac{(-i)^n}{n!} \left( \int \dd^4x\, V \left[ -i \frac{\delta}{\delta J(x)} \right] \right)^n Z_0[J]
+  \end{equation}
+  where $ Z_0[J] $ is the generating functional for the free theory.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Manipulating \dref{def:gen-func}:
+    \begin{equation*}
+      \begin{split}
+        Z[J]
+        & = \int \mathcal{D}\phi\, e^{i\act + i \int \dd^4y\, J(y) \phi(y)} = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + V[\phi] + J(y) \phi(y) \right)} = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)} \sum_{n = 0}^\infty c_n \phi^n \\
+        & = \int \mathcal{D}\phi \sum_{n = 0}^\infty c_n \left( -i \frac{\delta}{\delta J} \right)^n e^{i \int \dd^4x \left( \lag_0 + J \phi \right)} = \int \mathcal{D} \phi e^{-i \int \dd^4x V[-i \frac{\delta}{\delta J(x)}]} e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)}
+      \end{split}
+    \end{equation*}
+    The first exponential can be carried out of the path integral, and expanding it yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+Hence, in order to compute the correlation functions for the interacting theory, one only needs the generating functional of the free theory:
+\begin{multline}
+  \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} \\
+  = \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) \sum_{k \in \N} \frac{(-i)^k}{k!} \left( \int \dd^4x\, V \left[ -i \frac{\delta}{\delta J(x)} \right] \right)^k Z_0[J] \right]_{J = 0}
+\end{multline}
+This expression is analogous to Wick's theorem: due to the final condition $ J = 0 $, only terms which do not contain any $ J(x) $ contribute to the correlation function, and these are precisely the fully-contracted terms. Moreover, as of \eref{eq:func-free}, only terms with an even number of functional derivatives are non-vanishing, as an odd number of them results in terms with at least one $ J(x) $: this allows the interaction potential to shape the interaction vertex.
+
+\begin{example}{Free scalar field theory}{}
+  Computing the $ 2 $-point Green function in a free scalar field theory is trivial with \eref{eq:func-free}:
+  \begin{equation*}
+    \begin{split}
+      \braket{0 | \tempord\{\phi(x_1) \phi(x_2)\} | 0}
+      & = \frac{1}{Z_0[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) Z_0[J] \right]_{J = 0} \\
+      & = \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) \exp \left[ - \frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ i \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \bigg[ D_\text{F}(x_2 - x_1) + \\
+      & \quad - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = D_\text{F}(x_2 - x_1)
+    \end{split}
+  \end{equation*}
+  This expression can be used to compute the $ 3 $-point Green function:
+  \begin{equation*}
+    \begin{split}
+      & \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3)\} | 0} \\
+      & = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ D_\text{F}(x_3 - x_2) - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \bigg[ i D_\text{F}(x_3 - x_2) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) + i D_\text{F}(x_2 - x_1) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \\
+      & \quad + i D_\text{F}(x_3 - x_1) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) + \\
+      & \quad - i \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = 0
+    \end{split}
+  \end{equation*}
+  The first non-trivial application of Wick's theorem is the $ 4 $-point Green function:
+  \begin{equation*}
+    \begin{split}
+      & \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
+      & \qquad \qquad = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \bigg[ i D_\text{F}(x_4 - x_3) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) + \\
+      & \qquad \qquad + i D_\text{F}(x_3 - x_2) \int \dd^4y\, D_\text{F}(x_4 - y) J(y) + i D_\text{F}(x_4 - x_2) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) + \\
+      & \qquad \qquad - i \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \int \dd^4y\, D_\text{F}(x_4 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} \\
+      & \qquad \qquad = \frac{1}{Z_0[0]} \bigg[ D_\text{F}(x_4 - x_3) D_\text{F}(x_2 - x_1) + D_\text{F}(x_3 - x_2) D_\text{F}(x_4 - x_1) + \\
+      & \qquad \qquad \quad + D_\text{F}(x_4 - x_2) D_\text{F}(x_3 - x_1) + \left( \propto J^2 \right) + \left( \propto J^4 \right) \bigg] Z_0[J] \bigg\vert_{J = 0} \\
+      & \qquad \qquad = D_\text{F}(x_4 - x_3) D_\text{F}(x_2 - x_1) + D_\text{F}(x_3 - x_2) D_\text{F}(x_4 - x_1) + D_\text{F}(x_4 - x_2) D_\text{F}(x_3 - x_1)
+    \end{split}
+  \end{equation*}
+\end{example}
+
+\subsection{Electromagnetic field}
+
+With the functional formalism, it is possible to prove \eref{eq:phot-prop}. The action of the electromagnetic field (massless spin-1 field) can be expressed as:
+\begin{equation*}
+  \begin{split}
+    \act
+    & = \int \dd^4x\, \left[ -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} \right] = - \frac{1}{4} \int \dd^4x \left( \pa_\mu A_\nu - \pa_\nu A_\mu \right) \left( \pa^\mu A^\nu - \pa^\nu A^\mu \right) \\
+    & = - \frac{1}{2} \int \dd^4x \left( \pa_\mu A_\nu \pa^\mu A^\nu - \pa^\mu A_\nu \pa^\nu A_\mu \right) = \frac{1}{2} \int \dd^4x \left( A_\nu \Box A^\nu - A_\nu \pa^\mu \pa^\nu A_\mu \right) \\
+    & = \frac{1}{2} \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} A_\nu(k) \left( e^{-i k_\alpha x^\alpha} \Box e^{-i p_\alpha x^\alpha} \eta^{\mu \nu} - e^{-i k_\alpha x^\alpha} \pa^\mu \pa^\nu e^{-i p_\alpha x^\alpha} \right) A_\mu(p) \\
+    & = \frac{1}{2} \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} e^{-i (k+p)_\alpha x^\alpha} A_\nu(k) \left( -p^2 \eta^{\mu \nu} + p^\mu p^\nu \right) A_\mu(p) \\
+    & = \frac{1}{2} \int \frac{\dd^4k}{(2\pi)^4} A_\mu(-k) \left( -k^2 \eta^{\mu \nu} + k^\mu k^\nu \right) A_\nu(k)
+  \end{split}
+\end{equation*}
+This kinetic term is orthogonal to $ k_\mu $, i.e. the action vanishes for all gauge fields of the form $ A_\mu(k) = k_\mu \alpha(k) $: this is equivalent to saying that the Green's equation for this kinetic operator has no solution, as it is singular and therefore non-invertible. This problem is due to gauge invariance: indeed, $ F_{\mu \nu} $ is invariant under (\eref{eq:qed-gauge-inv}):
+\begin{equation}
+  A_\mu(x) \mapsto A_\mu(x) + \pa_\mu \alpha(x)
+\end{equation}
+and the non-invertibility arises from modes gauge-equivalent to $ A_\mu(x) \equiv 0 $ (obtained by $ \pa_\mu \alpha(x) = - A_\mu(x) $), i.e. non-physical degrees of freedom. \\
+It is possible to isolate and quantize physical degrees of freedom, thanks to a technique due to Faddeev and Popov (introduced in \cite{faddeev-popov}), which yields (see Sec. 9.4 of \cite{peskin} for a detailed derivation):
+\begin{equation}
+  \tilde{D}_{\mu \nu}(k) = \frac{-i}{k^2 + i\epsilon} \left[ \eta^{\mu \nu} - \left( 1 - \xi \right) \frac{k^\mu k^\nu}{k^2} \right]
+\end{equation}
+where $ \xi \in \R $ is a gauge-fixing parameter. The most useful choices are $ \xi = 0 $ (Landau gauge), $ \xi = 1 $ (Feynman gauge) and $ \xi = 3 $ (Yennie gauge): the Feynman gauge $ \xi = 1 $ is adopted from now on. In position space:
+\begin{equation}
+  D_{\mu \nu}(x-y) = \int \frac{\dd^4k}{(2\pi)^4} e^{-i k_\alpha x^\alpha} \frac{-i \eta^{\mu \nu}}{k^2 + i\epsilon}
+\end{equation}
+The formalism of the generating functional can be extended to massless spin-1 fields too.
+
+\begin{definition}{Generating functional for the electromagnetic field}{}
+  Given a gauge field $ A_\mu $ described by a Lagrangian $ \lag $, the \bcdef{generating functional} is defined as:
+  \begin{equation}
+    Z[J] \defeq \int \mathcal{D}A\, \exp \left[ i \int \dd^4x \left( \lag + J^\mu(x) A_\mu(x) \right) \right]
+  \end{equation}
+\end{definition}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Correlation functions from generating functionals}{}
+  \begin{equation}
+    \braket{0 | \tempord\{A_{\mu_1}(x_1) \dots A_{\mu_n}(x_n)\} | 0} = \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J^{\mu_1}(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J^{\mu_n}(x_n)} \right) Z[J] \right]_{J = 0}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is analogous to that of \lref{lemma:corr-gen-func}, using $ \frac{\delta}{\delta J^\mu(x)} J^\nu(y) = \delta^\nu_\mu \delta^{(4)}(x-y) $.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Generating functional and the propagator}{}
+  \begin{equation}
+    Z[J] = Z[0] \exp \left[ \frac{1}{2} \int \dd^4x \dd^4y\, J^\mu(x) D_{\mu \nu}(x-y) J^\nu(y) \right]
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is analogous to that of \pref{prop:scal-func-free}. The extra negative sign is due to $ D_{\mu \nu}(x-y) $ solving:
+    \begin{equation}
+      \left( \Box g^{\mu \nu} - \pa^\mu \pa^\nu \right) D_{\mu \nu}(x-y) = i \delta^{(4)}(x-y)
+    \end{equation}
+    Note that the source term is $ i \delta^{(4)}(x-y) $ and not $ -i \delta^{(4)}(x-y) $ (as for the KG operator).
+  \end{proof}
+\end{proofbox}
 
 \subsection{Spinor fields}
 
