@@ -75,7 +75,7 @@ In the Heisenberg picture, the $ S $-matrix becomes:
 
 \section{Asymptotic theory}
 
-On a macroscopic scale, interaction times are extremely small. Therefore, it is convenient to make an assumption, the \bctxt{adiabatic hypothesis}: while the interaction is described by $ \ham = \ham_0 + \ham_\text{int} $, where $ \ham_0 $ is the free Hamiltonian, in the far past and the far future $ \ham_\text{int} $ is adiabatically turned off, i.e. $ \ham \rightarrow \ham_0 $ as $ t \rightarrow \pm \infty $. Moreover, as the out-going states can represent in-coming states for a successive process, the two Fock spaces\footnotemark must be isomorphic, i.e. $ \fock_\text{in} \cong \fock_\text{out} $: in particular, this implies the uniqueness of the vacuum, as $ \ket{0_\text{in}} = \ket{0_\text{out}} \equiv \ket{0} $. This isomorphism is realized by $ S $-matrix $ S \equiv S(+\infty,-\infty) $ (recall \eref{eq:schr-ampl}):
+On a macroscopic scale, interaction times are extremely small. Therefore, it is convenient to make an assumption, the \bctxt{adiabatic hypothesis}: while the interaction is described by $ \ham = \ham_0 + \ham_\text{int} $, where $ \ham_0 $ is the free Hamiltonian, in the far past and the far future $ \ham_\text{int} $ is adiabatically turned off, i.e. $ \ham \rightarrow \ham_0 $ as $ t \rightarrow \pm \infty $. Moreover, as the out-going states can represent in-coming states for a successive process, the two Fock spaces\footnotemark must be isomorphic, i.e. $ \fock_\text{in} \cong \fock_\text{out} $: in particular, this implies the (physical) uniqueness of the vacuum, as $ \ket{0_\text{in}} = \ket{0_\text{out}} \equiv \ket{0} $. This isomorphism is realized by $ S $-matrix $ S \equiv S(+\infty,-\infty) $ (recall \eref{eq:schr-ampl}):
 %
 \footnotetext{Formally, given a single-particle Hilbert space $ \hilb $, the Fock space is defined as the following completion:
 \begin{equation}
@@ -109,7 +109,7 @@ The adiabatic hypothesis asserts then:
   \phi(x) \xrightarrow[t \rightarrow +\infty]{} \sqrt{Z} \phi_\text{out}(x)
   \label{eq:adiabatic-hyp}
 \end{equation}
-where $ Z \in \C $ is a renormalization factor. These limits must be understood in the weak sense, as they are not operator equations, but they are only valid for each matrix element separately\footnotemark.
+where $ Z \in \R $ is a renormalization factor. These limits must be understood in the weak sense, as they are not operator equations, but they are only valid for each matrix element separately\footnotemark.
 %
 \footnotetext{If that wasn't the case, then canonical quantization would imply $ Z = 1 $, i.e. that $ \phi(x) $ is a free field. For details, see Sec. 5.1.2 of \cite{itz-zub}.}
 
@@ -117,12 +117,105 @@ where $ Z \in \C $ is a renormalization factor. These limits must be understood 
 
 \subsubsection{Scalar fields}
 
-Consider a scattering process of a single species of neutral scalar particles. As the ladder operators of a free real scalar field can be expressed via \eref{eq:frsf-ladder} (which is time-independent, as of \pref{prop:kg-scal-prod-ind}), in the adiabatic hypothesis it is possible to define \bctxt{in-} and \bctxt{out-ladder operators}:
+Consider a scattering process of a single species of neutral scalar particles. The ladder operators of a free real scalar field can be expressed via \eref{eq:frsf-ladder}, which is time-independent, and they can be generalized to an interacting theory, in which case they are time-dependent (as \pref{prop:kg-scal-prod-ind} is only valid if $ \phi(x) $ satisfies the free KG equation).
+
+\begin{proposition}{Time-dependent ladder operators}{}
+  Given an interacting scalar field theory $ H = H_0 + H_\text{int} $, the time-evolution of generalized ladder operators is given by:
+  \begin{equation}
+    \frac{\dd}{\dd t} a_\ve{p}(t) = i \left[ H_\text{int} , a_\ve{p}(t) \right]
+    \label{eq:in-out-lad-temp}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recall the Heisenberg equation for the time-evolution of an operator $ \mathcal{O}(t) $ (in the Heisenberg representation):
+    \begin{equation}
+      \frac{\dd}{\dd t} \mathcal{O}(t) = i [H , \mathcal{O}] + \frac{\pa}{\pa t} \mathcal{O}(t)
+    \end{equation}
+    Using \eref{eq:frsf-ladder}, the explicit time-dependece of $ a_\ve{p}(t) $ is solved as:
+    \begin{equation*}
+      \frac{\pa}{\pa t} a_\ve{p}(t) = \frac{i}{\sqrt{2E_\ve{p}}} \frac{\pa}{\pa t} \int \dd^3x \left[ \pa_0 \phi(x) - i E_\ve{p} \phi(x) \right] e^{i p_\mu x^\mu}
+    \end{equation*}
+    Recall that for a general function $ f = f(x_1, \dots, x_n, t) $:
+    \begin{equation}
+      \frac{\dd f}{\dd t} = \sum_{i = 1}^n \frac{\pa f}{\pa x_i} \frac{\pa x_i}{\pa t} + \frac{\pa f}{\pa t}
+    \end{equation}
+    Therefore, treating $ \phi(x) $ and $ \pa_0 \phi(x) $ as time-dependent variables:
+    \begin{equation*}
+      \begin{split}
+        \frac{\pa}{\pa t} a_\ve{p}(t)
+        & = \frac{i}{\sqrt{2E_\ve{p}}} \left[ \frac{\dd}{\dd t} - \pa_0 \phi(x) \frac{\pa}{\pa \phi} - \pa_0^2 \phi(x) \frac{\pa}{\pa (\pa_0 \phi)} \right] \int \dd^3x \left[ \pa_0 \phi(x) - i E_\ve{p} \phi(x) \right] e^{i p_\mu x^\mu} \\
+        & = \frac{i}{\sqrt{2E_\ve{p}}} \int \dd^3x \left[ \pa_0^2 \phi(x) -i E_\ve{p} \pa_0 \phi(x) + i E_\ve{p} \pa_0 \phi(x) - (i E_\ve{p})^2 \phi(x) \right] e^{i p_\mu x^\mu} + \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad - \frac{i}{\sqrt{2E_\ve{p}}} \int \dd^3x \left[ - i E_\ve{p} \pa_0 \phi(x) + \pa_0^2 \phi(x) \right] e^{i p_\mu x^\mu} \\
+        & = \frac{i}{\sqrt{2E_\ve{p}}} \int \dd^3x \left[ i E_\ve{p} \pa_0 \phi(x) - (i E_\ve{p})^2 \phi(x) \right] e^{i p_\mu x^\mu} = i E_\ve{p} a_\ve{p}(t)
+      \end{split}
+    \end{equation*}
+    Next, by \eref{eq:kg-haml}:
+    \begin{equation*}
+      \begin{split}
+        [H , a_\ve{p}(t)]
+        & = [H_0 , a_\ve{p}(t)] + [H_\text{int} , a_\ve{p}(t)] \\
+        & = 
+        \int \frac{\dd^3k}{(2\pi)^3} E_\ve{k} [a_\ve{k}\dg(t) a_\ve{k}(t) , a_\ve{p}(t)] + [H_\text{int} , a_\ve{p}(t)] \\
+        & = - \int \dd^3k\, E_\ve{k} \delta^{(3)}(\ve{k} - \ve{p}) a_\ve{k}(t) + [H_\text{int} , a_\ve{p}(t)] = - E_\ve{p} a_\ve{p}(t) + [H_\text{int} , a_\ve{p}(t)]
+      \end{split}
+    \end{equation*}
+    The first term cancels the partial derivative, yielding the thesis.
+  \end{proof}
+\end{proofbox}
+
+Moreover, in the adiabatic hypothesis it is possible to define \bctxt{in-} and \bctxt{out-ladder operators}:
 \begin{equation}
-  \sqrt{2E_\ve{p}} {a_\ve{p}^\text{in,out}}\dg = -i \int_{t \rightarrow \mp \infty} \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi_\text{in,out}(x) = - \frac{i}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+  a_\ve{p}^\text{in,out} \equiv \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} a_\ve{p}(t)
+\end{equation}
+In terms of the free in- and out-fields, they can be expressed as:
+\begin{equation}
+  \sqrt{2E_\ve{p}} {a_\ve{p}^\text{in,out}}\dg = - \frac{i}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x) = -i \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi_\text{in,out}(x)
   \label{eq:in-out-lad-op}
 \end{equation}
-These operators respectively act on $ \fock_\text{in,out} $. Note that now these integrals are time-dependent, as they contain the interacting field and not the free fields: the relation between in- and out-ladder operators is therefore not trivial.
+These operators respectively act on $ \fock_\text{in,out} $. Note that now these operators, although not explicitly time-dependent, depend implicitly on it as they are defined through the interacting field, i.e. they depend on the field at all times: the relation between in- and out-ladder operators is thus non-trivial. \\
+Conversely, he in- and out-fields can be expressed in terms of in- and out-ladder operators:
+\begin{equation}
+  \phi_\text{in,out}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\text{in,out} e^{-i p_\mu x^\mu} + {a_\ve{p}^\text{in,out}}\dg e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+\end{equation}
+
+\begin{proposition}{Behavior of ladder operators}{}
+  The in- and out-ladder operators are well-defined ladder operators on $ \fock_\text{in,out} $, i.e.:
+  \begin{equation}
+    \hat{P}_\mu {a_\ve{k}^\text{in,out}}\dg \ket{0_\text{in}} = k_\mu {a_\ve{k}^\text{in,out}}\dg \ket{0_\text{out}}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The thesis is equivalent to:
+    \begin{equation}
+      [\hat{P}_\mu , \phi_\text{in,out}(x)] = -i \pa_\mu \phi_\text{in,out}(x)
+    \end{equation}
+    To show this, first note that \eref{eq:in-out-lad-temp} is equivalent to:
+    \begin{equation*}
+      a_\ve{k}(t) = a_\ve{k}^\text{in} + i \int_{-\infty}^t \dd \tau\, [H_\text{int} , a_\ve{k}(\tau)] \equiv a_\ve{k}^\text{int} + i \int_{-\infty}^t \dd \tau \int \frac{\dd^3x}{(2\pi)^3 \sqrt{2E_\ve{k}}} e^{i k_\mu x^\mu} \chi[\phi(\tau,\ve{x})]
+    \end{equation*}
+    where $ \chi[\phi] $ is a certain functional of $ \phi $. Then:
+    \begin{equation*}
+      \begin{split}
+        \phi(x)
+        & = \int \frac{\dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \left[ a_\ve{k} e^{-i k_\mu x^\mu} + a_\ve{k}\dg e^{i k_\mu x^\mu} \right]_{k^0 = E_\ve{k}} \\
+        & = \int \frac{\dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \left[ a_\ve{k}^\text{in} e^{-i k_\mu x^\mu} + {a_\ve{k}^\text{in}}\dg e^{i k_\mu x^\mu} \right]_{k^0 = E_\ve{k}} + \\
+        & \quad + i \int \frac{\dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \int_{-\infty}^t \dd \tau \int \frac{\dd^3y}{(2\pi)^3 \sqrt{2E_\ve{k}}} \left[ \chi[\phi(\tau,\ve{y})] e^{-i k_\mu (x^\mu - y^\mu)} - \text{h.c.} \right]_{k^0 =  E_\ve{k}} \\
+        & \equiv \phi_\text{in}(x) + \int_{y^0 \in (-\infty,x^0]} \dd^4y\, G_\text{S}(x-y) \chi[\phi(y)]
+      \end{split}
+    \end{equation*}
+    Therefore, at every time the interacting field can be seen as the in-field plus a source term. Now, consider that:
+    \begin{equation*}
+      [\hat{P}_\mu , \phi(x)] = -i \pa_\mu \phi(x)
+    \end{equation*}
+    As the source terms vanishes as $ t \rightarrow -\infty $ (with $ x^0 \equiv t $), this equation holds for $ \phi_\text{in} $ too, hence the thesis.
+  \end{proof}
+\end{proofbox}
+
+It is possible to make the relationship between in- and out-ladder operators explicit.
 
 \begin{lemma}[before upper = {\tcbtitle}]{}{in-out-rel}
   \begin{equation}
@@ -156,7 +249,7 @@ These operators respectively act on $ \fock_\text{in,out} $. Note that now these
   \end{proof}
 \end{proofbox}
 
-Note that if $ \phi(x) $ were a free field, this operator would identically vanish: this is because the KG scalar product is time-independent in a free field theory, therefore the ladder operators too are time-independent. \\
+Note that if $ \phi(x) $ were a free field, this operator would identically vanish: this is because the KG scalar product is time-independent in a free field theory, and so are ladder operators too. \\
 It is now possible to write the amplitude for a generic scattering process (i.e. $ S $-matrix element). In particular, consider a process $ \ket{\ve{k}_1, \dots, \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_m; + \infty} $ with $ \ve{k}_i \neq \ve{p}_j \,\,\forall i = 1, \dots, n,\, j = 1, \dots, m $: in this case, as there are no particles which remain unchanged by the interaction, the $ S $-matrix reduces to the $ T $-matrix.
 
 \begin{theorem}{LSZ reduction formula for scalar fields}{lsz-scalar}
@@ -222,11 +315,7 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
     \begin{equation*}
       G(x_1, \dots, x_N) = \prod_{j = 1}^N \int \frac{\dd^4\xi_j}{(2\pi)^4} e^{i {\xi_j}_\mu {x_j}^\mu} \tilde{G}(\xi_1, \dots, \xi_N)
     \end{equation*}
-    Then:
-    \begin{equation*}
-      (\Box_{x_j} + m^2) G(x_1, \dots, x_N) = - \prod_{j = 1}^N \int \frac{\dd^4\xi_j}{(2\pi)^4} e^{i {\xi_j}_\mu {x_j}^\mu} (\xi_j^2 - m^2) \tilde{G}(\xi_1, \dots, \xi_N)
-    \end{equation*}
-    Substituting into the above expression:
+    Then, as the KG operator only acts on the exponential factor:
     \begin{equation*}
       \begin{split}
         & \prod_{j = 1}^N \frac{i}{\sqrt{Z}} \int \dd^4x_j e^{-i {k_j}_\mu {x_j}^\mu} (\Box_{x_j} + m^2) G(x_1, \dots, x_N) = \\
@@ -245,10 +334,10 @@ Going on mass-shell $ p^2 \rightarrow m^2 $, the Green function (or \bctxt{corre
 
 Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ particles (and anti-particles). The adiabatic hypothesis now yields (recall \eeref{eq:dirac-ladd-op-a}{eq:dirac-ladd-op-b}):
 \begin{equation}
-  \sqrt{2E_\ve{p}} {a_{\ve{p},s}^\text{in,out}}\dg = \int_{t \rightarrow \mp \infty} \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}_\text{in,out}(x) \gamma^0 u^s(p) = \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p)
+  \sqrt{2E_\ve{p}} {a_{\ve{p},s}^\text{in,out}}\dg = \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p) = \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}_\text{in,out}(x) \gamma^0 u^s(p)
 \end{equation}
 \begin{equation}
-  \sqrt{2E_\ve{p}} {b_{\ve{p},s}^\text{in,out}}\dg = \int_{t \rightarrow \mp \infty} \dd^3x\, e^{i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi_\text{in,out}(x) = \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x)
+  \sqrt{2E_\ve{p}} {b_{\ve{p},s}^\text{in,out}}\dg= \frac{1}{\sqrt{Z}} \lim_{t \rightarrow \mp \infty} \int \dd^3x\, e^{i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x) = \int \dd^3x\, e^{i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi_\text{in,out}(x) 
 \end{equation}
 
 \begin{lemma}[before upper = {\tcbtitle}]{}{}
@@ -474,6 +563,8 @@ This allows to compute correlation functions from free fields, rather than inter
 
 Note that \eref{eq:corr-func-pert} is naturally suited for perturbative evaluation with respect to coupling constants which appear in $ \ham_\text{int} $, thanks to the exponential function.
 
+\newpage
+
 \section{Feynman diagrams}
 
 The problem of computing scattering amplitudes has been further reduced to that of computing $ n $-point Green functions of free (interaction picture) fields.
@@ -565,8 +656,9 @@ To explicitly compute the propagator for the Dirac field, it is necessary to inc
     \tempord\{\Psi(x) \bar{\Psi}(y)\} \defeq
     \begin{cases}
       \Psi(x) \bar{\Psi}(y) & x^0 > y^0 \\
-      \bar{\Psi}(y) \Psi(x) & y^0 > x^0 \\
+      -\bar{\Psi}(y) \Psi(x) & y^0 > x^0 \\
     \end{cases}
+    \label{eq:ferm-tempord-ant}
   \end{equation}
 \end{definition}
 
