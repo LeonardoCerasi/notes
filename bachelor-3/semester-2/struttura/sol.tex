@@ -542,11 +542,12 @@ dove si è definita la massa efficace $ \mu $. Si vede che $ \mu $ è piccola pe
 Il ground state ($ T = 0 $) di un sistema di elettroni indipendenti in un potenziale periodico si ottiene riempiendo gli stati single-particle nelle energy bands fino all'energia di Fermi $ \mu $, come nel modello a fermioni liberi. \\
 In base al numero di elettroni nel solido, l'energia di Fermi può intersecare una o più energy bands o capitare in mezzo ad una band gap (vedere Fig. \ref{met-ins}): nel primo caso, gli elettroni nelle band occupate parzialmente possono acquisire energia d'eccitazione da campi esterni, così accellerando e conducendo corrente elettrica (\textit{metallo}); nel secondo caso, invece, gli elettroni in una band completa rimangono congelati per il principio d'esclusione, e le eccitazioni richiedono energie dell'ordine della band gap (\textit{isolante}). In generale, l'energy band completamente riempita più alta viene detta \textit{banda di valenza}, mentre quella parzialmente riempita più bassa \textit{banda di conduzione}. \\
 Per capire come si distribuiscono gli elettroni nelle energy bands, si consideri una porzione di cristallo di volume $ V = N_1 N_2 N_3 V_c $, la quale si estende per $ N_1 / N_2 / N_3 $ periodi nella direzione $ \ve{a}_1 / \ve{a}_2 / \ve{a}_3 $. Applicando la condizione di periodicità $ \psi-{j,\ve{k}}(\ve{r}) = \psi_{j,\ve{k}}(\ve{r} + N_i \ve{a}_i) $ si trova:
-\begin{equation*}
+\begin{equation}
 	\ve{k} = \frac{n_1}{N_1} \ve{b}_1 + \frac{n_2}{N_2} \ve{b}_2 + \frac{n_3}{N_3} \ve{b}_3
 	\qquad \qquad
 	n_i = - \frac{N_i}{2} + 1 , - \frac{N_i}{2} + 2 , \dots , \frac{N_i}{2} -1 , \frac{N_i}{2}
-\end{equation*}
+	\label{eq:n-k}
+\end{equation}
 I valori possibili di $ \ve{k} $ sono quindi $ N = N_1 N_2 N_3 $: questi diventano densi e riempiono la prima BZ nel limite $ N_i \rightarrow \infty $ (cristallo ideale infinito). Ciascuno stato nella banda $ j $ può ospitare due elettroni (degenerazione da spin), dunque in totale la banda ha $ 2N $ stati single-particle.
 
 \begin{proposition}{Occupazione delle bande}{}
@@ -707,6 +708,286 @@ Per il silicio a $ T = 300 \,\text{K} $ si trova una densità numerica di elettr
 \paragraph{Semiconduttori estrinseci}
 
 Dato che a temperatura ambiente la resistività dei semiconduttori intrinseci è talmente alta che si comportano da isolanti, per aumentarne la conduttività si aggiungono elementi di altro tipo in un processo detto \textit{drogaggio} (inserzione di impurità nel cristallo).
+
+\section{Fononi}
+
+Nello studio del moto elettronico, si è assunto che i nuclei atomici si trovino statici nelle posizioni d'equilibrio dettate dal potenziale periodico (ovvero nelle posizioni reticolari). In realtà, molte proprietà dei solidi derivano dalla natura vibrazionale del moto degli atomi nel cristallo.
+
+\subsection{Modi normali di vibrazione}
+
+Si consideri l'equazione atomica Eq. \ref{eq:mol-nucl-eq} e si assuma che il potenziale adiabatico abbia un minimo $ R_\text{m} \in \R_+^{3N_n} $ globale ben definito ($ N_n $ numero di nuclei atomici nel solido). Lo si può quindi espandere attorno al minimo e, ignorando le anarmonicità, si trova:
+\begin{equation}
+	V_\text{ad}(R) = V_\text{ad}(R_\text{m}) + \frac{1}{2} \sum_{\alpha,\beta} \frac{\pa^2 V_\text{ad}}{\pa R_\alpha R_\beta}\bigg\vert_{R = R_\text{m}} u_\alpha u_\beta + o(u^3)
+\end{equation}
+dove si sono definiti i multi-indici $ \alpha , \beta $, tali per cui $ \alpha \equiv j\,\xi $ con $ j = 1, \dots, N_n $ label dell'atomo considerato e $ \xi = x,y,z $ componente cartesiana, e lo spostamento rispetto al minimo $ u_\alpha \equiv R_\alpha - R_\text{m} $. Questi sono tutti vettori a $ 3N_n $ componenti, ed infatti i multi-indici spannano $ 3N_n $ possibili valori. \\
+Il legame tra potenziale e moto è dato dalla \textit{matrice delle costanti di forza}:
+\begin{equation}
+	D_{\alpha \beta} \equiv \frac{\pa^2 V_\text{ad}}{\pa R_\alpha \pa R_\beta}
+\end{equation}
+Questa non è altro che l'Hessiana del potenziale adiabatico, ed è una matrice $ 3N_n \times 3N_n $ reale simmetrica, dunque ha autovalori reali; inoltre, gode delle seguenti proprietà:
+\begin{equation}
+	D_{\alpha \beta} = D_{\beta \alpha}
+	\qquad \qquad \qquad
+	D_{\alpha \beta} = D_{\gamma \delta}
+	\quad \Leftarrow \quad
+	R_\alpha - R_\beta = R_\gamma - R_\delta
+	\label{eq:d-inv}
+\end{equation}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Equazione del moto}{}
+	\begin{equation}
+		M \frac{\dd^2 u_\alpha}{\dd t^2} = - \sum_\beta D_{\alpha \beta} u_\beta
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Dall'espansione del potenziale adiabatico, assumendo per semplicità che tutti nuclei abbiano egual massa:
+		\begin{equation*}
+			M \frac{\dd^2 u}{\dd t^2} = - \frac{1}{2} \nabla_u \sum_{\alpha \beta} D_{\alpha \beta} u_\alpha u_\beta
+		\end{equation*}
+		Dunque:
+		\begin{equation*}
+			M \frac{\dd^2 u_\alpha}{\dd t^2} = - \frac{1}{2} \frac{\pa}{\pa u_\alpha} \sum_{\beta \gamma} D_{\beta \gamma} u_\beta u_\gamma = - \frac{1}{2} \sum_{\beta \gamma} D_{\beta \gamma} \left( \delta_{\alpha \beta} u_\gamma + u_\beta \delta_{\alpha \gamma} \right) = - \frac{1}{2} \sum_\beta \left( D_{\alpha \beta} + D_{\beta \alpha} \right) u_\beta
+		\end{equation*}
+		Dalla simmetria di $ D_{\alpha \beta} $ si ottiene la tesi.
+	\end{proof}
+\end{proposition}
+
+Queste sono $ 3N_n $ equazioni del moto per $ 3N_n $ oscillatori armonici accoppiati. L'accoppiamento è determinato dai termini off-diagonal di $ D_{\alpha \beta} $: infatti, l'elemento $ D_{\alpha \beta} \equiv D_{j\, \xi \,,\, j'\, \xi'} $ determina la forza agente sul nucleo $ j $ nella direzione $ \xi $ dovuta allo spostamento del nucleo $ j' $ nella direzione $ \xi' $. \\
+Utilizzando l'ansatz dei modi normali $ u(t) = \bar{u} e^{i \omega t} $, si trova:
+\begin{equation*}
+	M \omega^2 \bar{u}_\alpha = \sum_\beta D_{\alpha \beta} \bar{u}_\beta
+	\qquad \Leftrightarrow \qquad
+	\sum_\beta \left( \omega^2 \delta_{\alpha \beta} - \frac{1}{M} D_{\alpha \beta} \right) \bar{u}_\beta = 0
+\end{equation*}
+Questa equazione esprime il fatto che i modi normali sono $ 3N_n $ ed abbiano frequenze $ \omega_\alpha $ date dagli autovalori di $ M^{-1} D_{\alpha \beta} $, mentre le direzioni $ \bar{u}_\alpha $ sono i relativi autovettori. La generalizzazione al caso di masse diverse si ottiene considerando la matrice $ M_\alpha^{-1/2} M_\beta^{-1/2} D_{\alpha \beta} $, al posto di $ M^{-1} D_{\alpha \beta} $. \\
+Si noti che questo è un formalismo generale applicabile anche ai modi normali d'oscillazione delle molecole poliatomiche. Nel caso dei cristalli, però, si può semplificare la trattazione, in quanto la periodicità del potenziale riduce le dimensioni della matrice da diagonalizzare. \\
+Si consideri un cristallo con $ n_d = 1 $ atomi per cella e, in analogia al teorema di Bloch per il moto elettronico, si prenda un wave-like ansatz $ \bar{u}_\alpha \equiv \bar{u}_{j\,\xi} = e^{i \ve{k} \cdot \ve{R}_j} \epsilon_\xi $, con $ \ve{R}_j $ posizione del $ j $-esimo atomo nel reticolo. Si trova così un'equazione per il vettore $ \bs{\epsilon} $:
+\begin{equation}
+	\sum_{\xi'} \left[ \omega^2 \delta_{\xi \xi'} - \frac{1}{M} \tilde{D}_{\xi \xi'}(\ve{k}) \right] \epsilon_{\xi'} = 0
+	\label{eq:no-md}
+\end{equation}
+dove si è definita la trasformata di Fourier della matrice delle costanti di forza:
+\begin{equation}
+	\tilde{D}_{\xi \xi'}(\ve{k}) = \sum_{j = 1}^{N_n} e^{-i (\ve{R}_j - \ve{R}_{j'}) \cdot \ve{k}} D_{j\,\xi \,,\, j'\,\xi'}
+\end{equation}
+la quale è indipendente da $ \ve{R}_{j'} $, data l'Eq. \ref{eq:d-inv}. L'Eq. \ref{eq:no-md} mostra che i modi normali d'oscillazione di un cristallo monoatomico risultano dalla diagonalizzazione di una matrice $ 3 \times 3 $ dipendente da $ \ve{k} $: per ogni valore di $ \ve{k} $ si trovano quindi tre modi normali d'oscillazione con frequenze $ \omega_s(\ve{k}) $, $ s = 1,2,3 $, e, dato che i possibili valori di $ \ve{k} $ nella prima BZ sono $ N_n $ (Eq. \ref{eq:n-k}), si mantiene il numero corretto di modi normali totali. \\
+In analogia alla corda oscillante, i tre modi normali ad un dato $ \ve{k} $ fissato sono modi vibrazionali di cui uno longitudinale e due trasversali. L'analogia con la corda suggerisce anche che, per piccolo $ \abs{\ve{k}} $ (ovvero piccola lunghezza d'onda) si ha una legge di dispersione lineare, ovverosia di tipo $ \virgolette{acustico} $ $ \omega(\ve{k}) \simeq v_\text{s} \abs{\ve{k}} $. Essendoci tre modi normali per ogni $ \ve{k} $, si trovano in generale tre velocità del suono $ v_\text{s} $ per ogni $ \ve{k} $, una per ciascuna \textit{branca acustica} osservata: queste non sono altro che le curve di dispersione dei fononi e per un cristallo 3D sono tre, una longitudinale e due trasversali (Fig. \ref{ac-br}). I modi acustici a $ \ve{k} = \ve{0} $ corrispondono alle vibrazioni con lunghezza d'onda infinita, ovverosia alle traslazioni libere del solido. Si noti, inoltre, che le branche possono anche essere degeneri, in base alla simmetria del cristallo: in presenza di simmetria cubica si hanno 3 branche acustiche degeneri, mentre in un solido fcc sono tutte distinte.
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{acoustic-branch.png}
+	\caption{Acoustic branches in a monoatomic crystal: the longitudinal mode is the less energetically-convenient.}
+	\label{ac-br}
+\end{figure}
+
+\begin{example}{Cristallo 1D}{}
+	Si consideri una catena 1D di atomi: in tal caso, si può modellare l'interazione come tra soli primi vicini, così da avere uniche componenti non-nulle $ D_{n,n} = 2\kappa $ e $ D_{n,n-1} = D_{n-1,n} = -\kappa $, ovvero (fissando $ V(\ve{R}_\text{m}) \equiv 0 $):
+	\begin{equation*}
+		V(R) = \frac{1}{2} \kappa \sum_{n = 1}^{N_n} \left( 2u_n^2 - u_n u_{n+1} - u_{n-1} u_n \right) = \frac{1}{2} \kappa \sum_{n = 1}^{N_n} \left( u_n - u_{n+1} \right)^2
+	\end{equation*}
+	L'equazione del moto corrispondente è:
+	\begin{equation*}
+		M \ddot{u}_n = - \kappa \left( 2u_n - u_{n+1} - u_{n-1} \right)
+	\end{equation*}
+	Con l'ansatz $ u_n(t) = A e^{i k n a - \omega t} $, con $ a $ passo del reticolo e $ - \frac{\pi}{a} \le k < \frac{\pi}{a} $ (prima BZ), si trova:
+	\begin{equation*}
+		- M \omega^2 = - \kappa \left( 2 - e^{i k a} - e^{-i k a} \right) = -2 \kappa \left( 1 - \cos ka \right) = -4 \kappa \sin^2 \frac{ka}{2}
+	\end{equation*}
+	Si ha quindi la relazione di dispersione esatta per il caso 1D:
+	\begin{equation}
+		\omega(k) = 2 \sqrt{\frac{\kappa}{M}} \abs{\sin \frac{ka}{2}}
+	\end{equation}
+	La velocità del suono si trova quindi nel limite $ ka \ll 1 $ come $ \omega \simeq 2 \sqrt{\frac{\kappa}{M}} \abs{\frac{ka}{2}} = a \sqrt{\frac{\kappa}{M}} \abs{k} $, ovvero:
+	\begin{equation}
+		v_\text{s} = a \sqrt{\frac{\kappa}{M}}
+	\end{equation}
+	Si vede inoltre come la legge di dispersione saturi, a causa delle condizione periodiche, e si ha $ \omega_\text{max} = \omega(k_\text{max}) = \omega(\frac{\pi}{a}) = \frac{2 v_\text{s}}{a} \sim 10^{13} \,\text{rad}/\text{s} $.
+\end{example}
+
+Nel caso di $ n_d $ atomi per cella, bisogna generalizzare l'indice $ \xi $, che ora ha $ 3n_d $ possibili valori (3 per ogni atomo nella cella). I vettori $ \epsilon_\xi $ a $ 3n_d $ componenti sono ora ottenuti diagonalizzando la matrice $ \tilde{D}_{\xi , \xi'}(\ve{k}) $, che è $ 3n_d \times 3n_d $ (comunque molto più piccola della matrice $ D_{\alpha \beta} $, che è $ 3N_n \times 3N_n $, con $ N_n = n_d n_\text{celle} $). In questo caso, per ogni $ \ve{k} $ ci sono $ 3n_d $ modi normali: $ 3 $ di essi sono modi acustici, associati ad oscillazioni in fase di tutti gli atomi della cella, mentre i restanti $ 3(n_d - 1) $ sono \textit{modi ottici}\footnotemark, associati a vibrazioni che lasciano il centro di massa della cella immobile. I modi ottici hanno sempre $ \omega > 0 $ (Fig. \ref{op-md}). \\
+In definitiva, quindi, i modi normale di vibrazione di un cristallo hanno frequenze $ \omega_s(\ve{k}) $, con $ \ve{k} $ nella 1BZ ed $ s = 1,\dots,n_d $ identificante la branca di dispersione. I relativi spostamenti normali $ \epsilon_\xi $ forniscono una base per descrivere la dinamica (classica) del cristallo, in quanto qualsiasi moto atomico può essere espresso come combinazione lineare dei vari $ e^{i \ve{k} \cdot \ve{R} - i \omega_\text{s}(\ve{k}) t} $.
+%
+\footnotetext{Il nome deriva dal fatto che i fotoni, non trasportando momento e generando dunque solo transizioni con $ \Delta k = 0 $, non possono eccitare fononi acustici, ma possono eccitare invece quelli ottici.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{opt-mod.png}
+	\caption{Phonon dispersion curves for an $ n_d = 2 $ crystal.}
+	\label{op-md}
+\end{figure}
+
+\begin{example}{Fononi ottici in 1D}{}
+	Si consideri un cristallo 1D composto da una catena di atomi di natura alternata, con una specie di massa $ M_1 $ ed un'altra di massa $ M_2 $: la cella è delimitata da due atomi di eguale natura, separati di $ a $, con un atomo della specie diversa nel punto medio (ad $ \frac{a}{2} $ da ciascuno dei due). Detti $ u / v $ gli spostamenti delle specie $ 1 / 2 $ rispettivamente, si trovano le seguenti equazioni del moto (considerando solo l'interazione tra primi vicini:)
+	\begin{equation*}
+		M_1 \ddot{u}_n = -\kappa \left( 2u_n - v_{n-1} - v_{n} \right)
+		\qquad
+		M_2 \ddot{v}_n = -\kappa \left( 2v_n - u_n - u_{n+1} \right)
+	\end{equation*}
+	Adottando gli ansatz $ u_n(t) = A_1 \exp \left[ i k n a - i \omega t \right] , v_n(t) = A_2 \exp \left[ i k n a + i \frac{ka}{2} - i \omega t \right] $ si hanno:
+	\begin{equation*}
+		\begin{split}
+			& - M_1 \omega^2 A_1 = - \kappa \left( 2A_1 - A_2 e^{-i ka/2} - A_2 e^{i ka/2} \right) \\
+			& - M_2 \omega^2 A_2 = - \kappa \left( 2 A_2 - A_1 e^{-i ka/2} - A_1 e^{i ka/2} \right)
+		\end{split}
+	\end{equation*}
+	Questo è un sistema di equazioni per $ A_1 , A_2 $:
+	\begin{equation*}
+		\begin{cases}
+			\left( 2\kappa - M_1 \omega^2 \right) A_1 - 2 A_2 \cos \frac{ka}{2} = 0 \\
+			\left( 2\kappa - M_2 \omega^2 \right) A_2 - 2 A_1 \cos \frac{ka}{2} = 0
+		\end{cases}
+	\end{equation*}
+	Per avere un sistema con soluzioni di classe $ \infty^2 $ bisogna imporre:
+	\begin{equation*}
+		\begin{vmatrix}
+			2\kappa - M_1 \omega^2 & 2 \cos \frac{ka}{2} \\
+			2 \cos \frac{ka}{2} & 2\kappa - M_2 \omega^2
+		\end{vmatrix}
+		= 0
+	\end{equation*}
+	trovando la relazione di dispersione per i fononi del cristallo:
+	\begin{equation}
+		\omega^2 = \kappa \left( \frac{1}{M_1} + \frac{1}{M_2} \right) \pm \kappa \sqrt{\left( \frac{1}{M_1} + \frac{1}{M_2} \right)^2 - \frac{4}{M_1 M_2} \sin^2 \frac{ka}{2}}
+	\end{equation}
+	La soluzione col $ - $ corrisponde alla branca acustica, infatti $ \omega(0) = 0 $, mentre quella col $ + $ alla banda ottica (in questo caso solo 2 bande, in quanto $ n_d = 2 $).
+\end{example}
+
+\subsubsection{Dinamica quantistica}
+
+Passando ad una descrizione quantistica della dinamica atomica del cristallo, si passa da un set di $ 3N_n $ oscillatori armonici classici a $ 3N_n $ oscillatori armonici quantistici. La base per il relativo spazio di Hilbert sarà costituita da stati caratterizzati dal numero di fononi (ovverosia, dal numero di eccitazioni vibrazionali) $ v_{\ve{k},s} $ di ogni oscillatore, ciascuno caratterizzato da una frequenza $ \omega_s(\ve{k}) $. Lo spettro energetico sarà quindi:
+\begin{equation}
+	E_\text{vib}(\{v_{\ve{k},s}\}) = \sum_{\ve{k},s} \hbar \omega_s(\ve{k}) \left( v_{\ve{k},s} + \frac{1}{2} \right)
+\end{equation}
+Si vede la similitudine tra fononi e fotoni: entrambi sono quanti d'eccitazione di un sistema di oscillatori armonici, con la differenza, però, che la legge di dispersione dei fononi è meno banale di quella dei fotoni (la prima satura per via del potenziale periodico, la seconda no).
+
+\subsection{Proprietà termodinamiche}
+
+Si consideri un cristallo di $ n_\text{celle} $ celle, ciascuna con $ n_d $ atomi ed un volume $ \Omega $, così da avere un volume totale $ V = n_\text{celle} \Omega $ ed $ N_n = n_\text{celle} n_d $ atomi totali. Modellandolo come un sistema di $ 3N_n $ oscillatori armonici, ciascuno con frequenza $ \omega_s(\ve{k}) $ ($ \ve{k} $ nella 1BZ ed $ s = 1, \dots, 3n_d $ indicizzante la branca di dispersione), si possono descrivere i fononi tramite la statistica di Bose-Einstein, ottenendo un'espressione per l'energia interna:
+\begin{equation}
+	U_\text{vib}(T) = \sum_{\ve{k},s} \hbar \omega_s(\ve{k}) \left( [n_{E_{\ve{k},s}}]_\text{B} + \frac{1}{2} \right) \equiv U_0 + \sum_{\ve{k},s} \frac{\hbar \omega_s(\ve{k})}{e^{\beta \hbar \omega_s(\ve{k})} - 1}
+\end{equation}
+dove si è isolata l'energia di punto-zero $ U_0 = \sum_{\ve{k},s} \frac{1}{2} \hbar \omega_s(\ve{k}) $, in quanto non influisce sulle proprietà termodinamiche. Per calcolare il calore specifico $ c_{V,\text{vib}} = \frac{\pa U_\text{vib}}{\pa T} $ è dunque necessario conoscere la legge di dispersione per $ \omega_s(\ve{k}) $: nella maggior parte dei casi questa non è conosciuta, quindi ci si affida a dei modelli.
+
+\subsubsection{Modello di Einstein}
+
+Il modello più semplice è il \textit{modello di Einstein}, per il quale la legge di dispersione è:
+\begin{equation}
+	\omega_\text{E} = \sqrt{\frac{\kappa}{M}}
+\end{equation}
+In questo modello, quindi, tutte le frequenze sono uguali e la branca fononica è orizzontale e piatta. Si trova il calore specifico:
+\begin{equation*}
+	c_{V,\text{vib}} = \frac{\pa}{\pa T} \left[ N_n \frac{\hbar \omega_\text{E}}{e^{\beta \hbar \omega_\text{E}} - 1} \right] = 3 N_n k_\text{B} \left( \frac{\hbar \omega_\text{E}}{k_\text{B} T} \right)^2 \frac{e^{\beta \hbar \omega_\text{E}}}{\left( e^{\beta \hbar \omega_\text{E}} - 1 \right)^2}
+\end{equation*}
+I limiti di questo modello sono:
+\begin{itemize}
+	\item alte temperature $ k_\text{B} T \gg \hbar \omega_\text{E} $: si ha $ c_{V,\text{vib}} \simeq 3 N_n k_\text{B} $;
+	\item basse temperature $ k_\text{B} T \ll \hbar \omega_\text{E} $: si ha $ c_{V,\text{vib}}(T) \simeq 3 N_n k_\text{B} \left( \frac{\hbar \omega_\text{E}}{k_\text{B} T} \right)^2 e^{- \theta_\text{E} / T} $, dove si è definita la \textit{temperatura di Einstein} $ \theta_\text{E} \equiv \frac{\hbar \omega_\text{E}}{k_\text{B}} $.
+\end{itemize}
+Il limite ad alte temperature concorda col limite di Dulong-Petit (proprio $ c_{V,\text{vib}} \simeq 3 N_n k_\text{B} $), ma quello a bassa temperatura non concorda col limite universale $ c_{V,\text{vib}} \propto T^3 $. È quindi necessario prendere modelli più sofisticati.
+
+\subsubsection{Modello di Debye}
+
+Il \textit{modello di Debye} si bassa sull'assunto che tutte le branche fononiche siano lineari, andandole a considerare all'interno di una regione sferica nello spazio reciproco, la \textit{sfera di Debye}, determinata in modo da avere il corretto numero totale di modi normali vibrazionali. La relazione di dispersione è quindi:
+\begin{equation}
+	\omega_s(\ve{k}) = v_\text{s} \abs{\ve{k}}
+\end{equation}
+dove $ v_\text{s} $ è un'opportuna media delle velocità del suono nelle branche acustiche effettivamente osservata. La presenza di branche ottiche viene considerata aggiustando opportunamente il raggio $ k_\text{D} $ della sfera di Debye, così da avere i corretti $ 3N_n $ modi normali totali. Per fare ciò, si impone che il volume della sfera di Debye sia pari a quello della 1BZ:
+\begin{equation*}
+	\frac{4}{3} \pi k_\text{D}^3 = \frac{(2\pi)^3}{\Omega} = \frac{(2\pi)^3 N_n}{V}
+\end{equation*}
+(assumendo $ n_d = 1 $) trovando:
+\begin{equation}
+	k_\text{D} = \sqrt[3]{6 \pi^2 \frac{N_n}{V}}
+	\label{eq:k-d}
+\end{equation}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Densità degli stati}{}
+	\begin{equation}
+		g_s g(\omega) = 9 N_n \frac{\omega^2}{\omega_\text{D}^3}
+		\quad
+		0 \ge \omega \ge \omega_\text{D}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Ricordando l'Eq. \ref{eq:dens-k}:
+		\begin{equation*}
+			g(\omega) \dd \omega = g(\ve{k}) \dd^3k = \frac{V}{(2\pi)^3} 4\pi k^2 \dd k = \frac{V}{(2\pi)^3} 4\pi \left( \frac{\omega}{v_\text{s}} \right)^2 \frac{\dd \omega}{v_\text{s}}
+		\end{equation*}
+		Definendo $ \omega_\text{D} = v_\text{s} k_\text{D} $:
+		\begin{equation*}
+			g(\omega) = \frac{V}{(2\pi)^3} 4\pi \frac{\omega^2}{v_\text{s}^3} = \frac{V}{(2\pi)^3} 4\pi \frac{\omega^2 k_\text{D}^3}{\omega_\text{D}^3} = 3N_n \frac{\omega^2}{\omega_\text{D}^3}
+		\end{equation*}
+		dove si è usata l'Eq. \ref{eq:k-d}. Ricordando che $ g_s = 3 $ per i fononi (3 modi normali per ogni valore di $ \ve{k} $) si trova la tesi.
+	\end{proof}
+\end{proposition}
+
+Si trova così l'energia interna:
+\begin{equation*}
+	U_\text{vib} = U_0 + \int_0^{\omega_\text{D}} \dd\omega\, g_s g(\omega) \frac{\hbar \omega}{e^{\beta \hbar \omega} - 1} = U_0 + \frac{9N_n}{\omega_\text{D}^3} \int_0^{\omega_\text{D}} \dd\omega\, \frac{\hbar \omega^3}{e^{\beta \hbar \omega} - 1} = 9 N_n k_\text{B}
+\end{equation*}
+Introducendo $ x = \beta \hbar \omega = \theta_\text{D} / T $, con $ \theta_\text{D} \equiv \frac{\hbar \omega_\text{D}}{k_\text{B}} $ \textit{temperatura di Debye}, si trova:
+\begin{equation}
+	U_\text{vib} = U_0 + \frac{9N_n k_\text{B} T^4}{\theta_\text{D}^3} \int_0^{\theta_\text{D}/T} \dd x\, \frac{x^3}{e^x - 1}
+\end{equation}
+I limiti di questo modello sono:
+\begin{itemize}
+	\item alte temperature $ T \gg \theta_\text{D} $: si approssima $ e^x - 1 \simeq x $ e si trova:
+		\begin{equation}
+			U_\text{vib} \simeq U_0 + 3 N_n k_\text{B} T
+		\end{equation}
+		in accordo con la legge di Dulong-Petit $ c_{V,\text{vib}} = \frac{\pa U_\text{vib}}{\pa T} \simeq 3 N_n k_\text{B} $;
+	\item basse temperature $ T \ll \theta_\text{D} $: si usa l'Eq. \ref{eq:zeta-3} e si trova:
+		\begin{equation}
+			U_\text{vib} = U_0 + \frac{3\pi^4}{5} N_n k_\text{B} \frac{T^4}{\theta_\text{D}^3}
+		\end{equation}
+		in accordo col limite $ c_{V,\text{vib}} = \frac{\pa U_\text{vib}}{\pa T} \propto T^3 $.
+\end{itemize}
+Il modello di Debye costituisce quindi un ottimo modello interpolante tra i due limiti osservati sperimentalmente (si veda Fig. \ref{deb}). Si noti che il calore specifico $ c_{V,\text{vib}} $ nel modello di Debye presenta un processo di $ \virgolette{scongelamento quantistico} $ all'aumentare di $ T $, similmente\footnotemark a quanto osservato per le molecole biatomiche in Fig. \ref{vib-rot-c}. \\
+Per capire perché il modello di Debye funziona a basse temperature, si ricordi che a $ T = 0 $ la distribuzione di Bose-Einstein è una (mezza, poiché $ E > 0 $)  $ \delta $ di Dirac, ovvero tutte le occupazioni saranno in $ \ve{k} = \ve{0} $, ovvero $ \lambda \rightarrow \infty $: questo equivale a traslazioni rigide del cristallo, in quanto gli atomi si muovono tutti della stessa quantità, il che è compatibile con $ T = 0 $ (in quanto essa è definita vibrazionalmente, non traslazionalmente). Con una temperatura di poco sopra lo zero assoluto vengono occupati gli stati a energia più bassa: ciò prosegue fino al raggiungimento della temperatura di Debye, in cui tutte le branche sono equipopolate. \\
+La temperatura di Debye è un indice della durezza del materiale ($ \theta_\text{D} $ è tanto più alta quanto più p difficile mettere in vibrazione il cristallo): uno dei valori più alti è quello del diamante ($ \sim 10^3 \,\text{K} $, quando tipicamente $ \theta_\text{D} \sim 10^1 - 10^2 \,\text{K} $). \\
+Sebbene presenti un buon accordo coi dati sperimentali, il modello di Debye può essere ancora migliorato, in quanto assume che tutte le branche ottiche abbiano la stessa velocità del suono: si potrebbe ad esempio considerare un modello in cui la differenza di velocità del suono venga implementata, oppure utilizzare il modello di Debye per descrivere le branche acustiche ed il modello di Einstein per quelle ottiche.
+
+\footnotetext{In questo caso, però, nel limite a bassa temperatura $ c_{V,\text{vib}} \propto T^3 $, e non $ c_{V,\text{vib}} \propto e^{- \theta_\text{vib} / T} $, in quanto si è in presenza di un continuo di oscillatori armonici con frequenza arbitrariamente bassa: anche per $ T \ll \theta_\text{D} $, ogni oscillatore con $ \hbar \omega < k_\text{B} T $ rimane congelato e contribuisce con $ \sim k_\text{B} $ al calore specifico.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.50 \textwidth]{debye.png}
+	\caption{Heat capacity in the Debye model, with experimental values as reference.}
+	\label{deb}
+\end{figure}
+
+\paragraph{Modulo di bulk}
+
+Il modulo di bulk è una quantità che descrive come un cristallo risponde ad una variazione di volume. Nel limite di temperatura nulla, il modulo di bulk si calcola come:
+\begin{equation}
+	B \equiv V \frac{\pa^2 U_0}{\pa V^2}
+\end{equation}
+dove $ U_0 $ è l'energia di punto-zero. A temperatura non-nulla, questa espreaaione è un'approssimazione che trascura i termini anarmonici e l'espansione termica del cristallo.
+
+\begin{proposition}{Modulo di bulk}{}
+	Nel modello di Debye, il modulo di bulk vale:
+	\begin{equation}
+		B = \frac{k_\text{B} T_\text{D}}{2 \Omega}
+	\end{equation}
+
+	\tcblower
+
+	\begin{proof}
+		Esplicitando l'energia di punto-zero:
+		\begin{equation*}
+			U_0 = \frac{1}{2} \int_0^{\omega_\text{D}} \dd\omega\, g_s g(\omega) \hbar \omega = \frac{9}{2} \frac{N_n \hbar}{\omega_\text{D}} \int_0^{\omega_\text{D}} \dd\omega\, \omega^3 = \frac{9}{8} N_n \hbar \omega_\text{D} = \frac{9}{8} N_n \hbar v_\text{s} \sqrt[3]{6\pi^2 \frac{N_n}{V}}
+		\end{equation*}
+		Dunque, il modulo di bulk vale (usando $ \omega_\text{D} = v_\text{s} \sqrt[3]{6\pi^2 N_n / V} $):
+		\begin{equation*}
+			B = V \frac{9}{8} N_n \hbar v_\text{s} \sqrt[3]{6\pi^2 N_n} \frac{\pa^2}{\pa V^2} V^{-1/3} = \frac{9}{8} N_n \hbar v_\text{s} \sqrt[3]{6\pi^2 N_n} \frac{4}{9} V^{1-7/3} = \frac{1}{2} N_n \hbar \omega_\text{D} V^{-1}
+		\end{equation*}
+		Ricordando che $ \hbar \omega_\text{D} = k_\text{B} T_\text{D} $ e $ \Omega = \frac{V}{N_n} $ si ottiene la tesi.
+	\end{proof}
+\end{proposition}
 
 
 
