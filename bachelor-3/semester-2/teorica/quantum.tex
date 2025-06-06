@@ -1026,6 +1026,7 @@ Inserting this expression into $ \Box \ve{A} = \ve{0} $ results in the mass-shel
 The classical solution can be promoted to a hermitian operator as:
 \begin{equation}
   \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a\dg_{\ve{p},\lambda} e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  \label{eq:qed-four-rad}
 \end{equation}
 and imposing the canonical commutation relations:
 \begin{equation}
@@ -1120,6 +1121,7 @@ Canonical commutation relations now take the form:
 The metric ensures Lorentz covariance. The equations of motion are $ \Box A^\mu = 0 $, thus the gauge field operators are:
 \begin{equation}
   A_\mu(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} \left[ \epsilon_\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \epsilon_\mu^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  \label{eq:qed-gauge-fourier}
 \end{equation}
 $ \Box A_\mu = 0 $ imposes $ p^2 = 0 $. Note that the modified Lagrangian is not gauge invariant, so there is no constraint on $ \epsilon^\mu $; in the frame $ p^\mu = (p,0,0,p) $ a convenient choice of basis is $ \epsilon^\mu(\ve{p},\lambda) = \delta^\mu_\lambda $, hence only $ \lambda = 1,2 $ satisfy $ \epsilon_\mu p^\mu = 0 $. \eref{eq:qed-canon-comm-rel-1} becomes:
 \begin{equation}
@@ -1165,14 +1167,58 @@ This procedure has eliminated the spurious degrees of freedom, thus showing the 
 As for the KG field and the Dirac field, the ladder operators of the electromagnetic field can be made explicit too.
 
 \begin{proposition}{Ladder operators}{}
-  The ladder operators for the electromagnetic field are (in the radiation gauge):
+  The ladder operators for the electromagnetic field are (in radiation gauge):
   \begin{equation}
-    a_{\ve{p},\lambda} = (\pm \, ???) i \bs{\epsilon}(\ve{p},\lambda) \cdot \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda} = i \bs{\epsilon}(\ve{k},\lambda) \cdot \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \label{eq:qed-lad-1}
   \end{equation}
   \begin{equation}
-    a_{\ve{p},\lambda}\dg = (\mp \, ???) i \bs{\epsilon}^*(\ve{p},\lambda) \cdot \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda}\dg = - i \bs{\epsilon}^*(\ve{k},\lambda) \cdot \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \label{eq:qed-lad-2}
   \end{equation}
 \end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eref{eq:qed-four-rad}:
+    \begin{equation*}
+      \pa_0 \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ -i \omega_\ve{p} \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + i \omega_\ve{p} \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \begin{split}
+        \int \dd^3x\, e^{i k_\mu x^\mu} \ve{A}(x)
+        & = \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{i (k - p)_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i (k + p)_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}} \\
+        & = \frac{1}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
+      \end{split}
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        \int \dd^3x\, e^{i k_\mu x^\mu} \pa_0 \ve{A}(x)
+        & = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ - \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
+      \end{split}
+    \end{equation*}
+    These can be combined as:
+    \begin{equation*}
+      \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ -2 \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} \right] = - i \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda}
+    \end{equation*}
+    In the radiation gauge $ \bs{\epsilon}(\ve{k},\lambda) \cdot \bs{\epsilon}(\ve{k},\sigma) = \delta_{\lambda \sigma} $, hence \eref{eq:qed-lad-1}. Analogously:
+    \begin{equation*}
+      \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ 2 \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg \right] = i \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg
+    \end{equation*}
+    This completes the proof.
+  \end{proof}
+\end{proofbox}
+
+Writing them in Lorentz-covariant form (using $ \epsilon^0 = \epsilon^3 = 0 $):
+  \begin{equation}
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda} = i \epsilon^\mu(\ve{p},\lambda) \int \dd^3x\, e^{i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \label{eq:qed-lad-cov-1}
+  \end{equation}
+  \begin{equation}
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda}\dg = - i {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \label{eq:qed-lad-cov-2}
+  \end{equation}
 
 
 
