@@ -217,10 +217,13 @@ Conversely, he in- and out-fields can be expressed in terms of in- and out-ladde
 
 It is possible to make the relationship between in- and out-ladder operators explicit.
 
-\begin{lemma}[before upper = {\tcbtitle}]{}{in-out-rel}
+\begin{lemma}[before upper = {\tcbtitle}]{}{scal-in-out-rel}
   \begin{equation}
-    \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i k_\mu x^\mu} (\Box + m^2) \phi(x)
+    \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i p_\mu x^\mu} (\Box + m^2) \phi(x)
     \label{eq:lsz-scal-op}
+  \end{equation}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} (a_\ve{p}^\text{out} - a_\ve{p}^\text{in}) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{i p_\mu x^\mu} (\Box + m^2) \phi(x)
   \end{equation}
 \end{lemma}
 
@@ -234,18 +237,18 @@ It is possible to make the relationship between in- and out-ladder operators exp
     Applying this to $ f(t,\ve{x}) = -i Z^{-1/2} e^{-i k_\mu x^\mu} \smlra{\pa}_0 \phi(x) $ and using \eref{eq:in-out-lad-op}:
     \begin{equation*}
       \begin{split}
-        \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg)
-        & = \frac{i}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i k_\mu x^\mu} \smlra{\pa}_0 \phi(x) \right] \\
-        & = \frac{i}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i k_\mu x^\mu} \pa_0 \phi(x) - \phi(x) \pa_0 e^{-i k_\mu x^\mu} \right] \\
-        & = \frac{i}{\sqrt{Z}} \int \dd^4x \left[ e^{-i k_\mu x^\mu} \pa_0^2 \phi(x) - \phi(x) \pa_0^2 e^{-i k_\mu x^\mu} \right] \\
-        & = \frac{i}{\sqrt{Z}} \int \dd^4x \left[ e^{-i k_\mu x^\mu} \pa_0^2 \phi(x) - \phi(x) (\bs{\nabla}^2 - m^2) e^{-i k_\mu x^\mu} \right]
+        \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{out}}\dg - {a_\ve{p}^\text{in}}\dg)
+        & = - \frac{i}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x) \right] \\
+        & = - \frac{i}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i p_\mu x^\mu} \pa_0 \phi(x) - \phi(x) \pa_0 e^{-i p_\mu x^\mu} \right] \\
+        & = - \frac{i}{\sqrt{Z}} \int \dd^4x \left[ e^{-i p_\mu x^\mu} \pa_0^2 \phi(x) - \phi(x) \pa_0^2 e^{-i p_\mu x^\mu} \right] \\
+        & = - \frac{i}{\sqrt{Z}} \int \dd^4x \left[ e^{-i p_\mu x^\mu} \pa_0^2 \phi(x) - \phi(x) (\bs{\nabla}^2 - m^2) e^{-i p_\mu x^\mu} \right]
       \end{split}
     \end{equation*}
-    where the last line follows from $ \pa_0^2 e^{-i k_\mu x^\mu} = - k_0^2 e^{-i k_\mu x^\mu} = (\ve{k}^2 - k^2) e^{-i k_\mu x^\mu} = (\bs{\nabla}^2 - m^2) e^{-i k_\mu x^\mu} $. In order to perform integration by parts, note that initial and final particle states are understood to be convoluted to form wave-packets, which are localized in space, while $ \phi(x) $ is not localized in time; hence, the second term can be integrated by parts twice, resulting in:
+    where the last line follows from $ \pa_0^2 e^{-i p_\mu x^\mu} = - p_0^2 e^{-i p_\mu x^\mu} = (\ve{p}^2 - p^2) e^{-i p_\mu x^\mu} = (\bs{\nabla}^2 - m^2) e^{-i p_\mu x^\mu} $. In order to perform integration by parts, note that initial and final particle states are understood to be convoluted to form wave-packets, which are localized in space, while $ \phi(x) $ is not localized in time; hence, the second term can be integrated by parts twice, resulting in:
     \begin{equation*}
-      \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i k_\mu x^\mu} (\pa_0^2 - \bs{\nabla}^2 + m^2) \phi(x)
+      \sqrt{2E_\ve{p}} ({a_\ve{p}^\text{in}}\dg - {a_\ve{p}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i p_\mu x^\mu} (\pa_0^2 - \bs{\nabla}^2 + m^2) \phi(x)
     \end{equation*}
-    which is the thesis.
+    The other operator is analogously found.
   \end{proof}
 \end{proofbox}
 
@@ -284,7 +287,7 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
         & = \sqrt{2E_{\ve{k}_1}} \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | {a_{\ve{k}_1}^\text{in}}\dg - {a_{\ve{k}_1}^\text{out}}\dg | \ve{k}_2,\dots,\ve{k}_n;-\infty}
       \end{split}
     \end{equation*}
-    as $ {a_{\ve{k}_1}^\text{out}} \ket{\ve{p}_1,\dots,\ve{p}_n;+\infty} = 0 $ since $ \ve{k}_i \neq \ve{p}_j $. Then, by \lref{lemma:in-out-rel}:
+    as $ {a_{\ve{k}_1}^\text{out}} \ket{\ve{p}_1,\dots,\ve{p}_n;+\infty} = 0 $ since $ \ve{k}_i \neq \ve{p}_j $. Then, by \lref{lemma:scal-in-out-rel}:
     \begin{equation*}
       \begin{split}
         \braket{\ve{p}_1,\dots,\ve{p}_m;+\infty | \ve{k}_1,\dots,\ve{k}_n;-\infty}
@@ -315,7 +318,11 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
     \begin{equation*}
       G(x_1, \dots, x_N) = \prod_{j = 1}^N \int \frac{\dd^4\xi_j}{(2\pi)^4} e^{i {\xi_j}_\mu {x_j}^\mu} \tilde{G}(\xi_1, \dots, \xi_N)
     \end{equation*}
-    Then, as the KG operator only acts on the exponential factor:
+    Then:
+    \begin{equation*}
+      (\Box_{x_j} + m^2) G(x_1, \dots, x_N) = - \prod_{j = 1}^N \int \frac{\dd^4\xi_j}{(2\pi)^4} e^{i {\xi_j}_\mu {x_j}^\mu} (\xi_j^2 - m^2) \tilde{G}(\xi_1, \dots, \xi_N)
+    \end{equation*}
+    Substituting into the above expression:
     \begin{equation*}
       \begin{split}
         & \prod_{j = 1}^N \frac{i}{\sqrt{Z}} \int \dd^4x_j e^{-i {k_j}_\mu {x_j}^\mu} (\Box_{x_j} + m^2) G(x_1, \dots, x_N) = \\
@@ -337,6 +344,42 @@ Consider now a scattering process of a species of massless spin-$ 1 $ particles.
   \sqrt{2\omega_\ve{p}} {a_{\ve{p},\lambda}^\text{in,out}}\dg = -i {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 A^\text{in,out}_\mu(x)
 \end{equation}
 
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \sqrt{2\omega_\ve{p}} ({a_{\ve{p},\lambda}^\text{in}}\dg - {a_{\ve{p},\lambda}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^4x\, e^{-i p_\mu x^\mu} \Box A_\mu(x)
+  \end{equation}
+  \begin{equation}
+    \sqrt{2\omega_\ve{p}} (a_{\ve{p},\lambda}^\text{out} - a_{\ve{p},\lambda}^\text{in}) = \frac{i}{\sqrt{Z}} \epsilon^\mu(\ve{p},\lambda) \int \dd^4x\, e^{-i p_\mu x^\mu} \Box A_\mu(x)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:int-func-lemma}:
+    \begin{equation*}
+      \begin{split}
+        \sqrt{2\omega_\ve{p}} ({a_{\ve{p},\lambda}^\text{out}}\dg - {a_{\ve{p},\lambda}^\text{in}}\dg)
+        & = - \frac{i}{\sqrt{Z}} {\epsilon^{\mu}}^*(\ve{p},\lambda) \int \dd^4x\, \pa_0 \left[ e^{-i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x) \right] \\
+        & = - \frac{i}{\sqrt{Z}} {\epsilon^{\mu}}^*(\ve{p},\lambda) \int \dd^4x \left[ e^{-i p_\mu x^\mu} \pa_0^2 A_\mu(x) - A_\mu(x) \pa_0^2 e^{-i p_\mu x^\mu} \right] \\
+        & = - \frac{i}{\sqrt{Z}} {\epsilon^{\mu}}^*(\ve{p},\lambda) \int \dd^4x \left[ e^{-i p_\mu x^\mu} \pa_0^2 A_\mu(x) - A_\mu(x) \bs{\nabla}^2 e^{-i p_\mu x^\mu} \right]
+      \end{split}
+    \end{equation*}
+    where the last line follows from $ \pa_0^2 e^{-i p_\mu x^\mu} = - p_0^2 e^{-i p_\mu x^\mu} = (\ve{p} - p^2) e^{-i p_\mu x^\mu} = \bs{\nabla}^2 e^{-i p_\mu x^\mu} $. By the same observation made in the proof of \lref{lemma:scal-in-out-rel}, the second term is integrated by parts twice, resulting in:
+    \begin{equation*}
+      \sqrt{2\omega_\ve{p}} ({a_{\ve{p},\lambda}^\text{in}}\dg - {a_{\ve{p},\lambda}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^4x\, e^{-i p_\mu x^\mu} (\pa_0^2 - \bs{\nabla}^2) A_\mu(x)
+    \end{equation*}
+    The other operator follows analogously.
+  \end{proof}
+\end{proofbox}
+
+Note that, like for scalar fields, these operators vanish identically when dealing with free fields. \\
+Consider now a scattering process $ \ket{\ve{k}_1, \dots, \ve{k}_n ; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_m ; +\infty} $ in which no particles remain unchanged by the interaction, i.e. $ \ve{k}_i \neq \ve{p}_j \,\,\forall i = 1,\dots,n , \forall j = 1,\dots,m $, so that the $ S $-matrix reduces to the $ T $-matrix. Then, as for \tref{th:lsz-scalar}, particles can be extracted from the generic amplitude as:
+\begin{multline}
+  \braket{\ve{k}_1 , \dots , \ve{k}_n | i T | \ve{p}_1 , \dots , \ve{p}_m} \\
+  = \prod_{j = 1}^n \frac{k_j^2}{i \sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \sum_{\lambda_j = 1,2} {\epsilon^{\mu_j}}^*(\ve{k}_j,\lambda_j) \prod_{k = 1}^m \int \dd^4y_k\, e^{+i {p_k}_\mu {x_k}^\mu} \sum_{\sigma_k = 1,2} \epsilon^{\nu_k}(\ve{p}_k,\sigma_k) \times \\
+  \times \braket{0 | \tempord\{A_{\mu_1}(x_1) \dots A_{\mu_n}(x_n) A_{\nu_1}(y_1) \dots A_{\nu_m}(y_m)\} | 0}
+\end{multline}
+
 \subsubsection{Spinor fields}
 
 Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ particles (and anti-particles). The adiabatic hypothesis now yields (recall \eeref{eq:dirac-ladd-op-a}{eq:dirac-ladd-op-b}):
@@ -352,13 +395,13 @@ Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ pa
     \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) ( i \smla{\slashed{\pa}} + m ) u^s(p) e^{-i p_\mu x^\mu}
   \end{equation}
   \begin{equation}
-    \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}} - {a_{\ve{p},s}^\text{out}}) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{i p_\mu x^\mu} \bar{u}^s(p) ( - i \smra{\slashed{\pa}} + m ) \Psi(x)
+    \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{out}} - {a_{\ve{p},s}^\text{in}}) = - \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{i p_\mu x^\mu} \bar{u}^s(p) ( i \smra{\slashed{\pa}} - m ) \Psi(x)
   \end{equation}
   \begin{equation}
-    \sqrt{2E_\ve{p}} ({b_{\ve{p},s}^\text{in}}\dg - {b_{\ve{p},s}^\text{out}}\dg) = - \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{i p_\mu x^\mu} \bar{v}^s(p) ( - i \smra{\slashed{\pa}} + m ) \Psi(x)
+    \sqrt{2E_\ve{p}} ({b_{\ve{p},s}^\text{in}}\dg - {b_{\ve{p},s}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} \int \dd^4x\, e^{-i p_\mu x^\mu} \bar{v}^s(p) ( i \smra{\slashed{\pa}} - m ) \Psi(x)
   \end{equation}
   \begin{equation}
-    \sqrt{2E_\ve{p}} ({b_{\ve{p},s}^\text{in}} - {b_{\ve{p},s}^\text{out}}) = - \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) ( i \smla{\slashed{\pa}} + m ) v^s(p) e^{-i p_\mu x^\mu}
+    \sqrt{2E_\ve{p}} ({b_{\ve{p},s}^\text{out}} - {b_{\ve{p},s}^\text{in}}) = - \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) ( i \smla{\slashed{\pa}} + m ) v^s(p) e^{i p_\mu x^\mu}
   \end{equation}
 \end{lemma}
 
@@ -373,19 +416,19 @@ Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ pa
         & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ -i \gamma ^0 p_0 + \gamma^0 \smla{\pa}_0 \right] u^s(p) e^{-i p_\mu x^\mu}
       \end{split}
     \end{equation*}
-    By \eref{eq:dirac-eq-spinors} $ (\gamma^0 p_0 - \gamma^k p_k - m) u^s(p) = 0 $, so:
+    By \eref{eq:dirac-eq-spinors} $ (\gamma^0 p_0 + \gamma^k p_k - m) u^s(p) = 0 $, so:
     \begin{equation*}
       \begin{split}
         \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg)
-        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ -i \gamma ^k p_k - i m + \gamma^0 \smla{\pa}_0 \right] u^s(p) e^{-i p_\mu x^\mu} \\
-        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ \gamma^0 \smla{\pa}_0 + \gamma^k \smra{\pa}_k - im \right] u^s(p) e^{-i p_\mu x^\mu}
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ i \gamma ^k p_k - i m + \gamma^0 \smla{\pa}_0 \right] u^s(p) e^{-i p_\mu x^\mu} \\
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ \gamma^0 \smla{\pa}_0 - \gamma^k \smra{\pa}_k - im \right] u^s(p) e^{-i p_\mu x^\mu}
       \end{split}
     \end{equation*}
     Assuming that initial and final particle states are convoluted to form wave-packets, integartion by parts in spatial dimensions can be carried out, yielding:
     \begin{equation*}
       \begin{split}
         \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg)
-        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ \gamma^0 \smla{\pa}_0 - \gamma^k \smla{\pa}_k - im \right] u^s(p) e^{-i p_\mu x^\mu} \\
+        & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ \gamma^0 \smla{\pa}_0 + \gamma^k \smla{\pa}_k - im \right] u^s(p) e^{-i p_\mu x^\mu} \\
         & = \frac{i}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ i \smla{\slashed{\pa}} + m \right] u^s(p) e^{-i p_\mu x^\mu}
       \end{split}
     \end{equation*}
@@ -397,9 +440,9 @@ Note that, like \eref{eq:lsz-scal-op}, these operators vanish identically when d
 Consider now a general scattering process involving both fermions and anti-fermions (quantities denoted by a tilde) $ \ket{\ve{k}_1, \dots, \ve{k}_{n_1} , \tilde{\ve{k}}_1, \dots, \tilde{\ve{k}}_{n_2} ; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_{m_1} , \tilde{\ve{p}}_1, \dots, \tilde{\ve{p}}_{m_2} ; +\infty} $ in which no particles remain unchanged by the interaction, i.e. $ \ve{k}_i \neq \ve{p}_j , \tilde{\ve{k}}_k \neq \tilde{\ve{p}}_l \,\,\forall i = 1,\dots,n_1 ,\, j = 1,\dots,m_1 ,\, k = 1,\dots,n_2 ,\, l = 1,\dots,m_2 $, so that the $ S $-matrix reduces to the $ T $-matrix. By the same reasoning of \tref{th:lsz-scalar}, it is clear how to extract particles from this generic amplitude:
 \begin{align}
   \braket{\beta_\text{fin} ; + \infty | \ve{k},s ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4x \sum_{\sigma = 1}^{4} \braket{\beta_\text{fin} | [\bar{\Psi}(x)]_\sigma | 0} [( i\smla{\slashed{\pa}} + m ) u^s(k)]_\sigma e^{-i k_\mu x^\mu} \\
-  \braket{\beta_\text{fin} ; + \infty | \tilde{\ve{k}},\tilde{s} ; -\infty} &\mapsto -\frac{i}{\sqrt{Z}} \int \dd^4\tilde{x} \sum_{\sigma = 1}^{4} e^{i \tilde{k}_\mu \tilde{x}^\mu} [\bar{v}^{\tilde{s}}(\tilde{k})( -i\smra{\slashed{\pa}} + m )]_\sigma \braket{\beta_\text{fin} | [\Psi(\tilde{x})]_\sigma | 0} \\
-  \braket{\ve{p},s ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4y \sum_{\sigma = 1}^{4} e^{i p_\mu y^\mu} [\bar{u}^s(p) ( -i \smra{\slashed{\pa}} + m )]_\sigma \braket{0 | [\Psi(y)]_\sigma | \alpha_\text{in}} \\
-  \braket{\tilde{\ve{p}},\tilde{s} ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto -\frac{i}{\sqrt{Z}} \int \dd^4\tilde{y} \sum_{\sigma = 1}^{4} \braket{0 | [\bar{\Psi}(\tilde{y})]_\sigma | \alpha_\text{in}} [( i \smla{\slashed{\pa}} + m ) v^{\tilde{s}}(\tilde{p})]_\sigma e^{-i \tilde{p}_\mu \tilde{y}^\mu}
+  \braket{\beta_\text{fin} ; + \infty | \tilde{\ve{k}},\tilde{s} ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4\tilde{x} \sum_{\sigma = 1}^{4} e^{-i \tilde{k}_\mu \tilde{x}^\mu} [\bar{v}^{\tilde{s}}(\tilde{k})( i\smra{\slashed{\pa}} - m )]_\sigma \braket{\beta_\text{fin} | [\Psi(\tilde{x})]_\sigma | 0} \\
+  \braket{\ve{p},s ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto - \frac{i}{\sqrt{Z}} \int \dd^4y \sum_{\sigma = 1}^{4} e^{i p_\mu y^\mu} [\bar{u}^s(p) ( i \smra{\slashed{\pa}} - m )]_\sigma \braket{0 | [\Psi(y)]_\sigma | \alpha_\text{in}} \\
+  \braket{\tilde{\ve{p}},\tilde{s} ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto - \frac{i}{\sqrt{Z}} \int \dd^4\tilde{y} \sum_{\sigma = 1}^{4} \braket{0 | [\bar{\Psi}(\tilde{y})]_\sigma | \alpha_\text{in}} [( i \smla{\slashed{\pa}} + m ) v^{\tilde{s}}(\tilde{p})]_\sigma e^{i \tilde{p}_\mu \tilde{y}^\mu}
 \end{align}
 In general, the final $ \virgolette{reduced} $ amplitude formula will contain a $ (n_1 + n_2 + m_1 + m_2) $-point Green function like (omitting spinor indices):
 \begin{equation*}
@@ -1370,7 +1413,7 @@ It is useful to work in momentum space, rather than coordinate space. For exampl
 
 The example calculations carried for $ \lambda \phi^3 $- and $ \lambda \phi^4 $-theory hint to the general technique to compute general \bctxt{tree diagrams}, i.e. connected diagrams without internal loops. For a scalar field theory, in momentum space:
 \begin{enumerate}
-  \item draw all possible connected graphs corresponding to the given initial and final states;
+  \item draw all possible topologicaly-inequivalent connected graphs corresponding to the given initial and final states and multiply them by their symmetry factor;
   \item each external leg is associated to a pole factor in the LSZ reduction formula, hence they can be omitted directly ($ \virgolette{leg amputation} $);
   \item as there is always a momentum-conserving $ \delta $-function, it is convenient to define the matrix element $ \mat_\text{if} $ for the process $ \ket{\text{i}} \rightarrow \ket{\text{f}} $ as:
     \begin{equation}
@@ -1381,6 +1424,8 @@ The example calculations carried for $ \lambda \phi^3 $- and $ \lambda \phi^4 $-
   \item each vertex is associated to a $ -i \lambda $ factor, where $ \lambda $ is the coupling constant of the interaction;
   \item check if that symmetry factors cancel fully or partially with the $ 1/n! $ factor at $ o(\lambda^n) $ and possible numerical factors in the definition of $ \ham_I $.
 \end{enumerate}
+
+The fact that the considered diagrams are topologicaly inequivalent needs to be stressed out.
 
 \subsection{Loop diagrams}
 
