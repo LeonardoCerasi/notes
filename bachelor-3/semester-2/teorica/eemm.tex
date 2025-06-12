@@ -1,0 +1,98 @@
+\selectlanguage{english}
+
+\section{Tree-level amplitudes}
+
+\subsection{\texorpdfstring{$ e^+ e^- \rightarrow \mu^+ \mu^- $}{e+e- --> µ+µ-} scattering}
+
+The $ e^+ e^- \rightarrow \mu^+ \mu^- $ scattering is the simplest process in QED and one of the most important in high-energy physics, as it is used to calibrate $ e^+ e^- $ colliders. \\
+Recalling the Feynman rules for QED from \secref{sssec:qed-feyn}, the amplitude can be found from the only Feynman diagram of the process\footnotemark:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(e^-\)};
+
+      \vertex[right=8cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(\mu^-\)};
+
+      \vertex[below=6em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(e^+\)};
+
+      \vertex[below=6em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(\mu^+\)};
+
+      \vertex[below=3em of a1] (c1) {};
+
+      \vertex[right=2cm of c1, dot] (c2) {};
+
+      \vertex[right=4cm of c2, dot] (c3) {};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) -- [fermion, momentum = \(p_1\)] (c2),
+        (b1) -- [anti fermion, momentum' = \(p_2\)] (c2),
+
+        (c3) -- [fermion, momentum = \(k_1\)] (a2),
+        (c3) -- [anti fermion, momentum' = \(k_2\)] (b2),
+
+        (c2) -- [photon, momentum = \(q\)] (c3),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+with $ q = p_1 + p_2 = k_1 + k_2 $ by momentum conservation. By \eref{eq:mat-el}, then:
+\begin{equation*}
+  i \mathcal{M} = \bar{u}^{s_1}(k_1) (-i e \gamma^\mu) v^{s_2}(k_2) \frac{-i \eta_{\mu \nu}}{q^2 + i \epsilon} \bar{v}^{r_2}(p_2) (-i e \gamma^\nu) u^{r_1}(p_1) = \frac{i e^2}{q^2} \bar{u}^{2_1}(k_1) \gamma^\mu v^{s_2}(k_2) \bar{v}^{r_2}(p_2) \gamma_\mu u^{r_1}(p_1)
+\end{equation*}
+
+\footnotetext{Note that, if $ \ell \bar{\ell} \rightarrow \ell \bar{\ell} $, with $ \ell = e^-, \mu^- $, was considered instead, there would be a second Feynman diagram to computed:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(\ell\)};
+
+      \vertex[right=8cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(\bar{\ell}\)};
+
+      \vertex[below=6em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(\ell\)};
+
+      \vertex[below=6em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(\bar{\ell}\)};
+
+      \vertex[below=3em of a1] (c1) {};
+
+      \vertex[right=2cm of c1, dot] (c2) {};
+
+      \vertex[right=4cm of c2, dot] (c3) {};
+
+      \vertex[below=1.1em of a1] (r);
+
+      \diagram* {
+        (a1) -- [fermion, momentum = \(p_1\)] (c2),
+        (c2) -- [fermion, momentum = \(k_1\)] (b1),
+
+        (a2) -- [anti fermion, momentum' = \(p_2\)] (c3),
+        (c3) -- [anti fermion, momentum' = \(k_2\)] (b2),
+
+        (c2) -- [photon, momentum = \(q\)] (c3),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+with $ q = p_1 - k_1 = k_2 - p_2 $.
+}
+
+
+
+
+
+
+
+
+
+

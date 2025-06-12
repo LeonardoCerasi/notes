@@ -359,6 +359,7 @@ Consider now a scalar field theory with interaction Lagrangian $ \lag_\text{int}
   The generating functional for an interacting KG field $ \phi $ with $ \lag_\text{int} = - V[\phi] $ can be written as:
   \begin{equation}
     Z[J] = \sum_{n \in \N_0} \frac{(-i)^n}{n!} \left( \int \dd^4x\, V \left[ -i \frac{\delta}{\delta J(x)} \right] \right)^n Z_0[J]
+    \label{eq:z-int}
   \end{equation}
   where $ Z_0[J] $ is the generating functional for the free theory.
 \end{proposition}
@@ -419,6 +420,24 @@ This expression is analogous to Wick's theorem: due to the final condition $ J =
     \end{split}
   \end{equation*}
 \end{example}
+
+\subsubsection{Symmetry factors}
+\label{sssec:sym-fact}
+
+Consider \eref{eq:z-int} for $ \lambda \phi^n $-theory:
+\begin{equation*}
+  \begin{split}
+    Z[J]
+    & = Z_0[0] \sum_{v,p \in \N_0} \frac{1}{v!} \left[ \int \dd^4x\, \frac{-i \lambda}{n!} \left( -i \frac{\delta}{\delta J(x)} \right)^n \right]^v \frac{1}{p!} \left[ - \frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]^p \\
+    & = Z_0[0] \sum_{v,p \in \N_0} \frac{1}{v! p! (n!)^v 2^p} \left[ - i \lambda \int \dd^4x \left( -i \frac{\delta}{\delta J(x)} \right)^n \right]^v \left[ - \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]^p
+  \end{split}
+\end{equation*}
+Each term in this expansion is represented by a Feynman diagram with $ v $ vertices and $ p $ propagators. This expression helps clarifying how the symmetry factor of a diagram is computed: first of all, note that there are $ n! $ ways to rearrange functional derivatives in each $ v $-term, amounting to a total of $ (n!)^v $ equivalent ways for each term of the expansion, paired to $ v! $ ways to rearrange the vertices; then, there are also $ p! $ ways to rearrange propagators, with $ 2^p $ equivalent choices of sides (in total for $ p $ propagators). \\
+Although it would seem that the combinatorial factor exactly cancels the prefactor of each term in the above expansion, it needs to be noted that not all these rearrangements are actual distinct (but equivalent) diagrams. The actual combinatorial factor of the diagram is the \bctxt{symmetry factor}, which can be computed as:
+\begin{equation}
+  S = 2^\beta g \prod_k (k!)^{\alpha_k}
+\end{equation}
+where $ \beta $ is the number of lines which connects a vertex to itself, $ g $ is the number of permutations of vertices which leave the diagram unchanged, and $ \alpha_k $ is the number of couples of vertices connected by $ k $ identical lines.
 
 \subsection{Electromagnetic field}
 
