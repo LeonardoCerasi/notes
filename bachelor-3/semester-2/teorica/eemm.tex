@@ -44,7 +44,7 @@ Recalling the Feynman rules for QED from \secref{sssec:qed-feyn}, the amplitude 
 \end{equation*}
 with $ q = p_1 + p_2 = k_1 + k_2 $ by momentum conservation. By \eref{eq:mat-el}, then:
 \begin{equation*}
-  i \mathcal{M} = \bar{u}^{s_1}(k_1) (-i e \gamma^\mu) v^{s_2}(k_2) \frac{-i \eta_{\mu \nu}}{q^2 + i \epsilon} \bar{v}^{r_2}(p_2) (-i e \gamma^\nu) u^{r_1}(p_1) = \frac{i e^2}{q^2} \bar{u}^{2_1}(k_1) \gamma^\mu v^{s_2}(k_2) \bar{v}^{r_2}(p_2) \gamma_\mu u^{r_1}(p_1)
+  i \mathcal{M} = \bar{u}^{s_1}(k_1) (-i e \gamma^\mu) v^{s_2}(k_2) \frac{-i \eta_{\mu \nu}}{q^2 + i \epsilon} \bar{v}^{r_2}(p_2) (-i e \gamma^\nu) u^{r_1}(p_1) = \frac{i e^2}{q^2} \bar{u}^{s_1}(k_1) \gamma^\mu v^{s_2}(k_2) \bar{v}^{r_2}(p_2) \gamma_\mu u^{r_1}(p_1)
 \end{equation*}
 
 \footnotetext{Note that, if $ \ell \bar{\ell} \rightarrow \ell \bar{\ell} $, with $ \ell = e^-, \mu^- $, was considered instead, there would be a second Feynman diagram to computed:
@@ -86,6 +86,120 @@ with $ q = p_1 + p_2 = k_1 + k_2 $ by momentum conservation. By \eref{eq:mat-el}
 \end{equation*}
 with $ q = p_1 - k_1 = k_2 - p_2 $.
 }
+
+\begin{lemma}[before upper = {\tcbtitle}]{Bi-spinor products}{}
+  \begin{equation}
+    (\bar{u} \gamma^\mu v)^* = \bar{v} \gamma^\mu u
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\bar{u} \gamma^\mu v)^* = v\dg (\gamma^\mu)\dg \bar{u}\dg = v\dg (\gamma^\mu)\dg (u\dg \gamma^0)\dg = v\dg (\gamma^\mu)\dg \gamma^0 u = v\dg \gamma^0 \gamma^\mu u = \bar{v} \gamma^\mu u $.
+  \end{proof}
+\end{proofbox}
+
+With this lemma, it is easy to see that (as $ \bar{u} \gamma^\mu v \in \C $):
+\begin{equation*}
+  \begin{split}
+    \abs{\mathcal{M}_{r_1,r_2,s_1,s_2}}^2
+    & = \frac{e^4}{q^4} \bar{u}^{s_1}(k_1) \gamma^\mu v^{s_2}(k_2) \bar{v}^{r_2}(p_2) \gamma_\mu u^{r_1}(p_1) \bar{v}^{s_2}(k_2) \gamma^\nu u^{s_1}(k_1) \bar{u}^{r_1}(p_1) \gamma_\nu v^{r_2}(p_2) \\
+    & = \frac{e^4}{q^4} \bar{u}^{s_1}(k_1) \gamma^\mu v^{s_2}(k_2) \bar{v}^{s_2}(k_2) \gamma^\nu u^{s_1}(k_1) \bar{v}^{r_2}(p_2) \gamma_\mu u^{r_1}(p_1) \bar{u}^{r_1}(p_1) \gamma_\nu v^{r_2}(p_2)
+  \end{split}
+\end{equation*}
+This matrix element has explicit dependence on spin states: although not impossible, it is difficult to experimentally retain control over them, both in the initial- and final-state. For this reason, it is convenient to consider a matrix element which is averaged over initial spin states and summed over final spin states (as usually the detector does not distinguish them):
+\begin{equation}
+  \abs{\mathcal{M}}^2 = \frac{1}{2} \sum_{r_1 = 1,2} \frac{1}{2} \sum_{r_2 = 1,2} \sum_{s_1} \sum_{s_2 = 1,2} \abs{\mathcal{M}_{r_1,r_2,s_1,s_2}}^2
+\end{equation}
+Recalling \eref{eq:spinor-sums} and writing spinor indices explicitly, the first half of the matrix element is:
+\begin{multline*}
+  \frac{e^4}{4q^4} \sum_{s_1,s_2 = 1,2} \sum_{a,b,c,d = 1}^{4} [\bar{u}^{s_1}(k_1)]_a \gamma^\mu_{ab} [v^{s_2}(k_2)]_b [\bar{v}^{s_2}(k_2)]_c \gamma^\nu_{cd} [u^{s_1}(k_1)]_d \\
+  = \frac{e^4}{4q^4} \sum_{s_1,s_2 = 1,2} \sum_{a,b,c,d = 1}^{4} [\slashed{k}_1 + m_\mu]_{da} \gamma^\mu_{ab} [\slashed{k}_2 - m_\mu]_{bc} \gamma^\nu_{cd} = \frac{e^4}{4q^4} \sum_{s_1,s_2 = 1,2} \tr\{(\slashed{k}_1 + m_\mu) \gamma^\mu (\slashed{k}_2 - m_\mu) \gamma^\nu\}
+\end{multline*}
+The unpolarized matrix element then is:
+\begin{equation*}
+  \abs{\mathcal{M}}^2 = \frac{e^4}{4q^4} \sum_{r_1,r_2,s_1,s_2 = 1,2} \tr\{(\slashed{k}_1 + m_\mu) \gamma^\mu (\slashed{k}_2 - m_\mu) \gamma^\nu\} \tr\{(\slashed{p}_1 + m_e) \gamma_\mu (\slashed{p}_2 - m_e) \gamma_\nu\}
+\end{equation*}
+This approach is general: any QED amplitude involving external fermions can be simplified into traces of products of gamma matrices, when squared and summed/averaged over spin states, hence eliminating explicit dependence on spinors.
+
+\subsubsection{Traces}
+
+Due to their importance in QED, traces of gamma matrices should be studied systematically.
+
+\begin{proposition}{Odd number of gamma matrices}{odd-gamma}
+  For any $ n \in \N $ odd:
+  \begin{equation}
+    \tr\{\gamma^{\mu_1} \dots \gamma^{\mu_n}\} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ \{\gamma^\mu , \gamma^5\} = 0 $ and given the cyclic property of the trace:
+    \begin{equation*}
+      \begin{split}
+        \tr\{\gamma^{\mu_1} \dots \gamma^{\mu_n}\}
+        & = \tr\{\gamma^5 \gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n}\} = - \tr\{\gamma^5 \gamma^{\mu_1} \gamma^5 \dots \gamma^{\mu_n}\} \\
+        & = (-1)^n \tr\{\gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5\} = (-1)^n \tr\{\gamma^5 \gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n}\} = (-1)^n \tr\{\gamma^{\mu_1} \dots \gamma^{\mu_n}\}
+      \end{split}
+    \end{equation*}
+    Therefore, the trace vanishes for any odd $ n \in \N $.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Even number of gamma matrices}{}
+  \begin{equation}
+    \tr\{\gamma^\mu \gamma^\nu\} = 4 \eta^{\mu \nu}
+  \end{equation}
+  \begin{equation}
+    \tr\{\gamma^\mu \gamma^\nu \gamma^\sigma \gamma^\rho\} = 4 \left( \eta^{\mu \nu} \eta^{\sigma \rho} - \eta^{\mu \sigma} \eta^{\nu \rho} + \eta^{\mu \rho} \eta^{\nu \sigma} \right)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Using $ \{\gamma^\mu , \gamma^\nu\} = 2 \eta^{\mu \nu} \tens{I}_4 $:
+    \begin{equation*}
+      \tr\{\gamma^\mu \gamma^\nu\} = \tr\{ 2\eta^{\mu \nu} \tens{I}_4 - \gamma^\nu \gamma^\mu\} = 8 \eta^{\mu \nu} - \tr\{\gamma^\mu \gamma^\nu\}
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        \tr\{\gamma^\mu \gamma^\nu \gamma^\sigma \gamma^\rho\}
+        & = \tr\{2\eta^{\mu \nu} \gamma^\sigma \gamma^\rho - \gamma^\nu \gamma^\mu \gamma^\sigma \gamma^\rho\} \\
+        & = \tr\{2\eta^{\mu \nu} \gamma^\sigma \gamma^\rho - \gamma^\nu 2 \eta^{\mu \sigma} \gamma^\rho + \gamma^\nu \gamma^\sigma 2 \eta^{\mu \rho} - \gamma^\nu \gamma^\sigma \gamma^\rho \gamma^\mu\} \\
+        & = 4 \left( \eta^{\mu \nu} \eta^{\sigma \rho} - \eta^{\mu \sigma} \eta^{\nu \rho} + \eta^{\mu \rho} \eta^{\nu \sigma} \right) - \tr\{\gamma^\mu \gamma^\nu \gamma^\sigma \gamma^\rho\}
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+In general, the trace of the product of $ n $ gamma matrices can be reduced to traces of products of $ n-2 $ gamma matrices. Traces involving $ \gamma^5 \defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $ are of interest too.
+
+\begin{proposition}{Odd number of gamma matrices}{}
+  For any $ n \in \N $ odd:
+  \begin{equation}
+    \tr\{\gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5\} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    As in the proof of \pref{prop:odd-gamma}:
+    \begin{equation*}
+      \tr\{\gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5\} = (-1)^n \tr\{\gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5 \gamma^5\} = (-1)^n \tr\{\gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5\}
+    \end{equation*}
+    which vanishes for any odd $ n \in \N $.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Even number of gamma matrices}{}
+  \begin{equation}
+    \tr \gamma^5 = \tr\{\gamma^\mu \gamma^\nu \gamma^5\} = 0
+  \end{equation}
+  \begin{equation}
+    \tr\{\gamma^\mu \gamma^\nu \gamma^\sigma \gamma^\rho \gamma^5\} = -4i \epsilon^{\mu \nu \sigma \rho}
+  \end{equation}
+\end{proposition}
 
 
 
