@@ -92,7 +92,7 @@ L'introduzione della cella di Wigner-Seitz elimina l'arbitrarietà nella scelta 
 	\includegraphics[width = 0.50 \textwidth]{ws-3.png}
 	\quad
 	\includegraphics[width = 0.30 \textwidth]{ws-g.png}
-	\caption{Wigner-Seitx cell for the fcc lattice, the bcc lattic and graphene.}
+	\caption{Wigner-Seitz cell for the fcc lattice, the bcc lattic and graphene.}
 	\label{ws-3}
 \end{figure}
 
@@ -136,7 +136,7 @@ con $ \ell_1, \ell_2, \ell_3 \in \Z $ e:
 	\qquad
 	\ve{b}_1 = \frac{2\pi}{V_c} \ve{a}_2 \times \ve{a}_3
 \end{equation}
-Si noti che $ \ve{a}_i \cdot \ve{b}_j = 2\pi $, dunque $ \ve{G} \cdot \ve{R} = 2\pi (n_1 \ell_1 + n_2 \ell_2 + n_3 \ell_3) $. La serie di Fourier in 3D diventa:
+Si noti che $ \ve{a}_i \cdot \ve{b}_j = 2\pi \delta_{ij} $, dunque $ \ve{G} \cdot \ve{R} = 2\pi (n_1 \ell_1 + n_2 \ell_2 + n_3 \ell_3) $. La serie di Fourier in 3D diventa:
 \begin{equation}
 	f(\ve{x}) = \sum_\ve{G} e^{i \ve{G} \cdot \ve{x}} \tilde{f}(\ve{G})
 	\qquad \qquad
@@ -163,7 +163,7 @@ dove $ \tilde{n}(\ve{q}) $ è la trasformata di Fourier della densità numerica 
 \begin{equation}
 	I(\ve{q}) \propto \abs{\tilde{n}(\ve{q})}^2
 \end{equation}
-La densità numerica di un solo atomo è una $ \delta $ di Dirac, ed infatti l'intesità da scatter neutronico di un solo atomo è essenzialmente indipendente da $ \ve{q} $, come si vede in Fig. \ref{diffr}. \\
+La densità numerica di un solo atomo è una $ \delta $ di Dirac, ed infatti l'intensità da scattering neutronico di un solo atomo è essenzialmente indipendente da $ \ve{q} $, come si vede in Fig. \ref{diffr}. \\
 Se invece si considerano due atomi, si avrà inferferenza tra i raggi scatterati dai due centri di diffusione. Considerando le posizioni $ \ve{R}_1 , \ve{R}_2 $ dei due atomi, si ha qualitativamente che:
 \begin{equation*}
 	\begin{split}
@@ -248,7 +248,7 @@ Elevando al quadrato si trova $ 2 \ve{k} \cdot \ve{G} + \abs{\ve{G}}^2 = 0 $, ov
 	\label{diffr-e}
 \end{figure}
 
-Come si vede in Fig. \ref{diffr-e}, vale la relazione $ \ve{k} \cdot \hat{\ve{G}} = - \abs{\ve{k}} \sin \theta $, dove l'angolo di scattering tra $ \ve{k} $ e $ \ve{k}' $ è $ 2\theta $. Essendo i piani nel reticolo associati a $ \ve{G} $ separati da una distanza $ d = n \frac{2\pi}{\abs{\ve{G}}} $, dove $ n $ è il massimo comun divisore degli indici di Miller di $ \ve{G} $, ed valendo la relazione $ \abs{\ve{k}} = \frac{2\pi}{\lambda} $, dove $ \lambda $ è la lunghezza d'onda della radiazione incidente, si trova la \textit{condizione di Bragg} per la diffrazione:
+Come si vede in Fig. \ref{diffr-e}, vale la relazione $ \ve{k} \cdot \hat{\ve{G}} = - \abs{\ve{k}} \sin \theta $, dove l'angolo di scattering tra $ \ve{k} $ e $ \ve{k}' $ è $ 2\theta $. Essendo i piani nel reticolo associati a $ \ve{G} $ separati da una distanza $ d = n \frac{2\pi}{\abs{\ve{G}}} $, dove $ n $ è il massimo comun divisore degli indici di Miller di $ \ve{G} $, e valendo la relazione $ \abs{\ve{k}} = \frac{2\pi}{\lambda} $, dove $ \lambda $ è la lunghezza d'onda della radiazione incidente, si trova la \textit{condizione di Bragg} per la diffrazione:
 \begin{equation}
 	2 d \sin \theta = n \lambda
 \end{equation}
@@ -283,7 +283,7 @@ Un'altra proprietà che $ \hat{T}_\ve{R} $ deve soddisfare è la legge compositi
 	\qquad \Rightarrow \qquad
 	\varphi_{\ve{R}_1} \varphi_{\ve{R}_2} = \varphi_{\ve{R}_1 + \ve{R}_2}
 \end{equation*}
-Si può prendere WLOG $ \varphi_\ve{R} = \ve{q} \cdot \ve{R} $, con $ \ve{q} \in \R $, ma si noti che esso non è univocamente determinato: infatti, dall'Eq. \ref{eq:rec-ret}, si ha che:
+Si può prendere WLOG $ \varphi_\ve{R} = \ve{q} \cdot \ve{R}^3 $, con $ \ve{q} \in \R $, ma si noti che esso non è univocamente determinato: infatti, dall'Eq. \ref{eq:rec-ret}, si ha che:
 \begin{equation*}
 	e^{-i \ve{q} \cdot \ve{R}} = e^{-i (\ve{q} + \ve{G}) \cdot \ve{R}} \quad \forall \ve{G} \in \text{reticolo reciproco}
 \end{equation*}
@@ -719,7 +719,7 @@ Si consideri l'equazione atomica Eq. \ref{eq:mol-nucl-eq} e si assuma che il pot
 \begin{equation}
 	V_\text{ad}(R) = V_\text{ad}(R_\text{m}) + \frac{1}{2} \sum_{\alpha,\beta} \frac{\pa^2 V_\text{ad}}{\pa R_\alpha R_\beta}\bigg\vert_{R = R_\text{m}} u_\alpha u_\beta + o(u^3)
 \end{equation}
-dove si sono definiti i multi-indici $ \alpha , \beta $, tali per cui $ \alpha \equiv j\,\xi $ con $ j = 1, \dots, N_n $ label dell'atomo considerato e $ \xi = x,y,z $ componente cartesiana, e lo spostamento rispetto al minimo $ u_\alpha \equiv R_\alpha - R_\text{m} $. Questi sono tutti vettori a $ 3N_n $ componenti, ed infatti i multi-indici spannano $ 3N_n $ possibili valori. \\
+dove si sono definiti i multi-indici $ \alpha , \beta $, tali per cui $ \alpha \equiv j\,\xi $ con $ j = 1, \dots, N_n $ label dell'atomo considerato e $ \xi = x,y,z $ componente cartesiana, e lo spostamento rispetto al minimo $ u \equiv R - R_\text{m} $. Questi sono tutti vettori a $ 3N_n $ componenti, ed infatti i multi-indici spannano $ 3N_n $ possibili valori. \\
 Il legame tra potenziale e moto è dato dalla \textit{matrice delle costanti di forza}:
 \begin{equation}
 	D_{\alpha \beta} \equiv \frac{\pa^2 V_\text{ad}}{\pa R_\alpha \pa R_\beta}
@@ -979,7 +979,7 @@ dove $ U_0 $ è l'energia di punto-zero. A temperatura non-nulla, questa espress
 	\begin{proof}
 		Esplicitando l'energia di punto-zero:
 		\begin{equation*}
-			U_0 = \frac{1}{2} \int_0^{\omega_\text{D}} \dd\omega\, g_s g(\omega) \hbar \omega = \frac{9}{2} \frac{N_n \hbar}{\omega_\text{D}} \int_0^{\omega_\text{D}} \dd\omega\, \omega^3 = \frac{9}{8} N_n \hbar \omega_\text{D} = \frac{9}{8} N_n \hbar v_\text{s} \sqrt[3]{6\pi^2 \frac{N_n}{V}}
+			U_0 = \frac{1}{2} \int_0^{\omega_\text{D}} \dd\omega\, g_s g(\omega) \hbar \omega = \frac{9}{2} \frac{N_n \hbar}{\omega_\text{D}^3} \int_0^{\omega_\text{D}} \dd\omega\, \omega^3 = \frac{9}{8} N_n \hbar \omega_\text{D} = \frac{9}{8} N_n \hbar v_\text{s} \sqrt[3]{6\pi^2 \frac{N_n}{V}}
 		\end{equation*}
 		Dunque, il modulo di bulk vale (usando $ \omega_\text{D} = v_\text{s} \sqrt[3]{6\pi^2 N_n / V} $):
 		\begin{equation*}
