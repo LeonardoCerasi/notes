@@ -367,13 +367,113 @@ Inserting into \eref{eq:mat-el-mand}:
     \abs{\mathcal{M}}^2
     & = \frac{2e^4}{16 E^4} \left[ 4E^2 (E - \abs{\ve{k}} \cos \theta)^2 + 4E^2 (E - \abs{\ve{k}} \cos \theta)^2 + 8 m_\mu^2 E^2 \right] \\
     & = \frac{e^4}{2E^2} \left[ (E - \abs{\ve{k}} \cos \theta)^2 + (E - \abs{\ve{k}} \cos \theta)^2 + 2m_\mu^2 \right] \\
-    & = e^4 \left[ 1 + \frac{\abs{\ve{k}}^2}{E^2} \cos^2 \theta + \frac{m_\mu^2}{E^2} \right] = \left[ 1 + \frac{m_\mu^2}{E^2} + \left( 1 - \frac{m_\mu^2}{E^2} \right) \cos^2 \theta \right]
+    & = e^4 \left[ 1 + \frac{\abs{\ve{k}}^2}{E^2} \cos^2 \theta + \frac{m_\mu^2}{E^2} \right] = e^4 \left[ 1 + \frac{m_\mu^2}{E^2} + \left( 1 - \frac{m_\mu^2}{E^2} \right) \cos^2 \theta \right]
   \end{split}
 \end{equation*}
 
 \subsubsection{Unpolarized cross-section}
 
-In general, the \bctxt{cross-section} generalizes the geometric section of an object in the context of scattering processes.
+The differential cross-section can be computed using \eref{eq:scatt-cr-sec}. In the case of $ e^+ e^- \rightarrow \mu^+ \mu^- $ scattering, the flux factor is:
+\begin{equation*}
+  \Phi \equiv 4 E_{\ve{p}_1} E_{\ve{p}_2} \abs{\frac{\ve{p}_1}{E_{\ve{p}_1}} - \frac{\ve{p}_2}{E_{\ve{p}_2}}} = 4E^2 \abs{\frac{E \hat{\ve{e}}_z}{E} - \frac{-E \hat{\ve{e}}_z}{E}} = 8E^2
+\end{equation*}
+On the other hand, the invariant phase-space measure is:
+\begin{equation*}
+  \dd \Pi_2 = \frac{\dd^3k_1}{(2\pi)^3 2E_{\ve{k}_1}} \frac{\dd^3k_2}{(2\pi)^3 2E_{\ve{k}_2}} (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2)
+\end{equation*}
+Note that $ p_1 + p_2 = (2E, \ve{0}) $, therefore $ \ve{k}_1 = - \ve{k}_2 $, i.e. $ E_{\ve{k}_1} = E_{\ve{k}_2} $, so:
+\begin{equation*}
+    \dd \Pi_2 = \frac{\dd^3k_1}{(2\pi)^2 (2E_{\ve{k}_1})^2} \delta(2E - 2E_{\ve{k}_1}) = \frac{\ve{k}_1^2 \dd k_1 \dd \Omega_2}{16 \pi^2 E_{\ve{k}_1}^2} \delta(2E_{\ve{k}_1} - 2E)
+\end{equation*}
+where $ \dd \Omega_2 $ is the measure on the $ 2 $-sphere\footnotemark.
+
+\footnotetext{In general, $ \mathbb{S}^n $ can be described as a surface embedded in $ \R^{n+1} $, defined by:
+\begin{equation}
+  \sum_{i = 1}^{n+1} x_i^2 = 1
+\end{equation}
+Therefore, $ \mathbb{S}^n $ can be parametrized by \textit{hyperspherical coordinates} $ \{\varphi_1 , \dots, \varphi_{n-1}, \varphi_n\} \subset [0,\pi]^{n-1} \times [0,2\pi) $ as:
+\begin{equation}
+  \begin{split}
+    x_1 &= \cos \varphi_1 \\
+    x_2 &= \sin \varphi_1 \cos \varphi_2 \\
+    x_3 &= \sin \varphi_1 \sin \varphi_2 \cos \varphi_3 \\
+        &\,\,\,\vdots \\
+    x_{n-1} &= \sin \varphi_1 \dots \sin \varphi_{n-2} \cos \varphi_{n-1} \\
+    x_n &= \sin \varphi_1 \dots \sin \varphi_{n-2} \sin \varphi_{n-1} \cos \varphi_n \\
+    x_{n+1} &= \sin \varphi_1 \dots \sin \varphi_{n-2} \sin \varphi_{n-1} \sin \varphi_n
+  \end{split}
+\end{equation}
+It is then possible to define the \textit{hyperspherical measure} on $ \mathbb{S}^n $:
+\begin{equation}
+  \dd \Omega_n \equiv \sin^{n-1} \varphi_1 \sin^{n-2} \varphi_2 \dots \sin^2 \varphi_{n-2} \sin \varphi_{n-1} \, \dd \varphi_1 \dd \varphi_2 \dots \dd \varphi_{n-2} \dd \varphi_{n-1} \dd \varphi_n
+\end{equation}
+}
+
+\begin{lemma}{Scaling property}{del-scal}
+  Given a differentiable $ f : I \subset \R \rightarrow \R $, then:
+  \begin{equation}
+    \delta(f(x)) = \sum_{i \in \mathcal{I}} \frac{\delta(x_i)}{\abs{f'(x_i)}}
+  \end{equation}
+  where $ \{x_i\}_{i \in \mathcal{I}} \subset I : f(x_i) = 0 $ are the roots of $ f $.
+\end{lemma}
+
+Using \lref{lemma:del-scal}, then:
+\begin{equation*}
+  \begin{split}
+    \dd \Pi_2
+    & = \frac{\ve{k}_1^2 \dd k_1 \dd \Omega_2}{16 \pi^2 E_{\ve{k}_1}^2} \delta(2 \sqrt{m_\mu^2 + \ve{k}_1^2} - 2E) = \frac{\ve{k}_1^2 \dd k_1 \dd \Omega_2}{16 \pi^2 E_{\ve{k}_1}^2} \frac{\delta(\abs{\ve{k}_1} - \sqrt{E^2 - m_\mu^2})}{2 \frac{\abs{\ve{k}_1}}{\sqrt{m_\mu^2 + \ve{k}_1^2}}} \\
+    & = \frac{\abs{\ve{k}_1} \dd k_1 \dd \Omega_2}{32 \pi^2 E} \delta(\abs{\ve{k}_1} - \sqrt{E^2 - m_\mu^2})
+  \end{split}
+\end{equation*}
+Integrating over $ \abs{\ve{k}_1} $ and inserting into \eref{eq:scatt-cr-sec} yields a general formula for $ 2 \rightarrow 2 $ scattering:
+\begin{equation}
+  \frac{\dd\sigma}{\dd\Omega_2} = \frac{1}{256\pi^2 E^2} \sqrt{1 - \frac{m_\mu^2}{E^2}} \abs{\mathcal{M}}^2
+\end{equation}
+Inserting the unpolarized matrix element:
+\begin{equation}
+  \frac{\dd\sigma}{\dd\Omega_2} = \frac{e^4}{256\pi^2 E^2} \sqrt{1 - \frac{m_\mu^2}{E^2}} \left[ 1 + \frac{m_\mu^2}{E^2} + \left( 1 - \frac{m_\mu^2}{E^2} \right) \cos^2 \theta \right]
+  \label{eq:unp-cr-sec}
+\end{equation}
+
+\begin{proposition}{Total cross-section}{}
+  The \bcprop{total cross-section} for $ e^+ e^- \rightarrow \mu^+ \mu^- $ scattering is:
+  \begin{equation}
+    \sigma_\text{tot} = \frac{\pi \alpha^2}{3E^2} \sqrt{1 - \frac{m_\mu^2}{E^2}} \left( 1 + \frac{1}{2} \frac{m_\mu^2}{E^2} \right)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Integrating \eref{eq:unp-cr-sec}:
+    \begin{equation*}
+      \begin{split}
+        \sigma_\text{tot}
+        &\defeq \int \dd\Omega_2 \frac{\dd\sigma}{\dd\Omega_2} = \frac{\alpha^2}{16E^2} \sqrt{1 - \frac{m_\mu^2}{E^2}} \int_{0}^{2\pi} \dd\varphi \int_{-1}^{1} \dd \cos \theta \left[ 1 + \frac{m_\mu^2}{E^2} + \left( 1 - \frac{m_\mu^2}{E^2} \right) \cos^2 \theta \right] \\
+        &= \frac{\alpha^2}{16E^2} \sqrt{1 - \frac{m_\mu^2}{E^2}} 2\pi \left[ 2 \left( 1 + \frac{m_\mu^2}{E^2} \right) + \frac{2}{3} \left( 1 - \frac{m_\mu^2}{E^2} \right) \right] = \frac{\pi \alpha^2}{3E^2} \sqrt{1 - \frac{m_\mu^2}{E^2}} \left( 1 + \frac{1}{2} \frac{m_\mu^2}{E^2} \right)
+      \end{split}
+    \end{equation*}
+    where $ \alpha^2 \equiv \frac{e^2}{4\pi} $ was used.
+  \end{proof}
+\end{proofbox}
+
+It is clear that $ \sigma_\text{tot} \propto \frac{\alpha^2}{s} $: the $ \alpha^2 \left( 1 + o(\alpha^2) \right) $ is understood from the structure of the interaction vertex, while the $ s^{-1} $ dependence can be derived from dimensional analysis and requiring $ \sigma_\text{tot} $ to be a scalar.
+
+\subsubsection{Helicity structure}
+
+\begin{proposition}{Helicity eigenstates}{}
+  In the high-energy limit, i.e. $ m \approx 0 $, Dirac spinors $ u,v $ are helicity eigenstates.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:dirac-eq-spinors}, in the high-energy limit $ \slashed{p} u = \slashed{p} v = 0 $, therefore (as $ \gamma^0 \gamma^0 = \tens{I}_4 $):
+    \begin{equation*}
+      \gamma^5 \gamma^0 \bs{\gamma} \cdot \ve{p} u = E \gamma^5 u
+      \qquad
+      \gamma^5 \gamma^0 \bs{\gamma} \cdot \ve{p} v = E \gamma^5 v
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
 
 
 
