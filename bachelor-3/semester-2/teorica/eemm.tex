@@ -114,11 +114,11 @@ This matrix element has explicit dependence on spin states: although not impossi
 Recalling \eref{eq:spinor-sums} and writing spinor indices explicitly, the first half of the matrix element is:
 \begin{multline*}
   \frac{e^4}{4q^4} \sum_{s_1,s_2 = 1,2} \sum_{a,b,c,d = 1}^{4} [\bar{u}^{s_1}(k_1)]_a \gamma^\mu_{ab} [v^{s_2}(k_2)]_b [\bar{v}^{s_2}(k_2)]_c \gamma^\nu_{cd} [u^{s_1}(k_1)]_d \\
-  = \frac{e^4}{4q^4} \sum_{s_1,s_2 = 1,2} \sum_{a,b,c,d = 1}^{4} [\slashed{k}_1 + m_\mu]_{da} \gamma^\mu_{ab} [\slashed{k}_2 - m_\mu]_{bc} \gamma^\nu_{cd} = \frac{e^4}{4q^4} \sum_{s_1,s_2 = 1,2} \tr\{(\slashed{k}_1 + m_\mu) \gamma^\mu (\slashed{k}_2 - m_\mu) \gamma^\nu\}
+  = \frac{e^4}{4q^4} \sum_{a,b,c,d = 1}^{4} [\slashed{k}_1 + m_\mu]_{da} \gamma^\mu_{ab} [\slashed{k}_2 - m_\mu]_{bc} \gamma^\nu_{cd} = \frac{e^4}{4q^4} \tr\{(\slashed{k}_1 + m_\mu) \gamma^\mu (\slashed{k}_2 - m_\mu) \gamma^\nu\}
 \end{multline*}
 The unpolarized matrix element then is:
 \begin{equation}
-  \abs{\mathcal{M}}^2 = \frac{e^4}{4q^4} \sum_{r_1,r_2,s_1,s_2 = 1,2} \tr\{(\slashed{k}_1 + m_\mu) \gamma^\mu (\slashed{k}_2 - m_\mu) \gamma^\nu\} \tr\{(\slashed{p}_1 + m_e) \gamma_\mu (\slashed{p}_2 - m_e) \gamma_\nu\}
+  \abs{\mathcal{M}}^2 = \frac{e^4}{4q^4} \tr\{(\slashed{k}_1 + m_\mu) \gamma^\mu (\slashed{k}_2 - m_\mu) \gamma^\nu\} \tr\{(\slashed{p}_1 + m_e) \gamma_\mu (\slashed{p}_2 - m_e) \gamma_\nu\}
   \label{eq:unp-mat-el-pre}
 \end{equation}
 This approach is general: any QED amplitude involving external fermions can be simplified into traces of products of gamma matrices, when squared and summed/averaged over spin states, hence eliminating explicit dependence on spinors.
@@ -461,30 +461,14 @@ It is clear that $ \sigma_\text{tot} \propto \frac{\alpha^2}{s} $: the $ \alpha^
 \subsubsection{Helicity structure}
 
 \begin{proposition}{Helicity eigenstates}{}
-  In the high-energy limit, i.e. $ m \approx 0 $, Dirac spinors $ u,v $ are helicity eigenstates.
+  In the high-energy limit, i.e. $ m \approx 0 $, chirality eigenstates are helicity eigenstates too:
+  \begin{equation}
+    \hat{h} = \frac{\gamma^5}{2}
+  \end{equation}
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    Recall \eeref{eq:u-spinor-def}{eq:v-spinor-def}. In the high-energy limit $ m = 0 $, i.e. $ \ve{p} = E \hat{\ve{p}} $, so that:
-    \begin{equation*}
-      u(p) = \sqrt{E}
-      \begin{pmatrix}
-        \sqrt{\tens{I}_2 - \hat{\ve{p}} \cdot \bs{\sigma}} \xi \\
-        \sqrt{\tens{I}_2 + \hat{\ve{p}} \cdot \bs{\sigma}} \xi
-      \end{pmatrix}
-      \qquad \qquad
-      v(p) = \sqrt{E}
-      \begin{pmatrix}
-        \sqrt{\tens{I}_2 - \hat{\ve{p}} \cdot \bs{\sigma}} \eta \\
-        - \sqrt{\tens{I}_2 + \hat{\ve{p}} \cdot \bs{\sigma}} \eta
-      \end{pmatrix}
-    \end{equation*}
-
-
-
-
-
     By \eref{eq:dirac-eq-spinors}, in the high-energy limit $ \slashed{p} u = \slashed{p} v = 0 $, therefore (as $ \gamma^0 \gamma^0 = \tens{I}_4 $):
     \begin{equation*}
       \gamma^5 \gamma^0 \bs{\gamma} \cdot \ve{p} u = E \gamma^5 u
@@ -513,14 +497,81 @@ It is clear that $ \sigma_\text{tot} \propto \frac{\alpha^2}{s} $: the $ \alpha^
       \end{bmatrix}
       = \Sigma^i
     \end{equation*}
-    Recalling that the spin operator is $ \ve{S} = \frac{\bs{\Sigma}}{2} $ and that the helicity operator is $ \hat{h} = \ve{S} \cdot \hat{\ve{p}} $, teh above equations are equivalent to:
-    \begin{equation*}
-      \hat{h} u = + \frac{\gamma^5}{2} u
-      \quad \qquad
-      \hat{h} v = - \frac{\gamma^5}{2} v
-    \end{equation*}
+    Recalling that the spin operator is $ \ve{S} = \frac{\bs{\Sigma}}{2} $ and that the helicity operator is $ \hat{h} = \ve{S} \cdot \hat{\ve{p}} $, then by the above equations the helicity operator is proportional to the chirality operator, yielding the thesis.
   \end{proof}
 \end{proofbox}
+
+Recall \eeref{eq:u-spinor-def}{eq:v-spinor-def}. In the high-energy limit $ m = 0 $, i.e. $ \ve{p} = E \hat{\ve{p}} $, so that:
+\begin{equation*}
+  u(p) = \sqrt{E}
+  \begin{pmatrix}
+    \sqrt{\tens{I}_2 - \hat{\ve{p}} \cdot \bs{\sigma}} \xi \\
+    \sqrt{\tens{I}_2 + \hat{\ve{p}} \cdot \bs{\sigma}} \xi
+  \end{pmatrix}
+  \qquad \qquad
+  v(p) = \sqrt{E}
+  \begin{pmatrix}
+    \sqrt{\tens{I}_2 - \hat{\ve{p}} \cdot \bs{\sigma}} \eta \\
+    - \sqrt{\tens{I}_2 + \hat{\ve{p}} \cdot \bs{\sigma}} \eta
+  \end{pmatrix}
+\end{equation*}
+Consider chirality eigenstates $ \xi_\pm : \hat{\ve{p}} \cdot \bs{\sigma} \xi_\pm = \pm \xi_\pm $ and $ \eta_\pm : \hat{\ve{p}} \cdot \bs{\sigma} \eta_\pm = \mp \eta_\pm $, so that:
+\begin{equation*}
+  u_+(p) = \sqrt{2E} \begin{pmatrix} 0 \\ \xi_+ \end{pmatrix}
+  \qquad
+  u_-(p) = \sqrt{2E} \begin{pmatrix} \xi_- \\ 0 \end{pmatrix}
+  \qquad
+  v_+(p) = \sqrt{2E} \begin{pmatrix} \eta_+ \\ 0 \end{pmatrix}
+  \qquad
+  v_+(p) = \sqrt{2E} \begin{pmatrix} 0 \\ -\eta_- \end{pmatrix}
+\end{equation*}
+As $ \gamma^5 u_\pm = \pm u $ and $ \gamma^5 v_\pm = \mp v_\pm $, these are clearly chirality eigenstates\footnote{Recall \lref{lemma:spinor-charge-conj}: as $ \{\gamma^5,\gamma^\mu\} = 0 $, chirality anti-commutes with charge conjugation, therefore antifermions have flipped chirality.}, hence they are helicity eigenstates too:
+\begin{equation}
+  \hat{h} u_\pm = \pm \frac{1}{2} u_\pm
+  \qquad \qquad
+  \hat{h} v_\pm = \mp \frac{1}{2} v_\pm
+  \label{eq:spin-hel-massless}
+\end{equation}
+Given the structure of the interaction vertex $ e \bar{\Psi} \gamma^\mu \Psi $, the $ f $ and $ \bar{f} $ which interact at a vertex have the same chirality:
+\begin{equation*}
+  \bar{\Psi} \gamma^\mu \Psi' =
+  \begin{pmatrix}
+    \psi_\text{L}\dg & \psi_\text{R}\dg
+  \end{pmatrix}
+  \begin{bmatrix}
+    0 & \tens{I}_2 \\
+    \tens{I}_2 & 0
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 & \sigma^\mu \\
+    \bar{\sigma}^\mu & 0
+  \end{bmatrix}
+  \begin{pmatrix}
+    \psi_\text{L}' \\
+    \psi_\text{R}'
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \psi_\text{L}\dg \bar{\sigma}^\mu \psi_\text{L}' \\
+    \psi_\text{R}\dg \sigma^\mu \psi_\text{R}'
+  \end{pmatrix}
+\end{equation*}
+which vanishes if $ f $ and $ \bar{f} $ have opposite chirality. This means that $ f $ and $ \bar{f} $ have opposite helicities, as per \eref{eq:spin-hel-massless}, i.e. parallel spins. In the case of $ e^+ e^- \rightarrow \mu^+ \mu^- $ scattering, in the center-of-mass frame the $ e^+ e^- $ pair must then annihilate in a photon with spin projection $ \pm 1 $ along the $ \hat{\ve{e}}_z $ axis, while the $ \mu^+ \mu^- $ pair must be created by a photon with spin projection $ \pm 1 $ along the $ \hat{\ve{k}} = (\sin \theta , 0 , \cos \theta) $ axis ($ \hat{\ve{e}}_y $ chosen such that $ \hat{\ve{e}}_y \cdot \ve{k} = 0 $). Recalling \eref{eq:circ-pol-vec}, there are two possible choices for the polarization vector of each photon:
+\begin{equation*}
+  \epsilon^\mu_\text{in} = \frac{1}{\sqrt{2}} (0, 1, \pm i, 0)
+  \qquad \qquad
+  \epsilon^\mu_\text{out} = \frac{1}{\sqrt{2}} (0, \cos \theta, \pm i, -\sin \theta)
+\end{equation*}
+where $ \pm $ denotes a right/left-handed photon (i.e. $ h = \pm 1 $).
+The matrix element is proportional to the overlap between these polarization vectors, which is:
+\begin{equation*}
+  \epsilon^\mu_\text{in} {\epsilon_\text{out}}_\mu = \frac{1}{2} \left( \pm_\text{in} \pm_\text{out} 1 - \cos \theta \right)
+\end{equation*}
+The amplitude is then proportional to the sum of the four possible square moduli:
+\begin{equation}
+  \abs{\mathcal{M}}^2 \propto \sum \abs{\epsilon^\mu_\text{in} {\epsilon_\text{out}}_\mu}^2 \propto \left( 1 + \cos \theta \right)^2 + \left( 1 - \cos \theta \right)^2 = \left( 1 + \cos^2 \theta \right)
+\end{equation}
+Therefore, also the angular dependence of the cross-section is fixed a priori by symmetry considerations.
 
 
 
