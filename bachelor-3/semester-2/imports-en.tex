@@ -369,9 +369,6 @@
   borderline west = {1pt}{0pt}{black!70},%
 }
 
-% hyper-references
-\usepackage{hyperref}
-
 % custom references
 \newcommand{\eref}[1]{\textsf{Eq.\,\ref{#1}}}
 \newcommand{\eeref}[2]{\textsf{Eq.\,\ref{#1}-\ref{#2}}}
@@ -383,6 +380,21 @@
 \newcommand{\exref}[1]{\textsf{Ex.\,\ref{#1}}}
 
 \newcommand{\secref}[1]{\textcolor{red!70!black}{\textsf{§\ref{#1}}}}
+
+% hyper-references
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = cyan,
+  % linkcolor defined directly in \toc environment
+  citecolor = green!70!black,
+}
+
+\newcommand{\toc}{%
+  \hypersetup{linkcolor = black}%
+  \tableofcontents%
+  \hypersetup{linkcolor = red!70!black}%
+}
 
 % extended integral symbols
 \usepackage{esint}
