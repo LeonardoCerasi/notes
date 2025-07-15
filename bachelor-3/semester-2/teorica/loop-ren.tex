@@ -1,0 +1,301 @@
+\selectlanguage{english}
+
+As already noted in \secref{sssec-div}, the computation of Next-to-Leading Order (NLO) corrections often produces diverging amplitudes. However, this seems to be a consequence of Heisenberg's principle, implying that a quantum field theory cannot be valid at all energy scales at once.
+
+\section{Loop diagrams}
+
+\subsection{Loops in \texorpdfstring{$ \lambda \phi^4 $}{λφ4}-theory}
+
+Consider $ \lambda \phi^4 $-theory and compute the scattering cross-section for $ \phi \phi \rightarrow \phi \phi $ at LO:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, dot] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar, momentum = \(p_1\)] (c2),
+        (b1) -- [scalar, momentum' = \(p_2\)] (c2),
+        (c2) -- [scalar, momentum = \(p_3\)] (a2),
+        (c2) -- [scalar, momentum' = \(p_4\)] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad \Rightarrow \qquad
+  \dd \sigma^\text{LO} = \frac{1}{\Phi} \frac{\dd^3p_3}{(2\pi)^3 2E_{p_3}} \frac{\dd^3p_4}{(2\pi)^4 2E_{p_4}} (2\pi)^4 \delta^{(4)}(p_1 + p_2 - p_3 - p_4) \lambda^2
+\end{equation*}
+In the CM frame:
+\begin{equation*}
+  p_1 = (E, 0, 0, p)
+  \quad
+  p_2 = (E, 0, 0, -p)
+  \qquad
+  p_3 = (E, p \sin \theta, 0, p \cos \theta)
+  \quad
+  p_4 = (E, -p \sin \theta, 0, - p \cos \theta)
+\end{equation*}
+\begin{equation*}
+  s = 4E^2
+  \qquad
+  t = -2p^2 (1 + \cos \theta)
+  \qquad
+  u = -2p^2 (1 - \cos \theta)
+\end{equation*}
+with flux factor $ \Phi = 8pE $. Then the cross-section becomes:
+\begin{equation*}
+  \dd \sigma^\text{LO} = \frac{\lambda^2}{8pE} \frac{\dd^3p_3}{(2\pi)^2 (2E_{p_3})^2} \delta(2E - 2\sqrt{p_3^2 + m^2}) = \frac{\lambda^2}{8pE} \frac{p_3 \dd p_3 \dd \Omega_2}{(2\pi)^2 4E_{p_3}} \delta(E_{p_3} - E) = \frac{\lambda^2}{8pE} \frac{p}{16\pi E} \dd \cos \theta
+\end{equation*}
+Therefore, there's no angular dependence:
+\begin{equation}
+  \frac{\dd \sigma^\text{LO}}{\dd \cos \theta} = \frac{\lambda^2}{128 \pi} \frac{1}{E^2}
+\end{equation}
+Now, consider the NLO corrections to this cross-section, i.e. the 1-loop corrections (the only possible in $ \lambda \phi^4 $-theory):
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, blob] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar, momentum = \(p_1\)] (c2),
+        (b1) -- [scalar, momentum' = \(p_2\)] (c2),
+        (c2) -- [scalar, momentum = \(p_3\)] (a2),
+        (c2) -- [scalar, momentum' = \(p_4\)] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, dot] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar, momentum = \(p_1\)] (c2),
+        (b1) -- [scalar, momentum' = \(p_2\)] (c2),
+        (c2) -- [scalar, momentum = \(p_3\)] (a2),
+        (c2) -- [scalar, momentum' = \(p_4\)] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \smo(\lambda^2) \equiv -i \lambda F(s,t)
+\end{equation*}
+where $ F(s,t) $ is called \bctxt{form factor}.
+
+\begin{proposition}{Form factor}{}
+  In $ \lambda \phi^4 $-theory, the form factor at NLO is:
+  \begin{equation}
+    F(s,t) = 1 - i\lambda \left( V(s) + V(t) + V(u) \right) + \smo(\lambda^2)
+  \end{equation}
+  with:
+  \begin{equation}
+    V(p^2) \defeq \frac{1}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{i}{k^2 - m^2} \frac{i}{(p + k)^2 - m^2}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The NLO correction to the scattering amplitude is given by three loop diagrams:
+    \begin{equation*}
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex (x1) {};
+          \vertex[below=3em of x1] (p1) {};
+          \vertex[below=3em of p1] (x2) {};
+
+          \vertex[right=3em of p1, dot] (v1) {};
+          \vertex[right=5em of v1, dot] (v2) {};
+
+          \vertex[right=3em of v2] (p2) {};
+          \vertex[above=3em of p2] (x3) {};
+          \vertex[below=3em of p2] (x4) {};
+
+          \vertex[above=0.5em of v1] (r) {};
+
+          \diagram* {
+            (x1) -- [scalar, momentum = \(p_1\)] (v1),
+            (x2) -- [scalar, momentum' = \(p_2\)] (v1),
+            (v2) -- [scalar, momentum = \(p_3\)] (x3),
+            (v2) -- [scalar, momentum' = \(p_4\)] (x4),
+
+            (v1) -- [scalar, half left, momentum' = \(p'\)] (v2),
+            (v2) -- [scalar, half left, momentum' = \(p\)] (v1),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \qquad
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex (x1) {};
+          \vertex[right=4em of x1] (p1) {};
+          \vertex[right=4em of p1] (x3) {};
+
+          \vertex[below=2em of p1, dot] (v1) {};
+          \vertex[below=5em of v1, dot] (v2) {};
+
+          \vertex[below=9em of x1] (x2) {};
+          \vertex[below=9em of x3] (x4) {};
+
+          \vertex[below=2em of v1] (r) {};
+
+          \diagram* {
+            (x1) -- [scalar, momentum = \(p_1\)] (v1) -- [scalar, momentum = \(p_3\)] (x3),
+            (x2) -- [scalar, momentum' = \(p_2\)] (v2) -- [scalar, momentum' = \(p_4\)] (x4),
+
+            (v1) -- [scalar, half left, momentum = \(p + p_1 - p_3\)] (v2),
+            (v2) -- [scalar, half left, momentum = \(p\)] (v1),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \qquad
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex (x1) {};
+          \vertex[right=4em of x1] (p1) {};
+          \vertex[right=4em of p1] (x3) {};
+
+          \vertex[below=2em of p1, dot] (v1) {};
+          \vertex[below=5em of v1, dot] (v2) {};
+
+         \vertex[below=9em of x1] (x2) {};
+          \vertex[below=9em of x3] (x4) {};
+
+          \vertex[below=2em of v1] (r) {};
+
+          \diagram* {
+            (x1) -- [scalar, momentum = \(p_1\)] (v1) -- [scalar, momentum = \(p_4\)] (x3),
+            (x2) -- [scalar, momentum' = \(p_2\)] (v2) -- [scalar, momentum' = \(p_3\)] (x4),
+
+            (v1) -- [scalar, half left, momentum = \(p + p_1 - p_4\)] (v2),
+            (v2) -- [scalar, half left, momentum = \(p\)] (v1),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+    \end{equation*}
+    with $ p' = p_1 + p_2 + p $. These correspond to loop diagrams in the $ s $, $ t $ and $ u $ channels, therefore, recalling \eref{eq:f4-loop-ampl}, the thesis is trivially found.
+  \end{proof}
+\end{proofbox}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Feynman parameters}{}
+  \begin{equation}
+    \frac{1}{AB} = \int_0^1 \dd x \frac{1}{\left( x A + (1-x) B \right)^2}  
+  \end{equation}
+\end{lemma}
+
+This allows to rewrite $ V(p^2) $:
+\begin{equation*}
+  V(p^2) = - \frac{1}{2} \int \frac{\dd^4k}{(2\pi)^4} \int_0^1 \dd x \left[ k^2 - m^2 + x \left( 2 k \cdot p + p^2 \right) \right]^{-2} \equiv - \frac{1}{2} \int_0^1 \dd x \int \frac{\dd^4\ell}{(2\pi)^4} \frac{1}{\left( \ell^2 - M^2 \right)^2}
+\end{equation*}
+having defined:
+\begin{equation}
+  \ell \equiv k + x p
+  \qquad \qquad
+  M^2 \equiv m^2 - x (1-x) p^2
+\end{equation}
+
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    I_d(n) \equiv \int \frac{\dd^dk}{(2\pi)^d} \frac{1}{(k^2 - M^2 + i\epsilon)^n} = \frac{i (-1)^n}{(4\pi)^{d/2}} \frac{\Gamma(n - \frac{d}{2})}{\Gamma(n)} \left( \frac{1}{M^2} \right)^{n - d/2}
+    \label{eq:int-dn}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    The poles of the integrand function are $ k_0 = \pm \left[ \sqrt{M^2 + \ve{k}^2} - i\epsilon \right] $, therefore the integration path $ I = \R $ can be rotated counterclockwise by $ \frac{\pi}{2} $ without overlapping with any pole. The resulting Wick rotation $ k_0 \mapsto i k_0 $, i.e. $ k \mapsto k_\text{E} $ implies $ k_E \in \R $, therefore the $ d $-dimensional integral in Minkowskian metric becomes a $ d $-dimensional integral with (negative) Euclidean metric:
+    \begin{equation*}
+      I_d(n) = i (-1)^n \int \frac{\dd^dk_\text{E}}{(2\pi)^d} \frac{1}{(k_\text{E}^2 + M^2 - i\epsilon)^n} = i (-1)^n \int_{\mathbb{S}^d} \dd \Omega_d \int_{\R^+} \dd k_\text{E} \frac{k_\text{E}^{d-1}}{(k_\text{E}^2 + M^2)^n}
+    \end{equation*}
+    It can be shown that:
+    \begin{equation}
+      \int_{\R^+} \dd k_\text{E} \frac{k_\text{E}^{d-1}}{(k_\text{E}^2 + M^2)^n} = \frac{1}{2} \frac{\Gamma(n - \frac{d}{2}) \Gamma(\frac{d}{2})}{\Gamma(n)} \left( \frac{1}{M^2} \right)^{n - \frac{d}{2}}
+    \end{equation}
+    Inserting \eref{eq:solid-angle} yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+\eref{eq:int-dn} diverges for $ (d,n) = (4,2) $, as $ \Gamma(z) = \frac{1}{z} - \gamma_\text{E} + o(z) $, therefore a cutoff needs to be introduced to regularize the integral:
+\begin{equation*}
+  \begin{split}
+    V(p^2)
+    & = \lim_{\Lambda \rightarrow \infty} \frac{-i}{2} \int_0^1 \dd x \int_0^\Lambda \frac{\dd k_\text{E}}{8\pi^2} \frac{k_\text{E}^3}{(k_\text{E}^2 + M^2)^2} = \lim_{\Lambda \rightarrow \infty} \frac{-i}{2} \int_0^1 \dd x \int_{M^2}^{\Lambda^2 + M^2} \frac{\dd \rho}{16\pi^2} \frac{\rho - M^2}{\rho^2} \\
+    & = \lim_{\Lambda \rightarrow \infty} \frac{-i}{32 \pi^2} \int_0^1 \dd x \left[ \log \left( 1 + \frac{\Lambda^2}{M^2} \right) - \frac{\Lambda^2}{\Lambda^2 + M^2} \right] \\
+    & = \lim_{\Lambda \rightarrow \infty} \frac{-i}{32\pi^2} \int_0^1 \dd x \left[ \log \frac{\Lambda^2}{M^2} - 1 + \smo  \left( \frac{M^2}{\Lambda^2} \right) \right]
+  \end{split}
+\end{equation*}
+The form factor can then be rewritten as:
+\begin{equation}
+  F(s,t) = 1 + \frac{\lambda}{32\pi^2} \left[ 3 + \lim_{\Lambda \rightarrow \infty} \int_0^1 \dd x \left( \log \frac{M^2(s)}{\Lambda^2} + \log \frac{M^2(t)}{\Lambda^2} + \log \frac{M^2(u)}{\Lambda^2} \right) \right] + \smo(\lambda^2)
+  \label{eq:form-factor}
+\end{equation}
+Now, define the threshold values $ s_0 \equiv 4m^2 $, $ t_0 = u_0 \equiv 0 $. The \bctxt{physical coupling constant} $ \lambda_\text{phys} $ is defined as:
+\begin{equation}
+  \frac{\dd \sigma}{\dd \cos \theta}\bigg\vert_{s_0 , t_0} = \frac{\lambda_\text{phys}^2}{128\pi m^2}
+\end{equation}
+which is linked to the \bctxt{bare coupling constant} $ \lambda_\text{bare} \equiv \lambda $ by:
+\begin{equation}
+  \lambda_\text{bare} F(s_0,t_0) = \lambda_\text{phys}
+  \label{eq:bare-phys-def}
+\end{equation}
+
+\begin{proposition}{Bare and physical coupling}{}
+  The NLO form factor can be expressed as:
+  \begin{equation}
+    \lambda F(s,t) = \lambda_\text{phys} \left[ 1 - \frac{\lambda_\text{phys}}{32\pi^2} \int_0^1 \dd x \left( \log \frac{M^2(s)}{M^2(s_0)} + \log \frac{M^2(t)}{M^2(t_0)} + \log \frac{M^2(u)}{M^2(u_0)} \right) \right] + \smo(\lambda_\text{phys}^3)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:bare-phys-def}:
+    \begin{equation*}
+      \lambda_\text{phys} = \lambda (1 - c_0 \lambda) + \smo(\lambda^3)
+      \qquad \Leftrightarrow \qquad
+      \lambda = \lambda_\text{phys} (1 + c_0 \lambda_\text{phys}) + \smo(\lambda_\text{phys}^3)
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \lambda (1 - c \lambda) = \lambda_\text{phys} (1 + c_0 \lambda_\text{phys}) (1 - c \lambda_\text{phys}) + \smo(\lambda_\text{phys}^3) = \lambda_\text{phys} (1 - (c - c_0) \lambda_\text{phys}) + \smo(\lambda_\text{phys}^3)
+    \end{equation*}
+    Inserting \eref{eq:form-factor} yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+Expressing $ \lambda_\text{bare} $ as a function of $ \lambda_\text{phys} $ eliminates the divergence regularized by the cutoff, which is absorbed into $ \lambda_\text{phys} $, which is the observable coupling constant. Note that the choice of $ s_0 $ and $ t_0 $ to define $ \lambda_\text{phys} $ is purely conventional: a more useful choice is imposing:
+\begin{equation}
+  M^2(s_0) = M^2(t_0) = M^2(u_0) = \mu^2
+\end{equation}
+It is important to stress the difference between $ \Lambda $ and $ \mu $: $ \Lambda $ is a \bctxt{regularization scale}, introduced to regularize diverging loop integrals, while $ \mu $ is a \bctxt{renormalization scale}, introduced to eliminate the $ \Lambda $-depedence. Both scales are arbitrary, hence physical observables cannot depend on any of them: this means that the explicit $ \mu $-dependence of $ F(s,t) $ must cancel the implicit $ \mu $-dependence of $ \lambda $, so that $ \lambda_\text{phys} $. \\
+The infinities which cancel expressing $ F(s,t) $ in terms of $ \lambda_\text{phys} $ are explicit when expressing $ \lambda_\text{bare} = \lambda_\text{bare}(\lambda_\text{phys}) $. In fact:
+\begin{equation*}
+  \lambda_\text{phys} = \lambda_\text{bare} \left[ 1 + \frac{3\lambda_\text{bare}}{32\pi^2} \left( 1 + \log \frac{\mu^2}{\Lambda^2} \right) \right]
+\end{equation*}
+Thus, choosing $ \mu^2 \propto \Lambda^2 $, it is possible to express $ \lambda_\text{phys} $ as a limit of $ \lambda_\text{bare} $, and eventually $ \lambda_\text{phys} = \lambda_\text{bare} $: the bare coupling constant is the physical coupling at the scale $ \Lambda \rightarrow \infty $ (infinitely-small distances), i.e. including the fluctuations at all scales. Due to Heisenberg's principle, then, $ \lambda_\text{bare} $ is expected to diverge: excitations of the fields in momentum space are defined as normal coordinates of the system in position space, i.e. $ p \sim \pa_x \phi \sim \frac{1}{\Delta x} $, which diverges as $ \Delta x \rightarrow 0 $ (as $ \Lambda \rightarrow \infty $).
+
+
+
+
+
+
+
+
+
+

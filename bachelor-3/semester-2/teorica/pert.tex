@@ -1063,7 +1063,7 @@ The first non-trivial contribution is that at $ o(\lambda) $. The numerator of \
 \begin{equation*}
   \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left( - i \frac{\lambda}{4!} \right) \int \dd^4x \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x)\} | 0}
 \end{equation*}
-The only non-vanishing contribution is the fully-contracted term:
+The only non-vanishing contribution is the fully-contracted term (note the dashed lines representing scalar particles):
 \begin{equation*}
   \braket{0 | \wick{\c1\phi(x_1) \c2\phi(x_2) \c3\phi(x_3) \c4\phi(x_4) \c1\phi(x) \c2\phi(x) \c3\phi(x) \c4\phi(x)} | 0}
   \quad = \quad
@@ -1084,8 +1084,8 @@ The only non-vanishing contribution is the fully-contracted term:
       \vertex[below=1.1em of a1] (r);
 
       \diagram* {
-        (a1) [dot] -- (b2) [dot],
-        (b1) [dot] -- (a2) [dot],
+        (a1) [dot] -- [scalar] (b2) [dot],
+        (b1) [dot] -- [scalar] (a2) [dot],
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1121,8 +1121,8 @@ There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to
       \vertex[below=1.1em of a1] (r);
 
       \diagram* {
-        (a1) [dot] -- (b2) [dot],
-        (b1) [dot] -- (a2) [dot],
+        (a1) [dot] -- [scalar] (b2) [dot],
+        (b1) [dot] -- [scalar] (a2) [dot],
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1148,11 +1148,11 @@ There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to
       \vertex[below=1.1em of a1] (r);
 
       \diagram* {
-        (a1) [dot] -- (b2) [dot],
-        (b1) [dot] -- (a2) [dot],
+        (a1) [dot] -- [scalar] (b2) [dot],
+        (b1) [dot] -- [scalar] (a2) [dot],
 
-        (d1) -- [half right] (d2) -- [half right] (d1),
-        (d1) -- [half left] (d3) -- [half left] (d1),
+        (d1) -- [scalar, half right] (d2) -- [scalar, half right] (d1),
+        (d1) -- [scalar, half left] (d3) -- [scalar, half left] (d1),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1180,12 +1180,12 @@ There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to
       \vertex[below=1.1em of a1] (r);
 
       \diagram* {
-        (a1) [dot] -- (b2) [dot],
-        (b1) [dot] -- (a2) [dot],
+        (a1) [dot] -- [scalar] (b2) [dot],
+        (b1) [dot] -- [scalar] (a2) [dot],
 
-        (d1) -- [half right] (d2) -- [half right] (d1),
-        (d1) -- [half left] (d3) -- [half left] (d1),
-        (d2) -- [half right] (d4) -- [half right] (d2),
+        (d1) -- [scalar, half right] (d2) -- [scalar, half right] (d1),
+        (d1) -- [scalar, half left] (d3) -- [scalar, half left] (d1),
+        (d2) -- [scalar, half right] (d4) -- [scalar, half right] (d2),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1210,8 +1210,8 @@ There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to
       \vertex[below=1.1em of a1] (r);
 
       \diagram* {
-        (a1) [dot] -- (b2) [dot],
-        (b1) [dot] -- (a2) [dot],
+        (a1) [dot] -- [scalar] (b2) [dot],
+        (b1) [dot] -- [scalar] (a2) [dot],
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1225,8 +1225,8 @@ There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to
       \vertex[below=0.3em of d1] (r);
 
       \diagram* {
-        (d1) -- [half right] (d2) -- [half right] (d1),
-        (d1) -- [half left] (d3) -- [half left] (d1),
+        (d1) -- [scalar, half right] (d2) -- [scalar, half right] (d1),
+        (d1) -- [scalar, half left] (d3) -- [scalar, half left] (d1),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1242,9 +1242,9 @@ There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to
       \vertex[below=0.3em of d0] (r);
 
       \diagram* {
-        (d1) -- [half right] (d2) -- [half right] (d1),
-        (d1) -- [half left] (d3) -- [half left] (d1),
-        (d2) -- [half right] (d4) -- [half right] (d2),
+        (d1) -- [scalar, half right] (d2) -- [scalar, half right] (d1),
+        (d1) -- [scalar, half left] (d3) -- [scalar, half left] (d1),
+        (d2) -- [scalar, half right] (d4) -- [scalar, half right] (d2),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1310,9 +1310,9 @@ In order to obtain a fully connected diagrams, there needs to be a contraction $
       \vertex[below=0.3em of x] (r) {};
 
       \diagram* {
-        (x1) -- (x) -- (y) -- (x3),
-        (x2) -- (x),
-        (y) -- (x4),
+        (x1) -- [scalar] (x) -- [scalar] (y) -- [scalar] (x3),
+        (x2) -- [scalar] (x),
+        (y) -- [scalar] (x4),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1341,9 +1341,9 @@ In order to obtain a fully connected diagrams, there needs to be a contraction $
       \vertex[above=0.7em of x] (r) {};
 
       \diagram* {
-        (x1) -- (y) -- (x3),
-        (x) -- (y),
-        (x2) -- (x) -- (x4),
+        (x1) -- [scalar] (y) -- [scalar] (x3),
+        (x) -- [scalar] (y),
+        (x2) -- [scalar] (x) -- [scalar] (x4),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1379,9 +1379,9 @@ It is useful to work in momentum space, rather than coordinate space. For exampl
       \vertex[below=0.3em of x] (r) {};
 
       \diagram* {
-        (x1) -- [momentum = \(p_1\)] (x) -- [momentum = \(p_1 + p_2\)] (y) -- [momentum = \(k_1\)] (x3),
-        (x2) -- [momentum' = \(p_2\)] (x),
-        (y) -- [momentum' = \(k_2\)] (x4),
+        (x1) -- [scalar, momentum = \(p_1\)] (x) -- [scalar, momentum = \(p_1 + p_2\)] (y) -- [scalar, momentum = \(k_1\)] (x3),
+        (x2) -- [scalar, momentum' = \(p_2\)] (x),
+        (y) -- [scalar, momentum' = \(k_2\)] (x4),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1401,9 +1401,9 @@ It is useful to work in momentum space, rather than coordinate space. For exampl
       \vertex[above=1.7em of x] (r) {};
 
       \diagram* {
-        (x1) -- [momentum = \(p_1\)] (y) -- [momentum' = \(k_1\)] (x3),
-        (x) -- [momentum = \(p_2 - k_2\)] (y),
-        (x2) -- [momentum' = \(p_2\)] (x) -- [momentum = \(k_2\)] (x4),
+        (x1) -- [scalar, momentum = \(p_1\)] (y) -- [scalar, momentum' = \(k_1\)] (x3),
+        (x) -- [scalar, momentum = \(p_2 - k_2\)] (y),
+        (x2) -- [scalar, momentum' = \(p_2\)] (x) -- [scalar, momentum = \(k_2\)] (x4),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1452,13 +1452,13 @@ There are three possible inequivalent full contractions, associated to the conne
       \vertex[above=0.5em of v1] (r) {};
 
       \diagram* {
-        (x1) -- [momentum = \(p_1\)] (v1),
-        (x2) -- [momentum' = \(p_2\)] (v1),
-        (v2) -- [momentum = \(k_1\)] (x3),
-        (v2) -- [momentum' = \(k_2\)] (x4),
+        (x1) -- [scalar, momentum = \(p_1\)] (v1),
+        (x2) -- [scalar, momentum' = \(p_2\)] (v1),
+        (v2) -- [scalar, momentum = \(k_1\)] (x3),
+        (v2) -- [scalar, momentum' = \(k_2\)] (x4),
 
-        (v1) -- [half left, momentum' = \(p\)] (v2),
-        (v2) -- [half left, momentum' = \(p'\)] (v1),
+        (v1) -- [scalar, half left, momentum' = \(p'\)] (v2),
+        (v2) -- [scalar, half left, momentum' = \(p\)] (v1),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1478,11 +1478,11 @@ There are three possible inequivalent full contractions, associated to the conne
       \vertex[below=2em of v1] (r) {};
 
       \diagram* {
-        (x1) -- [momentum = \(p_1\)] (v1) -- [momentum = \(k_1\)] (x3),
-        (x2) -- [momentum' = \(p_2\)] (v2) -- [momentum' = \(k_2\)] (x4),
+        (x1) -- [scalar, momentum = \(p_1\)] (v1) -- [scalar, momentum = \(k_1\)] (x3),
+        (x2) -- [scalar, momentum' = \(p_2\)] (v2) -- [scalar, momentum' = \(k_2\)] (x4),
 
-        (v1) -- [half left, momentum = \(p\)] (v2),
-        (v2) -- [half left, momentum = \(p + k_1 - p_1\)] (v1),
+        (v1) -- [scalar, half left, momentum = \(p + p_1 - k_1\)] (v2),
+        (v2) -- [scalar, half left, momentum = \(p\)] (v1),
       };
     \end{feynman}
   \end{tikzpicture}
@@ -1502,27 +1502,27 @@ There are three possible inequivalent full contractions, associated to the conne
       \vertex[below=2em of v1] (r) {};
 
       \diagram* {
-        (x1) -- [momentum = \(p_1\)] (v1) -- [momentum = \(k_2\)] (x3),
-        (x2) -- [momentum' = \(p_2\)] (v2) -- [momentum' = \(k_1\)] (x4),
+        (x1) -- [scalar, momentum = \(p_1\)] (v1) -- [scalar, momentum = \(k_2\)] (x3),
+        (x2) -- [scalar, momentum' = \(p_2\)] (v2) -- [scalar, momentum' = \(k_1\)] (x4),
 
-        (v1) -- [half left, momentum = \(p\)] (v2),
-        (v2) -- [half left, momentum = \(p + k_2 - p_1\)] (v1),
+        (v1) -- [scalar, half left, momentum = \(p + p_1 - k_2\)] (v2),
+        (v2) -- [scalar, half left, momentum = \(p\)] (v1),
       };
     \end{feynman}
   \end{tikzpicture}
 \end{equation*}
-with $ p' = p_1 + p_2 - p $. It is clear that energy conservation does not completely fix momenta of internal lines, and in particular of loops.
-Consider for example the first diagram: it is obtained contracting $ \phi(x_1) $ and $ \phi(x_2) $ with two $ \phi(x) $ ($ 4 \cdot 3 $ ways), $ \phi(x_3) $ and $ \phi(x_4) $ with two $ \phi(y) $ ($ 4 \cdot 3 $ ways) and two $ \phi(x) $ with two $ \phi(y) $ ($ 2 $ ways), so, considering another $ 2 $ factor for $ x \leftrightarrow y $ symmetry, this diagram has symmetry number $ S = (4!)^2 $. The resulting contribution is:
+with $ p' = p_1 + p_2 + p $. It is clear that energy conservation does not completely fix momenta of internal lines, and in particular of loops.
+Consider for example the first diagram: it is obtained contracting $ \phi(x_1) $ and $ \phi(x_2) $ with two $ \phi(x) $ ($ 4 \cdot 3 $ ways), $ \phi(x_3) $ and $ \phi(x_4) $ with two $ \phi(y) $ ($ 4 \cdot 3 $ ways) and two $ \phi(x) $ with two $ \phi(y) $ ($ 2 $ ways), so, considering another $ 2 $ factor for $ x \leftrightarrow y $ symmetry, this diagram has symmetry number $ S = (4!)^2 $. The resulting contribution is (with $ x_1^{(0)} = x_2^{(0)} \equiv x $ and $ x_3^{(0)} = x_4^{(0)} \equiv y $):
 \begin{equation*}
   \begin{split}
-    & \frac{(-i \lambda)^2}{2} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \int \dd^4x \dd^4y D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x) \\
-    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D^2(x - y) \\
-    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \int \frac{\dd^4k}{(2\pi)^4} \tilde{D}_\text{F}(k) \tilde{D}_\text{F}(p_1 + p_2 - k)
+    & \frac{(-i \lambda)^2}{2} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_2}_\mu x_4^\mu)} \int \dd^4x \dd^4y \prod_{i = 1}^4 D_\text{F}(x_i - x_i^{(0)}) D_\text{F}(x - y) D_\text{F}(y - x) \\
+    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D_\text{F}^2(x - y) \\
+    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \int \frac{\dd^4k}{(2\pi)^4} \tilde{D}_\text{F}(k) \tilde{D}_\text{F}(p_1 + p_2 + k)
   \end{split}
 \end{equation*}
 Therefore, the additional feature of loop integrals is the integration over unfixed momenta, assigning the right propagators to each internal line. It is possible to define the \bctxt{loop-amplitude} for $ \lambda \phi^4 $-theory:
 \begin{equation}
-  \mathcal{A}(p) \defeq \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{i}{k^2 - m^2 + i \epsilon} \frac{i}{(p - k)^2 - m^2 + i \epsilon}
+  \mathcal{A}(p) \defeq \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{i}{k^2 - m^2 + i \epsilon} \frac{i}{(p + k)^2 - m^2 + i \epsilon}
   \label{eq:f4-loop-ampl}
 \end{equation}
 so that the $ 2 \rightarrow 2 $ scattering amplitude at one-loop level (i.e. $ o(\lambda^2) $) is:
@@ -1531,8 +1531,9 @@ so that the $ 2 \rightarrow 2 $ scattering amplitude at one-loop level (i.e. $ o
 \end{equation}
 
 \subsubsection{Divergences}
+\label{sssec-div}
 
-The integral in \eref{eq:f4-loop-ampl} diverges at large $ k $, which is an example of \bctxt{UV divergence}. To study this divergence, first of all note that $ (p - k)^2 \rightarrow k^2 $ as $ k \rightarrow \infty $, so that it is safe to set $ p = 0 $. Due to the $ i\epsilon $-presciption, in the complex $ k^0 $-plane the pole in $ k^0 > 0 $ is below the real axis, while that in $ k^0 < 0 $ is above it: the integration path can then be rotated counterclockwise from the real axis to the imaginary axis by $ k^0 \mapsto i k^0 $, which is called a \bctxt{Wick rotation}. The amplitude then becomes:
+The integral in \eref{eq:f4-loop-ampl} diverges at large $ k $, which is an example of \bctxt{UV divergence}. To study this divergence, first of all note that $ (p + k)^2 \rightarrow k^2 $ as $ k \rightarrow \infty $, so that it is safe to set $ p = 0 $. Due to the $ i\epsilon $-presciption, in the complex $ k^0 $-plane the pole in $ k^0 > 0 $ is below the real axis, while that in $ k^0 < 0 $ is above it: the integration path can then be rotated counterclockwise from the real axis to the imaginary axis by $ k^0 \mapsto i k^0 $, which is called a \bctxt{Wick rotation}. The amplitude then becomes:
 \begin{equation*}
     \mathcal{A}(0) = \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \left( \frac{i}{k^2 - m^2 + i\epsilon} \right)^2 \mapsto i \frac{\lambda^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{(k^2 + m^2)^2}
 \end{equation*}
@@ -1565,14 +1566,14 @@ Another example of loop divergence in $ \lambda \phi^4 $-theory is that associat
       \vertex[below=0.2em of v1] (r) {};
 
       \diagram* {
-        (x1) -- [momentum' = \(p\)] (v1) -- [momentum' = \(p\)] (x2),
-        (v1) -- [half left, momentum' = \(k\)] (v2),
-        (v2) -- [half left, momentum' = \(k\)] (v1),
+        (x1) -- [scalar, momentum' = \(p\)] (v1) -- [scalar, momentum' = \(p\)] (x2),
+        (v1) -- [scalar, half left, momentum' = \(k\)] (v2),
+        (v2) -- [scalar, half left, momentum' = \(k\)] (v1),
       };
     \end{feynman}
   \end{tikzpicture}
 \end{equation*}
-This diagram is typically called a \bctxt{tadpole}. Its contribution can be computed in momentum performing a Wick rotation:
+This diagram is typically called a \bctxt{tadpole}. Its contribution can be computed in momentum space performing a Wick rotation:
 \begin{equation}
   -i B \equiv \frac{-i \lambda}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{k^2 + m^2} = - i \frac{\lambda}{32\pi^2} \left( \Lambda^2 - m^2 \log \frac{\Lambda^2 + m^2}{m^2} \right)
 \end{equation}
@@ -1591,10 +1592,10 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
         \vertex[below=0.2em of v1] (r) {};
 
         \diagram* {
-          (x1) -- (v1) -- (x2),
+          (x1) -- [scalar] (v1) -- [scalar] (x2),
 
-          (v1) -- [half left] (v2),
-          (v2) -- [half left] (v1),
+          (v1) -- [scalar, half left] (v2),
+          (v2) -- [scalar, half left] (v1),
         };
       \end{feynman}
     \end{tikzpicture}
@@ -1611,13 +1612,13 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
         \vertex[below=0.2em of v1] (r) {};
 
         \diagram* {
-          (x1) -- (v1) -- (v3) -- (x2),
+          (x1) -- [scalar] (v1) -- [scalar] (v3) -- [scalar] (x2),
 
-          (v1) -- [half left] (v2),
-          (v2) -- [half left] (v1),
+          (v1) -- [scalar, half left] (v2),
+          (v2) -- [scalar, half left] (v1),
 
-          (v3) -- [half left] (v4),
-          (v4) -- [half left] (v3),
+          (v3) -- [scalar, half left] (v4),
+          (v4) -- [scalar, half left] (v3),
         };
       \end{feynman}
     \end{tikzpicture}
@@ -1636,16 +1637,16 @@ Note that the tadpole is independent of $ p $, and it has both a quadratic and l
         \vertex[below=0.2em of v1] (r) {};
 
         \diagram* {
-          (x1) -- (v1) -- (v3) -- (v5) -- (x2),
+          (x1) -- [scalar] (v1) -- [scalar] (v3) -- [scalar] (v5) -- [scalar] (x2),
 
-          (v1) -- [half left] (v2),
-          (v2) -- [half left] (v1),
+          (v1) -- [scalar, half left] (v2),
+          (v2) -- [scalar, half left] (v1),
 
-          (v3) -- [half left] (v4),
-          (v4) -- [half left] (v3),
+          (v3) -- [scalar, half left] (v4),
+          (v4) -- [scalar, half left] (v3),
 
-          (v5) -- [half left] (v6),
-          (v6) -- [half left] (v5),
+          (v5) -- [scalar, half left] (v6),
+          (v6) -- [scalar, half left] (v5),
         };
       \end{feynman}
     \end{tikzpicture}
@@ -1693,7 +1694,7 @@ The Feynman rules in momentum space for this theory are:
         \vertex[below=0.2em of x] (r) {};
 
         \diagram* {
-          (x) -- [momentum = \(p\)] (y),
+          (x) -- [scalar, momentum = \(p\)] (y),
         };
       \end{feynman}
     \end{tikzpicture}
@@ -1709,7 +1710,7 @@ The Feynman rules in momentum space for this theory are:
         \vertex[below=0.2em of x] (r) {};
 
         \diagram* {
-          (x) -- (y),
+          (x) -- [scalar] (y),
         };
       \end{feynman}
     \end{tikzpicture}
