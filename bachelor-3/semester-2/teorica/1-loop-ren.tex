@@ -1,10 +1,11 @@
 \selectlanguage{english}
 
-As already noted in \secref{sssec-div}, the computation of Next-to-Leading Order (NLO) corrections often produces diverging amplitudes. However, this seems to be a consequence of Heisenberg's principle, implying that a quantum field theory cannot be valid at all energy scales at once.
+As already noted in \secref{sssec:div}, the computation of Next-to-Leading Order (NLO) corrections often produces diverging amplitudes. However, this seems to be a consequence of Heisenberg's principle, implying that a quantum field theory cannot be valid at all energy scales at once.
 
 \section{Renormalization of \texorpdfstring{$ \lambda \phi^4 $}{λφ4}-theory}
 
 \subsection{1-Loop diagrams}
+\label{ssec:f4-1-loop}
 
 Consider $ \lambda \phi^4 $-theory and compute the scattering cross-section for $ \phi \phi \rightarrow \phi \phi $ at LO:
 \begin{equation*}
@@ -439,6 +440,7 @@ When working with dimensional regularization, it is more useful to adopt the \bc
 Hence, in the $ \msb $ scheme $ \mu_\text{reg} = \mu_\text{ren} \equiv \mu $.
 
 \subsubsection{Lagrangian counterterms}
+\label{sssec:lag-count}
 
 Define $ Z_\lambda : \lambda_\text{bare} = Z_\lambda \lambda_{\msb} \equiv \lambda_{\msb} + \delta_\lambda $, so that:
 \begin{equation*}
@@ -455,7 +457,7 @@ Inserting into the Lagrangian:
   \end{split}
 \end{equation*}
 It is then clear that renormalizing the coupling constant is equivalent to adding a counterterm to the Lagrangian, which contains the original divergence. This counterterm induces a new interaction vertex:
-\begin{equation*}
+\begin{equation}
   \begin{tikzpicture}[baseline=(r.base)]
     \begin{feynman}[inline=(r.base)]
       \vertex (a1) {};
@@ -476,7 +478,8 @@ It is then clear that renormalizing the coupling constant is equivalent to addin
     \end{feynman}
   \end{tikzpicture}
   \quad = \quad -i \delta_\lambda
-\end{equation*}
+  \label{eq:counterterm}
+\end{equation}
 This process is general: divergences are cured order by order in perturbation theory by adding each time new counterterms to the Lagrangian: hence the name of renormalized perturbation theory\footnote{The name may be confusing, as the counterterms still contain divergences.}. At each order, each new counterterms are fixed by an appropriate physical condition.
 
 \subsection{Renormalizability}
@@ -501,7 +504,54 @@ Introducing a UV cut-off $ \Lambda $, the divergence will be different for diffe
   \item $ D = 0 $: $ \mat \sim \log \Lambda $, hence the diagram has a logarithmic UV divergence;
   \item $ D < 0 $: $ \mat \sim \Lambda^{-\abs{D}} $, hence the diagram is UV finite.
 \end{itemize}
-This, however, is a naive analysis: in fact, the diagram may have diverging subdiagrams which make the actual degree of divergence worse, or it may have symmetries which make divergences partially cancel, leaving a better degree of divergence.
+This, however, is a naive analysis: in fact, the diagram may have diverging sub-diagrams which make the actual degree of divergence worse, or it may have symmetries which make divergences partially cancel, leaving a better degree of divergence. As an example, a trivial diagram with no loops and no propagators has $ D = 0 $, but it is not a diverging diagram. \\
+The problem of diverging sub-diagrams requires a more careful analysis. Consider the following diagram in $ 4 $-dimensional $ \lambda \phi^4 $-theory:
+\begin{equation*}
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (a1) {};
+      \vertex[right=1.3cm of a1] (a2) {};
+      \vertex[right=1.3cm of a2] (a3) {};
+
+      \vertex[above=1.3cm of a2, dot] (b1) {};
+      \vertex[above=2.6cm of b1, dot] (b2) {};
+
+      \vertex[above=1.3cm of b2] (c2) {};
+      \vertex[left=1.3cm of c2, dot] (c1) {};
+      \vertex[above=1.3cm of c1] (c4) {};
+      \vertex[right=1.3cm of c2, dot] (c3) {};
+      \vertex[above=1.3cm of c3] (c5) {};
+
+      \vertex[left=1.3cm of c1] (d1) {};
+      \vertex[above=1.3cm of d1] (d2) {};
+      \vertex[right=1.3cm of c3] (d3) {};
+      \vertex[above=1.3cm of d3] (d4) {};
+
+      \vertex[below=0.5cm of b2] (r) {};
+
+      \diagram* {
+        (a1) -- [scalar] (b1) -- [scalar] (a3),
+        (b1) -- [scalar, half left] (b2) -- [scalar, half left] (b1),
+        (b2) -- [scalar] (c1) -- [scalar] (d2),
+        (b2) -- [scalar] (c3) -- [scalar] (d4),
+        (c4) -- [scalar] (c1) -- [scalar] (c3) -- [scalar] (c5),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad \qquad
+  D = 4 \cdot 2 - 2 \cdot 5 = -2
+\end{equation*}
+Although $ D < 0 $, the loop integral diverges: however, in renormalized perturbation theory this divergence is cured by the counterterm \eref{eq:counterterm} This is a general property: apart from superficially divergent diagrams, the only other divergences arise from diverging sub-diagrams of superficially finite diagrams, but these divergences are cured by the counterterms already added to the Lagrangian. Hence, the renormalization procedure correctly cures all UV divergences.
+
+\begin{theorem}{Bogolyubov--Parasyuk theorem}{}
+  For any renormalized quantum field theory, the perturbative expansion of matrix elements of the $ S $-matrix is UV-finite.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is found in \cite{bog-par, azp}.
+  \end{proof}
+\end{proofbox}
 
 \subsubsection{\texorpdfstring{$ \lambda \phi^n $}{λφn}-theory}
 
@@ -573,17 +623,424 @@ which is exactly \eref{eq:lfn-sup-deg-div}. It is then clear that $ D $ decrease
   \item renormalizable theories: the coupling constant is dimensionless, hence there is only a finite number of classes of diverging diagrams (although their absolute number may be infinite);
   \item non-renormalizable theories: the coupling constant has strictly negative mass dimension, hence there is an infinite number of diverging classes of diagrams.
 \end{itemize}
+Note that this are general properties, not restricted to real scalar field theories.
 
 \begin{example}{$ d = 4 $ theories}{}
   Consider $ \lambda \phi^n $-theory in $ d = 4 $ dimensions. The coupling constant in $ \lag_\text{int} = - \frac{1}{n!} \lambda \phi^n $ has dimension $ 4 - n $, hence:
   \begin{itemize}
     \item $ \lambda \phi^3 $-theory is super-renormalizable: $ D = 4 - V - N $, thus the only diverging diagrams are the $ 2 $-point Green function (loop corrections have $ D < 0 $) and the single interaction vertex, while all other diagrams have a finite amplitude;
     \item $ \lambda \phi^4 $-theory is renormalizable: $ D = 4 - N $, so the finitely-many classes of diverging diagrams are those listed in \exref{ex:p4-th};
-    \item $ \lambda \phi^n $-theory with $ n \ge 5 $ is non-renormalizable: for example, in $ \lambda \phi^5 $-theory $ D = 4 + V - N $, hence increasing the number of vertices increases the superficial degree of divergence, i.e. $ \forall N \in N_{\ge 2} \, \exists V \in \N : D > 0 $.
+    \item $ \lambda \phi^n $-theory with $ n \ge 5 $ is non-renormalizable: for example, in $ \lambda \phi^5 $-theory $ D = 4 + V - N $, hence increasing the number of vertices increases the superficial degree of divergence, i.e. $ \forall N \in \N_{\ge 2} \, \exists V \in \N : D > 0 $.
   \end{itemize}
 \end{example}
 
+It si then clear what is the conceptual distinction between renormalizable and non-renormalizable theories: renormalizable theories can be renormalizable with a finite set of counterterms, which can be fixed with a finite number of physical conditions (i.e. comparison with experiments), while non-renormalizable theories require an infinite set of counterterms, hence having no predictive power (as infinite parameters must be fixed by comparison with experiments). \\
+Although at first glance non-renormalizability may seem problematic, in reality it is not. Consider a non-renormalizable theory with coupling constant $ g \propto M^{-k} $, with $ k \in \R^+ $ and some mass scale $ M $, and assume that the theory has already been renormalized up to $ (N - 1) $-point amplitudes, with $ N \in \N_{\ge 2} $: then, an $ N $-point amplitude at typical energy scale $ E $ can be expressed as:
+\begin{equation*}
+  \mathcal{A}_N(E) = \mathcal{A}^{(0)}_N(E) \left[ 1 + c_1 \frac{E^k}{M^k} + c_2 \frac{E^{2k}}{M^{2k}} + \dots + c_n \frac{E^{nk}}{M^{nk}} \right]
+\end{equation*}
+where $ c_1, \dots, c_{n-1} $ are finite constant already fixed by physical conditions. As $ c_n $ should be fixed too by a new physical condition, the theory would not be predictive even at order $ n $: however, at low energy $ E \ll M $, this lack of predictivity due to $ c_n $ is negligible, as the quantity $ (E/M)^{nk} $ can be assumed to be below the sensitivity of the experimental apparatus taken into consideration. Therefore, it is clear that non-renormalizable theories are acceptable low-energy theories: they gain predictive power by limiting the set of counterterms to be fixed to those necessary at the desired energy scale, as the ignorance about higher-order divergences is beyond the required accuracy. At $ E \sim M $ the above series expansion diverges, signaling a lack of meaning of the theory: non-renormalizable theories have a built-in scale which provides their limit of validity, while renormalizable theories are in principle valid at all energy scales.
+
 \subsubsection{\texorpdfstring{$ \lambda \phi^4 $}{λφ4}-theory}
+
+Consider $ \lambda \phi^4 $-theory in $ d = 4 $ dimensions:
+\begin{equation}
+  \lag = \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - \frac{1}{2} m_0^2 \phi^2 - \frac{\lambda_0}{4!} \phi^4
+\end{equation}
+where $ m_0 , \lambda_0 $ are the bare mass and coupling constant. By \eref{eq:lfn-sup-deg-div}, the superficial degree of divergence of a diagram depends only on the number of external legs, as $ D = 4 - N $; moreover, as the theory is symmetric under $ \phi \rightarrow -\phi $, alla amplitudes with an odd number of external legs vanish. The only classes of divergent diagrams then are:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, blob] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, blob] (c2) {};
+
+      \vertex[left = 2cm of c2] (d1) {};
+      \vertex[right = 2cm of c2] (d2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (d1) -- [scalar] (c2),
+        (c2) -- [scalar] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, blob] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar] (c2),
+        (b1) -- [scalar] (c2),
+        (c2) -- [scalar] (a2),
+        (c2) -- [scalar] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+The first class is that of vacuum-to-vacuum diagrams, which are unobservable vacuum energy shifts as they are all accounted for in the definition of correlation functions (see \secref{sssec:lamb-4}).
+The second class of diagrams are the loop corrections to the $ 2 $-point Green function and, having $ D = 2 $, has the general diverging structure $ \sim c_1 \Lambda^2 + c_2 p^2 \log \Lambda $, where $ p $ is the initial-state four-momentum.
+The third class of diagrams are the loop corrections to the $ 2 \rightarrow 2 $ scattering amplitude, with $ D = 0 $ and diverging structure $ \sim c_3 \log \Lambda $ (agreeing with \secref{ssec:f4-1-loop}).
+Ignoring the vacuum-to-vacuum diagrams, there are three infinite constants that need to be absorved into three unobservable parameters of the theory: the bare mass, the bare coupling constant and the field-strength.
+
+\paragraph{Correlation functions}
+
+To express the identity operator on the Fock space $ \fock $ of the theory, it is necessary to choose a complete basis of $ \fock $. Consider an eigenstate of the Hamiltonian $ H \ket{\lambda_0} = m_0 \ket{\lambda_0} $ such that $ \ve{P} \ket{\lambda_0} = \ve{0} $ (i.e. $ m_0^2 = E_0^2 $): as per Lorentz invariance, all possible boosts of $ \ket{\lambda_0} $ are still eigenstates of $ H $, and they have all the possible three-momenta. Conversely , any eigenstate of $ H $ with definite three-momentum can be expressed as the boost of some zero-momentum eigenstate $ \ket{\lambda_0} $. Denoting with $ \ket{\lambda_\ve{p}} $ the eigenstate of $ H $ with three-momentum $ \ve{p} $ obtained as a boost of $ \ket{\lambda_0} $ and defining $ E_\ve{p}(\lambda) \equiv \sqrt{\ve{p}^2 + m_\lambda^2} $, where $ m_\lambda : H \ket{\lambda_0} = m_\lambda \ket{\lambda} $, then the completeness relation on $ \fock $ can be written as\footnotemark:
+\begin{equation}
+  \id_\fock = \ket{0}\bra{0} + \sum_\lambda \int \frac{\dd^3p}{(2\pi)^3} \frac{1}{2E_\ve{p}(\lambda)} \ket{\lambda_\ve{p}}\bra{\lambda_\ve{p}}
+\end{equation}
+where $ \ket{0} $ is the vacuum state of $ \fock $.
+
+\footnotetext{Recall that for the one-particle Hilbert space $ \hilb $ with relativistic normalization (\eref{eq:scal-rel-norm}):
+\begin{equation}
+  \id_\hilb = \int \frac{\dd^3p}{(2\pi)^3} \frac{1}{2E_\ve{p}} \ket{\ve{p}}\bra{\ve{p}}
+\end{equation}}
+
+\begin{proposition}{Correlation functions}{}
+  The correlation function for a real scalar field theory can be written as (with $ x^0 > y^0 $):
+  \begin{equation}
+    \braket{0 | \tempord\{\phi(x) \phi(y)\} | 0} = \sum_\lambda \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m_\lambda^2 + i\epsilon} e^{-i p_\mu (x - y)^\mu} \abs{\braket{0 | \phi(0) | \lambda_0}}^2
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Inserting the identity in the $ 2 $-point Green function, as $ x^0 > y^0 $:
+    \begin{equation*}
+      \braket{0 | \phi(x) \phi(y) | 0} = \braket{0 | \phi(x) | 0} \braket{0 | \phi(y) | 0} +  \sum_\lambda \int \frac{\dd^3p}{(2\pi)^3} \frac{1}{2E_\ve{p}(\lambda)} \braket{0 | \phi(x) | \lambda_\ve{p}} \braket{\lambda_\ve{p} | \phi(y) | 0}
+    \end{equation*}
+    The first term is constant and can be discarderd, as it usually vanishes by symmetry or Lorentz invariance. Manipulating the matrix elements:
+    \begin{equation*}
+      \begin{split}
+        \braket{0 | \phi(x) | \lambda_\ve{p}}
+        & = \braket{0 | e^{i x_\mu P^\mu} \phi(0) e^{-i x_\mu P^\mu} | \lambda_\ve{p}} = e^0 \braket{0 | \phi(0) | \lambda_\ve{p}} e^{-i p_\mu x^\mu} \big\vert_{p^0 = E_\ve{p}} \\
+        & = \braket{0 | \tens{U}^{-1} \tens{U} \phi(0) \tens{U}^{-1} \tens{U} | \lambda_\ve{p}} e^{-i p_\mu x^\mu} \big\vert_{p^0 = E_\ve{p}} = \braket{0 | \phi(0) | \lambda_0} e^{-i p_\mu x^\mu} \big\vert_{p^0 = E_\ve{p}}
+      \end{split}
+    \end{equation*}
+    where $ \tens{U} $ is a unitary operator implementing a Lorentz boost $ \ve{p} \mapsto \ve{0} $, using that $ \tens{U} \phi(0) \tens{U}^{-1} = \phi(0) $ (this is valid for a spinless field, while higher-spin fields have non-trivial transformation properties). Introducing an integration in $ \dd p^0 $ as in the proof of \tref{th:feynman-prop} yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+The case $ x^0 < y^0 $ is analogous, and a common expression can be formulated.
+
+\begin{definition}{Källén--Lehmann representation}{}
+  The \bcdef{Källén--Lehmann spectral representation} of the correlation function of a real scalar field theory is defined as:
+  \begin{equation}
+    \braket{0 | \tempord\{\phi(x) \phi(y)\} | 0} = \int_0^\infty \frac{\dd M^2}{2\pi} \rho(M^2) D_\text{F}(x-y ; M^2)
+  \end{equation}
+  where $ \rho(M^2) $ is a positive \bcdef{spectral density} function:
+  \begin{equation}
+    \rho(M^2) \defeq \sum_\lambda 2\pi \delta(M^2 - m_\lambda^2) {\braket{0 | \phi(0) | \lambda_0}}^2
+  \end{equation}
+\end{definition}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{images/mas-hyp.png}
+  \caption{Hyperboloids in energy-momentum space formed by the eigenvalues of $ P^\mu = (H, \ve{P}) $.}
+  \label{fig:mass-1}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{images/spec-dens.png}
+  \caption{Spectral density function for a typical interacting field theory.}
+  \label{fig:mass-2}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{images/poles.png}
+  \caption{Analytic structure in the complex $ p^2 $-plane of $ \tilde{D}_\text{F}(p) $.}
+  \label{fig:mass-3}
+\end{figure}
+
+As shown in Fig. \ref{fig:mass-2}, the one-particle states contribute to the spectral density with an isolated $ \delta $:
+\begin{equation}
+  \rho(M^2) = 2\pi \delta(M^2 - m^2) Z + (\text{terms with } M^2 \gtrsim (2m)^2)
+\end{equation}
+where $ Z $ is a number coming from the squared matrix element and it is called \bctxt{field-strength renormalization} (the same factor appearing in the LSZ reduction formula). Note that $ m $ is the physical mass of the particle, as opposed to the bare mass $ m_0 $ appearing in the Lagrangian. The Fourier transform of the $ 2 $-point Green function then is:
+\begin{equation}
+  \tilde{D}_\text{F}(p) = \frac{i Z}{p^2 - m^2 + i\epsilon} + \int_{\sim 4m^2}^\infty \frac{\dd M^2}{2\pi} \rho(M^2) \frac{i}{p^2 - M^2 + i\epsilon}
+  \label{eq:corr-func-gen}
+\end{equation}
+The pole structure of $ \tilde{D}_\text{F}(p) $ is shown in Fig. \ref{fig:mass-3}: the first term gives an isolated simple pole in $ p^2 = m^2 $, while the second term contributes a branch cut beginning at $ p^2 = (2m)^2 $ (any two-particle bound states will appear as an additional $ \delta $ in $ \rho(M^2) $, i.e. additional an isolated pole below the branch cut). \eref{eq:corr-func-gen} is a direct generalization of \eref{eq:corr-func}: the former contains the field-strength renormalization $ Z = \abs{\braket{\lambda_0 | \phi(0) | 0}}^2 $, i.e. the probability for $ \phi(0) $ to create a given state from vacuum, while the latter has it implicitly, since in the free theory $ \abs{\braket{\ve{p} | \phi(0) | 0}}^2 = 1 $; moreover, \eref{eq:corr-func} is the amplitude of a single particle propagating from $ x $ to $ y $, as in the free theory $ \phi(0) $ can only create a single particle from vacuum, while \eref{eq:corr-func-gen} contains contributions from multiparticle intermediate states with a continuous mass spectrum.
+
+\paragraph{Counterterms}
+
+\eref{eq:corr-func-gen} has a single term which is singular at $ p^2 = m^2 $, and to eliminate the awkward residue $ Z $ it is possible to set:
+\begin{equation}
+  \phi \equiv \sqrt{Z} \phi_\text{r}
+  \label{eq:phi-ren}
+\end{equation}
+This is the renormalized field (recall that it is equivalent to renormalize multiplicatively or additively).
+
+\begin{proposition}{Renormalized $ \lambda \phi^4 $-theory}{}
+  The renormalized Lagrangian of $ \lambda \phi^4 $-theory takes the form:
+  \begin{equation}
+    \lag = \frac{1}{2} \pa_\mu \phi_\text{r} \pa^\mu \phi_\text{r} - \frac{1}{2} m^2 \phi_\text{r}^2 - \frac{\lambda}{4!} \phi_\text{r}^4 + \frac{1}{2} \delta_Z \pa_\mu \phi_\text{r} \pa^\rho \phi_\text{r} - \frac{1}{2} \delta_m \phi_\text{r}^2 - \frac{\delta_\lambda}{4!} \phi_\text{r}^4
+  \end{equation}
+  with:
+  \begin{equation}
+    \delta_Z \equiv Z - 1
+    \qquad \qquad
+    \delta_m \equiv m_0^2 Z - m^2
+    \qquad \qquad
+    \delta_\lambda \equiv \lambda_0 Z^2 - \lambda
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Inserting \eref{eq:phi-ren} into the Lagrangian of $ \lambda \phi^4 $-theory:
+    \begin{equation*}
+      \lag = \frac{1}{2} Z \pa_\mu \phi_\text{r} \pa^\mu \phi_\text{r} - \frac{1}{2} m_0^2 Z \phi_\text{r}^2 - \frac{\lambda_0}{4!} \phi_\text{r}^4
+    \end{equation*}
+    The isolation of counterterms is then trivial.
+  \end{proof}
+\end{proofbox}
+
+This Lagrangian is composed of the standard $ \lambda \phi^4 $-theory Lagrangian, with renormalized field, mass and coupling constant, plus three counterterms: this is precisely the number of infinite constants appearing in diverging amplitudes of the theory. The Feynman rules for the renormalized theory are:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1] (c2) {};
+
+      \vertex[left = 2cm of c2] (d1) {};
+      \vertex[right = 2cm of c2] (d2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (d1) -- [scalar, momentum = \(p\)] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad \frac{i}{p^2 - m^2 + i\epsilon}
+  \qquad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, crossed dot] (c2) {};
+
+      \vertex[left = 2cm of c2] (d1) {};
+      \vertex[right = 2cm of c2] (d2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (d1) -- [scalar, momentum = \(p\)] (c2) -- [scalar] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad i (p^2 \delta_Z - \delta_m)
+\end{equation*}
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, dot] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar] (c2),
+        (b1) -- [scalar] (c2),
+        (c2) -- [scalar] (a2),
+        (c2) -- [scalar] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad -i \lambda
+  \qquad \qquad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, crossed dot] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar] (c2),
+        (b1) -- [scalar] (c2),
+        (c2) -- [scalar] (a2),
+        (c2) -- [scalar] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad -i \delta_\lambda
+\end{equation*}
+To make the definition of the counterterms effective, the physical conditions which fix $ Z $, $ m $ and $ \lambda $ must be set, in order to set their value via comparison with experiments. The three \bctxt{renormalization conditions} are:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, blob] (c2) {};
+
+      \vertex[left = 2cm of c2] (d1) {};
+      \vertex[right = 2cm of c2] (d2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (d1) -- [scalar, momentum = \(p\)] (c2) -- [scalar] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad \frac{i}{p^2 - m^2} + (\text{terms regular at } p^2 = m^2)
+\end{equation*}
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, blob] (c2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (a1) -- [scalar] (c2),
+        (b1) -- [scalar] (c2),
+        (c2) -- [scalar] (a2),
+        (c2) -- [scalar] (b2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad -i \lambda
+  \qquad \text{at} \qquad
+  s = 4m^2 \,\,,\,\, t = u = 0
+\end{equation*}
+These physical conditions fix the pole and the residue of the $ 2 $-point Green function and the zero-momentum $ 2 \rightarrow 2 $ scattering amplitude: once loop integrals have been regularized, the $ \delta_Z $, $ \delta_m $ and $ \delta_\lambda $ are adjusted (renormalized) to satisfy the renormalization conditions and, after this adjustment, the amplitudes should be finite and independent of the regulator. This marks the successful renormalization of the theory\footnote{Note that in the $ \msb $ scheme the physical conditions are replaced by subtraction of poles: this means that the $ \msb $ mass $ m_{\msb} $ is not the pole of the $ 2 $-point Green function, hence it is not physically observable.}. \\
+At $ \smo(\lambda) $ order only $ \delta_\lambda $ is non-trivial, as $ \delta_Z $ and $ \delta_m $ come into play only at $ \smo(\lambda)^2 $ with diagrams:
+\begin{equation*}
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (x1) {};
+      \vertex[below=3em of x1] (p1) {};
+      \vertex[below=3em of p1] (x2) {};
+
+      \vertex[right=3em of p1, dot] (v1) {};
+      \vertex[right=5em of v1, dot] (v2) {};
+
+      \vertex[right=3em of v2] (p2) {};
+      \vertex[above=3em of p2] (x3) {};
+      \vertex[below=3em of p2] (x4) {};
+
+      \vertex[above=0.5em of v1] (r) {};
+
+      \diagram* {
+        (x1) -- [scalar] (v1),
+        (x2) -- [scalar] (v1),
+        (v2) -- [scalar] (x3),
+        (v2) -- [scalar] (x4),
+
+        (v1) -- [scalar, half left] (v2),
+        (v2) -- [scalar, half left] (v1),
+        (v1) -- [scalar] (v2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, crossed dot] (c2) {};
+
+      \vertex[left = 2cm of c2] (d1) {};
+      \vertex[right = 2cm of c2] (d2) {};
+      \vertex[above = 2cm of c2, empty dot] (d3) {};
+
+      \vertex[above=1.1cm of c2] (r);
+
+      \diagram* {
+        (d1) -- [scalar] (c2) -- [scalar] (d2),
+        (c2) -- [scalar, half left] (d3) -- [scalar, half left] (c2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad + \quad
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+      \vertex[right=4cm of a1] (a2) {};
+      \vertex[below=4em of a1] (b1) {};
+      \vertex[below=4em of a2] (b2) {};
+      \vertex[below=2em of a1] (c1) {};
+      \vertex[right=2cm of c1, crossed dot] (c2) {};
+
+      \vertex[left = 2cm of c2] (d1) {};
+      \vertex[right = 2cm of c2] (d2) {};
+
+      \vertex[below=2.2em of a1] (r);
+
+      \diagram* {
+        (d1) -- [scalar] (c2) -- [scalar] (d2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+This means that:
+\begin{equation}
+  \delta_\lambda = 1 + \smo(\lambda)
+  \qquad \qquad
+  \delta_Z = 1 + \smo(\lambda^2)
+  \qquad \qquad
+  \delta_m = 1 + \smo(\lambda^2)
+\end{equation}
+agreeing with \secref{sssec:lag-count}. Tadpoles produces by the physical vertex (not the counterterm) should be considered too, but, as per \lref{lemma:tadpole-resumm}, they only contribute as a shift between $ m $ and $ m_0 $.
 
 
 
