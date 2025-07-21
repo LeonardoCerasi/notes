@@ -3,8 +3,8 @@
 In the case of free Hamiltonians/Lagrangians, free-particle states are eigenstates of the Hamiltonian and they cannot interact. To describe interactions between particles, non-linear terms must be included in $ \ham / \lag $, which will couple Fourier modes (and particles that occupy them) to one another. \\
 To preserve causality, these interaction terms must include only products of fields at the same spacetime point. Moreover, the discussion is restricted to terms which do not include derivatives of fields, so that $ \ham_\text{int} = - \lag_\text{int} $.
 
-\begin{example}{$ \phi^4 $ theory}{}
-  The so-called $ \phi^4 $ theory is a scalar field theory with an interaction term of the kind:
+\begin{example}{$ \lambda \phi^4 $-theory}{}
+  The so-called $ \lambda \phi^4 $-theory is a scalar field theory with an interaction term of the kind:
   \begin{equation}
     \lag = \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - \frac{1}{2} m^2 \phi^2 - \frac{\lambda}{4!} \phi^4
   \end{equation}
@@ -183,7 +183,7 @@ Conversely, he in- and out-fields can be expressed in terms of in- and out-ladde
 \begin{proposition}{Behavior of ladder operators}{}
   The in- and out-ladder operators are well-defined ladder operators on $ \fock_\text{in,out} $, i.e.:
   \begin{equation}
-    \hat{P}_\mu {a_\ve{k}^\text{in,out}}\dg \ket{0_\text{in}} = k_\mu {a_\ve{k}^\text{in,out}}\dg \ket{0_\text{out}}
+    \hat{P}_\mu {a_\ve{k}^\text{in,out}}\dg \ket{0_\text{in,out}} = k_\mu {a_\ve{k}^\text{in,out}}\dg \ket{0_\text{in,out}}
   \end{equation}
 \end{proposition}
 
@@ -349,7 +349,7 @@ Consider now a scattering process of a species of massless spin-$ 1 $ particles.
     \sqrt{2\omega_\ve{p}} ({a_{\ve{p},\lambda}^\text{in}}\dg - {a_{\ve{p},\lambda}^\text{out}}\dg) = \frac{i}{\sqrt{Z}} {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^4x\, e^{-i p_\mu x^\mu} \Box A_\mu(x)
   \end{equation}
   \begin{equation}
-    \sqrt{2\omega_\ve{p}} (a_{\ve{p},\lambda}^\text{out} - a_{\ve{p},\lambda}^\text{in}) = \frac{i}{\sqrt{Z}} \epsilon^\mu(\ve{p},\lambda) \int \dd^4x\, e^{-i p_\mu x^\mu} \Box A_\mu(x)
+    \sqrt{2\omega_\ve{p}} (a_{\ve{p},\lambda}^\text{out} - a_{\ve{p},\lambda}^\text{in}) = \frac{i}{\sqrt{Z}} \epsilon^\mu(\ve{p},\lambda) \int \dd^4x\, e^{i p_\mu x^\mu} \Box A_\mu(x)
   \end{equation}
 \end{lemma}
 
@@ -375,7 +375,7 @@ Consider now a scattering process of a species of massless spin-$ 1 $ particles.
 Note that, like for scalar fields, these operators vanish identically when dealing with free fields. \\
 Consider now a scattering process $ \ket{\ve{k}_1, \dots, \ve{k}_n ; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_m ; +\infty} $ in which no particles remain unchanged by the interaction, i.e. $ \ve{k}_i \neq \ve{p}_j \,\,\forall i = 1,\dots,n , \forall j = 1,\dots,m $, so that the $ S $-matrix reduces to the $ T $-matrix. Then, as for \tref{th:lsz-scalar}, particles can be extracted from the generic amplitude as:
 \begin{multline}
-  \braket{\ve{k}_1 , \dots , \ve{k}_n | i T | \ve{p}_1 , \dots , \ve{p}_m} \\
+  \braket{\ve{p}_1 , \dots , \ve{p}_m | i T | \ve{k}_1 , \dots , \ve{k}_n} \\
   = \prod_{j = 1}^n \frac{k_j^2}{i \sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \sum_{\lambda_j = 1,2} {\epsilon^{\mu_j}}^*(\ve{k}_j,\lambda_j) \prod_{k = 1}^m \int \dd^4y_k\, e^{+i {p_k}_\mu {x_k}^\mu} \sum_{\sigma_k = 1,2} \epsilon^{\nu_k}(\ve{p}_k,\sigma_k) \times \\
   \times \braket{0 | \tempord\{A_{\mu_1}(x_1) \dots A_{\mu_n}(x_n) A_{\nu_1}(y_1) \dots A_{\nu_m}(y_m)\} | 0}
 \end{multline}
@@ -490,7 +490,7 @@ This field evolves with $ H_0 $, i.e. is a free field, and it is called the \bct
 
 Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials cannot be combined trivially (the Baker-Campbell-Hausdorff formula should be used).
 
-\begin{proposition}{Time evolution operator}
+\begin{proposition}{Time evolution operator}{}
   The time evolution operator is:
   \begin{equation}
     \tens{U}(t,t_0) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
