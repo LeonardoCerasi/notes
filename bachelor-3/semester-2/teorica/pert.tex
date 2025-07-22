@@ -541,7 +541,7 @@ Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials 
     \end{equation*}
     The boundary condition now reads $ [\tens{U}(t,t_0) \tens{U}(t_0,t_2)]_{t = t_0} = \tens{U}(t_0,t_2) $, and the unique solution for this boundary condition is:
     \begin{equation*}
-      \tens{U}(t,t_0) \tens{U}(t_0,t_2) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
+      \tens{U}(t,t_0) \tens{U}(t_0,t_2) = \tempord \exp \left[ -i \int_{t_2}^t \dd\tau\, H_I(\tau) \right]
     \end{equation*}
     which is precisely $ \tens{U}(t,t_2) $.
   \end{proof}
@@ -559,7 +559,7 @@ It is now possible to compute correlation functions.
 
 \begin{proofbox}
   \begin{proof}
-    Consider WLOG $ \{t_k\}_{k = 1,\dots,n} : t_i < t_j $. Using \eref{eq:int-heis-pic} and \lref{lemma:time-evol-func}:
+    Consider WLOG $ \{t_k\}_{k = 1,\dots,n} : t_i < t_j \,\,\forall i > j $. Using \eref{eq:int-heis-pic} and \lref{lemma:time-evol-func}:
     \begin{equation*}
       \begin{split}
         \braket{0 | \phi(x_1) \dots \phi(x_n) | 0}
@@ -586,7 +586,7 @@ It is now possible to compute correlation functions.
     \begin{equation*}
       \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} = \braket{0 | \tens{U}\dg(+\infty,-\infty) \tempord\bigg\{ \phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int \dd^4x\, \ham_I \right] \bigg\} | 0}
     \end{equation*}
-    Note that $ \bra{0} \tens{U}\dg(\infty,-\infty) $ is the Hermitian conjugate of $ \tens{U}(\infty,-\infty) \ket{0} $, i.e. the state obtained evolving in time the vacuum state. As it was already assumed, the initial-state vacuum coincides physically to the final-state vacuum, i.e.:
+    Note that $ \bra{0} \tens{U}\dg(\infty,-\infty) $ is the Hermitian conjugate of $ \tens{U}(\infty,-\infty) \ket{0} $, i.e. the state obtained evolving in time the vacuum state. As it was already assumed, the initial-state vacuum physically coincides to the final-state vacuum, i.e.:
     \begin{equation*}
       \tens{U}(\infty,-\infty) \ket{0} = e^{i\alpha} \ket{0}
       \qquad \Rightarrow \qquad
@@ -1034,7 +1034,7 @@ Consider a real scalar field theory with $ \ham_I = \frac{\lambda}{4!} \phi^4 $ 
 \begin{equation*}
   \begin{split}
     \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2}
-    & = \frac{k_1^2 - m^2}{i \sqrt{Z}} \frac{k_2^2 - m^2}{i \sqrt{Z}} \frac{p_1^2 - m^2}{i \sqrt{Z}} \frac{p_2^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \times \\
+    & = \frac{k_1^2 - m^2}{i \sqrt{Z}} \frac{k_2^2 - m^2}{i \sqrt{Z}} \frac{p_1^2 - m^2}{i \sqrt{Z}} \frac{p_2^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {k_1}_\mu {x_3}^\mu - {k_2}_\mu {x_4}^\mu)} \times \\
     & \qquad \qquad \times \frac{\braket{0 | \tempord\{ \phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \exp \left[ -i \frac{\lambda}{4!} \int \dd^4x\, \phi(x) \right] \} | 0}}{\braket{0 | \tempord\{\exp \left[ - i \frac{\lambda}{4!} \int \dd^4x\, \phi(x) \right]\} | 0}}
   \end{split}
 \end{equation*}
@@ -1042,8 +1042,8 @@ To compute this expression up to $ o(\lambda) $, consider that for $ \lambda \ph
 The $ o(\lambda^0) $ term is obtained setting $ \lambda = 0 $, i.e. no coupling, but in the absence of coupling there is no scattering either and the amplitude must be trivial. Recalling \exref{ex:4-green-func}:
 \begin{equation*}
   \begin{split}
-    & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
-    & \qquad = \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left[ D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) + \dots \right] \\
+    & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {k_1}_\mu {x_3}^\mu - {k_2}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
+    & \qquad = \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {k_1}_\mu {x_3}^\mu - {k_2}_\mu {x_4}^\mu)} \left[ D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) + \dots \right] \\
     & \qquad = \left[ \int \dd^4x \dd^4X\, e^{i (p_1 + p_2)_\mu X^\mu + i (p_1 - p_2)_\mu x^\mu/2} D(x) \right] \left[ \int \dd^4y \dd^4Y\, e^{- i (k_1 + k_2)_\mu Y^\mu - i (k_1 - k_2)_\mu y^\mu/2} D(y) \right] + \dots \\
     & \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) \frac{i}{\left( \frac{p_1 - p_2}{2} \right)^2 - m^2} (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{\left( \frac{k_1 - k_2}{2} \right)^2 - m^2} + \dots
   \end{split}
@@ -1062,7 +1062,7 @@ Note that the $ i\epsilon $ term must be retained while $ p $ is an integration 
 These terms vanish when going on mass-shell, confirming that at $ o(\lambda^0) $ there is no interaction, i.e. no contribution to the scattering amplitude. This is a general feature of $ n \rightarrow m $ scattering amplitudes: \textit{disconnected graphs do not contribute to the amplitude}, as they do not provide enough pole factors to cancel those in the LSZ formula. \\
 The first non-trivial contribution is that at $ o(\lambda) $. The numerator of \eref{eq:corr-func-pert} is:
 \begin{equation*}
-  \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left( - i \frac{\lambda}{4!} \right) \int \dd^4x \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x)\} | 0}
+  \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {k_1}_\mu {x_3}^\mu - {k_2}_\mu {x_4}^\mu)} \left( - i \frac{\lambda}{4!} \right) \int \dd^4x \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x)\} | 0}
 \end{equation*}
 The only non-vanishing contribution is the fully-contracted term (note the dashed lines representing scalar particles):
 \begin{equation*}
@@ -1094,7 +1094,7 @@ The only non-vanishing contribution is the fully-contracted term (note the dashe
 as it is the only connected diagram between the possible ones. Note that this diagram corresponds to $ 4! $ equal contractions (only one is shown), therefore the numerator becomes:
 \begin{equation*}
   \begin{split}
-    & -i \lambda \int \dd^4x \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x_3 - x) D_\text{F}(x_4 - x) \\
+    & -i \lambda \int \dd^4x \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {k_1}_\mu {x_3}^\mu - {k_2}_\mu {x_4}^\mu)} D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x_3 - x) D_\text{F}(x_4 - x) \\
     & = -i \lambda \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x\, e^{i (p_1 + p_2 - k_1 - k_2)_\mu x^\mu} \\
     & = -i \lambda (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \frac{i}{p_1^2 - m^2} \frac{i}{p_2^2 - m^2} \frac{i}{k_1^2 - m^2} \frac{i}{k_2^2 - m^2}
   \end{split}
@@ -1279,15 +1279,15 @@ To illustrate the case of internal lines, it is useful to consider a real scalar
 \begin{equation*}
   \begin{split}
     \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2}
-    & = \prod_{i = 1,2} \frac{p_i^2 - m^2}{i \sqrt{Z}} \prod_{j = 1,2} \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+    & = \prod_{i = 1,2} \frac{p_i^2 - m^2}{i \sqrt{Z}} \prod_{j = 1,2} \frac{k_j^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_2}_\mu x_4^\mu)} \times \\
     & \qquad \qquad \qquad \qquad \times \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \exp \left[ -i \frac{\lambda}{3!} \int \dd^4x\, \phi^3(x) \right]\} | 0}
   \end{split}
 \end{equation*}
 where the denominator was omitted by implicitly considering only connected graphs with 4 external legs. This amplitude does not have a $ o(\lambda^0) $ contribution (as it only has disconnected diagrams) nor an $ o(\lambda) $ contribution (as the product of an odd number of fields cannot be fully contracted). At $ o(\lambda^2) $ the integral becomes:
 \begin{equation*}
-    \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \frac{1}{2!} \left( -i \frac{\lambda}{3!} \right)^2 \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^3(x) \phi^3(y)\} | 0}
+    \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_2}_\mu x_4^\mu)} \frac{1}{2!} \left( -i \frac{\lambda}{3!} \right)^2 \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^3(x) \phi^3(y)\} | 0}
 \end{equation*}
-In order to obtain a fully connected diagrams, there needs to be a contraction $ \wick{\c\phi(x) \c\phi(y)} $ between the two vertices, creating an internal line. Note that the $ 1/2! $ factor accounts for the symmetry $ x \leftrightarrow y $, while $ 1/3! $ accounts for sets of equivalent contractions. Examples of possible diagrams are:
+In order to obtain a fully connected diagrams, there needs to be a contraction $ \wick{\c\phi(x) \c\phi(y)} $ between the two vertices, creating an internal line. Note that the $ 1/2! $ factor accounts for the symmetry $ x \leftrightarrow y $, while $ (1/3!)^2 $ accounts for sets of equivalent contractions. Examples of possible diagrams are:
 \begin{equation*}
   \begin{tikzpicture}[baseline=(r.base)]
     \begin{feynman}[inline=(r.base)]
@@ -1354,7 +1354,7 @@ In order to obtain a fully connected diagrams, there needs to be a contraction $
 These diagrams are inequivalent, as they correspond to different sets of contractions. Computing for example the first one:
 \begin{equation*}
   \begin{split}
-    & (-i \lambda)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+    & (-i \lambda)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_2}_\mu x_4^\mu)} \times \\
     & \qquad \qquad \qquad \qquad \qquad \qquad \times \int \dd^4x \dd^4y\, D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x_3) D_\text{F}(y - x_4) \\
     & = (-i \lambda)^2 \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D_\text{F}(x - y) \\
     & = (-i \lambda)^2 \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4X \dd^4Y\, e^{i (p_1 + p_2 - k_1 - k_2)_\mu Y^\mu + i (p_1 + p_2 + k_1 + k_2)_\mu X^\mu / 2} D_\text{F}(X) \\
@@ -1426,13 +1426,13 @@ The example calculations carried for $ \lambda \phi^3 $- and $ \lambda \phi^4 $-
   \item check if that symmetry factors cancel fully or partially with the $ 1/n! $ factor at $ o(\lambda^n) $ and possible numerical factors in the definition of $ \ham_I $.
 \end{enumerate}
 
-The fact that the considered diagrams are topologicaly inequivalent needs to be stressed out. Moreover, symmetry factors need to be computed carefully, as illustrasted in \secref{sssec:sym-fact}.
+The fact that the considered diagrams are topologicaly inequivalent needs to be stressed. Moreover, symmetry factors need to be computed carefully, as illustrasted in \secref{sssec:sym-fact}.
 
 \subsection{Loop diagrams}
 
 To illustrate how loop diagrams are treated, consider the $ o(\lambda^2) $ corrections to the $ 2 \rightarrow 2 $ scattering in $ \lambda \phi^4 $-theory:
 \begin{multline*}
-  \frac{1}{2!} \left( -i \frac{\lambda}{4!} \right)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+  \frac{1}{2!} \left( -i \frac{\lambda}{4!} \right)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_2}_\mu x_4^\mu)} \times \\
   \times \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^4(x) \phi^4(y)\} | 0}
 \end{multline*}
 There are three possible inequivalent full contractions, associated to the connected diagrams:
@@ -1536,9 +1536,9 @@ so that the $ 2 \rightarrow 2 $ scattering amplitude at one-loop level (i.e. $ o
 
 The integral in \eref{eq:f4-loop-ampl} diverges at large $ k $, which is an example of \bctxt{UV divergence}. To study this divergence, first of all note that $ (p + k)^2 \rightarrow k^2 $ as $ k \rightarrow \infty $, so that it is safe to set $ p = 0 $. Due to the $ i\epsilon $-presciption, in the complex $ k^0 $-plane the pole in $ k^0 > 0 $ is below the real axis, while that in $ k^0 < 0 $ is above it: the integration path can then be rotated counterclockwise from the real axis to the imaginary axis by $ k^0 \mapsto i k^0 $, which is called a \bctxt{Wick rotation}. The amplitude then becomes:
 \begin{equation*}
-    \mathcal{A}(0) = \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \left( \frac{i}{k^2 - m^2 + i\epsilon} \right)^2 \mapsto i \frac{\lambda^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{(k^2 + m^2)^2}
+  \mathcal{A}(0) = \frac{(-i \lambda)^2}{2} \int \frac{\dd^4k}{(2\pi)^4} \left( \frac{i}{k^2 - m^2 + i\epsilon} \right)^2 \mapsto i \frac{\lambda^2}{2} \int \frac{\dd^4k_\text{E}}{(2\pi)^4} \frac{1}{(k_\text{E}^2 + m^2)^2}
 \end{equation*}
-where $ k^2 = k_0^2 + \ve{k}^2 $ is now a Euclidean momentum. To regulate the UV divergence, a cutoff $ \Lambda : k^2 < \Lambda^2 $ is introduced, so that:
+where $ k_\text{E}^2 = k_0^2 + \ve{k}^2 $ is now a Euclidean momentum (due to the $ i $ factor and the change of metric $ k^2 \mapsto -k_\text{E}^2 $). To regulate the UV divergence, a cutoff $ \Lambda : k^2 < \Lambda^2 $ is introduced, so that:
 \begin{equation*}
   \begin{split}
     \mathcal{A}(0)
