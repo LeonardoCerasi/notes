@@ -1,0 +1,99 @@
+\documentclass[a4paper, 12pt]{book}
+\usepackage[english]{babel}
+
+\input{imports.tex}
+
+\usepackage{overarrows}
+\usepackage{slashed}
+\usepackage{simpler-wick}
+
+\usepackage{tikz}
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+% bibliography
+
+\usepackage{csquotes}
+\usepackage[
+backend = biber,
+style = numeric-comp,
+sorting = ynt
+]{biblatex}
+\addbibresource{bibl.bib}
+
+\renewbibmacro{in:}{}
+
+\AtEveryBibitem{%
+	\clearfield{publisher}%
+	\clearfield{month}%
+	\clearfield{numpages}%
+	\clearfield{issue}%
+	\clearfield{isbn}%
+}
+
+\DeclareFieldFormat[book,article]{journaltitle}{#1}
+\DeclareFieldFormat[book,article]{volume}{\mkbibbold{#1}}
+
+%macros
+
+\newcommand{\lorg}{\mathrm{SO}^+(1,3)}
+\newcommand{\lora}{\mathfrak{so}^+(1,3)}
+\newcommand{\pog}{\mathrm{ISO}^+(1,3)}
+\newcommand{\poa}{\mathfrak{iso}^+(1,3)}
+
+\newcommand{\dira}{\mathfrak{cl}_{1,3}(\C)}
+
+\DeclareMathOperator{\spin}{Spin}
+
+\newcommand{\sua}[1]{\mathfrak{su}(#1)}
+\newcommand{\sla}[1]{\mathfrak{sl}(#1)}
+
+\newcommand{\cla}[1]{\mathfrak{cl}(#1)}
+\newcommand{\clar}[1]{\mathfrak{cl}_{#1}(\R)}
+
+\title{Thesis}
+\author{Leonardo Cerasi}
+
+\begin{document}
+
+\frontmatter
+
+\customtitlepage{Physics}{Infrared-Safe NLO Calculations with Massive Quarks: An Extension of the NSC Subtraction Formalism}{Prof. Raoul Horst Röntsch}{Leonardo Cerasi}{11410A}{2024--2025}
+\clearpage
+
+\chapter*{Abstract}
+\input{abstract.tex}
+
+\newpage
+
+\toc
+
+\pagestyle{contents}
+
+\mainmatter
+
+\chapter{Introduction}
+
+\section{Draft}
+
+Lorem ipsum dolor sit amet.
+
+\clearpage
+
+\bookmarksetupnext{level = -1}
+\begin{appendices}
+\pagestyle{append}
+
+\chapter{Draft appendix}
+
+\section{Draft}
+
+Lorem ipsum dolor sit amet \cite{pauli}.
+
+\clearpage
+\end{appendices}
+
+\bookmarksetupnext{level = -1}
+\pagestyle{biblio}
+\printbibliography[heading = bibintoc, title = {Bibliography}]
+
+\end{document}
