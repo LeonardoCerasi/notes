@@ -1,0 +1,688 @@
+\selectlanguage{english}
+
+\section{Lie groups}
+
+\begin{definition}{Lie groups}{}
+  A \bcdef{Lie group} is a group whose elements depend in a continuous and differentiable way on a set of real parameters $ \{\theta_a\}_{a = 1, \dots, d} \subset \R^d $.
+\end{definition}
+
+A Lie group can be seen both as a group and as a $ d $-dimensional differentiable manifold (with coordinates $ \theta_a $). WLOG it is always possible to choose $ g(0,\dots,0) = e $.
+
+\begin{definition}{Representations}{representation}
+  Given a group $ G $ and a vector space $ V(\K) $, a \bcdef{representation} of $ G $ on $ V $ is a homomorphism $ \rho : G \rightarrow \GL{V} $.
+\end{definition}
+
+A representation $ \rho $ which is a isomorphism is called \bctxt{faithful}. As $ \GL{V} \cong \K^{n \times n} $, with $ n \equiv \dim_\K V $, it is usual to represent $ G $ as matrices acting on elements of $ V $, i.e. $ \rho : G \rightarrow \K^{n \times n} $.
+
+\begin{theorem}{}{}
+  Given a Lie group $ G $ and $ g \in G $ connected with the identity, a representation of degree $ n $ on $ V(\C) $ is:
+  \begin{equation}
+    \rho(g(\theta)) = e^{i \theta_a T^a}
+  \end{equation}
+  where $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ are the \bcth{generators} of $ G $ on $ V $.
+\end{theorem}
+
+\begin{definition}{Lie algebras}{}
+  Given a Lie group $ G $ with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, its \bcdef{Lie algebra} is:
+  \begin{equation}
+    [T^a, T^b] = i \tensor{f}{^a^b_c} T^c
+  \end{equation}
+  where $ \tensor{f}{^a^b_c} $ are called the \bcdef{structure constants}.
+\end{definition}
+
+The sum over repeated indices is understood.
+
+\begin{proposition}{}{}
+  The Lie algebra of a Lie group is independent of the representation.
+\end{proposition}
+
+\begin{proposition}{}{}
+  Any $ d $-dimensional abelian Lie algebra is isomorphic to the direct sum of $ d $ one-dimensional Lie algebras.
+\end{proposition}
+
+As a consequence, all irreducible representations of an abelian Lie group are of degree $ n = 1 $.
+
+\begin{definition}{Casimir operators}{}
+  Given a Lie group with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, a \bcdef{Casimir operator} is an operator which commutes with each generator.
+\end{definition}
+
+Given an irreducible representation on $ V $, Casimir operators are operators proportional to $ \id_V $, and the proportionality constants can be used to label the representation: they correspond to conserved physical quantities.
+
+\begin{proposition}{}{non-compact-rep}
+  A non-compact group cannot have finite unitary representations, except for those with trivial non-compact generators.
+\end{proposition}
+
+This means that the non-compact component of a group cannot be represented with unitary operators of finite dimension.
+
+\subsection{Adjoint representation}
+
+To define the adjoint representation of a Lie group, it is necessary to give more formal definitions.
+
+\begin{definition}{Lie algrebas}{}
+  An $ n $-dimensional \bcdef{$ \K $-Lie algebra} $ \mathfrak{g} $ is an $ n $-dimensional $ \K $-vector space equipped with a bilinear map $ [\cdot,\cdot] : \mathfrak{g} \times \mathfrak{g} \rightarrow \mathfrak{g} $ such that:
+  \begin{enumerate}
+    \item $ [X,Y] = - [Y,X] \,\,\forall X,Y \in \mathfrak{g} $;
+    \item $ [X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0 \,\,\forall X,Y,Z \in \mathfrak{g} $ (Jacobi identity).
+  \end{enumerate}
+\end{definition}
+
+A Lie algebra $ \mathfrak{g} $ is \bctxt{commutative} if $ [X,Y] = 0 \,\,\forall X,Y \in \mathfrak{g} $. Note the link with Lie groups (to be formalized later): given a Lie group $ G $ , denoting as $ \mathcal{G} $ the associated differentiable manifold, then the Lie algebra $ \mathfrak{g} $ associated to $ G $ is $ \mathfrak{g} \defeq T_e\mathcal{G} $ (tangent space at the identity).
+
+\begin{example}{$ \R^3 $ as a Lie algebra}{}
+  Let $ \mathfrak{g} = \R^3 $ and $ [\cdot,\cdot] : \R^3 \times \R^3 \ni (\ve{x},\ve{y}) \mapsto [\ve{x} , \ve{y}] \equiv \ve{x} \times \ve{y} \in \R^3 $. Then $ \mathfrak{g} $ is a Lie algebra.
+\end{example}
+
+\begin{definition}{Lie algebra morphisms}{}
+  Let $ \mathfrak{g} , \mathfrak{h} $ be Lie algebras. A linear map $ \varphi : \mathfrak{g} \rightarrow \mathfrak{h} $ is a \bcdef{Lie algebra homomorphism} if:
+  \begin{equation*}
+    \varphi([X,Y]) = [\varphi(X),\varphi(Y)] \,\,\forall X,Y \in \mathfrak{g}
+  \end{equation*}
+  If $ \varphi $ is bijective, then it is a \bcdef{Lie algebra isomorphism}.
+\end{definition}
+
+A Lie algebra isomorphism $ \varphi : \mathfrak{g} \rightarrow \mathfrak{g} $ is a \bctxt{Lie algebra automorphism} $ \mathfrak{g} \in \Aut{\mathfrak{g}} $, where $ \Aut{\mathfrak{g}} $ is the \bctxt{automorphism group} of $ \mathfrak{g} $ (a group under the composition of morphisms).
+
+\begin{definition}{Adjoint map (pt. 1)}{adj-map-1}
+  Let $ \mathfrak{g} $ be a Lie group and, given $ X \in \mathfrak{g} $, define $ \ad_X : \mathfrak{g} \rightarrow \mathfrak{g} : Y \mapsto \ad_X(Y) \defeq [X,Y] $. Then the \bcdef{adjoint map} on $ \mathfrak{g} $ is the map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} : X \mapsto \ad_X $.
+\end{definition}
+
+By Jacobi identity, the adjoint map is a \bctxt{derivation} of the Lie bracket, as:
+\begin{equation*}
+  \ad_X([Y,Z]) = [\ad_X(Y),Z] + [Y,\ad_X(Z)]
+\end{equation*}
+
+\begin{proposition}{}{}
+  Given a Lie algebra $ \mathfrak{g} $, the adjoint map $ \ad : \mathfrak{g} \rightarrow \End{\mathfrak{g}} $ is a Lie algebra homomorphism.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Note that, by Jacobi identity:
+    \begin{equation*}
+      \ad_{[X,Y]}(Z) = [[X,Y],Z] = [X,[Y,Z]] + [Y,[Z,X]]
+    \end{equation*}
+    Moreover:
+    \begin{equation*}
+      [\ad_X,\ad_Y](Z) = [X,[Y,Z]] - [Y,[X,Z] = [X,[Y,Z]] + [Y,[Z,X]]
+    \end{equation*}
+    Therefore, $ \ad_{[X,Y]} = [\ad_X,\ad_Y] $, i.e. the thesis.
+  \end{proof}
+\end{proofbox}
+
+Let $ \mathfrak{g} $ be an $ n $-dimensional $ \K $-Lie algebra and $ \{X_i\}_{i = 1,\dots,n} \subset \mathfrak{g} $ a basis of $ \mathfrak{g} $. Then there are unique constants $ c_{ijk} \in \K $:
+\begin{equation*}
+  [X_i , X_j] = \sum_{k = 1}^{n} c_{ijk} X_k
+\end{equation*}
+known as \bctxt{structure constants}.
+
+\begin{theorem}{Lie algebras from Lie groups}{}
+  Let $ G \subset \GL{n,\C} $ be a Lie group. Then $ \mathfrak{g} = \{X \in \C^{n \times n} : e^{t X} \in G \,\,\forall t \in \R \} $ is a Lie algebra.
+\end{theorem}
+
+Even if $ G $ is a complex Lie group, its Lie algebra can still be real.
+
+\begin{theorem}{Induced Lie algebra homomorphism}{ind-lie-alg-hom}
+  Let $ G,H $ be Lie groups, with Lie algebra $ \mathfrak{g},\mathfrak{h} $, and let $ \varphi : G \rightarrow H $ be a Lie group homomorphism. Then there exists a unique $ \R $-linear map $ \Phi : \mathfrak{g} \rightarrow \mathfrak{h} $ such that:
+  \begin{equation*}
+    \varphi(e^X) = e^{\Phi(X)} \,\,\forall X \in \mathfrak{g}
+  \end{equation*}
+  The map $ \Phi $ as additional properties:
+  \begin{enumerate}
+    \item $ \Phi(gXg^{-1}) = \varphi(g) \Phi(X) \varphi(g)^{-1} \,\,\forall X \in \mathfrak{g} , \forall g \in G $;
+    \item $ \Phi([X,Y]) = [\Phi(X),\Phi(Y)] \,\,\forall X,Y \in \mathfrak{g} $ (Lie algebra homomorphism);
+    \item $ \Phi(X) = \frac{\dd}{\dd t}\big\vert_{t = 0} \varphi(e^{tX}) \,\,\forall X \in \mathfrak{g} $.
+  \end{enumerate}
+\end{theorem}
+
+To phrase \tref{th:ind-lie-alg-hom} in the language of manifolds, $ \Phi $ is the \bctxt{derivative} of $ \varphi $ at the identity: $ \Phi = d\varphi_e $.
+
+\begin{definition}{Adjoint map (pt. 2)}{adj-map-2}
+  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. The \bcdef{adjoint map} of $ g \in G $ is the linear map $ \Ad_g : \mathfrak{g} \rightarrow \mathfrak{g} : \Ad_g(X) \defeq g X g^{-1} $.
+\end{definition}
+
+As $ \Ad_g $ is clearly invertible, with $ \Ad_g^{-1} = \Ad_{g^{-1}} $, then $ \Ad_g \in \GL{\mathfrak{g}} \,\,\forall g \in G $. Furthermore, it is clear that $ \Ad_g([X,Y]) = [\Ad_g(X),\Ad_g(Y)] \,\,\forall X,Y \in \mathfrak{g} , \forall g \in G $, therefore each adjoint map is a Lie algebra homomorphism.
+
+\begin{proposition}{Adjoint representation}{}
+  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then the map $ \Ad : G \rightarrow \GL{\mathfrak{g}} : g \mapsto \Ad_g $ is a homomorphism.
+\end{proposition}
+
+Recalling \dref{def:representation}, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a representation of $ G $ on $ \mathfrak{g} $, called the \bctxt{adjoint representation}.\\
+As $ \GL{\mathfrak{g}} \cong \GL{n,\K} $ (with $ n \equiv \dim_\K \mathfrak{g} $ and $ \K = \R $ or $ \C $), it can be viewed as a Lie group itself, and its Lie algebra is $ \mathfrak{gl}(\mathfrak{g}) $. Thus, $ \Ad : G \rightarrow \GL{\mathfrak{g}} $ is a Lie group homomorphism (as it can be shown to be continuous).
+
+\begin{proposition}{Adjoint maps}{}
+  Let $ G $ be a Lie group, with Lie algebra $ \mathfrak{g} $. Then, given the Lie group homomorphism $ \Ad : G \rightarrow \GL{\mathfrak{g}} $, the induced Lie algebra homomorphism is $ \ad : \mathfrak{g} \rightarrow \mathfrak{gl}(\mathfrak{g}) $ such that $ \ad_X(Y) = [X,Y] $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \tref{th:ind-lie-alg-hom}, the Lie algebra homomorphism induced by $ \varphi \equiv \Ad $ is:
+    \begin{equation*}
+      \Phi(X) \equiv \ad_X = \frac{\dd}{\dd t}\bigg\vert_{t = 0} \Ad_{e^{tX}}
+    \end{equation*}
+    Hence:
+    \begin{equation*}
+      \ad_X(Y) = \frac{\dd}{\dd t}\bigg\vert_{t = 0} e^{tX} Y e^{-tX} = [X,Y]
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+This result links the two adjoint maps in \ddref{def:adj-map-1}{def:adj-map-2}.
+
+\subsection{\texorpdfstring{$ \SUn{n} $}{SU(2)} Lie group}
+
+The $ \SUn{n} $ group is the group of unitary transformations of $ n $-dimensional complex vectors. Its (faithful) fundamental representation thus is:
+\begin{equation*}
+  \SUn{n} = \{\tens{U} \in \C^{n \times n} : \tens{U}\tens{U}\dg = \tens{U}\dg\tens{U} = \tens{I}_n \land \det{\tens{U}} = +1 \}
+\end{equation*}
+The generators of $ \SUn{n} $ can be found setting $ \tens{U} = \exp \left( i \theta_a T^a \right) = \tens{I}_n + i \theta_a T^a $ and using $ \tens{U}\dg\tens{U} = \tens{I}_n $:
+\begin{equation}
+  T^a = T^{a\dagger}
+  \label{eq:sun-herm}
+\end{equation}
+Moreover, by the Jacobi formula $ (\det A(t)) \frac{\dd}{\dd t} (\det A(t)) = \tr (A(t)^{-1} \frac{\dd}{\dd t} A(t)) $ evaluated at $ t = 0 $:
+\begin{equation}
+  \tr T^a = 0
+  \label{eq:sun-trace}
+\end{equation}
+The traceless condition can be generalized to all semi-simple Lie algebras.
+Therefore, the generators of $ \SUn{n} $ are $ \C^{n \times n} $ hermitian traceless matrices: the dimension of $ \mathfrak{su}(n) $ then is $ n^2 - 1 $.\\
+The adjoint representation can be is given by representing the generators of the Lie group (i.e. the basis of the Lie algebra) with the structure constants of the Lie algebra:
+\begin{equation}
+  (T^b_\text{ad})_{ac} = i \tensor{f}{^a^b_c}
+\end{equation}
+
+\begin{proposition}{Structure constants}{}
+  The structure constants of a Lie algebra satisfy the Lie algebra.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ [T^a,T^b] = i \tensor{f}{^a^b_c} T^c $, the Jacoby identity becomes (recalling that $ \tensor{f}{^a^b_c} $ is totally antisymmetric):
+    \begin{equation*}
+      [[T^a,T^b],T^c] + [[T^b,T^c],T^a] + [[T^c,T^a],T^b] = 0
+    \end{equation*}
+    \begin{equation*}
+      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
+    \end{equation*}
+    The condition $ ([T^a_\text{ad},T^c_\text{ad}])_{be} = i \tensor{f}{^a^c_d} (T^d_\text{ad})_{be} $ then gives:
+    \begin{equation*}
+      \tensor{f}{^b^a_d} \tensor{f}{^d^c_e} - \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} = \tensor{f}{^a^c_d} \tensor{f}{^b^d_e}
+    \end{equation*}
+    \begin{equation*}
+      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
+    \end{equation*}
+    These two expressions are equal, hence the thesis.
+  \end{proof}
+\end{proofbox}
+
+Moreover, since the structure constant are real, the adjoint representation is always a real representation: the adjoint representation of $ \SUn{n} $ has degree $ n^2 - 1 $.\\
+Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
+\begin{equation}
+  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
+  \label{eq:quad-cas}
+\end{equation}
+This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
+
+\begin{proposition}{Quadratic Casimir operator}{}
+  For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
+  \begin{equation}
+    C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
+    \qquad \qquad
+    C_2(\mathtt{g}) = n
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First consider the fundamental representation. The $ \mathtt{n} $ of $ \SUn{2} $ is the spinor representation, with generators $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, hence they satisfy $ \tr(T^a_\mathtt{2} T^b_\mathtt{2}) = \frac{1}{2} \delta^{ab} $. It is possible to choose the generators of $ \SUn{n} $ such that, in $ \mathtt{n} $, the first three are $ T^a_\mathtt{n} = \frac{\sigma^a}{2} \,,\, a = 1,2,3 $ (they act on the first three component of $ \C^n $-vectors), so that the others can be chosen such that:
+    \begin{equation*}
+      \tr (T^a_\mathtt{n} T^b_\mathtt{n}) = \frac{1}{2} \delta^{ab}
+    \end{equation*}
+    Contracting Eq. \ref{eq:quad-cas} with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n) $) then:
+    \begin{equation*}
+      C_2(\mathtt{n}) n = \frac{1}{2} (n^2 - 1)
+    \end{equation*}
+    To compute the Casimir operator for the adjoint representation, first consider the decomposition of the direct product of two representations:
+    \begin{equation*}
+      \mathtt{r}_1 \otimes \mathtt{r}_2 = \bigoplus_i \mathtt{r}_i
+    \end{equation*}
+    In this representation $ T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2} = T^a_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} $, and it acts on tensor objects $ \Xi_{pq} $ whose first index transforms according to $ \mathtt{r}_1 $ and the second index according to $ \mathtt{r}_2 $. Recalling that $ \tr{T^a} = 0 $:
+    \begin{equation*}
+      \begin{split}
+        \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2
+        &= \tr ((T^a_{\mathtt{r}_1})^2 \otimes \id_{\mathtt{r}_2} + 2 T^a_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes (T^a_{\mathtt{r}_2})^2) \\
+        &= \tr (C_2(\mathtt{r}_1) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) + \tr (C_2(\mathtt{r}_2) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) = (C_2(\mathtt{r}_1) + C_2(\mathtt{r}_2)) n_{\mathtt{r}_1} n_{\mathtt{r}_2}
+      \end{split}
+    \end{equation*}
+    However, by the decomposition above:
+    \begin{equation*}
+      \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
+    \end{equation*}
+    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of \eeref{eq:sun-herm}{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
+    \begin{equation*}
+      (C_2(\ve{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
+    \end{equation*}
+    Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
+    \begin{equation*}
+      C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{$ \SUn{2} $ Lie group}
+
+The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \tens{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
+\begin{equation}
+  (T^a_\mathtt{g})_{ij} = i \epsilon^{iaj}
+\end{equation}
+Explicitely:
+\begin{equation*}
+  T^1_\mathtt{g} =
+  \begin{bmatrix}
+    0 & 0 & 0 \\
+    0 & 0 & -i \\
+    0 & i & 0
+  \end{bmatrix}
+  \qquad
+  T^2_\mathtt{g} =
+  \begin{bmatrix}
+    0 & 0 & i \\
+    0 & 0 & 0 \\
+    -i & 0 & 0
+  \end{bmatrix}
+  \qquad
+  T^3_\mathtt{g} =
+  \begin{bmatrix}
+    0 & -i & 0 \\
+    i & 0 & 0 \\
+    0 & 0 & 0
+  \end{bmatrix}
+\end{equation*}
+As an aside, these are exactly the generators of the fundamental representation of $ \SOn{3} $: this is due to the adjoint map of $ \SUn{2} $ being also the double-covering map on $ \SOn{3} \cong \SUn{2} / \Z_2 $.
+
+\section{Algebras}
+
+\begin{definition}{Associative algebras}{}
+  An $ n $-dimensional \bcdef{associative $ \K $-algebra} $ \mathcal{A} $ is an $ n $-dimensional vector space $ V(\K) $ equipped with a bilinear map $ \mathcal{A} \times \mathcal{A} \ni (a,b) \mapsto ab \in \mathcal{A} $ such that:
+  \begin{enumerate}
+    \item $ (ab)c = a(bc) \,\,\forall a,b,c \in \mathcal{A} $ (associativity);
+    \item $ a(b + c) = ab + ac \,\land\, (a + b)c = ac + bc \,\,\forall a,b,c \in \mathcal{A} $;
+    \item $ \lambda (ab) = (\lambda a)b = a(\lambda b) \,\,\forall \lambda \in \K, \forall a,b \in \mathcal{A} $.
+  \end{enumerate}
+\end{definition}
+
+An algebra is said to be \bctxt{unital} if $ \exists \mathit{1} \in \mathcal{A} : \mathit{1}a = a\mathit{1} = a \,\,\forall a \in \mathcal{A} $, called \bctxt{identity element}.
+
+\begin{definition}{Algebra morphisms}{}
+  Given two associative $ \K $-algebras $ \mathcal{A} , \mathcal{B} $, a $ \K $-linear map $ \varphi : \mathcal{A} \rightarrow \mathcal{B} $ is an \bcdef{algebra morphism} if:
+  \begin{equation*}
+    \varphi(ab) = \varphi(a) \varphi(b) \quad\forall a,b \in \mathcal{A}
+  \end{equation*}
+\end{definition}
+
+If $ \varphi(\mathit{1}_\mathcal{A}) = \mathit{1}_\mathcal{B} $, then $ \varphi $ is a \bctxt{unital morphism}. An algebra morphism $ \varphi : \mathcal{A} \rightarrow \mathcal{A} $ is an \bctxt{endomorphism}, and if $ \varphi^2 = \id_\mathcal{A} $ it is an \bctxt{involution}.
+
+\begin{proposition}{Even subalgebras}{}
+  Given a unital associative $ \K $-algebra $ \mathcal{A} $ and an involution $ \varphi \in \End \mathcal{A} $, then:
+  \begin{equation*}
+    \mathcal{A} = \mathcal{A}^+ \oplus \mathcal{A}^-
+  \end{equation*}
+  where, defining $ \pi \defeq \frac{1}{2} (\id_\mathcal{A} + \varphi) $:
+  \begin{equation*}
+    \mathcal{A}^+ \defeq \pi(\mathcal{A}) = \{a \in \mathcal{A} : \varphi(a) = a\}
+  \end{equation*}
+  \begin{equation*}
+    \mathcal{A}^- \defeq (\id_\mathcal{A} - \pi)(\mathcal{A}) = \{a \in \mathcal{A} : \varphi(a) = -a\}
+  \end{equation*}
+\end{proposition}
+
+As $ \mathcal{A}^+ \mathcal{A}^+ , \mathcal{A}^- \mathcal{A}^- \subset \mathcal{A}^+ $ and $ \mathcal{A}^+ \mathcal{A}^- , \mathcal{A}^- \mathcal{A}^+ \subset \mathcal{A}^- $, then $ \mathcal{A}^+ $ is a subalgebra of $ \mathcal{A} $, the \bctxt{even subalgebra}.
+
+\begin{definition}{Modules}{modules}
+  Given a unital associative $ \K $-algebra $ \mathcal{A} $, a \bcdef{right-module} $ M $ is a $ \K $-vector space equipped with a $ \K $-bilinear multiplication map $ \mathcal{A} \times M \ni (a,m) \mapsto am \in M $ such that:
+  \begin{enumerate}
+    \item $ (ab)m = a(bm) \,\,\forall a,b \in \mathcal{A} , \forall m \in M $;
+    \item $ \mathit{1}_\mathcal{A} m = m \,\,\forall m \in M $.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}{Ideals}{ideals}
+  Given a unital associative $ \K $-algebra $ \mathcal{A} $, a \bcdef{right-ideal} is a subalgebra $ \mathcal{I} \subset \mathcal{A} $ such that: 
+  \begin{enumerate}
+    \item $ aj \in \mathcal{I} \,\,\forall a \in \mathcal{A} , \forall j \in \mathcal{I} $.
+  \end{enumerate}
+  A right-ideal is said minimal if it is non-trivial and does not contain any non-trivial sub-right-ideal.
+\end{definition}
+
+The analogous left- definitions are clear. A left-ideal of $ \mathcal{A} $ can be viewed as a right-module on $ \mathcal{A} $.
+
+
+\subsection{Clifford algebras}
+
+\begin{definition}{Clifford algebras}{}
+  Given an $ n $-dimensional vector space $ V(\K) $ with a quadratic form $ q $, associated linear form\footnotemark $ \, \omega $ and orthogonal basis $ \{e_i\}_{i = 1,\dots,n} $, and a unital associative $ \K $-algebra $ \mathcal{A} $, a \bcdef{Clifford mapping} is an injective $ \K $-linear map $ \rho : V \rightarrow \mathcal{A} : \mathit{1} \notin \rho(V) \land \rho(x)^2 = - q(x) \mathit{1} \,\,\forall x \in V $.\\
+  If $ \rho(V) $ generates $ \mathcal{A} $, then $ (\mathcal{A},\rho) $ is a \bcdef{Clifford algebra} for $ (V,q) $, and is denoted by $ \cla{V} $.
+\end{definition}
+%
+\footnotetext{Given a vector space $ V(\K) $, a quadratic form is a map $ q : V \rightarrow \K $ such that $ q(\lambda x) = \lambda^2 q(x) \,\,\forall \lambda \in \K , \forall x \in V $, and the associated bilinear form is a $ \K $-bilinear map $ \omega : V \times V \rightarrow \K $ such that $ \omega(x,y) = \frac{1}{2} \left( q(x + y) - q(x) - q(y) \right) $, which is manifestly symmetric and $ q(x) = \omega(x,x) $.}
+%
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation*}
+    \{\rho(x) , \rho(y)\} = - 2 \omega(x,y) \mathit{1} \quad \forall x,y \in V
+  \end{equation*}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    \begin{equation*}
+      \rho(x) \rho(y) + \rho(y) \rho(x) = \rho(x + y)^2 - \rho(x)^2 - \rho(y)^2 = - \left( q(x + y) - q(x) - q(y) \right) \mathit{1} = - 2 \omega(x,y) \mathit{1}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+Setting for ease of reading $ \rho(x) \equiv x $, it is clear that $ x \perp y \,\,\Rightarrow\,\, xy = -yx $.\\
+More intuitively, the Clifford algebra $ \cla{V} $ can be seen as the associative algebra generated by $ V $ setting $ xy = - \omega(x,y)\mathit{1} \,\,\forall x,y \in V$, so that:
+\begin{equation}
+  \{x,y\} = 2 \omega(x,y)\mathit{1} \quad \forall x,y \in V
+  \label{eq:cliff-alg}
+\end{equation}
+In general, $ \clar{m,n} $ denotes the Clifford algebra associated to $ \R^{m,n} $ with quadratic form:
+\begin{equation*}
+  q(x_1,\dots,x_m,y_1,\dots,y_n) = \sum_{i = 1}^{m} x_i^2 - \sum_{j = 1}^{n} y_j^2
+\end{equation*}
+
+\begin{example}{Complex numbers}{}
+  Via Clifford algebras, $ \C \cong \clar{0,1} $. In fact, $ \R^{0,1} $ has orthonormal basis $ \{e_1\} $ such that $ q(e_1) = -1 $, i.e. $ e_1^2 = - \mathit{1} $, so elements of the Clifford algebra are generated by $ \{\mathit{1},e_1\} $: identifying $ e_1 \equiv i $ gives the desired isomorphism.
+\end{example}
+
+\begin{example}{Quaternions}{}
+  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by \eref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv i $, $ e_2 \equiv j $ and $ e_1 e_2 = k $ yields the result.
+\end{example}
+
+\subsubsection{Spin groups}
+\label{subsubsec:spin-groups}
+
+Given an $ n $-dimensional $ \K $-vector space, the Clifford algebra $ \cla{V} $ is finite dimensional and is naturaly $ \N_0 $-graded\footnotemark as:
+\begin{equation}
+  \cla{V} = \bigoplus_{i = 0}^n \mathfrak{cl}^{(i)}(V)
+  \label{eq:cliff-alg-grade}
+\end{equation}
+where $ \mathfrak{cl}^{(0)}(V) = \K $, $ \mathfrak{cl}^{(1)}(V) = V $ and $ \mathfrak{cl}^{(2)}(V) \equiv \spin(V) $ is the \bctxt{spin group} of $ V $. The spin group is a Lie group and, via its natural action on $ V $, can be shown to be $ \spin(V) \cong \mathfrak{so}(V) $.
+%
+\footnotetext{Given an index set $ \mathcal{I} $ and a $ \K $-vector space, the latter is $ \mathcal{I} $-\textit{graded} if there exists a family of subspaces $ \{V_i\}_{i \in \mathcal{I}} $ of $ V $ such that:
+\begin{equation*}
+  V = \bigoplus_{i \in \mathcal{I}} V_i
+\end{equation*}}
+
+\subsection{Grassmann algebras}
+
+For the definition of the tensor product, recall \eref{eq:tens-prod-def}.
+
+\begin{definition}{Tensor algebras}{}
+  Given a vector space $ V(\K) $, for all $ k \in \N $ define the $ k^\text{th} $ \bcdef{tensor power}:
+  \begin{equation*}
+    T^kV \defeq V^{\otimes k} \equiv \underbrace{V \otimes \dots \otimes V}_{k \text{ times}}
+  \end{equation*}
+  By convention $ T^0V \equiv \K $. The \bcdef{tensor algebra} (or free algebra) of $ V $ is then defined as:
+  \begin{equation}
+    T(V) \defeq \bigoplus_{k = 0}^\infty T^kV
+  \end{equation}
+\end{definition}
+
+Given $ k \in \N $, $ T^kV $ is a $ \K $-vector consisting of all tensors on $ V $ of order $ (k,0) $ (hence, $ T^0V \equiv \K $ must be seen as a 1D $ \K $-vector space). Expanding the direct sum, the tensor algebra is:
+\begin{equation}
+  T(V) = \K \oplus V \oplus (V \otimes V) \oplus (V \otimes V \otimes V) \oplus \dots
+\end{equation}
+and it is a unital associative algebra with multiplication determined by the canonical isomorphism $ T^kV \otimes T^\ell V \rightarrow T^{k+\ell}V $: in particular, $ T(V) $ is an $ \N_0 $-graded associative algebra.
+
+\begin{definition}{Grassmann algebras}{}
+  Given a vector space $ V(\K) $ and the two-sided ideal $ \mathcal{I} $ generated by\footnote{Given a unital associative algebra $ \mathcal{A} $ and a subset $ X \subset \mathcal{A} $, the two-sided ideal $ \mathcal{I} $ of $ \mathcal{A} $ generated by $ X $ is:
+  \begin{equation}
+    \mathcal{I} \defeq \bigg\{ \sum_{i = 1}^k a_i x_i b_i : a_i,b_i \in \mathcal{A} , x \in X \bigg\}
+\end{equation}}
+$ \,\{x^{\otimes k} : x \in V, k \in \N_{\ge 2}\} $, the \bcdef{Grassman algebra} (or exterior algebra) of $ V $ is defined as the quotient algebra:
+\begin{equation}
+  \bigwedge(V) \defeq T(V) / \mathcal{I}
+\end{equation}
+The \bcdef{exterior product} of two elements $ \alpha, \beta \in \bigwedge(V) $ is defined as:
+\begin{equation}
+  \alpha \wedge \beta \equiv \alpha \otimes \beta \mod\mathcal{I}
+\end{equation}
+\end{definition}
+
+The quotient algebra is found analogously to the quotient group. Note that the exterior product is an \bctxt{alternating product}, as by definition $ \omega \wedge \omega \,\,\forall \omega \in \Lambda(V) $. In general, by definition $ x_1 \wedge \dots \wedge x_k = 0 $ if $ x_i = x_j \in V $ for some $ i \neq j \in [1,k] $.
+
+\begin{proposition}{Anticommutativity}{grass-anti-comm}
+  Given a vector space $ V(\K) $, a $ k $-ple $ \{x_i\}_{i = 1, \dots, k} $, $ k \in \N $, and $ \sigma \in S^k $, then:
+  \begin{equation}
+    x_{\sigma(1)} \wedge \dots \wedge x_{\sigma(k)} = \sgn{\sigma}\, x_1 \wedge \dots \wedge x_k
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    For $ k = 2 $:
+    \begin{equation*}
+      0 = (x + y) \wedge (x + y) = x \wedge x + x \wedge y + y \wedge x + y \wedge y = x \wedge y + y \wedge x
+    \end{equation*}
+    from which $ x \wedge y = - y \wedge x $.
+  \end{proof}
+\end{proofbox}
+
+The Grassmann algebra is $ \N_0 $-graded too. Defining the $ k^\text{th} $ \bctxt{exterior power} $ {\bigwedge}^k(V) $ as the $ \K $-vector subspace of $ \bigwedge(V) $ spanned by elements of the form $ x_1 \wedge \dots \wedge x_k $, with $ x_i \in V $, then:
+\begin{equation}
+  \bigwedge(V) = \bigoplus_{k = 0}^\infty {\bigwedge}^k(V)
+\end{equation}
+If $ \omega \in {\bigwedge}^k(V) $ can be expressed as the exterior product of $ k $ elements of $ V $, then $ \omega $ is said to be \bctxt{decomposable}.
+
+\begin{theorem}{Dimension of the Grassmann algebra}{}
+  Given an $ n $-dimensional vector space $ V(\K) $, then $ {\bigwedge}^k(V) = \{0\} \,\,\forall k > \dim_\K V $, i.e.:
+  \begin{equation}
+  \bigwedge(V) = \bigoplus_{k = 0}^n {\bigwedge}^k(V)
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Given a basis $ \{e_i\}_{i = 1, \dots, n} $ of $ V $, WTS $ \{e_{i_1} \wedge \dots \wedge e_{i_k}\}_{1 \le i_1 < \dots < i_k \le n} $ is a basis of $ {\bigwedge}^k(V) $. Consider $ x_1 \wedge \dots \wedge x_k \in {\bigwedge}^k(V) $, with $ \{x_i\}_{i = 1,\dots,k} \subset V $. Then, denoting teh component of $ x_i $ along $ e_j $ as $ x_i^j $, it is clear that:
+    \begin{equation*}
+      x_1 \wedge \dots \wedge x_k = \sum_{i_1 = 1}^n \dots \sum_{i_k = 1}^n x_1^{i_1} \dots x_k^{i_k} e_{i_1} \wedge \dots \wedge e_{i_k}
+    \end{equation*}
+    Note that every term with $ e_{i_\ell} = e_{i_m} $ for some $ \ell \neq m \in [1,k] $ vanishes, while  the remaining terms can be reordered so that $ 1 \le i_1 \le \dots \le i_k \le n $: this shows that $ \{e_{i_1} \wedge \dots \wedge e_{i_k}\}_{1 \le i_1 < \dots < i_k \le n} $ is a basis of $ {\bigwedge}^k(V) $. It is then clear that if $ k > n $, then there will be at least two equal basis vector in every basis element: therefore, by the alternating nature of the exterior product, $ {\bigwedge}^k(V) = {0} $.
+  \end{proof}
+\end{proofbox}
+
+It can be shown that $ \dim_\K {\bigwedge}^k(V) = \binom{n}{k} $, so $ \dim_\K \bigwedge(V) = 2^n $. The graded structure of the Grassmann algebra is ensured by:
+\begin{equation}
+  {\bigwedge}^k(V) \wedge {\bigwedge}^p(V) \subset {\bigwedge}^{k+p}(V)
+\end{equation}
+This is an anticommutative grading, as:
+\begin{equation}
+  \alpha \in {\bigwedge}^k(V) , \beta \in {\bigwedge}^p(V)
+  \quad \Rightarrow \quad
+  \alpha \wedge \beta = (-1)^{kp} \beta \wedge \alpha
+\end{equation}
+
+\subsubsection{Grassmann numbers}
+\label{sssec:grass-num}
+
+Given an $ n $-dimensional vector field $ V(\C) $ (possibly $ n = \infty $), the elements of $ \bigwedge(V) $ are called \bctxt{Grassmann numbers} (or supernumbers). The general form of a Grassmann number is:
+\begin{equation}
+  z = c_0 + \sum_{k = 1}^n \sum_{1 \le i_1 < \dots < i_k \le n} c_{i_1 \dots i_k} \theta_{i_1} \dots \theta_{i_k} \equiv z_\text{B} + z_\text{S}
+\end{equation}
+where $ c_{i_1 \dots i_k} \in \C $ are completely-antisymmetric tensors of rank $ (k,0) $ and $ \theta_i \theta_j \equiv \theta_i \wedge \theta_j $ (basis of the Grassmann algebra). $ z_\text{B} $ is called the \bctxt{body} and $ z_\text{S} $ the \bctxt{soul} of the supernumber $ z $.
+
+\begin{proposition}{Soul}{}
+  If $ n < \infty $, then the soul of a supernumber is nilpotent:
+  \begin{equation}
+    z_\text{S}^{n+1} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{lemma}{Equations}{}
+  If $ n < \infty $, then:
+  \begin{equation}
+    \theta_i z = 0 \,\,\forall i = 1,\dots,n
+    \quad \Rightarrow \quad
+    z = c \theta_1 \dots \theta_n \,\, , \,\, c \in \C
+  \end{equation}
+  If $ n = \infty $, instead:
+  \begin{equation}
+    \theta_a z = 0 \,\,\forall a \in \N
+    \quad \Rightarrow \quad
+    z = 0
+  \end{equation}
+\end{lemma}
+
+In analogy to Hermitian conjugation, an \bctxt{involution} (or conjugation) is defined for supernumbers:
+\begin{equation}
+  (\theta_i \theta_j)^* = \theta_j \theta_i = - \theta_i \theta_j
+\end{equation}
+known as the deWitt convention. Moreover, note that products of an odd number of Grassmann variables anticommute with each other: these are called \bctxt{a-numbers}. On the other hand, products of an even number of Grassmann variables commute with each other (and with every Grassmann number): these are called \bctxt{c-numbers}. This decomposition induces a $ Z_2 $-grading of the algebra, showing that Grassmann algebras are supercommutative algebras\footnotemark. Note that c-numbers form a subalgebra of $ \bigwedge(V) $, while a-numbers do not (they are only a subspace).
+
+\footnotetext{A \textit{superalgebra} is a $ Z_2 $-graded associative algebra $ \mathcal{A} = \mathcal{A}_0 \oplus \mathcal{A}_1 $ with bilinear multiplication $ \mathcal{A} \times \mathcal{A} \rightarrowtail \mathcal{A} $ such that $ \mathcal{A}_i \mathcal{A}_j \subset \mathcal{A}_{i + j} $, with indices read modulo 2. Elements of each $ \mathcal{A}_i $ are called homogeneous. \\
+A \textit{supercommutative algebra} is a superalgebra such that any two homogeneuous elements $ x,y $ satisfy $ yx = (-1)^{\abs{x} \abs{y}} xy $, with $ \abs{x} $ denoting the grade of $ x $, i.e. $ x \in \mathcal{A}_i \,\,\Rightarrow\,\, \abs{x} = i \mod{2} $.}
+
+\subsubsection{Dual numbers}
+
+The case $ n = 1 $ is of particular interest: the elements of the exterior algebra of a $ 1 $-dimensional complex vector space are called \bctxt{dual numbers}. \\
+As for Grassmann variabales $ \theta \eta = - \epsilon \theta $, so that $ \theta^2 $, every analytic function reduces to a linear one on dual numbers (through its Taylor series): $ f(\theta) = A + B \theta $, with $ A,B \in \C $, is the most general function on dual numbers. Clearly, derivation is defined as:
+\begin{equation}
+  \frac{\dd}{\dd \theta} \left( A + B \theta \right) \equiv B
+\end{equation}
+On the other hand, integration (only considered on the whole domain of $ \theta $) is less trivial and can be defined imposing two conditions:
+\begin{enumerate}
+  \item linearity: $ \int \dd\theta \left[ a f(\theta) + b g(\theta) \right] = a \int \dd\theta\, f(\theta) + b \int \dd\theta\, g(\theta) \,\,\forall a,b \in \C $;
+  \item shift-invariance: $ \int \dd\theta\, f(\theta) = \int \dd\theta\, f(\theta + \eta) $.
+\end{enumerate}
+The only linear function satisfying the second constraint is the constant function, thus integration is conventionally defined as:
+\begin{equation}
+  \int \dd\theta \left( A + B \theta \right) \equiv B
+\end{equation}
+Therefore, on Grassmann numbers, integration and derivation are the same thing: indeed, if it where $ \text{I} = \text{D}^{-1} $, as $ \text{D}^2 = 0 $, then $ 0 = \text{I} \text{D}^2 = \text{D} $, which is absurd. \\
+Integration can be extended to complex integration. Parting from deWitt convention, define:
+\begin{equation}
+  \theta = \frac{\theta_1 + i \theta_2}{\sqrt{2}}
+  \qquad \qquad
+  \theta^* = \frac{\theta_1 - i \theta_2}{\sqrt{2}}
+\end{equation}
+These satisfy (simple check):
+\begin{equation}
+  (\theta \eta)^* = \eta^* \theta^*
+\end{equation}
+$ \theta $ and $ \theta^* $ are distinct Grassmann numbers, therefore $ \dd \theta_1 \dd \theta_2 = \frac{1}{i} \dd \theta 
+^* \dd \theta = - \frac{1}{i} \dd \theta \dd \theta^* $. The order ambiguity of integrating over multiple Grassmann numbers is solved setting the convention of performing the innermost integral first:
+\begin{equation}
+  \int \dd \theta \dd \eta\, \eta \theta = +1
+\end{equation}
+
+\begin{lemma}{Gaussian integral}{}
+  Given $ b \in \C $:
+  \begin{equation}
+    \int \dd \theta^* \dd \theta\, e^{- \theta^* b \theta} = b
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ \int \dd \theta^* \dd \theta\, e^{-\theta^* b \theta} = \int \dd \theta^* \dd \theta \left( 1 - \theta^* b \theta \right) = \int \dd \theta^* \dd \theta \left( 1 + b \theta \theta^* \right) = b $.
+  \end{proof}
+\end{proofbox}
+
+Introducing an extra factor of $ \theta \theta^* $ in the integrand yields an extra $ b^{-1} $ factor (as in standard Gaussian integrals):
+\begin{equation}
+  \int \dd \theta^* \dd \theta\, \theta \theta^* e^{-\theta^* b \theta} = 1
+\end{equation}
+
+\begin{proposition}{Unitary invariance}{}
+  Given $ \tens{U} \in \Un{n} $ and setting $ \theta'_i = \sum_{j = 1}^n \tens{U}_{ij} \theta_j $, then:
+  \begin{equation}
+    \int \prod_{i = 1}^n \dd \theta^*_i \theta_i\, f(\theta) = \int \prod_{i = 1}^n \dd {\theta'}^*_i \theta'_i\, f(\theta')
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By the \pref{prop:grass-anti-comm}:
+    \begin{equation*}
+      \begin{split}
+        \prod_{i = 1}^n \theta'_i
+        & = \sum_{i_1, \dots, i_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \theta'_{i_1} \dots \theta'_{i_n} = \sum_{i_1, \dots, i_n = 1}^n \sum_{j_1, \dots, j_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \tens{U}_{i_1 j_1} \dots \tens{U}_{i_n j_n} \theta_{j_1} \dots \theta_{j_n} \\
+        & = \sum_{i_1, \dots, i_n = 1}^n \sum_{j_1, \dots, j_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \epsilon^{j_1 \dots j_n} \tens{U}_{i_1 j_1} \dots \tens{U}_{i_n j_n} \prod_{k = 1}^n \theta_k = \det \tens{U} \prod_{i = 1}^n \theta_i
+      \end{split}
+    \end{equation*}
+    Equivalently:
+    \begin{equation*}
+      \prod_{i = 1}^n {\theta'}^*_i = \left( \det \tens{U} \right)^* \prod_{i = 1}^n \theta_i^*
+    \end{equation*}
+    As $ \tens{U} \in \Un{n} $, $ \left( \det \tens{U} \right) \left( \det \tens{U} \right)^* = 1 $, so:
+    \begin{equation*}
+      \prod_{i = 1}^n {\theta'}^*_i \theta'_i = \prod_{i = 1}^n \theta_i^* \theta_i
+    \end{equation*}
+    The same holds for the measure. As the only term of $ f(\theta) $ which survives the integration has exactly one factor of each $ \theta_i^* $ and one of each $ \theta_i $, the integral remains unchanged.
+  \end{proof}
+\end{proofbox}
+
+With unitary invariance, it is possible to extend complex integration to the multi-dimensional case.
+
+\begin{lemma}{Gaussian integral}{}
+  Given $ \tens{B} \in \C^{n \times n} $ Hermitian:
+  \begin{equation}
+    \int \prod_{i = 1}^n \dd \theta^*_i \dd \theta_i\, e^{- \sum_{j,k = 1}^n \theta_j^* \tens{B}_{jk} \theta_k} = \det \tens{B}
+    \label{eq:grass-gauss-1}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Being $ \tens{B} $ Hermitian, it can be diagonalized by a unitary transformation, so, given its eigenvalues $ \{b_i\}_{i = 1,\dots,n} \subset \C $:
+    \begin{equation*}
+      \begin{split}
+        \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, e^{- \sum_{j,k = 1}^n \theta_j^* \tens{B}_{jk} \theta_k}
+        & = \int \prod_{i = 1}^n \dd {\theta'}^*_i \dd \theta'_i\, e^{- \sum_{j = 1}^n {\theta'}^*_j b_j \theta'_j} \\
+        & = \prod_{i = 1}^n \int \dd \theta_i^* \dd \theta_i\, e^{- \theta_i^* b_i \theta_i} = \prod_{i = 1}^n b_i = \det \tens{B}
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+With extra factor, the standard Gaussian behavior is recovered:
+\begin{equation}
+  \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, \theta_p \theta_q e^{-i \sum_{j,k = 1}^n \theta_j^* B_{jk} \theta_k} = \left( \det \tens{B} \right) \left[ \tens{B}^{-1} \right]_{pq}
+  \label{eq:grass-gauss-2}
+\end{equation}
+
+\section{Gaussian integrals}
+
+\begin{lemma}{}{}
+  Given $ \alpha , \beta \in \C : \Re{\alpha} \ge 0 $:
+  \begin{equation}
+    \int_\R \dd x\, e^{-\frac{1}{2} \alpha x^2 + \beta x} = \sqrt{\frac{2\pi}{\alpha}} e^{\frac{\beta^2}{2\alpha}}
+    \label{eq:gauss-int}
+  \end{equation}
+\end{lemma}
+
+\begin{proposition}{Generalized Gaussian integral}{}
+  Given a non-singular matrix $ \tens{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
+  \begin{equation}
+    \int_{\R^n} \dd^nx\, e^{-\frac{1}{2} \ve{x}^\intercal \tens{A} \ve{x} + \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi)^n}{\det\tens{A}}} e^{\frac{1}{2} \ve{J}^\intercal \tens{A}^{-1} \ve{J}}
+  \end{equation}
+\end{proposition}
+
+\begin{lemma}{}{gauss-ve-int}
+  Given a non-singular matrix $ \tens{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
+  \begin{equation}
+    \int_{\R^n} \dd^nx\, e^{-\frac{i}{2} \ve{x}^\intercal \tens{A} \ve{x} + i \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi i)^n}{\det\tens{A}}} e^{-\frac{i}{2} \ve{J}^\intercal \tens{A}^{-1} \ve{J}}
+  \end{equation}
+\end{lemma}
+
+
+
+
+
+
+
+
+
+

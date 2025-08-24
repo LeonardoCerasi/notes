@@ -1,0 +1,1475 @@
+\selectlanguage{english}
+
+\section{Continuous limit}
+
+\subsection{One-dimensional harmonic crystal}
+
+Consider a simple one-dimensional model of a crystal where atoms of mass $ m \equiv 1 $ lie at rest on the $ x $-axis, with equilibrium positions labelled by $ n \in \N $ and equally spaced by a distance $ a $.\\
+Assuming these atoms are free to vibrate only in the $ x $ direction (longitudinal waves), and denoting the displacement of the atom at position $ n $ as $ \eta_n $, one can write the Lagrangian for a \bctxt{harmonic crystal} as:
+\begin{equation}
+  L = \sum_{n} \left[ \frac{1}{2} \dot{\eta}_n^2 - \frac{\lambda}{2} \left( \eta_n - \eta_{n-1} \right)^2 \right]
+  \label{eq:first-lag}
+\end{equation}
+where $ \lambda $ is the spring constant. From the Lagrange equations, the classical equations of motions are:
+\begin{equation}
+  \ddot{\eta}_n = \lambda \left( \eta_{n+1} - 2 \eta_n + \eta_{n-1} \right)
+\end{equation}
+The solutions can be written as complex travelling waves:
+\begin{equation}
+  \eta_n (t) = e^{i \left( k n - \omega t \right)}
+\end{equation}
+where the dispersion relation is:
+\begin{equation}
+  \omega^2 = 2\lambda \left( 1 - \cos k \right) \approx \lambda k^2
+\end{equation}
+Therefore, in the long-wavelength limit $ k \ll 1 $ waves propagate with velocity $ c = \sqrt{\lambda} $. To determine the normal modes, there need to be boundary conditions: imposing boundary conditions:
+\begin{equation}
+  \eta_{n + N} = \eta_n \qquad \Rightarrow \qquad k_m = \frac{2\pi m}{N} \,,\, m = 0, 1, \dots, N - 1
+\end{equation}
+The normal-mode expansion can then be written as:
+\begin{equation}
+  \eta (t) = \sum_{m = 0}^{N - 1} \left[ \mathcal{A}_m e^{i \left( k_m n - \omega_m t \right)} + \mathcal{A}^* e^{-i \left( k_m n - \omega_m t \right)} \right]
+  \label{eq:first-exp}
+\end{equation}
+where the complex conjugate is added to ensure that the total displacement is real. The momentum canonically-conjucated to the displacement is defined as:
+\begin{equation}
+  \pi_n \defeq \frac{\pa L}{\pa \dot{\eta}_n} = \dot{\eta}_n
+\end{equation}
+In quantum mechanics, $ \eta_n $ and $ \Pi_n $ become operators with canonical commutator $ [ \hat{\eta}_j, \hat{\pi}_k ] = i \hbar \delta_{jk} $. Implementing time evolution with the Heisenberg picture\footnote{Recall that $ \hat{\mathcal{O}}(t) = e^{\frac{i}{\hbar} \hat{H} t} \hat{\mathcal{O}}(0) e^{-\frac{i}{\hbar} \hat{H} t} $ and $ \frac{\dd \hat{\mathcal{O}}}{\dd t} = \frac{i}{\hbar} [ \hat{H}, \hat{\mathcal{O}} ] $.}:
+\begin{equation}
+  [ \hat{\eta}_j(t), \hat{\pi}_k(t) ] = i \hbar \delta_{jk}
+  \label{eq:first-comm}
+\end{equation}
+The commutator of operators evaluated at different times requires solving the dynamics of the system. It is useful to introduce \bctxt{annihilation} and \bctxt{creation operators}\footnotemark $\, \hat{a}(t) $ and $ \hat{a}^\dagger(t) $, so that \eref{eq:first-exp} becomes:
+%
+\footnotetext{For a harmonic oscillator $ \hat{H} = \frac{1}{2} \hat{p}^2 + \frac{1}{2} \omega^2 \hat{x}^2 $, so $ \frac{\dd \hat{x}}{\dd t} = \hat{p}(t) $ and $ \frac{\dd \hat{p}}{\dd t} = -\omega^2 \hat{x}(t) $ and the solution can be written as: $$ \hat{x}(t) = \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) + \hat{a}^\dagger(t) \right] \qquad \qquad \hat{p}(t) = -i \omega \sqrt{\frac{\hbar}{2\omega}} \left[ \hat{a}(t) - \hat{a}^\dagger(t) \right] $$ Inverting these expressions one finds $ [\hat{a}(t), \hat{a}^\dagger(t)] = 1 $ and $ \hat{H} = \hbar \omega \left( \hat{a}^\dagger \hat{a} + \frac{1}{2} \right) $. The time evolution $ \hat{a}(t) = e^{-i \omega t} \hat{a}(0) $ ensures that $ \hat{H} $ is times-independent.}
+%
+\begin{equation}
+  \hat{\eta}_n(t) = \sum_{m = 0}^{N - 1} \sqrt{\frac{\hbar}{2 \omega_m}} \frac{1}{\sqrt{N}} \left[ e^{i \left( k_m n - \omega_m t \right)} \hat{a}_m + e^{-i \left( k_m n - \omega_m t \right)} \hat{a}_m^\dagger \right]
+  \label{eq:first-quant}
+\end{equation}
+where $ [ \hat{a}_j, \hat{a}_k^\dagger ] = \delta_{jk} $ and the $ N^{-1/2} $ ensures the normalization of normal modes. The proof of \eref{eq:first-comm} follows from the finite Fourier series identity (sum of a geometric progression):
+\begin{equation}
+  \sum_{m = 0}^{N - 1} e^{i k_m \left( n - n' \right)} = N \delta_{n n'}
+  \label{eq:first-id}
+\end{equation}
+The Hamiltonian of the system can be written as:
+\begin{equation}
+  \hat{H} = \sum_{n} \left[ \frac{1}{2} \hat{\pi}_n^2 + \frac{\lambda}{2} \left( \hat{\eta}_n - \hat{\eta}_{n-1} \right)^2 \right] = \sum_{m = 0}^{N - 1} \hbar \omega_m \left( \hat{a}_m^\dagger \hat{a}_m + \frac{1}{2} \right)
+\end{equation}
+Generalizing the harmonic oscillator operator algebra (proven unique by Von Neumann), one can construct the Hilbert space for the harmonic crystal as:
+\begin{equation}
+  \hat{a}_m \ket{0} \quad \forall m = 0, 1, \dots, N - 1
+\end{equation}
+\begin{equation}
+  \ket{n_0, n_1, \dots, n_{N-1}} = \prod_{m = 0}^{N - 1} \frac{( \hat{a}_m^\dagger )^{n_m}}{\sqrt{n_m!}} \ket{0}
+\end{equation}
+These are normalized eigenstates of \eref{eq:first-lag} with energy eigenvalues:
+\begin{equation}
+  E_0 = \frac{1}{2} \sum_{m = 0}^{N - 1} \hbar \omega_m
+  \label{eq:first-harm}
+\end{equation}
+\begin{equation}
+  E_{n_0, n_1, \dots, n_{N-1}} = E_0 + \sum_{m = 0}^{N - 1} n_m \hbar \omega_m
+\end{equation}
+This Hilbert space is called \bctxt{Fock space} and the excited states \bctxt{phonons}: these can be thought as $ \virgolette{particles} $ and $ n_m $ is the number of phonons in the $ m^{\mathrm{th}} $ normal mode.
+
+\subsection{One-dimensional harmonic string}
+
+Taking the continuum limit, the crystal becomes a string: to achieve this, one takes the limits $ a \rightarrow 0 $ and $ N \rightarrow \infty $ while keeping the total length $ R \equiv N a $ fixed. In this context, the displacement becomes a field $ \eta(x,t) $ dependent on the continuous real coordinate $ x \in [0, R] $, therefore:
+\begin{equation*}
+  \left( \eta_{n + 1} - \eta_n \right)^2 \longrightarrow a^2 \left( \frac{\pa \eta}{\pa x} \right)^2
+  \qquad \qquad
+  \sum_{n} \longrightarrow \frac{1}{a} \int_0^R \dd x
+\end{equation*}
+
+\begin{proposition}{}{continuous-limit}
+  In the continuous limit:
+  \begin{equation*}
+    \frac{\delta_{nn'}}{a} \longrightarrow \delta(x - x') = \int_\R \frac{\dd k}{2\pi} e^{i k (x - x')}
+  \end{equation*}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+  By direct calculation:
+  \begin{equation*}
+    a \sum_{n} f(an) \frac{\delta_{nm}}{a} = f(ma) \longrightarrow f(y) = \int_0^R \dd x\, f(x) \delta(x - y)
+  \end{equation*}
+  Recalling \eref{eq:first-id}, since $ k_m n = \frac{k_m}{a} na \rightarrow k x $, symmetrizing $ k_m \in [-\pi, \pi] $ (instead of $ [0, 2\pi] $) one finds:
+  \begin{equation*}
+    \delta(x - x') \longleftarrow \frac{\delta_{nn'}}{a} = \frac{1}{Na} \sum_{m} e^{ik_m (n - n')} \longrightarrow \int_\R \frac{\dd k}{2\pi} e^{ik (x - x')}
+  \end{equation*}
+  where integration limits are $ \pm \frac{\pi}{a} \rightarrow \pm \infty $.
+\end{proof}
+\end{proofbox}
+
+\begin{proposition}{}{}
+  The inverse Fourier transform of the Dirac Delta reads:
+  \begin{equation*}
+    \int_0^R \dd x\, e^{i (k - k') x} = 2\pi \delta(k - k')
+  \end{equation*}
+\end{proposition}
+
+By these relations, it can be seen that $ \frac{\dd k}{2\pi} $ has the physical meaning of the number of normal modes per unit spatial volume with wavenumber between $ k $ and $ k + \dd k $, while the interpretation of the divergent $ \delta(0) $ varies: in $ x $ space, it is the reciprocal of the lattice spacing, i.e. the number of normal modes per unit spatial volume, but in $ k $ space $ 2\pi \delta(0) $ is the (hyper-)volume of the system.\\
+In the continuous limit, the Lagrangian of the harmonic string becomes:
+\begin{equation*}
+  L = \int_0^R \dd x \left[ \frac{1}{2} \rho_0 (\pa_t \eta)^2 - \frac{\kappa}{2} (\pa_x \eta)^2 \right]
+\end{equation*}
+where $ \rho_0 $ is the equilibrium mass density of the string. It is customary to absorb constants in the fields, thus, setting $ \phi(x,t) \equiv \sqrt{\rho_0} \eta(x,t) $ and $ \kappa = c^2 \rho_0 $ and adding a pinning term $ \propto \phi^2 $, the Lagrangian can be written as:
+\begin{equation}
+  L = \int_0^R \dd x \left[ \frac{1}{2} (\pa_t \phi)^2 - \frac{c^2}{2} (\pa_x \phi)^2 - \frac{m^2 c^4}{2} \phi^2 \right]
+\end{equation}
+The classical equation of motion of this field yields:
+\begin{equation}
+  \pa_t^2 \phi = c^2 \pa_x^2 \phi - m^2 c^4 \phi
+\end{equation}
+The solutions of this wave equation can be written as:
+\begin{equation}
+  \phi(x,t) = e^{i \left( kx - \omega_k t \right)}
+\end{equation}
+with dispersion relation:
+\begin{equation}
+  \omega_k^2 = c^2 k^2 + m^2 c^4
+\end{equation}
+To quantize this system, one needs to compute the Hamiltonian. The canonical momentum field is:
+\begin{equation}
+  \Pi(x,t) \defeq \frac{\pa L}{\pa (\pa_t \phi)} = \pa_t \phi(x,t)
+\end{equation}
+The classical Hamiltonian can then be found as:
+\begin{equation}
+  H = \int_0^R \dd x \left[ \frac{1}{2} \Pi^2 + \frac{c^2}{2} (\pa_x \phi)^2 + \frac{m^2 c^4}{2} \phi^2 \right]
+\end{equation}
+The quantum field is analogous to \eref{eq:first-quant}:
+\begin{equation}
+  \hat\phi(x,t) = \int_\R \frac{\dd k}{2\pi} \sqrt{\frac{\hbar}{2\omega_k}} \left[ e^{i \left( kx - \omega_k t \right)} \hat{a}_k + e^{-i \left( kx - \omega_k t \right)} \hat{a}_k^\dagger \right]
+\end{equation}
+with commutation relations:
+\begin{equation}
+  [\hat{a}_k, \hat{a}_{k'}^\dagger] = 2\pi \delta(k - k')
+\end{equation}
+\begin{equation}
+  [\hat\phi(x,t), \hat\Pi(x',t)] = i\hbar \delta(x - x')
+\end{equation}
+The quantum Hamiltonian can be written as:
+\begin{equation}
+  \hat{H} = \int_\R \frac{\dd k}{2\pi} \frac{1}{2} \hbar \omega_k \left( \hat{a}_k^\dagger \hat{a}_k + \hat{a}_k \hat{a}_k^\dagger \right) = E_0 + \int_\R \frac{\dd k}{2\pi} \hbar \omega_k \hat{a}_k^\dagger \hat{a}_k
+\end{equation}
+The ground-state energy can be computed from \eref{eq:first-harm}, defining $ \mathrm{Vol} \defeq 2\pi \delta(k = 0) $:
+\begin{equation}
+  E_0 = \mathrm{Vol} \int_\R \frac{\dd k}{2\pi} \frac{1}{2} \hbar \omega_k
+\end{equation}
+For a strictly continuous system there is no cut-off in the $ k $ integral, thus the zero-point energy diverges: however, this is not necessarily a problem, as often only changes in $ E_0 $ are relevant (and experimentally accessible), and in this case it is known as \bctxt{Casimir energy}.
+
+\newpage
+
+\section{Spacetime symmetries}
+
+\subsection{Lorentz group}
+
+Consider the group of linear transformations $ x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu $ on $ \R^{1,3} $ which leave invariant the quantity $ \eta_{\mu \nu} x^\mu x^\nu $, i.e. the orthogonal group $ \On{1,3} $ (with signature $ (+,-,-,-) $). The condition that $ \tensor{\Lambda}{^\mu_\nu} $ must satisfy reads:
+\begin{equation}
+  \eta_{\rho \sigma} = \eta_{\mu \nu} \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma}
+  \label{eq:lor-def}
+\end{equation}
+This implies that $ \det \Lambda = \pm 1 $: a transformation with $ \det \Lambda = -1 $ can always be written as the product of a transformation with $ \det \Lambda = 1 $ and a discrete transformation which reverses the sign of an odd number of coordinates. One further defines $ \SOn{1,3} \defeq \{\Lambda \in \On{1,3} : \det \Lambda = 1\} $.\\
+Writing explicitly the temporal component $ 1 = (\tensor{\Lambda}{^0_0})^2 - (\tensor{\Lambda}{^1_0})^2 - (\tensor{\Lambda}{^2_0})^2 - (\tensor{\Lambda}{^3_0})^2 $, it is clear that $ (\tensor{\Lambda}{^0_0})^2 \ge 1 $. Therefore, $ \On{1,3} $ has two disconnected components: the orthochronous component with $ \tensor{\Lambda}{^0_0} \ge 1 $ and the non-orthochronous component with $ \tensor{\Lambda}{^0_0} \le 1 $. Any non-orthochronous transformation can be written as the product of an orthochronous transformation and a dircrete transformation which reverses the sign of the temporal component.
+
+\begin{definition}{Lorentz group}{}
+  The \bcdef{Lorentz group} $ \lorg $ is the orthochronous component of $ \SOn{1,3} $.
+\end{definition}
+
+The discrete transformations are factored out of the Lorentz group: these are \bctxt{parity} and \bctxt{time reversal}, which can be represented as $ \tensor{\mathcal{P}}{^\mu_\nu} = \diag \left( +1,-1,-1,-1 \right) $ and $ \tensor{\mathcal{T}}{^\mu_\nu} = \diag \left( -1,+1,+1,+1 \right) $. Applying these discrete transformations in all combinations ($ \id $, $ \mathcal{P} $, $ \mathcal{T} $ and $ \mathcal{P} \mathcal{T} $) one gets the four disconnected components of $ \SOn{1,3} $, which are not simply connected. This means that Lorentz invariance does not include parity and time reversal invariance.\\
+Considering the infinitesimal transformation and applying \eref{eq:lor-def}:
+\begin{equation*}
+  \tensor{\Lambda}{^\mu_\nu} = \delta^\mu_\nu + \tensor{\omega}{^\mu_\nu}
+  \qquad \Rightarrow \qquad
+  \omega_{\mu \nu} = - \omega_{\nu \mu}
+\end{equation*}
+Anti-symmetry means that $ \omega_{\mu \nu} $ has only 6 parameters, which define the Lorentz group: these can be identified by the 3 angles of spherical rotations in the $ (x,y) $, $ (y,z) $ and $ (z,x) $ planes and the 3 rapidities of hyperbolic rotations in the $ (t,x) $, $ (t,y) $ and $ (t,z) $ planes.
+
+\begin{theorem}{}{}
+  The Lorentz group is a non-compact Lie group.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Spherical and hyperbolic rotations are continuous and differential w.r.t. angles and rapidities, but while angles vary in $ [0, 2\pi) $, rapidities vary in $ \R $, so the differentiable manifold associated to $ \lorg $ is not compact.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Lorentz algebra}
+
+The 6 parameters of the Lorentz group correspond to 6 generators of the associated Lorentz algebra. Labelling these generators as $ J^{\mu \nu} : J^{\mu \nu} = - J^{\nu \mu} $, the generic element $ \Lambda \in \lorg $ can be written as:
+\begin{equation}
+  \Lambda = e^{- \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}}
+\end{equation}
+The $ \frac{1}{2} $ factor arises from each generator being counted twice (product of two anti-symmetric objects). Given a $ n $-dimensional representation of $ \lorg $, both $ \tensor{[J^{\mu \nu}]}{^i_j} $ and $ \tensor{[\Lambda]}{^i_j} $ are $ \C^{n \times n} $ matrices ($ \Lambda $ is real): for example, the $ n = 1 $ representation acts on \bctxt{scalars}, which are invariant under Lorentz transformations, so $ J^{\mu \nu} \equiv 0 \,\,\forall \mu,\nu = 0, \dots, 3 $.
+
+\paragraph{4-vectors}
+
+The $ n = 4 $ representation acts on \bctxt{contravariant 4-vectors} $ v^\mu $, which transform according to $ v^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} v^\nu $, and \bctxt{covariant 4-vectors} $ v_\mu $, which transform according to $ v_\mu \mapsto \tensor{\Lambda}{_\mu^\nu} v_\nu $. In this representation, the generators are represented as $ \C^{4 \times 4} $ matrices:
+\begin{equation}
+  \tensor{[J^{\mu \nu}]}{^\rho_\sigma} = i \left( \eta^{\mu \rho} \delta^\nu_\sigma - \eta^{\nu \rho} \delta^\mu_\sigma \right)
+  \label{eq:lor-gen}
+\end{equation}
+This is an irreducible representation, and the associated Lie algebra $ \lora $, called the \bctxt{Lorentz algebra}, is:
+\begin{equation}
+  [J^{\mu \nu}, J^{\sigma \rho}] = i \left( \eta^{\nu \rho} J^{\mu \sigma} - \eta^{\mu \rho} J^{\nu \sigma} - \eta^{\nu \sigma} J^{\mu \rho} + \eta^{\mu \rho} J^{\nu \sigma} \right)
+  \label{eq:lor-comm}
+\end{equation}
+It is convenient to rearrange the 6 independent components of $ J^{\mu \nu} $ into two spatial vectors:
+\begin{equation}
+  J^i \defeq \frac{1}{2} \epsilon^{ijk} J^{jk}
+  \qquad \qquad
+  K^i \defeq J^{i0}
+  \label{eq:lor-better-gen}
+\end{equation}
+The $ \lora $ can then be rewritten as:
+\begin{equation}
+  [J^i, J^j] = i \epsilon^{ijk} J^k
+  \qquad \qquad
+  [J^i, K^j] = i \epsilon^{ijk} K^k
+  \qquad \qquad
+  [K^i, K^j] = - i \epsilon^{ijk} J^k
+\end{equation}
+The first equation defines a $ \mathfrak{su}(2) $ sub-algebra, thus showing that $ J^i $ are the generators of angular momentum. Angles and rapidities are then defined as:
+\begin{equation}
+  \theta^i \defeq \frac{1}{2} \epsilon^{ijk} \omega^{jk}
+  \qquad \qquad
+  \eta^i \defeq \omega^{i0}
+\end{equation}
+so that:
+\begin{equation}
+  \Lambda = \exp \left[ -i \boldsymbol{\theta} \cdot \ve{J} + i \boldsymbol{\eta} \cdot \ve{K} \right]
+  \label{eq:lor-better-transf}
+\end{equation}
+This definition reflect the \textit{alias} interpretation: the angles define counterclockwise rotations of vectors with respect to a fixed reference frame, while rapidities define boosts wich increase velocities with respect to said frame.
+
+\subsubsection{Tensor Representations}
+
+A generic $ (p,q) $-tensor transforms as:
+\begin{equation}
+  \tensor{T}{^{\mu_1 \dots \mu_p}_{\nu_1 \dots \nu_q}} \mapsto \tensor{\Lambda}{^{\mu_1}_{\alpha_1}} \dots \tensor{\Lambda}{^{\mu_p}_{\alpha_p}} \tensor{\Lambda}{_{\nu_1}^{\beta_1}} \dots \tensor{\Lambda}{_{\nu_q}^{\beta_q}} \tensor{T}{^{\alpha_1 \dots \alpha_p}_{\beta_1 \dots \beta_q}}
+\end{equation}
+This shows that the representation of the Lorentz group which acts on $ (p,q) $-tensors, although being of degree $ n = 4^{p + q} $, is reducible into the direct product of $ p + q $ 4-dimensional representations.\\
+Moreover, consider the action of the Lorentz group on $ (2,0) $-tensors: being $ T^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} T^{\alpha \beta} $, if $ T^{\mu \nu} $ is (anti-)symmetric it will remain so under a Lorentz transformation. Therefore, the 16-dimensional representation reduces to a 6-dimensional representation on anti-symmetric tensors and a 10-dimensional representation of symmetric tensors. Furthermore, the trace of a symmetric tensor is invariant, as $ T \equiv \eta_{\mu \nu} T^{\mu \nu} \mapsto \eta_{\mu \nu} \tensor{\Lambda}{^\mu _\alpha} \tensor{\Lambda}{^\nu _\beta} T^{\alpha \beta} = T $, so the latter representation further reduces into a 9-dimensional representation on symmetric traceless tensors and a 1-dimensional representation on scalars. This means that:
+\begin{equation}
+  \ve{4} \otimes \ve{4} = \ve{1} \oplus \ve{6} \oplus \ve{9}
+  \label{eq:lor-tens-dec}
+\end{equation}
+These are irreducible representations which act on $ S $, $ A^{\mu \nu} $ and $ \bar{S}^{\mu \nu} \equiv S^{\mu \nu} - \frac{1}{4} \eta^{\mu \nu} S $ respectively, with $ A^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} - T^{\nu \mu} \right) $ and $ S^{\mu \nu} \equiv \frac{1}{2} \left( T^{\mu \nu} + T^{\nu \mu} \right) $.
+
+\paragraph{Decomposition under rotations}
+
+Restricting the action to the $ \SOn{3} $ sub-group of $ \lorg $, tensors can be decomposed according to irreducible representations of $ \SOn{3} $, which are labelled by the angular momentum $ j \in \N_0 $ and are of degree $ n = 2j + 1 $. Also recall the Clebsh-Gordan composition of angular momenta:
+\begin{equation}
+  \ve{j}_1 \otimes \ve{j}_2 = \bigoplus_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \ve{j}
+\end{equation}
+A Lorentz scalar $ \alpha $ is a scalar under rotations too, so $ \alpha \in \ve{0} $. A 4-vector $ v^\mu $ is irreducible under the action of $ \lorg $, but under $ \SOn{3} $ it is decomposed into $ v^0 $ and $ \ve{v} $, so $ v^\mu \in \ve{0} \oplus \ve{1} $. A $ (2,0) $-tensor then is:
+\begin{equation*}
+  \begin{split}
+    T^{\mu \nu} \in \left( \ve{0} \oplus \ve{1} \right) \otimes \left( \ve{0} \oplus \ve{1} \right)
+    &= \left( \ve{0} \otimes \ve{0} \right) \oplus \left( \ve{0} \otimes \ve{1} \right) \oplus \left( \ve{1} \otimes \ve{0} \right) \oplus \left( \ve{1} \otimes \ve{1} \right) \\
+    &= \ve{0} \oplus \ve{1} \oplus \ve{1} \oplus \left( \ve{0} \oplus \ve{1} \oplus \ve{2} \right)
+  \end{split}
+\end{equation*}
+This is equivalent to \eref{eq:lor-tens-dec}: the trace is a scalar, so $ S \in \ve{0} $, while the anti-symmetric part can be written as two spatial vectors $ A^{0i} $ and $ \frac{1}{2} \epsilon^{ijk} A^{jk} $, so $ A^{\mu \nu} \in \ve{1} \oplus \ve{1} $. The traceless symmetric part then decomposes as $ \bar{S}^{\mu \nu} \in \ve{0} \oplus \ve{1} \oplus \ve{2} $ under spatial rotations.\\
+Equivalently, $ T^{\mu \nu} $ can be decomposed into $ T^{00} \in \left( \ve{0} \otimes \ve{0} \right) $, $ T^{0i} \in \left( \ve{0} \otimes \ve{1} \right) $, $ T^{i0} \in \left( \ve{1} \otimes \ve{0} \right) $ and $ T^{ij} \in \left( \ve{1} \otimes \ve{1} \right) $: the formers are a scalar and two spatial vectors associated to $ \ve{0} \oplus \ve{1} \oplus \ve{1} $, while the latter can be decomposed into the trace, which is $ \ve{0} $, the anti-symmetric part, which is $ \ve{1} $ ($ \epsilon^{ijk} A^{jk} $), and the traceless symmetric part, which is $ \ve{2} $.
+
+\begin{example}{Gravitational waves}{}
+  Gravitational waves in \bcex{de Donder gauge} are described by a traceless symmetric matrix, therefore they have $ j = 2 $ (spin of the graviton).
+\end{example}
+
+There are two \bctxt{invariant tensors} under $ \lorg $: the metric $ \eta_{\mu \nu} $, by \eref{eq:lor-def}, and the Levi-Civita symbol $ \epsilon^{\mu \nu \sigma \rho} $:
+\begin{equation*}
+  \epsilon^{\mu \nu \sigma \rho} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} \tensor{\Lambda}{^\sigma_\gamma} \tensor{\Lambda}{^\rho_\delta} \epsilon^{\alpha \beta \gamma \delta} = \left( \det \Lambda \right) \epsilon^{\mu \nu \sigma \rho} = \epsilon^{\mu \nu \sigma \rho}
+\end{equation*}
+
+\subsubsection{Spinorial representations}
+
+The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ are the same, which means that $ \SUn{2} $ and $ \SOn{3} $ are indistinguishable by infinitesimal transformations; however, they are globally different, as $ \SOn{3} $ rotations are periodic by $ 2\pi $, while $ \SUn{2} $ rotations are periodic by $ 4\pi $: in particular, it can be shown that $ \SOn{3} \cong \SUn{2} / \Z_2 $, i.e. $ \SUn{2} $ is the universal cover of $ \SOn{3} $. This means that $ \SUn{2} $ representations can be labelled by $ j \in \frac{1}{2} \N_0 $, where half-integer spin representations are known as \bctxt{spinorial representations}: they act on spinors, i.e. objects which change sign under rotations of $ 2\pi $ (thus not suitable to represent $ \SOn{3} $).
+
+\begin{example}{Composition of two spin-$ \frac{1}{2} $}{}
+  The $ \ve{\frac{1}{2}} $ representation of $ \SUn{2} $ is a 2-dimensional representation where $ J^i = \frac{\sigma^i}{2} $: Pauli matrices satisfy $ \sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k $, thus the $ \mathfrak{su}(2) $ algebra is satisfied. Denoting the $ m = \pm \frac{1}{2} $ states in the $ \ve{\frac{1}{2}} $ representation as $ \ket{\uparrow} $ and $ \ket{\downarrow} $, the Clebsch-Gordan decomposition $ \ve{\frac{1}{2}} \otimes \ve{\frac{1}{2}} = \ve{0} \oplus \ve{1} $ yields the triplet ($ j = 1 $) $ \ket{\uparrow\uparrow} $, $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} + \ket{\downarrow\uparrow} \right) $, $ \ket{\downarrow\downarrow} $ and the singlet ($ j = 0 $) $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} - \ket{\downarrow\uparrow} \right) $.
+\end{example}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Lorentz algebra}{lorentz-algebra}
+  \begin{equation}
+    \lora \cong \sua{2} \oplus \sua{2}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Given the $ \lora $ algebra in \eref{eq:lor-better-gen}, it is possible to define:
+    \begin{equation}
+      \ve{J}_{\pm} \defeq \frac{1}{2} \left( \ve{J} \pm i \ve{K} \right)
+      \qquad
+      \Rightarrow
+      \qquad
+      [\ve{J}_{\pm}^i , \ve{J}_{\pm}^j] = i \epsilon^{ijk} \ve{J}_{\pm}^k
+      \qquad
+      [\ve{J}_{\pm}^i , \ve{J}_{\mp}^j] = \ve{0}
+      \label{eq:lora-su2-gen}
+    \end{equation}
+    These are two commuting $ \mathfrak{su}(2) $ algebras, thus proving the thesis\footnote{To be precise, $ \lora \cong \sla{2,\C} $, but complexification yields the following isomorphisms (with \eref{eq:lora-su2-gen}):
+    \begin{equation*}
+      \lora \hookrightarrow \lora_\C \cong \sua{2}_\C \oplus \sua{2}_\C \cong \sla{2,\C} \oplus \sla{2,\C} \cong \sla{2,\C}_\C \hookleftarrow \sla{2,\C}
+    \end{equation*}
+    Indeed, note that $ \lorg $ is not globally equivalent to $ \SUn{2} \times \SUn{2} $: instead, $ \SUn{2} \times \SUn{2} / \Z_2 \cong \SOn{4} $, while the universal cover of $ \lorg $ is $ \SL{2,\C} $, as $ \lorg \cong \SL{2,\C} / \Z_2 $.}.
+  \end{proof}
+\end{proofbox}
+
+By \pref{prop:lorentz-algebra}, representations of $ \lorg $ can be labelled by $ (\ve{j}_-,\ve{j}_+) \in \frac{1}{2} \N_0 \times \frac{1}{2} \N_0 $, with each index labelling a representation of $ \SUn{2} $: as $ \ve{J} = \ve{J}_+ + \ve{J}_- $, the $ (\ve{j}_-,\ve{j}_+) $ representation contains states with all possible spins $ \abs{j_+ - j_-} \le j \le j_+ + j_- $, and it is a representation of degree $ n = \left( 2j_- + 1 \right) \left( 2j_+ + 1 \right) $.\\
+More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} : \lora \rightarrow \mathfrak{gl}(V_{(j_-,j_+)}) $, where $ V_{(j_-,j_+)} $ is a $ (2j_- + 1)(2j_+ + 1) $-dimensional $ \C $-vector space, defined as (recall \eref{eq:lora-su2-gen}):
+\begin{equation}
+  \begin{gathered}
+    \rho_{(j_-,j_+)}(J^i) = J^i_{(j_+)} \otimes \tens{I}_{(2j_- + 1)} + \tens{I}_{(2j_+ + 1)} \otimes J^i_{(j_-)} \\
+    \rho_{(j_-,j_+)}(K^i) = -i \left[ J^i_{(j_+)} \otimes \tens{I}_{(2j_ + 1)} - \tens{I}_{(2j_+ + 1)} \otimes J^i_{(j_-)} \right]
+  \end{gathered}
+  \label{eq:lorentz-su2-repr}
+\end{equation}
+where $ \ve{J}_{(j)} $ is the $ (2j + 1) $-dimensional irreducible representation of $ \mathfrak{su}(2) $ and $ \otimes $ is the tensor product\footnotemark.
+
+\footnotetext{Given two $ \K $-vector spaces $ V,W $ with bases $ \{\ve{e}_i\}_{i = 1,\dots,n} , \{\ve{f}_j\}_{i = 1,\dots,m} $, the tensor product $ V \otimes W $ is defined as:
+\begin{equation}
+  \ve{v} \otimes \ve{w} = \sum_{i = 1}^{n} \sum_{j = 1}^{m} v^i w^j \ve{e}_i \otimes \ve{f}_j
+  \quad \iff \quad
+  \begin{pmatrix}
+    v_1 \\ \vdots \\ v_n
+  \end{pmatrix}
+  \otimes
+  \begin{pmatrix}
+    w_1 \\ \vdots \\ w_m
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    v_1 w_1 \\ \vdots \\ v_1 w_m \\ \vdots \\ v_n w_1 \\ \vdots \\ v_n w_m
+  \end{pmatrix}
+  \label{eq:tens-prod-def}
+\end{equation}
+Moreover, given $ \K $-linear maps $ f : V \rightarrow V' , g : W \rightarrow W' $ represented by $ F \in \K^{n' \times n} , G \in \K^{m' \times m} $, the tensor product $ f \otimes g : V \otimes W \rightarrow V' \otimes W' $ is defined as $ F \otimes G \in \K^{(n'm') \times (nm)} $:
+\begin{equation*}
+  \begin{bmatrix}
+    f_{1,1} & \dots & f_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    f_{n',1} & \dots & f_{n',n} \\
+  \end{bmatrix}
+  \otimes
+  \begin{bmatrix}
+    g_{1,1} & \dots & g_{1,m} \\
+    \vdots & \ddots & \vdots \\
+    g_{m',1} & \dots & g_{m',m} \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    f_{1,1} g_{1,1} & \dots & f_{1,1} g_{1,m} &  & f_{1,n} g_{1,1} & \dots & f_{1,n} g_{1,m} \\
+    \vdots & \ddots & \vdots & \dots & \vdots & \ddots & \vdots \\
+    f_{1,1} g_{m',1} & \dots & f_{1,1} g_{m',m} &  & f_{1,n} g_{m',1} & \dots & f_{1,n} g_{m',m} \\
+     & \vdots &  & \ddots &  & \vdots &  \\
+    f_{n',1} g_{1,1} & \dots & f_{n',1} g_{1,m} &  & f_{n',n} g_{1,1} & \dots & f_{n',n} g_{1,m} \\
+    \vdots & \ddots & \vdots & \dots & \vdots & \ddots & \vdots \\
+    f_{n',1} g_{m',1} & \dots & f_{n',1} g_{m',m} &  & f_{n',n} g_{m',1} & \dots & f_{n',n} g_{m',m} \\
+  \end{bmatrix}
+\end{equation*}}
+
+\paragraph{Trivial representation}
+
+The trivial representation is $ \ve{\left( 0,0 \right)} $, as both $ \ve{J}_{\pm} = 0 $ and $ \ve{J} = \ve{K} = 0 $: this is the representation which acts on scalars.
+
+\paragraph{Weyl representations}
+
+$ \ve{\left( \frac{1}{2},0 \right)} $ and $ \ve{\left( 0,\frac{1}{2} \right)} $ are 2-dimensional spinorial representations. These representations act on different spinors $ (\psi_\text{L})_\alpha , (\psi_\text{R})_\beta \in \C^2 $, with $ \alpha,\beta = 1,2 $, which are called \bctxt{left-} and \bctxt{right-handed  Weyl spinors}.\\
+In $ \ve{\left( \frac{1}{2},0 \right)} $ the generators are $ \ve{J}_- = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{J}_+ = \ve{0} $, while in $ \ve{\left( 0,\frac{1}{2} \right)} $ they are $ \ve{J}_- = \ve{0} $ and $ \ve{J}_+ = \frac{\boldsymbol{\sigma}}{2} $, thus, by \eref{eq:lorentz-su2-repr}, $ \ve{J}_\text{L} = \ve{J}_\text{R} = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{K}_\text{L} = - \ve{K}_\text{R} = i \frac{\boldsymbol{\sigma}}{2} $, so that:
+\begin{equation}
+  \psi_\text{L} \mapsto \Lambda_\text{L} \psi_\text{L} = \exp \left[ \left( -i \boldsymbol{\theta} - \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{L}
+  \label{eq:lor-left-hand-weyl}
+\end{equation}
+\begin{equation}
+  \psi_\text{R} \mapsto \Lambda_\text{R} \psi_\text{R} = \exp \left[ \left( -i \boldsymbol{\theta} + \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{R}
+  \label{eq:lor-right-hand-weyl}
+\end{equation}
+Note that the generators $ K^i $ are not hermitian, as expected from \pref{prop:non-compact-rep}. Furthermore, as $ \psi_{\text{L}/\text{R}} \in \C^2 $, then $ \Lambda_{\text{L}/\text{R}} \in \C^{2 \times 2} $ (in general the spinorial representations are complex representations).
+
+\begin{proposition}{}{weyl-spin-par}
+  Given $ \psi_\text{L} \in \ve{\left( \frac{1}{2},0 \right)} $ and $ \psi_\text{R} \in \ve{\left( 0,\frac{1}{2} \right)} $, then $ \sigma^2 \psi_\text{L}^* \in \ve{\left( 0,\frac{1}{2} \right)} $ and $ \sigma^2 \psi_\text{R}^* \in \ve{\left( \frac{1}{2},0 \right)} $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recall that for Pauli matrices $ \sigma^2 \sigma^i \sigma^2 = -(\sigma^i)^* $, so $ \sigma^2 \Lambda_\text{L}^* \sigma^2 = \Lambda_\text{R} $ and:
+    \begin{equation*}
+      \sigma^2 \psi_\text{L}^* \mapsto \sigma^2 \left( \Lambda_\text{L} \psi_\text{L} \right)^* = \left( \sigma^2 \Lambda_\text{L}^* \sigma^2 \right) \sigma^2 \psi_\text{L}^* = \Lambda_\text{R} \sigma^2 \psi_\text{L}^*
+      \quad \Rightarrow \quad
+      \sigma^2 \psi_\text{L}^* \in \ve{\left( 0,\tfrac{1}{2} \right)}
+    \end{equation*}
+    where $ \sigma^2 \sigma^2 = \tens{I}_2 $ was used. The proof for $ \sigma^2 \psi_\text{R}^* $ is analogous.
+  \end{proof}
+\end{proofbox}
+
+This allows to define \bctxt{charge conjugation} on Weyl spinors:
+\begin{equation}
+  \psi_\text{L}^c \defeq i \sigma^2 \psi_\text{L}^*
+  \qquad \qquad
+  \psi_\text{R}^c \defeq -i \sigma^2 \psi_\text{R}^*
+\end{equation}
+As of \pref{prop:weyl-spin-par}, charge conjugation transforms a left-handed Weyl spinor into a right-handed one and vice versa. Moreover, the $ i $ factor ensures that applying this operator twice yields the identity operator.
+
+\paragraph{Dirac representation}
+
+$ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ is a 4-dimensional complex representation: this representation acts on bispinors of the form $ \Psi = \left( (\psi_\text{L})_\alpha, (\xi_\text{R})_\beta \right)^\intercal \in \C^4 $, called \bctxt{Dirac spinors}, with transformation $ \Lambda_\text{D} = \diag \left( \Lambda_\text{L}, \Lambda_\text{R} \right) \in \C^{4 \times 4} $.
+
+\begin{definition}{Charge conjugation on Dirac spinors}{}
+  On Dirac spinors, the \bcdef{charge conjugation operator} is defined as:
+  \begin{equation}
+    \Psi^c \defeq
+    \begin{pmatrix}
+      - i \sigma^2 \xi_\text{R}^* \\
+      i \sigma^2 \psi_\text{L}^*
+    \end{pmatrix}
+    = -i
+    \begin{bmatrix}
+      0 & \sigma^2 \\ -\sigma^2 & 0
+    \end{bmatrix}
+    \Psi^*
+    \label{eq:dir-spin-charge-conj}
+  \end{equation}
+\end{definition}
+
+This definition reflect the fact that charge conjugation changes the representation of the Weyl spinors (\pref{prop:weyl-spin-par}).
+
+\paragraph{4-vector representation}
+
+To see how $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the 4-vector representation, consider the space $ \mathcal{H}(2) \defeq \{\tens{H} \in \C^{2 \times 2} : \tens{H}\dg = \tens{H}\} $ of all $ \C^{2 \times 2} $ Hermitian matrices.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Minkowski space and Hermitian matrices}{mink-herm-iso}
+  \begin{equation}
+    \mathcal{H}(2) \cong \R^{1,3}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    \begin{equation*}
+      \R^{1,3} \ni v^\mu = (v^0,v^1,v^2,v^3) \longleftrightarrow
+      \begin{pmatrix}
+        v^0 - v^3 & -v^1 + i v^2 \\
+        -v^1 - i v^2 & v^0 + v^3
+      \end{pmatrix}
+      = V \in \mathcal{H}(2)
+    \end{equation*}
+    where the isomorphisms are $ V = v_\mu \sigma^\mu , v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\tens{I}_2,\bs{\sigma}) , \bar{\sigma}^\mu = (\tens{I}_2,-\bs{\sigma}) $.
+  \end{proof}
+\end{proofbox}
+
+As of \lref{lemma:mink-herm-iso}, given $ \Lambda \in \lorg $ acting on 4-vectors as $ v^\mu \mapsto \tensor{\Lambda}{^\mu _\nu} v^\nu $, it is isomorphic to the action of $ \Lambda_\text{s} \in \SL{2,\C} $ on Hermitian matrices as $ V \mapsto \Lambda_\text{s} V \tens{\Lambda}_\text{s}\dg $: indeed, this transformation preserves Hermiticity and the Minkowski norm $ \det V = v_\mu v^\mu $ (as $ \det \Lambda_\text{s} = 1 $). This transformation can be explicited as:
+\begin{equation}
+  \tensor{\Lambda}{^\mu_\nu} \sigma^\nu = \Lambda_\text{s} \sigma^\mu \Lambda_\text{s}\dg
+\end{equation}
+By \eref{eq:sun-trace} and \pref{prop:lorentz-algebra}, $ \sla{2,\C} = \{\tens{X} \in \C^{2 \times 2} : \tr \tens{X} = 0\} $ and an $ \R $-basis is $ \{\frac{\bs{\sigma}}{2},i\frac{\bs{\sigma}}{2}\} $, then:
+\begin{equation*}
+  \Lambda_\text{s} = \exp \left[ -i \left( \bs{\theta} + i \bs{\eta} \right) \cdot \frac{\bs{\sigma}}{2} \right] = \Lambda_\text{R}
+  \qquad
+  \Rightarrow
+  \qquad
+  \Lambda_\text{s}\dg = \exp \left[ \left( i \bs{\theta} + \bs{\eta} \right) \cdot \frac{\bs{\sigma}}{2} \right] = \sigma^2 \Lambda_\text{L}^\intercal \sigma^2
+\end{equation*}
+where $ \sigma^2 \bs{\sigma} \sigma^2 = - \bs{\sigma}^\intercal $ was used. This is exactly the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation, where the left component is considered in a unitarily-equivalent form $ \psi_\text{L}' \defeq \psi_\text{L}^\intercal \sigma^2 $ (so that $ \psi_\text{L}' \mapsto \psi_\text{L}' \Lambda_\text{s}\dg $ by transposing \eref{eq:lor-left-hand-weyl}).\\
+Moreover, note that by Clebsch-Gordan decomposition $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} \cong \ve{0} \oplus \ve{1} $, which is exactly the representation which acts on 4-vectors ($ v^0 \in \ve{0} $ and $ \ve{v} \in \ve{1} $).
+
+\paragraph{Parity}
+
+Note that $ \mathcal{P} \ve{K} = -\ve{K} $, as the velocity of the boost gets reversed, while $ \mathcal{P} \ve{J} = \ve{J} $: this means that $ \mathcal{P} \ve{J}_\pm = \ve{J}_\mp $, i.e. parity exchanges a $ \ve{\left( j_-,j_+ \right)} $ representation into a $ \ve{\left( j_+,j_- \right)} $ representation. Therefore, a $ \ve{\left( j_-,j_+ \right)} $ representation of $ \lorg $ is a basis for the representation of the parity transformation iff $ j_- = j_+ $.
+
+\begin{example}{Parity on spinors}{}
+  While Weyl spinors (separately) are not a basis for a representation of the parity operator, Dirac spinors are.
+\end{example}
+
+\subsubsection{Dirac algebra}
+
+The Dirac algebra is $ \dira \cong \clar{1,3} \otimes \C $ (complexification). This Clifford algebra admits a matrix representation via $ \gamma^\mu \in \C^{4 \times 4} \,\,\forall \mu = 0,1,2,3 $ such that:
+\begin{equation}
+  \{\gamma^\mu , \gamma^\nu\} = 2 \eta^{\mu \nu} \tens{I}_4
+\end{equation}
+The basis of this algebra is then given by:
+\begin{align*}
+  & \tens{I}_4 & \text{1 matrix}\,\,\,\, \\
+  & \gamma^\mu & \text{4 matrices} \\
+  & \gamma^{\mu \nu} \equiv \frac{1}{2} [\gamma^\mu, \gamma^\nu] \equiv \gamma^{[\mu} \gamma^{\nu]} & \text{6 matrices} \\
+  & \gamma^{\mu \nu \rho} \equiv \gamma^{[\mu} \gamma^\nu \gamma^{\rho]} = i \epsilon^{\mu \nu \rho \sigma} \gamma_\sigma \gamma^5 & \text{4 matrices} \\
+  & \gamma^{\mu \nu \rho \sigma} \equiv \gamma^{[\mu} \gamma^\nu \gamma^\rho \gamma^{\sigma]} = - i \epsilon^{\mu \nu \rho \sigma} \gamma^5 & \text{1 matrix}\,\,\,\,
+\end{align*}
+where $ \gamma^5 \defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $ is an additional gamma matrix. Note that this matrix is not in the basis of $ \dira $. It has the following properties:
+\begin{equation*}
+  (\gamma^5)\dg = \gamma^5
+  \qquad
+  (\gamma^5)^2 = \tens{I}_4
+  \qquad
+  \{\gamma^5 , \gamma^\mu\} = 0
+\end{equation*}
+Therefore, the Dirac algebra is a 16-dimensional unital associative $ \C $-algebra, and its generic component is:
+\begin{equation}
+  \Gamma = a \tens{I}_4 + a_\mu \gamma^\mu + \frac{1}{2} a_{\mu \nu} \gamma^{\mu \nu} + \frac{1}{3!} a_{\mu \nu \rho} \gamma^{\mu \nu \rho} + \frac{1}{4!} a_{\mu \nu \rho \sigma} \gamma^{\mu \nu \rho \sigma}
+\end{equation}
+where each coefficient is totally anti-symmetric.\\
+The quadratic subspace $ \mathfrak{cl}_{1,3}^{(2)}(\C) $ of the Dirac algebra is of particular interest. By convention, define its 6 generators as $ \sigma^{\mu \nu} \defeq \frac{i}{4} [\gamma^\mu , \gamma^\nu] $: it is straightforward to show that these generators satisfy \eref{eq:lor-comm}, thus they give a 4-dimensional representation of $ \lora $.
+
+\begin{proposition}{Dirac algebra and Dirac representation}{}
+  The generators of $ \mathfrak{cl}_{1,3}^{(2)}(\C) $ also give the $ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ representation of $ \lora $.
+\end{proposition}
+
+Moreover, $ \mathfrak{cl}_{1,3}^{(2)}(\C) \cong \spin(1,3) $ (\secref{subsubsec:spin-groups}). Given a spinor $ \Psi \in \C^4 $, this spin group acts as:
+\begin{equation*}
+  \Psi \mapsto \Lambda_{\frac{1}{2}} \Psi = \exp \left[ -\frac{i}{2} \omega_{\mu \nu} \sigma^{\mu \nu} \right] \Psi
+\end{equation*}
+Using the property $ (\gamma^\mu)\dg = \gamma^0 \gamma^\mu \gamma^0 $, its easy to see that $ (\sigma^{\mu \nu})\dg = - \gamma^0 \sigma^{\mu \nu} \gamma^0 $, so, defining the \bctxt{Dirac dual} $ \bar{\Psi} \defeq \Psi\dg \gamma^0 $, this transforms via the inverse transformation:
+\begin{equation*}
+  \bar{\Psi} \mapsto \bar{\Psi} \Lambda_{\frac{1}{2}}^{-1}
+\end{equation*}
+
+\paragraph{Dirac bilinears}
+
+The fact that $ \Psi $ and $ \bar{\Psi} $ transform inversely allows to define objects with particular transformation relations.
+
+\begin{theorem}{Lorentz index of gamma matrices}{}
+  The gamma matrices transform under the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation of $ \lorg $ as:
+  \begin{equation}
+    \tensor{\Lambda}{^\mu_\nu} \gamma^\nu = \Lambda_{\frac{1}{2}}^{-1} \gamma^\mu \Lambda_{\frac{1}{2}}
+    \label{eq:gamma-lor-tr}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling the explicit form of the generators in \eref{eq:lor-gen}:
+    \begin{equation*}
+      \tensor{[J^{\rho \sigma}]}{^\mu_\nu} \gamma^\nu = i \left( \eta^{\rho \mu} \gamma^\sigma - \eta^{\sigma \mu} \gamma^\rho \right) = \frac{i}{2} \left( \gamma^\sigma \gamma^\rho \gamma^\mu + \gamma^\sigma \gamma^\mu \gamma^\rho - \gamma^\rho \gamma^\sigma \gamma^\mu - \gamma^\rho \gamma^\mu \gamma^\sigma \right)
+    \end{equation*}
+    As $ [\gamma^\mu , \gamma^\nu] = \{\gamma^\mu , \gamma^\nu\} - 2 \gamma^\nu \gamma^\mu = 2 \left( \eta^{\mu \nu} - \gamma^\nu \gamma^\mu \right) $:
+    \begin{equation*}
+      \begin{split}
+        [\gamma^\mu , \sigma^{\rho \sigma}]
+        &= \frac{i}{4} [\gamma^\mu , \gamma^\rho \gamma^\sigma - \gamma^\sigma \gamma^\rho] = \frac{i}{4} \left( \gamma^\rho [\gamma^\mu , \gamma^\sigma] + [\gamma^\mu , \gamma^\rho] \gamma^\sigma - [\gamma^\mu , \gamma^\sigma] \gamma^\rho - \gamma^\sigma [\gamma^\mu , \gamma^\rho] \right) \\
+        &= \frac{i}{2} \left( - \gamma^\rho \gamma^\sigma \gamma^\mu - \gamma^\rho \gamma^\mu \gamma^\sigma + \gamma^\sigma \gamma^\mu \gamma^\rho + \gamma^\sigma \gamma^\rho \gamma^\mu \right) = \tensor{[J^{\rho \sigma}]}{^\mu_\nu} \gamma^\nu
+      \end{split}
+    \end{equation*}
+    Expanding the thesis at first order:
+    \begin{equation*}
+      \tensor{\left[ \tens{I}_4 - \frac{i}{2} \omega_{\rho \sigma} J^{\rho \sigma} \right]}{^\mu_\nu} \gamma^\nu = \left[ \tens{I}_4 + \frac{i}{2} \omega_{\rho \sigma} \sigma^{\rho \sigma} \right] \gamma^\mu \left[ \tens{I}_4 - \frac{i}{2} \omega_{\rho \sigma} \sigma^{\rho \sigma} \right]
+    \end{equation*}
+    which becomes:
+    \begin{equation*}
+      - \tensor{[J^{\rho \sigma}]}{^\mu_\nu} \gamma^\nu = \sigma^{\rho \sigma} \gamma^\mu - \gamma^\mu \sigma^{\rho \sigma}
+    \end{equation*}
+    This equation has been verified, so the thesis holds.
+  \end{proof}
+\end{proofbox}
+
+This result means that, although they are matrices, the $ \mu $ in $ \gamma^\mu $ is effectively a Lorentz index, thus allowing to construct dot products with 4-vectors; in this way, gamma matrices transform 4-vectors into operators on spinors\footnotemark: $ A^\mu \in \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $, but $ \slashed{A} \equiv \gamma^\mu A_\mu \in \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $.
+%
+\footnotetext{More precisely: spinors are defined as left-modules (even more precisely, as minimal left-ideals: see \dref{def:modules} and \dref{def:ideals}) over $ \dira $, and $ \slashed{A} = \gamma^\mu A_\mu \in \dira $ (specifically $ \mathfrak{cl}_{1,3}^{(1)}(\C) $, with notation from \eref{eq:cliff-alg-grade}).}
+
+A \bctxt{Dirac bilinear} is an object $ \bar{\Psi} \Gamma \Psi $, with $ \Gamma \in \dira $. There are 5 basic bilinears:
+\begin{equation*}
+  \bar{\Psi} \Psi
+  \qquad
+  \bar{\Psi} \gamma^\mu \Psi
+  \qquad
+  \bar{\Psi} \gamma^5 \Psi
+  \qquad
+  \bar{\Psi} \gamma^5 \gamma^\mu \Psi
+  \qquad
+  \bar{\Psi} \sigma^{\mu \nu} \Psi
+\end{equation*}
+According to their transformation relations under the Lorentz group, these bilears are respectively called scalar, vector, pseudo-scalar, pseudo-vector and tensor bilinear.
+
+\subsubsection{Dual and adjoint representations}
+
+Recall that the adjoint representation of a Lie group is a representation acting on the associated Lie algebra: therefore, the adjoint representation of $ \lorg $ is 6-dimensional and, by \pref{prop:lorentz-algebra}, it can be decomposed as $ \ve{6} \cong \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+
+\paragraph{Dual representations}
+
+Consider a generic anti-symmetric tensor $ A^{\mu \nu} $: its \bctxt{dual tensor} is defined as $ A_\star^{\mu \nu} \defeq \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} $. Every anti-symmetric tensor can then be decomposed as:
+\begin{equation}
+  A^{\mu \nu}_{\pm} \equiv \frac{1}{2} \left( A^{\mu \nu} \pm i A_\star^{\mu \nu} \right)
+\end{equation}
+which are respectively called the \bctxt{self-dual} and \bctxt{anti-self-dual part} of $ A^{\mu \nu} $.
+
+\begin{lemma}{(Anti)-self-dual tensor}{}
+  An (anti)-self-dual tensor satisfies:
+  \begin{equation}
+    A^{\mu \nu} = \pm \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider $ A^{\mu \nu} = \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} $:
+    \begin{equation*}
+      A^{\mu \nu}_+ = \frac{1}{2} \left( A^{\mu \nu} + \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} \right) = \frac{1}{2} \left( i \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} \right) = A^{\mu \nu}
+      \qquad
+      A^{\mu \nu}_- = \frac{1}{2} \left( A^{\mu \nu} - \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma} \right) = 0
+    \end{equation*}
+    The other case is trivially verified.
+  \end{proof}
+\end{proofbox}
+
+Anti-symmetric tensors belong to the $ \ve{6} $ representation, but this is a reducible representation. Indeed, the subspaces of self-dual and anti-self-dual tensors are invariant subspaces:
+\begin{equation*}
+  A^{\mu \nu} = \pm \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} A_{\rho \sigma}
+  \qquad \Rightarrow \qquad
+  \pm \frac{i}{2} \epsilon^{\mu \nu \rho \sigma} \left( \tensor{\Lambda}{_\rho^\alpha} \tensor{\Lambda}{_\sigma^\beta} A_{\alpha \beta} \right) = - \frac{1}{4} \underbrace{\epsilon^{\mu \nu \rho \sigma} \epsilon_{\alpha \beta \gamma \delta}}_{\delta^{\mu \nu \rho \sigma}_{\alpha \beta \gamma \delta}} \tensor{\Lambda}{_\rho^\alpha} \tensor{\Lambda}{_\sigma^\beta} A^{\gamma \delta} = \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} A^{\alpha \beta}
+\end{equation*}
+Therefore, $ \ve{6} = \ve{3} \oplus \bar{\ve{3}} \cong \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+
+\paragraph{Dual representation}
+
+To see explicitely that the adjoint representation of $ \lorg $ is exactly $ \ve{6} $, recall that the adjoint representation is $ \rho : \lorg \rightarrow \GL{\lora} $ and it acts on $ \lora $ as $ \rho(\Lambda) M = \Lambda M \Lambda^{-1} $, where $ \Lambda \in \lorg $ and $ M \in \lora $. As $ \tensor{[\Lambda^{-1}]}{^\mu_\nu} = \tensor{\Lambda}{_\nu^\mu} $ by \eref{eq:lor-def}:
+\begin{equation*}
+  M^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\alpha} M^{\alpha \beta} \tensor{[\Lambda^{-1}]}{_\beta^\nu} = \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} M^{\alpha \beta}
+\end{equation*}
+As $ M \in \lora $ is anti-symmetric, this is the transformation relation of an anti-symmetric tensor: the adjoint representation is the $ \ve{6} \cong \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+
+\begin{example}{Gauge theories}{}
+  In gauge theories (ex.: QED, QCD), the gauge potential $ A_\mu $ transforms according to the fundamental representation $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $, while the field strength $ F_{\mu \nu} $ according to the adjoint representation $ \ve{\left( 1,0 \right)} \oplus \ve{\left( 0,1 \right)} $.
+\end{example}
+
+\subsubsection{Field representations}
+
+Given a field $ \phi(x) $, under a Lorentz transformation $ x^\mu \mapsto {x'}^\mu = \tensor{\Lambda}{^\mu_\nu} x^\nu $ it transforms as $ \phi(x) \mapsto \phi'(x') $.
+
+\paragraph{Scalar fields}
+
+A scalar field transforms as:
+\begin{equation}
+  \phi'(x') = \phi(x)
+\end{equation}
+Consider an infinitesimal transformation $ x'^\rho = x^\rho + \delta x^\rho $, with $ \delta x^\rho = - \frac{i}{2} \omega_{\mu \nu} \tensor{\left[ J^{\mu \nu} \right]}{^\rho_\sigma} x^\sigma $ as of \eref{eq:lor-def}. Then, by definition, $ \delta \phi \equiv \phi'(x') - \phi(x) = 0 $, which corresponds to the fact that the scalar representation of $ \lorg $ is the trivial one ($ J^{\mu \nu} = 0 $).\\
+However, one can consider the variation at fixed coordinate $ \delta_0 \phi \equiv \phi'(x) - \phi(x) $: while $ \delta \phi $ studies only a single degree of freedom, as the point $ \text{P} \in \R^{1,3} $ is kept constant and only $ \phi(\text{P}) $ can vary (i.e. the base space is one-dimensional), $ \delta_0 \phi $ studies $ \phi(\text{P}) $ with $ \text{P} $ varying over $ \R^{1,3} $, thus the base space is now a space of functions, which is infinite-dimensional. Therefore, $ \delta \phi $ provides a finite-dimensional representation of the generators, while $ \delta_0 \phi $ an infinite-dimensional one.\\
+To explicit this representation:
+\begin{equation*}
+  \delta_0 \phi = \phi'(x) - \phi(x) = \phi'(x' - \delta x) - \phi(x) = - \delta x^\rho \pa_\rho \phi = \frac{i}{2} \omega_{\mu \nu} \tensor{\left[ J^{\mu \nu} \right]}{^\rho_\sigma} x^\sigma \pa_\rho \phi \equiv - \frac{i}{2} \omega_{\mu \nu} L^{\mu \nu} \phi
+\end{equation*}
+Recalling \eref{eq:lor-gen}, the generators can be expressed as:
+\begin{equation}
+  L^{\mu \nu} \defeq i \left( x^\mu \pa^\nu - x^\nu \pa^\mu \right)
+  \label{eq:ang-mom-oper}
+\end{equation}
+This is an infinite-dimensional representation, as it acts on the space of scalar fields. As $ p^\mu = i \pa^\mu $ (with signature $ (+,-,-,-) $), it is clear that $ L^i \equiv \frac{1}{2} \epsilon^{ijk} L^{jk} $ is the orbital angular momentum.
+
+\paragraph{Weyl fields}
+
+A left-handed Weyl field transforms as:
+\begin{equation}
+  \psi'_\text{L}(x') = \Lambda_\text{L} \psi_\text{L}(x)
+\end{equation}
+with $ \Lambda_\text{L} $ defined in \eref{eq:lor-left-hand-weyl}, and similarly for right-handed Weyl fields. The infinite-dimensional representation of the Lorentz generators determined by Weyl spinors can be found as:
+\begin{equation*}
+  \begin{split}
+    \delta_0 \psi_\text{L} &\equiv \psi'_\text{L}(x) - \psi_\text{L}(x) = \psi'_\text{L}(x' - \delta x) - \psi_\text{L}(x) \\
+                           &= \psi'_\text{L}(x') - \delta x^\rho \pa_\rho \psi_\text{L}(x) - \psi_\text{L}(x) = \left( \Lambda_\text{L} - \tens{I}_2 \right) \psi_\text{L}(x) - \delta x^\rho \pa_\rho \psi_\text{L}(x)
+  \end{split}
+\end{equation*}
+The second term yields $ L^{\mu \nu} $, while the first can be further elaborated by writing:
+\begin{equation}
+  \Lambda_\text{L} = e^{-\frac{i}{2} \omega_{\mu \nu} S^{\mu \nu}}
+\end{equation}
+Thus:
+\begin{equation*}
+  \delta_0 \psi_\text{L} = - \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu} \psi_\text{L}
+\end{equation*}
+where the angular momentum separates into the orbital and the spin components:
+\begin{equation}
+  J^{\mu \nu} = L^{\mu \nu} + S^{\mu \nu}
+\end{equation}
+This separation is general: $ L^{\mu \nu} $ is always expressed as in \eref{eq:ang-mom-oper}, while $ S^{\mu \nu} $ depends on the specific representation. In the scalar representation $ S^{\mu \nu} = 0 $, while in the left/right-handed Weyl representation $ S^{i0} = \pm i \frac{\sigma^i}{2} $.
+
+\paragraph{Dirac fields}
+
+A Dirac field transforms as:
+\begin{equation}
+  \Psi'(x') = \Lambda_\text{D} \Psi(x)
+\end{equation}
+where $ \Lambda_\text{D} = \diag(\Lambda_\text{L} , \Lambda_\text{R}) $. The infinite-dimensional representation of the Lorentz generators determined by Dirac spinors is:
+\begin{equation*}
+  \delta_0 \Psi \equiv \Psi'(x) - \Psi(x) = \Psi'(x') - \delta x^\rho \pa_\rho \Psi(x) - \Psi(x) = \left( \Lambda_\text{D} - \tens{I}_4 \right) \Psi(x) - \frac{i}{2} \omega_{\mu \nu} L^{\mu \nu} \Psi(x)
+\end{equation*}
+The first term can be rewritten defining:
+\begin{equation*}
+  \Lambda_\text{D} = e^{-\frac{i}{2} \omega_{\mu \nu} S^{\mu \nu}}
+  \qquad \qquad
+  S^{0i} \equiv - \frac{i}{2}
+  \begin{bmatrix}
+    \sigma^i & 0 \\ 0 & -\sigma^i
+  \end{bmatrix}
+  \qquad
+  S^{ij} = - \frac{1}{2} \epsilon^{ijk}
+  \begin{bmatrix}
+    \sigma^k & 0 \\ 0 & \sigma^k
+  \end{bmatrix}
+  \equiv \frac{1}{2} \epsilon^{ijk} \Sigma^k
+\end{equation*}
+Therefore, a Dirac field transforms as:
+\begin{equation}
+  \delta_0 \Psi = - \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu} \Psi
+  \label{eq:dir-field-change}
+\end{equation}
+with clear orbital and spin angular components:
+\begin{equation}
+  J^{\mu \nu} = L^{\mu \nu} + S^{\mu \nu}
+  \label{eq:dir-field-tot-ang-mom}
+\end{equation}
+
+\paragraph{Vector fields}
+
+A (contravariant) vector field transforms as:
+\begin{equation}
+  V'^\mu(x') = \tensor{\Lambda}{^\mu_\nu} V^\nu(x)
+\end{equation}
+A general vector field has a spin-0 and a spin-1 component, and it is acted on by the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation.
+
+\subsection{Poincaré group}
+
+\begin{definition}{Poincaré group}{}
+  The \bcdef{Poincaré group} is defined as $ \pog \defeq \mathrm{T}^{1,3} \rtimes \lorg $, where $ \mathrm{T}^{1,3} \cong \R^{1,3} $ is the group of translations of $ \R^{1,3} $, with multiplication $ (a^\mu, \tensor{\Lambda}{^\mu_\nu}) \cdot (\bar{a}^\mu, \tensor{\bar{\Lambda}}{^\mu_\nu}) \equiv (a^\mu + \tensor{\Lambda}{^\mu_\nu} \bar{a}^\nu, \tensor{\Lambda}{^\mu_\rho} \tensor{\bar{\Lambda}}{^\rho_\nu}) $.
+\end{definition}
+
+Given a translation $ x^\mu \mapsto x^\mu + a^\mu $, the associated group element can be written as:
+\begin{equation}
+  T = e^{-i a_\mu P^\mu}
+\end{equation}
+where $ P^\mu $ is the 4-momentum operator. Clearly translations commute, and so do their generators; on the other hand, as $ \ve{P} $ is a vector under rotations, while $ P^0 $ (energy) a scalar, one has:
+\begin{equation*}
+  [J^i,P^j] = i e^{ijk} P^k
+  \qquad \qquad
+  [J^i,P^0] = 0
+\end{equation*}
+These equations uniquely determine the \bctxt{Poincaré algebra} $ \poa $:
+\begin{equation}
+  \begin{gathered}
+    [P^\mu,P^\nu] = 0 \\
+    [J^{\mu \nu}, J^{\sigma \rho}] = i \left( \eta^{\nu \rho} J^{\mu \sigma} - \eta^{\mu \rho} J^{\nu \sigma} - \eta^{\nu \sigma} J^{\mu \rho} + \eta^{\mu \rho} J^{\nu \sigma} \right) \\
+    [P^\mu,J^{\rho \sigma}] = i \left( \eta^{\mu \rho} P^\sigma - \eta^{\mu \sigma} P^\rho \right)
+  \end{gathered}
+\end{equation}
+It's easy to check that $ [K^i,P^0] = i P^i $, while $ [J^i,P^0] = [P^i,P^0] = 0 $: given that $ P^0 $ generates time translations, linear and angular momentum are conserved quantities, while $ \ve{K} $ is not.
+
+\subsubsection{Field representations}
+
+Fields provide an infinite-dimensional representation of the Lorentz group as $ J^{\mu \nu} = L^{\mu \nu} + S^{\mu \nu} $, where $ S^{\mu \nu} $ does not depend on $ x^\mu $, but only on the spin of the field.\\
+To represent $ P^\mu $ on fields, their transformation law must be specified: all fields are required to be scalars under translations, independently of their spin. This means that, given a generic field $ \phi(x) $, under a translation $ x' = x + a $ it transforms as $ \phi'(x') = \phi(x) $, so, under an infinitesimal translation $ x' = x + \varepsilon $:
+\begin{equation*}
+  \begin{split}
+    \delta_0 \phi \equiv \phi'(x) - \phi(x) &= \phi'(x' - \varepsilon) - \phi(x) = - \varepsilon^\mu \pa_\mu \phi(x) \\
+                                            &= e^{-i (-\varepsilon_\mu) P^\mu} \phi'(x') - \phi(x) = \left( e^{i \varepsilon_\mu P^\mu} - \tens{I} \right) \phi(x) = i \varepsilon_\mu P^\mu \phi(x)
+  \end{split}
+\end{equation*}
+It is clear then that:
+\begin{equation}
+  P^\mu = +i \pa^\mu
+\end{equation}
+Explicitly, $ P^0 = i \pa_t $ and $ \ve{P} = - i \bs{\nabla} $. It is trivial to check that these generators obey the Poincaré algebra.
+
+\subsubsection{Particle representations}
+
+The Poincaré group can also be represented using the Hilbert space $ \hilb $ of a free particle as a basis. Denoting a generic state as $ \ket{\ve{p},s} \in \hilb $, where $ \ve{p} $ is the particle's momentum and $ s $ collectively labels all other quantum numbers, it is clear that $ \hilb $ is infinite-dimensional, as $ \ve{p} $ is a continuous unbounded variable.
+
+\begin{theorem}{Wigner's theorem}{wigner}
+  On the Hilbert space of physical states, any symmetry transformation can be represented by a linear and unitary or anti-linear and anti-unitary operator.
+\end{theorem}
+
+By this theorem, Poincaré transformations can be represented by unitary matrices, i.e. $ \ve{J} $, $ \ve{K} $, $ \ve{P} $ and $ P^0 $ can be represented by hermitian operators. These representations can be labeled by Casimir operators, which for $ \pog $ are easily found as $ P_\mu P^\mu $ and $ W_\mu W^\mu $, where $ W^\mu $ is the \bctxt{Pauli-Lubański operator}:
+\begin{equation}
+  W^\mu \defeq -\frac{1}{2} \epsilon^{\mu \nu \sigma \rho} J_{\nu \sigma} P_\rho
+\end{equation}
+On single-particle states $ P_\mu P^\mu = m^2 $, while $ W_\mu W^\mu $ can be conveniently computed in a particular frame (due to Lorentz invariance). If $ m \neq 0 $, this frame is the rest-frame of the particle:
+\begin{equation*}
+  W^\mu = - \frac{m}{2} \epsilon^{\mu \nu \sigma 0} J_{\nu \sigma} = \frac{m}{2} \delta^{\mu i} \epsilon^{ijk} J^{jk} = \delta^{\mu i} m J^i
+\end{equation*}
+Therefore, on single-particle states of mass $ m $ and spin $ j $, the Casimir operator takes the form:
+\begin{equation}
+  W_\mu W^\mu = - m^2 j \left( j + 1 \right)
+\end{equation}
+If $ m = 0 $, the rest-frame does not exist, but it is possible to choose a frame where $ P^\mu = (\omega,0,0,\omega) $, where $ W^0 = W^3 = \omega J^3 $, $ W^1 = \omega \left( J^1 - K^2 \right) $ and $ W^2 = \omega \left( J^2 + K^1 \right) $, so that:
+\begin{equation}
+  W_\mu W^\mu = - \omega^2 \left[ \left( K^2 - J^1 \right)^2 + \left( K^1 + J^2 \right)^2 \right]
+\end{equation}
+It is clear that the $ m \rightarrow 0 $ limit is not trivial, and massive and massless representation need to be studied separately.
+
+\paragraph{Massive representations}
+
+Restricting to $ m \in \R^+ $ ($ m^2 < 0 $ states, called tachyons, are excluded), the massive representations are labeled by mass $ m $ and spin $ j $: in fact, after a Lorentz transformation such that $ P^\mu = (m,\ve{0}) $, spatial rotations can still be performed, i.e. the subspace of single-particle states with momentum $ P^\mu = (m,\ve{0}) $ is still a basis for the representation of $ \SUn{2} $ (as spinors must be included too). The group of transformations which leaves invariant a certain choice of $ P^\mu $ is called the \bctxt{little group}, so $ \SUn{2} $ is the little group of massive single-particle states: massive representations are labelled by $ m $ and $ j $, which means that massive particles of spin $ j $ have $ 2j + 1 $ degrees of freedom.
+
+\paragraph{Massless representations}
+
+The little group for $ P^\mu = (\omega,0,0,\omega) $ clearly is $ \SOn{2} $, the group of rotations in the $ (x,y) $ plane generated by $ J^3 $: as for any abelian group, its irreducible representations are one-dimensional, and they are labeled by the eigenvalue $ h $ of $ J^3 $, which represents the angular momentum in the direction of propagation of the particle and is called \bctxt{helicity}. Helicity can be shown to be quantized as $ h \in \frac{1}{2}\Z_0 $ (by topologic considerations on $ \pog \equiv \R^4 \times \SL{2}{\C} / \Z_2 $).\\
+As a consequence, massless particles only have one degree of freedom and are characterized by their helicity $ h $. As $ \SOn{2} \cong \Un{1} $, on a state of helicity $ h $ the little group is represented as:
+\begin{equation}
+  U(\theta) = e^{-i h \theta}
+\end{equation}
+Although massless particles with opposite helicities are logically two different species of particles, it can be written as $ h = \hat{\ve{p}} \cdot \hat{\ve{J}} $ (unit vectors), so $ h $ is a pseudoscalar such that $ h \mapsto -h $ under parity: this means that, if the interaction conserves parity, $ h $ and $ -h $ must be symmetric.
+
+\begin{example}{Gauge bosons}{}
+  The electromagnetic and gravitational interactions conserve parity, thus photons and gravitons must be a basis for the representation of both $ \pog $ and parity: photons can have $ h = \pm 1 $ (left- and right-handed), while gravitons have $ h = \pm 2 $.
+\end{example}
+
+\begin{example}{Neutrinos}{}
+  Neutrinos only interact via the weak interaction, which does not conserve parity, and in fact the two states $ h = \pm \frac{1}{2} $ are different particles: neutrinos have $ h = - \frac{1}{2} $, while antineutrinos have $ h = + \frac{1}{2} $.
+\end{example}
+
+\section{Classical equations of motion}
+
+Consider a \bctxt{local field theory} of fields $ \{\phi_i(x)\}_{i \in \mathcal{I}} \equiv \phi(x) $, where $ x \in \R^{1,3} $ is a point in Minkowski spacetime. Its Lagrangian takes the form:
+\begin{equation}
+  L = \int \dd^3 x\, \lag(\phi, \pa_\mu \phi)
+\end{equation}
+where $ \lag $ is the \bctxt{Lagrangian density} of the theory (often referred to simply as the Lagrangian), which depends only on a finite number of derivatives. The action is then:
+\begin{equation}
+  \act = \int \dd t\, L = \int \dd^4 x\, \lag(\phi, \pa_\mu \phi)
+  \label{eq:def-action}
+\end{equation}
+The integration is carried on the whole space-time, with usual boundary conditions that all fields decrease sufficiently fast at infinity; this also allows dropping all boundary terms.
+
+\begin{theorem}{Euler-Lagrange equations}{}
+  The \bcth{stationary action principle} $ \delta \act = 0 $ determines the classical equations of motion:
+  \begin{equation}
+    \frac{\pa \lag}{\pa \phi_i} - \pa_\mu \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} = 0
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Varying \eref{eq:def-action}:
+    \begin{equation*}
+      \delta \act = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \lag}{\pa \phi_i} \delta \phi_i + \frac{\pa \lag}{\pa (\pa_\mu \phi)} \delta (\pa_\mu \phi_i) \right] = \int \dd^4 x\, \sum_{i \in \mathcal{I}} \left[ \frac{\pa \lag}{\pa \phi_i} - \pa_\mu \frac{\pa \lag}{\pa (\pa_\mu \phi)} \right] \delta \phi_i = 0
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{}{}
+  Two Lagrangians which differ by a total divergence $ \lag' = \lag + \pa_\mu K^\mu $ yield the same equations of motion.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    This is a consequence of Stokes theorem:
+    \begin{equation*}
+      \int_\Sigma \dd^4 x\, \pa_\mu K^\mu = \int_{\pa \Sigma} \dd A\, n_\mu K^\mu
+    \end{equation*}
+    with $ n_\mu $ normal vector to the $ \pa \Sigma $ hypersurface.
+  \end{proof}
+\end{proofbox}
+
+From the Lagrangian, it is possible to define the conjugate momenta and the Hamiltonian density:
+\begin{equation}
+  \Pi_i(x) \defeq \frac{\pa \lag}{\pa (\pa_0 \phi_i)}
+\end{equation}
+\begin{equation}
+  \ham = \sum_{i \in \mathcal{I}} \Pi_i(x) \pa_0 \phi(x) - \lag
+\end{equation}
+Unlike the Hamiltonian formalism, the Lagrangian formalism keeps Lorentz covariance explicit.
+
+\subsection{Noether's theorem}
+
+\begin{definition}{Infinitesimal transformation}{inf-trans}
+  Given a field theory with fields $ \{\phi_i\}_{i = 1, \dots, k} $ and action $ \act[\phi] $, an \bcdef{infinitesimal transformation} parametrized by $ \{\varepsilon^a\}_{a = 1, \dots, N} : \abs{\varepsilon^a} \ll 1 $ is defined by two sets of functions $ \{A^\mu_a(x)\}_{a = 1, \dots, N} $ and $ \{F_{i,a}(\phi,\pa \phi)\}_{i = 1, \dots, k ;\, a = 1, \dots, N} $ such that:
+  \begin{equation}
+    \begin{gathered}
+      x^\mu \mapsto x'^\mu = x^\mu + \varepsilon^a A^\mu_a(x) \\
+      \phi_i(x) \mapsto \phi'_i(x) = \phi_i(x) + \varepsilon^a F_{i,a}(\phi, \pa \phi)
+    \end{gathered}
+    \label{eq:inf-transf}
+  \end{equation}
+\end{definition}
+
+\begin{definition}{Symmetry transformation}{}
+  An infinitesimal transformation is a \bcdef{symmetry transformation} if it leaves $ \act[\phi] $ invariant, regardless of $ \phi $ being a solution of the equations of motion. It can further be classified as:
+  \begin{itemize}
+    \item \bcdef{global symmetry}, if $ \varepsilon^a \equiv \mathrm{const.} $;
+    \item \bcdef{local symmetry}, if $ \varepsilon^a = \varepsilon^a(x) $.
+  \end{itemize}
+\end{definition}
+
+Symmetry transformations which leave spacetime unchanged, i.e. with $ A^\mu_a(x) = 0 $, are called \bctxt{internal symmetries}.
+
+\begin{theorem}{Noether's theorem}{}
+  Given a global (but not local) symmetry parametrized by $ N $ generators, then there are $ N $ conserved currents $ \{j^\mu_a(\phi)\}_{a = 1, \dots, N} $ such that:
+  \begin{equation}
+    \pa_\mu j^\mu_a(\phi^\mathrm{cl}) = 0
+  \end{equation}
+  where $ \phi^\mathrm{cl} $ is a classical solution of the equations of motion.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, consider an infinitesimal transformation with slowly-varying parameters, that is $ l \abs{\pa_\mu \varepsilon^a} \ll \abs{\varepsilon^a} $ ($ l $ characteristic scale of the field theory): being it not a local symmetry, $ \delta \act \neq 0 $ at $ o(\varepsilon) $ and:
+    \begin{equation*}
+      \act[\phi'] = \act[\phi] + \int \dd^4 x\, \left[ \varepsilon^a(x) K_a(\phi) - \left( \pa_\mu \varepsilon^a(x) \right) j^\mu_a(\phi) + o(\pa \pa \varepsilon) \right] + o(\varepsilon^2)
+    \end{equation*}
+    If $ \varepsilon^a \equiv \mathrm{const.} $ (global symmetry) then $ \delta \act[\phi] = 0 \,\forall \phi $, therefore $ K_a(\phi) = 0 \,\forall \phi $ (independent of $ \varepsilon $). Assuming $ \varepsilon^a(x) \rightarrow 0 $ sufficiently fast as $ x \rightarrow \infty $, then integration by parts yields:
+    \begin{equation*}
+      \act[\phi'] = \act[\phi] + \int \dd^4 x\, \varepsilon^a(x) \pa_\mu j^\mu_a(\phi) + o(\pa \pa \varepsilon) + o(\varepsilon^2)
+    \end{equation*}
+    This expression is independent of the choice of $ \phi $. Moreover, note that \eref{eq:inf-transf} can be rewritten as an internal transformation by setting:
+    \begin{equation*}
+      \phi_i(x) \mapsto \phi'_i(x) = \phi_i(x - \varepsilon^a A_a) + \varepsilon^a F_{i,a} = \phi_i(x) + \varepsilon^a F_{i,a} - \varepsilon^a A^\mu_a \pa_\mu \phi_i \equiv \phi_i(x) + \delta \phi_i(x)
+    \end{equation*}
+    $ \delta \phi_i(x) $ vanishes at infinity, therefore it is the kind of variation used to derive the equations of motion: choosing $ \phi \equiv \phi^\mathrm{cl} $ classical solution then implies $ \delta \act = 0 $ independently of $ \varepsilon $, i.e. the thesis.
+  \end{proof}
+\end{proofbox}
+
+These are often called \bctxt{Noether currents}, and the associated \bctxt{Noether charges} are defined as:
+\begin{equation}
+  Q_a \defeq \int \dd^3 x\, j^0_a(t,\ve{x})
+\end{equation}
+These are time-independent, as $ \pa_0 Q_a = \int \dd^3 x\, \pa_0 j^0_a = - \int \dd^3 x\, \pa_i j^i_a $: on all spacetime it vanishes by divergence theorem (fields vanish at infinity), but on a finite volume it yields a boundary term interpreted as the incoming and outgoing flux.
+
+\begin{proposition}{Noether currents}{}
+  The explicit expression of Noether currents is:
+  \begin{equation}
+    j^\mu_a = \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} \left[ A^\nu_a(x) \pa_\nu \phi_i - F_{i,a}(\phi, \pa \phi) \right] - A^\mu_a(x) \lag
+    \label{eq:noether-current}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Varying the action at $ o(\pa \varepsilon) $:
+    \begin{equation*}
+        \delta_\varepsilon \act = \delta_\varepsilon \int \dd^4 x\, \lag = \int \left[ \delta_\varepsilon (\dd^4 x) \lag + \dd^4 x \left( \frac{\pa \lag}{\pa \phi_i} \delta_\varepsilon \phi_i + \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} \delta_\varepsilon (\pa_\mu \phi_i) \right) \right]
+    \end{equation*}
+    The Jacobian of \eref{eq:inf-transf} gives $ \dd^4 x \mapsto \dd^4 x \left( 1 + A^\mu_a \pa_\mu \varepsilon^a \right) + o(\varepsilon) $, while $ \delta_\varepsilon \phi_i $ is not $ o(\pa \varepsilon) $ and:
+    \begin{equation*}
+      \delta_\varepsilon (\pa_\mu \phi_i) = \frac{\pa \phi'_i}{\pa x'^\mu} - \frac{\pa \phi_i}{\pa x^\mu} = \frac{\pa x^\nu}{\pa x'^\mu} \frac{\pa}{\pa x^\nu} \left( \phi_i + \varepsilon^a F_{i,a} \right) - \frac{\pa \phi_i}{\pa x^\mu} = - (\pa_\mu \varepsilon^a) \left( A^\nu_a \pa_\nu \phi_i - F_{i,a} \right) + o(\varepsilon)
+    \end{equation*}
+    The thesis follows from $ \delta_\varepsilon \act = - \int \dd^4 x\, (\pa_\mu \varepsilon^a) j^\mu_a + o(\pa \pa \varepsilon) + o(\varepsilon^2) $.
+  \end{proof}
+\end{proofbox}
+
+If the considered infinitesimal transformation is not a global symmetry, then $ \delta_\varepsilon \mathcal{S} $ has a non-vanishing $ o(\varepsilon) $ term which gives rise to a quasi-conserved current:
+\begin{equation}
+  \pa_\mu j^a_\mu = - (\delta_a \lag)_\mathrm{global}
+\end{equation}
+
+\subsubsection{Energy-momentum tensor}
+
+Consider spacetime translations: as all fields must be scalars under these transformations, they define a Noether current. In particular, translations have $ A^\mu_\nu = \delta^\mu_\nu $ and $ F_{i,\mu} = 0 $ (the parameter index is a Lorentz index), so the conserved current is the \bctxt{energy-momentum tensor} $ j^\mu_\nu \equiv \tensor{\theta}{^\mu_\nu} $:
+\begin{equation}
+  \theta^{\mu \nu} = \frac{\pa \lag}{\pa (\pa_\mu \phi_i)} \pa^\nu \phi_i - \eta^{\mu \nu} \lag
+  \label{eq:en-mom-tensor}
+\end{equation}
+which is covariantly conserved on classical solutions of the equations of motion. The conserved Noether charge associated to the energy-momentum tensor is the \bctxt{four-momentum}:
+\begin{equation}
+  P^\mu \defeq \int \dd^3 x\, \theta^{0 \mu}
+  \label{eq:4-mom-def}
+\end{equation}
+The energy-momentum tensor so defined is not symmetric, however it can be made to via a tensor $ A^{\rho \mu \nu} $ which is anti-symmetric w.r.t. $ (\rho,\mu) $: $ T^{\mu \nu} \equiv \theta^{\mu \nu} + \pa_\rho A^{\rho \mu \nu} $ is physically equivalent from $ \theta^{\mu \nu} $, as the second term is a vanishing spatial divergence in the definition of $ P^\mu $ and is contracted to 0 in the conservation law.
+
+\subsection{Scalar fields}
+
+\subsubsection{Real scalar fields}
+
+Consider a real scalar field $ \phi $: a non-trivial Poincaré-invariant action must contain $ \pa_\mu \phi $ and must saturate each Lorentz index. For example:
+\begin{equation}
+  \act[\phi] = \frac{1}{2} \int \dd^4 x \left( \pa_\mu \phi \pa^\mu \phi - m^2 \phi^2 \right)
+\end{equation}
+The resulting equation of motion is the \bctxt{Klein-Gordon equation}:
+\begin{equation}
+  \left( \Box + m^2 \right) \phi = 0
+\end{equation}
+where $ \Box \equiv \pa_\mu \pa^\mu $. A plane wave $ e^{\pm i p_\mu x^\mu} $ is a solution if $ p^2 = m^2 $, so the KG equation imposes the relativistic dispersion relation and $ m $ can be interpreted as the mass. As $ \phi $ must be real, the general solution is a superposition of waves:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3 p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a^*_\ve{p} e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:scalar-field-exp}
+\end{equation}
+The positive energy solution has $ E_\ve{p} = + \sqrt{\ve{p}^2 + m^2} $, but it contains both \bctxt{positive} and \bctxt{negative frequency modes} $ e^{\mp i p_\mu x^\mu} $, while the $ (2E_\ve{p})^{-1/2} $ factor is a convenient normalization of the $ a_\ve{p} $ coefficients. The overall normalization of $ \act[\phi] $ does not influence the equations of motion, however it is important for obtaining a positive-definite Hamiltonian. As the momentum conjugate to $ \phi $ is $ \Pi_\phi = \pa_0 \phi $, the Hamiltonian density is found as:
+\begin{equation}
+  \ham = \frac{1}{2} \left[ \Pi_\phi^2 + (\bs{\nabla} \phi)^2 + m^2 \phi^2 \right]
+  \label{eq:scalar-field-haml}
+\end{equation}
+The energy-momentum tensor is computed to be:
+\begin{equation}
+  \theta^{\mu \nu} = \pa^\mu \phi \pa^\nu \phi - \eta^{\mu \nu} \lag
+  \label{eq:scalar-field-en-mom-tens}
+\end{equation}
+It is trivial to see that $ \theta^{00} = \ham $: the Hamiltonian is the conserved charge related to the invariance under time translations.\\
+To compute the conserved currents associated to Lorentz invariance, it is convenient to label the transformation parameters $ \omega^{\mu \nu} $ by an anti-symmetric pair of Lorentz indices, so that \eref{eq:inf-transf} become:
+\begin{equation*}
+  x^\mu \mapsto x'^\mu = x^\mu + \tensor{\omega}{^\mu_\nu} x^\nu = x^\mu + \frac{1}{2} \tensor{\omega}{^\rho^\sigma} \left( \delta^\mu_\rho x_\sigma - \delta^\mu_\sigma x_\rho \right) \equiv x^\mu + \frac{1}{2} A^\mu_{(\rho \sigma)} \omega^{\rho \sigma}
+\end{equation*}
+As $ F_{i,a} = 0 $, from \eref{eq:scalar-field-en-mom-tens} the conserved currents are:
+\begin{equation}
+  j^{(\rho \sigma) \mu} = x^\rho \theta^{\mu \sigma} - x^\sigma \theta^{\mu \rho}
+\end{equation}
+For spatial rotations, the conserved charge is:
+\begin{equation*}
+  M^{ij} = \int \dd^3 x \left( x^i \theta^{0j} - x^j \theta^{0i} \right) = \int \dd^3 x\, \pa_0 \phi \left( x^i \pa^j - x^j \pa^i \right) \phi = \frac{i}{2} \int \dd^3 x \left[ \phi L^{ij} (\pa_0 \phi) - (\pa_0 \phi) L^{ij} \phi \right]
+\end{equation*}
+where integration by parts was carried and $ L^{ij} $ is defined by \eref{eq:ang-mom-oper}. This can be generalized.
+
+\begin{definition}{Scalar product}{kg-scal-prod}
+  Given two real scalar fields $ \phi_1 $ and $ \phi_2 $, their \bcdef{scalar product} is defined as:
+  \begin{equation}
+    \braket{\phi_1 | \phi_2} \defeq \frac{i}{2} \int \dd^3 x\, \phi_1 \smlra{\pa_0} \phi_2
+  \end{equation}
+  where $ f \smlra{\pa_\mu} g \defeq f \pa_\mu g - (\pa_\mu f) g $.
+\end{definition}
+
+\begin{proposition}{}{kg-scal-prod-ind}
+  If $ \phi_1 $ and $ \phi_2 $ are KG solutions, then $ \braket{\phi_1 | \phi_2} $ is time-independent.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By the KG equation:
+    \begin{equation*}
+      \pa_0 \left[ \phi_1 \pa_0 \phi_2 - (\pa_0 \phi_1) \phi_2 \right] = \phi_1 \pa_0^2 \phi_2 - (\pa_0^2 \phi_1) \phi_2 = \phi_1 \lap \phi_2 - (\lap \phi_1) \phi_2
+    \end{equation*}
+    which vanishes after integration by parts.
+  \end{proof}
+\end{proofbox}
+
+Note that this scalar product is not positive-definite.
+
+\begin{theorem}{Conserved charges}{cons-charge-val}
+  Given a symmetry represented by a Lie group and a representation $ L^{\mu \nu} $ of its generators as operators acting on fields, the value of the associated conserved charges on a solution $ \phi $ of the equations of motion is:
+  \begin{equation}
+    M^{\mu \nu} = \braket{\phi | L^{\mu \nu} | \phi}
+  \end{equation}
+\end{theorem}
+
+\begin{example}{Four-momentum}{}
+  Applying \tref{th:cons-charge-val} to four-momentum $ P^\mu = \braket{\phi | i \pa^\mu | \phi} $; for example, the $ \mu = 0 $ component is:
+  \begin{equation*}
+    \begin{split}
+      P^0 &= \braket{\phi | i \pa^0 | \phi} = \braket{\phi | i \pa_0 | \phi} = \frac{i}{2} \int \dd^3 x \left[ \phi (i \pa_0) \pa_0 \phi - (\pa_0 \phi) i \pa_0 \phi \right] \\
+          &= \frac{1}{2} \int \dd^3 x \left[ - \phi \pa_0^2 \phi + (\pa_0 \phi)^2 \right] = \frac{1}{2} \int \dd^3 x \left[ - \phi \left( \lap - m^2 \right) \phi + (\pa_0 \phi)^2 \right] \\
+      (\text{int. by parts}) &= \frac{1}{2} \int \dd^3 x \left[ (\bs{\nabla} \phi)^2 + m^2 \phi^2 + (\pa_0 \phi)^2 \right] = \frac{1}{2} \int \dd^3 x\, \theta^{00}
+    \end{split}
+  \end{equation*}
+\end{example}
+
+The free KG action can be generalized to a self-interacting real scalar field introducing a general potential:
+\begin{equation}
+  \mathcal{S}[\phi] = \int \dd^4 x \left[ \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - V(\phi) \right]
+\end{equation}
+The quadratic term in $ V(\phi) $ is the mass term, while higher-order terms describe the self-interaction.
+
+\subsubsection{Complex scalar fields}
+
+Consider now two real scalar fields $ \phi_1, \phi_2 $ with the same mass $ m $ and combine them into a single complex scalar field $ \phi \equiv \frac{1}{\sqrt{2}}(\phi_1 + i \phi_2) $. The KG action is the sum of the single actions and may be written as:
+\begin{equation}
+  \act[\phi] = \int \dd^4x \left( \pa_\mu \phi^* \pa^\mu \phi - m^2 \phi^* \phi \right)
+  \label{eq:compl-scalar-lag}
+\end{equation}
+Considering $ \phi $ and $ \phi^* $ as independent variables one obtains the KG equation, which yields the same mode expansion as \eref{eq:scalar-field-exp}:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b^*_\ve{p} e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:compl-scal-field-exp}
+\end{equation}
+Now $ a_\ve{p} $ and $ b_\ve{p} $ are independent, since there's no reality condition on $ \phi $.
+
+\paragraph{Electric charge}
+
+An interesting property of the complex KG field is the existence of a global $ \Un{1} $ symmetry of the action: $ \act[\phi] \mapsto \act[\phi] $ under $ \phi(x) \mapsto e^{i \theta} \phi(x) $. The associated Noether current can be computed from \eref{eq:noether-current}, using $ \phi_i = (\phi, \phi^*) $, $ A^\nu_a = 0 $ and $ F_{i,a} = (i,-i) $:
+\begin{equation}
+  j_\mu = -i \left( \phi \pa_\mu \phi^* - \phi^* \pa_\mu \phi \right) = i \phi^* \smlra{\pa_\mu} \phi
+  \label{eq:comp-scal-field-curr}
+\end{equation}
+The conserved $ \Un{1} $ charge is then $ Q_{\Un{1}} = i \int \dd^3x\, \phi^* \smlra{\pa_0} \phi = \braket{\phi | \phi} $, which is consistent with \tref{th:cons-charge-val} as the generator of $ \Un{1} $ is the identity operator.
+
+\subsection{Spinor fields}
+
+\subsubsection{Weyl fields}
+
+Consider the theory of a left/right-handed Weyl field: recalling that $ \psi_\text{L}^\dagger \sigma^\mu \psi_\text{L} $ and $ \psi_\text{R} \bar{\sigma}^\mu \psi_\text{R} $ are 4-vectors, with $ \sigma^\mu \equiv (1, \boldsymbol{\sigma}) $ and $ \bar{\sigma}^\mu \equiv (1, - \boldsymbol{\sigma}) $, the kinetic term of the Lorentz-invariant Lagrangian can be written as:
+\begin{equation}
+  \lag_\text{L} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L}
+  \qquad \qquad
+  \lag_\text{R} = i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R}
+\end{equation}
+The $ i $ factor ensures the reality of the Lagrangian, as $ \sigma $ matrices are hermitian. The Lagrangian does not depend on $ \pa_\mu \psi^* $, thus the Euler-Lagrange equations are:
+\begin{equation}
+  (\pa_0 - \sigma^i \pa_i) \psi_\text{L} = 0
+  \qquad \qquad
+  (\pa_0 + \sigma^i \pa_i) \psi_\text{R} = 0
+\end{equation}
+These are known as \bctxt{Weyl equations}: by $ \sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k $, these equations imply two massless KG equations (assuming regular functions, so that $ \pa_i \pa_j = \pa_j \pa_i $). Considering positive-energy plane-wave solutions of the form $ \psi_\text{L}(x) = u_\text{L} \exp(-i p_\mu x^\mu) = u_\text{L} \exp(-i E t + i \ve{p} \cdot \ve{x}) $, where $ u_\text{L} $ is a constant spinor, Weyl equations become:
+\begin{equation*}
+  \frac{\ve{p} \cdot \boldsymbol{\sigma}}{E} u_\text{L} = - u_\text{L}
+  \qquad \qquad
+  \frac{\ve{p} \cdot \boldsymbol{\sigma}}{E} u_\text{R} = u_\text{R}
+\end{equation*}
+As these are massless fields $ E = \abs{\ve{p}} $, and since for $ s = \frac{1}{2} $ fields $ \ve{J} = \frac{\boldsymbol{\sigma}}{2} $ these equations become:
+\begin{equation*}
+  (\hat{\ve{p}} \cdot \ve{J}) u_\text{L} = - \frac{1}{2} u_\text{L}
+  \qquad \qquad
+  (\hat{\ve{p}} \cdot \ve{J}) u_\text{R} = \frac{1}{2} u_\text{R}
+\end{equation*}
+These show that left/right-handed Weyl massless Weyl spinors have helicity $ h = \mp \frac{1}{2} $, consistent with the fact that massless particles are helicity eigenstates.\\
+The energy-momentum tensor can be computed from \eref{eq:en-mom-tensor}, noting that on classical solutions (by Weyl equations) the Lagrangian of the theory vanishes:
+\begin{equation}
+  \theta^{\mu \nu} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa^\nu \psi_\text{L}
+  \qquad \qquad
+  \theta^{\mu \nu} = i \psi_\text{R}^\dagger \sigma^\mu \pa^\nu \psi_\text{R}
+\end{equation}
+Moreover, note that the Lagrangian is invariant under a global $ \Un{1} $ internal transformation with Noether currents and conserved charges:
+\begin{align*}
+  j^\mu &= \psi_\text{L}^\dagger \bar{\sigma}^\mu \psi_\text{L} & j^\mu &= \psi_\text{R}^\dagger \sigma^\mu \psi_\text{R} \\
+  Q_{\Un{1}} &= \int \dd^3x\, \psi_\text{L}^\dagger \psi_\text{L} & Q_{\Un{1}} &= \int \dd^3x\, \psi_\text{R}^\dagger \psi_\text{R}
+\end{align*}
+Weyl Lagrangians are not invariant under parity, as $ \psi_\text{L} \leftrightarrow \psi_\text{R} $.
+
+\begin{example}{Neutrinos}{}
+  Neutrinos are divided into three leptonic families: $ \nu_e $, $ \nu_\mu $ and $ \nu_\tau $. Although they are massive $ s = \frac{1}{2} $, in most contexts their mass can be neglected, thus they can be described by Weyl spinors: in particular, neutrinos by left-handed Weyl spinors and antineutrinos by right-handed Weyl spinors.
+\end{example}
+
+\subsubsection{Dirac fields}
+
+Consider a theory with both a left-handed and a right-handed Weyl spinor: one can construct two new Lorentz scalars, $ \psi_\text{L}^\dagger \psi_\text{R} $ and $ \psi_\text{R}^\dagger \psi_\text{L} $, as from \eeref{eq:lor-left-hand-weyl}{eq:lor-right-hand-weyl} it is easy to check that $ \Lambda_\text{L}^\dagger \Lambda_\text{R} = \Lambda_\text{R}^\dagger \Lambda_\text{L} = \id $. Two real combinations are $ \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} $ and $ i (\psi_\text{L}^\dagger \psi_\text{R} - \psi_\text{R}^\dagger \psi_\text{L}) $: under parity $ \psi_\text{L} \leftrightarrow \psi_\text{R} $, so the former is a scalar and the latter a pseudoscalar. The Dirac Lagrangian then is:
+\begin{equation}
+  \lag_\text{D} = i \psi_\text{L}^\dagger \bar{\sigma}^\mu \pa_\mu \psi_\text{L} + i \psi_\text{R}^\dagger \sigma^\mu \pa_\mu \psi_\text{R} - m ( \psi_\text{L}^\dagger \psi_\text{R} + \psi_\text{R}^\dagger \psi_\text{L} )
+\end{equation}
+This Lagrangian is invariant under parity, as $ \bar{\sigma}^\mu \pa_\mu \leftrightarrow \sigma^\mu \pa_\mu $ ($ \pa_i \mapsto - \pa_i $). Considering $ \psi_i $ and $ \psi_i^* $ independent, the variation w.r.t. the latter yields:
+\begin{equation}
+  i \bar{\sigma}^\mu \pa_\mu \psi_\text{L} = m \psi_\text{R}
+  \qquad \qquad
+  i \sigma^\mu \pa_\mu \psi_\text{R} = m \psi_\text{L}
+\end{equation}
+which is the \bctxt{Dirac equation} in terms of Weyl spinors.
+
+\begin{proposition}{}{}
+  Dirac equation implies two massive Klein-Gordon equations.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Applying $ i \sigma^\mu \pa_\mu $ to the first equation:
+    \begin{equation*}
+      - \sigma^\mu \bar{\sigma}^\nu \pa_\mu \pa_\nu \psi_\text{L} = m i \sigma^\mu \pa_\mu \psi_\text{R} = m^2 \psi_\text{L}
+    \end{equation*}
+    Assuming $ \pa_\mu \pa_\nu = \pa_\nu \pa_\mu $, $ \sigma^\mu \bar{\sigma}^\nu $ can be replaced by $ \frac{1}{2} (\sigma^\nu \bar{\sigma}^\mu + \sigma^\nu \bar{\sigma}^\mu) = \frac{1}{2} (2 \eta^{\mu \nu}) = \eta^{\mu \nu} $, yielding the thesis.
+  \end{proof}
+\end{proofbox}
+
+The $ m $ parameter can thus be interpreted as a mass, and now the two spinors are no longer helicity eigenstates. It is convenient to rewrite this theory in terms of a Dirac spinor, which defines the chiral representation:
+\begin{equation*}
+  \Psi =
+  \begin{pmatrix}
+    \psi_\text{L} \\
+    \psi_\text{R}
+  \end{pmatrix}
+\end{equation*}
+The chiral representation of the Dirac algebra $ \dira $ is defined as\footnotemark:
+\begin{equation*}
+  \gamma^\mu \equiv
+  \begin{bmatrix}
+    0 & \sigma^\mu \\
+    \bar{\sigma}^\mu & 0
+  \end{bmatrix}
+\end{equation*}
+%
+\footnotetext{In terms of tensor products, the chiral representation of the Dirac algebra can be written as:
+\begin{equation}
+  \gamma^0 = \sigma^1 \otimes \tens{I}_2
+  \qquad \qquad
+  \bs{\gamma} = i \sigma^2 \otimes \bs{\sigma}
+  \qquad \qquad
+  \gamma^5 = - \sigma^3 \otimes \tens{I}_2
+\end{equation}}
+%
+This allows to rewrite Dirac equation as:
+\begin{equation}
+  (i \slashed{\pa} - m) \Psi = 0
+\end{equation}
+In the chiral representation, the Dirac adjoint simply is $ \bar{\Psi} = (\psi_\text{R}^\dagger, \psi_\text{L}^\dagger) $, so the Dirac Lagrangian can be rewritten as:
+\begin{equation}
+  \lag_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi
+  \label{eq:dirac-lagrangian}
+\end{equation}
+The $ \gamma^5 $ matrix in the chiral representation is:
+\begin{equation*}
+  \gamma^5 \equiv
+  \begin{bmatrix}
+    -\tens{I}_2 & 0 \\ 0 & \tens{I}_2
+  \end{bmatrix}
+\end{equation*}
+This allows to define projectors on Weyl spinors:
+\begin{equation}
+  \frac{1 - \gamma^5}{2} \Psi =
+  \begin{pmatrix}
+    \psi_\text{L} \\ 0
+  \end{pmatrix}
+  \qquad \qquad
+  \frac{1 + \gamma^5}{2} \Psi =
+  \begin{pmatrix}
+    0 \\ \psi_\text{R}
+  \end{pmatrix}
+\end{equation}
+
+\begin{proposition}{Unitary equivalence}{dirac-unit-eq}
+  Given a constant $ \tens{U} \in \C^{2 \times 2} : \tens{U}^\dagger = \tens{U}^{-1} $, then under $ \Psi \mapsto \tens{U} \Psi $ the Lagrangian is invariant for $ \gamma^\mu \mapsto \tens{U} \gamma^\mu \tens{U}^\dagger $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Inserting $ \Psi = \tens{U}^\dagger \Psi' $ (and $ \bar{\Psi} = \Psi'^\dagger \tens{U} \gamma^0 $) in the Dirac Lagrangian:
+    \begin{equation*}
+      \lag_\text{D} = \Psi'^\dagger \tens{U} \gamma^0 (i \gamma^\mu \pa_\mu - m) \tens{U}^\dagger \Psi' = \Psi'^\dagger \tens{U} \gamma^0 \tens{U}^\dagger (i \tens{U} \gamma^\mu \tens{U}^\dagger \pa_\mu - m) \Psi' = \bar{\Psi}' (i \gamma'^\mu \pa_\mu - m) \Psi'
+    \end{equation*}
+    where $ \bar{\Psi}' \equiv \Psi'^\dagger \gamma'^0 $. The Lagrangian is thus unchanged.
+  \end{proof}
+\end{proofbox}
+
+It can be shown that the Dirac algebra is invariant under the transformation in \pref{prop:dirac-unit-eq}, thus it defines an equivalent representation of the algebra.
+
+\begin{proposition}{Lorentz invariance}{}
+  Dirac equation is Lorentz invariant.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling \eref{eq:gamma-lor-tr}:
+    \begin{equation*}
+      \begin{split}
+        \left( i \gamma^\mu \pa_\mu - m \right) \Psi(x)
+        &\mapsto \left( i \gamma^\mu \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Lambda_{\frac{1}{2}} \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \Lambda_{\frac{1}{2}}^{-1} \left( i \gamma^\mu \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Lambda_{\frac{1}{2}} \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \left( i \Lambda_{\frac{1}{2}}^{-1} \gamma^\mu \Lambda_{\frac{1}{2}} \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \left( i \tensor{\Lambda}{^\mu_\sigma} \gamma^\sigma \tensor{[\Lambda^{-1}]}{^\nu_\mu} \pa_\nu - m \right) \Psi(\Lambda^{-1}x) \\
+        &= \Lambda_{\frac{1}{2}} \left( i \gamma^\nu \pa_\nu - m \right) \Psi(\Lambda^{-1}x) = 0
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+\paragraph{Solutions}
+
+The general solution to the Dirac equation is a superposition of plane waves, both with positive and negative-frequency modes:
+\begin{equation*}
+  \Psi(x) = u(p) e^{-i p_\mu x^\mu}
+  \qquad \qquad
+  \Psi(x) = v(p) e^{i p_\mu x^\mu}
+\end{equation*}
+where $ u(p) $ and $ v(p) $ are Dirac spinors, which in the chiral representation both have a left-handed and a right-handed Weyl spinor component. The Dirac equation than becomes:
+\begin{equation}
+  \left( \slashed{p} - m \right) u(p) = 0
+  \qquad \qquad
+  \left( \slashed{p} + m \right) v(p) = 0
+  \label{eq:dirac-eq-spinors}
+\end{equation}
+Considering the massive positive-frequency solution in the rest frame, i.e. $ p^\mu = (m, \ve{0}) $, one finds $ (\gamma^0 - 1) u(p) = 0 $, which yields $ u_\text{L} = u_\text{R} $: the KG equation imposes the mass-shell condition $ p^2 = m^2 $, but the Dirac equation, being a first-order equation, halves the number of independent degrees of freedom. A convenient normalization is:
+\begin{equation*}
+  u(p_0) = \sqrt{m}
+  \begin{pmatrix}
+    \xi \\ \xi
+  \end{pmatrix}
+\end{equation*}
+where $ \xi : \xi^\dagger \xi = 1 $ is a two-component spinor which gives the spin orientation of the solution: $ \xi = \binom{1}{0} $ for the spin-up solution and $ \xi = \binom{0}{1} $ for the spin-down one.\\
+The solution in a generic frame is obtained via a boost of the rest-frame solution, using transformation properties of left/right-handed spinors.
+
+\begin{proposition}{}{}
+  The solution to the Dirac equation in a generic frame where $ \ve{p} \parallel \ve{e}_z $ is given by:
+  \begin{equation}
+    u(p) =
+    \begin{pmatrix}
+      \begin{bmatrix}
+        \sqrt{E - p^3} & 0 \\ 0 & \sqrt{E + p^3}
+      \end{bmatrix} \xi \\
+      \begin{bmatrix}
+        \sqrt{E + p^3} & 0 \\ 0 & \sqrt{E - p^3}
+      \end{bmatrix} \xi
+    \end{pmatrix}
+    \label{eq:u-spinor-p3-frame}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a boost along $ \ve{e}_z $, parametrized by rapidity $ \eta $, by \eref{eq:lor-better-transf}:
+    \begin{equation*}
+      \begin{pmatrix}
+        E \\ p^3
+      \end{pmatrix}
+      = \exp \left( \eta
+        \begin{bmatrix}
+          0 & 1 \\ 1 & 0
+        \end{bmatrix}
+      \right)
+      \begin{pmatrix}
+        m \\ 0
+      \end{pmatrix}
+      = \left(
+        \begin{bmatrix}
+          1 & 0 \\ 0 & 1
+        \end{bmatrix}
+      \cosh \eta +
+        \begin{bmatrix}
+          0 & 1 \\ 1 & 0
+        \end{bmatrix}
+      \sinh \eta \right)
+      \begin{pmatrix}
+        m \\ 0
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        m \cosh \eta \\ m \sinh \eta
+      \end{pmatrix}
+    \end{equation*}
+    Thus, $ E + p^3 = e^\eta m $ and $ E - p^3 = e^{-\eta} m $. By Eqq. \ref{eq:lor-left-hand-weyl}-\ref{eq:lor-right-hand-weyl}, then:
+    \begin{equation*}
+      \begin{split}
+        u(p) &= \exp \left( - \frac{\eta}{2}
+          \begin{bmatrix}
+            \sigma_3 & 0 \\ 0 & - \sigma_3
+          \end{bmatrix}
+        \right) \sqrt{m}
+        \begin{pmatrix}
+          \xi \\ \xi
+        \end{pmatrix} = \left(
+                  \begin{bmatrix}
+                  1 & 0 \\ 0 & 1
+                  \end{bmatrix}
+                  \cosh \frac{\eta}{2} -
+                  \begin{bmatrix}
+                    \sigma_3 & 0 \\ 0 & - \sigma_3
+                  \end{bmatrix}
+                  \sinh \frac{\eta}{2}
+                \right) \sqrt{m}
+                \begin{pmatrix}
+                  \xi \\ \xi
+                \end{pmatrix} \\
+             &=
+             \begin{bmatrix}
+               e^{\eta / 2}\, \frac{1 - \sigma^3}{2} + e^{- \eta/2}\, \frac{1 + \sigma^3}{2} & 0 \\
+               0 & e^{\eta / 2}\, \frac{1 + \sigma^3}{2} + e^{- \eta/2}\, \frac{1 - \sigma^3}{2}
+             \end{bmatrix}
+             \sqrt{m}
+             \begin{pmatrix}
+              \xi \\ \xi
+             \end{pmatrix} \\
+             &=
+             \begin{bmatrix}
+               \sqrt{E + p^3} \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix} + \sqrt{E - p^3} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} & 0 \\
+               0 & \sqrt{E + p^3} \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} + \sqrt{E - p^3} \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}
+             \end{bmatrix}
+             \begin{pmatrix}
+              \xi \\ \xi
+             \end{pmatrix}
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+This expression can be generalized for an arbitrary direction of $ \ve{p} $:
+\begin{equation}
+  u^s(p) =
+  \begin{pmatrix}
+    \sqrt{p_\mu \sigma^\mu} \xi^s \\
+    \sqrt{p_\mu \bar{\sigma}^\mu} \xi^s
+  \end{pmatrix}
+  \label{eq:u-spinor-def}
+\end{equation}
+where the square root of a matrix is understood as taking the positive square root of its eigenvalues, and the polarization of $ \xi^s $ is made explicit.\\
+It is convenient to work with specific spinors $ \xi $: a useful choice are eigenvectors of $ \sigma^3 $, in particular $ \xi^1 = \binom{1}{0} $ (spin-up) and $ \xi^2 = \binom{0}{1} $ (spin-down). In the ultra-relativistic (or massless) limit $ p^\mu \rightarrow (E, 0, 0, E) $, so $ u^1 $ has only the right-handed component and $ u^2 $ only the left-handed one.\\
+The negative-frequency solution is equivalent:
+\begin{equation}
+  v^s(p) =
+    \begin{pmatrix}
+      \sqrt{p_\mu \sigma^\mu} \eta^s \\
+      -\sqrt{p_\mu \bar{\sigma}^\mu} \eta^s
+    \end{pmatrix}
+  \label{eq:v-spinor-def}
+\end{equation}
+where the spin states are the same: $ \eta^1 = \binom{1}{0} $ and $ \eta^2 = \binom{0}{1} $.\\
+Recalling the Dirac adjoint $ \bar{u}^s(p) = u^{s \dagger}(p) \gamma^0 , \bar{v}^s(p) = v^{s \dagger}(p) \gamma^0 $ and the normalization choice $ \xi^{r \dagger} \xi^s = \delta^{rs} , \eta^{r \dagger} \eta^s = \delta^{rs} $, several properties follow:
+\begin{equation}
+  \bar{u}^r(p) u^s(p) = 2m \delta^{rs}
+  \qquad \qquad
+  \bar{v}^r(p) v^s(p) = -2m \delta^{rs}
+\end{equation}
+\begin{equation}
+  u^{r \dagger}(p) u^s(p) = 2E_\ve{p} \delta^{rs}
+  \qquad \qquad
+  v^{r \dagger}(p) v^s(p) = 2E_\ve{p} \delta^{rs}
+  \label{eq:uv-spin-id}
+\end{equation}
+\begin{equation}
+  \bar{u}^r(p) v^s(p) = 0
+  \qquad \qquad
+  \bar{v}^r(p) u^s(p) = 0
+\end{equation}
+\begin{equation}
+  \bar{u}^r(p) \gamma^\mu u^s(p) = 2 p^\mu \delta^{rs}
+  \qquad \qquad
+  \bar{v}^r(p) \gamma^\mu v^s(p) = 2 p^\mu \delta^{rs}
+  \label{eq:spinor-gamma-mu}
+\end{equation}
+Note that $ \bar{u}u \in \C $, while $ u\bar{u} \in \C^{4 \times 4} $.
+
+\begin{proposition}{Spinor sums}{}
+  The sum over possible polarizations of a fermion yields:
+  \begin{equation}
+    \sum_s u^s(p) \bar{u}^s(p) = \slashed{p} + m
+    \qquad \qquad
+    \sum_s v^s(p) \bar{v}^s(p) = \slashed{p} - m
+    \label{eq:spinor-sums}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Using $ \sum_{s = 1,2} \xi^s \xi^{s \dagger} = \tens{I}_2 $:
+    \begin{equation*}
+      \begin{split}
+        \sum_s u^s(p) \bar{u}^s(p)
+        &= \sum_s
+        \begin{pmatrix} \sqrt{p_\mu \sigma^\mu} \xi^s \\ \sqrt{p_\mu \bar{\sigma}^\mu} \xi^s \end{pmatrix}
+        \begin{pmatrix} \xi^{s \dagger} \sqrt{p_\mu \bar{\sigma}^\mu} & \xi^{s \dagger} \sqrt{p_\mu \sigma^\mu} \end{pmatrix} \\
+        &=
+        \begin{bmatrix}
+          \sqrt{p_\mu \sigma^\mu} \sqrt{p_\mu \bar{\sigma}^\mu} & \sqrt{p_\mu \sigma^\mu} \sqrt{p_\mu \sigma^\mu} \\
+          \sqrt{p_\mu \bar{\sigma}^\mu} \sqrt{p_\mu \bar{\sigma}^\mu} & \sqrt{p_\mu \bar{\sigma}^\mu} \sqrt{p_\mu \sigma^\mu} \\
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+          m & p_\mu \sigma^\mu \\ p_\mu \bar{\sigma}^\mu & m
+        \end{bmatrix}
+      \end{split}
+    \end{equation*}
+    where the identity $ (p_\mu \sigma^\mu) (p_\mu \bar{\sigma}^\mu) = p^2 = m^2 $ was used.
+  \end{proof}
+\end{proofbox}
+
+\paragraph{Chiral symmetry}
+
+Consider the massless Dirac Lagrangian. In this case, the action has two global internal symmetries:
+\begin{equation*}
+  \psi_\text{L} \mapsto e^{i \theta_\text{L}} \psi_\text{L}
+  \qquad \qquad
+  \psi_\text{R} \mapsto e^{i \theta_\text{R}} \psi_\text{R}
+\end{equation*}
+Therefore, this theory is symmetric under $ \Un{1} \times \Un{1} $. These can be rewritten as two distinct transformations of the Dirac spinor:
+\begin{equation}
+  \Psi \mapsto e^{i \alpha} \Psi
+  \label{eq:dirac-u1-symm}
+\end{equation}
+\begin{equation}
+  \Psi \mapsto e^{i \beta \gamma^5} \Psi
+\end{equation}
+where $ \alpha \equiv \theta_\text{L} = \theta_\text{R} $ and $ \beta \equiv - \theta_\text{L} = \theta_\text{R} $ respectively (to prove that the latter is a symmetry, from $ \{\gamma^5, \gamma^\mu\} = 0 $ it follows that $ \gamma^\mu e^{i \beta \gamma^5} = e^{-i \beta \gamma^5} \gamma^\mu $). The former symmetry is called the vector $ \Un{1}_\text{V} $ symmetry, with conserved Noether current the \bctxt{vector current} $ j^\mu_\text{V} \defeq \bar{\Psi} \gamma^\mu \Psi $, while the latter is called the axial $ \Un{1}_\text{A} $ symmetry, with conserved \bctxt{axial current} $ j^\mu_\text{A} \defeq \bar{\Psi} \gamma^\mu \gamma^5 \Psi $.\\
+While the vector symmetry is always a symmetry of the Dirac field, the axial symmetry is only for the massless Dirac field, as:
+\begin{equation}
+  \pa_\mu j^\mu_\text{A} = 2 i m \bar{\Psi} \gamma^5 \Psi
+\end{equation}
+
+
+
+
+
+
+
+
+
+

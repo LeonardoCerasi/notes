@@ -1,0 +1,533 @@
+% page layout
+\usepackage[left=15mm, right=15mm, top=25mm]{geometry}
+\geometry{a4paper}
+
+% appendices
+\usepackage[toc,page]{appendix}
+
+% images
+\usepackage{graphicx}
+
+% colored headings
+\usepackage{xcolor}
+
+% equation numbering
+\usepackage{amsmath}
+\makeatletter
+\def\tagform@#1{\maketag@@@{\ignorespaces\sffamily(#1)\unskip\@@italiccorr}}
+\makeatother
+
+% bookmarks
+\usepackage{bookmark}
+
+% dedication
+\newenvironment{dedication}
+{\clearpage             % new page
+ \thispagestyle{empty}  % no header and footer
+ \vspace*{\stretch{1}}  % top space
+ %\itshape               % italics text
+ \raggedleft            % flush to the right margin
+}
+{\par                   % end paragraph
+ \vspace{\stretch{3}}   % bottom space (3x top space)
+ \clearpage             % finish page
+}
+
+% sectioning
+\usepackage{titlesec}
+
+% titleformat{name}
+% {title style}
+% {number style}
+% {space between number and title}
+% {before-title code}
+
+\titleformat{\part}[display]
+  {\normalfont \sffamily \bfseries \centering}
+  {\color{blue!70!black} \Large \partname \, \thepart}
+  {10pt} % vertical spacing
+  {\Huge}
+
+\titleformat{\chapter}[display]
+  {\normalfont \sffamily \bfseries}
+  {\color{blue!70!black} \large \chaptertitlename \, \thechapter}
+  {1pt}
+  {\titlerule[1pt] \vspace{7pt} \Huge}
+
+\titleformat{\section}
+  {\normalfont \sffamily \Large}
+  {\color{red!70!black} §\bfseries\thesection}
+  {10pt}
+  {\bfseries}
+
+\titleformat{\subsection}
+  {\normalfont \sffamily \large}
+  {\color{red!70!black} §\bfseries\thesubsection}
+  {10pt}
+  {\bfseries}
+
+\titleformat{\subsubsection}
+  {\normalfont \sffamily}
+  {\color{red!70!black} §\bfseries\thesubsubsection}
+  {10pt}
+  {\bfseries}
+
+\renewcommand{\appendixtocname}{\sffamily Appendices}
+\renewcommand{\appendixpagename}{\sffamily \Huge \bfseries Appendices}
+
+% custom table of contents
+\usepackage{tocloft}
+
+\renewcommand{\cfttoctitlefont}{\sffamily \Huge \bfseries} % title font
+% part
+\renewcommand{\cftpartfont}{\sffamily \large \bfseries}
+\renewcommand{\cftpartpagefont}{\sffamily \large \bfseries}
+\renewcommand{\cftpartpresnum}{\sffamily \color{blue!70!black}}
+% chapter
+\renewcommand{\cftchapfont}{\sffamily \bfseries}
+\renewcommand{\cftchappagefont}{\sffamily \bfseries}
+\renewcommand{\cftchappresnum}{\sffamily \color{blue!70!black}}
+% section
+\renewcommand{\cftsecfont}{\sffamily}
+\renewcommand{\cftsecpagefont}{\sffamily}
+\renewcommand{\cftsecpresnum}{\sffamily \color{red!70!black}}
+% subsection
+\renewcommand{\cftsubsecfont}{\sffamily}
+\renewcommand{\cftsubsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecpresnum}{\sffamily \color{red!70!black}}
+
+% headers and foooters
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+
+% part name
+\let\Oldpart\part
+\newcommand{\parttitle}{}
+\renewcommand{\part}[1]{\Oldpart{#1}\renewcommand{\parttitle}{#1}}
+
+% no random page numbers
+\fancypagestyle{plain}{%
+  \fancyhf{} % clear all header and footer fields
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% custom headers and footers
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+
+\fancypagestyle{body}{%
+  \fancyhead[LE,RO]{\sffamily\thepage}%
+  \fancyhead[LO]{\sffamily \color{blue!70!black}\chaptername\ \thechapter\color{black} :\ \leftmark}%
+  \fancyhead[RE]{\sffamily \color{blue!70!black}\partname\ \thepart\color{black} :\ \parttitle}%
+}
+
+% special header for Introduction
+\fancypagestyle{introd}{%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[RE,LO]{\sffamily \leftmark}%
+}
+
+% special header for Contents
+\fancypagestyle{contents}{%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[RE,LO]{\sffamily Contents}%
+}
+
+% special header for Appendix
+\fancypagestyle{append}{%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[LO]{\sffamily \color{blue!70!black}\appendixname\ \thechapter \color{black}:\ \leftmark}%
+  \fancyhead[RE]{\sffamily Appendices}%
+}
+
+% special header for Bibliography
+\fancypagestyle{biblio}{%
+  \fancyhead[LE,RO]{\sffamily \thepage}%
+  \fancyhead[RE,LO]{\sffamily Bibliography}%
+}
+
+% no blank pages
+\let\cleardoublepage\clearpage
+% removes indentation
+\setlength{\parindent}{0pt}
+% add subsubsection numbering
+\setcounter{secnumdepth}{3}
+
+% math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{tensor}
+
+% physics
+\usepackage{braket}
+
+% chemistry
+\usepackage{chemformula}
+
+% footnotes
+\usepackage{footnote}
+
+% bold text
+
+\newcommand{\bctxt}[1]{\textcolor{blue!70!black}{\textbf{#1}}}
+
+\newcommand{\bcdef}[1]{\textcolor{green!35!black}{\textbf{#1}}}
+
+\newcommand{\bcth}[1]{\textcolor{red!35!black}{\textbf{#1}}}
+
+\newcommand{\bclemma}[1]{\textcolor{blue!35!black}{\textbf{#1}}}
+
+\newcommand{\bcprop}[1]{\textcolor{cyan!35!black}{\textbf{#1}}}
+
+\newcommand{\bcex}[1]{\textcolor{yellow!35!black}{\textbf{#1}}}
+
+% fancy environments
+\usepackage[many]{tcolorbox}
+\BeforeBeginEnvironment{tcolorbox}{\savenotes}
+\AfterEndEnvironment{tcolorbox}{\spewnotes}
+
+\tcbuselibrary{theorems}
+
+\NewTcbTheorem[number within=section]{definition}{Definition}{%
+  enhanced,%
+  breakable,%
+  colback = green!5,%
+  colframe = green!5,%
+  coltitle = green!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{def}
+
+\newtcbtheorem[number within=section]{theorem}{Theorem}{%
+  enhanced,%
+  breakable,%
+  colback = red!5,%
+  colframe = red!5,%
+  coltitle = red!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{th}
+
+\newtcbtheorem[number within=tcb@cnt@theorem]{corollary}{Corollary}{%
+  enhanced,%
+  breakable,%
+  colback = red!5,%
+  colframe = red!5,%
+  coltitle = red!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{cor}
+
+\newtcbtheorem[number within=section]{lemma}{Lemma}{%
+  enhanced,%
+  breakable,%
+  colback = blue!5,%
+  colframe = blue!5,%
+  coltitle = blue!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{lemma}
+
+\newtcbtheorem[number within=lemma]{lemcorollary}{Corollary}{%
+  enhanced,%
+  breakable,%
+  colback = blue!5,%
+  colframe = blue!5,%
+  coltitle = blue!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{cor}
+
+\newtcbtheorem[number within=section]{proposition}{Proposition}{%
+  enhanced,%
+  breakable,%
+  colback = cyan!5,%
+  colframe = cyan!5,%
+  coltitle = cyan!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{prop}
+
+\newtcbtheorem[number within=proposition]{propcorollary}{Corollary}{%
+  enhanced,%
+  breakable,%
+  colback = cyan!5,%
+  colframe = cyan!5,%
+  coltitle = cyan!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{cor}
+
+\newtcbtheorem[number within=section]{example}{Example}{%
+  enhanced,%
+  breakable,%
+  colback = yellow!10,%
+  colframe = yellow!5,%
+  coltitle = yellow!35!black,%
+  fonttitle = \sffamily\bfseries,%
+  sharp corners,%
+  boxrule = 0pt,%
+  detach title,%
+  before upper = {\tcbtitle\\[4pt]},%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  separator sign none,%
+  description delimiters parenthesis,%
+  description font = \mdseries%
+}{ex}
+
+\newtcolorbox{proofbox}{%
+  enhanced,%
+  breakable,%
+  colback = black!5,%
+  colframe = black!5,%
+  sharp corners,%
+  boxrule = 0pt,%
+  left = 5pt,%
+  right = 5pt,%
+  top = 5pt,%
+  bottom = 5pt,%
+  borderline west = {1pt}{0pt}{black!70},%
+}
+
+% custom references
+\newcommand{\eref}[1]{\textsf{Eq.\,\ref{#1}}}
+\newcommand{\eeref}[2]{\textsf{Eq.\,\ref{#1}-\ref{#2}}}
+\newcommand{\dref}[1]{\textsf{Def.\,\ref{#1}}}
+\newcommand{\ddref}[2]{\textsf{Def.\,\ref{#1}-\ref{#2}}}
+\newcommand{\tref}[1]{\textsf{Th.\,\ref{#1}}}
+\newcommand{\pref}[1]{\textsf{Prop.\,\ref{#1}}}
+\newcommand{\lref}[1]{\textsf{Lemma\,\ref{#1}}}
+\newcommand{\exref}[1]{\textsf{Ex.\,\ref{#1}}}
+
+\newcommand{\secref}[1]{\textcolor{red!70!black}{\textsf{§\ref{#1}}}}
+
+% hyper-references
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = cyan,
+  % linkcolor defined directly in \toc environment
+  citecolor = green!70!black,
+}
+
+\newcommand{\toc}{%
+  \hypersetup{linkcolor = black}%
+  \tableofcontents%
+  \hypersetup{linkcolor = red!70!black}%
+}
+
+% extended integral symbols
+\usepackage{esint}
+
+% text
+\newcommand{\virgolette}[1]{``\text{#1}"}
+\newcommand{\tildetext}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+
+% greek
+\newcommand{\Chi}{\text{X}}
+
+% custom math symbols
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sgn}[1]{\mathrm{sgn}\,#1}
+\newcommand{\pa}{\partial}
+\newcommand{\na}{\nabla}
+\newcommand{\tens}[1]{\mathrm{#1}}
+\newcommand{\defeq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+                     =}
+\newcommand{\eqdef}{=%
+                     \mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\hilb}{\mathscr{H}}
+\newcommand{\fock}{\mathscr{F}}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\sqg}{\sqrt{\tens{g}}}
+\newcommand{\sqgm}{\sqrt{-\tens{g}}}
+\newcommand{\cm}{\mathcal{C}^{\infty}(\mathcal{M})}
+\DeclareMathOperator{\lspan}{span}
+\newcommand{\xm}{\mathfrak{X}(\mathcal{M})}
+\DeclareMathOperator{\id}{id}
+\newcommand{\ld}{\mathcal{L}}
+\newcommand{\lm}[1]{\Lambda^{#1}(\mathcal{M})}
+\newcommand{\hrm}[1]{\mathrm{Harm}^{#1}(\mathcal{M})}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\im}{Im}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\dg}{^\dagger}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Ad}{Ad}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\newcommand{\act}{\mathcal{S}}
+\newcommand{\normord}{\mathfrak{N}}
+\newcommand{\tempord}{\mathfrak{T}}
+\newcommand{\parity}{\mathcal{P}}
+\newcommand{\chargec}{\mathcal{C}}
+\newcommand{\timer}{\mathcal{T}}
+\newcommand{\covder}{D}
+\newcommand{\mat}{\mathcal{M}}
+
+\newcommand{\grad}{\boldsymbol{\nabla}}
+\newcommand{\dive}{\boldsymbol{\nabla}\cdot}
+\newcommand{\rot}{\boldsymbol{\nabla}\times}
+\newcommand{\lap}{\triangle}
+
+% small \overleftrightarrow
+\makeatletter
+\newcommand{\overleftrightsmallarrow}{\mathpalette{\overarrowsmall@\leftrightarrowfill@}}
+\newcommand{\overrightsmallarrow}{\mathpalette{\overarrowsmall@\rightarrowfill@}}
+\newcommand{\overleftsmallarrow}{\mathpalette{\overarrowsmall@\leftarrowfill@}}
+\newcommand{\overarrowsmall@}[3]{%
+  \vbox{%
+    \ialign{%
+      ##\crcr
+      #1{\smaller@style{#2}}\crcr
+      \noalign{\nointerlineskip}%
+      $\m@th\hfil#2#3\hfil$\crcr
+    }%
+  }%
+}
+\def\smaller@style#1{%
+  \ifx#1\displaystyle\scriptstyle\else
+    \ifx#1\textstyle\scriptstyle\else
+      \scriptscriptstyle
+    \fi
+  \fi
+}
+\makeatother
+\newcommand{\smlra}[1]{\overleftrightsmallarrow{#1}}
+\newcommand{\smla}[1]{\overleftsmallarrow{#1}}
+\newcommand{\smra}[1]{\overrightsmallarrow{#1}}
+
+% functions
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\Exp}{Exp}
+
+% number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+
+% groups
+\newcommand{\Ot}{\mathrm{O}(3)}
+\newcommand{\SOt}{\mathrm{SO}(3)}
+\newcommand{\On}[1]{\mathrm{O}(#1)}
+\newcommand{\SOn}[1]{\mathrm{SO}(#1)}
+\newcommand{\Un}[1]{\mathrm{U}(#1)}
+\newcommand{\SUn}[1]{\mathrm{SU}(#1)}
+\newcommand{\GL}[1]{\mathrm{GL}(#1)}
+\newcommand{\SL}[1]{\mathrm{SL}(#1)}
+
+% units of measure
+\newcommand{\m}{\,\mathrm{m}}
+\newcommand{\ang}{\,\mathrm{\AA}}
+\newcommand{\fm}{\,\mathrm{fm}}
+
+\newcommand{\barn}{\,\mathrm{barn}}
+
+\newcommand{\cels}{\,^{\circ}\mathrm{C}}
+
+\newcommand{\ev}{\,\mathrm{eV}}
+\newcommand{\kev}{\,\mathrm{keV}}
+\newcommand{\mev}{\,\mathrm{MeV}}
+\newcommand{\gev}{\,\mathrm{GeV}}
+\newcommand{\tev}{\,\mathrm{TeV}}
+
+% particles
+\newcommand{\g}{\mathrm{g}}
+\newcommand{\w}{\mathrm{W}}
+\newcommand{\z}{\mathrm{Z}}
+
+% frontmatters defaults
+\author{Leonardo Cerasi}
+\date{}

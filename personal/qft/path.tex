@@ -1,0 +1,633 @@
+\selectlanguage{english}
+
+\section{Path integrals}
+
+In contrast to canonical quantization, in which fields are promoted to operators, in path-integral quantization they remain ordinary functions. While the former allows for a more direct understanding of the notion of particle (thanks to ladder operators), the latter has the advantage of not being intrinsically perturbative, thus better describing theories with non-perturbative effects.
+
+\subsection{Path integral in Quantum Mechanics}
+
+Consider a general (bosonic) quantum system, with Hermitian operators $ \{\hat{q}_a,\hat{p}_a\}_{a = 1,\dots,n} $ which satisfy the canonical commutation relations:
+\begin{equation}
+  [\hat{q}_a , \hat{p}_b] = i \delta_{ab}
+  \label{eq:qm-path-int-comm}
+\end{equation}
+Eigenstates of these operators form two improperly-normalized complete orthonormal sets of eigenstates, with scalar product:
+\begin{equation}
+  \braket{q | p} = \prod_{a = 1}^n \frac{1}{\sqrt{2\pi}} e^{i q_a p_a} \equiv (2\pi)^{-n/2} e^{i q \cdot p}
+  \label{qm-plane-wave}
+\end{equation}
+with $ q \equiv \{q_1 , \dots , q_n\} , p \equiv \{p_1 , \dots , p_n\} $. The switch from the Schrödinger picture to the Heisenberg one is carried by the Hamiltonian $ \hat{H}(\hat{q},\hat{p}) $ of the system, which is assumed to be normal-ordered with all $ q_a $ on the left of all $ p_a $: in this picture, all of the above relations remain valid for equal-time states.
+
+\begin{theorem}{Hamiltonian path integral}{}
+  The amplitude of $ \ket{q_\text{i},t_\text{i}} \rightarrow \ket{q_\text{f},t_\text{f}} $ is a functional integral:
+  \begin{equation}
+    \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} \prod_{a = 1}^n \dd q_a \frac{\dd p_a}{2\pi} \exp i \int_{t_\text{i}}^{t_\text{f}} \dd t \left[ \sum_{b = 1}^n \dot{q}_b(t) p_b(t) - H(q(t),p(t)) \right]
+    \label{eq:qm-ham-path-int}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a partition $ \{t_m\}_{m = 0, \dots, N} : t_m < t_j \,\,\forall m < j $ of the interval $ [t_\text{i} , t_\text{f}] $, so that $ t_0 \equiv t_\text{i} $ and $ t_N \equiv t_\text{f} $: for simplicity, take them equally spaced, i.e. $ t_m = t_0 + m \epsilon $, with $ N \epsilon = t_\text{f} - t_\text{i} $. The amplitude for $ \ket{q_\text{i},t_\text{i}} \rightarrow \ket{q_\text{f},t_\text{f}} $ can thus be computed as:
+    \begin{equation*}
+      \begin{split}
+        \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{\R^{n(N-1)}} \prod_{m = 0}^{N-1} \dd q_m \braket{q_{m+1} , t_{m+1} | q_m , t_m}
+      \end{split}
+    \end{equation*}
+    where the completeness relation was repeatedly used. Switching to the Schrödinger picture:
+    \begin{equation*}
+      \begin{split}
+        \braket{q_{m+1} , t_{m+1} | q_m , t_m}
+        & = \braket{q_{m+1} | e^{-i \hat H (t_{m+1} - t_m)} | q_m} \\
+        & = \braket{q_{m+1} | e^{-i \hat H \epsilon} | q_m} = \int_{\R^n} \dd p_m \braket{q_{m+1} | p_m} \braket{p_m | e^{-i \hat H \epsilon} | q_m} \\
+        & = (2\pi)^{-n/2} \int_{\R^n} \dd p_m\, e^{i q_{m+1} \cdot p_m} \braket{p_m | e^{-i \hat{H}(\hat{q},\hat{p}) \epsilon} | q_m} \\
+        & = \frac{1}{(2\pi)^n} \int_{\R^n} \dd p_m\, e^{i (q_{m+1} - q_m) \cdot p_m} e^{-i H(q_m,p_m) \epsilon}
+      \end{split}
+    \end{equation*}
+    The amplitude is then rewritten as:
+    \begin{equation*}
+      \begin{split}
+        \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}}
+        & = \frac{1}{(2\pi)^n} \int_{\R^{2n(N+1)}} \prod_{m = 0}^{N-1} \dd q_m \dd p_m\, e^{i \left[ (q_{m+1} - q_m) \cdot p_m - H(q_m,p_m) \epsilon \right]} \\
+        & = \frac{1}{(2\pi)^n} \int_{\R^{2n(N+1)}} \prod_{m = 0}^{N-1} \dd q_m \dd p_m \exp \sum_{k = 1}^{N-1} i \epsilon \left[ \frac{q_{k+1} - q_k}{\epsilon} \cdot p_k - H(q_k,p_k) \right] \\
+      \end{split}
+    \end{equation*}
+    Consider now the $ \epsilon \rightarrow 0 $ limit, i.e. $ N \rightarrow \infty $: the integration is then performed on an infinite number of variables, hence becoming a functional integral. The integration is carried on the set of functions $ \{q(t) : \R^n \rightarrow \R^n : q(t_\text{i}) = q_\text{i} \land q(t_\text{f}) = q_\text{f}\} $; moreover, note that, in the $ \epsilon \rightarrow 0 $ limit, the sum becomes a Riemann integral:
+    \begin{equation*}
+      \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \frac{1}{(2\pi)^n} \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} \dd q \dd p \exp i \int_{t_\text{i}}^{t_\text{f}} \dd t \left[ \dot{q}(t) \cdot p(t) - H(q(t),p(t)) \right]
+    \end{equation*}
+    which is precisely the thesis.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}{Lagrangian path integral}{}
+  For a $ p $-quadratic Hamiltonian, the path integral can be written as:
+  \begin{equation}
+    \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, e^{\frac{i}{\hbar} \act[q,\dot{q}]}
+    \label{eq:qm-lag-path-int}
+  \end{equation}
+  where $ \act[q,\dot{q}] $ is the action functional of the system and $ [\dd q] $ is a suitably-normalized integration measure.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a system with a $ p $-quadratic Hamiltonian $ H(q,p) = \frac{p^2}{2} + V(q) $ (however, the thesis holds for a general quadratic form of $ p $), so that the previous proof can be rewritten with a Gaussian integral (\eref{eq:gauss-int}):
+    \begin{equation*}
+      \begin{split}
+        \braket{q_{m+1} , t_{m+1} | q_m , t_m}
+        & = \frac{1}{(2\pi)^n} e^{-i \epsilon V(q_m)} \int_{\R^n} \dd p_m\, e^{i (q_{m+1} - q_m) \cdot p_m - \frac{i \epsilon}{2} p_m^2} \\
+        & = \frac{1}{(2\pi)^n} e^{-i \epsilon V(q_m)} \prod_{a = 1}^n \int_{\R} \dd p_{m,a} e^{i (q_{m+1,a} - q_{m,a}) p_{m,a} - \frac{i \epsilon}{2} p_{m,a}^2} \\
+        & = \frac{1}{(2\pi)^n} e^{-i \epsilon V(q_m)} \prod_{a = 1}^n \sqrt{\frac{2\pi }{i\epsilon}} e^{- \frac{1}{2i \epsilon} (q_{m+1,a} - q_{m,a})^2} \\
+        & = \left( \frac{1}{2\pi i \epsilon} \right)^{n/2} e^{i \epsilon \left[ \frac{1}{2} \left( \frac{q_{m+1} - q_m}{\epsilon} \right)^2 - V(q_m) \right]}
+      \end{split}
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \left( \frac{1}{2\pi i \epsilon} \right)^{nN/2} \int_{\R^{n(N-1)}} \prod_{m = 0}^{N-1} \dd q_m \exp \sum_{k = 0}^{N - 1} i \epsilon \left[ \frac{1}{2} \left( \frac{q_{k+1} - q_k}{\epsilon} \right)^2 - V(q_k) \right]
+    \end{equation*}
+    In the $ \epsilon \rightarrow 0 $ limit, with the same considerations as above and absorbing the normalization in the integration measure, this becomes:
+    \begin{equation*}
+      \braket{q_\text{f},t_\text{f} | q_\text{i},t_\text{i}} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [dq] \exp \left[ i \int_{t_\text{i}}^{t_\text{f}} \dd t\, L(q(t),\dot q(t)) \right] \eqdef \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, e^{i \act[q,\dot q]}
+    \end{equation*}
+    Reinstating explicitly $ \hbar $ yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+This formulation elucidates the classical limit $ \hbar \rightarrow 0 $: while quantistically a particle explores all possible trajectories, which are then weighted by a phase $ e^{i\act} $, classically only trajectories which extremize the action are relevant, as those which are far from the extrema get extremely-oscillating phases under small deformations. Thus, the least-action principle has been recovered. \\
+The path integral is not only useful for computing amplitudes, but it is also used to express matrix elemets on the coordinate-eigenbasis.
+
+\begin{lemma}{Time-ordered products}{time-ord-prod}
+  Given $ \{t_k\}_{k = 1, \dots, N} \subset [t_\text{i} , t_\text{f}] $ and operators $ \{\hat{\mathcal{O}}_k(\hat{q}(t))\}_{k = 1, \dots, N} \equiv \{\hat{\mathcal{O}}_k(t)\}_{k = 1, \dots, N} $, $ N \in \N $, then:
+  \begin{equation}
+    \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, \mathcal{O}_1(t_1) \dots \mathcal{O}_N(t_N) e^{i \act} = \braket{q_\text{f},t_\text{f} | \tempord\{\hat{\mathcal{O}}_1(t_1) \dots \hat{\mathcal{O}}_N(t_N)\} | q_\text{i},t_\text{i}}
+  \end{equation}
+  where $ \tempord $ is the time-ordered product, which is defined as:
+  \begin{equation}
+    \tempord \{f(x) g(y)\} \defeq
+    \begin{cases}
+      f(x) g(y) & x^0 > y^0 \\
+      g(y) f(x) & y^0 > x^0
+    \end{cases}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    First, note that:
+    \begin{equation*}
+      \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q] = \int_{\R^n} \dd\bar{q} \int_{q(t_\text{i}) = q_\text{i}}^{q(t) = \bar{q}} [\dd q] \int_{q(t) = \bar{q}}^{q(t_\text{f}) = q_\text{f}} [\dd q]
+    \end{equation*}
+    so that (thanks to the additivity of the action integral):
+    \begin{equation*}
+      \begin{split}
+        \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, \mathcal{O}_k(t) e^{i \act}
+        & = \int_{\R^n} \dd\bar{q} \underbrace{\int_{q(t_\text{i}) = q_\text{i}}^{q(t) = \bar{q}} [\dd q] \exp \left[ i \int_{t_\text{i}}^t \dd t\, L \right]}_{\braket{\bar{q},t | q_\text{i},t_\text{i}}} \mathcal{O}_k(\bar{q}) \underbrace{\int_{q(t) = \bar{q}}^{q(t_\text{f}) = q_\text{f}} [\dd q] \exp \left[ i \int_t^{t_\text{f}} \dd t\, L \right]}_{\braket{q_\text{f},t_\text{f} | \bar{q},t}} \\
+        & = \int_{\R^n} \dd\bar{q}\, \braket{q_\text{f},t_\text{f} | \bar{q},t} \mathcal{O}_k(\bar{q}) \braket{\bar{q},t | q_\text{i},t_\text{i}} = \int_\R \dd\bar{q}\, \braket{q_\text{f},t_\text{f} | \hat{\mathcal{O}}_k(t) | \bar{q},t} \braket{\bar{q},t | q_\text{i},t_\text{i}} \\
+        & = \braket{q_\text{f},t_\text{f} | \hat{\mathcal{O}}_k(t) | q_\text{i},t_\text{i}}
+      \end{split}
+    \end{equation*}
+    This links the matrix element of the operator $ \hat{\mathcal{O}}_k(t) $ to the path integral of the function $ \mathcal{O}_k(t) $. Consider now that, being $ \mathcal{O}_k(t) \in \C $, i.e. commuting:
+    \begin{equation*}
+      \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, \mathcal{O}_1(t_1) \dots \mathcal{O}_N(t_N) e^{i \act} = \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, \mathcal{O}_{\pi(1)}(t_{\pi(1)}) \dots \mathcal{O}_{\pi(N)}(t_{\pi(N)}) e^{i \act}
+    \end{equation*}
+    where $ \pi \in S^N : t_{\pi(1)} \ge \dots \ge t_{\pi(N)} $ is a time-ordering permutation. Applying the above result:
+    \begin{equation*}
+      \int_{q(t_\text{i}) = q_\text{i}}^{q(t_\text{f}) = q_\text{f}} [\dd q]\, \mathcal{O}_1(t_1) \dots \mathcal{O}_N(t_N) e^{i \act} = \braket{q_\text{f},t_\text{f} | \hat{\mathcal{O}}_{\pi(1)}(t_{\pi(1)}) \dots \hat{\mathcal{O}}_{\pi(N)}(t_{\pi(N)}) | q_\text{i},t_\text{i}}
+    \end{equation*}
+    But $ \,\hat{\mathcal{O}}_{\pi(1)}(t_{\pi(1)}) \dots \hat{\mathcal{O}}_{\pi(N)}(t_{\pi(N)}) \eqdef \tempord \{\hat{\mathcal{O}}_1(t_1) \dots \hat{\mathcal{O}}_N(t_N)\} $, thus completing the proof.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Path integral in Quantum Field Theory}
+
+To generalize the path-integral formalism to QFT, consider the index $ a $ as running over points $ \ve{x} $ in space and over a spin/helicity (i.e. species/helicity) index $ m $:
+\begin{equation*}
+  \hat{q}_a(t) \longrightarrow \hat{q}_m(t,\ve{x})
+  \qquad \qquad
+  \ket{q,t} \longrightarrow \ket{q(\ve{x}),t}
+\end{equation*}
+The generalizations of \eeref{eq:qm-ham-path-int}{eq:qm-lag-path-int} is then straightforward:
+\begin{equation}
+  \begin{split}
+    \braket{q_\text{f}(\ve{x}),t_\text{f} | q_\text{i}(\ve{x}),t_\text{i}}
+    & = \int_{q(t_\text{i},\ve{x}) = q_\text{i}(\ve{x})}^{q(t_\text{f},\ve{x}) = q_\text{f}(\ve{x})} \prod_m \dd q(\ve{x}) \frac{\dd p(\ve{x})}{2\pi} \times \\
+    & \quad \times \exp i \int_{t_\text{i}}^{t_\text{f}} \dd t \int_{\R^3} \dd^3x \left[ \sum_m \dot{q}_m(t,\ve{x}) p_m(t,\ve{x}) - \ham[q(t,\ve{x}),p(t,\ve{x})] \right]
+  \end{split}
+  \label{eq:ham-path-int-q}
+\end{equation}
+\begin{equation}
+  \braket{q_\text{f}(\ve{x}),t_\text{f} | q_\text{i}(\ve{x}),t_\text{i}} = \int_{q(t_\text{i},\ve{x}) = q_\text{i}(\ve{x})}^{q(t_\text{f},\ve{x}) = q_\text{f}(\ve{x})} \mathcal{D}q \exp i \int_{t_\text{i}}^{t_\text{f}} \dd t \int_{\R^3} \dd^3 x\, \lag[q(t,\ve{x}),\dot{q}(t,\ve{x})]
+  \label{eq:lag-path-int-q}
+\end{equation}
+It is best to express the path integral not for coordinate eigenstates, but for experimentally-observed states: these are states at $ t_\text{i} \rightarrow -\infty , t_\text{f} \rightarrow +\infty $ with a definite number of particles (of various types).
+
+\begin{theorem}{(Bosonic) Path integral}{}
+  The amplitude for the (bosonic) process $ \ket{\alpha_\text{in}} \rightarrow \ket{\beta_\text{out}} $ reads:
+  \begin{equation}
+    \braket{\beta_\text{out} | \alpha_\text{in}} = \int \mathcal{D}q \exp \left[ i \int_{\R^4} \dd t \dd^3 x \, \lag[q(t,\ve{x}),\dot{q}(t,\ve{x})] \right] \braket{\beta_\text{out} | q(\ve{x}), +\infty} \braket{q(\ve{x}), -\infty | \alpha_\text{in}}
+    \label{eq:bos-path-int}
+  \end{equation}
+  where the functional integral is now unconstrained.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:lag-path-int-q}:
+    \begin{equation*}
+      \begin{split}
+        \braket{\beta_\text{out} | \alpha_\text{in}}
+        & = \int \dd q_\text{i}(\ve{x}) \dd q_\text{f}(\ve{x}) \braket{\beta_\text{out} | q_\text{f}(\ve{x}), +\infty} \braket{q_\text{f}(\ve{x}),+\infty | q_\text{i}(\ve{x}),-\infty} \braket{q_\text{i}(\ve{x}), -\infty} \\
+        & = \int \dd q_\text{i}(\ve{x}) \dd q_\text{f}(\ve{x}) \int_{q(-\infty,\ve{x}) = q_\text{i}(\ve{x})}^{q(+\infty,\ve{x}) = q_\text{f}(\ve{x})} \mathcal{D}q \exp \left[ i \int_{\R^4} \dd t \dd^3 x\, \lag[q(t,\ve{x}),\dot{q}(t,\ve{x})] \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \braket{\beta_\text{out} | q_\text{f}(\ve{x}), +\infty} \braket{\alpha_\text{in} | q_\text{i}(\ve{x}), -\infty}
+      \end{split}
+    \end{equation*}
+    This is equivalent to having an unconstrained functional integral, hence the thesis.
+  \end{proof}
+\end{proofbox}
+
+This result is easily translated into Hamiltonian form. The expression for the wavefunctions which appear in \eref{eq:bos-path-int} depends on the nature of the quantum field $ q_m(t,\ve{x}) $ considered (which, in this case, is constrained to be bosonic as of \eref{eq:qm-path-int-comm}). \\
+Note that \lref{lemma:time-ord-prod} still holds: it allows to compute $ n $-point Green functions via path integrals.
+
+\begin{proposition}{Correlation functions}{}
+  Given a (bosonic) quantum field $ q(x) $, described by a Lagrangian $ \lag $, the $ n $-point Green function can be computed as:
+  \begin{equation}
+    \braket{0 | \tempord\{\hat{q}(x_1) \dots \hat{q}(x_n)\} | 0} = \frac{\int \mathcal{D}q\, q(x_1) \dots q(x_n) e^{i \act}}{\int \mathcal{D}q\, e^{i \act}}
+    \label{eq:corr-func-path}
+  \end{equation}
+  where $ \hat{q} $ denotes the field in the Heisenberg picture and the integrals are performed over field configurations $ q(x) : q(\pm \infty, \ve{x}) = 0 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \lref{lemma:time-ord-prod}:
+    \begin{equation*}
+      \int_{q(-\infty,\ve{x}) = 0}^{q(+\infty,\ve{x}) = 0} \mathcal{D}q\, q(x_1) \dots q(x_n) e^{i\act} = \braket{0,+\infty | \tempord\{\hat{q}(x_1) \dots \hat{q}(x_n)\} | 0,-\infty}
+    \end{equation*}
+    As the final-state vacuum is assumed to physically coincide with the initial-state vacuum, then:
+    \begin{equation*}
+      \ket{0,+\infty} = e^{i\alpha} \ket{0,-\infty}
+      \qquad \Rightarrow \qquad
+      e^{-i\alpha} = \braket{0,+\infty | 0,-\infty}
+    \end{equation*}
+    Inserting $ \bra{0,+\infty} = \bra{0,-\infty} e^{-i\alpha} $ in the above equation and noting that:
+    \begin{equation}
+      \braket{0,+\infty | 0,-\infty} = \int_{q(-\infty,\ve{x}) = 0}^{q(+\infty,\ve{x}) = 0} \mathcal{D}q\, e^{i\act}
+      \label{eq:vac-to-vac}
+    \end{equation}
+  yields the thesis ($ \ket{0,-\infty} \equiv \ket{0} $).
+  \end{proof}
+\end{proofbox}
+
+This is the equivalent of \eref{eq:corr-func-pert} evaluated with path integrals: in particular, it is clear that the denominator \eref{eq:vac-to-vac} gives the vacuum-to-vacuum transition amplitudes, $ \virgolette{undressing} $ the numerator of vacuum-to-vacuum disconnected diagrams. Moreover, note how the normalization of $ \mathcal{D}q $ carries no physical significance, as it simplifies in the fraction.
+
+\section{Functional quantization of fields}
+
+\subsection{Scalar fields}
+
+First of all, consider a free scalar field theory:
+\begin{equation*}
+  G(x_1, \dots, x_n) = \frac{\int \mathcal{D}\phi\, \phi(x_1) \dots \phi(x_n) e^{i\act}}{\int \mathcal{D}\phi\, e^{i\act}}
+  \qquad \qquad
+  \act = \frac{1}{2} \int \dd^4x \left( \pa_\mu \phi \pa^\mu \phi - m^2 \phi^2 \right)
+\end{equation*}
+An integral so defined is not assured to converge, as the oscillating factor $ e^{i\act} $ is not necessarily sufficient to provide convergence over large fluctuations, i.e. over field configurations with large action value. To ensure convergence, it is conventional to add a small convergence factor to the free Lagrangian:
+\begin{equation}
+  \lag_0 = \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - \frac{1}{2} m^2 \phi^2 + \frac{i \epsilon}{2} \phi^2
+\end{equation}
+with $ \epsilon \rightarrow 0^+ $. This renders $ G(x_1, \dots, x_n) $ a Gaussian integral, ensuring its convergence. The convergence factor can be viewed as an imaginary displacement of the mass $ m^2 \mapsto m^2 - i \epsilon $: this is precisely the $ i\epsilon $-prescription for the Feynman propagator.
+
+\begin{definition}{Scalar generating functional}{gen-func}
+  Given a scalar field theory with Lagrangian $ \lag $, the \bcdef{generating functional} is defined as:
+  \begin{equation}
+    Z[J] \defeq \int \mathcal{D}\phi\, \exp\left[ i \int \dd^4x \left( \lag + J(x) \phi(x) \right) \right]
+  \end{equation}
+  where $ J(x) $ is a scalar field.
+\end{definition}
+
+The generating functional is a functional of the \bctxt{source field} $ J(x) $, and its functional derivatives\footnotemark are the correlation functions of the theory.
+
+\footnotetext{The \textit{functional derivative} is a formal manipulation which, given $ J : \R^n \rightarrow \R $, is defined by:
+  \begin{equation}
+    \frac{\delta}{\delta J(x)} J(y) \equiv \delta^{(n)}(x - y)
+  \end{equation}
+  It is clear, then, that given $ f : \R^n \rightarrow \C^m $:
+  \begin{equation}
+    \frac{\delta}{\delta J(x)} \int_{\R^n} \dd^ny\, J(y) f(y) = f(x)
+    \label{eq:func-der}
+  \end{equation}
+  It also follows the usual derivative rules.
+}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Correlation functions from generating functionals}{corr-gen-func}
+  \begin{equation}
+    G(x_1, \dots, x_n) = \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) Z[J] \right]_{J = 0}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:func-der}:
+    \begin{equation*}
+      \begin{split}
+        & \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) Z[J] \right]_{J = 0} \\
+        & \qquad \qquad \qquad \qquad = \frac{1}{Z[0]} \int \dd^4x \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) e^{i \int \dd^4y\, J(y) \phi(y)} \right]_{J = 0} e^{i\act} \\
+        & \qquad \qquad \qquad \qquad = \frac{1}{Z[0]} \int \dd^4x\, \phi(x_1) \dots \phi(x_n) e^{i\act}
+      \end{split}
+    \end{equation*}
+    which is precisely \eref{eq:corr-func-path}.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Free theory}
+
+The generating functional for a free scalar theory can be written explicitly.
+
+\begin{proposition}{Free generating functional}{scal-func-free}
+  The generating functional for a free KG field $ \phi $ is:
+  \begin{equation}
+    Z_0[J] = Z_0[0] \exp \left[ -\frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]
+    \label{eq:func-free}
+  \end{equation}
+  where $ D_\text{F}(x-y) $ is the Feynman propagator.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Integrating by parts the kinetic term of the action:
+    \begin{equation*}
+      \int \dd^4x \left[ \lag_0 + J \phi \right] = \int \dd^4x \left[ - \frac{1}{2} \phi(x) (\Box + m^2 - i\epsilon) \phi(x) + J(x) \phi(x) \right] \equiv - \frac{1}{2} \braket{\phi | \hat{A} | \phi} + \braket{J | \phi}
+    \end{equation*}
+    (with abuse of notation) where the shifted KG operator $ \hat{A} \equiv \Box + m^2 - i\epsilon $ was introduced (Hermitian as $ \epsilon \rightarrow 0^+ $). Introducing a momentum-space basis:
+    \begin{equation}
+      \ket{k} : \braket{x | k} = e^{-i k_\mu x^\mu}
+      \qquad \qquad
+      \int_{\R^4} \frac{\dd^4k}{(2\pi)^4} \ket{k} \bra{k} = \id
+    \end{equation}
+    it is possible to switch to momentum space through a 4D Fourier transform\footnote{The Fourier transform is on all spacetime dimensions, as all possible paths contribute to the path integral, not just the solutions to the equations of motion.}:
+    \begin{equation*}
+      \phi(x) = \int \frac{\dd^4k}{(2\pi)^4} \braket{x | k} \braket{k | \phi} = \int \frac{\dd^4k}{(2\pi)^4} \phi(k) e^{-i k_\mu x^\mu}
+      \qquad \qquad
+      \hat{A} \ket{k} = (-k^2 + m^2 - i\epsilon) \ket{k}
+    \end{equation*}
+    It is then possible to rewrite the integral above in momentum space:
+    \begin{equation*}
+      \int \dd^4x \left[ \lag_0 + J \phi \right] = \int \frac{\dd^4k}{(2\pi)^4} \left[ \frac{1}{2} \phi^*(k) (k^2 - m^2 + i\epsilon) \phi(k) + J^*(k) \phi(k) \right]
+    \end{equation*}
+    Note that $ \phi^*(k) = \phi(-k) $, $ J^*(k) = J(-k) $ and $ \braket{J|x} = \braket{x|J} $. To further simplify the integral, define a shifted field:
+    \begin{equation*}
+      \ket{\chi} = \ket{\phi} - \hat{A}^{-1} \ket{J}
+    \end{equation*}
+    The Jacobian of this transformation is trivially $ 1 $, thus:
+    \begin{equation*}
+      \begin{split}
+        \int \dd^4x \left[ \lag_0 + J\phi \right]
+        & = - \frac{1}{2} (\bra{\chi} + \bra{J} \hat{A}^{-1}) \hat{A} (\ket{\chi} + \hat{A}^{-1} \ket{J}) + \braket{J | \chi} + \braket{J | \hat{A}^{-1} | J} \\
+        & = - \frac{1}{2} \braket{\chi | \hat{A} | \chi} + \frac{1}{2} \braket{J | \hat{A}^{-1} | J}
+      \end{split}
+    \end{equation*}
+    As the second term is independent of the free field, it is then clear that:
+    \begin{equation*}
+      Z_0[J] = \int \mathcal{D}\chi\, \exp \left[ - \frac{i}{2} \braket{\chi | \hat{A} | \chi} + \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right] = Z[0] \exp \left[ \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right]
+    \end{equation*}
+    Recall that the Green's function of the KG operator is the Feynman propagator \eref{eq:feynm-prop}, thus:
+    \begin{equation*}
+      \hat{A}^{-1} J(x) = i \int \dd^4y\, D_\text{F}(x - y) J(y)
+    \end{equation*}
+    as $ \hat{A} D_\text{F}(x-y) = -i \delta^{(4)}(x-y) $. Then:
+    \begin{equation*}
+      \exp \left[ \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right] = \exp \left[ \frac{i}{2} \int \dd^4x\, J(x) \hat{A}^{-1} J(x) \right] = \exp \left[ -\frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]
+    \end{equation*}
+    This completes the proof.
+  \end{proof}
+\end{proofbox}
+
+Therefore, the propagator is a bi-local distribution. It is possible to express the integral in momentum space too, using $ \hat{A}^{-1} \ket{k} = (-k^2 + m^2 -i\epsilon)^{-1} \ket{k} = i \tilde{D}_\text{F}(k) \ket{k} $:
+\begin{equation}
+  Z_0[J] = Z_0[0] \exp \left[ - \frac{1}{2} \int \frac{\dd^4k}{(2\pi)^4} J^*(k) \tilde{D}_\text{F}(k) J(k) \right]
+\end{equation}
+Using \lref{lemma:gauss-ve-int}, it is possible to make $ Z[0] $ explicit:
+\begin{equation}
+  Z_0[0] = \int \mathcal{D}\phi\, \exp \left[ - \frac{i}{2} \braket{\phi | \hat{A} | \phi} \right] = \mathcal{N} (\det \hat{A})^{-1/2}
+\end{equation}
+where $ \det\hat{A} $ is known as a \bctxt{functional determinant}. Although it has a physical meaning, as $ Z_0[0] = \braket{0 | 0} $ represents the vacuum-to-vacuum amplitude, the functional determinant cancels in the expression for the correlation functions ($ \virgolette{undressing} $ of vacuum-to-vacuum diagrams).
+
+\subsubsection{Interacting theory}
+
+Consider now a scalar field theory with interaction Lagrangian $ \lag_\text{int} = V[\phi] $. \lref{lemma:corr-gen-func} is independent on whether the theory is free or not, so the generating integral needs only to be generalized in a way which suits the formalism of correlation functions and Wick's theorem.
+
+\begin{proposition}{Interacting generating functional}{}
+  The generating functional for an interacting KG field $ \phi $ with $ \lag_\text{int} = - V[\phi] $ can be written as:
+  \begin{equation}
+    Z[J] = \sum_{n \in \N_0} \frac{(-i)^n}{n!} \left( \int \dd^4x\, V \left[ -i \frac{\delta}{\delta J(x)} \right] \right)^n Z_0[J]
+    \label{eq:z-int}
+  \end{equation}
+  where $ Z_0[J] $ is the generating functional for the free theory.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Manipulating \dref{def:gen-func}:
+    \begin{equation*}
+      \begin{split}
+        Z[J]
+        & = \int \mathcal{D}\phi\, e^{i\act + i \int \dd^4y\, J(y) \phi(y)} = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + V[\phi] + J(y) \phi(y) \right)} = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)} \sum_{n = 0}^\infty c_n \phi^n \\
+        & = \int \mathcal{D}\phi \sum_{n = 0}^\infty c_n \left( -i \frac{\delta}{\delta J} \right)^n e^{i \int \dd^4x \left( \lag_0 + J \phi \right)} = \int \mathcal{D} \phi e^{-i \int \dd^4x V[-i \frac{\delta}{\delta J(x)}]} e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)}
+      \end{split}
+    \end{equation*}
+    The first exponential can be carried out of the path integral, and expanding it yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+Hence, in order to compute the correlation functions for the interacting theory, one only needs the generating functional of the free theory:
+\begin{multline}
+  \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} \\
+  = \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J(x_n)} \right) \sum_{k \in \N} \frac{(-i)^k}{k!} \left( \int \dd^4x\, V \left[ -i \frac{\delta}{\delta J(x)} \right] \right)^k Z_0[J] \right]_{J = 0}
+\end{multline}
+This expression is analogous to Wick's theorem: due to the final condition $ J = 0 $, only terms which do not contain any $ J(x) $ contribute to the correlation function, and these are precisely the fully-contracted terms. Moreover, as of \eref{eq:func-free}, only terms with an even number of functional derivatives are non-vanishing, as an odd number of them results in terms with at least one $ J(x) $: this allows the interaction potential to shape the interaction vertex.
+
+\begin{example}{Free scalar field theory}{}
+  Computing the $ 2 $-point Green function in a free scalar field theory is trivial with \eref{eq:func-free}:
+  \begin{equation*}
+    \begin{split}
+      \braket{0 | \tempord\{\phi(x_1) \phi(x_2)\} | 0}
+      & = \frac{1}{Z_0[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) Z_0[J] \right]_{J = 0} \\
+      & = \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) \exp \left[ - \frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ i \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \bigg[ D_\text{F}(x_2 - x_1) + \\
+      & \quad - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = D_\text{F}(x_2 - x_1)
+    \end{split}
+  \end{equation*}
+  This expression can be used to compute the $ 3 $-point Green function:
+  \begin{equation*}
+    \begin{split}
+      & \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3)\} | 0} \\
+      & = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ D_\text{F}(x_3 - x_2) - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \bigg[ i D_\text{F}(x_3 - x_2) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) + i D_\text{F}(x_2 - x_1) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \\
+      & \quad + i D_\text{F}(x_3 - x_1) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) + \\
+      & \quad - i \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = 0
+    \end{split}
+  \end{equation*}
+  The first non-trivial application of Wick's theorem is the $ 4 $-point Green function:
+  \begin{equation*}
+    \begin{split}
+      & \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
+      & \qquad \qquad = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \bigg[ i D_\text{F}(x_4 - x_3) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) + \\
+      & \qquad \qquad + i D_\text{F}(x_3 - x_2) \int \dd^4y\, D_\text{F}(x_4 - y) J(y) + i D_\text{F}(x_4 - x_2) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) + \\
+      & \qquad \qquad - i \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \int \dd^4y\, D_\text{F}(x_4 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} \\
+      & \qquad \qquad = \frac{1}{Z_0[0]} \bigg[ D_\text{F}(x_4 - x_3) D_\text{F}(x_2 - x_1) + D_\text{F}(x_3 - x_2) D_\text{F}(x_4 - x_1) + \\
+      & \qquad \qquad \quad + D_\text{F}(x_4 - x_2) D_\text{F}(x_3 - x_1) + \left( \propto J^2 \right) + \left( \propto J^4 \right) \bigg] Z_0[J] \bigg\vert_{J = 0} \\
+      & \qquad \qquad = D_\text{F}(x_4 - x_3) D_\text{F}(x_2 - x_1) + D_\text{F}(x_3 - x_2) D_\text{F}(x_4 - x_1) + D_\text{F}(x_4 - x_2) D_\text{F}(x_3 - x_1)
+    \end{split}
+  \end{equation*}
+\end{example}
+
+\subsubsection{Symmetry factors}
+\label{sssec:sym-fact}
+
+Consider \eref{eq:z-int} for $ \lambda \phi^n $-theory:
+\begin{equation*}
+  \begin{split}
+    Z[J]
+    & = Z_0[0] \sum_{v,p \in \N_0} \frac{1}{v!} \left[ \int \dd^4x\, \frac{-i \lambda}{n!} \left( -i \frac{\delta}{\delta J(x)} \right)^n \right]^v \frac{1}{p!} \left[ - \frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]^p \\
+    & = Z_0[0] \sum_{v,p \in \N_0} \frac{1}{v! p! (n!)^v 2^p} \left[ - i \lambda \int \dd^4x \left( -i \frac{\delta}{\delta J(x)} \right)^n \right]^v \left[ - \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]^p
+  \end{split}
+\end{equation*}
+Each term in this expansion is represented by a Feynman diagram with $ v $ vertices and $ p $ propagators. This expression helps clarifying how the symmetry factor of a diagram is computed: first of all, note that there are $ n! $ ways to rearrange functional derivatives in each $ v $-term, amounting to a total of $ (n!)^v $ equivalent ways for each term of the expansion, paired to $ v! $ ways to rearrange the vertices; then, there are also $ p! $ ways to rearrange propagators, with $ 2^p $ equivalent choices of sides (in total for $ p $ propagators). \\
+Although it would seem that the combinatorial factor exactly cancels the prefactor of each term in the above expansion, it needs to be noted that not all these rearrangements are actual distinct (but equivalent) diagrams. The actual combinatorial factor of the diagram is the \bctxt{symmetry factor}, which can be computed as:
+\begin{equation}
+  S = 2^\beta g \prod_k (k!)^{\alpha_k}
+\end{equation}
+where $ \beta $ is the number of lines which connects a vertex to itself, $ g $ is the number of permutations of vertices which leave the diagram unchanged, and $ \alpha_k $ is the number of couples of vertices connected by $ k $ identical lines.
+
+\subsection{Electromagnetic field}
+
+With the functional formalism, it is possible to prove \eref{eq:phot-prop}. The action of the electromagnetic field (massless spin-1 field) can be expressed as:
+\begin{equation*}
+  \begin{split}
+    \act
+    & = \int \dd^4x\, \left[ -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} \right] = - \frac{1}{4} \int \dd^4x \left( \pa_\mu A_\nu - \pa_\nu A_\mu \right) \left( \pa^\mu A^\nu - \pa^\nu A^\mu \right) \\
+    & = - \frac{1}{2} \int \dd^4x \left( \pa_\mu A_\nu \pa^\mu A^\nu - \pa^\mu A_\nu \pa^\nu A_\mu \right) = \frac{1}{2} \int \dd^4x \left( A_\nu \Box A^\nu - A_\nu \pa^\mu \pa^\nu A_\mu \right) \\
+    & = \frac{1}{2} \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} A_\nu(k) \left( e^{-i k_\alpha x^\alpha} \Box e^{-i p_\alpha x^\alpha} \eta^{\mu \nu} - e^{-i k_\alpha x^\alpha} \pa^\mu \pa^\nu e^{-i p_\alpha x^\alpha} \right) A_\mu(p) \\
+    & = \frac{1}{2} \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} e^{-i (k+p)_\alpha x^\alpha} A_\nu(k) \left( -p^2 \eta^{\mu \nu} + p^\mu p^\nu \right) A_\mu(p) \\
+    & = \frac{1}{2} \int \frac{\dd^4k}{(2\pi)^4} A_\mu(-k) \left( -k^2 \eta^{\mu \nu} + k^\mu k^\nu \right) A_\nu(k)
+  \end{split}
+\end{equation*}
+This kinetic term is orthogonal to $ k_\mu $, i.e. the action vanishes for all gauge fields of the form $ A_\mu(k) = k_\mu \alpha(k) $: this is equivalent to saying that the Green's equation for this kinetic operator has no solution, as it is singular and therefore non-invertible. This problem is due to gauge invariance: indeed, $ F_{\mu \nu} $ is invariant under (\eref{eq:qed-gauge-inv}):
+\begin{equation}
+  A_\mu(x) \mapsto A_\mu(x) + \pa_\mu \alpha(x)
+\end{equation}
+and the non-invertibility arises from modes gauge-equivalent to $ A_\mu(x) \equiv 0 $ (obtained by $ \pa_\mu \alpha(x) = - A_\mu(x) $), i.e. non-physical degrees of freedom. \\
+It is possible to isolate and quantize physical degrees of freedom, thanks to a technique due to Faddeev and Popov (introduced in \cite{faddeev-popov}), which yields (see Sec. 9.4 of \cite{peskin} for a detailed derivation):
+\begin{equation}
+  \tilde{D}_{\mu \nu}(k) = \frac{-i}{k^2 + i\epsilon} \left[ \eta^{\mu \nu} - \left( 1 - \xi \right) \frac{k^\mu k^\nu}{k^2} \right]
+\end{equation}
+where $ \xi \in \R $ is a gauge-fixing parameter. The most useful choices are $ \xi = 0 $ (Landau gauge), $ \xi = 1 $ (Feynman gauge) and $ \xi = 3 $ (Yennie gauge): the Feynman gauge $ \xi = 1 $ is adopted from now on. In position space:
+\begin{equation}
+  D_{\mu \nu}(x-y) = \int \frac{\dd^4k}{(2\pi)^4} e^{-i k_\alpha x^\alpha} \frac{-i \eta^{\mu \nu}}{k^2 + i\epsilon}
+\end{equation}
+The formalism of the generating functional can be extended to massless spin-1 fields too.
+
+\begin{definition}{Generating functional for the electromagnetic field}{}
+  Given a gauge field $ A_\mu $ described by a Lagrangian $ \lag $, the \bcdef{generating functional} is defined as:
+  \begin{equation}
+    Z[J] \defeq \int \mathcal{D}A\, \exp \left[ i \int \dd^4x \left( \lag + J^\mu(x) A_\mu(x) \right) \right]
+  \end{equation}
+  where $ J^\mu(x) $ is a 4-vector field.
+\end{definition}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Correlation functions from generating functionals}{}
+  \begin{equation}
+    \braket{0 | \tempord\{A_{\mu_1}(x_1) \dots A_{\mu_n}(x_n)\} | 0} = \frac{1}{Z[0]} \left[ \left( -i \frac{\delta}{\delta J^{\mu_1}(x_1)} \right) \dots \left( -i \frac{\delta}{\delta J^{\mu_n}(x_n)} \right) Z[J] \right]_{J = 0}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is analogous to that of \lref{lemma:corr-gen-func}, using $ \frac{\delta}{\delta J^\mu(x)} J^\nu(y) = \delta^\nu_\mu \delta^{(4)}(x-y) $.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Generating functional and the propagator}{}
+  \begin{equation}
+    Z[J] = Z[0] \exp \left[ \frac{1}{2} \int \dd^4x \dd^4y\, J^\mu(x) D_{\mu \nu}(x-y) J^\nu(y) \right]
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is analogous to that of \pref{prop:scal-func-free}. The extra negative sign is due to $ D_{\mu \nu}(x-y) $ solving:
+    \begin{equation}
+      \left( \Box g^{\mu \nu} - \pa^\mu \pa^\nu \right) D_{\mu \nu}(x-y) = i \delta^{(4)}(x-y)
+    \end{equation}
+    Note that the source term is $ i \delta^{(4)}(x-y) $ and not $ -i \delta^{(4)}(x-y) $ (as for the KG operator).
+  \end{proof}
+\end{proofbox}
+
+\subsection{Spinor fields}
+
+To describe fermions in the functional formalism, it is necessary to define them through Grassmann fields (see \secref{sssec:grass-num}) of the form:
+\begin{equation*}
+  \Psi(x) = \sum_i \theta_i \Psi_i(x)
+\end{equation*}
+where $ \theta_i $ are Grassmann numbers and $ \Psi_i(x) $ are a basis of Dirac spinor fields. This allows to extend the path-integral formalism to fermoinic (anti-commuting) fields.
+
+\begin{example}{$ 2 $-point Green function}{}
+  Using \eref{eq:corr-func-path}, it is possible to recover the Dirac propagator:
+  \begin{equation*}
+    \braket{0 | \tempord\{\Psi(x_1) \bar{\Psi}(x_2)\} | 0} = \frac{\int \Psi \mathcal{D} \mathcal{D} \bar{\Psi}\, \Psi(x_1) \bar{\Psi}(x_2) \exp \left[ i \int \dd^4x\, \bar{\Psi} ( i \slashed{\pa} - m + i\epsilon ) \Psi \right]}{\int \mathcal{D} \mathcal{D} \Psi \bar{\Psi}\, \exp \left[ i \int \dd^4x\, \bar{\Psi} ( i \slashed{\pa} - m + i\epsilon ) \Psi \right]}
+  \end{equation*}
+  where convergence is assured by the $ i\epsilon $-prescription. Using \eref{eq:grass-gauss-2} for the numerator and \eref{eq:grass-gauss-1} for the denominator (note that $ \bar{\Psi} $ is used, instead of $ \Psi^* $, as they are unitarily equivalent), the functional determinant of the $ i \slashed{\pa} - m + i\epsilon $ operator cancels out, leaving the matrix element of the inverse operator $ \left( i \slashed{\pa} - m + i\epsilon \right) $ (more precisely, $ \left[ -i \left( i \slashed{\pa} - m + i\epsilon \right) \right]^{-1} $). \\
+  To compute this matrix element in momentum space, consider the representation of the fermionic field in it:
+  \begin{equation}
+    \Psi(x) = \int \frac{\dd^4k}{(2\pi)^4} \Psi(k) e^{-i k_\mu x^\mu}
+    \qquad \qquad
+    \bar{\Psi}(x) = \int \frac{\dd^4k}{(2\pi)^4} \bar{\Psi}(k) e^{i k_\mu x^\mu}
+  \end{equation}
+  Therefore, the matrix element is:
+  \begin{equation*}
+    \braket{0 | \tempord\{\Psi(x_1) \bar{\Psi}(x_2)\} | 0} = \int \frac{\dd^4k}{(2\pi)^4} \frac{1}{-i \left( \slashed{k} -m + i\epsilon \right)} e^{-i k_\mu (x_1 - x_2)^\mu} = S_\text{D}(x_1 - x_2)
+  \end{equation*}
+  which is precisely the Dirac propagator (\eref{eq:dirac-prop}).
+\end{example}
+
+To derive the Feynman rules for a fermionic theory, it is possible to define a generating functional.
+
+\begin{definition}{Fermionic generating functional}{}
+  Given a theory $ \lag $ with a fermionic field $ \Psi $, the \bcdef{generating functional} is defined as:
+  \begin{equation}
+    Z[\eta,\bar{\eta}] = \int \mathcal{D}\bar{\Psi} \mathcal{D}\Psi \exp \left[ i \int \dd^4x \left( \lag + \bar{\eta}(x) \Psi(x) + \bar{\Psi}(x) \eta(x) \right) \right]
+    \label{eq:gen-func-ferm}
+  \end{equation}
+  where $ \eta(x) $ is a Grassmann field.
+\end{definition}
+
+\begin{proposition}{Free generating functional}{}
+  The generating functional for a free fermionic field $ \Psi $ is:
+  \begin{equation}
+    Z_0[\bar{\eta},\eta] = Z_0[0,0] \exp \left[ - \int \dd^4x \dd^4y\, \bar{\eta}(x) S_\text{D}(x-y) \eta(y) \right]
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Rewriting the exponent of \eref{eq:gen-func-ferm} in momentum space:
+    \begin{equation*}
+      \begin{split}
+        \int \dd^4x \left( \lag_0 + \bar{\eta} \Psi + \bar{\Psi} \eta \right)
+        & = \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} \bar{\Psi}(k) e^{i k_\mu x^\mu} ( i \slashed{\pa} - m + i\epsilon ) \Psi(p) e^{-i p_\mu x^\mu} + \\
+        & \quad + \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} \bar{\eta}(k) e^{i k_\mu x^\mu} \Psi(p) e^{-i p_\mu x^\mu} \\
+        & \quad + \int \dd^4x \int \frac{\dd^4k \dd^4p}{(2\pi)^8} \bar{\Psi}(k) e^{i k_\mu x^\mu} \eta(p) e^{-i p_\mu x^\mu} \\
+        & = \int \frac{\dd^4k}{(2\pi)^4} \left[ \bar{\Psi}(k) ( \slashed{p} - m + i\epsilon ) \Psi(k) + \bar{\eta}(k) \Psi(k) + \bar{\Psi}(k) \eta(k) \right]
+      \end{split}
+    \end{equation*}
+    Now, shift the field as:
+    \begin{equation*}
+      \Psi \mapsto \Xi = \Psi + (i \slashed{\pa} - m + i\epsilon)^{-1} \eta \equiv \Psi + \hat{A}^{-1} \eta
+    \end{equation*}
+    The integral can then be rewritten as (recall the Hermitianity of the Dirac operator):
+    \begin{equation*}
+      \begin{split}
+        \int \dd^4x \left( \lag_0 + \bar{\eta} \Psi + \bar{\Psi} \eta \right)
+        & = \int \frac{\dd^4k}{(2\pi)^4} \left[ \left( \bar{\Xi} - \bar{\eta} \hat{A}^{-1} \right) \hat{A} \left( \Xi - \hat{A}^{-1} \eta \right) + \bar{\eta} \Xi + \bar{\Xi} \eta - 2 \bar{\eta} \hat{A}^{-1} \eta \right] \\
+        & = \int \frac{\dd^4k}{(2\pi)^4} \left[ \bar{\Xi} \hat{A} \Xi - \bar{\eta} \hat{A}^{-1} \eta \right] \\
+        & = \int \dd^4x\, \bar{\Xi} (i \slashed{\pa} - m + i\epsilon) \Xi - \int \frac{\dd^4k}{(2\pi)^4} \bar{\eta}(k) \frac{1}{\slashed{k} - m + i\epsilon} \eta(k)
+      \end{split}
+    \end{equation*}
+    Therefore, the generating functional can be expressed as (using the shift-invariance of Grassmann integrals):
+    \begin{equation*}
+      \begin{split}
+        Z_0[\bar{\eta},\eta]
+        & = \int \mathcal{D}\bar{\Xi} \mathcal{D}\Xi\, \exp \left[ i \int \dd^4x\, \bar{\Xi} (i \slashed{\pa} - m + i\epsilon) \Xi \right] \exp \left[ - \int \frac{\dd^4k}{(2\pi)^4} \bar{\eta}(k) \frac{i}{\slashed{k} - m + i\epsilon} \eta(k) \right] \\
+        & = Z_0[0,0] \exp \left[ - \int \dd^4x \dd^4y\, \bar{\eta}(x) S_\text{D}(x - y) \eta(y)  \right]
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+As for the free scalar field, using \eref{eq:grass-gauss-1} makes $ Z_0[0] $ an explicit functional determinant of the kinetic operator:
+\begin{equation}
+  Z_0[0,0] = \mathcal{N} \det \hat{A}
+\end{equation}
+
+To compute correlation functions from the generating functional, note that for Grassmann numbers:
+\begin{equation}
+  \frac{\dd}{\dd \eta} \theta \eta = - \frac{\dd}{\dd \eta} \eta \theta = - \theta
+  \label{eq:grass-ant-der}
+\end{equation}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Correlation functions from generating functionals}{}
+  \begin{equation}
+    \braket{0 | \tempord\{\Psi(x_1) \bar{\Psi}(x_2) \dots \} | 0} = \frac{1}{Z[0,0]} \left[ \left( -i \frac{\delta}{\delta \bar{\eta}(x_1)} \right) \left( i \frac{\delta}{\delta \eta(x_2)} \right) \dots Z[\bar{\eta},\eta] \right]_{\bar{\eta},\eta = 0}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Analogous to the proof of \lref{lemma:corr-gen-func} with \eref{eq:grass-ant-der}.
+  \end{proof}
+\end{proofbox}
+
+Finally, note that the anti-commuting nature of Grassmann numbers makes \eref{eq:ferm-tempord-ant} trivial.
+
+\begin{example}{QED Feynman rules}{}
+  Consider the QED Lagrangian:
+  \begin{equation}
+    \lag_\text{QED} = \bar{\Psi} (i \slashed{\covder} - m) \Psi - \frac{1}{4} F_{\mu \nu} F^{\mu \nu}
+  \end{equation}
+  Expanding the covariant derivative $ D_\mu = \pa_\mu + i e A_\mu $:
+  \begin{equation*}
+    \lag_\text{QED} = \bar{\Psi} (i \slashed{\pa} - m) \Psi - \frac{1}{4} F_{\mu \nu} F^{\mu \nu} - e \bar{\Psi} \gamma^\mu \Psi A_\mu
+  \end{equation*}
+  It is then clear that this theory describes spin-$ \frac{1}{2} $ (anti-)fermions which propagate with $ \tilde{S}_\text{D}(p) $ and massless spin-$ 1 $ gauge bosons which propagate with $ \tilde{D}_{\mu \nu}(k) $. The interaction vertex involves a fermion, anti-fermion and a gauge boson and it acts as $ -i e \int \dd^4x\, \gamma^\mu $.
+\end{example}
+
+
+
+
+
+
+
+
+
+

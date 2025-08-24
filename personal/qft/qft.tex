@@ -1,0 +1,122 @@
+\documentclass[a4paper, 12pt]{book}
+\usepackage[english]{babel}
+
+\input{../imports.tex}
+
+\usepackage{overarrows}
+\usepackage{slashed}
+\usepackage{simpler-wick}
+
+\usepackage{tikz}
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+% bibliography
+
+\usepackage{csquotes}
+\usepackage[
+backend = biber,
+style = numeric-comp,
+sorting = ynt
+]{biblatex}
+\addbibresource{bibl.bib}
+
+\renewbibmacro{in:}{}
+
+\AtEveryBibitem{%
+	\clearfield{publisher}%
+	\clearfield{month}%
+	\clearfield{numpages}%
+	\clearfield{issue}%
+	\clearfield{isbn}%
+}
+
+\DeclareFieldFormat[book,article]{journaltitle}{#1}
+\DeclareFieldFormat[book,article]{volume}{\mkbibbold{#1}}
+
+%macros
+
+\newcommand{\lorg}{\mathrm{SO}^+(1,3)}
+\newcommand{\lora}{\mathfrak{so}^+(1,3)}
+\newcommand{\pog}{\mathrm{ISO}^+(1,3)}
+\newcommand{\poa}{\mathfrak{iso}^+(1,3)}
+
+\newcommand{\dira}{\mathfrak{cl}_{1,3}(\C)}
+
+\DeclareMathOperator{\spin}{Spin}
+
+\newcommand{\sua}[1]{\mathfrak{su}(#1)}
+\newcommand{\sla}[1]{\mathfrak{sl}(#1)}
+
+\newcommand{\cla}[1]{\mathfrak{cl}(#1)}
+\newcommand{\clar}[1]{\mathfrak{cl}_{#1}(\R)}
+
+\title{\Huge\textbf{Quantum Field Theory}}
+
+\definecolor{front}{HTML}{0e1d56}
+\definecolor{ffont}{HTML}{ffd700}
+
+\begin{document}
+
+\frontmatter
+
+\begin{titlepage}
+  \centering
+  \vspace*{5.0em}
+  {\color{ffont}\bfseries\sffamily\Huge{Quantum Field Theory}}
+  \vskip2.0em
+  {\color{ffont}{$\mathfrak{Leonardo}$ $\mathfrak{Cerasi}$}}
+  \vskip10.0em
+  {%
+    \setlength{\fboxsep}{0pt}%
+    \setlength{\fboxrule}{1pt}%
+    \fbox{\includegraphics[width = (\textwidth - 2pt)]{images/cover.jpg}}
+  }
+  \pagecolor{front}
+\end{titlepage}
+\nopagecolor
+
+\toc
+
+\pagestyle{contents}
+
+\mainmatter
+
+\part{Field Theory}
+\pagestyle{body}
+
+\chapter{Classical Field Theory}
+\input{classical.tex}
+
+\chapter{Canonical Quantization}
+\input{quantum.tex}
+
+\part{Interacting Fields}
+\pagestyle{body}
+
+\chapter{Perturbative Approach}
+\input{pert.tex}
+
+\chapter{Path Integral Quantization}
+\input{path.tex}
+
+\chapter{Amplitudes in QED}
+\input{eemm.tex}
+
+\bookmarksetupnext{level = -1}
+\begin{appendices}
+\pagestyle{append}
+
+\chapter{Mathematical Reference}
+\input{math-ref.tex}
+
+\chapter{Scattering Processes}
+\input{cross.tex}
+
+\clearpage
+\end{appendices}
+
+\bookmarksetupnext{level = -1}
+\pagestyle{biblio}
+\printbibliography[heading = bibintoc, title = {Bibliography}]
+
+\end{document}

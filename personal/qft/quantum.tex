@@ -1,0 +1,1249 @@
+\selectlanguage{english}
+
+\section{Scalar fields}
+
+As for the quantization of a classical system in Quantum Mechanics, the quantization of a scalar field theory is performed promoting $ \phi(t,\ve{x}) $ and $ \Pi(t,\ve{x}) $ to hermitian operators in the Heisenberg picture and imposing the canonical equal-time commutation relation:
+\begin{equation}
+  [\phi(t,\ve{x}) , \Pi(t,\ve{y})] = i \delta^{(3)}(\ve{x} - \ve{y})
+  \label{eq:scalar-quant-comm}
+\end{equation}
+while of course $ [\phi(t,\ve{x}) , \phi(t,\ve{y})] = [\Pi(t,\ve{x}) , \Pi(t,\ve{y})] = 0 $.
+
+\subsection{Real scalar fields}
+
+A real scalar field is promoted to a real hermitian operator. In particular, by \eref{eq:scalar-field-exp}:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:scalar-quant-exp}
+\end{equation}
+In terms of creation and annihilation operators, the commutator \eref{eq:scalar-quant-comm} reads:
+\begin{equation}
+  [a_\ve{p} , a_\ve{q}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
+  \label{eq:scalar-quant-op-comm}
+\end{equation}
+while $ [a_\ve{p} , a_\ve{q}] = [a_\ve{p}^\dagger , a_\ve{q}^\dagger] = 0 $. These can be regarded as the creation and annihilation operators of a collection of harmonic oscillators, one for each value of the momentum $ \ve{p} $: the \bctxt{Fock space} of the real scalar field can thus be constructed analogously to the Hilbert space of the harmonic oscillator.\\
+Defining the \bctxt{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \ve{p} $, suitably normalized as $ \braket{0 | 0} = 1 $, the generic state of the Fock space is:
+\begin{equation}
+  \ket{\ve{p}_1 , \dots , \ve{p}_n} = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}}\, a_{\ve{p}_1}^\dagger \dots a_{\ve{p}_n}^\dagger \ket{0}
+\end{equation}
+
+\begin{proposition}{Normalization}{}
+  For one-particle states:
+  \begin{equation}
+    \braket{\ve{p}_1 | \ve{p}_2} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:scalar-quant-op-comm}:
+    \begin{equation*}
+      \braket{\ve{p}_1 | \ve{p}_2} = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | a_{\ve{p}_1} a_{\ve{p}_2}^\dagger | 0}
+      = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | [a_{\ve{p}_1} , a_{\ve{p}_2}^\dagger] | 0} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+\begin{lemma}{}{}
+  The combination $ E_\ve{p} \delta^{(3)}(\ve{p} - \ve{q}) $ is Lorentz invariant.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Recall that:
+    \begin{equation}
+      \delta(f(x) - f(x_0)) = \frac{1}{\abs{f'(x_0)}} \delta(x - x_0)
+    \end{equation}
+    A Lorentz boost along $ \ve{e}_i $ yields $ p'_i = \gamma (p_i + \beta E) $ and $ E' = \gamma (E + \beta p_i) $, so:
+    \begin{equation*}
+        \delta^{(3)}(\ve{p} - \ve{q})
+        = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\dd p'_i}{\dd p_i}
+        = \delta^{(3)}(\ve{p}' - \ve{q}') \gamma \left( 1 + \beta \frac{\dd E}{\dd p_i} \right)
+    \end{equation*}
+    Note that $ p^2 = E^2 - \ve{p}^2 $ is a Lorentz invariant, thus $ E \dd E = p_i \dd p_i $, so:
+    \begin{equation*}
+      \delta^{(3)}(\ve{p} - \ve{q})
+      = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\gamma (E + \beta p_i)}{E}
+      = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{E'}{E}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+This explains the choice of normalization.
+
+\begin{proposition}{KG Hamiltonian}{}
+  The Hamiltonian of a real scalar field can be written as:
+  \begin{equation}
+    H = \int \frac{\dd^3 p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + \frac{1}{2} [a_\ve{p} , a_\ve{p}^\dagger] \right)
+    \label{eq:kg-haml}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First of all, from \eref{eq:scalar-quant-exp}:
+    \begin{equation*}
+      \begin{split}
+        \Pi(t,\ve{x}) = \pa_0 \phi(t,\ve{x})
+        &= -i \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} - a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
+        &= -i \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+      \end{split}
+    \end{equation*}
+    \begin{equation*}
+      \bs{\nabla} \phi(t,\ve{x}) = i \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+    \end{equation*}
+    Inserting these expressions in \eref{eq:scalar-field-haml}:
+    \begin{equation*}
+      \begin{split}
+        \ham
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \frac{\dd^3 q}{(2\pi)^3} \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{i E_{\ve{q}} t} \right] + \\
+        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] \bigg\} e^{i (\ve{p} + \ve{q}) \cdot \ve{x}}
+      \end{split}
+    \end{equation*}
+    Recall the identity:
+    \begin{equation}
+      \int \frac{\dd^3x}{(2\pi)^3} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} = \delta^{(3)}(\ve{p} - \ve{q})
+      \label{eq:fourier-delta}
+    \end{equation}
+    Then (using $ E_{-\ve{p}} = E_\ve{p} $):
+    \begin{equation*}
+      \begin{split}
+        H
+        &= \int \dd^3x\, \ham \\
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \dd^3 q \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] + \\
+        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] \bigg\} \delta^{(3)}(\ve{p} + \ve{q}) \\
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \bigg\{ - \frac{E_\ve{p}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-i E_\ve{p} t} - a_\ve{p}^\dagger e^{i E_\ve{p} t} \right] + \\
+        & \qquad + \frac{\ve{p}^2 + m^2}{2E_\ve{p}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-i E_\ve{p} t} + a_\ve{p}^\dagger e^{i E_\ve{p} t} \right] \bigg\} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \frac{E_\ve{p}}{2} \bigg\{ - \left[ a_\ve{p} a_{-\ve{p}} e^{-2i E_\ve{p} t} - a_{-\ve{p}}^\dagger a_{-\ve{p}} - a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2i E_\ve{p} t} \right] \\
+        & \qquad + \left[ a_\ve{p} a_{-\ve{p}} e^{-2i E_\ve{p} t} + a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2i E_\ve{p} t} \right] \bigg\} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left[ a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger \right] = \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+The second term in the Hamiltonian \eref{eq:kg-haml} is the sum of the zero-point energy of all oscillators and is proportional to $ (2\pi)^3 \delta^{(3)}(0) \rightarrow V $, thus:
+\begin{equation*}
+  E_\text{vac} = \frac{V}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p}
+\end{equation*}
+This energy shows two divergences: the one coming from the infinite-volume limit (i.e. small momentum), regularized introducing an \bctxt{infrared cutoff} in the form of a finite volume, and the one from the ultra-relativistic limit (i.e. large momentum), regularized introducing an \bctxt{ultraviolet cutoff} in the form of a maximum momentum $ \Lambda $. These divergences are retained in the expression for $ E_\text{vac} $, as $ E_\text{vac} \sim V $ and $ E_\text{vac} \sim \Lambda^4 $, but can be ignored (when ignoring gravity) since experiments are only sensitive to energy differences.\\
+Discarding the zero-point energy, the Hamiltonian becomes:
+\begin{equation}
+  H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} a_\ve{p}^\dagger a_\ve{p} \equiv \normord \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
+\end{equation}
+where the \bctxt{normal ordering operator} $ \normord $ was introduced, which acts by moving all creation operators to the left and all annihilation operators to the right (ex.: $ \normord\{a_\ve{p} a_\ve{p}^\dagger\} = a_\ve{p}^\dagger a_\ve{p} $). It is now straightforward to compute the energy of a generic state in the Fock space, as $ a_\ve{p}^\dagger a_\ve{p} $ is just a number operator:
+\begin{equation}
+  H \ket{\ve{p}_1 , \dots , \ve{p}_n} = \left( E_{\ve{p}_1} + \dots + E_{\ve{p}_n} \right) \ket{\ve{p}_1 , \dots , \ve{p}_n}
+\end{equation}
+Computing the spatial momentum from \eref{eq:4-mom-def} as $ P^i = \normord \int \dd^3x\, \theta^{0i} = \int \dd^3x\, \normord\{\pa_0 \phi \pa^i \phi\} $:
+\begin{equation}
+  P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i a_\ve{p}^\dagger a_\ve{p}
+\end{equation}
+Therefore, the state $ a_\ve{p}^\dagger \ket{0} $ can correctly be interpreted as a one-particle state with momentum $ \ve{p} $, mass $ m $ and energy $ E_\ve{p} = \sqrt{\ve{p}^2 + m^2} $. The generic state in the Fock space is a multiparticle state, with total energy and momentum the sum of the individual energies and momenta.\\
+Finally, note that creation operators commute between themselves, hence multiparticle states are symmetric under exchange of pairs of particles, i.e. they obey the Bose-Einstein statistics: this agrees with the fact that quanta of a scalar field have no intrinsic spin. i.e. are spin-0 particles.
+
+\subsubsection{Ladder operators}
+
+Recalling \dref{def:kg-scal-prod}, it is possible to relate the Fourier modes through the KG inner product, defined as:
+\begin{equation}
+  \braket{f,g} \defeq i \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = i \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv i \int \dd^3x\, W_0[f^*,g](x)
+\end{equation}
+where $ W_0[f^*,g](x) $ is the ($ t $-)\bctxt{Wrońskian}\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
+%
+\footnotetext{Given $ \{f_k(x)\}_{k = 1,\dots,N} \subset \mathcal{C}^N(I,\C) $, with $ I \subset \R^n $ and $ N \in \N $, their ($ i^\text{th} $-)\textit{Wrońskian} is $ W_i \in \mathcal{C}(I,\C) $ defined as:
+\begin{equation}
+  W[f_1, \dots, f_N](x) \defeq
+  \begin{vmatrix}
+    f_1(x) & f_2(x) & \dots & f_N(x) \\
+    \pa_i f_1(x) & \pa_i f_2(x) & \dots & \pa_i f_N(x) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \pa_i^{N-1} f_1(x) & \pa_i^{N-1} f_2(x) & \dots & \pa_i^{N-1} f_N(x)
+  \end{vmatrix}
+\end{equation}
+If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of the Wrońskian (as $ \pa_i $ is a linear operator), hence it vanishes: to show that a set of differentiable functions is linearly independent on a given set, it suffices to show that their Wrońskian does not vanish identically on said set (although it may vanish on a zero-measure subset).}
+
+\begin{proposition}{Orthonormality of Fourier modes}{fourier-orthonorm}
+  Given positive- and negative-frequency Fourier modes:
+  \begin{equation}
+    f_\ve{p}(x) \equiv \frac{e^{-i p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
+    \qquad \qquad
+    f^*_\ve{p}(x) \equiv \frac{e^{i p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
+    \label{eq:fourier-modes}
+  \end{equation}
+  then:
+  \begin{equation}
+    \braket{f_\ve{p} , f_\ve{q}} = - \braket{f^*_\ve{p} , f^*_\ve{q}} = \delta^{(3)}(\ve{p} - \ve{q})
+    \qquad \qquad
+    \braket{f_\ve{p} , f^*_\ve{q}} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct calculation (using \eref{eq:fourier-delta}):
+    \begin{equation*}
+      \begin{split}
+        \braket{f_\ve{p} , f_\ve{q}}
+        & = i \int \dd^3x\, f^*_\ve{p}(x) \smlra{\pa}_0 f_\ve{q}(x) = i \int \frac{\dd^3x}{(2\pi)^3 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \left( e^{i E_\ve{p} t} \smlra{\pa}_0 e^{-i E_\ve{q} t}  \right) \\
+        & = i \frac{\delta^{(3)}(\ve{q} - \ve{p})}{\sqrt{4 E_\ve{p} E_\ve{q}}} (-i E_\ve{q} - i E_\ve{p}) e^{i (E_\ve{p} - E_\ve{q}) t} = \delta^{(3)}(\ve{p} - \ve{q})
+      \end{split}
+    \end{equation*}
+    as $ \delta(x - x_0) f(x) = \delta(x - x_0) f(x_0) $. Other products are equivalent.
+  \end{proof}
+\end{proofbox}
+
+Using the KG inner product it is possible to explicit the ladder operators.
+
+\begin{theorem}{Ladder operators}{kg-ladder-op}
+  The ladder operators for a real scalar field are:
+  \begin{equation}
+    \sqrt{2E_\ve{p}} a_\ve{p} = i \int \dd^3x\, e^{i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \qquad \qquad
+    \sqrt{2E_\ve{p}} a_\ve{p}\dg = -i \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \label{eq:frsf-ladder}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    \eref{eq:scalar-quant-exp} can be cast in the form:
+    \begin{equation*}
+      \phi(x) = \frac{1}{\sqrt{(2\pi)^3}} \int \dd^3p \left[ f_\ve{p}(x) a_\ve{p} + f^*_\ve{p}(x) a_\ve{p}\dg \right]
+    \end{equation*}
+    Then, using \pref{prop:fourier-orthonorm}:
+    \begin{equation*}
+      \braket{f_\ve{p},\phi} = \frac{1}{\sqrt{(2\pi)^3}} \int \dd^3q\, \delta^{(3)}(\ve{q} - \ve{p}) a_\ve{q} = \frac{a_\ve{p}}{\sqrt{(2\pi)^3}}
+    \end{equation*}
+    Inserting \eref{eq:fourier-modes} yields the thesis ($ a_\ve{p}\dg $ is analogous).
+  \end{proof}
+\end{proofbox}
+
+\subsection{Complex scalar fields}
+
+When considering a complex scalar field, \eref{eq:compl-scal-field-exp} becomes:
+\begin{equation}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+\end{equation}
+\begin{equation}
+  \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{i p_\mu x^\mu} + b_\ve{p} e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+\end{equation}
+Now there are two independent sets of creation/annihilation operators, which obey the canonical commutation relation:
+\begin{equation}
+  [a_\ve{p} , a_\ve{q}^\dagger] = [b_\ve{p} , b_\ve{q}^\dagger] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q})
+\end{equation}
+with all other commutators vanishing. The Fock space is constructed by defining a vacuum state $ \ket{0} : a_\ve{p} \ket{0} = b_\ve{p} \ket{0} = 0 $ and then acting repeatedly with both creation operators. With normal ordering, one finds:
+\begin{equation}
+  H = \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + b_\ve{p}^\dagger b_\ve{p} \right)
+\end{equation}
+\begin{equation}
+  P^i = \int \frac{\dd^3p}{(2\pi)^3} p^i \left( a_\ve{p}^\dagger a_\ve{p} + b_\ve{p}^\dagger b_\ve{p} \right)
+\end{equation}
+The quanta of a complex scalar field are given by two different species of particles with the same mass.
+
+\begin{proposition}{$ \Un{1} $ charge}{}
+  The $ \Un{1} $ charge of the quantized complex scalar field is:
+  \begin{equation}
+    Q_{\Un{1}} = \int \frac{\dd^3p}{(2\pi)^3} \left( a_\ve{p}^\dagger a_\ve{p} - b_\ve{p}^\dagger b_\ve{p} \right)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:comp-scal-field-curr}:
+    \begin{equation*}
+      \begin{split}
+        Q_{\Un{1}}
+        &= i \int \dd^3x\, \phi^\dagger \smlra{\pa_0} \phi = i \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \pa_0 \left( a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right) + \\
+        & \quad - \pa_0 \left( a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right) \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
+        &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} - b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] + \\
+        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} - b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
+        &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i E_\ve{q} t} + b_{-\ve{q}} e^{-i E_\ve{q} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] + \\
+        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i E_\ve{q} t} - b_{-\ve{q}} e^{-i E_\ve{q} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \bigg\} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \bigg\{ \left[ a_\ve{p}^\dagger e^{i E_\ve{p} t} + b_{-\ve{p}} e^{-i E_\ve{p} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] + \\
+        & \quad + \left[ a_\ve{p}^\dagger e^{i E_\ve{p} t} - b_{-\ve{p}} e^{-i E_\ve{p} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \bigg\} \\
+        &= \int \frac{\dd^3p}{(2\pi)^3} \left[ a_\ve{p}^\dagger a_\ve{p} - b_{-\ve{p}} b_{-\ve{p}}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \left( a_\ve{p}^\dagger a_\ve{p} - b_\ve{p} b_\ve{p}^\dagger \right)
+      \end{split}
+    \end{equation*}
+    Applying normal ordering yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+While normal ordering was justified when considering the Hamiltonian on the grounds that the vacuum energy is unobservable, a charged vacuum would have observable effects; however when promoting $ \phi $ to a quantum operator, the expression $ \phi^\dagger \smlra{\pa_0} \phi $ presents an ordering ambiguity (ex.: $ \phi^\dagger (\pa_0 \phi) $ or $ (\pa_0 \phi) \phi^\dagger $), which is removed requiring the charge of the vacuum to vanish.\\
+Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \bctxt{antiparticles}.\\
+For a real scalar field, the reality condition reads $ a_\ve{p} = b_\ve{p} $, thus it describes a field whose particle is its own antiparticle, and it is symmetric under any $ \Un{1} $ symmetry.
+
+\newpage
+
+\section{Spinor fields}
+
+A principle of QFT is the \bctxt{spin-statistic theorem}: integer-spin fields are to be quantized imposing equal-time commutation relations, while half-integer-spin with equal-time anticommutation relations.
+
+\subsection{Dirac fields}
+
+From the Dirac Lagrangian \eref{eq:dirac-lagrangian}, the conjugate momentum to the Dirac field $ \Psi $ is computed as:
+\begin{equation}
+  \Pi_\Psi = i \bar{\Psi} \gamma^0 = i \Psi^\dagger
+  \label{eq:dirac-conj-mom}
+\end{equation}
+Imposing the canonical anticommutation relation, according to the spin-statistic theorem:
+\begin{equation}
+  \{\Psi_a(t,\ve{x}) , \Psi_b^\dagger(t,\ve{y})\} = \delta^{(3)}(\ve{x} - \ve{y}) \delta_{ab}
+  \label{eq:dirac-anticomm}
+\end{equation}
+where $ a,b = 1,2,3,4 $ are Dirac indices. Expanding the free Dirac field in plane waves:
+\begin{equation}
+  \Psi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:dirac-exp}
+\end{equation}
+\begin{equation}
+  \bar{\Psi}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \label{eq:dirac-bar-exp}
+\end{equation}
+where the spinor wave functions $ u^s(p) , v^s(p) $ are given by \eeref{eq:u-spinor-def}{eq:v-spinor-def}. Translating \eref{eq:dirac-anticomm} in terms of creation/annihilation operators:
+\begin{equation}
+  \{a_{\ve{p},s} , a_{\ve{q},r}^\dagger\} = \{b_{\ve{p},s} , b_{\ve{q},r}^\dagger\} = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q}) \delta_{sr}
+\end{equation}
+The Fock space is again constructed defining a vacuum state $ \ket{0} : a_{\ve{p},s} \ket{0} = b_{\ve{p},s} \ket{0} = 0 $ and then acting repeatedly on it with $ a_{\ve{p}.s}^\dagger , b_{\ve{p},s}^\dagger $:
+\begin{equation*}
+  \begin{split}
+    &\ket{(\ve{p}_1,s_1) , \dots , (\ve{p}_n,s_n) ; (\ve{q}_1,r_1) , \dots , (\ve{q}_m,r_m)} \\
+    & \qquad \qquad \qquad \qquad \qquad = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}} \sqrt{2E_{\ve{q}_1}} \dots \sqrt{2E_{\ve{q}_m}} a_{\ve{p}_1,s_1}^\dagger \dots a_{\ve{p}_n,s_n}^\dagger b_{\ve{q}_1,r_1}^\dagger \dots b_{\ve{q}_m,r_m}^\dagger \ket{0}
+  \end{split}
+\end{equation*}
+As these operators anticommute, states in this Fock space are antisymmetric under the exchange of particles, therefore spin-$ \frac{1}{2} $ obey the Fermi-Dirac statistics (as of the spin-statistic theorem).
+
+\begin{proposition}{Dirac Hamiltonian}{}
+  The Hamiltoniana for a Dirac field $ \Psi $ is:
+  \begin{equation}
+    H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:dirac-conj-mom}, the Hamiltonian density is:
+    \begin{equation*}
+      \ham = \Pi_\Psi \pa_0 \Psi - \mathcal{L}_\text{D} = i \Psi^\dagger \pa_0 \Psi - \bar{\Psi} \left( i \gamma^0 \pa_0 + i \gamma^i \pa_i - m \right) \Psi = \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi
+    \end{equation*}
+    Therefore, using \eeref{eq:dirac-exp}{eq:dirac-bar-exp} and \eref{eq:fourier-delta}:
+    \begin{equation*}
+      \begin{split}
+        H
+        &= \int \dd^3x\, \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi = \int \dd^3x\, \bar{\Psi} \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \Psi \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{ip_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-ip_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \left[ a_{\ve{q},r} u^r(q) e^{-iq_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{iq_\mu x^\mu} \right] \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \times \left[ \left( \bs{\gamma} \cdot \ve{q} + m \right) a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + \left( - \bs{\gamma} \cdot \ve{q} + m \right) b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right]
+      \end{split}
+    \end{equation*}
+    Using the Dirac equation in the form $ (\slashed{p} - m) u(p) = (\slashed{p} + m) v(p) = 0 $:
+    \begin{equation*}
+      \left( \bs{\gamma} \cdot \ve{q} + m \right) u(q) = \gamma^0 E_\ve{q} u(q)
+      \qquad
+      \left( -\bs{\gamma} \cdot \ve{q} + m \right) v(q) = - \gamma^0 E_\ve{q} v(q)
+    \end{equation*}
+    Therefore, omitting the constraint $ p^0 = E_\ve{p} $ in the spinors' arguments and using \eref{eq:fourier-delta}:
+    \begin{equation*}
+      \begin{split}
+        H
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 E_\ve{q} \left[ a_{\ve{q},r} u^r(\ve{q}) e^{-i E_\ve{q} t} - b_{-\ve{q},r}^\dagger v^r(-\ve{q}) e^{i E_\ve{q} t} \right] e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \\
+        &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},s}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right] \\
+        &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \Big[ a_{\ve{p},s}^\dagger a_{\ve{p},r} u^{s\dagger}(\ve{p}) u^r(\ve{p}) + b_{-\ve{p},s} a_{\ve{p},r} v^{s\dagger}(-\ve{p}) u^r(\ve{p}) e^{-2i E_\ve{p} t} + \\
+        & \qquad \qquad \qquad \qquad \qquad \quad - a_{\ve{p},s}^\dagger b_{-\ve{p},r}^\dagger u^{s\dagger}(\ve{p}) v^r(-\ve{p}) e^{2i E_\ve{p} t} - b_{-\ve{p},s} b_{-\ve{p},r}^\dagger v^{s\dagger}(-\ve{p}) v^r(-\ve{p}) \Big]
+      \end{split}
+    \end{equation*}
+
+    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{haml-lem}
+      \begin{equation*}
+        u^{s\dagger}(\ve{p}) v^r(-\ve{p}) = v^{s\dagger}(-\ve{p}) u^r(\ve{p}) = 0
+      \end{equation*}
+    \end{lemma}
+
+    Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord\{b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
+    \begin{equation*}
+      H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \normord\{a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+    \end{equation*}
+  \end{proof}
+
+\end{proofbox}
+
+It can be seen that, using anticommutators, the Hamiltonian and its interpretation are analogous to that of the complex scalar field: if commutators were used, instead, one would get a final $ - b_{\ve{p},s}^\dagger b_{\ve{p},s} $ term, which is problematic as it yields an energy unbounded from below\footnotemark{}.
+%
+\footnotetext{The spin-statistics theorem is implied by Lorentz invariance, positive energies and causality (as shown in \cite{pauli}).}
+
+The momentum operator too is analogous to that of the complex scalar field, with the additional spin degree of freedom.
+
+\begin{proposition}{Momentum operator}{}
+  The momentum operator of a Dirac field $ \Psi $ is:
+  \begin{equation}
+    \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:en-mom-tensor}, the $ 0i $-component of energy-momentum tensor of the Dirac Lagrangian is:
+    \begin{equation*}
+      \theta^{0i} = \frac{\pa \lag_\text{D}}{\pa (\pa_0 \Psi)} \pa^i \Psi = \bar{\Psi} i \gamma^0 \pa^i \Psi = - \Psi^\dagger i \pa_i \Psi
+    \end{equation*}
+    Thus, according to \eref{eq:4-mom-def}:
+    \begin{equation*}
+      \begin{split}
+        \ve{P}
+        &= \int \dd^3x\, \Psi^\dagger (-i \bs{\nabla}) \Psi \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-ip_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times (-i \bs{\nabla}) \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-ip_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \ve{q} \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} - b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
+        &= \normord \int \frac{\dd^3p}{(2\pi)^3} \frac{\ve{p}}{2E_\ve{p}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} v^{s\dagger}(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},r}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right]
+      \end{split}
+    \end{equation*}
+    Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
+    \begin{equation*}
+      \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \normord\{a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+Thus, both $ a_{\ve{p},s}^\dagger $ and $ b_{\ve{p},s}^\dagger $ create particles with energy $ +E_\ve{p} $ and momentum $ \ve{p} $: these are respectively called \bctxt{fermions} and \bctxt{antifermions}.
+
+\subsubsection{Quantum numbers}
+
+Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to \eref{eq:dir-field-change}:
+\begin{equation}
+  \Psi'(x) = e^{-\frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}} \Psi(x) \simeq \left[ \tens{I}_4 - \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu} \right] \Psi(x)
+  \label{eq:dirac-inf-rot}
+\end{equation}
+where the Lorentz generator $ J^{\mu \nu} $ is defined in \eref{eq:dir-field-tot-ang-mom}.
+
+\begin{proposition}{Angular momentum}{}
+  The conserved charge associated to the infinitesimal rotation \eref{eq:dirac-inf-rot} is:
+  \begin{equation}
+    \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a rotation of $ \theta $ around the $ z $-axis: it is described by $ \omega_{12} = - \omega_{21} = \theta $, so, by \eref{eq:dir-field-change}:
+    \begin{equation*}
+      \delta_0 \Psi = \theta \left( x^1 \pa^2 - x^2 \pa^1 - \tfrac{i}{2} \Sigma^3 \right) \Psi = - \theta \left( x^1 \pa_2 - x^2 \pa_1 + \tfrac{i}{2} \Sigma^3 \right) \Psi \equiv \theta \Delta \Psi
+    \end{equation*}
+    Using the same notation of \dref{def:inf-trans}, $ \epsilon \equiv \theta $ and $ F = \Delta \Psi $, therefore, by \eref{eq:noether-current}, the temporal component of the conserved Noether current is (without negative sign, as it is mathematically equivalent):
+    \begin{equation*}
+      j^0 = \frac{\pa \lag_\text{D}}{\pa (\pa_0 \Psi)} \Delta \Psi = - i \Psi^\dagger \left( (\ve{x} \times \bs{\nabla})^3 + \tfrac{i}{2} \Sigma^3 \right) \Psi
+    \end{equation*}
+    As the associated Noether charge is $ J^3 = \int \dd^3x\, j^0 $, this can be generalized to rotations around the $ x $-axis and the $ y $-axis, yielding:
+    \begin{equation*}
+      \ve{J} = \int \dd^3\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+For non-relativistic fermions, the first term gives the orbital angular momentum, while the second term gives the spin angular momentum. For relativistic fermions, this division is not straightforward.\\
+To determine the spin of fermions, it is sufficient to consider them at rest. The spin along the $ z $-axis is given by the $ S_z $ operator (at $ t = 0 $):
+\begin{equation*}
+  \begin{split}
+    S_z
+    &= \int \dd^3x \int \int \frac{\dd^3p\, \dd^3q}{(2\pi)^6 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \times \\
+    & \qquad \qquad \times \sum_{t = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},t}^\dagger u^{t\dagger}(\ve{p}) + b_{-\ve{p},t} v^{t\dagger}(-\ve{p}) \right] \frac{\Sigma^3}{2} \left[ a_{\ve{q},r} u^r(\ve{q}) + b_{-\ve{q},r}^\dagger v^r(-\ve{q}) \right] \\
+    &= \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \sum_{t = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},t}^\dagger u^{t\dagger}(\ve{p}) + b_{-\ve{p},t} v^{t\dagger}(-\ve{p}) \right] \frac{\Sigma^3}{2} \left[ a_{\ve{p},r} u^r(\ve{p}) + b_{-\ve{p},r}^\dagger v^r(-\ve{p}) \right] \\
+  \end{split}
+\end{equation*}
+Noting that $ S_z \ket{0} = 0 $ (by definition of vacuum), then $ S_z a_{\ve{0},s}^\dagger \ket{0} = \{S_z , a_{\ve{0},s}^\dagger\} \ket{0} $; the only non-zero terms are those proportional to $ u^\dagger \Sigma^3 u $ and $ v^\dagger \Sigma^3 v $, but the latter vanishes as $ \{a,b\} = 0 $, so the only term remaining is:
+\begin{equation*}
+  \{a_{\ve{p},t}^\dagger a_{\ve{p},r} , a_{\ve{0},s}^\dagger\} = a_{\ve{p},t}^\dagger \{a_{\ve{p},r} , a_{\ve{0},s}^\dagger\} = (2\pi)^3 \delta^{(3)}(\ve{p}) \delta_{rs} a_{\ve{p},t}^\dagger
+\end{equation*}
+The $ S_z $ operator thus acts as (recall \eref{eq:u-spinor-def} with $ p^\mu = (m,0,0,0) $):
+\begin{equation*}
+  \begin{split}
+    S_z a_{\ve{0},s}^\dagger \ket{0}
+    &= \frac{1}{2E_\ve{p}} \sum_{t = 1,2} u^{t\dagger}(\ve{0}) \frac{\Sigma^3}{2} u^s(\ve{0}) a_{\ve{0},t}^\dagger \ket{0} = \frac{1}{4} \left( 2\xi^{1\dagger} \sigma^3 \xi^s a_{\ve{0},1}^\dagger + 2\xi^{2\dagger} \sigma^3 \xi^s a_{\ve{0},2}^\dagger \right) \ket{0}
+  \end{split}
+\end{equation*}
+Using $ \sigma^3 \xi^1 = + \xi^1 $ and $ \sigma^3 \xi^2 = - \xi^2 $, by $ \xi^{r\dagger} \xi^s = \delta^{rs} $ one gets:
+\begin{equation*}
+  S_z a_{\ve{0},1}^\dagger \ket{0} = +\frac{1}{2} a_{\ve{0},1}^\dagger \ket{0}
+  \qquad \qquad
+  S_z a_{\ve{0},2}^\dagger \ket{0} = -\frac{1}{2} a_{\ve{0},2}^\dagger \ket{0}
+\end{equation*}
+which means that fermions are spin-$ \frac{1}{2} $ particles, with $ a_{\ve{0},1}^\dagger $ creating $ s = +\frac{1}{2} $ fermions and $ a_{\ve{0},2}^\dagger $ creating $ s = -\frac{1}{2} $ fermions. Conversely, it is equivalent to show that $ b_{\ve{0},1}^\dagger $ creates $ s = -\frac{1}{2} $ antifermions and $ b_{\ve{0},2}^\dagger $ creates $ s = +\frac{1}{2} $ antifermions (as $ b $ and $ b^\dagger $ are not in normal order in $ S_z $, so there's an extra negative sign due to antisymmetry).\\
+Another important conserved Noether charge of Dirac theory is that associated to the vector current $ j^\mu_\text{V} = \bar{\Psi} \gamma^\mu \Psi $ (recall \eref{eq:dirac-u1-symm}), which is (using $ j^0_\text{V} = \Psi^\dagger \Psi $):
+\begin{equation}
+  Q_{\Un{1}_\text{V}} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
+\end{equation}
+This means that fermions have $ \Un{1}_\text{V} $ charge of $ +1 $, while antifermions of $ -1 $.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ccc}
+    \hline
+    state & $ S_z $ & $ Q_{\Un{1}_\text{V}} $ \\
+    \hline
+    \rule{0pt}{3ex} $ a_{\ve{p},1}^\dagger \ket{0} $ & $ +\tfrac{1}{2} $ & $ +1 $ \\
+    \rule{0pt}{3ex} $ a_{\ve{p},2}^\dagger \ket{0} $ & $ -\tfrac{1}{2} $ & $ +1 $ \\
+    \rule{0pt}{3ex} $ b_{\ve{p},1}^\dagger \ket{0} $ & $ -\tfrac{1}{2} $ & $ -1 $ \\
+    \rule{0pt}{3ex} $ b_{\ve{p},2}^\dagger \ket{0} $ & $ +\tfrac{1}{2} $ & $ -1 $ \\
+  \end{tabular}
+  \caption{Quantum numbers for fermions in the Dirac theory.}
+  \label{tab:dirac-qn}
+\end{table}
+
+\subsubsection{Ladder operators}
+
+As for the KG field, the ladder operators of the Dirac field can be made explicit too.
+
+\begin{proposition}{Ladder operators}{}
+  The ladder operators for a Dirac field are:
+  \begin{equation}
+    \sqrt{2E_\ve{p}} a_{\ve{p},s} = \int \dd^3x\, e^{i p_\mu x^\mu} \bar{u}^s(p) \gamma^0 \Psi(x)
+    \qquad \qquad
+    \sqrt{2E_\ve{p}} a_{\ve{p},s}\dg = \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p)
+    \label{eq:dirac-ladd-op-a}
+  \end{equation}
+  \begin{equation}
+    \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg = \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x)
+    \qquad \qquad
+    \sqrt{2E_\ve{p}} b_{\ve{p},s} = \int \dd^3x\, e^{i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 v^s(p)
+    \label{eq:dirac-ladd-op-b}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, cast \eref{eq:dirac-exp} in the form:
+    \begin{equation*}
+      \Psi(x) = \int \frac{\dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{-i E_\ve{k} t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i E_\ve{k} t} \right] e^{i \ve{k} \cdot \ve{x}}
+    \end{equation*}
+    Then:
+    \begin{equation*}
+      \begin{split}
+        \int \dd^3x\, e^{i p_\mu x^\mu} \Psi(x)
+        & = \int \frac{\dd^3x \dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] e^{i (\ve{k} - \ve{p}) \cdot \ve{x}} \\
+        & = \int \frac{\dd^3k}{\sqrt{2E_\ve{k}}} \delta^{(3)}(\ve{k} - \ve{p}) \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] \\
+        & = \frac{1}{\sqrt{2E_\ve{p}}} \sum_{r = 1,2} \left[ a_{\ve{p},r} u^r(\ve{p}) + b_{-\ve{p},r}\dg v^r(-\ve{p}) e^{2i E_\ve{p} t} \right]
+      \end{split}
+    \end{equation*}
+
+    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{spinor-gamma-0}
+      \begin{equation}
+        \bar{u}^s(\ve{p}) \gamma^0 v^r(-\ve{p}) = 0
+        \qquad \qquad
+        \bar{v}^s(\ve{p}) \gamma^0 u^r(-\ve{p}) = 0
+      \end{equation}
+    \end{lemma}
+
+    Using \lref{lemma:spinor-gamma-0} and \eref{eq:spinor-gamma-mu}:
+    \begin{equation*}
+      \int \dd^3x\, e^{i p_\mu x^\mu} \bar{u}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} a_{\ve{p},s}
+    \end{equation*}
+    Analogously:
+    \begin{equation*}
+      \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg
+    \end{equation*}
+    To find the remaining ladder operators, either repeat the previous steps with $ \bar{\Psi}(x) $ or use (as $ (\gamma^\mu)^2 = \tens{I}_4 $):
+    \begin{equation}
+      (\bar{u}^s \gamma^0 \Psi)\dg = ({u^s}\dg \Psi)\dg = \Psi\dg u^s = \bar{\Psi} \gamma^0 u^s
+    \end{equation}
+    This yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Massless Weyl fields}
+
+The quantization of massless Weyl fields follows immediately from that of Dirac fields, and its useful to use Dirac notation:
+\begin{equation*}
+  \Psi_\text{L} \equiv
+  \begin{pmatrix}
+    \psi_\text{L} \\ 0
+  \end{pmatrix}
+  \qquad \qquad
+  \Psi_\text{R} \equiv
+  \begin{pmatrix}
+    0 \\ \psi_\text{R}
+  \end{pmatrix}
+\end{equation*}
+Consider $ \Psi_\text{L} $. As for \eref{eq:dirac-exp}:
+\begin{equation*}
+  \Psi_\text{L}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u_\text{L}^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v_\text{L}^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+\end{equation*}
+where the Dirac spinors now have the right-hand component vanishing, in the chiral representation. By \eeref{eq:u-spinor-p3-frame}{eq:v-spinor-def}, in the massless (ultra-relativistic) limit $ p^\mu = (E,0,0,E) $, so spinors with $ s = 1 $ have only the right-handed component, while those with $ s = 2 $ only the left-handed one: therefore, only $ s = 2 $ spinors contribute to $ \Psi_\text{L} $ (and only $ s = 1 $ to $ \Psi_\text{R} $).\\
+By Tab. \ref{tab:dirac-qn}, it is clear that in this context $ a_{\ve{p},2}^\dagger $ creates a particle with helicity $ h = - \frac{1}{2} $, while $ b_{\ve{p},2}^\dagger $ creates an antiparticle with $ h = + \frac{1}{2} $: in general, a left-handed massless Weyl field describes particles with $ h = - \frac{1}{2} $ and antiparticles with $ h = + \frac{1}{2} $, while a right-handed one describes particles with $ h = + \frac{1}{2} $ and antiparticles with $ h = - \frac{1}{2} $.
+
+\subsection{Discrete symmetries of fermionic fields}
+
+\subsubsection{Parity}
+
+Under parity $ \parity \ve{p} = - \ve{p} $ and $ \parity s = s $, so, for a generic particle of type $ a $:
+\begin{equation}
+  \parity \ket{a; \ve{p},s} = \eta_a \ket{a; -\ve{p},s}
+\end{equation}
+where $ \eta_a $ is a generic constant phase factor, since states in the Fock space which differ by a phase still represent the same physical state. As $ \parity^2 = \id $, this means that $ \eta_a^2 = \pm 1 $, as observables are built from an even number of fermionic ladder operators.
+
+\paragraph{Non-Majorana fermions}
+
+It is possible to prove that, for non-Majorana spin-$ \frac{1}{2} $ fermions, it is possible to redefine $ \parity $ so that $ \eta_a = +1 $, i.e. $ \eta_a = \pm 1 $.
+
+\begin{proposition}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \parity a_{\ve{p},s}^\dagger \parity = \eta_a a_{-\ve{p},s}^\dagger
+    \qquad \qquad
+    \parity b_{\ve{p},s}^\dagger \parity = \eta_b b_{-\ve{p},s}^\dagger
+    \label{eq:parity-op}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    For a multiparticle state one must have:
+    \begin{equation*}
+      \parity a_{\ve{p},s}^\dagger b_{\ve{q},r}^\dagger \ket{0} = \eta_a \eta_b a_{-\ve{p},s}^\dagger b_{-\ve{q},r}^\dagger \ket{0}
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \parity a_{\ve{p},s}^\dagger = \eta_a a_{-\ve{p},s}^\dagger \parity
+      \qquad \qquad
+      \parity b_{\ve{p},s}^\dagger = \eta_b b_{-\ve{p},s}^\dagger \parity
+    \end{equation*}
+    Using $ \parity^2 = \id $ yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+According to Wigner's theorem (\tref{th:wigner}), this symmetry can be represented by a unitary operator, i.e. $ \parity^\dagger = \parity^{-1} $, but $ \parity^2 = \id $, therefore $ \parity^\dagger = \parity $. Then, \eref{eq:parity-op} is valid for $ a_{\ve{p},s} , b_{\ve{p},s} $ too, thus parity acts as:
+\begin{equation}
+  \Psi(x) \mapsto \Psi'(x') = \parity \Psi(x) \parity
+\end{equation}
+Explicitly:
+\begin{equation*}
+  \begin{split}
+    \parity \Psi(x) \parity
+    &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
+    &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-i E_\ve{p} t + i \ve{p} \cdot \ve{x}} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{i E_\ve{p} t - i \ve{p} \cdot \ve{x}} \right]_{p^0 = E_\ve{p}} \\
+  \end{split}
+\end{equation*}
+Setting $ \ve{p}' \equiv - \ve{p} , \ve{x}' \equiv -\ve{x} $ and noting that, by \eeref{eq:u-spinor-p3-frame}{eq:v-spinor-def} $ \ve{p} \mapsto -\ve{p} $ exchanges the left-handed and the right-handed compontents of the spinors, i.e. $ u^s(p) \mapsto \gamma^0 u^s(p) $ and $ v^s(p) \mapsto - \gamma^0 v^s(p) $:
+\begin{equation*}
+  \begin{split}
+    \parity \Psi(x) \parity
+    &= \int \frac{\dd^3p'}{(2\pi)^3 \sqrt{E_{\ve{p}'}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p}',s} \gamma^0 u^s(p') e^{-i E_{\ve{p}'} t + i \ve{p}' \cdot \ve{x}'} - \eta_b b_{\ve{p}',s}^\dagger \gamma^0 v^s(p') e^{i E_{\ve{p}'} t - i \ve{p}' \cdot \ve{x}'} \right]_{p'^0 = E_{\ve{p}'}} \\
+    &= \gamma^0 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p},s} u^s(p) e^{-i p_\mu x'^\mu} - \eta_b b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x'^\mu} \right]_{p^0 = E_\ve{p}}
+  \end{split}
+\end{equation*}
+Requiring that $ \Psi $ is a representation of parity, up to a phase, means $ \eta_a = - \eta_b $, so that:
+\begin{equation}
+  \parity \Psi(t,\ve{x}) \parity = \eta_a \gamma^0 \Psi(t,-\ve{x})
+\end{equation}
+This, in the chiral representation, agrees with the fact that parity exchanges left-handed and right-handed Weyl spinors. The $ \eta_a $ factor cancels in any fermion bilinear involving only one type of particles; however, the relative phase factors of different particles can be observed: in particular, the opposite intrinsic parity of fermions and antifermions.
+
+\paragraph{Spin-$ 0 $ bosons}
+
+As already noted, the scalar complex field is similar to the Dirac field, apart for the absence of spinors in the expansions of $ \phi(x) $: in particular, this means that scalar fields have no relative negative signe between $ \eta_a $ and $ \eta_b $, so a quantized complex scalar field gives a representation of parity if $ \eta_a = \eta_b $, and the intrinsic parity of spin-$ 0 $ particle and antiparticles is equal.
+
+\subsubsection{Charge conjugation}
+
+Recall \eref{eq:dir-spin-charge-conj}: charge conjugation acts on the classical Dirac field as $ \Psi \mapsto -i \gamma^2 \Psi^* $.
+
+\begin{definition}{Quantized charge conjugation}{}
+  The \bcdef{charge conjugation operator} is defined as:
+  \begin{equation}
+    \chargec a_{\ve{p},s} \chargec = \eta_c b_{\ve{p},s}
+    \qquad \qquad
+    \chargec b_{\ve{p},s} \chargec = \eta_c a_{\ve{p},s}
+    \label{eq:charge-conj-op}
+  \end{equation}
+  with $ \eta_c = \pm 1 $ for simplicity.
+\end{definition}
+
+Thus, $ \chargec^2 = \id $ too, and its physical interpretation is the exchange of particles and antiparticles, while leaving $ \ve{p} $ and $ s $ unchanged: as $ a_{\ve{p},s} $ and $ b_{\ve{p},s} $ create particles with opposite spin, this means that charge conjugation reverses the helicity of particles.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Charge conjugation on spinors}{spinor-charge-conj}
+  \begin{equation}
+    \chargec u^s(p) \chargec = -i \gamma^2 \left[ v^s(p) \right]^*
+    \qquad \qquad
+    \chargec v^s(p) \chargec = -i \gamma^2 \left[ u^s(p) \right]^*
+    \label{eq:charge-conj-spin}
+  \end{equation}
+\end{lemma}
+
+\begin{proposition}{Charge conjugation on Dirac fields}{}
+  Given a Dirac field $ \Psi(x) $:
+  \begin{equation}
+    \chargec \Psi(x) \chargec = -i \eta_c \gamma^2 [\Psi(x)]^*
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eeref{eq:charge-conj-op}{eq:charge-conj-spin}:
+    \begin{equation*}
+      \begin{split}
+        \chargec \Psi(x) \chargec
+        &= \eta_c \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} \chargec u^s(p) \chargec e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger \chargec v^s(p) \chargec e^{i p_\mu x^\mu} \right] \\
+        &= -i \eta_c \gamma^2 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} [v^s(p)]^* e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger [u^s(p)]^* e^{i p_\mu x^\mu} \right] = -i \eta_c \gamma^2 [\Psi(x)]^*
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+As for parity, the transformation of quantized fields is analogous to that of classical fields, with an additional quantum phase factor which depends on the particle type.
+
+\begin{proposition}[before upper = {\tcbtitle}]{Charge conjugation of the vector current}{}
+  \begin{equation}
+    \chargec \left( \bar{\Psi} \gamma^\mu \Psi \right) \chargec = - \bar{\Psi} \gamma^\mu \Psi
+    \label{eq:charge-conj-fermion-curr}
+  \end{equation}
+\end{proposition}
+
+\subsubsection{Time reversal}
+
+\begin{theorem}{Anti-unitary time reversal}{anti-uni-time-rev}
+  Time reversal cannot be implemented as a linear unitary operator.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Assume that the time reversal operator $ \timer $ is linear and unitary; then, as it must be a symmetry of the free Dirac Lagrangian, $ [\timer , H] = 0 $, so:
+    \begin{equation*}
+      \begin{split}
+        \timer \Psi(t,\ve{x}) \timer \ket{0}
+        &= \timer e^{i H t} \Psi(\ve{x}) e^{-i H t} \timer \ket{0} = e^{i H t} \timer \Psi(\ve{x}) \timer e^{-i H t} \ket{0} = e^{i H t} \timer \Psi(\ve{x}) \timer \ket{0} \\
+        &= \Psi(-t,\ve{x}) \ket{0} = e^{-i H t} \Psi(\ve{x}) e^{i H t} \ket{0} = e^{-i H t} \Psi(\ve{x}) \ket{0}
+      \end{split}
+    \end{equation*}
+    assuming $ H \ket{0} = 0 $. But the first line is a sum of negative frequencies only, while the second line is a sum of positive frequencies only, yielding an absurdum.
+  \end{proof}
+\end{proofbox}
+
+Time reversal is an example of operator which, according to Wigner's theorem (\tref{th:wigner}), is represented as an anti-linear anti-unitary operator, i.e. an operator such that:
+\begin{equation*}
+  \braket{a | \timer\dg \timer | b} = \braket{a | b}^*
+  \qquad \qquad
+  \timer \lambda \ket{a} = \lambda^* \timer \ket{a}
+  \qquad \qquad
+  \forall \ket{a},\ket{b} \in \hilb\,,\,\forall \lambda \in \C
+\end{equation*}
+In particular, anti-linearity (second property) solves the absurdum in the proof of \tref{th:anti-uni-time-rev}.\\
+Time reversal is expected to reverse the spin of particles, and this can be used to construct $ \timer $. First, define:
+\begin{equation}
+  \xi^{-s} \equiv -i \sigma^2 [\xi^s]^*
+\end{equation}
+that is, $ \xi^{-1} = \binom{0}{1} $ and $ \xi^{-2} = \binom{-1}{0} $. This allows redefining $ \eta^s \equiv \xi^{-s} $, and also $ \xi^{-(-s)} = - \xi^s $.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Reversed spinors}{rev-spinors}
+  \begin{equation}
+    u^{-s}(-\ve{p}) = - \gamma^1 \gamma^3 [u^s(\ve{p})]^*
+    \qquad \qquad
+    v^{-s}(-\ve{p}) = - \gamma^1 \gamma^3 [v^s(\ve{p})]^*
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Defining $ \tilde{p}^\mu \equiv (p^0, -\ve{p}) $ and recalling that $ \bs{\sigma} \sigma^2 = - \sigma^2 \bs{\sigma}^* $:
+    \begin{equation*}
+      u^{-s}(-\ve{p}) =
+      \begin{pmatrix}
+        \sqrt{\tilde{p}^\mu \sigma_\mu} (-i \sigma^2 [\xi^s]^*) \\
+        \sqrt{\tilde{p}^\mu \bar{\sigma}_\mu} (-i \sigma^2 [\xi^s]^*)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        -i \sigma^2 \sqrt{p^\mu \sigma_\mu^*} [\xi^s]^* \\
+        -i \sigma^2 \sqrt{p^\mu \bar{\sigma}_\mu^*} [\xi^s]^*
+      \end{pmatrix}
+      = -i \begin{pmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{pmatrix} [u^s(\ve{p})]^*
+    \end{equation*}
+    Noting that $ i \diag(\sigma^2,\sigma^2) = \gamma^1 \gamma^3 $ completes the proof. On the other hand:
+    \begin{equation*}
+      \begin{split}
+        v^{-s}(-\ve{p})
+        &=
+        \begin{pmatrix}
+          \sqrt{\tilde{p}^\mu \sigma_\mu} (-\xi^s) \\
+          - \sqrt{\tilde{p}^\mu \bar{\sigma}_\mu} (-\xi^s)
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+          \sigma^2 \sqrt{p^\mu \sigma_\mu^*} \sigma^2 (-\xi^s) \\
+          - \sigma^2 \sqrt{p^\mu \bar{\sigma}_\mu^*} \sigma^2 (-\xi^s)
+        \end{pmatrix}\\
+        &= -i \begin{pmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{pmatrix}
+        \begin{pmatrix}
+          \sqrt{p^\mu \sigma_\mu^*} (-i \sigma^2 [\xi^s]^*) \\
+          - \sqrt{p^\mu \bar{\sigma}_\mu^*} (-i \sigma^2 [\xi^s]^*)
+        \end{pmatrix}
+        = - \gamma^1 \gamma^3 [v^s(-\ve{p})]^*
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+It is useful to define the reversed ladder operators:
+\begin{equation}
+  a_{\ve{p},-s} \equiv (a_{\ve{p},2} , -a_{\ve{p},1})
+  \qquad \qquad
+  b_{\ve{p},-s} \equiv (b_{\ve{p},2} , -b_{\ve{p},1})
+\end{equation}
+
+\begin{definition}{Time reversal}{}
+  The \bcdef{time reversal operator} is defined as:
+  \begin{equation}
+    \timer a_{\ve{p},s} \timer = a_{-\ve{p},-s}
+    \qquad \qquad
+    \timer b_{\ve{p},s} \timer = b_{-\ve{p},-s}
+  \end{equation}
+\end{definition}
+
+An additional overall phase is irrelevant. Moreover, as other discrete symmetries, $ \timer^2 = \id $.
+
+\begin{proposition}{Time reversal on Dirac fields}{}
+  Given a Dirac field $ \Psi(x) $:
+  \begin{equation}
+    \timer \Psi(t,\ve{x}) \timer = - \gamma^1 \gamma^3 \Psi(-t,\ve{x})
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+ \begin{proof}
+   Using \lref{lemma:rev-spinors} and defining $ \tilde{p}^\mu \equiv (p^0,-\ve{p}) , \tilde{x}^\mu \equiv (-t,\ve{x}) $, so that $ p^\mu x_\mu = -\tilde{p}^\mu \tilde{x_\mu} $:
+   \begin{equation*}
+       \begin{split}
+         \timer \Psi(x) \timer
+         &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \timer \left[ a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right] \timer \\
+         &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{-\ve{p},-s} [u^s(p)]^* e^{i p_\mu x^\mu} + b_{-\ve{p},-s}^\dagger [v^s(p)]^* e^{-i p_\mu x^\mu} \right] \\
+         &= - \gamma^3 \gamma^1 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\tilde{\ve{p}},-s} u^{-s}(\tilde{p}) e^{-i \tilde{p}_\mu \tilde{x}^\mu} + b_{\tilde{\ve{p}},-s}^\dagger v^{-s}(\tilde{p}) e^{i \tilde{p}_\mu \tilde{x}^\mu} \right] \\
+         &= \gamma^1 \gamma^3 \int \frac{-\dd^3\tilde{p}}{(2\pi)^3 \sqrt{2E_{\tilde{\ve{p}}}}} \sum_{s = 1,2} \left[ a_{\tilde{\ve{p}},s} u^s(\tilde{p}) e^{-i \tilde{p}_\mu \tilde{x}^\mu} + b_{\tilde{\ve{p}},s}^\dagger v^s(\tilde{p}) e^{i \tilde{p}_\mu \tilde{x}^\mu} \right]
+        = - \gamma^1 \gamma^3 \Psi(\tilde{x})
+      \end{split}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{CPT symmetry}
+
+In order to study the invariance properties of fermionic Lagrangians, it is necessary to state the transformation relations of fermion bilinears (see Sec. 3.6 of \cite{peskin} for details).
+
+\begin{table}
+  \centering
+  \begin{tabular}{ccccccc}
+    \hline
+    \rule{0pt}{2.5ex} & $ \bar{\Psi} \Psi $ & $ i \bar{\Psi} \gamma^5 \Psi $ & $ \bar{\Psi} \gamma^\mu \Psi $ & $ \bar{\Psi} \gamma^\mu \gamma^5 \Psi $ & $ \bar{\Psi} \sigma^{\mu \nu} \Psi $ & $ \pa_\mu $ \\
+    \hline
+    \rule{0pt}{2.5ex} $ \chargec $ & $ +1 $ & $ +1 $ & $ -1 $ & $ +1 $ & $ -1 $ & $ +1 $ \\
+    \rule{0pt}{2.5ex} $ \parity $ & $ +1 $ & $ -1 $ & $ (-1)^\mu $ & $ - (-1)^\mu $ & $ (-1)^\mu (-1)^\nu $ & $ (-1)^\mu $ \\
+    \rule{0pt}{2.5ex} $ \timer $ & $ +1 $ & $ -1 $ & $ (-1)^\mu $ & $ (-1)^\mu $ & $ - (-1)^\mu (-1)^\nu $ & $ - (-1)^\mu $ \\
+    \rule{0pt}{2.5ex} $ \chargec\parity\timer $ & $ +1 $ & $ +1 $ & $ -1 $ & $ -1 $ & $ +1 $ & $ -1 $
+  \end{tabular}
+  \caption{Eigenvalues of fermion bilinears and derivative operator, with $ (-1)^\mu \equiv (+1,-1,-1,-1) $.}
+  \label{tab:ferm-bil-eigen}
+\end{table}
+
+This shows that it is not possible to construct a Lorentz-invariant Lagrangian which violates CPT symmetry: this is an example of the \bctxt{CPT theorem}, which states that, independently of the spin of the particle, a (locale) Lorentz-invariant field theory with a hermitian Hamiltonian cannot violate CPT symmetry.
+A consequence of this theorem is that particles and antiparticles have exactly the same mass, which has been so far empirically confirmed.
+
+\section{Electromagnetic field}
+
+\subsection{Maxwell theory}
+
+The electromagnetic field is described by a 4-vector $ A_\mu $, the \bctxt{gauge potential}. From this, the field strength tensor is defined as:
+\begin{equation}
+  F_{\mu \nu} \defeq \pa_\mu A_\nu - \pa_\nu A_\mu
+\end{equation}
+which is related to the electric and magnetic fields as $ F^{0i} = - E^i $ and $ F^{ij} = - \epsilon^{ijk} B^k $. The Lagrangian of the free electromagnetic field is:
+\begin{equation}
+  \lag_\text{M} = - \frac{1}{4} F_{\mu \nu} F^{\mu \nu}
+  \label{eq:maxw-lag}
+\end{equation}
+The associated equations of motion are:
+\begin{equation}
+  \pa_\mu F^{\mu \nu} = 0
+  \label{eq:maxw-1}
+\end{equation}
+Moreover, defining $ \tilde{F}^{\mu \nu} \equiv \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} F_{\rho \sigma} $ (the Hodge dual), it is trivial to check that, by Schwarz lemma:
+\begin{equation}
+  \pa_\mu \tilde{F}^{\mu \nu} = 0
+  \label{eq:maxw-2}
+\end{equation}
+\eeref{eq:maxw-1}{eq:maxw-2} are exactly Maxwell equations in the absence of sources: when written in terms of $ \ve{E} $ and $ \ve{B} $, \eref{eq:maxw-1} gives the equations for $ \bs{\nabla} \cdot \ve{E} $ and $ \bs{\nabla} \times \ve{B} $, while \eref{eq:maxw-2} those for $ \bs{\nabla} \times \ve{E} $ and $ \bs{\nabla} \cdot \ve{B} $.
+
+\subsubsection{Gauge invariance}
+
+A crucial local symmetry of the Maxwell Lagrangian is the symmetry under local gauge transformations like:
+\begin{equation}
+  A_\mu(x) \mapsto A_\mu(x) - \pa_\mu \alpha(x)
+  \label{eq:qed-gauge-inv}
+\end{equation}
+with arbitrary $ \alpha \in \mathcal{C}^\infty(\R^{1,3}) $. Considering the free electromagnetic field, the global version of this transformation (that is, $ \alpha $ independent of $ x $) yields no conserved charge, as the associated Noether current vanishes identically.
+
+\begin{theorem}{Radiation gauge}{}
+  In the absence of sources, it is always possible to choose the \bcth{radiation gauge}:
+  \begin{equation}
+    A_0 = 0
+    \qquad \qquad
+    \bs{\nabla} \cdot \ve{A} = 0
+    \label{eq:radiation-gauge}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Starting from a general gauge potential $ A_\mu $, the condition $ A_0 = 0 $ is achieved through:
+    \begin{equation*}
+      A_\mu \mapsto A_\mu - \pa_\mu \int_{t_0}^t \dd\tau\, A_0(\tau,\ve{x})
+    \end{equation*}
+    Then, $ A_0 = 0 $ will remain unchanged if another gauge transformation with $ \alpha(x) = \alpha(\ve{x}) $ is performed. Consider:
+    \begin{equation*}
+      \alpha(\ve{x}) = - \int_{\R^3} \frac{\dd^3y}{4\pi \abs{\ve{x} - \ve{y}}} \pa_i A^i(t,\ve{y})
+    \end{equation*}
+    which is independent of $ t $ since $ E^i = -\pa_0 A^i $, as $ A_0 = 0 $, so $ \pa_i E^i = 0 $ implies $ \pa_0 \pa_i A^i = 0 $. Recall the identity:
+    \begin{equation}
+      \lap_\ve{x} \frac{1}{\abs{\ve{x} - \ve{y}}} = - 4\pi \delta^{(3)}(\ve{x} - \ve{y})
+    \end{equation}
+    Thus:
+    \begin{equation*}
+      \bs{\nabla} \cdot \ve{A} \mapsto \bs{\nabla} \cdot \ve{A} - \lap_\ve{x} \alpha = \pa_i A^i(t,\ve{x}) - \pa_i A^i(t,\ve{x}) = 0
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+The radiation gauge clearly implies the \bctxt{Lorentz gauge}:
+\begin{equation}
+  \pa_\mu A^\mu = 0
+\end{equation}
+In this gauge, the equations of motions \eref{eq:maxw-1} become:
+\begin{equation}
+  \Box A^\mu = 0
+  \label{eq:maxw-lor}
+\end{equation}
+which are massless KG equations for each component of the gauge potential. Plane-wave solutions take the form:
+\begin{equation}
+  A_\mu(x) = \epsilon_\mu(k) e^{-i k_\mu x^\mu} + c.c.
+\end{equation}
+where $ \epsilon_\mu(x) $ is the \bctxt{polarization vector}. Then, \eref{eq:maxw-lor} gives $ k^2 = 0 $, while the chosen radiation gauge implies $ \epsilon_0 = 0 $ and $ \bs{\epsilon} \cdot \ve{k} = 0 $: therefore, an electromagnetic wave has only two degrees of freedom, represented by a polarization vector $ \bs{\epsilon} $ perpendicular to the direction of propagation.
+
+\begin{example}{Linear and circular polarization}{}
+  Given an electromagnetic wave with $ \hat{\ve{k}} = \hat{\ve{e}}_z $, then there are two possible polarization directions perpendicular to $ \hat{\ve{e}}_z $. A possible choice are \bcex{linear polarization vectors}:
+  \begin{equation}
+    \bs{\epsilon}_1 = (1, 0, 0)
+    \qquad
+    \bs{\epsilon}_2 = (0, 1, 0)
+  \end{equation}
+  Another choice is a linear combination of these vectors, the \bcex{circular polarization vectors}:
+  \begin{equation}
+    \bs{\epsilon}_\text{R} = \frac{\bs{\epsilon}_1 + i \bs{\epsilon}_2}{\sqrt{2}}
+    \qquad
+    \bs{\epsilon}_\text{L} = \frac{\bs{\epsilon}_1 - i \bs{\epsilon}_2}{\sqrt{2}}
+    \label{eq:circ-pol-vec}
+  \end{equation}
+  which are helicity eigenstates respectively with $ h = +1 $ and $ h = -1 $.
+\end{example}
+
+The advantage of the radiation gauge is that it exposes clearly the physical degrees of freedom of the electromagnetic field, while sacrificing explicit Lorentz covariance; on the other hand, the Lorentz gauge retains the explicit Lorentz covariance, at the cost of redundant degrees of freedom.
+
+\subsubsection{Energy-momentum tensor}
+
+By \eref{eq:en-mom-tensor}, writing \eref{eq:maxw-lag} explicitly in terms of $ A_\mu $, the energy-momentum tensor of the electromagnetic field is:
+\begin{equation}
+  \theta^{\mu \nu} = - F^{\mu \rho} \pa^\nu A_\rho + \frac{1}{4} \eta^{\mu \nu} F^2
+\end{equation}
+with $ F^2 \equiv F_{\mu \nu} F^{\mu \nu} $. To show the gauge-invariance of this tensor, recall \eref{eq:maxw-1}:
+\begin{equation*}
+  \theta^{\mu \nu} \mapsto \theta^{\mu \nu} + F^{\mu \rho} \pa^\nu \pa_\rho \alpha
+  \qquad \Rightarrow \qquad
+  P^\mu \mapsto P^\mu + \int \dd^3x\, \pa_\rho (F^{0 \rho} \pa^\mu \alpha) = P^\mu + \int \dd^3x\, \pa_i (F^{0i} \pa^\mu \alpha) = P^\mu
+\end{equation*}
+where the last term is a total spatial derivative, hence vanishing by divergence theorem provided that the field decreases sufficiently fast at infinity. To improve the energy-momentum tensor, add $ \pa_\rho (F^{\mu \rho} A^\nu) $, which is covariantly conserved by itself and whose $ \mu = 0 $ component is a total spatial derivative, so to obtain:
+\begin{equation}
+  T^{\mu \nu} = F^{\mu \rho} \tensor{F}{_\rho^\nu} + \frac{1}{4} \eta^{\mu \nu} F^2
+\end{equation}
+which is explicitly gauge-invariant and yields the usual expressions for the energy density $ T^{00} = \frac{1}{2} \left( \ve{E}^2 + \ve{B}^2 \right) $ and the momentum density $ T^{0i} = \left( \ve{E} \times \ve{B} \right)^i $.\\
+In a general field theory, the observable quantities are the charges, not the currents: two Lagrangian densities which differ by a total 4-divergence are physically equivalent and give the same equations of motion, but the conserved currents obtained through Noether theorem are different, while the associated Noether charges are the same.
+
+\subsubsection{Matter coupling}
+
+In the presence of an external current $ j^\mu $, \eref{eq:maxw-2} is not modified, as it is a consequence of the definition of $ F^{\mu \nu} $ (assuming regular gauge fields), while \eref{eq:maxw-1} becomes:
+\begin{equation}
+  \pa_\mu F^{\mu \nu} = j^\nu
+  \label{eq:maxw-3}
+\end{equation}
+By Schwarz lemma, this equation is consistent only if $ \pa_\mu j^\mu = 0 $. This can be understood in light of gauge invariance, considering the action:
+\begin{equation}
+  \act_\text{M} = - \int \dd^4x \left[ \frac{1}{4} F^2 + j^\mu A_\mu \right]
+\end{equation}
+A gauge transformation $ A_\mu \mapsto A_\mu - \pa_\mu \alpha $ implies $ \act_\text{M} \mapsto \act_\text{M} + \int \dd^4x\, j^\mu \pa_\mu \alpha $: integrating by parts, it is clear that $ \act_\text{M} $ is gauge invariant only if $ \pa_\mu j^\mu = 0 $.
+
+\paragraph{Dirac field}
+
+The coupling of the electromagnetic field to the Dirac field is an example of the general procedure of writing a gauge-invariant action for a gauge theory. In particular, consider a theory with a global $ \Un{1} $ invariance, which is a symmetry of the free Dirac action by \eref{eq:dirac-u1-symm}. Now generalize to a local $ \Un{1} $ symmetry:
+\begin{equation}
+  \Psi(x) \mapsto e^{iq \alpha(x)} \Psi(x)
+  \label{eq:qed-dir-inv}
+\end{equation}
+with $ q \in \R $. This no longer is a symmetry of the Dirac action, however it can be combined with \eref{eq:qed-gauge-inv} defining the \bctxt{covariant derivative}:
+\begin{equation}
+  \covder_\mu \Psi \defeq (\pa_\mu + i q A_\mu) \Psi
+\end{equation}
+
+\begin{proposition}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \covder_\mu \Psi(x) \mapsto e^{i q \alpha(x)} \covder_\mu \Psi(x)
+    \label{eq:qed-cov-der}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+      $ \covder_\mu \Psi \mapsto \left[ \pa_\mu + i q (A_\mu - \pa_\mu \alpha) \right] e^{i q \alpha} \Psi = e^{i q \alpha} \left[ i q \pa_\mu \alpha + \pa_\mu + i q A_\mu - i q \pa_\mu \alpha \right] \Psi = e^{i q \alpha} \covder_\mu \Psi $
+  \end{proof}
+\end{proofbox}
+
+The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto \covder_\mu $ (\bctxt{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $. \\
+Applying this to \eref{eq:dirac-lagrangian}:
+\begin{equation}
+  \lag_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi - q A_\mu \bar{\Psi} \gamma^\mu \Psi
+\end{equation}
+where $ j_\text{V}^\mu \defeq \bar{\Psi} \gamma^\mu \Psi $ is the Noether current associated to the global $ \Un{1} $ symmetry. The associated conserved charge then is:
+\begin{equation}
+  Q = \int \dd^3x\, \bar{\Psi} \gamma^0 \Psi = \int \dd^3x\, \Psi\dg \Psi
+\end{equation}
+
+\paragraph{Complex scalar field}
+
+A complex scalar field has a global $ \Un{1} $ symmetry $ \phi \mapsto e^{i q \alpha} \phi $, thus the covariant derivative is identical to \eref{eq:qed-cov-der} and the gauged Lagrangian reads (recall \eref{eq:compl-scalar-lag}):
+\begin{equation}
+  \lag = \pa_\mu \phi \pa^\mu \phi + i q A^\mu (\phi \pa_\mu \phi^* - \phi^* \pa_\mu \phi) + q^2 \abs{\phi}^2 A_\mu A^\mu - m^2 \phi^* \phi
+\end{equation}
+where $ j_\mu \defeq i \phi^* \overleftrightsmallarrow{\pa_\mu} \phi $ is the Noether current associated to the global $ \Un{1} $ symmetry.
+
+\paragraph{Higher order interaction terms}
+
+Although a real scalar field cannot be coupled to the electromagnetic field through the minimal coupling (as the real condition imposes $ q = 0 $, i.e. a neutral field), interaction terms are possible via higher order terms, as $ \lag_\text{int} \sim \phi F_{\mu \nu} F^{\mu \nu} $ or $ \lag_\text{int} \sim \phi \epsilon_{\mu \nu \rho \sigma} F^{\mu \nu} F^{\rho \sigma} $. \\
+The same is possible for the Dirac field too, for example with $ \lag_\text{int} \sim \bar{\Psi} \sigma^{\mu \nu} \Psi F^{\mu \nu} $: note, however, that these non-minimal couplings have dimensional coupling constants (with dimension of the inverse of a mass), which have a less fundamental significance than dimensionless coupling constant.
+
+\begin{example}{Neutral pions}{}
+  The neutral pion $ \pi^0 $ is described by a pseudoscalar field, thus its interaction with the electromagnetic field needs to be a pseudoscalar term, like $ \epsilon_{\mu \nu \rho \sigma} F^{\mu \nu} F^{\rho \sigma} $ (this gives a good phenomenological description), as opposed to parity-invariant terms like $ F_{\mu \nu} F^{\mu \nu} $.
+\end{example}
+
+\subsection{Quantization}
+
+Due to gauge symmetry, the gauge field gives a redundant physical description, therefore the quantization procedure can be carried in two different ways: fixing the gauge, thus working with only physical degrees of freedom but at the cost of loosing explicit Lorentz invariance, or considering the whole $ A_\mu $, hence carrying spurious degrees of freedom.
+
+\subsubsection{Quantization in the radiation gauge}
+
+As of \eref{eq:radiation-gauge}, Maxwell equations \eref{eq:maxw-lor} read $ \Box \ve{A} = \ve{0} $, with general classical solution:
+\begin{equation*}
+  \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a^*_{\ve{p},\lambda} e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+\end{equation*}
+Inserting this expression into $ \Box \ve{A} = \ve{0} $ results in the mass-shell condition $ p^2 = 0 $, i.e. $ \omega_\ve{p} = \abs{\ve{p}} $. On the other hand, the gauge condition $ \dive \ve{A} = 0 $ requires $ \bs{\epsilon} \cdot \ve{p} = 0 $: for each fixed $ \ve{p} $, this solution has two orthonormal solutions labelled by $ \lambda = 1,2 $, which describe the two physical degrees of freedom of the electromagnetic field.
+The classical solution can be promoted to a hermitian operator as:
+\begin{equation}
+  \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a\dg_{\ve{p},\lambda} e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  \label{eq:qed-four-rad}
+\end{equation}
+and imposing the canonical commutation relations:
+\begin{equation}
+  [a_{\ve{p},\lambda} , a_{\ve{q},\lambda'}\dg] = (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q}) \delta_{\lambda \lambda'}
+\end{equation}
+In terms of commutators of $ A^i $ and conjugate momenta, consider that $ \Pi_0 = 0 $ (as $ A_0 = 0 $) and\footnotemark:
+\begin{equation*}
+  \Pi^i = \frac{\delta}{\delta(\pa_0 A_i)} \left( -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} \right) = \frac{\delta}{\delta(\pa_0 A_i)} \left( -\frac{1}{2} F_{0i} F^{0i} \right) = - F^{0i} = E^i
+\end{equation*}
+%
+\footnotetext{Note that $ \Pi^i $ is the momentum conjugate to $ A_i $, while $ \Pi_i = - \Pi^i $ is the one conjugate to $ A^i $.}
+%
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \frac{1}{2} \sum_{\lambda = 1,2} \left[ \epsilon^i(\ve{k},\lambda) \epsilon^{*j}(\ve{k},\lambda) + \epsilon^{*i}(-\ve{k},\lambda) \epsilon^j(-\ve{k},\lambda) \right] \delta^{ij} - \frac{k^i k^j}{\ve{k}^2}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Trivially verified in a frame where $ \ve{k} = (0,0,k) $ choosing $ \bs{\epsilon}(\ve{k},1) = (1,0,0) $ and $ \bs{\epsilon}(\ve{k},2) = (0,1,0) $ and valid in any frame\footnote{In particular, the linear polarizations satisfy:
+    \begin{equation}
+      \sum_{\lambda = 1,2} \epsilon^i(\ve{k},\lambda) \epsilon^{*j}(\ve{k},\lambda) = \delta^{ij} - \frac{k^i k^j}{\ve{k}^2}
+    \end{equation}} is ensured as both sides transform as tensor under rotations.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    [A^i(t,\ve{x}) , E^j(t,\ve{y})] = - i \int \frac{\dd^3k}{(2\pi)^3} e^{i \ve{k} \cdot (\ve{x} - \ve{y})} \left( \delta^{ij} - \frac{k^i k^j}{\ve{k}^2} \right)
+  \end{equation}
+\end{proposition}
+
+The r.h.s. of this equation is similar to a Dirac delta and it is called \bctxt{transverse Dirac delta}, defined in order to get $ [\dive \ve{A}(t,\ve{x}) , \ve{E}(t,\ve{y})] = \ve{0} $ (as $ \dive \ve{A} = 0 $), being the integrand proportional to:
+\begin{equation*}
+  k^i \left( \delta^{ij} - \frac{k^i k^j}{\ve{k}^2} \right) = k^j - k^j = 0
+\end{equation*}
+
+\paragraph{Fock space}
+
+The standard construction of the Fock space proceeds defining the vacuum state $ a_{\ve{p},\lambda} \ket{0} = 0 $. The Hamiltonian and the linear momentum are then found as:
+\begin{equation}
+  H = \frac{1}{2} \normord \int \dd^3x\, \left[ \ve{E}^2 + \ve{B}^2 \right] = \int \frac{\dd^3k}{(2\pi)^3} \sum_{\lambda = 1,2} \omega_\ve{k} a_{\ve{k},\lambda}\dg a_{\ve{k},\lambda}
+\end{equation}
+\begin{equation}
+  \ve{P} = \normord \int \dd^3x\, \ve{E} \times \ve{B} = \int \frac{\dd^3k}{(2\pi)^3} \sum_{\lambda = 1,2} \ve{k} a_{\ve{k},\lambda}\dg a_{\ve{k},\lambda}
+\end{equation}
+
+Therefore, $ a_{\ve{k},\lambda}\dg \ket{0} $ describes a massless particle with energy $ \omega_\ve{k} $ and momentum $ \ve{k} $. To study spin, it is necessary to switch to circular polarizations:
+\begin{equation}
+  a_{\ve{k},\pm}\dg \defeq \frac{1}{\sqrt{2}} \left( a_{\ve{k},1}\dg \pm i a_{\ve{k},2}\dg \right)
+\end{equation}
+where $ a_{\ve{k},1} , a_{\ve{k},2} $ are the linear polarizations $ \bs{\epsilon}(\ve{k},1) = (1,0,0) , \bs{\epsilon}(\ve{k},2) = (0,1,0) $. Linear polarizations are not helicity eigenstates, while circular polarizations are:
+\begin{align*}
+  S^3 a_{\ve{k},1}\dg \ket{0} = + i a_{\ve{k},2}\dg \ket{0} & \qquad & S^3 a_{\ve{k},+}\dg \ket{0} = + a_{\ve{k},+}\dg \ket{0} \\
+  S^3 a_{\ve{k},2}\dg \ket{0} = - i a_{\ve{k},1}\dg \ket{0} & \qquad & S^3 a_{\ve{k},-}\dg \ket{0} = - a_{\ve{k},-}\dg \ket{0}
+\end{align*}
+In conclusion, $ a_{\ve{k},\pm}\dg \ket{0} $ describe massless particles with energy $ \omega_\ve{k} $, momentum $ \ve{k} $, spin $ 1 $ and helicity $ \pm 1 $: these are photons. \\
+Defining angular momentum and boost generators too in terms of ladder operators, it is possible to show that Lorentz invariance is preserved by the quantization procedure, although not explicitly.
+
+\paragraph{Discrete transformations}
+
+It is possible to define parity and charge conjugation on photon states. The electric field is a true vector, while the magnetic field is a pseudovector, thus the gauge potential is a true vector: $ \parity \ve{A}(t,\ve{x}) = - \ve{A}(t,-\ve{x}) $. In terms of photon states:
+\begin{equation}
+  \parity \ket{\gamma ; \ve{k}, \ve{s}} = - \ket{\gamma ; -\ve{k}, \ve{s}}
+\end{equation}
+so the intrinsic parity of physical photon states is $ -1 $. \\
+As the fermionic current changes sign under charge conjugation (\eref{eq:charge-conj-fermion-curr}), it is a symmetry of the QED Lagrangian if $ \chargec A^\mu \chargec = - A^\mu $, i.e. $ \chargec a_{\ve{k},\lambda}\dg \chargec = - a_{\ve{k},\lambda}\dg $. As $ \chargec \ket{0} = +\ket{0} $ and $ \chargec^2 = \id $ by definition, then $ \chargec a_{\ve{k},\lambda}\dg \ket{0} = \chargec a_{\ve{k},\lambda} \chargec \chargec \ket{0} = - a_{\ve{k},\lambda}\dg \ket{0} $, or:
+\begin{equation}
+  \chargec \ket{\gamma ; \ve{k} , \ve{s}} = - \ket{\gamma ; \ve{k} , \ve{s}}
+\end{equation}
+
+\subsubsection{Covariant quantization}
+
+The Maxwell Lagrangian \eref{eq:maxw-lag} cannot be straightforwardly quantize, as $ \Pi^0 $ cannot be defined due to the absence of $ \pa_0 A_0 $ terms. The basic idea of the covariant quantization of the electromagnetic field, or Gupta-Bleuler quantization, is to start from a modified Lagrangian:
+\begin{equation}
+  \lag = - \frac{1}{4} F_{\mu \nu} F^{\mu \nu} - \frac{1}{2} (\pa_\mu A^\mu)^2
+\end{equation}
+Conjugate momenta are then found to be:
+\begin{equation*}
+  \Pi^\mu = \frac{\pa \lag}{\pa (\pa_0 A_\mu)}
+  \qquad \Rightarrow \qquad
+  \Pi^i = - F^{0i} = E^i
+  \qquad
+  \Pi^0 = - \pa_\mu A^\mu
+\end{equation*}
+Canonical commutation relations now take the form:
+\begin{equation}
+  [A^\mu(t,\ve{x}) , \Pi^\nu(t,\ve{y})] = i \eta^{\mu \nu} \delta^{(3)}(\ve{x} - \ve{y})
+  \label{eq:qed-canon-comm-rel-1}
+\end{equation}
+The metric ensures Lorentz covariance. The equations of motion are $ \Box A^\mu = 0 $, thus the gauge field operators are:
+\begin{equation}
+  A_\mu(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} \left[ \epsilon_\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \epsilon_\mu^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  \label{eq:qed-gauge-fourier}
+\end{equation}
+$ \Box A_\mu = 0 $ imposes $ p^2 = 0 $. Note that the modified Lagrangian is not gauge invariant, so there is no constraint on $ \epsilon^\mu $; in the frame $ p^\mu = (p,0,0,p) $ a convenient choice of basis is $ \epsilon^\mu(\ve{p},\lambda) = \delta^\mu_\lambda $, hence only $ \lambda = 1,2 $ satisfy $ \epsilon_\mu p^\mu = 0 $. \eref{eq:qed-canon-comm-rel-1} becomes:
+\begin{equation}
+  [a_{\ve{p},\lambda} , a_{\ve{p},\lambda'}\dg] = - (2\pi)^3 \delta^{(3)}(\ve{p} - \ve{q}) \eta_{\lambda \lambda'}
+\end{equation}
+Note that the commutator for $ \lambda = \lambda' = 0 $ has a negative sign, which means that the norm is not positive defined on this Fock space (rendering impossible its interpretation as a probability):
+\begin{equation}
+  \braket{\ve{p} , \lambda | \ve{p} , \lambda} = (2\omega_\ve{p}) \braket{0 | a_{\ve{p},\lambda} a_{\ve{p},\lambda}\dg | 0} = (2\omega_\ve{p}) \braket{0 | [a_{\ve{p},\lambda} , a_{\ve{p},\lambda}\dg] | 0} = - 2\omega_\ve{p} V \eta_{\lambda \lambda}
+\end{equation}
+(where $ V \equiv (2\pi)^3 \delta^{(3)}(\ve{0}) $) which is negative for $ \lambda = 0 $. However, the only physical states are those associated with transverse polarization vectors, thus these problematic states can be shown to be unphysical. \\
+To recover the correct description of QED from the modified Lagrangian, it is necessary to restrict the Fock space; in particular, any two physical states must satisfy:
+\begin{equation}
+  \braket{\text{phys}' | \pa_\mu A^\mu | \text{phys}} = 0
+  \label{eq:qed-phys-cond-1}
+\end{equation}
+Note that $ \pa_\mu A^\mu $ can be decomposed into its positive- and negative-frequency parts $ \pa_\mu A^\mu = (\pa_\mu A^\mu)^+ + (\pa_\mu A^\mu)^- $ as:
+\begin{equation*}
+  (\pa_\mu A^\mu)^+ \equiv -i \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} p_\mu \epsilon^\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} = {(\pa_\mu A^\mu)}\dg
+\end{equation*}
+Therefore, \eref{eq:qed-phys-cond-1} is equivalent to:
+\begin{equation}
+  (\pa_\mu A^\mu)^+ \ket{\text{phys}} = 0
+\end{equation}
+This is the definition of the physical subspace of the Fock space, as it preserves the linear structure of the physical Hilbert space. Now consider the most general superposition of polarization states with momentum $ \ve{k} $, i.e. $ \ket{\ve{k}} = \sum_{\lambda = 0}^{3} c_\lambda a_{\ve{k},\lambda}\dg \ket{0} $, and choose the frame $ k^\mu = (k,0,0,k) $: in this frame the physical-state condition reads $ c_0 + c_3 = 0 $. Thus, all transverse states $ \lambda = 1,2 $ are physical, while there is only one non-transverse state that remains:
+\begin{equation*}
+  \ket{\phi} \equiv (a_{\ve{k},0}\dg - a_{\ve{k},3}\dg) \ket{0}
+\end{equation*}
+The most general one-particle state of the physical subspace can then be written as $ \ket{\ve{k}_\text{T}} + c \ket{\phi} $. However:
+\begin{equation*}
+  \braket{\phi | \phi} = \braket{0 | (a_{\ve{k},0} - a_{\ve{k},3}) (a_{\ve{k},0}\dg - a_{\ve{k},3}\dg) | 0} = \braket{0 | [a_{\ve{k},0} , a_{\ve{k},0}\dg] + [a_{\ve{k},3} , a_{\ve{k},3}\dg] | 0} = 0
+\end{equation*}
+This means that $ \ket{\phi} $ is orthogonal to all physical states. Moreover, only transverse states contribute to the energy and to the momentum, as $ H , \ve{P} \sim - \eta^{\lambda \lambda'} a_{\ve{k},\lambda}\dg a_{\ve{k},\lambda'} $ and (as $ c_0 + c_3 = 0 $):
+\begin{equation*}
+  (a_{\ve{k},0} - a_{\ve{k},3}) \ket{\psi} = 0
+  \quad \Rightarrow \quad
+  \braket{\text{phys}' | -a_{\ve{k},0}\dg a_{\ve{k},0} + a_{\ve{k},3}\dg a_{\ve{k},3} | \text{phys}} = \braket{\text{phys}' | (-a_{\ve{k},0}\dg + a_{\ve{k},3}\dg) a_{\ve{k},3} | \text{phys}} = 0
+\end{equation*}
+These facts mean that $ \ket{\ve{k}_\text{T}} $ and $ \ket{\ve{k}_\text{T}} + c \ket{\phi} $ are physically indistinguishable: photons can then be identified as the equivalence classes with respect to the equivalence relation $ \ket{\psi} \sim \ket{\psi} + c \ket{\phi} $. \\
+This procedure has eliminated the spurious degrees of freedom, thus showing the equivalence between covariant quantization and gauge quantization.
+
+\subsubsection{Ladder operators}
+
+As for the KG field and the Dirac field, the ladder operators of the electromagnetic field can be made explicit too.
+
+\begin{proposition}{Ladder operators}{}
+  The ladder operators for the electromagnetic field are (in radiation gauge):
+  \begin{equation}
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda} = i \bs{\epsilon}(\ve{k},\lambda) \cdot \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \label{eq:qed-lad-1}
+  \end{equation}
+  \begin{equation}
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda}\dg = - i \bs{\epsilon}^*(\ve{k},\lambda) \cdot \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \label{eq:qed-lad-2}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eref{eq:qed-four-rad}:
+    \begin{equation*}
+      \pa_0 \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ -i \omega_\ve{p} \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + i \omega_\ve{p} \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \begin{split}
+        \int \dd^3x\, e^{i k_\mu x^\mu} \ve{A}(x)
+        & = \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{i (k - p)_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i (k + p)_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}} \\
+        & = \frac{1}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
+      \end{split}
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        \int \dd^3x\, e^{i k_\mu x^\mu} \pa_0 \ve{A}(x)
+        & = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ - \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
+      \end{split}
+    \end{equation*}
+    These can be combined as:
+    \begin{equation*}
+      \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ -2 \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} \right] = - i \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda}
+    \end{equation*}
+    In the radiation gauge $ \bs{\epsilon}(\ve{k},\lambda) \cdot \bs{\epsilon}(\ve{k},\sigma) = \delta_{\lambda \sigma} $, hence \eref{eq:qed-lad-1}. Analogously:
+    \begin{equation*}
+      \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ 2 \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg \right] = i \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg
+    \end{equation*}
+    This completes the proof.
+  \end{proof}
+\end{proofbox}
+
+Writing them in Lorentz-covariant form (using $ \epsilon^0 = \epsilon^3 = 0 $):
+  \begin{equation}
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda} = i \epsilon^\mu(\ve{p},\lambda) \int \dd^3x\, e^{i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \label{eq:qed-lad-cov-1}
+  \end{equation}
+  \begin{equation}
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda}\dg = - i {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \label{eq:qed-lad-cov-2}
+  \end{equation}
+
+
+
+
+
+
+
+
+
+
