@@ -1,0 +1,99 @@
+\selectlanguage{english}
+
+In \secref{sec:qed} it was shown how, from the gauge invariance \eref{eq:qed-gauge-inv} of Electrodynamics, it was necessary to introduce a covariant derivative \eref{eq:qed-cov-der}, ultimately leading to the QED Lagrangian.
+
+The same process can be generalized to arbitrary groups of gauge transformations (\bctxt{gauge groups}, for short), thus defining a field (gauge) theory starting from its symmetry properties.
+
+\section{Yang-Mills Lagrangian}
+
+Consider $ n \in \N $ fermionic fields $ \{\psi_k(x)\}_{k = 1, \dots, n} $ and an $ n $-spinor $ \Psi(x) $ defined as:
+\begin{equation}
+  \Psi(x) =
+  \begin{pmatrix}
+    \psi_1(x) \\ \vdots \\ \psi_n(x)
+  \end{pmatrix}
+\end{equation}
+As a gauge group, consider a $ d $-dimensional Lie group $ G $: WLOG, be $ G $ a simply-connected Lie group, so that each element can be expressed via the exponential map, and be it compact too, so that its representations are unitary. Then, consider $ \{T^a\}_{a = 1, \dots, d} $ an $ n $-dimensional representation of the associated Lie algebra $ \mathfrak{g} $, so that the action of $ G $ on $ \Psi $ can be expressed as:
+\begin{equation}
+  \Psi(x) \mapsto V(x) \Psi(x)
+  \qquad \qquad
+  V(x) = \exp \left[ i \theta_a(x) T^a \right] \equiv e^{i \alpha(x)}
+  \label{eq:gauge-trans}
+\end{equation}
+where the Lie parameters $ \{\theta_a(x)\}_{a = 1, \dots, d} \subset \mathcal{C}^\infty(\R^{1,3}) $ so define a local gauge transformation. The aim is to define a Lagrangian which is invariant under this transformation, i.e. the Lagrangian of a (local) gauge theory.
+
+Simple terms invariant under global phase rotations, like the fermion mass term $ m \bar{\Psi} \Psi $, are of course invariant under \eref{eq:gauge-trans} too, but derivatives need a careful treatment: indeed, the limit-definition of a derivative involves fields at different spacetime points, which have different transformations according to \eref{eq:gauge-trans}. In order to define a derivative of \Psi, it is necessary to introduce a factor to subtract values of $ \Psi(x) $ in a meaningful way, so consider $ \tens{U}(y,x) \in \Un{n} : \tens{U}(x,x) = 1 $ and which transforms under the action of $ G $ as:
+\begin{equation}
+  \tens{U}(y,x) \mapsto e^{i \alpha(y)} \tens{U}(y,x) e^{-i \alpha(x)}
+  \label{eq:fac-cov-der}
+\end{equation}
+In general, $ \tens{U}(y,x) \mapsto V(y) \tens{U}(y,x) V\dg(x) $. It is clear that $ \tens{U}(y,x) \Psi(x) $ and $ \Psi(y) $ have the same transformation law, so they can be meaningfully subtracted. 
+\begin{definition}{Covariant derivative}{}
+  Given $ n^\mu \in \R^{1,3} $, the covariant derivative of a fermionic field $ \Psi(x) $ along $ n^\mu $ is defined as:
+  \begin{equation}
+    n^\mu D_\mu \Psi(x) \defeq \lim_{\varepsilon \rightarrow 0} \frac{1}{\varepsilon} \left[ \Psi(x + \varepsilon n) - \tens{U}(x + \varepsilon n, x) \Psi(x) \right]
+    \label{eq:cov-der-def}
+  \end{equation}
+  where $ \tens{U}(y,x) $ is defined in \eref{eq:fac-cov-der}.
+\end{definition}
+
+To make this definition explicit, it is necessary to get an expression of $ \tens{U}(y,x) $ at infinitesimally-separted points. Given the unitarity of $ \tens{U}(y,x) $, it can be expressed through the generators $ \{T^a\}_{a = 1, \dots, d} $ as:
+\begin{equation}
+  \tens{U}(x + \varepsilon n, x) = \tens{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a + o(\varepsilon^2)
+  \label{eq:fac-cov-der-exp}
+\end{equation}
+where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually, $ d $ different vector fields) is a \bctxt{connection}, and it allows to express the covariant derivative as (directly from \eref{eq:cov-der-def}):
+\begin{equation}
+  D_\mu = \pa_\mu - i g A_\mu^a T_a
+\end{equation}
+
+\begin{proposition}{}{}
+  The covariant derivative $ D_\mu \Psi $ transforms as $ \Psi $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eeref{eq:fac-cov-der}{eq:fac-cov-der-exp} (recalling that $ \pa_\mu $ is anti-Hermitian):
+    \begin{equation*}
+      \begin{split}
+        \tens{I}_n + i g \varepsilon n^\mu A_\mu^a T_a
+        & \mapsto V(x + \varepsilon n) \left( \tens{I}_n + i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) \\
+        & = \left[ \left( 1 + \varepsilon n^\mu \pa_\mu \right) V(x) \right] V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) + o(\varepsilon^2) \\
+        & = \tens{I}_n - \varepsilon n^\mu V(x) \pa_\mu V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) + o(\varepsilon^2)
+      \end{split}
+    \end{equation*}
+    Hence, the connection transforms as:
+    \begin{equation*}
+      A_\mu^a(x) T_a \mapsto V(x) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] V\dg(x)
+    \end{equation*}
+    The derivative $ \pa_\mu V\dg(x) $ is non-trivial to compute, as $ G $ is in general non-Abelian, hence the exponent does not necessarily commute with its derivative. At $ o(\theta) $:
+    \begin{equation*}
+      \begin{split}
+        A_\mu^a(x) T_a
+        & \mapsto \left( \tens{I}_n + i \theta^b(x) T_b + o(\theta^2) \right) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] \left( \tens{I}_n - i \theta^c(x) T_c + o(\alpha^2) \right) \\
+        & = \left( \tens{I}_n + i \theta^b(x) T_b + o(\theta^2) \right) \left[ A_\mu^a(x) T_a - i A_\mu^a(x) \theta^c(x) T_a T_c + \frac{1}{g} \pa_\mu \theta^c(x) T_c + o(\theta^2) \right] \\
+        & = A_\mu^a(x) T_a - i A_\mu^a(x) \theta^c(x) T_a T_c + i \theta^b(x) A_\mu^a(x) T_b T_a + \frac{1}{g} \pa_\mu \theta^c(x) T_c + o(\theta^2) \\
+        & = A_\mu^a(x) T_a + f^{abc} A_\mu^a(x) \theta^b(x) T_c + \frac{1}{g} \pa_\mu \theta^a(x) T_a + o(\theta^2)
+      \end{split}
+    \end{equation*}
+    Then:
+    \begin{equation*}
+      \begin{split}
+        D_\mu \Psi(x)
+        & \mapsto \left[ \pa_\mu - i g A_\mu^a(x) T_a - i g f^{abc} A_\mu^a(x) \theta^b(x) T_c - i \pa_\mu \theta^a(x) T_a \right] \left( \tens{I}_n + i \theta^a(x) T_a \right) \Psi(x) + o(\theta^2) \\
+        & = \left[ \pa_\mu + i \theta^a T_a \pa_\mu + i \pa_\mu \theta^a T_a - i g A_\mu^a T_a + g A_\mu^a \theta^b T_a T_b - i g f^{abc} A_\mu^a \theta^b T_c - i \pa_\mu \theta^a T_a + o(\theta^2) \right] \Psi \\
+        & = \left[ \pa_\mu + i \theta^a T_a \pa_\mu - i g A_\mu^a T_a + g A_\mu^a \theta^b T_a T_b - i g f^{abc} A_\mu^a \theta^b T_c + o(\theta^2) \right] \Psi
+      \end{split}
+    \end{equation*}
+    Recognizing $ T_a T_b - i f^{abc} T_c = T_b T_a $ allows to write:
+    \begin{equation*}
+      \begin{split}
+        D_\mu \Psi(x)
+        & \mapsto \left[ \pa_\mu + i \theta^a(x) T_a \pa_\mu - i g A_\mu^a(x) T_a + g \theta^b(x) T_b A_\mu^a(x) T_a + o(\theta^2) \right] \Psi(x) \\
+        & = \left[ \tens{I}_n + i \theta^a(x) T_a + o(\theta^2) \right] \left( \pa_\mu - i g A_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
