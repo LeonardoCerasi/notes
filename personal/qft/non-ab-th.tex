@@ -47,7 +47,7 @@ where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually,
   D_\mu = \pa_\mu - i g A_\mu^a T_a
 \end{equation}
 
-\begin{proposition}{}{}
+\begin{proposition}{}{cov-der-gauge}
   The covariant derivative $ D_\mu \Psi $ transforms as $ \Psi $.
 \end{proposition}
 
@@ -97,3 +97,50 @@ where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually,
   \end{proof}
 \end{proofbox}
 
+The gauge-invariant Lagrangian can thus be built using covariant derivatives (minimal coupling prescription), but there needs to be included a kinetic term for the connection, i.e. a gauge-invariant term depending on $ A_\mu^a(x) $ only.
+
+\begin{lemma}{Field-strength tensor}{}
+  The commutator of covariant derivatives reads:
+  \begin{equation}
+    [D_\mu , D_\nu] = - i g F_{\mu \nu}^a T_a
+  \end{equation}
+  with the \bclemma{field-strength tensor} defined as:
+  \begin{equation}
+    F_{\mu \nu}^a \defeq \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{abc} A_\mu^b A_\nu^c
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct computation:
+    \begin{equation*}
+      \begin{split}
+        [D_\mu , D_\nu]
+        & = [\pa_\mu , \pa_\nu] - i g [A_\mu^a , \pa_\nu] T_a - i g [\pa_\mu , A_\nu^a] T_a - g^2 A_\mu^b A_\nu^c [T_b , T_c] \\
+        & = - i g \left( A_\mu^a \pa_\nu - \pa_\nu A_\mu^a - A_\mu^a \pa_\nu \right) T_a - i g \left( A_\nu^a \pa_\mu - \pa_\mu A_\nu^a - A_\nu^a \pa_\mu \right) T_a - i g^2 f^{bca} A_\mu^b A_\nu^b T_c \\
+        & = - i g \left( \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{bca} A_\mu^b A_\mu^c \right) T_a
+      \end{split}
+    \end{equation*}
+    Using $ f^{bca} = f^{abc} $, as it is always possible to choose generators such that the structure constants are completely antisymmetric\footnotemark, yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{Requires proof.}
+
+Note that the field-strength tensor is not itself a gauge-invariant quantity, as really there are $ d $ different field-strength tensors. However, it is straightforward to construct gauge-invariant combinations of $ F_{\mu \nu}^a $.
+
+\begin{theorem}{Gauge invariance}{}
+  Any globally-symmetric function of $ \Psi $, $ F_{\mu \nu}^a $ and their covariant derivatives is also locally-symmetric, i.e. gauge invariant.
+\end{theorem}
+
+\begin{lemma}
+  The following term is gauge-invariant:
+  \begin{equation}
+    \tr \{(F_{\mu \nu}^a T_a)^2\} = 2 F_{\mu \nu}^a F^{\mu \nu}_a
+  \end{equation}
+\end{lemma}
+
+This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang-Mills theory}:
+\begin{equation}
+  \lag_\text{YM} = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a
+\end{equation}
