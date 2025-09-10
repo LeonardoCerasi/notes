@@ -8,7 +8,7 @@ As the generalized Catani's formula for virtual corrections is provided in \cite
 
 \subsection{Dimensional regularization}
 
-In the evaluation of loop amplitudes, both UV- and IR-singularities are encountered. The most efficient way to simultaneously regularize both types of divergences is dimensional regularization, a regularization scheme first introduced by 't Hooft and Veltman in \cite{thooft-1972}.
+In the evaluation of loop amplitudes, both UV- and IR-singularities are encountered. The most efficient way to simultaneously regularize both types of divergences is dimensional regularization, a regularization scheme first introduced by 't Hooft and Veltman in \cite{Thooft-1972}.
 
 In general, the dimensional regularization scheme consists in the analytic continuation of loop momenta to $ d = 4 - 2 \de $ dimensions, with $ \de \in \C : \Re\de < 0 $. This procedure turns loop integrals into meromorphic\footnotemark functions of $ \de \in \C $, allowing for the isolation of divergences as poles in $ \de $.
 
@@ -65,12 +65,14 @@ with $ \eg = 0.5772\dots $ is the Euler-Mascheroni constant, and $ \beta_0 $ is 
 \begin{equation}
   \beta_0 \defeq \frac{11}{6} \caa - \frac{2}{3} \ttr n_q
 \end{equation}
-where $ \caa $ and $ \ttr $ are linked to the gauge group $ \SUn{n} $, with $ n = n_f + n_F $ number of quark flavors ($ n_f $ massless and $ n_F $ massive quark flavors, see \secref{sec:color-space}), and $ n_q $ is the number of active quark flavors at the considered energy scale.
+where $ \caa $ and $ \ttr $ are linked to the gauge group $ \SUn{n_c} $ (see \secref{sec:colour-space})  and $ n_q $ is the number of active quark flavours at the considered energy scale\footnotemark.
+
+\footnotetext{\label{quark-flav}Out of $ n = n_f + n_F $ total quark flavours ($ n_f $ massless and $ n_F $ massive quark flavours), we generally consider an energy scale such that $ n_q = n_f $, unless otherwise specified.}
 
 \begin{observation}{Dimensionality of coupling}{}
   An important clarification about the dimensionality of $ \bc $ and $ \rc $ is needed, due to the presence of $ \ren^{2\de} $ in \eref{eq:msb-def}.
 
-  Consider the QCD Lagrangian, i.e. a Yang-Mills Lagrangian with gauge group $ \SUn{n} $ (see e.g. \cite{Utiyama-1956,Yang-1954}, or Section 15 of \cite{Weinberg-1996}):
+  Consider the QCD Lagrangian, i.e. a Yang-Mills Lagrangian with gauge group $ \SUn{n_c} $ and $ n $ quark species (see e.g. Chapter 15 of \cite{Weinberg-1996}, or \secref{ssec:gauge-th}):
   \begin{equation}
     \lag = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a + \bar{\Psi} \left( i \slashed{D} - m \right) \Psi
   \end{equation}
@@ -79,8 +81,9 @@ where $ \caa $ and $ \ttr $ are linked to the gauge group $ \SUn{n} $, with $ n 
     D_\mu \defeq \pa_\mu - i g A_\mu^a T_a
     \qquad \qquad
     F_{\mu \nu}^a \defeq \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{abc} A_\mu^b A_\nu^c
+    \label{eq:cov-der-field-str}
   \end{equation}
-  where $ \{T_a\}_{a = 1, \dots, n^2 - 1} \subset \C^{s \times s} $ is a Hermitian representation of $ \sua{n} $ and $ s $ is the number of components of the $ s $-spinor $ \Psi $. Recall that the structure constants $ f^{abc} \in \C $ of $ \sua{n} $ are $ f^{abc} = \epsilon^{abc} $.
+  where $ \{T_a\}_{a = 1, \dots, n_c^2 - 1} \subset \C^{n \times n} $ is a Hermitian representation of $ \sua{n_c} $ and $ \Psi $ is a $ n $-spinor. Recall that the structure constants $ f^{abc} \in \R $ of $ \sua{n_c} $ are $ f^{abc} = \epsilon^{abc} $.
 
   In dimensional regularization, the action remains a dimensionless quantity, hence, given $ \act = \int \dd^dx \, \lag $ and that in natural units ($ c = \hbar = 1 $) all dimensions can be expressed as mass dimensions (since $ [T] = [L] = [M]^{-1} $), the Lagrangian must have dimension $ [\lag] = d $, as $ [\dd^dx] = -d $. It is now trivial to verify the following dimensions:
   \begin{equation*}
@@ -99,8 +102,274 @@ In general, we consider amplitudes $ \mat_m $ involving $ m $ external QCD parto
 \end{equation}
 where the overall power is, in general, $ q \in \frac{1}{2} \N_0 $. Note that, although spoiled of UV-divergences, these amplitudes are still IR-singular as $ \de \rightarrow 0 $.
 
-\section{Color space}
-\label{sec:color-space}
+\section{Colour-space formalism}
+\label{sec:colour-space}
+
+We consider a generalized QCD with gauge group $ \SUn{n_c} $, with $ n_c $ colours and $ n = n_f + n_F $ quark flavours (see footnote \ref{quark-flav}). To handle the colour structure of QCD amplitudes, we adopt the colour-space formalism as in \cite{Catani-1997}.
+
+\subsection{Gauge theories}
+\label{ssec:gauge-th}
+
+A quantum field theory can be built starting from its symmetry properties: in particular, specifying a group of local transformations, the \bctxt{gauge group}, under which the theory must be invariant.
+
+\subsubsection{Yang-Mills Lagrangian}
+
+Consider $ n $ fermionic fields $ \{\psi_k(x)\}_{k = 1, \dots, n} $ and an $ n $-spinor $ \Psi(x) $ defined as:
+\begin{equation}
+  \Psi(x) =
+  \begin{pmatrix}
+    \psi_1(x) \\ \vdots \\ \psi_n(x)
+  \end{pmatrix}
+\end{equation}
+As a gauge group, consider a $ d $-dimensional Lie group $ G $: WLOG, be $ G $ a simply-connected Lie group, so that each element can be expressed via the exponential map, and be it compact too, so that its representations are unitary. Then, consider $ \{T^a\}_{a = 1, \dots, d} $ an $ n $-dimensional representation of the associated Lie algebra $ \mathfrak{g} $, so that the action of $ G $ on $ \Psi $ can be expressed as:
+\begin{equation}
+  \Psi(x) \mapsto V(x) \Psi(x)
+  \qquad \qquad
+  V(x) = \exp \left[ i \theta_a(x) T^a \right] \equiv e^{i \alpha(x)}
+  \label{eq:gauge-trans}
+\end{equation}
+where the Lie parameters $ \{\theta_a(x)\}_{a = 1, \dots, d} \subset \mathcal{C}^\infty(\R^{1,3}) $ so define a local gauge transformation. The aim is to define a Lagrangian which is invariant under this transformation, i.e. the Lagrangian of a (local) gauge theory.
+
+Simple terms invariant under global phase rotations, like the fermion mass term $ m \bar{\Psi} \Psi $, are of course invariant under \eref{eq:gauge-trans} too, but derivatives need a careful treatment: indeed, the limit-definition of a derivative involves fields at different spacetime points, which have different transformations according to \eref{eq:gauge-trans}. In order to define a derivative of \Psi, it is necessary to introduce a factor to subtract values of $ \Psi(x) $ in a meaningful way, so consider $ \tens{U}(y,x) \in \Un{n} : \tens{U}(x,x) = 1 $ and which transforms under the action of $ G $ as:
+\begin{equation}
+  \tens{U}(y,x) \mapsto e^{i \alpha(y)} \tens{U}(y,x) e^{-i \alpha(x)}
+  \label{eq:fac-cov-der}
+\end{equation}
+In general, $ \tens{U}(y,x) \mapsto V(y) \tens{U}(y,x) V\dg(x) $. It is clear that $ \tens{U}(y,x) \Psi(x) $ and $ \Psi(y) $ have the same transformation law, so they can be meaningfully subtracted. 
+\begin{definition}{Covariant derivative}{}
+  Given $ n^\mu \in \R^{1,3} $, the covariant derivative of a fermionic field $ \Psi(x) $ along $ n^\mu $ is defined as:
+  \begin{equation}
+    n^\mu D_\mu \Psi(x) \defeq \lim_{\varepsilon \rightarrow 0} \frac{1}{\varepsilon} \left[ \Psi(x + \varepsilon n) - \tens{U}(x + \varepsilon n, x) \Psi(x) \right]
+    \label{eq:cov-der-def}
+  \end{equation}
+  where $ \tens{U}(y,x) $ is defined in \eref{eq:fac-cov-der}.
+\end{definition}
+
+To make this definition explicit, it is necessary to get an expression of $ \tens{U}(y,x) $ at infinitesimally-separted points. Given the unitarity of $ \tens{U}(y,x) $, it can be expressed through the generators $ \{T^a\}_{a = 1, \dots, d} $ as:
+\begin{equation}
+  \tens{U}(x + \varepsilon n, x) = \tens{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a + \smo(\varepsilon^2)
+  \label{eq:fac-cov-der-exp}
+\end{equation}
+where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually, $ d $ different vector fields) is a \bctxt{connection}, and it allows to express the covariant derivative as (directly from \eref{eq:cov-der-def}):
+\begin{equation}
+  D_\mu = \pa_\mu - i g A_\mu^a T_a
+\end{equation}
+
+\begin{proposition}{}{cov-der-gauge}
+  The covariant derivative $ D_\mu \Psi $ transforms as $ \Psi $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eeref{eq:fac-cov-der}{eq:fac-cov-der-exp} (recalling that $ \pa_\mu $ is anti-Hermitian):
+    \begin{equation*}
+      \begin{split}
+        \tens{I}_n + i g \varepsilon n^\mu A_\mu^a T_a
+        & \mapsto V(x + \varepsilon n) \left( \tens{I}_n + i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) \\
+        & = \left[ \left( 1 + \varepsilon n^\mu \pa_\mu \right) V(x) \right] V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) + \smo(\varepsilon^2) \\
+        & = \tens{I}_n - \varepsilon n^\mu V(x) \pa_\mu V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) + \smo(\varepsilon^2)
+      \end{split}
+    \end{equation*}
+    Hence, the connection transforms as:
+    \begin{equation*}
+      A_\mu^a(x) T_a \mapsto V(x) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] V\dg(x)
+    \end{equation*}
+    The derivative $ \pa_\mu V\dg(x) $ is non-trivial to compute, as $ G $ is in general non-Abelian, hence the exponent does not necessarily commute with its derivative. At $ \smo(\theta) $:
+    \begin{equation*}
+      \begin{split}
+        A_\mu^a(x) T_a
+        & \mapsto \left( \tens{I}_n + i \theta^b(x) T_b + \smo(\theta^2) \right) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] \left( \tens{I}_n - i \theta^c(x) T_c + \smo(\alpha^2) \right) \\
+        & = \left( \tens{I}_n + i \theta^b(x) T_b + \smo(\theta^2) \right) \left[ A_\mu^a(x) T_a - i A_\mu^a(x) \theta^c(x) T_a T_c + \frac{1}{g} \pa_\mu \theta^c(x) T_c + \smo(\theta^2) \right] \\
+        & = A_\mu^a(x) T_a - i A_\mu^a(x) \theta^c(x) T_a T_c + i \theta^b(x) A_\mu^a(x) T_b T_a + \frac{1}{g} \pa_\mu \theta^c(x) T_c + \smo(\theta^2) \\
+        & = A_\mu^a(x) T_a + f^{abc} A_\mu^a(x) \theta^b(x) T_c + \frac{1}{g} \pa_\mu \theta^a(x) T_a + \smo(\theta^2)
+      \end{split}
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        \Longrightarrow \quad D_\mu \Psi
+        & \mapsto \left[ \pa_\mu - i g A_\mu^a T_a - i g f^{abc} A_\mu^a \theta^b T_c - i \pa_\mu \theta^a T_a \right] \left( \tens{I}_n + i \theta^a T_a \right) \Psi + \smo(\theta^2) \\
+        & = \big[ \pa_\mu + i \theta^a T_a \pa_\mu + i \pa_\mu \theta^a T_a - i g A_\mu^a T_a + g A_\mu^a \theta^b T_a T_b \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad - i g f^{abc} A_\mu^a \theta^b T_c - i \pa_\mu \theta^a T_a + \smo(\theta^2) \big] \Psi \\
+        & = \left[ \pa_\mu + i \theta^a T_a \pa_\mu - i g A_\mu^a T_a + g A_\mu^a \theta^b T_a T_b - i g f^{abc} A_\mu^a \theta^b T_c + \smo(\theta^2) \right] \Psi
+      \end{split}
+    \end{equation*}
+    Recognizing $ T_a T_b - i f^{abc} T_c = T_b T_a $ allows to write:
+    \begin{equation*}
+      \begin{split}
+        D_\mu \Psi(x)
+        & \mapsto \left[ \pa_\mu + i \theta^a(x) T_a \pa_\mu - i g A_\mu^a(x) T_a + g \theta^b(x) T_b A_\mu^a(x) T_a + \smo(\theta^2) \right] \Psi(x) \\
+        & = \left[ \tens{I}_n + i \theta^a(x) T_a + \smo(\theta^2) \right] \left( \pa_\mu - i g A_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+The gauge-invariant Lagrangian can thus be built using covariant derivatives (minimal coupling prescription), but there needs to be included a kinetic term for the connection, i.e. a gauge-invariant term depending on $ A_\mu^a(x) $ only.
+
+\begin{lemma}{Field-strength tensor}{}
+  The commutator of covariant derivatives reads:
+  \begin{equation}
+    [D_\mu , D_\nu] = - i g F_{\mu \nu}^a T_a
+  \end{equation}
+  with the \bclemma{field-strength tensor} defined as:
+  \begin{equation}
+    F_{\mu \nu}^a \defeq \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{abc} A_\mu^b A_\nu^c
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct computation:
+    \begin{equation*}
+      \begin{split}
+        [D_\mu , D_\nu]
+        & = [\pa_\mu , \pa_\nu] - i g [A_\mu^a , \pa_\nu] T_a - i g [\pa_\mu , A_\nu^a] T_a - g^2 A_\mu^b A_\nu^c [T_b , T_c] \\
+        & = - i g \left( A_\mu^a \pa_\nu - \pa_\nu A_\mu^a - A_\mu^a \pa_\nu \right) T_a - i g \left( A_\nu^a \pa_\mu - \pa_\mu A_\nu^a - A_\nu^a \pa_\mu \right) T_a - i g^2 f^{bca} A_\mu^b A_\nu^b T_c \\
+        & = - i g \left( \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{bca} A_\mu^b A_\mu^c \right) T_a
+      \end{split}
+    \end{equation*}
+    Using $ f^{bca} = f^{abc} $, as it is always possible to choose generators such that the structure constants are completely antisymmetric, yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+Note that the field-strength tensor is not itself a gauge-invariant quantity, as really there are $ d $ different field-strength tensors. However, it is straightforward to construct gauge-invariant combinations of $ F_{\mu \nu}^a $.
+
+\begin{theorem}{Gauge invariance}{}
+  Any globally-symmetric function of $ \Psi $, $ F_{\mu \nu}^a $ and their covariant derivatives is also locally-symmetric, i.e. gauge invariant.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    See Chapter 15 of \cite{Peskin-1995}.
+  \end{proof}
+\end{proofbox}
+
+\begin{lemma}{Kinetic term}{}
+  The following term is gauge-invariant:
+  \begin{equation}
+    \tr \{(F_{\mu \nu}^a T_a)^2\} = 2 F_{\mu \nu}^a F^{\mu \nu}_a
+  \end{equation}
+\end{lemma}
+
+This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang-Mills theory} without fermionic species:
+\begin{equation}
+  \lag_\text{YM} = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a
+\end{equation}
+To account for fermions interacting with the gauge field (i.e. the connection $ A_\mu^a(x) $), the Dirac Lagrangian with minimal coupling is added:
+\begin{equation}
+  \lag = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a + \bar{\Psi} \left( i \slashed{D} - m \right) \Psi
+\end{equation}
+
+\subsubsection{Gauge group \texorpdfstring{$ \SUn{n_c} $}{SU(n)}}
+
+The $ \SUn{n} $ group is the group of unitary transformations of $ n $-dimensional complex vectors. Its (faithful) fundamental representation thus is:
+\begin{equation*}
+  \SUn{n} = \{\tens{U} \in \C^{n \times n} : \tens{U}\tens{U}\dg = \tens{U}\dg\tens{U} = \tens{I}_n \land \det{\tens{U}} = +1 \}
+\end{equation*}
+The generators of $ \SUn{n} $ can be found setting $ \tens{U} = \exp \left( i \theta_a T^a \right) = \tens{I}_n + i \theta_a T^a + \smo(\theta^2) $ and using $ \tens{U}\dg\tens{U} = \tens{I}_n $:
+\begin{equation}
+  T^a = T^{a\dagger}
+  \label{eq:sun-herm}
+\end{equation}
+Moreover, by the Jacobi formula $ (\det A(t)) \frac{\dd}{\dd t} (\det A(t)) = \tr (A(t)^{-1} \frac{\dd}{\dd t} A(t)) $ evaluated at $ t = 0 $:
+\begin{equation}
+  \tr T^a = 0
+  \label{eq:sun-trace}
+\end{equation}
+The traceless condition can be generalized to all semi-simple Lie algebras.
+Therefore, the generators of $ \SUn{n} $ are $ \C^{n \times n} $ hermitian traceless matrices: the dimension of $ \mathfrak{su}(n) $ then is $ n^2 - 1 $.
+
+In general, the adjoint representation of a Lie group is given by representing its generators (i.e. the basis of the Lie algebra) with the structure constants of the Lie algebra:
+\begin{equation}
+  (T^b_\text{ad})_{ac} \equiv \bar{T}^b_{ac} = i f^{abc}
+\end{equation}
+In the case of $ \SUn{n} $, the structure constants are $ f^{abc} = \epsilon^{abc} $.
+
+\begin{proposition}{Structure constants}{}
+  The structure constants of a Lie algebra satisfy the Lie algebra.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ [T^a,T^b] = i f^{abc} T^c $, the Jacoby identity becomes (recalling that $ f^{abc} $ is totally antisymmetric):
+    \begin{equation*}
+      [[T^a,T^b],T^c] + [[T^b,T^c],T^a] + [[T^c,T^a],T^b] = 0
+    \end{equation*}
+    \begin{equation*}
+      \iff f^{abd} f^{dce} + f^{bcd} f^{dae} + f^{cad} f^{dbe} = 0
+    \end{equation*}
+    The condition $ ([\bar{T}^a , \bar{T}^c])_{be} = i f^{acd} (\bar{T}^d)_{be} $ then gives:
+    \begin{equation*}
+      f^{bad} f^{dce} - f^{bcd} f^{dae} = f^{acd} f^{bde}
+    \end{equation*}
+    \begin{equation*}
+      \iff f^{abd} f^{dce} + f^{bdc} f^{dae} + f^{cad} f^{dbe} = 0
+    \end{equation*}
+    These two expressions are equal, hence the thesis.
+  \end{proof}
+\end{proofbox}
+
+Moreover, since the structure constant are real, the adjoint representation is always a real representation: the adjoint representation of $ \SUn{n} $ has degree $ n^2 - 1 $.\\
+Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
+\begin{equation}
+  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
+  \label{eq:quad-cas}
+\end{equation}
+This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i f^{bac} \{T^c,T^a\} = 0 $ by antisymmetry).
+
+\begin{proposition}{Quadratic Casimir operator}{}
+  For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
+  \begin{equation}
+    C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
+    \qquad \qquad
+    C_2(\mathtt{g}) = n
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First consider the fundamental representation. The $ \mathtt{n} $ of $ \SUn{2} $ is the spinor representation, with generators $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, hence they satisfy $ \tr(T^a_\mathtt{2} T^b_\mathtt{2}) = \frac{1}{2} \delta^{ab} $. It is possible to choose the generators of $ \SUn{n} $ such that, in $ \mathtt{n} $, the first three are $ T^a_\mathtt{n} = \frac{\sigma^a}{2} \,,\, a = 1,2,3 $ (they act on the first three component of $ \C^n $-vectors), so that the others can be chosen such that:
+    \begin{equation*}
+      \tr (T^a_\mathtt{n} T^b_\mathtt{n}) = \frac{1}{2} \delta^{ab}
+    \end{equation*}
+    Contracting Eq. \ref{eq:quad-cas} with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n) $) then:
+    \begin{equation*}
+      C_2(\mathtt{n}) n = \frac{1}{2} (n^2 - 1)
+    \end{equation*}
+    To compute the Casimir operator for the adjoint representation, first consider the decomposition of the direct product of two representations:
+    \begin{equation*}
+      \mathtt{r}_1 \otimes \mathtt{r}_2 = \bigoplus_i \mathtt{r}_i
+    \end{equation*}
+    In this representation $ T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2} = T^a_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} $, and it acts on tensor objects $ \Xi_{pq} $ whose first index transforms according to $ \mathtt{r}_1 $ and the second index according to $ \mathtt{r}_2 $. Recalling that $ \tr{T^a} = 0 $:
+    \begin{equation*}
+      \begin{split}
+        \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2
+        &= \tr ((T^a_{\mathtt{r}_1})^2 \otimes \id_{\mathtt{r}_2} + 2 T^a_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes (T^a_{\mathtt{r}_2})^2) \\
+        &= \tr (C_2(\mathtt{r}_1) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) + \tr (C_2(\mathtt{r}_2) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) = (C_2(\mathtt{r}_1) + C_2(\mathtt{r}_2)) n_{\mathtt{r}_1} n_{\mathtt{r}_2}
+      \end{split}
+    \end{equation*}
+    However, by the decomposition above:
+    \begin{equation*}
+      \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
+    \end{equation*}
+    Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n^2 - 1 $  independent components transform as a general $ n \times n $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n} $ (as of \eeref{eq:sun-herm}{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
+    \begin{equation*}
+      (C_2(\ve{1}) + C_2(\mathtt{g})) (n^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n^2
+    \end{equation*}
+    Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
+    \begin{equation*}
+      C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+The quadratic Casimir operators are usually denoted by $ C_2(\mathtt{n}) \equiv \caf $ and $ C_2(\mathtt{g}) \equiv \caa $.
+
+\subsection{QCD amplitudes}
+
+The $ m $ external partons in the amplitude $ \mat_m $ each carry two indices: a colour index and a spin index. Colour indices are denoted by $ c_1, \dots, c_m $: for gluons $ c_i \in \{a\} = \{1, \dots, n_c^2 - 1\} $, as the field-strength tensor \eref{eq:cov-der-field-str} transforms according to the adjoint representation of the gauge group, while for quarks $ c_i \in \{\alpha\} = \{1, \dots, n_c\} $, as their Dirac fields transform according to the fundamental representation of the gauge group.
 
 
 
