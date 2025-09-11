@@ -110,9 +110,11 @@ We consider a generalized QCD with gauge group $ \SUn{n_c} $, with $ n_c $ colou
 \subsection{Gauge theories}
 \label{ssec:gauge-th}
 
-A quantum field theory can be built starting from its symmetry properties: in particular, specifying a group of local transformations, the \bctxt{gauge group}, under which the theory must be invariant.
+In order to better understand the colour-space formalism, it is useful to state how a general gauge theory is defined, and then analyze the specific case of a $ \SUn{n_c} $ gauge theory.
 
 \subsubsection{Yang-Mills Lagrangian}
+
+A quantum field theory can be built starting from its symmetry properties: in particular, specifying a group of local transformations, the \bctxt{gauge group}, under which the theory must be invariant. Historically, the idea of gauge theories was first explored by Yang and Mills in \cite{Yang-1954}, with the aim of studying isotopic gauge invariance for the nucleon, and then generalized by Utiyama in \cite{Utiyama-1956}. A modern treatment of gauge theories can be found in Chapter 15 of \cite{Peskin-1995}, which we follow for our discussion.
 
 Consider $ n $ fermionic fields $ \{\psi_k(x)\}_{k = 1, \dots, n} $ and an $ n $-spinor $ \Psi(x) $ defined as:
 \begin{equation}
@@ -121,7 +123,7 @@ Consider $ n $ fermionic fields $ \{\psi_k(x)\}_{k = 1, \dots, n} $ and an $ n $
     \psi_1(x) \\ \vdots \\ \psi_n(x)
   \end{pmatrix}
 \end{equation}
-As a gauge group, consider a $ d $-dimensional Lie group $ G $: WLOG, be $ G $ a simply-connected Lie group, so that each element can be expressed via the exponential map, and be it compact too, so that its representations are unitary. Then, consider $ \{T^a\}_{a = 1, \dots, d} $ an $ n $-dimensional representation of the associated Lie algebra $ \mathfrak{g} $, so that the action of $ G $ on $ \Psi $ can be expressed as:
+As a gauge group, consider a $ d $-dimensional Lie group $ G $: in particular, take $ G $ to be a simply-connected Lie group, so that each element can be expressed via the exponential map, and compact too, so that its representations are unitary. Then, consider $ \{T^a\}_{a = 1, \dots, d} $ an $ n $-dimensional representation of the associated Lie algebra $ \mathfrak{g} $, so that the action of $ G $ on $ \Psi $ can be expressed as:
 \begin{equation}
   \Psi(x) \mapsto V(x) \Psi(x)
   \qquad \qquad
@@ -319,11 +321,11 @@ Representation are labelled by their Casimir operators. For any simple Lie algeb
 This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i f^{bac} \{T^c,T^a\} = 0 $ by antisymmetry).
 
 \begin{proposition}{Quadratic Casimir operator}{}
-  For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
+  For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operators are:
   \begin{equation}
-    C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
+    \caf \equiv C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
     \qquad \qquad
-    C_2(\mathtt{g}) = n
+    \caa \equiv C_2(\mathtt{g}) = n
   \end{equation}
 \end{proposition}
 
@@ -365,11 +367,70 @@ This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ 
   \end{proof}
 \end{proofbox}
 
-The quadratic Casimir operators are usually denoted by $ C_2(\mathtt{n}) \equiv \caf $ and $ C_2(\mathtt{g}) \equiv \caa $.
-
 \subsection{QCD amplitudes}
 
-The $ m $ external partons in the amplitude $ \mat_m $ each carry two indices: a colour index and a spin index. Colour indices are denoted by $ c_1, \dots, c_m $: for gluons $ c_i \in \{a\} = \{1, \dots, n_c^2 - 1\} $, as the field-strength tensor \eref{eq:cov-der-field-str} transforms according to the adjoint representation of the gauge group, while for quarks $ c_i \in \{\alpha\} = \{1, \dots, n_c\} $, as their Dirac fields transform according to the fundamental representation of the gauge group.
+The $ m $ external partons in the amplitude $ \mat_m $ each carry two indices: a colour index and a spin index. Colour indices are denoted by $ c_1, \dots, c_m $: for gluons $ c_i \equiv \alpha_1 \in \{1, \dots, n_c^2 - 1\} $, as the field-strength tensor \eref{eq:cov-der-field-str} transforms according to the adjoint representation of the gauge group, while for quarks $ c_i \equiv \alpha_i \in \{1, \dots, n_c\} $, as their Dirac fields transform according to the fundamental representation of the gauge group. Spin indices, on the other hand, are denoted by $ s_1, \dots, s_m $, and they need to take into account how helicities change in CDR: for gluons $ s_i \equiv \mu_i \in \{1, \dots, d\} $, while for quarks $ s_i \in \{1,2\} $.
+
+Consider the $ m $-parton colour-space $ \hilb_c $ and helicity-space $ \hilb_s $, and introduce an orthonormal basis in each:
+\begin{equation*}
+  \{\ket{c_1, \dots, c_m}\} \in \hilb_c
+  \qquad \qquad
+  \{\ket{s_1, \dots, s_m}\} \in \hilb_s
+\end{equation*}
+Note that, being these finite-dimensional Hilbert spaces, the non-canonical (basis-dependent) isomorphisms $ \hilb \leftrightarrow \hilb^* $ are well-defined\footnotemark. 
+
+\footnotetext{Given two $ \K $-vector spaces $ V,W $, the set of all $ \K $-linear functions $ V \rightarrow W $ is denoted by $ \Hom(V,W) $; for finite-dimensional spaces $ \dim_\K \Hom(V,W) = \dim_\K V \cdot \dim_\K W $. The \textit{dual space} is defined as $ V^* \defeq \Hom(V,\K) $. \\
+If $ V $ is finite-dimensional, given a basis $ \{v_i\}_{i = 1,\dots,n} \subset V $, with $ n = \dim_\K V $, then a basis $ \{\omega^1, \dots, \omega^n\} \subset V^* $ is defined by $ \omega^i(v_j) = \delta^i_j $, and the function $ \varphi : V \rightarrow V^* : v_i \mapsto \omega^i $ is a \textit{non-canonical isomorphism} $ V \leftrightarrow V^* $. \\
+If $ V $ is infinite-dimensional, instead, given a basis $ \{v_i\}_{i \in \mathcal{I}} \subset V $, the above construction only allows to define linearly-independent subsets of $ V^* $, which are not granted to be bases.}
+
+Then, to explicit the colour-helicity structure of the $ m $-parton amplitude, we define it as an abstract vector in $ \hilb_c \otimes \hilb_s $, so that:
+\begin{equation}
+  \mat_m^{\{c_1, \dots, c_m\}, \{s_1, \dots, s_m\}}(p_1, \dots, p_m) \equiv \braket{\{c_1, \dots, c_m\}, \{s_1, \dots, s_m\} | \mat_m(p_1, \dots, p_m)}
+\end{equation}
+with:
+\begin{equation*}
+  \ket{\{c_1, \dots, c_m\}, \{s_1, \dots, s_m\}} \equiv \ket{c_1, \dots, c_m} \otimes \ket{s_1, \dots, s_m}
+\end{equation*}
+Hence, it is clear that the squared amplitude summed over colours and helicities is:
+\begin{equation}
+  \abs{\mat_m}^2 = \braket{\mat_m | \mat_m}
+\end{equation}
+To represent colour interactions at QCD vertices, we associate to each parton $ i $ a colour charge $ \ve{T}_i = \{T_i^a\}_{a = 1, \dots, n_c^2 - 1} $ related to the emission of a gluon. The action of $ \ve{T}_i $ onto $ \hilb_c $ is defined by:
+\begin{equation}
+  \braket{c_1, \dots, c_i, \dots, c_m | T_i^a | b_1, \dots, b_i, \dots, b_m} = \delta_{c_1, b_1} \dots T^a_{c_i b_i} \dots \delta_{c_m, b_m}
+  \label{eq:t-act}
+\end{equation}
+So, $ \{T^a_{c_i b_i}\}_{a = 1, \dots, n_c^2 - 1} $ form a vector with respect to the colour index $ a $ of the emitted gluon, and they are matrices in different representations of $ \SUn{n_c} $, depending on the parton $ i $:
+\begin{itemize}
+  \item if $ i $ is a gluon, then $ T^a_{cb} \equiv i f_{cab} $ (adjoint representation);
+  \item if $ i $ is a final-state quark, then $ T^a_{\alpha \beta} \equiv t^a_{\alpha \beta} $ (fundamental representation), while if it is a final-state antiquark $ T^a_{\alpha \beta} \equiv - t^a_{\alpha \beta} $;
+  \item if $ i $ is an initial-state quark, by crossing-symmetry $ T^a_{\alpha \beta} \equiv - t^a_{\alpha \beta}$, while if it is an initial-state antiquark $ T^a_{\alpha \beta} \equiv t^a_{\alpha \beta} $.
+\end{itemize}
+
+\begin{observation}{Colour-charge algebra}{}
+  First of all, we set:
+  \begin{equation}
+    \ve{T}_i \cdot \ve{T}_j \equiv \sum_{a = 1}^{n_c^2 - 1} T_i^a T_i^b
+    \label{eq:t-dot}
+  \end{equation}
+  Moreover, by the action \eref{eq:t-act}, it is clear that charges associated to different partons commute, i.e.:
+  \begin{equation}
+    \ve{T}_i \cdot \ve{T}_j = \ve{T}_j \cdot \ve{T}_i
+    \qquad
+    \forall i \neq j \in \{1, \dots, m\}
+  \end{equation}
+  Finally, by \eeref{eq:quad-cas}{eq:t-dot}:
+  \begin{equation}
+    \ve{T}_i^2 = C_i \id_{\hilb_c}
+  \end{equation}
+  with $ C_i \equiv \caf $ if $ i $ is a quark/antiquark and $ C_i \equiv \caa $ if it is a gluon.
+\end{observation}
+
+As each vector $ \ket{\mat_m} $ is a colour-singlet, colour conservation implies:
+\begin{equation}
+  \sum_{i = 1}^{m} \ve{T}_i \ket{\mat_m} = 0
+\end{equation}
+This allows to partially (or fully, if $ m = 2 $ or $ m = 3 $) factorize the colour-charge algebra in terms of quadratic Casimir operators.
 
 
 
