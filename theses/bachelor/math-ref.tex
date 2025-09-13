@@ -2,4 +2,60 @@
 
 \section{Phase-space parametrization}
 
+In dimensional regularization with $ d = 4 - 2 \de $, we define the measure on the phase space of a parton $ i $ to be:
+\begin{equation}
+  [\dd p_i] \equiv \frac{\dd^{d-1} p_i}{(2\pi)^{d-1} 2E_i} \theta(\ema - E_i)
+\end{equation}
+Note that $ \ema $ is an upper bound on the energies of individual partons: it is an arbitrary parameter to be taken sufficiently large as to be greater or equal to the maximal energy that a final-state parton can reach.
+
+This measure can be cast in a more useful form introducing a suitable parametrization of the phase space: in particular, given that $ \R^n-\{\ve{0}\} \cong \R^+ \times \mathbb{S}^{n-1} $, it is convenient to introduce hyperspherical coordinates on the $ \mathbb{S}^{d-2} $ component of the phase space.
+
+\begin{observation}{Hyperspherical coordinates}{}
+  In general, $ \mathbb{S}^n $ can be described as a surface embedded in $ \R^{n+1} $, defined by:
+  \begin{equation}
+    \sum_{i = 1}^{n+1} x_i^2 = 1
+  \end{equation}
+  Therefore, $ \mathbb{S}^n $ can be parametrized by \bcobs{hyperspherical coordinates} $ \{\varphi_1 , \dots, \varphi_{n-1}, \varphi_n\} \subset [0,\pi]^{n-1} \times [0,2\pi) $ as:
+  \begin{equation}
+    \begin{split}
+      x_1 &= \cos \varphi_1 \\
+      x_2 &= \sin \varphi_1 \cos \varphi_2 \\
+      x_3 &= \sin \varphi_1 \sin \varphi_2 \cos \varphi_3 \\
+          &\,\,\,\vdots \\
+      x_{n-1} &= \sin \varphi_1 \dots \sin \varphi_{n-2} \cos \varphi_{n-1} \\
+      x_n &= \sin \varphi_1 \dots \sin \varphi_{n-2} \sin \varphi_{n-1} \cos \varphi_n \\
+      x_{n+1} &= \sin \varphi_1 \dots \sin \varphi_{n-2} \sin \varphi_{n-1} \sin \varphi_n
+    \end{split}
+  \end{equation}
+  It is then possible to define the hyperspherical measure on $ \mathbb{S}^n $:
+  \begin{equation}
+    \dd \Omega_n \equiv \sin^{n-1} \varphi_1 \sin^{n-2} \varphi_2 \dots \sin^2 \varphi_{n-2} \sin \varphi_{n-1} \, \dd \varphi_1 \dd \varphi_2 \dots \dd \varphi_{n-2} \dd \varphi_{n-1} \dd \varphi_n
+  \end{equation}
+  It is clear that this is a recursive relation, as:
+  \begin{equation}
+    \dd \Omega_n = \sin^{n-1} \varphi \, \dd \varphi \, \dd \Omega_{n-1}
+    \label{eq:hyp-rec}
+  \end{equation}
+\end{observation}
+
+Using \eref{eq:hyp-rec} (with $ \sin \varphi \, \dd \varphi = \dd \cos \varphi $), we can express the measure $ \dd^{d-1} p_i $ as:
+\begin{equation}
+  \dd^{d-1} p_i = \abs{\ve{p}_i}^{d-2} \, \dd \abs{\ve{p}_i} \, \sin^{d-4} \varphi \, \dd \cos \varphi \, \dd \Omega_{d-2}
+\end{equation}
+As we are only interested in integrations on phase spaces of real unresolved partons, which can only be massless, we can use the on-shell condition $ p_i^2 = 0 $ to express $ \abs{\ve{p}_i} = E_i $, so that the phase-space measure becomes:
+\begin{equation}
+  [\dd p_i] = \theta(\ema - E_i) E_i^{d-3} \dd E_i \, \sin^{d-4} \varphi \, \dd \cos \varphi \, \frac{\dd \Omega_{d-2}}{2(2\pi)^{d-1}}
+\end{equation}
+with $ E_i \in \R^+_0 $ and $ \varphi \in [0,\pi] $.
+
 \section{Angular integrals}
+
+
+
+
+
+
+
+
+
+
