@@ -1,31 +1,56 @@
 \selectlanguage{english}
 
-TRYING TO FIX NOTATION
-
-Factorization of hadronic cross-section:
-\begin{equation*}
-  \hcs_{h_1 , h_2}(P_1 , P_2) = \sum_{a,b} \int_{[0,1]^2} \dd x_1 \dd x_2 \, f_a^{(h_1)}(x_1, \fac^2) f_b^{(h_2)}(x_2, \fac^2) \pcs_{a,b}(x_1 P_1, x_2 P_2, \rcr, \ren^2, \fac^2)
-\end{equation*}
-where $ \ren $ is the renormalization scale and $ \fac $ is the factorization scale.
-
+The aim of the NSC subtraction scheme (SS) is to compute integrated subtraction terms which account for QCD corrections to the inclusive\footnotemark production of jets in a hadron collider, i.e. to the process:
 \begin{equation}
-  \pcs_{a,b}(p_1 , p_2) = \sum_{n \in \N_0} \pcs_{a,b}^{(n)}(p_1 , p_2)
+  p + p \rightarrow X + N \,\text{jets}
 \end{equation}
-with $ p_i \equiv x_i P_i $, $ i = 1,2 $.
+Here, $ X $ is a colour-neutral system. The hadron-scale physics is known to be separated from the parton-scale physics (see Section 1.1 of \cite{Collins-2011}): this makes it possible for us to only manipulate partonic cross-sections, as the hadronic cross-section for the considered process can be factorized in terms of partonic cross-sections via the parton distribution functions (PDFs):
 \begin{equation}
-  \pcs_{a,b}^{(0)}(p_1 , p_2) \defeq \frac{\mathcal{N}_{a,b}}{2\hat{s}} \int \lps_n \, \braket{\me_n^{(0)} | \me_n^{(0)}} \mathcal{F}_n
+  \dd\hcs(P_1 , P_2) = \sum_{a,b} \int_{[0,1]^2} \dd \xi_1 \dd \xi_2 \, f_a(\xi_1, \fac^2) f_b(\xi_2, \fac^2) \, \dd\pcs_{a,b}(\xi_1 P_1, \xi_2 P_2, \rcr, \ren^2, \fac^2)
 \end{equation}
-where $ \mathcal{F}_n $ is an $ n $-particle, IR-finite measurement function defining the observable.
+where $ \ren $ is the renormalization scale, $ \fac $ is the factorization scale (which is set to $ \fac = \ren $ from now on) and the sum runs over all initial-state massless partons $ a $ and $ b $ which contribute to the production of the considered final state.
+
+\footnotetext{Inclusive jet production denotes the theoretical prediction (or experimental measurement) of the cross-section for the production of jets of given kinematics, while summing/integrating over all other final-state radiation and particles.}
+
+Denoting the partons' momenta as $ p_i \equiv \xi_i P_i $, $ i = 1,2 $, and suppressing the explicit dependence on the running coupling and the renormalization scale, it is possible to expand the partonic cross-section as a power series in $ \rcr $:
 \begin{equation}
-  \pcs_{a,b}^{(1)}(p_1 , p_2) = \pcs_{a,b}^\text{R}(p_1 , p_2) + \pcs_{a,b}^\text{V}(p_1 , p_2) + \pcs_{a,b}^\text{C}(p_1 , p_2)
+  \dd\pcs_{a,b}(p_1 , p_2) = \sum_{n \in \N_0} \dd\pcs_{a,b}^{(n)}(p_1 , p_2)
+\end{equation}
+where each term is $ \dd\pcs^{(n)} \sim \rc^{n_0 + n} $, with $ n_0 \in \N $ giving the LO-dependence on $ \rcr $. Each term of this expansion will have a different multiplicity of the final state, due to the increasing number of corrections and their different nature. At leading-order (see \secref{ssec:multi-part-ps}):
+\begin{equation}
+  \dd\pcs_{a,b}^{(0)}(p_1 , p_2) \defeq \frac{\mathcal{N}}{2\hat{s}} \int \lps_n \, \abs{\mat^{(0)}_m(p_1, p_2, p_X, p_\fs)}^2 \mathcal{O}_m(p_\fs, p_X)
+\end{equation}
+where $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic CM energy squared, $ \fs $ is the set of all final-state partons (with $ p_\fs $ its total momentum) and the normalization factor $ \mathcal{N} $ includes all necessary symmetry factors (e.g. $ (\ngl!)^{-1} $, with $ \ngl $ number of resolved gluons in the final state), as well as averaging factors for initial-state colours and helicities.
+
+Note that $ \mathcal{O}_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state parton vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \mathcal{O}_{m + n} \rightarrow \mathcal{O}_{m + n - 1} $ for $ n \in \N $, and $ \mathcal{O}_m \rightarrow 0 $.
+
+Non-trivial combinations of different-multiplicity final states emerges already at next-to-leading order:
+\begin{equation}
+  \dd\pcs_{a,b}^{(1)}(p_1 , p_2) = \dd\pcs_{a,b}^\text{R}(p_1 , p_2) + \dd\pcs_{a,b}^\text{V}(p_1 , p_2) + \dd\pcs_{a,b}^\text{C}(p_1 , p_2)
 \end{equation}
 where:
 \begin{equation}
-  \pcs_{a,b}^\text{R}(p_1 , p_2) \defeq \frac{\mathcal{N}_{a,b}}{2\hat{s}} \int \lps_{n+1} \, \braket{\me_{n+1}^{(0)} | \me_{n+1}^{(0)}} \mathcal{F}_{n+1}
+  \dd\pcs_{a,b}^\text{R}(p_1 , p_2) \defeq \frac{\mathcal{N}}{2\hat{s}} \int \lps_{m+1} \, \abs{\mat^{(0)}_{m+1}(p_1, p_2, p_X, p_\fs)}^2 \mathcal{O}_{m+1}(p_\fs, p_X)
+  \label{eq:real-cs}
 \end{equation}
 \begin{equation}
-  \pcs_{a,b}^\text{V}(p_1 , p_2) \defeq \frac{\mathcal{N}_{a,b}}{2\hat{s}} \int \lps_n \, 2\Re \braket{\me_n^{(0)} | \me_n^{(1)}} \mathcal{F}_n
+  \dd\pcs_{a,b}^\text{V}(p_1 , p_2) \defeq \frac{\mathcal{N}}{2\hat{s}} \int \lps_m \, 2\Re \braket{\mat_m^{(0)} | \mat_m^{(1)}} \mathcal{O}_m(p_\fs, p_X)
+  \label{eq:virt-cs}
 \end{equation}
 \begin{equation}
-  \pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \left( \frac{\ren^2}{\fac^2} \right)^\de \sum_c \int_0^1 \dd z \left[ \hat{P}_{c,a}^{(0)} \pcs_{c,b}^{(0)}(z p_1 , p_2) + \hat{P}_{c,b}^{(0)} \pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
+  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \hat{P}_{c,a}^{(0)}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \hat{P}_{c,b}^{(0)}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
+  \label{eq:pdf-cs}
 \end{equation}
+In \eref{eq:real-cs} $ \fs $ contains $ m+1 $ partons, while in \eref{eq:virt-cs} it only contains $ m $ partons. The Altarelli-Parisi splitting kernels are listed in APPENDIX, and proof of \eref{eq:pdf-cs} is provided in SECTION.
+
+The rest of this chapter is devoted to the extrapolation of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, prooving their cancellation and providing the associated integrated counterterms.
+
+
+
+
+
+
+
+
+
+
