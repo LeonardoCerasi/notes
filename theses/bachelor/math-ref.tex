@@ -1,6 +1,7 @@
 \selectlanguage{english}
 
 \section{Phase-space parametrization}
+\label{sec:ph-sp-p}
 
 In dimensional regularization with $ d = 4 - 2 \de $, we define the measure on the phase space of a parton $ i $ to be:
 \begin{equation}
@@ -8,36 +9,11 @@ In dimensional regularization with $ d = 4 - 2 \de $, we define the measure on t
 \end{equation}
 Note that $ \ema $ is an upper bound on the energies of individual partons: it is an arbitrary parameter to be taken sufficiently large as to be greater or equal to the maximal energy that a final-state parton can reach.
 
-This measure can be cast in a more useful form introducing a suitable parametrization of the phase space: in particular, given that $ \R^n-\{\ve{0}\} \cong \R^+ \times \mathbb{S}^{n-1} $, it is convenient to introduce hyperspherical coordinates on the $ \mathbb{S}^{d-2} $ component of the phase space.
-
-\begin{observation}{Hyperspherical coordinates}{}
-  In general, $ \mathbb{S}^n $ can be described as a surface embedded in $ \R^{n+1} $, defined by:
-  \begin{equation}
-    \sum_{i = 1}^{n+1} x_i^2 = 1
-  \end{equation}
-  Therefore, $ \mathbb{S}^n $ can be parametrized by \bcobs{hyperspherical coordinates} $ \{\varphi_1 , \dots, \varphi_{n-1}, \varphi_n\} \subset [0,\pi]^{n-1} \times [0,2\pi) $ as:
-  \begin{equation}
-    \begin{split}
-      x_1 &= \cos \varphi_1 \\
-      x_2 &= \sin \varphi_1 \cos \varphi_2 \\
-      x_3 &= \sin \varphi_1 \sin \varphi_2 \cos \varphi_3 \\
-          &\,\,\,\vdots \\
-      x_{n-1} &= \sin \varphi_1 \dots \sin \varphi_{n-2} \cos \varphi_{n-1} \\
-      x_n &= \sin \varphi_1 \dots \sin \varphi_{n-2} \sin \varphi_{n-1} \cos \varphi_n \\
-      x_{n+1} &= \sin \varphi_1 \dots \sin \varphi_{n-2} \sin \varphi_{n-1} \sin \varphi_n
-    \end{split}
-  \end{equation}
-  It is then possible to define the hyperspherical measure on $ \mathbb{S}^n $:
-  \begin{equation}
-    \dd \Omega_n \equiv \sin^{n-1} \varphi_1 \sin^{n-2} \varphi_2 \dots \sin^2 \varphi_{n-2} \sin \varphi_{n-1} \, \dd \varphi_1 \dd \varphi_2 \dots \dd \varphi_{n-2} \dd \varphi_{n-1} \dd \varphi_n
-  \end{equation}
-  It is clear that this is a recursive relation, as:
-  \begin{equation}
-    \dd \Omega_n = \sin^{n-1} \varphi \, \dd \varphi \, \dd \Omega_{n-1}
-    \label{eq:hyp-rec}
-  \end{equation}
-\end{observation}
-
+This measure can be cast in a more useful form introducing a suitable parametrization of the phase space: in particular, given that $ \R^n-\{\ve{0}\} \cong \R^+ \times \mathbb{S}^{n-1} $, it is convenient to introduce hyperspherical coordinates on the $ \mathbb{S}^{d-2} $ component of the phase space. In general, the \bctxt{hyperspherical measure} on $ \mathbb{S}^n $ is recursively defined as:
+\begin{equation}
+  \dd \Omega_n = \sin^{n-1} \varphi \, \dd \varphi \, \dd \Omega_{n-1}
+  \label{eq:hyp-rec}
+\end{equation}
 Using \eref{eq:hyp-rec} (with $ \sin \varphi \, \dd \varphi = \dd \cos \varphi $), we can express the measure $ \dd^{d-1} p_i $ as:
 \begin{equation}
   \dd^{d-1} p_i = \abs{\ve{p}_i}^{d-2} \, \dd \abs{\ve{p}_i} \, \sin^{d-4} \varphi \, \dd \cos \varphi \, \dd \Omega_{d-2}
@@ -49,24 +25,15 @@ As we are only interested in integrations on phase spaces of real unresolved par
 with $ E_i \in \R^+_0 $ and $ \varphi \in [0,\pi] $.
 
 \subsection{Multi-particle phase space}
-\label{ssec:multi-part-ps}
 
 When considering scattering processes, in general the final state is a multi-particle state, hence the measure on the final-state phase space must account for energy conservation too.
 
-\begin{theorem}{Scattering cross-section}{}
-  Given a $ 2 \rightarrow m $ scattering process with well-defined initial momenta $ p_\mathcal{A} $ and $ p_\mathcal{B} $, then the \bcth{differential cross-section} is:
-  \begin{equation}
-    \dd\sigma = \frac{1}{2E_\mathcal{A} 2E_\mathcal{B} \abs{\ve{v}_\mathcal{A} - \ve{v}_\mathcal{B}}} \prod_{k = 1}^m \int \frac{\dd^3p_k}{(2\pi)^3 2E_k} \abs{\mathcal{M}(\mathcal{A} \mathcal{B} \rightarrow \{f\})}^2 (2\pi)^4 \delta^{(4)}(p_\mathcal{A} + p_\mathcal{B} - \textstyle\sum_{i = 1}^m p_i)
-    \label{eq:scatt-cr-sec}
-  \end{equation}
-  where $ \mathcal{M}(\mathcal{A} \mathcal{B} \rightarrow \{f\}) $ is the matrix element of the scattering process and $ \ve{v}_k \equiv \frac{\ve{p}_k}{E_k} $ is the velocity of the $ k^\text{th} $ particle.
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    See Chapter 4 of \cite{Peskin-1995}.
-  \end{proof}
-\end{proofbox}
+Given a $ 2 \rightarrow m $ scattering process with well-defined initial momenta $ p_\mathcal{A} $ and $ p_\mathcal{B} $, then the differential cross-section is (see Chapter 4 of \cite{Peskin-1995}):
+\begin{equation}
+  \dd\sigma = \frac{1}{2E_\mathcal{A} 2E_\mathcal{B} \abs{\ve{v}_\mathcal{A} - \ve{v}_\mathcal{B}}} \prod_{k = 1}^m \int \frac{\dd^3p_k}{(2\pi)^3 2E_k} \abs{\mathcal{M}(\mathcal{A} \mathcal{B} \rightarrow \{f\})}^2 (2\pi)^4 \delta^{(4)}(p_\mathcal{A} + p_\mathcal{B} - \textstyle\sum_{i = 1}^m p_i)
+  \label{eq:scatt-cr-sec}
+\end{equation}
+where $ \mathcal{M}(\mathcal{A} \mathcal{B} \rightarrow \{f\}) $ is the matrix element of the scattering process and $ \ve{v}_k \equiv \frac{\ve{p}_k}{E_k} $ is the velocity of the $ k^\text{th} $ particle.
 
 As we are only interested in massless initial-state partons, in the center-of-mass (CM) frame $ p_{\mathcal{A},\mathcal{B}} = (E, \pm\ve{p}) $, hence it is trivial to see that the flux factor in \eref{eq:scatt-cr-sec} is just $ 2\hat{s} \defeq 2 (p_\mathcal{A} + p_\mathcal{B})^2 $. The differential cross-section can then be rewritten as:
 \begin{equation}
@@ -78,6 +45,40 @@ where the \bctxt{invariant $ m $-body phase space measure} is defined as:
 \end{equation}
 
 \section{Angular integrals}
+
+\section{Quadratic Casimir operators of \texorpdfstring{$ \SUn{n_c} $}{SU(n)}}
+\label{sec:cas-op}
+
+To prove \eref{eq:cas-sun}, first consider the fundamental representation $ \mathtt{n} $ of $ \SUn{n_c} $.
+Then, contracting \eref{eq:quad-cas} with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n_c) $):
+\begin{equation*}
+  C_2(\mathtt{n}) n = \frac{1}{2} (n_c^2 - 1)
+\end{equation*}
+To compute the Casimir operator for the adjoint representation $ \mathtt{g} $, consider the decomposition of the direct product of two representations:
+\begin{equation*}
+  \mathtt{r}_1 \otimes \mathtt{r}_2 = \bigoplus_i \mathtt{r}_i
+\end{equation*}
+In this representation $ T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2} = T^a_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} $, and it acts on tensor objects $ \Xi_{pq} $ whose first index transforms according to $ \mathtt{r}_1 $ and the second index according to $ \mathtt{r}_2 $. Recalling that $ \tr{T^a} = 0 $:
+\begin{equation*}
+  \begin{split}
+    \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2
+    &= \tr ((T^a_{\mathtt{r}_1})^2 \otimes \id_{\mathtt{r}_2} + 2 T^a_{\mathtt{r}_1} \otimes T^a_{\mathtt{r}_2} + \id_{\mathtt{r}_1} \otimes (T^a_{\mathtt{r}_2})^2) \\
+    &= \tr (C_2(\mathtt{r}_1) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) + \tr (C_2(\mathtt{r}_2) \id_{\mathtt{r}_1} \otimes \id_{\mathtt{r}_2}) = (C_2(\mathtt{r}_1) + C_2(\mathtt{r}_2)) n_{\mathtt{r}_1} n_{\mathtt{r}_2}
+  \end{split}
+\end{equation*}
+However, by the decomposition above:
+\begin{equation*}
+  \tr (T^a_{\mathtt{r}_1 \otimes \mathtt{r}_2})^2 = \sum_i C_2(\mathtt{r}_i) n_{\mathtt{r}_i}
+\end{equation*}
+Consider $ \mathtt{n} \otimes \mathtt{n}^* $, where $ \mathtt{n}^* $ is the complex conjugate of the fundamental representation (for complex representations, $ \mathtt{r} $ and $ \mathtt{r}^* $ are generally inequivalent representations): then $ \Xi_{pq} $ contains a term proportional to the invariant $ \delta_{pq} $, while the other $ n_c^2 - 1 $  independent components transform as a general $ n_c \times n_c $ traceless tensor, i.e. under the adjoint representation of $ \SUn{n_c} $ (as of \eeref{eq:sun-herm}{eq:sun-trace}), thus $ \mathtt{n} \otimes \mathtt{n}^* = \ve{1} \oplus \mathtt{g} $ and the above identity becomes:
+\begin{equation*}
+  (C_2(\ve{1}) + C_2(\mathtt{g})) (n_c^2 - 1) = (C_2(\mathtt{n}) + C_2(\mathtt{n}^*)) n_c^2
+\end{equation*}
+Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
+\begin{equation*}
+  C_2(\mathtt{g}) (n_c^2 - 1) = \frac{n_c^2 - 1}{n} n_c^2
+\end{equation*}
+which completes the proof.
 
 
 
