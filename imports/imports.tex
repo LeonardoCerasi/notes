@@ -1,0 +1,61 @@
+% page layout
+\usepackage[left=20mm, right=20mm, top=25mm]{geometry}
+\geometry{a4paper}
+
+% appendices
+\usepackage[toc,page]{appendix}
+
+% images
+\usepackage{graphicx}
+
+% colored headings
+\usepackage{xcolor}
+
+% bookmarks
+\usepackage{bookmark}
+
+% dedication
+\newenvironment{dedication}
+{\clearpage             % new page
+ \thispagestyle{empty}  % no header and footer
+ \vspace*{\stretch{1}}  % top space
+ %\itshape               % italics text
+ \raggedleft            % flush to the right margin
+}
+{\par                   % end paragraph
+ \vspace{\stretch{3}}   % bottom space (3x top space)
+ \clearpage             % finish page
+}
+
+% custom title page
+\newcommand{\customtitlepage}[7]{%
+  \begin{titlepage}
+    \centering
+    % department logo at the top of the page
+    \includegraphics[width=0.75\textwidth]{imgs/unimi.jpg}\\
+    \vspace{1cm} % ddjust the vertical space as needed
+    {\large Bachelor Degree in #1 \par} % degree title
+    \vspace{1cm}
+    \hrule % horizontal line
+    \vspace{1cm} % adjust the vertical space as needed
+    {\large \sffamily \textbf{#2} \par} % thesis title (bold)
+    \vspace{7cm} % adjust the vertical space as needed
+
+    \begin{minipage}[H]{\textwidth}
+      \small Supervisor: \\
+      \normalsize #3 \\
+      \vspace{1cm}
+    \end{minipage}
+    \begin{minipage}[t]{\textwidth}
+      \raggedleft
+      \small Student Name: \\
+      \normalsize #4\\ % student name
+      \normalsize Matr.: #5 % student number
+    \end{minipage}
+
+    % academic year section at the bottom of the page
+    \vspace{\fill}
+    {\normalsize Academic Year #6 \par}
+
+  \end{titlepage}
+}
