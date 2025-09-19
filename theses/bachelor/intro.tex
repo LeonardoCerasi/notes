@@ -163,7 +163,7 @@ In the case of amplitudes with real emissions, singularities arise when the ener
       \vertex[above = 1.5cm of b] (d);
       \vertex[right = 1.5cm of d] (e);
 
-      \vertex[below = 0.2em of b] (r);
+      \vertex[below = 0.25em of b] (r);
 
       \diagram* {
 	(a) -- [fermion, momentum' = \(p\)] (b),
@@ -192,7 +192,7 @@ The case of virtual corrections is more complex. Indeed, virtual-correction ampl
       \vertex[right = 2.5cm of b, dot] (c) {};
       \vertex[right = 2cm of c, blob, minimum size = 1.2cm] (d) {};
 
-      \vertex[below = 0.2em of a] (r) {};
+      \vertex[below = 0.25em of a] (r) {};
 
       \diagram* {
 	(a) -- [gluon] (b) -- [gluon, momentum' = \(p + k\)] (c) -- [gluon] (d),
@@ -207,9 +207,73 @@ The UV divergence can be seen performing a Wick rotation $ k^0 \mapsto i k^0 $ a
 
 IR divergences, on the other hand, arise again when virtual massless partons go on-shell, showing thus that they have the same nature as those in real corrections: in reality, Nature does not distinguish between $ \virgolette{real} $ and $ \virgolette{virtual} $ corrections, which are merely human-made categories introduce to simplify the calculations. To confirm this, while real and virtual corrections presente IR poles when considered singularly, these poles have to cancel when the two sets of corrections are added together: this is an instance of the Kinoshita--Lee--Nauenberg theorem, which asserts that the SM is IR-finite \cite{Kinoshita-1962, Lee-1964}.
 
-% prove the general form of collinear pdf renormalization counterterms
+\subsection{Subtraction method}
 
-% introduce the concept of subtraction scheme
+A problem of showing the pole cancellation is the fact that real and virtual corrections have different particle multiplicity in the phase space, so their summation is not straightforward. However, Catani's formula \cite{Catani-1998} allows to extract IR singularities from renormalized virtual-correction amplitudes as poles in the number of spacetime dimensions (see \secref{ssec:dim-reg}). Luckily, the same can be done with real corrections too, e.g.:
+\begin{equation*}
+  \int \frac{\dd^{d-1} k}{(2\pi)^{d-1} 2E_k} \abs{
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (a);
+      \vertex[right = 1.25cm of a, dot] (b) {};
+      \vertex[right = 1.25cm of b, blob, minimum size = 0.6cm] (c) {};
+
+      \vertex[above = 0.75cm of b] (d);
+      \vertex[right = 0.75cm of d] (e);
+
+      \vertex[below = 0.25em of b] (r);
+
+      \diagram* {
+	(a) -- [fermion, momentum' = \(p\)] (b),
+	(b) -- [fermion, momentum' = \(p - k\)] (c),
+
+	(b) -- [gluon, momentum = \(k\)] (e),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  }^2
+  \quad \sim \quad
+  \int_0^{\ema} \frac{\dd E_k}{E_k^{5 - d}}
+  \int_0^\pi \dd \theta \frac{\sin^{d-3} \theta}{1 - \cos \theta}
+  \abs{
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (a);
+      \vertex[right = 1.25cm of a, blob, minimum size = 0.6cm] (b) {};
+
+      \diagram* {
+	(a) -- [fermion, momentum' = \(p\)] (b),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  }^2
+\end{equation*}
+Integrations are trivially performed:
+\begin{equation*}
+  \int_0^{\ema} \frac{\dd E_k}{E_k^{5 - d}} = \frac{\ema^{d-4}}{d-4}
+  \qquad \qquad
+  \int_0^\pi \dd \theta \frac{\sin^{d-3} \theta}{1 - \cos \theta} = \frac{2^{1 - \frac{d}{2}}}{d - 4}
+\end{equation*}
+Note that both integrals require $ \Re{d} > 4 $ and are divergent as $ d \rightarrow 4 $. It is then clear that, once the IR poles are extracted, both real and virtual corrections have the same particle multiplicity and can be safely added.
+
+The crucial point of extracting divergences, and in particular from real corrections, is to do so without integrating over the resolved phase space, in order to obtain a fully-differential (with respect to resolved partons) cross-section which allows for the numerical evaluation of phase-space integrals for any IR-safe observable. To do so, it is necessary to introduce a subtraction method.
+
+To illustrate the idea of a subtraction method, consider the following integral:
+\begin{equation}
+  I = \int_0^1 \frac{\dd x}{x^{1 + \epsilon}} f(x)
+\end{equation}
+where $ f(x) $ is an arbitrary integrable function regular at $ x = 0 $. The integrand clearly diverges at $ x = 0 $, and this singularity is regulated by the parameter $ \epsilon $ which leads to a $ \frac{1}{\epsilon} $ pole after integration. The aim of the subtraction method is to analytically extract this pole and regulate the integral, making it finite in the $ \epsilon \rightarrow 0 $ limit. The basic idea is to introduce a counterterm by writing $ f(x) = [f(x) - f(0)] + f(0) $, so that:
+\begin{equation*}
+  I = \int_0^1 \frac{\dd x}{x^{1 + \epsilon}} \left[ f(x) - f(0) \right] + f(0) \int_0^1 \frac{\dd x}{x^{1 + \epsilon}}
+\end{equation*}
+The second integral is analytically determined for $ \Re{\epsilon} < 0 $, hence:
+\begin{equation}
+  I = \int_0^1 \frac{\dd x}{x^{1 + \epsilon}} \left[ f(x) - f(0) \right] - \frac{f(0)}{\epsilon}
+\end{equation}
+The pole has successfully been isolated, and the integral is now regular at $ x = 0 $, allowing for its numerical integration after setting $ \epsilon \rightarrow 0 $.
+
+In a similar fashion, subtraction schemes are being developed for the extraction of IR singularities from QCD corrections. At NLO the problem has been completely solved in a fully-local and analytical way with the Catani--Seymour (CS) scheme \cite{Catani-1997} and the Frixion--Kunszt--Signer (FKS) scheme \cite{Frixione-1996, Frixione-1997}. At NNLO a completely general, analytical and fully-local subtraction scheme has not yet been developed, but there are several candidates: in this work we consider the Nested Soft-Collinear (NSC) subtraction scheme, introduced in \cite{rontsch-2017}.
+
 
 
 
