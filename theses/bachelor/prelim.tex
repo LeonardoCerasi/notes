@@ -3,7 +3,7 @@
 \section{Quantum Chromodynamics}
 We consider a generalized QCD with gauge group $ \SUn{n_c} $, with $ n_c $ colours and $ n = n_f + n_F $ total quark flavours ($ n_f $ massless and $ n_F $ massive quark flavours).
 
-\subsection{Yang-Mills theories}
+\subsection{Yang--Mills theories}
 \label{ssec:gauge-th}
 
 A quantum field theory can be built starting from its symmetry properties: in particular, specifying a group of local transformations, the \bctxt{gauge group}, under which the theory must be invariant. Historically, the idea of gauge theories was first explored by Yang and Mills in \cite{Yang-1954}, with the aim of studying isotopic gauge invariance for the nucleon, and then generalized by Utiyama in \cite{Utiyama-1956}. A modern treatment of gauge theories can be found in Chapter 15 of \cite{Peskin-1995}, which we follow for our discussion.
@@ -49,9 +49,9 @@ To show that $ D_\mu \Psi $ transforms in the same way as $ \Psi $, note that, f
 \end{equation*}
 Hence, the connection transforms as:
 \begin{equation*}
-  A_\mu^a(x) T_a \mapsto V(x) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] V\dg(x) = A_\mu^a(x) T_a + f^{abc} A_\mu^a(x) \theta^b(x) T_c + \frac{1}{g} \pa_\mu \theta^a(x) T_a + \smo(\theta^2)
+  A_\mu^a(x) T_a \mapsto V(x) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] V\dg(x) = A_\mu^a(x) T_a - f^{abc} A_\mu^a(x) \theta^b(x) T_c + \frac{1}{g} \pa_\mu \theta^a(x) T_a + \smo(\theta^2)
 \end{equation*}
-from which it follows that:
+The second term makes it clear that the connection transforms according to the adjoint representation. From this expression, it follows that:
 \begin{equation*}
   D_\mu \Psi(x) \mapsto \left[ \tens{I}_n + i \theta^a(x) T_a + \smo(\theta^2) \right] \left( \pa_\mu - i g A_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
 \end{equation*}
@@ -72,7 +72,7 @@ Usually, the following gauge-invariant term is taken as kinetic term for the gau
 \begin{equation}
   \tr \{(F_{\mu \nu}^a T_a)^2\} = 2 F_{\mu \nu}^a F^{\mu \nu}_a
 \end{equation}
-This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang-Mills theory} without fermionic species:
+This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang--Mills theory} without fermionic species:
 \begin{equation}
   \lag_\text{YM} = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a
 \end{equation}
@@ -132,6 +132,123 @@ where $ \ttr $ (usually taken to be $ \ttr = \frac{1}{2} $) is the trace normali
 \end{equation}
 
 \subsection{Quantization}
+
+The quantization of a non-Abelian gauge theory requires careful treatment due to the presence of spurious non-physical degrees of freedom. These can be accounted for with the Faddeev--Popov method \cite{Faddeev-1967}, i.e. imposing a gauge fixing condition and introducing non-physical ghost fields, which serve as $ \virgolette{negative} $ degrees of freedom. Then, functional quantization can be performed naturally, resulting in the following Feynman rules for the Yang--Mills Lagrangian (excluding ghost fields):
+\begin{align*}
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (a) {};
+      \vertex (la) at ($(a) + (-0.3,0)$) {\(a\)};
+      \vertex[right = 2cm of a, dot] (b) {};
+      \vertex (lb) at ($(b) + (0.3,0)$) {\(b\)};
+      \vertex[below = 0.25em of b] (r);
+      \diagram* {
+        a -- [fermion, momentum = \(p\)] (b),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  & \quad = \quad
+  \frac{i}{\slashed{p} - m} \delta_{ab}
+  &
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (a) {};
+      \vertex (la) at ($(a) + (-0.5,0)$) {\(\mu,a\)};
+      \vertex[right = 2cm of a, dot] (b) {};
+      \vertex (lb) at ($(b) + (0.5,0)$) {\(\nu,b\)};
+      \vertex[below = 0.25em of b] (r);
+      \diagram* {
+        a -- [gluon, momentum = \(k\)] (b),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  & \quad = \quad
+  \frac{-i g_{\mu \nu}}{k^2} \delta_{ab}
+  \\
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (a) {};
+      \vertex (la) at ($(a) + (0,0.1)$) {\(\mu,a\)};
+      \vertex[dot, below = 1.5cm of a] (v) {};
+      \vertex[below = 0.8cm of v] (z) {};
+      \vertex[left = 1.3cm of z] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0.05)$) {\(b\)};
+      \vertex[right = 1.3cm of z] (c) {};
+      \vertex (lc) at ($(c) + (0.1,0)$) {\(c\)};
+      \vertex[below = 0.25em of v] (r);
+      \diagram* {
+        (a) -- [gluon] (v),
+        (b) -- [fermion] (v),
+        (c) -- [anti fermion] (v),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  & \quad = \quad
+  i g \gamma^\mu T^a \delta_{bc}
+  &
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (a) {};
+      \vertex (la) at ($(a) + (0,0.1)$) {\(\mu,a\)};
+      \vertex[dot, below = 1.5cm of a] (v) {};
+      \vertex[below = 0.8cm of v] (z) {};
+      \vertex[left = 1.3cm of z] (b) {};
+      \vertex (lb) at ($(b) + (-0.23,0.05)$) {\(\nu,b\)};
+      \vertex[right = 1.3cm of z] (c) {};
+      \vertex (lc) at ($(c) + (0.2,0)$) {\(\rho,c\)};
+      \vertex[below = 0.25em of v] (r);
+      \diagram* {
+        (a) -- [gluon, momentum = \(p\)] (v),
+        (b) -- [gluon, momentum = \(q\)] (v),
+        (c) -- [gluon, momentum = \(k\)] (v),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  & \quad = \quad
+  \begin{array}{l}
+    g f^{abc} \,[\, g^{\mu \nu} \left( p - q \right)^\rho \\
+    \quad\,\ \ +\, g^{\nu \rho} \left( q - k \right)^\mu \\
+    \quad\,\ \ +\, g^{\rho \mu} \left( k - p \right)^\nu \,]
+  \end{array}
+\end{align*}
+\begin{equation*}
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[dot] (v) {};
+
+      \vertex[above = 1.3cm of v] (z1) {};
+      \vertex[left = 1.3cm of z1] (a) {};
+      \vertex[right = 1.3cm of z1] (b) {};
+
+      \vertex[below = 1.3cm of v] (z2) {};
+      \vertex[left = 1.3cm of z2] (c) {};
+      \vertex[right = 1.3cm of z2] (d) {};
+
+      \vertex (la) at ($(a) + (-0.23,-0.05)$) {\(\mu,a\)};
+      \vertex (lb) at ($(b) + (0.2,0)$) {\(\nu,b\)};
+      \vertex (lc) at ($(c) + (-0.2,-0.05)$) {\(\rho,c\)};
+      \vertex (ld) at ($(d) + (0.23,0)$) {\(\sigma,d\)};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- [gluon] (v),
+        (b) -- [gluon] (v),
+        (c) -- [gluon] (v),
+        (d) -- [gluon] (v),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad = \quad
+  \begin{array}{l}
+    - i g^2 \,[\, f^{abe} f^{cde} \left( g^{\mu \rho} g^{\nu \sigma} - g^{\mu \sigma} g^{\nu \rho} \right) \\
+    \quad\,\ +\, f^{ace} f^{bde} \left( g^{\mu \nu} g^{\rho \sigma} - g^{\mu \sigma} g^{\nu \rho} \right) \\
+    \quad\,\ +\, f^{ade} f^{bce} \left( g^{\mu \nu} g^{\rho \sigma} - g^{\mu \rho} g^{\nu \sigma} \right) \,]
+  \end{array}
+\end{equation*}
+The peculiar nature of non-Abelian gauge theories is due to the possibility for gauge bosons to self-interact (last two vertices).
+
+In the case of QCD, the quanta of the $ n $ spinor fields are the $ n $ quark falvours, while the $ n_c^2 - 1 $ gauge fields are gluon fields, and their colour charges are given by their respective $ \SUn{n_c} $ representations: $ n_c $ charges for the quarks (fundamental $ n $-dimensional representation) and $ n_c^2 - 1 $ charges for the gluons (adjoint representation).
 
 \section{Renormalization scheme}
 \label{sec:renorm}
