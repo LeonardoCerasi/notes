@@ -30,14 +30,14 @@ When considering scattering processes, in general the final state is a multi-par
 
 Given a $ 2 \rightarrow m $ scattering process with well-defined initial momenta $ p_\mathcal{A} $ and $ p_\mathcal{B} $, then the differential cross-section is (see Chapter 4 of \cite{Peskin-1995}):
 \begin{equation}
-  \dd\sigma = \frac{1}{2E_a 2E_b \abs{\ve{v}_a - \ve{v}_b}} \prod_{k = 1}^m \int \frac{\dd^3p_k}{(2\pi)^3 2E_k} \abs{\ampl(ab \rightarrow \fs)}^2 (2\pi)^4 \delta^{(4)}(p_a + p_b - \textstyle\sum_{i = 1}^m p_i)
+  \dd\sigma = \frac{1}{2E_a 2E_b \abs{\ve{v}_a - \ve{v}_b}} \prod_{k = 1}^m \int \frac{\dd^3p_k}{(2\pi)^3 2E_k} \abs{\ampl(ab \rightarrow \mathcal{H})}^2 (2\pi)^4 \delta^{(4)}(p_a + p_b - \textstyle\sum_{i = 1}^m p_i)
   \label{eq:scatt-cr-sec}
 \end{equation}
-where $ \ampl(ab \rightarrow \fs) $ is the amplitude of the scattering process and $ \ve{v}_k \equiv \frac{\ve{p}_k}{E_k} $ is the velocity of the $ k^\text{th} $ particle.
+where $ \ampl(ab \rightarrow \mathcal{H}) $ is the amplitude of the scattering process and $ \ve{v}_k \equiv \frac{\ve{p}_k}{E_k} $ is the velocity of the $ k^\text{th} $ particle.
 
 As we are only interested in massless initial-state partons, in the center-of-mass (CM) frame $ p_{a,b} = (E, \pm\ve{p}) $, hence it is trivial to see that the flux factor in \eref{eq:scatt-cr-sec} is just $ 2\hat{s} \defeq 2 (p_a + p_b)^2 $. The differential cross-section can then be rewritten as:
 \begin{equation}
-  \dd \sigma = \frac{1}{2\hat{s}} \int \lps_m \abs{\mat(ab \rightarrow \fs)}^2
+  \dd \sigma = \frac{1}{2\hat{s}} \int \lps_m \abs{\mat(ab \rightarrow \mathcal{H})}^2
 \end{equation}
 where the \bctxt{invariant $ m $-body phase space measure} is defined as:
 \begin{equation}
@@ -45,6 +45,58 @@ where the \bctxt{invariant $ m $-body phase space measure} is defined as:
 \end{equation}
 
 \section{Angular integrals}
+
+\section{Partitions of unity}
+\label{sec:unit-part}
+
+To define a partition of unity such as \eref{eq:delta-part}, define $ \mathcal{H}^i \equiv \fsu{n}{m+1} - \{i\} $ and introduce the function:
+\begin{equation}
+  d^i \equiv \prod_{k \in \mathcal{H}^i} p_{k,\perp} \prod_{l < m \in \mathcal{H}^i} \rho_{lm}
+\end{equation}
+where $ p_{k,\perp} $ is the transverse momentum of the parton $ k $. Then, the partition is found as:
+\begin{equation}
+  \Delta^i \defeq \frac{d^i}{\sum_{j \in \fsu{n}{m+1}} d^j}
+\end{equation}
+These clearly provide a $ \fsu{n}{m+1} $-partition of unity. To prove its properties, note that:
+\begin{equation*}
+  \so_i d^j = \lim_{E_i \rightarrow 0} \prod_{k \in \mathcal{H}^i} p_{k,\perp} \prod_{l < m \in \mathcal{H}^i} \rho_{lm} =
+  \begin{cases}
+    0 & i \neq j \\
+    d_j & i = j
+  \end{cases}
+\end{equation*}
+Thus trivially $ \so_i \Delta^j = \delta_i^j $. The collinear limit is slightly more complex:
+\begin{equation*}
+  \co_{ij} d^k = \lim_{\rho_{ij} \rightarrow 0} \prod_{s \in \mathcal{H}^i} p_{s,\perp} \prod_{l < m \in \mathcal{H}^i} \rho_{lm} =
+  \begin{cases}
+    0 & i,j \neq k \\
+    d^k & i = k \neq j
+  \end{cases}
+\end{equation*}
+The latter case has two possibilities: either $ j \in \{a,b\} $ or $ j \in \mathcal{H}^i $. Then, clearly $ \co_{ia} d^i = \co_{ib} d^i = 1 $, while if $ j \in \mathcal{H}^i $:
+\begin{equation*}
+  \co_{ij} \Delta^i = \frac{d^i}{d^i + d^j} = \left[ 1 + \frac{d^j}{d^i} \right]^{-1}
+\end{equation*}
+With explicit calculation:
+\begin{equation*}
+  \frac{d^j}{d^i} = \frac{p_{i_\perp}}{p_{j,\perp}} \frac{\rho_{1,j} \dots \rho_{i-1,j} \rho_{i+1,j} \dots \rho_{j-1,j} \rho_{j,j+1} \dots \rho_{j,m+1}}{\rho_{1,i} \dots \rho_{i-1,i} \rho_{i,i+1} \dots \rho_{i,j-1} \rho_{i,j+1} \dots \rho_{i,m+1}} = \frac{p_{i,\perp}}{p_{j,\perp}} = \frac{E_i}{E_j}
+\end{equation*}
+where we have used the fact that $ \rho_{ik} \rightarrow \rho_{jk} \,\,\forall k \neq i,j $ as $ \rho_{ij} \rightarrow 0 $. This completes the proof.
+
+To construct the angular partition of unity in \eref{eq:omega-part}, we set $ g_{kl} \equiv \rho_{kl}^{-1} $ and define the angular factors:
+\begin{equation}
+  \omega^{\ur i} \defeq \frac{g_{i\ur}}{\sum_{j \in \prt{n}{m}(\ur)} g_{j\ur}}
+\end{equation}
+These clearly provide a $ \prt{n}{m}(\ur) $-partition of unity. Moreover:
+\begin{equation*}
+  \co_{j\ur} \omega^{\ur i} = \lim_{\rho_{j\ur} \rightarrow 0} \frac{g_{i\ur}}{\sum_{k \in \prt{n}{m}(\ur)} g_{k\ur}} = \bigg[ \lim_{\rho_{j\ur} \rightarrow 0} \sum_{k \in \prt{n}{m}(\ur)} \frac{\rho_{i\ur}}{\rho_{k\ur}} \bigg]^{-1} =
+  \begin{cases}
+    1^{-1} & j = i \\
+    \infty^{-1} & j \neq i
+  \end{cases}
+  = \delta^i_j
+\end{equation*}
+where we made an abuse of notation. This completes the proof.
 
 \section{Quadratic Casimir operators of \texorpdfstring{$ \SUn{n_c} $}{SU(n)}}
 \label{sec:cas-op}

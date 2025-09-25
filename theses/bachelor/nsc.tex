@@ -10,28 +10,126 @@ Here, $ X $ is a colour-neutral system. The hadron-scale physics is known to be 
 
 Denoting the partons' momenta as $ p_i \equiv \xi_i P_i $, $ i = 1,2 $, and suppressing the explicit dependence on the running coupling and the renormalization scale, it is possible to express the LO term of \eref{eq:part-ser-exp} as (see \secref{sec:ph-sp-p}):
 \begin{equation}
-  \dd\pcs_{a,b}^{(0)}(p_1 , p_2) \defeq \frac{\mathcal{N}}{2\hat{s}} \int \lps_n \, \abs{\ampl^{(0)}_m(p_1, p_2, p_X, p_\fs)}^2 \mathcal{O}_m(p_\fs, p_X)
+  \dd\pcs_{a,b}^{(0)}(p_1 , p_2) \defeq \sum_\text{f} \frac{\mathcal{N}}{2\hat{s}} \int \lps_n \, \abs{\ampl^{(0)}_m(p_1, p_2, p_X, p_\text{f})}^2 \op_m(p_X, p_\text{f})
+  \label{eq:ds-lo}
 \end{equation}
-where $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic center-of-mass (CM) energy squared, $ \fs $ is the set of all final-state partons (with $ p_\fs $ its total momentum) and the normalization factor $ \mathcal{N} $ includes all necessary symmetry factors (e.g. $ (\ngl!)^{-1} $, with $ \ngl $ number of resolved gluons in the final state), as well as averaging factors for initial-state colours and helicities.
+where $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic center-of-mass (CM) energy squared, $ p_\text{f} $ is the total final-state momentum and the normalization factor $ \mathcal{N} $ includes all necessary symmetry factors (e.g. $ (\ngl!)^{-1} $, with $ \ngl $ number of resolved gluons in the final state), as well as averaging factors for initial-state colours and helicities. The sum runs over all possible partonic final states for the considered process (formalized in the next section).
 
-Note that $ \mathcal{O}_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state gluon vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \mathcal{O}_{m + n} \rightarrow \mathcal{O}_{m + n - 1} $ for $ n \in \N $, and $ \mathcal{O}_m \rightarrow 0 $.
+Note that $ \op_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state gluon vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \op_{m + n} \rightarrow \op_{m + n - 1} $ for $ n \in \N $, and $ \op_m \rightarrow 0 $.
 
 Similarly, it is possible to write the NLO corrections in \eref{eq:part-ser-exp} as:
 \begin{equation}
-  \dd\pcs_{a,b}^\text{R}(p_1 , p_2) \defeq \frac{\mathcal{N}_\text{R}}{2\hat{s}} \int \lps_{m+1} \, \abs{\ampl^{(0)}_{m+1}(p_1, p_2, p_X, p_\fs)}^2 \mathcal{O}_{m+1}(p_\fs, p_X)
+  \dd\pcs_{a,b}^\text{R}(p_1 , p_2) \defeq \sum_\text{f} \frac{\mathcal{N}_\text{R}}{2\hat{s}} \int \lps_{m+1} \, \abs{\ampl^{(0)}_{m+1}(p_1, p_2, p_X, p_\text{f})}^2 \op_{m+1}(p_X, p_\text{f})
   \label{eq:real-cs}
 \end{equation}
 \begin{equation}
-  \dd\pcs_{a,b}^\text{V}(p_1 , p_2) \defeq \frac{\mathcal{N}_\text{V}}{2\hat{s}} \int \lps_m \, 2\Re \braket{\ampl_m^{(0)} | \ampl_m^{(1)}} \mathcal{O}_m(p_\fs, p_X)
+  \dd\pcs_{a,b}^\text{V}(p_1 , p_2) \defeq \sum_\text{f} \frac{\mathcal{N}_\text{V}}{2\hat{s}} \int \lps_m \, 2\Re \braket{\ampl_m^{(0)} | \ampl_m^{(1)}} \op_m(p_X, p_\text{f})
   \label{eq:virt-cs}
 \end{equation}
 \begin{equation}
   \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \hat{P}_{c,a}^{(0)}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \hat{P}_{c,b}^{(0)}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
   \label{eq:pdf-cs}
 \end{equation}
-In \eref{eq:real-cs} $ \fs $ contains $ m+1 $ partons, while in \eref{eq:virt-cs} it only contains $ m $ partons. The Altarelli-Parisi splitting kernels are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in [SECTION].
+Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The Altarelli-Parisi splitting kernels are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
 
 The rest of this chapter is devoted to the extrapolation of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, proving their cancellation and providing the associated integrated counterterms.
+
+\section{Nested subtraction}
+
+As suggested by the name, in the NSC SS the IR-poles of real corrections are removed sequentially, starting from those arising from soft limits and then subtracting the collinear ones from the soft-regulated terms.
+
+To show this procedure, we introduce some notation. First of all, we define the integrand function in \eeref{eq:ds-lo}{eq:real-cs} as:
+\begin{equation}
+  \flm_{a,b}[\fs{n}{m}] \equiv \nsym \abs{\ampl_m^{(0)}(p_1, p_2, p_X, p_\text{f})}^2 \op_m(p_X, p_\text{f})
+\end{equation}
+where $ \fs{n}{m} $ is the set of $ m $ final-state partons and $ \mathcal{N}_\text{sym} $ is the relative symmetry factor. The index $ n \in \en_m(a,b,X) $ enumerates all the possible QCD final states which may contribute to the partonic process: these include all combinations of flavours $ \{f_i\}_{i = 1,\dots,m} $ consistent with the initial state $ (a,b) $ and the color-singlet $ X $. In the following, we suppress the arguments of $ \en_m $. The integration on the $ m $-parton final-state phase space is instead defined as:
+\begin{equation}
+  \ips{\flm_{a,b}[\fs{n}{m}]} \defeq \navg \int \lps_m \, \flm_m^{a,b}[\fs{n}{m}]
+\end{equation}
+Then, we can rewrite \eeref{eq:ds-lo}{eq:real-cs} as:
+\begin{equation}
+  2\hat{s}\, \dd\pcs_{a,b}^{(0)} = \sum_{n \in \en_m} \ips{\flm_{a,b}[\fs{n}{m}]}
+  \qquad \qquad
+  2\hat{s}\, \dd\pcs_{a,b}^\text{R} = \sum_{n \in \en_{m+1}} \ips{\flm_{a,b}[\fs{n}{m+1}]}
+  \label{eq:lo-real}
+\end{equation}
+
+Soft and collinear singularities are isolated through operators acting on $ \flm $ functions: $ \so_i $ denotes the limits in which the parton $ i $ becomes soft, while $ \co_{ij} $ that in which the partons $ i $ and $ j $ become collinear to each other. In particular, these operators extract only the leading aymptotic behaviour of $ \flm $ which is non-integrable in $ d = 4 $ dimensions, hence, if they act on quantities without non-integrable singularities, then they identically vanish (e.g. $ \so_i \equiv 0 $ if $ i $ is a (anti)quark).
+
+\subsection{Partonic sets}
+
+A delicate step is the determination of which final-state partons can become unresolved: indeed, in fixed-order perturbative QCD, the number of final-state hard partons cannot drop below the number of jets in the LO process. This means that at NLO no more than one parton can become unresolved, and this is ensured by the $ \op $ operators. In order to use symmetry arguments to minimize the number of unresolved partons that need to be considered, we can partition the set of final-state partons as:
+\begin{equation*}
+  \fs{n}{m} = \fsg{n}{m} \cup \fsq{n}{m} \cup \fsbq{n}{m} \cup \fsqm{n}{m} \cup \fsbqm{n}{m}
+\end{equation*}
+which are respectively the subsets of final-state gluons, massless quarks, massless antiquarks, massive quarks and massive antiquarks. It is also usefull to define the set of all massless partons:
+\begin{equation*}
+  \prt{n}{m} \equiv \{a,b\} \cup \fsg{n}{m} \cup \fsq{n}{m} \cup \fsbq{n}{m} \equiv \{a,b\} \cup \fsu{n}{m}
+\end{equation*}
+as we only consider massless initial-state partons. Note that $ \fsq{n}{m} $ and $ \fsbq{n}{m} $ can be further partitioned into sets of definite massless quark flavours, and the same can be done with $ \fsqm{n}{m} $ and $ \fsbqm{n}{m} $ with massive quark flavours.
+
+For NLO real emissions we consider an additional parton, i.e. a final state $ \fs{n}{m+1} $ with $ n \in \en_{m+1} $. To extract soft singularities from \eref{eq:lo-real}, we first consider a partition of unity such that:
+\begin{equation}
+  \sum_{i \in \fsu{n}{m+1}} \Delta^i = 1
+  \quad : \quad
+  \so_i \Delta^j = \delta_i^j
+  \quad \land \quad
+  \co_{ij} \Delta^k =
+  \begin{cases}
+    0 & i,j \neq k \\
+    1 & i = k \,,\, j \in \{a,b\} \\
+    z_{k,j} & i = k \,,\, j \in \fsu{n}{m+1} - \{i\}
+  \end{cases}
+  \label{eq:delta-part}
+\end{equation}
+with $ z_{k,j} \equiv E_k / (E_k + E_j) $. An explicit construction of these damping factors is given in \secref{sec:unit-part}. It is clear that a term multiplied by $ \Delta^i $ vanishes if any parton other than $ i $ becomes unresolved, thus this partition allows for the extraction of single unresolved partons:
+\begin{equation*}
+  2\hat{s}\, \dd\pcs_{a,b}^\text{R} = \sum_{n \in \en_{m+1}} \sum_{i \in \fsu{n}{m+1}} \ips{\Delta^i \flm_{ab}[\fs{n}{m+1}]}
+\end{equation*}
+We can relabel the potentially-unresolved parton $ i $ in each term as $ \ur_{f_i} $: then, for each allowed massless\footnotemark flavour $ f $, there are $ N_f $ equal terms, where $ N_f $ is the number of final-state partons of flavour $ f $. We can account for the cancellation of these factors with symmetry factors defining $ \fs{n}{m}(\ur_f) \equiv \fs{n}{m+1} - \{\ur_f\} $, thus imposing that the symmetry factors of $ \flm_{a,b}[\fs{n}{m}(\ur_f)] $ are determined ignoring $ \ur_f $ (i.e. implicitly multiplying by $ N_f $), but with the convention that the amplitude in $ \flm_{a,b}[\fs{n}{m}(\ur_f)] $ still contains the potentially-unresolved parton $ \ur_f $. Therefore:
+\begin{equation}
+  \begin{split}
+    2\hat{s}\, \dd\pcs_{a,b}^\text{R}
+    & = \sum_{n \in \en_{m+1}(g)} \ips{\Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(q_\rho)} \ips{\Delta^{\ur} \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} \\
+    & \quad\, + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(\bar{q}_\rho)} \ips{\Delta^{\ur} \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})]}
+  \end{split}
+\end{equation}
+where $ \en_m(f) \subset \en_m : N_f \ge 1 $ denotes the subset of possible final states with at least one parton of flavour $ f $.
+
+\footnotetext{Massive partons cannot go unresolved, as they do not determine neither soft nor collinear singularities.}
+
+Now, the nested subtraction procedure introduced in \cite{rontsch-2017} can be applied. In particular, for each term we rewrite the identity operator as:
+\begin{equation}
+  \id = \so_\ur + \sum_{i \in \prt{n}{m}(\ur)} \oso_\ur \co_{i\ur} + \nlo^\ur
+  \qquad \qquad
+  \nlo^\ur \defeq \sum_{i \in \prt{n}{m}(\ur)} \oso_\ur \oco_{i\ur} \omega^{\ur i}
+  \label{eq:nest-sub}
+\end{equation}
+where we defined the notation for generic operators $ \overline{\mathcal{O}} \equiv \id - \mathcal{O} $ and introduced an angular partition of unity (see \secref{sec:unit-part}):
+\begin{equation}
+  \sum_{i \in \prt{n}{m}(\ur)} \omega^{\ur i} = 1
+  \quad : \quad
+  \co_{j\ur} \omega^{\ur i} = \delta_j^i
+  \label{eq:omega-part}
+\end{equation}
+There now remains to understand how the operators in \eref{eq:nest-sub} act on the $ \flm $ functions and how the a parton set $ \fs{n}{m}(\ur) $ changes when $ \ur $ effectively becomes unresolved.
+
+\subsection{Soft limits}
+
+\subsection{Collinear limits}
+
+\subsubsection{Soft-collinear limits}
+
+\subsection{Real operators}
+
+\section{Non-real corrections}
+
+\subsection{Virtual corrections}
+
+\subsection{Collinear renormalization}
+\label{ssec:coll-ren}
+
+\section{Integrated counterterms}
 
 
 
