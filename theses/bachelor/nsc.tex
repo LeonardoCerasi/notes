@@ -27,10 +27,10 @@ Similarly, it is possible to write the NLO corrections in \eref{eq:part-ser-exp}
   \label{eq:virt-cs}
 \end{equation}
 \begin{equation}
-  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \hat{P}_{c,a}^{(0)}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \hat{P}_{c,b}^{(0)}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
+  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \ap_{c,a}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \ap_{c,b}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
   \label{eq:pdf-cs}
 \end{equation}
-Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The Altarelli-Parisi splitting kernels are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
+Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The \bctxt{Altarelli-Parisi splitting kernels} are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
 
 The rest of this chapter is devoted to the extrapolation of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, proving their cancellation and providing the associated integrated counterterms.
 
@@ -68,6 +68,8 @@ which are respectively the subsets of final-state gluons, massless quarks, massl
 \end{equation*}
 as we only consider massless initial-state partons. Note that $ \fsq{n}{m} $ and $ \fsbq{n}{m} $ can be further partitioned into sets of definite massless quark flavours, and the same can be done with $ \fsqm{n}{m} $ and $ \fsbqm{n}{m} $ with massive quark flavours.
 
+For the remainder of this chapter, we set $ \fsqm{n}{m} = \fsbqm{n}{m} = \emptyset $: this means that $ \fsu{n}{m} \equiv \fs{n}{m} $, however we keep this redundant notation in all the equations, as some will be used in the next chapter where massive partons will be included.
+
 For NLO real emissions we consider an additional parton, i.e. a final state $ \fs{n}{m+1} $ with $ n \in \en_{m+1} $. To extract soft singularities from \eref{eq:lo-real}, we first consider a partition of unity such that:
 \begin{equation}
   \sum_{i \in \fsu{n}{m+1}} \Delta^i = 1
@@ -90,11 +92,12 @@ We can relabel the potentially-unresolved parton $ i $ in each term as $ \ur_{f_
 \begin{equation}
   \begin{split}
     2\hat{s}\, \dd\pcs_{a,b}^\text{R}
-    & = \sum_{n \in \en_{m+1}(g)} \ips{\Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(q_\rho)} \ips{\Delta^{\ur} \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} \\
-    & \quad\, + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(\bar{q}_\rho)} \ips{\Delta^{\ur} \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})]}
+    & = \sum_{n \in \en_{m+1}(g)} \ips{\Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(q_\rho)} \ips{\Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} \\
+    & \quad\, + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(\bar{q}_\rho)} \ips{\Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})]}
   \end{split}
+  \label{eq:part-chan}
 \end{equation}
-where $ \en_m(f) \subset \en_m : N_f \ge 1 $ denotes the subset of possible final states with at least one parton of flavour $ f $.
+where $ \en_m(f) \subset \en_m : N_f \ge 1 $ denotes the subset of possible final states with at least one parton of flavour $ f $. The subscript $ f $ in $ \ur_f $ is suppressed when implicitly understood.
 
 \footnotetext{Massive partons cannot go unresolved, as they do not determine neither soft nor collinear singularities.}
 
@@ -116,9 +119,369 @@ There now remains to understand how the operators in \eref{eq:nest-sub} act on t
 
 \subsection{Soft limits}
 
+We first consider the soft limit of each term in \eref{eq:part-chan}. For the last two terms this is trivial: as quarks do not determine soft singularities, then:
+\begin{equation*}
+  \so_{\ur_q} = \so_{\ur_{\bar{q}}} \equiv 0
+\end{equation*}
+The only soft singularities come from the first term, when a gluon becomes unresolved. In this limit, the factorization of the amplitude is found to be (see \cite{Catani-1997}):
+\begin{equation}
+  \so_{\ur_g} \flm_{a,b}[\fs{n}{m}(\ur_g)] = - 4\pi \bc \sum_{i,j \in \fs{n}{m}} \eik_{i,j} (\cc) \flm_{a,b}[\fs{n}{m}]
+\end{equation}
+where the \bctxt{eikonal factor} reads:
+\begin{equation}
+  \eik_{i,j} \equiv \frac{p_i \cdot p_j}{(p_i \cdot p_\ur) (p_j \cdot p_\ur)}
+\end{equation}
+To perform the integration on the unresolved phase space, we extract the $ [\dd p_\ur] $ measure from $ \lps_{m+1} $:
+\begin{equation*}
+  \ips{\so_\ur \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} = - 4\pi \bc \sum_{i,j \in \fs{n}{m}} (\cc) \ips{\int [\dd p_\ur] \, \eik_{i,j} \flm_{a,b}[\fs{n}{m}]}
+\end{equation*}
+The only factor dependent on $ p_\ur $ is the eikonal factor, hence we can perform the integration explicitly:
+\begin{equation*}
+  \begin{split}
+    \int [\dd p_\ur] \, \eik_{i,j}
+    & = \int [\dd p_\ur] \frac{p_i \cdot p_j}{(p_i \cdot p_j) (p_j \cdot p_\ur)} = \int_0^{\ema} \frac{\dd E_\ur}{E_\ur^{1+2\de}} \int_{\mathbb{S}^{2-2\de}} \frac{\dd \Omega_{2-2\de}}{2(2\pi)^{3-2\de}} \frac{\rho_{ij}}{\rho_{i\ur} \rho_{j\ur}} \\
+    & = - \frac{\ema^{-2\de}}{2\de} \rho_{ij} \frac{1}{8\pi^2} \frac{(4\pi)^\de}{\Gamma(1-\de)} 2^{-1-2\de} \frac{\Gamma^2(-\de)}{\Gamma(-2\de)} \,\hyp(1,1,1-\de,1-\eta_{ij}) \\
+    & = \frac{1}{\de^2} \frac{[\rc]}{4\pi \bc} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij})
+  \end{split}
+\end{equation*}
+where we made use of the short-hands defined in \eref{eq:short-hand} and the angular integral from Appendix G.3 of \cite{Asteriadis-2020}. It is thus possible to write the integrated soft-counterterm as:
+\begin{equation}
+  \sum_{n \in \en_{m+1}(g)} \ips{\so_\ur \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} = \sum_{n \in \en_m} [\rc] \ips{\iso(\de) \flm_{a,b}[\fs{n}{m}]}
+\end{equation}
+where the \bctxt{integrated soft operator} is defined as:
+\begin{equation}
+  \iso(\de) \defeq - \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i,j \in \fs{n}{m}} \eta_{ij} (\cc) \,\hyp(1,1,1-\de,1-\eta_{ij})
+\end{equation}
+
 \subsection{Collinear limits}
 
-\subsubsection{Soft-collinear limits}
+Collinear limits are more delicate to analyze. In particular, we are interested in the extraction of hard-collinear singularities stemming from terms of the form $ \oso_\ur \co_{i\ur} $, which in the case of unresolved quarks coincide with $ \co_{i\ur} $.
+
+\subsubsection{Generalized anomalous dimensions}
+
+The factorization of the amplitude in a collinear limit can be found in \cite{Catani-1997}, and it is depends on whether the unresolved final-state parton becomes collinear to an initial- or final-state parton.
+
+\paragraph{Final-state collinear limit}
+
+Consider the case of a final-state parton $ \ur $ of flavour $ f_\ur $ becoming collinear to another final-state parton $ i $ of flavour $ f_i $. Then, we set:
+\begin{equation*}
+  \ampl_\ur \ : \
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 1.2cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.12) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (r3) {};
+      \vertex[above = 1.5cm of r3] (e);
+
+      \vertex[right = 0.7cm of e] (r4) {};
+      \vertex[above = 0.4cm of r4] (f) {};
+      \vertex (lf) at ($(f) + (0.1,0)$) {\color{red} $ \ur $};
+      \vertex[below = 0.4cm of r4] (g) {};
+      \vertex (lg) at ($(g) + (0.1,0)$) {\color{red} $ i $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- [red, edge label = {$ [i\ur] $}, sloped] (e),
+        (e) -- [red] (f),
+        (e) -- [red] (g),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad \qquad
+  \ampl_0 \ : \
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 1.2cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.12) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (r3) {};
+      \vertex[above = 1.5cm of r3] (e);
+      \vertex (le) at ($(e) + (0.4,0)$) {\color{red} $ [i\ur] $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- [red] (e),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+The factorization of the amplitude reads:
+\begin{equation}
+  \co_{i\ur} \ampl_\ur = - \frac{8\pi \bc}{(p_i - p_\ur)^2} \spl_{f_{[i\ur]}f_i}(z) \ampl_0
+  \label{eq:catani-spl}
+\end{equation}
+where $ \spl_{f_{[i\ur]f_i}f_i}(z) $ is the \bctxt{Altarelli-Parisi splitting function} associated to the splitting process $ [i\ur] \rightarrow i + \ur $ and the $ z $ is the momentum fraction carried by the parton $ i $, i.e.:
+\begin{equation}
+  z \equiv 1 - \frac{E_\ur}{E_{[i\ur]}}
+\end{equation}
+The possible splittings are determined by the QCD interaction vertices (see \secref{ssec:qcd-quant}) and are listed in \eeref{eq:spl-1}{eq:spl-4}:
+\begin{equation*}
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (a) {};
+      \vertex (la) at ($ (a) + (-0.1,0) $) {$ g $};
+
+      \vertex[right = 1.5cm of a, dot] (v) {};
+      \vertex[right = 1cm of v] (r1) {};
+
+      \vertex[above = 0.75cm of r1] (b) {};
+      \vertex (lb) at ($ (b) + (0.1,0) $) {$ g $};
+
+      \vertex[below = 0.75cm of r1] (c) {};
+      \vertex (lc) at ($ (c) + (0.1,0) $) {$ g $};
+
+      \diagram* {
+        (a) -- [gluon] (v),
+        (v) -- [gluon] (b),
+        (v) -- [gluon] (c),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (a) {};
+      \vertex (la) at ($ (a) + (-0.1,0) $) {$ g $};
+
+      \vertex[right = 1.5cm of a, dot] (v) {};
+      \vertex[right = 1cm of v] (r1) {};
+
+      \vertex[above = 0.75cm of r1] (b) {};
+      \vertex (lb) at ($ (b) + (0.1,0) $) {$ q $};
+
+      \vertex[below = 0.75cm of r1] (c) {};
+      \vertex (lc) at ($ (c) + (0.1,0) $) {$ \bar{q} $};
+
+      \diagram* {
+        (a) -- [gluon] (v),
+        (v) -- [fermion] (b),
+        (v) -- [anti fermion] (c),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (a) {};
+      \vertex (la) at ($ (a) + (-0.1,0) $) {$ q $};
+
+      \vertex[right = 1.5cm of a, dot] (v) {};
+      \vertex[right = 1cm of v] (r1) {};
+
+      \vertex[above = 0.75cm of r1] (b) {};
+      \vertex (lb) at ($ (b) + (0.1,0) $) {$ q $};
+
+      \vertex[below = 0.75cm of r1] (c) {};
+      \vertex (lc) at ($ (c) + (0.1,0) $) {$ g $};
+
+      \diagram* {
+        (a) -- [fermion] (v),
+        (v) -- [fermion] (b),
+        (v) -- [gluon] (c),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (a) {};
+      \vertex (la) at ($ (a) + (-0.1,0) $) {$ q $};
+
+      \vertex[right = 1.5cm of a, dot] (v) {};
+      \vertex[right = 1cm of v] (r1) {};
+
+      \vertex[above = 0.75cm of r1] (b) {};
+      \vertex (lb) at ($ (b) + (0.1,0) $) {$ g $};
+
+      \vertex[below = 0.75cm of r1] (c) {};
+      \vertex (lc) at ($ (c) + (0.1,0) $) {$ q $};
+
+      \diagram* {
+        (a) -- [fermion] (v),
+        (v) -- [gluon] (b),
+        (v) -- [fermion] (c),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+and respective charge-conjugates (splitting functions do not distinguish between quarks and antiquarks).
+
+Using \eref{eq:catani-spl} we can derive a general expression for the integrated final-state collinear counterterm:
+\begin{equation*}
+  \begin{split}
+    & \ips{\co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur)]} = \ips{\int [\dd p_i] [\dd p_\ur] \frac{4\pi \bc}{p_i \cdot p_\ur} z \spl_{f_{[i\ur]} f_i}(z) \flm_{a,b}[\fs{n'}{m}](p_{[i\ur]})} \\
+    & \qquad \ = \ips{\int_{(\mathbb{S}^{2-2\de})^2} \frac{\dd \Omega_{2-2\de}^2}{(2(2\pi)^{3-2\de})^2} \int_0^{\ema} \frac{\dd E_i}{E_i^{-1+2\de}} \int_0^{\ema} \frac{\dd E_\ur}{E_\ur^{-1+2\de}} \frac{4\pi \bc}{E_{[i\ur]}^2 \rho_{i\ur}} \frac{\spl_{f_{[i\ur]} f_i}(z)}{1-z} \flm_{a,b}[\fs{n'}{m}](p_{[i\ur]})} \\
+    & \qquad \ = - \frac{[\rc]}{\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \ips{\int [\dd p_{[i\ur]}] \left( \frac{2E_{[i\ur]}}{\mu} \right)^{-2\de} \int_{\zm}^1 \dd z\, \frac{\spl_{f_{[i\ur]} f_i}(z)}{z^{-1 + 2\de} (1-z)^{2\de}} \flm_{a,b}[\fs{n'}{m}](p_{[i\ur]})}
+  \end{split}
+\end{equation*}
+Note that we made the dependence of $ \flm_{a,b}[\fs{n'}{m}] $ on $ p_{[i\ur]} = z^{-1} p_i $ explicit, making it clear that the $ \flm $ function vanishes when $ z < 0 $, which is the case for $ z \in [\zm,0) $ as $ \zm \equiv 1 - \ema / E_{[i\ur]} < 0 $. The hard-collinear counterterm reads:
+\begin{equation*}
+  \begin{split}
+    & \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur)]} \\
+    & \qquad \qquad = - \frac{[\rc]}{\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \ips{\int [\dd p_{[i\ur]}] \left( \frac{2E_{[i\ur]}}{\mu} \right)^{-2\de} \int_{\zm}^1 \dd z\, \oso_z \frac{\spl_{f_{[i\ur]} f_i}(z)}{z^{-1 + 2\de} (1-z)^{2\de}} \flm_{a,b}[\fs{n'}{m}](p_{[i\ur]})}
+  \end{split}
+\end{equation*}
+where $ \so_z \equiv \lim_{z \rightarrow 1} $. Since $ \so_z $ only extracts the singular part, by \eeref{eq:spl-1}{eq:spl-4} it is clear that:
+\begin{equation}
+  \so_z \spl_{f_{[i\ur]}f_i}(z) = \frac{2}{1 - z} \tco^2_{f_{[i\ur]}} \delta_{f_{[i\ur]},f_i}
+\end{equation}
+Then, writing $ [\zm,1] = [\zm,0) \cup [0,1] $, there only remains to evaluate the following integral:
+\begin{equation*}
+  \begin{split}
+    \int_{\zm}^0 \dd z\, \oso_z  \frac{\spl_{f_{[i\ur]}f_i}(z)}{z^{-1+2\de} (1-z)^{2\de}} \flm_{a,b}[\fs{n'}{m}](z^{-1}p_i)
+    & = - 2 \tco^2_{f_{[i\ur]}} \delta_{f_{[i\ur]},f_i} \int_0^{\zm} \dd z\, (1 - z)^{-1-2\de} \flm_{a,b}[\fs{n'}{m}](p_i) \\
+    & = \tco^2_{f_{[i\ur]}} \delta_{f_{[i\ur]},f_i} \frac{1 - e^{-2 \de \leg_i}}{\de} \flm_{a,b}[\fs{n'}{m}]
+  \end{split}
+\end{equation*}
+where we set $ \leg_i \equiv \log (\ema / E_i) $ and suppressed the depedance of the $ \flm $ function on $ p_i = \so_z p_{[i\ur]} $. Finally, the integrated final-state hard-collinear counterterm can be expressed as:
+\begin{equation}
+  \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}](\ur)} = [\rc] \ips{\frac{\Gamma_{i,f_{[i\ur]} \rightarrow f_i f_\ur}}{\de} \flm_{a,b}[\fs{n'}{m}]}
+\end{equation}
+where $ n' \in \en_m $ and the \bctxt{generalized final-state anomalous dimension} is defined as:
+\begin{equation}
+  \Gamma_{i,f_{[i\ur]} \rightarrow f_i f_\ur} \defeq - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{\spl_{f_{[i\ur]}f_i}}{z^{-1+2\de} (1-z)^{2\de}} - \delta_{f_{[i\ur]},f_i} \tco^2_{f_{[i\ur]}} \frac{1 - e^{-2\de L_i}}{\de} \right]
+\end{equation}
+
+\paragraph{Initial-state collinear limit}
+
+Now, consider a final-state parton $ \ur $ of flavour $ f_\ur $ becoming collinear to an initial-state parton $ a $ of flavour $ f_a $. In this case, we set:
+\begin{equation*}
+  \ampl_\ur \ : \
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 1.2cm of v] (r1) {};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.12) $) {$ \vdots $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \vertex[above = 2cm of b] (a) {};
+      \vertex (la) at ($ (a) + (-0.1,0) $) {\color{red} $ a $};
+      \vertex[right = 1cm of a] (e);
+      \vertex[right = 1cm of e] (r3) {};
+      \vertex[above = 0.5cm of r3] (f) {};
+      \vertex (lf) at ($ (f) + (0.1,0) $) {\color{red} $ \ur $};
+
+      \diagram* {
+        (b) -- (v) -- (d),
+        (v) -- (c),
+        (a) -- [red] (e) -- [red, edge label = {\color{red} $ [a\ur] $}, sloped] (v),
+        (e) -- [red] (f),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \qquad \qquad
+  \ampl_0 \ : \
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 1.2cm of v] (r1) {};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.12) $) {$ \vdots $};
+
+      \vertex[above = 1.7cm of b] (e);
+      \vertex (le) at ($(e) + (-0.4,0)$) {\color{red} $ [a\ur] $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (e) -- [red] (v) -- (c),
+        (b) -- (v) -- (d),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{equation*}
+The factorization of the amplitude reads:
+\begin{equation}
+\co_{a\ur} \ampl_m = - \frac{8\pi \bc}{(p_a - p_\ur)^2} \frac{1}{z} P_{f_{[a\ur]}f_a , \text{i}}(z) \ampl_0
+\end{equation}
+where the Altarelli-Parisi initial-state splitting functions are defined in \eeref{eq:spli-1}{eq:spli-4} and depend on the energy fraction:
+\begin{equation}
+  z \equiv 1 - \frac{E_\ur}{E_a}
+\end{equation}
+associated to the splitting process $ a \rightarrow [a\ur] + \ur $. The integrated initial-state collinear counterterm is found analogously to the final-state one:
+\begin{equation*}
+  \begin{split}
+    & \ips{\co_{a\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur)]} = - \frac{[\rc]}{\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \ips{\left( \frac{2E_{[a\ur]}}{\mu} \right)^{-2\de} \int_{\zm}^1 \dd z\, \frac{\spl_{f_{[a\ur]} f_a , \text{i}}(z)}{z (1-z)^{2\de}} \flm_{[a\ur],b}[\fs{n'}{m}](p_{[a\ur]})}
+  \end{split}
+\end{equation*}
+where $ p_{[a\ur]} = z p_a $. As in Appendix A.3 of \cite{rontsch-2503}, we define new splitting functions:
+\begin{equation}
+  \nspl_{f_{[a\ur]}f_a}(z, E_a) \defeq \oso_z \frac{P_{f_{[a\ur]}f_a , \text{i}}(z)}{(1-z)^{2\de}} - \delta_{f_{[a\ur]}f_a} \tco_{f_{[a\ur]}}^2 \frac{1 - e^{-2\de L_a}}{\de} \delta(1-z)
+\end{equation}
+which can be conveniently rewritten as:
+\begin{equation}
+  - \nspl_{\alpha \beta}(z, E_a) = \delta_{\alpha \beta} \delta(1-z) \left[ \gamma_\alpha + 2 \tco_\alpha^2 \frac{1 - e^{-2\de L_a}}{\de} \right] + \left[ - \ap_{\alpha \beta}(z) + \de \fspl_{\alpha \beta}(z) \right]
+\end{equation}
+where $ \gamma_\alpha $ is the anomalous dimension of the partonic flavour $ \alpha $ and $ \fspl_{\alpha \beta} $ is the $ \de $-expansion of $ - \nspl(z, 0) $ starting at $ \smo(\de) $. This relation allows us to get an expllicit expression for the integrated initial-state hard-collinear counterterm:
+\begin{equation}
+  \ips{\oso_\ur \co_{a\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur)]} = \frac{[\rc]}{\de} \ips{\Gamma_{a,f_a} \flm_{[a\ur],b}[\fs{n'}{m}]} + \frac{\rc}{\de} \ips{\gspl_{f_{[a\ur]}f_a} \otimes \flm_{f_{[a\ur]},b}[\fs{n'}{m}]}
+\end{equation}
+where $ n' \in \en_m([a\ur],b,X) $ and the \bctxt{generalized initial-state anomalous dimension} and the generalized splitting functions are defined as:
+\begin{equation}
+  \Gamma_{a,\alpha} \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \gamma_\alpha + \tco^2_\alpha \frac{1 - e^{-2\de L_a}}{\de} \right]
+\end{equation}
+\begin{equation}
+  \gspl_{\alpha \beta}(z) \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ - \ap_{\alpha \beta}(z) + \de \fspl_{\alpha \beta}(z) \right]
+\end{equation}
+and the Mellin convolution is defined as:
+\begin{equation}
+  \fspl_{f_{[a\ur]}f_a} \otimes \flm_{[a\ur],b}[\fs{n'}{m}](p_a) \equiv \int_0^1 \frac{\dd z}{z}\, \fspl_{f_{[a\ur]}f_a}(z) \flm_{[a\ur],b}[\fs{n'}{m}](z p_a)
+\end{equation}
+
+\subsubsection{Hard-collinear limits}
+
+The only difficulty left is how to combine the generalized anomalous dimensions arising from the various terms in \eref{eq:part-chan}.
+
+\paragraph{Unresolved gluon}
+
+\paragraph{Unresolved quark}
+
+\paragraph{Unresolved antiquark}
 
 \subsection{Real operators}
 
