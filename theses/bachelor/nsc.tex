@@ -4,7 +4,7 @@ The aim of the NSC subtraction scheme (SS) is to compute integrated subtraction 
 \begin{equation}
   p + p \rightarrow X + N \,\text{jets}
 \end{equation}
-Here, $ X $ is a colour-neutral system. The hadron-scale physics is known to be separated from the parton-scale physics (see Section 1.1 of \cite{Collins-2011}): this makes it possible for us to only manipulate partonic cross-sections according to \eref{eq:fact-th}, where now the sum runs over all intial-state massless partons $ a $ and $ b $ which contribute to the production of the considered final state. Moreover, for the rest of this work we set $ \ren = \fac = \mu $, where $ \mu $ is the typical energy scale of the considered process.
+Here, $ X $ is a colour-neutral system. The hadron-scale physics is known to be separated from the parton-scale physics (see Section 1.1 of \cite{Collins-2011}): this makes it possible for us to directly manipulate partonic cross-sections according to \eref{eq:fact-th}, where now the sum runs over all intial-state massless partons $ a $ and $ b $ which contribute to the production of the considered final state. Moreover, for the rest of this work we set $ \ren = \fac = \mu $, where $ \mu $ is the typical energy scale of the considered process.
 
 \footnotetext{Inclusive jet production denotes the theoretical prediction (or experimental measurement) of the cross-section for the production of jets of given kinematics, while summing/integrating over all other final-state radiation and particles.}
 
@@ -13,9 +13,9 @@ Denoting the partons' momenta as $ p_i \equiv \xi_i P_i $, $ i = 1,2 $, and supp
   \dd\pcs_{a,b}^{(0)}(p_1 , p_2) \defeq \sum_\text{f} \frac{\mathcal{N}}{2\hat{s}} \int \lps_m (2\pi)^4 \delta^{(4)}(p_\text{in} - p_\text{out}) \abs{\ampl^{(0)}_m(p_1, p_2, p_X, p_\text{f})}^2 \op_m(p_X, p_\text{f})
   \label{eq:ds-lo}
 \end{equation}
-where $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic center-of-mass (CM) energy squared, $ p_\text{f} $ is the total final-state momentum and the normalization factor $ \mathcal{N}_m $ includes all necessary symmetry factors, as well as averaging factors for initial-state colours and helicities. The sum runs over all possible partonic final states for the considered process (formalized in the next section). Note that at LO $ m = N $.
+where $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic center-of-mass (CM) energy squared, $ p_\text{f} $ is the total final-state partonic momentum and the normalization factor $ \mathcal{N}_m $ includes all necessary symmetry factors, as well as averaging factors for initial-state colours and helicities. The sum runs over all possible partonic final states for the considered process (formalized in the next section).
 
-$ \op_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state gluon vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \op_{m + n} \rightarrow \op_{m + n - 1} $ for $ n \in \N $, and $ \op_m \rightarrow 0 $. Moreover, we assume that $ \op_m $ contains the integration measure $ \lps_X $ for the colour-singlet.
+$ \op_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state gluon vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \op_{m + n} \rightarrow \op_{m + n - 1} $ for $ n \in \N $, and $ \op_m \rightarrow 0 $. Moreover, we assume that $ \op_m $ contains the integration measure $ \lps_X $ for the colour-singlet. Note that at LO $ m = N $.
 
 Similarly, it is possible to write the NLO corrections in \eref{eq:part-ser-exp} as:
 \begin{equation}
@@ -32,7 +32,7 @@ Similarly, it is possible to write the NLO corrections in \eref{eq:part-ser-exp}
 \end{equation}
 Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The \bctxt{Altarelli-Parisi splitting kernels} are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
 
-The rest of this chapter is devoted to the extrapolation of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, proving their cancellation and providing the associated integrated counterterms.
+The rest of this chapter is devoted to the extraction of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, proving their cancellation and providing the associated integrated counterterms.
 
 \section{Nested subtraction}
 
@@ -46,14 +46,14 @@ where $ \fs{n}{m} $ is the set of $ m $ final-state partons and $ \mathcal{N}_\t
 \begin{equation}
   \ips{\flm_{a,b}[\fs{n}{m}]} \defeq \navg \int \lps_m \, \flm_m^{a,b}[\fs{n}{m}]
 \end{equation}
-where is the appropriate initial-state averaging factor. Then, we can rewrite \eeref{eq:ds-lo}{eq:real-cs} as:
+where $ \navg $ is the appropriate initial-state averaging factor. Then, we can rewrite \eeref{eq:ds-lo}{eq:real-cs} as:
 \begin{equation}
   2\hat{s}\, \dd\pcs_{a,b}^{(0)} = \sum_{n \in \en_m} \ips{\flm_{a,b}[\fs{n}{m}]}
   \qquad \qquad
   2\hat{s}\, \dd\pcs_{a,b}^\text{R} = \sum_{n \in \en_{m+1}} \ips{\flm_{a,b}[\fs{n}{m+1}]}
   \label{eq:lo-real}
 \end{equation}
-Soft and collinear singularities are isolated through operators acting on $ \flm $ functions: $ \so_i $ denotes the limits in which the parton $ i $ becomes soft, while $ \co_{ij} $ that in which the partons $ i $ and $ j $ become collinear to each other. These operators extract only the leading aymptotic behaviour of $ \flm $ which is non-integrable in $ d = 4 $ dimensions, hence, if they act on quantities without non-integrable singularities, then they identically vanish (e.g. $ \so_i \equiv 0 $ if $ i $ is a (anti)quark).
+Soft and collinear singularities are isolated through operators acting on $ \flm $ functions: $ \so_i $ denotes the limit in which the parton $ i $ becomes soft, while $ \co_{ij} $ that in which the partons $ i $ and $ j $ become collinear to each other. These operators extract only the leading aymptotic behaviour of $ \flm $ which is non-integrable in $ d = 4 $ dimensions, hence, if they act on quantities without non-integrable singularities, then they identically vanish (e.g. $ \so_i \equiv 0 $ if $ i $ is a (anti)quark).
 
 \footnotetext{The notation is slightly different from that in \cite{rontsch-2023, rontsch-2503, rontsch-2509}: in particular, we set $ F_\text{LM} \mapsto \flm $ and $ \mathcal{B} \mapsto \fs{}{} $.}
 
@@ -116,11 +116,11 @@ where we defined the notation for generic operators $ \overline{\mathcal{O}} \eq
   \co_{j\ur} \omega^{\ur i} = \delta_j^i
   \label{eq:omega-part}
 \end{equation}
-There now remains to understand how the operators in \eref{eq:nest-sub} act on the $ \flm $ functions and how the a parton set $ \fs{n}{m}(\ur) $ changes when $ \ur $ effectively becomes unresolved.
+There now remains to understand how the operators in \eref{eq:nest-sub} act on the $ \flm $ functions and how the partonic set $ \fs{n}{m}(\ur) $ changes when $ \ur $ effectively becomes unresolved.
 
 \subsection{Soft limits}
 
-We first consider the soft limit of each term in \eref{eq:part-chan}. For the last two terms this is trivial: as quarks do not determine soft singularities, then:
+We first consider the soft limit of each term in \eref{eq:part-chan}. For the last two terms this is trivial, since quarks do not determine soft singularities:
 \begin{equation*}
   \so_{\ur_q} = \so_{\ur_{\bar{q}}} \equiv 0
 \end{equation*}
@@ -156,11 +156,11 @@ where the \bctxt{integrated soft operator} is defined as:
 
 \subsection{Collinear limits}
 
-Collinear limits are more delicate to analyze. In particular, we are interested in the extraction of hard-collinear singularities stemming from terms of the form $ \oso_\ur \co_{i\ur} $, which in the case of unresolved quarks coincide with $ \co_{i\ur} $.
+Collinear limits are more delicate to analyze. In particular, we are interested in the extraction of hard-collinear singularities stemming from terms of the form $ \oso_\ur \co_{i\ur} $, which in the case of unresolved quarks coincides with $ \co_{i\ur} $.
 
 \subsubsection{Generalized anomalous dimensions}
 
-The factorization of the amplitude in a collinear limit can be found in \cite{Catani-1997}, and it is depends on whether the unresolved final-state parton becomes collinear to an initial- or final-state parton.
+The factorization of the amplitude in a collinear limit can be found in \cite{Catani-1997}, and it depends on whether the unresolved final-state parton becomes collinear to an initial- or final-state parton.
 
 \paragraph{Final-state collinear limit}
 
@@ -240,7 +240,7 @@ The factorization of the amplitude reads:
   \co_{i\ur} \ampl_\ur = - \frac{8\pi \bc}{(p_i - p_\ur)^2} \spl_{f_{[i\ur]}f_i}(z) \ampl_0
   \label{eq:catani-spl}
 \end{equation}
-where $ \spl_{f_{[i\ur]f_i}f_i}(z) $ is the \bctxt{Altarelli-Parisi splitting function} associated to the splitting process $ [i\ur] \rightarrow i + \ur $ and the $ z $ is the momentum fraction carried by the parton $ i $, i.e.:
+where $ \spl_{f_{[i\ur]f_i}f_i}(z) $ is the \bctxt{Altarelli-Parisi splitting function} associated to the splitting process $ [i\ur] \rightarrow i + \ur $ and $ z $ is the momentum fraction carried by the parton $ i $, i.e.:
 \begin{equation}
   z \equiv 1 - \frac{E_\ur}{E_{[i\ur]}}
 \end{equation}
@@ -503,7 +503,7 @@ Now, consider the hard-collinear operator $ \oso_{\ur_{q_\rho}} \co_{i\ur_{q_\rh
   \begin{equation*}
     \sum_{n \in \en_{m+1}(q_\rho)} \delta_{f_a , q_\rho} \ips{\oso_\ur \co_{a\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} = \sum_{n \in \en_m} \frac{[\rc]}{\de} \ips{\gspl_{gq} \otimes \flm_{g,b}[\fs{n}{m}]}
   \end{equation*}
-  \item a final-state gluon ($ [i\ur]_{q_\rho} \rightarrow \ur_{q_\rho} + i_g $), in which case $ \en_{m+1} (q_\rho) \mapsto \en_{m} $ and $ \fs{n}{m}(\ur_{q_\rho}) \mapsto \fs{n'}{m} $ with one less gluon, hence from \eref{eq:hc-fs}:
+  \item a final-state gluon ($ [i\ur]_{q_\rho} \rightarrow \ur_{q_\rho} + i_g $), in which case $ \en_{m+1} (q_\rho) \mapsto \en_{m} $ and $ \fs{n}{m}(\ur_{q_\rho}) \mapsto \fs{n'}{m} $ with one less gluon and one more quark of flavour $ \rho $, hence from \eref{eq:hc-fs}:
   \begin{equation*}
     \sum_{n \in \en_{m+1}(q_\rho)} \sum_{i \in \fsu{n}{m}(\ur_{q_\rho})} \delta_{f_i , g} \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} = \sum_{n \in \en_m} \sum_{i \in \fsu{n}{m}} \delta_{f_i , q_\rho} \frac{[\rc]}{\de} \ips{\Gamma_{i , q \rightarrow gq} \,\flm_{a,b}[\fs{n}{m}]}
   \end{equation*}
@@ -567,13 +567,13 @@ where the \bctxt{integrated collinear operator} is defined as:
 \end{equation}
 This allows us to rewrite \eref{eq:part-chan} as:
 \begin{multline}
-  2\hat{s}\, \dd\pcs_{a,b}^\text{R} = 2\hat{s}\, \dd\pcs_{a,b}^\text{R,NLO} + [\rc] \sum_{n \in \en_m} \ips{[\iso(\de) + \ico(\de)] \flm_{a,b}[\fs{n}{m}]} + \\
+  2\hat{s}\, \dd\pcs_{a,b}^\text{R} = 2\hat{s}\, \dd\pcs_{a,b}^\text{NLO} + [\rc] \sum_{n \in \en_m} \ips{[\iso(\de) + \ico(\de)] \flm_{a,b}[\fs{n}{m}]} + \\
   + \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c,f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c,f_b} \otimes \flm_{a,c}}
   \label{eq:real-fin}
 \end{multline}
-where the real finite reminder is:
+where the finite reminder is:
 \begin{equation}
-  \dd\pcs_{a,b}^\text{R,NLO} \equiv \sum_{n \in \en_{m+1}} \ips{\nlo^\ur \Delta^\ur \bigg[ \flm_{a,b}[\fs{n}{m}(\ur_g)] + \sum_{\rho = 1}^{n_f} \left( \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})] + \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})] \right) \bigg]}
+  \dd\pcs_{a,b}^\text{NLO} \equiv \sum_{n \in \en_{m+1}} \ips{\nlo^\ur \Delta^\ur \bigg[ \flm_{a,b}[\fs{n}{m}(\ur_g)] + \sum_{\rho = 1}^{n_f} \left( \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})] + \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})] \right) \bigg]}
 \end{equation}
 
 \section{Non-real corrections}
@@ -594,9 +594,9 @@ with $ \lambda_{ij} = +1 $ if $ i $ and $ j $ are both incoming/outgoing and $ \
 \begin{equation}
   \ns_i(\de) \equiv \frac{\tco_i^2}{\de^2} + \frac{\gamma_i}{\de}
 \end{equation}
-The $ \ioo $ extracts the $ \de $-poles from \eref{eq:virt-cs} as:
+The $ \ioo $ operator extracts the $ \de $-poles from \eref{eq:virt-cs} as:
 \begin{equation*}
-  2\Re \braket{\ampl_m^{(0)} | \ampl_m^{(1)}} = \ivo(\de) \abs{\ampl_m^{(0)}}^2 + 2\Re \braket{\ampl_m^{(0)} | \ampl_m^\text{fin}}
+  2\Re \braket{\ampl_m^{(0)} | \ampl_m^{(1)}} = \frac{e^{\eg\de}}{\Gamma(1-\de)} \ivo(\de) \abs{\ampl_m^{(0)}}^2 + 2\Re \braket{\ampl_m^{(0)} | \ampl_m^\text{fin}}
 \end{equation*}
 where the \bctxt{virtual operator} is defined as:
 \begin{equation}
