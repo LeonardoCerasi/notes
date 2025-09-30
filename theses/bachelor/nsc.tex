@@ -27,10 +27,10 @@ Similarly, it is possible to write the NLO corrections in \eref{eq:part-ser-exp}
   \label{eq:virt-cs}
 \end{equation}
 \begin{equation}
-  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \ap_{f_c,f_a}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \ap_{f_c,f_b}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
+  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \ap_{f_a,f_c}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \ap_{f_b,f_c}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
   \label{eq:pdf-cs}
 \end{equation}
-Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The \bctxt{Altarelli-Parisi splitting kernels} are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
+Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The \bctxt{Altarelli-Parisi splitting kernels} $ \ap_{f_i , f_j}(z) $ are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
 
 The rest of this chapter is devoted to the extraction of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, proving their cancellation and providing the associated integrated counterterms.
 
@@ -611,7 +611,31 @@ where the second term is the $ \de $-finite remainder of the 1-loop amplitude.
 \subsection{Collinear renormalization}
 \label{ssec:coll-ren}
 
+As already stated, the partonic cross-section is a non-observable quantity and it is linked to the observable hadronic cross-section by the factorization theorem \eref{eq:fact-th}. With this theorem, non-perturbative effects are incapsulated into PDFs, which are then divergent: hence, they need to be renormalized.
+
+In the $ \msb $ scheme, PDFs are renormalized multiplicatively introducing a divergent operator $ \rop $ which acts like (see Chapter 8 of \cite{Collins-2011}):
+\begin{equation}
+  \pdfb{i}{h}(\xi) = \sum_j \int_{[0,1]^2} \dd y_1 \dd y_2 \, \rop_{i,j}(y_1) \pdfr{j}{h}(y_2) \delta(\xi - y_1 y_2)
+\end{equation}
+where $ \pdfb{i}{h} $ are the bare PDFs and $ \pdfr{j}{h} $ are the renormalized PDFs. A convenient expression of the renormalization factor is found in \cite{Curci-1980}:
+\begin{equation}
+  \rop_{i,j}(z) = \delta_{i,j} \delta(1-z) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_i , f_j}(z) + \smo(\rc^2)
+  \label{eq:z-op-def}
+\end{equation}
+Inserting this expression into \eref{eq:fact-th}, it is clear that the multiplicative approach is equivalent to adding NLO counterterms to the LO cross-section. For simplicity, consider the deep inelastic scattering of an electron on a hadron:
+\begin{equation*}
+  \begin{split}
+    \dd\hcs_h(P)
+    & = \sum_a \int_0^1 \frac{\dd \xi}{\xi} \pdfb{a}{h}(\xi) \dd\pcs_a(\xi P) = \sum_{a,c} \int_{[0,1]^3} \frac{\dd \xi}{\xi} \dd y_1 \dd y_2 \, \rop_{a,c}(y_1) \pdfr{c}{h}(y_2) \delta(\xi - y_1 y_2) \dd\pcs_a(\xi P) \\
+    & = \sum_{a,c} \int_{[0,1]^2} \frac{\dd y_1}{y_1} \frac{\dd y_2}{y_2} \left[ \delta_{a,c} \delta(1 - y_1) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_a , f_c}(y_1) + \smo(\rc^2) \right] \pdfr{c}{h}(y_2) \dd\pcs_a(y_1 y_2 P) \\
+    & = \sum_a \int_0^1 \frac{\dd \xi}{\xi} \left[ \pdfr{a}{h}(\xi) \dd\pcs_a(\xi P) + \frac{\rcr}{2\pi} \frac{1}{\de} \sum_{c} \int_0^1 \frac{\dd z}{z} \ap_{f_a , f_c}(z) \pdfr{c}{h}(\xi) \dd\pcs_a(z \xi P) + \smo(\rc^2) \right]
+  \end{split}
+\end{equation*}
+The first term is the factorized cross-section with renormalized PDFs, while the second term is the NLO renormalization counterterm. It is trivial to generalize to the case of hadron-hadron scattering, obtaining \eref{eq:pdf-cs}.
+
 \section{Integrated counterterms}
+
+As all IR poles have been extracted from \eeref{eq:real-cs}{eq:pdf-cs}, we can now show their explicit cancellation.
 
 
 
