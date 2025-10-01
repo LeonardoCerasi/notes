@@ -27,7 +27,7 @@ Similarly, it is possible to write the NLO corrections in \eref{eq:part-ser-exp}
   \label{eq:virt-cs}
 \end{equation}
 \begin{equation}
-  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \ap_{f_a,f_c}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \ap_{f_b,f_c}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
+  \dd\pcs_{a,b}^\text{C}(p_1 , p_2) \defeq \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \left[ \ap_{f_c,f_a}(z) \dd\pcs_{c,b}^{(0)}(z p_1 , p_2) + \ap_{f_c,f_b}(z) \dd\pcs_{a,c}^{(0)}(p_1 , z p_2) \right]
   \label{eq:pdf-cs}
 \end{equation}
 Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The \bctxt{Altarelli-Parisi splitting kernels} $ \ap_{f_i , f_j}(z) $ are listed in \secref{sec:spl-func}, and proof of \eref{eq:pdf-cs} is provided in \secref{ssec:coll-ren}.
@@ -134,9 +134,9 @@ where the \bctxt{eikonal factor} reads:
 \end{equation}
 To perform the integration on the unresolved phase space, we extract the $ [\dd p_\ur] $ measure from $ \lps_{m+1} $:
 \begin{equation*}
-  \ips{\so_\ur \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} = - 4\pi \bc \sum_{i,j \in \fs{n}{m}} (\cc) \ips{\int [\dd p_\ur] \, \eik_{i,j} \flm_{a,b}[\fs{n}{m}]}
+  \ips{\so_\ur \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} = - 4\pi \bc \sum_{i,j \in \fsp{n}{m}} (\cc) \ips{\int [\dd p_\ur] \, \eik_{i,j} \flm_{a,b}[\fs{n}{m}]}
 \end{equation*}
-The only factor dependent on $ p_\ur $ is the eikonal factor, hence we can perform the integration explicitly:
+Note that $ \eik_{i,i} = 0 $, hence the sum runs on $ i \neq j \in \fsp{n}{m} $. Moreover, the only factor dependent on $ p_\ur $ is the eikonal factor, hence we can perform the integration explicitly:
 \begin{equation*}
   \begin{split}
     \int [\dd p_\ur] \, \eik_{i,j}
@@ -151,7 +151,7 @@ where we made use of the short-hands defined in \eref{eq:short-hand} and the ang
 \end{equation}
 where the \bctxt{integrated soft operator} is defined as:
 \begin{equation}
-  \iso(\de) \defeq - \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i,j \in \fs{n}{m}} \eta_{ij} (\cc) \,\hyp(1,1,1-\de,1-\eta_{ij})
+  \iso(\de) \defeq - \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i \neq j \in \fsp{n}{m}} \eta_{ij} (\cc) \,\hyp(1,1,1-\de,1-\eta_{ij})
 \end{equation}
 
 \subsection{Collinear limits}
@@ -353,14 +353,14 @@ Note that we made the dependence of $ \flm_{a,b}[\fs{n'}{m}] $ on $ p_{[i\ur]} =
 \end{equation*}
 where $ \so_z \equiv \lim_{z \rightarrow 1} $. Since $ \so_z $ only extracts the singular part, by \eeref{eq:spl-1}{eq:spl-4} it is clear that:
 \begin{equation}
-  \so_z \spl_{f_{[i\ur]}f_i}(z) = \frac{2}{1 - z} \tco^2_{f_{[i\ur]}} \delta_{f_{[i\ur]},f_i}
+  \so_z \spl_{f_{[i\ur]}f_i}(z) = \frac{2}{1 - z} \tco^2_{[i\ur]} \delta_{f_{[i\ur]},f_i}
 \end{equation}
 Then, writing $ [\zm,1] = [\zm,0) \cup [0,1] $, there only remains to evaluate the following integral:
 \begin{equation*}
   \begin{split}
     \int_{\zm}^0 \dd z\, \oso_z  \frac{\spl_{f_{[i\ur]}f_i}(z)}{z^{-1+2\de} (1-z)^{2\de}} \flm_{a,b}[\fs{n'}{m}](z^{-1}p_i)
-    & = - 2 \tco^2_{f_{[i\ur]}} \delta_{f_{[i\ur]},f_i} \int_0^{\zm} \dd z\, (1 - z)^{-1-2\de} \flm_{a,b}[\fs{n'}{m}](p_i) \\
-    & = \tco^2_{f_{[i\ur]}} \delta_{f_{[i\ur]},f_i} \frac{1 - e^{-2 \de \leg_i}}{\de} \flm_{a,b}[\fs{n'}{m}]
+    & = - 2 \tco^2_{[i\ur]} \delta_{f_{[i\ur]},f_i} \int_0^{\zm} \dd z\, (1 - z)^{-1-2\de} \flm_{a,b}[\fs{n'}{m}](p_i) \\
+    & = \tco^2_{[i\ur]} \delta_{f_{[i\ur]},f_i} \frac{1 - e^{-2 \de \leg_i}}{\de} \flm_{a,b}[\fs{n'}{m}]
   \end{split}
 \end{equation*}
 where we set $ \leg_i \equiv \log (\ema / E_i) $ and suppressed the depedance of the $ \flm $ function on $ p_i = \so_z p_{[i\ur]} $. Finally, the integrated final-state hard-collinear counterterm can be expressed as:
@@ -370,7 +370,8 @@ where we set $ \leg_i \equiv \log (\ema / E_i) $ and suppressed the depedance of
 \end{equation}
 where $ n' \in \en_m $ and the generalized process-dependent final-state anomalous dimension is defined as:
 \begin{equation}
-  \Gamma_{i,f_{[i\ur]} \rightarrow f_i f_\ur} \defeq - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{\spl_{f_{[i\ur]}f_i}}{z^{-1+2\de} (1-z)^{2\de}} - \delta_{f_{[i\ur]},f_i} \tco^2_{f_{[i\ur]}} \frac{1 - e^{-2\de L_i}}{\de} \right]
+  \Gamma_{i,f_{[i\ur]} \rightarrow f_i f_\ur} \defeq - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{\spl_{f_{[i\ur]}f_i}(z)}{z^{-1+2\de} (1-z)^{2\de}} - \delta_{f_{[i\ur]},f_i} \tco^2_{[i\ur]} \frac{1 - e^{-2\de L_i}}{\de} \right]
+  \label{eq:fin-gen-an-dim-pd}
 \end{equation}
 
 \paragraph{Initial-state collinear limit}
@@ -453,23 +454,24 @@ associated to the splitting process $ a \rightarrow [a\ur] + \ur $. The integrat
 \end{equation*}
 where $ p_{[a\ur]} = z p_a $. As in Appendix A.3 of \cite{rontsch-2503}, we define new splitting functions:
 \begin{equation}
-  \nspl_{f_{[a\ur]}f_a}(z, E_a) \defeq \oso_z \frac{P_{f_{[a\ur]}f_a , \text{i}}(z)}{(1-z)^{2\de}} - \delta_{f_{[a\ur]}f_a} \tco_{f_{[a\ur]}}^2 \frac{1 - e^{-2\de L_a}}{\de} \delta(1-z)
+  \nspl_{f_{[a\ur]}f_a}(z, E_a) \defeq \oso_z \frac{P_{f_{[a\ur]}f_a , \text{i}}(z)}{(1-z)^{2\de}} - \delta_{f_{[a\ur]}f_a} \tco_{[a\ur]}^2 \frac{1 - e^{-2\de L_a}}{\de} \delta(1-z)
 \end{equation}
 which can be conveniently rewritten as:
 \begin{equation}
-  - \nspl_{\alpha \beta}(z, E_a) = \delta_{\alpha \beta} \delta(1-z) \left[ \gamma_\alpha + \tco_\alpha^2 \frac{1 - e^{-2\de L_a}}{\de} \right] + \left[ - \ap_{\alpha \beta}(z) + \de \fspl_{\alpha \beta}(z) \right]
+  - \nspl_{f_{[a\ur]} f_a}(z, E_a) = \delta_{f_{[a\ur]} , f_a} \delta(1-z) \left[ \gamma_a + \tco_a^2 \frac{1 - e^{-2\de L_a}}{\de} \right] + \left[ - \ap_{f_{[a\ur]} f_a}(z) + \de \fspl_{f_{[a\ur]} f_a}(z) \right]
 \end{equation}
-where $ \gamma_\alpha $ is the anomalous dimension of the partonic flavour $ \alpha $ and $ \fspl_{\alpha \beta} $ is the $ \de $-expansion of $ - \nspl(z, 0) $ starting at $ \smo(\de) $. This relation allows us to get an explicit expression for the integrated initial-state hard-collinear counterterm:
+where $ \gamma_a $ is the anomalous dimension of the parton $ a $ and $ \fspl_{f_{[a\ur]} f_a} $ is the $ \de $-expansion of the function $ - \nspl_{f_{[a\ur]} f_a}(z, 0) $ starting at $ \smo(\de) $. This relation allows us to get an explicit expression for the integrated initial-state hard-collinear counterterm:
 \begin{equation}
   \ips{\oso_\ur \co_{a\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur)]} = \frac{[\rc]}{\de} \ips{\delta_{f_{[a\ur]}f_a} \Gamma_{a,f_a} \flm_{[a\ur],b}[\fs{n'}{m}]} + \frac{[\rc]}{\de} \ips{\gspl_{f_{[a\ur]}f_a} \otimes \flm_{f_{[a\ur]},b}[\fs{n'}{m}]}
   \label{eq:hc-is}
 \end{equation}
 where $ n' \in \en_m[[a\ur],b,X] $ and the \bctxt{generalized initial-state anomalous dimension} and the generalized splitting functions are defined as:
 \begin{equation}
-  \Gamma_{a,\alpha} \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \gamma_\alpha + \tco^2_\alpha \frac{1 - e^{-2\de L_a}}{\de} \right]
+  \Gamma_{a , f_a} \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \gamma_a + \tco^2_a \frac{1 - e^{-2\de L_a}}{\de} \right]
+  \label{eq:in-gen-an-dim}
 \end{equation}
 \begin{equation}
-  \gspl_{\alpha \beta}(z) \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ - \ap_{\alpha \beta}(z) + \de \fspl_{\alpha \beta}(z) \right]
+  \gspl_{f_{[a\ur]} f_a}(z) \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ - \ap_{f_{[a\ur]} f_a}(z) + \de \fspl_{f_{[a\ur]} f_a}(z) \right]
 \end{equation}
 and the Mellin convolution is defined as:
 \begin{equation}
@@ -545,20 +547,21 @@ All the integrated hard-collinear counterterms can be combined into a convenient
 \end{equation*}
 where we used the fact that generalized splitting functions and anomalous dimensions do not depend on quark/antiquark flavours. Collectively, Mellin convolutions can be grouped as:
 \begin{equation*}
-  \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c,f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c,f_b} \otimes \flm_{a,c}}
+  \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c f_b} \otimes \flm_{a,c}}
 \end{equation*}
 where $ c $ spans the same set as $ a $ and $ b $. Note that the Mellin convolution always acts on the momentum associated to the parton $ c $, i.e. $ p_1 $ in the first term and $ p_2 $ in the second term. Moreover, we define the \bctxt{generalized final-state anomalous dimensions} as:
 \begin{equation}
   \Gamma_{i,q} \defeq \Gamma_{i , q \rightarrow q g} + \Gamma_{i , q \rightarrow g q}
   \qquad \qquad
   \Gamma_{i,g} \defeq \Gamma_{i , g \rightarrow g g} + 2n_f \Gamma_{i , g \rightarrow \bar{q} q}
+  \label{eq:fin-gen-an-dim}
 \end{equation}
 Finally, we can then write the integrated hard-collinear counterterms as:
 \begin{equation*}
   \begin{split}
     & \sum_{n \in \en_{m+1}(g)} \sum_{i \in \prt{n}{m}(\ur_g)} \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(q_\rho)} \sum_{i \in \prt{n}{m}(\ur_{q_\rho})} \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} \\
     & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \,\, + \sum_{\rho = 1}^{n_f} \sum_{n \in \en_{m+1}(\bar{q}_\rho)} \sum_{i \in \prt{n}{m}(\ur_{\bar{q}_\rho})} \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})]} \\
-    & = \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c,f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c,f_b} \otimes \flm_{a,c}} + [\rc] \sum_{n \in \en_m} \ips{\ico(\de) \flm_{a,b}[\fs{n}{m}]}
+    & = \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c f_b} \otimes \flm_{a,c}} + [\rc] \sum_{n \in \en_m} \ips{\ico(\de) \flm_{a,b}[\fs{n}{m}]}
   \end{split}
 \end{equation*}
 where the \bctxt{integrated collinear operator} is defined as:
@@ -568,7 +571,7 @@ where the \bctxt{integrated collinear operator} is defined as:
 This allows us to rewrite \eref{eq:part-chan} as:
 \begin{multline}
   2\hat{s}\, \dd\pcs_{a,b}^\text{R} = 2\hat{s}\, \dd\pcs_{a,b}^\text{NLO} + [\rc] \sum_{n \in \en_m} \ips{[\iso(\de) + \ico(\de)] \flm_{a,b}[\fs{n}{m}]} + \\
-  + \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c,f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c,f_b} \otimes \flm_{a,c}}
+  + \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c f_b} \otimes \flm_{a,c}}
   \label{eq:real-fin}
 \end{multline}
 where the finite reminder is:
@@ -602,11 +605,10 @@ where the \bctxt{virtual operator} is defined as:
 \begin{equation}
   \ivo(\de) \equiv \frac{\Gamma(1-\de)}{e^{\eg\de}} \left( \ioo(\de) + \ioo\dg(\de) \right) = \sum_{i \neq j \in \fsp{n}{m}} \frac{\tco_i \cdot \tco_j}{\tco_i^2} \left( \frac{\mu^2}{2p_i \cdot p_j} \right)^\de \cos \left( \lambda_{ij} \pi \de \right) \ns_i(\de)
 \end{equation}
-Then, \eref{eq:virt-cs} can be rewritten as:
+Then, making the finite reminder of the 1-loop amplitude explicit, \eref{eq:virt-cs} can be rewritten as:
 \begin{equation}
-  2\hat{s} \dd\pcs_{a,b}^\text{V} = [\rc] \ips{\ivo(\de) \flm_{a,b}[\fs{n}{m}]} + \ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]}
+  2\hat{s}\, \dd\pcs_{a,b}^\text{V} = [\rc] \sum_{n \in \en_m} \ips{\ivo(\de) \flm_{a,b}[\fs{n}{m}]} + \sum_{n \in \en_m} \ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]}
 \end{equation}
-where the second term is the $ \de $-finite remainder of the 1-loop amplitude.
 
 \subsection{Collinear renormalization}
 \label{ssec:coll-ren}
@@ -619,7 +621,7 @@ In the $ \msb $ scheme, PDFs are renormalized multiplicatively introducing a div
 \end{equation}
 where $ \pdfb{i}{h} $ are the bare PDFs and $ \pdfr{j}{h} $ are the renormalized PDFs. A convenient expression of the renormalization factor is found in \cite{Curci-1980}:
 \begin{equation}
-  \rop_{i,j}(z) = \delta_{i,j} \delta(1-z) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_i , f_j}(z) + \smo(\rc^2)
+  \rop_{i,j}(z) = \delta_{i,j} \delta(1-z) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_j f_i}(z) + \smo(\rc^2)
   \label{eq:z-op-def}
 \end{equation}
 Inserting this expression into \eref{eq:fact-th}, it is clear that the multiplicative approach is equivalent to adding NLO counterterms to the LO cross-section. For simplicity, consider the deep inelastic scattering of an electron on a hadron:
@@ -627,8 +629,8 @@ Inserting this expression into \eref{eq:fact-th}, it is clear that the multiplic
   \begin{split}
     \dd\hcs_h(P)
     & = \sum_a \int_0^1 \frac{\dd \xi}{\xi} \pdfb{a}{h}(\xi) \dd\pcs_a(\xi P) = \sum_{a,c} \int_{[0,1]^3} \frac{\dd \xi}{\xi} \dd y_1 \dd y_2 \, \rop_{a,c}(y_1) \pdfr{c}{h}(y_2) \delta(\xi - y_1 y_2) \dd\pcs_a(\xi P) \\
-    & = \sum_{a,c} \int_{[0,1]^2} \frac{\dd y_1}{y_1} \frac{\dd y_2}{y_2} \left[ \delta_{a,c} \delta(1 - y_1) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_a , f_c}(y_1) + \smo(\rc^2) \right] \pdfr{c}{h}(y_2) \dd\pcs_a(y_1 y_2 P) \\
-    & = \sum_a \int_0^1 \frac{\dd \xi}{\xi} \left[ \pdfr{a}{h}(\xi) \dd\pcs_a(\xi P) + \frac{\rcr}{2\pi} \frac{1}{\de} \sum_{c} \int_0^1 \frac{\dd z}{z} \ap_{f_a , f_c}(z) \pdfr{c}{h}(\xi) \dd\pcs_a(z \xi P) + \smo(\rc^2) \right]
+    & = \sum_{a,c} \int_{[0,1]^2} \frac{\dd y_1}{y_1} \frac{\dd y_2}{y_2} \left[ \delta_{a,c} \delta(1 - y_1) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_c f_a}(y_1) + \smo(\rc^2) \right] \pdfr{c}{h}(y_2) \dd\pcs_a(y_1 y_2 P) \\
+    & = \sum_a \int_0^1 \frac{\dd \xi}{\xi} \left[ \pdfr{a}{h}(\xi) \dd\pcs_a(\xi P) + \frac{\rcr}{2\pi} \frac{1}{\de} \sum_{c} \int_0^1 \frac{\dd z}{z} \ap_{f_c f_a}(z) \pdfr{c}{h}(\xi) \dd\pcs_a(z \xi P) + \smo(\rc^2) \right]
   \end{split}
 \end{equation*}
 The first term is the factorized cross-section with renormalized PDFs, while the second term is the NLO renormalization counterterm. It is trivial to generalize to the case of hadron-hadron scattering, obtaining \eref{eq:pdf-cs}.
@@ -636,6 +638,107 @@ The first term is the factorized cross-section with renormalized PDFs, while the
 \section{Integrated counterterms}
 
 As all IR poles have been extracted from \eeref{eq:real-cs}{eq:pdf-cs}, we can now show their explicit cancellation.
+
+Throughout this section we make use of usefull $ \de $-expansions:
+\begin{equation}
+  \frac{e^{\eg\de}}{\Gamma(1-\de)} = 1 + \smo(\de^2)
+  \qquad \qquad
+  \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} = 1 + \smo(\de^2)
+\end{equation}
+As a consequence:
+\begin{equation}
+  [\rc] = \frac{\rcr}{2\pi} + \smo(\de^2)
+  \qquad \qquad
+  \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} = 1 - 2 \de \ler_i + \smo(\de^2)
+\end{equation}
+with $ k \in \R^+ $ and $ \ler_i $ defined in \eref{eq:log-short}.
+
+\subsection{Generalized splitting functions}
+
+First, consider the third term in \eref{eq:real-fin}. It is trivial to see how these poles are cancelled by the counterterms in \eref{eq:pdf-cs}, e.g. consider the terms associated to the parton $ a $:
+\begin{equation*}
+  \begin{split}
+    & \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c f_a} \otimes \flm_{c,b}[\fs{n}{m}]} + \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \int_0^1 \frac{\dd z}{z} \ap_{f_c f_a}(z) \dd\pcs^{(0)}_{c,b}(zp_1 , p_2) \\
+    & \qquad \quad = \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \sum_{n \in \en_m} \ips{\int_0^1 \frac{\dd z}{z} \left[ \gspl_{f_c f_a}(z) + \ap_{f_c f_a}(z) \right] \flm_{c,b}[\fs{n}{m}](zp_1)} + \smo(\de) \\
+    & \qquad \quad = \frac{\rcr}{2\pi} \frac{1}{\de} \sum_c \sum_{n \in \en_m} \ips{\int_0^1 \frac{\dd z}{z} \left[ \de \fspl_{f_c f_a}(z) + 2 \de \ler_a \ap_{f_c f_a}(z) + \smo(\de^2) \right] \flm_{c,b}[\fs{n}{m}](zp_1)} + \smo(\de) \\
+    & \qquad \quad = \frac{\rcr}{2\pi} \sum_c \sum_{n \in \en_m} \ips{\int_0^1 \frac{\dd z}{z} \left[ \fspl_{f_c f_a}(z) + 2 \ler_a \ap_{f_c f_a}(z) \right] \flm_{c,b}[\fs{n}{m}](zp_1)} + \smo(\de) \\
+  \end{split}
+\end{equation*}
+which is manifestly $ \de $-finite.
+
+\subsection{Integrated operators}
+
+We now turn our attention to the sum of the integrated operators, i.e. $ \ito \equiv \iso + \ico + \ivo $. To show that $ \ito(\de) $ does not contain any pole, first consider the sum $ \iso + \ivo $:
+\begin{equation*}
+  \iso(\de) + \ivo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ - \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} K_{ij} + \left( \frac{\mu^2}{2p_i \cdot p_j} \right)^\de \cos \left( \lambda_{ij} \pi \de \right) \frac{\ns_i(\de)}{\tco_i^2} \right]
+\end{equation*}
+where we defined:
+\begin{equation}
+  K_{ij} \equiv \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij}) = 1 - \de \log \eta_{ij} + \smo(\de^2)
+\end{equation}
+Then, writing $ 2p_i \cdot p_j = 4E_i E_j \eta_{ij} $:
+\begin{equation*}
+  \iso(\de) + \ivo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} \left[ - K_{ij} + \left( \frac{\ema^2}{E_i E_j} \right)^\de \eta_{ij}^{-\de} \cos \left( \lambda_{ij} \pi \de \right) \left( 1 + \de \frac{\gamma_i}{\tco_i^2} \right) \right]
+\end{equation*}
+Expanding the last factor we get:
+\begin{equation*}
+  - 1 + \de \log \eta_{ij} + 1 + \de \left( \leg_i + \leg_j \right) - \de \log \eta_{ij} + \de \frac{\gamma_i}{\tco_i^2} + \smo(\de^2) = \de \left( \leg_i + \leg_j + \frac{\gamma_i}{\tco_i^2} \right) + \smo(\de^2)
+\end{equation*}
+Hence:
+\begin{equation}
+  \iso(\de) + \ivo(\de) = \frac{1}{\de} \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \leg_i + \leg_j + \frac{\gamma_i}{\tco_i^2} \right) + \smo(\de^0)
+  \label{eq:isv-exp}
+\end{equation}
+We can make use of the colour algebra to simplify this sum. In this case $ \fsp{n}{m} \equiv \prt{n}{m} $, so:
+\begin{equation}
+  \sum_{i \neq j \in \fsp{n}{m}} (\cc) \op_i = \sum_{i \in \prt{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \prt{n}{m}} \tco_j \op_j - \tco_i \op_i \bigg] = - \tco_i^2 \op_i
+\end{equation}
+were we used the colour-conservation condition \eref{eq:col-cons}. Then, the above sum can be rewritten as:
+\begin{equation}
+  \iso(\de) + \ivo(\de) = - \frac{1}{\de} \sum_{i \neq j \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + \smo(\de^0)
+\end{equation}
+On the other hand, the integrated collinear operator is:
+\begin{equation*}
+  \ico(\de) = \frac{1}{\de} \sum_{i \in \prt{n}{m}} \Gamma_{i , f_i} = \frac{1}{\de} \left( \Gamma_{a , f_a} + \Gamma_{b , f_b} \right) + \frac{1}{\de} \sum_{i \in \fsu{n}{m}} \Gamma_{i , f_i}
+\end{equation*}
+The expansion of initial-state generalized anomalous dimensions is clear from \eref{eq:in-gen-an-dim}:
+\begin{equation}
+  \Gamma_{a , f_a} = \gamma_a + 2 \tco_a^2 \leg_a + \smo(\de)
+  \label{eq:gen-ad}
+\end{equation}
+Final-state generalized anomalous dimensions are less immediate to expand. Indeed, explicitly from \ceref{eq:fin-gen-an-dim-pd}{eq:fin-gen-an-dim}:
+\begin{equation*}
+  \begin{split}
+    \Gamma_{i , q}
+    & = - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{\spl_{qq}(z) + \spl_{qg}(z)}{z^{-1 + 2\de} (1-z)^{2\de}} - \caf \frac{1 - e^{-2\de \leg_i}}{\de} \right] \\
+    & = - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{\spl_{qq}(z)}{z^{2\de} (1-z)^{2\de}} - \caf \frac{1 - e^{-2\de \leg_i}}{\de} \right] \\
+    & = - \int_0^1 \dd z\, \oso_z \frac{\spl_{qq}(z)}{z^{2\de} (1-z)^{2\de}} + \caf^2 \frac{1 - e^{-2\de \leg_i}}{\de} + \smo(\de) = \gamma_q + 2 \caf \leg_i + \smo(\de)
+  \end{split}
+\end{equation*}
+where we used the property $ \spl_{qg}(z) = \spl_{qq}(1 - z) $, and:
+\begin{equation*}
+  \begin{split}
+    \Gamma_{i , g}
+    & = - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{\spl_{gg}(z) + 2n_f \spl_{gq}(z)}{z^{-1+2\de}(1-z)^{2\de}} - \caa \frac{1 - e^{-2\de \leg_i}}{\de} \right] \\
+    & = \frac{11}{6} \caa - \frac{2}{3} \ttr n_f + 2 \caa \leg_i + \smo(\de) = \gamma_g + 2 \caa \leg_i + \smo(\de)
+  \end{split}
+\end{equation*}
+Therefore, they have the same expression as \eref{eq:gen-ad}. Finally, the integrated collinear operator can be written as:
+\begin{equation}
+  \ico(\de) = \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + \smo(\de^0)
+  \label{eq:ic-exp}
+\end{equation}
+The poles in \ceref{eq:isv-exp}{eq:ic-exp} manifestly cancel, leaving then $ \ito(\de) \sim \smo(\de^0) $. Denoting $ \ito(\de) \equiv \ito^{(0)} + \smo(\de) $, the NLO correction in \eref{eq:part-ser-exp} is written in an $ \de $-finite form as:
+\begin{multline}
+  \dd\pcs_{a,b}^{(1)} = \dd\pcs_{a,b}^\text{NLO} + \frac{1}{2\hat{s}} \sum_{n \in \en_m} \left[ \frac{\rcr}{2\pi} \ips{\ito^{(0)} \flm_{a,b}[\fs{n}{m}]} + \ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]} \right] \\
+  + \frac{\rcr}{2\pi} \sum_c \left[ \fap_{f_c , f_a} \otimes \dd\pcs^{(0)}_{c,b} + \fap_{f_c , f_b} \otimes \dd\pcs^{(0)}_{a,c} \right]
+  \label{eq:nlo-finite-massless}
+\end{multline}
+where we defined:
+\begin{equation}
+  \fap_{f_c f_a}(z) \equiv \fspl_{f_c f_a}(z) + 2 \ler_a \ap_{f_c f_a}(z)
+\end{equation}
+The various terms of \eref{eq:nlo-finite-massless} have no IR singularity, thus they can be numerically integrated. We note that this equation correctly reproduces the same result as in \cite{rontsch-2509}.
 
 
 
