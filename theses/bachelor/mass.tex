@@ -1,1 +1,65 @@
 \selectlanguage{english}
+
+The NSC SS, as developed in \cite{rontsch-2023, rontsch-2503, rontsch-2509}, does not include the possibility of massive final-state partons. In this chapter, we prove the cancellation of poles in the case of a general final-state massive component, i.e. with $ \fsqm{n}{m} \neq \emptyset , \fsbqm{n}{m} \neq \emptyset $, and we derive the integrated counterterms in an explicit form.
+
+The general structure of the NSC SS as illustrated in the previous chapter remains valid: in particular, massive partons do not change collinear singularities, hence the $ \ico(\de) $ operator, as well as the Mellin convolutions of generalized splitting functions, remain unchanged. The only operators that do change are $ \iso(\de) $ and $ \ivo(\de) $.
+
+\section{Generalized operators}
+
+\subsection{Soft operator}
+
+\eref{eq:soft-lim} holds in general, thus to generalize the soft operator we only have to compute integrated eikonal factors in the case of massive partons. To do so, we choose a different parametrization of the phase space of the parton $ \ur_g $:
+\begin{equation}
+  \dd^{d-1} p = \dd p_1 \, \dd p_2 \, \dd^{d-3} p_\perp = \dd p_1 \, \dd p_2 \, \dd p_\perp \, p_\perp^{d-4} \dd \Omega_{d-4}
+\end{equation}
+Then, we perform a transformation to polar coordinate $ (p_1 , p_2 , p_\perp) \mapsto (p_0 , \vartheta , \varphi) $ such that:
+\begin{equation}
+  p_1 = p_0 \cos \vartheta
+  \qquad \qquad
+  p_2 = p_0 \sin \vartheta \cos \varphi
+  \qquad \qquad
+  p_\perp = p_0 \sin \vartheta \sin \varphi
+\end{equation}
+The condition $ p_\perp \in \R^+_0 $ implies $ \varphi \in [0,\pi] $, while $ \vartheta \in [0,\pi] $ by definition. As $ p_0 = E $ for gluons, the phase-space measure becomes:
+\begin{equation}
+  [\dd p] \equiv \frac{\dd^{3-2\de}p}{(2\pi)^{3-2\de}2E} \theta(\ema - E) = \frac{\dd \Omega_{-2\de}}{2(2\pi)^{3-2\de}} \dd E\, E^{1-2\de} \theta(\ema - E) \dd \cos \vartheta \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de}
+\end{equation}
+Now we can perform the integration of the eikonal factor $ \eik_{i,j} $:
+\begin{equation*}
+  \begin{split}
+    \int [\dd p_\ur] \eik_{i,j}
+    & = \int_{\mathbb{S}^{-2\de}} \frac{\dd \Omega_{-2\de}}{2(2\pi)^{3-2\de}} \int_0^{\ema} \frac{\dd E_\ur}{E_\ur^{1-2\de}} \int_{-1}^1 \dd \cos \vartheta \int_0^\pi \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de} \frac{\mm{p}_i \cdot \mm{p}_j}{(\mm{p}_i \cdot \mm{p}_\ur) (\mm{p}_j \cdot \mm{p}_\ur)} \\
+    & = - \frac{2^{1-2\de} \pi^{-\de}}{2(2\pi)^{3-2\de}} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \frac{\ema^{-2\de}}{2\de} \pi \eit_{i,j} = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}
+  \end{split}
+\end{equation*}
+where we used the following identity:
+\begin{equation}
+  \int_{\mathbb{S}^{d-1}} \dd \Omega_{d-1} = \frac{2 \pi^{\frac{d}{2}}}{\Gamma(\frac{d}{2})} = 2^d \pi^{\frac{d}{2} - \frac{1}{2}} \frac{\Gamma\left( \frac{d+1}{2} \right)}{\Gamma(d)}
+\end{equation}
+and defined the integral:
+\begin{equation}
+  \eit_{i,j} \equiv \frac{1}{\pi} \int_{-1}^1 \dd \cos \vartheta \int_0^\pi \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de} \frac{\mm{p}_i \cdot \mm{p}_j}{(\mm{p}_i \cdot \mm{p}_\ur) (\mm{p}_j \cdot \mm{p}_\ur)}
+  \label{eq:gen-int}
+\end{equation}
+with $ \mm{p}_i : p_i^\mu = E_i \mm{p}_i^\mu $. There only remains to evaluate $ \eit_{i,j} $ in the three possible cases for $ i $ and $ j $: massive--massive, massive--massless (note that $ \eit_{i,j} = \eit_{j,i} $) and massless--massless. The former two cases are known in the literature, e.g. Appendix D.2 of \cite{Behring-2020}, and are reported in \secref{sec:mass-int}.
+
+To determine $ \eit_{i,j} $ in the massless--massless case, we just have to compare the expression for the integrated eikonal factor computer in \secref{ssec:soft-massless} with the above-found expression:
+\begin{equation*}
+  \frac{\ema^{-2\de}}{\de^2} \eta_{ij} \frac{\pi^\de}{8\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \,\hyp(1,1,1-\de,1-\eta_{ij}) = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}
+\end{equation*}
+hence, with notation from \secref{sec:mass-int}:
+\begin{equation}
+  \eitt{i,j}{-1} = - 2 \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij})
+  \qquad
+  \eitt{i,j}{k} = 0 \,\,\forall k \in \N_0
+\end{equation}
+
+
+
+
+
+
+
+
+
+

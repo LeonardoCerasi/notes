@@ -81,6 +81,83 @@ Finally, the LO Altarelli-Parisi splitting kernels are:
 \end{align}
 All these splitting functions and kernels can be found in \cite{Ellis-1996}.
 
+\section{Massive integrals}
+\label{sec:mass-int}
+
+As in \cite{Behring-2020}, we can expand the $ \eit_{i,j} $ integral defined in \eref{eq:gen-int} in its Laurent series in $ \de $:
+\begin{equation}
+  \eit_{i,j} = \sum_{k = -1}^1 \de^k \eitt{i,j}{k} + \smo(\de^2)
+\end{equation}
+The expression of the coefficients $ \eitt{i,j}{k} $ depends on the nature of the partons $ i $ and $ j $.
+
+\paragraph{Massive--massive}
+
+If $ i $ and $ j $ are both massive, then $ p_i^2 = m_i^2 $ and $ p_j^2 = m_j^2 $. Set the notation:
+\begin{equation}
+  v_{ij} \equiv \sqrt{1 - \frac{m_i^2 m_j^2}{(p_i \cdot p_j)^2}}
+  \qquad \qquad
+  \ve{q}_i \equiv \frac{\ve{p}_i}{E_i}
+  \qquad \qquad
+  \ve{q}_j \equiv \frac{\ve{p}_j}{E_j}
+\end{equation}
+Moreover, define the shorthands:
+\begin{align*}
+  A^2 &= (\ve{q}_i - \ve{q}_j)^2 & X_1 &= \ve{q}_i^2 - (\ve{q}_i \cdot \ve{q}_j) \\
+  B^2 &= \ve{q}_i^2 \ve{q}_j^2 - (\ve{q}_i \cdot \ve{q}_j)^2 & X_2 &= \ve{q}_j^2 - (\ve{q}_i \cdot \ve{q}_j)
+\end{align*}
+and the arguments:
+\begin{equation*}
+  \gamma_{\pm} = A \pm \sqrt{A^2 - B^2}
+  \qquad \qquad
+  z_k = \sqrt{X_k^2 + B^2} - X_k
+\end{equation*}
+used in the function:
+\begin{equation*}
+  K(z) = - 2 \li \left( \frac{2\gamma_- (\gamma_+ - z)}{(\gamma_+ - \gamma_-) (\gamma_- + z)} \right) - 2 \li \left( \frac{-2\gamma_+(\gamma_- + z)}{(\gamma_+ - \gamma_-) (\gamma_+ - z)} \right) - \frac{1}{2} \log^2 \frac{(z - \gamma_-) (\gamma_+ - z)}{(z + \gamma_-) (\gamma_+ + z)}
+\end{equation*}
+With this notation, the coefficients $ \eitt{i,j}{k} $ in the massive--massive case read:
+\begin{equation}
+  \eitt{i,j}{-1} = 0
+  \qquad \qquad
+  \eitt{i,j}{0} = \frac{1}{v_{ij}} \log \frac{1 + v_{ij}}{1 - v_{ij}}
+  \qquad \qquad
+  \eitt{i,j}{1} = \frac{1 - (\ve{q}_i \cdot \ve{q}_j)}{\sqrt{A^2 - B^2}} \left[ K(z_2) - K(z_1) \right]
+\end{equation}
+
+\paragraph{Massive--massless}
+
+As $ \eit_{i,j} = \eit_{j,i} $, consider WLOG $ i $ massive and $ j $ massless, i.e. $ p_i^2 = m_i^2 $ and $ p_j^2 = 0 $. In this case, we define:
+\begin{equation}
+  \kappa \equiv \sqrt{1 - \frac{m_i^2}{E_i}}
+  \qquad \qquad
+  \mm{p}_i \equiv \frac{p_i}{E_i}
+  \qquad \qquad
+  \mm{p}_j \equiv \frac{p_j}{E_j}
+  \label{eq:kappa-def}
+\end{equation}
+Then, the coefficients $ \eitt{i,j}{k} $ in the massive--massless case read:
+\begin{equation}
+  \begin{gathered}
+    \eitt{i,j}{-1} = -1
+    \qquad \qquad
+    \eitt{i,j}{0} = \log \frac{(\mm{q}_i \cdot \mm{q}_j)^2}{\mm{q}_i \cdot \mm{q}_j}
+    \\
+    \eitt{i,j}{1} = -2 \left[ \frac{1}{4} \log^2 \frac{1 - \kappa}{1 + \kappa} + \log \frac{\mm{q}_i \cdot \mm{q}_j}{1 + \kappa} \log \frac{\mm{q}_i \cdot \mm{q}_j}{1 - \kappa} + \li \left( 1 - \frac{\mm{q}_i \cdot \mm{q}_j}{1 + \kappa} \right) + \li \left( 1 - \frac{\mm{q}_i \cdot \mm{q}_j}{1 - \kappa} \right) \right]
+  \end{gathered}
+\end{equation}
+
+\paragraph{Self-correlated massive}
+
+In the special case $ i = j $, if $ i $ is massless then $ \eit_{i,i} = 0 $ trivially from the definition of the eikonal factor, while if $ i $ is massive then the coefficients $ \eitt{i,i}{k} $ read:
+\begin{equation}
+  \eitt{i,i}{-1} = 0
+  \qquad \qquad
+  \eitt{i,i}{0} = 2
+  \qquad \qquad
+  \eitt{i,i}{1} = - \frac{2}{\kappa} \log \frac{1 - \kappa}{1 + \kappa}
+\end{equation}
+where $ \kappa $ is defined in \eref{eq:kappa-def}.
+
 
 
 
