@@ -6,7 +6,7 @@ The general structure of the NSC SS as illustrated in the previous chapter remai
 
 \section{Generalized operators}
 
-\subsection{Soft operator}
+\subsection{Generalized soft operator}
 
 \eref{eq:soft-lim} holds in general, thus to generalize the soft operator we only have to compute integrated eikonal factors in the case of massive partons. To do so, we choose a different parametrization of the phase space of the parton $ \ur_g $:
 \begin{equation}
@@ -29,7 +29,7 @@ Now we can perform the integration of the eikonal factor $ \eik_{i,j} $:
   \begin{split}
     \int [\dd p_\ur] \eik_{i,j}
     & = \int_{\mathbb{S}^{-2\de}} \frac{\dd \Omega_{-2\de}}{2(2\pi)^{3-2\de}} \int_0^{\ema} \frac{\dd E_\ur}{E_\ur^{1-2\de}} \int_{-1}^1 \dd \cos \vartheta \int_0^\pi \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de} \frac{\mm{p}_i \cdot \mm{p}_j}{(\mm{p}_i \cdot \mm{p}_\ur) (\mm{p}_j \cdot \mm{p}_\ur)} \\
-    & = - \frac{2^{1-2\de} \pi^{-\de}}{2(2\pi)^{3-2\de}} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \frac{\ema^{-2\de}}{2\de} \pi \eit_{i,j} = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}
+    & = - \frac{2^{1-2\de} \pi^{-\de}}{2(2\pi)^{3-2\de}} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \frac{\ema^{-2\de}}{2\de} \pi \eit_{i,j} = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}(\de)
   \end{split}
 \end{equation*}
 where we used the following identity:
@@ -41,11 +41,11 @@ and defined the integral:
   \eit_{i,j} \equiv \frac{1}{\pi} \int_{-1}^1 \dd \cos \vartheta \int_0^\pi \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de} \frac{\mm{p}_i \cdot \mm{p}_j}{(\mm{p}_i \cdot \mm{p}_\ur) (\mm{p}_j \cdot \mm{p}_\ur)}
   \label{eq:gen-int}
 \end{equation}
-with $ \mm{p}_i : p_i^\mu = E_i \mm{p}_i^\mu $. There only remains to evaluate $ \eit_{i,j} $ in the three possible cases for $ i $ and $ j $: massive--massive, massive--massless (note that $ \eit_{i,j} = \eit_{j,i} $) and massless--massless. The former two cases are known in the literature, e.g. Appendix D.2 of \cite{Behring-2020}, and are reported in \secref{sec:mass-int}.
+with $ \mm{p}_i : p_i^\mu = E_i \mm{p}_i^\mu $. There only remains to evaluate $ \eit_{i,j}(\de) $ in the three possible cases for $ i $ and $ j $: massive--massive, massive--massless (note that $ \eit_{i,j}(\de) = \eit_{j,i}(\de) $) and massless--massless. The former two cases are known in the literature, e.g. Appendix D.2 of \cite{Behring-2020}, and are reported in \secref{sec:mass-int}.
 
-To determine $ \eit_{i,j} $ in the massless--massless case, we just have to compare the expression for the integrated eikonal factor computer in \secref{ssec:soft-massless} with the above-found expression:
+To determine $ \eit_{i,j}(\de) $ in the massless--massless case, we just have to compare the expression for the integrated eikonal factor computer in \secref{ssec:soft-massless} with the above-found expression:
 \begin{equation*}
-  \frac{\ema^{-2\de}}{\de^2} \eta_{ij} \frac{\pi^\de}{8\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \,\hyp(1,1,1-\de,1-\eta_{ij}) = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}
+  \frac{\ema^{-2\de}}{\de^2} \eta_{ij} \frac{\pi^\de}{8\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \,\hyp(1,1,1-\de,1-\eta_{ij}) = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}(\de)
 \end{equation*}
 hence, with notation from \secref{sec:mass-int}:
 \begin{equation}
@@ -53,6 +53,90 @@ hence, with notation from \secref{sec:mass-int}:
   \qquad
   \eitt{i,j}{k} = 0 \,\,\forall k \in \N_0
 \end{equation}
+Inserting everything in \eref{eq:soft-lim}, we get:
+\begin{equation}
+  \sum_{n \in \en_{m+1}(g)} \ips{\so_\ur \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} = [\rc] \ips{\iso(\de) \flm_{a,b}[\fs{n}{m}]}
+\end{equation}
+with the generalized soft operator:
+\begin{equation}
+  \iso(\de) \defeq \frac{1}{2\de} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i,j \in \fsp{n}{m}} (\cc) \eit_{i,j}(\de)
+\end{equation}
+
+\subsection{Generalized virtual operator}
+
+Catani's $ \ioo(\de) $ is generlized in \cite{Catani-2001}. However, as already stated, this operator is stated in a charge-unrenormalized way, hence we have to perform the renormalization of the results of this paper. In the following, we will denote charge-unrenormalized amplitudes as $ \mat $ and charge-renormalized amplitudes as $ \ampl $.
+
+Loop corrections to the LO amplitude can be written as:
+\begin{equation}
+  \mat_m = \left( \frac{\bc}{4\pi \mu^{2\de}} \right)^q \left[ \mat_m^{(0)} + \frac{\bc}{4\pi \mu^{2\de}} \mat^{(1)} + \smo(\bc^2) \right]
+  \label{eq:ampl-non-ren}
+\end{equation}
+where $ q \in \frac{1}{2} \N_0 $. Note that this equation fixes the normalization of the charge-unrenormalized amplitudes. Catani's formula reads:
+\begin{equation}
+  \mat_m^{(1)} = \irs(\de) \mat_m^{(0)} + \mat_m^\text{fin}
+  \label{eq:gen-cat-form}
+\end{equation}
+where $ \mat_m^\text{fin} $ is the non-singular part of the 1-loop amplitude and Catani's operator\footnotemark is define as (in CDR):
+\begin{equation}
+  \irs(\de) \defeq \frac{(4\pi)^\de}{\Gamma(1-\de)} \left[ q \frac{\beta_0}{\de} + \ioo(\de) \right]
+\end{equation}
+\begin{equation}
+  \ioo(\de) \defeq \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^{-\de} \left[ \ns_{i,j}(\de) + \frac{1}{v_{ij}} \left( \frac{i\pi}{\de} - \frac{\pi^2}{2} \right) \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
+  \label{eq:gen-cat}
+\end{equation}
+where $ v_{ij} $ is defined in \eref{eq:v-def}, $ s_{ij} \equiv 2 p_i \cdot p_j $ and the singular functions are defined in \secref{sec:cat-fun}. Inserting \eeref{eq:gen-cat-form}{eq:gen-cat} into \eref{eq:ampl-non-ren}:
+\begin{multline*}
+  \mat_m = \left( \frac{\bc}{4\pi \mu^{2\de}} \right)^q \bigg[ \left( 1 + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\bc}{4\pi \mu^{2\de}} q \frac{\beta_0}{\de} \right) \mat_m^{(0)} \\
+  + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\bc}{4\pi \mu^{2\de}} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\bc^2) \bigg]
+\end{multline*}
+Renormalization in the $ \msb $ scheme is performed via \eref{eq:msb-def}. Substituting this to $ \bc $ yields:
+\begin{equation*}
+  \begin{split}
+    \mat_m
+    & = \left( \frac{\rc}{4\pi S_\de} \right)^q \left[ 1 - \frac{1}{2} \frac{\rc}{2\pi} \frac{\beta_0}{\de} + \smo(\rc^2) \right]^q \times \\
+    & \qquad \quad \times \left[ \left( 1 + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\rc}{4\pi S_\de} q \frac{\beta_0}{\de} \right) \mat_m^{(0)} + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\rc}{4\pi S_\de} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\bc^2) \right] \\
+    & = \left( \frac{\rc}{4\pi S_\de} \right)^q \bigg[ \left( 1 - \frac{\rc}{4\pi} q \frac{\beta_0}{\de} \left( 1 - \frac{e^{\eg\de}}{\Gamma(1-\de)} \right) \right) \mat_m^{(0)} + \\
+    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad + \frac{e^{\eg\de}}{\Gamma(1-\de)} \frac{\rc}{4\pi} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\rc^2) \bigg] \\
+    & = \left( \frac{\rc}{4\pi S_\de} \right)^q \left[ \mat_m^{(0)} + \frac{e^{\eg\de}}{\Gamma(1-\de)} \frac{\rc}{4\pi} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\de) + \smo(\rc^2) \right]
+  \end{split}
+\end{equation*}
+Hence, we can write the renormalized relation:
+\begin{equation}
+  \ampl_m = \left( \frac{\rc}{2\pi} \right)^q \left[ \ampl_m^{(0)} + \frac{\rc}{2\pi} \ampl_m^{(1)} + \smo(\rc^2) \right]
+\end{equation}
+with:
+\begin{equation}
+  \ampl_m \equiv \ampl_m
+  \qquad \qquad
+  \ampl_m^{(0)} \equiv (2S_\de)^{-q} \mat_m^{(0)}
+  \qquad \qquad
+  \ampl_m^\text{fin} \equiv (2S_\de)^{-q} \mat_m^\text{fin}
+\end{equation}
+\begin{equation}
+  \ampl_m^{(1)} = \frac{1}{2} \frac{e^{\eg\de}}{\Gamma(1-\de)} \left[ \ioo(\de) \ampl_m^{(0)} + \ampl_m^\text{fin} \right]
+\end{equation}
+It is then clear, from \eref{eq:virt-cs}, that:
+\begin{equation}
+  2\hat{s}\, \dd\pcs_{a,b}^\text{V} = [\rc] \sum_{n \in \en_m} \ips{\ivo(\de) \flm_{a,b}[\fs{n}{m}]} + \sum_{n \in \en_m} \ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]}
+\end{equation}
+where the generalized virtual operator is:
+\begin{equation}
+  \ivo(\de) \defeq \Re \ioo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^{-\de} \left[ \ns_{i,j}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
+\end{equation}
+
+\footnotetext{Note that the notation is slightly different from \cite{Catani-2001}.}
+
+\section{Integrated counterterms}
+
+Now, there only remains to show that $ \ito(\de) $ is $ \de $-finite and find its $ \smo(\de^0) $ term $ \ito^{(0)} $. First, we show the cancellation of colour-correlated terms between the soft and virtual operators:
+\begin{equation*}
+  \begin{split}
+    \iso(\de) + \ivo(\de)
+    & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \bigg[ \frac{1}{2\de} \left( 1 - 2\ler_i \de + \left( 2\ler_i^2 - \frac{\pi^2}{6} \right) \de^2 \right) \eit_{i,j}(\de) + \\
+    & + \left( 1 - \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} \right) \left( \ns_{ij}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) \bigg] + \\
+    & + \sum_{i \in \fsp{n}{m}} \bigg[ (\cc) \frac{1}{2\de} \left( 1 - 2\ler_i \de + \left( 2\ler_i^2 - \frac{\pi^2}{6} \right) \de^2 \right) \eit_{i,j}(\de) - \Gamma_i(\de) \bigg]
+  \end{split}
+\end{equation*}
 
 
 
