@@ -149,7 +149,7 @@ where we set $ \fsm{n}{m} \equiv \fsqm{n}{m} \cup \fsbqm{n}{m} $. To better unde
 \end{multline*}
 where $ \ci{i,j} $ contains the $ \de $-poles and $ \finc{i,j} $ is $ \de $-finite (more precisely, $ \finc{i,j} \sim \smo(\de^0) $). The explicit expression of $ \ci{i,j} $ is derived in \secref{sec:poles}. The second summation instead reads, using \ceref{eq:i-self}{eq:g-qm}:
 \begin{equation*}
-  \sum_{i \in \fsm{n}{m}} \left[ \caf \left( \frac{1}{\de} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) - \caf \left( \frac{1}{\de} + \frac{1}{2} \log \frac{m_\mq^2}{\mu^2} - 2 \right) \right] \equiv \finm{i}
+  \sum_{i \in \fsm{n}{m}} \left[ \caf \left( \frac{1}{\de} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) - \caf \left( \frac{1}{\de} + \frac{1}{2} \log \frac{m_{\mq_i}^2}{\mu^2} - 2 \right) \right] \equiv \sum_{i \in \fsm{n}{m}} \finm{i}
 \end{equation*}
 which is manifestly $ \de $-finite. Finally, from \eeref{eq:g-g}{eq:g-q}, the last summation expands as:
 \begin{equation*}
@@ -190,9 +190,31 @@ where we used the colour-conservation condition \eref{eq:col-cons}. Finally, we 
 where the $ \smo(\de^0) $ term reads:
 \begin{equation}
   \isvo^{(0)} \equiv \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ \finci{i,j} + \finc{i,j} \right] + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \fing{i}
+  \label{eq:isvo-zero}
 \end{equation}
-The poles in \eref{eq:isvo} clearly cancel those in the collinear operator \eref{eq:ic-exp}, as it remains unchanged when including massive final-state partons: we only need to determine its Laurent series at $ \smo(\de) $.
-
+The poles in \eref{eq:isvo} clearly cancel those in the collinear operator \eref{eq:ic-exp}, as it remains unchanged when including massive final-state partons: we only need to determine its Laurent series at $ \smo(\de) $. First, consider the generalized initial-state anomalous dimension \eref{eq:in-gen-an-dim}:
+\begin{equation}
+  \Gamma_{a , f_a} = \gamma_a + 2 \tco_a^2 \leg_a - \de \left[ 2 \ler_a \left( \gamma_a + 2 \tco_a^2 \leg_a \right) - 2 \tco_a^2 \leg_a^2 \right] + \smo(\de^2)
+\end{equation}
+Then, the generalized final-state anomalous dimension \ceref{eq:fin-gen-an-dim-pd}{eq:fin-gen-an-dim}:
+\begin{equation}
+  \Gamma_{i , q} = \gamma_q + 2 \caf \leg_i - \de \left[ 2 \ler_i \left( \gamma_q + 2 \caf \leg_i \right) + 2 \caf \leg_i^2 - \frac{\caf}{6} \left( 39 - 4\pi^2 \right) \right] + \smo(\de^2)
+\end{equation}
+\begin{equation}
+  \Gamma_{i , g} = \gamma_g + 2 \caa \leg_i - \de \left[ 2 \ler_i \left( \gamma_g + 2 \caa \leg_i \right) + 2 \caa \leg_i^2 - \frac{\caa}{9} \left( 67 - 6\pi^2 \right) + \frac{23}{9} \ttr n_f \right] + \smo(\de^2)
+\end{equation}
+Therefore, the Laurent series of the collinear operator is:
+\begin{equation}
+  \ico(\de) = \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + \ico^{(0)}
+\end{equation}
+where the $ \smo(\de^0) $ term reads:
+\begin{multline}
+  \ico^{(0)} = - \left[ 2 \ler_a \left( \gamma_a + 2 \tco_a^2 \leg_a \right) - 2 \tco_a^2 \leg_a^2 \right] - \left[ 2 \ler_b \left( \gamma_b + 2 \tco_b^2 \leg_b \right) - 2 \tco_b^2 \leg_b^2 \right] + \\
+  - \sum_{i \in \fsq{n}{m} \cup \fsbq{n}{m}} \left[ 2 \ler_i \left( \gamma_q + 2 \caf \leg_i \right) + 2 \caf \leg_i^2 - \frac{\caf}{6} \left( 39 - 4\pi^2 \right) \right] + \\
+  - \sum_{i \in \fsg{n}{m}} \left[ 2 \ler_i \left( \gamma_g + 2 \caa \leg_i \right) + 2 \caa \leg_i^2 - \frac{\caa}{9} \left( 67 - 6\pi^2 \right) + \frac{23}{9} \ttr n_f \right]
+  \label{eq:ico-zero}
+\end{multline}
+We see that, when including massive final-state partons, the general structure of the NLO correction \eref{eq:nlo-finite-massless} remains unchanged. Aside from the amplitudes themselves, the only term that does change, indeed, is the $ \ito^{(0)} $ term, whose expression is obtained combining \ceref{eq:isvo-zero}{eq:ico-zero}.
 
 
 
