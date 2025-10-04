@@ -165,16 +165,33 @@ We can put all the above expressions together, yielding:
 \begin{equation}
     \isvo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ \ci{i,j} + \finc{i,j} \right] + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \left( \frac{1}{\de} \gamma_i + \fing{i} \right)
 \end{equation}
-We now focus on the colour-correlated summation, in particular:
+We now focus on the colour-correlated term, writing $ \fsp{n}{m} \times \fsp{n}{m} = (\prt{n}{m} \cup \fsm{n}{m}) \times (\prt{n}{m} \cup \fsm{n}{m}) $:
+\begin{equation*}
+  \sum_{i \neq j \in \fsp{n}{m}} (\cc) \ci{i,j} = \bigg[ \sum_{i \neq j \in \prt{n}{m}} + \sum_{i \neq j \in \fsm{n}{m}} + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} \bigg] (\cc) \ci{i,j}
+\end{equation*}
+From \secref{sec:poles}, $ \ci{i,j} $ cotributes with a $ \leg_i / \de $ term for each massless index, hence:
 \begin{equation*}
   \begin{split}
-    \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \ci{i,j} - \finci{i,j} \right)
-    & = \sum_{i \in \fsp{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \fsp{n}{m}} \tco_j \left( \ci{i,j} - \finci{i,j} \right) - \tco_i \left( \ci{i,i} - \finci{i,j} \right) \bigg] \\
-    & = \sum_{i \in \prt{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_i + \leg_j}{\de} + \frac{L_i}{\de} \sum_{j \in \fsm{n}{m}} \tco_j - \tco_i \frac{\leg_i}{\de} \bigg] \\
-    & \qquad \qquad \qquad \qquad \qquad \qquad \quad + \sum_{i \in \fsm{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_j}{\de} \bigg] \\
-    & = \sum_{i \in \fsp{n}{m}} \tco_i \cdot \sum_{j \in \prt{n}{m}} \tco_j \frac{L_j}{\de} + \sum_{i \in \prt{n}{m}} \frac{\leg_i}{\de} \tco_i \cdot \sum_{j \in \fsp{n}{m}} \tco_j - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{\leg_i}{\de}
+    \sum_{i \neq j \in \fsp{n}{m}} (\cc) \ci{i,j}
+    & = \sum_{i \neq j \in \prt{n}{m}} (\cc) \left[ \frac{\leg_i + \leg_j}{\de} + \finci{i,j} + \smo(\de) \right] \\
+    & \qquad \qquad \qquad \qquad + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} (\cc) \frac{\leg_i}{\de} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} (\cc) \frac{\leg_j}{\de} \\
+    & = \sum_{i , j \in \prt{n}{m}} (\cc) \left[ \frac{\leg_i + \leg_j}{\de} + \finci{i,j} \right] - \sum_{i \in \prt{n}{m}} \tco_i^2 \left[ \frac{2\leg_i}{\de} + \finci{i,i} \right] + \smo(\de) \\
+    & \qquad \qquad \qquad \qquad + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} (\cc) \frac{\leg_i}{\de} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} (\cc) \frac{\leg_j}{\de} \\
+    & = \sum_{i \in \prt{n}{m}} \frac{\leg_i}{\de} \tco_i \cdot \sum_{j \in \fsp{n}{m}} \tco_j + \sum_{i \in \fsp{n}{m}} \tco_i \cdot \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_j}{\de} - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{\leg_i}{\de} \\
+    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de) \\
+    & = - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{\leg_i}{\de} + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de)
   \end{split}
 \end{equation*}
+where we used the colour-conservation condition \eref{eq:col-cons}. Finally, we find an expression for the sum of soft and virtual operators without colour-correlated poles:
+\begin{equation}
+  \isvo(\de) = - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + \isvo^{(0)} + \smo(\de)
+  \label{eq:isvo}
+\end{equation}
+where the $ \smo(\de^0) $ term reads:
+\begin{equation}
+  \isvo^{(0)} \equiv \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ \finci{i,j} + \finc{i,j} \right] + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \fing{i}
+\end{equation}
+The poles in \eref{eq:isvo} clearly cancel those in the collinear operator \eref{eq:ic-exp}, as it remains unchanged when including massive final-state partons: we only need to determine its Laurent series at $ \smo(\de) $.
 
 
 
