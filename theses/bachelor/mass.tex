@@ -52,6 +52,7 @@ hence, with notation from \secref{sec:mass-int}:
   \eitt{i,j}{-1} = - 2 \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij})
   \qquad
   \eitt{i,j}{k} = 0 \,\,\forall k \in \N_0
+  \label{eq:i-nmnm}
 \end{equation}
 Inserting everything in \eref{eq:soft-lim}, we get:
 \begin{equation}
@@ -81,7 +82,7 @@ where $ \mat_m^\text{fin} $ is the non-singular part of the 1-loop amplitude and
   \irs(\de) \defeq \frac{(4\pi)^\de}{\Gamma(1-\de)} \left[ q \frac{\beta_0}{\de} + \ioo(\de) \right]
 \end{equation}
 \begin{equation}
-  \ioo(\de) \defeq \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^{-\de} \left[ \ns_{i,j}(\de) + \frac{1}{v_{ij}} \left( \frac{i\pi}{\de} - \frac{\pi^2}{2} \right) \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
+  \ioo(\de) \defeq \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^\de \left[ \ns_{i,j}(\de) + \frac{1}{v_{ij}} \left( \frac{i\pi}{\de} - \frac{\pi^2}{2} \right) \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
   \label{eq:gen-cat}
 \end{equation}
 where $ v_{ij} $ is defined in \eref{eq:v-def}, $ s_{ij} \equiv 2 p_i \cdot p_j $ and the singular functions are defined in \secref{sec:cat-fun}. Inserting \eeref{eq:gen-cat-form}{eq:gen-cat} into \eref{eq:ampl-non-ren}:
@@ -121,22 +122,60 @@ It is then clear, from \eref{eq:virt-cs}, that:
 \end{equation}
 where the generalized virtual operator is:
 \begin{equation}
-  \ivo(\de) \defeq \Re \ioo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^{-\de} \left[ \ns_{i,j}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
+  \ivo(\de) \defeq \Re \ioo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^\de \left[ \ns_{i,j}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
 \end{equation}
 
 \footnotetext{Note that the notation is slightly different from \cite{Catani-2001}.}
 
 \section{Integrated counterterms}
+\label{sec:int-count}
 
 Now, there only remains to show that $ \ito(\de) $ is $ \de $-finite and find its $ \smo(\de^0) $ term $ \ito^{(0)} $. First, we show the cancellation of colour-correlated terms between the soft and virtual operators:
 \begin{equation*}
   \begin{split}
-    \iso(\de) + \ivo(\de)
-    & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \bigg[ \frac{1}{2\de} \left( 1 - 2\ler_i \de + \left( 2\ler_i^2 - \frac{\pi^2}{6} \right) \de^2 \right) \eit_{i,j}(\de) + \\
-    & + \left( 1 - \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} \right) \left( \ns_{ij}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) \bigg] + \\
-    & + \sum_{i \in \fsp{n}{m}} \bigg[ (\cc) \frac{1}{2\de} \left( 1 - 2\ler_i \de + \left( 2\ler_i^2 - \frac{\pi^2}{6} \right) \de^2 \right) \eit_{i,j}(\de) - \Gamma_i(\de) \bigg]
+    \isvo(\de)
+    & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \bigg[ \frac{1}{2\de} \left( 1 - 2\lmx \de + \left( 2\lmx^2 - \frac{\pi^2}{6} \right) \de^2 + \smo(\de^3) \right) \eit_{i,j}(\de) \,+ \\
+    & \quad + \left( 1 + \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} + \smo(\de^3) \right) \left( \ns_{ij}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) \bigg] + \\
+    & \quad + \sum_{i \in \fsp{n}{m}} \bigg[ \tco_i^2 \frac{1}{2\de} \left( 1 - 2\lmx \de + \smo(\de^2) \right) \eit_{i,i}(\de) - \Gamma_i(\de) \bigg] \\
+    & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \bigg[ \left( \frac{1}{2\de} - \lmx + \left( \lmx^2 - \frac{\pi^2}{12} \right) \de \right) \left( \frac{\eitt{i,j}{-1}}{\de} + \eitt{i,j}{0} + \de \eitt{i,j}{1} \right) + \smo(\de) \\
+    & \quad + \left( 1 + \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} \right) \left( \frac{\nss{i,j}{-2}}{\de^2} + \frac{\nss{i,j}{-1}}{\de} + \nss{i,j}{0} - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) + \smo(\de) \,+ \\
+    & + \sum_{i \in \fsm{n}{m}} \left[ \tco_i^2 \left( \frac{1}{2\de} - \lmx \right) \left( \eitt{i,i}{0} + \de \eitt{i,i}{1} \right) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de) + \smo(\de^2)
   \end{split}
 \end{equation*}
+where we set $ \fsm{n}{m} \equiv \fsqm{n}{m} \cup \fsbqm{n}{m} $. To better understand the calculation, we consider each summation separately. The colour-correlated term can be written as:
+\begin{multline*}
+  \underbrace{\frac{1}{\de^2} \left( \frac{1}{2} \eitt{i,j}{-1} + \nss{i,j}{-2} \right) + \frac{1}{\de} \left( \frac{1}{2} \eitt{i,j}{0} + \nss{i,j}{-1} - \lmx \eitt{i,j}{-1} + \nss{i,j}{-2} \log \frac{\mu^2}{\abs{s_{ij}}} \right)}_{\ci{i,j}} + \,\smo(\de) \,+ \\
+  + \underbrace{\frac{1}{2} \eitt{i,j}{1} - \lmx \eitt{i,j}{0} + \left( \lmx^2 - \frac{\pi^2}{12} \right) \eitt{i,j}{-1} + \nss{i,j}{0} - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) + \nss{i,j}{-1} \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \nss{i,j}{-2} \log^2 \frac{\mu^2}{\abs{s_{ij}}}}_{\finc{i,j}}
+\end{multline*}
+where $ \ci{i,j} $ contains the $ \de $-poles and $ \finc{i,j} $ is $ \de $-finite (more precisely, $ \finc{i,j} \sim \smo(\de^0) $). The explicit expression of $ \ci{i,j} $ is derived in \secref{sec:poles}. The second summation instead reads, using \ceref{eq:i-self}{eq:g-qm}:
+\begin{equation*}
+  \sum_{i \in \fsm{n}{m}} \left[ \caf \left( \frac{1}{\de} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) - \caf \left( \frac{1}{\de} + \frac{1}{2} \log \frac{m_\mq^2}{\mu^2} - 2 \right) \right] \equiv \finm{i}
+\end{equation*}
+which is manifestly $ \de $-finite. Finally, from \eeref{eq:g-g}{eq:g-q}, the last summation expands as:
+\begin{equation*}
+  \sum_{i \in \prt{n}{m}} \Gamma_i(\de) = \sum_{i \in \prt{n}{m}} \left( \frac{1}{\de} \gamma_i + \fing{i} \right)
+\end{equation*}
+where we have defined the $ \smo(\de^0) $ term as:
+\begin{equation}
+  \fing{g} \equiv - \frac{2}{3} \ttr \sum_{\rho = 1}^{n_F} \log \frac{m_{\mq_\rho}^2}{\mu^2}
+  \qquad \qquad
+  \fing{q} \equiv 0
+\end{equation}
+We can put all the above expressions together, yielding:
+\begin{equation}
+    \isvo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ \ci{i,j} + \finc{i,j} \right] + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \left( \frac{1}{\de} \gamma_i + \fing{i} \right)
+\end{equation}
+We now focus on the colour-correlated summation, in particular:
+\begin{equation*}
+  \begin{split}
+    \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \ci{i,j} - \finci{i,j} \right)
+    & = \sum_{i \in \fsp{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \fsp{n}{m}} \tco_j \left( \ci{i,j} - \finci{i,j} \right) - \tco_i \left( \ci{i,i} - \finci{i,j} \right) \bigg] \\
+    & = \sum_{i \in \prt{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_i + \leg_j}{\de} + \frac{L_i}{\de} \sum_{j \in \fsm{n}{m}} \tco_j - \tco_i \frac{\leg_i}{\de} \bigg] \\
+    & \qquad \qquad \qquad \qquad \qquad \qquad \quad + \sum_{i \in \fsm{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_j}{\de} \bigg] \\
+    & = \sum_{i \in \fsp{n}{m}} \tco_i \cdot \sum_{j \in \prt{n}{m}} \tco_j \frac{L_j}{\de} + \sum_{i \in \prt{n}{m}} \frac{\leg_i}{\de} \tco_i \cdot \sum_{j \in \fsp{n}{m}} \tco_j - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{\leg_i}{\de}
+  \end{split}
+\end{equation*}
+
 
 
 
