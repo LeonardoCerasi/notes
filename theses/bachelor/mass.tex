@@ -36,7 +36,7 @@ where we used the following identity:
 \begin{equation}
   \int_{\mathbb{S}^{d-1}} \dd \Omega_{d-1} = \frac{2 \pi^{\frac{d}{2}}}{\Gamma(\frac{d}{2})} = 2^d \pi^{\frac{d}{2} - \frac{1}{2}} \frac{\Gamma\left( \frac{d+1}{2} \right)}{\Gamma(d)}
 \end{equation}
-and defined the integral:
+and defined the generalized angular integral:
 \begin{equation}
   \eit_{i,j} \equiv \frac{1}{\pi} \int_{-1}^1 \dd \cos \vartheta \int_0^\pi \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de} \frac{\mm{p}_i \cdot \mm{p}_j}{(\mm{p}_i \cdot \mm{p}_\ur) (\mm{p}_j \cdot \mm{p}_\ur)}
   \label{eq:gen-int}
@@ -47,7 +47,7 @@ To determine $ \eit_{i,j}(\de) $ in the massless--massless case, we just have to
 \begin{equation*}
   \frac{\ema^{-2\de}}{\de^2} \eta_{ij} \frac{\pi^\de}{8\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \,\hyp(1,1,1-\de,1-\eta_{ij}) = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}(\de)
 \end{equation*}
-hence, with notation from \secref{sec:mass-int}:
+hence, with an abuse of notation from \secref{sec:mass-int}:
 \begin{equation}
   \eitt{i,j}{-1} = - 2 \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij})
   \qquad
@@ -107,7 +107,7 @@ Hence, we can write the renormalized relation:
 \end{equation}
 with:
 \begin{equation}
-  \ampl_m \equiv \ampl_m
+  \ampl_m \equiv \mat_m
   \qquad \qquad
   \ampl_m^{(0)} \equiv (2S_\de)^{-q} \mat_m^{(0)}
   \qquad \qquad
@@ -177,9 +177,9 @@ From \secref{sec:poles}, $ \ci{i,j} $ cotributes with a $ \leg_i / \de $ term fo
     & \qquad \qquad \qquad \qquad + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} (\cc) \frac{\leg_i}{\de} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} (\cc) \frac{\leg_j}{\de} \\
     & = \sum_{i , j \in \prt{n}{m}} (\cc) \left[ \frac{\leg_i + \leg_j}{\de} + \finci{i,j} \right] - \sum_{i \in \prt{n}{m}} \tco_i^2 \left[ \frac{2\leg_i}{\de} + \finci{i,i} \right] + \smo(\de) \\
     & \qquad \qquad \qquad \qquad + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} (\cc) \frac{\leg_i}{\de} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} (\cc) \frac{\leg_j}{\de} \\
-    & = \sum_{i \in \prt{n}{m}} \frac{\leg_i}{\de} \tco_i \cdot \sum_{j \in \fsp{n}{m}} \tco_j + \sum_{i \in \fsp{n}{m}} \tco_i \cdot \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_j}{\de} - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{\leg_i}{\de} \\
+    & = \sum_{i \in \prt{n}{m}} \frac{\leg_i}{\de} \tco_i \cdot \sum_{j \in \fsp{n}{m}} \tco_j + \sum_{i \in \fsp{n}{m}} \tco_i \cdot \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_j}{\de} - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{2\leg_i}{\de} \\
     & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de) \\
-    & = - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{\leg_i}{\de} + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de)
+    & = - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{2\leg_i}{\de} + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de)
   \end{split}
 \end{equation*}
 where we used the colour-conservation condition \eref{eq:col-cons}. Finally, we find an expression for the sum of soft and virtual operators without colour-correlated poles:
@@ -194,7 +194,7 @@ where the $ \smo(\de^0) $ term reads:
 \end{equation}
 The poles in \eref{eq:isvo} clearly cancel those in the collinear operator \eref{eq:ic-exp}, as it remains unchanged when including massive final-state partons: we only need to determine its Laurent series at $ \smo(\de) $. First, consider the generalized initial-state anomalous dimension \eref{eq:in-gen-an-dim}:
 \begin{equation}
-  \Gamma_{a , f_a} = \gamma_a + 2 \tco_a^2 \leg_a - \de \left[ 2 \ler_a \left( \gamma_a + 2 \tco_a^2 \leg_a \right) - 2 \tco_a^2 \leg_a^2 \right] + \smo(\de^2)
+  \Gamma_{a , f_a} = \gamma_a + 2 \tco_a^2 \leg_a - \de \left[ 2 \ler_a \left( \gamma_a + 2 \tco_a^2 \leg_a \right) + 2 \tco_a^2 \leg_a^2 \right] + \smo(\de^2)
 \end{equation}
 Then, the generalized final-state anomalous dimension \ceref{eq:fin-gen-an-dim-pd}{eq:fin-gen-an-dim}:
 \begin{equation}
@@ -209,11 +209,12 @@ Therefore, the Laurent series of the collinear operator is:
 \end{equation}
 where the $ \smo(\de^0) $ term reads:
 \begin{multline}
-  \ico^{(0)} = - \left[ 2 \ler_a \left( \gamma_a + 2 \tco_a^2 \leg_a \right) - 2 \tco_a^2 \leg_a^2 \right] - \left[ 2 \ler_b \left( \gamma_b + 2 \tco_b^2 \leg_b \right) - 2 \tco_b^2 \leg_b^2 \right] + \\
-  - \sum_{i \in \fsq{n}{m} \cup \fsbq{n}{m}} \left[ 2 \ler_i \left( \gamma_q + 2 \caf \leg_i \right) + 2 \caf \leg_i^2 - \frac{\caf}{6} \left( 39 - 4\pi^2 \right) \right] + \\
-  - \sum_{i \in \fsg{n}{m}} \left[ 2 \ler_i \left( \gamma_g + 2 \caa \leg_i \right) + 2 \caa \leg_i^2 - \frac{\caa}{9} \left( 67 - 6\pi^2 \right) + \frac{23}{9} \ttr n_f \right]
+  \ico^{(0)} = - \sum_{i \in \prt{n}{m}} \left[ 2 \ler_i \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + 2 \tco_i^2 \leg_i^2 \right] + \\
+  + \left( N_q + N_{\bar{q}} \right) \frac{\caf}{6} \left( 39 - 4\pi^2 \right) + N_g \left[ \frac{\caa}{9} \left( 67 - 6\pi^2 \right) - \frac{23}{9} \ttr n_f \right]
   \label{eq:ico-zero}
 \end{multline}
+where $ N_g \equiv \abs{\fsg{n}{m}} $ is the number of final-state gluons, $ N_q \equiv \abs{\fsq{n}{m}} $ the number of final-state massless quarks and $ N_{\bar{q}} \equiv \abs{\fsbq{n}{m}} $ the number of final-state massless antiquarks.
+
 We see that, when including massive final-state partons, the general structure of the NLO correction \eref{eq:nlo-finite-massless} remains unchanged. Aside from the amplitudes themselves, the only term that does change, indeed, is the $ \ito^{(0)} $ term, whose expression is obtained combining \ceref{eq:isvo-zero}{eq:ico-zero}.
 
 
