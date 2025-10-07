@@ -18,7 +18,7 @@ Although it has not been possible, so far, to describe the properties of a singl
 
 Even though hard scattering processes have a lower probability of happening, with respect e.g. to elastic scattering processes, they are of great interest to modern particle physics: in fact, these are the processes which produce electroweak (EW) bosons, the Higgs boson, new heavy particles, etc., thus allowing their detailed study. Moreover, the analysis of hard scattering processes is facilitated by a remarkable property of QCD: \bctxt{asymptotic freedom}.
 
-Asymptotic freedom is a general property of non-Abelian gauge theories. After the renormalization of a quantum field theory (QFT), the coupling constant of the interaction becomes dependent on a renormalization energy scale, a phenomenon known as the $ \virgolette{running of the coupling} $ (see \secref{sec:renorm}). The evolution of the running coupling $ \alpha(\mu^2) $ as a function of the energy scale $ \mu $ is described by the renormalization group equation (see e.g. Chapter 12 of \cite{Peskin-1995}):
+Asymptotic freedom is a general property of non-Abelian gauge theories. After the renormalization of a quantum field theory (QFT), the coupling constant of the interaction becomes dependent on a renormalization energy scale, a phenomenon known as the ``running of the coupling" (see \secref{sec:renorm}). The evolution of the running coupling $ \alpha(\mu^2) $ as a function of the energy scale $ \mu $ is described by the renormalization group equation (see e.g. Chapter 12 of \cite{Peskin-1995}):
 \begin{equation}
   \mu^2 \frac{\dd \alpha(\mu^2)}{\dd \mu^2} = - 2 \beta(\alpha(\mu^2)) \alpha(\mu^2)
   \label{eq:ren-gr}
@@ -163,6 +163,7 @@ where $ \dd\pcsr_{a,b} $ and $ \dd\pcsv_{a,b} $ are the single-real and 1-loop c
 One of the main difficulties when computing real and virtual corrections to scattering amplitudes is the presence of singularities in particular kinematic limits.
 
 \subsection{Infrared poles}
+\label{ssec:ir-poles}
 
 In the case of amplitudes with real emissions, singularities arise when the energy of a gluon vanishes (\bctxt{soft singularity}) or when two massless partons are emitted in the same direction (\bctxt{collinear singularity}). To illustrate why the amplitude diverges in these limits, consider a real-emission diagram like:
 \begin{equation*}
@@ -186,13 +187,18 @@ In the case of amplitudes with real emissions, singularities arise when the ener
     \end{feynman}
   \end{tikzpicture}
   \quad \sim \quad
-  \frac{1}{(p - k)^2} = \frac{1}{2 E_p E_k \left( 1 - \cos \theta \right)}
+  \frac{1}{(p - k)^2} = - \frac{1}{2 E_p E_k \left( 1 - \cos \theta \right)}
 \end{equation*}
 where the massless approximation\footnotemark for the quark is employed. It is then clear that the amplitude diverges for $ E_k \rightarrow 0 $ and $ \theta \rightarrow 0 $ due to the propagator of the emitted virtual quark; note that quarks do not determine any soft singularities, as in the massless limit they provide an integrable singularity due to the structure of the Dirac propagator.
 
 \footnotetext{In the context of collider physics, light quarks are usually approximated as massless, as they have $ m_q / Q \lesssim 10^{-3} $, with $ Q \sim 1\tev $ in a typical LHC process. The only exceptions are the heavy flavours: the bottom quark is sometimes treated as massive ($ m_b \approx 4.18 \gev $), while the top quark is always treated as massive ($ m_t \approx 172 \gev $). Data from \cite{PDG-2024}.}
 
 Both kinds of singularities in real emissions can be seen as one virtual massless parton going on-shell (in the above example, the virtual quark with momentum $ q = p - k $ in the massless approximation), i.e. with $ q^2 \rightarrow 0 $, and they are collectively called infrared-collinear singularities, or simply (though less precisely) infrared (IR) singularities.
+
+It is important to note that massive parton do not determine soft or collinear singularities since, if the quark is taken to be massive, then the propagator is regulated by its mass $ m \neq 0 $:
+\begin{equation*}
+  \frac{1}{(p-k)^2} = \frac{1}{m^2 - 2 E_k (E_p - \abs{\ve{p}} \cos\theta)}
+\end{equation*}
 
 The case of virtual corrections is more complex. Indeed, virtual-correction amplitudes present an additional loop integral, which has two kinds of singularities: ultraviolent (UV) singularities and IR ones. To illustrate them, consider the following loop diagram:
 \begin{equation*}
@@ -217,7 +223,7 @@ The case of virtual corrections is more complex. Indeed, virtual-correction ampl
 \end{equation*}
 The UV divergence can be seen performing a Wick rotation $ k^0 \mapsto i k^0 $ and introducing a cutoff $ \Lambda $ for the Euclidean momentum's magnitude $ \abs{k_\text{E}} $: in the UV limit $ k^2 \gg p^2 $, so the integral is $ \sim \log \Lambda $, which is clearly divergent for $ \Lambda \rightarrow \infty $. However, this kind of divergences are cured through the procedure of renormalization (\secref{sec:renorm}).
 
-IR divergences, on the other hand, have the same origin as those in real corrections: in reality, Nature does not distinguish between $ \virgolette{real} $ and $ \virgolette{virtual} $ corrections, which are merely human-made categories introduce to simplify the calculations. To confirm this, while real and virtual corrections present IR divergences when considered singularly, these poles have to cancel when the two sets of corrections are added together: this is an instance of the Kinoshita--Lee--Nauenberg theorem, which asserts that the SM is IR-finite \cite{Kinoshita-1962, Lee-1964}.
+IR divergences, on the other hand, have the same origin as those in real corrections: in reality, Nature does not distinguish between ``real" and ``virtual" corrections, which are merely human-made categories introduce to simplify the calculations. To confirm this, while real and virtual corrections present IR divergences when considered singularly, these poles have to cancel when the two sets of corrections are added together: this is an instance of the Kinoshita--Lee--Nauenberg theorem, which asserts that the SM is IR-finite \cite{Kinoshita-1962, Lee-1964}.
 
 \subsection{Subtraction method}
 

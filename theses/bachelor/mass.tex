@@ -1,18 +1,18 @@
 \selectlanguage{english}
 
-The NSC SS, as developed in \cite{rontsch-2023, rontsch-2503, rontsch-2509}, does not include the possibility of massive final-state partons. In this chapter, we prove the cancellation of poles in the case of a general final-state massive component, i.e. with $ \fsqm{n}{m} \neq \emptyset , \fsbqm{n}{m} \neq \emptyset $, and we derive the integrated counterterms in an explicit form.
+The NSC SS, as developed in \cite{rontsch-2023, rontsch-2503, rontsch-2509} and described in the previous chapter, does not include massive final-state partons. In this chapter, we consider the inclusion of these massive partons. We prove the cancellation of poles in this case, i.e. with $ \fsqm{n}{m} \neq \emptyset , \fsbqm{n}{m} \neq \emptyset $, and we derive the integrated counterterms in an explicit form.
 
-The general structure of the NSC SS as illustrated in the previous chapter remains valid: in particular, massive partons do not change collinear singularities, hence the $ \ico(\de) $ operator, as well as the Mellin convolutions of generalized splitting functions, remain unchanged. The only operators that do change are $ \iso(\de) $ and $ \ivo(\de) $.
+The general structure of the NSC SS as illustrated in the previous chapter remains valid: in particular, massive partons do not change collinear singularities (as shown in \secref{ssec:ir-poles}), hence the $ \ico(\de) $ operator, as well as the Mellin convolutions of generalized splitting functions, remain unchanged. The only operators that do change are $ \iso(\de) $ and $ \ivo(\de) $.
 
 \section{Generalized operators}
 
 \subsection{Generalized soft operator}
 
-\eref{eq:soft-lim} holds in general, thus to generalize the soft operator we only have to compute integrated eikonal factors in the case of massive partons. To do so, we choose a different parametrization of the phase space of the parton $ \ur_g $:
+The factorization formula for amplitudes in the soft limit, given in \eref{eq:soft-lim}, holds in general, thus to generalize the soft operator we only have to compute integrated eikonal factors in the case of massive partons. To do so, we choose a different parametrization of the phase space of the parton $ \ur_g $, with $ p = (p_1 , p_2 , p_\perp) $:
 \begin{equation}
   \dd^{d-1} p = \dd p_1 \, \dd p_2 \, \dd^{d-3} p_\perp = \dd p_1 \, \dd p_2 \, \dd p_\perp \, p_\perp^{d-4} \dd \Omega_{d-4}
 \end{equation}
-Then, we perform a transformation to polar coordinate $ (p_1 , p_2 , p_\perp) \mapsto (p_0 , \vartheta , \varphi) $ such that:
+Then, we perform a transformation to polar coordinates $ (p_1 , p_2 , p_\perp) \mapsto (p_0 , \vartheta , \varphi) $ such that:
 \begin{equation}
   p_1 = p_0 \cos \vartheta
   \qquad \qquad
@@ -41,17 +41,23 @@ and defined the generalized angular integral:
   \eit_{i,j} \equiv \frac{1}{\pi} \int_{-1}^1 \dd \cos \vartheta \int_0^\pi \dd \varphi \left( \sin \vartheta \sin \varphi \right)^{-2\de} \frac{\mm{p}_i \cdot \mm{p}_j}{(\mm{p}_i \cdot \mm{p}_\ur) (\mm{p}_j \cdot \mm{p}_\ur)}
   \label{eq:gen-int}
 \end{equation}
-with $ \mm{p}_i : p_i^\mu = E_i \mm{p}_i^\mu $. There only remains to evaluate $ \eit_{i,j}(\de) $ in the three possible cases for $ i $ and $ j $: massive--massive, massive--massless (note that $ \eit_{i,j}(\de) = \eit_{j,i}(\de) $) and massless--massless. The former two cases are known in the literature, e.g. Appendix D.2 of \cite{Behring-2020}, and are reported in \secref{sec:mass-int}.
+with $ \mm{p}_k : p_k^\mu = E_k \mm{p}_k^\mu \,\,\forall k \in \fsp{n}{m}\cup\{\ur\} $. It only remains to evaluate $ \eit_{i,j}(\de) $ in the three possible cases for $ i $ and $ j $: massive--massive, massive--massless (note that $ \eit_{i,j}(\de) = \eit_{j,i}(\de) $) and massless--massless. The former two cases are known in the literature, e.g. Appendix D.2 of \cite{Behring-2020}, and are reported in \secref{sec:mass-int}.
 
-To determine $ \eit_{i,j}(\de) $ in the massless--massless case, we just have to compare the expression for the integrated eikonal factor computer in \secref{ssec:soft-massless} with the above-found expression:
+To determine $ \eit_{i,j}(\de) $ in the massless--massless case, we just have to compare the expression for the integrated eikonal factor computed in \secref{ssec:soft-massless} with the above expression:
 \begin{equation*}
   \frac{\ema^{-2\de}}{\de^2} \eta_{ij} \frac{\pi^\de}{8\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \,\hyp(1,1,1-\de,1-\eta_{ij}) = - \frac{1}{\de} \frac{\pi^\de}{16\pi^2} \frac{\Gamma(1-\de)}{\Gamma(1-2\de)} \ema^{-2\de} \eit_{i,j}(\de)
 \end{equation*}
-hence, with an abuse of notation from \secref{sec:mass-int}:
+We can now make use of the following expansion:
 \begin{equation}
-  \eitt{i,j}{-1} = - 2 \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij})
+  \eta \,\hyp(1,1,1-\de,1-\eta) = 1 - \de \log \abs{\eta} - \frac{1}{2} \left( \log^2 \abs{\eta} + 2 \li(1-\eta) \right) \de^2 + \smo(\de^3)
+\end{equation}
+Hence, with the same notation from \secref{sec:mass-int}, we can write:
+\begin{equation}
+  \eitt{i,j}{-1} = - 2
   \qquad
-  \eitt{i,j}{k} = 0 \,\,\forall k \in \N_0
+  \eitt{i,j}{0} = 2 \log \abs{\eta_{ij}}
+  \qquad
+  \eitt{i,j}{1} = \log^2 \abs{\eta_{ij}} + 2 \li(1 - \eta_{ij})
   \label{eq:i-nmnm}
 \end{equation}
 Inserting everything in \eref{eq:soft-lim}, we get:
@@ -61,18 +67,19 @@ Inserting everything in \eref{eq:soft-lim}, we get:
 with the generalized soft operator:
 \begin{equation}
   \iso(\de) \defeq \frac{1}{2\de} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i,j \in \fsp{n}{m}} (\cc) \eit_{i,j}(\de)
+  \label{eq:iso-gen}
 \end{equation}
 
 \subsection{Generalized virtual operator}
 
-Catani's $ \ioo(\de) $ is generlized in \cite{Catani-2001}. However, as already stated, this operator is stated in a charge-unrenormalized way, hence we have to perform the renormalization of the results of this paper. In the following, we will denote charge-unrenormalized amplitudes as $ \mat $ and charge-renormalized amplitudes as $ \ampl $.
+Recall that IR poles of the 1-loop amplitude for a process involving massless partons can be expressed in terms of Catani's operator $ \ioo(\de) $ (see \eref{eq:ioo}): a generalization of this operator in the case of massive partons is given in \cite{Catani-2001}. However, as already stated, this operator is written in a charge-unrenormalized way, hence we have to perform the renormalization of the results of this reference. In the following, we will denote charge-unrenormalized amplitudes as $ \mat $ and charge-renormalized amplitudes as $ \ampl $.
 
 Loop corrections to the LO amplitude can be written as:
 \begin{equation}
   \mat_m = \left( \frac{\bc}{4\pi \mu^{2\de}} \right)^q \left[ \mat_m^{(0)} + \frac{\bc}{4\pi \mu^{2\de}} \mat^{(1)} + \smo(\bc^2) \right]
   \label{eq:ampl-non-ren}
 \end{equation}
-where $ q \in \frac{1}{2} \N_0 $. Note that this equation fixes the normalization of the charge-unrenormalized amplitudes. Catani's formula reads:
+where $ q \in \frac{1}{2} \N_0 $. Note that this equation fixes the normalization of the charge-unrenormalized amplitudes. Then, the IR poles can be written as:
 \begin{equation}
   \mat_m^{(1)} = \irs(\de) \mat_m^{(0)} + \mat_m^\text{fin}
   \label{eq:gen-cat-form}
@@ -85,20 +92,20 @@ where $ \mat_m^\text{fin} $ is the non-singular part of the 1-loop amplitude and
   \ioo(\de) \defeq \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^\de \left[ \ns_{i,j}(\de) + \frac{1}{v_{ij}} \left( \frac{i\pi}{\de} - \frac{\pi^2}{2} \right) \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
   \label{eq:gen-cat}
 \end{equation}
-where $ v_{ij} $ is defined in \eref{eq:v-def}, $ s_{ij} \equiv 2 p_i \cdot p_j $ and the singular functions are defined in \secref{sec:cat-fun}. Inserting \eeref{eq:gen-cat-form}{eq:gen-cat} into \eref{eq:ampl-non-ren}:
+with $ v_{ij} $ defined in \eref{eq:v-def}, $ s_{ij} \equiv 2 p_i \cdot p_j $ and the singular functions defined in \secref{sec:cat-fun}. Inserting \eeref{eq:gen-cat-form}{eq:gen-cat} into \eref{eq:ampl-non-ren}:
 \begin{multline*}
   \mat_m = \left( \frac{\bc}{4\pi \mu^{2\de}} \right)^q \bigg[ \left( 1 + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\bc}{4\pi \mu^{2\de}} q \frac{\beta_0}{\de} \right) \mat_m^{(0)} \\
-  + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\bc}{4\pi \mu^{2\de}} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\bc^2) \bigg]
+  + \frac{\bc}{4\pi \mu^{2\de}} \left( \frac{(4\pi)^\de}{\Gamma(1-\de)} \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\bc^2) \bigg]
 \end{multline*}
 Renormalization in the $ \msb $ scheme is performed via \eref{eq:msb-def}. Substituting this to $ \bc $ yields:
 \begin{equation*}
   \begin{split}
     \mat_m
     & = \left( \frac{\rc}{4\pi S_\de} \right)^q \left[ 1 - \frac{1}{2} \frac{\rc}{2\pi} \frac{\beta_0}{\de} + \smo(\rc^2) \right]^q \times \\
-    & \qquad \quad \times \left[ \left( 1 + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\rc}{4\pi S_\de} q \frac{\beta_0}{\de} \right) \mat_m^{(0)} + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\rc}{4\pi S_\de} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\bc^2) \right] \\
+    & \qquad \quad \times \left[ \left( 1 + \frac{(4\pi)^\de}{\Gamma(1-\de)} \frac{\rc}{4\pi S_\de} q \frac{\beta_0}{\de} \right) \mat_m^{(0)} + \frac{\rc}{4\pi S_\de} \left( \frac{(4\pi)^\de}{\Gamma(1-\de)} \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\bc^2) \right] \\
     & = \left( \frac{\rc}{4\pi S_\de} \right)^q \bigg[ \left( 1 - \frac{\rc}{4\pi} q \frac{\beta_0}{\de} \left( 1 - \frac{e^{\eg\de}}{\Gamma(1-\de)} \right) \right) \mat_m^{(0)} + \\
-    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad + \frac{e^{\eg\de}}{\Gamma(1-\de)} \frac{\rc}{4\pi} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\rc^2) \bigg] \\
-    & = \left( \frac{\rc}{4\pi S_\de} \right)^q \left[ \mat_m^{(0)} + \frac{e^{\eg\de}}{\Gamma(1-\de)} \frac{\rc}{4\pi} \left( \ioo(\de) \mat_m^{(0)} + \mat_m^\text{fin} \right) + \smo(\de) + \smo(\rc^2) \right]
+    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad + \frac{\rc}{4\pi} \frac{e^{\eg\de}}{\Gamma(1-\de)} \ioo(\de) \mat_m^{(0)} + \frac{\rc}{4\pi S_\de} \mat_m^\text{fin} + \smo(\rc^2) \bigg] \\
+    & = \left( \frac{\rc}{4\pi S_\de} \right)^q \left[ \mat_m^{(0)} + \frac{\rc}{4\pi} \frac{e^{\eg\de}}{\Gamma(1-\de)} \ioo(\de) \mat_m^{(0)} + \frac{\rc}{4\pi S_\de} \mat_m^\text{fin} + \smo(\de) + \smo(\rc^2) \right]
   \end{split}
 \end{equation*}
 Hence, we can write the renormalized relation:
@@ -111,10 +118,10 @@ with:
   \qquad \qquad
   \ampl_m^{(0)} \equiv (2S_\de)^{-q} \mat_m^{(0)}
   \qquad \qquad
-  \ampl_m^\text{fin} \equiv (2S_\de)^{-q} \mat_m^\text{fin}
+  \ampl_m^\text{fin} \equiv (2S_\de)^{-(1+q)} \mat_m^\text{fin}
 \end{equation}
 \begin{equation}
-  \ampl_m^{(1)} = \frac{1}{2} \frac{e^{\eg\de}}{\Gamma(1-\de)} \left[ \ioo(\de) \ampl_m^{(0)} + \ampl_m^\text{fin} \right]
+  \ampl_m^{(1)} = \frac{1}{2} \frac{e^{\eg\de}}{\Gamma(1-\de)} \ioo(\de) \ampl_m^{(0)} + \ampl_m^\text{fin}
 \end{equation}
 It is then clear, from \eref{eq:virt-cs}, that:
 \begin{equation}
@@ -123,6 +130,7 @@ It is then clear, from \eref{eq:virt-cs}, that:
 where the generalized virtual operator is:
 \begin{equation}
   \ivo(\de) \defeq \Re \ioo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^\de \left[ \ns_{i,j}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
+  \label{eq:ivo-gen}
 \end{equation}
 
 \footnotetext{Note that the notation is slightly different from \cite{Catani-2001}.}
@@ -130,7 +138,7 @@ where the generalized virtual operator is:
 \section{Integrated counterterms}
 \label{sec:int-count}
 
-Now, there only remains to show that $ \ito(\de) $ is $ \de $-finite and find its $ \smo(\de^0) $ term $ \ito^{(0)} $. First, we show the cancellation of colour-correlated terms between the soft and virtual operators:
+The generalized expressions for the soft and virtual operators with massive partons derived in the previous section can be combined with the unchanged collinear operator to form $ \ito \equiv \iso + \ivo + \ico $. It now only remains to show that $ \ito(\de) $ is $ \de $-finite and find its $ \smo(\de^0) $ term $ \ito^{(0)} $. These constitute the main results of this work. First, setting $ \isvo \equiv \iso + \ivo $, we show the cancellation of colour-correlated terms between the soft and virtual operators (\ceref{eq:iso-gen}{eq:ivo-gen}):
 \begin{equation*}
   \begin{split}
     \isvo(\de)
@@ -138,7 +146,7 @@ Now, there only remains to show that $ \ito(\de) $ is $ \de $-finite and find it
     & \quad + \left( 1 + \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} + \smo(\de^3) \right) \left( \ns_{ij}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) \bigg] + \\
     & \quad + \sum_{i \in \fsp{n}{m}} \bigg[ \tco_i^2 \frac{1}{2\de} \left( 1 - 2\lmx \de + \smo(\de^2) \right) \eit_{i,i}(\de) - \Gamma_i(\de) \bigg] \\
     & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \bigg[ \left( \frac{1}{2\de} - \lmx + \left( \lmx^2 - \frac{\pi^2}{12} \right) \de \right) \left( \frac{\eitt{i,j}{-1}}{\de} + \eitt{i,j}{0} + \de \eitt{i,j}{1} \right) + \smo(\de) \\
-    & \quad + \left( 1 + \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} \right) \left( \frac{\nss{i,j}{-2}}{\de^2} + \frac{\nss{i,j}{-1}}{\de} + \nss{i,j}{0} - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) + \smo(\de) \,+ \\
+    & \quad + \left( 1 + \de \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \de^2 \log^2 \frac{\mu^2}{\abs{s_{ij}}} \right) \left( \frac{\nss{i,j}{-2}}{\de^2} + \frac{\nss{i,j}{-1}}{\de} + \nss{i,j}{0} - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right) + \smo(\de) \bigg] + \\
     & + \sum_{i \in \fsm{n}{m}} \left[ \tco_i^2 \left( \frac{1}{2\de} - \lmx \right) \left( \eitt{i,i}{0} + \de \eitt{i,i}{1} \right) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de) + \smo(\de^2)
   \end{split}
 \end{equation*}
@@ -147,7 +155,7 @@ where we set $ \fsm{n}{m} \equiv \fsqm{n}{m} \cup \fsbqm{n}{m} $. To better unde
   \underbrace{\frac{1}{\de^2} \left( \frac{1}{2} \eitt{i,j}{-1} + \nss{i,j}{-2} \right) + \frac{1}{\de} \left( \frac{1}{2} \eitt{i,j}{0} + \nss{i,j}{-1} - \lmx \eitt{i,j}{-1} + \nss{i,j}{-2} \log \frac{\mu^2}{\abs{s_{ij}}} \right)}_{\ci{i,j}} + \,\smo(\de) \,+ \\
   + \underbrace{\frac{1}{2} \eitt{i,j}{1} - \lmx \eitt{i,j}{0} + \left( \lmx^2 - \frac{\pi^2}{12} \right) \eitt{i,j}{-1} + \nss{i,j}{0} - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) + \nss{i,j}{-1} \log \frac{\mu^2}{\abs{s_{ij}}} + \frac{1}{2} \nss{i,j}{-2} \log^2 \frac{\mu^2}{\abs{s_{ij}}}}_{\finc{i,j}}
 \end{multline*}
-where $ \ci{i,j} $ contains the $ \de $-poles and $ \finc{i,j} $ is $ \de $-finite (more precisely, $ \finc{i,j} \sim \smo(\de^0) $). The explicit expression of $ \ci{i,j} $ is derived in \secref{sec:poles}. The second summation instead reads, using \ceref{eq:i-self}{eq:g-qm}:
+where $ \ci{i,j} $ contains the $ \de $-poles and $ \finc{i,j} $ is $ \de $-finite (more precisely, $ \finc{i,j} \sim \smo(\de^0) $). The explicit expression of $ \ci{i,j} $ is derived in \secref{sec:poles}: in particular, it has $ \de $-poles only if $ i $ and/or $ j $ are massless partons, while it vanishes otherwise. The sum on $ i \in \fsm{n}{m} $ instead reads, using \ceref{eq:i-self}{eq:g-qm}:
 \begin{equation*}
   \sum_{i \in \fsm{n}{m}} \left[ \caf \left( \frac{1}{\de} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) - \caf \left( \frac{1}{\de} + \frac{1}{2} \log \frac{m_{\mq_i}^2}{\mu^2} - 2 \right) \right] \equiv \sum_{i \in \fsm{n}{m}} \finm{i}
 \end{equation*}
@@ -165,21 +173,20 @@ We can put all the above expressions together, yielding:
 \begin{equation}
     \isvo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ \ci{i,j} + \finc{i,j} \right] + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \left( \frac{1}{\de} \gamma_i + \fing{i} \right)
 \end{equation}
-We now focus on the colour-correlated term, writing $ \fsp{n}{m} \times \fsp{n}{m} = (\prt{n}{m} \cup \fsm{n}{m}) \times (\prt{n}{m} \cup \fsm{n}{m}) $:
+Note that this equation appears to have colour-correlated poles, contained in $ \ci{i,j} $. We now prove that these in fact cancel, as was the case for massless amplitudes. Recalling that $ \fsp{n}{m} $ is the set of all partons, $ \prt{n}{m} $ the set of all massless partons and $ \fsm{n}{m} $ the set of all final-state massive partons, writing $ \fsp{n}{m} \times \fsp{n}{m} = (\prt{n}{m} \cup \fsm{n}{m}) \times (\prt{n}{m} \cup \fsm{n}{m}) $, we find:
 \begin{equation*}
   \sum_{i \neq j \in \fsp{n}{m}} (\cc) \ci{i,j} = \bigg[ \sum_{i \neq j \in \prt{n}{m}} + \sum_{i \neq j \in \fsm{n}{m}} + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} \bigg] (\cc) \ci{i,j}
 \end{equation*}
-From \secref{sec:poles}, $ \ci{i,j} $ cotributes with a $ \leg_i / \de $ term for each massless index, hence:
+From \secref{sec:poles}, $ \ci{i,j} $ contributes with a $ \leg_i / \de $ term for each massless index, hence:
 \begin{equation*}
   \begin{split}
     \sum_{i \neq j \in \fsp{n}{m}} (\cc) \ci{i,j}
-    & = \sum_{i \neq j \in \prt{n}{m}} (\cc) \left[ \frac{\leg_i + \leg_j}{\de} + \finci{i,j} + \smo(\de) \right] \\
+    & = \sum_{i \neq j \in \prt{n}{m}} (\cc) \frac{\leg_i + \leg_j}{\de} \,+ \\
     & \qquad \qquad \qquad \qquad + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} (\cc) \frac{\leg_i}{\de} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} (\cc) \frac{\leg_j}{\de} \\
-    & = \sum_{i , j \in \prt{n}{m}} (\cc) \left[ \frac{\leg_i + \leg_j}{\de} + \finci{i,j} \right] - \sum_{i \in \prt{n}{m}} \tco_i^2 \left[ \frac{2\leg_i}{\de} + \finci{i,i} \right] + \smo(\de) \\
+    & = \sum_{i , j \in \prt{n}{m}} (\cc)\frac{\leg_i + \leg_j}{\de} - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{2\leg_i}{\de} \,+ \\
     & \qquad \qquad \qquad \qquad + \sum_{i \in \prt{n}{m} \,,\, j \in \fsm{n}{m}} (\cc) \frac{\leg_i}{\de} + \sum_{i \in \fsm{n}{m} \,,\, j \in \prt{n}{m}} (\cc) \frac{\leg_j}{\de} \\
     & = \sum_{i \in \prt{n}{m}} \frac{\leg_i}{\de} \tco_i \cdot \sum_{j \in \fsp{n}{m}} \tco_j + \sum_{i \in \fsp{n}{m}} \tco_i \cdot \sum_{j \in \prt{n}{m}} \tco_j \frac{\leg_j}{\de} - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{2\leg_i}{\de} \\
-    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de) \\
-    & = - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{2\leg_i}{\de} + \sum_{i \neq j \in \prt{n}{m}} \finci{i,j} + \smo(\de)
+    & = - \sum_{i \in \prt{n}{m}} \tco_i^2 \frac{2\leg_i}{\de}
   \end{split}
 \end{equation*}
 where we used the colour-conservation condition \eref{eq:col-cons}. Finally, we find an expression for the sum of soft and virtual operators without colour-correlated poles:
@@ -189,10 +196,10 @@ where we used the colour-conservation condition \eref{eq:col-cons}. Finally, we 
 \end{equation}
 where the $ \smo(\de^0) $ term reads:
 \begin{equation}
-  \isvo^{(0)} \equiv \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ \finci{i,j} + \finc{i,j} \right] + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \fing{i}
+  \isvo^{(0)} \equiv \sum_{i \neq j \in \fsp{n}{m}} (\cc) \finc{i,j} + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \fing{i}
   \label{eq:isvo-zero}
 \end{equation}
-The poles in \eref{eq:isvo} clearly cancel those in the collinear operator \eref{eq:ic-exp}, as it remains unchanged when including massive final-state partons: we only need to determine its Laurent series at $ \smo(\de) $. First, consider the generalized initial-state anomalous dimension \eref{eq:in-gen-an-dim}:
+The poles in \eref{eq:isvo} clearly cancel those in the collinear operator \eref{eq:ic-exp}, as it remains unchanged when including massive final-state partons. Thus, we confirm that the cancellation of poles holds in the extension of the NSC SS including massive final states in NLO corrections. We now only need to determine its Laurent series at $ \smo(\de) $. First, consider the generalized initial-state anomalous dimension \eref{eq:in-gen-an-dim}:
 \begin{equation}
   \Gamma_{a , f_a} = \gamma_a + 2 \tco_a^2 \leg_a - \de \left[ 2 \ler_a \left( \gamma_a + 2 \tco_a^2 \leg_a \right) + 2 \tco_a^2 \leg_a^2 \right] + \smo(\de^2)
 \end{equation}
@@ -216,6 +223,8 @@ where the $ \smo(\de^0) $ term reads:
 where $ N_g \equiv \abs{\fsg{n}{m}} $ is the number of final-state gluons, $ N_q \equiv \abs{\fsq{n}{m}} $ the number of final-state massless quarks and $ N_{\bar{q}} \equiv \abs{\fsbq{n}{m}} $ the number of final-state massless antiquarks.
 
 We see that, when including massive final-state partons, the general structure of the NLO correction \eref{eq:nlo-finite-massless} remains unchanged. Aside from the amplitudes themselves, the only term that does change, indeed, is the $ \ito^{(0)} $ term, whose expression is obtained combining \ceref{eq:isvo-zero}{eq:ico-zero}.
+
+This result paves the way for the inclusion of massive final-state partons in NLO calculations performed with the NSC subtraction framework.
 
 
 
