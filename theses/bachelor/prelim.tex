@@ -24,19 +24,19 @@ As a gauge group, consider a $ d $-dimensional Lie group $ G $: in particular, t
 \end{equation}
 where the Lie parameters $ \{\theta_a(x)\}_{a = 1, \dots, d} \subset \mathcal{C}^\infty(\R^{1,3}) $ define a local gauge transformation. The aim is to define a Lagrangian which is invariant under this transformation, i.e. the Lagrangian of a (local) gauge theory.
 
-Simple terms invariant under global phase rotations, like the fermion mass term $ m \bar{\Psi} \Psi $, are of course invariant under \eref{eq:gauge-trans} too, but derivatives need a careful treatment: indeed, the limit-definition of a derivative involves fields at different spacetime points, which have different transformations according to \eref{eq:gauge-trans}. In order to define a derivative of \Psi, it is necessary to introduce a factor to subtract values of $ \Psi(x) $ in a meaningful way, so consider $ \tens{U}(y,x) \in \Un{n} : \tens{U}(x,x) = 1 $ and which transforms under the action of $ G $ as:
+Simple terms invariant under global phase rotations, like the fermion mass term $ m \bar{\Psi} \Psi $, are of course invariant under \eref{eq:gauge-trans} too, but derivatives need a careful treatment: indeed, the limit-definition of a derivative involves fields at different spacetime points, which have different transformations according to \eref{eq:gauge-trans}. In order to define a derivative of \Psi, it is necessary to introduce a factor to subtract values of $ \Psi(x) $ in a meaningful way, so consider $ \mt{U}(y,x) \in \Un{n} : \mt{U}(x,x) = 1 $ and which transforms under the action of $ G $ as:
 \begin{equation}
-  \tens{U}(y,x) \mapsto V(y) \tens{U}(y,x) V\dg(x)
+  \mt{U}(y,x) \mapsto V(y) \mt{U}(y,x) V\dg(x)
   \label{eq:fac-cov-der}
 \end{equation}
-By the unitarity of the representations of $ G $, it is clear that $ \tens{U}(y,x) \Psi(x) $ and $ \Psi(y) $ have the same transformation law, so they can be meaningfully subtracted. Then, given $ n^\mu \in \R^{1,3} $, the covariant derivative of a fermionic field $ \Psi(x) $ along $ n^\mu $ is defined as:
+By the unitarity of the representations of $ G $, it is clear that $ \mt{U}(y,x) \Psi(x) $ and $ \Psi(y) $ have the same transformation law, so they can be meaningfully subtracted. Then, given $ n^\mu \in \R^{1,3} $, the covariant derivative of a fermionic field $ \Psi(x) $ along $ n^\mu $ is defined as:
 \begin{equation}
-  n^\mu D_\mu \Psi(x) \defeq \lim_{\varepsilon \rightarrow 0} \frac{1}{\varepsilon} \left[ \Psi(x + \varepsilon n) - \tens{U}(x + \varepsilon n, x) \Psi(x) \right]
+  n^\mu D_\mu \Psi(x) \defeq \lim_{\varepsilon \rightarrow 0} \frac{1}{\varepsilon} \left[ \Psi(x + \varepsilon n) - \mt{U}(x + \varepsilon n, x) \Psi(x) \right]
   \label{eq:cov-der-def}
 \end{equation}
-where $ \tens{U}(y,x) $ is defined through \eref{eq:fac-cov-der}. To make this definition explicit, it is necessary to get an expression of $ \tens{U}(y,x) $ at infinitesimally-separted points. Given the unitarity of $ \tens{U}(y,x) $, it can be expressed through the generators $ \{T^a\}_{a = 1, \dots, d} $ as:
+where $ \mt{U}(y,x) $ is defined through \eref{eq:fac-cov-der}. To make this definition explicit, it is necessary to get an expression of $ \mt{U}(y,x) $ at infinitesimally-separted points. Given the unitarity of $ \mt{U}(y,x) $, it can be expressed through the generators $ \{T^a\}_{a = 1, \dots, d} $ as:
 \begin{equation}
-  \tens{U}(x + \varepsilon n, x) = \tens{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a + \smo(\varepsilon^2)
+  \mt{U}(x + \varepsilon n, x) = \mt{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a + \smo(\varepsilon^2)
   \label{eq:fac-cov-der-exp}
 \end{equation}
 where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually, $ d $ different vector fields) is a \bctxt{connection}, and it allows us to express the covariant derivative as (directly from \eref{eq:cov-der-def}):
@@ -45,7 +45,7 @@ where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually,
 \end{equation}
 To show that $ D_\mu \Psi $ transforms in the same way as $ \Psi $, note that, from \eeref{eq:fac-cov-der}{eq:fac-cov-der-exp}:
 \begin{equation*}
-  \tens{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a \mapsto I_n - \varepsilon n^\mu V(x) \pa_\mu V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a(x) T_a \right) V\dg(x) + \smo(\varepsilon^2)
+  \mt{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a \mapsto I_n - \varepsilon n^\mu V(x) \pa_\mu V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a(x) T_a \right) V\dg(x) + \smo(\varepsilon^2)
 \end{equation*}
 Hence, the connection transforms as:
 \begin{equation*}
@@ -53,7 +53,7 @@ Hence, the connection transforms as:
 \end{equation*}
 The second term makes it clear that the connection transforms according to the adjoint representation. From this expression, it follows that:
 \begin{equation*}
-  D_\mu \Psi(x) \mapsto \left[ \tens{I}_n + i \theta^a(x) T_a + \smo(\theta^2) \right] \left( \pa_\mu - i g A_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
+  D_\mu \Psi(x) \mapsto \left[ \mt{I}_n + i \theta^a(x) T_a + \smo(\theta^2) \right] \left( \pa_\mu - i g A_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
 \end{equation*}
 where the relation $ T_a T_b - i f^{abc} T_c = T_b T_a $ of the associated Lie algebra was used.
 
@@ -72,7 +72,7 @@ Usually, the following gauge-invariant term is taken as kinetic term for the gau
 \begin{equation}
   \tr \{(F_{\mu \nu}^a T_a)^2\} = 2 F_{\mu \nu}^a F^{\mu \nu}_a
 \end{equation}
-This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang--Mills theory} without fermionic species:
+This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang--Mills theory}:
 \begin{equation}
   \lag_\text{YM} = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a
 \end{equation}
@@ -86,9 +86,9 @@ To account for fermions interacting with the gauge field $ A_\mu^a(x) $, the Dir
 
 The $ \SUn{n_c} $ group is the group of unitary transformations of $ n_c $-dimensional complex vectors. Its (faithful) fundamental representation thus is:
 \begin{equation*}
-  \SUn{n_c} = \{\tens{U} \in \C^{n_c \times n_c} : \tens{U}\tens{U}\dg = \tens{U}\dg\tens{U} = \tens{I}_{n_c} \land \det{\tens{U}} = +1 \}
+  \SUn{n_c} = \{\mt{U} \in \C^{n_c \times n_c} : \mt{U}\mt{U}\dg = \mt{U}\dg\mt{U} = \mt{I}_{n_c} \land \det{\mt{U}} = +1 \}
 \end{equation*}
-The generators of $ \SUn{n_c} $ can be found setting $ \tens{U} = \exp \left( i \theta_a T^a \right) = \tens{I}_{n_c} + i \theta_a T^a + \smo(\theta^2) $ and using $ \tens{U}\dg\tens{U} = \tens{I}_{n_c} $:
+The generators of $ \SUn{n_c} $ can be found setting $ \mt{U} = \exp \left( i \theta_a T^a \right) = \mt{I}_{n_c} + i \theta_a T^a + \smo(\theta^2) $ and using $ \mt{U}\dg\mt{U} = \mt{I}_{n_c} $:
 \begin{equation}
   T^a = T^{a\dagger}
   \label{eq:sun-herm}
@@ -115,7 +115,7 @@ Moreover, since the structure constant are real, the adjoint representation is a
 
 Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
 \begin{equation}
-  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
+  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \mt{I}_{n_{\mathtt{r}}}
   \label{eq:quad-cas}
 \end{equation}
 This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i f^{bac} \{T^c,T^a\} = 0 $ by antisymmetry). For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n_c} $, the quadratic Casimir operators are (\secref{sec:cas-op}):
@@ -261,7 +261,7 @@ The generalized Catani's formula for IR singularities in virtual corrections is 
 \subsection{Dimensional regularization}
 \label{ssec:dim-reg}
 
-In the evaluation of loop amplitudes, both UV- and IR-singularities are encountered. The most efficient way to simultaneously regularize both types of divergences is dimensional regularization \cite{dim-reg}.
+In the evaluation of loop amplitudes, both UV- and IR-singularities are encountered. The most efficient way to simultaneously regularize both types of divergences is dimensional regularization \cite{Thooft-1972, Bollini-1972}.
 
 In general, the dimensional regularization scheme consists in the analytic continuation of loop momenta to $ d = 4 - 2 \de $ dimensions, with $ \de \in \C : \Re\de < 0 $ for IR divergences and $ \Re\de > 0 $ for UV ones. This procedure turns loop integrals into meromorphic functions of $ \de \in \C $, allowing for the isolation of divergences as poles in $ \de $.
 
