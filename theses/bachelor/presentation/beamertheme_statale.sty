@@ -20,8 +20,6 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-% TODO: remove top-right logo from title page
-
 \ProvidesPackage{beamertheme_statale}[2023/11/01]
 
 \RequirePackage{etoolbox}
@@ -45,7 +43,7 @@
 \newcommand{\footlinepayoff}[1]{\renewcommand{\@footlinepayoff}{#1}}
 % Define footline content
 \setbeamertemplate{footline}{%
-  \begin{beamercolorbox}[wd=\textwidth,ht=5mm,dp=3mm,rightskip=1cm,leftskip=1cm]{footline}
+  \begin{beamercolorbox}[wd=\textwidth,ht=4mm,dp=2.5mm,rightskip=1cm,leftskip=1cm]{footline}
   \insertframenumber/\inserttotalframenumber
   \ifstrempty{\@footlinepayoff}{}{%
     \usebeamerfont{footline}\hfill\@footlinepayoff
@@ -69,8 +67,8 @@
 }
 \footlinecolor{} % Default: no footline
 
-\pgfdeclareimage[width=0.09\paperwidth]{logo}{assets/logo_RGB}
-\pgfdeclareimage[width=0.09\paperwidth]{whitelogo}{assets/logo_RGB_negative}
+\pgfdeclareimage[width=0.08\paperwidth]{logo}{assets/logo_RGB}
+\pgfdeclareimage[width=0.08\paperwidth]{whitelogo}{assets/logo_RGB_negative}
 \newcommand{\@logo}{logo}
 
 % Set colours
@@ -155,15 +153,17 @@
   \vspace{20mm}
   \begin{beamercolorbox}[wd=0.72\textwidth,sep=10pt,leftskip=8mm]{title}%
     {\usebeamerfont{title}\inserttitle}
-  
+
     {\usebeamerfont{subtitle}\insertsubtitle}
 
     {\usebeamerfont{subtitle}\@courseLabel}
-    
+
     {\usebeamerfont{author}\usebeamercolor[fg]{author}\textbf{\insertauthor} \ifdefempty{\@IDnumber}{}{(\@IDnumber)}}
-  
+
     {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate}
   \end{beamercolorbox}
+
+  \vspace{3em}
 }
 
 % Define slide splitting dimensions (e.g. title and chapter slides)
@@ -201,6 +201,8 @@
       }
     }
   }
+  \setbeamertemplate{headline}{}
+  \setbeamertemplate{footline}{}
   \begin{frame}%
   \titlepage%
   \end{frame}%
