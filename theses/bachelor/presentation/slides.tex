@@ -462,8 +462,8 @@
     I = \int_0^1 \frac{\dd x}{x^{1 + \de}} \,f(x) = \int_0^1 \frac{\dd x}{x^{1 + \de}} \left[ \,f(x) - f(0) \right] + f(0) \int_0^1 \frac{\dd x}{x^{1 + \de}}
   \end{equation*}
   \begin{itemize}
-    \item $ \displaystyle \frac{\,f(x) - f(0)}{x^{1 + \de}} $ regular at $ x = 0 $, so it can be numerically integrated with $ \de \rightarrow 0 $
-    \item $ \displaystyle f(0) \int_0^1 \frac{\dd x}{x^{1 + \de}} = - \frac{\,f(0)}{\de} $ contains the explicit $ \de $-pole
+    \item $ \displaystyle \frac{\,f(x) - f(0)}{x^{1 + \de}} $ regular at $ x = 0 $, so it can be numerically integrated with $ \de \rightarrow 0 $;
+    \item $ \displaystyle f(0) \int_0^1 \frac{\dd x}{x^{1 + \de}} = - \frac{\,f(0)}{\de} $ contains the explicit $ \de $-pole.
   \end{itemize}
 
   Our aim is finding the most general subtraction terms $ \,f(0) $ for partonic scattering.
@@ -473,18 +473,342 @@
 %=======================================================================
 
 \begin{frame}{NSC subtraction scheme}
-  \framesubtitle{Extraction of poles via operators}
+  \framesubtitle{Sequential extraction of singularities}
 
-  introduce the NSC SS
+  \justifying
+  The Nested Soft-Collinear (NSC) Subtraction Scheme (SS) at NLO is modular and local:
+  \begin{itemize}[<+->]
+    \item singular limits extracted by operators: $ \so_i $ soft limit $ E_i \rightarrow 0 $, $ \co_{ij} $ collinear limit $ \theta_{ij} \rightarrow 0 $;
+    \item potentially-unresolved partons isolated by clever partitions of unity $ \Delta^i $ and $ \omega^{ij} $;
+    \item first soft singularities removed applying $ \oso_\ur \equiv \id - \so_\ur $, then collinear ones removed using $ \oco_{i\ur} \equiv \id - \co_{i\ur} $, with $ \ur $ unresolved parton;
+    \item IR-safe part of cross-section extracted by:
+      \begin{equation*}
+        \nlo^\ur \defeq \sum_{i \in \prt{n}{m}} \oso_\ur \oco_{i\ur} \omega^{\ur i}
+      \end{equation*}
+    \item counterterms contain the IR divergences.
+  \end{itemize}
 
 \end{frame}
 
 %=======================================================================
 
 \begin{frame}{NSC subtraction scheme}
-  \framesubtitle{Pole cancellation}
+  \framesubtitle{IR-safe cross-section}
 
-  briefly show pole cancellation in the NSC SS
+  The total $ \de $-finite NLO cross-section can be written as:
+  \begin{multline*}
+    \dd\pcs_{a,b}^{(1)} = \dd\pcs_{a,b}^\text{NLO,reg} + \frac{1}{2\hat{s}} \sum_{n \in \en_m} \left[ \frac{\rcr}{2\pi} \ips{\ito^{(0)} \flm_{a,b}[\fs{n}{m}]} + \ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]} \right] \\
+    + \frac{\rcr}{2\pi} \sum_c \left[ \fap_{f_c , f_a} \otimes \dd\pcs^{(0)}_{c,b} + \fap_{f_c , f_b} \otimes \dd\pcs^{(0)}_{a,c} \right]
+  \end{multline*}
+
+  \vspace{6.41em}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}[noframenumbering]{NSC subtraction scheme}
+  \framesubtitle{IR-safe cross-section}
+
+  The total $ \de $-finite NLO cross-section can be written as:
+  \begin{multline*}
+    \dd\pcs_{a,b}^{(1)} = \textcolor{blue}{\dd\pcs_{a,b}^\text{NLO,reg}} + \frac{1}{2\hat{s}} \sum_{n \in \en_m} \left[ \frac{\rcr}{2\pi} \ips{\textcolor{red}{\ito^{(0)}} \flm_{a,b}[\fs{n}{m}]} + \textcolor{green}{\ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]}} \right] \\
+    + \frac{\rcr}{2\pi} \sum_c \left[ \fap_{f_c , f_a} \otimes \dd\pcs^{(0)}_{c,b} + \fap_{f_c , f_b} \otimes \dd\pcs^{(0)}_{a,c} \right]
+  \end{multline*}
+  \begin{itemize}[<+->]
+    \item \textcolor{blue}{NLO final reminder, defined using $ \nlo^\ur $};
+    \item \textcolor{green}{finite counterterm from virtual corrections};
+    \item finite counterterm from PDF renormalization;
+    \item \textcolor{red}{counterterm we are interested in}.
+  \end{itemize}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC subtraction scheme}
+  \framesubtitle{Pole extraction through operators}
+
+  \centering
+  Soft singularities
+
+  \begin{equation*}
+    \left\langle \so_\ur \Delta^\ur \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 1cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (0,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (0,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (1,0.47) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (1,-0.29) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (e) {};
+      \vertex (le) at ($ (e) + (0.05,0) $) {\color{red} $ \ur $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- [gluon, red] (e),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+    = [\rc] \left\langle \iso(\de) \cdot \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 1cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (0,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (0,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.12) $) {$ \vdots $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+  \end{equation*}
+
+  \begin{equation*}
+    \iso(\de) \defeq - \textcolor{red}{\frac{1}{\de^2}} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i \neq j \in \fsp{n}{m}} \eta_{ij} (\cc) \,\hyp(1,1,1-\de,1-\eta_{ij})
+  \end{equation*}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC subtraction scheme}
+  \framesubtitle{Pole extraction through operators}
+
+  \centering
+  Hard-collinear singularities
+
+  \small
+  \begin{equation*}
+    \sum_{\rho = 1}^{2n_f + 1} \sum_{i \in \prt{n}{m}(\ur_\rho)}
+    \left\langle \oso_\ur \co_{i\ur_\rho} \Delta^{\ur_\rho} \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 0.8cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (1,0.50) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (1,-0.32) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (r2) {};
+      \vertex[above = 0.2cm of r2] (e) {\color{red} $ \ur_\rho $};
+      \vertex[below = 0.2cm of r2] (f) {$ i $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- [red] (e),
+        (v) -- (f),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+    \sim [\rc] \left\langle \ico(\de) \cdot \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 0.8cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.37) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.18) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (e) {$ [i\ur_\rho] $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- (e),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+  \end{equation*}
+
+  \normalsize
+  \begin{equation*}
+    \ico(\de) \defeq \sum_{i \in \prt{n}{m}} \frac{\Gamma_{i,f_i}}{\de} = \textcolor{red}{\frac{1}{\de}} \sum_{i \in \prt{n}{m}} \left[ \gamma_i + 2 \tco_i^2 \log \frac{\ema}{E_i} \right] + \smo(\de^0)
+  \end{equation*}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC subtraction scheme}
+  \framesubtitle{Pole extraction through operators}
+
+  \centering
+  Virtual singularities
+
+  \begin{equation*}
+    \left\langle 2 \Re \left\langle
+    \left.
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, fill = none, minimum size = 0.6cm] (v) {1-L};
+
+      \vertex[left = 0.6cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (0,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (0,0)$) {$ b $};
+
+      \vertex[right = 0.8cm of v] (r2) {};
+      \vertex[above = 0.7cm of r2] (c) {};
+      \vertex[below = 0.7cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.6,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.6,-0.12) $) {$ \vdots $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+      };
+    \end{feynman}
+    \end{tikzpicture}
+    \right|
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.6cm] (v) {};
+
+      \vertex[right = 0.6cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (0,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (0,0)$) {$ b $};
+
+      \vertex[left = 0.8cm of v] (r2) {};
+      \vertex[above = 0.7cm of r2] (c) {};
+      \vertex[below = 0.7cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (-0.6,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (-0.6,-0.12) $) {$ \vdots $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+      };
+    \end{feynman}
+    \end{tikzpicture} \right\rangle \right\rangle
+    = [\rc] \left\langle \ivo(\de) \cdot \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 0.8cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (0,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (0,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.3) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.12) $) {$ \vdots $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+  \end{equation*}
+
+  \begin{equation*}
+    \ivo(\de) \equiv \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{2p_i \cdot p_j} \right)^\de \cos \left( \lambda_{ij} \pi \de \right) \left[ \textcolor{red}{\frac{1}{\de^2}} +  \frac{1}{\tco_i^2}\frac{\gamma_i}{\de} \right]
+  \end{equation*}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC subtraction scheme}
+  \framesubtitle{Pole cancellation: $ \iso(\de) + \ivo(\de) $}
+
+  \small
+  \begin{equation*}
+    \begin{split}
+      \isvo
+      & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left[ - \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} \textcolor{blue}{K_{ij}} + \left( \frac{\mu^2}{2p_i \cdot p_j} \right)^\de \cos \left( \lambda_{ij} \pi \de \right) \left( \frac{1}{\de^2} + \frac{1}{\tco_i^2} \frac{\gamma_i}{\de} \right) \right] \\
+      & \qquad \qquad \qquad \qquad \qquad \textcolor{blue}{\equiv \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \eta_{ij} \,\hyp(1,1,1-\de,1-\eta_{ij}) = 1 - \de \log \eta_{ij} + \smo(\de^2)} \\
+      & = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \frac{1}{\de^2} \left( \frac{2\ema}{\mu} \right)^{-2\de} \left[ \textcolor{red}{-1} + \de \log \eta_{ij} + \left( \frac{\ema^2}{E_i E_j} \right)^\de \eta_{ij}^{-\de} \cos \left( \lambda_{ij} \pi \de \right) \left( \textcolor{red}{1} + \de \frac{\gamma_i}{\tco_i^2} \right) \right] \\ %+ \smo(\de^0) \\
+      %
+      %
+      %
+      % REMEMBER TO UNCOMMENT THE LANDAU SYMBOL
+      %
+      %
+      %
+      %
+      & = \frac{1}{\de} \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \leg_i + \leg_j + \frac{\gamma_i}{\tco_i^2} \right) + \smo(\de^0) = - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + \smo(\de^0)
+    \end{split}
+  \end{equation*}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC subtraction scheme}
+  \framesubtitle{Pole cancellation: $ \ito(\de) $}
+
+  Compare:
+  \begin{equation*}
+    \isvo(\de) = - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 L_i \right) + \isvo^{(0)} + \smo(\de)
+  \end{equation*}
+  \begin{equation*}
+    \ico(\de) =  - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 L_i \right) + \ico^{(0)} + \smo(\de)
+  \end{equation*}
+  Hence:
+  \begin{equation*}
+    \ito(\de) \equiv \iso(\de) + \ico(\de) + \ivo(\de) = \ito^{(0)} + \smo(\de)
+  \end{equation*}
 
 \end{frame}
 
@@ -493,7 +817,32 @@
 \begin{frame}{NSC SS with massive quarks}
   \framesubtitle{Mass-regualtion of soft and collinear limits}
 
-  explain why massive quarks change $ I_\text{S}(\epsilon) $ and $ I_\text{V}(\epsilon) $, but not $ I_\text{C}(\epsilon) $
+  Massive partons do not determine soft or collinear singularities:
+  \small
+  \begin{equation*}
+  \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex (a);
+      \vertex[right = 2.5cm of a, dot] (b) {};
+      \vertex[right = 2.5cm of b, blob, minimum size = 1.2cm] (c) {};
+
+      \vertex[above = 1.5cm of b] (d);
+      \vertex[right = 1.5cm of d] (e);
+
+      \vertex[below = 0.25em of b] (r);
+
+      \diagram* {
+	(a) -- [fermion, momentum' = \(p\)] (b),
+	(b) -- [fermion, momentum' = \(p - k\)] (c),
+
+	(b) -- [gluon, momentum = \(k\)] (e),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \ \ \ \sim \ \ \
+  \frac{1}{(p-k)^2} = \frac{1}{\textcolor{red}{m^2} - 2 E_k \left( \sqrt{\textcolor{red}{m^2} + \abs{\ve{p}}^2} - \abs{\ve{p}} \cos\theta \right)}
+  \end{equation*}
+  Clearly, no more singularities due to $ \textcolor{red}{m^2} $ in the denominator.
 
 \end{frame}
 
@@ -502,7 +851,16 @@
 \begin{frame}{NSC SS with massive quarks}
   \framesubtitle{Generalized soft operator}
 
-  show how $ I_\text{S}(\epsilon) $ changes (in particular massive angular integrals)
+  \justifying
+  \begin{itemize}[<+->]
+    \item In presence of final-state massive partons, $ \iso(\de) $ becomes:
+    \begin{equation*}
+      \iso(\de) = \frac{1}{2\de} \left( \frac{2\ema}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \sum_{i,j \in \fsp{n}{m}} (\cc) \eit_{i,j}(\de)
+    \end{equation*}
+    \item $ \eit_{i,j}(\de) $ depends on the nature (massive or massless) of partons $ i $ and $ j $;
+    \item $ \eit_{i,j}(\de) $ is singular as $ \sim \de^{-1} $ if at least one parton is massless, otherwise it is $ \de $-finite;
+    \item $ \textcolor{red}{\de^{-2}} $-poles of $ \iso(\de) $ are determined only by \textcolor{red}{massless partons}.
+  \end{itemize}
 
 \end{frame}
 
@@ -511,7 +869,17 @@
 \begin{frame}{NSC SS with massive quarks}
   \framesubtitle{Generalized virtual operator}
 
-  show how $ I_\text{V}(\epsilon) $ changes (in particular, colour-correlated $ \epsilon^{-2} $-poles in $ \mathcal{V}_{i,j}(\epsilon) $ coefficients)
+  \justifying
+  \begin{itemize}[<+->]
+    \item In presence of final-state massive partons, $ \iso(\de) $ becomes:
+    \begin{equation*}
+      \ivo(\de) \defeq \Re \ioo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^\de \left[ \ns_{i,j}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
+    \end{equation*}
+    \item $ \ns_{i,j}(\de) $ depends on the nature (massive or massless) of partons $ i $ and $ j $;
+    \item $ \eit_{i,j}(\de) $ is $ \de^{-2} $-singular if at least one parton is massless, otherwise it is $ \de^{-1} $-singular;
+    \item $ \Gamma_i(\de) $ is $ \de^{-1} $-singular;
+    \item $ \textcolor{red}{\de^{-2}} $-poles of $ \ivo(\de) $ are determined only by \textcolor{red}{massless partons}.
+  \end{itemize}
 
 \end{frame}
 
