@@ -4,7 +4,7 @@ The aim of the NSC subtraction scheme (SS) is to regulate the IR diverges in QCD
 \begin{equation}
   p + p \rightarrow X + N \,\text{jets}
 \end{equation}
-where $ X $ is a colour-neutral system. The hadron-scale physics can be treated separately from the parton-scale physics (see Section 1.1 of \cite{Collins-2011}): this makes it possible for us to directly manipulate partonic cross-sections according to \eref{eq:fact-th}, where now the sum runs over all initial-state massless partons $ a $ and $ b $ which contribute to the production of the final state under consideration. Moreover, for the rest of this work we set $ \ren = \fac = \mu $, where $ \mu $ is the typical energy scale of the considered process.
+where $ X $ is a colour-neutral system. The hadron-scale physics can be treated separately from the parton-scale physics (see Section 1.1 of \cite{Collins-2011} and \secref{sec:coll-phys}): this makes it possible for us to directly manipulate partonic cross-sections according to \eref{eq:fact-th}, where now the sum runs over all initial-state massless partons $ a $ and $ b $ which contribute to the production of the final state under consideration. Moreover, for the rest of this work we set $ \ren = \fac = \mu $, where $ \mu $ is the typical energy scale of the considered process.
 
 \footnotetext{Inclusive jet production denotes the theoretical prediction (or experimental measurement) of the cross-section for the production of jets of given kinematics, while summing/integrating over all other final-state radiation and particles.}
 
@@ -13,7 +13,7 @@ Denoting the partons' momenta as $ p_i \equiv \xi_i P_i $, $ i = 1,2 $, and supp
   \dd\pcs_{a,b}^{(0)}(p_1 , p_2) \defeq \sum_\text{f} \frac{\mathcal{N}}{2\hat{s}} \int \lps_m (2\pi)^4 \delta^{(4)}(p_\text{in} - p_\text{out}) \abs{\ampl^{(0)}_m(p_1, p_2, p_X, p_\text{f})}^2 \op_m(p_X, p_\text{f})
   \label{eq:ds-lo}
 \end{equation}
-where $ m $ is the number of final-state partons ($ m = N $ at NLO), $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic center-of-mass (CM) energy squared, $ p_\text{f} $ is the total final-state partonic momentum and the normalization factor $ \mathcal{N}_m $ includes all necessary symmetry factors, as well as averaging factors for initial-state colours and helicities. The sum runs over all possible partonic final states for the considered process (formalized in the next section). Moreover, $ \op_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state gluon vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \op_{m + n} \rightarrow \op_{m + n - 1} $ for $ n \in \N $, and $ \op_m \rightarrow 0 $. Moreover, we assume that $ \op_m $ contains the integration measure $ \lps_X $ for the colour-singlet.
+where $ m $ is the number of final-state partons ($ m = N $ at LO), $ \hat{s} \equiv 2 p_1 \cdot p_2 $ is the partonic center-of-mass (CM) energy squared, $ p_\text{f} $ is the total final-state partonic momentum and the normalization factor $ \mathcal{N}_m $ includes all necessary symmetry factors, as well as averaging factors for initial-state colours and helicities. The sum runs over all possible partonic final states for the considered process (formalized in the next section). Moreover, $ \op_m $ is an IR-finite measurement function defining the observable, which ensures that the final state contains at least $ N $ resolved jets: in particular, if the energy of a final-state gluon vanishes (soft limit), or if two partons become collinear to one another (collinear limit), then $ \op_{m + n} \rightarrow \op_{m + n - 1} $ for $ n \in \N $, and $ \op_m \rightarrow 0 $. Moreover, we assume that $ \op_m $ contains the integration measure $ \lps_X $ for the colour-singlet.
 
 Similarly, it is possible to write the NLO corrections in \eref{eq:real-exp} as:
 \begin{equation}
@@ -33,8 +33,9 @@ Note that in \eref{eq:real-cs} the final state contains $ m + 1 $ partons. The \
 The rest of this chapter is devoted to the extraction of IR-singularities from \eeref{eq:real-cs}{eq:pdf-cs}, proving their cancellation and providing the associated integrated counterterms.
 
 \section{Nested subtraction}
+\label{sec:nsc-real}
 
-As suggested by the name, in the NSC SS the IR-poles of real corrections are removed sequentially, starting from those arising from soft limits and then subtracting the collinear ones from the soft-regulated terms.
+As suggested by the name, in the NSC SS the IR-poles of real corrections are removed sequentially, starting from those arising from soft limits and then subtracting the collinear ones from the soft-regulated terms. Note that, at NLO, this scheme is identical to the FKS scheme.
 
 To show this procedure, we introduce some notation\footnotemark. First of all, we define the integrand function in \eeref{eq:ds-lo}{eq:real-cs} as:
 \begin{equation}
@@ -98,9 +99,9 @@ We can relabel the potentially-unresolved parton $ i $ in each term as $ \ur_{f_
 \end{equation}
 where $ \en_m(f) \subset \en_m : N_f \ge 1 $ denotes the subset of possible final states with at least one parton of flavour $ f $. The subscript $ f $ in $ \ur_f $ is suppressed when implicitly understood.
 
-\footnotetext{Massive partons cannot become unresolved, as they do not determine soft or collinear singularities.}
+\footnotetext{Massive partons cannot become unresolved, as they do not determine soft or collinear singularities. Moreover, with a slight notation abuse, we consider the gluon as a ``partonic flavour".}
 
-We are now ready to apply the nested subtraction procedure introduced in \cite{rontsch-2017} can be applied. In particular, for each term we rewrite the identity operator as:
+We are now ready to apply the nested subtraction procedure introduced in \cite{rontsch-2017}. In particular, for each term we rewrite the identity operator as:
 \begin{equation}
   \id = \so_\ur + \sum_{i \in \prt{n}{m}(\ur)} \oso_\ur \co_{i\ur} + \nlo^\ur
   \qquad \qquad
@@ -123,7 +124,7 @@ We first consider the soft limit of each term in \eref{eq:part-chan}. For the la
 \begin{equation*}
   \so_{\ur_q} = \so_{\ur_{\bar{q}}} \equiv 0
 \end{equation*}
-The only soft singularities come from the first term, when a gluon becomes unresolved. In this limit, the factorization of the amplitude is found to be (see \cite{Catani-1997}):
+Thus, the only soft singularities come from the first term, when a gluon becomes unresolved. In this limit, the factorization of the amplitude is found to be (see \cite{Catani-1997}):
 \begin{equation}
   \so_{\ur_g} \flm_{a,b}[\fs{n}{m}(\ur_g)] = - 4\pi \bc \sum_{i,j \in \fsp{n}{m}} \eik_{i,j} (\cc) \flm_{a,b}[\fs{n}{m}]
   \label{eq:soft-lim}
@@ -136,7 +137,7 @@ To perform the integration on the unresolved phase space, we extract the $ [\dd 
 \begin{equation*}
   \ips{\so_\ur \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_g)]} = - 4\pi \bc \sum_{i,j \in \fsp{n}{m}} (\cc) \ips{\int [\dd p_\ur] \, \eik_{i,j} \flm_{a,b}[\fs{n}{m}]}
 \end{equation*}
-Note that $ \eik_{i,i} = 0 $, hence the sum runs on $ i \neq j \in \fsp{n}{m} $. Moreover, the only factor dependent on $ p_\ur $ is the eikonal factor, as $ \so_\ur $ removes $ p_\ur $ from the momentum-converving delta function in $ \flm_{a,b}[\fs{n}{m}(\ur_g)] $: this is the reason as to why we have to introduce $ \ema $ as a momentum-cutoff, for $ p_\ur $ would be otherwise unconstrained. Hence, we can perform the integration explicitly:
+Note that $ \eik_{i,i} = 0 $, hence the sum runs on $ i \neq j \in \fsp{n}{m} $. Moreover, the only factor dependent on $ p_\ur $ is the eikonal factor, as $ \so_\ur $ removes $ p_\ur $ from the momentum-conserving delta function in $ \flm_{a,b}[\fs{n}{m}(\ur_g)] $: for this reason, we need to introduce an upper cut-off $ \ema $ in order to constrain the momentum $ p_\ur $. Hence, we can perform the integration explicitly:
 \begin{equation*}
   \begin{split}
     \int [\dd p_\ur] \, \eik_{i,j}
@@ -157,7 +158,7 @@ It is important to note that $ \iso(\de) \sim \de^{-2} $.
 
 \subsection{Collinear limits}
 
-Collinear limits are more delicate to analyze, due to the fact that each potentially-unresolved parton can become collinear to each other parton in $ \fsu{n}{m}(\ur) $. In order to consider a single collinear limit at a time, i.e. a single parton pair becoming collinear, we use the partition \eref{eq:omega-part}. In particular, we are interested in the extraction of hard-collinear singularities stemming from terms of the form $ \oso_\ur \co_{i\ur} $, which in the case of unresolved quarks coincides with $ \co_{i\ur} $.
+Collinear limits are more delicate to analyze, due to the fact that each potentially-unresolved parton can become collinear to any other parton in $ \fsu{n}{m}(\ur) $. In order to consider a single collinear limit at a time, i.e. a single parton pair becoming collinear, we use the partition \eref{eq:omega-part}. In particular, we are interested in the extraction of hard-collinear singularities stemming from terms of the form $ \oso_\ur \co_{i\ur} $, which in the case of unresolved quarks coincides with $ \co_{i\ur} $.
 
 \subsubsection{Generalized anomalous dimensions}
 
@@ -374,7 +375,7 @@ where $ n' \in \en_m $ and the generalized process-dependent final-state anomalo
   \Gamma_{i,f_{[i\ur]} \rightarrow f_i f_\ur} \defeq - \left( \frac{2E_i}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ \int_0^1 \dd z\, \oso_z \frac{z \spl_{f_{[i\ur]}f_i}(z)}{[z (1-z)]^{2\de}} - \delta_{f_{[i\ur]},f_i} \tco^2_{[i\ur]} \frac{1 - e^{-2\de \leg_i}}{\de} \right]
   \label{eq:fin-gen-an-dim-pd}
 \end{equation}
-The process-dependence of this generalized final-state anomalous dimension, as opposed to the initial-state one discussed below, it due to the $ z $ factor coming from the damping factor $ \Delta^\ur $.
+The process-dependence of this generalized anomalous dimension, as opposed to the initial-state one discussed below, is due to the $ z $ factor coming from the damping factor $ \Delta^\ur $ (\eref{eq:delta-part}).
 
 \paragraph{Initial-state collinear limit}
 
@@ -472,6 +473,7 @@ where $ n' \in \en_m[[a\ur],b,X] $ and the \bctxt{generalized initial-state anom
 \end{equation}
 \begin{equation}
   \gspl_{f_{[a\ur]} f_a}(z) \defeq \left( \frac{2E_a}{\mu} \right)^{-2\de} \frac{\Gamma^2(1-\de)}{\Gamma(1-2\de)} \left[ - \ap_{f_{[a\ur]} f_a}(z) + \de \fspl_{f_{[a\ur]} f_a}(z) \right]
+  \label{eq:gspl-def}
 \end{equation}
 and the Mellin convolution is defined as:
 \begin{equation}
@@ -503,7 +505,7 @@ We now move to the case of an unresolved quark, i.e. we consider the hard-collin
   \begin{equation*}
     \sum_{n \in \en_{m+1}(q_\rho)} \sum_{i \in \fsu{n}{m}(\ur_{q_\rho})} \delta_{f_i , g} \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} = \sum_{n \in \en_m} \sum_{i \in \fsu{n}{m}} \delta_{f_i , q_\rho} \frac{[\rc]}{\de} \ips{\Gamma_{i , q \rightarrow gq} \,\flm_{a,b}[\fs{n}{m}]}
   \end{equation*}
-  A clarification on symmetry factors is now needed. Assuming that $ \fs{n}{m}(\ur_{q_\rho}) $ contains $ N_g $ gluons and $ N_{q_\rho} $ quarks of flavour $ \rho $ (always not including $ \ur_{q_\rho} $), then the symetry factor is $ \nsym \sim 1/(N_g! N_{q_\rho}!) $. On the other hand, $ \fs{n'}{m} $ contains $ N_g - 1 $ gluons and $ N_{q_\rho} + 1 $ quarks of flavour $ \rho $, hence there is a mismatch of $ \nsym' = \nsym \cdot N_g / (N_{q_\rho} + 1) $: this is easily understood, as the $ i $-sum on the left-hand side gives an $ N_g $ factor, while that on the right-hand side gives an $ N_{q_\rho} + 1 $ factor.
+  A clarification on symmetry factors is now needed. Assuming that $ \fs{n}{m}(\ur_{q_\rho}) $ contains $ N_g $ gluons and $ N_{q_\rho} $ quarks of flavour $ \rho $ (always not including $ \ur_{q_\rho} $), then the symetry factor is $ \nsym \sim 1/(N_g! N_{q_\rho}!) $. On the other hand, $ \fs{n'}{m} $ contains $ N_g - 1 $ gluons and $ N_{q_\rho} + 1 $ quarks of flavour $ \rho $, hence there is a mismatch of $ \nsym' = \nsym \cdot N_g / (N_{q_\rho} + 1) $. This is easily understood, as the $ i $-sum on the left-hand side gives an $ N_g $ factor, while that on the right-hand side gives an $ N_{q_\rho} + 1 $ factor.
   \item a final-state antiquark of the same flavour ($ [i\ur]_g \rightarrow \ur_{q_\rho} + i_{\bar{q}_\rho} $), in which case $ \en_{m+1}(q_\rho) \mapsto \en_m $ and $ \fs{n}{m}(\ur_{q_\rho}) \mapsto \fs{n'}{m} $ with one less antiquark of flavour $ \rho $ and one more gluon, hence from \eref{eq:hc-fs}:
   \begin{equation*}
     \sum_{n \in \en_{m+1}(q_\rho)} \sum_{i \in \fsu{n}{m}(\ur_{q_\rho})} \delta_{f_i , \bar{q}_\rho} \ips{\oso_\ur \co_{i\ur} \Delta^\ur \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})]} = \sum_{n \in \en_m} \sum_{i \in \fsu{n}{m}} \delta_{f_i , g} \ips{\Gamma_{i , g \rightarrow \bar{q} q} \,\flm_{a,b}[\fs{n}{m}]}
@@ -556,7 +558,7 @@ Finally, we can then write the integrated hard-collinear counterterms in a compa
     & = \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c f_b} \otimes \flm_{a,c}} + [\rc] \sum_{n \in \en_m} \ips{\ico(\de) \flm_{a,b}[\fs{n}{m}]}
   \end{split}
 \end{equation*}
-where we used \eref{eq:fin-gen-an-dim} to combine generalized process-dependent final-state anomalous dimensions into generalized final-state anomalous dimensions, which can be summed with initial-state one to define the \bctxt{integrated collinear operator}:
+where we used \eref{eq:fin-gen-an-dim} to combine generalized process-dependent final-state anomalous dimensions into generalized final-state anomalous dimensions, which can be summed with initial-state ones to define the \bctxt{integrated collinear operator}:
 \begin{equation}
   \ico(\de) \defeq \sum_{i \in \prt{n}{m}} \frac{\Gamma_{i,f_i}}{\de}
 \end{equation}
@@ -566,22 +568,22 @@ This operator is $ \ico(\de) \sim \de^{-1} $, as opposed to $ \iso(\de) \sim \de
   + \frac{[\rc]}{\de} \sum_c \sum_{n \in \en_m} \ips{\gspl_{f_c f_a} \otimes \flm_{c,b}[\fs{n}{m}] + \gspl_{f_c f_b} \otimes \flm_{a,c}}
   \label{eq:real-fin}
 \end{multline}
-where the finite reminder is:
+where the finite reminder is (recall \eref{eq:nest-sub}):
 \begin{equation}
   \dd\pcs_{a,b}^\text{NLO,reg} \equiv \sum_{n \in \en_{m+1}} \ips{\nlo^\ur \Delta^\ur \bigg[ \flm_{a,b}[\fs{n}{m}(\ur_g)] + \sum_{\rho = 1}^{n_f} \left( \flm_{a,b}[\fs{n}{m}(\ur_{q_\rho})] + \flm_{a,b}[\fs{n}{m}(\ur_{\bar{q}_\rho})] \right) \bigg]}
 \end{equation}
 
 \section{Virtual corrections and PDF renormalization}
 
-The counterterms resulting from the extraction of IR singularities from real corrections, which have an explicit expression in \eref{eq:real-fin}, are not $ \de $-finite: their poles must cancel against those resulting from non-real corrections, i.e. from virtual corrections and from the collinear renormalization of PDFs.
+The counterterms resulting from the extraction of IR singularities from real corrections, which have an explicit expression in \eref{eq:real-fin}, are not $ \de $-finite: their poles must cancel against those resulting from virtual corrections and from the collinear renormalization of PDFs.
 
 \subsection{Virtual corrections}
 
-An expression with clear $ \de $-poles can be derived from \eref{eq:virt-cs} by expressing the 1-loop amplitude in \eref{eq:mat-exp} using Catani's formula:
+An expression with clear $ \de $-poles can be derived from \eref{eq:virt-cs} by expressing the one-loop amplitude in \eref{eq:mat-exp} using Catani's formula:
 \begin{equation}
   \ket{\ampl_m^{(1)}(\mu^2 ; \{p\})} = \ioo(\de) \ket{\ampl_m^{(0)}(\mu^2 ; \{p\})} + \ket{\ampl_m^\text{fin}(\mu^2 ; \{p\})}
 \end{equation}
-where $ \ampl_m^\text{fin} $ is the finite part of the 1-loop amplitude, and the operator $ \ioo(\de) $ reads \cite{Catani-1998}:
+where $ \ampl_m^\text{fin} $ is the finite part of the one-loop amplitude, and the operator $ \ioo(\de) $ reads \cite{Catani-1998}:
 \begin{equation}
   \ioo(\de) = \frac{1}{2} \frac{e^{\eg\de}}{\Gamma(1-\de)} \sum_{i \neq j \in \fsp{n}{m}} \frac{\tco_i \cdot \tco_j}{\tco_i^2} \left( \frac{\mu^2 e^{-i \lambda_{ij} \pi}}{2p_i \cdot p_j} \right)^\de \ns_i(\de)
   \label{eq:ioo}
@@ -598,7 +600,7 @@ where the \bctxt{virtual operator} is defined as:
 \begin{equation}
   \ivo(\de) \equiv \frac{\Gamma(1-\de)}{e^{\eg\de}} \left( \ioo(\de) + \ioo\dg(\de) \right) = \sum_{i \neq j \in \fsp{n}{m}} \frac{\tco_i \cdot \tco_j}{\tco_i^2} \left( \frac{\mu^2}{2p_i \cdot p_j} \right)^\de \cos \left( \lambda_{ij} \pi \de \right) \ns_i(\de)
 \end{equation}
-Then, making the finite reminder of the 1-loop amplitude explicit, \eref{eq:virt-cs} can be rewritten as:
+Then, making the finite reminder of the one-loop amplitude explicit, \eref{eq:virt-cs} can be rewritten as:
 \begin{equation}
   2\hat{s}\, \dd\pcs_{a,b}^\text{V} = [\rc] \sum_{n \in \en_m} \ips{\ivo(\de) \flm_{a,b}[\fs{n}{m}]} + \sum_{n \in \en_m} \ips{\flm_{a,b}^\text{fin}[\fs{n}{m}]}
 \end{equation}
@@ -606,13 +608,13 @@ Then, making the finite reminder of the 1-loop amplitude explicit, \eref{eq:virt
 \subsection{Collinear renormalization}
 \label{ssec:coll-ren}
 
-As already stated, the partonic cross-section is a non-observable quantity and it is linked to the observable hadronic cross-section by the factorization theorem \eref{eq:fact-th}. With this theorem, non-perturbative effects are encapsulated in PDFs, which are then divergent: hence, they need to be renormalized.
+As already stated, the partonic cross-section is a non-observable quantity and it is linked to the observable hadronic cross-section by the factorization theorem \eref{eq:fact-th}. With this theorem, non-perturbative effects are encapsulated in PDFs, which are divergent: hence, they need to be renormalized.
 
 In the $ \msb $ scheme, PDFs are renormalized multiplicatively introducing a divergent operator $ \rop $ which acts like (see Chapter 8 of \cite{Collins-2011}):
 \begin{equation}
   \pdfb{i}{h}(\xi) = \sum_j \int_{[0,1]^2} \dd y_1 \dd y_2 \, \rop_{i,j}(y_1) \pdfr{j}{h}(y_2) \delta(\xi - y_1 y_2)
 \end{equation}
-where $ \pdfb{i}{h} $ are the bare PDFs and $ \pdfr{j}{h} $ are the renormalized PDFs. A convenient expression of the renormalization factor is found in \cite{Curci-1980}:
+where $ \pdfb{i}{h} $ are the bare PDFs and $ \pdfr{j}{h} $ are the renormalized PDFs. A convenient expression of the renormalization operator is found in \cite{Curci-1980}:
 \begin{equation}
   \rop_{i,j}(z) = \delta_{i,j} \delta(1-z) + \frac{\rcr}{2\pi} \frac{1}{\de} \ap_{f_j f_i}(z) + \smo(\rc^2)
   \label{eq:z-op-def}
@@ -657,7 +659,7 @@ First, consider the third term in \eref{eq:real-fin}. It is trivial to see how t
     & \qquad \quad = \frac{\rcr}{2\pi} \sum_c \sum_{n \in \en_m} \ips{\int_0^1 \frac{\dd z}{z} \left[ \fspl_{f_c f_a}(z) + 2 \ler_a \ap_{f_c f_a}(z) \right] \flm_{c,b}[\fs{n}{m}](zp_1)} + \smo(\de) \\
   \end{split}
 \end{equation*}
-which is manifestly $ \de $-finite.
+where we used \eref{eq:gspl-def}. This expression is manifestly $ \de $-finite.
 
 \subsection{Integrated operators}
 
@@ -687,7 +689,7 @@ We can make use of the colour algebra to further simplify this sum. In this case
   \sum_{i \neq j \in \fsp{n}{m}} (\cc) \op_i = \sum_{i \in \prt{n}{m}} \tco_i \cdot \bigg[ \sum_{j \in \prt{n}{m}} \tco_j \op_j - \tco_i \op_i \bigg] = - \sum_{i \in \prt{n}{m}} \tco_i^2 \op_i
   \label{eq:co-alg}
 \end{equation}
-were the sum over $ j \in \prt{n}{m} $ was removed due to the colour-conservation condition \eref{eq:col-cons}. Then, the above sum can be rewritten as:
+where the sum over $ j \in \prt{n}{m} $ was removed due to the colour-conservation condition \eref{eq:col-cons}. Then, the above sum can be rewritten as:
 \begin{equation}
   \iso(\de) + \ivo(\de) = - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + \smo(\de^0)
 \end{equation}
