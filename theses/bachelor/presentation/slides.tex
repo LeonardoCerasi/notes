@@ -24,7 +24,6 @@
 
       \vspace{0.5em}
 
-
       \capcol{Figure} from Clowe et al. 2006.
 
       \justifying
@@ -56,7 +55,7 @@
 
       \vspace{0.5em}
 
-      \capcol{Figure} from ATLA PUB Note 2023--025.
+      \capcol{Figure} from ATLAS PUB Note 2023--025.
 
       \justifying
       Exclusion limits in the $ \tilde{g} - \tilde{\chi}^0_1 $ mass plane for various models for the decay of the gluino to the lightest supersymmetric particle.
@@ -800,10 +799,10 @@
 
   Compare:
   \begin{equation*}
-    \isvo(\de) = - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 L_i \right) + \isvo^{(0)} + \smo(\de)
-  \end{equation*}
-  \begin{equation*}
-    \ico(\de) =  - \frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 L_i \right) + \ico^{(0)} + \smo(\de)
+    \begin{split}
+      \isvo(\de) = - & \textcolor{red}{\frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 L_i \right)} + \isvo^{(0)} + \smo(\de) \\
+      \ico(\de) = + & \textcolor{red}{\frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 L_i \right)} + \ico^{(0)} + \smo(\de)
+    \end{split}
   \end{equation*}
   Hence:
   \begin{equation*}
@@ -818,7 +817,6 @@
   \framesubtitle{Mass-regualtion of soft and collinear limits}
 
   Massive partons do not determine soft or collinear singularities:
-  \small
   \begin{equation*}
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
@@ -832,17 +830,19 @@
       \vertex[below = 0.25em of b] (r);
 
       \diagram* {
-	(a) -- [fermion, momentum' = \(p\)] (b),
-	(b) -- [fermion, momentum' = \(p - k\)] (c),
+	(a) -- [gluon, momentum' = \(p\)] (b),
+	(b) -- [anti fermion, momentum' = \(p - k\)] (c),
 
-	(b) -- [gluon, momentum = \(k\)] (e),
+	(b) -- [fermion, momentum = \(k\)] (e),
       };
     \end{feynman}
   \end{tikzpicture}
-  \ \ \ \sim \ \ \
-  \frac{1}{(p-k)^2} = \frac{1}{\textcolor{red}{m^2} - 2 E_k \left( \sqrt{\textcolor{red}{m^2} + \abs{\ve{p}}^2} - \abs{\ve{p}} \cos\theta \right)}
+  \quad \sim \quad
+  \frac{1}{(p - k)^2 - m^2} = - \frac{1}{2 E_p \left( E_k - \abs{\ve{k}} \cos \theta \right)}
   \end{equation*}
-  Clearly, no more singularities due to $ \textcolor{red}{m^2} $ in the denominator.
+  Clearly, no more collinear singularities as \textcolor{red}{$ E_k \neq \abs{\ve{k}} $} for $ m \neq 0 $.
+
+  The soft limit is non-singular even in the massless case.
 
 \end{frame}
 
@@ -886,27 +886,111 @@
 %=======================================================================
 
 \begin{frame}{NSC SS with massive quarks}
-  \framesubtitle{Pole cancellation: generalized pole terms}
+  \framesubtitle{Pole cancellation: generalized pole terms in $ \iso(\de) + \ivo(\de) $}
 
-  highlights of pole cancellation in $ I_{\text{S}+\text{V}}(\epsilon) $, define $ \chi_{i,j}(\epsilon) $ coefficients and explain their property
+  It is convenient to group summations as follows:
+  \begin{equation*}
+    \begin{split}
+      \isvo(\de)
+      & = \sum_{i,j \in \fsp{n}{m}} \iso^{i,j}(\de) + \sum_{i \neq j \in \fsp{n}{m}} \tivo^{i,j}(\de) - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de) \\
+      & = \sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right] + \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de)
+    \end{split}
+  \end{equation*}
+  Then, $ \de^{-2} $-singularities are only present in the first sum:
+  \begin{equation*}
+    \iso^{i,j}(\de) + \tivo^{i,j}(\de) = \ci{i,j} + \finc{i,j} + \smo(\de)
+  \end{equation*}
+
+  \vspace{1.1em}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}[noframenumbering]{NSC SS with massive quarks}
+  \framesubtitle{Pole cancellation: generalized pole terms in $ \iso(\de) + \ivo(\de) $}
+
+  It is convenient to group summations as follows:
+  \begin{equation*}
+    \begin{split}
+      \isvo(\de)
+      & = \sum_{i,j \in \fsp{n}{m}} \iso^{i,j}(\de) + \sum_{i \neq j \in \fsp{n}{m}} \tivo^{i,j}(\de) - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de) \\
+      & = \sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right] + \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de)
+    \end{split}
+  \end{equation*}
+  Then, $ \de^{-2} $-singularities are only present in the first sum:
+  \begin{equation*}
+    \iso^{i,j}(\de) + \tivo^{i,j}(\de) = \textcolor{red}{\ci{i,j}} + \textcolor{blue}{\finc{i,j}} + \smo(\de)
+  \end{equation*}
+  Laurent expansion: \textcolor{red}{pole terms} and $ \de $-finite \textcolor{blue}{finite reminder}.
 
 \end{frame}
 
 %=======================================================================
 
 \begin{frame}{NSC SS with massive quarks}
-  \framesubtitle{Pole cancellation: colour-correlated terms}
+  \framesubtitle{Pole cancellation: quadratic pole terms}
 
-  show pole cancellation in the colour-correlated sum of $ I_{\text{S}+\text{V}}(\epsilon) $, leaving the same (and opposite) pole terms of $ I_\text{C}(\epsilon) $
+  Quadratic pole terms have a complex general form:
+  \begin{equation*}
+    \ci{i,j} \equiv \frac{1}{\de^2} \left( \frac{1}{2} \eitt{i,j}{-1} + \nss{i,j}{-2} \right) + \frac{1}{\de} \left( \frac{1}{2} \eitt{i,j}{0} + \nss{i,j}{-1} - \lmx \eitt{i,j}{-1} + \nss{i,j}{-2} \log \frac{\mu^2}{\abs{s_{ij}}} \right)
+  \end{equation*}
+  However, with further manipulation, the explicit structure is simple:
+  \begin{equation*}
+    \ci{i,j} =
+    \begin{cases}
+      0 & i,j \text{ massive} \\
+      \frac{1}{\de} \leg_j & i \text{ massive}, j \text{ massless} \\
+      \frac{1}{\de} \leg_i & i \text{ massless}, j \text{ massive} \\
+      \frac{1}{\de} \left( \leg_i + \leg_j \right) & i,j \text{ massless} \\
+    \end{cases}
+    \qquad \qquad
+    \leg_k \equiv \log \frac{\ema}{E_k}
+  \end{equation*}
 
 \end{frame}
 
 %=======================================================================
 
 \begin{frame}{NSC SS with massive quarks}
-  \framesubtitle{Generalized integrated counterterms}
+  \framesubtitle{Pole cancellation: Catani's anomalous dimensions}
 
-  show integrated counterterms and highlighting massive logs
+  The sum over $ \fsm{n}{m} $ in $ \isvo(\de) $ is manifestly $ \de $-finite:
+  \begin{equation*}
+    \begin{split}
+      \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] =
+      \sum_{i \in \fsm{n}{m}} \bigg[ & \caf \left( \textcolor{red}{\frac{1}{\de}} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) \\
+      - & \caf \left( \textcolor{red}{\frac{1}{\de}} + \frac{1}{2} \log \frac{m_{\mq_i}^2}{\mu^2} - 2 \right) \bigg] \equiv \sum_{i \in \fsm{n}{m}} \finm{i}
+    \end{split}
+  \end{equation*}
+  Finally, the poles in Catani's generalized anomalous dimensions are isolated by definition:
+  \begin{equation*}
+    \sum_{i \in \prt{n}{m}} \Gamma_i(\de) = \sum_{i \in \prt{n}{m}} \left( \frac{1}{\de} \gamma_i + \fing{i} \right)
+    \qquad \qquad
+    \fing{i} \equiv - \delta_{f_i , g} \frac{2}{3} \ttr \sum_{\rho = 1}^{n_F} \log \frac{m_{\mq_\rho}^2}{\mu^2}
+  \end{equation*}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC SS with massive quarks}
+  \framesubtitle{Pole cancellation: generalized integrated counterterms}
+
+  Puttin geverything together, using colour-conservation we find:
+  \begin{equation*}
+    \begin{split}
+      \isvo(\de) = - & \textcolor{red}{\frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right)} + \isvo^{(0)} + \smo(\de) \\
+      \ico(\de) = + & \textcolor{red}{\frac{1}{\de} \sum_{i \in \prt{n}{m}} \left( \gamma_i + 2 \tco_i^2 \leg_i \right)} + \ico^{(0)} + \smo(\de)
+    \end{split}
+  \end{equation*}
+  The total operator $ \ito \equiv \iso + \ico + \ivo $ is the $ \de $-finite, and the integrated counterterms read:
+  \small
+  \begin{multline*}
+    \ito^{(0)}
+    = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \finc{i,j} + \sum_{i \in \fsm{n}{m}} \finm{i} - \sum_{i \in \prt{n}{m}} \fing{i} - \sum_{i \in \prt{n}{m}} \left[ 2 \ler_i \left( \gamma_i + 2 \tco_i^2 \leg_i \right) + 2 \tco_i^2 \leg_i^2 \right] \\
+    + \left( N_q + N_{\bar{q}} \right) \frac{\caf}{6} \left( 39 - 4\pi^2 \right) + N_g \left[ \frac{\caa}{9} \left( 67 - 6\pi^2 \right) - \frac{23}{9} \ttr n_f \right]
+  \end{multline*}
 
 \end{frame}
 
@@ -914,9 +998,93 @@
 %=======================================================================
 
 \begin{frame}{Conclusions}
-  \framesubtitle{Future developments}
+  \framesubtitle{Results and future developments}
 
-  draw conclusions and point out possible further developments
+  \begin{columns}
+
+    \begin{column}{0.5 \textwidth}
+
+      \begin{colorblock}[black]{statalegrey}{Main results}
+        \begin{itemize}
+          \justifying
+          \item proof of IR-poles cancellation even with generic massive final-state partons
+          \item computation of generalized integrated counterterms
+        \end{itemize}
+      \end{colorblock}
+
+      \vspace{1.5em}
+
+      \capcol{Figure} from CMS Report CERN--EP 2025--025.
+
+      \justifying
+      Example Feynman diagram of non-resonant mono-$ t $ production at tree-level mediated by a spin-$ 1 $ boson $ M $, which decays directly into a dark-matter pair $ \chi \bar{\chi} $.
+
+      \vspace{2em}
+
+    \end{column}
+
+    \begin{column}{0.5 \textwidth}
+
+      \begin{colorblock}[black]{statalelightgreen}{Future developments}
+        \begin{itemize}
+          \justifying
+          \item extension to NNLO in the NSC SS
+          \item inclusion of initial-state massive partons
+          \item resummation of massive logarithms
+          \item application to heavy-quark processes
+        \end{itemize}
+      \end{colorblock}
+
+      \vspace{-0.5em}
+
+      \begin{figure}
+        \begin{tikzpicture}[baseline = (r.base)]
+          \begin{feynman}[inline = (r.base)]
+            \vertex[dot] (v1) {};
+            \vertex[right = 2.2cm of v1, dot] (v2) {};
+            \vertex[above = 0.8cm of v2] (rv) {};
+            \vertex[right = 0.8cm of rv, dot] (v3) {};
+
+            \vertex[left = 1.5cm of v1] (r1) {};
+            \vertex[above = 1.5cm of r1] (a) {};
+            \vertex (la) at ($ (a) + (-0.05,-0.1) $) {$ u $};
+            \vertex[below = 1.5cm of r1] (b) {};
+            \vertex (lb) at ($ (b) + (-0.02,0.1) $) {$ g $};
+
+            \vertex[right = 1.8cm of v2] (r2) {};
+            \vertex[below = 1.5cm of r2] (c) {};
+            \vertex (lc) at ($ (c) + (0.05,0.1) $) {$ t $};
+
+            \vertex (lv) at ($ (v1) + (1.1,-0.25) $) {$ u $};
+            \vertex (lm) at ($ (v2) + (0.15,0.6) $) {$ M $};
+
+            \vertex[right = 1cm of v3] (r3) {};
+            \vertex[above = 0.8cm of r3] (d) {};
+            \vertex (ld) at ($ (d) + (0.05,-0.1) $) {$ \chi $};
+            \vertex[below = 0.8cm of r3] (e) {};
+            \vertex (le) at ($ (e) + (0.05,0.1) $) {$ \bar{\chi} $};
+
+            \vertex[below = 0.1em of v1] (r) {};
+
+            \diagram* {
+              (a) -- [fermion] (v1),
+              (b) -- [gluon] (v1),
+
+              (v1) -- [fermion] (v2),
+
+              (v2) -- [fermion] (c),
+              (v2) -- [boson] (v3),
+
+              (v3) -- [fermion] (d),
+              (v3) -- [anti fermion] (e),
+            };
+          \end{feynman}
+        \end{tikzpicture}
+      \end{figure}
+
+    \end{column}
+
+  \end{columns}
 
 \end{frame}
 
