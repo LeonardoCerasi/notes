@@ -1,37 +1,4 @@
 \begin{frame}{Precision estimates at the LHC}
-  \framesubtitle{Standard Model of fundamental interactions}
-
-  \begin{columns}
-
-    \begin{column}{0.55 \textwidth}
-
-      \justifying
-      Gauge theory: $ \SUn{3} \times \SUn{2} \times \Un{1} $
-      \begin{itemize}
-        \item $ \SUn{3} $: strong interaction, with $ 8 $ gluons
-        \item $ \SUn{2} $: weak interaction, with $ Z, W^{\pm} $ bosons
-        \item $ \Un{1} $: electromagnetic interaction, with the photon
-        \item EW symmetry breaking: the Higgs boson
-      \end{itemize}
-
-    \end{column}
-
-    \begin{column}{0.45\textwidth}
-
-      \begin{figure}
-        \centering
-        \includegraphics[width = \textwidth]{imgs/sm.png}
-      \end{figure}
-
-    \end{column}
-
-  \end{columns}
-
-\end{frame}
-
-%=======================================================================
-
-\begin{frame}{Precision estimates at the LHC}
   \framesubtitle{Evidence for Beyond-Standard-Model physics}
 
   \begin{columns}
@@ -111,7 +78,7 @@
 %=======================================================================
 
 \begin{frame}{Precision estimates at the LHC}
-  \framesubtitle{Hard hadronic scattering processes}
+  \framesubtitle{Factorization theorem and perturbative QCD}
 
   \begin{columns}
 
@@ -126,64 +93,15 @@
 
     \begin{column}{0.5 \textwidth}
 
-      \begin{colorblock}[black]{statalegrey}{Hard scattering processes}
-        \justifying
-        Characterized by a large momentum transfer, which allows for a perturbative description thanks to \emph{asymptotic freedom}.
-
-        Individual partons treated as free particles: hadronic scattering cross-sections studied in terms of partonic scattering cross-section.
-      \end{colorblock}
-
-      \vspace{0.5em}
-
-      \capcol{Figure} from Höche 2015.
-
-      \justifying
-      Hadronization of jets in hadronic scattering.
-
-    \end{column}
-
-  \end{columns}
-
-\end{frame}
-
-%=======================================================================
-
-\begin{frame}{Precision estimates at the LHC}
-  \framesubtitle{Factorization theorem and perturbative QCD}
-
-  \begin{columns}
-
-    \begin{column}{0.55 \textwidth}
-
-      \justifying
-      \emph{Factorization theorem} for hard hadronic scattering processes (Collins et al. 1989):
-      \small
-      \begin{multline*}
-        \dd\hcs_{h_1 , h_2}(P_1 , P_2) \\
-        = \sum_{a,b} \int_{[0,1]^2} \frac{\dd \xi_1}{\xi_1} \frac{\dd \xi_2}{\xi_2} \,\pdfb{a}{h_1}(\xi_1, \fac^2) \,\pdfb{b}{h_2}(\xi_2, \fac^2) \times \\
-        \times \dd\pcs_{a,b}(\xi_1 P_1, \xi_2 P_2, \rc, \ren^2, \fac^2)
-        \left[ 1 + \smo \left( \frac{\qcd^n}{Q^n} \right) \right]
-      \end{multline*}
-
-      Clear separation of energy scales:
-      \begin{itemize}
-        \item hard hadronic scattering: $ Q \sim 100\gev - 1\tev $
-        \item hadronization: $ \qcd \approx 200\mev $
-      \end{itemize}
-
-    \end{column}
-
-    \begin{column}{0.45 \textwidth}
-
       \begin{figure}
         \centering
         \includegraphics[width = \textwidth]{../imgs/part-scatt.png}
       \end{figure}
 
-      \capcol{Figure} from Asteriadis 2021.
+      \capcol{Figures} from Höche 2015 (left) and Asteriadis 2021 (right).
 
       \justifying
-      Detail of the partonic scattering in a hard hadronic scattering.
+      Hadronization of jets produced in hadronic scattering and detail of the underlying hard partonic scattering.
 
     \end{column}
 
@@ -197,19 +115,17 @@
   \framesubtitle{Factorization theorem and perturbative QCD}
 
   \justifying
-  \emph{Asymptotic freedom} allows for a perturbative analysis of the underlying partonic scattering:
+  Hadronic and partonic physics decouple in hard scattering processes, and we can formulate a factorization theorem:
+  \begin{multline*}
+    \dd\hcs_{h_1 , h_2}(P_1 , P_2) = \sum_{a,b} \int_{[0,1]^2} \frac{\dd \xi_1}{\xi_1} \frac{\dd \xi_2}{\xi_2} \,\pdfb{a}{h_1}(\xi_1, \fac^2) \,\pdfb{b}{h_2}(\xi_2, \fac^2) \times \\
+    \times \dd\pcs_{a,b}(\xi_1 P_1, \xi_2 P_2, \rc, \ren^2, \fac^2)
+    \left[ 1 + \smo \left( \frac{\qcd^n}{Q^n} \right) \right]
+  \end{multline*}
+  \emph{Asymptotic freedom} allows for a perturbative analysis of the hard partonic scattering:
   \begin{equation*}
     \dd\pcs_{a,b}(p_1 , p_2) = \sum_{n \in \N_0} \dd\pcs_{a,b}^{(n)}(p_1 , p_2)
   \end{equation*}
-  where $ \dd\pcs^{(n)} \sim \rc^{n_0 + n} $.
-
-  \vspace{0.5em}
-
-  $ n \ge 1 $ are denoted by N$ ^n $LO QCD corrections:
-  \begin{itemize}
-    \item real corrections: additional initial- or final-state radiation
-    \item virtual corrections: additional partonic loops
-  \end{itemize}
+  $ n \ge 1 $ are denoted by N$ ^n $LO QCD corrections.
 
 \end{frame}
 
@@ -597,13 +513,13 @@
 
   The total $ \de $-finite NLO cross-section can be written as:
   \begin{multline*}
-    \dd\pcs_{a,b}^{(1)} = \textcolor{blue}{\dd\pcs_{a,b}^\text{NLO,reg}} + \frac{1}{2\hat{s}} \sum_{n \in \en_m} \left[ \frac{\rcr}{2\pi} \ips{\textcolor{red}{\ito^{(0)}} \flm_{a,b}[\fs{n}{m}]} + \ips{\textcolor{green!80!black}{\flm_{a,b}^\text{fin}[\fs{n}{m}]}} \right] \\
+    \dd\pcs_{a,b}^{(1)} = \textcolor{blue}{\dd\pcs_{a,b}^\text{NLO,reg}} + \frac{1}{2\hat{s}} \sum_{n \in \en_m} \left[ \frac{\rcr}{2\pi} \ips{\textcolor{red}{\ito^{(0)}} \flm_{a,b}[\fs{n}{m}]} + \ips{\textcolor{green}{\flm_{a,b}^\text{fin}[\fs{n}{m}]}} \right] \\
     + \frac{\rcr}{2\pi} \sum_c \left[ \textcolor{yellow!80!black}{\fap_{f_c , f_a} \otimes \dd\pcs^{(0)}_{c,b} + \fap_{f_c , f_b} \otimes \dd\pcs^{(0)}_{a,c}} \right]
   \end{multline*}
   \begin{itemize}[<+->]
     \item \textcolor{blue}{NLO final reminder, defined using $ \nlo^\ur $};
-    \item \textcolor{green!80!black}{finite counterterm from virtual corrections};
-    \item \textcolor{yellow!80!black}{finite counterterm from PDF renormalization};
+    \item \textcolor{green}{finite counterterm from virtual corrections};
+    \item \textcolor{yellow}{finite counterterm from PDF renormalization};
     \item \textcolor{red}{counterterm we are interested in}.
   \end{itemize}
 
@@ -686,6 +602,85 @@
   \framesubtitle{Pole extraction through operators}
 
   \centering
+  Hard-collinear singularities
+
+  \small
+  \begin{equation*}
+    \sum_{\rho = 1}^{2n_f + 1} \sum_{i \in \prt{n}{m}(\ur_\rho)}
+    \left\langle \oso_\ur \co_{i\ur_\rho} \Delta^{\ur_\rho} \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 0.8cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (1,0.50) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (1,-0.32) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (r2) {};
+      \vertex[above = 0.2cm of r2] (e) {\color{red} $ \ur_\rho $};
+      \vertex[below = 0.2cm of r2] (f) {$ i $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- [red] (e),
+        (v) -- (f),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+    \sim [\rc] \left\langle \ico(\de) \cdot \abs{
+    \begin{tikzpicture}[baseline = (r.base)]
+    \begin{feynman}[inline = (r.base)]
+      \vertex[blob, minimum size = 0.8cm] (v) {};
+
+      \vertex[left = 0.8cm of v] (r1) {};
+      \vertex[above = 0.6cm of r1] (a) {};
+      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
+      \vertex[below = 0.6cm of r1] (b) {};
+      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
+
+      \vertex[right = 1.2cm of v] (r2) {};
+      \vertex[above = 0.84cm of r2] (c) {};
+      \vertex[below = 0.84cm of r2] (d) {};
+      \vertex (vd1) at ($ (v) + (0.8,0.37) $) {$ \vdots $};
+      \vertex (vd2) at ($ (v) + (0.8,-0.18) $) {$ \vdots $};
+
+      \vertex[right = 1.5cm of v] (e) {$ [i\ur_\rho] $};
+
+      \vertex[below = 0.25em of v] (r);
+
+      \diagram* {
+        (a) -- (v) -- (c),
+        (b) -- (v) -- (d),
+        (v) -- (e),
+      };
+    \end{feynman}
+    \end{tikzpicture}}^2 \right\rangle
+  \end{equation*}
+
+  \normalsize
+  \begin{equation*}
+    \ico(\de) \defeq \sum_{i \in \prt{n}{m}} \frac{\Gamma_{i,f_i}}{\de} = \textcolor{red}{\frac{1}{\de}} \sum_{i \in \prt{n}{m}} \left[ \gamma_i + 2 \tco_i^2 \log \frac{\ema}{E_i} \right] + \smo(\de^0)
+  \end{equation*}
+
+\end{frame}
+
+%=======================================================================
+
+\begin{frame}{NSC subtraction scheme}
+  \framesubtitle{Pole extraction through operators}
+
+  \centering
   Virtual singularities
 
   \begin{equation*}
@@ -693,7 +688,7 @@
     \left.
     \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
-      \vertex[blob, fill = none, minimum size = 0.6cm] (v) {\textcolor{red}{1-L}};
+      \vertex[blob, fill = none, minimum size = 0.6cm] (v) {1-L};
 
       \vertex[left = 0.6cm of v] (r1) {};
       \vertex[above = 0.6cm of r1] (a) {};
@@ -769,85 +764,6 @@
 
   \begin{equation*}
     \ivo(\de) \equiv \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{2p_i \cdot p_j} \right)^\de \cos \left( \lambda_{ij} \pi \de \right) \left[ \textcolor{red}{\frac{1}{\de^2}} +  \frac{1}{\tco_i^2}\frac{\gamma_i}{\de} \right]
-  \end{equation*}
-
-\end{frame}
-
-%=======================================================================
-
-\begin{frame}{NSC subtraction scheme}
-  \framesubtitle{Pole extraction through operators}
-
-  \centering
-  Hard-collinear singularities
-
-  \small
-  \begin{equation*}
-    \sum_{\rho = 1}^{2n_f + 1} \sum_{i \in \prt{n}{m}(\ur_\rho)}
-    \left\langle \oso_\ur \co_{i\ur_\rho} \Delta^{\ur_\rho} \abs{
-    \begin{tikzpicture}[baseline = (r.base)]
-    \begin{feynman}[inline = (r.base)]
-      \vertex[blob, minimum size = 0.8cm] (v) {};
-
-      \vertex[left = 0.8cm of v] (r1) {};
-      \vertex[above = 0.6cm of r1] (a) {};
-      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
-      \vertex[below = 0.6cm of r1] (b) {};
-      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
-
-      \vertex[right = 1.2cm of v] (r2) {};
-      \vertex[above = 0.84cm of r2] (c) {};
-      \vertex[below = 0.84cm of r2] (d) {};
-      \vertex (vd1) at ($ (v) + (1,0.50) $) {$ \vdots $};
-      \vertex (vd2) at ($ (v) + (1,-0.32) $) {$ \vdots $};
-
-      \vertex[right = 1.5cm of v] (r2) {};
-      \vertex[above = 0.2cm of r2] (e) {\color{red} $ \ur_\rho $};
-      \vertex[below = 0.2cm of r2] (f) {$ i $};
-
-      \vertex[below = 0.25em of v] (r);
-
-      \diagram* {
-        (a) -- (v) -- (c),
-        (b) -- (v) -- (d),
-        (v) -- [red] (e),
-        (v) -- (f),
-      };
-    \end{feynman}
-    \end{tikzpicture}}^2 \right\rangle
-    \sim [\rc] \left\langle \ico(\de) \cdot \abs{
-    \begin{tikzpicture}[baseline = (r.base)]
-    \begin{feynman}[inline = (r.base)]
-      \vertex[blob, minimum size = 0.8cm] (v) {};
-
-      \vertex[left = 0.8cm of v] (r1) {};
-      \vertex[above = 0.6cm of r1] (a) {};
-      \vertex (la) at ($(a) + (-0.1,0)$) {$ a $};
-      \vertex[below = 0.6cm of r1] (b) {};
-      \vertex (lb) at ($(b) + (-0.1,0)$) {$ b $};
-
-      \vertex[right = 1.2cm of v] (r2) {};
-      \vertex[above = 0.84cm of r2] (c) {};
-      \vertex[below = 0.84cm of r2] (d) {};
-      \vertex (vd1) at ($ (v) + (0.8,0.37) $) {$ \vdots $};
-      \vertex (vd2) at ($ (v) + (0.8,-0.18) $) {$ \vdots $};
-
-      \vertex[right = 1.5cm of v] (e) {$ [i\ur_\rho] $};
-
-      \vertex[below = 0.25em of v] (r);
-
-      \diagram* {
-        (a) -- (v) -- (c),
-        (b) -- (v) -- (d),
-        (v) -- (e),
-      };
-    \end{feynman}
-    \end{tikzpicture}}^2 \right\rangle
-  \end{equation*}
-
-  \normalsize
-  \begin{equation*}
-    \ico(\de) \defeq \sum_{i \in \prt{n}{m}} \frac{\Gamma_{i,f_i}}{\de} = \textcolor{red}{\frac{1}{\de}} \sum_{i \in \prt{n}{m}} \left[ \gamma_i + 2 \tco_i^2 \log \frac{\ema}{E_i} \right] + \smo(\de^0)
   \end{equation*}
 
 \end{frame}
@@ -957,12 +873,12 @@
 
   \justifying
   \begin{itemize}[<+->]
-    \item In presence of final-state massive partons, $ \ivo(\de) $ becomes:
+    \item In presence of final-state massive partons, $ \iso(\de) $ becomes:
     \begin{equation*}
       \ivo(\de) \defeq \Re \ioo(\de) = \sum_{i \neq j \in \fsp{n}{m}} (\cc) \left( \frac{\mu^2}{\abs{s_{ij}}} \right)^\de \left[ \ns_{i,j}(\de) - \frac{1}{v_{ij}} \frac{\pi^2}{2} \theta(s_{ij}) \right] - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de)
     \end{equation*}
     \item $ \ns_{i,j}(\de) $ depends on the nature (massive or massless) of partons $ i $ and $ j $;
-    \item $ \ns_{i,j}(\de) $ is $ \de^{-2} $-singular if at least one parton is massless, otherwise it is $ \de^{-1} $-singular;
+    \item $ \eit_{i,j}(\de) $ is $ \de^{-2} $-singular if at least one parton is massless, otherwise it is $ \de^{-1} $-singular;
     \item $ \Gamma_i(\de) $ is $ \de^{-1} $-singular;
     \item $ \textcolor{red}{\de^{-2}} $-poles of $ \ivo(\de) $ are determined only by \textcolor{red}{massless partons}.
   \end{itemize}
@@ -982,8 +898,12 @@
       & = \sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right] + \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de)
     \end{split}
   \end{equation*}
+  Then, $ \de^{-2} $-singularities are only present in the first sum:
+  \begin{equation*}
+    \iso^{i,j}(\de) + \tivo^{i,j}(\de) = \ci{i,j} + \finc{i,j} + \smo(\de)
+  \end{equation*}
 
-  \vspace{5.8em}
+  \vspace{1.1em}
 
 \end{frame}
 
@@ -997,10 +917,10 @@
     \begin{split}
       \isvo(\de)
       & = \sum_{i,j \in \fsp{n}{m}} \iso^{i,j}(\de) + \sum_{i \neq j \in \fsp{n}{m}} \tivo^{i,j}(\de) - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de) \\
-      & = \underline{\sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right]} + \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de)
+      & = \sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right] + \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] - \sum_{i \in \prt{n}{m}} \Gamma_i(\de)
     \end{split}
   \end{equation*}
-  Then, $ \de^{-2} $-singularities are only present in the \underline{first sum}:
+  Then, $ \de^{-2} $-singularities are only present in the first sum:
   \begin{equation*}
     \iso^{i,j}(\de) + \tivo^{i,j}(\de) = \textcolor{red}{\ci{i,j}} + \textcolor{blue}{\finc{i,j}} + \smo(\de)
   \end{equation*}
@@ -1035,40 +955,17 @@
 %=======================================================================
 
 \begin{frame}{NSC SS with massive quarks}
-  \framesubtitle{Pole cancellation: generalized pole terms in $ \iso(\de) + \ivo(\de) $}
+  \framesubtitle{Pole cancellation: Catani's anomalous dimensions}
 
-  It is convenient to group summations as follows:
+  The sum over $ \fsm{n}{m} $ in $ \isvo(\de) $ is manifestly $ \de $-finite:
   \begin{equation*}
     \begin{split}
-      \isvo(\de)
-      & = \sum_{i,j \in \fsp{n}{m}} \iso^{i,j}(\de) + \sum_{i \neq j \in \fsp{n}{m}} \tivo^{i,j}(\de) - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de) \\
-      & = \sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right] + \underline{\sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right]} - \sum_{i \in \prt{n}{m}} \Gamma_i(\de)
+      \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] =
+      \sum_{i \in \fsm{n}{m}} \bigg[ & \caf \left( \textcolor{red}{\frac{1}{\de}} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) \\
+      - & \caf \left( \textcolor{red}{\frac{1}{\de}} + \frac{1}{2} \log \frac{m_{\mq_i}^2}{\mu^2} - 2 \right) \bigg] \equiv \sum_{i \in \fsm{n}{m}} \finm{i}
     \end{split}
   \end{equation*}
-
-  \vspace{0.09em}
-
-  The \underline{second sum} is manifestly $ \de $-finite:
-  \begin{equation*}
-      \sum_{i \in \fsm{n}{m}} \bigg[ \caf \left( \textcolor{red}{\frac{1}{\de}} - \frac{1}{\kappa_i} \log \frac{1 - \kappa_i}{1 + \kappa_i} - 2 \lmx \right) - \caf \left( \textcolor{red}{\frac{1}{\de}} + \frac{1}{2} \log \frac{m_{\mq_i}^2}{\mu^2} - 2 \right) \bigg] \equiv \sum_{i \in \fsm{n}{m}} \finm{i}
-  \end{equation*}
-
-\end{frame}
-
-%=======================================================================
-
-\begin{frame}{NSC SS with massive quarks}
-  \framesubtitle{Pole cancellation: generalized pole terms in $ \iso(\de) + \ivo(\de) $}
-
-  It is convenient to group summations as follows:
-  \begin{equation*}
-    \begin{split}
-      \isvo(\de)
-      & = \sum_{i,j \in \fsp{n}{m}} \iso^{i,j}(\de) + \sum_{i \neq j \in \fsp{n}{m}} \tivo^{i,j}(\de) - \sum_{i \in \fsp{n}{m}} \Gamma_i(\de) \\
-      & = \sum_{i \neq j \in \fsp{n}{m}} \left[ \iso^{i,j}(\de) + \tivo^{i,j}(\de) \right] + \sum_{i \in \fsm{n}{m}} \left[ \iso^{i,i}(\de) - \Gamma_i(\de) \right] - \underline{\sum_{i \in \prt{n}{m}} \Gamma_i(\de)}
-    \end{split}
-  \end{equation*}
-  The \underline{third sum} has isolated $ \de $-poles by definition:
+  Finally, the poles in Catani's generalized anomalous dimensions are isolated by definition:
   \begin{equation*}
     \sum_{i \in \prt{n}{m}} \Gamma_i(\de) = \sum_{i \in \prt{n}{m}} \left( \frac{1}{\de} \gamma_i + \fing{i} \right)
     \qquad \qquad
@@ -1098,6 +995,7 @@
   \end{multline*}
 
 \end{frame}
+
 
 %=======================================================================
 
