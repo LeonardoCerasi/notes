@@ -1,0 +1,84 @@
+\selectlanguage{english}
+
+\section{Binary relations}
+
+\begin{definition}{Binary relation}{}
+  Given two sets $ \mathcal{A} $, $ \mathcal{B} $ and their cartesian product $ \mathcal{A} \times \mathcal{B} \defeq \{(a,b) : a \in \mathcal{A} \land b \in \mathcal{B}\} $, a \bcdef{binary relation} $ \mathfrak{R} $ is a subset of $ \mathcal{A} \times \mathcal{B} $. Two elements $ a \in \mathcal{A} $, $ b \in \mathcal{B} $ are related, and we write $ a \mathfrak{R} b $, if $ (a,b) \in \mathfrak{R} \subseteq \mathcal{A} \times \mathcal{B} $.
+\end{definition}
+
+If $ \mathcal{B} = \mathcal{A} $, we say that $ \mathfrak{R} $ is a relation ``on" $ \mathcal{A} $.
+
+\begin{definition}{Function}{}
+  A \bcdef{function} between two sets $ \mathcal{A} $, $ \mathcal{B} $ is a relation $ \mathfrak{R}_f $ such that, given an element $ a \in \mathcal{A} $, then there exists at most one element $ b \in \mathcal{B} : a \mathfrak{R}_f b $.
+\end{definition}
+
+We usually write $ b = f(a) $ in place of $ a \mathfrak{R}_f b $.
+
+\begin{definition}{Equivalence relation}{}
+  Given a set $ \mathcal{A} $, a relation $ \mathfrak{R} $ on $ \mathcal{A} $ is an \bcdef{equivalence relation}\index{equivalence!relation} if it has the following properties:
+  \begin{enumerate}
+    \item reflexivity: $ a \mathfrak{R} a \,\,\forall a \in \mathcal{A} $;
+    \item symmetry: $ a \mathfrak{R} b \iff b \mathfrak{R} a \,\,\forall a,b \in \mathcal{A} $;
+    \item transitivity: $ a \mathfrak{R} b \land b \mathfrak{R} c \implies a \mathfrak{R} c \,\,\forall a,b,c \in \mathcal{A} $.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}{}{}
+  Take $ \mathcal{A} = \Z $. Then, the relation $ a \mathfrak{R} b \iff \exists k \in \Z : a - b = 2k $ is an equivalence relation: $ a - a = 2k $ with $ k = 0 $ (reflexivity), $ a - b = 2k \iff b - a = 2h $ with $ h = -k $ (symmetry) and $ a - b = 2k , b - c = 2h \implies a - c = 2l $ with $ l = k + h $ (transitivity.
+\end{example}
+
+\begin{definition}{Equivalence class}{}
+  Given a set $ \mathcal{A} $ and an equivalence relation $ \mathfrak{R} $ on $ \mathcal{A} $, then the \bcdef{equivalence relation}\index{equivalence!class} of $ a \in \mathcal{A} $ is defined as $ [a]_\mathfrak{R} \defeq \{b \in \mathcal{A} : a \mathfrak{R} b\} $.
+\end{definition}
+
+In absence of ambiguity, the subscript $ \mathfrak{R} $ is dropped, and the equivalence class $ a \in \mathcal{A} $ is simply denoted by $ [a] $.
+
+\begin{theorem}{}{}
+  Given a set $ \mathcal{A} $, an \bcth{equivalence} relation $ \mathfrak{R} $ on $ \mathcal{A} $ and two elements $ a , b \in \mathcal{A} $, then:
+  \begin{enumerate}
+    \item $ a \in [a]_\mathfrak{R} $;
+    \item $ a \mathfrak{R} b \implies [a]_\mathfrak{R} = [b]_\mathfrak{R} $;
+    \item $ a \slashed{\mathfrak{R}} b \implies [a]_\mathfrak{R} \cap [b]_\mathfrak{R} = \emptyset $.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The first proposition is true by reflexivity. To prove the second proposition, let $ x \in [a]_\mathfrak{R} $: then, $ x \mathfrak{R} a $, but also $ x \mathfrak{R} b $ by transitivity, hence $ x \in [b]_\mathfrak{R} $. This proves $ [b]_\mathfrak{R} \subseteq [a]_\mathfrak{R} $, and the vice versa is equivalently proven, hence $ [a]_\mathfrak{R} = [b]_\mathfrak{R} $. To prove the third proposition, suppose $ \exists x \in [b]_\mathfrak{R} \cap [a]_\mathfrak{R} $: then, $ x \mathfrak{R} a \land x \mathfrak{R} b \implies a \mathfrak{R} b $ by transitivity, which is absurd.
+  \end{proof}
+\end{proofbox}
+
+This theorem shows that an equivalence relation splits the set in separated equivalence classes.
+
+\begin{definition}{Partition}{}
+  Given a set $ \mathcal{X} \neq \emptyset $ and its power set $ \pwst{\mathcal{X}} \defeq \{\mathcal{A} : \mathcal{A} \subseteq \mathcal{X}\} $, a \bcdef{partition}\index{partition!of a set} of $ \mathcal{X} $ is a collection of subsets $ \{\mathcal{A}_i\}_{i \in \mathcal{I}} \subseteq \pwst{\mathcal{X}} $ which satisfies the following propeties:
+  \begin{enumerate}
+    \item $ \mathcal{A}_i \neq \emptyset \,\,\forall i \in \mathcal{I} $;
+    \item $ \mathcal{A}_i \cap \mathcal{A}_j = \emptyset \,\,\forall i \neq j \in \mathcal{I} $;
+    \item $ \mathcal{X} = \bigcup_{i \in \mathcal{I}} \mathcal{A}_i $.
+  \end{enumerate}
+\end{definition}
+
+The equivalence classes determined by an equivalence relation form a partition of the set it is defined on.
+
+\begin{definition}{Quotient set}{}
+  Given a set $ \mathcal{A} $ and an equivalence relation $ \mathfrak{R} $ on $ \mathcal{A} $, the \bcdef{quotient set}\index{quotient!set} $ \mathcal{A} / \mathfrak{R} $ is defined as the set of all equivalence classes of $ \mathcal{A} $ determined by $ \mathfrak{R} $.
+\end{definition}
+
+\begin{example}{$ \Z $ as a quotient set}{}
+  The set $ \Z $ can be seen as a quotient set $ \Z = (\N \times \N) / \mathfrak{R} $ with $ (n,m) \mathfrak{R} (n',m') \iff n - m = n' - m' $. Indeed, there are three kinds of equivalence classes: $ [(n,0)] \equiv n $, $ [(0,n)] \equiv -n $ and $ [(0,0)] \equiv 0 $.
+\end{example}
+
+\begin{example}{Modular equivalence}{}
+  Given $ n \in \N $, the \bcex{congruence modulo} $ n $ relation is an equivalence relation on $ \Z $ defined as $ a \equiv_n b \iff \exists k \in \Z : a - b = k n $. This relation defines the quotient set $ \Z_n \equiv \Z / (\mathrm{mod}\, n) $, which in general is $ \Z_n = \{[0]_n, [1]_n, \dots, [n-1]_n\} $.
+\end{example}
+
+
+
+
+
+
+
+
+
+

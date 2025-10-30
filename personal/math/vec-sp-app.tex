@@ -1,0 +1,413 @@
+\selectlanguage{english}
+
+\section{Matrices}
+
+\begin{definition}{Matrix}{}
+  Given a field $ \K $ and $ n , m \in \N $, an $ n \times m $ \bcdef{matrix}\index{matrix} on $ \K $ is the object:
+  \begin{equation*}
+    \mt{A} =
+    \begin{bmatrix}
+      a_{11} & a_{12} & \dots & a_{1m} \\
+      a_{21} & a_{22} & \dots & a_{2m} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & a_{n2} & \dots & a_{nm}
+    \end{bmatrix}
+    \equiv [a_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m}
+    \quad : \quad
+    a_{ij} \in \K \,\,\forall i = 1, \dots, n ,\, j = 1, \dots, m
+  \end{equation*}
+  The set of all $ n \times m $ matrices on $ \K $ is denoted by $ \K^{n \times m} $.
+\end{definition}
+
+When the dimensions of the matrix $ \mt{A} $ are unambiguous, we simply write $ \mt{A} = [a_{ij}] $. We say that an $ n \times n $ matrix is a \bctxt{square matrix}, an $ n \times 1 $ matrix is a \bctxt{column vector} and a $ 1 \times n $ matrix is a \bctxt{row vector}.
+
+It is possible to define three operations between matrices:
+\begin{itemize}
+  \item sum $ + : \K^{n \times m} \times \K^{n \times m} \rightarrow \K^{n \times m} : [a_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} + [b_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} \mapsto [a_{ij} + b_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} $
+  \item product by a scalar $ \cdot : \K \times \K^{n \times m} \rightarrow \K^{n \times m} : \alpha \cdot [a_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} = [\alpha a_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} $
+  \item product $ \cdot : \K^{n \times p} \times \K^{p \times m} \rightarrow \K^{n \times m} : [a_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, p} \cdot [b_{ij}]^{i = 1, \dots, p}_{j = 1, \dots, m} = [c_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} $, $ c_{ij} = \sum_{k = 1}^p a_{ik} b_{kj} $
+\end{itemize}
+Note that $ \alpha a_{ij} $ is the $ \K $-product.
+
+\begin{proposition}{}{mat-abel-gr}
+  $ (\K^{n \times m} , +) $ is an abelian group.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The matrix sum is equivalent to the $ \K $-sum of corresponding elements, which is associative and commutative. The neutral element is the zero matrix $ 0_{n \times m} = [0]^{i = 1, \dots, n}_{j = 1, \dots, m} $, while the inverse element is $ -\mt{A} = [-a_{ij}]^{i = 1, \dots, n}_{j = 1, \dots, m} $.
+  \end{proof}
+\end{proofbox}
+
+\begin{theorem}{}{}
+  $ (\K^{n \times n} , + , \cdot) $ is a non-commutative ring.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    By \pref{prop:mat-abel-gr}, $ (\K^{n \times n} , +) $ is an abelian group. It is trivial to show the associativity and distributivity of the matrix product, i.e.:
+    \begin{enumerate}
+      \item $ \mt{A} \cdot (\mt{B} \cdot \mt{C}) = (\mt{A} \cdot \mt{B}) \cdot \mt{C} ,\, \lambda (\mt{A} \cdot \mt{B}) = (\lambda \mt{A}) \cdot \mt{B} = \mt{A} \cdot (\lambda \mt{B}) \,\,\forall \mt{A} , \mt{B} , \mt{C} \in \K^{n \times n} , \lambda \in \K $
+      \item $ \mt{A} \cdot (\mt{B} + \mt{C}) = \mt{A} \cdot \mt{B} + \mt{A} \cdot \mt{C} ,\, (\mt{A} + \mt{B}) \cdot \mt{C} = \mt{A} \cdot \mt{C} + \mt{B} \cdot \mt{C} \,\,\forall \mt{A} , \mt{B} , \mt{C} \in \K^{n \times n} $
+    \end{enumerate}
+    Finally, the neutral element of the matrix product is the identity matrix $ \mt{I}_n = [\delta_{ij}]_{i,j = 1, \dots, n} $.
+  \end{proof}
+\end{proofbox}
+
+\begin{definition}{Transposed matrix}{}
+  Given a matrix $ \mt{A} \in \K^{n \times m} $, its \bcdef{transpose} is defined as $ \mt{A}\tsp \in \K^{m \times n} : [a\tsp_{ij}]^{i = 1, \dots, m}_{j = 1, \dots, n} = [a_{ji}]^{j = 1, \dots, n}_{i = 1, \dots, m} $.
+\end{definition}
+
+A square matrix $ \mt{A} \in \K^{n \times n} $ is said \bctxt{symmetric} if $ \mt{A}\tsp = \mt{A} $ or \bctxt{antisymmetric} if $ \mt{A}\tsp = - \mt{A} $, and it is \bctxt{diagonal} if $ a_{ij} = 0 \,\,\forall i \neq j \in \{1, \dots, n\} $.
+
+\begin{definition}{Inverse matrix}{}
+  A square matrix $ \mt{A} \in \K^{n \times n} $ is \bcdef{invertible} if $ \exists \mt{A}^{-1} \in \K^{n \times n} : \mt{A}^{-1} \cdot \mt{A} = \mt{A} \cdot \mt{A}^{-1} = \mt{I}_n $.
+\end{definition}
+
+\begin{example}{Non-invertible matrix}{}
+  The matrix $ \begin{bmatrix} 2 & 0 \\ 0 & 0 \end{bmatrix} $ is non-invertible, as $ \begin{bmatrix} 2 & 0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \alpha & \beta \\ \gamma & \delta \end{bmatrix} = \begin{bmatrix} 2 \alpha & 2 \beta \\ 0 & 0 \end{bmatrix} \neq \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \,\forall \alpha , \beta , \gamma , \delta \in \R $.
+\end{example}
+
+\begin{definition}{General linear group}{}
+  The \bcdef{general linear group}\index{$ \GL{n,\K} $} $ \GL{n,\K} $ is defined as the subset of $ \K^{n \times n} $ of all invertible matrices.
+\end{definition}
+
+Note that $ \GL{1,\K} = \K - \{0\} $.
+
+\begin{theorem}{}{}
+  $ (\GL{n,\K} , \cdot) $ is a non-abelian group.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The neutral element is $ \mt{I}_n $, as $ \mt{I}_n^{-1} = \mt{I}_n \implies \mt{I}_n \in \GL{n,\K} $, while the existence of the inverse is granted by definition. We only have to show closure under matrix multiplication:
+    \begin{equation*}
+      (\mt{A} \mt{B})^{-1} = \mt{B}^{-1} \mt{A}^{-1} \impliedby \mt{I}_n = \mt{A} \cdot \mt{A}^{-1} = \mt{A} \mt{I}_n \mt{A}^{-1} = \mt{A} \mt{B} \mt{B}^{-1} \mt{A}^{-1} = (\mt{A} \mt{B}) (\mt{A} \mt{B})^{-1}
+    \end{equation*}
+    Hence, $ \mt{A} , \mt{B} \in \GL{n,\K} \implies \mt{A} \mt{B} \in \GL{n,\K} $.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Linear systems of equations}
+
+A \bctxt{linear equation} with $ n \in \N $ variables and $ \K $-coefficients is an expression of the form:
+\begin{equation*}
+  a_1 x_1 + \dots + a_n x_n = b
+  \qquad
+  a_i , b \in \K \,\,\forall i = 1, \dots, n
+\end{equation*}
+A \bctxt{solution} of the equation is an $ n $-tuple $ (\bar{x}_1, \dots, \bar{x}_n) \in \K^n $ which satisfies this expression.
+
+\begin{definition}{Linear system of equations}{}
+  A linear system of equations (or simply \bcdef{linear system}\index{linear system}) is a collection of $ m $ linear equations with $ n $ variables:
+  \begin{equation*}
+    \begin{cases}
+      a_{11} x_1 + \dots + a_{1n} x_n = b_1 \\
+      a_{21} x_1 + \dots + a_{2n} x_n = b_2 \\
+      \qquad \qquad \quad \vdots \\
+      a_{m1} x_1 + \dots + a_{mn} x_n = b_m \\
+    \end{cases}
+    \qquad \iff \qquad
+    \mt{A} \ve{x} = \ve{b}
+  \end{equation*}
+  where we defined:
+  \begin{equation*}
+    \mt{A} =
+    \begin{bmatrix}
+      a_{11} & \dots & a_{1n} \\
+      a_{21} & \dots & a_{2n} \\
+      \vdots & \ddots & \vdots \\
+      a_{m1} & \dots & a_{mn}
+    \end{bmatrix}
+    \in \K^{m \times n}
+    \qquad \qquad
+    \ve{b} =
+    \begin{pmatrix}
+      b_1 \\ b_2 \\ \vdots \\ b_m
+    \end{pmatrix}
+    \in \K^{m \times 1}
+    \qquad \qquad
+    \ve{x} =
+    \begin{pmatrix}
+      x_1 \\ x_2 \\ \vdots \\ x_n
+    \end{pmatrix}
+    \in \K^{n \times 1}
+  \end{equation*}
+\end{definition}
+
+Two linear systems with the same set of solutions are called \bctxt{equivalent systems}: note that two equivalent systems must have the same number of variables, but not necessarily the same number of equations.
+
+Based on the cardinality of its solution set, a linear system is said to be \bctxt{impossible} if it has no solutions, \bctxt{determined} if it has one solution and \bctxt{undetermined} if it has infinitely-many solutions. Moreover, if the solution set can be parametrized by $ k \in \N_0 $ variables, the system is of kind $ \infty^k $: a determined system is of kind $ \infty^0 $.
+
+Linear systems can be systematically solved applying a reduction algorithm to their corresponding matrices: \bctxt{Gauss algorithm}\index{Gauss algorithm}. Starting with a general composed matrix $ [\mt{A} | \ve{b}] \in \K^{m \times (n+1)} $, first we multiply the first row by $ a_{11}^{-1} $, so that:
+\begin{equation*}
+  \left[
+  \begin{array}{cccc|c}
+    a_{11} & a_{12} & \dots & a_{1n} & b_1 \\
+    a_{21} & a_{22} & \dots & a_{2n} & b_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    a_{m1} & a_{m2} & \dots & a_{mn} & b_m \\
+  \end{array}
+  \right]
+  \quad \longrightarrow \quad
+ \left[
+  \begin{array}{cccc|c}
+    1 & a'_{12} & \dots & a'_{1n} & b'_1 \\
+    a_{21} & a_{22} & \dots & a_{2n} & b_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    a_{m1} & a_{m2} & \dots & a_{mn} & b_m \\
+  \end{array}
+  \right]
+\end{equation*}
+Then, at each row $ \mt{R}_2 , \dots , \mt{R}_m $ we apply the transformation $ \mt{R}_k \mapsto \mt{R}_k - a_{k1} \mt{R}_1 $, so that:
+\begin{equation*}
+  \left[
+  \begin{array}{cccc|c}
+    1 & a'_{12} & \dots & a'_{1n} & b'_1 \\
+    a_{21} & a_{22} & \dots & a_{2n} & b_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    a_{m1} & a_{m2} & \dots & a_{mn} & b_m \\
+  \end{array}
+  \right]
+  \quad \longrightarrow \quad
+ \left[
+  \begin{array}{cccc|c}
+    1 & a'_{12} & \dots & a'_{1n} & b'_1 \\
+    0 & a'_{22} & \dots & a'_{2n} & b'_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & a'_{m2} & \dots & a'_{mn} & b'_m \\
+  \end{array}
+  \right]
+\end{equation*}
+Reiterating this process to progressively smalles submatrices, the algorithm yields the general transformation:
+\begin{equation*}
+  \left[
+  \begin{array}{cccc|c}
+    a_{11} & a_{12} & \dots & a_{1n} & b_1 \\
+    a_{21} & a_{22} & \dots & a_{2n} & b_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    a_{m1} & a_{m2} & \dots & a_{mn} & b_m \\
+  \end{array}
+  \right]
+  \quad \longrightarrow \quad
+  \left[
+  \begin{array}{cccc|c}
+    1 & a'_{12} & \dots & a'_{1n} & b'_1 \\
+    0 & 1 & \dots & a'_{2n} & b'_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & \dots & 1 & b'_m \\
+  \end{array}
+  \right]
+\end{equation*}
+As these are linear transformations, the two matrices represent equivalent linear systems: the transformed linear system is substantially easier to solve, and its solution set is a solution set of the starting linear system too.
+
+\begin{definition}{Character}{}
+  Given a matrix $ \mt{M} \in \K^{n \times m} $, its \bcdef{character} $ \mathrm{car}(\mt{M}) $ is the number of non-zero rows remaining after Gauss reduction.
+\end{definition}
+
+It can be proven that the character is independent of the operations performed during the reduction algorithm.
+
+\begin{theorem}{Rouché--Capelli theorem}{}
+  A linear system $ \mt{A} \ve{x} = \ve{b} $ has solutions only if $ \mathrm{car}(\mt{A}) = \mathrm{car}([\mt{A} | \ve{b}]) $. Moreover, if the system has solutions, then it is of kind $ \infty^{n - r} $, with $ n $ number of variables and $ r = \mathrm{car}(\mt{A}) $.\index{theorem!Rouché--Capelli}
+\end{theorem}
+
+\section{Vector spaces}
+
+\begin{definition}{Vector space}{}
+  Given a set $ V \neq \emptyset $ and a field $ \K $, then $ V $ is a \bcdef{$ \K $-vector space} if there exist two operations:
+  \begin{equation*}
+    + : V \times V \ra V \,:\, (\ve{v} , \ve{w}) \mapsto \ve{v} + \ve{w}
+    \qquad \qquad
+    \cdot : \K \times V \ra V \,:\, (\lambda , \ve{v}) \mapsto \lambda \cdot \ve{v}
+  \end{equation*}
+  such that $ (V,+) $ is an abelian group and the following properties hold $ \forall \lambda , \mu \in \K , \ve{v} , \ve{w} \in V $:
+  \begin{enumerate}
+    \item $ (\lambda + \mu) \cdot (\ve{v} + \ve{w}) = \lambda \cdot \ve{v} + \mu \cdot \ve{v} + \lambda \cdot \ve{w} + \mu \cdot \ve{w} $
+    \item $ (\lambda \cdot \mu) \cdot \ve{v} = \lambda \cdot (\mu \cdot \ve{v}) = \mu \cdot (\lambda \cdot \ve{v}) $
+    \item $ 1_\K \cdot \ve{v} = \ve{v} $
+  \end{enumerate}
+\end{definition}
+
+Note that there are three unique neutral elements: $ 0_\K $, $ 1_\K $ and $ 0_V \equiv \ve{0} $.
+In the following, the multiplication symbol $ \cdot $ is suppressed, as the factors clarify which multiplication is occurring ($ \cdot : \K \times \K \ra \K $ or $ \cdot : \K \times V \ra V $, which have the same neutral element $ 1_\K $).
+
+\begin{example}{Complex numbers}{}
+  $ V = \C $ is a vector space both for $ \K = \R $ and $ \K = \C $, although they are different objects.
+\end{example}
+
+\begin{example}{Field as vector space}{}
+  $ V = \K $ is a $ \K $-vector space. Note that, in this case, $ 0_\K \equiv 0_V $.
+\end{example}
+
+Note that, by the uniqueness of $ 0_V $, then $ \forall \ve{v} \in V \,\,\exists! -\ve{v} \in V : \ve{v} + (-\ve{v}) = 0_V $, so the following cancellation rule holds $ \forall \ve{u} , \ve{v} , \ve{w} \in V $:
+\begin{equation}
+  \ve{u} + \ve{v} = \ve{w} + \ve{v}
+  \quad \implies \quad
+  \ve{u} = \ve{w}
+  \label{eq:cancellation-rule}
+\end{equation}
+
+We can now state some basic properties of vector spaces.
+
+\begin{lemma}{Basic properties}{}
+  Given a $ \K $-vector space $ V $, then $ \forall \lambda \in \K , \ve{v} \in V $:
+  \begin{multicols}{2}
+    \begin{enumerate}[label={\alph*.}]
+      \item $ 0_\K \cdot \ve{v} = 0_V $
+      \item $ (-\lambda) \cdot \ve{v} = - (\lambda \cdot \ve{v}) $
+      \item $ \lambda \cdot 0_V = 0_V $
+      \item $ \lambda \cdot \ve{v} = 0_V \iff \lambda = 0_\K \lor \ve{v} = 0_V $
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label={\alph*.}]
+      \item Consider $ c \in \K - \{0_\K\} $; then $ c \ve{v} + 0_V = c \ve{v} = (c + 0_\K) \ve{v} = c \ve{v} + 0_\K \cdot \ve{v} $, which by \eref{eq:cancellation-rule} proves $ 0_\K \cdot \ve{v} = 0_V $.
+      \item $ \lambda \ve{v} + (-\lambda) \ve{v} = (\lambda - \lambda) \ve{v} = 0_\K \cdot \ve{v} = 0_V $, which by the uniqueness of the negative element proves $ (-\lambda) \ve{v} = - (\lambda \ve{v}) $.
+      \item $ \lambda \cdot 0_V = \lambda (\ve{v} - \ve{v}) = \lambda \ve{v} + \lambda \cdot (-1_\K) \cdot \ve{v} = \lambda \ve{v} + (-\lambda) \ve{v} = \lambda \ve{v} - (\lambda \ve{v}) = 0_V $
+      \item $ \lambda = 0_\K $ is trivial, so consider $ \lambda \neq 0_\K $; then $ \exists ! \lambda^{-1} \in \K : \lambda^{-1} \cdot \lambda = 1_\K $, so $ 0_V = \lambda^{-1} \cdot 0_V = \lambda^{-1} \cdot (\lambda \ve{v}) = (\lambda^{-1} \cdot \lambda) \ve{v} = 1_\K \cdot \ve{v} = \ve{v} $, i.e. $ \ve{v} = 0_V $.
+    \end{enumerate}
+  \end{proof}
+\end{proofbox}
+
+\subsection{Subspaces}
+
+\begin{definition}{Subspace}{}
+  Given a $ \K $-vector space $ V $ and a subset $ U \subseteq V : U \neq \emptyset $, then $ U $ is a \bcdef{subspace}\index{subspace} of $ V $ if it is closed under $ + : U \times U \ra U $ and $ \cdot : \K \times U \ra U $.
+\end{definition}
+
+\begin{lemma}{}{}
+  If $ U $ is a subspace of $ V(\K) $, then $ 0_V \in U $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By definition $ U \neq \emptyset \implies \exists \ve{v} \in U $. By the closure condition $ \lambda \ve{v} \in U \,\,\forall \lambda \in \K $, hence taking $ \lambda = 0_\K $ proves the thesis.
+  \end{proof}
+\end{proofbox}
+
+A typical strategy to prove that $ U $ is a subspace of $ V(\K) $ is showing the closure properties, while to prove that it is \emph{not} a subspace we usually show that $ 0_V \notin U $.
+
+\begin{example}{Polynomial subspaces}{}
+  Given $ V = \K[x] $, then $ U = \K_n[x] $ is a subspace $ \forall n \in \N_0 $.
+\end{example}
+
+An important concept to analyze vector spaces is that of linear combination. Given two sets $ \{\lambda_k\}_{k = 1, \dots, n} \subset \K $ and $ \{\ve{v}_k\}_{k = 1, \dots, n} \subset V $, their \bctxt{linear combination}\index{linear combination} is:
+\begin{equation}
+  \sum_{k = 1}^n \lambda_k \ve{v}_k = \lambda_1 \ve{v}_1 + \dots \lambda_n \ve{v}_n \in V
+\end{equation}
+
+\begin{proposition}{Subspaces and linear combinations}{subspaces-linear-combinations}
+  Given a $ \K $-vector space $ V $ and $ U \subset V : U \neq \emptyset $, then $ U $ is a subspace of $ V $ if and only if it is closed under linear combinations, that is:
+  \begin{equation*}
+    \{\lambda_k\}_{k = 1, \dots, n} \subset \K , \{\ve{v}_k\}_{k = 1, \dots, n} \subset U
+    \quad \implies \quad
+    \sum_{k = 1}^n \lambda_k \ve{v}_k \in U
+  \end{equation*}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, note that the general case of linear combinations of $ n $ vectors can be reduced to the case of $ 2 $ vectors.
+
+    $ (\Rightarrow) $ Being $ U $ a subspace, it is closed under $ + : U \times U \ra U $ and $ \cdot : \K \times U \ra U $; then, by definition $ \lambda , \mu \in \K , \ve{v} , \ve{w} \in U \implies \lambda \ve{v} + \mu \ve{w} \in U $.
+
+    $ (\Leftarrow) $ Given $ \lambda \in \K $ and $ \ve{v} , \ve{w} \in V $, then $ \ve{v} + \ve{w} = 1_\K \ve{v} + 1_\K \ve{w} $ and $ \lambda \ve{v} = \lambda \ve{v} + 0_\K \ve{w} $, hence closure under linear combinations implies closure under $ + : U \times U \ra U $ and $ \cdot : \K \times U \ra U $.
+  \end{proof}
+\end{proofbox}
+
+Generally, it is easier to show closure under linear combinations rather than under addition and scalar multiplication.
+
+\begin{lemma}{Intersection of subspaces}{}
+  Given two subspaces of $ V_1 , V_2 $ of $ V(\K) $, then $ V_1 \cap V_2 $ is still a subset of $ V(\K) $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Being $ V_1 , V_2 $ subspaces, both $ V_1 $ and $ V_2 $ are closed under linear combinations, so $ V_1 \cap V_2 $ is too, as $ \ve{v} \in V_1 \cap V_2 \implies \ve{v} \in V_1 \land \ve{v} \in V_2 $.
+  \end{proof}
+\end{proofbox}
+
+On the other hand, in general $ V_1 \cup V_2 $ is not a subspace. As a counterexample, consider e.g. $ V = \Vect_0(\mathbb{E}^3) $, the plane $ \pi : z = 0 $ and the line $ r : (x,y,z) = (0,0,t) , t \in \R $; then, consider the subspaces $ V_1 = \Vect_0(\pi) , V_2 = \Vect_0(r) $: their union is clearly not closed under addition, as:
+\begin{equation*}
+  \begin{pmatrix}
+    1 \\ 1 \\ 0
+  \end{pmatrix} \in V_1
+  ,
+  \begin{pmatrix}
+    0 \\ 0 \\ 1
+  \end{pmatrix} \in V_2
+  \qquad \qquad
+  \begin{pmatrix}
+    1 \\ 1 \\ 0
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    0 \\ 0 \\ 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 \\ 1 \\ 1
+  \end{pmatrix} \notin V_1 \cup V_2
+\end{equation*}
+
+\begin{definition}{Sum of subspaces}{}
+  Given a $ \K $-vector space $ V $ and two subspaces $ V_1 , V_2 $, their \bcdef{sum}\index{subspace!sum of} is defined as:
+  \begin{equation*}
+    V_1 + V_2 \defeq \{\ve{w} \in V : \ve{w} = \ve{u} + \ve{v}, \ve{u} \in V_1, \ve{v} \in V_2\}
+  \end{equation*}
+  This is a \bcdef{direct sum}\index{direct sum!of subspaces}, denoted by $ V_1 \oplus V_2 $, if every $ \ve{w} \in V_1 + V_2 $ has a unique expression as $ \ve{w} = \ve{u} + \ve{v} , \ve{u} \in V_1 , \ve{v} \in V_2 $.
+\end{definition}
+
+Trivially $ V_1 , V_2 \subseteq V_1 + V_2 $.
+
+\begin{lemma}{Direct sum as disjoint sum}{}
+  Given two subspaces $ V_1 , V_2 $ of $ V(\K) $, then $ V_1 + V_2 = V_1 \oplus V_2 \iff V_1 \cap V_2 = \{\ve{0}\} $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ Suppose $ \exists \ve{v} \in V_1 \cap V_2 : \ve{v} \neq \ve{0} $; then $ \ve{v} = \ve{v} + \ve{0} = \ve{0} + \ve{v} $, i.e. the expression of $ \ve{v} \in V_1 + V_2 $, but the expression of $ \ve{v} \in V_1 \oplus V_2 $ must be unique, hence $ \ve{v} = \ve{0} \absurd $.
+
+    $ (\Leftarrow) $ Suppose $ \exists \ve{w} \in V_1 + V_2 : \ve{w} = \ve{u}_1 + \ve{v}_1 = \ve{u}_2 + \ve{v}_2 , \ve{u}_1 \neq \ve{u}_2 \in V_1 , \ve{v}_1 \neq \ve{v}_2 \in V_2 $; then $ V_1 \ni \ve{u}_1 - \ve{u}_2 = \ve{v}_2 - \ve{v}_1 \in V_2 \implies \ve{v}_2 - \ve{v}_1 \in V_1 $, so $ \ve{v}_2 - \ve{v}_1 \in V_1 \cap V_2 $, but $ V_1 \cap V_2 = \{\ve{0}\} $, hence $ \ve{v}_2 = \ve{v}_1 $ and idem for $ \ve{u}_1 = \ve{u}_2 \absurd $.
+  \end{proof}
+\end{proofbox}
+
+The sum of subspaces preserves the subspace structure, contrary to the simple union.
+
+\begin{proposition}{Sum as subspace}{}
+  Given a $ \K $-vector space and two subspaces $ V_1 , V_2 $, their sum $ V_1 + V_2 $ is still a subspace of $ V $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider $ \ve{a} , \ve{b} \in V_1 + V_2 $ and define $ \ve{u}_{a,b} \in V_1 , \ve{v}_{a,b} \in V_2 : \ve{a} = \ve{u}_a + \ve{v}_a \land \ve{b} = \ve{u}_b + \ve{v}_b $: as $ V_1 , V_2 $ are subspaces, they are closed under linear combinations, so, given $ \lambda ,\mu \in \K $, then $ \lambda \ve{a} + \mu \ve{b} = (\lambda \ve{u}_a + \mu \ve{u}_b) + (\lambda \ve{v}_a + \mu \ve{v}_b) \equiv \ve{u} + \ve{v} \in V_1 + V_2 $, where $ \ve{u} \in V_1 $ and $ \ve{v} \in V_2 $, which shows that $ V_1 + V_2 $ too is closed under linear combinations and a subspace by \pref{prop:subspaces-linear-combinations}.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Bases}
+
+To give a more explicit description of vector spaces, we have to define the concept of basis and its properties.
+
+\subsubsection{Generators}
+
+\begin{definition}{Linear dependence}{}
+  Given a $ \K $-vector space $ V $ and a subset $ \{\ve{v}_j\}_{j = 1, \dots, k} \equiv S \subseteq V $, then the vectors of $ S $ are:
+  \begin{itemize}
+    \item \bcdef{linearly dependent} (LD) if $ \exists \{\lambda_j\}_{j = 1, \dots, k} \subset \K - \{0\} : \lambda_1 \ve{v}_1 + \dots \lambda_k \ve{v}_k = \ve{0} $
+    \item \bcdef{linearly independent} (LI) if $ \lambda_1 \ve{v}_1 + \dots \lambda_k \ve{v}_k = \ve{0} \iff \lambda_j = 0 \,\,\forall j = 1, \dots, k $
+  \end{itemize}
+\end{definition}
+
+
+
+
+
+
+
+\section{Linear applications}
+
+\section{Inner products}
