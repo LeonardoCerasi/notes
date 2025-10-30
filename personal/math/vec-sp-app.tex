@@ -228,7 +228,7 @@ It can be proven that the character is independent of the operations performed d
   \end{enumerate}
 \end{definition}
 
-Note that there are three unique neutral elements: $ 0_\K $, $ 1_\K $ and $ 0_V \equiv \ve{0} $.
+Note that there are three unique neutral elements: $ 0_\K \equiv 0 $, $ 1_\K \equiv 1 $ and $ 0_V \equiv \ve{0} $.
 In the following, the multiplication symbol $ \cdot $ is suppressed, as the factors clarify which multiplication is occurring ($ \cdot : \K \times \K \ra \K $ or $ \cdot : \K \times V \ra V $, which have the same neutral element $ 1_\K $).
 
 \begin{example}{Complex numbers}{}
@@ -249,10 +249,10 @@ Note that, by the uniqueness of $ 0_V $, then $ \forall \ve{v} \in V \,\,\exists
 
 We can now state some basic properties of vector spaces.
 
-\begin{lemma}{Basic properties}{}
+\begin{lemma}{Basic properties of vector spaces}{}
   Given a $ \K $-vector space $ V $, then $ \forall \lambda \in \K , \ve{v} \in V $:
   \begin{multicols}{2}
-    \begin{enumerate}[label={\alph*.}]
+    \begin{enumerate}[label = {\alph*.}]
       \item $ 0_\K \cdot \ve{v} = 0_V $
       \item $ (-\lambda) \cdot \ve{v} = - (\lambda \cdot \ve{v}) $
       \item $ \lambda \cdot 0_V = 0_V $
@@ -264,7 +264,7 @@ We can now state some basic properties of vector spaces.
 \begin{proofbox}
   \begin{proof}
     Respectively:
-    \begin{enumerate}[label={\alph*.}]
+    \begin{enumerate}[label = {\alph*.}]
       \item Consider $ c \in \K - \{0_\K\} $; then $ c \ve{v} + 0_V = c \ve{v} = (c + 0_\K) \ve{v} = c \ve{v} + 0_\K \cdot \ve{v} $, which by \eref{eq:cancellation-rule} proves $ 0_\K \cdot \ve{v} = 0_V $.
       \item $ \lambda \ve{v} + (-\lambda) \ve{v} = (\lambda - \lambda) \ve{v} = 0_\K \cdot \ve{v} = 0_V $, which by the uniqueness of the negative element proves $ (-\lambda) \ve{v} = - (\lambda \ve{v}) $.
       \item $ \lambda \cdot 0_V = \lambda (\ve{v} - \ve{v}) = \lambda \ve{v} + \lambda \cdot (-1_\K) \cdot \ve{v} = \lambda \ve{v} + (-\lambda) \ve{v} = \lambda \ve{v} - (\lambda \ve{v}) = 0_V $
@@ -395,12 +395,101 @@ To give a more explicit description of vector spaces, we have to define the conc
 \subsubsection{Generators}
 
 \begin{definition}{Linear dependence}{}
-  Given a $ \K $-vector space $ V $ and a subset $ \{\ve{v}_j\}_{j = 1, \dots, k} \equiv S \subseteq V $, then the vectors of $ S $ are:
+  Given a $ \K $-vector space $ V $ and a set $ \{\ve{v}_j\}_{j = 1, \dots, k} \equiv S \subseteq V $, then the vectors of $ S $ are:
   \begin{itemize}
     \item \bcdef{linearly dependent} (LD) if $ \exists \{\lambda_j\}_{j = 1, \dots, k} \subset \K - \{0\} : \lambda_1 \ve{v}_1 + \dots \lambda_k \ve{v}_k = \ve{0} $
-    \item \bcdef{linearly independent} (LI) if $ \lambda_1 \ve{v}_1 + \dots \lambda_k \ve{v}_k = \ve{0} \iff \lambda_j = 0 \,\,\forall j = 1, \dots, k $
+    \item \bcdef{linearly independent}\index{linear independence!of vectors} (LI) if $ \lambda_1 \ve{v}_1 + \dots \lambda_k \ve{v}_k = \ve{0} \iff \lambda_j = 0 \,\,\forall j = 1, \dots, k $
   \end{itemize}
 \end{definition}
+
+The generalization to infinite sets is trivial: $ \{\ve{v}_\alpha\}_{\alpha \in \mathcal{I}} \equiv S \subset V(\K) $ is LI if every finite subset of $ S $ is LI, while it is LD if there exists at least one non-empty subset which is LD.
+
+\begin{example}{Complex numbers}{}
+  $ \{1, \img\} $ are LD in $ \C(\C) $, as $ 1 \cdot 1 + \img \cdot \img = 0 $, while they are LI in $ \C(\R) $.
+\end{example}
+
+\begin{example}{Polynomials}{}
+  $ \{1, x, \dots, x^n, \dots\} $ are LI in $ \K[x] $.
+\end{example}
+
+We can prove some basic properties of linear dependence.
+
+\begin{lemma}{Basic properties of linear dependence}{}
+  Given a $ \K $-vector space $ V $ and $ S \subseteq V : S \neq \emptyset $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item given $ S \subseteq T \subseteq V $, then $ S \text{ LD} \implies T \text{ LD} $
+    \item $ S = \{\ve{v}\} \text{ LD} \implies \ve{v} = \ve{0} $
+    \item $ S = \{\ve{v}_1 , \ve{v}_2\} \text{ LD} \implies \exists \lambda \in \K : \ve{v}_1 = \lambda \ve{v}_2 $
+    \item if $ S = \{\ve{v}_1 , \dots , \ve{v}_n\} $ LD, then at least one $ \ve{v}_i $ is a linear combination of the other vectors
+    \item if $ S $ LI and $ S \cup \{\ve{w}\} $ LD, then $ \ve{w} $ is a linear combination of the vectors of $ S $
+    \item if $ \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n = \ve{0} $ and $ \lambda_n \neq 0 $, then $ \ve{v}_n $ is a linear combination of $ \{\ve{v}_1 , \dots , \ve{v}_{n-1}\} $
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label = {\alph*.}]
+      \item $ S \subseteq T \implies \ve{v} \in T \,\,\forall \ve{v} \in S $, hence $ \{\ve{v}_i\}_{i = 1, \dots, n} \subset S \text{ LD} \implies \{\ve{v}_i\}_{i = 1, \dots, n} \subset T \text{ LD} $
+      \item $ \lambda \ve{v} = \ve{0} \iff \lambda = 0 \lor \ve{v} = \ve{0} $, so $ \ve{v} = \ve{0} \implies S \text{ LD} $, while $ S \text{ LD} \implies \lambda \neq 0 \implies \ve{v} = 0 $
+      \item $ \{\ve{v}_1 , \ve{v}_2\} \text{ LD} \implies \exists \lambda , \mu \in \K - \{0\} : \lambda \ve{v}_1 + \mu \ve{v}_2 = \ve{0} \iff \ve{v}_1 = \lambda^{-1} \mu \ve{v}_2 $
+      \item If $ \{\ve{v}_j\}_{j = 1, \dots, n} $ LD, then by definition $ \exists \{\lambda_j\}_{j = 1, \dots, n} \subset \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j = \ve{0} $, hence WLOG $ \ve{v}_1 $ can be isolated as $ \ve{v}_1 = - \lambda_1^{-1} \sum_{j = 2}^n \lambda_j \ve{v}_j $
+      \item $ \{\ve{v}_1 , \dots , \ve{v}_n , \ve{w}\} \text{ LD} \implies \exists \lambda_1 , \dots , \lambda_n , \alpha \in \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j + \alpha \ve{w} = \ve{0} $, so $ \ve{w} $ can be isolated as $ \ve{w} = - \alpha^{-1} \sum_{j = 1}^n \lambda_j \ve{v}_j $
+      \item $ \sum_{j = 1}^n \lambda_j \ve{v}_j = \ve{0} \land \lambda_n \neq 0 \implies \ve{v}_n = - \lambda_n^{-1} \sum_{j = 1}^{n-1} \lambda_j \ve{v}_j $
+    \end{enumerate}
+  \end{proof}
+\end{proofbox}
+
+We can now introduce the notion of generators.
+
+\begin{definition}{Generated subset}{}
+  Given a $ \K $-vector space $ V $ and $ \{\ve{v}_\alpha\}_{\alpha \in \mathcal{I}} \equiv S \subseteq V $, the \bcdef{subset generated by $ S $} is the set:
+  \begin{equation*}
+    \lspan{S} \defeq \{\ve{v} \in V : \exists \lambda_1 , \dots , \lambda_n \in \K, \ve{v}_{\alpha_1} , \dots , \ve{v}_{\alpha_n} \in S : \ve{v} = \lambda_1 \ve{v}_{\alpha_1} + \dots + \lambda_n \ve{\alpha_n}\}
+  \end{equation*}
+  The elements of $ S $ are called \bcdef{generators} of $ \lspan{S} $.
+\end{definition}
+
+We often denote $ \lspan{S} \equiv \braket{S} $: this subset contains all vectors of $ V $ which can be expressed as linear combinations of vectors of $ S $.
+
+\begin{proposition}{Generated subspace}{}
+  Given a $ \K $-vector space and $ S \subseteq V : S \neq \emptyset $, then $ \braket{S} $ is a subspace of $ V $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ S = \{\ve{s}_\alpha\}_{\alpha \in \mathcal{I}} $ and $ \ve{v} , \ve{w} \in S : \ve{v} = \sum_{j = 1}^k \lambda_j \ve{s}_{\alpha_j} , \ve{w} = \sum_{j = 1}^n \mu_j \ve{s}_{\beta_j} $, with coefficients $ \{\lambda_j\}_{j = 1, \dots, k} , \{\mu_j\}_{j = 1, \dots, n} \subset \K - \{0\} $. Adding vectors with vanishing coefficients, we can rewrite $ \ve{v} $ and $ \ve{w} $ in terms of the same vectors:
+    \begin{equation*}
+      \ve{v} = \sum_{j = 1}^m a_j \ve{s}_{\gamma_j}
+      \qquad \qquad
+      \ve{w} = \sum_{j = 1}^m b_j \ve{s}_{\gamma_j}
+      \quad \implies \quad
+      \zeta \ve{v} + \xi \ve{w} = \sum_{j = 1}^m \left( \zeta a_j + \xi b_j \right) \ve{s}_{\gamma_j} \in \braket{S}
+    \end{equation*}
+    This shows that $ \braket{S} $ is closed under linear combination, hence the thesis.
+  \end{proof}
+\end{proofbox}
+
+Note that, give a subspace $ U \subseteq V(\K) $, then at most $ U = \braket{U} $, hence every subspace admits a family of generators. If $ U $ has a finite number of generators, then it is a \bctxt{finitely-generated subspace}: for example, $ \K_n[x] = \braket{1, \dots, x^n} $, $ \C(\C) = \braket{1} $ and $ \C(\R) = \braket{1, \img} $ are finitely-generated.
+We can state two trivial properties of generated subsets.
+
+\begin{lemma}{}{}
+  Given $ S \subseteq V(\K) $ and $ U = \braket{S} $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item given $ S \subseteq T \subseteq V $, then $ U = \braket{T} $
+    \item if $ U = \braket{\ve{s}_1 , \dots , \ve{s}_n} $ and $ \ve{s}_n \in \braket{\ve{s}_1 , \ve{s}_{n-1}} $, then $ U = \braket{\ve{s}_1 , \dots , \ve{s}_{n-1}} $
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label = {\alph*.}]
+      \item If $ S \subseteq T $, then each linear combination in $ S $ is a linear combination in $ T $ too, hence the thesis.
+      \item Given $ \ve{v} = \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n \in U $ and $ \ve{s}_n = \mu_1 \ve{s}_1 + \dots + \mu_{n-1} \ve{s}_{n-1} $, hence $ \ve{v} = \left( \lambda_1 + \mu_1 \right) \ve{s}_1 + \dots + \left( \lambda_{n-1} + \mu_{n-1} \right) \ve{s}_{n-1} $, hence the thesis.
+    \end{enumerate}
+  \end{proof}
+\end{proofbox}
 
 
 
