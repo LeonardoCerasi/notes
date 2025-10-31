@@ -17,9 +17,9 @@ We usually write $ b = f(a) $ in place of $ a \mathfrak{R}_f b $.
 \begin{definition}{Equivalence relation}{}
   Given a set $ \mathcal{A} $, a relation $ \mathfrak{R} $ on $ \mathcal{A} $ is an \bcdef{equivalence relation}\index{equivalence!relation} if it has the following properties:
   \begin{enumerate}
-    \item reflexivity: $ a \mathfrak{R} a \,\,\forall a \in \mathcal{A} $;
-    \item symmetry: $ a \mathfrak{R} b \iff b \mathfrak{R} a \,\,\forall a,b \in \mathcal{A} $;
-    \item transitivity: $ a \mathfrak{R} b \land b \mathfrak{R} c \implies a \mathfrak{R} c \,\,\forall a,b,c \in \mathcal{A} $.
+    \item reflexivity: $ a \mathfrak{R} a \,\,\forall a \in \mathcal{A} $
+    \item symmetry: $ a \mathfrak{R} b \iff b \mathfrak{R} a \,\,\forall a,b \in \mathcal{A} $
+    \item transitivity: $ a \mathfrak{R} b \land b \mathfrak{R} c \implies a \mathfrak{R} c \,\,\forall a,b,c \in \mathcal{A} $
   \end{enumerate}
 \end{definition}
 
@@ -36,9 +36,9 @@ In absence of ambiguity, the subscript $ \mathfrak{R} $ is dropped, and the equi
 \begin{theorem}{}{}
   Given a set $ \mathcal{A} $, an \bcth{equivalence} relation $ \mathfrak{R} $ on $ \mathcal{A} $ and two elements $ a , b \in \mathcal{A} $, then:
   \begin{enumerate}
-    \item $ a \in [a]_\mathfrak{R} $;
-    \item $ a \mathfrak{R} b \implies [a]_\mathfrak{R} = [b]_\mathfrak{R} $;
-    \item $ a \slashed{\mathfrak{R}} b \implies [a]_\mathfrak{R} \cap [b]_\mathfrak{R} = \emptyset $.
+    \item $ a \in [a]_\mathfrak{R} $
+    \item $ a \mathfrak{R} b \implies [a]_\mathfrak{R} = [b]_\mathfrak{R} $
+    \item $ a \slashed{\mathfrak{R}} b \implies [a]_\mathfrak{R} \cap [b]_\mathfrak{R} = \emptyset $
   \end{enumerate}
 \end{theorem}
 
@@ -53,9 +53,9 @@ This theorem shows that an equivalence relation splits the set in separated equi
 \begin{definition}{Partition}{}
   Given a set $ \mathcal{X} \neq \emptyset $ and its power set $ \pwst{\mathcal{X}} \defeq \{\mathcal{A} : \mathcal{A} \subseteq \mathcal{X}\} $, a \bcdef{partition}\index{partition!of a set} of $ \mathcal{X} $ is a collection of subsets $ \{\mathcal{A}_i\}_{i \in \mathcal{I}} \subseteq \pwst{\mathcal{X}} $ which satisfies the following propeties:
   \begin{enumerate}
-    \item $ \mathcal{A}_i \neq \emptyset \,\,\forall i \in \mathcal{I} $;
-    \item $ \mathcal{A}_i \cap \mathcal{A}_j = \emptyset \,\,\forall i \neq j \in \mathcal{I} $;
-    \item $ \mathcal{X} = \bigcup_{i \in \mathcal{I}} \mathcal{A}_i $.
+    \item $ \mathcal{A}_i \neq \emptyset \,\,\forall i \in \mathcal{I} $
+    \item $ \mathcal{A}_i \cap \mathcal{A}_j = \emptyset \,\,\forall i \neq j \in \mathcal{I} $
+    \item $ \mathcal{X} = \bigcup_{i \in \mathcal{I}} \mathcal{A}_i $
   \end{enumerate}
 \end{definition}
 
@@ -72,6 +72,43 @@ The equivalence classes determined by an equivalence relation form a partition o
 \begin{example}{Modular equivalence}{}
   Given $ n \in \N $, the \bcex{congruence modulo} $ n $ relation is an equivalence relation on $ \Z $ defined as $ a \equiv_n b \iff \exists k \in \Z : a - b = k n $. This relation defines the quotient set $ \Z_n \equiv \Z / (\mathrm{mod}\, n) $, which in general is $ \Z_n = \{[0]_n, [1]_n, \dots, [n-1]_n\} $.
 \end{example}
+
+\section{Zorn's Lemma}
+
+Zorn's Lemma is an equivalent expression of the Axiom of Choice.
+
+\begin{definition}{Order relation}{}
+  Given a set $ \mathcal{X} $, an \bcdef{order relation} is a relation $ \leq $ with the following properties:
+  \begin{enumerate}
+    \item reflexivity: $ x \leq x \,\,\forall x \in \mathcal{X} $
+    \item antisymmetry: $ x \leq y \land y \leq x \iff x = y $
+    \item transitivity: $ x \leq y \land y \leq z \implies x \leq z $
+  \end{enumerate}
+  Then, $ (\mathcal{X} , \leq) $ is an \bcdef{ordered set}.
+\end{definition}
+
+Note that we define $ x < y $ as $ x \leq y \land x \neq y $. Moreover, trivially, every subset of an ordered set is an ordered set too, with the induced order relation.
+
+\begin{example}{Inclusion}{}
+  Let $ \mathcal{X} $ be a set. Then the \bcex{inclusion} $ \subseteq $ is an order relation on $ \pwst{\mathcal{X}} $.
+\end{example}
+
+An order relation on $ \mathcal{X} $ is a \bctxt{total ordering} is $ x \leq y \lor y \leq x \,\,\forall x,y \in \mathcal{X} $, and $ \mathcal{X} $ is a \bctxt{totally-ordered set}\footnotemark.
+
+\footnotetext{Not a universal convention: some refer to ordered set as ``partially-ordered sets" and to totally-ordered sets as ``ordered sets". We use the convention of e.g. \cite{Manetti-2014}}
+
+\begin{definition}{Chains}{}
+  Given an ordered set $ (\mathcal{X} , \leq) $, then:
+  \begin{enumerate}
+    \item a subset $ \mathcal{C} \subseteq \mathcal{X} $ is a \bcdef{chain} if $ (\mathcal{C} , \leq) $ is a totally-ordered set
+    \item given $ \mathcal{C} \subseteq \mathcal{X} $ and $ x \in \mathcal{X} $, then $ x $ is an \bcdef{upper bound} of $ \mathcal{C} $ if $ y \leq x \,\,\forall y \in \mathcal{C} $
+    \item an element $ m \in \mathcal{X} $ is a \bcdef{maximal element} of $ \mathcal{X} $ if $ \{x \in \mathcal{X} : m \leq x \} \equiv \{m\} $
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}{Zorn's Lemma}{zorn}
+  Let $ (\mathcal{X} , \leq) $ be a non-empty ordered set. If every chain in $ \mathcal{X} $ has at least one upper bound, then $ \mathcal{X} $ has at least one maximal element.
+\end{lemma}
 
 
 

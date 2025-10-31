@@ -1,6 +1,8 @@
 \documentclass[a4paper, 12pt]{book}
 \usepackage[english]{babel}
 
+% imports
+
 \input{../../imports/imports.tex}
 \input{../../imports/labels.tex}
 \input{../../imports/macros.tex}
@@ -10,14 +12,45 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 
+% index
+
 \usepackage{imakeidx}
 \makeindex[columns = 2, intoc]
+
+% bibliography
+
+\usepackage{csquotes}
+\usepackage[
+backend = biber,
+style = numeric-comp,
+sorting = none
+]{biblatex}
+
+\addbibresource{bibl.bib}
+
+\renewbibmacro{in:}{}
+
+\AtEveryBibitem{%
+	\clearfield{publisher}%
+	\clearfield{month}%
+	\clearfield{numpages}%
+	\clearfield{issue}%
+	\clearfield{isbn}%
+	\clearfield{issn}%
+}
+
+\DeclareFieldFormat[book,article]{journaltitle}{#1}
+\DeclareFieldFormat[book,article]{volume}{\mkbibbold{#1}}
+
+% front matter
 
 \title{\Huge \sffamily \textbf{Mathematical Reference}}
 \author{Leonardo Cerasi%
 	\thanks{\scriptsize\href{mailto:leonardo.cerasi@studenti.unimi.it}{leo.cerasi@pm.me}}\\
 	\small GitHub repository: \href{https://github.com/LeonardoCerasi/notes}{LeonardoCerasi/notes}}
 \date{}
+
+% text
 
 \begin{document}
 
@@ -53,5 +86,10 @@
 
 \bookmarksetupnext{level = -1}
 \printindex
+
+\bookmarksetupnext{level = -1}
+\pagestyle{biblio}
+\printbibliography[heading = bibintoc, title = {Bibliography}]
+\restoregeometry
 
 \end{document}

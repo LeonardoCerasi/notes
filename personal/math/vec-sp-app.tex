@@ -359,7 +359,7 @@ On the other hand, in general $ V_1 \cup V_2 $ is not a subspace. As a counterex
   \begin{equation*}
     V_1 + V_2 \defeq \{\ve{w} \in V : \ve{w} = \ve{u} + \ve{v}, \ve{u} \in V_1, \ve{v} \in V_2\}
   \end{equation*}
-  This is a \bcdef{direct sum}\index{direct sum!of subspaces}, denoted by $ V_1 \oplus V_2 $, if every $ \ve{w} \in V_1 + V_2 $ has a unique expression as $ \ve{w} = \ve{u} + \ve{v} , \ve{u} \in V_1 , \ve{v} \in V_2 $.
+  This is a \bcdef{direct sum}\index{direct sum!of subspaces}, denoted by $ V_1 \oplus V_2 $, if every $ \ve{w} \in V_1 + V_2 $ has a unique representation as $ \ve{w} = \ve{u} + \ve{v} , \ve{u} \in V_1 , \ve{v} \in V_2 $.
 \end{definition}
 
 Trivially $ V_1 , V_2 \subseteq V_1 + V_2 $.
@@ -485,11 +485,85 @@ We can state two trivial properties of generated subsets.
   \begin{proof}
     Respectively:
     \begin{enumerate}[label = {\alph*.}]
-      \item If $ S \subseteq T $, then each linear combination in $ S $ is a linear combination in $ T $ too, hence the thesis.
-      \item Given $ \ve{v} = \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n \in U $ and $ \ve{s}_n = \mu_1 \ve{s}_1 + \dots + \mu_{n-1} \ve{s}_{n-1} $, hence $ \ve{v} = \left( \lambda_1 + \mu_1 \right) \ve{s}_1 + \dots + \left( \lambda_{n-1} + \mu_{n-1} \right) \ve{s}_{n-1} $, hence the thesis.
+      \item If $ S \subseteq T $, then each linear combination in $ S $ is a linear combination in $ T $ too, hence $ \braket{S} = \braket{T} $
+      \item Given $ \ve{v} = \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n \in U $ and $ \ve{s}_n = \mu_1 \ve{s}_1 + \dots + \mu_{n-1} \ve{s}_{n-1} $, then $ \ve{v} = \left( \lambda_1 + \mu_1 \right) \ve{s}_1 + \dots + \left( \lambda_{n-1} + \mu_{n-1} \right) \ve{s}_{n-1} $, hence the thesis
     \end{enumerate}
   \end{proof}
 \end{proofbox}
+
+\subsubsection{Bases of generic vector spaces}
+
+\begin{definition}{Basis of a vector space}{}
+  Given a $ \K $-vector space $ V $, a \bcdef{basis} of $ V $ is a LI subset $ \bas \subseteq V : V = \braket{\bas} $.
+\end{definition}
+
+Every non-trivial vector space (i.e. $ V \neq \{\ve{0}\} $) admits the existence of a basis, but the proof is non-trivial as it relies on Zorn's Lemma (or equivalently to the Axiom of Choice).
+
+\begin{theorem}{Basis theorem}{}
+  Every non-trivial vector space admits a basis.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, we prove that every LI subset of $ V $ can be extended to a basis of $ V $. Let $ A \subseteq V $ be a non-empty LI subset of $ V $, and define $ \mathscr{S} $ the collection of all LI supersets of $ A $.
+
+    \begin{lemma}{}{}
+      Given a chain $ \{A_\alpha\}_{\alpha \in \mathcal{I}} \subseteq \mathscr{S} : A_1 \subseteq A_2 \subseteq \dots $, then $ \bigcup_{\alpha \in \mathcal{I}} A_\alpha \in \mathscr{S} $.
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        Set $ \mathcal{A} \equiv \bigcup_{\alpha \in \mathcal{I}} A_\alpha $. If $ A \subseteq A_\alpha \,\,\forall \alpha \in \mathcal{I} $, then trivially $ A \subseteq \mathcal{A} $. To prove the linear independence, consider a linear combination $ \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n $ in $ \mathcal{A} $, with $ n \in \N $, and choose an $ A_{\alpha_n} $ large enough so that $ v_1 , \dots , v_n \in A_{\alpha_n} $. Then, $ \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n = \ve{0} \implies \lambda_1 , \dots , \lambda_n = 0 $, as $ A_{\alpha_n} $ is LI by definition. Since $ n \in \N $ is generic, $ \mathcal{A} $ is LI.
+      \end{proof}
+    \end{proofbox}
+
+    It is then clear that $ \mathscr{S} $ satisfies the hypotheses of Zorn's Lemma (\lref{lemma:zorn}), therefore it has a maximal element $ \bas $. Now, suppose $ \braket{\bas} \neq V $, i.e. $ \exists \ve{b} \in V - \braket{\bas} $, and consider the linear combination $ \mu \ve{b} + \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{b}_n = \ve{0} $, with $ \ve{v}_1 , \dots , \ve{v}_n \in \bas $ and $ n \in \N $: then $ - \mu \ve{b} \in \braket{\bas} $, but $ \ve{b} \notin \braket{\bas} $, so $ \mu = 0 $ (as $ \ve{b} \neq \ve{0} \in \braket{\bas} $). Consequently, $ \lambda_1 = \dots = \lambda_n = 0 $ as $ \bas $ is LI, thus $ \bas \cup \{\ve{b}\} $ is LI and a superset of $ \bas \in \mathscr{S} $, which contradicts $ \bas $ being a maximal element of $ \mathscr{S} \absurd $.
+
+    Having showed that every LI subset $ A \subseteq V $ can be extended to a basis $ \bas $ of $ V $, the thesis is trivially found taking $ A = \emptyset $, which is a subset of every non-trivial vector space.
+  \end{proof}
+\end{proofbox}
+
+This, though trivial for finite-dimensional spaces, is quite impressive for infinite-dimensional ones (for dimensionality, see SECTION).
+
+\begin{proposition}{}{}
+  Given a $ \K $-vector space $ V $, then $ S \subseteq V $ is a basis of $ V $ if and only if every element of $ V $ has a unique representation as a linear combination of elements of $ S $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Note that two representations are equal if they differ only by vanishing coefficients.
+
+    $ (\Rightarrow) $ As $ V = \braket{S} $, then every $ \ve{v} \in V $ can be written as a linear combination of elements of $ S $. Suppose that $ \ve{v} $ has two representations:
+    \begin{equation*}
+      \ve{v} = \lambda_1 \ve{s}_1 + \dots \lambda_n \ve{s}_n
+      \qquad \qquad
+      \ve{v} = \mu_1 \ve{t}_1 + \dots + \mu_m \ve{t}_m
+    \end{equation*}
+    with $ \{\ve{s}_j\}_{j = 1, \dots, n} , \{\ve{t}_k\}_{k = 1, \dots, m} \subseteq S $ and $ \{\lambda_j\}_{j = 1, \dots, n} , \{\mu_k\}_{k = 1, \dots, m} \subseteq \K $. Now, we can extend both representations by adding vanishing coefficients, so that both include the same vectors of $ S $:
+    \begin{equation*}
+      \ve{v} = \zeta_1 \ve{v}_1 + \dots + \zeta_r \ve{v}_r
+      \qquad \qquad
+      \ve{v} = \xi_1 \ve{v}_1 + \dots + \xi_r \ve{v}_r
+    \end{equation*}
+    with $ \{\ve{v}_j\}_{j = 1, \dots, r} \subseteq S $ and $ \{\zeta_j\}_{j = 1, \dots, r} , \{\xi_j\}_{j = 1, \dots, r} \subseteq \K $. Subtracting these two expressions:
+    \begin{equation*}
+      \ve{0} = \left( \zeta_1 - \xi_1 \right) \ve{v}_1 + \dots + \left( \zeta_r - \xi_r \right) \ve{v}_r
+    \end{equation*}
+    But $ S $ is LI, hence $ \zeta_j = \xi_j \,\,\forall j = 1, \dots, r $, i.e. the two representations are equal.
+
+    $ (\Leftarrow) $ As every $ \ve{v} \in V $ can be written as a linear combination of elements of $ S $, then $ V = \braket{S} $. We only have to prove that $ S $ is LI. Consider $ \ve{0} \in V $: by hypothesis, it has a unique representation as a linear combination of vectors in $ S $, and a possible representation is $ \ve{0} = 0 \cdot \ve{s} $ for some $ \ve{s} \in S $, i.e. the trivial representation with all vanishing coefficients. Now, consider a linear combination in $ S $:
+    \begin{equation*}
+      \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n = \ve{0}
+    \end{equation*}
+    with $ n \in \N $. This too is a representation of $ \ve{0} $, hence $ \lambda_j = 0 \,\,\forall j = 1, \dots, n $ by the uniqueness of the representation. As $ n \in \N $ is generic, this is the definition of $ S $ being LI.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Bases of finitely-generated vector spaces}
+
+We now turn our attention to finitely-generated vector spaces, i.e. $ V = \braket{\ve{v}_1 , \dots , \ve{v}_n} $ with $ n \in \N $.
+
+
 
 
 
