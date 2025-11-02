@@ -321,7 +321,7 @@ An important concept to analyze vector spaces is that of linear combination. Giv
 
 Generally, it is easier to show closure under linear combinations rather than under addition and scalar multiplication.
 
-\begin{lemma}{Intersection of subspaces}{}
+\begin{lemma}{Intersection of subspaces}{subspace-intersection}
   Given two subspaces of $ V_1 , V_2 $ of $ V(\K) $, then $ V_1 \cap V_2 $ is still a subset of $ V(\K) $.
 \end{lemma}
 
@@ -370,9 +370,9 @@ Trivially $ V_1 , V_2 \subseteq V_1 + V_2 $.
 
 \begin{proofbox}
   \begin{proof}
-    $ (\Rightarrow) $ Suppose $ \exists \ve{v} \in V_1 \cap V_2 : \ve{v} \neq \ve{0} $; then $ \ve{v} = \ve{v} + \ve{0} = \ve{0} + \ve{v} $, i.e. the expression of $ \ve{v} \in V_1 + V_2 $, but the expression of $ \ve{v} \in V_1 \oplus V_2 $ must be unique, hence $ \ve{v} = \ve{0} \absurd $.
+    $ (\Rightarrow) $ Suppose $ \exists \ve{v} \in V_1 \cap V_2 : \ve{v} \neq \ve{0} $; then $ \ve{v} = \ve{v} + \ve{0} = \ve{0} + \ve{v} $, i.e. the expression of $ \ve{v} \in V_1 + V_2 $, but the expression of $ \ve{v} \in V_1 \oplus V_2 $ must be unique, hence $ \ve{v} = \ve{0} \absurd $
 
-    $ (\Leftarrow) $ Suppose $ \exists \ve{w} \in V_1 + V_2 : \ve{w} = \ve{u}_1 + \ve{v}_1 = \ve{u}_2 + \ve{v}_2 , \ve{u}_1 \neq \ve{u}_2 \in V_1 , \ve{v}_1 \neq \ve{v}_2 \in V_2 $; then $ V_1 \ni \ve{u}_1 - \ve{u}_2 = \ve{v}_2 - \ve{v}_1 \in V_2 \implies \ve{v}_2 - \ve{v}_1 \in V_1 $, so $ \ve{v}_2 - \ve{v}_1 \in V_1 \cap V_2 $, but $ V_1 \cap V_2 = \{\ve{0}\} $, hence $ \ve{v}_2 = \ve{v}_1 $ and idem for $ \ve{u}_1 = \ve{u}_2 \absurd $.
+    $ (\Leftarrow) $ Suppose $ \exists \ve{w} \in V_1 + V_2 : \ve{w} = \ve{u}_1 + \ve{v}_1 = \ve{u}_2 + \ve{v}_2 , \ve{u}_1 \neq \ve{u}_2 \in V_1 , \ve{v}_1 \neq \ve{v}_2 \in V_2 $; then $ V_1 \ni \ve{u}_1 - \ve{u}_2 = \ve{v}_2 - \ve{v}_1 \in V_2 \implies \ve{v}_2 - \ve{v}_1 \in V_1 $, so $ \ve{v}_2 - \ve{v}_1 \in V_1 \cap V_2 $, but $ V_1 \cap V_2 = \{\ve{0}\} $, hence $ \ve{v}_2 = \ve{v}_1 $ and idem for $ \ve{u}_1 = \ve{u}_2 \absurd $
   \end{proof}
 \end{proofbox}
 
@@ -493,13 +493,13 @@ We can state two trivial properties of generated subsets.
 
 \subsubsection{Bases of generic vector spaces}
 
-\begin{definition}{Basis of a vector space}{}
+\begin{definition}{Basis of a vector space}{basis}
   Given a $ \K $-vector space $ V $, a \bcdef{basis} of $ V $ is a LI subset $ \bas \subseteq V : V = \braket{\bas} $.
 \end{definition}
 
 Every non-trivial vector space (i.e. $ V \neq \{\ve{0}\} $) admits the existence of a basis, but the proof is non-trivial as it relies on Zorn's Lemma (or equivalently to the Axiom of Choice).
 
-\begin{theorem}{Basis theorem}{}
+\begin{theorem}{Basis theorem}{basis}
   Every non-trivial vector space admits a basis.
 \end{theorem}
 
@@ -517,7 +517,7 @@ Every non-trivial vector space (i.e. $ V \neq \{\ve{0}\} $) admits the existence
       \end{proof}
     \end{proofbox}
 
-    It is then clear that $ \mathscr{S} $ satisfies the hypotheses of Zorn's Lemma (\lref{lemma:zorn}), therefore it has a maximal element $ \bas $. Now, suppose $ \braket{\bas} \neq V $, i.e. $ \exists \ve{b} \in V - \braket{\bas} $, and consider the linear combination $ \mu \ve{b} + \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{b}_n = \ve{0} $, with $ \ve{v}_1 , \dots , \ve{v}_n \in \bas $ and $ n \in \N $: then $ - \mu \ve{b} \in \braket{\bas} $, but $ \ve{b} \notin \braket{\bas} $, so $ \mu = 0 $ (as $ \ve{b} \neq \ve{0} \in \braket{\bas} $). Consequently, $ \lambda_1 = \dots = \lambda_n = 0 $ as $ \bas $ is LI, thus $ \bas \cup \{\ve{b}\} $ is LI and a superset of $ \bas \in \mathscr{S} $, which contradicts $ \bas $ being a maximal element of $ \mathscr{S} \absurd $.
+    It is then clear that $ \mathscr{S} $ satisfies the hypotheses of Zorn's Lemma (\lref{lemma:zorn}), therefore it has a maximal element $ \bas $. Now, suppose $ \braket{\bas} \neq V $, i.e. $ \exists \ve{b} \in V - \braket{\bas} $, and consider the linear combination $ \mu \ve{b} + \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{b}_n = \ve{0} $, with $ \ve{v}_1 , \dots , \ve{v}_n \in \bas $ and $ n \in \N $: then $ - \mu \ve{b} \in \braket{\bas} $, but $ \ve{b} \notin \braket{\bas} $, so $ \mu = 0 $ (as $ \ve{b} \neq \ve{0} \in \braket{\bas} $). Consequently, $ \lambda_1 = \dots = \lambda_n = 0 $ as $ \bas $ is LI, thus $ \bas \cup \{\ve{b}\} $ is LI and a superset of $ \bas \in \mathscr{S} $, which contradicts $ \bas $ being a maximal element of $ \mathscr{S} \absurd $
 
     Having showed that every LI subset $ A \subseteq V $ can be extended to a basis $ \bas $ of $ V $, the thesis is trivially found taking $ A = \emptyset $, which is a subset of every non-trivial vector space.
   \end{proof}
@@ -563,7 +563,164 @@ This, though trivial for finite-dimensional spaces, is quite impressive for infi
 
 We now turn our attention to finitely-generated vector spaces, i.e. $ V = \braket{\ve{v}_1 , \dots , \ve{v}_n} $ with $ n \in \N $.
 
+\begin{proposition}{}{}
+  Given a $ \K $-vector space $ V = \braket{\ve{v}_1 , \dots , \ve{v}_n} $, then $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ contains a basis of $ V $.
+\end{proposition}
 
+\begin{proofbox}
+  \begin{proof}
+    If $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ is LI, then it is a basis of $ V $, so consider $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ LD, i.e. $ \exists \ve{v} \in \braket{\{\ve{v}_1 , \dots , \ve{v}_n\} - \{\ve{v}\}} $. WLOG, consider $ \ve{v} = \ve{v}_n $, so that $ V = \braket{\ve{v}_1 , \dots , \ve{v}_{n-1}} $: reiterating this procedure, all LD vectors are eliminated, leaving a basis of $ V $, as at most only a single vector $ \ve{v}_1 $ remains ($ \ve{v}_1 \neq \ve{0} $ as it is LI).
+  \end{proof}
+\end{proofbox}
+
+A direct corollary is that every finitely-generated vector space admits a finite basis, found by the elimination algorithm highlighted in the previous proof.
+
+\begin{definition}{MSLIV}{}
+  Given a $ \K $-vector space $ V $, then a LI subset $ \{\ve{v}_1 , \dots , \ve{v}_n\} \subseteq V $ is a \bcdef{maximal set of linearly-independent vectors} (MSLIV) if $ \{\ve{v}_1 , \dots , \ve{v}_n\} \cup \{\ve{v}\} $ is LD $ \forall \ve{v} \in V $.
+\end{definition}
+
+We extend this notion considering $ V = \{\ve{v}_1 , \dots , \ve{v}_n\} $: then, a LI subset $ \{\ve{v}_{j_1} , \dots , \ve{v}_{j_r}\} \subseteq \{\ve{v}_1 , \dots , \ve{v}_n\} $, with $ r \leq n $, is a \bctxt{maximal subset of linearly-independent vectors} (MSLIV) if $ \{\ve{v}_{j_1} , \dots , \ve{v}_{j_r}\} \cup \{\ve{v}_j\} $ is LD $ \forall j \in \{1, \dots, n\} - \{j_1, \dots, j_r\} $. Trivially, a maximal subset of LI vectors is also a maximal set of LI vectors in $ V $, so the redundant acronym MSLIV is justified.
+We can now prove that bases and MSLIVs are equivalent notions.
+
+\begin{theorem}{Bases as MSLIVs}{basis-msliv}
+  Given a non-trivial $ \K $-vector space $ V = \braket{\ve{v}_1 , \dots , \ve{v}_n} $, then $ \bas \subseteq V $ is a basis if and only if it is a MSLIV.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Leftarrow) $ WLOG let $ \{\ve{v}_1 , \dots , \ve{v}_r\} $, with $ r \leq n $, be a MSLIV of $ \{\ve{v}_1 , \dots , \ve{v}_n\} $: then WTS $ V = \braket{\ve{v}_1 , \dots , \ve{v}_r} $. If $ r = n $ the proof is complete, so consider $ r < n $ and $ \ve{v}_j : r < j \leq n $: by definition $ \{\ve{v}_1 , \dots , \ve{v}_r\} \cup \{\ve{v}_j\} $ is LD, i.e. $ \exists \{\lambda_{j_k}\}_{k = 1, \dots, r} \subseteq \K : \ve{v}_i = \lambda_{j_1} \ve{v}_1 + \dots + \lambda_{j_r} \ve{v}_r $, which means that $ \ve{v}_i \in \braket{\ve{v}_1 , \dots , \ve{v}_r} \implies V = \braket{\{\ve{v}_1 , \dots , \ve{v}_n\} - \{\ve{v}_i\}} $. This holds $ \forall i \in [r+1, n] \subseteq \N $, hence $ V = \braket{\ve{v}_1 , \dots , \ve{v}_r} $.
+
+    $ (\Rightarrow) $ Let $ \bas = \{\ve{v}_1 , \dots , \ve{v}_n\} $ be a basis of $ V $and $ \{\ve{w}_1 , \dots , \ve{w}_m\} \ssq V : m > n $, and suppose this is LI. By definition $ \exists \lambda_1 , \dots , \lambda_n \in \K : \ve{w}_1 = \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n $, but $ \ve{w}_1 $ is LI, therefore $ \exists j \in [1, \dots, n] \subseteq \N : \lambda_j \neq 0 $. WLOG $ j = 1 $, hence $ \ve{v}_1 \in \braket{\ve{w}_1 , \ve{v}_2 , \dots , \ve{v}_n} $. Iterating, we can substitute $ \ve{v}_1 , \dots , \ve{v}_n $ with $ \ve{w}_1 , \dots , \ve{w}_n $: indeed, supposing that $ \{v_1 , \dots , \ve{v}_r\} $ have been substituted with $ \ve{w}_1 , \dots , \ve{w}_r $, with $ 1 \leq r < n $, then $ \ve{v}_{r+1} $ can be substituted with $ \ve{w}_{r+1} $ as $ V = \braket{\ve{w}_1 , \dots , \ve{w}_r , \ve{v}_{r+1} , \dots , \ve{v}_n} \implies \exists \alpha_1 , \dots , \alpha_r , \beta_{r+1} , \dots , \beta_n \in \K : \ve{w}_{r+1} = \alpha_1 \ve{w}_1 + \dots + \alpha_r \ve{w}_r + \beta_{r+1} \ve{v}_{r+1} + \dots + \beta_n \ve{v}_n $, but $ \{\ve{w}_1 , \dots , \ve{w}_{r+1}\} $ are LI, thus $ \exists j \in [r+1 , n] \subseteq \N : \beta_j \neq 0 $, and WLOG $ j = r+1 $ by reordering indices. Performing the reiteration $ V = \braket{\ve{w}_1 , \dots , \ve{w}_n} $, so $ \ve{w}_{n+1} $ is a linear combination of $ \{\ve{w}_1 , \dots , \ve{w}_n\} \absurd $
+  \end{proof}
+\end{proofbox}
+
+There is still another equivalent concept to introduce.
+
+\begin{definition}{MSG}{}
+  Given a $ \K $-vector space $ V $, then $ \{\ve{v}_1 , \dots , \ve{v}_n\} \ssq V $ is a \bcdef{minimal set of generators} (MSG) if $ V = \braket{\ve{v}_1 , \dots , \ve{v}_n} $ and $ \{\ve{v}_1 , \dots , \ve{v}_n\} - \{\ve{v}_j\} $ does not generate $ V \,\,\forall j = 1, \dots , n $.
+\end{definition}
+
+\begin{theorem}{Bases ad MSGs}{basis-msg}
+  Given a non-trivial $ \K $-vector space $ V $, then $ \bas \ssq V $ is a basis of $ V $ if and only if it is a MSG.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Leftarrow) $ Let $ \{\ve{v}_1 , \dots , \ve{v}_n\} \ssq V $ be a MSG: then WTS $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ is LI. Consider a linear combination $ \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n = \ve{0} $ and suppose $ \lambda_1 \neq 0 $: this allows to express $ \ve{v}_1 $ as a linear combination of $ \{\ve{v}_2 , \dots , \ve{v}_n\} $, but then $ V = \braket{\ve{v}_2 , \dots , \ve{v}_n} \absurd $
+
+    $ (\Rightarrow) $ Suppose $ \bas = \{\ve{v}_1 , \dots , \ve{v}_n\} $ is not a MSG, and WLOG $ V = \braket{\ve{v}_2 , \dots , \ve{v}_n} $: then $ \ve{v}_1 $ can be expressed as linear combination of $ \{\ve{v}_2 , \dots , \ve{v}_n\} $, i.e. $ \bas $ is LD $ \absurd $
+  \end{proof}
+\end{proofbox}
+
+This shows that bases, MSLIVs and MSGs are all equivalent notions.
+
+\subsubsection{Dimensionality}
+
+To properly define the concept of dimensionality of a vector space, we first have to prove that all bases are equivalent.
+
+\begin{theorem}{Equicardinality of bases}{basis-equicardinality}
+  Given a non-trivial $ \K $-vector space $ V $ and two bases $ \bas_1 = \{\ve{v}_1 , \dots , \ve{v}_n\} , \bas_2 = \{\ve{w}_1 , \dots , \ve{w}_m\} $, then $ n = m $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ \bas_1 $ is a MSLIV by \tref{th:basis-msliv}, then every subset of $ n + 1 $ vectors in $ V $ is LD, hence $ m \leq n $ as $ \bas_2 $ must be LI. The vice versa applies too, hence $ n = m $.
+  \end{proof}
+\end{proofbox}
+
+By this theorem, all bases of finitely-generated spaces are equivalent, since the equicardinality ensures that we can define a bijection $ f : \bas_1 \leftrightarrow \bas_2 \,\,\forall \bas_1 , \bas_2 $ bases of $ V $.
+
+Moreover, this result hints to the fact that the cardinality of the bases of $ V $ is a fundamental property of the vector space, linked to hits dimensionality, so we give a proper definition of this quantity.
+
+\begin{definition}{Dimension}{}
+  Given a $ \K $-vector space $ V $, then we define its \bcdef{dimension} as:
+  \begin{equation*}
+    \dim_\K V \defeq
+    \begin{cases}
+      0 & V = \{\ve{0}\} \\
+      n & \abs{\bas} = n \,\,\forall \bas \text{ basis of } V \\
+      \infty & V \text{ not finitely-generated}
+    \end{cases}
+  \end{equation*}
+\end{definition}
+
+The dimension of a vector space is a well-defined quantity by \tref{th:basis} and \tref{th:basis-equicardinality}.
+
+\begin{example}{Various spaces}{}
+  Trivially, $ \dim_\K \K^n = n $, so $ \dim_\C \C^n = n $ and $ \dim_\R \C^n = 2n $, while $ \dim_\R \R^\R = \infty $.
+\end{example}
+
+We can now give some trivial properties of dimensionality.
+
+\begin{lemma}{Basic property of dimension}{}
+  Given an $ n $-dimensional $ \K $-vector space $ V $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_m\} \ssq V $ is LD $ \forall m > n $
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ LI is a basis of $ V $
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ set of generators of $ V $ is a basis of $ V $
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    These results are corollaries of \tref{th:basis-msliv} and \tref{th:basis-msg}.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}{Dimension of subspaces}{}
+  Given $ \dim_\K V = n $ and a subspace $ U \ssq V $, then $ \dim_\K U \equiv k \leq n $ and $ k = n \iff U = V $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The case $ U = \{\ve{0}\} $ is trivial, so consider $ U \neq \{\ve{0}\} $. Let $ \ve{u}_1 \in U $ LI and add $ \ve{u}_2 , \ve{u}_3 , \dots \in U $ to get $ \{\ve{u}_1 , \ve{u}_2\} , \{\ve{u}_1 , \ve{u}_2 , \ve{u}_3\} , \dots $: a LD subset is reached in at most $ n $ steps. Let WLOG $ \{\ve{u}_1 , \dots , \ve{u}_k\} $ the MSLIV of $ \{\ve{u}_1 , \dots , \ve{u}_n\} $, with $ k \leq n $: by \tref{th:basis-msliv}, this is a basis of $ U $, hence $ k = \dim_\K U \leq n $.
+
+    $ U = V \implies k = n $ is trivial, while $ k = n \implies \{\ve{u}_1 , \dots , \ve{u}_n\} $ is a MSLIV of $ V $, hence a basis of $ V $, so $ V = \braket{\ve{u}_1 , \dots , \ve{u}_n} = V $.
+  \end{proof}
+\end{proofbox}
+
+A consequence of this theorem is the fact that LI subset $ \{\ve{v}_1 , \dots , \ve{v}_r\} \ssq V $, with $ r < n $, can always be completed to a basis, i.e. $ \exists \ve{w}_{r+1} , \dots , \ve{w}_n \in V : \{\ve{v}_1 , \dots, \ve{v}_r , \ve{w}_{r+1} , \ve{w}_n\} $ is a basis of $ V $.
+
+\begin{theorem}{Grassmann's Theorem}{}
+  Given a $ \K $-vector space $ V $ and finitely-generated subspaces $ X,Y \ssq V $, then:
+  \begin{equation}
+    \dim_\K X + \dim_\K Y = \dim_\K \left( X + Y \right) + \dim_\K \left( X \cap Y \right)
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \bas_X = \{\ve{x}_1 , \dots , \ve{x}_r\} , \bas_Y = \{\ve{y}_1 , \dots , \ve{y}_s\} $ be bases of $ X , Y $ and $ m \equiv \dim_\K \left( X \cap Y \right) $.
+    If $ m = 0 $, then $ X \cap Y = \{\ve{0}\} $, while if $ m \ge 1 $ let $ \bas_{XY} = \{\ve{v}_1 , \dots , \ve{v}_m\} $ be a basis of $ X \cap Y $, which is a finitely-generated subspace by \lref{lemma:subspace-intersection}. Then, completing the bases, $ \exists \ve{x}_{m+1} , \dots, \ve{x}_r \in X : \{\ve{v}_1 , \dots , \ve{v}_m , \ve{x}_{m+1} , \dots , \ve{x}_r\} $ is a basis of $ X $ and $ \exists \ve{y}_{m+1} , \dots , \ve{y}_s \in Y : \{\ve{v}_1 , \dots , \ve{v}_m , \ve{y}_{m+1} , \dots , \ve{y}_s\} $ is a basis of $ Y $ (WLOG same vectors as in $ \bas_X $ and $ \bas_Y $). Now, WTS $ \dim_\K \left( X + Y \right) = r + s - m $, so consider $ \bas = \{\ve{v}_1 , \dots , \ve{v}_m , \ve{x}_{m+1} , \dots , \ve{x}_r , \ve{y}_{m+1} , \dots , \ve{y}_s\} $:
+    \begin{itemize}
+      \item $ X + Y \defeq \{\ve{v} = \ve{x} + \ve{y} : \ve{x} \in X , \ve{y} \in Y\} $, but $ \ve{x} \in \braket{\ve{v}_1 , \dots , \ve{v}_m , \ve{x}_{m+1} , \dots , \ve{x}_r} $ and $ \ve{y} \in \braket{\ve{v}_1 , \dots , \ve{v}_m , \ve{y}_{m+1} , \dots , \ve{y}_s} $, so $ \ve{x} + \ve{y} \in \braket{\ve{v}_1 , \dots , \ve{v}_m , \ve{x}_{m+1} , \dots , \ve{x}_r , \ve{y}_{m+1} , \dots , \ve{y}_s} $, i.e. $ X + Y = \braket{\bas} $;
+      \item consider the following linear combination:
+        \begin{equation*}
+          \alpha_1 \ve{v}_1 + \dots + \alpha_m \ve{v}_m + \beta_{m+1} \ve{x}_{m+1} + \dots + \beta_r \ve{x}_r + \gamma_{m+1} \ve{y}_{m+1} + \dots + \gamma_s \ve{y}_s = \ve{0}
+        \end{equation*}
+        and rearrange it as:
+        \begin{equation*}
+          \underbrace{\alpha_1 \ve{v}_1 + \dots + \alpha_m \ve{v}_m + \beta_{m+1} \ve{x}_{m+1} + \dots + \beta_r \ve{x}_r}_{\in \, X} = \underbrace{- \gamma_{m+1} \ve{y}_{m+1} - \dots - \gamma_s \ve{y}_s}_{\in \, Y}
+        \end{equation*}
+        Therefore, both expressions are in $ X \cap Y = \braket{\ve{v}_1 , \dots , \ve{v}_m} $, hence \exists $ \delta_1, \dots, \delta_m \in \K $ such that:
+        \begin{equation*}
+          \delta_1 \ve{v}_1 + \dots + \delta_m \ve{v}_m + \gamma_{m+1} \ve{y}_{m+1} + \dots + \gamma_s \ve{y}_s = \ve{0}
+        \end{equation*}
+        But $ \bas_Y $ is a basis of $ Y $, i.e. LI, so $ \delta_1 = \dots = \delta_m = \gamma_{m+1} = \dots = \gamma_s = 0 $, thus:
+        \begin{equation*}
+          \alpha_1 \ve{v}_1 + \dots + \alpha_m \ve{v}_m + \beta_{m+1} \ve{x}_{m+1} + \dots + \beta_r \ve{x}_r = \ve{0}
+        \end{equation*}
+        But $ \bas_X $ is a basis of $ X $, i.e. LI, so $ \alpha_1 = \dots = \alpha_m = \beta_{m+1} = \dots = \beta_r = 0 $. This shows that $ \bas $ is LI.
+    \end{itemize}
+    By \dref{def:basis}, $ \bas $ is a basis of $ X + Y $, i.e. $ \dim_\K \left( X + Y \right) = r + s - m $.
+  \end{proof}
+\end{proofbox}
+
+This is a fundamental theorem of Linear Algebra.
+
+\begin{example}{Eucldean geometry}{}
+  Consider $ V = \Vect_0(\mathbb{E}^3) $ and $ \alpha , \beta $ planes such that $ \ve{0} \in \alpha , \beta $: they then determine a line $ r \equiv \alpha \cap \beta \ni \{\ve{0}\} $. Setting $ X = \Vect_0(\alpha) $, $ Y = \Vect_0(\beta) $ and $ X \cap Y = \Vect_0(r) $, we correctly have $ 2 + 2 = 3 + 1 $.
+\end{example}
 
 
 
@@ -573,4 +730,4 @@ We now turn our attention to finitely-generated vector spaces, i.e. $ V = \brake
 
 \section{Linear applications}
 
-\section{Inner products}
+\section{Inner-product spaces}
