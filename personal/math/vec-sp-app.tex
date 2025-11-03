@@ -716,18 +716,377 @@ A consequence of this theorem is the fact that LI subset $ \{\ve{v}_1 , \dots , 
   \end{proof}
 \end{proofbox}
 
-This is a fundamental theorem of Linear Algebra.
-
 \begin{example}{Eucldean geometry}{}
   Consider $ V = \Vect_0(\mathbb{E}^3) $ and $ \alpha , \beta $ planes such that $ \ve{0} \in \alpha , \beta $: they then determine a line $ r \equiv \alpha \cap \beta \ni \{\ve{0}\} $. Setting $ X = \Vect_0(\alpha) $, $ Y = \Vect_0(\beta) $ and $ X \cap Y = \Vect_0(r) $, we correctly have $ 2 + 2 = 3 + 1 $.
 \end{example}
 
-
-
-
-
-
-
 \section{Linear applications}
+
+\begin{definition}{Linear application}{}
+  Given $ \K $-vector spaces $ V,W $, an application $ f : V \ra W $ is \bcdef{$ \K $-linear} if:
+  \begin{equation*}
+    f(\lambda \ve{v} + \mu \ve{w}) = \lambda f(\ve{v}) + \mu f(\ve{w})
+    \quad
+    \forall \lambda , \mu \in \K , \ve{v} , \ve{w} \in V
+  \end{equation*}
+\end{definition}
+
+This condition means that $ \K $-linear applications preserve linear combinations.
+
+\begin{example}{Matrices}{}
+  Given $ \mt{A} \in \K^{m \times n} $, we can associate to it an application $ L_\mt{A} : \K^n \ra \K^m : \ve{v} \mapsto \mt{A} \ve{v} $, which is $ \K $-linear by the linearity of the matrix product. Note that $ L_{\mt{I}_n} = \id_{\K^n} $.
+
+  Moreover, given $ \mt{A} \in \K^{m \times n} $ and $ \mt{B} \in \K^{n \times p} $, then $ L_\mt{A} \circ L_\mt{B} = L_{\mt{A} \cdot \mt{B}} : \K^p \ra \K^m $ by the following commutative diagram:
+  \begin{equation*}
+    \begin{tikzcd}
+      \K^m \arrow[rd, "L_{\mt{A} \cdot \mt{B}}", swap] \arrow[r, "L_{\mt{A}}"]
+      & \K^n \arrow[d, "L_{\mt{B}}"] \\
+      & \K^p
+    \end{tikzcd}
+  \end{equation*}
+\end{example}
+
+We can now state some properties of linear applications.
+
+\begin{lemma}{Basic properties of linear applications}{}
+  Given $ \K $-vector spaces $ V,W,Z $ and $ \K $-linear applications $ f : V \ra W , g : W \ra Z $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ f(\ve{0}_V) = \ve{0}_W $
+    \item $ g \circ f : V \ra Z $ is $ \K $-linear
+    \item $ f $ is bijective $ \implies f^{-1} : W \ra V $ is $ \K $-linear
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label = {\alph*.}]
+      \item $ f(\ve{0}_V) = f(0_\K \cdot \ve{v}) = 0_\K \cdot f(\ve{v}) = \ve{0}_W $
+      \item $ g \circ f (\lambda \ve{u} + \mu \ve{v}) = g(\lambda f(\ve{u}) + \mu f(\ve{v})) = \lambda g(f(\ve{u})) + \mu g(f(\ve{v})) $
+      \item $ f(\lambda f^{-1}(\ve{u}) + \mu f^{-1}(\ve{v})) = \lambda \ve{u} + \mu \ve{v} \implies f^{-1}(\lambda \ve{u} + \mu \ve{v}) = \lambda f^{-1}(\ve{u}) + \mu f^{-1}(\ve{v}) $
+    \end{enumerate}
+  \end{proof}
+\end{proofbox}
+
+We can also prove an existence-uniqueness theorem for linear applications.
+
+\begin{theorem}{Existence and uniqueness}{}
+  Let $ V,W $ be $ \K $-vector spaces, $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} $ a basis of $ V $ and $ \{\ve{w}_1 , \dots , \ve{w}_n\} \ssq W $ an ordered set of vectors. Then $ \exists ! \varphi : V \ra W : \varphi(\ve{b}_j) = \ve{w}_j \,\,\forall j = 1, \dots , n $ which is $ \K $-linear.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \ve{v} \in V $; then $ \exists \alpha_1 , \dots , \alpha_n \in \K : \ve{v} = \alpha_1 \ve{b}_1 + \dots + \alpha_n \ve{b}_n $ fixed since $ \bas $ is a basis. Now, define $ \varphi : V \ra W : \varphi(\ve{v}) = \alpha_1 \ve{w}_1 + \dots \alpha_n \ve{w}_n $: clearly $ \varphi(\ve{b}_j) = \ve{w}_j \,\,\forall j = 1, \dots, n $, and also $ \varphi $ is unique since both $ \{\alpha_j\}_{j = 1, \dots, n} \ssq \K $ and $ \{\ve{w}_j\}_{j = 1 , \dots, n} \ssq W $ are fixed. Finally, $ \varphi $ is $ \K $-linear, since $ f(\lambda \ve{v}_1 + \mu \ve{v}_2) = \left( \lambda \alpha_1 + \mu \beta_1 \right) \ve{w}_1 + \dots + \left( \lambda \alpha_n + \mu \beta_n \right) \ve{w}_n = \lambda f(\ve{v}_1) + \mu f(\ve{v}_2) $.
+  \end{proof}
+\end{proofbox}
+
+In general, fixed $ \dim_\K V = n $, then given two sets $ \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V $ and $ \{\ve{w}_1 , \dots , \ve{w}_k\} \ssq W $, with $ k \in \N $, then the existence of $ \varphi : V \ra W : \varphi(\ve{v}_j) = \ve{w}_j \,\,\forall j = 1, \dots , k $ is only granted if $ \{\ve{v}_1 , \dots , \ve{v}_k\} $ is LI: in this case, if $ n = k $ then $ \varphi $ is unique too, by the previous theorem, while if $ k < n $ in general we can define multiple $ \varphi $ with such property, as we can complete $ \{\ve{v}_1 , \dots , \ve {v}_k\} $ to a basis of $ V $, which can then be mapped to arbitrary vectors in $ W $. On the other hand, if $ \{\ve{v}_1 , \dots , \ve{v}_k\} $ is LD, then $ \varphi $ can be defined only if $ \{\ve{w}_1 , \dots , \ve{w}_k\} $ satisfies the same linear-dependence relations, otherwise linearity cannot be satisfied.
+
+Given two $ \K $-vector space $ V $ and $ W $, we denote the set of all $ \K $-linear applications $ f : V \ra W $ as $ \hmk(V,W) $: this has a natural structure of $ \K $-vector space with $ (f + g)(\ve{v}) \equiv f(\ve{v}) + g(\ve{v}) $ and $ (\lambda \cdot f)(\ve{v}) = \lambda \cdot f(\ve{v}) $.
+
+\begin{definition}{Kernel and image}{}
+  Given $ f \in \hmk(V,W) $, its \bcdef{kernel} is defined as $ \ker{f} \defeq \{\ve{v} \in V : f(\ve{v}) = \ve{0}_W\} \ssq V $, while its \bcdef{image} (or range) is defined as $ \ran{f} \defeq \{\ve{w} \in W : \exists \ve{v} \in V : \ve{w} = f(\ve{v})\} \ssq W $.
+\end{definition}
+
+\begin{lemma}{Kernel and image as subspaces}{}
+  Given $ f \in \hmk(V,W) $, then $ \ker{f} $ is a subspace of $ V $ and $ \ran{f} $ is a subspace of $ W $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By the linearity of $ f $, given $ \ve{v} , \ve{v}' \in V $ and $ \ve{w} , \ve{w}' \in W $:
+    \begin{equation*}
+      f(\lambda \ve{v} + \mu \ve{v}') = \lambda f(\ve{v}) + \mu f(\ve{v}') = \lambda \cdot \ve{0}_W + \mu \ve{0}_W = \ve{0}_\ve{w}
+    \end{equation*}
+    \begin{equation*}
+      \ran{f} \ni \lambda \ve{w} + \mu \ve{w}' = \lambda f(\ve{v}) + \mu f(\ve{v}') = f(\lambda \ve{v} + \mu \ve{v}')
+    \end{equation*}
+    Thus, both $ \ker{f} $ and $ \ran{f} $ are closed under linear combinations, i.e. vector spaces.
+  \end{proof}
+\end{proofbox}
+
+We can further carachterize the kernel and the image of a linear application.
+
+\begin{proposition}{Kernel and injections}{kernel-injections}
+  Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then the following conditions are equivalent:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ f $ is injective
+    \item $ \ker{f} = \{\ve{0}_V\} $
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V \text{ LI } \implies \{f(\ve{v}_1 , \dots , f(\ve{v}_k)\} \ssq W \text{ LI} $
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider the following implications:
+
+    $ (\text{a} \Rightarrow \text{b}) $ Suppose $ \exists \ve{v} \in \ker{f} : \ve{v} \neq \ve{0}_V $; then $ f(\ve{v}) = \ve{0}_W = f(\ve{0}_V) $, but $ f $ is injective $ \absurd $
+
+    $ (\text{b} \Rightarrow \text{c}) $ Let $ \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V $ LI and consider $ \ve{0}_W = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) = f(\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k) $, hence $ \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k = \ve{0}_V $ as $ \ker{f} = \{\ve{0}_V\} $, therefore $ \lambda_1 = \dots = \lambda_k = 0 $ as $ \{\ve{v}_1 , \dots , \ve{v}_k\} $ LI
+
+    $ (\text{c} \Rightarrow \text{a}) $ Given $ \ve{v}_1 , \ve{v}_2 \in V $, by linearity $ f(\ve{v}_1) = f(\ve{v}_2) \implies f(\ve{v}_1 - \ve{v}_2) = \ve{0}_W $, so suppose $ \ve{v}_1 \neq \ve{v}_2 $: then $ \ve{v} \equiv \ve{v}_1 - \ve{v}_2 \neq \ve{0}_V $, i.e. LI, but $ f(\ve{v}) = \ve{0}_W $, i.e. LD $ \absurd $
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}{Image and surjections}{image-surjections}
+  Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then the following conditions are equivalent:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ f $ is surjective
+    \item $ \ran{f} = W $
+    \item $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} \implies W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} $
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider the following implications:
+
+    $ (\text{a} \Rightarrow \text{b}) $ Suppose $ \ran{f} \ssnq W \implies \exists \ve{w} \in W : \nexists \ve{v} \in V : \ve{w} = f(\ve{v}) \implies f $ not surjective $ \absurd $
+
+    $ (\text{b} \Rightarrow \text{c}) $ $ \ran{f} = W \implies \forall \ve{w} \in W \,\exists \ve{v} \in V : \ve{w} = f(\ve{v}) $; moreover, $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} \implies \forall \ve{v} \in V \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{v} = \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k $. Then $ \forall \ve{w} \in W \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{w} = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) $, i.e. $ W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} $
+
+    $ (\text{c} \Rightarrow \text{a}) $ $ W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} \implies \forall \ve{w} \in W \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{w} = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) = f(\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k) $, but $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} $, hence $ \forall \ve{w} \in W \,\exists \ve{v} \in V : \ve{w} = f(\ve{v}) $
+  \end{proof}
+\end{proofbox}
+
+In general, even for non-surjective $ f \in \hmk $, it is true that $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} \implies \ran{f} = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} $ with a reasoning analogous to the previous proof.
+
+As injections map LI vectors to LI vectors and surjections map generators to generators, we see that bijections map bases to bases.
+
+\begin{theorem}{Rank--nullity theorem}{rank-nullity}
+  Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then:
+  \begin{equation}
+    \dk V = \dk \ket{f} + \dk \ran{f}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ \ker{f} \ssq V $ and $ \ran{f} \ssq W $, they are both finitely-generated. If $ \ran{f} = \{\ve{0}_W\} $ (trivial map), then $ \ker{f} = V $ and the thesis is verified.
+
+    Consider $ \ran{f} \neq \{\ve{0}_W\} $ and choose a basis $ \{\ve{c}_1 , \dots , \ve{c}_k\} $ of $ \ran{f} $: this means that $ \exists \ve{b}_1 , \dots , \ve{b}_k \in V : f(\ve{b}_j) = \ve{c}_j \,\,\forall j = 1, \dots, k $. Now, if $ \ker{f} \neq \{\ve{0}_V\} $ choose a basis $ \{\ve{a}_1 , \dots , \ve{a}_r\} $ of $ \ker{f} $, otherwise consider no other vectors, and set $ \bas \equiv \{\ve{a}_1 , \dots , \ve{a}_r , \ve{b}_1 , \dots , \ve{b}_k\} \ssq V $. WTS $ \bas $ is a basis of $ V $:
+    \begin{itemize}
+      \item consider the following linear combination:
+        \begin{equation*}
+          \alpha_1 \ve{a}_1 + \dots + \alpha_r \ve{a}_r + \beta_1 \ve{b}_1 + \dots + \beta_k \ve{b}_k = \ve{0}_V
+        \end{equation*}
+        Then, by the linearity of $ f $:
+        \begin{equation*}
+          \begin{split}
+            \ve{0}_W = f(\ve{0}_V)
+            & = f(\alpha_1 \ve{a}_1 + \dots + \alpha_r \ve{a}_r + \beta_1 \ve{b}_1 + \dots + \beta_k \ve{b}_k) \\
+            & = \alpha_1 \cdot \ve{0}_W + \dots + \alpha_r \cdot \ve{0}_W + \beta_1 \ve{c}_1 + \dots + \beta_k \ve{c}_k = \beta_1 \ve{c}_1 + \dots + \beta_k \ve{c}_k
+          \end{split}
+        \end{equation*}
+        But $ \{\ve{c}_1 , \dots , \ve{c}_k\} $ is a basis of $ \ran{f} $, hence $ \beta_1 = \dots = \beta_k $ due to linear independence. Then $ \alpha_1 \ve{a}_1 + \dots + \alpha_r \ve{a}_r = \ve{0}_V $, but $ \{\ve{a}_1 , \dots , \ve{a}_r\} $ is a basis of $ \ker{f} $, so $ \alpha_1 = \dots = \alpha_r = 0 $;
+      \item $ \ve{v} \in V \implies f(\ve{v}) \in \ran{f} = \braket{f(\ve{b}_1) , \dots , f(\ve{b}_k)} $, so $ \exists \gamma_1 , \dots , \gamma_k \in \K : f(\ve{v}) = \gamma_1 f(\ve{b}_1) + \dots + \gamma_k f(\ve{b}_k) $, which rearranging and using the linearity of $ f $ becomes $ f(\ve{v} - \gamma_1 \ve{v}_1 - \dots - \gamma_k \ve{b}_k) = \ve{0}_W $, i.e. $ \ve{v} - \gamma_1 \ve{v}_1 - \dots - \gamma_k \ve{v}_k \in \ker{f} = \braket{\ve{a}_1 , \dots , \ve{a}_r} $. Then, $ \exists \delta_1 , \dots , \delta_r \in \K : \ve{v} = \gamma_1 \ve{v}_1 + \dots + \gamma_k \ve{v}_k + \delta_1 \ve{a}_1 + \dots + \delta_r \ve{a}_r $, which shows that $ V = \braket{\bas} $.
+    \end{itemize}
+    By \dref{def:basis}, $ \bas $ is a basis of $ V $, i.e. $ \dk V = \dk \ker{f} + \dk \ran{f} $.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{Equidimensionality and bijections}{equidimensionality-bijections}
+  Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then:
+  \begin{equation*}
+    \dk V = \dk W
+    \qquad \implies \qquad
+    f \text{ injective } \iff f \text{ surjective } \iff f \text{ bijective}
+  \end{equation*}
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    By \pref{prop:kernel-injections}, $ f \text{ injective } \iff \ker{f} = \{\ve{0}_V\} \iff \dk \ker{f} = 0 $. By \tref{th:rank-nullity} $ \dk \ker{f} = 0 \iff \dk \ran{f} = \dk V = \dk W \iff \ran{f} = W $, and by \pref{prop:image-surjections} $ \ran{f} = W \iff f $ surjective. Hence, $ f $ is both injective and surjective, i.e. a bijection.
+  \end{proof}
+\end{proofbox}
+
+We can further classify applications:
+\begin{itemize}
+  \item $ f \in \hmk(V,W) $ bijective is an \bctxt{isomorphism};
+  \item $ f \in \hmk(V,V) \equiv \End(V) $ is an \bctxt{endomorphism};
+  \item $ f \in \End(V) $ bijective is an \bctxt{automorphism}.
+\end{itemize}
+Isomorphisms are particularly interesting.
+
+\begin{lemma}{Basic properties of isomorphisms}{}
+  Given three $ \K $-vector spaces $ V,W,Z $ and $ f \in \hmk(V,W) , g \in \hmk(W,Z) $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ f $ is an isomorphism if and only if it is invertible
+    \item if $ f $ and $ g $ are isomorphisms, then $ g \circ f \in \hmk(V,Z) $ is an isomorphism
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Trivial by the fact that invertibility is equivalent to bijectivity and that the composition of bijections is a bijection.
+  \end{proof}
+\end{proofbox}
+
+\begin{example}{Matrices as endomorphisms}{}
+  Given $ \mt{A} \in \K^{n \times n} $, then $ L_\mt{A} \in \End(\K^n) $. Moreover, if $ \mt{A} \in \GL{n,\K} $, then $ L_\mt{A} $ is an automorphism.
+\end{example}
+
+Isomorphism induce an equivalence relation between vector spaces.
+
+\begin{definition}{Isomorphism relation}{}
+  Two $ \K $-vector spaces $ V,W $ are \bcdef{isomorphic} $ V \cong W $ if $ \exists f \in \hmk(V,W) $ isomorphism.
+\end{definition}
+
+This is an equivalence relation since, if $ f $ is an isomorphism, then $ f^{-1} $ is an isomorphism too.
+
+\begin{theorem}{Equidimensionality and isomorphisms}{}
+  Let $ V,W $ be finitely-generated $ \K $-vector spaces. Then:
+  \begin{equation*}
+    V \cong W
+    \iff
+    \dk V = \dk W
+  \end{equation*}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ $ V \cong W \implies \exists f \in \hmk(V,W) $ isomorphism, which maps bases to bases, hence $ \dk V = \dk W $
+
+    $ (\Leftarrow) $ Consider $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} \ssq V $ basis of $ V $, so that $ \forall \ve{v} \in V \,\exists! \alpha_1 , \dots , \alpha_n \in \K : \ve{v} = \alpha_1 \ve{b}_1 + \dots + \alpha_n \ve{b}_n $. Then, define $ \varphi : V \ra \K^n : \varphi(\ve{v}) = \left( \alpha_1 , \dots , \alpha_n \right) $, which is clearly linear, so $ \varphi \in \hmk(V,\K^n) $. Moreover, $ \forall \bs{\alpha} \in \K^n \,\exists \ve{v} \in V : \ve{v} = \sum_{j = 1}^n \alpha_j \ve{b}_j $, as $ V = \braket{\bas} $, hence $ \forall \bs{\alpha} \in \K^n \,\exists \ve{v} \in V : \varphi(\ve{v}) = \bs{\alpha} $, i.e. $ \varphi $ is a surjection. Since $ \dk V = \dk \K^n $, by \cref{cor:equidimensionality-bijections} $ \varphi $ is a bijection too, thus $ V \cong \K^n $.
+
+    Analogously, given a basis $ \mathcal{C} \ssq W $ of $ W $, we can construct an equivalent isomorphism $ \psi : W \ra \K^n $, so $ W \cong \K^n $. By the transitivity of the isomorphism relation, $ V \cong W $.
+  \end{proof}
+\end{proofbox}
+
+The isomorphism relation then partitions the set of all finitely-generated vector spaces into equivalence classes composed of equidimensional spaces: for example, $ \C^n(\R) \cong \R^{2n} $ and $ \C_n[x] \cong \C^{n+1} $.
+
+\subsection{Representative matrices}
+
+Recalling that we can associate to each matrix $ \mt{A} \in \K^{m \times n} $ an application $ L_\mt{A} \in \hmk(\K^n,\K^m) : \ve{v} \mapsto \mt{A} \ve{v} $, it is clear that $ \ker{L_\mt{A}} $ is the solution space of the homogeneus linear system determined by $ \mt{A} \ve{x} = \ve{0} $, while $ \ran{L_\mt{A}} $ is the space of all constant terms $ \ve{b} $ which make the system $ \mt{A} \ve{x} = \ve{b} $ solvable. Moreover, the generators of $ \ran{L_\mt{A}} $ are the images of the generators of $ \K^n $: taking the Euclidean base $ \{\ve{e}_j\}_{j = 1, \dots, n} $, then:
+\begin{equation*}
+  L_\mt{A}(\ve{e}_j) =
+  \begin{bmatrix}
+    a_{11} & \dots & a_{1j} & \dots & a_{1n} \\
+    \vdots & \ddots & \vdots & \ddots & \vdots \\
+    a_{m1} & \dots & a_{mj} & \dots & a_{mn}
+  \end{bmatrix}
+  \begin{pmatrix}
+    0 \\ \vdots \\ 1 \\ \vdots \\ 0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a_{1j} \\ \vdots \\ a_{mj}
+  \end{pmatrix}
+\end{equation*}
+We see, then, that the $ n $ columns of $ \mt{A} $ are the $ n $ column vectors which generate $ \ran{L_\mt{A}} $.
+
+Now, the converse is possible too, i.e. to associate a matrix to a linear application. Consider two $ \K $-vector spaces $ V,W $ with respective bases $ \mathcal{A} = \{\ve{a}_1 , \dots , \ve{a}_n\} , \bas = \{\ve{b}_1 , \dots , \ve{b}_m\} $, and take $ f \in \hmk(V,W) $. By linearity, $ f $ is determined by its values on $ \mathcal{A} $, so suppose that:
+\begin{equation}
+  \begin{array}{l}
+    f(\ve{a}_1) = \alpha_{11} \ve{b}_1 + \dots + \alpha_{1m} \ve{b}_m \\
+    \qquad \ \ \, \vdots \\
+    f(\ve{a}_n) = \alpha_{n1} \ve{b}_1 + \dots + \alpha_{nm} \ve{b}_m
+  \end{array}
+  \qquad \implies \qquad
+  \mt{A} \equiv
+  \begin{bmatrix}
+    \alpha_{11} & \dots & \alpha_{1n} \\
+    \vdots & \ddots & \vdots \\
+    \alpha_{m1} & \dots & \alpha_{mn}
+  \end{bmatrix}
+  \label{eq:representative-matrix-definition}
+\end{equation}
+We want to show that $ f $ and $ L_\mt{A} $ are the ``same" application, i.e. we want to show that the following diagram commutes:
+\begin{equation*}
+  \begin{tikzcd}
+    V \ar[d, "\varphi_\mathcal{A}", swap] \ar[r, "f"]
+    & W \ar[d, "\varphi_\bas"] \\
+    \K^n \ar[r, "L_\mt{A}", swap]
+    & \K^m
+  \end{tikzcd}
+\end{equation*}
+where $ \varphi_\mathcal{A} : V \ra \K^n $ and $ \varphi_\bas : W \ra \K^m $ are the representations of $ V $ and $ W $ on $ \K^n $ and $ \K^m $ in the respective bases, defined as:
+\begin{equation*}
+  V \ni \lambda_1 \ve{a}_1 + \dots + \lambda_n \ve{a}_n = \ve{v} \mapsto
+  \begin{pmatrix}
+    \lambda_1 \\ \vdots \\ \lambda_n
+  \end{pmatrix}
+  \in \K^n
+  \qquad \quad
+  W \ni \mu_1 \ve{b}_1 + \dots + \mu_m \ve{b}_m = \ve{w} \mapsto
+  \begin{pmatrix}
+    \mu_1 \\ \vdots \\ \mu_m
+  \end{pmatrix}
+  \in \K^m
+\end{equation*}
+Now, we can directly verify that $ L_\mt{A} \circ \varphi_\mathcal{A} = \varphi_\bas \circ f $, and in particular it is sufficient to show it on a basis:
+\begin{equation*}
+  L_\mt{A} \circ \varphi_\mathcal{A}(\ve{a}_j) = L_\mt{A}(\ve{e}_j) =
+  \begin{pmatrix}
+    \alpha_{1j} \\ \vdots \\ \alpha_{mj}
+  \end{pmatrix}
+  = \varphi_\bas(\alpha_{1j} \ve{b}_1 + \dots + \alpha_{mj} \ve{b}_m) = \varphi_\bas \circ f(\ve{a}_j)
+\end{equation*}
+Hence, the association between matrices and linear applications is bidirectional and well-defined, and in fact it defines an isomorphism $ \hmk(V,W) \cong \K^{m \times n} $.
+
+\begin{definition}{Representative matrix}{}
+  Let $ V,W $ be finitely-generated $ \K $-vector spaces with respective bases $ \mathcal{A} , \bas $. Then, the \bcdef{representative matrix} of $ f \in \hmk(V,W) $ is the matrix $ \mt{M}_\bas^\mathcal{A}(f) $ determined by the isomorphism $ \hmk(V,W) \leftrightarrow \K^{m \times n} : f \leftrightarrow \mt{M}_{\bas}^\mathcal{A}(f) $ defined by \eref{eq:representative-matrix-definition}.
+\end{definition}
+
+\begin{lemma}{Basic properties of representation matrices}{}
+  Given three finitely-generated $ \K $-vector spaces $ X,Y,Z $ with respective bases $ \mathcal{A} , \bas , \mathcal{C} $ and $ f \in \hmk(V,W) , g \in \hmk(W,Z) $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ \mt{M}_\mathcal{C}^\mathcal{A}(g \circ f) = \mt{M}_\mathcal{C}^\bas(g) \cdot \mt{M}_\bas^\mathcal{A}(f) $
+    \item $ V = W \land \mathcal{A} = \bas \implies \mt{M}_\mathcal{A}^\mathcal{A}(\id_V) = \mt{I}_{\dk V} $
+    \item $ f \text{ isomorphism } \implies \mt{M}_\bas^\mathcal{A}(f) \text{ invertible} \,\land\, [\mt{M}_\bas^\mathcal{A}(f)]^{-1} = \mt{M}_\mathcal{A}^\bas(f^{-1}) $
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    The first two propositions are true by the linearity of $ f $ and $ g $, while the last one is proved solving $ f^{-1} \circ f = \id_V \implies \mt{M}_\mathcal{A}^\bas(f^{-1}) \cdot \mt{M}_\bas^\mathcal{A}(f) = \id_{\dk V} $, where the first two properties where applied.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Change of bases}
+
+To discuss how to perform a change of basis in a vector space, first we have to introduce two equivalence relations.
+
+\begin{definition}{Equivalent matrices}{}
+  Two matrices $ \mt{A} , \mt{B} \in \K^{m \times n} $ are \bcdef{equivalent} if $ \exists \mt{E} \in \GL{m,\K} , \mt{F} \in \GL{n,\K} : \mt{B} = \mt{E} \mt{A} \mt{F} $.
+\end{definition}
+
+\begin{definition}{Similar matrices}{}
+  Two square matrices $ \mt{A} , \mt{B} \in \K^{n \times n} $ are \bcdef{similar} if $ \exists \mt{N} \in \GL{n,\K} : \mt{B} = \mt{N}^{-1} \mt{A} \mt{N} $.
+\end{definition}
+
+To illustrate how representation matrices change under a change of basis, consider a $ \K $-vector space $ V $ and two bases $ \mathcal{A} , \bas \ssq V $ (we denote $ V_\mathcal{A} , V_\bas $ the space with basis $ \mathcal{A} $ and $ \bas $ respectively), and take $ f \in \End{V} $. Then, consider the following commutative diagram:
+\begin{equation*}
+  \begin{tikzcd}
+    V_\mathcal{A} \ar[r , "f"] \ar[d , "\id_V" , swap]
+    & V_\mathcal{A} \ar[d , "\id_V"] \\
+    V_\bas \ar[r , "f"]
+    & V_\bas
+  \end{tikzcd}
+  \quad \implies \quad
+  \underbrace{\mt{M}_\bas^\bas(f)}_{\in \, \K^{n \times n}} \cdot \underbrace{\mt{M}_\bas^\mathcal{A}(\id_V)}_{\in \, \GL{n,\K}} = \underbrace{\mt{M}_\bas^\mathcal{A}(\id_V)}_{\in \, \GL{n,\K}} \cdot \underbrace{\mt{M}_\mathcal{A}^\mathcal{A}(f)}_{\K^{n \times n}}
+\end{equation*}
+Hence, we see that representative matrices of the same endomorphism are similar. Moreover, we can define the change-of-basis matrix $ \mt{N}_\bas^\mathcal{A} \equiv \mt{M}_\bas^\mathcal{A}(\id_V) $, whose columns are the coefficients of the representations on $ \bas $ of the vectors of $ \mathcal{A} $. Note that, in the particular case $ f = \id_V $, the above equation proves that $ [\mt{N}_\bas^\mathcal{A}]^{-1} = \mt{N}_\mathcal{A}^\bas $.
+
+A similar diagram can be drawn for the generalized case of $ f \in \hmk(V,W) $:
+\begin{equation*}
+  \begin{tikzcd}
+    V_\mathcal{A} \ar[r , "f"] \ar[d , "\id_V" , swap]
+    & W_\bas \ar[d , "\id_W"] \\
+    V_{\mathcal{A}'} \ar[r , "f"]
+    & W_{\bas'}
+  \end{tikzcd}
+  \quad \implies \quad
+  \underbrace{\mt{M}_{\bas'}^{\mathcal{A}'}(f)}_{\in \, \K^{m \times n}} \cdot \underbrace{\mt{N}_\mathcal{A}^{\mathcal{A}'}}_{\in \, \GL{n,\K}} = \underbrace{\mt{N}_{\bas'}^\bas}_{\in \, \GL{m,\K}} \cdot \underbrace{\mt{M}_\bas^\mathcal{A}(f)}_{\K^{m \times n}}
+\end{equation*}
+Therefore, representative matrices of the same linear application are equivalent.
+
+
+
+
+
+
+
+
 
 \section{Inner-product spaces}
