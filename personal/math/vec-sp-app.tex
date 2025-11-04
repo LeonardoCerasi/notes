@@ -39,9 +39,9 @@ Note that $ \alpha a_{ij} $ is the $ \K $-product.
   \end{proof}
 \end{proofbox}
 
-\begin{theorem}{}{}
+\begin{proposition}{}{}
   $ (\K^{n \times n} , + , \cdot) $ is a non-commutative ring.
-\end{theorem}
+\end{proposition}
 
 \begin{proofbox}
   \begin{proof}
@@ -58,7 +58,7 @@ Note that $ \alpha a_{ij} $ is the $ \K $-product.
   Given a matrix $ \mt{A} \in \K^{n \times m} $, its \bcdef{transpose} is defined as $ \mt{A}\tsp \in \K^{m \times n} : [a\tsp_{ij}]^{i = 1, \dots, m}_{j = 1, \dots, n} = [a_{ji}]^{j = 1, \dots, n}_{i = 1, \dots, m} $.
 \end{definition}
 
-A square matrix $ \mt{A} \in \K^{n \times n} $ is said \bctxt{symmetric} if $ \mt{A}\tsp = \mt{A} $ or \bctxt{antisymmetric} if $ \mt{A}\tsp = - \mt{A} $, and it is \bctxt{diagonal} if $ a_{ij} = 0 \,\,\forall i \neq j \in \{1, \dots, n\} $.
+Square matrices can be further characterized: a square matrix $ \mt{A} \in \K^{n \times n} $ is said \bctxt{symmetric} if $ \mt{A}\tsp = \mt{A} $ or \bctxt{antisymmetric} if $ \mt{A}\tsp = - \mt{A} $, and it is \bctxt{diagonal} if $ a_{ij} = 0 \,\,\forall i \neq j \in \{1, \dots, n\} $. Moreover, we can introduce the concept of inverse matrix for square matrices.
 
 \begin{definition}{Inverse matrix}{}
   A square matrix $ \mt{A} \in \K^{n \times n} $ is \bcdef{invertible} if $ \exists \mt{A}^{-1} \in \K^{n \times n} : \mt{A}^{-1} \cdot \mt{A} = \mt{A} \cdot \mt{A}^{-1} = \mt{I}_n $.
@@ -74,9 +74,9 @@ A square matrix $ \mt{A} \in \K^{n \times n} $ is said \bctxt{symmetric} if $ \m
 
 Note that $ \GL{1,\K} = \K - \{0\} $.
 
-\begin{theorem}{}{}
+\begin{proposition}{}{}
   $ (\GL{n,\K} , \cdot) $ is a non-abelian group.
-\end{theorem}
+\end{proposition}
 
 \begin{proofbox}
   \begin{proof}
@@ -210,6 +210,12 @@ It can be proven that the character is independent of the operations performed d
 \begin{theorem}{Rouché--Capelli theorem}{}
   A linear system $ \mt{A} \ve{x} = \ve{b} $ has solutions only if $ \mathrm{car}(\mt{A}) = \mathrm{car}([\mt{A} | \ve{b}]) $. Moreover, if the system has solutions, then it is of kind $ \infty^{n - r} $, with $ n $ number of variables and $ r = \mathrm{car}(\mt{A}) $.\index{theorem!Rouché--Capelli}
 \end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    See THEOREM.
+  \end{proof}
+\end{proofbox}
 
 \section{Vector spaces}
 
@@ -417,12 +423,12 @@ We can prove some basic properties of linear dependence.
 \begin{lemma}{Basic properties of linear dependence}{}
   Given a $ \K $-vector space $ V $ and $ S \subseteq V : S \neq \emptyset $, then:
   \begin{enumerate}[label = {\alph*.}]
-    \item given $ S \subseteq T \subseteq V $, then $ S \text{ LD} \implies T \text{ LD} $
-    \item $ S = \{\ve{v}\} \text{ LD} \implies \ve{v} = \ve{0} $
+    \item Given $ S \subseteq T \subseteq V $, then $ S \text{ LD} \implies T \text{ LD} $
+    \item $ S = \{\ve{v}\} \text{ LD} \implies \ve{v} = \ve{0} $;
     \item $ S = \{\ve{v}_1 , \ve{v}_2\} \text{ LD} \implies \exists \lambda \in \K : \ve{v}_1 = \lambda \ve{v}_2 $
-    \item if $ S = \{\ve{v}_1 , \dots , \ve{v}_n\} $ LD, then at least one $ \ve{v}_i $ is a linear combination of the other vectors
-    \item if $ S $ LI and $ S \cup \{\ve{w}\} $ LD, then $ \ve{w} $ is a linear combination of the vectors of $ S $
-    \item if $ \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n = \ve{0} $ and $ \lambda_n \neq 0 $, then $ \ve{v}_n $ is a linear combination of $ \{\ve{v}_1 , \dots , \ve{v}_{n-1}\} $
+    \item If $ S = \{\ve{v}_1 , \dots , \ve{v}_n\} $ LD, then at least one vector is a linear combination of the others;
+    \item If $ S $ LI and $ S \cup \{\ve{w}\} $ LD, then $ \ve{w} $ is a linear combination of the vectors of $ S $;
+    \item If $ \lambda_1 \ve{v}_1 + \dots + \lambda_n \ve{v}_n = \ve{0} $ and $ \lambda_n \neq 0 $, then $ \ve{v}_n $ is a linear combination of $ \{\ve{v}_1 , \dots , \ve{v}_{n-1}\} $.
   \end{enumerate}
 \end{lemma}
 
@@ -430,11 +436,11 @@ We can prove some basic properties of linear dependence.
   \begin{proof}
     Respectively:
     \begin{enumerate}[label = {\alph*.}]
-      \item $ S \subseteq T \implies \ve{v} \in T \,\,\forall \ve{v} \in S $, hence $ \{\ve{v}_i\}_{i = 1, \dots, n} \subset S \text{ LD} \implies \{\ve{v}_i\}_{i = 1, \dots, n} \subset T \text{ LD} $
-      \item $ \lambda \ve{v} = \ve{0} \iff \lambda = 0 \lor \ve{v} = \ve{0} $, so $ \ve{v} = \ve{0} \implies S \text{ LD} $, while $ S \text{ LD} \implies \lambda \neq 0 \implies \ve{v} = 0 $
+      \item $ S \subseteq T \implies \ve{v} \in T \,\,\forall \ve{v} \in S $, hence $ \{\ve{v}_i\}_{i = 1, \dots, n} \subset S \text{ LD} \implies \{\ve{v}_i\}_{i = 1, \dots, n} \subset T \text{ LD} $.
+      \item $ \lambda \ve{v} = \ve{0} \iff \lambda = 0 \lor \ve{v} = \ve{0} $, so $ \ve{v} = \ve{0} \implies S \text{ LD} $, while $ S \text{ LD} \implies \lambda \neq 0 \implies \ve{v} = 0 $.
       \item $ \{\ve{v}_1 , \ve{v}_2\} \text{ LD} \implies \exists \lambda , \mu \in \K - \{0\} : \lambda \ve{v}_1 + \mu \ve{v}_2 = \ve{0} \iff \ve{v}_1 = \lambda^{-1} \mu \ve{v}_2 $
-      \item If $ \{\ve{v}_j\}_{j = 1, \dots, n} $ LD, then by definition $ \exists \{\lambda_j\}_{j = 1, \dots, n} \subset \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j = \ve{0} $, hence WLOG $ \ve{v}_1 $ can be isolated as $ \ve{v}_1 = - \lambda_1^{-1} \sum_{j = 2}^n \lambda_j \ve{v}_j $
-      \item $ \{\ve{v}_1 , \dots , \ve{v}_n , \ve{w}\} \text{ LD} \implies \exists \lambda_1 , \dots , \lambda_n , \alpha \in \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j + \alpha \ve{w} = \ve{0} $, so $ \ve{w} $ can be isolated as $ \ve{w} = - \alpha^{-1} \sum_{j = 1}^n \lambda_j \ve{v}_j $
+      \item If $ \{\ve{v}_j\}_{j = 1, \dots, n} $ LD, then by definition $ \exists \{\lambda_j\}_{j = 1, \dots, n} \subset \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j = \ve{0} $, hence WLOG $ \ve{v}_1 $ can be isolated as $ \ve{v}_1 = - \lambda_1^{-1} \sum_{j = 2}^n \lambda_j \ve{v}_j $.
+      \item $ \{\ve{v}_1 , \dots , \ve{v}_n , \ve{w}\} \text{ LD} \implies \exists \lambda_1 , \dots , \lambda_n , \alpha \in \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j + \alpha \ve{w} = \ve{0} $, so $ \ve{w} $ can be isolated as $ \ve{w} = - \alpha^{-1} \sum_{j = 1}^n \lambda_j \ve{v}_j $.
       \item $ \sum_{j = 1}^n \lambda_j \ve{v}_j = \ve{0} \land \lambda_n \neq 0 \implies \ve{v}_n = - \lambda_n^{-1} \sum_{j = 1}^{n-1} \lambda_j \ve{v}_j $
     \end{enumerate}
   \end{proof}
@@ -476,8 +482,8 @@ We can state two trivial properties of generated subsets.
 \begin{lemma}{}{}
   Given $ S \subseteq V(\K) $ and $ U = \braket{S} $, then:
   \begin{enumerate}[label = {\alph*.}]
-    \item given $ S \subseteq T \subseteq V $, then $ U = \braket{T} $
-    \item if $ U = \braket{\ve{s}_1 , \dots , \ve{s}_n} $ and $ \ve{s}_n \in \braket{\ve{s}_1 , \ve{s}_{n-1}} $, then $ U = \braket{\ve{s}_1 , \dots , \ve{s}_{n-1}} $
+    \item Given $ S \subseteq T \subseteq V $, then $ U = \braket{T} $;
+    \item If $ U = \braket{\ve{s}_1 , \dots , \ve{s}_n} $ and $ \ve{s}_n \in \braket{\ve{s}_1 , \ve{s}_{n-1}} $, then $ U = \braket{\ve{s}_1 , \dots , \ve{s}_{n-1}} $.
   \end{enumerate}
 \end{lemma}
 
@@ -485,8 +491,8 @@ We can state two trivial properties of generated subsets.
   \begin{proof}
     Respectively:
     \begin{enumerate}[label = {\alph*.}]
-      \item If $ S \subseteq T $, then each linear combination in $ S $ is a linear combination in $ T $ too, hence $ \braket{S} = \braket{T} $
-      \item Given $ \ve{v} = \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n \in U $ and $ \ve{s}_n = \mu_1 \ve{s}_1 + \dots + \mu_{n-1} \ve{s}_{n-1} $, then $ \ve{v} = \left( \lambda_1 + \mu_1 \right) \ve{s}_1 + \dots + \left( \lambda_{n-1} + \mu_{n-1} \right) \ve{s}_{n-1} $, hence the thesis
+      \item If $ S \subseteq T $, then each linear combination in $ S $ is a linear combination in $ T $ too, hence $ \braket{S} = \braket{T} $.
+      \item Given $ \ve{v} = \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n \in U $ and $ \ve{s}_n = \mu_1 \ve{s}_1 + \dots + \mu_{n-1} \ve{s}_{n-1} $, then $ \ve{v} = \left( \lambda_1 + \mu_1 \right) \ve{s}_1 + \dots + \left( \lambda_{n-1} + \mu_{n-1} \right) \ve{s}_{n-1} $, hence the thesis.
     \end{enumerate}
   \end{proof}
 \end{proofbox}
@@ -655,9 +661,9 @@ We can now give some trivial properties of dimensionality.
 \begin{lemma}{Basic property of dimension}{}
   Given an $ n $-dimensional $ \K $-vector space $ V $, then:
   \begin{enumerate}[label = {\alph*.}]
-    \item $ \{\ve{v}_1 , \dots , \ve{v}_m\} \ssq V $ is LD $ \forall m > n $
-    \item $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ LI is a basis of $ V $
-    \item $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ set of generators of $ V $ is a basis of $ V $
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_m\} \ssq V $ is LD $ \forall m > n $;
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ LI is a basis of $ V $;
+    \item $ \{\ve{v}_1 , \dots , \ve{v}_n\} $ set of generators of $ V $ is a basis of $ V $.
   \end{enumerate}
 \end{lemma}
 
@@ -752,8 +758,8 @@ We can now state some properties of linear applications.
   Given $ \K $-vector spaces $ V,W,Z $ and $ \K $-linear applications $ f : V \ra W , g : W \ra Z $, then:
   \begin{enumerate}[label = {\alph*.}]
     \item $ f(\ve{0}_V) = \ve{0}_W $
-    \item $ g \circ f : V \ra Z $ is $ \K $-linear
-    \item $ f $ is bijective $ \implies f^{-1} : W \ra V $ is $ \K $-linear
+    \item $ g \circ f : V \ra Z $ is $ \K $-linear;
+    \item If $ f $ is bijective, then $ f^{-1} : W \ra V $ is $ \K $-linear.
   \end{enumerate}
 \end{lemma}
 
@@ -810,7 +816,7 @@ We can further carachterize the kernel and the image of a linear application.
 \begin{proposition}{Kernel and injections}{kernel-injections}
   Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then the following conditions are equivalent:
   \begin{enumerate}[label = {\alph*.}]
-    \item $ f $ is injective
+    \item $ f $ is injective;
     \item $ \ker{f} = \{\ve{0}_V\} $
     \item $ \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V \text{ LI } \implies \{f(\ve{v}_1 , \dots , f(\ve{v}_k)\} \ssq W \text{ LI} $
   \end{enumerate}
@@ -822,7 +828,7 @@ We can further carachterize the kernel and the image of a linear application.
 
     $ (\text{a} \Rightarrow \text{b}) $ Suppose $ \exists \ve{v} \in \ker{f} : \ve{v} \neq \ve{0}_V $; then $ f(\ve{v}) = \ve{0}_W = f(\ve{0}_V) $, but $ f $ is injective $ \absurd $
 
-    $ (\text{b} \Rightarrow \text{c}) $ Let $ \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V $ LI and consider $ \ve{0}_W = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) = f(\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k) $, hence $ \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k = \ve{0}_V $ as $ \ker{f} = \{\ve{0}_V\} $, therefore $ \lambda_1 = \dots = \lambda_k = 0 $ as $ \{\ve{v}_1 , \dots , \ve{v}_k\} $ LI
+    $ (\text{b} \Rightarrow \text{c}) $ Let $ \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V $ LI and consider $ \ve{0}_W = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) = f(\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k) $, hence $ \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k = \ve{0}_V $ as $ \ker{f} = \{\ve{0}_V\} $, therefore $ \lambda_1 = \dots = \lambda_k = 0 $ as $ \{\ve{v}_1 , \dots , \ve{v}_k\} $ LI.
 
     $ (\text{c} \Rightarrow \text{a}) $ Given $ \ve{v}_1 , \ve{v}_2 \in V $, by linearity $ f(\ve{v}_1) = f(\ve{v}_2) \implies f(\ve{v}_1 - \ve{v}_2) = \ve{0}_W $, so suppose $ \ve{v}_1 \neq \ve{v}_2 $: then $ \ve{v} \equiv \ve{v}_1 - \ve{v}_2 \neq \ve{0}_V $, i.e. LI, but $ f(\ve{v}) = \ve{0}_W $, i.e. LD $ \absurd $
   \end{proof}
@@ -831,7 +837,7 @@ We can further carachterize the kernel and the image of a linear application.
 \begin{proposition}{Image and surjections}{image-surjections}
   Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then the following conditions are equivalent:
   \begin{enumerate}[label = {\alph*.}]
-    \item $ f $ is surjective
+    \item $ f $ is surjective;
     \item $ \ran{f} = W $
     \item $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} \implies W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} $
   \end{enumerate}
@@ -843,9 +849,9 @@ We can further carachterize the kernel and the image of a linear application.
 
     $ (\text{a} \Rightarrow \text{b}) $ Suppose $ \ran{f} \ssnq W \implies \exists \ve{w} \in W : \nexists \ve{v} \in V : \ve{w} = f(\ve{v}) \implies f $ not surjective $ \absurd $
 
-    $ (\text{b} \Rightarrow \text{c}) $ $ \ran{f} = W \implies \forall \ve{w} \in W \,\exists \ve{v} \in V : \ve{w} = f(\ve{v}) $; moreover, $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} \implies \forall \ve{v} \in V \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{v} = \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k $. Then $ \forall \ve{w} \in W \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{w} = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) $, i.e. $ W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} $
+    $ (\text{b} \Rightarrow \text{c}) $ $ \ran{f} = W \implies \forall \ve{w} \in W \,\exists \ve{v} \in V : \ve{w} = f(\ve{v}) $; moreover, $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} \implies \forall \ve{v} \in V \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{v} = \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k $. Then $ \forall \ve{w} \in W \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{w} = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) $, i.e. $ W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} $.
 
-    $ (\text{c} \Rightarrow \text{a}) $ $ W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} \implies \forall \ve{w} \in W \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{w} = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) = f(\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k) $, but $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} $, hence $ \forall \ve{w} \in W \,\exists \ve{v} \in V : \ve{w} = f(\ve{v}) $
+    $ (\text{c} \Rightarrow \text{a}) $ $ W = \braket{f(\ve{v}_1) , \dots , f(\ve{v}_k)} \implies \forall \ve{w} \in W \,\exists \lambda_1 , \dots , \lambda_k \in \K : \ve{w} = \lambda_1 f(\ve{v}_1) + \dots + \lambda_k f(\ve{v}_k) = f(\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k) $, but $ V = \braket{\ve{v}_1 , \dots , \ve{v}_k} $, so $ \forall \ve{w} \in W \,\exists \ve{v} \in V : \ve{w} = f(\ve{v}) $.
   \end{proof}
 \end{proofbox}
 
@@ -911,8 +917,8 @@ Isomorphisms are particularly interesting.
 \begin{lemma}{Basic properties of isomorphisms}{}
   Given three $ \K $-vector spaces $ V,W,Z $ and $ f \in \hmk(V,W) , g \in \hmk(W,Z) $, then:
   \begin{enumerate}[label = {\alph*.}]
-    \item $ f $ is an isomorphism if and only if it is invertible
-    \item if $ f $ and $ g $ are isomorphisms, then $ g \circ f \in \hmk(V,Z) $ is an isomorphism
+    \item $ f $ is an isomorphism if and only if it is invertible;
+    \item If $ f $ and $ g $ are isomorphisms, then $ g \circ f \in \hmk(V,Z) $ is an isomorphism.
   \end{enumerate}
 \end{lemma}
 
@@ -1080,6 +1086,116 @@ A similar diagram can be drawn for the generalized case of $ f \in \hmk(V,W) $:
   \underbrace{\mt{M}_{\bas'}^{\mathcal{A}'}(f)}_{\in \, \K^{m \times n}} \cdot \underbrace{\mt{N}_\mathcal{A}^{\mathcal{A}'}}_{\in \, \GL{n,\K}} = \underbrace{\mt{N}_{\bas'}^\bas}_{\in \, \GL{m,\K}} \cdot \underbrace{\mt{M}_\bas^\mathcal{A}(f)}_{\K^{m \times n}}
 \end{equation*}
 Therefore, representative matrices of the same linear application are equivalent.
+
+\subsection{Determinant and rank}
+
+In order to continue our analysis of linear applications, we need to introduce two important notions: the determinant and the rank of a matrix.
+
+\subsubsection{Determinants}
+
+\begin{definition}{Determinant}{determinant}
+  Given a square matrix $ \mt{A} \in \K^{n \times n} : \mt{A} = [a_{ij}]_{i,j = 1, \dots, n} $, its \bcdef{determinant} is defined as:
+  \begin{equation}
+    \det{\mt{A}} \defeq \sum_{\sigma \in \sy{n}} \sgn(\sigma) \prod_{i = 1}^n a_{i \sigma(i)}
+    \label{eq:determinant-definition}
+  \end{equation}
+\end{definition}
+
+Note that the determinant has $ n! $ terms, each containing one and only one element from each row and each column of $ \mt{A} $; moreover, it can be interpreted as an application $ \det : \K^{n \times n} \ra \K $. We can now prove some trivial properties.
+
+\begin{lemma}{Basic properties of determinants}{determinant-basic}
+  Let $ \mt{A} \in \K^{n \times n} $. Then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ \det \mt{A}\tsp = \det \mt{A} $
+    \item Swapping two rows or two columns, the determinant changes sign;
+    \item If two rows or two columns are equal, then $ \det \mt{A} = 0 $;
+    \item Keeping $ n - 1 $ columns (or rows) fixed, the determinant is a $ \K $-linear application with respect to the other column (or row);
+    \item $ \det(\lambda \mt{A}) = \lambda^n \det \mt{A} \,\,\forall \lambda \in \K $
+    \item $ \det \mt{I}_n = 1 $
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label = {\alph*.}]
+      \item Transposition exchanges columns and rows without altering their structure, but each term of the determinant has one and only one element from each row and each column, hence it is unchanged.
+      \item Swapping two rows or two columns is achieved through a permutation $ \rho \in \sy{n} : \sgn{\rho} = -1 $, thus, as $ \sgn(\sigma \circ \rho) = \sgn(\sigma) \sgn(\rho) = - \sgn \sigma $, the determinant changes sign.
+      \item By the previous property, exchanging two equal rows or columns $ \det \mt{A} = - \det \mt{A} $, hence $ \det \mt{A} = 0 $.
+      \item Linearity follows from the fact that each term of the determinant contains one and only one element of each row and each column.
+      \item Follows from the previous property, recalling that $ \lambda \mt{A} $ means multiplying each row (or column) of $ \mt{A} $ by $ \lambda $, and each term of the determinant has $ n $ elements of $ \mt{A} $.
+      \item Trivial by direct computation.
+    \end{enumerate}
+  \end{proof}
+\end{proofbox}
+
+In particular, property (d) shows that the determinant is a $ \K $-multilinear applications, as it is linear with respect to each row (or column) of $ \mt{A} $, while property (b) is easily generalized to:
+\begin{equation}
+  \det(\ve{a}_{\sigma(1)} , \dots , \ve{a}_{\sigma(n)}) = \sgn(\sigma) \det \mt{A}
+  \label{eq:determinant-permutation}
+\end{equation}
+where $ \ve{a}_1 , \dots , \ve{a}_n $ can denote either the rows ($ \in \K^{1 \times n} $) or the columns ($ \in \K^{n \times 1} $) of $ \mt{A} $.
+Furthermore, we can prove a powerful theorem for computing determinants.
+
+\begin{theorem}{Cauchy--Binet theorem}{}
+  Given $ \mt{A} , \mt{B} \in \K^{n \times n} $, then:
+  \begin{equation}
+    \det(\mt{A} \mt{B}) = \det(\mt{A}) \det(\mt{B})
+    \label{eq:binet-theorem}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Denote the rows of $ \mt{A} $ and $ \mt{B} $ as $ \{\ve{a}_1 , \dots , \ve{a}_n\} , \{\ve{b}_1 , \dots , \ve{b}_n\} \in \K^{n \times 1} $ respectively, and set the Euclidean base of $ \K^{n \times 1} $ as $ \ve{e}_j = (0 , \dots , 1 , \dots , 0) $, so that the rows of $ \mt{A} \mt{B} $ are:
+    \begin{equation*}
+      \ve{r}_i = \ve{a}_i \mt{B} = \sum_{j = 1}^n a_{ij} \ve{e}_j \mt{B} = \sum_{j = 1}^{n} a_{ij} \ve{b}_j
+    \end{equation*}
+    Then, by the multilinearity of the determinant:
+    \begin{equation*}
+      \det(\mt{A} \mt{B})
+      = \det \left( \sum_{j_1 = 1}^n a_{1 j_1} \ve{b}_{j_1} , \dots , \sum_{j_n = 1}^{n} a_{n j_n} \ve{b}_{j_n} \right)
+      = \sum_{j_1 = 1}^n \dots \sum_{j_n = 1}^n a_{1 j_1} \dots a_{n j_n} \det(\ve{b}_{j_1} , \dots , \ve{b}_{j_n})
+    \end{equation*}
+    By \lref{lemma:determinant-basic}, if $ j_i = j_k $ for some $ i \neq k $, then the determinant vanishes, so the summation is restricted to $ (j_1 , \dots , j_n) = (\sigma(1) , \dots , \sigma(n) $, with $ \sigma \in \sy{n} $, i.e.:
+    \begin{equation*}
+      \det(\mt{A} \mt{B}) = \sum_{\sigma \in \sy{n}} a_{1 \sigma(1)} \dots a_{n \sigma(n)} \det(\ve{b}_{\sigma(1)} , \dots , \ve{b}_{\sigma(n)}) = \sum_{\sigma \in \sy{n}} \sgn(\sigma) a_{1 \sigma(1)} \dots a_{n \sigma(n)} \det \mt{B}
+    \end{equation*}
+    where \eref{eq:determinant-permutation} was used. By \dref{def:determinant}, the proof is complete.
+  \end{proof}
+\end{proofbox}
+
+The determinant can also be used to establish the linear (in)dependence of a set of vectors.
+
+\begin{proposition}{}{}
+  Let $ \mt{A} \in \K^{n \times n} $ and $ \{\ve{a}_1 , \dots , \ve{a}_n\} \in \K^{n \times 1} $ be its columns. Then $ \{\ve{a}_1 , \dots , \ve{a}_n\} $ is LD if and only if $ \det \mt{A} = 0 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ WLOG $ \exists \lambda_2 , \dots , \lambda_n \in \K : \ve{a}_1 = \lambda_2 \ve{a}_2 + \dots + \lambda_n \ve{a}_n $, so, by the multilinearity of the determinant:
+    \begin{equation*}
+      \begin{split}
+        \det \mt{A}
+        & = \det(\lambda_2 \ve{a}_2 + \dots + \lambda_n \ve{a}_n , \ve{a}_2 , \dots , \ve{a}_n) \\
+        & = \lambda_2 \det(\ve{a}_2 , \ve{a}_2 , \dots , \ve{a}_n) + \dots + \lambda_n \det(\ve{a}_n , \ve{a}_2 , \dots , \ve{a}_n)
+        = \sum_{i = 1}^n \lambda_i \det(\ve{a}_i , \dots , \ve{a}_i , \dots) = 0
+      \end{split}
+    \end{equation*}
+
+    $ (\Leftarrow) $ Suppose $ \{\ve{a}_1 , \dots , \ve{a}_n\} $ LI, i.e. they form a basis of $ \K^{n \times 1} $. Let $ \mt{B} \equiv [\beta_{ij}] \in \GL{n,\K} $ be the matrix representing the change of basis to the Euclidean basis, i.e.:
+    \begin{equation*}
+      \ve{e}_i = \beta_{1 i} \ve{a}_1 + \dots + \beta_{n i} \ve{a}_n
+    \end{equation*}
+    and consider $ \mt{C} \equiv \mt{A} \mt{B} \in \K^{n \times n} $, whose columns are:
+    \begin{equation*}
+      \ve{c}_i = \sum_{j = 1}^n \ve{a}_j \beta_{ji} = \beta_{1i} \ve{a}_1 + \dots + \beta_{n i} \ve{a}_n = \ve{e}_i
+    \end{equation*}
+    Hence, $ \mt{C} = \mt{I}_n $, but by Binet's theorem $ 1 = \det \mt{C} = \det \mt{A} \det \mt{B} = 0 \cdot \det \mt{B} = 0 \absurd $
+  \end{proof}
+\end{proofbox}
+
+Since the determinant is invariant under transposition, this proposition holds for rows too.
 
 
 
