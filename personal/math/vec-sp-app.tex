@@ -88,6 +88,8 @@ Note that $ \GL{1,\K} = \K - \{0\} $.
   \end{proof}
 \end{proofbox}
 
+By this result, we conclude that the inverse matrix, when it exists, is unique.
+
 \subsection{Linear systems of equations}
 
 A \bctxt{linear equation} with $ n \in \N $ variables and $ \K $-coefficients is an expression of the form:
@@ -205,17 +207,7 @@ As these are linear transformations, the two matrices represent equivalent linea
   Given a matrix $ \mt{M} \in \K^{n \times m} $, its \bcdef{character} $ \mathrm{car}(\mt{M}) $ is the number of non-zero rows remaining after Gauss reduction.
 \end{definition}
 
-It can be proven that the character is independent of the operations performed during the reduction algorithm.
-
-\begin{theorem}{Rouché--Capelli theorem}{}
-  A linear system $ \mt{A} \ve{x} = \ve{b} $ has solutions only if $ \mathrm{car}(\mt{A}) = \mathrm{car}([\mt{A} | \ve{b}]) $. Moreover, if the system has solutions, then it is of kind $ \infty^{n - r} $, with $ n $ number of variables and $ r = \mathrm{car}(\mt{A}) $.\index{theorem!Rouché--Capelli}
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    See THEOREM.
-  \end{proof}
-\end{proofbox}
+It can be proven that the character is independent of the operations performed during the reduction algorithm (see \secref{sssec:rank}). Moreover, it is possible to prove the Rouché--Capelli theorem (\tref{th:rouche-capelli}), which states that the system of equations $ \mt{A} \ve{x} = \ve{b} $ has solutions if and only if $ \mathrm{car}(\mt{A}) = \mathrm{car}([\mt{A} | \ve{b}]) $ and, in this case, that it is of type $ \infty^{n - r} $, with $ r \equiv \mathrm{car}(\mt{A}) $.
 
 \section{Vector spaces}
 
@@ -276,6 +268,7 @@ We can now state some basic properties of vector spaces.
       \item $ \lambda \cdot 0_V = \lambda (\ve{v} - \ve{v}) = \lambda \ve{v} + \lambda \cdot (-1_\K) \cdot \ve{v} = \lambda \ve{v} + (-\lambda) \ve{v} = \lambda \ve{v} - (\lambda \ve{v}) = 0_V $
       \item $ \lambda = 0_\K $ is trivial, so consider $ \lambda \neq 0_\K $; then $ \exists ! \lambda^{-1} \in \K : \lambda^{-1} \cdot \lambda = 1_\K $, so $ 0_V = \lambda^{-1} \cdot 0_V = \lambda^{-1} \cdot (\lambda \ve{v}) = (\lambda^{-1} \cdot \lambda) \ve{v} = 1_\K \cdot \ve{v} = \ve{v} $, i.e. $ \ve{v} = 0_V $.
     \end{enumerate}
+    \ensp
   \end{proof}
 \end{proofbox}
 
@@ -443,6 +436,7 @@ We can prove some basic properties of linear dependence.
       \item $ \{\ve{v}_1 , \dots , \ve{v}_n , \ve{w}\} \text{ LD} \implies \exists \lambda_1 , \dots , \lambda_n , \alpha \in \K - \{0\} : \sum_{j = 1}^n \lambda_j \ve{v}_j + \alpha \ve{w} = \ve{0} $, so $ \ve{w} $ can be isolated as $ \ve{w} = - \alpha^{-1} \sum_{j = 1}^n \lambda_j \ve{v}_j $.
       \item $ \sum_{j = 1}^n \lambda_j \ve{v}_j = \ve{0} \land \lambda_n \neq 0 \implies \ve{v}_n = - \lambda_n^{-1} \sum_{j = 1}^{n-1} \lambda_j \ve{v}_j $
     \end{enumerate}
+    \ensp
   \end{proof}
 \end{proofbox}
 
@@ -494,6 +488,7 @@ We can state two trivial properties of generated subsets.
       \item If $ S \subseteq T $, then each linear combination in $ S $ is a linear combination in $ T $ too, hence $ \braket{S} = \braket{T} $.
       \item Given $ \ve{v} = \lambda_1 \ve{s}_1 + \dots + \lambda_n \ve{s}_n \in U $ and $ \ve{s}_n = \mu_1 \ve{s}_1 + \dots + \mu_{n-1} \ve{s}_{n-1} $, then $ \ve{v} = \left( \lambda_1 + \mu_1 \right) \ve{s}_1 + \dots + \left( \lambda_{n-1} + \mu_{n-1} \right) \ve{s}_{n-1} $, hence the thesis.
     \end{enumerate}
+    \ensp
   \end{proof}
 \end{proofbox}
 
@@ -728,6 +723,8 @@ A consequence of this theorem is the fact that LI subset $ \{\ve{v}_1 , \dots , 
 
 \section{Linear applications}
 
+A fundamental tool in mathematics are linear applications, which arise in every one of its fields of study.
+
 \begin{definition}{Linear application}{}
   Given $ \K $-vector spaces $ V,W $, an application $ f : V \ra W $ is \bcdef{$ \K $-linear} if:
   \begin{equation*}
@@ -771,6 +768,7 @@ We can now state some properties of linear applications.
       \item $ g \circ f (\lambda \ve{u} + \mu \ve{v}) = g(\lambda f(\ve{u}) + \mu f(\ve{v})) = \lambda g(f(\ve{u})) + \mu g(f(\ve{v})) $
       \item $ f(\lambda f^{-1}(\ve{u}) + \mu f^{-1}(\ve{v})) = \lambda \ve{u} + \mu \ve{v} \implies f^{-1}(\lambda \ve{u} + \mu \ve{v}) = \lambda f^{-1}(\ve{u}) + \mu f^{-1}(\ve{v}) $
     \end{enumerate}
+    \ensp
   \end{proof}
 \end{proofbox}
 
@@ -862,7 +860,8 @@ As injections map LI vectors to LI vectors and surjections map generators to gen
 \begin{theorem}{Rank--nullity theorem}{rank-nullity}
   Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then:
   \begin{equation}
-    \dk V = \dk \ket{f} + \dk \ran{f}
+    \dk V = \dk \ker{f} + \dk \ran{f}
+    \label{eq:rank-nullity}
   \end{equation}
 \end{theorem}
 
@@ -890,6 +889,8 @@ As injections map LI vectors to LI vectors and surjections map generators to gen
     By \dref{def:basis}, $ \bas $ is a basis of $ V $, i.e. $ \dk V = \dk \ker{f} + \dk \ran{f} $.
   \end{proof}
 \end{proofbox}
+
+The name of this theorem will be clear in \secref{sssec:rank}.
 
 \begin{corollary}{Equidimensionality and bijections}{equidimensionality-bijections}
   Let $ V,W $ be finitely-generated $ \K $-vector spaces and $ f \in \hmk(V,W) $. Then:
@@ -1049,6 +1050,8 @@ Hence, the association between matrices and linear applications is bidirectional
   \end{proof}
 \end{proofbox}
 
+When the bases $ \mathcal{A} $ and $ \bas $ are both the respective canonical bases of $ V $ and $ W $, then we denote the representative matrix of $ f $ simply as $ \mt{M}_f $.
+
 \subsubsection{Change of bases}
 
 To discuss how to perform a change of basis in a vector space, first we have to introduce two equivalence relations.
@@ -1091,7 +1094,7 @@ Therefore, representative matrices of the same linear application are equivalent
 
 In order to continue our analysis of linear applications, we need to introduce two important notions: the determinant and the rank of a matrix.
 
-\subsubsection{Determinants}
+\subsubsection{Determinant}
 
 \begin{definition}{Determinant}{determinant}
   Given a square matrix $ \mt{A} \in \K^{n \times n} : \mt{A} = [a_{ij}]_{i,j = 1, \dots, n} $, its \bcdef{determinant} is defined as:
@@ -1126,6 +1129,7 @@ Note that the determinant has $ n! $ terms, each containing one and only one ele
       \item Follows from the previous property, recalling that $ \lambda \mt{A} $ means multiplying each row (or column) of $ \mt{A} $ by $ \lambda $, and each term of the determinant has $ n $ elements of $ \mt{A} $.
       \item Trivial by direct computation.
     \end{enumerate}
+    \ensp
   \end{proof}
 \end{proofbox}
 
@@ -1137,7 +1141,7 @@ In particular, property (d) shows that the determinant is a $ \K $-multilinear a
 where $ \ve{a}_1 , \dots , \ve{a}_n $ can denote either the rows ($ \in \K^{1 \times n} $) or the columns ($ \in \K^{n \times 1} $) of $ \mt{A} $.
 Furthermore, we can prove a powerful theorem for computing determinants.
 
-\begin{theorem}{Cauchy--Binet theorem}{}
+\begin{theorem}{Binet theorem}{}
   Given $ \mt{A} , \mt{B} \in \K^{n \times n} $, then:
   \begin{equation}
     \det(\mt{A} \mt{B}) = \det(\mt{A}) \det(\mt{B})
@@ -1167,7 +1171,7 @@ Furthermore, we can prove a powerful theorem for computing determinants.
 
 The determinant can also be used to establish the linear (in)dependence of a set of vectors.
 
-\begin{proposition}{}{}
+\begin{proposition}{}{determinant-ld}
   Let $ \mt{A} \in \K^{n \times n} $ and $ \{\ve{a}_1 , \dots , \ve{a}_n\} \in \K^{n \times 1} $ be its columns. Then $ \{\ve{a}_1 , \dots , \ve{a}_n\} $ is LD if and only if $ \det \mt{A} = 0 $.
 \end{proposition}
 
@@ -1195,7 +1199,273 @@ The determinant can also be used to establish the linear (in)dependence of a set
   \end{proof}
 \end{proofbox}
 
-Since the determinant is invariant under transposition, this proposition holds for rows too.
+Since the determinant is invariant under transposition, this proposition holds considering rows too.
+We can now prove an alternative way to compute determinants.
+
+\begin{definition}{Submatrices and minors}{}
+  Let $ \mt{M} \in \K^{m \times n} $. Then any matrix obtained by eliminating any number of rows and/or columns from $ \mt{M} $ is a \bcdef{submatrix} of $ \mt{M} $, and the determinant of any square submatrix is a \bcdef{minor} of $ \mt{M} $.
+\end{definition}
+
+Given a square matrix $ \ve{A} = [a_{ij}] \in \K^{n \times n} $, then we can associate to each element $ a_{ij} $ the square submatrix $ \mt{M}_{ij} \in \K^{(n-1) \times (n-1)} $ obtained eliminating the $ i^\text{th} $ row and the $ j^\text{th} $ columns from $ \mt{A} $: the quantity $ \tilde{a}_{ij} \equiv (-1)^{i + j} \det \mt{M}_{ij} $ is denoted as the \bctxt{cofactor} of $ a_{ij} $, and we define the cofactor matrix $ \cof{\mt{A}} \equiv [\tilde{a}_{ij}] \in \K^{n \times n} $.
+
+\begin{example}{$ 2 \times 2 $ matrices}{}
+  Consider $ \mt{A} \in \K^{2 \times 2} $. The cofactors then are:
+  \begin{align*}
+    \tilde{a}_{11} &= (-1)^{1+1} \det [a_{22}] = a_{22} & \tilde{a}_{12} &= (-1)^{1+2} \det [a_{21}] = - a_{21} \\
+    \tilde{a}_{21} &= (-1)^{2+1} \det [a_{12}] = - a_{12} & \tilde{a}_22 &= (-1)^{2+2} \det [a_{11}] = a_{11}
+  \end{align*}
+  So, in general:
+  \begin{equation*}
+    \mt{A} =
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}
+    \quad \implies \quad
+    \cof{\mt{A}} =
+    \begin{bmatrix}
+      d & -c \\ -b & a
+    \end{bmatrix}
+  \end{equation*}
+\end{example}
+
+Cofactors allow us to compute determinants without explicitly dealing with permutations.
+
+\begin{theorem}{Laplace's Theorem}{}
+  Let $ \mt{A} = [a_{ij}] \in \K^{n \times n} $. Then:
+  \begin{equation}
+    \sum_{k = 1}^n a_{ik} \tilde{a}_{jk} = \sum_{k = 1}^n a_{ki} \tilde{a}_{kj} = \delta_{ij} \det \mt{A}
+    \quad \forall i,j \in \{1, \dots, n\}
+    \label{eq:laplace-expansion}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The proofs of both equalities are analogous, so WLOG we prove the second one.
+
+    $ (i = j) $ Consider $ k,i \in \{1, \dots, n\} $ fixed and denote as $ \mt{M}_{ki} = [m_{p,q}]_{p,q = 1, \dots, n-1} $ the submatrix obtained by eliminating the $ k^\text{th} $ row and the $ i^\text{th} $ column. Then, each term in the expansion of $ \det \mt{A} $ which contains $ a_{ki} $ can be rewritten as:
+    \begin{equation*}
+      \sgn(\sigma) a_{1 \sigma(1)} \dots a_{ki} \dots a_{n \sigma(n)} = \sgn(\tau) a_{ki} m_{1 , \tau(1)} \dots m_{n-1 , \tau(n-1)}
+    \end{equation*}
+    WTS that $ \{\sigma \in \sy{n} : \sigma(k) = i\} \leftrightarrow \sy{n-1} $ is a bijection. Firs, the map $ \sigma \mapsto \tau $ is:
+    \begin{equation*}
+      \tau =
+      \begin{pmatrix}
+        1 & \dots & k-1 & k & \dots & n-1 \\
+        \gamma_i \circ \sigma(1) & \dots & \gamma_i \circ \sigma(k-1) & \gamma_i \circ \sigma(k+1) & \dots & \gamma_i \circ \sigma(n-1)
+      \end{pmatrix}
+    \end{equation*}
+    where $ \gamma_i \equiv (n , n-1 , \dots , i+1 , i) $ is a cycle which decrements all indices larger than $ i $. Then, to construct the map $ \tau \mapsto \sigma $, consider $ \tau' \in \sy{n} : \tau'(p) = \tau(p) \,\,\forall p \in \{1, \dots, n-1\} \land \tau'(n) = n $, so:
+    \begin{equation*}
+      \tau' =
+      \begin{pmatrix}
+        1 & \dots & k-1 & k & \dots & n-1 & n \\
+        \gamma_i \circ \sigma(1) & \dots & \gamma_i \circ \sigma(k-1) & \gamma_i \circ \sigma(k+1) & \dots & \gamma_i \circ \sigma(n-1) & n
+      \end{pmatrix}
+    \end{equation*}
+    Now, consider the following compositions:
+    \begin{equation*}
+      \tau' \circ \gamma_k =
+      \begin{pmatrix}
+        1 & \dots & k-1 & k & k+1 & \dots & n-1 & n \\
+        \gamma_i \circ \sigma(1) & \dots & \gamma_i \circ \sigma(k-1) & n & \gamma_i \circ \sigma(k+1) & \dots & \gamma_i \circ \sigma(n-1) & \gamma_i \circ \sigma(n)
+      \end{pmatrix}
+    \end{equation*}
+    \begin{equation*}
+      \gamma_i \circ \sigma =
+      \begin{pmatrix}
+        1 & \dots & k-1 & k & k+1 & \dots & n-1 & n \\
+        \gamma_i \circ \sigma(1) & \dots & \gamma_i \circ \sigma(k-1) & n & \gamma_i \circ \sigma(k+1) & \dots & \gamma_i \circ \sigma(n-1) & \gamma_i \circ \sigma(n)
+      \end{pmatrix}
+    \end{equation*}
+    Therefore, these are the same permutation, i.e. $ \sigma = \gamma_i^{-1} \circ \tau' \circ \gamma_k $, proving the bijection $ \sigma \leftrightarrow \tau $. As the cycle $ \gamma_k $ can be written as $ n - k $ transpositions, $ \sgn{\gamma_k} = (-1)^{n-k} $, hence:
+    \begin{equation*}
+      \sgn{\sigma} = (-1)^{2n - k - i} \sgn{\tau'} = (-1)^{k+i} \sgn{\tau}
+    \end{equation*}
+    Putting everything together:
+    \begin{equation*}
+      \sigma(\sigma) a_{1 \sigma(1)} \dots a_{ki} \dots a_{n \sigma(n)} = a_{ki} (-1)^{k + i} \sgn(\tau) m_{1 , \tau(1)} \dots m_{n-1 , \tau(n-1)}
+    \end{equation*}
+    Then, the expansion of $ \det \mt{A} $ can be rewritten as:
+    \begin{equation*}
+      \begin{split}
+        \det \mt{A}
+        & = \sum_{\sigma \in \sy{n}} \sgn(\sigma) a_{1 \sigma(1)} \dots a_{n \sigma(n)} = \sum_{k = 1}^n \sum_{\sigma \in \sy{n} :\, \sigma(k) = i} \sgn(\sigma) a_{1 \sigma(1)} \dots a_{ki} \dots a_{n \sigma(n)} \\
+        & = \sum_{k = 1}^n a_{ki} (-1)^{k+i} \sum_{\tau \in \sy{n-1}} \sgn(\tau) m_{1 , \tau(1)} \dots m_{n-1 , \tau(n-1)} \eqdef \sum_{k = 1}^n a_{ki} (-1)^{k+i} \det \mt{M}_{ki}
+      \end{split}
+    \end{equation*}
+    which is valid $ \forall i \in \{1 , \dots , n\} $. Using the definition of cofactor $ \tilde{a}_{ki} \equiv (-1)^{k+i} \det \mt{M}_{ki} $ concludes the proof.
+
+    $ (i \neq j) $ Consider $ i \neq j \in \{1 , \dots , n\} $ and define a matrix $ \mt{B} $ by replacing the $ j^\text{th} $ column of $ \mt{A} $ with the $ i^\text{th} $ one: then $ \det \mt{B} = 0 $. Applying the just-proved expansion to $ \mt{B} $ yields:
+    \begin{equation*}
+      0 = \det \mt{B} = \sum_{k = 1}^n b_{kj} \tilde{b}_{kj}
+    \end{equation*}
+    Now, note that $ b_{kj} = a_{ki} $ by definition, while $ \tilde{b}_{kj} = \tilde{a}_{kj} $, as $ \mt{A} $ and $ \mt{B} $ only differ by the $ j^\text{th} $ column, which does not affect the definition of the cofactors of the $ j^\text{th} $ column's elements. Hence, the proof is complete.
+  \end{proof}
+\end{proofbox}
+
+Moreover, cofactors also allow us to compute inverse matrices in a straightforward way.
+
+\begin{proposition}{Inverse matrix from cofactors}{}
+  Let $ \mt{A} \in \K^{n \times n} $. Then, $ \mt{A} $ is invertible if and only if $ \det \mt{A} \neq 0 $, and:
+  \begin{equation}
+    \mt{A}^{-1} = \frac{1}{\det \mt{A}} \left( \cof{\mt{A}} \right)\tsp
+    \label{eq:inverse-matrix-cofactors}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ Invertibility means that $ \exists \mt{A}^{-1} \in \K^{n \times n} : \mt{A}^{-1} \mt{A} = \mt{A} \mt{A}^{-1} = \mt{I}_n $, so $ \det(\mt{A}^{-1} \mt{A}) = 1 $, but $ \det(\mt{A}^{-1} \mt{A}) = \det(\mt{A}^{-1}) \det(\mt{A}) $ by Binet's theorem, hence $ \det \mt{A} \neq 0 $.
+
+    $ (\Leftarrow) $ To prove this implication, consider $ \mt{A} = [a_{ij}]_{i,j = 1, \dots, n} $. Then, we prove the following lemma.
+
+    \begin{lemma}[before upper = {\tcbtitle}]{}{}
+      \begin{equation*}
+        \mt{A} \left( \cof{\mt{A}} \right)\tsp = \left( \cof{\mt{A}} \right)\tsp \mt{A} = \det(\mt{A}) \mt{I}_n
+      \end{equation*}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        The general elements of $ \mt{A} \left( \cof{\mt{A}} \right)\tsp $ and $ \left( \cof{\mt{A}} \right)\tsp \mt{A} $ are:
+        \begin{equation*}
+          \left[ \mt{A} \left( \cof{\mt{A}} \right)\tsp \right]_{ij} = \sum_{k = 1}^n a_{ik} \tilde{a}_{jk} = \delta_{ij} \det \mt{A}
+          \qquad \qquad
+          \left[ \left( \cof{\mt{A}} \right)\tsp \mt{A} \right]_{ij} = \sum_{k = 1}^n a_{kj} \tilde{a}_{ki} = \delta_{ij} \det \mt{A}
+        \end{equation*}
+        where \eref{eq:laplace-expansion} was used. This completes the proof.
+      \end{proof}
+    \end{proofbox}
+
+    Using this lemma, if $ \det \mt{A} \neq 0 $, then it is clear that $ \mt{A}^{-1} = \left( \det \mt{A} \right)^{-1} \left( \cof{\mt{A}} \right)\tsp $.
+  \end{proof}
+\end{proofbox}
+
+\begin{propcorollary}{Cramer's Theorem}{}
+  Consider a linear system $ \mt{A} \ve{x} = \ve{b} $, with $ \mt{A} \in \K^{n \times n} $ and $ \ve{b} \in \K^{n \times 1} $. Then:
+  \begin{equation*}
+    \det \mt{A} \neq 0
+    \quad \implies \quad
+    \exists ! \ve{x} \in \K^{n \times 1} \text{ solution} : x_i = \frac{1}{\det \mt{A}} \det \left( \ve{a}_1 , \dots , \ve{a}_{i-1} , \ve{b} , \ve{a}_{i+1} , \dots , \ve{a}_n \right)
+  \end{equation*}
+  where $ \ve{a}_1 , \dots , \ve{a}_n \in \K^{n \times 1} $ are the columns of $ \mt{A} $.
+\end{propcorollary}
+
+\begin{proofbox}
+  \begin{proof}
+    $ \det \mt{A} \neq 0 \iff \exists \mt{A}^{-1} \in \K^{n \times n} $ by the previous proposition. Then:
+    \begin{equation*}
+      \ve{x} = \mt{A}^{-1} \ve{b} = \frac{1}{\det \mt{A}} \left( \cof{\mt{A}} \right)\tsp \ve{b}
+    \end{equation*}
+    Its elements are:
+    \begin{equation*}
+      x_i = \frac{1}{\det \mt{A}} \sum_{k = 1}^n \tilde{a}_{ij} b_j
+    \end{equation*}
+    which, by \eref{eq:laplace-expansion}, is the Laplace expansion of the matrix obtained by substituting the $ i^\text{th} $ column of $ \mt{A} $ with $ \ve{b} $, as the cofactors relative to this column are not changed by this substitution.
+  \end{proof}
+\end{proofbox}
+
+These results clearly show the importance of cofactors and determinants in Linear Algebra.
+
+\subsubsection{Rank}
+\label{sssec:rank}
+
+\begin{definition}{Rank}{rank}
+  Given $ \mt{A} \in \K^{m \times n} $ with rows $ \ve{r}_1 , \dots , \ve{r}_m \in \K^{1 \times n} $ and columns $ \ve{c}_1 , \dots , \ve{c}_n \in \K^{m \times 1} $, the \bcdef{rank by rows} of $ \mt{A} $ is defined as $ \rk_\text{r}(\mt{A}) \defeq \dk \braket{\ve{r}_1 , \dots , \ve{r}_m} $, and the \bcdef{rank by columns} as $ \rk_\text{c}(\mt{A}) \defeq \dk \braket{\ve{c}_1 , \dots , \ve{c}_n} $.
+\end{definition}
+
+The rank by rows (or columns) is just the number of LI rows (or columns). We can show that the two ranks are the same.
+
+\begin{proposition}{}{}
+  Given $ \mt{A} \in \K^{m \times n} $, then $ \rk_\text{r}(\mt{A}) = \rk_\text{c}(\mt{A}) $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Set $ r \equiv \rk_\text{r}(\mt{A}) $ and $ c \equiv \rk_\text{c}(\mt{A}) $. If $ r = 0 $, then $ \mt{A} \equiv \mt{0}_{m \times n} $ and $ c = 0 $ too, so consider $ r > 0 $. A LD relation between $ \ve{c}_1 , \dots , \ve{c}_n $ can be written as:
+    \begin{equation*}
+      x_1 \ve{c}_1 + \dots + x_n \ve{c}_n = \ve{0}
+      \quad \implies \quad
+      \exists \ve{x} \equiv
+      \begin{pmatrix}
+        x_1 \\ \vdots \\ x_n
+      \end{pmatrix}
+      \neq \ve{0}
+      \,\,:\,\,
+      \mt{A} \ve{x} = \ve{0}
+    \end{equation*}
+    Now, consider the associated linear application $ L_\mt{A} \in \hmk(\K^n , \K^m) $: then $ \dk \ran{L_\mt{A}} = n - \dk \ker{L_\mt{A}} $ by \eref{eq:rank-nullity}. But $ \dk \ran{L_\mt{A}} $ is the number of LI columns of $ \mt{A} $ (as the columns of $ \mt{A} $ are the images of the Euclidean basis of $ \K^n $), so $ \dk \ran{L_\mt{A}} = c $, while $ \dk \ker{L_\mt{A}} = \dk \{\ve{x} \in \K^{n \times 1} : \mt{A} \ve{x} = \ve{0}\} $ by the above equation.
+
+    WLOG let $ \ve{r}_1 , \dots , \ve{r}_r $ the $ r $ LI rows of $ \mt{A} $, so $ \ve{r}_{r+1} , \dots , \ve{r}_m $ are linear combinations of $ \{\ve{r}_1 , \dots , \ve{r}_r\} $. Then, the linear system reduces to $ \mt{A}' \ve{x} = \ve{0} $, where $ \mt{A}' \in \K^{r \times n} $ is only composed of $ \ve{r}_1 , \dots , \ve{r}_r $, hence $ \rk_\text{c}(\mt{A}') = \rk_\text{c}(\mt{A}) = c $ since they represent equivalent systems. But the columns of $ \mt{A}' $ are vectors in $ \K^{r \times 1} $, thus $ c \leq r $.
+
+    The same reasoning can be applied to $ \mt{A}\tsp $, finding $ r \leq c $, therefore $ r = c $.
+  \end{proof}
+\end{proofbox}
+
+We then set the \bctxt{rank} of $ \mt{A} $ to be $ \rk(\mt{A}) \equiv \rk_\text{r}(\mt{A}) = \rk_\text{c}(\mt{A}) $, and also $ \rk(\mt{A}) = \mathrm{car}(\mt{A}) $, that is the number of the so-called ``pivots" of $ \mt{A} $.
+We can now prove some trivial properties of the rank.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Basic properties of rank}{}
+  \begin{enumerate}[label = {\alph*.}]
+    \item If $ \mt{A} \in \K^{m \times n} $ and $ \mt{B} $ is a submatrix of $ \mt{A} $, then $ \rk \mt{B} \leq \rk \mt{A} $;
+    \item If $ \mt{A} \in \K^{n \times n} $, then $ \mt{A} $ is invertible if and only if $ \rk \mt{A} = n $.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label = {\alph*.}]
+      \item Let $ \mt{A} = [a_{ij}] \in \K^{m \times n} $ and $ \mt{B} $ be formed by rows $ i_1 , \dots , i_p $ and columns $ j_1 , \dots , j_q $ of $ \mt{A} $. Moreover, define $ \mt{C} $ as the submatrix of $ \mt{A} $ formed by the same rows of $ \mt{B} $ and all the columns of $ \mt{A} $: then, obviously $ \rk_\text{c}(\mt{B}) \leq \rk_\text{c}(\mt{C}) $ and $ \rk_\text{r}(\mt{C}) \leq \rk_\text{r}(\mt{A}) $, hence $ \rk \mt{B} \leq \rk \mt{A} $.
+      \item $ \mt{A} $ is invertible if and only if $ \det \mt{A} \neq 0 $, which, by \pref{prop:determinant-ld}, is equivalent to all the columns of $ \mt{A} $ being LI, i.e. $ \rk \mt{A} = n $.
+    \end{enumerate}
+    \ensp
+  \end{proof}
+\end{proofbox}
+
+With the notion of rank defined, we can prove the Rouché--Capelli theorem.
+
+\begin{theorem}{Rouché--Capelli}{rouche-capelli}
+  Let $ \mt{A} \in \K^{m \times n} $ and $ \ve{b} \in \K^{m \times 1} $. Then, the lineas system $ \mt{A} \ve{x} = \ve{b} $ has solutions if and only if $ \rk \mt{A} = \rk \left[ \mt{A} | \ve{b} \right] $ and, in this case, it is of kind $ \infty^{n - r} $, with $ r \equiv \rk \mt{A} $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider the associated linear application $ L_\mt{A} \in \hmk(\K^n , \K^m) $: then, the system has solutions if and only if $ \ve{b} \in \ran{L_\mt{A}} = \braket{\ve{c}_1 , \dots , \ve{c}_n} $, where $ \ve{c}_1 , \dots , \ve{c}_n \in \K^{m \times 1} $ are the columns of $ \mt{A} $. But $ \ve{b} \in \braket{\ve{c}_1 , \dots , \ve{c}_n} \iff \braket{\ve{c}_1 , \dots , \ve{c}_n} = \braket{\ve{c}_1 , \dots , \ve{c}_n , \ve{b}} $, which is equivalent to $ \dk \braket{\ve{c}_1 , \dots , \ve{c}_n} = \dk \braket{\ve{c}_1 , \dots , \ve{c}_n , \ve{b}} $, i.e. $ \rk \mt{A} = \rk \left[ \mt{A} | \ve{b} \right] $.
+
+    Now, assume the system has solutions and $ \rk \mt{A} = \rk \left[ \mt{A} | \ve{b} \right] \equiv r $. WLOG, let $ \ve{r}_1 , \dots , \ve{r}_r $ be the $ r $ LI rows of $ \mt{A} $, so that the equations from the $ (r+1)^\text{th} $ to the $ m^\text{th} $ can be eliminated from the linear system. Then:
+    \begin{equation*}
+      \mt{A} \ve{x} = \ve{b}
+      \quad \iff \quad
+      \begin{cases}
+        a_{11} x_1 + \dots + a_{1 r} x_r + a_{1 (r+1)} x_{r+1} + \dots + a_{1 n} x_n = b_1 \\
+        \qquad \qquad \vdots \\
+        a_{r 1} x_1 + \dots + a_{r r} x_r + a_{r (r+1)} x_{r+1} + \dots + a_{r n} x_n = b_r \\
+      \end{cases}
+    \end{equation*}
+    $ x_{r+1} , \dots , x_n $ can be WLOG interpreted as free parameters, which can then be absorbed into the constant terms: in this way, the system reduces to $ \mt{A}' \ve{x}' = \ve{b}' $, with $ \mt{A} \in \K^{r \times r} $ and $ \ve{x}' , \ve{b} \in \K^{r \times 1} $. By hypothesis $ \rk \mt{A} = r $, hence it is invertible, and the system has a unique solution $ \ve{x}' = \mt{A}^{-1} \ve{b} $ which depends on $ n - r $ parameters, i.e. of kind $ \infty^{n - r} $.
+  \end{proof}
+\end{proofbox}
+
+Finally, rank can be used to prove some properties of linear applications too.
+
+\begin{proposition}{}{}
+  Given $ f \in \hmk(V,W) $ and its representative matrix $ \mt{M}_f \in \K^{m \times n} $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item $ \dk \ran{f} = \rk \mt{M}_f $
+    \item $ \dk \ker{f} = n - \rk \mt{M}_f $
+    \item If $ n = m $ and $ \rk \mt{M}_f = n $, then $ f $ is an isomorphism.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ \dk \ran{f} = \dk \braket{f(\ve{e}_1) , \dots , f(\ve{e}_n)} $, with $ \{\ve{e}_1 , \dots , \ve{e}_n\} $ the canonical basis of $ V $, it is clear that $ \dk \ran{f} = \rk \mt{M}_f $ by \dref{def:rank}. Then, $ \dk \ker{f} = n - \rk \mt{M}_f $ by the rank--nullity theorem (\tref{th:rank-nullity}).
+
+    Now, consider $ n = m $, i.e. $ \dk V = \dk W $. If $ \rk \mt{M}_f = n $, then $ \rk \ran{f} = \dk W $ and $ \dk \ker{f} = 0 $, so $ f $ is both an surjection and an injection, i.e. a bijection.
+  \end{proof}
+\end{proofbox}
 
 
 
