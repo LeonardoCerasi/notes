@@ -330,7 +330,7 @@ Generally, it is easier to show closure under linear combinations rather than un
   \end{proof}
 \end{proofbox}
 
-On the other hand, in general $ V_1 \cup V_2 $ is not a subspace. As a counterexample, consider e.g. $ V = \Vect_0(\mathbb{E}^3) $, the plane $ \pi : z = 0 $ and the line $ r : (x,y,z) = (0,0,t) , t \in \R $; then, consider the subspaces $ V_1 = \Vect_0(\pi) , V_2 = \Vect_0(r) $: their union is clearly not closed under addition, as:
+On the other hand, in general $ V_1 \cup V_2 $ is not a subspace. As a counterexample, consider e.g. $ V = \Vect_0(\R^3) $, the plane $ \spi : z = 0 $ and the line $ r : (x,y,z) = (0,0,t) , t \in \R $; then, consider the subspaces $ V_1 = \Vect_0(\pi) , V_2 = \Vect_0(r) $: their union is clearly not closed under addition, as:
 \begin{equation*}
   \begin{pmatrix}
     1 \\ 1 \\ 0
@@ -524,7 +524,7 @@ Every non-trivial vector space (i.e. $ V \neq \{\ve{0}\} $) admits the existence
   \end{proof}
 \end{proofbox}
 
-This, though trivial for finite-dimensional spaces, is quite impressive for infinite-dimensional ones (for dimensionality, see SECTION).
+This, though trivial for finite-dimensional spaces, is quite impressive for infinite-dimensional ones (for dimensionality, see \secref{sssec:dimensionality}).
 
 \begin{proposition}{}{}
   Given a $ \K $-vector space $ V $, then $ S \subseteq V $ is a basis of $ V $ if and only if every element of $ V $ has a unique representation as a linear combination of elements of $ S $.
@@ -616,6 +616,7 @@ There is still another equivalent concept to introduce.
 This shows that bases, MSLIVs and MSGs are all equivalent notions.
 
 \subsubsection{Dimensionality}
+\label{sssec:dimensionality}
 
 To properly define the concept of dimensionality of a vector space, we first have to prove that all bases are equivalent.
 
@@ -718,7 +719,7 @@ A consequence of this theorem is the fact that LI subset $ \{\ve{v}_1 , \dots , 
 \end{proofbox}
 
 \begin{example}{Eucldean geometry}{}
-  Consider $ V = \Vect_0(\mathbb{E}^3) $ and $ \alpha , \beta $ planes such that $ \ve{0} \in \alpha , \beta $: they then determine a line $ r \equiv \alpha \cap \beta \ni \{\ve{0}\} $. Setting $ X = \Vect_0(\alpha) $, $ Y = \Vect_0(\beta) $ and $ X \cap Y = \Vect_0(r) $, we correctly have $ 2 + 2 = 3 + 1 $.
+  Consider $ V = \Vect_0(\R^3) $ and $ \alpha , \beta $ planes such that $ \ve{0} \in \alpha , \beta $: they then determine a line $ r \equiv \alpha \cap \beta \ni \{\ve{0}\} $. Setting $ X = \Vect_0(\alpha) $, $ Y = \Vect_0(\beta) $ and $ X \cap Y = \Vect_0(r) $, we correctly have $ 2 + 2 = 3 + 1 $.
 \end{example}
 
 \section{Linear applications}
@@ -909,6 +910,7 @@ The name of this theorem will be clear in \secref{sssec:rank}.
 
 We can further classify applications:
 \begin{itemize}
+  \item $ f \in \hmk(V,W) $ is a \bctxt{homomorphism};
   \item $ f \in \hmk(V,W) $ bijective is an \bctxt{isomorphism};
   \item $ f \in \hmk(V,V) \equiv \End(V) $ is an \bctxt{endomorphism};
   \item $ f \in \End(V) $ bijective is an \bctxt{automorphism}.
@@ -941,7 +943,7 @@ Isomorphism induce an equivalence relation between vector spaces.
 
 This is an equivalence relation since, if $ f $ is an isomorphism, then $ f^{-1} $ is an isomorphism too.
 
-\begin{theorem}{Equidimensionality and isomorphisms}{}
+\begin{theorem}{Equidimensionality and isomorphisms}{equidimensionality-isomorphism}
   Let $ V,W $ be finitely-generated $ \K $-vector spaces. Then:
   \begin{equation*}
     V \cong W
@@ -1031,11 +1033,11 @@ Now, we can directly verify that $ L_\mt{A} \circ \varphi_\mathcal{A} = \varphi_
 \end{equation*}
 Hence, the association between matrices and linear applications is bidirectional and well-defined, and in fact it defines an isomorphism $ \hmk(V,W) \cong \K^{m \times n} $.
 
-\begin{definition}{Representative matrix}{}
+\begin{definition}{Representative matrix}{representative-matrix}
   Let $ V,W $ be finitely-generated $ \K $-vector spaces with respective bases $ \mathcal{A} , \bas $. Then, the \bcdef{representative matrix} of $ f \in \hmk(V,W) $ is the matrix $ \mt{M}_\bas^\mathcal{A}(f) $ determined by the isomorphism $ \hmk(V,W) \leftrightarrow \K^{m \times n} : f \leftrightarrow \mt{M}_{\bas}^\mathcal{A}(f) $ defined by \eref{eq:representative-matrix-definition}.
 \end{definition}
 
-\begin{lemma}{Basic properties of representation matrices}{}
+\begin{lemma}{Basic properties of representative matrices}{representative-matrix-properties}
   Given three finitely-generated $ \K $-vector spaces $ X,Y,Z $ with respective bases $ \mathcal{A} , \bas , \mathcal{C} $ and $ f \in \hmk(V,W) , g \in \hmk(W,Z) $, then:
   \begin{enumerate}[label = {\alph*.}]
     \item $ \mt{M}_\mathcal{C}^\mathcal{A}(g \circ f) = \mt{M}_\mathcal{C}^\bas(g) \cdot \mt{M}_\bas^\mathcal{A}(f) $
@@ -1450,8 +1452,8 @@ With the notion of rank defined, we can prove the Rouché--Capelli theorem.
 
 Finally, rank can be used to prove some properties of linear applications too.
 
-\begin{proposition}{}{}
-  Given $ f \in \hmk(V,W) $ and its representative matrix $ \mt{M}_f \in \K^{m \times n} $, then:
+\begin{proposition}{}{application-rank}
+  Given two finite-dimensional $ \K $-vector spaces $ V , W $ and an application $ f \in \hmk(V,W) $ with representative matrix $ \mt{M}_f \in \K^{m \times n} $, then:
   \begin{enumerate}[label = {\alph*.}]
     \item $ \dk \ran{f} = \rk \mt{M}_f $
     \item $ \dk \ker{f} = n - \rk \mt{M}_f $
@@ -1463,16 +1465,356 @@ Finally, rank can be used to prove some properties of linear applications too.
   \begin{proof}
     As $ \dk \ran{f} = \dk \braket{f(\ve{e}_1) , \dots , f(\ve{e}_n)} $, with $ \{\ve{e}_1 , \dots , \ve{e}_n\} $ the canonical basis of $ V $, it is clear that $ \dk \ran{f} = \rk \mt{M}_f $ by \dref{def:rank}. Then, $ \dk \ker{f} = n - \rk \mt{M}_f $ by the rank--nullity theorem (\tref{th:rank-nullity}).
 
-    Now, consider $ n = m $, i.e. $ \dk V = \dk W $. If $ \rk \mt{M}_f = n $, then $ \rk \ran{f} = \dk W $ and $ \dk \ker{f} = 0 $, so $ f $ is both an surjection and an injection, i.e. a bijection.
+    Now, consider $ n = m $, i.e. $ \dk V = \dk W $. If $ \rk \mt{M}_f = n $, then $ \rk \ran{f} = \dk W $ and $ \dk \ker{f} = 0 $, so $ f $ is both a surjection and an injection, i.e. a bijection.
   \end{proof}
 \end{proofbox}
 
+\subsection{Eigenvalues and eigenvectors}
 
+Consider two $ \K $-vector spaces $ V,W $ of dimensions $ \dk V = n , \dk W = m $ and an application $ f \in \hmk(V,W) $. Then, by \pref{prop:application-rank}, is possible to chose two bases $ \bas \ssq V , \mathcal{C} \ssq W $ such that:
+\begin{equation*}
+  \mt{M}_\mathcal{C}^\bas(f) =
+  \begin{bmatrix}
+    \mt{I}_k & \mt{0}_{n-k} \\
+    \mt{0}_{m-k} & \mt{0}_{(m-k) \times (n-k)}
+  \end{bmatrix}
+\end{equation*}
+with $ k \equiv \dk \ran{f} $. To show that this is possible, consider $ k < n $ (i.e. $ \ker{f} \neq \{\ve{0}\} $), so that, by \tref{th:rank-nullity}, $ \dk \ker{f} = n - k $, and let $ \{\ve{v}_{k+1} , \dots , \ve{v}_n\} \ssq V $ be a basis of $ \ker{f} $ and WLOG $ \bas = \{\ve{v}_1 , \dots , \ve{v}_k , \ve{v}_{k+1} , \dots , \ve{v}_n\} $ its extension to a basis of $ V $: then, $ \{f(\ve{v}_1) , \dots , f(\ve{v}_k)\} \ssq W $ is a basis of $ \ran{f} $, and WLOG $ \mathcal{C} = \{f(\ve{v}_1) , \dots , f(\ve{v}_k) , \ve{w}_{k+1} , \dots , \ve{w}_m\} $ its extension to a basis of $ W $. It is trivial to see that $ \mt{M}_\mathcal{C}^\bas(f) $ has the desired form, for the so-defined bases.
 
+A matrix of this form resembles a diagonal matrix, and it is in fact diagonal if $ n = m $. A particular such case is $ W = V $, i.e. that of endomorphisms that can be diagonalized, which we now analyze. Note that our discussion in this section is limited to finite-dimensional vector spaces, for which the concepts used are well-defined.
 
+\begin{definition}{Diagonalizable endomorphism}{}
+  Let $ V $ be a $ \K $-vector space. Then, $ f \in \End{V} $ is \bcdef{diagonalizable} if $ \exists \bas \ssq V $ basis of $ V $, called \bcdef{diagonalizing basis}, such that:
+  \begin{equation*}
+    \mt{M}_\bas^\bas(f) =
+    \begin{bmatrix}
+      \lambda_1 & 0 & \dots & 0 \\
+      0 & \lambda_2 & \dots & 0 \\
+      \vdots & \vdots & \ddots & \vdots \\
+      0 & 0 & \dots & \lambda_n
+    \end{bmatrix}
+  \end{equation*}
+  for some $ \lambda_1 , \dots , \lambda_n \in \K $.
+\end{definition}
 
+\begin{lemma}{Diagonalizable matrix}{}
+  Given $ \mt{A} \in \K^{n \times n} $, then $ \mt{A} $ is diagonalizable if and only if it is similar to a diagonal matrix.
+\end{lemma}
 
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ $ \mt{A} \in \K^{n \times n} $ diagonalizable is equivalent to $ L_\mt{A} \in \End{\K^n} $ diagonalizable, which means that $ \exists \bas \ssq \K^n : \mt{M}_\bas^\bas(L_\mt{A}) $ is diagonal. Denoting the canonical basis of $ \K^n $ as $ \mathcal{E} $, then $ \mt{A} \equiv \mt{M}_\mathcal{E}^\mathcal{E}(L_\mt{A}) $ and $ \mt{M}_\bas^\bas(L_\mt{A}) = [\mt{N}_\mathcal{E}^\bas]^{-1} \mt{M}_\mathcal{E}^\mathcal{E}(L_\mt{A}) \mt{N}_\mathcal{E}^\bas $, which shows that $ \mt{A} $ is similar to a diagonal matrix.
 
+    $ (\Leftarrow) $ Let $ \mt{S} \in \GL{n,\K} : \mt{S}^{-1} \mt{A} \mt{S} = \mt{D} $, with $ \mt{D} \in \K^{n \times n} $ diagonal. Consider $ \ve{v}_1 , \dots , \ve{v}_n \in \K^{n \times 1} $ the columns of $ \mt{S} $: as $ \det \mt{S} \neq 0 $, they form a basis $ \bas = \{\ve{v}_1 , \dots , \ve{v}_n\} \ssq \K^n $ since they are LI, and $ \mt{S} = \mt{N}_\mathcal{E}^\bas $ (with $ \mathcal{E} $ canonical basis of $ \K^n $). Then $ \mt{M}_\bas^\bas(L_\mt{A}) = [\mt{N}_\mathcal{E}^\bas]^{-1} \mt{M}_\mathcal{E}^\mathcal{E}(L_\mt{A}) \mt{N}_\mathcal{E}^\bas = \mt{S}^{-1} \mt{A} \mt{S} = \mt{D} $, i.e. $ L_\mt{A} $ is diagonalizable with diagonalizing basis $ \bas $.
+  \end{proof}
+\end{proofbox}
 
+It is possible to characterize the diagonalizing basis in order to get an algorithm to establish whether an endomorphism is diagonalizable.
+
+\begin{definition}{Eigenvectors and eigenvalues}{}
+  Given a $ \K $-vector space $ V $ and $ f \in \End{V} $, then $ \ve{v} \in V : \ve{v} \neq \ve{0} $ is an \bcdef{eigenvector} of $ f $ if $ \exists \lambda \in \K : f(\ve{v}) = \lambda \ve{v} $, called \bcdef{eigenvalue} relative to $ \ve{v} $.
+\end{definition}
+
+The null vector $ \ve{0} $ is excluded from the formal definition of eigevector since it can be regarded as an eigenvector with $ \K $-finitely-many eigenvalues.
+
+\begin{proposition}{Diagonalizing basis}{diagonalizing-basis}
+  Given a $ \K $-vector space $ V $ and $ f \in \End{V} $, then $ f $ is diagonalizable if and only if $ \exists \bas \ssq V $ basis of $ V $ composed of eigenvectors of $ f $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ If $ \mt{M}_\bas^\bas(f) = \diag(\lambda_1 , \dots , \lambda_n) $, then, given $ \bas = \{\ve{v}_1 , \dots , \ve{v}_n\} $, clearly $ f(\ve{v}_i) = 0 \cdot \ve{v}_1 + \dots + \lambda_i \ve{v}_i + \dots + 0 \cdot \ve{v}_n = \lambda_i \ve{v}_i \,\,\forall i \in \{1 , \dots , n\} $.
+
+    $ (\Leftarrow) $ Given $ \bas = \{\ve{v}_1 , \dots , \ve{v}_n\} : f(\ve{v}_i) = \lambda_i \ve{v}_i \,\,\forall i \in \{1 , \dots , n\} $, then by \dref{def:representative-matrix} $ \mt{M}_\bas^\bas(f) = \diag(\lambda_1 , \dots , \lambda_n) $.
+  \end{proof}
+\end{proofbox}
+
+Moreover, the eigenvalues of $ f \in \End{V} $ determine subspaces of $ V $.
+
+\begin{proposition}{Eigenspaces}{}
+  Let $ V $ be a $ \K $-vector space and $ f \in \End{V} $. Then, given an eigenvalue $ \lambda \in \K $ of $ f $, the relative \bcprop{eigenspace} $ V_\lambda(f) \defeq \{\ve{v} \in V : f(\ve{v}) = \lambda \ve{v}\} $ is a subspace of $ V $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Trivially $ \{\ve{0}\} \in V_\lambda(\ve{v}) \,\,\forall \lambda \in \K $. Then, given $ \ve{v}_1 , \ve{v}_2 \in V_\lambda(f) $:
+    \begin{equation*}
+      f(\mu_1 \ve{v}_1 + \mu_2 \ve{v}_2) = \mu_1 f(\ve{v}_1) + \mu_2 f(\ve{v}_2) = \mu_1 \lambda \ve{v}_1 + \mu_2 \lambda \ve{v}_2 = \lambda (\mu_1 \ve{v}_1 + \mu_2 \ve{v}_2)
+    \end{equation*}
+    which shows that $ V_\lambda(f) \ssq V $ is closed under linear combinations, i.e. a subspace of $ V $.
+  \end{proof}
+\end{proofbox}
+
+\begin{example}{Euclidean geometry}{}
+  Set $ V = \Vect_0(\R^2) $. Then, if $ f $ is a reflection with respect to the line $ r $, then it has two eigenspaces: $ V_1(f) = \{\ve{v} \in V : \ve{v} \parallel r\} $ and $ V_{-1}(f) = \{\ve{v} \in V : \ve{v} \perp r\} $. On the other hand, if $ g $ is a rotation by an angle $ \alpha \in [0, 2\pi) $, then there are three possible cases:
+  \begin{itemize}
+    \item $ \alpha = 0 $, i.e. $ g = \id_V $ and $ V_1(g) = V $;
+    \item $ \alpha = \pi $, i.e. $ g = - \id_V $ and $ V_{-1}(g) = V $;
+    \item $ \alpha \in (0,\pi) \cup (\pi,2\pi) $, and it has no eigenvalues.
+  \end{itemize}
+\end{example}
+
+We can prove that these eigenspaces are ``linearly-independent" from one another.
+
+\begin{theorem}{LI eigenvectors}{eigenvalues-li}
+  Consider a $ \K $-vector space $ V $ and $ f \in \End{V} $. If $ \lambda_1 \neq \dots \neq \lambda_k $ are distinct eigenvalues of $ f $, then their relative eigenvectors $ \ve{v}_1 , \dots , \ve{v}_k $ are LI.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    We use induction on $ k $:
+    \begin{itemize}
+      \item $ k = 1 $ is true as $ \ve{v}_1 \neq \ve{0} $ is LI.
+      \item Assume that $ \ve{v}_1 , \dots , \ve{v}_{k-1} $ are LI.
+      \item Consider $ a_1 \ve{v}_1 + \dots + a_k \ve{v}_k = \ve{0} $, with $ a_1 , \dots , a_k \in \K $. Then $ f(a_1 \ve{v}_1 + \dots + a_k \ve{v}_k) = \ve{0} $, i.e. $ a_1 \lambda_1 \ve{v}_1 + \dots a_k \lambda_k \ve{v}_k = \ve{0} $, but $ \ve{0} = \lambda_k \ve{0} = a_1 \lambda_k \ve{v}_1 + \dots + a_k \lambda_k \ve{v}_k $, so the linear combination reduces to $ a_1 (\lambda_1 - \lambda_k) \ve{v}_1 + \dots + a_{k-1} (\lambda_{k-1} - \lambda_k) \ve{v}_k = \ve{0} $. The eigenvalues are distinct by hypothesis and the eigenvectors are LI by the inductive step, hence $ a_1 = \dots = a_{k-1} = 0 $, and $ a_k = 0 $ as $ \ve{v}_k \neq \ve{0} $, i.e. $ \ve{v}_1 , \dots , \ve{v}_k $ are LI.
+    \end{itemize}
+    \ensp
+  \end{proof}
+\end{proofbox}
+
+By \pref{prop:diagonalizing-basis}, if $ f $ has $ n = \dk V $ distinct eigenvalues, then it is diagonalizable, as they form a diagonalizing basis of $ V $ by \tref{th:eigenvalues-li}.
+
+\subsubsection{Computation of eigenvalues}
+
+In order to systematically compute the eigenvalues of $ f \in \End{V} $, note that the condition for $ \lambda \in \K $ to be an eigenvalue is $ \exists \ve{v} \in V : f(\ve{v}) = \lambda \ve{v} \iff (f - \lambda \id_V)(\ve{v}) = \ve{0} $, hence the relative eigenspace can be written as $ V_\lambda(f) = \ker(f - \lambda \id_V) $.
+
+Translating this in matrix terms, given a basis $ \bas \ssq V $ and $ \mt{A} \equiv \mt{M}_\bas^\bas(f) $, then $ \lambda $ is an eigenvalue of $ f $ if $ V_\lambda(f) \neq \{\ve{0}\} $, which means that $ f - \lambda \id_V $ must not be an injection (by \pref{prop:kernel-injections}): by \pref{prop:application-rank} this is equivalent to $ \rk(\mt{A} - \lambda \mt{I}_n) < n $, i.e. $ \det(\mt{A} - \lambda \mt{I}_n) = 0 $ by \pref{prop:determinant-ld}.
+
+\begin{definition}{Characteristic polynomial}{}
+  Given $ \mt{A} \in \K^{n \times n} $, its \bcdef{characteristic polynomial} is $ p_\mt{A}(t) \defeq \det(\mt{A} - t \mt{I}_n) \in \K_n[t] $.
+\end{definition}
+
+We see then that the eigenvalues of $ f $ are the roots of $ p_\mt{A}(\lambda) $, with $ \mt{A} \equiv \mt{M}_\bas^\bas(f) $. Note that the characteristic polynomial is basis-independent, and so are the eigenvalues of $ f $.
+
+\begin{lemma}{Basis-independence of eigenvalues}{characteristic-polynomial-basis-independence}
+  Given $ V $ a $ \K $-vector space, $ \bas , \mathcal{C} \ssq V $ two bases and $ f \in \End{V} $, setting $ \mt{B} \equiv \mt{M}_\bas^\bas(f) $ and $ \mt{C} \equiv \mt{M}_\mathcal{C}^\mathcal{C}(f) $, then $ p_\mt{B}(\lambda) = p_\mt{C}(\lambda) $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \mt{N} \equiv \mt{N}_\mathcal{C}^\bas \in \GL{n,\K} $, so that $ \mt{B} = \mt{N}^{-1} \mt{C} \mt{N} $. Then:
+    \begin{equation*}
+      \det(\mt{B} - \lambda \mt{I}_n) = \det(\mt{N}^{-1} \mt{C} \mt{N} - \lambda \mt{N}^{-1} \mt{I}_n \mt{N}) = \det(\mt{N}^{-1}) \det(\mt{C} - \lambda \mt{I}_n) \det(\mt{N}) = \det(\mt{C} - \lambda \mt{I}_n)
+    \end{equation*}
+    where we used Binet's theorem. This shows that $ p_\mt{B}(\lambda) = p_\mt{C}(\lambda) $.
+  \end{proof}
+\end{proofbox}
+
+A particular corollary, obtained setting $ \lambda = 0 $, is that similar matrices have the same determinant.
+
+The basis-independence of the characteristic polynomial allows us to define the notions of determinant $ \det f $ and characteristic polynomial $ p_f(\lambda) $ directly for the endomorphism $ f $, since they are well-defined by \lref{lemma:characteristic-polynomial-basis-independence}. In particular, since $ p_f(\lambda) \in \K_n[\lambda] $ with $ n = \dk V $, if $ V $ is finite-dimensional, then $ f $ as finitely-many eigenvalues.
+
+\begin{example}{Complex and real endomorphisms}{}
+  If $ \K = \C $, then $ p_f(\lambda) $ has $ n $ roots by the fundamental theorem of algebra. On the other hand, if $ \K = \R $, then only the real roots of $ p_f(\lambda) $ are eigenvalues of $ f $.
+\end{example}
+
+In general, then, the eigevalues $ \lambda $ of $ f $ are found by solving $ p_f(\lambda) = 0 $, and then the eigenspaces $ V_\lambda(f) $ are found by solving the systems $ (\mt{A} - \lambda \mt{I}_n) \ve{x} = \ve{0} $.
+
+\subsubsection{Multiplicity of eigevalues}
+
+From Ruffini's theorem, if $ \alpha \in \K $ is a root of $ p(t) \in \K[t] $, then $ \exists q(t) \in \K[t] : p(t) = (t - \alpha) q(t) $, so in general we define the \bctxt{multiplicity} of $ \alpha$ as $ m_p(\alpha) \defeq \max_{\N_0} \{k \in \N_0 : \exists q(t) \in \K[t] : p(t) = (t-\alpha)^k q(t)\} $, i.e. the exponent of the highest power of $ (t - \alpha) $ that divides $ p(t) $. This concept can be extended to eigenvalues in a two-fold way.
+
+\begin{definition}{Multiplicity}{}
+  Given a $ \K $-vector space $ V $ and $ f \in \End{V} $, for an eigenvalue $ \lambda \in \K $ of $ f $ the \bcdef{algebraic multiplicity} is $ \am(\lambda) \defeq m_{p_f}(\lambda) $ and the \bcdef{geometric multiplicity} is $ \gm(\lambda) \defeq \dk V_\lambda(f) $.
+\end{definition}
+
+Though different in nature, we can prove an important relation between the two multiplicities.
+
+\begin{lemma}{}{}
+  Given a $ \K $-vector space $ V $, $ f \in \End{V} $ and an eigenvalue $ \lambda \in \K $, then $ 1 \le \gm(\lambda) \le \am(\lambda) $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    As $ \lambda $ is an eigenvalue of $ f $, $ V_\lambda(f) \neq \{\ve{0}\} $, hence $ \gm(\lambda) \ge 1 $. Now, let $ s \equiv \gm(\lambda) $ and $ \{\ve{v}_1 , \dots , \ve{v}_s\} \ssq V_\lambda(f) $ a basis of $ V_\lambda(f) $, and extend it to a basis $ \bas = \{\ve{v}_1 , \dots , \ve{v}_s , \ve{w}_{s+1} , \dots , \ve{w}_n\} $ of $ V $. By definition $ f(\ve{v}_i) = \lambda \ve{v}_i \,\,\forall i = 1, \dots, s $, hence:
+    \begin{equation*}
+      \mt{M}_\bas^\bas(f) =
+      \begin{bmatrix}
+        \lambda \mt{I}_s & * \\
+        \mt{0}_{s \times (n-s)} & *
+      \end{bmatrix}
+    \end{equation*}
+    Clearly, then, $ p_f(t) = (t - \lambda)^s q(t) $, with $ q(t) \in \K_{n-s}[t] $ determined by $ \{\ve{w}_{s+1} , \dots , \ve{w}_n\} $, hence $ \am(\lambda) \ge s $, which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+The diagonalizability of an endomorphism is linked to the reducibility of its characteristic polynomial and the multiplicity of its eigenvalues.
+
+\begin{theorem}{Diagonalizability and multiplicity}{}
+  Let $ V $ be a $ \K $-vector space and $ f \in \End{V} $. Then, $ f $ is diagonalizable if and only if $ p_f(\lambda) $ is fully reducible in $ \K $ and $ \am(\lambda) = \gm(\lambda) \,\,\forall \lambda \in \K $ eigenvalue of $ f $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ Let $ \bas \ssq V $ be the diagonalizing basis of $ f $: then, given  $ \lambda_1 , \dots , \lambda_r \in \K $ distinct eigenvalues of $ f $, $ \mt{M}_\bas^\bas(f) = \diag(\lambda_1 , \dots , \lambda_1 , \dots , \lambda_r , \dots \lambda_r) $ with $ m_i \equiv \am(\lambda_i) \,\,\forall i \in \{1, \dots, r\} $, and $ p_f(t) = (\lambda_1 - t)^{m_1} \dots (\lambda_r - t)^{m_r} $ with $ m_1 + \dots + m_r = n \equiv \dk V $. This shows that $ p_f(t) $ is fully reducible in $ \K $.
+
+    Now, consider $ V_{\lambda_i}(f) = \ker(f - \lambda_i \id_V) $: by \pref{prop:application-rank} $ \dk V_{\lambda_i}(f) = n - \rk(\mt{M}_\bas^\bas(f) - \lambda_i \mt{I}_n) $, but:
+    \begin{equation*}
+      \mt{M}_\bas^\bas(f) - \lambda_i \mt{I}_n = \diag(\underbrace{\lambda_1 - \lambda_i , \dots , \lambda_1 - \lambda_i}_{m_1} , \dots , \underbrace{0 , \dots , 0}_{m_i} , \dots , \underbrace{\lambda_r - \lambda_i , \dots , \lambda_r - \lambda_i}_{m_r})
+    \end{equation*}
+    hence $ \rk(\mt{M}_\bas^\bas(f) - \lambda_i \mt{I}_n) = \sum_{j = 1}^n m_j - m_i = n - m_i $, i.e. $ \gm(\lambda_i) = m_i \equiv \am(\lambda_i) $.
+
+    $ (\Leftarrow) $ Let $ \lambda_1 , \dots , \lambda_r \in \K $ be the distinct eigenvalues of $ f $, with $ m_i \equiv \gm(\lambda_i) \,\,\forall i \in \{1, \dots , r\} $, and be $ \bas_i = \{\ve{v}_{i,1} , \dots , \ve{v}_{i,m_i}\} \ssq V_{\lambda_i}(f) $ a basis of $ V_{\lambda_i}(f) $. By hypothesis, the total number of basis-eigenvectors is $ m_1 + \dots + m_r = \am(\lambda_1) + \dots + \am(\lambda_r) = n $, as $ p_f(t) $ is fully reducible in $ \K $, so consider the following linear combination:
+    \begin{equation*}
+      \underbrace{\mu_{1,1} \ve{v}_{1,1} + \dots + \mu_{1,m_1} \ve{v}_{1,m_1}}_{\ve{w}_1} + \dots + \underbrace{\mu_{r,1} \ve{v}_{r,1} + \dots + \mu_{r,m_r} \ve{v}_{r,m_r}}_{\ve{w}_r} = \ve{0}
+    \end{equation*}
+    Since $ \ve{w}_i \in V_{\lambda_i}(f) \,\,\forall i \in \{1, \dots, r\} $, they are LI by \tref{th:eigenvalues-li}, so $ \ve{w}_1 = \dots = \ve{w}_r = \ve{0} $. Then, $ \mu_{i,1} \ve{v}_{i,1} + \dots + \mu_{i,m_i} \ve{v}_{i,m_i} = \ve{0} \,\,\forall i \in \{1, \dots, r\} $, but $ \bas_i $ is a basis of $ V_{\lambda_i}(f) $, thus $ \mu_{i,1} = \dots = \mu_{i,m_i} = 0 \,\,\forall i \in \{1, \dots, r\} $: this means that $ \bas = \bas_1 \cup \dots \cup \bas_r $ is a basis of $ V $, hence $ f $ is diagonalizable with diagonalizing basis $ \bas $.
+  \end{proof}
+\end{proofbox}
 
 \section{Inner-product spaces}
+
+A particular class of vector spaces is of great interest in mathematics: these are inner-product spaces, in which we can introduce the notion of ``distance".
+
+\subsection{Dual spaces}
+
+In order to define inner-product spaces, we first have to analyze dual spaces, which we will generalize in the next chapter.
+
+\begin{definition}{Dual space}{}
+  Given a $ \K $-vector space $ V $, its \bcdef{dual space} is $ V^* \defeq \hmk(V,\K) $, whose elements are \bcdef{linear forms} (or functionals) on $ V $.
+\end{definition}
+
+Clearly, $ V^* $ is a $ \K $-vector space too, since $ \hmk(V,\K) $ has a natural structure of $ \K $-vector space due to linearity.
+
+\begin{lemma}{Dual basis}{}
+  Given a finite-dimensional $ \K $-vector space $ V $ with a basis $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} \ssq V $, then $ \dk V^* = \dk V $ and $ \bas^* \equiv \{b^*_1 , \dots , b^*_n\} : b^*_i(\ve{b}_j) = \delta_{ij} \,\,\forall i,j \in \{1, \dots , n\} $ is a basis of $ V^* $, called \bclemma{dual basis} relative to $ \bas $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Fix the canonical basis $ \mathcal{E} = \{1_\K\} \ssq \K $ of $ \K $: then, the application $ \varphi : V^* \ra \K^{1 \times n} : \varphi(\omega) = \mt{M}_\mathcal{E}^\bas(\omega) $ is an isomorphism, so $ \dk V = n $ by \tref{th:equidimensionality-isomorphism}.
+
+    To prove that $ \bas^* \ssq V^* $ is a basis, WTS $ \bas^* $ is LI. Take $ \ve{v} \in V : \ve{v} = \sum_{i = 1}^n v_i \ve{b}_i $, so that:
+    \begin{equation*}
+      b_i^*(\ve{v}) = \sum_{j = 1}^n v_j b_i^*(\ve{b}_j) = \sum_{j = 1}^n v_j \delta_{ij} = v_i
+      \quad \implies \quad
+      \ve{v} = \sum_{i = 1}^n b_i^*(\ve{v}) \ve{b}_i
+    \end{equation*}
+    Now, consider a linear combination $ \lambda_1 b_1^* + \dots + \lambda_n b_n^* = 0 \in V^* $, and rewrite:
+    \begin{equation*}
+      0_\K = 0(\ve{b}_i) = \sum_{j = 1}^n \lambda_j b_j^*(\ve{b}_i) = \sum_{j = 1}^n \lambda_j \delta_{ij} = \lambda_i
+      \quad \forall i \in \{1, \dots, n\}
+    \end{equation*}
+    This concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+Given the isomorphisms $ V \cong \K^n \cong V^* $, it is possible to represent both $ V $ and $ V^* $ on $ \K^n $: in particular, $ V $ is usually represente on $ \K^{n \times 1} $, while $ V^* $ on $ \K^{1 \times n} $, so that $ \omega(\ve{v}) \in \K \,\,\forall \ve{v} \in V , \omega \in V^* $.
+
+\begin{definition}{Transposed homomosphism}{}
+  Given two $ \K $-vector spaces $ V,W $ and $ f \in \hmk(V,W) $, its \bcdef{transposed homomorphism} is the application $ f\tsp : W^* \rightarrow V^* $ define as $ W^* \ni \omega \mapsto f\tsp(\omega) \defeq \omega \circ f \in V^* $.
+\end{definition}
+
+As composition preserves linearity, $ f\tsp \in \hmk(W^*,V^*) $, making the following diagrams commutative:
+\begin{equation*}
+  \begin{tikzcd}
+    V \ar[r , "f"] \ar[dr , "f\tsp(\omega)", swap] & W \ar[d , "\omega"] \\ & \K
+  \end{tikzcd}
+  \qquad \iff \qquad
+  \begin{tikzcd}
+    V \ar[d , "\varphi_V", swap, leftrightarrow] \ar[r , "f"] & W \ar[d , "\varphi_W" , leftrightarrow] \\
+    V^* & W^* \ar[l , "f\tsp"]
+  \end{tikzcd}
+\end{equation*}
+
+\begin{proposition}{}{}
+  Consider two finite-dimensional $ \K $-vector spaces $ V,W $ with bases $ \bas \ssq V , \mathcal{C} \ssq W $, and $ f \in \hmk(V,W) $. Then:
+  \begin{equation}
+    \mt{M}_{\bas^*}^{\mathcal{C}^*}(f\tsp) = [\mt{M}_\mathcal{C}^\bas(f)]\tsp
+    \label{eq:transposed-homomorphism-matrix}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Set $ n \equiv \dk V $ and $ m \equiv \dk W $. Clearly $ \mt{M}_\mathcal{C}^\bas(f) \in \K^{m \times n} $ and $ \mt{M}_{\bas^*}^{\mathcal{C}^*}(f\tsp) \in \K^{n \times m} $, so, fixing the canonical basis $ \mathcal{E} = \{1_\K\} \ssq \K $ of $ \K $ and given $ \omega \in W^* $, $ \mt{M}_\mathcal{E}^\mathcal{C}(\omega) = \left[ \beta_1 , \dots , \beta_m \right] \in \K^{1 \times m} $, but $ \omega = \omega_1 c_1^* + \dots + \omega_m c_m^* $ on the basis $ \mathcal{C}^* $, thus, given $ \ve{w} \in W $:
+    \begin{equation*}
+      \begin{split}
+        \omega(\ve{w})
+        & = \mt{M}_\mathcal{E}^\mathcal{C}(\omega) \ve{w} =
+        \begin{bmatrix}
+          \beta_1 & \dots & \beta_m
+        \end{bmatrix}
+        \begin{bmatrix}
+          w_1 \\ \vdots \\ w_m
+        \end{bmatrix}
+        = \sum_{i = 1}^m \beta_i w_i \\
+        & = \sum_{i = 1}^m \omega_i c_i^*(\ve{w}) = \sum_{i,j = 1}^m \omega_i w_j c_i^*(\ve{c}_j) = \sum_{i,j = 1}^m \omega_i w_j \delta_{ij} = \sum_{i = 1}^m \omega_i w_i
+      \end{split}
+    \end{equation*}
+    Hence, $ [\mt{M}_\mathcal{E}^\mathcal{C}(\omega)]\tsp $ is precisely the representation of $ \omega \in W^* $ on $ \K^{m \times 1} $ with basis $ \mathcal{C}^* $.
+
+    Now, since $ f\tsp(\omega) = \omega \circ f \in V^* $, by \lref{lemma:representative-matrix-properties} $ \mt{M}_\mathcal{E}^\bas(f\tsp(\omega)) = \mt{M}_\mathcal{E}^\mathcal{C}(\omega) \mt{M}_\mathcal{C}^\bas(f) $, therefore, by the same reasoning, the representation of $ f\tsp(\omega) \in V^* $ on $ \K^{n \times 1} $ with basis $ \bas^* $ is $ [\mt{M}_\mathcal{E}^\bas(f\tsp(\omega))]\tsp = [\mt{M}_\mathcal{C}^\bas(f)]\tsp [\mt{M}_\mathcal{E}^\mathcal{C}(\omega)]\tsp $, but $ f\tsp \in \hmk(W^* , V^*) $ has representative matrix $ \mt{M}_{\bas^*}^{\mathcal{C}^*}(f\tsp) $, thus:
+    \begin{equation*}
+      f\tsp(\omega) = \mt{M}_{\mathcal{C}^*}^{\bas^*}(f\tsp) \bs{\omega} = \mt{M}_{\mathcal{C}^*}^{\bas^*}(f\tsp) [\mt{M}_\mathcal{E}^\bas(\omega)]\tsp
+    \end{equation*}
+    Comparing the two expressions for $ f\tsp(\omega) $, the proof is complete.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Bilinear forms}
+
+We can generalize linear forms to multilinear forms, i.e. maps which are linear with respect to each of their arguments. Here, we consider maps with two arguments.
+
+\begin{definition}{Bilinear forms}{}
+  Given a $ \K $-vector space $ V $, a \bcdef{bilinear form} is an application $ b : V \times V \ra \K $ which is linear with respect to both its arguments.
+\end{definition}
+
+By linearity, it is trivial to see that $ b(\ve{0} , \ve{v}) = b(\ve{v} , \ve{0}) = 0_\K $. Moreover, we can associate to every $ \mt{A} \in \K^{n \times n} $ a bilinear form on $ b_\mt{A} : \K^n \times \K^n \ra \K $ defined as $ b_\mt{A}(\ve{x} , \ve{y}) = \ve{x}\tsp \mt{A} \ve{y} $, i.e., setting $ \mt{A} = [a_{ij}] $, $ b_\mt{A}(\ve{x} , \ve{y}) = \sum_{i,j = 1}^n a_{ij} x_i y_j $.
+Analogously, we can in general define the representative matrix of $ b : V \times V \ra \K $ on a basis $ \bas \{\ve{v}_1 , \dots , \ve{v}_n\} \ssq V $ as $ \mt{M}_\bas(b) \equiv [b(\ve{v}_i , \ve{v}_j)]_{i,j = 1, \dots, n} $, which defines the actions of $ b $ on $ V $ as:
+\begin{equation*}
+  b(\ve{v} , \ve{w}) = \sum_{i,j = 1}^n v_i w_j b(\ve{v}_i , \ve{w}_j) = \ve{v}\tsp \mt{M}_\bas(b) \ve{w}
+\end{equation*}
+where the abuse of notation $ \ve{v},\ve{w} \in V $ and $ \ve{v},\ve{w} \in \K^n $ is justified by the isomorphism $ V \cong \K^n $.
+To see how the representative matrices in different bases are related, we need to introduce another equivalence relation for square matrices.
+
+\begin{definition}{Congruent matrices}{}
+  Given $ \mt{A} , \mt{B} \in \K^{n \times n} $, they are \bcdef{congruent} if $ \exists \mt{C} \in \GL{n,\K} : \mt{B} = \mt{C}\tsp \mt{A} \mt{C} $.
+\end{definition}
+
+Note that congruent matrices have the same rank. Indeed, $ \rk \mt{A} = \dk \ran{L_\mt{A}} $, but $ \mt{C} \in \GL{n,\K} $ is invertible, hence it defines an automorphism of $ \K^{n \times n} $: then, $ \rk(\mt{C} \mt{A}) = \rk \mt{A} $ by \tref{th:equidimensionality-isomorphism}, and $ \rk(\mt{A} \mt{C}) = \rk \mt{A} $ since $ \rk \mt{A}\tsp = \rk \mt{A} $.
+
+\begin{theorem}{Congruence and bilinear forms}{}
+  Given a $ \K $-vector space $ V $, then two matrices represent the same bilinear form $ b : V \times V \ra \K $ if and only if they are congruent.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ Consider $ \bas , \bas' \ssq V $ bases of $ V $, and let $ \mt{C} \equiv \mt{N}_{\bas'}^\bas \in \GL{n,\K} $ be the basis-change matrix, so that $ \ve{v}' = \mt{C} \ve{v} \,\,\forall \ve{v} \in V $ (with an abuse of notation since $ V \cong \K^n $). Then:
+    \begin{equation*}
+      b(\ve{v} , \ve{w}) = \ve{v}\tsp \mt{M}_\bas(b) \ve{w} = (\mt{C} \ve{v})\tsp \mt{M}_{\bas'}(b) (\mt{C} \ve{w}) = \ve{v}\tsp (\mt{C}\tsp \mt{M}_{\bas'}(b) \mt{C}) \ve{w}
+      \,\,\ \implies \,\,\
+      \mt{M}_\bas(b) = \mt{C}\tsp \mt{M}_{\bas'}(b) \mt{C}
+    \end{equation*}
+
+    $ (\Leftarrow) $ Consider two congruent matrices $ \mt{A} , \mt{B} \in \K^{n \times n} : \exists \mt{C} \in \GL{n,\K} : \mt{B} = \mt{C}\tsp \mt{A} \mt{C} $. Then, $ \mt{C} $ determines a change of basis on $ \K^{n \times n} $, so that, setting $ b_\mt{A}(\ve{v}' , \ve{w}') = {\ve{v}'}\tsp \mt{A} \ve{w}' $:
+    \begin{equation*}
+      b_\mt{B}(\ve{v} , \ve{w}) = \ve{v}\tsp \mt{B} \ve{w} = \ve{v}\tsp \mt{C}\tsp \mt{A} \mt{C} \mt{w} = (\mt{C} \ve{v})\tsp \mt{A} (\mt{C} \ve{w}) = {\ve{v}'}\tsp \mt{A} \ve{w} = b_\mt{A}(\ve{v}' , \ve{w}')
+    \end{equation*}
+    Hence, $ \mt{A} $ and $ \mt{B} $ represent the same bilinear form in different bases of $ V $.
+  \end{proof}
+\end{proofbox}
+
+By this theorem, it is clear that symmetry is a well-defined property for bilinear forms, since it is preserved by congruence.
+
+\begin{lemma}{Symmetric bilinear form}{}
+  Let $ V $ be a $ \K $-vector space and $ b : V \times V \ra \K $ a bilinear form on $ \K $. Then $ b $ is \bctxt{symmetric}, i.e. $ b(\ve{v} , \ve{w}) = b(\ve{w} , \ve{v}) \,\,\forall \ve{v},\ve{w} \in V $, if and only if its representative matrix is symmetric.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Set $ \mt{M}_\bas(b) = [b_{ij}] $. Then $ b(\ve{v} , \ve{w}) = b(\ve{w} , \ve{v}) \iff \sum_{i,j = 1}^n v_i w_j b_{ij} = \sum_{i,j = 1}^n v_i w_j b_{ji} \iff b_{ij} = b_{ji} \,\,\forall i,j \in \{1, \dots, n\} $.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Euclidean spaces}
+
+
+
+
+
+
+
+
+
+
