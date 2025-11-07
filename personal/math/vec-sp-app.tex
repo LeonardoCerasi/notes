@@ -1807,7 +1807,124 @@ By this theorem, it is clear that symmetry is a well-defined property for biline
   \end{proof}
 \end{proofbox}
 
-\subsection{Euclidean spaces}
+\subsection{Euclidean vector spaces}
+
+In this subsection, we always consider $ V $ to be a $ \R $-vector space of dimension $ \dk V = n \in \N $.
+
+\begin{definition}{Positive-definite bilinear form}{}
+  A symmetric bilinear form $ b : V \times V \ra V $ is \bcdef{positive-definite} if $ b(\ve{v} , \ve{v}) \ge 0 \,\,\forall \ve{v} \in V $ and $ b(\ve{v} , \ve{v}) = 0 \iff \ve{v} = \ve{0} $.
+\end{definition}
+
+We refer to symmetric positive-definite bilinear forms as \bctxt{inner products}, and we set the notation $ b(\ve{v} , \ve{w}) \equiv \braket{\ve{v} , \ve{w}} $.
+
+\begin{example}{Canonical inner product}{}
+  Consider $ V = \R^n $. Then, the \bcex{canonical inner product} is $ \braket{\ve{v} , \ve{w}} \equiv b_{\mt{I}_n}(\ve{v} , \ve{w}) = \ve{v}\tsp \ve{w} $.
+\end{example}
+
+\begin{definition}{Euclidean vector space}{}
+  $ V $ is a \bcdef{Euclidean vector space} (EVS) if it is possible to define an inner product on it, and it is denoted as $ \evs $.
+\end{definition}
+
+In an EVS it is possible to define two important notions (with $ \ve{v} , \ve{w} \in V $):
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \bctxt{norm}: $ \norm{\ve{v}} \defeq \sqrt{\braket{\ve{v},\ve{v}}} $
+    \item \bctxt{distance}: $ \dist(\ve{v} , \ve{w}) \defeq \norm{\ve{v} - \ve{w}} $
+  \end{itemize}
+\end{multicols}
+
+For the resto of this subsection, we assume that $ V $ has the structure of EVS.
+
+\begin{lemma}{Cauchy--Schwarz inequality}{}
+  Given $ \ve{v} , \ve{w} \in V $, then:
+  \begin{equation}
+    \braket{\ve{v} , \ve{w}}^2 \leq \norm{\ve{v}}^2 \norm{\ve{w}}^2
+    \quad \land \quad
+    \braket{\ve{v} , \ve{w}}^2 = \norm{\ve{v}}^2 \norm{\ve{w}}^2
+    \iff
+    \ve{v} , \ve{w} \text{ LI}
+    \label{eq:cauchy-schwarz-inequality}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    The case $ \ve{v} = \ve{0} \lor \ve{w} = \ve{0} $ is trivial, so WLOG $ \ve{v} , \ve{w} \neq \ve{0} $.
+
+    Given $ \ve{v} , \ve{w} \in V $, consider $ p(t) \equiv \braket{t \ve{v} + \ve{w} , t \ve{v} + \ve{w}} \in \R_2[t] $: by definition $ p(t) \ge 0 \,\,\forall t \in \R $, hence, by linearity and symmetry:
+    \begin{equation*}
+      p(t) = t^2 \norm{\ve{v}}^2 + 2 t \braket{\ve{v} , \ve{w}} + \norm{\ve{w}}^2 \ge 0
+      \quad \forall t \in \R
+    \end{equation*}
+    To be true, this requires that the discriminant of the polynomial is non-positive, i.e.:
+    \begin{equation*}
+      \Delta_p \equiv 4 \left( \braket{\ve{v} , \ve{w}}^2 - \norm{\ve{v}}^2 \norm{\ve{w}}^2 \right) \leq 0
+    \end{equation*}
+    which is the thesis. Moreover, assume $ \Delta_p = 0 $: then $ p(t) $ has a single root $ \lambda $ with multiplicity $ 2 $, but $ p(t) = \norm{t \ve{v} + \ve{w}}^2 $, hence $ p(\lambda) = 0 \iff \lambda \ve{v} + \ve{w} = \ve{0} $, i.e. $ \ve{v} , \ve{w} $ LI.
+
+    On the other hand, if $ \ve{v} $ and $ \ve{w} $ are LI, then $ \exists \lambda \in \R : \ve{v} = \lambda \ve{w} $, so by linearity $ \braket{\ve{v} , \ve{w}}^2 = \lambda^2 \braket{\ve{v} , \ve{v}}^2 = \lambda^2 \norm{\ve{v}}^4 = \norm{\ve{v}}^2 \norm{\ve{w}}^2 $.
+  \end{proof}
+\end{proofbox}
+
+We can now state some properties of the norm.
+
+\begin{lemma}{Basic properties of norm}{}
+  Given $ \ve{v} , \ve{w} \in V $ and $ \lambda \in \R $, then:
+  \begin{multicols}{2}
+    \begin{enumerate}[label = {\alph*.}]
+      \item $ \abs{\braket{\ve{v} , \ve{w}}} \leq \norm{\ve{v}} \norm{\ve{w}} $
+      \item $ \norm{\ve{v}} \ge 0 \land \norm{\ve{v}} = 0 \iff \ve{v} = \ve{0} $
+      \item $ \norm{\lambda \ve{v}} = \abs{\lambda} \norm{\ve{v}} $
+      \item $ \norm{\ve{v} + \ve{w}} \leq \norm{\ve{v}} + \norm{\ve{w}} $
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Property (a) is a direct consequence of the Cauchy--Schwarz inequality, while (b) and (c) are trivial by the definition of inner product. Now, consider $ \ve{v} , \ve{w} \in V $:
+    \begin{equation*}
+      \begin{split}
+        \norm{\ve{v} + \ve{w}}^2
+        & = \braket{\ve{v} + \ve{w} , \ve{v} + \ve{w}} = \norm{\ve{v}}^2 + 2 \braket{\ve{v} , \ve{w}} + \norm{\ve{w}}^2 \\
+        & \leq \norm{\ve{v}}^2 + 2 \norm{\ve{v}} \norm{\ve{w}} + \norm{\ve{w}}^2 = \left( \norm{\ve{v}} + \norm{\ve{w}} \right)^2
+      \end{split}
+    \end{equation*}
+    where property (a) was used. This concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+We now introduce some more notation: if $ \ve{v} \in V : \norm{\ve{v}} = 1 $, then $ \ve{v} $ is a \bctxt{versor} (or unit vector). Moreover, given $ \ve{v} , \ve{w} \in V - \{\ve{0}\} $, then the \bctxt{angle} $ \vartheta \in [0, \pi] $ between them is defined as:
+\begin{equation}
+  \cos \theta = \frac{\braket{\ve{v} , \ve{w}}}{\norm{\ve{v}} \norm{\ve{w}}}
+  \label{eq:angle-definition}
+\end{equation}
+which is well-defined by the Cauchy--Schwarz inequality. Two vectors $ \ve{v} , \ve{w} \in V $ are \bctxt{orthogonal} if $ \braket{\ve{v} , \ve{w}} = 0 $, i.e. if their angle is $ \vartheta = \frac{\pi}{2} $, and we denote this by $ \ve{v} \perp \ve{w} $.
+
+\begin{definition}{Orthogonal subspace}{}
+  Given a subspace $ U \ssq V $, its orthogonal space is $ U^\perp \defeq \{\ve{v} \in V : \braket{\ve{v} , \ve{u}} = 0 \,\,\forall \ve{u} \in U\} $.
+\end{definition}
+
+\begin{lemma}{}{}
+  Given a subspace $ U \ssq V $ and a basis $ \{\ve{s}_1 , \dots , \ve{s}_k\} \ssq U $, then $ U^\perp = \{\ve{v} \in V : \ve{v} \perp \ve{s}_i \,\,\forall i = 1, \dots , k\} $ and it is a subspace of $ V $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider $ \ve{v} , \ve{w} \in U^\perp $ and $ \ve{u} \in U $: then $ \braket{\ve{u} , \lambda \ve{v} + \mu \ve{w}} = \lambda \braket{\ve{u} , \ve{v}} + \mu \braket{\ve{u} , \ve{w}} = 0 $, hence $ U^\perp $ is closed under linear combinations, i.e. a subspace of $ V $.
+
+    Now, since $ U = \braket{\ve{s}_1 , \dots , \ve{s}_k} $, $ \forall \ve{u} \in U \,\exists! u_1 , \dots , u_k \in \R : \ve{u} = u_1 \ve{s}_1 + \dots + u_k \ve{s}_k $, so:
+    \begin{equation*}
+      0 = \braket{\ve{v} , \ve{u}} = \sum_{i = 1}^k u_i \braket{\ve{v} , \ve{s}_i}
+      \quad \forall \ve{v} \in U^\perp
+      \quad \iff \quad
+      \braket{\ve{v} , \ve{s}_i} = 0
+      \quad \forall i \in \{1 , \dots , k\}
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Orthonormal bases}
 
 
 
