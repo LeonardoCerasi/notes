@@ -1428,7 +1428,7 @@ We can now prove some trivial properties of the rank.
 
 With the notion of rank defined, we can prove the Rouché--Capelli theorem.
 
-\begin{theorem}{Rouché--Capelli}{rouche-capelli}
+\begin{theorem}{Rouché--Capelli Theorem}{rouche-capelli}
   Let $ \mt{A} \in \K^{m \times n} $ and $ \ve{b} \in \K^{m \times 1} $. Then, the lineas system $ \mt{A} \ve{x} = \ve{b} $ has solutions if and only if $ \rk \mt{A} = \rk \left[ \mt{A} | \ve{b} \right] $ and, in this case, it is of kind $ \infty^{n - r} $, with $ r \equiv \rk \mt{A} $.
 \end{theorem}
 
@@ -1809,10 +1809,10 @@ By this theorem, it is clear that symmetry is a well-defined property for biline
 
 \subsection{Euclidean vector spaces}
 
-In this subsection, we always consider $ V $ to be a $ \R $-vector space of dimension $ \dk V = n \in \N $.
+In this subsection, we always consider $ V $ to be a $ \R $-vector space of dimension $ \dim_\R V = n \in \N $.
 
 \begin{definition}{Positive-definite bilinear form}{}
-  A symmetric bilinear form $ b : V \times V \ra V $ is \bcdef{positive-definite} if $ b(\ve{v} , \ve{v}) \ge 0 \,\,\forall \ve{v} \in V $ and $ b(\ve{v} , \ve{v}) = 0 \iff \ve{v} = \ve{0} $.
+  A symmetric bilinear form $ b : V \times V \ra \R $ is \bcdef{positive-definite} if $ b(\ve{v} , \ve{v}) \ge 0 \,\,\forall \ve{v} \in V $ and $ b(\ve{v} , \ve{v}) = 0 \iff \ve{v} = \ve{0} $.
 \end{definition}
 
 We refer to symmetric positive-definite bilinear forms as \bctxt{inner products}, and we set the notation $ b(\ve{v} , \ve{w}) \equiv \braket{\ve{v} , \ve{w}} $.
@@ -1838,9 +1838,9 @@ For the resto of this subsection, we assume that $ V $ has the structure of EVS.
 \begin{lemma}{Cauchy--Schwarz inequality}{}
   Given $ \ve{v} , \ve{w} \in V $, then:
   \begin{equation}
-    \braket{\ve{v} , \ve{w}}^2 \leq \norm{\ve{v}}^2 \norm{\ve{w}}^2
+    \abs{\braket{\ve{v} , \ve{w}}}^2 \leq \norm{\ve{v}}^2 \norm{\ve{w}}^2
     \quad \land \quad
-    \braket{\ve{v} , \ve{w}}^2 = \norm{\ve{v}}^2 \norm{\ve{w}}^2
+    \abs{\braket{\ve{v} , \ve{w}}}^2 = \norm{\ve{v}}^2 \norm{\ve{w}}^2
     \iff
     \ve{v} , \ve{w} \text{ LI}
     \label{eq:cauchy-schwarz-inequality}
@@ -1921,10 +1921,268 @@ which is well-defined by the Cauchy--Schwarz inequality. Two vectors $ \ve{v} , 
       \braket{\ve{v} , \ve{s}_i} = 0
       \quad \forall i \in \{1 , \dots , k\}
     \end{equation*}
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
 \subsubsection{Orthonormal bases}
+
+It is possible to link orthogonality and linear independence in a straightforward way.
+
+\begin{lemma}{Orthogonality and LI}{orthogonality-li}
+  Given $ S = \{\ve{v}_1 , \dots , \ve{v}_k\} \ssq V - \{\ve{0}\} $, if $ \ve{v}_i \perp \ve{v}_j \,\,\forall i \neq j \in \{1, \dots, k\} $, then $ S $ is LI.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider $ \lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k = \ve{0} $, so that:
+    \begin{equation*}
+      0 = \braket{\lambda_1 \ve{v}_1 + \dots + \lambda_k \ve{v}_k , \ve{v}_i} = \lambda_i \norm{\ve{v}_i}^2
+      \quad \forall i \in \{1, \dots, k\}
+    \end{equation*}
+    Since $ \ve{v}_i \neq \ve{0} $, then $ \lambda_i = 0 \,\,\forall i \in \{1, \dots, k\} $, which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+An important consequence of this lemma is that a set of mutually-orthogonal vectors cannot have more than $ n = \dim_\R V $ vectors. Now, we can characterize a particular classes of bases of Euclidean spaces: orthonormal bases.
+
+\begin{definition}{Orthonormal basis}{}
+  A basis $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} \ssq V $ is \bcdef{orthonormal} if it is composed by versors such that $ \ve{b}_i \perp \ve{b}_j \,\,\forall i \neq j \in \{1, \dots, n\} $.
+\end{definition}
+
+\begin{theorem}{Gram--Schmidt Theorem}{}
+  Every non-trivial Euclidea vector space admits an orthonormal basis.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    To prove this theorem we use the following lemma.
+
+    \begin{lemma}{}{gram-schmidt-auxiliary}
+      Given orthonormal versors $ \ve{a}_1 , \dots , \ve{a}_k \in V $ and $ \ve{w} \in V - \braket{\ve{a}_1 , \dots , \ve{a}_k} $, then:
+      \begin{equation*}
+        \ve{a} \equiv \ve{w} - \sum_{i = 1}^k \braket{\ve{w} , \ve{a}_i} \ve{a}_i
+        \quad : \quad
+        \ve{a} \perp \ve{a}_i \,\,\forall i \in \{1, \dots, k\}
+      \end{equation*}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        Suppose $ \ve{a} = \ve{0} $: then $ \ve{w} = \sum_{i = 1}^k \braket{\ve{w} , \ve{a}_i} \ve{a}_i \in \braket{\ve{a}_1 , \dots , \ve{a}_k} \absurd $
+
+        Then:
+        \begin{equation*}
+          \braket{\ve{a} , \ve{a}_i} = \braket{\ve{w} , \ve{a}_i} - \sum_{j = 1}^k \braket{\ve{w} , \ve{a}_j} \braket{\ve{a}_j , \ve{a}_i} = \braket{\ve{w} , \ve{a}_i} - \sum_{j = 1}^k \braket{\ve{w} , \ve{a}_j} \delta_{ij} = \braket{\ve{w} , \ve{a}_i} - \braket{\ve{w} , \ve{a}_i} = 0
+        \end{equation*}
+        which is the thesis.
+      \end{proof}
+    \end{proofbox}
+
+    Now, consider $ \ve{v} \in V - \{\ve{0}\} $ and set $ \ve{a}_1 \equiv \frac{\ve{v}}{\norm{\ve{v}}} $: if $ V = \braket{\ve{a}_1} $ the proof is complete, otherwise $ \exists \ve{w} \in V - \braket{\ve{a}_1} $ and, by \lref{lemma:gram-schmidt-auxiliary}, $ \exists \ve{a} \in V : \ve{a} \perp \ve{a}_1 $. Set $ \ve{a}_2 \equiv \frac{\ve{a}}{\norm{\ve{a}}} $: if $ V = \braket{\ve{a}_1 , \ve{a}_2} $ the proof is complete, otherwise we iterate this process, which finds an orthonormal basis of $ V $ in $ n = \dim_\R V $ steps.
+  \end{proof}
+\end{proofbox}
+
+This result allows us to define additional structure on $ V $.
+
+\begin{proposition}{Orthogonal decomposition}{orthogonal-decomposition}
+  Given a subspace $ W \ssq V $, then $ V = W \oplus W^\perp $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ W = \{\ve{0}\} $ then trivially $ W^\perp = V $, so consider $ W \neq \{\ve{0}\} $: WTS $ W \cap W^\perp = \{\ve{0}\} $ and $ W + W^\perp = V $. First, $ \ve{w} \neq \ve{0} \implies \braket{\ve{w} , \ve{w}} \neq 0 \implies W \cap W^\perp = \{\ve{0}\} $. Then, take an orthonormal basis $ \bas = \{\ve{b}_1 , \dots , \ve{b}_k\} \ssq W $: thus $ \forall \ve{v} \in V \,\exists \ve{u}_1 \in W , \ve{u}_2 \in W^\perp : \ve{v} = \ve{u}_1 + \ve{u}_2 $ by \lref{lemma:gram-schmidt-auxiliary}:
+    \begin{equation*}
+      \ve{u}_1 = \sum_{i = 1}^k \braket{\ve{v} , \ve{b}_i} \ve{b}_i
+      \qquad \qquad
+      \ve{u}_2 = \ve{v} - \sum_{i = 1}^k \braket{\ve{v} , \ve{b}_i} \ve{b}_i
+    \end{equation*}
+    Hence, $ W + W^\perp $, which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+Given a subspace $ W \ssq V $ with orthonormal basis $ \bas = \{\ve{b}_1 , \dots , \ve{b}_k\} $, we denote the \bctxt{orthogonal projection} on $ W $ as the linear application $ \pi_W : V \ra W $ defined as:
+\begin{equation}
+  \pi_W(\ve{v}) \defeq \sum_{i = 1}^k \braket{\ve{v} , \ve{b}_i} \ve{b}_i
+  \label{eq:orthogonal-projection-definition}
+\end{equation}
+
+\subsubsection{Symmetric endomorphisms}
+
+\begin{definition}{Symmetric endomorphisms}{}
+  Given $ f \in \End{V} $, it is \bcdef{symmetric} (or self-adjoint) if $ \braket{f(\ve{v}) , \ve{w}} = \braket{\ve{v} , f(\ve{w})} \,\,\forall \ve{v} , \ve{w} \in V $.
+\end{definition}
+
+From the linearity of the inner product, it is clear that the symmetry condition can be checked on the vectors of a particular basis, instead that on the whole vector space.
+
+\begin{lemma}{Symmetric endomorphisms and representative matrices}{symmetric-representative-matrix}
+  Given an orthonormal basis $ \bas = \{\ve{v}_1 , \dots , \ve{v}_n\} \ssq V $ of $ V $, then $ f \in \End{V} $ is symmetric if and only if $ \mt{M}_\bas^\bas(f) $ is symmetric.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Set $ \mt{M}_\bas^\bas(f) = [m_{ij}]_{i,j = 1, \dots, n} $, so that $ f(\ve{v}_i) = \sum_{k = 1}^n m_{ki} \ve{v}_k $. Then:
+    \begin{equation*}
+      \braket{f(\ve{v}_i) , \ve{v}_j} = \sum_{k = 1}^n m_{ki} \delta_{kj} = m_{ji}
+      \qquad \qquad
+      \braket{\ve{v}_i , f(\ve{v}_j)} = \sum_{k = 1}^n m_{kj} \delta_{ik} = m_{ij}
+    \end{equation*}
+    Hence, $ f $ is symmetric if and only if $ m_{ij} = m_{ji} $, i.e. if $ \mt{M}_\bas^\bas(f) $ is symmetric.
+  \end{proof}
+\end{proofbox}
+
+It is possible to state two necessary conditions for an endomorphism to be symmetric.
+
+\begin{proposition}{}{symmetry-necessary-conditions}
+  Given a symmetric $ f \in \End{V} $, then:
+  \begin{enumerate}[label = {\alph*.}]
+    \item given two distinct eigenvalues $ \lambda , \mu $ of $ f $ and $ \ve{v} \in V_\lambda(f) , \ve{w} \in V_\mu(f) $, then $ \ve{v} \perp \ve{w} $;
+    \item the roots of $ p_f(t) \in \R_n[t] $ are all real.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Respectively:
+    \begin{enumerate}[label = {\alph*.}]
+      \item As $ f(\ve{v}) = \lambda \ve{v} $ and $ f(\ve{w}) = \mu \ve{w} $, then $ \braket{f(\ve{v}) , \ve{w}} = \lambda \braket{\ve{v} , \ve{w}} $ and $ \braket{\ve{v} , f(\ve{w})} = \mu \braket{\ve{v} , \ve{w}} $, but $ f $ is symmetric, hence $ (\lambda - \mu) \braket{\ve{v} , \ve{w}} $: since $ \lambda $ and $ \mu $ are distinct, $ \braket{\ve{v} , \ve{w}} = 0 $.
+      \item Consider an orthonormal basis $ \bas \ssq V $ and $ \mt{A} \equiv \mt{M}_\bas^\bas(f) $, so that $ \mt{A}\tsp = \mt{A} \in \R^{n \times n} \ssq \C^{n \times n} $ by \lref{lemma:symmetric-representative-matrix}. Then, let $ \lambda \in \C : p_f(\lambda) = 0 $, which means that $ \exists \ve{v} \in \C^{n \times 1} - \{\ve{0}\} : \mt{A} \ve{v} = \lambda \ve{v} $: thus, $ \ve{v}\tsp \mt{A}\tsp = \lambda \ve{v}\tsp $ and $ \cc{\mt{A} \ve{v}} = \cc{\lambda \ve{v}} $, but $ \mt{A} $ is real and symmetric, so $ \ve{v}\tsp \mt{A} = \lambda \ve{v}\tsp $ and $ \mt{A} \cc{\ve{v}} = \cc{\lambda} \cc{\ve{v}} $. With further manipulation:
+        \begin{equation*}
+          \lambda \ve{v}\tsp \cc{\ve{v}} = \ve{v}\tsp \mt{A} \cc{\ve{v}} = \cc{\lambda} \ve{v}\tsp \cc{\ve{v}}
+          \quad \implies \quad
+          (\lambda - \cc{\lambda}) \ve{v}\tsp \cc{\ve{v}} = 0
+        \end{equation*}
+        However, $ \ve{v}\tsp \cc{\ve{v}} = \sum_{i = 1}^n \abs{v_i}^2 > 0 $, hence $ \lambda = \cc{\lambda} $, i.e. $ \lambda \in \R $.
+    \end{enumerate}
+    \ensp
+  \end{proof}
+\end{proofbox}
+
+We can now prove the most important result for symmetric endomorphism: the real spectral theorem.
+
+\begin{theorem}{Real spectral theorem}{real-spectral-theorem}
+  Given a non-trivial Euclidean vector space $ V $, then $ f \in \End{V} $ is symmetric if and only if $ \exists \bas \ssq V $ orthonormal basis of $ V $ composed of eigenvectors of $ f $, i.e. if $ f $ is diagonalizable.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Leftarrow) $ Trivially, if $ f $ is diagonalizable, then in the diagonalizing basis its representative matrix is diagonal, i.e. symmetric, and so is $ f $ too.
+
+    $ (\Rightarrow) $ We use induction on $ n \equiv \dim_\R V $:
+    \begin{itemize}
+      \item $ n = 1 $ is true as $ V = \braket{\ve{v}} $, with $ \ve{v} \neq \ve{0} $, so $ \bas = \{\ve{a}\} $, with $ \ve{a} \equiv \frac{\ve{v}}{\norm{\ve{v}}} $, is an orthonormal basis and, since $ f(\ve{a}) \in V = \braket{\ve{a}} $, it is composed of eigenvectors of $ f $ as $ \exists \lambda \in \R : f(\ve{a}) = \lambda \ve{a} $.
+      \item Assume that the implication is true for $ \dim_\R V = n - 1 $.
+      \item If $ f \in \End{V} $ is symmetric, then all its eigenvalues are real by \pref{prop:symmetry-necessary-conditions}. Let $ \lambda \in \R $ be an eigenvalue of $ f $ and $ \ve{v} \in V_\lambda(f) - \{\ve{0}\} $, and define $ S \equiv \braket{\ve{v}} $: then, $ f $ is $ S^\perp $-invariant, i.e. $ f(S^\perp) \ssq S^\perp $, since:
+        \begin{equation*}
+          \ve{w} \in S^\perp
+          \quad \implies \quad
+          \braket{\ve{v} , f(\ve{w})} = \braket{f(\ve{v}) , \ve{w}} = \lambda \braket{\ve{v} , \ve{w}} = 0
+          \quad \implies \quad
+          f(\ve{w}) \in S^\perp
+        \end{equation*}
+        This means that $ f\vert_{S^\perp} \in \End{S^\perp} $, but $ \dim_\R S^\perp = n - 1 $ since $ V = S \oplus S^\perp $ (by \pref{prop:orthogonal-decomposition}), hence, by the inductive step, $ \exists \bas = \{\ve{b}_1 , \dots , \ve{b}_{n-1}\} \ssq S^\perp $ orthonormal basis of $ S^\perp $ such that $ \ve{b}_1 , \dots , \ve{b}_{n-1} $ are eigenvectors of $ f $. \\
+        Now, set $ \ve{b}_n \equiv \frac{\ve{v}}{\norm{\ve{v}}} $: then, $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} $ is an orthonormal basis of $ V $ composed of eigenvectors of $ f $, since $ \ve{b}_n \perp \ve{b}_i \,\,\forall i \in \{1, \dots, n-1\} \implies \bas $ is LI by \lref{lemma:orthogonality-li}, and $ f(\ve{b}_n) = \lambda \ve{b}_n $ by definition of $ \ve{v} $.
+    \end{itemize}
+    \ensp
+  \end{proof}
+\end{proofbox}
+
+A computational approach to check if $ f \in \End{V} $ is symmetric is to consider a basis $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} \ssq V $ and $ \mt{P} \equiv [\braket{\ve{b}_i , \ve{b}_j}]_{i,j = 1, \dots, n} $: then, given $ \ve{u} , \ve{v} \in V \cong \R^n $, we write $ \braket{\ve{u} , f(\ve{v})} = \ve{u}\tsp \mt{P} \mt{A} \ve{v} $ and $ \braket{f(\ve{u}) , \ve{v}} = \ve{u}\tsp \mt{A}\tsp \mt{P} \ve{v} $, with $ \mt{A} \equiv \mt{M}_\bas^\bas(f) $, so the symmetry condition becomes $ \mt{A}\tsp \mt{P} = \mt{P} \mt{A} $.
+
+\subsection{Hermitian vector spaces}
+
+We can generalize the results for Euclidean vector spaces to the case $ \K = \C $. In this subsection, we always consider $ V $ to be a $ \C $-vector space of dimension $ \dim_\C V = n \in \N $.
+
+\begin{definition}{Hermitian product}{hermitian-product}
+  An application $ b : V \times V \ra \C $ is a \bcdef{Hermitian product} if it has the following properties:
+  \begin{enumerate}
+    \item $ b(\ve{u} , \ve{v}) = \cc{b(\ve{v} , \ve{u})} \,\,\forall \ve{u} , \ve{v} \in V $
+    \item $ b(\ve{u} + \ve{v} , \ve{w}) = b(\ve{u} , \ve{w}) + b(\ve{v} , \ve{w}) \,\land\, b(\ve{u} , \ve{v} + \ve{w}) = b(\ve{u} , \ve{v}) + b(\ve{u} , \ve{w}) \,\,\forall \ve{u} , \ve{v} , \ve{w} \in V $
+    \item $ b(\lambda \ve{u} , \ve{v}) = \cc{\lambda} b(\ve{u} , \ve{v}) \,\land\, b(\ve{u} , \lambda \ve{v}) = \lambda b(\ve{u} , \ve{v}) \,\,\forall \lambda \in \C , \ve{u} , \ve{v} \in V $
+    \item $ b(\ve{u} , \ve{u}) \ge 0 \,\,\forall \ve{u} \in V \,\land\, b(\ve{u} , \ve{u}) = 0 \iff \ve{u} = \ve{0} $
+  \end{enumerate}
+\end{definition}
+
+A vector space with a Hermitian product is a \bctxt{Hermitian space}, in which the definitions of norm and orthogonality are analogous to those in the Euclidean case.
+
+\begin{definition}{Hermitian endomorphism}{}
+  Given $ f \in \End{V} $, it is \bcdef{Hermitian} if $ \braket{f(\ve{v}) , \ve{w}} = \braket{\ve{v} , f(\ve{w})} \,\,\forall \ve{v} , \ve{w} \in V $.
+\end{definition}
+
+To extend this notation to matrices, we define the \bctxt{Hermitian conjugate} of a matrix $ \mt{A} $ as $ \mt{A}\dg \defeq \cc{\mt{A}}\tsp $: if $ \mt{A} = \mt{A}\dg $, we say that $ \mt{A} $ is a Hermitian matrix.
+
+The main results for Euclidean vector spaces hold for Hermitian spaces too: in particular, \lref{lemma:symmetric-representative-matrix} (with the Hermitianity condition, in place of the symmetry one) and \pref{prop:symmetry-necessary-conditions} remain as-is, while for \tref{th:real-spectral-theorem} only the forward implication holds, since diagonalizability does not necessarily imply Hermitianity.
+
+\begin{example}{Counterexample for the complex spectral theorem}{}
+  Consider $ V = \C^2 $ with canonical basis $ \bas = \{\binom{1}{0} , \binom{0}{1}\} $ and the endomorphism $ f \in \End \C^2 $ represented by:
+  \begin{equation*}
+  \mt{M}_\bas^\bas(f) =
+  \begin{bmatrix}
+    \img & 0 \\ 0 & -\img
+  \end{bmatrix}
+  \end{equation*}
+  Clearly this is not a Hermitian endomorphism, even though it is diagonalizable.
+\end{example}
+
+\begin{proposition}{}{}
+  Given $ f \in \End{V} $, then $ f $ is Hermitian if and only if $ \braket{f(\ve{v}) , \ve{v}} \in \R \,\,\forall \ve{v} \in V $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ $ \braket{f(\ve{v}) , \ve{v}} = \braket{\ve{v} , f(\ve{v})} = \cc{\braket{f(\ve{v}) , \ve{v}}} \implies \braket{f(\ve{v}) , \ve{v}} \in \R $
+
+    $ (\Leftarrow) $ $ \braket{f(\ve{v}) , \ve{v}} \in \R \implies \braket{f(\ve{v}) , \ve{v}} = \cc{\braket{f(\ve{v}) , \ve{v}}} = \braket{\ve{v} , f(\ve{v})} $
+  \end{proof}
+\end{proofbox}
+
+\subsection{Unitary endomorphisms}
+
+An interesting class of endomorphisms are unitary endomorphisms.
+
+\begin{definition}{Unitary endomorphism}{}
+  Given a Euclidean or Hermitian vector space $ V $, then $ f \in \End{V} $ is \bcdef{unitary} if $ \braket{f(\ve{v}) , f(\ve{w})} = \braket{\ve{v} , \ve{w}} \,\,\forall \ve{v} , \ve{w} \in V $.
+\end{definition}
+
+\begin{lemma}{Unitary endomorphisms as automorphisms}{}
+  Every unitary endomorphisms is an automorphism.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \ve{v} \in \ker{f} $. Then $ \braket{\ve{v} , \ve{v}} = \braket{f(\ve{v}) , f(\ve{v})} = \braket{\ve{0} , \ve{0}} = 0 \iff \ve{v} = \ve{0} $, hence $ f $ is injective by \pref{prop:kernel-injections}, and so a bijection by \cref{cor:equidimensionality-bijections}.
+  \end{proof}
+\end{proofbox}
+
+ It is easy to see from the definition that an endomorphism is an isometry if and only if it maps orthonormal bases to orthonormal bases.
+
+In the case of a Euclidean vector space, unitary endomorphisms are called isometries.
+
+\begin{proposition}{Isometries and representative matrices}{isometries-representative-matrices}
+  Given an $ n $-dimensional Euclidean vector space $ V $ and an orthonormal basis $ \bas \ssq V $, then $ f \in \End{V} $ is an isometry if and only if $ \mt{M}_\bas^\bas(f) \in \On{n} $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} $ and $ \mt{M}_\bas^\bas(f) = [m_{ij}]_{i,j = 1, \dots, n} $. WTS $ \mathcal{C} \equiv \{f(\ve{b}_1 , \dots , \ve{b}_n\} $ is an orthonormal basis of $ V $:
+    \begin{equation*}
+      \braket{f(\ve{b}_i) , f(\ve{b}_j)} = \sum_{k,\ell = 1}^n m_{ki} m_{\ell j} \braket{\ve{b}_k , \ve{b}_\ell} = \sum_{k = 1}^n m_{ki} m_{kj} = [(\mt{M}_\bas^\bas(f))\tsp \mt{M}_\bas^\bas(f)]_{ij}
+    \end{equation*}
+    It is then clear that $ f $ is an isometry if and only if $ (\mt{M}_\bas^\bas(f))\tsp \mt{M}_\bas^\bas(f) = \mt{I}_n $.
+  \end{proof}
+\end{proofbox}
+
+In a generic basis $ \bas = \{\ve{b}_1 , \dots , \ve{b}_n\} \ssq V $, to check if $ f \in \End{V} $ is an isometry, consider $ \mt{P} \equiv [\braket{\ve{b}_i , \ve{b}_j}]_{i,j = 1, \dots , n} $ and set $ \mt{M}_\bas^\bas(f) \equiv \mt{A} $: then, $ \braket{\ve{u} , \ve{v}} = \ve{u}\tsp \mt{P}\ve{v} $ and $ \braket{f(\ve{u}) , f(\ve{v})} = \ve{u}\tsp \mt{A}\tsp \mt{P} \mt{A} \ve{v} $, so that the unitarity condition becomes $ \mt{A}\tsp \mt{P} \mt{A} = \mt{P} $.
+
+\begin{proposition}{Unitary endomorphisms and representative matrices}{}
+  Given an $ n $-dimensional Hermitian vector space $ V $ and an orthonormal basis $ \bas \ssq V $, then $ f \in \End{V} $ is unitary if and only if $ \mt{M}_\bas^\bas(f) \in \Un{n} $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is analogous to that of \pref{prop:isometries-representative-matrices}, recalling \dref{def:hermitian-product}.
+  \end{proof}
+\end{proofbox}
 
 
 
