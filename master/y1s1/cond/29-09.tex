@@ -1,0 +1,79 @@
+\selectlanguage{english}
+
+\chapter{Lecture 29/09}
+
+\begin{example}{Sodium transitions}{}
+  Find the wavelength of the transitions $ 4\text{p} \ra 3\text{s} $ and $ 4\text{d} \ra 3\text{p} $ of sodium, knowing that $ \alpha_\text{s} = 1.35 $, $ \alpha_p = 0.86 $ and $ \alpha_d = 0.01 $.
+
+  \textit{Solution.} Since $ \ch{Na} $ is an alkali atom, the energy gap between two levels can be written in terms of the respective quantum defects as:
+  \begin{equation*}
+    \Delta E = \ryd \left[ \frac{1}{(n_1 - \alpha_{\ell_1})^2} - \frac{1}{(n_2 - \alpha_{\ell_2})^2} \right]
+  \end{equation*}
+  Then, defining the \bcex{Rydberg wavelength} $ \lambda_\text{R} \equiv \frac{h c}{\ryd} \simeq 91.127 \,\text{nm} $, since $ \lambda = \frac{h c}{\Delta E} $ we get:
+  \begin{equation*}
+    \lambda_{4\text{p} \ra 3\text{s}} = 342.7 \,\text{nm}
+    \qquad \qquad
+    \lambda_{4\text{d} \ra 3\text{p}} = 585.9 \,\text{nm}
+  \end{equation*}
+  The first transition is UV, while the second transition is visible.
+\end{example}
+
+\begin{example}{Yellow doublet of sodium}{}
+  The yellow doublet of sodium consists of two lines $ \lambda_1 = 589.6 \,\text{nm} $ and $ \lambda_2 = 589.0 \,\text{nm} $ associated to the transitions of the valence electron from the first excited state to the ground state. Compute the spin-orbit constant and the effective charge $ Z_\text{eff} $ that should be assumed in the spin-orbit relation for mono-electron atoms.
+
+  \textit{Solution.} For heavier atoms, the kinetic correction and the Darwin term become smaller, and the relativistic corrections are determined by the spin-orbit term, which can be written as:
+  \begin{equation*}
+    \Delta E_\text{s-o} = \frac{\xi_{\ell , s}}{2} \left[ J \left( J + 1 \right) - L \left( L + 1 \right) - S \left( S + 1 \right) \right]
+  \end{equation*}
+  In particular, the ground state $ 3\text{S} $ remains unchanged, while the first excited state is split in $ 3\text{P}_{1/2} $ and $ 3\text{P}_{3/2} $: since $ \ch{Na} $ has a single valence electron, we expect $ \xi_{\ell , s} \ge 0 $ like for $ \ch{H} $, hence $ 3\text{P}_{1/2} $ is energetically closer to the ground state. Then, $ \lambda_1 $ is associated to $ 3\text{P}_{1/2} \ra 3\text{S}_{1/2} $ and $ \lambda_2 $ to $ 3\text{P}_{3/2} \ra 3\text{S}_{1/2} $, and:
+  \begin{equation*}
+    \frac{h c}{\lambda_2} - \frac{h c}{\lambda_1} = \frac{\xi}{2} \left[ \frac{3}{2} \left( \frac{3}{2} + 1 \right) - \frac{1}{2} \left( \frac{1}{2} + 1 \right) \right] = \frac{3}{2} \xi
+    \quad \implies \quad
+    \xi = \frac{2 h c}{3} \left( \frac{1}{\lambda_2} - \frac{1}{\lambda_1} \right) \approx 1.46 \,\text{meV}
+  \end{equation*}
+  The mono-electron atom relation is \eref{eq:spin-orbit-1-e}, hence:
+  \begin{equation*}
+    \xi_{\ell , s} = \frac{Z_\text{eff}^4 \ryd \alpha^2}{n^3 \ell \left( \ell + 1 \right) \left( \ell + \frac{1}{2} \right)}
+    \quad \implies \quad
+    Z_\text{eff} = \sqrt[4]{3^3 \cdot 1 \cdot 2 \cdot \frac{3}{2} \frac{\xi}{\ryd \alpha^2}} \approx 3.56
+  \end{equation*}
+\end{example}
+
+\section{X-ray spectra}
+
+For general multi-electron atoms, the energy eigenvalues for internal electrons can be empirically expressed by \bctxt{Mosley's law}:
+\begin{equation}
+  E_n \approx - \frac{\ryd \left( Z - \alpha_n \right)^2}{n^2}
+\end{equation}
+where $ \alpha_n $ are the screening constants determined by inner electrons (empirically $ \alpha_1 < \alpha_2 < \alpha_3 < \dots $).
+Since chemical bonds only affect valence electrons, at the first order of approximation, the energies of internal electrons should remain unperturbed independently of the state of the sample.
+
+Transition between core states, i.e. electronic configurations with different internal electrons, are described by this notation: a hole in a shell $ n = 1 , 2 , 3 , 4 , \dots $ is denoted by $ K , L , M , N , \dots $, while the difference $ \Delta n = 1 , 2 , 3 , \dots $ is denoted by $ \alpha , \beta , \gamma , \dots $. For example, the transition $ 1\text{s}^1 2\text{s}^2 2\text{p}^6 \dots \ra 1\text{s}^2 2 \text{s}^2 2 \text{p}^5 $ is denoted by $ K_\alpha \equiv L \ra K $, while $ 1\text{s}^2 2\text{s}^2 2\text{p}^5 3\text{s}^2 3\text{p}^6 4\text{s}^2 \ra 1\text{s}^2 2\text{s}^2 2\text{p}^6 3\text{s}^2 3\text{p}^6 4\text{s}^1 $ by $ L_\beta \equiv L \ra N $.
+
+\section{Multi-electron atoms}
+
+When accounting for multiple valence electrons, the potential is no longer spherically-symmetric. The corrections with respect to the unperturbed spherically-symmetric case are determined by the total angular momenta:
+\begin{equation}
+  \ve{S} \defeq \sum_i \bs{s}_i
+  \qquad \qquad
+  \ve{L} \defeq \sum_i \bs{\ell}_i
+  \qquad \qquad
+  \ve{J} = \ve{L} + \ve{S}
+\end{equation}
+This is the \emph{Russell-Saunders coupling}: another possible coupling is the \emph{jj coupling}, in which $ \ve{J} = \sum_i \bs{j}_i $, which is more effective for heavier atoms where the spin-orbit interaction dominates the potential. The total orbital $ \ve{L} $ gives rise to non-central correction terms, while the total spin $ \ve{S} $ imposes conditions on the possible states due to the Pauli exclusion principles, which are linked to the swap integral.
+
+The spin-orbit interaction splits the atomic states into multiplets (since $ S \neq \frac{1}{2} $ in general). For a multiplet with fixed $ L $ and $ S $, the split levels are energetically separated by:
+\begin{equation*}
+  \Delta E(L , S) = \frac{\xi}{2} \left[ \left( J + 1 \right) \left( J + 2 \right) - J \left( J + 1 \right) \right] = \xi \left( J + 1 \right)
+\end{equation*}
+A measurement of the ordering of these split levels can then determine if $ \xi > 0 $ or $ \xi < 0 $, depending on weather the lowest state is that with lowest or highest total angular momentum.
+
+
+
+
+
+
+
+
+
+
