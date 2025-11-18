@@ -1,0 +1,205 @@
+\selectlanguage{english}
+
+\chapter{Lectures 30/09--03/10}
+
+\begin{example}{Spectroscopic terms from level separation}{}
+  The  separation between consecutive pairs of 3 atomic levels with spin-orbit coupling is in the ratio $ 3:5 $ with increasing energy. Determine the spectroscopic terms.
+
+  \textit{Solution.} Since the levels are ordered in increasing energy, $ \xi > 0 $. Denoting the two energy intervals as $ \Delta E_1 $ and $ \Delta E_2 $, then $ \Delta E_2 / \Delta E_1 = 5 / 3 $ and, by Landé's spacing law:
+  \begin{equation*}
+    \frac{\xi \left( J_\text{min} + 2 \right)}{\xi \left( J_\text{min} + 1 \right)} = \frac{5}{3}
+    \quad \implies \quad
+    J_\text{min} = \frac{1}{2}
+    \quad \implies \quad
+    \begin{cases}
+      \abs{L - S} = \frac{1}{2} \\
+      L + S = \frac{5}{2}
+    \end{cases}
+  \end{equation*}
+  where we set to zero the energy of the lowest state. The solutions are:
+  \begin{equation*}
+    (2L , 2S) \in \{ \left( 2 , 3 \right) , \left( 3 , 2 \right) \}
+  \end{equation*}
+  Since $ L \in \N_0 $, the only acceptable solution is $ L = 1 , S = \frac{3}{2} $, hence the spectroscopic terms are $ \ch{^4P_{\sfrac{1}{2} , \sfrac{3}{2} , \sfrac{5}{2}}} $.
+\end{example}
+
+\section{Atoms in a magnetic field}
+
+When applying a magnetic field $ \ve{B} \neq \ve{0} $, the conjugate momentum shifts as $ \ve{P} \mapsto \ve{P} - q \ve{A} $, where $ q $ is the charge of the particle considered. Fixing the Coulomb gauge, the vector potential is uniquely defined by $ \rot \ve{A} = \ve{B} $ and $ \dive \ve{A} = 0 $: for a constant magnetic field:
+\begin{equation}
+  \ve{A}(\ve{r}) = \frac{1}{2} \ve{B} \times \ve{r}
+\end{equation}
+
+\begin{proposition}[before upper = {\tcbtitle}]{Mono-electron Hamiltonian in constant magnetic field}{}
+  \begin{equation}
+    \ham \simeq \ham_0 - \bs{\mu} \cdot \ve{B}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    For a mono-electron atom, the Hamiltonian becomes:
+    \begin{equation*}
+      \ham = \frac{1}{2m} \left( \ve{P} + e \ve{A} \right)^2 - \frac{Z e^2}{r} = \frac{1}{2m} \left( -\hbar^2 \lap - 2i e \hbar \ve{A} \cdot \grad - i \hbar e \dive \ve{A} + e^2 \ve{A}^2 \right) - \frac{Z e^2}{r}
+    \end{equation*}
+    The third term in parentheses vanishes in the Coulomb gauge, while the last term is $ \sim \smo(B^2) $, hence we approximate it as negligible\footnotemark. Denoting the unperturbed Hamiltonian as $ \ham_0 $, then:
+    \begin{equation*}
+      \ham \simeq \ham_0 - \frac{i e \hbar}{2m} \left( \ve{B} \times \ve{r} \right) \cdot \grad = \ham_0 - \frac{i e \hbar}{2m} \left( \ve{r} \times \grad \right) \cdot \ve{B} = \ham_0 + \frac{e}{2m} \ve{L} \cdot \ve{B}
+    \end{equation*}
+    where we used $ (\ve{A} \times \ve{B}) \cdot \ve{C} = (\ve{B} \times \ve{C}) \cdot \ve{A} $. Recalling \eref{eq:mu-orbital-definition} completes the proof.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{Indeed, a field $ B \sim 1 \,\text{T} $ is associated to an energy $ \bor B \sim 60 \,\mu\ev $, which can be treated as a perturbation.}
+
+This expression holds in presence of spin too, summing the two magnetic moments:
+\begin{equation}
+  \bs{\mu} = \bs{\mu}_L + \bs{\mu}_S = - \frac{\bor}{\hbar} \left( \ve{L} + 2 \ve{S} \right)
+\end{equation}
+The total Hamiltonian is then found adding the spin-orbit coupling:
+\begin{equation}
+  \ham = \ham_0 + \frac{\bor}{\hbar} \left( \ve{L} + 2 \ve{S} \right) \cdot \ve{B} + \xi(\ve{r}) \ve{L} \cdot \ve{S}
+\end{equation}
+The two perturbation terms are not simultaneously-diagonalizable: the first term is diagonalized in the uncoupled basis, with quantum numbers $ \left( n  , \ell , s , m_\ell , m_s \right) $, while the second term is diagonalized in the coupled basis, with quantum numbers $ \left( n , \ell , s , j , m_j \right) $. In general, to diagonalized this Hamiltonian one would have to employ degenerate perturbation theory, since the presence of these perturbation terms breaks the degeneracy of the unperturbed Hamiltonian; however, limit cases are more interesting.
+
+\paragraph{Atoms with $ \bs{S = 0} $}
+
+In this case there is no spin-orbit interaction, and the perturbation Hamiltonian is reduced to (assuming $ \ve{B} = B \ve{e}_z $):
+\begin{equation*}
+  \ham' = \frac{\bor}{\hbar} B L_z
+  \quad \implies \quad
+  \braket{\ham'} = \bor B m_L
+\end{equation*}
+The $ m_L $-degeneracy is thus broken, and each state is split into $ 2L + 1 $ equally-spaced states.
+
+\begin{example}{Cadmium}{}
+  Consider $ \ch{^{48}Cd} = [\ch{Kr}] 4\text{d}^{10} 5\text{s}^2 $: in this case $ L = S = J = 0 $, hence the ground state is $ \ch{^1S_0} $. Now, take the two excited states with valence electrons $ 5\text{s}^1 5\text{p}^1 $ and $ 5\text{s}^1 5\text{d}^1 $: given the selection rule (electric-dipole approximation) $ \Delta S = 0 $, these states have $ S = 0 $ like the ground state, hence they are $ \ch{^1P_1} $ and $ \ch{^1D_2} $. Applying a magnetic field, then, the ground state is unperturbed, the first excited state is split into three states and the second excited state is split into five states.
+
+  Recall that, from the electric-dipole approximation, we can derive the selection rule $ \Delta m_L = 0 , \pm 1 $, where $ \Delta m_L = 0 $ is associated to a linear polarization of the EM wave along the $ z $-axis, while $ \Delta m_L = \pm 1 $ are circular polarizations in the $ xy $-plane. Historically, $ \Delta m_L = 0 $ transitions are called $ \pi $ transitions and $ \Delta m_L = \pm 1 $ ones $ \sigma $ transitions.
+
+  Then, $ \ch{^1P_1} \ra \ch{^1S_0} $ is split into one $ \pi $ transition and two $ \sigma $ transitions, while $ \ch{^1D_2} \ra \ch{^1P_1} $ is split into three $ \pi $ transitions and six $ \sigma $ transitions: $ \pi $ transitions have unperturbed energies, while $ \sigma $ transitions have energies perturbed by $ \Delta E = \pm \bor B $.
+\end{example}
+
+This example shows that we cannot distinguish $ S = 0 $ atoms from one another by only applying a magnetic field, since their spectra are all equally perturbed: in particular, each line is split into three lines (corresponding to $ \Delta m_L = 0 , \pm 1 $), an effect historically known as \bctxt{normal Zeeman effect} (as it can be derived classically).
+
+\paragraph{Atoms with $ \bs{S \neq 0} $}
+
+We can distinguish between between two cases: the magnetic field dominates or the spin-orbit coupling dominates, which are respectively known as \bctxt{Paschen--Back effect} and \bctxt{anomalous Zeeman effect} (as it requires a quantistic description, contrary to the normal Zeeman effect).
+
+\subsection{Paschen--Back effect}
+
+In this case, we approximate the perturbation Hamiltonian at first order as:
+\begin{equation*}
+  \ham' \simeq \frac{\bor}{\hbar} B \left( L_z + 2S_z \right)
+  \quad \implies \quad
+  \braket{\ham'} = \bor B \left( m_L + 2 m_S \right)
+\end{equation*}
+To include the spin-orbit coupling, we have to rewrite $ \ve{L} \cdot \ve{S} $ in a way best suited for the uncoupled basis, which has been fixed by the first-order approximation:
+\begin{equation}
+  \ve{L} \cdot \ve{S} = \frac{1}{2} \left( L_+ S_- + L_- S_+ \right) + L_z S_z
+  \label{eq:spin-orbit-uncoupled}
+\end{equation}
+where we used \eref{eq:angular-momentum-plus-minus}. Clearly, then, on the uncoupled basis $ \braket{\ve{L} \cdot \ve{S}} = \hbar^2 m_L m_S $, so we can write the total pertubation energy as:
+\begin{equation}
+  \Delta E_\text{PB} = \bor B \left( m_L + 2 m_S \right) + \xi m_L m_S
+  \label{eq:paschen-back}
+\end{equation}
+This expression suggests how to establish whether the magnetic field or the spin-orbit coupling dominates: the Paschen--Back effect takes place if $ \bor B \gg \xi $.
+
+\begin{observation}{Classical treatment of Larmor precession}{larmor-precession}
+  From a classical point of view, $ \ve{L} $ and $ \ve{S} $ are vectors which, in the presence of a magnetic field $ \ve{B} $, precede along the direction of $ \ve{B} $. Indeed, ignoring at first order the spin-orbit coupling, $ \ve{L} $ and $ \ve{S} $ are associated to independent magnetic moments $ \bs{\mu}_L $ and $ \bs{\mu}_S $, but in a magnetic field a magnetic moment $ \bs{\mu} $ precedes along the direction of $ \ve{B} $ according to the torque $ \bs{\tau} = \bs{\mu} \times \ve{B} $:
+  \begin{equation*}
+    \bs{\tau} = \frac{\dd \bs{\ell}}{\dd t} = \frac{\dd \bs{\ell}}{\dd \varphi} \frac{\dd \varphi}{\dd t}
+    \quad \implies \quad
+    \tau = \omega \frac{\dd \ell}{\dd \varphi}
+  \end{equation*}
+  Geometrically $ \dd \ell = \ell \sin \vartheta \dd \varphi $, where $ \vartheta $ is the angle between $ \bs{\ell} $ and $ \ve{B} $, hence:
+  \begin{equation*}
+    \mu B \sin \vartheta = \omega \ell \sin \vartheta
+    \quad \implies \quad
+    \omega = \frac{\mu B}{\ell}
+  \end{equation*}
+  Recalling \eref{eq:mu-orbital-definition} we find the angular velocity of the precession of $ \bs{\mu} $ (i.e. of $ \bs{\ell} $):
+  \begin{equation}
+    \omega = g_\ell \frac{\bor}{\hbar} B
+  \end{equation}
+  where we included the Landé factor for a general angular momentum. This phenomenon is known as \bcobs{Larmor precession}.
+
+  Since $ g_L = 1 $ and $ g_S = 2 $, the orbital angular momentum and the spin precede at different velocities, hence their sum $ \ve{J} = \ve{L} + \ve{S} $ is no longer an integral of motion, which quantistically corresponds to $ j $ not being a good quantum number. However, note that Larmor precession leaves the components of $ \ve{L} $ and $ \ve{S} $ along $ \ve{B} $ unchanged: this is reflected in \eref{eq:spin-orbit-uncoupled}, since $ \braket{\ve{L} \cdot \ve{S}} = \hbar^2 m_L m_S $ which are still good quantum numbers. A classical way of putting this is that, over an extended time interval, $ \ve{L} $ and $ \ve{S} $ can be replaced with ``effective" angular momenta given by their mean values $ \ve{L}_\text{eff} \equiv L_z \ve{e}_z $ and $ \ve{S}_\text{eff} \equiv S_z \ve{e}_z $.
+\end{observation}
+
+\subsection{Anomalous Zeeman effect}
+
+We now consider the case $ \xi \gg \bor B $ in which the spin-orbit interaction dominates, so we work in the coupled basis.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{anomalous-zeeman-effect.png}
+  \caption{Classical view of the anomalous Zeeman effect}
+  \label{fig:anomalous-zeeman-effect}
+\end{figure}
+
+As per \obsref{obs:larmor-precession}, since $ g_L = 1 $ and $ g_S = 2 $, the total angular momentum $ \ve{J} = \ve{L} + \ve{S} $ and its magnetic moment $ \bs{\mu}_J = \bs{\mu}_L + \bs{\mu}_S $ are not aligned (see \figref{fig:anomalous-zeeman-effect}). In absence of an external magnetic field, $ \ve{J} $ is a constant vector and $ \ve{L} $ and $ \ve{S} $ precede along its direction, since they are affected by each other's magnetic moment (i.e. generated magnetic field), and so do their magnetic moments and the total magnetic moment $ \bs{\mu}_J $. Then, adding an external magnetic field, $ \ve{J} $ precedes along its direction: since we are assuming $ \xi \gg \bor B $, the precession of $ \ve{L} $ , $ \ve{S} $ and $ \bs{\mu}_J $ along $ \ve{J} $ is much faster than the precession of $ \ve{J} $ along $ \ve{B} $, hence we can assume them to be independent, as represented in \figref{fig:anomalous-zeeman-effect}.
+
+Given the greater angular frequency of the precession of $ \bs{\mu}_J $ along $ \ve{J} $, the only component of $ \bs{\mu}_J $ that interacts with $ \ve{B} $ is the mean component during the precession (denoted in \figref{fig:anomalous-zeeman-effect} as $ (\bs{\mu}_J)_J $), i.e. the projection of $ \bs{\mu}_J $ along $ \ve{J} $.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Energy perturbation for the anomalous Zeeman effect}{}
+  \begin{equation}
+    \braket{\bs{\mu}_J \cdot \ve{B}} = - \frac{\bor B}{\hbar} \frac{3 J(J+1) + S(S+1) - L(L+1)}{2 J(J+1)} m_J
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Given the projection scheme outlined above and in \figref{fig:anomalous-zeeman-effect}, first project $ \bs{\mu}_J $ along $ \ve{J} $:
+    \begin{equation*}
+      (\bs{\mu}_J)_J \equiv \frac{\bs{\mu}_J \cdot \ve{J}}{\norm{\ve{J}}} \frac{\ve{J}}{\norm{\ve{J}}} = \frac{\left( \bs{\mu}_L + \bs{\mu}_S \right) \cdot \ve{J}}{J^2} \ve{J} = - \frac{\bor}{\hbar J^2} \left( \ve{L} + 2 \ve{S} \right) \cdot \left( \ve{L} + \ve{S} \right) \ve{J}
+    \end{equation*}
+    Then, project $ (\bs{\mu}_J)_J $ along $ \ve{B} = B \ve{e}_z $:
+    \begin{equation*}
+      (\bs{\mu}_J)_J \cdot \ve{B} = - \frac{\bor B}{\hbar J^2} \left( \ve{L} + 2 \ve{S} \right) \cdot \left( \ve{L} + \ve{S} \right) J_z
+    \end{equation*}
+    To solve the scalar product, recall that $ 2 \ve{L} \cdot \ve{S} = J^2 - L^2 - S^2 $:
+    \begin{equation*}
+      \left( \ve{L} + 2 \ve{S} \right) \cdot \left( \ve{L} + \ve{S} \right) = L^2 + 2 S^2 + 3 \ve{L} \cdot \ve{S} = \frac{3 J^2 + S^2 - L^2}{2}
+    \end{equation*}
+    Putting everything together:
+    \begin{equation*}
+      (\bs{\mu}_J)_J \cdot \ve{B} = - \frac{\bor B}{\hbar} \frac{3J^2 + S^2 - L^2}{2J^2} J_z
+    \end{equation*}
+    The expectation value is easily found.
+  \end{proof}
+\end{proofbox}
+
+We define the Landé factor for $ J $ as:
+\begin{equation}
+  g_J \equiv \frac{3 J(J+1) + S(S+1) - L(L+1)}{2 J(J+1)}
+\end{equation}
+so that $ \bs{\mu}_J = g_J \frac{\bor}{\hbar} \ve{J} $ (truly this is $ (\bs{\mu}_J)_J $, but we identify the magnetic moment with its mean over many precession periods) the energy correction due to the anomalous Zeeman effect is:
+\begin{equation}
+  \Delta E_\text{AZ} = \frac{\xi}{2} \left[ J(J+1) - L(L+1) - S(S+1) \right] + g_J m_J \bor B
+\end{equation}
+Note that the $ g_J $ is not always between $ 1 = g_L $ and $ 2 = g_S $: for example, for $ (L , S , J) = (1 , \frac{3}{2} , \frac{1}{2}) $ it is $ g_J = \frac{8}{3} > 2 $, while for $ (L , S , J) = (3 , \frac{5}{2} , \frac{1}{2}) $ it is $ g_J = - \frac{2}{3} < 0 $.
+
+\begin{example}{Paschen--Back effect in hydrogen}{}
+  Determine the spectrum observed for transitions between $ n = 2 $ and $ n = 1 $ of hydrogen atoms in a $ B = 10 \,\text{T} $ magnetic field.
+
+  \textit{Solution.} In this case $ \bor B = 0.58 \,\text{meV} $, while for $ \ch{^1H} $ the spin-orbit constant has the exact expression given by \eref{eq:spin-orbit-1-e}:
+  \begin{equation*}
+    \xi_{n,\ell} = \frac{\ryd Z^4 \alpha^2}{n^3 \ell \left( \ell + 1 \right) \left( \ell + \frac{1}{2} \right)}
+  \end{equation*}
+  The ground state $ \ch{^2S_{\sfrac{1}{2}}} $ has no spin-orbit interaction, while the possible $ n = 2 $ states are $ \ch{^2S_{\sfrac{1}{2}}} $ and $ \ch{^2P_{\sfrac{1}{2} , \sfrac{3}{2}}} $: in the latter case the spin-orbit constant is $ \xi_{2,1} = 0.03 \,\text{meV} $, hence the magnetic field induces a Paschen--Back effect.
+
+  The transition $ \ch{^2S_{\sfrac{1}{2}}} \ra \ch{^2S_{\sfrac{1}{2}}} $ is dipole-forbidden, so consider $ \ch{^2P_{\sfrac{1}{2} , \sfrac{3}{2}}} \ra \ch{^2S_{\sfrac{1}{2}}} $: by \eref{eq:paschen-back}, $ \ch{^2P_{\sfrac{1}{2} , \sfrac{3}{2}}} $ splits into six levels, for $ m_L = -1,0,1 $ and $ m_S = -\frac{1}{2},\frac{1}{2} $, but $ m_L + 2m_S = 0 $ for $ (m_L , m_S) = (-1,\frac{1}{2}) , (1,-\frac{1}{2}) $, hence the non-degenerate split levels are five: on the other hand, $ \ch{^2S_{\sfrac{1}{2}}} $ splits into the two levels $ m_S = -\frac{1}{2} , \frac{1}{2} $. The relevant selection rule in this transition is $ \Delta m_S = 0 $: the possible transitions are then $ (m_L , \pm \frac{1}{2}) \ra (0 , \pm \frac{1}{2}) $, which, given the degeneracy above, produce five spectral lines.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
