@@ -1,0 +1,157 @@
+\selectlanguage{english}
+
+\chapter{Lecture 13/10}
+
+\section{Atoms with two electrons}
+
+Consider an atom with $ Z $ protons and two electrons. Approximating the nucleus as unaffected by the electrons (i.e. massive approximation), the Hamiltonian of the system is:
+\begin{equation}
+  \ham = - \frac{\hbar^2}{2m} \lap_{\ve{r}_1} - \frac{\hbar^2}{2m} \lap_{\ve{r}_2} - \frac{Ze^2}{r_1} - \frac{Ze^2}{r_2} + \frac{e^2}{r_{12}}
+  \label{eq:2-e-hamiltonian}
+\end{equation}
+with $ r_{12} \equiv \norm{\ve{r}_1 - \ve{r}_2} $. Note that $ \ham $ is symmetric under $ \ve{r}_1 \lra \ve{r}_2 $, i.e. under exchange of the two electrons: as a consequence, if $ \Psi(\ve{r}_1 , \ve{r}_2) $ is an eigenfunction of the Hamiltonian, then $ \Psi(\ve{r}_2 , \ve{r}_1) $ is still an eigenfunction of $ \ham $ with the same eigenvalue, i.e. with the same energy. Moreover, defining the exchange operator $ \mathcal{P}_{1,2} : \mathcal{P}_{1,2} f(\ve{r}_1 , \ve{r}_2) \defeq f(\ve{r}_2 , \ve{r}_1) $, then $ [\ham , \mathcal{P}_{1,2}] = 0 $, hence we can diagonalize the Hamiltonian by diagonalizing the exchange operator.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Eigenfunctions of the exchange operator}{}
+  \begin{equation}
+    \Psi(\ve{r}_1 , \ve{r}_2) = \pm \Psi(\ve{r}_2 , \ve{r}_1)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By definition $ \mathcal{P}_{1,2}^2 = \id $. However, eigenfunctions satisfy $ \mathcal{P}_{1,2} \Psi(\ve{r}_1 , \ve{r}_2) = \lambda \Psi(\ve{r}_1 , \ve{r}_2) $, thus:
+    \begin{equation*}
+      \Psi(\ve{r}_1 , \ve{r}_2) = \mathcal{P}_{1,2}^2 \Psi(\ve{r}_1 , \ve{r}_2) = \lambda^2 \Psi(\ve{r}_1 , \ve{r}_2)
+    \end{equation*}
+    Solving for $ \lambda $ yields $ \lambda = \pm 1 $.
+  \end{proof}
+\end{proofbox}
+
+The Hamiltonian is then diagonalized on the eigenbasis of symmetric and antisymmetric functions. Note that $ \Psi(\ve{r}_1 , \ve{r}_2) \equiv \Psi_{1,2} $ is the spatial part of the total wave-function of the system: for a complete description, we have to include the spin part $ \swf_{1,2} $, so to define the total wave-function $ \Phi_{1,2} \equiv \Psi_{1,2} \swf_{1,2} $. This definition is well-posed if the Hamiltonian of the system is independent of the spin of the two electrons: this is the case for \eref{eq:2-e-hamiltonian}, where we implicitly assumed that the Coulomb interaction term dominates over the spin-orbit interaction term, which has been suppressed; however, this approximation does not hold for increasingly-heavier atoms, for which the spin-orbit coupling dominates.
+
+Since electrons are fermions, the total wave-function must be antisymmetric: $ \Phi_{1,2} = - \Phi_{2,1} $. This means that if $ \Psi_{1,2} = \pm \Psi_{2,1} $, then $ \swf_{1,2} = \mp \swf_{2,1} $. Starting from the individual spinors $ \swf_i(\uparrow) $ and $ \swf_i(\downarrow) $, with $ i = 1,2 $, we can build a symmetric triplet:
+\begin{equation*}
+  \swf_1(\uparrow) \swf_2(\uparrow)
+  \qquad \qquad
+  \frac{1}{\sqrt{2}} \left[ \swf_1(\uparrow) \swf_2(\downarrow) + \swf_1(\downarrow) \swf_2(\uparrow) \right]
+  \qquad \qquad
+  \swf_1(\downarrow) \swf_2(\downarrow)
+\end{equation*}
+and an antisymmetric singlet:
+\begin{equation*}
+  \frac{1}{\sqrt{2}} \left[ \swf_1(\uparrow) \swf_2(\downarrow) - \swf_1(\downarrow) \swf_2(\uparrow) \right]
+\end{equation*}
+Note that for the symmetric triplet $ m_S = 1, 0, -1 $, while for the antisymmetric singlet $ m_S = 0 $: it is then clear that the symmetric triplet has $ S = 1 $, while the antisymmetric singlet has $ S = 0 $, where\footnotemark $ \, S \equiv s_1 + s_2 $.
+
+\footnotetext{To be precise, $ S = s_1 \otimes \id_2 + \id_1 \otimes s_2 $.}
+
+\subsection{Perturbation theory}
+
+As a first attempt to solve the Schrödinger equation with Hamiltonian \eref{eq:2-e-hamiltonian}, consider the interaction term as a perturbation, i.e. write:
+\begin{equation*}
+  \ham = \ham_1 + \ham_2 + \ham_{1,2}
+\end{equation*}
+Then, a general eigenfunction can be written in a separated way as $ \Psi_{1,2} = \psi_1 \psi_2 $, where $ \psi_1 $ and $ \psi_2 $ are eigenfunctions of the mono-electron Hamiltonians $ \ham_1 $ and $ \ham_2 $, i.e. $ \psi_i = \psi_{n,\ell,m}(\ve{r}_i) $. In particular, denoting the set of quantum number as $ \sigma \equiv (n,\ell,m) $, the bi-electron eigenfunctions can be written as:
+\begin{equation}
+  \Psi_{1,2}^\pm(\sigma , \sigma') = \frac{1}{\sqrt{2}} \left[ \psi_1(\sigma) \psi_2(\sigma') \pm \psi_1(\sigma') \psi_2(\sigma) \right]
+\end{equation}
+with the notation $ \psi_i(\sigma) \equiv \psi_{n,\ell,m}(\ve{r}_i) $.
+
+\begin{proposition}[before upper = {\tcbtitle}]{Unperturbed eigenenergies}{}
+  \begin{equation}
+    E_0(\sigma , \sigma') = E_0(\sigma) + E_0(\sigma')
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Setting\footnotemark $ \, \ham_0 = \ham_1 + \ham_2 $:
+    \begin{equation*}
+      \begin{split}
+        \ham_0 \Psi_{1,2}^\pm(\sigma , \sigma')
+        & = \frac{1}{\sqrt{2}} \left[ \left( \ham_1 + \ham_2 \right) \psi_1(\sigma) \psi_2(\sigma') \pm \left( \ham_1 + \ham_2 \right) \psi_1(\sigma') \psi_2(\sigma) \right] \\
+        & = \frac{1}{\sqrt{2}} \left[ \left( E_0(\sigma) + E_0(\sigma') \right) \psi_1(\sigma) \psi_2(\sigma') \pm \left( E_0(\sigma') + E_0(\sigma) \right) \psi_1(\sigma') \psi_2(\sigma) \right] \\
+        & = \left[ E_0(\sigma) + E_0(\sigma') \right] \Psi_{1,2}^\pm(\sigma , \sigma')
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{To be precise, $ \ham_0 = \ham_1 \otimes \id_2 + \id_1 \otimes \ham_2 $.}
+
+This confirms that $ \Psi_{1,2}^+ $ and $ \Psi_{1,2}^- $ (i.e. $ \Psi_{1,2} $ and $ \Psi_{2,1} $) have the same eigenenergies.
+
+\begin{example}{Helium}{}
+  The unperturbed eigenenergies of $ \ch{_2He} $ are:
+  \begin{equation*}
+    E_0(n_1 , n_2) = - 4\ryd \left( \frac{1}{n_1^2} + \frac{1}{n_2^2} \right)
+  \end{equation*}
+  For example, $ E_0(1\text{s}^2) \simeq -108.8 \ev $: however, experimentally the energy to doubly ionize $ \ch{_2He} $ is $ 79.0 \ev $, thus showing the importance of the interaction term in the Hamiltonian. Accounting for this perturbation, since $ 1\text{s}^2 $ is an $ S = 0 $ singlet:
+  \begin{equation*}
+    \begin{split}
+      \Delta E(1\text{s}^2)
+      & = \braket{\Psi^+_{1,2}(\{1,0,0\} , \{1,0,0\}) | \ham_{1,2} | \Psi^+_{1,2}(\{1,0,0\} , \{1,0,0\})} \\
+      & = 2 \int_{\R^6} \dd^3 r_1 \dd^3 r_2 \, \abs{\psi_{1,0,0}(\ve{r}_1)}^2 \abs{\psi_{1,0,0}(\ve{r}_2)}^2 \frac{e^2}{\norm{\ve{r}_1 - \ve{r}_2}} = \frac{5}{4} Z \ryd
+    \end{split}
+  \end{equation*}
+  This is a classical correction, and $ E_0(1\text{s}^2) + \Delta E(1\text{s}^2) \simeq -74.8 \ev $, which is closer to the experimental value but still shows the limitation of the perturbative approach.
+\end{example}
+
+We now have to compute the correction due to the interaction Hamiltonian.
+
+\begin{proposition}{Interaction correction}{}
+  The correction due to $ \ham_{1,2} $ can be written as:
+  \begin{equation}
+    \Delta E^\pm(\sigma , \sigma') = \mathcal{J} \pm \mathcal{K}
+  \end{equation}
+  where the \bcprop{Coulomb integral} is defined as:
+  \begin{equation}
+    \mathcal{J} \equiv \int_{\R^6} \dd^3 r_1 \dd^3 r_2 \, \abs{\psi_1(\sigma)}^2 \abs{\psi_2(\sigma')}^2 \frac{e^2}{\norm{\ve{r}_1 - \ve{r}_2}}
+  \end{equation}
+  and the \bcprop{exchange integral} is defined as:
+  \begin{equation}
+    \mathcal{K} \equiv \int_{\R^6} \dd^3 r_1 \dd^3 r_2 \, \psi_1(\sigma)^* \psi_1(\sigma') \psi_2(\sigma')^* \psi_2(\sigma) \frac{e^2}{\norm{\ve{r}_1 - \ve{r}_2}}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct computation:
+    \begin{equation*}
+      \begin{split}
+        \Delta^\pm E(\sigma , \sigma')
+        & = \braket{\Psi_{1,2}^\pm(\sigma , \sigma') | \ham_{1,2} | \Psi_{1,2}^\pm(\sigma , \sigma')} = \int_{\R^6} \dd^3 r_1 \dd^3 r_2 \abs{\Psi_{1,2}^\pm(\sigma , \sigma')}^2 \frac{e^2}{\norm{\ve{r}_1 - \ve{r}_2}} \\
+        & = \frac{e^2}{2} \int_{\R^6} \frac{\dd^3 r_1 \dd^3 r_2}{\norm{\ve{r}_1 - \ve{r}_2}} \left[ \psi_1(\sigma)^* \psi_2(\sigma')^* \pm \psi_1(\sigma')^* \psi_2(\sigma)^* \right] \left[ \psi_1(\sigma) \psi_2(\sigma') \pm \psi_1(\sigma') \psi_2(\sigma) \right] \\
+        & = \frac{e^2}{2} \int_{\R^6} \frac{\dd^3 r_1 \dd^3 r_2}{\norm{\ve{r}_1 - \ve{r}_2}} \left[ \abs{\psi_1(\sigma)}^2 \abs{\psi_2(\sigma')}^2 + \abs{\psi_1(\sigma')}^2 \abs{\psi_2(\sigma)}^2 \right] + \\
+        & \quad \pm \frac{e^2}{2} \int_{\R^6} \frac{\dd^3 r_1 \dd^3 r_2}{\norm{\ve{r}_1 - \ve{r}_2}} \left[ \psi_1(\sigma)^* \psi_1(\sigma') \psi_2(\sigma')^* \psi_2(\sigma) + \psi_1(\sigma')^* \psi_1(\sigma) \psi_2(\sigma)^* \psi_2(\sigma') \right] \\
+        & = e^2 \int_{\R^6} \frac{\dd^3 r_1 \dd^3 r_2}{\norm{\ve{r}_1 - \ve{r}_2}} \abs{\psi_1(\sigma)}^2 \abs{\psi_2(\sigma')}^2 \pm e^2 \int_{\R^6} \frac{\dd^3 r_1 \dd^3 r_2}{\norm{\ve{r}_1 - \ve{r}_2}} \psi_1(\sigma)^* \psi_1(\sigma') \psi_2(\sigma')^* \psi_2(\sigma)
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+The Coulomb integral is classical, while the exchange integral has a quantum nature: indeed, $ \mathcal{J} $ is equivalent to the interaction of two charge distributions, while $ \mathcal{K} $ stems from the antisymmetrization of the total wave-function.
+
+Note that $ \mathcal{J} , \mathcal{K} > 0 $, hence the singlet state has a higher energy correction than the triplet states: this is an instance of \bctxt{Hund's first rule}, which is an empirical rule that states that maximizing the total electronic spin of an atom minimizes its energy. \bctxt{Hund's second rule} is also illustrated by these integrals: indeed, it states that maximizing the total orbital angular momentum minimizes the energy of the atom, which is justified by the fact that electrons which orbit in the same direction are close to one another less often than electrons which orbit in opposite directions, thus minimizing the repulsive potential interaction.
+
+\begin{example}{Helium again}{}
+  Consider again $ \ch{_2He} $, and in particular its lowest states $ 1\text{s}^2 $, $ 1\text{s}^1 2\text{s}^1 $ and $ 1\text{s}^1 2\text{p}^1 $:
+  \begin{itemize}
+    \item $ 1\text{s}^2 $ only has a singlet state $ S = 0 $, hence it can only be $ \ch{^1S_0} $;
+    \item $ 1\text{s}2\text{s} $ is split by the exchange interaction into a triplet (lower energy) and a singlet (higher energy), with respective spectroscopic terms $ \ch{^3S_1} $ and $ \ch{^1S_0} $;
+    \item $ 1\text{s}2\text{p} $ is split into a triplet $ \ch{^3P_{0,1,2}} $, which can be further split by the spin-orbit interaction, and a singlet $ \ch{^1P_1} $.
+  \end{itemize}
+  In particular, the lowest levels are $ \ch{^1S_0} $ and $ \ch{^3S_1} $: since a transition between them is dipole-forbidden (as $ \Delta S \neq 0 $), historically these were thought as two different species of helium: para-helium ($ S = 0 $ singlet) and ortho-helium ($ S = 1 $ triplet).
+\end{example}
+
+
+
+
+
+
+
+
+
+
