@@ -38,9 +38,14 @@ Defining the \bctxt{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \
   \begin{proof}
     By \eref{eq:scalar-quant-op-comm}:
     \begin{equation*}
-      \braket{\ve{p}_1 | \ve{p}_2} = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | a_{\ve{p}_1} a_{\ve{p}_2}^\dagger | 0}
-      = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | [a_{\ve{p}_1} , a_{\ve{p}_2}^\dagger] | 0} = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
+      \begin{split}
+        \braket{\ve{p}_1 | \ve{p}_2}
+        & = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | a_{\ve{p}_1} a_{\ve{p}_2}^\dagger | 0} \\
+        & = \sqrt{2E_{\ve{p}_1}} \sqrt{2E_{\ve{p}_2}} \braket{0 | [a_{\ve{p}_1} , a_{\ve{p}_2}^\dagger] | 0} \\
+        & = 2E_{\ve{p}_1} (2\pi)^3 \delta^{(3)}(\ve{p}_1 - \ve{p}_2)
+      \end{split}
     \end{equation*}
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -66,6 +71,7 @@ Defining the \bctxt{vacuum state} $ \ket{0} : a_\ve{p} \ket{0} = 0 \,\,\forall \
       = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{\gamma (E + \beta p_i)}{E}
       = \delta^{(3)}(\ve{p}' - \ve{q}') \frac{E'}{E}
     \end{equation*}
+    Clearly, then, $ E_\ve{p} \delta^{(3)}(\ve{p} - \ve{q}) $ is Lorentz invariant.
   \end{proof}
 \end{proofbox}
 
@@ -148,7 +154,7 @@ Recalling \dref{def:kg-scal-prod}, it is possible to relate the Fourier modes th
 \begin{equation}
   \braket{f,g} \defeq i \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = i \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv i \int \dd^3x\, W_0[f^*,g](x)
 \end{equation}
-where $ W_0[f^*,g](x) $ is the ($ t $-)\bctxt{Wrońskian}\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
+where $ W_0[f^*,g](x) $ is the $ t $-\bctxt{Wrońskian}\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
 %
 \footnotetext{Given $ \{f_k(x)\}_{k = 1,\dots,N} \subset \mathcal{C}^N(I,\C) $, with $ I \subset \R^n $ and $ N \in \N $, their ($ i^\text{th} $-)\textit{Wrońskian} is $ W_i \in \mathcal{C}(I,\C) $ defined as:
 \begin{equation}
@@ -209,12 +215,10 @@ Using the KG inner product it is possible to explicit the ladder operators.
     \eref{eq:scalar-quant-exp} can be cast in the form:
     \begin{equation*}
       \phi(x) = \frac{1}{\sqrt{(2\pi)^3}} \int \dd^3p \left[ f_\ve{p}(x) a_\ve{p} + f^*_\ve{p}(x) a_\ve{p}\dg \right]
+      \quad \implies \quad
+      \braket{f_\ve{p},\phi} = \frac{a_\ve{p}}{\sqrt{(2\pi)^3}}
     \end{equation*}
-    Then, using \pref{prop:fourier-orthonorm}:
-    \begin{equation*}
-      \braket{f_\ve{p},\phi} = \frac{1}{\sqrt{(2\pi)^3}} \int \dd^3q\, \delta^{(3)}(\ve{q} - \ve{p}) a_\ve{q} = \frac{a_\ve{p}}{\sqrt{(2\pi)^3}}
-    \end{equation*}
-    Inserting \eref{eq:fourier-modes} yields the thesis ($ a_\ve{p}\dg $ is analogous).
+    by \pref{prop:fourier-orthonorm}. Then, inserting \eref{eq:fourier-modes} yields the thesis ($ a_\ve{p}\dg $ is analogous).
   \end{proof}
 \end{proofbox}
 
@@ -275,8 +279,6 @@ While normal ordering was justified when considering the Hamiltonian on the grou
 Being $ a_\ve{p}^\dagger a_\ve{p} $ and $ b_\ve{p}^\dagger b_\ve{p} $ number operators, the $ \Un{1} $ charge is equal to the number of quanta created by $ a_\ve{p}^\dagger $ minus the number of quanta created by $ b_\ve{p}^\dagger $, integrated over all momenta: in particular, $ a_\ve{p}^\dagger \ket{0} $ and $ b_\ve{p}^\dagger \ket{0} $ are both spin-zero particles of mass $ m $ and momentum $ \ve{p} $, but they respectively have charges $ Q_{\Un{1}} = +1 $ and $ Q_{\Un{1}} = -1 $. This allows to properly interpret the negative-energy solutions of the KG equations: they are positive-energy particles with opposite $ \Un{1} $ charge and are called \bctxt{antiparticles}.\\
 For a real scalar field, the reality condition reads $ a_\ve{p} = b_\ve{p} $, thus it describes a field whose particle is its own antiparticle, and it is symmetric under any $ \Un{1} $ symmetry.
 
-\newpage
-
 \section{Spinor fields}
 
 A principle of QFT is the \bctxt{spin-statistic theorem}: integer-spin fields are to be quantized imposing equal-time commutation relations, while half-integer-spin with equal-time anticommutation relations.
@@ -310,7 +312,7 @@ The Fock space is again constructed defining a vacuum state $ \ket{0} : a_{\ve{p
 \begin{equation*}
   \begin{split}
     &\ket{(\ve{p}_1,s_1) , \dots , (\ve{p}_n,s_n) ; (\ve{q}_1,r_1) , \dots , (\ve{q}_m,r_m)} \\
-    & \qquad \qquad \qquad \qquad \qquad = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}} \sqrt{2E_{\ve{q}_1}} \dots \sqrt{2E_{\ve{q}_m}} a_{\ve{p}_1,s_1}^\dagger \dots a_{\ve{p}_n,s_n}^\dagger b_{\ve{q}_1,r_1}^\dagger \dots b_{\ve{q}_m,r_m}^\dagger \ket{0}
+    & \qquad \qquad \qquad \qquad \quad = \sqrt{2E_{\ve{p}_1}} \dots \sqrt{2E_{\ve{p}_n}} \sqrt{2E_{\ve{q}_1}} \dots \sqrt{2E_{\ve{q}_m}} a_{\ve{p}_1,s_1}^\dagger \dots a_{\ve{p}_n,s_n}^\dagger b_{\ve{q}_1,r_1}^\dagger \dots b_{\ve{q}_m,r_m}^\dagger \ket{0}
   \end{split}
 \end{equation*}
 As these operators anticommute, states in this Fock space are antisymmetric under the exchange of particles, therefore spin-$ \frac{1}{2} $ obey the Fermi-Dirac statistics (as of the spin-statistic theorem).
@@ -336,7 +338,7 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
         &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{ip_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-ip_\mu x^\mu} \right] \times \\
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \left[ a_{\ve{q},r} u^r(q) e^{-iq_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{iq_\mu x^\mu} \right] \\
         &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \times \left[ \left( \bs{\gamma} \cdot \ve{q} + m \right) a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + \left( - \bs{\gamma} \cdot \ve{q} + m \right) b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right]
+        & \qquad \qquad \qquad \qquad \qquad \quad \ \ \, \times \left[ \left( \bs{\gamma} \cdot \ve{q} + m \right) a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + \left( - \bs{\gamma} \cdot \ve{q} + m \right) b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right]
       \end{split}
     \end{equation*}
     Using the Dirac equation in the form $ (\slashed{p} - m) u(p) = (\slashed{p} + m) v(p) = 0 $:
@@ -349,8 +351,8 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
     \begin{equation*}
       \begin{split}
         H
-        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 E_\ve{q} \left[ a_{\ve{q},r} u^r(\ve{q}) e^{-i E_\ve{q} t} - b_{-\ve{q},r}^\dagger v^r(-\ve{q}) e^{i E_\ve{q} t} \right] e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \hspace{-0.18em} \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \ \ \times \gamma^0 E_\ve{q} \left[ a_{\ve{q},r} u^r(\ve{q}) e^{-i E_\ve{q} t} - b_{-\ve{q},r}^\dagger v^r(-\ve{q}) e^{i E_\ve{q} t} \right] e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \\
         &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},s}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right] \\
         &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \Big[ a_{\ve{p},s}^\dagger a_{\ve{p},r} u^{s\dagger}(\ve{p}) u^r(\ve{p}) + b_{-\ve{p},s} a_{\ve{p},r} v^{s\dagger}(-\ve{p}) u^r(\ve{p}) e^{-2i E_\ve{p} t} + \\
@@ -368,13 +370,14 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
     \begin{equation*}
       H = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \normord\{a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} E_\ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
     \end{equation*}
+    which completes the proof.
   \end{proof}
 
 \end{proofbox}
 
 It can be seen that, using anticommutators, the Hamiltonian and its interpretation are analogous to that of the complex scalar field: if commutators were used, instead, one would get a final $ - b_{\ve{p},s}^\dagger b_{\ve{p},s} $ term, which is problematic as it yields an energy unbounded from below\footnotemark{}.
 %
-\footnotetext{The spin-statistics theorem is implied by Lorentz invariance, positive energies and causality (as shown in \cite{pauli}).}
+\footnotetext{The spin-statistics theorem is implied by Lorentz invariance, positive energies and causality (see \cite{pauli}).}
 
 The momentum operator too is analogous to that of the complex scalar field, with the additional spin degree of freedom.
 
@@ -395,19 +398,19 @@ The momentum operator too is analogous to that of the complex scalar field, with
     \begin{equation*}
       \begin{split}
         \ve{P}
-        &= \int \dd^3x\, \Psi^\dagger (-i \bs{\nabla}) \Psi \\
         &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-ip_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times (-i \bs{\nabla}) \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times (-i \bs{\nabla}) \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
         &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-ip_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \ve{q} \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} - b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times \ve{q} \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} - b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
         &= \normord \int \frac{\dd^3p}{(2\pi)^3} \frac{\ve{p}}{2E_\ve{p}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} v^{s\dagger}(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},r}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right]
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},r}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right]
       \end{split}
     \end{equation*}
     Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
     \begin{equation*}
       \ve{P} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \normord\{a_{\ve{p},s}^\dagger a_{\ve{p},s} - b_{\ve{p},s} b_{\ve{p},s}^\dagger\} = \int \frac{\dd^3p}{(2\pi)^3} \sum_{s = 1,2} \ve{p} \left( a_{\ve{p},s}^\dagger a_{\ve{p},s} + b_{\ve{p},s}^\dagger b_{\ve{p},s} \right)
     \end{equation*}
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -415,15 +418,10 @@ Thus, both $ a_{\ve{p},s}^\dagger $ and $ b_{\ve{p},s}^\dagger $ create particle
 
 \subsubsection{Quantum numbers}
 
-Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to \eref{eq:dir-field-change}:
-\begin{equation}
-  \Psi'(x) = e^{-\frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}} \Psi(x) \simeq \left[ \tens{I}_4 - \frac{i}{2} \omega_{\mu \nu} J^{\mu \nu} \right] \Psi(x)
-  \label{eq:dirac-inf-rot}
-\end{equation}
-where the Lorentz generator $ J^{\mu \nu} $ is defined in \eref{eq:dir-field-tot-ang-mom}.
+Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to \eref{eq:dir-field-change}, i.e. $ \Psi'(x) = e^{-\frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}} \Psi(x) $, where the Lorentz generator $ J^{\mu \nu} $ is defined in \eref{eq:dir-field-tot-ang-mom}.
 
 \begin{proposition}{Angular momentum}{}
-  The conserved charge associated to the infinitesimal rotation \eref{eq:dirac-inf-rot} is:
+  The conserved charge associated to the infinitesimal rotation \eref{eq:dir-field-change} is:
   \begin{equation}
     \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
   \end{equation}
@@ -441,8 +439,9 @@ where the Lorentz generator $ J^{\mu \nu} $ is defined in \eref{eq:dir-field-tot
     \end{equation*}
     As the associated Noether charge is $ J^3 = \int \dd^3x\, j^0 $, this can be generalized to rotations around the $ x $-axis and the $ y $-axis, yielding:
     \begin{equation*}
-      \ve{J} = \int \dd^3\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
+      \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
     \end{equation*}
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -525,7 +524,7 @@ As for the KG field, the ladder operators of the Dirac field can be made explici
     \begin{equation*}
       \begin{split}
         \int \dd^3x\, e^{i p_\mu x^\mu} \Psi(x)
-        & = \int \frac{\dd^3x \dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] e^{i (\ve{k} - \ve{p}) \cdot \ve{x}} \\
+        & = \int \frac{\dd^3x \dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} \hspace{-0.1em} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] \hspace{-0.1em} e^{i (\ve{k} - \ve{p}) \cdot \ve{x}} \\
         & = \int \frac{\dd^3k}{\sqrt{2E_\ve{k}}} \delta^{(3)}(\ve{k} - \ve{p}) \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] \\
         & = \frac{1}{\sqrt{2E_\ve{p}}} \sum_{r = 1,2} \left[ a_{\ve{p},r} u^r(\ve{p}) + b_{-\ve{p},r}\dg v^r(-\ve{p}) e^{2i E_\ve{p} t} \right]
       \end{split}
@@ -547,7 +546,7 @@ As for the KG field, the ladder operators of the Dirac field can be made explici
     \begin{equation*}
       \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg
     \end{equation*}
-    To find the remaining ladder operators, either repeat the previous steps with $ \bar{\Psi}(x) $ or use (as $ (\gamma^\mu)^2 = \tens{I}_4 $):
+    To find the remaining ladder operators, either repeat the previous steps with $ \bar{\Psi}(x) $ or use (as $ (\gamma^\mu)^2 = \mt{I}_4 $):
     \begin{equation}
       (\bar{u}^s \gamma^0 \Psi)\dg = ({u^s}\dg \Psi)\dg = \Psi\dg u^s = \bar{\Psi} \gamma^0 u^s
     \end{equation}
@@ -574,7 +573,7 @@ Consider $ \Psi_\text{L} $. As for \eref{eq:dirac-exp}:
   \Psi_\text{L}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u_\text{L}^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v_\text{L}^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
 \end{equation*}
 where the Dirac spinors now have the right-hand component vanishing, in the chiral representation. By \eeref{eq:u-spinor-p3-frame}{eq:v-spinor-def}, in the massless (ultra-relativistic) limit $ p^\mu = (E,0,0,E) $, so spinors with $ s = 1 $ have only the right-handed component, while those with $ s = 2 $ only the left-handed one: therefore, only $ s = 2 $ spinors contribute to $ \Psi_\text{L} $ (and only $ s = 1 $ to $ \Psi_\text{R} $).\\
-By Tab. \ref{tab:dirac-qn}, it is clear that in this context $ a_{\ve{p},2}^\dagger $ creates a particle with helicity $ h = - \frac{1}{2} $, while $ b_{\ve{p},2}^\dagger $ creates an antiparticle with $ h = + \frac{1}{2} $: in general, a left-handed massless Weyl field describes particles with $ h = - \frac{1}{2} $ and antiparticles with $ h = + \frac{1}{2} $, while a right-handed one describes particles with $ h = + \frac{1}{2} $ and antiparticles with $ h = - \frac{1}{2} $.
+By \tabref{tab:dirac-qn}, it is clear that in this context $ a_{\ve{p},2}^\dagger $ creates a particle with helicity $ h = - \frac{1}{2} $, while $ b_{\ve{p},2}^\dagger $ creates an antiparticle with $ h = + \frac{1}{2} $: in general, a left-handed massless Weyl field describes particles with $ h = - \frac{1}{2} $ and antiparticles with $ h = + \frac{1}{2} $, while a right-handed one describes particles with $ h = + \frac{1}{2} $ and antiparticles with $ h = - \frac{1}{2} $.
 
 \subsection{Discrete symmetries of fermionic fields}
 
@@ -685,9 +684,11 @@ Thus, $ \chargec^2 = \id $ too, and its physical interpretation is the exchange 
       \begin{split}
         \chargec \Psi(x) \chargec
         &= \eta_c \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} \chargec u^s(p) \chargec e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger \chargec v^s(p) \chargec e^{i p_\mu x^\mu} \right] \\
-        &= -i \eta_c \gamma^2 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} [v^s(p)]^* e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger [u^s(p)]^* e^{i p_\mu x^\mu} \right] = -i \eta_c \gamma^2 [\Psi(x)]^*
+        &= -i \eta_c \gamma^2 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} [v^s(p)]^* e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger [u^s(p)]^* e^{i p_\mu x^\mu} \right] \\
+        & = -i \eta_c \gamma^2 [\Psi(x)]^*
       \end{split}
     \end{equation*}
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -840,7 +841,7 @@ In order to study the invariance properties of fermionic Lagrangians, it is nece
     \rule{0pt}{2.5ex} $ \timer $ & $ +1 $ & $ -1 $ & $ (-1)^\mu $ & $ (-1)^\mu $ & $ - (-1)^\mu (-1)^\nu $ & $ - (-1)^\mu $ \\
     \rule{0pt}{2.5ex} $ \chargec\parity\timer $ & $ +1 $ & $ +1 $ & $ -1 $ & $ -1 $ & $ +1 $ & $ -1 $
   \end{tabular}
-  \caption{Eigenvalues of fermion bilinears and derivative operator, with $ (-1)^\mu \equiv (+1,-1,-1,-1) $.}
+  \caption{Eigenvalues of fermion bilinears and derivative operator, with the shorthand $ (-1)^\mu \equiv (+1,-1,-1,-1) $.}
   \label{tab:ferm-bil-eigen}
 \end{table}
 
@@ -956,7 +957,7 @@ By \eref{eq:en-mom-tensor}, writing \eref{eq:maxw-lag} explicitly in terms of $ 
 with $ F^2 \equiv F_{\mu \nu} F^{\mu \nu} $. To show the gauge-invariance of this tensor, recall \eref{eq:maxw-1}:
 \begin{equation*}
   \theta^{\mu \nu} \mapsto \theta^{\mu \nu} + F^{\mu \rho} \pa^\nu \pa_\rho \alpha
-  \qquad \Rightarrow \qquad
+  \quad \implies \quad
   P^\mu \mapsto P^\mu + \int \dd^3x\, \pa_\rho (F^{0 \rho} \pa^\mu \alpha) = P^\mu + \int \dd^3x\, \pa_i (F^{0i} \pa^\mu \alpha) = P^\mu
 \end{equation*}
 where the last term is a total spatial derivative, hence vanishing by divergence theorem provided that the field decreases sufficiently fast at infinity. To improve the energy-momentum tensor, add $ \pa_\rho (F^{\mu \rho} A^\nu) $, which is covariantly conserved by itself and whose $ \mu = 0 $ component is a total spatial derivative, so to obtain:
@@ -1172,11 +1173,11 @@ The most general one-particle state of the physical subspace can then be written
 \begin{equation*}
   \braket{\phi | \phi} = \braket{0 | (a_{\ve{k},0} - a_{\ve{k},3}) (a_{\ve{k},0}\dg - a_{\ve{k},3}\dg) | 0} = \braket{0 | [a_{\ve{k},0} , a_{\ve{k},0}\dg] + [a_{\ve{k},3} , a_{\ve{k},3}\dg] | 0} = 0
 \end{equation*}
-This means that $ \ket{\phi} $ is orthogonal to all physical states. Moreover, only transverse states contribute to the energy and to the momentum, as $ H , \ve{P} \sim - \eta^{\lambda \lambda'} a_{\ve{k},\lambda}\dg a_{\ve{k},\lambda'} $ and (as $ c_0 + c_3 = 0 $):
+This means that $ \ket{\phi} $ is orthogonal to all physical states $ \ket{\varphi} $. Moreover, only transverse states contribute to the energy and to the momentum, as $ H , \ve{P} \sim - \eta^{\lambda \lambda'} a_{\ve{k},\lambda}\dg a_{\ve{k},\lambda'} $ and (as $ c_0 + c_3 = 0 $):
 \begin{equation*}
   (a_{\ve{k},0} - a_{\ve{k},3}) \ket{\psi} = 0
-  \quad \Rightarrow \quad
-  \braket{\text{phys}' | -a_{\ve{k},0}\dg a_{\ve{k},0} + a_{\ve{k},3}\dg a_{\ve{k},3} | \text{phys}} = \braket{\text{phys}' | (-a_{\ve{k},0}\dg + a_{\ve{k},3}\dg) a_{\ve{k},3} | \text{phys}} = 0
+  \quad \implies \quad
+  \braket{\varphi' | -a_{\ve{k},0}\dg a_{\ve{k},0} + a_{\ve{k},3}\dg a_{\ve{k},3} | \varphi} = \braket{\varphi' | (-a_{\ve{k},0}\dg + a_{\ve{k},3}\dg) a_{\ve{k},3} | \varphi} = 0
 \end{equation*}
 These facts mean that $ \ket{\ve{k}_\text{T}} $ and $ \ket{\ve{k}_\text{T}} + c \ket{\phi} $ are physically indistinguishable: photons can then be identified as the equivalence classes with respect to the equivalence relation $ \ket{\psi} \sim \ket{\psi} + c \ket{\phi} $. \\
 This procedure has eliminated the spurious degrees of freedom, thus showing the equivalence between covariant quantization and gauge quantization.
@@ -1207,7 +1208,7 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
     \begin{equation*}
       \begin{split}
         \int \dd^3x\, e^{i k_\mu x^\mu} \ve{A}(x)
-        & = \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{i (k - p)_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i (k + p)_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}} \\
+        & = \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{i (k - p)_\mu x^\mu} \hspace{-0.1em} + \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i (k + p)_\mu x^\mu} \right] \\
         & = \frac{1}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
       \end{split}
     \end{equation*}

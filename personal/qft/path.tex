@@ -218,7 +218,7 @@ Note that \lref{lemma:time-ord-prod} still holds: it allows to compute $ n $-poi
   \end{proof}
 \end{proofbox}
 
-This is the equivalent of \eref{eq:corr-func-pert} evaluated with path integrals: in particular, it is clear that the denominator \eref{eq:vac-to-vac} gives the vacuum-to-vacuum transition amplitudes, $ \virgolette{undressing} $ the numerator of vacuum-to-vacuum disconnected diagrams. Moreover, note how the normalization of $ \mathcal{D}q $ carries no physical significance, as it simplifies in the fraction.
+This is the equivalent of \eref{eq:corr-func-pert} evaluated with path integrals: in particular, it is clear that the denominator \eref{eq:vac-to-vac} gives the vacuum-to-vacuum transition amplitudes, ``undressing" the numerator of vacuum-to-vacuum disconnected diagrams. Moreover, note how the normalization of $ \mathcal{D}q $ carries no physical significance, as it simplifies in the fraction.
 
 \section{Functional quantization of fields}
 
@@ -335,7 +335,7 @@ The generating functional for a free scalar theory can be written explicitly.
     \end{equation*}
     as $ \hat{A} D_\text{F}(x-y) = -i \delta^{(4)}(x-y) $. Then:
     \begin{equation*}
-      \exp \left[ \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right] = \exp \left[ \frac{i}{2} \int \dd^4x\, J(x) \hat{A}^{-1} J(x) \right] = \exp \left[ -\frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]
+      \exp \left[ \frac{i}{2} \braket{J | \hat{A}^{-1} | J} \right] \hspace{-0.2em} = \exp \left[ \frac{i}{2} \int \dd^4x\, J(x) \hat{A}^{-1} J(x) \right] \hspace{-0.2em} = \exp \left[ -\frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right]
     \end{equation*}
     This completes the proof.
   \end{proof}
@@ -349,7 +349,7 @@ Using \lref{lemma:gauss-ve-int}, it is possible to make $ Z[0] $ explicit:
 \begin{equation}
   Z_0[0] = \int \mathcal{D}\phi\, \exp \left[ - \frac{i}{2} \braket{\phi | \hat{A} | \phi} \right] = \mathcal{N} (\det \hat{A})^{-1/2}
 \end{equation}
-where $ \det\hat{A} $ is known as a \bctxt{functional determinant}. Although it has a physical meaning, as $ Z_0[0] = \braket{0 | 0} $ represents the vacuum-to-vacuum amplitude, the functional determinant cancels in the expression for the correlation functions ($ \virgolette{undressing} $ of vacuum-to-vacuum diagrams).
+where $ \det\hat{A} $ is known as a \bctxt{functional determinant}. Although it has a physical meaning, as $ Z_0[0] = \braket{0 | 0} $ represents the vacuum-to-vacuum amplitude, the functional determinant cancels in the expression for the correlation functions (``undressing" of vacuum-to-vacuum diagrams).
 
 \subsubsection{Interacting theory}
 
@@ -370,11 +370,15 @@ Consider now a scalar field theory with interaction Lagrangian $ \lag_\text{int}
     \begin{equation*}
       \begin{split}
         Z[J]
-        & = \int \mathcal{D}\phi\, e^{i\act + i \int \dd^4y\, J(y) \phi(y)} = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + V[\phi] + J(y) \phi(y) \right)} = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)} \sum_{n = 0}^\infty c_n \phi^n \\
-        & = \int \mathcal{D}\phi \sum_{n = 0}^\infty c_n \left( -i \frac{\delta}{\delta J} \right)^n e^{i \int \dd^4x \left( \lag_0 + J \phi \right)} = \int \mathcal{D} \phi e^{-i \int \dd^4x V[-i \frac{\delta}{\delta J(x)}]} e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)}
+        & = \int \mathcal{D}\phi\, e^{i\act + i \int \dd^4y\, J(y) \phi(y)} \\
+        & = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + V[\phi] + J(y) \phi(y) \right)} \\
+        & = \int \mathcal{D}\phi\, e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)} \sum_{n = 0}^\infty c_n \phi^n \\
+        & = \int \mathcal{D}\phi \sum_{n = 0}^\infty c_n \left( -i \frac{\delta}{\delta J} \right)^n e^{i \int \dd^4x \left( \lag_0 + J \phi \right)} \\
+        & = \int \mathcal{D} \phi e^{-i \int \dd^4x V[-i \frac{\delta}{\delta J(x)}]} e^{i \int \dd^4y \left( \lag_0 + J(y) \phi(y) \right)} \\
+        & = e^{-i \int \dd^4x V[-i \frac{\delta}{\delta J(x)}]} Z_0[J]
       \end{split}
     \end{equation*}
-    The first exponential can be carried out of the path integral, and expanding it yields the thesis.
+    Expanding the first exponential yields the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -389,19 +393,19 @@ This expression is analogous to Wick's theorem: due to the final condition $ J =
   Computing the $ 2 $-point Green function in a free scalar field theory is trivial with \eref{eq:func-free}:
   \begin{equation*}
     \begin{split}
-      \braket{0 | \tempord\{\phi(x_1) \phi(x_2)\} | 0}
-      & = \frac{1}{Z_0[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) Z_0[J] \right]_{J = 0} \\
-      & = \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) \exp \left[ - \frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right] \bigg\vert_{J = 0} \\
-      & = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ i \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
-      & = \frac{1}{Z_0[0]} \bigg[ D_\text{F}(x_2 - x_1) + \\
-      & \quad - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = D_\text{F}(x_2 - x_1)
+      & \braket{0 | \tempord\{\phi(x_1) \phi(x_2)\} | 0}
+      = \frac{1}{Z_0[0]} \left[ \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) Z_0[J] \right]_{J = 0} \\
+      & \qquad \qquad \qquad = \left( -i \frac{\delta}{\delta J(x_1)} \right) \left( -i \frac{\delta}{\delta J(x_2)} \right) \exp \left[ - \frac{1}{2} \int \dd^4x \dd^4y\, J(x) D_\text{F}(x-y) J(y) \right] \bigg\vert_{J = 0} \\
+      & \qquad \qquad \qquad = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ i \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
+      & \qquad \qquad \qquad = \frac{1}{Z_0[0]} \bigg[ D_\text{F}(x_2 - x_1) + \\
+      & \qquad \qquad \qquad \quad - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = D_\text{F}(x_2 - x_1)
     \end{split}
   \end{equation*}
   This expression can be used to compute the $ 3 $-point Green function:
   \begin{equation*}
     \begin{split}
       & \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3)\} | 0} \\
-      & = \frac{1}{Z_0[0]} \left( -i \frac{\delta}{\delta J(x_1)} \right) \left[ D_\text{F}(x_3 - x_2) - \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \right] Z_0[J] \bigg\vert_{J = 0} \\
+      & = \frac{1}{Z_0[0]} \hspace{-0.2em} \left( -i \frac{\delta}{\delta J(x_1)} \right) \hspace{-0.3em} \left[ D_\text{F}(x_3 - x_2) \hspace{-0.1em} - \hspace{-0.2em} \int \hspace{-0.1em} \dd^4y\, D_\text{F}(x_2 - y) J(y) \hspace{-0.1em} \int \hspace{-0.1em} \dd^4y\, D_\text{F}(x_3 - y) J(y) \right] \hspace{-0.2em} Z_0[J] \bigg\vert_{J = 0} \\
       & = \frac{1}{Z_0[0]} \bigg[ i D_\text{F}(x_3 - x_2) \int \dd^4y\, D_\text{F}(x_1 - y) J(y) + i D_\text{F}(x_2 - x_1) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \\
       & \quad + i D_\text{F}(x_3 - x_1) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) + \\
       & \quad - i \int \dd^4y\, D_\text{F}(x_1 - y) J(y) \int \dd^4y\, D_\text{F}(x_2 - y) J(y) \int \dd^4y\, D_\text{F}(x_3 - y) J(y) \bigg] Z_0[J] \bigg\vert_{J = 0} = 0
@@ -456,7 +460,7 @@ This kinetic term is orthogonal to $ k_\mu $, i.e. the action vanishes for all g
 \begin{equation}
   A_\mu(x) \mapsto A_\mu(x) + \pa_\mu \alpha(x)
 \end{equation}
-and the non-invertibility arises from modes gauge-equivalent to $ A_\mu(x) \equiv 0 $ (obtained by $ \pa_\mu \alpha(x) = - A_\mu(x) $), i.e. non-physical degrees of freedom. \\
+and the non-invertibility arises from modes gauge-equivalent to $ A_\mu(x) \equiv 0 $ (obtained with the gauge transformation $ \pa_\mu \alpha(x) = - A_\mu(x) $), i.e. non-physical degrees of freedom. \\
 It is possible to isolate and quantize physical degrees of freedom, thanks to a technique due to Faddeev and Popov (introduced in \cite{faddeev-popov}), which yields (see Sec. 9.4 of \cite{peskin} for a detailed derivation):
 \begin{equation}
   \tilde{D}_{\mu \nu}(k) = \frac{-i}{k^2 + i\epsilon} \left[ \eta^{\mu \nu} - \left( 1 - \xi \right) \frac{k^\mu k^\nu}{k^2} \right]

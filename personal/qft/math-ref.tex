@@ -1,5 +1,46 @@
 \selectlanguage{english}
 
+\section{Multilinear algebra}
+
+\begin{definition}{Tensor product of vectors}{}
+  Given two $ \K $-vector spaces $ V,W $ with bases $ \{\ve{e}_i\}_{i = 1,\dots,n} , \{\ve{f}_j\}_{i = 1,\dots,m} $, the \bcdef{tensor product} $ V \otimes W $ is defined as:
+  \begin{equation}
+    \ve{v} \otimes \ve{w} = \sum_{i = 1}^{n} \sum_{j = 1}^{m} v^i w^j \ve{e}_i \otimes \ve{f}_j
+    \quad \iff \quad
+    \begin{pmatrix}
+      v_1 \\ \vdots \\ v_n
+    \end{pmatrix}
+    \otimes
+    \begin{pmatrix}
+      w_1 \\ \vdots \\ w_m
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      v_1 w_1 \\ \vdots \\ v_1 w_m \\ \vdots \\ v_n w_1 \\ \vdots \\ v_n w_m
+    \end{pmatrix}
+    \label{eq:tens-prod-def}
+  \end{equation}
+\end{definition}
+
+\begin{definition}{Tensor product of applications}{}
+  Given $ \K $-linear maps $ f : V \rightarrow V' $ and $ g : W \rightarrow W' $ represented by $ F \equiv [f_{i,j}] \in \K^{n' \times n} $ and $ G \equiv [g_{i,j}] \in \K^{m' \times m} $, the \bcdef{tensor product} $ f \otimes g : V \otimes W \rightarrow V' \otimes W' $ is defined as $ F \otimes G \in \K^{(n'm') \times (nm)} $:
+  \begin{equation*}
+    [F \otimes G]
+    =
+    \begin{bmatrix}
+      f_{1,1} g_{1,1} & \dots & f_{1,1} g_{1,m} &  & f_{1,n} g_{1,1} & \dots & f_{1,n} g_{1,m} \\
+      \vdots & \ddots & \vdots & \dots & \vdots & \ddots & \vdots \\
+      f_{1,1} g_{m',1} & \dots & f_{1,1} g_{m',m} &  & f_{1,n} g_{m',1} & \dots & f_{1,n} g_{m',m} \\
+      & \vdots &  & \ddots &  & \vdots &  \\
+      f_{n',1} g_{1,1} & \dots & f_{n',1} g_{1,m} &  & f_{n',n} g_{1,1} & \dots & f_{n',n} g_{1,m} \\
+      \vdots & \ddots & \vdots & \dots & \vdots & \ddots & \vdots \\
+      f_{n',1} g_{m',1} & \dots & f_{n',1} g_{m',m} &  & f_{n',n} g_{m',1} & \dots & f_{n',n} g_{m',m} \\
+    \end{bmatrix}
+  \end{equation*}
+\end{definition}
+
+It is clear that $ (F \otimes G)(\ve{v} \otimes \ve{w}) = (F \ve{v}) \otimes (G \ve{w}) $.
+
 \section{Lie groups}
 
 \begin{definition}{Lie groups}{}
@@ -172,9 +213,9 @@ This result links the two adjoint maps in \ddref{def:adj-map-1}{def:adj-map-2}.
 
 The $ \SUn{n} $ group is the group of unitary transformations of $ n $-dimensional complex vectors. Its (faithful) fundamental representation thus is:
 \begin{equation*}
-  \SUn{n} = \{\tens{U} \in \C^{n \times n} : \tens{U}\tens{U}\dg = \tens{U}\dg\tens{U} = \tens{I}_n \land \det{\tens{U}} = +1 \}
+  \SUn{n} = \{\mt{U} \in \C^{n \times n} : \mt{U}\mt{U}\dg = \mt{U}\dg\mt{U} = \mt{I}_n \land \det{\mt{U}} = +1 \}
 \end{equation*}
-The generators of $ \SUn{n} $ can be found setting $ \tens{U} = \exp \left( i \theta_a T^a \right) = \tens{I}_n + i \theta_a T^a $ and using $ \tens{U}\dg\tens{U} = \tens{I}_n $:
+The generators of $ \SUn{n} $ can be found setting $ \mt{U} = \exp \left( i \theta_a T^a \right) = \mt{I}_n + i \theta_a T^a $ and using $ \mt{U}\dg\mt{U} = \mt{I}_n $:
 \begin{equation}
   T^a = T^{a\dagger}
   \label{eq:sun-herm}
@@ -218,7 +259,7 @@ The adjoint representation can be is given by representing the generators of the
 Moreover, since the structure constant are real, the adjoint representation is always a real representation: the adjoint representation of $ \SUn{n} $ has degree $ n^2 - 1 $.\\
 Representation are labelled by their Casimir operators. For any simple Lie algebra, given a representation $ \mathtt{r} $, a Casimir operator is defined as:
 \begin{equation}
-  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \tens{I}_{n_{\mathtt{r}}}
+  T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \mt{I}_{n_{\mathtt{r}}}
   \label{eq:quad-cas}
 \end{equation}
 This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
@@ -272,7 +313,7 @@ This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ 
 
 \subsubsection{$ \SUn{2} $ Lie group}
 
-The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \tens{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
+The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \mt{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
 \begin{equation}
   (T^a_\mathtt{g})_{ij} = i \epsilon^{iaj}
 \end{equation}
@@ -596,7 +637,7 @@ Introducing an extra factor of $ \theta \theta^* $ in the integrand yields an ex
 \end{equation}
 
 \begin{proposition}{Unitary invariance}{}
-  Given $ \tens{U} \in \Un{n} $ and setting $ \theta'_i = \sum_{j = 1}^n \tens{U}_{ij} \theta_j $, then:
+  Given $ \mt{U} \in \Un{n} $ and setting $ \theta'_i = \sum_{j = 1}^n \mt{U}_{ij} \theta_j $, then:
   \begin{equation}
     \int \prod_{i = 1}^n \dd \theta^*_i \theta_i\, f(\theta) = \int \prod_{i = 1}^n \dd {\theta'}^*_i \theta'_i\, f(\theta')
   \end{equation}
@@ -608,15 +649,15 @@ Introducing an extra factor of $ \theta \theta^* $ in the integrand yields an ex
     \begin{equation*}
       \begin{split}
         \prod_{i = 1}^n \theta'_i
-        & = \sum_{i_1, \dots, i_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \theta'_{i_1} \dots \theta'_{i_n} = \sum_{i_1, \dots, i_n = 1}^n \sum_{j_1, \dots, j_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \tens{U}_{i_1 j_1} \dots \tens{U}_{i_n j_n} \theta_{j_1} \dots \theta_{j_n} \\
-        & = \sum_{i_1, \dots, i_n = 1}^n \sum_{j_1, \dots, j_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \epsilon^{j_1 \dots j_n} \tens{U}_{i_1 j_1} \dots \tens{U}_{i_n j_n} \prod_{k = 1}^n \theta_k = \det \tens{U} \prod_{i = 1}^n \theta_i
+        & = \sum_{i_1, \dots, i_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \theta'_{i_1} \dots \theta'_{i_n} = \sum_{i_1, \dots, i_n = 1}^n \sum_{j_1, \dots, j_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \mt{U}_{i_1 j_1} \dots \mt{U}_{i_n j_n} \theta_{j_1} \dots \theta_{j_n} \\
+        & = \sum_{i_1, \dots, i_n = 1}^n \sum_{j_1, \dots, j_n = 1}^n \frac{1}{n!} \epsilon^{i_1 \dots i_n} \epsilon^{j_1 \dots j_n} \mt{U}_{i_1 j_1} \dots \mt{U}_{i_n j_n} \prod_{k = 1}^n \theta_k = \det \mt{U} \prod_{i = 1}^n \theta_i
       \end{split}
     \end{equation*}
     Equivalently:
     \begin{equation*}
-      \prod_{i = 1}^n {\theta'}^*_i = \left( \det \tens{U} \right)^* \prod_{i = 1}^n \theta_i^*
+      \prod_{i = 1}^n {\theta'}^*_i = \left( \det \mt{U} \right)^* \prod_{i = 1}^n \theta_i^*
     \end{equation*}
-    As $ \tens{U} \in \Un{n} $, $ \left( \det \tens{U} \right) \left( \det \tens{U} \right)^* = 1 $, so:
+    As $ \mt{U} \in \Un{n} $, $ \left( \det \mt{U} \right) \left( \det \mt{U} \right)^* = 1 $, so:
     \begin{equation*}
       \prod_{i = 1}^n {\theta'}^*_i \theta'_i = \prod_{i = 1}^n \theta_i^* \theta_i
     \end{equation*}
@@ -627,21 +668,21 @@ Introducing an extra factor of $ \theta \theta^* $ in the integrand yields an ex
 With unitary invariance, it is possible to extend complex integration to the multi-dimensional case.
 
 \begin{lemma}{Gaussian integral}{}
-  Given $ \tens{B} \in \C^{n \times n} $ Hermitian:
+  Given $ \mt{B} \in \C^{n \times n} $ Hermitian:
   \begin{equation}
-    \int \prod_{i = 1}^n \dd \theta^*_i \dd \theta_i\, e^{- \sum_{j,k = 1}^n \theta_j^* \tens{B}_{jk} \theta_k} = \det \tens{B}
+    \int \prod_{i = 1}^n \dd \theta^*_i \dd \theta_i\, e^{- \sum_{j,k = 1}^n \theta_j^* \mt{B}_{jk} \theta_k} = \det \mt{B}
     \label{eq:grass-gauss-1}
   \end{equation}
 \end{lemma}
 
 \begin{proofbox}
   \begin{proof}
-    Being $ \tens{B} $ Hermitian, it can be diagonalized by a unitary transformation, so, given its eigenvalues $ \{b_i\}_{i = 1,\dots,n} \subset \C $:
+    Being $ \mt{B} $ Hermitian, it can be diagonalized by a unitary transformation, so, given its eigenvalues $ \{b_i\}_{i = 1,\dots,n} \subset \C $:
     \begin{equation*}
       \begin{split}
-        \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, e^{- \sum_{j,k = 1}^n \theta_j^* \tens{B}_{jk} \theta_k}
+        \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, e^{- \sum_{j,k = 1}^n \theta_j^* \mt{B}_{jk} \theta_k}
         & = \int \prod_{i = 1}^n \dd {\theta'}^*_i \dd \theta'_i\, e^{- \sum_{j = 1}^n {\theta'}^*_j b_j \theta'_j} \\
-        & = \prod_{i = 1}^n \int \dd \theta_i^* \dd \theta_i\, e^{- \theta_i^* b_i \theta_i} = \prod_{i = 1}^n b_i = \det \tens{B}
+        & = \prod_{i = 1}^n \int \dd \theta_i^* \dd \theta_i\, e^{- \theta_i^* b_i \theta_i} = \prod_{i = 1}^n b_i = \det \mt{B}
       \end{split}
     \end{equation*}
   \end{proof}
@@ -649,7 +690,7 @@ With unitary invariance, it is possible to extend complex integration to the mul
 
 With extra factor, the standard Gaussian behavior is recovered:
 \begin{equation}
-  \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, \theta_p \theta_q e^{-i \sum_{j,k = 1}^n \theta_j^* B_{jk} \theta_k} = \left( \det \tens{B} \right) \left[ \tens{B}^{-1} \right]_{pq}
+  \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, \theta_p \theta_q e^{-i \sum_{j,k = 1}^n \theta_j^* B_{jk} \theta_k} = \left( \det \mt{B} \right) \left[ \mt{B}^{-1} \right]_{pq}
   \label{eq:grass-gauss-2}
 \end{equation}
 
@@ -664,16 +705,16 @@ With extra factor, the standard Gaussian behavior is recovered:
 \end{lemma}
 
 \begin{proposition}{Generalized Gaussian integral}{}
-  Given a non-singular matrix $ \tens{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
+  Given a non-singular matrix $ \mt{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
   \begin{equation}
-    \int_{\R^n} \dd^nx\, e^{-\frac{1}{2} \ve{x}^\intercal \tens{A} \ve{x} + \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi)^n}{\det\tens{A}}} e^{\frac{1}{2} \ve{J}^\intercal \tens{A}^{-1} \ve{J}}
+    \int_{\R^n} \dd^nx\, e^{-\frac{1}{2} \ve{x}^\intercal \mt{A} \ve{x} + \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi)^n}{\det\mt{A}}} e^{\frac{1}{2} \ve{J}^\intercal \mt{A}^{-1} \ve{J}}
   \end{equation}
 \end{proposition}
 
 \begin{lemma}{}{gauss-ve-int}
-  Given a non-singular matrix $ \tens{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
+  Given a non-singular matrix $ \mt{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
   \begin{equation}
-    \int_{\R^n} \dd^nx\, e^{-\frac{i}{2} \ve{x}^\intercal \tens{A} \ve{x} + i \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi i)^n}{\det\tens{A}}} e^{-\frac{i}{2} \ve{J}^\intercal \tens{A}^{-1} \ve{J}}
+    \int_{\R^n} \dd^nx\, e^{-\frac{i}{2} \ve{x}^\intercal \mt{A} \ve{x} + i \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi i)^n}{\det\mt{A}}} e^{-\frac{i}{2} \ve{J}^\intercal \mt{A}^{-1} \ve{J}}
   \end{equation}
 \end{lemma}
 

@@ -17,7 +17,7 @@ Consider a system described by a Hamiltonian $ H $. Two different ways of descri
 
 \subsection{Schrödinger picture}
 
-In the Schrödinger picture, states are considered time-dependent and operators time-independent. Consider an initial state $ \ket{\psi(0)} \equiv \ket{\psi} $: its time-evolution is:
+In the Schrödinger picture, states are treated as time-dependent, while operators are treated as time-independent. Consider an initial state $ \ket{\psi(0)} \equiv \ket{\psi} $: its time-evolution is:
 \begin{equation}
   \ket{\psi(t)} = e^{-i H t} \ket{\psi}
 \end{equation}
@@ -52,13 +52,13 @@ where $ S(t) \equiv S(t,0) $.
 
 The unitarity of the $ S $-matrix expresses the conservation of probabilities. Moreover, it can be decomposed as:
 \begin{equation}
-  S = \tens{I} + i T
+  S = \mt{I} + i T
 \end{equation}
-where the \bctxt{$ T $-matrix} contains the information on the interactions, while the identity $ \tens{I} $ only represents a part of the incident wave-packet unaffected by interactions.
+where the \bctxt{$ T $-matrix} contains the information on the interactions, while the identity $ \mt{I} $ only represents a part of the incident wave-packet unaffected by interactions.
 
 \subsection{Heisenberg picture}
 
-In the Heisenberg picture, states are considered time-independent and operators time-dependent. This picture is better suited for QFT, as fields (which are operators) depend both on $ \ve{x} $ and $ t $, therefore the Heisenberg picture is natural in light of Lorentz covariance. \\
+In the Heisenberg picture, states are treated as time-independent, while operators are treated as time-dependent. This picture is better suited for QFT, as fields (which are operators) depend both on $ \ve{x} $ and $ t $, therefore the Heisenberg picture is natural in light of Lorentz covariance. \\
 Given a state $ \ket{\psi(t)} $ in the Schrödinger picture, in the Heisenberg picture it is defined as:
 \begin{equation}
   \ket{\psi,t} \defeq e^{i H t} \ket{\psi(t)}
@@ -255,6 +255,23 @@ It is possible to make the relationship between in- and out-ladder operators exp
 Note that if $ \phi(x) $ were a free field, this operator would identically vanish: this is because the KG scalar product is time-independent in a free field theory, and so are ladder operators too. \\
 It is now possible to write the amplitude for a generic scattering process (i.e. $ S $-matrix element). In particular, consider a process $ \ket{\ve{k}_1, \dots, \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_m; + \infty} $ with $ \ve{k}_i \neq \ve{p}_j \,\,\forall i = 1, \dots, n,\, j = 1, \dots, m $: in this case, as there are no particles which remain unchanged by the interaction, the $ S $-matrix reduces to the $ T $-matrix.
 
+%
+%
+%
+%
+%
+%
+%
+% SOLVE THIS PROBLEM
+%
+%
+%
+%
+%
+%
+%
+\newpage
+
 \begin{theorem}{LSZ reduction formula for scalar fields}{lsz-scalar}
   The amplitude for $ \ket{\ve{k}_1 , \dots , \ve{k}_n; -\infty} \rightarrow \ket{\ve{p}_1 , \dots , \ve{p}_m; +\infty} : \ve{k}_i \neq \ve{p}_j $ is:
   \begin{multline}
@@ -307,7 +324,7 @@ It is now possible to write the amplitude for a generic scattering process (i.e.
     \begin{equation*}
       \begin{split}
         & \braket{\ve{p}_1,\dots\ve{p}_m;+\infty | \ve{k}_1,\dots,\ve{k}_n;-\infty} = \prod_{j = 1}^n \frac{i}{\sqrt{Z}} \int \dd^4x_j\, e^{-i {k_j}_\mu {x_j}^\mu} \prod_{k = 1}^m \frac{i}{\sqrt{Z}} \int \dd^4y_k\, e^{+i {p_k}_\mu {x_k}^\mu} \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \times (\Box_{x_j} + m^2) (\Box_{y_k} + m^2) \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
+        & \qquad \qquad \qquad \qquad \qquad \quad \ \ \times (\Box_{x_j} + m^2) (\Box_{y_k} + m^2) \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n) \phi(y_1) \dots \phi(y_m)\} | 0}
       \end{split}
     \end{equation*}
     It is possible to define the \bctxt{$ N $-point Green function} as:
@@ -412,7 +429,6 @@ Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ pa
       \begin{split}
         \sqrt{2E_\ve{p}} ({a_{\ve{p},s}^\text{in}}\dg - {a_{\ve{p},s}^\text{out}}\dg)
         & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \pa_0 \left[ e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p) \right] \\
-        & = - \frac{1}{\sqrt{Z}} \int \dd^4x \left[ \pa_0 e^{-i p_\mu x^\mu} \bar{\Psi}(x) + e^{-i p_\mu x^\mu} \pa_0 \bar{\Psi}(x) \right] \gamma^0 u^s(p) \\
         & = - \frac{1}{\sqrt{Z}} \int \dd^4x\, \bar{\Psi}(x) \left[ -i \gamma ^0 p_0 + \gamma^0 \smla{\pa}_0 \right] u^s(p) e^{-i p_\mu x^\mu}
       \end{split}
     \end{equation*}
@@ -438,13 +454,19 @@ Consider now a scattering process of a single species of spin-$ \frac{1}{2} $ pa
 
 Note that, like \eref{eq:lsz-scal-op}, these operators vanish identically when dealing with a free field. \\
 Consider now a general scattering process involving both fermions and anti-fermions (quantities denoted by a tilde) $ \ket{\ve{k}_1, \dots, \ve{k}_{n_1} , \tilde{\ve{k}}_1, \dots, \tilde{\ve{k}}_{n_2} ; -\infty} \rightarrow \ket{\ve{p}_1, \dots, \ve{p}_{m_1} , \tilde{\ve{p}}_1, \dots, \tilde{\ve{p}}_{m_2} ; +\infty} $ in which no particles remain unchanged by the interaction, i.e. $ \ve{k}_i \neq \ve{p}_j , \tilde{\ve{k}}_k \neq \tilde{\ve{p}}_l \,\,\forall i = 1,\dots,n_1 ,\, j = 1,\dots,m_1 ,\, k = 1,\dots,n_2 ,\, l = 1,\dots,m_2 $, so that the $ S $-matrix reduces to the $ T $-matrix. By the same reasoning of \tref{th:lsz-scalar}, it is clear how to extract particles from this generic amplitude:
-\begin{align}
-  \braket{\beta_\text{fin} ; + \infty | \ve{k},s ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4x \sum_{a = 1}^{4} \braket{\beta_\text{fin} | [\bar{\Psi}(x)]_a | 0} [( i\smla{\slashed{\pa}} + m ) u^s(k)]_a e^{-i k_\mu x^\mu} \\
-  \braket{\beta_\text{fin} ; + \infty | \tilde{\ve{k}},\tilde{s} ; -\infty} &\mapsto \frac{i}{\sqrt{Z}} \int \dd^4\tilde{x} \sum_{a = 1}^{4} e^{-i \tilde{k}_\mu \tilde{x}^\mu} [\bar{v}^{\tilde{s}}(\tilde{k})( i\smra{\slashed{\pa}} - m )]_a \braket{\beta_\text{fin} | [\Psi(\tilde{x})]_a | 0} \\
-  \braket{\ve{p},s ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto - \frac{i}{\sqrt{Z}} \int \dd^4y \sum_{a = 1}^{4} e^{i p_\mu y^\mu} [\bar{u}^s(p) ( i \smra{\slashed{\pa}} - m )]_a \braket{0 | [\Psi(y)]_a | \alpha_\text{in}} \\
-  \braket{\tilde{\ve{p}},\tilde{s} ; +\infty | \alpha_\text{in} ; -\infty} &\mapsto - \frac{i}{\sqrt{Z}} \int \dd^4\tilde{y} \sum_{a = 1}^{4} \braket{0 | [\bar{\Psi}(\tilde{y})]_a | \alpha_\text{in}} [( i \smla{\slashed{\pa}} + m ) v^{\tilde{s}}(\tilde{p})]_a e^{i \tilde{p}_\mu \tilde{y}^\mu}
-\end{align}
-In general, the final $ \virgolette{reduced} $ amplitude formula will contain a $ (n_1 + n_2 + m_1 + m_2) $-point Green function like (omitting spinor indices):
+\begin{equation}
+  \braket{\beta_\text{fin} ; + \infty | \ve{k},s ; -\infty} \mapsto \frac{i}{\sqrt{Z}} \int \dd^4x \sum_{a = 1}^{4} \braket{\beta_\text{fin} | [\bar{\Psi}(x)]_a | 0} [( i\smla{\slashed{\pa}} + m ) u^s(k)]_a e^{-i k_\mu x^\mu}
+\end{equation}
+\begin{equation}
+  \braket{\beta_\text{fin} ; + \infty | \tilde{\ve{k}},\tilde{s} ; -\infty} \mapsto \frac{i}{\sqrt{Z}} \int \dd^4\tilde{x} \sum_{a = 1}^{4} e^{-i \tilde{k}_\mu \tilde{x}^\mu} [\bar{v}^{\tilde{s}}(\tilde{k})( i\smra{\slashed{\pa}} - m )]_a \braket{\beta_\text{fin} | [\Psi(\tilde{x})]_a | 0}
+\end{equation}
+\begin{equation}
+  \braket{\ve{p},s ; +\infty | \alpha_\text{in} ; -\infty} \mapsto - \frac{i}{\sqrt{Z}} \int \dd^4y \sum_{a = 1}^{4} e^{i p_\mu y^\mu} [\bar{u}^s(p) ( i \smra{\slashed{\pa}} - m )]_a \braket{0 | [\Psi(y)]_a | \alpha_\text{in}}
+\end{equation}
+\begin{equation}
+  \braket{\tilde{\ve{p}},\tilde{s} ; +\infty | \alpha_\text{in} ; -\infty} \mapsto - \frac{i}{\sqrt{Z}} \int \dd^4\tilde{y} \sum_{a = 1}^{4} \braket{0 | [\bar{\Psi}(\tilde{y})]_a | \alpha_\text{in}} [( i \smla{\slashed{\pa}} + m ) v^{\tilde{s}}(\tilde{p})]_a e^{i \tilde{p}_\mu \tilde{y}^\mu}
+\end{equation}
+In general, the final ``reduced" amplitude formula will contain a $ (n_1 + n_2 + m_1 + m_2) $-point Green function like (omitting spinor indices):
 \begin{equation*}
   \braket{0 | \tempord\{\bar{\Psi}(x_1) \dots \bar{\Psi}(x_{n_1}) \Psi(\tilde{x}_1) \dots \Psi(\tilde{x}_{n_2}) \Psi(y_1) \dots \Psi(y_{m_1}) \bar{\Psi}(\tilde{y}_1) \dots \bar{\Psi}(\tilde{y}_{m_2})\} | 0}
 \end{equation*}
@@ -464,12 +486,12 @@ This field evolves with $ H_0 $, i.e. is a free field, and it is called the \bct
 \begin{proposition}{Interaction picture}{}
   The transformation from the interaction picture to the Heisenberg picture is given by a unitary operator:
   \begin{equation}
-    \phi(t,\ve{x}) = \tens{U}\dg(t,t_0) \phi_I \tens{U}(t,t_0)
+    \phi(t,\ve{x}) = \mt{U}\dg(t,t_0) \phi_I \mt{U}(t,t_0)
     \label{eq:int-heis-pic}
   \end{equation}
   with:
   \begin{equation}
-    \tens{U}(t,t_0) \equiv e^{i H_0 (t-t_0)} e^{-i H (t-t_0)}
+    \mt{U}(t,t_0) \equiv e^{i H_0 (t-t_0)} e^{-i H (t-t_0)}
   \end{equation}
 \end{proposition}
 
@@ -481,7 +503,7 @@ This field evolves with $ H_0 $, i.e. is a free field, and it is called the \bct
         \phi(t,\ve{x})
         & = e^{i H (t-t_0)} \phi(t_0,\ve{x}) e^{-i H (t-t_0)} \\
         & = e^{i H (t-t_0)} e^{-i H_0 (t-t_0)} \left[ e^{i H_0 (t-t_0)} \phi(t_0,\ve{x}) e^{-i H_0 (t-t_0)} \right] e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \\
-        & = e^{i H (t-t_0)} e^{-i H_0 (t-t_0)} \phi_I(t,\ve{x}) e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \equiv \tens{U}\dg(t,t_0) \phi_I(t,\ve{x}) \tens{U}(t,t_0)
+        & = e^{i H (t-t_0)} e^{-i H_0 (t-t_0)} \phi_I(t,\ve{x}) e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \equiv \mt{U}\dg(t,t_0) \phi_I(t,\ve{x}) \mt{U}(t,t_0)
       \end{split}
     \end{equation*}
     Unitarity is obvious, as $ H $ is a Hermitian operator.
@@ -493,7 +515,7 @@ Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials 
 \begin{proposition}{Time evolution operator}
   The time evolution operator is:
   \begin{equation}
-    \tens{U}(t,t_0) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
+    \mt{U}(t,t_0) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
   \end{equation}
   where:
   \begin{equation}
@@ -506,22 +528,22 @@ Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials 
     First of all, the time evolution operator solves the Schrödinger equation:
     \begin{equation*}
       \begin{split}
-        i \frac{\pa}{\pa t} \tens{U}(t,t_0)
+        i \frac{\pa}{\pa t} \mt{U}(t,t_0)
         & = e^{i H_0 (t-t_0)} (H - H_0) e^{-i H (t-t_0)} = e^{i H_0 (t-t_0)} H_\text{int} e^{-i H (t-t_0)} \\
-        & = e^{i H_0 (t-t_0)} H_\text{int} e^{-i H_0 (t-t_0)} e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \equiv H_I(t) \tens{U}(t,t_0)
+        & = e^{i H_0 (t-t_0)} H_\text{int} e^{-i H_0 (t-t_0)} e^{i H_0 (t-t_0)} e^{-i H (t-t_0)} \equiv H_I(t) \mt{U}(t,t_0)
       \end{split}
     \end{equation*}
-    The solution to this equation which satisfies the initial condition $ \tens{U}(t_0,t_0) = 1 $ is unique:
+    The solution to this equation which satisfies the initial condition $ \mt{U}(t_0,t_0) = 1 $ is unique:
     \begin{equation*}
       \begin{split}
-        \tens{U}(t,t_0)
+        \mt{U}(t,t_0)
         & = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right] = \sum_{n = 0}^{\infty} \frac{(-i)^n}{n!} \int_{[t_0,t]^n} \dd t_1 \dots \dd t_n\, \tempord\{H_I(t_1) \dots H_I(t_n)\} \\
         & = \sum_{n = 0}^{\infty} (-i)^n \int_{t_0}^t \dd t_1 \int_{t_0}^{t_1} \dd t_2 \dots \int_{t_0}^{t_{n-1}} \dd t_n\, H_I(t_1) \dots H_I(t_n)
       \end{split}
     \end{equation*}
     It is in fact clear that:
     \begin{equation*}
-      \frac{\pa}{\pa t} \tens{U}(t,t_0) = \sum_{n = 0}^{\infty} (-i)^n \int_{t_0}^{t} \dd t_2 \dots \int_{t_0}^{t_{n-1}} \dd t_n\, H_I(t) H_I(t_2) \dots H_I(t_n) = -i H_I(t) \tens{U}(t,t_0)
+      \frac{\pa}{\pa t} \mt{U}(t,t_0) = \sum_{n = 0}^{\infty} (-i)^n \int_{t_0}^{t} \dd t_2 \dots \int_{t_0}^{t_{n-1}} \dd t_n\, H_I(t) H_I(t_2) \dots H_I(t_n) = -i H_I(t) \mt{U}(t,t_0)
     \end{equation*}
     Hence, this is a solution to the above equation.
   \end{proof}
@@ -529,7 +551,7 @@ Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials 
 
 \begin{lemma}[before upper = {\tcbtitle}]{}{time-evol-func}
   \begin{equation}
-    \tens{U}(t_1,t_0) \tens{U}(t_0,t_2) = \tens{U}(t_1,t_2)
+    \mt{U}(t_1,t_0) \mt{U}(t_0,t_2) = \mt{U}(t_1,t_2)
   \end{equation}
 \end{lemma}
 
@@ -537,13 +559,13 @@ Note that, since $ [H_0,H_\text{int}] \neq 0 $ in general, the two exponentials 
   \begin{proof}
     Observe that:
     \begin{equation*}
-      i \frac{\pa}{\pa t} [\tens{U}(t,t_0) \tens{U}(t_0,t_2)] = \left[ i \frac{\pa}{\pa t} \tens{U}(t,t_0) \right] \tens{U}(t_0,t_2) = H_I(t) \tens{U}(t,t_0) \tens{U}(t_0,t_2)
+      i \frac{\pa}{\pa t} [\mt{U}(t,t_0) \mt{U}(t_0,t_2)] = \left[ i \frac{\pa}{\pa t} \mt{U}(t,t_0) \right] \mt{U}(t_0,t_2) = H_I(t) \mt{U}(t,t_0) \mt{U}(t_0,t_2)
     \end{equation*}
-    The boundary condition now reads $ [\tens{U}(t,t_0) \tens{U}(t_0,t_2)]_{t = t_0} = \tens{U}(t_0,t_2) $, and the unique solution for this boundary condition is:
+    The boundary condition now reads $ [\mt{U}(t,t_0) \mt{U}(t_0,t_2)]_{t = t_0} = \mt{U}(t_0,t_2) $, and the unique solution for this boundary condition is:
     \begin{equation*}
-      \tens{U}(t,t_0) \tens{U}(t_0,t_2) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
+      \mt{U}(t,t_0) \mt{U}(t_0,t_2) = \tempord \exp \left[ -i \int_{t_0}^t \dd\tau\, H_I(\tau) \right]
     \end{equation*}
-    which is precisely $ \tens{U}(t,t_2) $.
+    which is precisely $ \mt{U}(t,t_2) $.
   \end{proof}
 \end{proofbox}
 
@@ -563,33 +585,34 @@ It is now possible to compute correlation functions.
     \begin{equation*}
       \begin{split}
         \braket{0 | \phi(x_1) \dots \phi(x_n) | 0}
-        & = \braket{0 | \tens{U}\dg(t_1,t_0) \phi_I(x_1) \tens{U}(t_1,t_0) \tens{U}\dg(t_2,t_0) \dots \tens{U}\dg(t_n,t_0) \phi_I(x_n) \tens{U}(t_n,t_0) | 0} \\
-        & = \braket{0 | \tens{U}\dg(t_1,t_0) \phi_I(x_1) \tens{U}(t_1,t_2) \dots \tens{U}(t_{n-1},t_n) \phi_I(x_n) \tens{U}(t_n,t_0) | 0}
+        & = \braket{0 | \mt{U}\dg(t_1,t_0) \phi_I(x_1) \mt{U}(t_1,t_0) \mt{U}\dg(t_2,t_0) \dots \mt{U}\dg(t_n,t_0) \phi_I(x_n) \mt{U}(t_n,t_0) | 0} \\
+        & = \braket{0 | \mt{U}\dg(t_1,t_0) \phi_I(x_1) \mt{U}(t_1,t_2) \dots \mt{U}(t_{n-1},t_n) \phi_I(x_n) \mt{U}(t_n,t_0) | 0}
       \end{split}
     \end{equation*}
-    Consider $ t \in \R : t \gg t_1 > \dots > t_n \gg -t $, so that $ \tens{U}(t_n,t_0) = \tens{U}(t_n,-t) \tens{U}(-t,t_0) $ and $ \tens{U}\dg(t_1,t_0) = \tens{U}\dg(t,t_0) \tens{U}(t,t_1) $. Therefore:
+    Consider $ t \in \R : t \gg t_1 > \dots > t_n \gg -t $, so that $ \mt{U}(t_n,t_0) = \mt{U}(t_n,-t) \mt{U}(-t,t_0) $ and $ \mt{U}\dg(t_1,t_0) = \mt{U}\dg(t,t_0) \mt{U}(t,t_1) $. Therefore:
     \begin{equation*}
       \begin{split}
-        & \braket{0 | \phi(x_1) \dots \phi(x_n) | 0} \\
-        & = \braket{0 | \tens{U}\dg(t,t_0) [\tens{U}(t,t_1) \phi_I(x_1) \tens{U}(t_1,t_2) \phi_I(x_2) \tens{U}(t_2,t_3) \dots \tens{U}(t_{n-1},t_n) \phi_I(x_n) \tens{U}(t_n,-t)] \tens{U}(-t,t_0) | 0}
+        \braket{0 | \phi(x_1) \dots \phi(x_n) | 0}
+        & = \bra{0} \mt{U}\dg(t,t_0) [\mt{U}(t,t_1) \phi_I(x_1) \mt{U}(t_1,t_2) \phi_I(x_2) \mt{U}(t_2,t_3) \dots \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \dots \mt{U}(t_{n-1},t_n) \phi_I(x_n) \mt{U}(t_n,-t)] \mt{U}(-t,t_0) \ket{0}
       \end{split}
     \end{equation*}
     Note that this expression inside the square brackets is automatically time-ordered, so it may be rewritten as:
     \begin{equation*}
       \begin{split}
         [\dots]
-        & = \tempord\{\phi_I(x_1) \dots \phi_I(x_n) \tens{U}(t,t_1) \tens{U}(t_1,t_2) \dots \tens{U}(t_n,-t)\} \\
+        & = \tempord\{\phi_I(x_1) \dots \phi_I(x_n) \mt{U}(t,t_1) \mt{U}(t_1,t_2) \dots \mt{U}(t_n,-t)\} \\
         & = \tempord\bigg\{ \phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int_{-t}^t \dd\tau\, H_I(\tau) \right]\bigg\}
       \end{split}
     \end{equation*}
     These considerations hold for arbitrary $ t_0 $, so it can be set $ t_0 = -t \rightarrow -\infty $. Then:
     \begin{equation*}
-      \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} = \braket{0 | \tens{U}\dg(+\infty,-\infty) \tempord\bigg\{ \phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int \dd^4x\, \ham_I \right] \bigg\} | 0}
+      \braket{0 | \tempord\{\phi(x_1) \dots \phi(x_n)\} | 0} = \braket{0 | \mt{U}\dg(+\infty,-\infty) \tempord\bigg\{ \phi_I(x_1) \dots \phi_I(x_n) \exp \left[ -i \int \dd^4x\, \ham_I \right] \bigg\} | 0}
     \end{equation*}
-    Note that $ \bra{0} \tens{U}\dg(\infty,-\infty) $ is the Hermitian conjugate of $ \tens{U}(\infty,-\infty) \ket{0} $, i.e. the state obtained evolving in time the vacuum state. As it was already assumed, the initial-state vacuum coincides physically to the final-state vacuum, i.e.:
+    Note that $ \bra{0} \mt{U}\dg(\infty,-\infty) $ is the Hermitian conjugate of $ \mt{U}(\infty,-\infty) \ket{0} $, i.e. the state obtained evolving in time the vacuum state. As it was already assumed, the initial-state vacuum coincides physically to the final-state vacuum, i.e.:
     \begin{equation*}
-      \tens{U}(\infty,-\infty) \ket{0} = e^{i\alpha} \ket{0}
-      \qquad \Rightarrow \qquad
+      \mt{U}(\infty,-\infty) \ket{0} = e^{i\alpha} \ket{0}
+      \quad \implies \quad
       e^{-i \alpha} = \left( \braket{0 | \tempord\bigg\{ \exp \left[ -i \int \dd^4x\, \ham_I \right] \bigg\} | 0} \right)^{-1}
     \end{equation*}
     Finally:
@@ -649,10 +672,7 @@ The problem of computing scattering amplitudes has been further reduced to that 
         & = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(x) , \phi^-(y)]
       \end{split}
     \end{equation*}
-    Similarly, for $ y^0 > x^0 $:
-    \begin{equation*}
-      \tempord\{\phi_I(x) \phi_I(y)\} = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(y) , \phi^-(x)]
-    \end{equation*}
+    Similarly, for $ y^0 > x^0 $ one has $ \tempord\{\phi_I(x) \phi_I(y)\} = \normord\{\phi_I(x) \phi_I(y)\} + [\phi^+(y) , \phi^-(x)] $.
     Therefore, in general:
     \begin{equation*}
       \begin{split}
@@ -665,8 +685,9 @@ The problem of computing scattering amplitudes has been further reduced to that 
     \begin{equation*}
       \begin{split}
         D_\text{F}(x-y)
-        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^6 \sqrt{4E_\ve{p}E_\ve{q}}} \left[ \theta(x^0 - y^0) [a_\ve{p} , a\dg_\ve{q}] e^{-i p_\mu x^\mu + i q_\mu y^\mu} + \theta(y^0 - x^0) [a_\ve{p} , a\dg_\ve{q}] e^{-i p_\mu y^\mu + i q_\mu x^\mu} \right] \\
-        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^3 \sqrt{4E_\ve{p}E_\ve{q}}} \delta^{(3)}(\ve{p} - \ve{q}) \left[ \theta(x^0 - y^0) e^{-i p_\mu x^\mu + i q_\mu y^\mu} + \theta(y^0 - x^0) e^{-i p_\mu y^\mu + i q_\mu x^\mu} \right] \\
+        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^6 \sqrt{4E_\ve{p}E_\ve{q}}} \big[ \theta(x^0 - y^0) [a_\ve{p} , a\dg_\ve{q}] e^{-i p_\mu x^\mu + i q_\mu y^\mu} + \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \ \, + \theta(y^0 - x^0) [a_\ve{p} , a\dg_\ve{q}] e^{-i p_\mu y^\mu + i q_\mu x^\mu} \big] \\
+        & = \int \frac{\dd^3p \dd^3q}{(2\pi)^3 \sqrt{4E_\ve{p}E_\ve{q}}} \delta^{(3)}(\ve{p} - \ve{q}) \left[ \theta(x^0 - y^0) e^{-i p_\mu x^\mu + i q_\mu y^\mu} \hspace{-0.1em} + \theta(y^0 - x^0) e^{-i p_\mu y^\mu + i q_\mu x^\mu} \right] \\
         & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \left[ \theta(x^0 - y^0) e^{-i p_\mu (x-y)^\mu} + \theta(y^0 - x^0) e^{i p_\mu (x-y)^\mu} \right]
       \end{split}
     \end{equation*}
@@ -678,7 +699,7 @@ The problem of computing scattering amplitudes has been further reduced to that 
     \begin{equation*}
       D_\text{F}(x-y)\vert_{x^0 > y^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (-2\pi i) \frac{e^{-i E_\ve{p} (x^0 - y^0)}}{2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{-i p_\mu (x-y)^\mu}
     \end{equation*}
-    If instead $ x^0 - y^0 < 0 $, choose a semicircular (counter-clockwise) contour in the upper-half plane:
+    If $ x^0 - y^0 < 0 $, choose a semicircular (counter-clockwise) contour in the upper-half plane:
     \begin{equation*}
       D_\text{F}(x-y)\vert_{y^0 > x^0} = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (2\pi i) \frac{e^{i E_\ve{p} (x^0 - y^0)}}{-2E_\ve{p}} \right] = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu (x-y)^\mu}
     \end{equation*}
@@ -694,11 +715,10 @@ Moreover, the Feynman propagator is just a Green function for the KG operator:
 \begin{equation*}
   (\Box_x + m^2) D_\text{F}(x-y) = \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m^2 + i\epsilon} (-p^2 + m^2) e^{-i p_\mu (x-y)^\mu} = -i \delta^{(4)}(x-y)
 \end{equation*}
-Note that this result is independent of the $ i\epsilon $-prescription.
 
 \subsubsection{Dirac propagator}
 
-To explicitly compute the propagator for the Dirac field, it is necessary to include fermionic anti-symmetry when resolving time-ordering and normal-ordering, i.e. a factor of $ (-1) $ for each exchange of fermionic operators: for example, $ \tempord\{\Psi(x_1) \Psi(x_2) \Psi(x_3) \Psi(x_4)\} = (-1)^3 \Psi(x_3) \Psi(x_1) \Psi(x_4) \Psi(x_2) $ if $ x_3^0 > x_1^0 > x_4^0 > x_2^0 $, or $ \normord\{a_\ve{p} a_\ve{q} a_\ve{r}\dg\} = (-1)^2 a_\ve{r}\dg a_\ve{p} a_\ve{q} = (-1)^3 a_\ve{r}\dg a_\ve{q} a_\ve{p} $ (equal expressions).
+To explicitly compute the propagator for the Dirac field, it is necessary to include fermionic anti-symmetry when resolving time-ordering and normal-ordering, i.e. a factor of $ (-1) $ for each exchange of fermionic operators, e.g. $ \tempord\{\Psi(x_1) \Psi(x_2) \Psi(x_3) \Psi(x_4)\} = (-1)^3 \Psi(x_3) \Psi(x_1) \Psi(x_4) \Psi(x_2) $ if $ x_3^0 > x_1^0 > x_4^0 > x_2^0 $, or $ \normord\{a_\ve{p} a_\ve{q} a_\ve{r}\dg\} = (-1)^2 a_\ve{r}\dg a_\ve{p} a_\ve{q} = (-1)^3 a_\ve{r}\dg a_\ve{q} a_\ve{p} $ (equal expressions).
 
 \begin{definition}{Fermionic time-ordering}{}
   Given a Dirac field $ \Psi(x) $, the \bcdef{time-ordering operator} acts as:
@@ -725,37 +745,37 @@ To explicitly compute the propagator for the Dirac field, it is necessary to inc
     First, decompose $ \Psi_I(x) $ and $ \Psi_I(y) $ into positive- and negative-frequency parts:
     \begin{align*}
       \Psi_I^+(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu}
-      \qquad
+      \quad
       \Psi_I^-(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} b_{\ve{p},s}\dg v^s(p) e^{i p_\mu x^\mu}
       \\
       \bar{\Psi}_I^+(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu}
-      \qquad
+      \quad
       \bar{\Psi}_I^-(x) &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} a_{\ve{p},s}\dg \bar{u}^s(p) e^{i p_\mu x^\mu}
     \end{align*}
     Clearly $ \Psi_I^+(x) \ket{0} = 0 = \bar{\Psi}_I^+(x) \ket{0} $ and $ \bra{0} \Psi_I^-(x) = 0 = \bra{0} \bar{\Psi}_I^-(x) $. Consider first the case $ x^0 > y^0 $:
     \begin{equation*}
       \begin{split}
-        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
-        & = \Psi_I^+(x) \bar{\Psi}_I^+(y) + \Psi_I^+(x) \bar{\Psi}_I^-(y) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) \\
-        & = \Psi_I^+(x) \bar{\Psi}_I^+(y) - \bar{\Psi}_I^-(y) \Psi_I^+(x) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) + \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\} \\
-        & \equiv \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\}
+        & \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
+        = \Psi_I^+(x) \bar{\Psi}_I^+(y) + \Psi_I^+(x) \bar{\Psi}_I^-(y) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) \\
+        & \qquad \qquad \ \ = \Psi_I^+(x) \bar{\Psi}_I^+(y) - \bar{\Psi}_I^-(y) \Psi_I^+(x) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) + \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\} \\
+        & \qquad \qquad \ \ \equiv \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\}
       \end{split}
     \end{equation*}
     Similarly, for $ y^0 > x^0 $:
     \begin{equation*}
       \begin{split}
-        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
-        & = -\bar{\Psi}_I^+(y) \Psi_I^+(x) - \bar{\Psi}_I^-(y) \Psi_I^+(x) - \bar{\Psi}_I^+(y) \Psi_I^-(x) - \bar{\Psi}_I^-(y) \Psi_I^-(x) \\
-        & = \Psi_I^+(x) \bar{\Psi}_I^+(y) - \bar{\Psi}_I^-(y) \Psi_I^+(x) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) - \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\} \\
-        & \equiv \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} - \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\}
+        & \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
+        = -\bar{\Psi}_I^+(y) \Psi_I^+(x) - \bar{\Psi}_I^-(y) \Psi_I^+(x) - \bar{\Psi}_I^+(y) \Psi_I^-(x) - \bar{\Psi}_I^-(y) \Psi_I^-(x) \\
+        & \qquad \qquad \ \ = \Psi_I^+(x) \bar{\Psi}_I^+(y) - \bar{\Psi}_I^-(y) \Psi_I^+(x) + \Psi_I^-(x) \bar{\Psi}_I^+(y) + \Psi_I^-(x) \bar{\Psi}_I^-(y) - \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\} \\
+        & \qquad \qquad \ \ \equiv \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} - \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\}
       \end{split}
     \end{equation*}
     Therefore, in general\footnote{To be precise, all these quantities should have spinor indices: indeed, $ \Psi \bar{\Psi} \in \C^{4 \times 4} $ while $ \bar{\Psi} \Psi \in \C $, so the anti-commutator $ \{\Psi , \bar{\Psi}\} $ is only defined with spinor indices, i.e. $ \{\Psi_\alpha , \bar{\Psi}_\beta\} $. To shorten the notation, spinor indices are suppressed, and $ \{\Psi , \bar{\Psi}\} , \{\bar{\Psi} , \Psi\} $ are treated as $ \C^{4 \times 4} $ matrices, always writing Dirac adjoints on the right in the explicit expressions.}:
     \begin{equation*}
       \begin{split}
-        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\}
-        & = \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + \theta(x^0 - y^0) \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\} - \theta(y^0 - x^0) \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\} \\
-        & = \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} + S_\text{D}(x - y)
+        \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\} \hspace{-0.1em}
+        & = \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} \hspace{-0.1em} + \theta(x^0 - y^0) \{\Psi_I^+(x) , \bar{\Psi}_I^-(y)\} - \theta(y^0 - x^0) \{\bar{\Psi}_I^+(y) , \Psi_I^-(x)\} \\
+        & = \normord\{\Psi_I(x) \bar{\Psi}_I(y)\} \hspace{-0.1em} + S_\text{D}(x - y)
       \end{split}
     \end{equation*}
     By the same observations as in the previous proof $ \braket{0 | \tempord\{\Psi_I(x) \bar{\Psi}_I(y)\} | 0} = S_\text{D}(x - y) $, so explicitly computing the anti-commutators:
@@ -766,7 +786,7 @@ To explicitly compute the propagator for the Dirac field, it is necessary to inc
         & \qquad \qquad \qquad \qquad \qquad \qquad - \theta(y^0 - x^0) \{b_{\ve{p},s} , b_{\ve{q},r}\dg\} v^r(q) \bar{v}^s(p) e^{-i p_\mu x^\mu + i q_\mu y^\mu} \big] \\
         & = \int \frac{\dd^3p \dd^3q}{(2\pi)^3 \sqrt{4E_\ve{p}E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \delta^{(3)}(\ve{p} - \ve{q}) \delta_{sr} \big[ \theta(x^0 - y^0) u^s(p) \bar{u}^r(q) e^{-i p_\mu y^\mu + i q_\mu x^\mu} + \\
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad - \theta(y^0 - x^0) v^r(q) \bar{v}^s(p) e^{-i p_\mu x^\mu + i q_\mu y^\mu} \big] \\
-        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \sum_{s = 1,2} \left[ \theta(x^0 - y^0) u^s(p) \bar{u}^s(p) e^{-i p_\mu (x-y)^\mu} - \theta(y^0 - x^0) v^s(p) \bar{v}^s(p) e^{i p_\mu (x-y)^\mu} \right]
+        & \hspace{-1.5em} = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \sum_{s = 1,2} \left[ \theta(x^0 - y^0) u^s(p) \bar{u}^s(p) e^{-i p_\mu (x-y)^\mu} - \theta(y^0 - x^0) v^s(p) \bar{v}^s(p) e^{i p_\mu (x-y)^\mu} \right]
       \end{split}
     \end{equation*}
     Recalling \eref{eq:spinor-sums}:
@@ -780,9 +800,9 @@ To explicitly compute the propagator for the Dirac field, it is necessary to inc
     The $ i\epsilon $-prescription shifts the pole in $ p^0 > 0 $ below the real axis and that in $ p^0 < 0 $ above it. If $ x^0 > y^0 $, chose a semicircular (clockwise) contour in the lower-hald plane, so that only the $ p^0 = E_\ve{p} $ singularity is enclosed:
     \begin{equation*}
       \begin{split}
-        S_\text{D}(x - y)\vert_{x^0 > y^0}
+        S_\text{D}(x - y)\vert_{x^0 > y^0} \hspace{-0.1em}
         & = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (-2\pi i) \frac{E_\ve{p} \gamma^0 - \ve{p} \cdot \bs{\gamma} + m}{2E_\ve{p}} e^{-i E_\ve{p} (x^0 - y^0)} \right] \\
-        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (E_\ve{p} \gamma^0 - \ve{p} \cdot \bs{\gamma} + m) = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (\slashed{p} + m)
+        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (E_\ve{p} \gamma^0 \hspace{-0.1em} - \ve{p} \cdot \bs{\gamma} + m) = \hspace{-0.1em} \int \hspace{-0.1em} \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (\slashed{p} + m)
       \end{split}
     \end{equation*}
     If instead $ y^0 > x^0 $, chose a semicircular (counter-clockwise) contour in the upper-half plane:
@@ -790,7 +810,8 @@ To explicitly compute the propagator for the Dirac field, it is necessary to inc
       \begin{split}
         S_\text{D}(x - y)\vert_{y^0 > x^0}
         & = \int \frac{\dd^3p}{(2\pi)^3} e^{i \ve{p} \cdot (\ve{x} - \ve{y})} \frac{i}{2\pi} \left[ (2\pi i) \frac{-E_\ve{p} \gamma^0 - \ve{p} \cdot \bs{\gamma} + m}{-2E_\ve{p}} e^{i E_\ve{p} (x^0 - y^0)} \right] \\
-        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (-E_\ve{p} \gamma^0 + \ve{p} \cdot \bs{\gamma} + m) = - \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (\slashed{p} - m)
+        & = \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (-E_\ve{p} \gamma^0 + \ve{p} \cdot \bs{\gamma} + m) \\
+        & = - \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} e^{i p_\mu \cdot (x-y)^\mu} (\slashed{p} - m)
       \end{split}
     \end{equation*}
     where in the second equality $ \ve{p} \mapsto -\ve{p} $ was renamed. The proof is complete.
@@ -869,8 +890,8 @@ This relation can be generalized to $ n $-point Green functions.
         \phi^+(x_1) \normord\{\phi(x_2) \dots \phi(x_n)\}
         & = \normord\{\phi(x_2) \dots \phi(x_n)\} \phi^+(x_1) + [\phi^+(x_1) , \normord\{\phi(x_2) \dots \phi(x_n)\}] \\
         & = \normord\{\phi^+(x_1) \phi(x_2) \dots \phi(x_n)\} \\
-        & \quad + \normord\{\dots + \phi(x_2) \dots [\phi^+(x_2) , \phi^-(x_i)] \dots \phi(x_n) + \dots\} \\
-        & = \normord\{\phi^+(x_1) \phi(x_2) \dots \phi(x_n) + \dots \wick{\c\phi^+(x_1) \phi(x_2) \dots \c\phi(x_i) \dots \phi(x_n)} + \dots\}
+        & \qquad \qquad \quad \ \,\, + \normord\{\dots + \phi(x_2) \dots [\phi^+(x_2) , \phi^-(x_i)] \dots \phi(x_n) + \dots\} \\
+        & \hspace{-2em} = \normord\{\phi^+(x_1) \phi(x_2) \dots \phi(x_n) + \dots \wick{\c\phi^+(x_1) \phi(x_2) \dots \c\phi(x_i) \dots \phi(x_n)} + \dots\}
       \end{split}
     \end{equation*}
     Analogously, all possible contractions are obtained, proving the theorem.
@@ -1032,8 +1053,8 @@ As for the bosonic counterparts, only fully-contracted terms contribute to the $
 Consider a real scalar field theory with $ \ham_I = \frac{\lambda}{4!} \phi^4 $ and consider a scattering process with two initial particles with momenta $ \ve{k}_1 , \ve{k}_2 $ and two final particles with momenta $ \ve{p}_1 , \ve{p}_2 $. \eref{eq:lsz-scalar-field} and \eref{eq:corr-func-pert} give the amplitude:
 \begin{equation*}
   \begin{split}
-    \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2}
-    & = \frac{k_1^2 - m^2}{i \sqrt{Z}} \frac{k_2^2 - m^2}{i \sqrt{Z}} \frac{p_1^2 - m^2}{i \sqrt{Z}} \frac{p_2^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \times \\
+    \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2} \hspace{-0.15em}
+    & = \hspace{-0.06em} \frac{k_1^2 - m^2}{i \sqrt{Z}} \frac{k_2^2 - m^2}{i \sqrt{Z}} \frac{p_1^2 - m^2}{i \sqrt{Z}} \frac{p_2^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \times \\
     & \qquad \qquad \times \frac{\braket{0 | \tempord\{ \phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \exp \left[ -i \frac{\lambda}{4!} \int \dd^4x\, \phi(x) \right] \} | 0}}{\braket{0 | \tempord\{\exp \left[ - i \frac{\lambda}{4!} \int \dd^4x\, \phi(x) \right]\} | 0}}
   \end{split}
 \end{equation*}
@@ -1042,16 +1063,16 @@ The $ o(\lambda^0) $ term is obtained setting $ \lambda = 0 $, i.e. no coupling,
 \begin{equation*}
   \begin{split}
     & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
-    & \qquad = \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left[ D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) + \dots \right] \\
-    & \qquad = \left[ \int \dd^4x \dd^4X\, e^{i (p_1 + p_2)_\mu X^\mu + i (p_1 - p_2)_\mu x^\mu/2} D(x) \right] \left[ \int \dd^4y \dd^4Y\, e^{- i (k_1 + k_2)_\mu Y^\mu - i (k_1 - k_2)_\mu y^\mu/2} D(y) \right] + \dots \\
-    & \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) \frac{i}{\left( \frac{p_1 - p_2}{2} \right)^2 - m^2} (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{\left( \frac{k_1 - k_2}{2} \right)^2 - m^2} + \dots
+    & \quad = \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \left[ D_\text{F}(x_1 - x_2) D_\text{F}(x_3 - x_4) + \dots \right] \\
+    & \quad = \hspace{-0.2em} \left[ \int \dd^4x \dd^4X\, e^{i (p_1 + p_2)_\mu X^\mu + i (p_1 - p_2)_\mu x^\mu/2} D(x) \right] \hspace{-0.3em} \left[ \int \dd^4y \dd^4Y\, e^{- i (k_1 + k_2)_\mu Y^\mu - i (k_1 - k_2)_\mu y^\mu/2} D(y) \right] \hspace{-0.1em} + \dots \\
+    & \quad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) \frac{i}{\left( \frac{p_1 - p_2}{2} \right)^2 - m^2} (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{\left( \frac{k_1 - k_2}{2} \right)^2 - m^2} + \dots
   \end{split}
 \end{equation*}
-with $ x = x_1 - x_2 , 2X = x_1 + x_2 $ and $ y = x_3 - x_4 , 2Y = x_3 + x_4 $. Using $ f(x) \delta(x - x_0) = f(x_0) \delta(x - x_0) $:
+with $ x = x_1 - x_2 , 2X = x_1 + x_2 $ and $ y = x_3 - x_4 , 2Y = x_3 + x_4 $. Then, using $ f(x) \delta(x - x_0) = f(x_0) \delta(x - x_0) $:
 \begin{equation*}
   \begin{split}
     & \int \dd^4x_1 \dd^4x_2 \dd^4x_3 \dd^4x_4\, e^{i ({p_1}_\mu {x_1}^\mu + {p_2}_\mu {x_2}^\mu - {p_3}_\mu {x_3}^\mu - {p_4}_\mu {x_4}^\mu)} \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4)\} | 0} \\
-    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{p_1^2 - m^2} \frac{i}{k_1^2 - m^2} + \dots
+    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad = (2\pi)^4 \delta^{(4)}(p_1 + p_2) (2\pi)^4 \delta^{(4)}(k_1 + k_2) \frac{i}{p_1^2 - m^2} \frac{i}{k_1^2 - m^2} + \dots
   \end{split}
 \end{equation*}
 Note that the $ i\epsilon $ term must be retained while $ p $ is an integration variable, as it gives the prescription of going around the poles, but it can be dropped when $ p $ is the momentum on an external leg, i.e. fixed. This expression only has two poles, therefore:
@@ -1098,7 +1119,7 @@ as it is the only connected diagram between the possible ones. Note that this di
     & = -i \lambda (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \frac{i}{p_1^2 - m^2} \frac{i}{p_2^2 - m^2} \frac{i}{k_1^2 - m^2} \frac{i}{k_2^2 - m^2}
   \end{split}
 \end{equation*}
-There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to-vacuum transitions}, i.e. diagrams with no external legs. To account for these, note that each connected diagram which contributes to the numerator can be $ \virgolette{dressed} $ with all possible vacuum-to-vacuum transitions; indeed, to be precise:
+There remains to evaluate the denominator: this term gives only \bctxt{vacuum-to-vacuum transitions}, i.e. diagrams with no external legs. To account for these, note that each connected diagram which contributes to the numerator can be ``dressed" with all possible vacuum-to-vacuum transitions; indeed, to be precise:
 \begin{equation*}
   \braket{0 | \wick{\c1\phi(x_1) \c2\phi(x_2) \c3\phi(x_3) \c4\phi(x_4) \c1\phi(x) \c2\phi(x) \c3\phi(x) \c4\phi(x)} | 0} =
 \end{equation*}
@@ -1261,10 +1282,7 @@ This is nothing but the perturbative expansion of the denominator of \eref{eq:co
 \end{equation*}
 with $ \{n_j\}_{j \in \mathcal{J}} \subset \N_0 $ (the symmetry factor is due to the swap of identical diagrams). The sum of all non-vanishing diagrams thus is:
 \begin{equation*}
-  \begin{split}
-    \sum (\text{diagrams})
-    & = \sum_{i \in \mathcal{I}} C_i \times \sum_{\{n_j\} \subset \N_0} \prod_{j \in \mathcal{J}} \frac{1}{n_j!} V_j^{n_j} = \sum_{i \in \mathcal{I}} C_i \times \prod_{j \in \mathcal{J}} \sum_{n = 1}^\infty \frac{1}{n!} V_j^n = \sum_{i \in \mathcal{I}} C_i \times \prod_{j \in \mathcal{J}} \exp V_j = \sum_{i \in \mathcal{I}} C_i \times \exp \sum_{j \in \mathcal{J}} V_j
-  \end{split}
+  \sum (\text{diagrams}) \hspace{-0.08em} = \sum_{i \in \mathcal{I}} C_i \times \sum_{\{n_j\} \subset \N_0} \prod_{j \in \mathcal{J}} \frac{1}{n_j!} V_j^{n_j} = \sum_{i \in \mathcal{I}} C_i \times \prod_{j \in \mathcal{J}} \sum_{n = 1}^\infty \frac{1}{n!} V_j^n = \sum_{i \in \mathcal{I}} C_i \times \prod_{j \in \mathcal{J}} \exp V_j = \sum_{i \in \mathcal{I}} C_i \times \exp \sum_{j \in \mathcal{J}} V_j
 \end{equation*}
 which can be recast in the form:
 \begin{equation}
@@ -1284,7 +1302,11 @@ To illustrate the case of internal lines, it is useful to consider a real scalar
 \end{equation*}
 where the denominator was omitted by implicitly considering only connected graphs with 4 external legs. This amplitude does not have a $ o(\lambda^0) $ contribution (as it only has disconnected diagrams) nor an $ o(\lambda) $ contribution (as the product of an odd number of fields cannot be fully contracted). At $ o(\lambda^2) $ the integral becomes:
 \begin{equation*}
-    \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \frac{1}{2!} \left( -i \frac{\lambda}{3!} \right)^2 \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^3(x) \phi^3(y)\} | 0}
+  \begin{split}
+    \braket{\ve{p}_1 , \ve{p}_2 | i T | \ve{k}_1 , \ve{k}_2}
+    & = \frac{p_1^2 - m^2}{i \sqrt{Z}} \frac{p_2^2 - m^2}{i \sqrt{Z}} \frac{k_1^2 - m^2}{i \sqrt{Z}} \frac{k_2^2 - m^2}{i \sqrt{Z}} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
+    & \qquad \qquad \times \frac{1}{2!} \left( -i \frac{\lambda}{3!} \right)^2 \int \dd^4x \dd^4y \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) \phi^3(x) \phi^3(y)\} | 0}
+  \end{split}
 \end{equation*}
 In order to obtain a fully connected diagrams, there needs to be a contraction $ \wick{\c\phi(x) \c\phi(y)} $ between the two vertices, creating an internal line. Note that the $ 1/2! $ factor accounts for the symmetry $ x \leftrightarrow y $, while $ 1/3! $ accounts for sets of equivalent contractions. Examples of possible diagrams are:
 \begin{equation*}
@@ -1354,7 +1376,7 @@ These diagrams are inequivalent, as they correspond to different sets of contrac
 \begin{equation*}
   \begin{split}
     & (-i \lambda)^2 \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \times \\
-    & \qquad \qquad \qquad \qquad \qquad \qquad \times \int \dd^4x \dd^4y\, D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x_3) D_\text{F}(y - x_4) \\
+    & \qquad \qquad \qquad \qquad \qquad \quad \times \int \dd^4x \dd^4y\, D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x_3) D_\text{F}(y - x_4) \\
     & = (-i \lambda)^2 \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D_\text{F}(x - y) \\
     & = (-i \lambda)^2 \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4X \dd^4Y\, e^{i (p_1 + p_2 - k_1 - k_2)_\mu Y^\mu + i (p_1 + p_2 + k_1 + k_2)_\mu X^\mu / 2} D_\text{F}(X) \\
     & = (-i \lambda)^2 (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}(p_1 + p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2)
@@ -1414,7 +1436,7 @@ It is useful to work in momentum space, rather than coordinate space. For exampl
 The example calculations carried for $ \lambda \phi^3 $- and $ \lambda \phi^4 $-theory hint to the general technique to compute general \bctxt{tree diagrams}, i.e. connected diagrams without internal loops. For a scalar field theory, in momentum space:
 \begin{enumerate}
   \item draw all possible topologicaly-inequivalent connected graphs corresponding to the given initial and final states and multiply them by their symmetry factor;
-  \item each external leg is associated to a pole factor in the LSZ reduction formula, hence they can be omitted directly ($ \virgolette{leg amputation} $);
+  \item each external leg is associated to a pole factor in the LSZ reduction formula, hence they can be omitted directly (``leg amputation");
   \item as there is always a momentum-conserving $ \delta $-function, it is convenient to define the matrix element $ \mat_\text{if} $ for the process $ \ket{\text{i}} \rightarrow \ket{\text{f}} $ as:
     \begin{equation}
       \braket{\ve{p}_1 , \dots , \ve{p}_m | i T | \ve{k}_1 , \dots , \ve{k}_n} \equiv (2\pi)^4 \delta^{(4)}\left( \sum_{i = 1}^{m} p_i - \sum_{j = 1}^{n} k_j \right) i \mat_\text{if}
@@ -1462,7 +1484,7 @@ There are three possible inequivalent full contractions, associated to the conne
       };
     \end{feynman}
   \end{tikzpicture}
-  \qquad
+  \quad
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
       \vertex (x1) {};
@@ -1486,7 +1508,7 @@ There are three possible inequivalent full contractions, associated to the conne
       };
     \end{feynman}
   \end{tikzpicture}
-  \qquad
+  \quad
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
       \vertex (x1) {};
@@ -1515,9 +1537,9 @@ with $ p' = p_1 + p_2 - p $. It is clear that energy conservation does not compl
 Consider for example the first diagram: it is obtained contracting $ \phi(x_1) $ and $ \phi(x_2) $ with two $ \phi(x) $ ($ 4 \cdot 3 $ ways), $ \phi(x_3) $ and $ \phi(x_4) $ with two $ \phi(y) $ ($ 4 \cdot 3 $ ways) and two $ \phi(x) $ with two $ \phi(y) $ ($ 2 $ ways), so, considering another $ 2 $ factor for $ x \leftrightarrow y $ symmetry, this diagram has symmetry number $ S = (4!)^2 $. The resulting contribution is:
 \begin{equation*}
   \begin{split}
-    & \frac{(-i \lambda)^2}{2} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \int \dd^4x \dd^4y D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x) \\
-    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D^2(x - y) \\
-    & = \frac{(-i \lambda)^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \int \frac{\dd^4k}{(2\pi)^4} \tilde{D}_\text{F}(k) \tilde{D}_\text{F}(p_1 + p_2 - k)
+    & - \hspace{-0.2em} \frac{\lambda^2}{2} \int \prod_{i = 1}^4 \dd^4x_i\, e^{i ({p_1}_\mu x_1^\mu + {p_2}_\mu x_2^\mu - {k_1}_\mu x_3^\mu - {k_4}_\mu x_4^\mu)} \int \dd^4x \dd^4y D_\text{F}(x_1 - x) D_\text{F}(x_2 - x) D_\text{F}(x - y) D_\text{F}(y - x) \\
+    & = - \frac{\lambda^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) \int \dd^4x \dd^4y\, e^{i (p_1 + p_2)_\mu x^\mu - i (k_1 + k_2)_\mu y^\mu} D^2(x - y) \\
+    & = - \frac{\lambda^2}{2} \tilde{D}_\text{F}(p_1) \tilde{D}_\text{F}(p_2) \tilde{D}_\text{F}(k_1) \tilde{D}_\text{F}(k_2) (2\pi)^4 \delta^{(4)}(p_1 + p_2 - k_1 - k_2) \int \frac{\dd^4k}{(2\pi)^4} \tilde{D}_\text{F}(k) \tilde{D}_\text{F}(p_1 + p_2 - k)
   \end{split}
 \end{equation*}
 Therefore, the additional feature of loop integrals is the integration over unfixed momenta, assigning the right propagators to each internal line. It is possible to define the \bctxt{loop-amplitude} for $ \lambda \phi^4 $-theory:
@@ -1554,7 +1576,7 @@ where:
 \end{equation}
 Another example of loop divergence in $ \lambda \phi^4 $-theory is that associated to the 2-point Green function at $ o(\lambda^1) $:
 \begin{equation*}
-  \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi^4(x)\} | 0} = 4\cdot3 \cdot \wick{\c1\phi(x_1) \c2\phi(x_2) \c1\phi(x) \c2\phi(x) \c1\phi(x) \c1\phi(x)} = \ 4\cdot3 \ \times \
+  \braket{0 | \tempord\{\phi(x_1) \phi(x_2) \phi^4(x)\} | 0} = 4\cdot3 \cdot \wick{\c1\phi(x_1) \c2\phi(x_2) \c1\phi(x) \c2\phi(x) \c1\phi(x) \c1\phi(x)} = 4 \cdot 3 \times
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
       \vertex (x1) {};
