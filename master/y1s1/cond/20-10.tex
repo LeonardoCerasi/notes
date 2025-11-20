@@ -1,0 +1,175 @@
+\selectlanguage{english}
+
+\chapter{Lecture 20/10--24/10}
+
+\section{Born--Oppenheimer approximation}
+
+Consider a system of $ N_n $ nuclei and $ N_e $ electrons. The Hamiltonian of the system then is:
+\begin{equation}
+  \ham
+  = - \frac{\hbar^2}{2} \sum_{\alpha = 1}^{N_n} \frac{\lap_\alpha}{M_\alpha} - \frac{\hbar^2}{2m_e} \sum_{i = 1}^{N_n} \lap_i
+  + \frac{1}{2} \sum_{i \neq j = 1}^{N_n} \frac{e^2}{r_{ij}} + \frac{1}{2} \sum_{\alpha \neq \beta = 1}^{N_n} \frac{Z_\alpha Z_\beta e^2}{R_{\alpha \beta}} - \sum_{i = 1}^{N_e} \sum_{\alpha = 1}^{N_n} \frac{Z_\alpha e^2}{\norm{\ve{R}_\alpha - \ve{r}_i}}
+\end{equation}
+with $ r_{ij} \equiv \norm{\ve{r}_i - \ve{r}_j} $ and $ R_{\alpha \beta} \equiv \norm{\ve{R}_\alpha - \ve{R}_\beta} $. The total wave-function of the system describes both the nuclear and the electronic component, and it can be written as $ \Phi \equiv \Phi(\{\ve{R}_\alpha\} , \{\ve{r}_i\}) $.
+
+Since $ M_\alpha \gg m_e \,\,\forall \alpha = 1, \dots, N_n $ (circa three orders of magnitudes), the timescales of nuclear processes are three orders of magnitude longer than the timescales of atomic (i.e. electronic) processes, hence we can approximate the two components of the system as factorized:
+\begin{equation}
+  \Phi(\{\ve{R}_\alpha\} , \{\ve{r}_i\}) = \Phi_n(\{\ve{R}_\alpha\}) \Phi_e(\{\ve{R}_\alpha\} , \{\ve{r}_i\})
+\end{equation}
+where we approximated the nuclear state to be independent of the electronic state, while the electronic state is supposed to react instantly to changes in the nuclear state. This is the \bctxt{Born--Oppenheimer approximation}, which is an adiabatic approximation\footnotemark.
+
+\footnotetext{In general, an adiabatic approximation is one in which one or more components of a system are supposed to change slowly over time, compared to the other components.}
+
+In the following, we adopt the shorthands $ R \equiv \{\ve{R}_\alpha\}_{\alpha = 1, \dots, N_n} $ and $ r \equiv \{\ve{r}_i\}_{i = 1, \dots, N_e} $, and we rename the various terms of the total Hamiltonian as:
+\begin{equation*}
+  \ham = T_n + T_e + V_{ee}(r) + V_{nn}(R) + V_{ne}(R,r)
+\end{equation*}
+
+\begin{theorem}{Atomic and nuclear wave-equations}{}
+  In the Born--Oppenheimer approximation, the atomic and nuclear wave-functions respectively solve:
+  \begin{equation}
+    \left[ T_e + V_{ee}(r) + V_{ne}(R,r) \right] \Phi_e^{(g)}(R,r) = E_e^{(g)}(R) \Phi_e^{(g)}(R,r)
+  \end{equation}
+  \begin{equation}
+    \left[ T_n + \vad^{(g)}(R) \right] \Phi_n(R) = E \Phi_n(R)
+  \end{equation}
+  where $ E $ is the total energy of the system and the \bcth{adiabatic potential}, dependent on the electronic state, is defined as:
+  \begin{equation}
+    \vad^{(g)}(R) \equiv E_e^{(g)}(R) + V_{nn}(R)
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The non-trivial terms of the total Hamiltonian are the operators $ T_e $ and $ T_n $, so we study their action of the total wave-function:
+    \begin{equation*}
+      T_e \Phi(R,r) = T_e \left[ \Phi_n(R) \Phi_e(R,r) \right] = \Phi_n(R) T_e \Phi_e(R,r)
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        T_n \Phi(R,r)
+        & = T_n \left[ \Phi_n(R) \Phi_e(R,r) \right] \equiv - \frac{\hbar^2}{2} \sum_{\alpha = 1}^{N_n} \frac{\lap_\alpha}{M_\alpha} \left[ \Phi_n(R) \Phi_e(R,r) \right] \\
+        & = - \frac{\hbar^2}{2} \sum_{\alpha = 1}^{N_n} \frac{1}{M_\alpha} \hspace{-0.1em} \left[ \Phi_e(R,r) \lap_\alpha \Phi_n(R) \hspace{-0.1em} + \Phi_n(R) \lap_\alpha \Phi_e(R,r) \hspace{-0.1em} + 2 \grad_\alpha \Phi_n(R) \hspace{-0.1em} \cdot \hspace{-0.1em} \grad_\alpha \Phi_e(R,r) \right] \\
+        & = \Phi_e(R,r) T_n \Phi_n(R) - \sum_{\alpha = 1}^{N_n} \frac{\hbar^2}{2M_\alpha} \left[ \Phi_n(R) \lap \Phi_e(R,r) + 2 \grad_\alpha \Phi_n(R) \cdot \grad_\alpha \Phi_e(R,r) \right]
+      \end{split}
+    \end{equation*}
+
+    WTS the summation is negligible in the Born--Oppenheimer approximation. To do so, first consider the operator $ \mathcal{O}_1 : \mathcal{O}_1 \Phi(R,r) \equiv \frac{\hbar^2}{M_\alpha} \grad_\alpha \Phi_n(R) \cdot \grad_\alpha \Phi_e(R,r) $ and compute its expectation value:
+    \begin{equation*}
+      \begin{split}
+        \braket{\mathcal{O}_1}
+        & = - \frac{\hbar^2}{M_\alpha} \int_{\R^{3(N_n + N_e)}} \dd^{3N_n} \hspace{-0.2em} R \, \dd^{3N_e} r \, \Phi_n(R)^* \Phi_e(R,r)^* \grad_\alpha \Phi_n(R) \cdot \grad_\alpha \Phi_e(R,r) \\
+        & = - \frac{\hbar^2}{M_\alpha} \int_{\R^{3N_n}} \dd^{3N_n} \hspace{-0.2em} R \, \Phi_n(R)^* \grad_\alpha \Phi_n(R) \cdot \int_{\R^{3N_e}} \dd^{3N_e} r \, \Phi_e(R,r)^* \grad_\alpha \Phi_e(R,r) \\
+        & \simeq - \frac{\hbar^2}{M_\alpha} \int_{\R^{3N_n}} \dd^{3N_n} \hspace{-0.2em} R \, \Phi_n(R)^* \grad_\alpha \Phi_n(R) \cdot \frac{1}{2} \grad_\alpha \int_{\R^{3N_e}} \dd^{3N_e} r \, \Phi_e(R,r)^* \Phi_e(R,r) = 0
+      \end{split}
+    \end{equation*}
+    since the last integral is constant (assuming $ \Phi_e(R,r) $ to be normalized). The main approximation employed it that $ \Phi_e(R,r) \grad_\alpha \Phi_e(R,r)^* \simeq \Phi_e(R,r)^* \grad_\alpha \Phi_e(R,r) $: assuming this to be valid, we can suppress the second term in the summation, as its expectation value vanishes (this is another approximation).
+
+    Now, focus on the first term in the summation. The dependence of $ \Phi_e $ on nuclear and atomic coordinates $ \{\ve{R}_\alpha\}_{\alpha = 1, \dots, N_n} , \{\ve{r}_i\}_{i = 1, \dots, N_e} $ is a relative dependence, i.e. it depends on relative distances of the kind $ \{\ve{R}_\alpha - \ve{r}_i\}_{\alpha = 1, \dots, N_n}^{i = 1, \dots, N_e} $, hence we see that:
+    \begin{equation*}
+      - \frac{\hbar^2}{2M_\alpha} \Phi_n(R) \lap_\alpha \Phi_e(R,r) = - \frac{\hbar^2}{2M_\alpha} \Phi_n(R) \sum_{i = 1}^{N_e} \lap_i \Phi_e(R,r) = \frac{m_e}{M_\alpha} T_e \Phi(R,r)
+    \end{equation*}
+    But $ m_e \lesssim 10^{-3} M_\alpha \,\,\forall \alpha = 1, \dots, N_n $, hence this term too is negligible. The Schrödinger equation then becomes:
+    \begin{multline*}
+      \Phi_e(R,r) T_n \Phi_n(R) + \Phi_n(R) T_e \Phi_e(R,r) + \left[ V_{ee}(r) + V_{ne}(R,r) + V_{nn}(R) \right] \Phi_n(R) \Phi_e(R,r) \\
+      = E \Phi_n(R) \Phi_e(R,r)
+    \end{multline*}
+    which can be rewritten as:
+    \begin{equation*}
+      \left[ \ham_e(R,r) + \ham_n(R) \right] \Phi_n(R) \Phi_e(R,r) = E \Phi_n(R) \Phi_e(R,r)
+    \end{equation*}
+    \begin{equation*}
+      \ham_e(R,r) \equiv T_e + V_{ee}(r) + V_{ne}(R,r)
+      \qquad \qquad
+      \ham_n(R) \equiv T_n + V_{nn}(R)
+    \end{equation*}
+    To solve for the electronic state, consider the nuclear state $ \Phi_n(R) $ fixed, i.e. $ \{\ve{R}_\alpha\}_{\alpha = 1, \dots, N_n} $ fixed positions:
+    \begin{equation*}
+      \ham_e(R,r) \Phi_e(R,r) = E_e(R) \Phi_e(R,r)
+    \end{equation*}
+    where the energy $ E_e(R) = E_e^{(g)}(R) $ of the electronic state $ g $ has a parametric dependence on the nuclear state through $ \{\ve{R}_\alpha\}_{\alpha = 1, \dots, N_n} $. Then, since $ \ham_n(R,r) \Phi_e(R) = \Phi_e(R) \ham_n(R,r) $ as shown above, it is clear that the evolution of the nuclear state is given by:
+    \begin{equation*}
+      \left[ \ham_n(R) + E_e^{(g)}(R) \right] \Phi_n(R) = E \Phi_n(R)
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+An example of adiabatic potential for a two-electron atom is pictured in \figref{fig:adiabatic-2e}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{adiabatic-potential.png}
+  \caption{Adiabatic potential for a two-electron atom.}
+  \label{fig:adiabatic-2e}
+\end{figure}
+
+We now focus on the nuclear motion: in particular, we denote the nuclear wave-function as $ \Phi_n(R) \equiv \Phi_\nu^{(g)}(R) $, where $ \nu $ are the quantum numbers relative to the nuclear state and $ g $ those relative to the electronic state. The Schrödinger equation then becomes:
+\begin{equation}
+  \left[ - \sum_{\alpha = 1}^{N_n} \frac{\hbar^2}{2M_\alpha} \lap_\alpha + \vad^{(g)}(R) \right] \Phi_\nu^{(g)}(R) = E_{g,\nu} \Phi_\nu^{(g)}(R)
+\end{equation}
+
+\subsection{Biatomic molecules}
+
+In a biatomic molecule, the nuclear state can be described by a single quantity: indeed, given the positions $ \ve{R}_1 $ and $ \ve{R}_2 $ of the two nuclei, only the relative distance $ \ve{R} \equiv \ve{R}_1 - \ve{R}_2 $ is dynamically significant, since the center-of-mass motion of $ \ve{R}_\text{cm} $ is a free-particle motion which can be eliminated by working in the CM frame. In this frame:
+\begin{equation*}
+  \left[ - \frac{\hbar^2}{2\mu} \lap + \vad^{(g)}(R) \right] \Phi_\nu^{(g)}(\ve{R}) = E_{g,\nu} \Phi_\nu^{(g)}(\ve{R})
+  \qquad \qquad
+  \mu \equiv \frac{M_1 M_2}{M_1 + M_2}
+\end{equation*}
+where the adiabatic potential only depends on $ R \equiv \norm{\ve{R}} $, i.e. it is a central potential. Then, the solution can be factored as:
+\begin{equation*}
+  \Phi_\nu^{(g)}(\ve{R}) = \rf_\nu^{(g)}(R) Y_{K,M}(\vartheta , \varphi)
+\end{equation*}
+where $ K $ and $ M $ are the quantum numbers associated respectively to the orbital angular momentum and its projection on the zenithal axis. The radial Schrödinger equation is:
+\begin{equation}
+  \left[ - \frac{\hbar^2}{2\mu} \lap_R + \vad^{(g)}(R) + \frac{\hbar^2 K(K+1)}{2\mu R^2} \right] \rf_\nu^{(g)}(R) = E_{g,\nu} \rf_\nu^{(g)}(R)
+\end{equation}
+
+Supposing that $ R \approx R_\text{eq} $, where $ R_\text{eq} $ is the equilibrium distance of $ \vad^{(g)}(R) $, then the third term can be seen as the rotational energy of a rigid body\footnotemark with $ I = \mu R_\text{eq}^2 $, since by definition $ \braket{\ve{L}^2} = \hbar^2 K(K+1) $:
+\begin{equation}
+  E_\text{rot}(K) = \mathcal{B} K(K+1)
+\end{equation}
+where $ \mathcal{B} \equiv \frac{\hbar^2}{2I} \sim 1 \,\text{meV} - 10 \,\text{meV} $ is the rotational constant of the molecule. Keeping the electronic state fixed, as electronic transitions require higher energies, we can study purely-rotational transitions: these transitions have the same selection rules of electric-dipole transitions, i.e. $ \Delta K = \pm 1 $, hence the \bctxt{purely-rotational spectrum} is:
+\begin{equation}
+  \Delta E_\text{rot}(K) \equiv E_\text{rot}(K+1) - E_\text{rot}(K) = 2\mathcal{B} (K+1)
+\end{equation}
+Purely-rotational spectral lines are then equidistantly spaced by an energy $ 2 \mathcal{B} $ (typically in the IR or MW regions). The intensity $ I_K $ of the $ K^\text{th} $ line is proportional to the fraction $ n_K \equiv \frac{N_K}{N_\text{tot}} $ of molecules in the state $ K $, described by the Boltzmann distribution:
+\begin{equation}
+  n_K(T) = (2K+1) e^{- \frac{\mathcal{B} K(K+1)}{\kbt}}
+\end{equation}
+This distribution is linear at the origin and asintotically vanishing, hence it has a finite maximum.
+
+\footnotetext{To be precise, $ I = \mu R_\text{eq}^2 $ is the moment of inertia of a body composed of two point-like masses $ M_1 $ and $ M_2 $, with reduced mass $ \mu $, which rotate around their center of mass at a distance $ R_\text{eq} $ from each other.}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Maximum of Boltzmann distribution}{}
+  \begin{equation}
+    K_\text{m}(T) = \frac{1}{2} \left[ \sqrt{\frac{2 \kbt}{\mathcal{B}}} - 1 \right]
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    To find the maximum of $ n_K(T) $ as a function of temperature, impose:
+    \begin{equation*}
+      \frac{\dd}{\dd K} n_K(T) = 0
+      \quad \implies \quad
+      \left[ 2 - \frac{\mathcal{B}}{\kbt} (2K+1)^2 \right] e^{- \frac{\mathcal{B} K(K+1)}{\kbt}} = 0
+    \end{equation*}
+    which is trivially solved.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Polyatomic molecules}
+
+[01:03:45]
+
+
+
+
+
+
+
+
+
+
