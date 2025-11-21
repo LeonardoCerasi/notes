@@ -36,6 +36,7 @@ In the following, we adopt the shorthands $ R \equiv \{\ve{R}_\alpha\}_{\alpha =
   where $ E $ is the total energy of the system and the \bcth{adiabatic potential}, dependent on the electronic state, is defined as:
   \begin{equation}
     \vad^{(g)}(R) \equiv E_e^{(g)}(R) + V_{nn}(R)
+    \label{eq:adiabatic-potential-def}
   \end{equation}
 \end{theorem}
 
@@ -123,7 +124,8 @@ where the adiabatic potential only depends on $ R \equiv \norm{\ve{R}} $, i.e. i
 \end{equation*}
 where $ K $ and $ M $ are the quantum numbers associated respectively to the orbital angular momentum and its projection on the zenithal axis. The radial Schrödinger equation is:
 \begin{equation}
-  \left[ - \frac{\hbar^2}{2\mu} \lap_R + \vad^{(g)}(R) + \frac{\hbar^2 K(K+1)}{2\mu R^2} \right] \rf_\nu^{(g)}(R) = E_{g,\nu} \rf_\nu^{(g)}(R)
+  \left[ - \frac{\hbar^2}{2\mu} \lap + \vad^{(g)}(R) + \frac{\hbar^2 K(K+1)}{2\mu R^2} \right] \rf_\nu^{(g)}(R) = E_{g,\nu} \rf_\nu^{(g)}(R)
+  \label{eq:2-a-radial}
 \end{equation}
 
 Supposing that $ R \approx R_\text{eq} $, where $ R_\text{eq} $ is the equilibrium distance of $ \vad^{(g)}(R) $, then the third term can be seen as the rotational energy of a rigid body\footnotemark with $ I = \mu R_\text{eq}^2 $, since by definition $ \braket{\ve{L}^2} = \hbar^2 K(K+1) $:
@@ -162,7 +164,77 @@ This distribution is linear at the origin and asintotically vanishing, hence it 
 
 \subsection{Polyatomic molecules}
 
-[01:03:45]
+The purely-rotational spectrum of a polyatomic molecule can be treated analogously: in this case, however, the rotation no longer follows $ \ve{L} = I \bs{\omega} $, where $ I $ is the moment of inertial (a scalar), but is in general $ \ve{L} = \mt{I} \bs{\omega} $, where $ \mt{I} $ is the inertia tensor. The inertia tensor can be diagonalized with respect to the principal axis of rotations, which we identify WLOG with the $ x,y,z $-axis, so that the rotational energy is (promoting to operators):
+\begin{equation}
+  \ham_\text{rot} = \frac{L_x^2}{2I_x} + \frac{L_y^2}{2I_y} + \frac{L_z^2}{2I_z}
+\end{equation}
+The rotational Hamiltonian is in general non-diagonalizable, since the three components of $ \ve{L} $ do not commute, but we can analyze particular cases of interest.
+
+\paragraph{Linear molecule}
+
+Identifying the $ z $-axis with the axis of the molecule, then $ I_z = 0 $ and $ I_x = I_y \equiv I $, and consequently $ L_Z = 0 $, hence:
+\begin{equation*}
+  \ham_\text{rot} = \frac{L_x^2 + L_y^2}{2I} = \frac{\ve{L}^2}{2I}
+\end{equation*}
+which is precisely the result previously found.
+
+\paragraph{Cylindrical molecule}
+
+In presence of a cylindrical symmetry, identifying the $ z $-axis with the axis of the molecule, then $ I_x = I_y \equiv I_\perp $, but now $ I_z \neq 0 $, hence:
+\begin{equation*}
+  \ham_\text{rot} = \frac{L_x^2 + L_y^2}{2I_\perp} + \frac{L_z^2}{2I_z} = \frac{\ve{L}^2 - L_z^2}{2I_\perp} + \frac{L_z^2}{2I_z}
+\end{equation*}
+whose expectation value is:
+\begin{equation*}
+  E_\text{rot} = \frac{\hbar^2 K(K+1)}{2I_\perp} + \frac{\hbar^2 M^2}{2} \left( \frac{1}{I_z} - \frac{1}{I_\perp} \right)
+\end{equation*}
+The sign of the second term allows us to classify the various molecules:
+\begin{itemize}
+  \item if $ I_\perp < I_z $, the molecule is oblate (e.g. benzene $ \ch{C_6 H_6} $);
+  \item if $ I_z < I_\perp $, the molecule is prolate (e.g. ammonia $ \ch{NH_3} $).
+\end{itemize}
+The purely-rotational spectrum of cylindrical molecule is more complex than that of linear molecules, since the $ M $-degeneracy is broken by the second term and the $ K^\text{th} $ level is split into $ M + 1 $ levels. Note that the electric-dipole selection rules in this case are $ \Delta K = \pm 1 $ and $ \Delta M = 0 $.
+
+\paragraph{Spherical molecule}
+
+The spherically-symmetric case is trivial, since $ I_x = I_y = I_z \equiv I $:
+\begin{equation*}
+  \ham_\text{rot} = \frac{L_x^2 + L_y^2 + L_z^2}{2I} = \frac{\ve{L}^2}{2I}
+\end{equation*}
+which is analogous to the linear case. However, a spherically-symmetric molecule has no electric dipoles (e.g. methane $ \ch{CH_4} $), hence it is harder to be studied via EM interactions.
+
+\subsubsection{Electronic state}
+
+Although most biatomic molecules have ground state with $ \Lambda = 0 $ (electronic angular momentum projected on the axis of the molecule), i.e. are $ \Sigma $ states, there are some molecules with ground state $ \Pi $, i.e. $ \Lambda = 1 $, like $ \ch{NO} $ and $ \ch{OH} $. In this case, then:
+\begin{equation*}
+  \ham_\text{rot} = \frac{L_x^2 + L_y^2}{2I} + \frac{L_z^2}{2I_e}
+  \quad \implies \quad
+  E_\text{rot} = \frac{\hbar^2 K(K+1)}{2I} + \frac{\hbar^2 \Lambda^2}{2} \left( \frac{1}{I_e} - \frac{1}{I} \right)
+\end{equation*}
+where $ I_e \sim m_e $ is the electronic moment of inertia. Note that, since $ m_e \ll \mu $, it is $ I_e \ll I $, hence the second term is positive; however, it is usually not observed, since transitions which change the quantum numbers $ \Lambda $ require much more energy ($ \sim 1 \ev $) than rotational transitions ($ \sim 1 \,\text{meV} $), and doing so would change the electronic state of the molecule and, as per \eref{eq:adiabatic-potential-def}, the geometry of the molecule.
+
+\subsection{Radial nuclear wave-function}
+
+We now solve the radial Schrödinger equation \eref{eq:2-a-radial} for biatomic molecules. First, explicitly write the Laplacian in spherical coordinates (recalling that $ \rf_\nu^{(g)}(R) $ only depends on the radial coordinate):
+\begin{equation}
+  \left[ - \frac{\hbar^2}{2\mu} \frac{1}{R^2} \frac{\dd}{\dd R} \left( R^2 \frac{\dd}{\dd R} \right) + V_\text{eff}^{(g)}(R,K) \right] \rf_\nu^{(g)}(R) = E_{g,\nu} \rf_\nu^{(g)}(R)
+\end{equation}
+where we defined an effective potential to include the effect of the orbital angular momentum on the adiabatic potential. Now, focus on the first term:
+\begin{equation*}
+  \frac{1}{R^2} \frac{\dd}{\dd R} \left( R^2 \frac{\dd}{\dd R} \right) \rf(R) = \frac{1}{R} \left[ R \frac{\dd^2 \rf(R)}{\dd R^2} + 2 \frac{\dd \rf(R)}{\dd R} \right]
+\end{equation*}
+To simplify this expression, introduce an auxiliary function:
+\begin{equation}
+  u_\nu^{(g)}(R) \equiv R \rf_\nu^{(g)}(R)
+\end{equation}
+Then, trivially:
+\begin{equation*}
+  \frac{1}{R^2} \frac{\dd}{\dd R} \left( R^2 \frac{\dd}{\dd R} \right) \rf_\nu^{(g)}(R) = \frac{1}{R} \frac{\dd^2}{\dd R^2} u_\nu^{(g)}(R)
+\end{equation*}
+so that the radial equation can be recast in the simpler form:
+\begin{equation}
+  \left[ - \frac{\hbar^2}{2\mu} \frac{\dd^2}{\dd R^2} + V_\text{eff}^{(g)}(R,K) \right] u_\nu^{(g)}(R) = E_{g,\nu} u_\nu^{(g)}(R)
+\end{equation}
 
 
 
