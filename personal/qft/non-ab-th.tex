@@ -27,9 +27,10 @@ Simple terms invariant under global phase rotations, like the fermion mass term 
   \mt{U}(y,x) \mapsto e^{i \alpha(y)} \mt{U}(y,x) e^{-i \alpha(x)}
   \label{eq:fac-cov-der}
 \end{equation}
-In general, $ \mt{U}(y,x) \mapsto V(y) \mt{U}(y,x) V\dg(x) $. It is clear that $ \mt{U}(y,x) \Psi(x) $ and $ \Psi(y) $ have the same transformation law, so they can be meaningfully subtracted. 
+In general, $ \mt{U}(y,x) \mapsto V(y) \mt{U}(y,x) V\dg(x) $. It is clear that $ \mt{U}(y,x) \Psi(x) $ and $ \Psi(y) $ have the same transformation law, so they can be meaningfully subtracted.
+
 \begin{definition}{Covariant derivative}{}
-  Given $ n^\mu \in \R^{1,3} $, the covariant derivative of a fermionic field $ \Psi(x) $ along $ n^\mu $ is defined as:
+  Given $ n^\mu \in \R^{1,3} $, the \bcdef{covariant derivative} of a fermionic field $ \Psi(x) $ along $ n^\mu $ is defined as:
   \begin{equation}
     n^\mu D_\mu \Psi(x) \defeq \lim_{\varepsilon \rightarrow 0} \frac{1}{\varepsilon} \left[ \Psi(x + \varepsilon n) - \mt{U}(x + \varepsilon n, x) \Psi(x) \right]
     \label{eq:cov-der-def}
@@ -37,14 +38,14 @@ In general, $ \mt{U}(y,x) \mapsto V(y) \mt{U}(y,x) V\dg(x) $. It is clear that $
   where $ \mt{U}(y,x) $ is defined in \eref{eq:fac-cov-der}.
 \end{definition}
 
-To make this definition explicit, it is necessary to get an expression of $ \mt{U}(y,x) $ at infinitesimally-separted points. Given the unitarity of $ \mt{U}(y,x) $, it can be expressed through the generators $ \{T^a\}_{a = 1, \dots, d} $ as:
+To make this definition explicit, it is necessary to get an expression of $ \mt{U}(y,x) $ for points at infinitesimal distance. Given the unitarity of $ \mt{U}(y,x) $, it can be expressed through the generators $ \{T^a\}_{a = 1, \dots, d} $ as:
 \begin{equation}
-  \mt{U}(x + \varepsilon n, x) = \mt{I}_n + i g \varepsilon n^\mu A_\mu^a(x) T_a + o(\varepsilon^2)
+  \mt{U}(x + \varepsilon n, x) = \mt{I}_n + i g \varepsilon n^\mu \con_\mu^a(x) T_a + o(\varepsilon^2)
   \label{eq:fac-cov-der-exp}
 \end{equation}
-where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually, $ d $ different vector fields) is a \bctxt{connection}, and it allows to express the covariant derivative as (directly from \eref{eq:cov-der-def}):
+where $ g \in \R $ is a constant. The new vector field $ \con_\mu^a(x) $ (actually, $ d $ different vector fields) is a \bctxt{connection}, and it allows to express the covariant derivative as (directly from \eref{eq:cov-der-def}):
 \begin{equation}
-  D_\mu = \pa_\mu - i g A_\mu^a T_a
+  D_\mu = \pa_\mu - i g \con_\mu^a T_a
 \end{equation}
 
 \begin{proposition}{}{cov-der-gauge}
@@ -56,57 +57,57 @@ where $ g \in \R $ is a constant. The new vector field $ A_\mu^a(x) $ (actually,
     From \eeref{eq:fac-cov-der}{eq:fac-cov-der-exp} (recalling that $ \pa_\mu $ is anti-Hermitian):
     \begin{equation*}
       \begin{split}
-        \mt{I}_n + i g \varepsilon n^\mu A_\mu^a T_a
-        & \mapsto V(x + \varepsilon n) \left( \mt{I}_n + i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) \\
-        & = \left[ \left( 1 + \varepsilon n^\mu \pa_\mu \right) V(x) \right] V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) + o(\varepsilon^2) \\
-        & = \mt{I}_n - \varepsilon n^\mu V(x) \pa_\mu V\dg(x) + V(x) \left( i g \varepsilon n^\mu A_\mu^a T_a \right) V\dg(x) + o(\varepsilon^2)
+        \mt{I}_n + i g \varepsilon n^\mu \con_\mu^a T_a
+        & \mapsto V(x + \varepsilon n) \left( \mt{I}_n + i g \varepsilon n^\mu \con_\mu^a T_a \right) V\dg(x) \\
+        & = \left[ \left( 1 + \varepsilon n^\mu \pa_\mu \right) V(x) \right] V\dg(x) + V(x) \left( i g \varepsilon n^\mu \con_\mu^a T_a \right) V\dg(x) + o(\varepsilon^2) \\
+        & = \mt{I}_n - \varepsilon n^\mu V(x) \pa_\mu V\dg(x) + V(x) \left( i g \varepsilon n^\mu \con_\mu^a T_a \right) V\dg(x) + o(\varepsilon^2)
       \end{split}
     \end{equation*}
     Hence, the connection transforms as:
     \begin{equation*}
-      A_\mu^a(x) T_a \mapsto V(x) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] V\dg(x)
+      \con_\mu^a(x) T_a \mapsto V(x) \left[ \con_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] V\dg(x)
     \end{equation*}
     The derivative $ \pa_\mu V\dg(x) $ is non-trivial to compute, as $ G $ is in general non-Abelian, hence the exponent does not necessarily commute with its derivative. At $ o(\theta) $:
     \begin{equation*}
       \begin{split}
-        A_\mu^a(x) T_a
-        & \mapsto \left( \mt{I}_n + i \theta^b(x) T_b + o(\theta^2) \right) \left[ A_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] \left( \mt{I}_n - i \theta^c(x) T_c + o(\alpha^2) \right) \\
-        & = \left( \mt{I}_n + i \theta^b(x) T_b + o(\theta^2) \right) \left[ A_\mu^a(x) T_a - i A_\mu^a(x) \theta^c(x) T_a T_c + \frac{1}{g} \pa_\mu \theta^c(x) T_c + o(\theta^2) \right] \\
-        & = A_\mu^a(x) T_a - i A_\mu^a(x) \theta^c(x) T_a T_c + i \theta^b(x) A_\mu^a(x) T_b T_a + \frac{1}{g} \pa_\mu \theta^c(x) T_c + o(\theta^2) \\
-        & = A_\mu^a(x) T_a + f^{abc} A_\mu^a(x) \theta^b(x) T_c + \frac{1}{g} \pa_\mu \theta^a(x) T_a + o(\theta^2)
+        \con_\mu^a(x) T_a
+        & \mapsto \left( \mt{I}_n + i \theta^b(x) T_b + o(\theta^2) \right) \left[ \con_\mu^a(x) T_a + \frac{i}{g} \pa_\mu \right] \left( \mt{I}_n - i \theta^c(x) T_c + o(\alpha^2) \right) \\
+        & = \left( \mt{I}_n + i \theta^b(x) T_b + o(\theta^2) \right) \left[ \con_\mu^a(x) T_a - i \con_\mu^a(x) \theta^c(x) T_a T_c + \frac{1}{g} \pa_\mu \theta^c(x) T_c + o(\theta^2) \right] \\
+        & = \con_\mu^a(x) T_a - i \con_\mu^a(x) \theta^c(x) T_a T_c + i \theta^b(x) \con_\mu^a(x) T_b T_a + \frac{1}{g} \pa_\mu \theta^c(x) T_c + o(\theta^2) \\
+        & = \con_\mu^a(x) T_a + f^{abc} \con_\mu^a(x) \theta^b(x) T_c + \frac{1}{g} \pa_\mu \theta^a(x) T_a + o(\theta^2)
       \end{split}
     \end{equation*}
     Then:
     \begin{equation*}
       \begin{split}
         D_\mu \Psi(x)
-        & \hspace{-0.1em} \mapsto \hspace{-0.2em} \left[ \pa_\mu - i g A_\mu^a(x) T_a - i g f^{abc} A_\mu^a(x) \theta^b(x) T_c - i \pa_\mu \theta^a(x) T_a \right] \hspace{-0.1em} \left( \mt{I}_n + i \theta^a(x) T_a \right) \Psi(x) + o(\theta^2) \\
-        & \hspace{-1.5em} = \hspace{-0.05em} \left[ \pa_\mu + i \theta^a T_a \pa_\mu + i \pa_\mu \theta^a T_a - i g A_\mu^a T_a + g A_\mu^a \theta^b T_a T_b - i g f^{abc} A_\mu^a \theta^b T_c - i \pa_\mu \theta^a T_a + o(\theta^2) \right] \Psi \\
-        & \hspace{-1.5em} = \hspace{-0.05em} \left[ \pa_\mu + i \theta^a T_a \pa_\mu - i g A_\mu^a T_a + g A_\mu^a \theta^b T_a T_b - i g f^{abc} A_\mu^a \theta^b T_c + o(\theta^2) \right] \Psi
+        & \hspace{-0.1em} \mapsto \hspace{-0.2em} \left[ \pa_\mu \hspace{-0.1em} - i g \con_\mu^a(x) T_a - i g f^{abc} \con_\mu^a(x) \theta^b(x) T_c - i \pa_\mu \theta^a(x) T_a \right] \hspace{-0.1em} \left( \mt{I}_n + i \theta^a(x) T_a \right) \Psi(x) + o(\theta^2) \\
+        & \hspace{-1.5em} = \hspace{-0.05em} \left[ \pa_\mu \hspace{-0.1em} + i \theta^a T_a \pa_\mu + i \pa_\mu \theta^a T_a - i g \con_\mu^a T_a + g \con_\mu^a \theta^b T_a T_b - i g f^{abc} \con_\mu^a \theta^b T_c - i \pa_\mu \theta^a T_a + o(\theta^2) \right] \Psi \\
+        & \hspace{-1.5em} = \hspace{-0.05em} \left[ \pa_\mu \hspace{-0.1em} + i \theta^a T_a \pa_\mu - i g \con_\mu^a T_a + g \con_\mu^a \theta^b T_a T_b - i g f^{abc} \con_\mu^a \theta^b T_c + o(\theta^2) \right] \Psi
       \end{split}
     \end{equation*}
     Recognizing $ T_a T_b - i f^{abc} T_c = T_b T_a $ allows to write:
     \begin{equation*}
       \begin{split}
         D_\mu \Psi(x)
-        & \mapsto \left[ \pa_\mu + i \theta^a(x) T_a \pa_\mu - i g A_\mu^a(x) T_a + g \theta^b(x) T_b A_\mu^a(x) T_a + o(\theta^2) \right] \Psi(x) \\
-        & = \left[ \mt{I}_n + i \theta^a(x) T_a + o(\theta^2) \right] \left( \pa_\mu - i g A_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
+        & \mapsto \left[ \pa_\mu + i \theta^a(x) T_a \pa_\mu - i g \con_\mu^a(x) T_a + g \theta^b(x) T_b \con_\mu^a(x) T_a + o(\theta^2) \right] \Psi(x) \\
+        & = \left[ \mt{I}_n + i \theta^a(x) T_a + o(\theta^2) \right] \left( \pa_\mu - i g \con_\mu^a(x) T_a \right) \Psi(x) = V(x) D_\mu \Psi(x)
       \end{split}
     \end{equation*}
     which is the thesis.
   \end{proof}
 \end{proofbox}
 
-The gauge-invariant Lagrangian can thus be built using covariant derivatives (minimal coupling prescription), but there needs to be included a kinetic term for the connection, i.e. a gauge-invariant term depending on $ A_\mu^a(x) $ only.
+The gauge-invariant Lagrangian can thus be built using covariant derivatives (minimal coupling prescription), but there needs to be included a kinetic term for the connection, i.e. a gauge-invariant term depending on $ \con_\mu^a(x) $ only.
 
 \begin{lemma}{Field-strength tensor}{}
   The commutator of covariant derivatives reads:
   \begin{equation}
-    [D_\mu , D_\nu] = - i g F_{\mu \nu}^a T_a
+    [D_\mu , D_\nu] = - i g \fs_{\mu \nu}^a T_a
   \end{equation}
   with the \bclemma{field-strength tensor} defined as:
   \begin{equation}
-    F_{\mu \nu}^a \defeq \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{abc} A_\mu^b A_\nu^c
+    \fs_{\mu \nu}^a \defeq \pa_\mu \con_\nu^a - \pa_\nu \con_\mu^a + g f^{abc} \con_\mu^b \con_\nu^c
   \end{equation}
 \end{lemma}
 
@@ -116,9 +117,9 @@ The gauge-invariant Lagrangian can thus be built using covariant derivatives (mi
     \begin{equation*}
       \begin{split}
         [D_\mu , D_\nu]
-        & = [\pa_\mu , \pa_\nu] - i g [A_\mu^a , \pa_\nu] T_a - i g [\pa_\mu , A_\nu^a] T_a - g^2 A_\mu^b A_\nu^c [T_b , T_c] \\
-        & = - i g \left( A_\mu^a \pa_\nu - \pa_\nu A_\mu^a - A_\mu^a \pa_\nu \right) T_a - i g \left( A_\nu^a \pa_\mu - \pa_\mu A_\nu^a - A_\nu^a \pa_\mu \right) T_a - i g^2 f^{bca} A_\mu^b A_\nu^b T_c \\
-        & = - i g \left( \pa_\mu A_\nu^a - \pa_\nu A_\mu^a + g f^{bca} A_\mu^b A_\mu^c \right) T_a
+        & = [\pa_\mu , \pa_\nu] - i g [\con_\mu^a , \pa_\nu] T_a - i g [\pa_\mu , \con_\nu^a] T_a - g^2 \con_\mu^b \con_\nu^c [T_b , T_c] \\
+        & = - i g \left( \con_\mu^a \pa_\nu - \pa_\nu \con_\mu^a - \con_\mu^a \pa_\nu \right) T_a - i g \left( \con_\nu^a \pa_\mu - \pa_\mu \con_\nu^a - \con_\nu^a \pa_\mu \right) T_a - i g^2 f^{bca} \con_\mu^b \con_\nu^b T_c \\
+        & = - i g \left( \pa_\mu \con_\nu^a - \pa_\nu \con_\mu^a + g f^{bca} \con_\mu^b \con_\mu^c \right) T_a
       \end{split}
     \end{equation*}
     Using $ f^{bca} = f^{abc} $, as it is always possible to choose generators such that the structure constants are completely antisymmetric\footnotemark, yields the thesis.
@@ -127,20 +128,20 @@ The gauge-invariant Lagrangian can thus be built using covariant derivatives (mi
 
 \footnotetext{Requires proof.}
 
-Note that the field-strength tensor is not itself a gauge-invariant quantity, as really there are $ d $ different field-strength tensors. However, it is straightforward to construct gauge-invariant combinations of $ F_{\mu \nu}^a $.
+Note that the field-strength tensor is not itself a gauge-invariant quantity, as really there are $ d $ different field-strength tensors. However, it is straightforward to construct gauge-invariant combinations of $ \fs_{\mu \nu}^a $.
 
 \begin{theorem}{Gauge invariance}{}
-  Any globally-symmetric function of $ \Psi $, $ F_{\mu \nu}^a $ and their covariant derivatives is also locally-symmetric, i.e. gauge invariant.
+  Any globally-symmetric function of $ \Psi $, $ \fs_{\mu \nu}^a $ and their covariant derivatives is also locally-symmetric, i.e. gauge invariant.
 \end{theorem}
 
-\begin{lemma}
+\begin{lemma}{Kinetic term}{}
   The following term is gauge-invariant:
   \begin{equation}
-    \tr \{(F_{\mu \nu}^a T_a)^2\} = 2 F_{\mu \nu}^a F^{\mu \nu}_a
+    \tr \{(\fs_{\mu \nu}^a T_a)^2\} = 2 \fs_{\mu \nu}^a \fs^{\mu \nu}_a
   \end{equation}
 \end{lemma}
 
 This allows defining the simplest non-Abelian gauge theory, \bctxt{Yang-Mills theory}:
 \begin{equation}
-  \lag_\text{YM} = - \frac{1}{4} F_{\mu \nu}^a F^{\mu \nu}_a
+  \lag_\text{YM} = - \frac{1}{4} \fs_{\mu \nu}^a \fs^{\mu \nu}_a
 \end{equation}
