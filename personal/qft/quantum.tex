@@ -4,7 +4,7 @@
 
 As for the quantization of a classical system in Quantum Mechanics, the quantization of a scalar field theory is performed promoting $ \phi(t,\ve{x}) $ and $ \Pi(t,\ve{x}) $ to hermitian operators in the Heisenberg picture and imposing the canonical equal-time commutation relation:
 \begin{equation}
-  [\phi(t,\ve{x}) , \Pi(t,\ve{y})] = i \delta^{(3)}(\ve{x} - \ve{y})
+  [\phi(t,\ve{x}) , \Pi(t,\ve{y})] = \img \delta^{(3)}(\ve{x} - \ve{y})
   \label{eq:scalar-quant-comm}
 \end{equation}
 while of course $ [\phi(t,\ve{x}) , \phi(t,\ve{y})] = [\Pi(t,\ve{x}) , \Pi(t,\ve{y})] = 0 $.
@@ -13,7 +13,7 @@ while of course $ [\phi(t,\ve{x}) , \phi(t,\ve{y})] = [\Pi(t,\ve{x}) , \Pi(t,\ve
 
 A real scalar field is promoted to a real hermitian operator. In particular, by \eref{eq:scalar-field-exp}:
 \begin{equation}
-  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-\img p_\mu x^\mu} + a_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
   \label{eq:scalar-quant-exp}
 \end{equation}
 In terms of creation and annihilation operators, the commutator \eref{eq:scalar-quant-comm} reads:
@@ -82,24 +82,24 @@ This explains the choice of normalization.
     \begin{equation*}
       \begin{split}
         \Pi(t,\ve{x}) = \pa_0 \phi(t,\ve{x})
-        &= -i \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} - a_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
-        &= -i \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+        &= -\img \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-\img p_\mu x^\mu} - a_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
+        &= -\img \int \frac{\dd^3 p}{(2\pi)^3} \sqrt{\frac{E_\ve{p}}{2}} \left[ a_\ve{p} e^{-\img E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
       \end{split}
     \end{equation*}
     \begin{equation*}
-      \bs{\nabla} \phi(t,\ve{x}) = i \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] e^{i \ve{p} \cdot \ve{x}}
+      \bs{\nabla} \phi(t,\ve{x}) = \img \int \frac{\dd^3 p}{(2\pi)^3} \frac{\ve{p}}{\sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-\img E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] e^{\img \ve{p} \cdot \ve{x}}
     \end{equation*}
     Inserting these expressions in \eref{eq:scalar-field-haml}:
     \begin{equation*}
       \begin{split}
         \ham
-        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \frac{\dd^3 q}{(2\pi)^3} \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{i E_{\ve{q}} t} \right] + \\
-        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] \bigg\} e^{i (\ve{p} + \ve{q}) \cdot \ve{x}}
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \frac{\dd^3 q}{(2\pi)^3} \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-\img E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \left[ a_\ve{q} e^{-\img E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{\img E_{\ve{q}} t} \right] + \\
+        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-\img E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \left[ a_\ve{q} e^{-\img E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{\img E_\ve{q} t} \right] \bigg\} e^{\img (\ve{p} + \ve{q}) \cdot \ve{x}}
       \end{split}
     \end{equation*}
     Recall the identity:
     \begin{equation}
-      \int \frac{\dd^3x}{(2\pi)^3} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} = \delta^{(3)}(\ve{p} - \ve{q})
+      \int \frac{\dd^3x}{(2\pi)^3} e^{\img (\ve{p} - \ve{q}) \cdot \ve{x}} = \delta^{(3)}(\ve{p} - \ve{q})
       \label{eq:fourier-delta}
     \end{equation}
     Then (using $ E_{-\ve{p}} = E_\ve{p} $):
@@ -107,12 +107,12 @@ This explains the choice of normalization.
       \begin{split}
         H
         &= \int \dd^3x\, \ham \\
-        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \dd^3 q \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] + \\
-        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_\ve{q} e^{-i E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{i E_\ve{q} t} \right] \bigg\} \delta^{(3)}(\ve{p} + \ve{q}) \\
-        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \bigg\{ - \frac{E_\ve{p}}{2} \left[ a_\ve{p} e^{-i E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-i E_\ve{p} t} - a_\ve{p}^\dagger e^{i E_\ve{p} t} \right] + \\
-        & \qquad + \frac{\ve{p}^2 + m^2}{2E_\ve{p}} \left[ a_\ve{p} e^{-i E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-i E_\ve{p} t} + a_\ve{p}^\dagger e^{i E_\ve{p} t} \right] \bigg\} \\
-        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \frac{E_\ve{p}}{2} \bigg\{ - \left[ a_\ve{p} a_{-\ve{p}} e^{-2i E_\ve{p} t} - a_{-\ve{p}}^\dagger a_{-\ve{p}} - a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2i E_\ve{p} t} \right] \\
-        & \qquad + \left[ a_\ve{p} a_{-\ve{p}} e^{-2i E_\ve{p} t} + a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2i E_\ve{p} t} \right] \bigg\} \\
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \int \dd^3 q \bigg\{ - \frac{\sqrt{E_\ve{p} E_\ve{q}}}{2} \left[ a_\ve{p} e^{-\img E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \left[ a_\ve{q} e^{-\img E_\ve{q} t} - a_{-\ve{q}}^\dagger e^{\img E_\ve{q} t} \right] + \\
+        & \qquad + \frac{- \ve{p} \cdot \ve{q} + m^2}{2\sqrt{E_\ve{p} E_\ve{q}}} \left[ a_\ve{p} e^{-\img E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \left[ a_\ve{q} e^{-\img E_\ve{q} t} + a_{-\ve{q}}^\dagger e^{\img E_\ve{q} t} \right] \bigg\} \delta^{(3)}(\ve{p} + \ve{q}) \\
+        &= \frac{1}{2} \int \frac{\dd^3 p}{(2\pi)^3} \bigg\{ - \frac{E_\ve{p}}{2} \left[ a_\ve{p} e^{-\img E_\ve{p} t} - a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-\img E_\ve{p} t} - a_\ve{p}^\dagger e^{\img E_\ve{p} t} \right] + \\
+        & \qquad + \frac{\ve{p}^2 + m^2}{2E_\ve{p}} \left[ a_\ve{p} e^{-\img E_\ve{p} t} + a_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \left[ a_{-\ve{p}} e^{-\img E_\ve{p} t} + a_\ve{p}^\dagger e^{\img E_\ve{p} t} \right] \bigg\} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \frac{E_\ve{p}}{2} \bigg\{ - \left[ a_\ve{p} a_{-\ve{p}} e^{-2\img E_\ve{p} t} - a_{-\ve{p}}^\dagger a_{-\ve{p}} - a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2\img E_\ve{p} t} \right] \\
+        & \qquad + \left[ a_\ve{p} a_{-\ve{p}} e^{-2\img E_\ve{p} t} + a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger + a_{-\ve{p}}^\dagger a_\ve{p}^\dagger e^{2\img E_\ve{p} t} \right] \bigg\} \\
         &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left[ a_{-\ve{p}}^\dagger a_{-\ve{p}} + a_\ve{p} a_\ve{p}^\dagger \right] = \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} E_\ve{p} \left( a_\ve{p}^\dagger a_\ve{p} + a_\ve{p} a_\ve{p}^\dagger \right)
       \end{split}
     \end{equation*}
@@ -143,7 +143,7 @@ Finally, note that creation operators commute between themselves, hence multipar
 
 Recalling \dref{def:kg-scal-prod}, it is possible to relate the Fourier modes through the KG inner product, defined as:
 \begin{equation}
-  \braket{f,g} \defeq i \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = i \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv i \int \dd^3x\, W_0[f^*,g](x)
+  \braket{f,g} \defeq \img \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = \img \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv \img \int \dd^3x\, W_0[f^*,g](x)
 \end{equation}
 where $ W_0[f^*,g](x) $ is the $ t $-\bctxt{Wrońskian}\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
 %
@@ -162,9 +162,9 @@ If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of 
 \begin{proposition}{Orthonormality of Fourier modes}{fourier-orthonorm}
   Given positive- and negative-frequency Fourier modes:
   \begin{equation}
-    f_\ve{p}(x) \equiv \frac{e^{-i p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
+    f_\ve{p}(x) \equiv \frac{e^{-\img p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
     \qquad \qquad
-    f^*_\ve{p}(x) \equiv \frac{e^{i p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
+    f^*_\ve{p}(x) \equiv \frac{e^{\img p_\mu x^\mu}}{\sqrt{(2\pi)^3 2 E_\ve{p}}}
     \label{eq:fourier-modes}
   \end{equation}
   then:
@@ -181,8 +181,8 @@ If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of 
     \begin{equation*}
       \begin{split}
         \braket{f_\ve{p} , f_\ve{q}}
-        & = i \int \dd^3x\, f^*_\ve{p}(x) \smlra{\pa}_0 f_\ve{q}(x) = i \int \frac{\dd^3x}{(2\pi)^3 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \left( e^{i E_\ve{p} t} \smlra{\pa}_0 e^{-i E_\ve{q} t}  \right) \\
-        & = i \frac{\delta^{(3)}(\ve{q} - \ve{p})}{\sqrt{4 E_\ve{p} E_\ve{q}}} (-i E_\ve{q} - i E_\ve{p}) e^{i (E_\ve{p} - E_\ve{q}) t} = \delta^{(3)}(\ve{p} - \ve{q})
+        & = \img \int \dd^3x\, f^*_\ve{p}(x) \smlra{\pa}_0 f_\ve{q}(x) = \img \int \frac{\dd^3x}{(2\pi)^3 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{\img (\ve{q} - \ve{p}) \cdot \ve{x}} \left( e^{\img E_\ve{p} t} \smlra{\pa}_0 e^{-\img E_\ve{q} t}  \right) \\
+        & = \img \frac{\delta^{(3)}(\ve{q} - \ve{p})}{\sqrt{4 E_\ve{p} E_\ve{q}}} (-\img E_\ve{q} - \img E_\ve{p}) e^{\img (E_\ve{p} - E_\ve{q}) t} = \delta^{(3)}(\ve{p} - \ve{q})
       \end{split}
     \end{equation*}
     as $ \delta(x - x_0) f(x) = \delta(x - x_0) f(x_0) $. Other products are equivalent.
@@ -194,9 +194,9 @@ Using the KG inner product it is possible to explicit the ladder operators.
 \begin{theorem}{Ladder operators}{kg-ladder-op}
   The ladder operators for a real scalar field are:
   \begin{equation}
-    \sqrt{2E_\ve{p}} a_\ve{p} = i \int \dd^3x\, e^{i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \sqrt{2E_\ve{p}} a_\ve{p} = \img \int \dd^3x\, e^{\img p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
     \qquad \qquad
-    \sqrt{2E_\ve{p}} a_\ve{p}\dg = -i \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \sqrt{2E_\ve{p}} a_\ve{p}\dg = -\img \int \dd^3x\, e^{-\img p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
     \label{eq:frsf-ladder}
   \end{equation}
 \end{theorem}
@@ -217,10 +217,10 @@ Using the KG inner product it is possible to explicit the ladder operators.
 
 When considering a complex scalar field, \eref{eq:compl-scal-field-exp} becomes:
 \begin{equation}
-  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p} e^{-\img p_\mu x^\mu} + b_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
 \end{equation}
 \begin{equation}
-  \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{i p_\mu x^\mu} + b_\ve{p} e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \phi^\dagger(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \left[ a_\ve{p}^\dagger e^{\img p_\mu x^\mu} + b_\ve{p} e^{-\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
 \end{equation}
 Now there are two independent sets of creation/annihilation operators, which obey the canonical commutation relation:
 \begin{equation}
@@ -248,17 +248,17 @@ The quanta of a complex scalar field are given by two different species of parti
     \begin{equation*}
       \begin{split}
         Q_{\Un{1}}
-        &= i \int \dd^3x\, \phi^\dagger \smlra{\pa_0} \phi = i \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
-        & \quad \times \bigg\{ \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \pa_0 \left( a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right) + \\
-        & \quad - \pa_0 \left( a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right) \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
+        &= \img \int \dd^3x\, \phi^\dagger \smlra{\pa_0} \phi = \img \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
+        & \quad \times \bigg\{ \left[ a_\ve{q}^\dagger e^{\img q_\mu x^\mu} + b_\ve{q} e^{-\img q_\mu x^\mu} \right] \pa_0 \left( a_\ve{p} e^{-\img p_\mu x^\mu} + b_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right) + \\
+        & \quad - \pa_0 \left( a_\ve{q}^\dagger e^{\img q_\mu x^\mu} + b_\ve{q} e^{-\img q_\mu x^\mu} \right) \left[ a_\ve{p} e^{-\img p_\mu x^\mu} + b_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right] \bigg\} \\
         &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
-        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} + b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} - b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] + \\
-        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i q_\mu x^\mu} - b_\ve{q} e^{-i q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-i p_\mu x^\mu} + b_\ve{p}^\dagger e^{i p_\mu x^\mu} \right] \bigg\} \\
+        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{\img q_\mu x^\mu} + b_\ve{q} e^{-\img q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-\img p_\mu x^\mu} - b_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right] + \\
+        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{\img q_\mu x^\mu} - b_\ve{q} e^{-\img q_\mu x^\mu} \right] \left[ a_\ve{p} e^{-\img p_\mu x^\mu} + b_\ve{p}^\dagger e^{\img p_\mu x^\mu} \right] \bigg\} \\
         &= \int \dd^3x \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \,\times \\
-        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{i E_\ve{q} t} + b_{-\ve{q}} e^{-i E_\ve{q} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] + \\
-        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{i E_\ve{q} t} - b_{-\ve{q}} e^{-i E_\ve{q} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \bigg\} e^{i (\ve{p} - \ve{q}) \cdot \ve{x}} \\
-        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \bigg\{ \left[ a_\ve{p}^\dagger e^{i E_\ve{p} t} + b_{-\ve{p}} e^{-i E_\ve{p} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] + \\
-        & \quad + \left[ a_\ve{p}^\dagger e^{i E_\ve{p} t} - b_{-\ve{p}} e^{-i E_\ve{p} t} \right] \left[ a_\ve{p} e^{-i E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{i E_\ve{p} t} \right] \bigg\} \\
+        & \quad \times \bigg\{ E_\ve{p} \left[ a_\ve{q}^\dagger e^{\img E_\ve{q} t} + b_{-\ve{q}} e^{-\img E_\ve{q} t} \right] \left[ a_\ve{p} e^{-\img E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] + \\
+        & \quad + E_\ve{q} \left[ a_\ve{q}^\dagger e^{\img E_\ve{q} t} - b_{-\ve{q}} e^{-\img E_\ve{q} t} \right] \left[ a_\ve{p} e^{-\img E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \bigg\} e^{\img (\ve{p} - \ve{q}) \cdot \ve{x}} \\
+        &= \frac{1}{2} \int \frac{\dd^3p}{(2\pi)^3} \bigg\{ \left[ a_\ve{p}^\dagger e^{\img E_\ve{p} t} + b_{-\ve{p}} e^{-\img E_\ve{p} t} \right] \left[ a_\ve{p} e^{-\img E_\ve{p} t} - b_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] + \\
+        & \quad + \left[ a_\ve{p}^\dagger e^{\img E_\ve{p} t} - b_{-\ve{p}} e^{-\img E_\ve{p} t} \right] \left[ a_\ve{p} e^{-\img E_\ve{p} t} + b_{-\ve{p}}^\dagger e^{\img E_\ve{p} t} \right] \bigg\} \\
         &= \int \frac{\dd^3p}{(2\pi)^3} \left[ a_\ve{p}^\dagger a_\ve{p} - b_{-\ve{p}} b_{-\ve{p}}^\dagger \right] = \int \frac{\dd^3p}{(2\pi)^3} \left( a_\ve{p}^\dagger a_\ve{p} - b_\ve{p} b_\ve{p}^\dagger \right)
       \end{split}
     \end{equation*}
@@ -279,7 +279,7 @@ A principle of QFT is the \bctxt{spin-statistic theorem}: integer-spin fields ar
 
 From the Dirac Lagrangian \eref{eq:dirac-lagrangian}, the conjugate momentum to the Dirac field $ \Psi $ is computed as:
 \begin{equation}
-  \Pi_\Psi = i \bar{\Psi} \gamma^0 = i \Psi^\dagger
+  \Pi_\Psi = \img \bar{\Psi} \gamma^0 = \img \Psi^\dagger
   \label{eq:dirac-conj-mom}
 \end{equation}
 Imposing the canonical anticommutation relation, according to the spin-statistic theorem:
@@ -289,11 +289,11 @@ Imposing the canonical anticommutation relation, according to the spin-statistic
 \end{equation}
 where $ a,b = 1,2,3,4 $ are Dirac indices. Expanding the free Dirac field in plane waves:
 \begin{equation}
-  \Psi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \Psi(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u^s(p) e^{-\img p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
   \label{eq:dirac-exp}
 \end{equation}
 \begin{equation}
-  \bar{\Psi}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \bar{\Psi}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{\img p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
   \label{eq:dirac-bar-exp}
 \end{equation}
 where the spinor wave functions $ u^s(p) , v^s(p) $ are given by \eeref{eq:u-spinor-def}{eq:v-spinor-def}. Translating \eref{eq:dirac-anticomm} in terms of creation/annihilation operators:
@@ -320,17 +320,17 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
   \begin{proof}
     By \eref{eq:dirac-conj-mom}, the Hamiltonian density is:
     \begin{equation*}
-      \ham = \Pi_\Psi \pa_0 \Psi - \mathcal{L}_\text{D} = i \Psi^\dagger \pa_0 \Psi - \bar{\Psi} \left( i \gamma^0 \pa_0 + i \gamma^i \pa_i - m \right) \Psi = \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi
+      \ham = \Pi_\Psi \pa_0 \Psi - \mathcal{L}_\text{D} = \img \Psi^\dagger \pa_0 \Psi - \bar{\Psi} \left( \img \gamma^0 \pa_0 + \img \gamma^i \pa_i - m \right) \Psi = \bar{\Psi} \left( -\img \gamma^i \pa_i + m \right) \Psi
     \end{equation*}
     Therefore, using \eeref{eq:dirac-exp}{eq:dirac-bar-exp} and \eref{eq:fourier-delta}:
     \begin{equation*}
       \begin{split}
         H
-        &= \int \dd^3x\, \bar{\Psi} \left( -i \gamma^i \pa_i + m \right) \Psi = \int \dd^3x\, \bar{\Psi} \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \Psi \\
-        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{ip_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-ip_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left( -i \bs{\gamma} \cdot \bs{\nabla} + m \right) \left[ a_{\ve{q},r} u^r(q) e^{-iq_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{iq_\mu x^\mu} \right] \\
-        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-i p_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \quad \ \ \, \times \left[ \left( \bs{\gamma} \cdot \ve{q} + m \right) a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + \left( - \bs{\gamma} \cdot \ve{q} + m \right) b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right]
+        &= \int \dd^3x\, \bar{\Psi} \left( -\img \gamma^i \pa_i + m \right) \Psi = \int \dd^3x\, \bar{\Psi} \left( -\img \bs{\gamma} \cdot \bs{\nabla} + m \right) \Psi \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{\img p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-\img p_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \left( -\img \bs{\gamma} \cdot \bs{\nabla} + m \right) \left[ a_{\ve{q},r} u^r(q) e^{-\img q_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{\img q_\mu x^\mu} \right] \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(p) e^{\img p_\mu x^\mu} + b_{\ve{p},s} \bar{v}^s(p) e^{-\img p_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \quad \ \ \, \times \left[ \left( \bs{\gamma} \cdot \ve{q} + m \right) a_{\ve{q},r} u^r(q) e^{-\img q_\mu x^\mu} + \left( - \bs{\gamma} \cdot \ve{q} + m \right) b_{\ve{q},r}^\dagger v^r(q) e^{\img q_\mu x^\mu} \right]
       \end{split}
     \end{equation*}
     Using the Dirac equation in the form $ (\slashed{p} - m) u(p) = (\slashed{p} + m) v(p) = 0 $:
@@ -343,12 +343,12 @@ As these operators anticommute, states in this Fock space are antisymmetric unde
     \begin{equation*}
       \begin{split}
         H
-        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \hspace{-0.18em} \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \ \ \times \gamma^0 E_\ve{q} \left[ a_{\ve{q},r} u^r(\ve{q}) e^{-i E_\ve{q} t} - b_{-\ve{q},r}^\dagger v^r(-\ve{q}) e^{i E_\ve{q} t} \right] e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \\
-        &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},s}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right] \\
-        &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \Big[ a_{\ve{p},s}^\dagger a_{\ve{p},r} u^{s\dagger}(\ve{p}) u^r(\ve{p}) + b_{-\ve{p},s} a_{\ve{p},r} v^{s\dagger}(-\ve{p}) u^r(\ve{p}) e^{-2i E_\ve{p} t} + \\
-        & \qquad \qquad \qquad \qquad \qquad \quad - a_{\ve{p},s}^\dagger b_{-\ve{p},r}^\dagger u^{s\dagger}(\ve{p}) v^r(-\ve{p}) e^{2i E_\ve{p} t} - b_{-\ve{p},s} b_{-\ve{p},r}^\dagger v^{s\dagger}(-\ve{p}) v^r(-\ve{p}) \Big]
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{\img E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-\img E_\ve{p} t} \right] \hspace{-0.18em} \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \ \ \times \gamma^0 E_\ve{q} \left[ a_{\ve{q},r} u^r(\ve{q}) e^{-i E_\ve{q} t} - b_{-\ve{q},r}^\dagger v^r(-\ve{q}) e^{\img E_\ve{q} t} \right] e^{\img (\ve{q} - \ve{p}) \cdot \ve{x}} \\
+        &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger \bar{u}^s(\ve{p}) e^{\img E_\ve{p} t} + b_{-\ve{p},s} \bar{v}^s(-\ve{p}) e^{-\img E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \gamma^0 \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-\img E_\ve{p} t} - b_{-\ve{p},s}^\dagger v^r(-\ve{p}) e^{\img E_\ve{p} t} \right] \\
+        &= \normord \int \frac{\dd^3p}{2(2\pi)^3} \sum_{s = 1,2} \sum_{r = 1,2} \Big[ a_{\ve{p},s}^\dagger a_{\ve{p},r} u^{s\dagger}(\ve{p}) u^r(\ve{p}) + b_{-\ve{p},s} a_{\ve{p},r} v^{s\dagger}(-\ve{p}) u^r(\ve{p}) e^{-2\img E_\ve{p} t} + \\
+        & \qquad \qquad \qquad \qquad \qquad \quad - a_{\ve{p},s}^\dagger b_{-\ve{p},r}^\dagger u^{s\dagger}(\ve{p}) v^r(-\ve{p}) e^{2\img E_\ve{p} t} - b_{-\ve{p},s} b_{-\ve{p},r}^\dagger v^{s\dagger}(-\ve{p}) v^r(-\ve{p}) \Big]
       \end{split}
     \end{equation*}
 
@@ -384,18 +384,18 @@ The momentum operator too is analogous to that of the complex scalar field, with
   \begin{proof}
     By \eref{eq:en-mom-tensor}, the $ 0i $-component of energy-momentum tensor of the Dirac Lagrangian is:
     \begin{equation*}
-      \theta^{0i} = \frac{\pa \lag_\text{D}}{\pa (\pa_0 \Psi)} \pa^i \Psi = \bar{\Psi} i \gamma^0 \pa^i \Psi = - \Psi^\dagger i \pa_i \Psi
+      \theta^{0i} = \frac{\pa \lag_\text{D}}{\pa (\pa_0 \Psi)} \pa^i \Psi = \bar{\Psi} \img \gamma^0 \pa^i \Psi = - \Psi^\dagger \img \pa_i \Psi
     \end{equation*}
     Thus, according to \eref{eq:4-mom-def}:
     \begin{equation*}
       \begin{split}
         \ve{P}
-        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-ip_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times (-i \bs{\nabla}) \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
-        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{i p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-ip_\mu x^\mu} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times \ve{q} \left[ a_{\ve{q},r} u^r(q) e^{-i q_\mu x^\mu} - b_{\ve{q},r}^\dagger v^r(q) e^{i q_\mu x^\mu} \right] \\
-        &= \normord \int \frac{\dd^3p}{(2\pi)^3} \frac{\ve{p}}{2E_\ve{p}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(\ve{p}) e^{i E_\ve{p} t} + b_{-\ve{p},s} v^{s\dagger}(-\ve{p}) e^{-i E_\ve{p} t} \right] \times \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-i E_\ve{p} t} - b_{-\ve{p},r}^\dagger v^r(-\ve{p}) e^{i E_\ve{p} t} \right]
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{\img p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-\img p_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times (-i \bs{\nabla}) \left[ a_{\ve{q},r} u^r(q) e^{-\img q_\mu x^\mu} + b_{\ve{q},r}^\dagger v^r(q) e^{\img q_\mu x^\mu} \right] \\
+        &= \normord \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \int \frac{\dd^3q}{(2\pi)^3 \sqrt{2E_\ve{q}}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(p) e^{\img p_\mu x^\mu} + b_{\ve{p},s} v^{s\dagger}(p) e^{-\img p_\mu x^\mu} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times \ve{q} \left[ a_{\ve{q},r} u^r(q) e^{-\img q_\mu x^\mu} - b_{\ve{q},r}^\dagger v^r(q) e^{\img q_\mu x^\mu} \right] \\
+        &= \normord \int \frac{\dd^3p}{(2\pi)^3} \frac{\ve{p}}{2E_\ve{p}} \sum_{s = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},s}^\dagger u^{s\dagger}(\ve{p}) e^{\img E_\ve{p} t} + b_{-\ve{p},s} v^{s\dagger}(-\ve{p}) e^{-\img E_\ve{p} t} \right] \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \times \left[ a_{\ve{p},r} u^r(\ve{p}) e^{-\img E_\ve{p} t} - b_{-\ve{p},r}^\dagger v^r(-\ve{p}) e^{\img E_\ve{p} t} \right]
       \end{split}
     \end{equation*}
     Using \lref{lemma:haml-lem}, \eref{eq:uv-spin-id} and the antisymmetry $ \normord b_{\ve{p},s} b_{\ve{p},s}^\dagger = - b_{\ve{p},s}^\dagger b_{\ve{p},s} $:
@@ -410,12 +410,12 @@ Thus, both $ a_{\ve{p},s}^\dagger $ and $ b_{\ve{p},s}^\dagger $ create particle
 
 \subsubsection{Quantum numbers}
 
-Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to \eref{eq:dir-field-change}, i.e. $ \Psi'(x) = e^{-\frac{i}{2} \omega_{\mu \nu} J^{\mu \nu}} \Psi(x) $, where the Lorentz generator $ J^{\mu \nu} $ is defined in \eref{eq:dir-field-tot-ang-mom}.
+Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms according to \eref{eq:dir-field-change}, i.e. $ \Psi'(x) = e^{-\frac{\img}{2} \omega_{\mu \nu} J^{\mu \nu}} \Psi(x) $, where the Lorentz generator $ J^{\mu \nu} $ is defined in \eref{eq:dir-field-tot-ang-mom}.
 
 \begin{proposition}{Angular momentum}{}
   The conserved charge associated to the infinitesimal rotation \eref{eq:dir-field-change} is:
   \begin{equation}
-    \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
+    \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-\img \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
   \end{equation}
 \end{proposition}
 
@@ -423,15 +423,15 @@ Under a generic Lorentz transformation, the Dirac field $ \Psi $ transforms acco
   \begin{proof}
     Consider a rotation of $ \theta $ around the $ z $-axis: it is described by $ \omega_{12} = - \omega_{21} = \theta $, so, by \eref{eq:dir-field-change}:
     \begin{equation*}
-      \delta_0 \Psi = \theta \left( x^1 \pa^2 - x^2 \pa^1 - \tfrac{i}{2} \Sigma^3 \right) \Psi = - \theta \left( x^1 \pa_2 - x^2 \pa_1 + \tfrac{i}{2} \Sigma^3 \right) \Psi \equiv \theta \Delta \Psi
+      \delta_0 \Psi = \theta \left( x^1 \pa^2 - x^2 \pa^1 - \tfrac{\img}{2} \Sigma^3 \right) \Psi = - \theta \left( x^1 \pa_2 - x^2 \pa_1 + \tfrac{\img}{2} \Sigma^3 \right) \Psi \equiv \theta \Delta \Psi
     \end{equation*}
     Using the same notation of \dref{def:inf-trans}, $ \epsilon \equiv \theta $ and $ F = \Delta \Psi $, therefore, by \eref{eq:noether-current}, the temporal component of the conserved Noether current is (without negative sign, as it is mathematically equivalent):
     \begin{equation*}
-      j^0 = \frac{\pa \lag_\text{D}}{\pa (\pa_0 \Psi)} \Delta \Psi = - i \Psi^\dagger \left( (\ve{x} \times \bs{\nabla})^3 + \tfrac{i}{2} \Sigma^3 \right) \Psi
+      j^0 = \frac{\pa \lag_\text{D}}{\pa (\pa_0 \Psi)} \Delta \Psi = - \img \Psi^\dagger \left( (\ve{x} \times \bs{\nabla})^3 + \tfrac{\img}{2} \Sigma^3 \right) \Psi
     \end{equation*}
     As the associated Noether charge is $ J^3 = \int \dd^3x\, j^0 $, this can be generalized to rotations around the $ x $-axis and the $ y $-axis, yielding:
     \begin{equation*}
-      \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-i \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
+      \ve{J} = \int \dd^3x\, \Psi^\dagger \left( \ve{x} \times (-\img \bs{\nabla}) + \tfrac{1}{2} \bs{\Sigma} \right) \Psi
     \end{equation*}
     which is the thesis.
   \end{proof}
@@ -442,7 +442,7 @@ To determine the spin of fermions, it is sufficient to consider them at rest. Th
 \begin{equation*}
   \begin{split}
     S_z
-    &= \int \dd^3x \int \int \frac{\dd^3p\, \dd^3q}{(2\pi)^6 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{i (\ve{q} - \ve{p}) \cdot \ve{x}} \times \\
+    &= \int \dd^3x \int \int \frac{\dd^3p\, \dd^3q}{(2\pi)^6 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{\img (\ve{q} - \ve{p}) \cdot \ve{x}} \times \\
     & \qquad \qquad \times \sum_{t = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},t}^\dagger u^{t\dagger}(\ve{p}) + b_{-\ve{p},t} v^{t\dagger}(-\ve{p}) \right] \frac{\Sigma^3}{2} \left[ a_{\ve{q},r} u^r(\ve{q}) + b_{-\ve{q},r}^\dagger v^r(-\ve{q}) \right] \\
     &= \int \frac{\dd^3p}{(2\pi)^3 2E_\ve{p}} \sum_{t = 1,2} \sum_{r = 1,2} \left[ a_{\ve{p},t}^\dagger u^{t\dagger}(\ve{p}) + b_{-\ve{p},t} v^{t\dagger}(-\ve{p}) \right] \frac{\Sigma^3}{2} \left[ a_{\ve{p},r} u^r(\ve{p}) + b_{-\ve{p},r}^\dagger v^r(-\ve{p}) \right] \\
   \end{split}
@@ -493,15 +493,15 @@ As for the KG field, the ladder operators of the Dirac field can be made explici
 \begin{proposition}{Ladder operators}{}
   The ladder operators for a Dirac field are:
   \begin{equation}
-    \sqrt{2E_\ve{p}} a_{\ve{p},s} = \int \dd^3x\, e^{i p_\mu x^\mu} \bar{u}^s(p) \gamma^0 \Psi(x)
+    \sqrt{2E_\ve{p}} a_{\ve{p},s} = \int \dd^3x\, e^{\img p_\mu x^\mu} \bar{u}^s(p) \gamma^0 \Psi(x)
     \qquad \qquad
-    \sqrt{2E_\ve{p}} a_{\ve{p},s}\dg = \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p)
+    \sqrt{2E_\ve{p}} a_{\ve{p},s}\dg = \int \dd^3x\, e^{-\img p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 u^s(p)
     \label{eq:dirac-ladd-op-a}
   \end{equation}
   \begin{equation}
-    \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg = \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x)
+    \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg = \int \dd^3x\, e^{-\img p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x)
     \qquad \qquad
-    \sqrt{2E_\ve{p}} b_{\ve{p},s} = \int \dd^3x\, e^{i p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 v^s(p)
+    \sqrt{2E_\ve{p}} b_{\ve{p},s} = \int \dd^3x\, e^{\img p_\mu x^\mu} \bar{\Psi}(x) \gamma^0 v^s(p)
     \label{eq:dirac-ladd-op-b}
   \end{equation}
 \end{proposition}
@@ -510,15 +510,15 @@ As for the KG field, the ladder operators of the Dirac field can be made explici
   \begin{proof}
     First, cast \eref{eq:dirac-exp} in the form:
     \begin{equation*}
-      \Psi(x) = \int \frac{\dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{-i E_\ve{k} t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i E_\ve{k} t} \right] e^{i \ve{k} \cdot \ve{x}}
+      \Psi(x) = \int \frac{\dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{-\img E_\ve{k} t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{\img E_\ve{k} t} \right] e^{\img \ve{k} \cdot \ve{x}}
     \end{equation*}
     Then:
     \begin{equation*}
       \begin{split}
-        \int \dd^3x\, e^{i p_\mu x^\mu} \Psi(x)
-        & = \int \frac{\dd^3x \dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} \hspace{-0.1em} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] \hspace{-0.1em} e^{i (\ve{k} - \ve{p}) \cdot \ve{x}} \\
-        & = \int \frac{\dd^3k}{\sqrt{2E_\ve{k}}} \delta^{(3)}(\ve{k} - \ve{p}) \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{i (E_\ve{p} - E_\ve{k}) t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{i (E_\ve{p} + E_\ve{k}) t} \right] \\
-        & = \frac{1}{\sqrt{2E_\ve{p}}} \sum_{r = 1,2} \left[ a_{\ve{p},r} u^r(\ve{p}) + b_{-\ve{p},r}\dg v^r(-\ve{p}) e^{2i E_\ve{p} t} \right]
+        \int \dd^3x\, e^{\img p_\mu x^\mu} \Psi(x)
+        & = \int \frac{\dd^3x \dd^3k}{(2\pi)^3 \sqrt{2E_\ve{k}}} \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{\img (E_\ve{p} - E_\ve{k}) t} \hspace{-0.1em} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{\img (E_\ve{p} + E_\ve{k}) t} \right] \hspace{-0.1em} e^{\img (\ve{k} - \ve{p}) \cdot \ve{x}} \\
+        & = \int \frac{\dd^3k}{\sqrt{2E_\ve{k}}} \delta^{(3)}(\ve{k} - \ve{p}) \sum_{s = 1,2} \left[ a_{\ve{k},s} u^s(\ve{k}) e^{\img (E_\ve{p} - E_\ve{k}) t} + b_{-\ve{k},s}\dg v^s(-\ve{k}) e^{\img (E_\ve{p} + E_\ve{k}) t} \right] \\
+        & = \frac{1}{\sqrt{2E_\ve{p}}} \sum_{r = 1,2} \left[ a_{\ve{p},r} u^r(\ve{p}) + b_{-\ve{p},r}\dg v^r(-\ve{p}) e^{2\img E_\ve{p} t} \right]
       \end{split}
     \end{equation*}
 
@@ -532,11 +532,11 @@ As for the KG field, the ladder operators of the Dirac field can be made explici
 
     Using \lref{lemma:spinor-gamma-0} and \eref{eq:spinor-gamma-mu}:
     \begin{equation*}
-      \int \dd^3x\, e^{i p_\mu x^\mu} \bar{u}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} a_{\ve{p},s}
+      \int \dd^3x\, e^{\img p_\mu x^\mu} \bar{u}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} a_{\ve{p},s}
     \end{equation*}
     Analogously:
     \begin{equation*}
-      \int \dd^3x\, e^{-i p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg
+      \int \dd^3x\, e^{-\img p_\mu x^\mu} \bar{v}^s(p) \gamma^0 \Psi(x) = \sqrt{2E_\ve{p}} b_{\ve{p},s}\dg
     \end{equation*}
     To find the remaining ladder operators, either repeat the previous steps with $ \bar{\Psi}(x) $ or use (as $ (\gamma^\mu)^2 = \mt{I}_4 $):
     \begin{equation}
@@ -562,7 +562,7 @@ The quantization of massless Weyl fields follows immediately from that of Dirac 
 \end{equation*}
 Consider $ \Psi_\text{L} $. As for \eref{eq:dirac-exp}:
 \begin{equation*}
-  \Psi_\text{L}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u_\text{L}^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v_\text{L}^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
+  \Psi_\text{L}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\ve{p},s} u_\text{L}^s(p) e^{-\img p_\mu x^\mu} + b_{\ve{p},s}^\dagger v_\text{L}^s(p) e^{\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}}
 \end{equation*}
 where the Dirac spinors now have the right-hand component vanishing, in the chiral representation. By \eeref{eq:u-spinor-p3-frame}{eq:v-spinor-def}, in the massless (ultra-relativistic) limit $ p^\mu = (E,0,0,E) $, so spinors with $ s = 1 $ have only the right-handed component, while those with $ s = 2 $ only the left-handed one: therefore, only $ s = 2 $ spinors contribute to $ \Psi_\text{L} $ (and only $ s = 1 $ to $ \Psi_\text{R} $).\\
 By \tabref{tab:dirac-qn}, it is clear that in this context $ a_{\ve{p},2}^\dagger $ creates a particle with helicity $ h = - \frac{1}{2} $, while $ b_{\ve{p},2}^\dagger $ creates an antiparticle with $ h = + \frac{1}{2} $: in general, a left-handed massless Weyl field describes particles with $ h = - \frac{1}{2} $ and antiparticles with $ h = + \frac{1}{2} $, while a right-handed one describes particles with $ h = + \frac{1}{2} $ and antiparticles with $ h = - \frac{1}{2} $.
@@ -614,16 +614,16 @@ Explicitly:
 \begin{equation*}
   \begin{split}
     \parity \Psi(x) \parity
-    &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
-    &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-i E_\ve{p} t + i \ve{p} \cdot \ve{x}} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{i E_\ve{p} t - i \ve{p} \cdot \ve{x}} \right]_{p^0 = E_\ve{p}} \\
+    &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-\img p_\mu x^\mu} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{\img p_\mu x^\mu} \right]_{p^0 = E_\ve{p}} \\
+    &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{-\ve{p},s} u^s(p) e^{-\img E_\ve{p} t + \img \ve{p} \cdot \ve{x}} + \eta_b b_{-\ve{p},s}^\dagger v^s(p) e^{\img E_\ve{p} t - \img \ve{p} \cdot \ve{x}} \right]_{p^0 = E_\ve{p}} \\
   \end{split}
 \end{equation*}
 Setting $ \ve{p}' \equiv - \ve{p} , \ve{x}' \equiv -\ve{x} $ and noting that, by \eeref{eq:u-spinor-p3-frame}{eq:v-spinor-def} $ \ve{p} \mapsto -\ve{p} $ exchanges the left-handed and the right-handed compontents of the spinors, i.e. $ u^s(p) \mapsto \gamma^0 u^s(p) $ and $ v^s(p) \mapsto - \gamma^0 v^s(p) $:
 \begin{equation*}
   \begin{split}
     \parity \Psi(x) \parity
-    &= \int \frac{\dd^3p'}{(2\pi)^3 \sqrt{E_{\ve{p}'}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p}',s} \gamma^0 u^s(p') e^{-i E_{\ve{p}'} t + i \ve{p}' \cdot \ve{x}'} - \eta_b b_{\ve{p}',s}^\dagger \gamma^0 v^s(p') e^{i E_{\ve{p}'} t - i \ve{p}' \cdot \ve{x}'} \right]_{p'^0 = E_{\ve{p}'}} \\
-    &= \gamma^0 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p},s} u^s(p) e^{-i p_\mu x'^\mu} - \eta_b b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x'^\mu} \right]_{p^0 = E_\ve{p}}
+    &= \int \frac{\dd^3p'}{(2\pi)^3 \sqrt{E_{\ve{p}'}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p}',s} \gamma^0 u^s(p') e^{-\img E_{\ve{p}'} t + \img \ve{p}' \cdot \ve{x}'} - \eta_b b_{\ve{p}',s}^\dagger \gamma^0 v^s(p') e^{\img E_{\ve{p}'} t - \img \ve{p}' \cdot \ve{x}'} \right]_{p'^0 = E_{\ve{p}'}} \\
+    &= \gamma^0 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ \eta_a a_{\ve{p},s} u^s(p) e^{-\img p_\mu x'^\mu} - \eta_b b_{\ve{p},s}^\dagger v^s(p) e^{\img p_\mu x'^\mu} \right]_{p^0 = E_\ve{p}}
   \end{split}
 \end{equation*}
 Requiring that $ \Psi $ is a representation of parity, up to a phase, means $ \eta_a = - \eta_b $, so that:
@@ -638,7 +638,7 @@ As already noted, the scalar complex field is similar to the Dirac field, apart 
 
 \subsubsection{Charge conjugation}
 
-Recall \eref{eq:dir-spin-charge-conj}: charge conjugation acts on the classical Dirac field as $ \Psi \mapsto -i \gamma^2 \Psi^* $.
+Recall \eref{eq:dir-spin-charge-conj}: charge conjugation acts on the classical Dirac field as $ \Psi \mapsto -\img \gamma^2 \Psi^* $.
 
 \begin{definition}{Quantized charge conjugation}{}
   The \bcdef{charge conjugation operator} is defined as:
@@ -655,9 +655,9 @@ Thus, $ \chargec^2 = \id $ too, and its physical interpretation is the exchange 
 
 \begin{lemma}[before upper = {\tcbtitle}]{Charge conjugation on spinors}{spinor-charge-conj}
   \begin{equation}
-    \chargec u^s(p) \chargec = -i \gamma^2 \left[ v^s(p) \right]^*
+    \chargec u^s(p) \chargec = -\img \gamma^2 \left[ v^s(p) \right]^*
     \qquad \qquad
-    \chargec v^s(p) \chargec = -i \gamma^2 \left[ u^s(p) \right]^*
+    \chargec v^s(p) \chargec = -\img \gamma^2 \left[ u^s(p) \right]^*
     \label{eq:charge-conj-spin}
   \end{equation}
 \end{lemma}
@@ -665,7 +665,7 @@ Thus, $ \chargec^2 = \id $ too, and its physical interpretation is the exchange 
 \begin{proposition}{Charge conjugation on Dirac fields}{}
   Given a Dirac field $ \Psi(x) $:
   \begin{equation}
-    \chargec \Psi(x) \chargec = -i \eta_c \gamma^2 [\Psi(x)]^*
+    \chargec \Psi(x) \chargec = -\img \eta_c \gamma^2 [\Psi(x)]^*
   \end{equation}
 \end{proposition}
 
@@ -675,9 +675,9 @@ Thus, $ \chargec^2 = \id $ too, and its physical interpretation is the exchange 
     \begin{equation*}
       \begin{split}
         \chargec \Psi(x) \chargec
-        &= \eta_c \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} \chargec u^s(p) \chargec e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger \chargec v^s(p) \chargec e^{i p_\mu x^\mu} \right] \\
-        &= -i \eta_c \gamma^2 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} [v^s(p)]^* e^{-i p_\mu x^\mu} + a_{\ve{p},s}^\dagger [u^s(p)]^* e^{i p_\mu x^\mu} \right] \\
-        & = -i \eta_c \gamma^2 [\Psi(x)]^*
+        &= \eta_c \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} \chargec u^s(p) \chargec e^{-\img p_\mu x^\mu} + a_{\ve{p},s}^\dagger \chargec v^s(p) \chargec e^{\img p_\mu x^\mu} \right] \\
+        &= -\img \eta_c \gamma^2 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ b_{\ve{p},s} [v^s(p)]^* e^{-\img p_\mu x^\mu} + a_{\ve{p},s}^\dagger [u^s(p)]^* e^{\img p_\mu x^\mu} \right] \\
+        & = -\img \eta_c \gamma^2 [\Psi(x)]^*
       \end{split}
     \end{equation*}
     which is the thesis.
@@ -705,11 +705,11 @@ As for parity, the transformation of quantized fields is analogous to that of cl
     \begin{equation*}
       \begin{split}
         \timer \Psi(t,\ve{x}) \timer \ket{0}
-        &= \timer e^{i H t} \Psi(\ve{x}) e^{-i H t} \timer \ket{0} = e^{i H t} \timer \Psi(\ve{x}) \timer e^{-i H t} \ket{0} = e^{i H t} \timer \Psi(\ve{x}) \timer \ket{0} \\
-        &= \Psi(-t,\ve{x}) \ket{0} = e^{-i H t} \Psi(\ve{x}) e^{i H t} \ket{0} = e^{-i H t} \Psi(\ve{x}) \ket{0}
+        &= \timer e^{\img H t} \Psi(\ve{x}) e^{-\img H t} \timer \ket{0} = e^{\img H t} \timer \Psi(\ve{x}) \timer e^{-\img H t} \ket{0} = e^{\img H t} \timer \Psi(\ve{x}) \timer \ket{0} \\
+        &= \Psi(-t,\ve{x}) \ket{0} = e^{-\img H t} \Psi(\ve{x}) e^{\img H t} \ket{0} = e^{-\img H t} \Psi(\ve{x}) \ket{0}
       \end{split}
     \end{equation*}
-    assuming $ H \ket{0} = 0 $. But the first line is a sum of negative frequencies only, while the second line is a sum of positive frequencies only, yielding an absurdum.
+    assuming $ H \ket{0} = 0 $. But the first line is a sum of negative frequencies only, while the second line is a sum of positive frequencies only, which is absurd.
   \end{proof}
 \end{proofbox}
 
@@ -724,7 +724,7 @@ Time reversal is an example of operator which, according to Wigner's theorem (\t
 In particular, anti-linearity (second property) solves the absurdum in the proof of \tref{th:anti-uni-time-rev}.\\
 Time reversal is expected to reverse the spin of particles, and this can be used to construct $ \timer $. First, define:
 \begin{equation}
-  \xi^{-s} \equiv -i \sigma^2 [\xi^s]^*
+  \xi^{-s} \equiv -\img \sigma^2 [\xi^s]^*
 \end{equation}
 that is, $ \xi^{-1} = \binom{0}{1} $ and $ \xi^{-2} = \binom{-1}{0} $. This allows redefining $ \eta^s \equiv \xi^{-s} $, and also $ \xi^{-(-s)} = - \xi^s $.
 
@@ -742,17 +742,17 @@ that is, $ \xi^{-1} = \binom{0}{1} $ and $ \xi^{-2} = \binom{-1}{0} $. This allo
     \begin{equation*}
       u^{-s}(-\ve{p}) =
       \begin{pmatrix}
-        \sqrt{\tilde{p}^\mu \sigma_\mu} (-i \sigma^2 [\xi^s]^*) \\
-        \sqrt{\tilde{p}^\mu \bar{\sigma}_\mu} (-i \sigma^2 [\xi^s]^*)
+        \sqrt{\tilde{p}^\mu \sigma_\mu} (-\img \sigma^2 [\xi^s]^*) \\
+        \sqrt{\tilde{p}^\mu \bar{\sigma}_\mu} (-\img \sigma^2 [\xi^s]^*)
       \end{pmatrix}
       =
       \begin{pmatrix}
-        -i \sigma^2 \sqrt{p^\mu \sigma_\mu^*} [\xi^s]^* \\
-        -i \sigma^2 \sqrt{p^\mu \bar{\sigma}_\mu^*} [\xi^s]^*
+        -\img \sigma^2 \sqrt{p^\mu \sigma_\mu^*} [\xi^s]^* \\
+        -\img \sigma^2 \sqrt{p^\mu \bar{\sigma}_\mu^*} [\xi^s]^*
       \end{pmatrix}
-      = -i \begin{pmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{pmatrix} [u^s(\ve{p})]^*
+      = -\img \begin{pmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{pmatrix} [u^s(\ve{p})]^*
     \end{equation*}
-    Noting that $ i \diag(\sigma^2,\sigma^2) = \gamma^1 \gamma^3 $ completes the proof. On the other hand:
+    Noting that $ \img \diag(\sigma^2,\sigma^2) = \gamma^1 \gamma^3 $ completes the proof. On the other hand:
     \begin{equation*}
       \begin{split}
         v^{-s}(-\ve{p})
@@ -766,10 +766,10 @@ that is, $ \xi^{-1} = \binom{0}{1} $ and $ \xi^{-2} = \binom{-1}{0} $. This allo
           \sigma^2 \sqrt{p^\mu \sigma_\mu^*} \sigma^2 (-\xi^s) \\
           - \sigma^2 \sqrt{p^\mu \bar{\sigma}_\mu^*} \sigma^2 (-\xi^s)
         \end{pmatrix}\\
-        &= -i \begin{pmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{pmatrix}
+        &= -\img \begin{pmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{pmatrix}
         \begin{pmatrix}
-          \sqrt{p^\mu \sigma_\mu^*} (-i \sigma^2 [\xi^s]^*) \\
-          - \sqrt{p^\mu \bar{\sigma}_\mu^*} (-i \sigma^2 [\xi^s]^*)
+          \sqrt{p^\mu \sigma_\mu^*} (-\img \sigma^2 [\xi^s]^*) \\
+          - \sqrt{p^\mu \bar{\sigma}_\mu^*} (-\img \sigma^2 [\xi^s]^*)
         \end{pmatrix}
         = - \gamma^1 \gamma^3 [v^s(-\ve{p})]^*
       \end{split}
@@ -808,10 +808,10 @@ An additional overall phase is irrelevant. Moreover, as other discrete symmetrie
    \begin{equation*}
        \begin{split}
          \timer \Psi(x) \timer
-         &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \timer \left[ a_{\ve{p},s} u^s(p) e^{-i p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{i p_\mu x^\mu} \right] \timer \\
-         &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{-\ve{p},-s} [u^s(p)]^* e^{i p_\mu x^\mu} + b_{-\ve{p},-s}^\dagger [v^s(p)]^* e^{-i p_\mu x^\mu} \right] \\
-         &= - \gamma^3 \gamma^1 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\tilde{\ve{p}},-s} u^{-s}(\tilde{p}) e^{-i \tilde{p}_\mu \tilde{x}^\mu} + b_{\tilde{\ve{p}},-s}^\dagger v^{-s}(\tilde{p}) e^{i \tilde{p}_\mu \tilde{x}^\mu} \right] \\
-         &= \gamma^1 \gamma^3 \int \frac{-\dd^3\tilde{p}}{(2\pi)^3 \sqrt{2E_{\tilde{\ve{p}}}}} \sum_{s = 1,2} \left[ a_{\tilde{\ve{p}},s} u^s(\tilde{p}) e^{-i \tilde{p}_\mu \tilde{x}^\mu} + b_{\tilde{\ve{p}},s}^\dagger v^s(\tilde{p}) e^{i \tilde{p}_\mu \tilde{x}^\mu} \right]
+         &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \timer \left[ a_{\ve{p},s} u^s(p) e^{-\img p_\mu x^\mu} + b_{\ve{p},s}^\dagger v^s(p) e^{\img p_\mu x^\mu} \right] \timer \\
+         &= \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{-\ve{p},-s} [u^s(p)]^* e^{\img p_\mu x^\mu} + b_{-\ve{p},-s}^\dagger [v^s(p)]^* e^{-\img p_\mu x^\mu} \right] \\
+         &= - \gamma^3 \gamma^1 \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_\ve{p}}} \sum_{s = 1,2} \left[ a_{\tilde{\ve{p}},-s} u^{-s}(\tilde{p}) e^{-\img \tilde{p}_\mu \tilde{x}^\mu} + b_{\tilde{\ve{p}},-s}^\dagger v^{-s}(\tilde{p}) e^{\img \tilde{p}_\mu \tilde{x}^\mu} \right] \\
+         &= \gamma^1 \gamma^3 \int \frac{-\dd^3\tilde{p}}{(2\pi)^3 \sqrt{2E_{\tilde{\ve{p}}}}} \sum_{s = 1,2} \left[ a_{\tilde{\ve{p}},s} u^s(\tilde{p}) e^{-\img \tilde{p}_\mu \tilde{x}^\mu} + b_{\tilde{\ve{p}},s}^\dagger v^s(\tilde{p}) e^{\img \tilde{p}_\mu \tilde{x}^\mu} \right]
         = - \gamma^1 \gamma^3 \Psi(\tilde{x})
       \end{split}
     \end{equation*}
@@ -826,7 +826,7 @@ In order to study the invariance properties of fermionic Lagrangians, it is nece
   \centering
   \begin{tabular}{ccccccc}
     \hline
-    \rule{0pt}{2.5ex} & $ \bar{\Psi} \Psi $ & $ i \bar{\Psi} \gamma^5 \Psi $ & $ \bar{\Psi} \gamma^\mu \Psi $ & $ \bar{\Psi} \gamma^\mu \gamma^5 \Psi $ & $ \bar{\Psi} \sigma^{\mu \nu} \Psi $ & $ \pa_\mu $ \\
+    \rule{0pt}{2.5ex} & $ \bar{\Psi} \Psi $ & $ \bar{\Psi} \gamma^5 \Psi $ & $ \bar{\Psi} \gamma^\mu \Psi $ & $ \bar{\Psi} \gamma^\mu \gamma^5 \Psi $ & $ \bar{\Psi} \sigma^{\mu \nu} \Psi $ & $ \pa_\mu $ \\
     \hline
     \rule{0pt}{2.5ex} $ \chargec $ & $ +1 $ & $ +1 $ & $ -1 $ & $ +1 $ & $ -1 $ & $ +1 $ \\
     \rule{0pt}{2.5ex} $ \parity $ & $ +1 $ & $ -1 $ & $ (-1)^\mu $ & $ - (-1)^\mu $ & $ (-1)^\mu (-1)^\nu $ & $ (-1)^\mu $ \\
@@ -918,7 +918,7 @@ In this gauge, the equations of motions \eref{eq:maxw-1} become:
 \end{equation}
 which are massless KG equations for each component of the gauge potential. Plane-wave solutions take the form:
 \begin{equation}
-  A_\mu(x) = \epsilon_\mu(k) e^{-i k_\mu x^\mu} + c.c.
+  A_\mu(x) = 2\Re\{\epsilon_\mu(k) e^{-\img k_\mu x^\mu}\}
 \end{equation}
 where $ \epsilon_\mu(x) $ is the \bctxt{polarization vector}. Then, \eref{eq:maxw-lor} gives $ k^2 = 0 $, while the chosen radiation gauge implies $ \epsilon_0 = 0 $ and $ \bs{\epsilon} \cdot \ve{k} = 0 $: therefore, an electromagnetic wave has only two degrees of freedom, represented by a polarization vector $ \bs{\epsilon} $ perpendicular to the direction of propagation.
 
@@ -931,9 +931,9 @@ where $ \epsilon_\mu(x) $ is the \bctxt{polarization vector}. Then, \eref{eq:max
   \end{equation}
   Another choice is a linear combination of these vectors, the \bcex{circular polarization vectors}:
   \begin{equation}
-    \bs{\epsilon}_\text{R} = \frac{\bs{\epsilon}_1 + i \bs{\epsilon}_2}{\sqrt{2}}
+    \bs{\epsilon}_\text{R} = \frac{\bs{\epsilon}_1 + \img \bs{\epsilon}_2}{\sqrt{2}}
     \qquad
-    \bs{\epsilon}_\text{L} = \frac{\bs{\epsilon}_1 - i \bs{\epsilon}_2}{\sqrt{2}}
+    \bs{\epsilon}_\text{L} = \frac{\bs{\epsilon}_1 - \img \bs{\epsilon}_2}{\sqrt{2}}
     \label{eq:circ-pol-vec}
   \end{equation}
   which are helicity eigenstates respectively with $ h = +1 $ and $ h = -1 $.
@@ -977,31 +977,31 @@ A gauge transformation $ A_\mu \mapsto A_\mu - \pa_\mu \alpha $ implies $ \act_\
 
 The coupling of the electromagnetic field to the Dirac field is an example of the general procedure of writing a gauge-invariant action for a gauge theory. In particular, consider a theory with a global $ \Un{1} $ invariance, which is a symmetry of the free Dirac action by \eref{eq:dirac-u1-symm}. Now generalize to a local $ \Un{1} $ symmetry:
 \begin{equation}
-  \Psi(x) \mapsto e^{iq \alpha(x)} \Psi(x)
+  \Psi(x) \mapsto e^{\img q \alpha(x)} \Psi(x)
   \label{eq:qed-dir-inv}
 \end{equation}
 with $ q \in \R $. This no longer is a symmetry of the Dirac action, however it can be combined with \eref{eq:qed-gauge-inv} defining the \bctxt{covariant derivative}:
 \begin{equation}
-  \covder_\mu \Psi \defeq (\pa_\mu + i q A_\mu) \Psi
+  \covder_\mu \Psi \defeq (\pa_\mu + \img q A_\mu) \Psi
 \end{equation}
 
 \begin{proposition}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    \covder_\mu \Psi(x) \mapsto e^{i q \alpha(x)} \covder_\mu \Psi(x)
+    \covder_\mu \Psi(x) \mapsto e^{\img q \alpha(x)} \covder_\mu \Psi(x)
     \label{eq:qed-cov-der}
   \end{equation}
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-      $ \covder_\mu \Psi \mapsto \left[ \pa_\mu + i q (A_\mu - \pa_\mu \alpha) \right] e^{i q \alpha} \Psi = e^{i q \alpha} \left[ i q \pa_\mu \alpha + \pa_\mu + i q A_\mu - i q \pa_\mu \alpha \right] \Psi = e^{i q \alpha} \covder_\mu \Psi $
+      $ \covder_\mu \Psi \mapsto \left[ \pa_\mu + \img q (A_\mu - \pa_\mu \alpha) \right] e^{\img q \alpha} \Psi = e^{\img q \alpha} \left[ \img q \pa_\mu \alpha + \pa_\mu + \img q A_\mu - \img q \pa_\mu \alpha \right] \Psi = e^{\img q \alpha} \covder_\mu \Psi $
   \end{proof}
 \end{proofbox}
 
-The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto \covder_\mu $ (\bctxt{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $. \\
+The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto \covder_\mu $ (\bctxt{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $.
 Applying this to \eref{eq:dirac-lagrangian}:
 \begin{equation}
-  \lag_\text{D} = \bar{\Psi} (i \slashed{\pa} - m) \Psi - q A_\mu \bar{\Psi} \gamma^\mu \Psi
+  \lag_\text{D} = \bar{\Psi} (\img \slashed{\pa} - m) \Psi - q A_\mu \bar{\Psi} \gamma^\mu \Psi
 \end{equation}
 where $ j_\text{V}^\mu \defeq \bar{\Psi} \gamma^\mu \Psi $ is the Noether current associated to the global $ \Un{1} $ symmetry. The associated conserved charge then is:
 \begin{equation}
@@ -1010,11 +1010,11 @@ where $ j_\text{V}^\mu \defeq \bar{\Psi} \gamma^\mu \Psi $ is the Noether curren
 
 \paragraph{Complex scalar field}
 
-A complex scalar field has a global $ \Un{1} $ symmetry $ \phi \mapsto e^{i q \alpha} \phi $, thus the covariant derivative is identical to \eref{eq:qed-cov-der} and the gauged Lagrangian reads (recall \eref{eq:compl-scalar-lag}):
+A complex scalar field has a global $ \Un{1} $ symmetry $ \phi \mapsto e^{\img q \alpha} \phi $, thus the covariant derivative is identical to \eref{eq:qed-cov-der} and the gauged Lagrangian reads (recall \eref{eq:compl-scalar-lag}):
 \begin{equation}
-  \lag = \pa_\mu \phi \pa^\mu \phi + i q A^\mu (\phi \pa_\mu \phi^* - \phi^* \pa_\mu \phi) + q^2 \abs{\phi}^2 A_\mu A^\mu - m^2 \phi^* \phi
+  \lag = \pa_\mu \phi \pa^\mu \phi + \img q A^\mu (\phi \pa_\mu \phi^* - \phi^* \pa_\mu \phi) + q^2 \abs{\phi}^2 A_\mu A^\mu - m^2 \phi^* \phi
 \end{equation}
-where $ j_\mu \defeq i \phi^* \overleftrightsmallarrow{\pa_\mu} \phi $ is the Noether current associated to the global $ \Un{1} $ symmetry.
+where $ j_\mu \defeq \img \phi^* \overleftrightsmallarrow{\pa_\mu} \phi $ is the Noether current associated to the global $ \Un{1} $ symmetry.
 
 \paragraph{Higher order interaction terms}
 
@@ -1033,12 +1033,12 @@ Due to gauge symmetry, the gauge field gives a redundant physical description, t
 
 As of \eref{eq:radiation-gauge}, Maxwell equations \eref{eq:maxw-lor} read $ \Box \ve{A} = \ve{0} $, with general classical solution:
 \begin{equation*}
-  \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a^*_{\ve{p},\lambda} e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-\img p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a^*_{\ve{p},\lambda} e^{\img p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
 \end{equation*}
 Inserting this expression into $ \Box \ve{A} = \ve{0} $ results in the mass-shell condition $ p^2 = 0 $, i.e. $ \omega_\ve{p} = \abs{\ve{p}} $. On the other hand, the gauge condition $ \dive \ve{A} = 0 $ requires $ \bs{\epsilon} \cdot \ve{p} = 0 $: for each fixed $ \ve{p} $, this solution has two orthonormal solutions labelled by $ \lambda = 1,2 $, which describe the two physical degrees of freedom of the electromagnetic field.
 The classical solution can be promoted to a hermitian operator as:
 \begin{equation}
-  \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a\dg_{\ve{p},\lambda} e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-\img p_\mu x^\mu} + \bs{\epsilon}^*(\ve{p},\lambda)a\dg_{\ve{p},\lambda} e^{\img p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
   \label{eq:qed-four-rad}
 \end{equation}
 and imposing the canonical commutation relations:
@@ -1054,7 +1054,7 @@ In terms of commutators of $ A^i $ and conjugate momenta, consider that $ \Pi_0 
 %
 \begin{lemma}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    \frac{1}{2} \sum_{\lambda = 1,2} \left[ \epsilon^i(\ve{k},\lambda) \epsilon^{*j}(\ve{k},\lambda) + \epsilon^{*i}(-\ve{k},\lambda) \epsilon^j(-\ve{k},\lambda) \right] \delta^{ij} - \frac{k^i k^j}{\ve{k}^2}
+    \frac{1}{2} \sum_{\lambda = 1,2} \left[ \epsilon^i(\ve{k},\lambda) \epsilon^{*j}(\ve{k},\lambda) + \epsilon^{*i}(-\ve{k},\lambda) \epsilon^j(-\ve{k},\lambda) \right] = \delta^{ij} - \frac{k^i k^j}{\ve{k}^2}
   \end{equation}
 \end{lemma}
 
@@ -1067,11 +1067,11 @@ In terms of commutators of $ A^i $ and conjugate momenta, consider that $ \Pi_0 
   \end{proof}
 \end{proofbox}
 
-\begin{proposition}[before upper = {\tcbtitle}]{}{}
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    [A^i(t,\ve{x}) , E^j(t,\ve{y})] = - i \int \frac{\dd^3k}{(2\pi)^3} e^{i \ve{k} \cdot (\ve{x} - \ve{y})} \left( \delta^{ij} - \frac{k^i k^j}{\ve{k}^2} \right)
+    [A^i(t,\ve{x}) , E^j(t,\ve{y})] = - \img \int \frac{\dd^3k}{(2\pi)^3} e^{i \ve{k} \cdot (\ve{x} - \ve{y})} \left( \delta^{ij} - \frac{k^i k^j}{\ve{k}^2} \right)
   \end{equation}
-\end{proposition}
+\end{lemma}
 
 The r.h.s. of this equation is similar to a Dirac delta and it is called \bctxt{transverse Dirac delta}, defined in order to get $ [\dive \ve{A}(t,\ve{x}) , \ve{E}(t,\ve{y})] = \ve{0} $ (as $ \dive \ve{A} = 0 $), being the integrand proportional to:
 \begin{equation*}
@@ -1090,12 +1090,12 @@ The standard construction of the Fock space proceeds defining the vacuum state $
 
 Therefore, $ a_{\ve{k},\lambda}\dg \ket{0} $ describes a massless particle with energy $ \omega_\ve{k} $ and momentum $ \ve{k} $. To study spin, it is necessary to switch to circular polarizations:
 \begin{equation}
-  a_{\ve{k},\pm}\dg \defeq \frac{1}{\sqrt{2}} \left( a_{\ve{k},1}\dg \pm i a_{\ve{k},2}\dg \right)
+  a_{\ve{k},\pm}\dg \defeq \frac{1}{\sqrt{2}} \left( a_{\ve{k},1}\dg \pm \img a_{\ve{k},2}\dg \right)
 \end{equation}
 where $ a_{\ve{k},1} , a_{\ve{k},2} $ are the linear polarizations $ \bs{\epsilon}(\ve{k},1) = (1,0,0) , \bs{\epsilon}(\ve{k},2) = (0,1,0) $. Linear polarizations are not helicity eigenstates, while circular polarizations are:
 \begin{align*}
-  S^3 a_{\ve{k},1}\dg \ket{0} = + i a_{\ve{k},2}\dg \ket{0} & \qquad & S^3 a_{\ve{k},+}\dg \ket{0} = + a_{\ve{k},+}\dg \ket{0} \\
-  S^3 a_{\ve{k},2}\dg \ket{0} = - i a_{\ve{k},1}\dg \ket{0} & \qquad & S^3 a_{\ve{k},-}\dg \ket{0} = - a_{\ve{k},-}\dg \ket{0}
+  S^3 a_{\ve{k},1}\dg \ket{0} = + \img a_{\ve{k},2}\dg \ket{0} & \qquad & S^3 a_{\ve{k},+}\dg \ket{0} = + a_{\ve{k},+}\dg \ket{0} \\
+  S^3 a_{\ve{k},2}\dg \ket{0} = - \img a_{\ve{k},1}\dg \ket{0} & \qquad & S^3 a_{\ve{k},-}\dg \ket{0} = - a_{\ve{k},-}\dg \ket{0}
 \end{align*}
 In conclusion, $ a_{\ve{k},\pm}\dg \ket{0} $ describe massless particles with energy $ \omega_\ve{k} $, momentum $ \ve{k} $, spin $ 1 $ and helicity $ \pm 1 $: these are photons. \\
 Defining angular momentum and boost generators too in terms of ladder operators, it is possible to show that Lorentz invariance is preserved by the quantization procedure, although not explicitly.
@@ -1128,12 +1128,12 @@ Conjugate momenta are then found to be:
 \end{equation*}
 Canonical commutation relations now take the form:
 \begin{equation}
-  [A^\mu(t,\ve{x}) , \Pi^\nu(t,\ve{y})] = i \eta^{\mu \nu} \delta^{(3)}(\ve{x} - \ve{y})
+  [A^\mu(t,\ve{x}) , \Pi^\nu(t,\ve{y})] = \img \eta^{\mu \nu} \delta^{(3)}(\ve{x} - \ve{y})
   \label{eq:qed-canon-comm-rel-1}
 \end{equation}
 The metric ensures Lorentz covariance. The equations of motion are $ \Box A^\mu = 0 $, thus the gauge field operators are:
 \begin{equation}
-  A_\mu(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} \left[ \epsilon_\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + \epsilon_\mu^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+  A_\mu(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} \left[ \epsilon_\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-\img p_\mu x^\mu} + \epsilon_\mu^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{\img p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
   \label{eq:qed-gauge-fourier}
 \end{equation}
 $ \Box A_\mu = 0 $ imposes $ p^2 = 0 $. Note that the modified Lagrangian is not gauge invariant, so there is no constraint on $ \epsilon^\mu $; in the frame $ p^\mu = (p,0,0,p) $ a convenient choice of basis is $ \epsilon^\mu(\ve{p},\lambda) = \delta^\mu_\lambda $, hence only $ \lambda = 1,2 $ satisfy $ \epsilon_\mu p^\mu = 0 $. \eref{eq:qed-canon-comm-rel-1} becomes:
@@ -1152,7 +1152,7 @@ To recover the correct description of QED from the modified Lagrangian, it is ne
 \end{equation}
 Note that $ \pa_\mu A^\mu $ can be decomposed into its positive- and negative-frequency parts $ \pa_\mu A^\mu = (\pa_\mu A^\mu)^+ + (\pa_\mu A^\mu)^- $ as:
 \begin{equation*}
-  (\pa_\mu A^\mu)^+ \equiv -i \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} p_\mu \epsilon^\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} = {(\pa_\mu A^\mu)}\dg
+  (\pa_\mu A^\mu)^+ \equiv -\img \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 0}^{3} p_\mu \epsilon^\mu(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-\img p_\mu x^\mu} = {(\pa_\mu A^\mu)}\dg
 \end{equation*}
 Therefore, \eref{eq:qed-phys-cond-1} is equivalent to:
 \begin{equation}
@@ -1182,11 +1182,11 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
 \begin{proposition}{Ladder operators}{}
   The ladder operators for the electromagnetic field are (in radiation gauge):
   \begin{equation}
-    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda} = i \bs{\epsilon}(\ve{k},\lambda) \cdot \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda} = \img \bs{\epsilon}(\ve{k},\lambda) \cdot \int \dd^3x\, e^{\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
     \label{eq:qed-lad-1}
   \end{equation}
   \begin{equation}
-    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda}\dg = - i \bs{\epsilon}^*(\ve{k},\lambda) \cdot \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda}\dg = - \img \bs{\epsilon}^*(\ve{k},\lambda) \cdot \int \dd^3x\, e^{-\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
     \label{eq:qed-lad-2}
   \end{equation}
 \end{proposition}
@@ -1195,29 +1195,29 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
   \begin{proof}
     From \eref{eq:qed-four-rad}:
     \begin{equation*}
-      \pa_0 \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ -i \omega_\ve{p} \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-i p_\mu x^\mu} + i \omega_\ve{p} \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
+      \pa_0 \ve{A}(x) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ -\img \omega_\ve{p} \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{-\img p_\mu x^\mu} + \img \omega_\ve{p} \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{\img p_\mu x^\mu} \right]_{p^0 = \omega_\ve{p}}
     \end{equation*}
     Therefore:
     \begin{equation*}
       \begin{split}
-        \int \dd^3x\, e^{i k_\mu x^\mu} \ve{A}(x)
-        & = \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{i (k - p)_\mu x^\mu} \hspace{-0.1em} + \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{i (k + p)_\mu x^\mu} \right] \\
-        & = \frac{1}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
+        \int \dd^3x\, e^{\img k_\mu x^\mu} \ve{A}(x)
+        & = \int \dd^3x \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2\omega_\ve{p}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{p},\lambda) a_{\ve{p},\lambda} e^{\img (k - p)_\mu x^\mu} \hspace{-0.1em} + \bs{\epsilon}^*(\ve{p},\lambda) a_{\ve{p},\lambda}\dg e^{\img (k + p)_\mu x^\mu} \right] \\
+        & = \frac{1}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2\img \omega_\ve{k}} \right]
       \end{split}
     \end{equation*}
     \begin{equation*}
       \begin{split}
-        \int \dd^3x\, e^{i k_\mu x^\mu} \pa_0 \ve{A}(x)
-        & = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ - \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2i \omega_\ve{k}} \right]
+        \int \dd^3x\, e^{\img k_\mu x^\mu} \pa_0 \ve{A}(x)
+        & = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ - \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} + \bs{\epsilon}^*(-\ve{k},\lambda) a_{-\ve{k},\lambda}\dg e^{2\img \omega_\ve{k}} \right]
       \end{split}
     \end{equation*}
     These can be combined as:
     \begin{equation*}
-      \int \dd^3x\, e^{i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ -2 \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} \right] = - i \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda}
+      \int \dd^3x\, e^{\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{\img \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ -2 \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} \right] = - \img \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda}
     \end{equation*}
     In the radiation gauge $ \bs{\epsilon}(\ve{k},\lambda) \cdot \bs{\epsilon}(\ve{k},\sigma) = \delta_{\lambda \sigma} $, hence \eref{eq:qed-lad-1}. Analogously:
     \begin{equation*}
-      \int \dd^3x\, e^{-i k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{i \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ 2 \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg \right] = i \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg
+      \int \dd^3x\, e^{-\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{\img \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ 2 \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg \right] = \img \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg
     \end{equation*}
     This completes the proof.
   \end{proof}
@@ -1225,11 +1225,11 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
 
 Writing them in Lorentz-covariant form (using $ \epsilon^0 = \epsilon^3 = 0 $):
   \begin{equation}
-    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda} = i \epsilon^\mu(\ve{p},\lambda) \int \dd^3x\, e^{i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda} = \img \epsilon^\mu(\ve{p},\lambda) \int \dd^3x\, e^{\img p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
     \label{eq:qed-lad-cov-1}
   \end{equation}
   \begin{equation}
-    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda}\dg = - i {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-i p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda}\dg = - \img {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-\img p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
     \label{eq:qed-lad-cov-2}
   \end{equation}
 
