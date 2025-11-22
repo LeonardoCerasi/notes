@@ -1,6 +1,6 @@
 \selectlanguage{english}
 
-\chapter{Lecture 20/10--24/10}
+\chapter{Lecture 20/10--24/10--27/10}
 
 \section{Born--Oppenheimer approximation}
 
@@ -131,6 +131,7 @@ where $ K $ and $ M $ are the quantum numbers associated respectively to the orb
 Supposing that $ R \approx R_\text{eq} $, where $ R_\text{eq} $ is the equilibrium distance of $ \vad^{(g)}(R) $, then the third term can be seen as the rotational energy of a rigid body\footnotemark with $ I = \mu R_\text{eq}^2 $, since by definition $ \braket{\ve{L}^2} = \hbar^2 K(K+1) $:
 \begin{equation}
   E_\text{rot}(K) = \mathcal{B} K(K+1)
+  \label{eq:rotational-spectrum}
 \end{equation}
 where $ \mathcal{B} \equiv \frac{\hbar^2}{2I} \sim 1 \,\text{meV} - 10 \,\text{meV} $ is the rotational constant of the molecule. Keeping the electronic state fixed, as electronic transitions require higher energies, we can study purely-rotational transitions: these transitions have the same selection rules of electric-dipole transitions, i.e. $ \Delta K = \pm 1 $, hence the \bctxt{purely-rotational spectrum} is:
 \begin{equation}
@@ -213,7 +214,7 @@ Although most biatomic molecules have ground state with $ \Lambda = 0 $ (electro
 \end{equation*}
 where $ I_e \sim m_e $ is the electronic moment of inertia. Note that, since $ m_e \ll \mu $, it is $ I_e \ll I $, hence the second term is positive; however, it is usually not observed, since transitions which change the quantum numbers $ \Lambda $ require much more energy ($ \sim 1 \ev $) than rotational transitions ($ \sim 1 \,\text{meV} $), and doing so would change the electronic state of the molecule and, as per \eref{eq:adiabatic-potential-def}, the geometry of the molecule.
 
-\subsection{Radial nuclear wave-function}
+\subsection{Molecular vibrations}
 
 We now solve the radial Schrödinger equation \eref{eq:2-a-radial} for biatomic molecules. First, explicitly write the Laplacian in spherical coordinates (recalling that $ \rf_\nu^{(g)}(R) $ only depends on the radial coordinate):
 \begin{equation}
@@ -235,6 +236,150 @@ so that the radial equation can be recast in the simpler form:
 \begin{equation}
   \left[ - \frac{\hbar^2}{2\mu} \frac{\dd^2}{\dd R^2} + V_\text{eff}^{(g)}(R,K) \right] u_\nu^{(g)}(R) = E_{g,\nu} u_\nu^{(g)}(R)
 \end{equation}
+To solve this equation, we employ a \bctxt{harmonic approximation}, assuming $ R \approx R_\text{eq} $:
+\begin{equation*}
+  \vad^{(g)}(R) \simeq \vad^{(g)} \left( R_\text{eq} \right) + \frac{1}{2} \frac{\dd^2 \vad^{(g)}(R)}{\dd R^2} \bigg\vert_{R = R_\text{eq}} \hspace{-0.2em} (R - R_\text{eq})^2
+  \qquad \qquad
+  \frac{\hbar^2 K(K+1)}{2\mu R^2} \simeq \frac{\hbar^2 K(K+1)}{2\mu R_\text{eq}^2}
+\end{equation*}
+The adiabatic potential then reduces to a harmonic potential with elastic constant:
+\begin{equation}
+  \kappa \equiv \frac{\dd^2 \vad^{(g)}(R)}{\dd R^2}\bigg\vert_{R = R_\text{eq}}
+\end{equation}
+and the system to a simple harmonic oscillator:
+\begin{equation}
+  \left[ - \frac{\hbar^2}{2\mu} \frac{\dd^2}{\dd R^2} + \frac{1}{2} \kappa \left( R - R_\text{eq} \right)^2 \right] u_\nu^{(g)}(R) = E_\text{vib}(n) u_\nu^{(g)}(R)
+  \label{eq:vibrational-equation}
+\end{equation}
+where:
+\begin{equation}
+  E_\text{vib}(n) \equiv E_{g,\nu} - E_\text{rot}(K) - \vad^{(g)}(R_\text{eq})
+\end{equation}
+clearly is the vibrational energy of the molecule, since it is the difference between the total energy with respect to the equilibrium energy $ E_{g,\nu} - \vad^{(g)}(R_\text{eq}) $ and the rotational energy $ E_\text{rot}(K) $. The degrees of freedom (and the quantum numbers) of the system are therefore separated into electronic ($ g $), rotational ($ K , M $) and vibrational ($ n $) degrees of freedom.
+The eigenfunctions of \eref{eq:vibrational-equation} are the Hermite functions, and its spectrum is:
+\begin{equation}
+  E_\text{vib}(n) = \left( n + \frac{1}{2} \right) \hbar \omega
+  \qquad \qquad
+  \omega \equiv \sqrt{\frac{\kappa}{\mu}}
+\end{equation}
+The molecules with the biggest vibrational energies are those with the lowest reduced mass, i.e. $ \ch{H_2} $ (with $ \hbar \omega \simeq 0.546 \ev $) and $ \ch{HCl} $ (with $ \hbar \omega \simeq 0.36 \ev $): clearly, then, $ E_\text{rot} \ll E_\text{vib} \ll E_e^{(g)} $, which justifies the separation of the degrees of freedom.
+
+\subsubsection{Vibrational transitions}
+
+As noted previously, homo-nuclear molecules are IR-inactive\footnotemark, since they have no electric dipoles, hence their interactions are mediated by higher-order terms in the multipole expansion of the EM field.
+
+\footnotetext{Recall that IR transitions have energies $ \sim 0.1 \ev $.}
+
+We then consider etero-nuclear molecules and analyze their electric-dipole transitions: it can be shown that, for vibrational transitions, the selection rule $ \Delta n = \pm 1 $ holds, i.e. $ \Delta E_\text{vib} = \hbar \omega $. Note that at standard temperature, since $ \kbt \simeq 26 \,\text{meV} $, contrary to rotational levels, only the ground state of the vibrational spectrum is populated.
+
+\paragraph{Anarmonic correction}
+
+It is possible to treat the cubic term in the expansion of $ \vad^{(g)}(R) $ at $ R = R_\text{eq} $ using perturbation theory, and the corrected energies are found to be:
+\begin{equation}
+  E_\text{vib}(n) = \left( n + \frac{1}{2} \right) \hbar \omega - a \left( n + \frac{1}{2} \right)^2 \hbar \omega
+  \label{eq:vibrational-energy-anarmonic}
+\end{equation}
+with $ a \in \R^+ : a \ll 1 $, e.g. $ a \simeq 0.018 $ for $ \ch{HCl} $. Clearly, the correction becomes commensurable to the unperturbed energy for sufficiently large $ n \sim a^{-1} $, and approaching this asymptotic value the energy levels become increasingly less spaced: when these levels approximately overlap, no elastic force is present in the molecule, i.e. the molecule has dissociated into its two constituent atoms. This phenomenon can estimate\footnotemark the dissociation energy of the molecule.
+
+\footnotetext{This is only an estimate as, since the correction term is comparable to unperturbed energy, the perturbative analysis is no longer valid, and one would have to include higher-order corrections.}
+
+\begin{lemma}[before upper = {\tcbtitle}]{Dissociation energy}{}
+  \begin{equation}
+    E_\text{diss} \simeq \frac{\hbar \omega}{4a}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    To find $ n_\text{diss} : E_\text{vib}(n_\text{diss} + 1) = E_\text{vib}(n_\text{diss}) $, impose:
+    \begin{equation*}
+      \frac{\dd E_\text{vib}(n)}{\dd n} = 0
+      \quad \implies \quad
+      \hbar \omega - 2 a \left( n + \frac{1}{2} \right) \hbar \omega = 0
+      \quad \implies \quad
+      n = \frac{1}{2a} - \frac{1}{2}
+    \end{equation*}
+    Then $ E_\text{diss} \simeq E_\text{vib}(n_\text{diss}) $.
+  \end{proof}
+\end{proofbox}
+
+This result also allows to estimate the anarmonic coefficient from the dissociation energy. Moreover, it is possible to phenomenologically express the adiabatic potential in terms of the dissociation energy:
+\begin{equation}
+  \vad^{(g)}(R) = E_\text{diss} \left[ 1 - e^{-\beta \left( R - R_\text{eq} \right)} \right]^2 - E_\text{diss}
+\end{equation}
+which is known as \bctxt{Morse potential}. Note that this expression fails for $ R \rightarrow 0 $, since it does not reproduce the singularity of the adiabatic potential, but this region has little phenomenological interest. An interesting property of the Morse potential is that it allows for an analytic solution of the radial Schrödinger equation, with exact eigenenergies \eref{eq:vibrational-energy-anarmonic}.
+
+The addition of an anarmonic correction also changes the selection rule for electric-dipole transitions: in this case $ \Delta n \in \Z - \{0\} $, but the peaks in the spectrum are progressively suppressed as $ \abs{\Delta n} $ becomes larger than $ 1 $.
+
+\paragraph{Roto-vibrational spectrum}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.70 \textwidth}
+    \centering
+    \includegraphics[width = 0.95 \textwidth]{rot-vib-spectr.png}
+  \end{subfigure}%
+  \begin{subfigure}{0.30 \textwidth}
+    \centering
+    \includegraphics[width = 0.95 \textwidth]{rot-vib-spectr-det.png}
+  \end{subfigure}
+  \caption{Observed roto-vibrational absorption spectrum of gas-phase $ \ch{HCl} $ and scheme of electric-dipole transitions between $ n = 0 $ and $ n = 1 $ rotational levels.}
+  \label{fig:roto-vib}
+\end{figure}
+
+In the harmonic approximation, the absorption of IR radiation can only excite molecules from the $ n = 0 $ state to the $ n = 1 $ state. However, since $ E_\text{rot} \ll E_\text{vib} $, this absorption also induces multiple rotational transitions, hence both these state are split into multiple rotational levels with various values of $ K $, as shown in \figref{fig:roto-vib}. The roto-vibrational spectrum then is:
+\begin{equation}
+  \Delta E_\text{rot-vib}(K) = \hbar \omega \pm 2\mathcal{B} \left( K + 1 \right)
+  \label{eq:roto-vibrational-spectrum}
+\end{equation}
+Note that the selection rule $ \Delta K = \pm 1 $ is valid if the electronic state is $ \Lambda = 0 $, i.e. for $ \Sigma $ states. If instead $ \Lambda \neq 0 $, then $ \Delta K = 0 , \pm 1 $, hence a central peak at $ \hbar \omega $ between the P and R branches is present, denoted as Q peak.
+
+Including the anarmonic terms in the vibrational and rotational potentials, one finds the following corrections to the roto-vibrational energy:
+\begin{equation}
+  E_\text{rot-vib}^{(1)} = - a_1 \hbar \omega \left( n + \frac{1}{2} \right)^2 - a_2 \left( n + \frac{1}{2} \right) K (K+1) - a_3 K^2 (K+1)^2
+\end{equation}
+where $ a_1 $ is the previously discussed anarmonic coefficients and $ a_2 , a_3 \in \R^+ : a_2 , a_3 \ll \mathcal{B} $. In particular, the third term is called centrifugal distortion term: it reduces the energy of the molecule since, in classical analogy, it represents a distortion of the spring due to the rotation, increasing the moment of inertia. On the other hand, the second term intuitively represents the fact that, at an excited state $ n > 0 $, the equilibrium distance is increased, hence so is the moment of intertia. From a perturbative analysis, the centrifugal coefficients are:
+\begin{equation}
+  a_2 = \frac{6\mathcal{B}^2}{\hbar \omega}
+  \qquad \qquad
+  a_3 = \frac{4\mathcal{B}^3}{(\hbar \omega)^2}
+\end{equation}
+
+\paragraph{Electronic transitions}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{electr-exc.png}
+  \caption{Electronic transition between two adiabatic potential surfaces.}
+  \label{fig:elec-trans}
+\end{figure}
+
+Transitions between two electronic states, in the Born--Oppenheimer approximation, happen instantly as the radiation is absorbed by the molecule, hence it induces an instantaneous vertical shift between two adiabatic potential surfaces as in \figref{fig:elec-trans}: this is the \bctxt{Frank--Condon principle}. To study this transition, consider the general matrix element between two molecular states $ \ket{g,\nu} $ and $ \ket{g',\nu'} $:
+\begin{equation*}
+  \braket{g',\nu' | \bs{\mu_e} | g,\nu}
+  = \int_{\R^{3(N_n + N_e)}} \dd^{3N_n}R \, \dd^{3N_e}r \, {\Phi_e^{(g')}}^*(R_\text{fin},r) {\Phi_n^{(\nu')}}^*(R) \left[ \bs{\mu}_e^{(e)} + \bs{\mu}_e^{(n)} \right] \Phi_e^{(g)}(R_\text{in},r) \Phi_n^{(\nu)}(R)
+\end{equation*}
+where we separated the electronic and nuclear electric dipoles. Their expressions are:
+\begin{equation}
+  \bs{\mu}_e^{(e)} = - e \sum_{i = 1}^{N_e} \ve{r}_i
+  \qquad \qquad
+  \bs{\mu}_e^{(n)} = + e \sum_{j = 1}^{N_n} \ve{R}_j
+\end{equation}
+By the Frank--Condon principle, $ R_\text{in} = R_\text{fin} $ at the instant of the transition, hence the two contributions can be written as:
+\begin{equation*}
+  \int_{\R^{3(N_n + N_e)}} \dd^{3N_n}R \, \dd^{3N_e}r \, {\Phi_e^{(g')}}^*(R_\text{in},r) {\Phi_n^{(\nu')}}^*(R) \bs{\mu}_e^{(n)} \Phi_e^{(g)}(R_\text{in},r) \Phi_n^{(\nu)}(R) = \braket{g' | g} \braket{\nu' | \bs{\mu}_e^{(n)} | \nu}
+\end{equation*}
+\begin{equation*}
+  \int_{\R^{3(N_n + N_e)}} \dd^{3N_n}R \, \dd^{3N_e}r \, {\Phi_e^{(g')}}^*(R_\text{in},r) {\Phi_n^{(\nu')}}^*(R) \bs{\mu}_e^{(e)} \Phi_e^{(g)}(R_\text{in},r) \Phi_n^{(\nu)}(R) = \braket{\nu' | \nu} \braket{g' | \bs{\mu}_e^{(e)} | g}
+\end{equation*}
+Since the electronic eigenfunctions are orthonormal, $ \braket{g' | g} = \delta_{g',g} $, but in an electronic transition $ g' \neq g $, therefore the nuclear contribution vanishes. On the other hand, the electronic contribution has two terms:
+\begin{itemize}
+  \item $ \braket{g' | \bs{\mu}_e^{(e)} | g} $ is the matrix element for electric-dipole transitions between electronic states, which results in the usual selection rules $ \Delta \Lambda = 0 , \pm 1 $ and $ \Delta S = 0 $;
+  \item $ \braket{\nu' | \nu} \neq 0 $ since the equilibrium point changes between the two adiabatic potential surfaces, hence the eigenfunctions associated to $ \ket{\nu'} $ are a different set of eigenfunctions when compared to those of $ \ket{\nu} $, as both $ I $ and $ \omega $ change with $ R_\text{eq} $. As a consequence, this term determines no selection rules, but simply determines the relative intensity of particular nuclear transitions (e.g. due to the form of Hermite functions, if $ R_\text{eq} $ shifts to the right, then $ \nu = 0 \ra \nu' > 0 $ is more intense than $ \nu = 0 \ra \nu' = 0 $).
+\end{itemize}
+This analysis shows that electronic transitions do not require etero-nuclear molecules, since nuclear dipoles play no role in them: these so-called \bctxt{vibronic transitions} can thus be used to study the vibrational spectrum of homo-nuclear molecules\footnotemark.
+
+\footnotetext{Typically, since vibronic transitions require energies $ \sim 1\ev $, the detector is not capable to resolve rotational transitions, hence the roto-vibrational spectrum requires finer methods to be studied in homo-nuclear molecules.}
 
 
 
