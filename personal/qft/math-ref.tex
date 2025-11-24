@@ -59,7 +59,7 @@ A representation $ \rho $ which is a isomorphism is called \bctxt{faithful}. As 
 \begin{theorem}{}{}
   Given a Lie group $ G $ and $ g \in G $ connected with the identity, a representation of degree $ n $ on $ V(\C) $ is:
   \begin{equation}
-    \rho(g(\theta)) = e^{i \theta_a T^a}
+    \rho(g(\theta)) = e^{\img \theta_a T^a}
   \end{equation}
   where $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ are the \bcth{generators} of $ G $ on $ V $.
 \end{theorem}
@@ -67,7 +67,7 @@ A representation $ \rho $ which is a isomorphism is called \bctxt{faithful}. As 
 \begin{definition}{Lie algebras}{}
   Given a Lie group $ G $ with generators $ \{T^a\}_{a = 1, \dots, d} \subset \C^{n \times n} $ on $ V(\C) $, its \bcdef{Lie algebra} is:
   \begin{equation}
-    [T^a, T^b] = i \tensor{f}{^a^b_c} T^c
+    [T^a, T^b] = \img \tensor{f}{^a^b_c} T^c
   \end{equation}
   where $ \tensor{f}{^a^b_c} $ are called the \bcdef{structure constants}.
 \end{definition}
@@ -147,7 +147,7 @@ By Jacobi identity, the adjoint map is a \bctxt{derivation} of the Lie bracket, 
     \begin{equation*}
       [\ad_X,\ad_Y](Z) = [X,[Y,Z]] - [Y,[X,Z] = [X,[Y,Z]] + [Y,[Z,X]]
     \end{equation*}
-    Therefore, $ \ad_{[X,Y]} = [\ad_X,\ad_Y] $, i.e. the thesis.
+    Therefore, $ \ad_{[X,Y]} = [\ad_X,\ad_Y] $, which is the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -216,7 +216,7 @@ The $ \SUn{n} $ group is the group of unitary transformations of $ n $-dimension
 \begin{equation*}
   \SUn{n} = \{\mt{U} \in \C^{n \times n} : \mt{U}\mt{U}\dg = \mt{U}\dg\mt{U} = \mt{I}_n \land \det{\mt{U}} = +1 \}
 \end{equation*}
-The generators of $ \SUn{n} $ can be found setting $ \mt{U} = \exp \left( i \theta_a T^a \right) = \mt{I}_n + i \theta_a T^a $ and using $ \mt{U}\dg\mt{U} = \mt{I}_n $:
+The generators of $ \SUn{n} $ can be found setting $ \mt{U} = \exp \left( \img \theta_a T^a \right) = \mt{I}_n + \img \theta_a T^a $ and using $ \mt{U}\dg\mt{U} = \mt{I}_n $:
 \begin{equation}
   T^a = T^{a\dagger}
   \label{eq:sun-herm}
@@ -230,7 +230,7 @@ The traceless condition can be generalized to all semi-simple Lie algebras.
 Therefore, the generators of $ \SUn{n} $ are $ \C^{n \times n} $ hermitian traceless matrices: the dimension of $ \mathfrak{su}(n) $ then is $ n^2 - 1 $.\\
 The adjoint representation can be is given by representing the generators of the Lie group (i.e. the basis of the Lie algebra) with the structure constants of the Lie algebra:
 \begin{equation}
-  (T^b_\text{ad})_{ac} = i \tensor{f}{^a^b_c}
+  (T^b_\text{ad})_{ac} = \img \tensor{f}{^a^b_c}
 \end{equation}
 
 \begin{proposition}{Structure constants}{}
@@ -249,9 +249,8 @@ The adjoint representation can be is given by representing the generators of the
     The condition $ ([T^a_\text{ad},T^c_\text{ad}])_{be} = i \tensor{f}{^a^c_d} (T^d_\text{ad})_{be} $ then gives:
     \begin{equation*}
       \tensor{f}{^b^a_d} \tensor{f}{^d^c_e} - \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} = \tensor{f}{^a^c_d} \tensor{f}{^b^d_e}
-    \end{equation*}
-    \begin{equation*}
-      \iff \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
+      \quad \iff \quad
+      \tensor{f}{^a^b_d} \tensor{f}{^d^c_e} + \tensor{f}{^b^c_d} \tensor{f}{^d^a_e} + \tensor{f}{^c^a_d} \tensor{f}{^d^b_e} = 0
     \end{equation*}
     These two expressions are equal, hence the thesis.
   \end{proof}
@@ -263,26 +262,27 @@ Representation are labelled by their Casimir operators. For any simple Lie algeb
   T^a_\mathtt{r} T^a_\mathtt{r} = C_2(\mathtt{r}) \mt{I}_{n_{\mathtt{r}}}
   \label{eq:quad-cas}
 \end{equation}
-This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = i \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
+This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ T^2 \equiv T^a T^a $ (a Casimir operator since $ [T^b, T^2] = \img \tensor{f}{^b^a_c} \{T^c,T^a\} = 0 $ by antisymmetry).
 
 \begin{proposition}{Quadratic Casimir operator}{}
   For the fundamental and the adjoint representations $ \mathtt{n} $ and $ \mathtt{g} $ of $ \SUn{n} $, the quadratic Casimir operator is:
   \begin{equation}
-    C_2(\mathtt{n}) = \frac{n^2 - 1}{2n}
+    C_2(\mathtt{n}) = \ttr \frac{n^2 - 1}{n}
     \qquad \qquad
-    C_2(\mathtt{g}) = n
+    C_2(\mathtt{g}) = 2\ttr n
+  \end{equation}
+  where $ \ttr $ is the normalization factor defined as:
+  \begin{equation}
+    \tr(T^a_\mathtt{n} T^b_\mathtt{n}) = \ttr \delta^{ab}
+    \label{eq:tr-su2}
   \end{equation}
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    First consider the fundamental representation. The $ \mathtt{n} $ of $ \SUn{2} $ is the spinor representation, with generators $ T^a_\mathtt{2} = \frac{\sigma^a}{2} $, hence they satisfy $ \tr(T^a_\mathtt{2} T^b_\mathtt{2}) = \frac{1}{2} \delta^{ab} $. It is possible to choose the generators of $ \SUn{n} $ such that, in $ \mathtt{n} $, the first three are $ T^a_\mathtt{n} = \frac{\sigma^a}{2} \,,\, a = 1,2,3 $ (they act on the first three component of $ \C^n $-vectors), so that the others can be chosen such that:
+    It is always possible to chose generators such that \eref{eq:tr-su2} holds\footnote{Requires proof.}, hence, contracting it with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n) $) and recalling \eref{eq:quad-cas}:
     \begin{equation*}
-      \tr (T^a_\mathtt{n} T^b_\mathtt{n}) = \frac{1}{2} \delta^{ab}
-    \end{equation*}
-    Contracting Eq. \ref{eq:quad-cas} with $ \delta^{ab} $ (with $ a,b = 1,\dots, n^2 - 1 $, as they label the basis of $ \mathfrak{su}(n) $) then:
-    \begin{equation*}
-      C_2(\mathtt{n}) n = \frac{1}{2} (n^2 - 1)
+      C_2(\mathtt{n}) n = \ttr (n^2 - 1)
     \end{equation*}
     To compute the Casimir operator for the adjoint representation, first consider the decomposition of the direct product of two representations:
     \begin{equation*}
@@ -306,7 +306,7 @@ This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ 
     \end{equation*}
     Using $ C_2(\ve{1}) = 0 $ (as all generators are trivially zero) and $ C_2(\mathtt{n}^*) = C_2(\mathtt{n}) $:
     \begin{equation*}
-      C_2(\mathtt{g}) (n^2 - 1) = \frac{n^2 - 1}{n} n^2
+      C_2(\mathtt{g}) (n^2 - 1) = 2\ttr \frac{n^2 - 1}{n} n^2
     \end{equation*}
     which completes the proof.
   \end{proof}
@@ -314,30 +314,30 @@ This is called the \bctxt{quadratic Casimir operator}, as it is associated to $ 
 
 \subsubsection{$ \SUn{2} $ Lie group}
 
-The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = i \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \mt{I}_2 + i \epsilon^{abc} \sigma^c $). The adjoint representation then is:
+The fundamental representation of $ \SUn{2} $ is $ T^a_\ve{2} = \frac{\sigma^a}{2} $, while $ \mathfrak{su}(2) $ is defined by commutators $ [T^a_\ve{2},T^b_\ve{2}] = \img \epsilon^{abc} T^c_\ve{2} $ (as $ \sigma^a \sigma^b = \delta^{ab} \mt{I}_2 + \img \epsilon^{abc} \sigma^c $). The adjoint representation then is:
 \begin{equation}
-  (T^a_\mathtt{g})_{ij} = i \epsilon^{iaj}
+  (T^a_\mathtt{g})_{ij} = \img \epsilon^{iaj}
 \end{equation}
 Explicitly:
 \begin{equation*}
   T^1_\mathtt{g} =
   \begin{bmatrix}
     0 & 0 & 0 \\
-    0 & 0 & -i \\
-    0 & i & 0
+    0 & 0 & -\img \\
+    0 & \img & 0
   \end{bmatrix}
   \qquad
   T^2_\mathtt{g} =
   \begin{bmatrix}
-    0 & 0 & i \\
+    0 & 0 & \img \\
     0 & 0 & 0 \\
-    -i & 0 & 0
+    -\img & 0 & 0
   \end{bmatrix}
   \qquad
   T^3_\mathtt{g} =
   \begin{bmatrix}
-    0 & -i & 0 \\
-    i & 0 & 0 \\
+    0 & -\img & 0 \\
+    \img & 0 & 0 \\
     0 & 0 & 0
   \end{bmatrix}
 \end{equation*}
@@ -418,13 +418,15 @@ The analogous left- definitions are clear. A left-ideal of $ \mathcal{A} $ can b
 
 \begin{proofbox}
   \begin{proof}
+    By direct computation:
     \begin{equation*}
       \rho(x) \rho(y) + \rho(y) \rho(x) = \rho(x + y)^2 - \rho(x)^2 - \rho(y)^2 = - \left( q(x + y) - q(x) - q(y) \right) \mathit{1} = - 2 \omega(x,y) \mathit{1}
     \end{equation*}
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
-Setting for ease of reading $ \rho(x) \equiv x $, it is clear that $ x \perp y \,\,\Rightarrow\,\, xy = -yx $.\\
+Setting for ease of reading $ \rho(x) \equiv x $, it is clear that $ x \perp y \,\,\implies\,\, xy = -yx $.\\
 More intuitively, the Clifford algebra $ \cla{V} $ can be seen as the associative algebra generated by $ V $ setting $ xy = - \omega(x,y)\mathit{1} \,\,\forall x,y \in V$, so that:
 \begin{equation}
   \{x,y\} = 2 \omega(x,y)\mathit{1} \quad \forall x,y \in V
@@ -436,11 +438,11 @@ In general, $ \clar{m,n} $ denotes the Clifford algebra associated to $ \R^{m,n}
 \end{equation*}
 
 \begin{example}{Complex numbers}{}
-  Via Clifford algebras, $ \C \cong \clar{0,1} $. In fact, $ \R^{0,1} $ has orthonormal basis $ \{e_1\} $ such that $ q(e_1) = -1 $, i.e. $ e_1^2 = - \mathit{1} $, so elements of the Clifford algebra are generated by $ \{\mathit{1},e_1\} $: identifying $ e_1 \equiv i $ gives the desired isomorphism.
+  Via Clifford algebras, $ \C \cong \clar{0,1} $. In fact, $ \R^{0,1} $ has orthonormal basis $ \{e_1\} $ such that $ q(e_1) = -1 $, i.e. $ e_1^2 = - \mathit{1} $, so elements of the Clifford algebra are generated by $ \{\mathit{1},e_1\} $: identifying $ e_1 \equiv \img $ gives the desired isomorphism.
 \end{example}
 
 \begin{example}{Quaternions}{}
-  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by \eref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv i $, $ e_2 \equiv j $ and $ e_1 e_2 = k $ yields the result.
+  $ \mathbb{H} \cong \clar{0,2} $. Indeed, $ \R^{0,2} $ has orthonormal basis $ \{e_1,e_2\} : e_1^2 = e_2^2 = - \mathit{1} $; moreover, as $ e_1 \perp e_2 $, then $ e_1 e_2 = - e_2 e_1 $ by \eref{eq:cliff-alg}, so elements of $ \clar{0,2} $ are generated by $ \{\mathit{1},e_1,e_2,e_1 e_2\} $: setting $ e_1 \equiv \img $, $ e_2 \equiv \jmg $ and $ e_1 e_2 = \kmg $ yields the result.
 \end{example}
 
 \subsubsection{Spin groups}
@@ -543,7 +545,7 @@ It can be shown that $ \dim_\K {\bigwedge}^k(V) = \binom{n}{k} $, so $ \dim_\K \
 This is an anticommutative grading, as:
 \begin{equation}
   \alpha \in {\bigwedge}^k(V) , \beta \in {\bigwedge}^p(V)
-  \quad \Rightarrow \quad
+  \quad \implies \quad
   \alpha \wedge \beta = (-1)^{kp} \beta \wedge \alpha
 \end{equation}
 
@@ -567,13 +569,13 @@ where $ c_{i_1 \dots i_k} \in \C $ are completely-antisymmetric tensors of rank 
   If $ n < \infty $, then:
   \begin{equation}
     \theta_i z = 0 \,\,\forall i = 1,\dots,n
-    \quad \Rightarrow \quad
+    \quad \implies \quad
     z = c \theta_1 \dots \theta_n \,\, , \,\, c \in \C
   \end{equation}
   If $ n = \infty $, instead:
   \begin{equation}
     \theta_a z = 0 \,\,\forall a \in \N
-    \quad \Rightarrow \quad
+    \quad \implies \quad
     z = 0
   \end{equation}
 \end{lemma}
@@ -585,7 +587,7 @@ In analogy to Hermitian conjugation, an \bctxt{involution} (or conjugation) is d
 known as the deWitt convention. Moreover, note that products of an odd number of Grassmann variables anticommute with each other: these are called \bctxt{a-numbers}. On the other hand, products of an even number of Grassmann variables commute with each other (and with every Grassmann number): these are called \bctxt{c-numbers}. This decomposition induces a $ Z_2 $-grading of the algebra, showing that Grassmann algebras are supercommutative algebras\footnotemark. Note that c-numbers form a subalgebra of $ \bigwedge(V) $, while a-numbers do not (they are only a subspace).
 
 \footnotetext{A \textit{superalgebra} is a $ Z_2 $-graded associative algebra $ \mathcal{A} = \mathcal{A}_0 \oplus \mathcal{A}_1 $ with bilinear multiplication $ \mathcal{A} \times \mathcal{A} \rightarrowtail \mathcal{A} $ such that $ \mathcal{A}_i \mathcal{A}_j \subset \mathcal{A}_{i + j} $, where indices read modulo $ 2 $. Elements of each $ \mathcal{A}_i $ are called homogeneous. \\
-A \textit{supercommutative algebra} is a superalgebra such that any two homogeneuous elements $ x,y $ satisfy $ yx = (-1)^{\abs{x} \abs{y}} xy $, with $ \abs{x} $ denoting the grade of $ x $, i.e. $ x \in \mathcal{A}_i \,\,\Rightarrow\,\, \abs{x} = i \mod{2} $.}
+A \textit{supercommutative algebra} is a superalgebra such that any two homogeneuous elements $ x,y $ satisfy $ yx = (-1)^{\abs{x} \abs{y}} xy $, with $ \abs{x} $ denoting the grade of $ x $, i.e. $ x \in \mathcal{A}_i \,\,\implies\,\, \abs{x} = i \mod{2} $.}
 
 \subsubsection{Dual numbers}
 
@@ -604,18 +606,17 @@ The only linear function satisfying the second constraint is the constant functi
   \int \dd\theta \left( A + B \theta \right) \equiv B
 \end{equation}
 Therefore, on Grassmann numbers, integration and derivation are the same thing: indeed, if it where $ \text{I} = \text{D}^{-1} $, as $ \text{D}^2 = 0 $, then $ 0 = \text{I} \text{D}^2 = \text{D} $, which is absurd. \\
-Integration can be extended to complex integration. Parting from deWitt convention, define:
+Integration can be extended to complex integration. Parting from deWitt's convention, define:
 \begin{equation}
-  \theta = \frac{\theta_1 + i \theta_2}{\sqrt{2}}
+  \theta = \frac{\theta_1 + \img \theta_2}{\sqrt{2}}
   \qquad \qquad
-  \theta^* = \frac{\theta_1 - i \theta_2}{\sqrt{2}}
+  \theta^* = \frac{\theta_1 - \img \theta_2}{\sqrt{2}}
 \end{equation}
 These satisfy (simple check):
 \begin{equation}
   (\theta \eta)^* = \eta^* \theta^*
 \end{equation}
-$ \theta $ and $ \theta^* $ are distinct Grassmann numbers, therefore $ \dd \theta_1 \dd \theta_2 = \frac{1}{i} \dd \theta 
-^* \dd \theta = - \frac{1}{i} \dd \theta \dd \theta^* $. The order ambiguity of integrating over multiple Grassmann numbers is solved setting the convention of performing the innermost integral first:
+$ \theta $ and $ \theta^* $ are distinct Grassmann numbers, therefore $ \dd \theta_1 \dd \theta_2 = \frac{1}{\img} \dd \theta^* \dd \theta = - \frac{1}{\img} \dd \theta \dd \theta^* $. The order ambiguity of integrating over multiple Grassmann numbers is solved setting the convention of performing the innermost integral first:
 \begin{equation}
   \int \dd \theta \dd \eta\, \eta \theta = +1
 \end{equation}
@@ -687,9 +688,9 @@ With unitary invariance, it is possible to extend complex integration to the mul
   \end{proof}
 \end{proofbox}
 
-With extra factor, the standard Gaussian behavior is recovered:
+With extra factors, the standard Gaussian behavior is recovered:
 \begin{equation}
-  \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, \theta_p \theta_q e^{-i \sum_{j,k = 1}^n \theta_j^* B_{jk} \theta_k} = \left( \det \mt{B} \right) \left[ \mt{B}^{-1} \right]_{pq}
+  \int \prod_{i = 1}^n \dd \theta_i^* \dd \theta_i\, \theta_p \theta_q e^{-\sum_{j,k = 1}^n \theta_j^* B_{jk} \theta_k} = \left( \det \mt{B} \right) \left[ \mt{B}^{-1} \right]_{pq}
   \label{eq:grass-gauss-2}
 \end{equation}
 
@@ -714,7 +715,7 @@ With extra factor, the standard Gaussian behavior is recovered:
 \begin{lemma}{}{gauss-ve-int}
   Given a non-singular matrix $ \mt{A} \in \R^{n \times n} $ and a vector $ \ve{J} \in \R^n $:
   \begin{equation}
-    \int_{\R^n} \dd^nx\, e^{-\frac{i}{2} \ve{x}^\intercal \mt{A} \ve{x} + i \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi i)^n}{\det\mt{A}}} e^{-\frac{i}{2} \ve{J}^\intercal \mt{A}^{-1} \ve{J}}
+    \int_{\R^n} \dd^nx\, e^{-\frac{\img}{2} \ve{x}^\intercal \mt{A} \ve{x} + \img \ve{J} \cdot \ve{x}} = \sqrt{\frac{(2\pi \img)^n}{\det\mt{A}}} e^{-\frac{\img}{2} \ve{J}^\intercal \mt{A}^{-1} \ve{J}}
   \end{equation}
 \end{lemma}
 

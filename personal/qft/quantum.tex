@@ -143,7 +143,7 @@ Finally, note that creation operators commute between themselves, hence multipar
 
 Recalling \dref{def:kg-scal-prod}, it is possible to relate the Fourier modes through the KG inner product, defined as:
 \begin{equation}
-  \braket{f,g} \defeq \img \int \dd^3x\, f^*(x) \smlra{\pa}_0 g(x) = \img \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv \img \int \dd^3x\, W_0[f^*,g](x)
+  \braket{f,g} \defeq \img \int \dd^3x\, f^*(x) \smlra{\pa_0} g(x) = \img \int \dd^3x\, \left[ f^*(x) \pa_0 g(x) - \pa_0 f^*(x) g(x) \right] \equiv \img \int \dd^3x\, W_0[f^*,g](x)
 \end{equation}
 where $ W_0[f^*,g](x) $ is the $ t $-\bctxt{Wrońskian}\footnotemark of $ f^*(x),g(x) $. Although $ W_0[f^*,g](x) $ is time-dependent, by \pref{prop:kg-scal-prod-ind}, if $ f^*(x),g(x) $ are solutions of the KG equation, then $ \braket{f^*,g} $ is time-independent.
 %
@@ -181,7 +181,7 @@ If $ \{f_k(x)\}_{k = 1,\dots,N} $ are linearly dependent, so are the columns of 
     \begin{equation*}
       \begin{split}
         \braket{f_\ve{p} , f_\ve{q}}
-        & = \img \int \dd^3x\, f^*_\ve{p}(x) \smlra{\pa}_0 f_\ve{q}(x) = \img \int \frac{\dd^3x}{(2\pi)^3 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{\img (\ve{q} - \ve{p}) \cdot \ve{x}} \left( e^{\img E_\ve{p} t} \smlra{\pa}_0 e^{-\img E_\ve{q} t}  \right) \\
+        & = \img \int \dd^3x\, f^*_\ve{p}(x) \smlra{\pa_0} f_\ve{q}(x) = \img \int \frac{\dd^3x}{(2\pi)^3 \sqrt{4 E_\ve{p} E_\ve{q}}} e^{\img (\ve{q} - \ve{p}) \cdot \ve{x}} \left( e^{\img E_\ve{p} t} \smlra{\pa}_0 e^{-\img E_\ve{q} t}  \right) \\
         & = \img \frac{\delta^{(3)}(\ve{q} - \ve{p})}{\sqrt{4 E_\ve{p} E_\ve{q}}} (-\img E_\ve{q} - \img E_\ve{p}) e^{\img (E_\ve{p} - E_\ve{q}) t} = \delta^{(3)}(\ve{p} - \ve{q})
       \end{split}
     \end{equation*}
@@ -194,9 +194,9 @@ Using the KG inner product it is possible to explicit the ladder operators.
 \begin{theorem}{Ladder operators}{kg-ladder-op}
   The ladder operators for a real scalar field are:
   \begin{equation}
-    \sqrt{2E_\ve{p}} a_\ve{p} = \img \int \dd^3x\, e^{\img p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \sqrt{2E_\ve{p}} a_\ve{p} = \img \int \dd^3x\, e^{\img p_\mu x^\mu} \smlra{\pa_0} \phi(x)
     \qquad \qquad
-    \sqrt{2E_\ve{p}} a_\ve{p}\dg = -\img \int \dd^3x\, e^{-\img p_\mu x^\mu} \smlra{\pa}_0 \phi(x)
+    \sqrt{2E_\ve{p}} a_\ve{p}\dg = -\img \int \dd^3x\, e^{-\img p_\mu x^\mu} \smlra{\pa_0} \phi(x)
     \label{eq:frsf-ladder}
   \end{equation}
 \end{theorem}
@@ -982,23 +982,23 @@ The coupling of the electromagnetic field to the Dirac field is an example of th
 \end{equation}
 with $ q \in \R $. This no longer is a symmetry of the Dirac action, however it can be combined with \eref{eq:qed-gauge-inv} defining the \bctxt{covariant derivative}:
 \begin{equation}
-  \covder_\mu \Psi \defeq (\pa_\mu + \img q A_\mu) \Psi
+  D_\mu \Psi \defeq (\pa_\mu + \img q A_\mu) \Psi
 \end{equation}
 
 \begin{proposition}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    \covder_\mu \Psi(x) \mapsto e^{\img q \alpha(x)} \covder_\mu \Psi(x)
+    D_\mu \Psi(x) \mapsto e^{\img q \alpha(x)} D_\mu \Psi(x)
     \label{eq:qed-cov-der}
   \end{equation}
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-      $ \covder_\mu \Psi \mapsto \left[ \pa_\mu + \img q (A_\mu - \pa_\mu \alpha) \right] e^{\img q \alpha} \Psi = e^{\img q \alpha} \left[ \img q \pa_\mu \alpha + \pa_\mu + \img q A_\mu - \img q \pa_\mu \alpha \right] \Psi = e^{\img q \alpha} \covder_\mu \Psi $
+      $ D_\mu \Psi \mapsto \left[ \pa_\mu + \img q (A_\mu - \pa_\mu \alpha) \right] e^{\img q \alpha} \Psi = e^{\img q \alpha} \left[ \img q \pa_\mu \alpha + \pa_\mu + \img q A_\mu - \img q \pa_\mu \alpha \right] \Psi = e^{\img q \alpha} D_\mu \Psi $
   \end{proof}
 \end{proofbox}
 
-The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto \covder_\mu $ (\bctxt{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $.
+The Lagrangian with a local $ \Un{1} $ symmetry is found replacing $ \pa_\mu \mapsto D_\mu $ (\bctxt{minimal coupling}): the global symmetry is gauged to a local symmetry, resulting in a gauge theory with gauge field $ A_\mu $.
 Applying this to \eref{eq:dirac-lagrangian}:
 \begin{equation}
   \lag_\text{D} = \bar{\Psi} (\img \slashed{\pa} - m) \Psi - q A_\mu \bar{\Psi} \gamma^\mu \Psi
@@ -1121,7 +1121,7 @@ The Maxwell Lagrangian \eref{eq:maxw-lag} cannot be straightforwardly quantize, 
 Conjugate momenta are then found to be:
 \begin{equation*}
   \Pi^\mu = \frac{\pa \lag}{\pa (\pa_0 A_\mu)}
-  \qquad \Rightarrow \qquad
+  \quad \implies \quad
   \Pi^i = - F^{0i} = E^i
   \qquad
   \Pi^0 = - \pa_\mu A^\mu
@@ -1182,11 +1182,11 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
 \begin{proposition}{Ladder operators}{}
   The ladder operators for the electromagnetic field are (in radiation gauge):
   \begin{equation}
-    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda} = \img \bs{\epsilon}(\ve{k},\lambda) \cdot \int \dd^3x\, e^{\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda} = \img \bs{\epsilon}(\ve{k},\lambda) \cdot \int \dd^3x\, e^{\img k_\mu x^\mu} \smlra{\pa_0} \ve{A}(x)
     \label{eq:qed-lad-1}
   \end{equation}
   \begin{equation}
-    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda}\dg = - \img \bs{\epsilon}^*(\ve{k},\lambda) \cdot \int \dd^3x\, e^{-\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x)
+    \sqrt{2\omega_\ve{k}} a_{\ve{k},\lambda}\dg = - \img \bs{\epsilon}^*(\ve{k},\lambda) \cdot \int \dd^3x\, e^{-\img k_\mu x^\mu} \smlra{\pa_0} \ve{A}(x)
     \label{eq:qed-lad-2}
   \end{equation}
 \end{proposition}
@@ -1213,11 +1213,11 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
     \end{equation*}
     These can be combined as:
     \begin{equation*}
-      \int \dd^3x\, e^{\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{\img \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ -2 \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} \right] = - \img \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda}
+      \int \dd^3x\, e^{\img k_\mu x^\mu} \smlra{\pa_0} \ve{A}(x) = \frac{\img \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ -2 \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda} \right] = - \img \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}(\ve{k},\lambda) a_{\ve{k},\lambda}
     \end{equation*}
     In the radiation gauge $ \bs{\epsilon}(\ve{k},\lambda) \cdot \bs{\epsilon}(\ve{k},\sigma) = \delta_{\lambda \sigma} $, hence \eref{eq:qed-lad-1}. Analogously:
     \begin{equation*}
-      \int \dd^3x\, e^{-\img k_\mu x^\mu} \smlra{\pa}_0 \ve{A}(x) = \frac{\img \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ 2 \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg \right] = \img \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg
+      \int \dd^3x\, e^{-\img k_\mu x^\mu} \smlra{\pa_0} \ve{A}(x) = \frac{\img \omega_\ve{k}}{\sqrt{2\omega_\ve{k}}} \sum_{\lambda = 1,2} \left[ 2 \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg \right] = \img \sqrt{2\omega_\ve{k}} \sum_{\lambda = 1,2} \bs{\epsilon}^*(\ve{k},\lambda) a_{\ve{k},\lambda}\dg
     \end{equation*}
     This completes the proof.
   \end{proof}
@@ -1225,11 +1225,11 @@ As for the KG field and the Dirac field, the ladder operators of the electromagn
 
 Writing them in Lorentz-covariant form (using $ \epsilon^0 = \epsilon^3 = 0 $):
   \begin{equation}
-    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda} = \img \epsilon^\mu(\ve{p},\lambda) \int \dd^3x\, e^{\img p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda} = \img \epsilon^\mu(\ve{p},\lambda) \int \dd^3x\, e^{\img p_\mu x^\mu} \smlra{\pa_0} A_\mu(x)
     \label{eq:qed-lad-cov-1}
   \end{equation}
   \begin{equation}
-    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda}\dg = - \img {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-\img p_\mu x^\mu} \smlra{\pa}_0 A_\mu(x)
+    \sqrt{2\omega_\ve{p}} a_{\ve{p},\lambda}\dg = - \img {\epsilon^\mu}^*(\ve{p},\lambda) \int \dd^3x\, e^{-\img p_\mu x^\mu} \smlra{\pa_0} A_\mu(x)
     \label{eq:qed-lad-cov-2}
   \end{equation}
 
