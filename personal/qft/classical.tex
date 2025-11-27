@@ -85,7 +85,7 @@ Taking the continuum limit, the crystal becomes a string: to achieve this, one t
   \sum_{n} \longrightarrow \frac{1}{a} \int_0^R \dd x
 \end{equation*}
 
-\begin{proposition}{}{continuous-limit}
+\begin{proposition}{Dirac delta}{continuous-limit}
   In the continuous limit:
   \begin{equation*}
     \frac{\delta_{nn'}}{a} \longrightarrow \delta(x - x') = \int_\R \frac{\dd k}{2\pi} e^{\img k (x - x')}
@@ -107,11 +107,17 @@ Taking the continuum limit, the crystal becomes a string: to achieve this, one t
 \end{proofbox}
 
 \begin{proposition}{}{}
-  The inverse Fourier transform of the Dirac Delta reads:
-  \begin{equation*}
+  The inverse Fourier transform of the Dirac delta reads:
+  \begin{equation}
     \int_0^R \dd x\, e^{\img (k - k') x} = 2\pi \delta(k - k')
-  \end{equation*}
+  \end{equation}
 \end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Denoting the Fourier transform by the operator $ \mathfrak{F} $, the thesis is a consequence of $ \mathfrak{F}^{-1} \mathfrak{F} = \id $.
+  \end{proof}
+\end{proofbox}
 
 By these relations, it can be seen that $ \frac{\dd k}{2\pi} $ has the physical meaning of the number of normal modes per unit spatial volume with wavenumber between $ k $ and $ k + \dd k $, while the interpretation of the divergent $ \delta(0) $ varies: in $ x $ space, it is the reciprocal of the lattice spacing, i.e. the number of normal modes per unit spatial volume, but in $ k $ space $ 2\pi \delta(0) $ is the (hyper-)volume of the system.\\
 In the continuous limit, the Lagrangian of the harmonic string becomes:
@@ -168,20 +174,22 @@ For a strictly continuous system there is no cut-off in the $ k $ integral, thus
 
 \subsection{Lorentz group}
 
-Consider the group of linear transformations $ x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu $ on $ \R^{1,3} $ which leave invariant the quantity $ \eta_{\mu \nu} x^\mu x^\nu $, i.e. the orthogonal group $ \On{1,3} $ (with signature $ (+,-,-,-) $). The condition that $ \tensor{\Lambda}{^\mu_\nu} $ must satisfy reads:
+Consider the group of linear transformations $ x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu $ on $ \R^{1,3} $ which leave invariant the quantity $ \eta_{\mu \nu} x^\mu x^\nu $, i.e. the orthogonal group $ \On{1,3} $. The condition that $ \tensor{\Lambda}{^\mu_\nu} $ must satisfy reads:
 \begin{equation}
   \eta_{\rho \sigma} = \eta_{\mu \nu} \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma}
   \label{eq:lor-def}
 \end{equation}
-This implies that $ \det \Lambda = \pm 1 $: a transformation with $ \det \Lambda = -1 $ can always be written as the product of a transformation with $ \det \Lambda = 1 $ and a discrete transformation which reverses the sign of an odd number of coordinates. One further defines $ \SOn{1,3} \defeq \{\Lambda \in \On{1,3} : \det \Lambda = 1\} $.\\
+This implies that $ \det \Lambda = \pm 1 $: a transformation with $ \det \Lambda = -1 $ can always be written as the product of a transformation with $ \det \Lambda = 1 $ and a discrete transformation which reverses the sign of an odd number of coordinates, hence one further defines the special orthogonal group $ \SOn{1,3} \defeq \{\Lambda \in \On{1,3} : \det \Lambda = 1\} $.
+
 Writing explicitly the temporal component $ 1 = (\tensor{\Lambda}{^0_0})^2 - (\tensor{\Lambda}{^1_0})^2 - (\tensor{\Lambda}{^2_0})^2 - (\tensor{\Lambda}{^3_0})^2 $, it is clear that $ (\tensor{\Lambda}{^0_0})^2 \ge 1 $. Therefore, $ \On{1,3} $ has two disconnected components: the orthochronous component with $ \tensor{\Lambda}{^0_0} \ge 1 $ and the non-orthochronous component with $ \tensor{\Lambda}{^0_0} \le 1 $. Any non-orthochronous transformation can be written as the product of an orthochronous transformation and a dircrete transformation which reverses the sign of the temporal component.
 
 \begin{definition}{Lorentz group}{}
   The \bcdef{Lorentz group} $ \lorg $ is the orthochronous component of $ \SOn{1,3} $.
 \end{definition}
 
-The discrete transformations are factored out of the Lorentz group: these are \bctxt{parity} and \bctxt{time reversal}, represented as $ \tensor{\mathcal{P}}{^\mu_\nu} = \diag \left( +1,-1,-1,-1 \right) $ and $ \tensor{\mathcal{T}}{^\mu_\nu} = \diag \left( -1,+1,+1,+1 \right) $. Applying these discrete transformations in all combinations ($ \id $, $ \mathcal{P} $, $ \mathcal{T} $ and $ \mathcal{P} \mathcal{T} $) one gets the four disconnected components of $ \On{1,3} $, which are not simply connected. This means that Lorentz invariance does not include parity and time reversal invariance.\\
-Considering the infinitesimal transformation and applying \eref{eq:lor-def}:
+The discrete transformations are factored out of the Lorentz group: these are \bctxt{parity} and \bctxt{time reversal}, represented as $ \tensor{\mathcal{P}}{^\mu_\nu} = \diag \left( +1,-1,-1,-1 \right) $ and $ \tensor{\mathcal{T}}{^\mu_\nu} = \diag \left( -1,+1,+1,+1 \right) $. Applying these discrete transformations in all combinations ($ \id $, $ \mathcal{P} $, $ \mathcal{T} $ and $ \mathcal{P} \mathcal{T} $) one gets the four disconnected components of $ \On{1,3} $, which are not simply connected. This means that Lorentz invariance does not include parity and time reversal invariance.
+
+Considering an infinitesimal Lorentz transformation and applying \eref{eq:lor-def}:
 \begin{equation*}
   \tensor{\Lambda}{^\mu_\nu} = \delta^\mu_\nu + \tensor{\omega}{^\mu_\nu}
   \quad \implies \quad
@@ -209,7 +217,7 @@ The $ \frac{1}{2} $ factor arises from each generator being counted twice (produ
 
 \paragraph{4-vectors}
 
-The $ n = 4 $ representation acts on \bctxt{contravariant 4-vectors} $ v^\mu $, which transform according to $ v^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} v^\nu $, and \bctxt{covariant 4-vectors} $ v_\mu $, which transform according to $ v_\mu \mapsto \tensor{\Lambda}{_\mu^\nu} v_\nu $. In this representation, the generators are represented as $ \C^{4 \times 4} $ matrices:
+The $ n = 4 $ representation\footnotemark acts on \bctxt{contravariant 4-vectors} $ v^\mu $, which transform according to $ v^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} v^\nu $, and \bctxt{covariant 4-vectors} $ v_\mu $, which transform according to $ v_\mu \mapsto \tensor{\Lambda}{_\mu^\nu} v_\nu $. In this representation, the generators are represented as $ \C^{4 \times 4} $ matrices:
 \begin{equation}
   \tensor{[J^{\mu \nu}]}{^\rho_\sigma} = \img \left( \eta^{\mu \rho} \delta^\nu_\sigma - \eta^{\nu \rho} \delta^\mu_\sigma \right)
   \label{eq:lor-gen}
@@ -226,7 +234,7 @@ It is convenient to rearrange the 6 independent components of $ J^{\mu \nu} $ in
   K^i \defeq J^{i0}
   \label{eq:lor-better-gen}
 \end{equation}
-The $ \lora $ can then be rewritten as:
+The $ \lora $ algebra can then be rewritten as:
 \begin{equation}
   [J^i, J^j] = \img \epsilon^{ijk} J^k
   \qquad \qquad
@@ -245,15 +253,18 @@ so that:
   \Lambda = \exp \left[ -\img \bs{\theta} \cdot \ve{J} + \img \bs{\eta} \cdot \ve{K} \right]
   \label{eq:lor-better-transf}
 \end{equation}
-This definition reflect the \textit{alias} interpretation: angles define counterclockwise rotations of vectors with respect to a fixed reference frame, while rapidities define boosts which increase velocities with respect to said frame.
+where $ \bs{\theta} , \bs{\eta} \in \R^3 $ and $ \ve{J} , \ve{K} \in (\R^{4 \times 4})^3 $. This definition reflect the \textit{alias} interpretation: angles define counterclockwise rotations of vectors with respect to a fixed reference frame, while rapidities define boosts which increase velocities with respect to said frame.
+
+\footnotetext{To be precise, contravariant $ 4 $-vectors are elements of $ V \equiv \R^{1,3} $, so they transform according $ v_\mu \mapsto \tilde{v}_\mu \equiv \tensor{[\Lambda]}{^\mu_\nu} v^\nu $, while covariant $ 4 $-vectors are elements of $ V^* $, hence they require the transposed endomorphism (see Def. 1.4.2 in \cite{leonardo}) and inversely transform according to $ \tilde{v}_\mu \mapsto v_\mu \equiv \tensor{[\Lambda\tsp]}{_\mu^\nu} \tilde{v}_\nu \defeq \tilde{v}_\nu \tensor{[\Lambda]}{^\nu_\mu} $. To invert this relation note that, from \eref{eq:lor-def}, $ \tensor{[\Lambda^{-1}]}{^\mu_\nu} = \tensor{[\Lambda]}{_\nu^\mu} $, thus the transformation law is $ v_\mu \mapsto \tilde{v}_\mu \equiv \tensor{[\Lambda]}{_\mu^\nu} v_\nu $. The identification $ \tensor{[\Lambda]}{^\mu_\nu} \equiv \tensor{\Lambda}{^\mu_\nu} $ is an abuse of notation.}
 
 \subsubsection{Tensor Representations}
 
-A generic $ (p,q) $-tensor transforms as:
+Given the action of $ \lorg $ on covariant and contravariant vectors, it is clear to see that a generic $ (p,q) $-tensor transforms as:
 \begin{equation}
   \tensor{T}{^{\mu_1 \dots \mu_p}_{\nu_1 \dots \nu_q}} \mapsto \tensor{\Lambda}{^{\mu_1}_{\alpha_1}} \dots \tensor{\Lambda}{^{\mu_p}_{\alpha_p}} \tensor{\Lambda}{_{\nu_1}^{\beta_1}} \dots \tensor{\Lambda}{_{\nu_q}^{\beta_q}} \tensor{T}{^{\alpha_1 \dots \alpha_p}_{\beta_1 \dots \beta_q}}
 \end{equation}
-This shows that the representation of the Lorentz group which acts on $ (p,q) $-tensors, although being of degree $ n = 4^{p + q} $, is reducible into the direct product of $ p + q $ 4-dimensional representations.\\
+This shows that the representation of the Lorentz group which acts on $ (p,q) $-tensors, although being of degree $ n = 4^{p + q} $, is reducible into the direct product of $ p + q $ 4-dimensional representations.
+
 Moreover, consider the action of the Lorentz group on $ (2,0) $-tensors: being $ T^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} T^{\alpha \beta} $, if $ T^{\mu \nu} $ is (anti-)symmetric it will remain so under a Lorentz transformation. Therefore, the 16-dimensional representation reduces to a 6-dimensional representation on anti-symmetric tensors and a 10-dimensional representation of symmetric tensors. Furthermore, the trace of a symmetric tensor is invariant, as $ T \equiv \eta_{\mu \nu} T^{\mu \nu} \mapsto \eta_{\mu \nu} \tensor{\Lambda}{^\mu _\alpha} \tensor{\Lambda}{^\nu _\beta} T^{\alpha \beta} = T $, so the latter representation further reduces into a 9-dimensional representation on symmetric traceless tensors and a 1-dimensional representation on scalars. This means that:
 \begin{equation}
   \ve{4} \otimes \ve{4} = \ve{1} \oplus \ve{6} \oplus \ve{9}
@@ -263,11 +274,11 @@ These are irreducible representations which act on $ S $, $ A^{\mu \nu} $ and $ 
 
 \paragraph{Decomposition under rotations}
 
-Restricting the action of $ \lorg $ to its subgroup $ \SOn{3} $, tensors can be decomposed according to irreducible representations of $ \SOn{3} $, which are labelled by the angular momentum $ j \in \N_0 $ and are of degree $ n = 2j + 1 $. Also recall the Clebsh-Gordan composition of angular momenta:
+Restricting the action of $ \lorg $ to its subgroup $ \SOn{3} $, tensors can be decomposed according to irreducible representations of $ \SOn{3} $, which are labelled by the angular momentum $ j \in \N_0 $ and are of degree $ n = 2j + 1 $. Also recall the Clebsch--Gordan composition of angular momenta:
 \begin{equation}
   \ve{j}_1 \otimes \ve{j}_2 = \bigoplus_{j = \abs{j_1 - j_2}}^{j_1 + j_2} \ve{j}
 \end{equation}
-A Lorentz scalar $ \alpha $ is a scalar under rotations too, so $ \alpha \in \ve{0} $. A 4-vector $ v^\mu $ is irreducible under the action of $ \lorg $, but under $ \SOn{3} $ it is decomposed into $ v^0 $ and $ \ve{v} $, so $ v^\mu \in \ve{0} \oplus \ve{1} $. A $ (2,0) $-tensor then is:
+A Lorentz scalar $ \alpha $ is a scalar under rotations too, so $ \alpha \in \ve{0} $ (abuse of notation to denote that $ \alpha $ transforms according to the $ \ve{0} $ representation). A 4-vector $ v^\mu $ is irreducible under the action of $ \lorg $, but under $ \SOn{3} $ it is decomposed into $ v^0 $ and $ \ve{v} $, so $ v^\mu \in \ve{0} \oplus \ve{1} $. A $ (2,0) $-tensor then is:
 \begin{equation*}
   \begin{split}
     T^{\mu \nu} \in \left( \ve{0} \oplus \ve{1} \right) \otimes \left( \ve{0} \oplus \ve{1} \right)
@@ -286,13 +297,18 @@ There are two \bctxt{invariant tensors} under $ \lorg $: the metric $ \eta_{\mu 
 \begin{equation*}
   \epsilon^{\mu \nu \sigma \rho} \mapsto \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} \tensor{\Lambda}{^\sigma_\gamma} \tensor{\Lambda}{^\rho_\delta} \epsilon^{\alpha \beta \gamma \delta} = \left( \det \Lambda \right) \epsilon^{\mu \nu \sigma \rho} = \epsilon^{\mu \nu \sigma \rho}
 \end{equation*}
+Note that, on the contrary, discrete transformations invert the handedness of spacetime, hence the Levi--Civita symbol changes sign: this hints to the facts that $ \epsilon^{\mu \nu \rho \sigma} $ is a \emph{tensor density}, since its transformation law is proportional to a power of the determinant of the coordinate transformation (this is true for general differentiable manifolds).
 
 \subsubsection{Spinorial representations}
 
-The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ are the same, which means that $ \SUn{2} $ and $ \SOn{3} $ are indistinguishable by infinitesimal transformations; however, they are globally different, as $ \SOn{3} $ rotations are periodic by $ 2\pi $, while $ \SUn{2} $ rotations are periodic by $ 4\pi $: in particular, it can be shown that $ \SOn{3} \cong \SUn{2} / \Z_2 $, i.e. $ \SUn{2} $ is the universal cover of $ \SOn{3} $. This means that $ \SUn{2} $ representations can be labelled by $ j \in \frac{1}{2} \N_0 $, where half-integer spin representations are known as \bctxt{spinorial representations}: they act on spinors, i.e. objects which change sign under rotations of $ 2\pi $ (thus not suitable to represent $ \SOn{3} $).
+The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ both have three generators defined by:
+\begin{equation}
+  [\mt{X}_i , \mt{X}_j] = \img \epsilon^{ijk} \mt{X}_k
+\end{equation}
+which means that $ \SUn{2} $ and $ \SOn{3} $ are indistinguishable by infinitesimal transformations; however, they are globally different, as $ \SOn{3} $ rotations are periodic by $ 2\pi $, while $ \SUn{2} $ rotations are periodic by $ 4\pi $: in particular, it can be shown that $ \SOn{3} \cong \SUn{2} / \Z_2 $, i.e. $ \SUn{2} $ is the universal cover of $ \SOn{3} $. This means that $ \SUn{2} $ representations can be labelled by $ j \in \frac{1}{2} \N_0 $, where half-integer spin representations are known as \bctxt{spinorial representations}: they act on spinors, i.e. objects which change sign under rotations of $ 2\pi $ (thus not suitable to represent $ \SOn{3} $).
 
 \begin{example}{Composition of two spin-$ \frac{1}{2} $}{}
-  The $ \ve{\frac{1}{2}} $ representation of $ \SUn{2} $ is a 2-dimensional representation where $ J^i = \frac{\sigma^i}{2} $: Pauli matrices satisfy $ \sigma^i \sigma^j = \delta^{ij} + \img \epsilon^{ijk} \sigma^k $, thus the $ \mathfrak{su}(2) $ algebra is satisfied. Denoting the $ m = \pm \frac{1}{2} $ states in the $ \ve{\frac{1}{2}} $ representation as $ \ket{\uparrow} $ and $ \ket{\downarrow} $, the Clebsch-Gordan decomposition $ \ve{\frac{1}{2}} \otimes \ve{\frac{1}{2}} = \ve{0} \oplus \ve{1} $ yields the triplet ($ j = 1 $) $ \ket{\uparrow\uparrow} $, $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} + \ket{\downarrow\uparrow} \right) $, $ \ket{\downarrow\downarrow} $ and the singlet ($ j = 0 $) $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} - \ket{\downarrow\uparrow} \right) $.
+  The $ \ve{\frac{1}{2}} $ representation of $ \SUn{2} $ is a 2-dimensional representation where $ J^i = \frac{\sigma^i}{2} $: the Pauli matrices satisfy $ \sigma^i \sigma^j = \delta^{ij} + \img \epsilon^{ijk} \sigma^k $, thus the $ \mathfrak{su}(2) $ algebra is satisfied. Denoting the $ m = \pm \frac{1}{2} $ states in the $ \ve{\frac{1}{2}} $ representation as $ \ket{\uparrow} $ and $ \ket{\downarrow} $, the Clebsch-Gordan decomposition $ \ve{\frac{1}{2}} \otimes \ve{\frac{1}{2}} = \ve{0} \oplus \ve{1} $ yields the triplet ($ j = 1 $) $ \ket{\uparrow\uparrow} $, $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} + \ket{\downarrow\uparrow} \right) $, $ \ket{\downarrow\downarrow} $ and the singlet ($ j = 0 $) $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} - \ket{\downarrow\uparrow} \right) $.
 \end{example}
 
 \begin{proposition}[before upper = {\tcbtitle}]{Lorentz algebra}{lorentz-algebra}
@@ -321,7 +337,7 @@ The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ are the same, whi
 \end{proofbox}
 
 By \pref{prop:lorentz-algebra}, representations of $ \lorg $ can be labelled by $ (\ve{j}_-,\ve{j}_+) \in \frac{1}{2} \N_0 \times \frac{1}{2} \N_0 $, with each index labelling a representation of $ \SUn{2} $: as $ \ve{J} = \ve{J}_+ + \ve{J}_- $, the $ (\ve{j}_-,\ve{j}_+) $ representation contains states with all possible spins $ \abs{j_+ - j_-} \le j \le j_+ + j_- $, and it is a representation of degree $ n = \left( 2j_- + 1 \right) \left( 2j_+ + 1 \right) $.\\
-More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} : \lora \rightarrow \mathfrak{gl}(V_{(j_-,j_+)}) $, where $ V_{(j_-,j_+)} $ is a $ (2j_- + 1)(2j_+ + 1) $-dimensional $ \C $-vector space, defined as (recall \eref{eq:lora-su2-gen}):
+More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} : \lora \rightarrow \mathfrak{gl}(V_{(j_-,j_+)}) $, where $ V_{(j_-,j_+)} $ is a $ (2j_- + 1)(2j_+ + 1) $-dimensional $ \C $-vector space, defined up to similarity as (inverting \eref{eq:lora-su2-gen}):
 \begin{equation}
   \begin{gathered}
     \rho_{(j_-,j_+)}(J^i) = J^i_{(j_+)} \otimes \mt{I}_{(2j_- + 1)} + \mt{I}_{(2j_+ + 1)} \otimes J^i_{(j_-)} \\
@@ -329,16 +345,13 @@ More formally, the $ (\ve{j}_-,\ve{j}_+) $ representation is $ \rho_{(j_-,j_+)} 
   \end{gathered}
   \label{eq:lorentz-su2-repr}
 \end{equation}
-where $ \ve{J}_{(j)} $ is the $ (2j + 1) $-dimensional irreducible representation of $ \mathfrak{su}(2) $ and $ \otimes $ is the tensor product\footnotemark.
-
-\paragraph{Trivial representation}
-
-The trivial representation is $ \ve{\left( 0,0 \right)} $, as both $ \ve{J}_{\pm} = 0 $ and $ \ve{J} = \ve{K} = 0 $: this is the representation which acts on scalars.
+where $ \ve{J}_{(j)} $ is the $ (2j + 1) $-dimensional irreducible representation of $ \mathfrak{su}(2) $ and $ \otimes $ is the tensor product (see \dref{def:tensor-product-applications}).
+For example, the trivial representation is $ \ve{\left( 0,0 \right)} $, as both $ \ve{J}_{\pm} = \ve{0} $ and $ \ve{J} = \ve{K} = \ve{0} $: this is the representation which acts on scalars.
 
 \paragraph{Weyl representations}
 
 $ \ve{\left( \frac{1}{2},0 \right)} $ and $ \ve{\left( 0,\frac{1}{2} \right)} $ are 2-dimensional spinorial representations. These representations act on different spinors $ (\psi_\text{L})_\alpha , (\psi_\text{R})_\beta \in \C^2 $, with $ \alpha,\beta = 1,2 $, which are called \bctxt{left-} and \bctxt{right-handed  Weyl spinors}.\\
-In $ \ve{\left( \frac{1}{2},0 \right)} $ the generators are $ \ve{J}_- = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{J}_+ = \ve{0} $, while in $ \ve{\left( 0,\frac{1}{2} \right)} $ they are $ \ve{J}_- = \ve{0} $ and $ \ve{J}_+ = \frac{\boldsymbol{\sigma}}{2} $, thus, by \eref{eq:lorentz-su2-repr}, $ \ve{J}_\text{L} = \ve{J}_\text{R} = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{K}_\text{L} = - \ve{K}_\text{R} = \img \frac{\boldsymbol{\sigma}}{2} $, so that:
+In $ \ve{\left( \frac{1}{2},0 \right)} $ the generators are $ \ve{J}_- = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{J}_+ = \ve{0} $, while in $ \ve{\left( 0,\frac{1}{2} \right)} $ they are $ \ve{J}_- = \ve{0} $ and $ \ve{J}_+ = \frac{\boldsymbol{\sigma}}{2} $, thus, by \eref{eq:lorentz-su2-repr}, $ \ve{J}_\text{L} = \ve{J}_\text{R} = \frac{\boldsymbol{\sigma}}{2} $ and $ \ve{K}_\text{L} = - \ve{K}_\text{R} = \img \frac{\boldsymbol{\sigma}}{2} $, so that from \eref{eq:lor-better-transf}:
 \begin{equation}
   \psi_\text{L} \mapsto \Lambda_\text{L} \psi_\text{L} = \exp \left[ \left( -\img \boldsymbol{\theta} - \boldsymbol{\eta} \right) \cdot \frac{\boldsymbol{\sigma}}{2} \right] \psi_\text{L}
   \label{eq:lor-left-hand-weyl}
@@ -394,7 +407,7 @@ $ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ i
   \end{equation}
 \end{definition}
 
-This definition reflect the fact that charge conjugation changes the representation of the Weyl spinors (\pref{prop:weyl-spin-par}).
+This definition reflect the fact that charge conjugation changes the representation of the Weyl spinors (\pref{prop:weyl-spin-par}), i.e. the chirality of the components of the Dirac spinor.
 
 \paragraph{4-vector representation}
 
@@ -408,6 +421,7 @@ To see how $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the 4-vector repre
 
 \begin{proofbox}
   \begin{proof}
+    Trivially:
     \begin{equation*}
       \R^{1,3} \ni v^\mu = (v^0,v^1,v^2,v^3) \longleftrightarrow
       \begin{pmatrix}
@@ -416,7 +430,7 @@ To see how $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the 4-vector repre
       \end{pmatrix}
       = V \in \mathcal{H}(2)
     \end{equation*}
-    where the isomorphisms are $ V = v_\mu \sigma^\mu , v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\mt{I}_2,\bs{\sigma}) , \bar{\sigma}^\mu = (\mt{I}_2,-\bs{\sigma}) $.
+    where the isomorphisms are $ V = v_\mu \sigma^\mu , v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\mt{I}_2,\bs{\sigma}) , \bar{\sigma}^\mu \equiv (\mt{I}_2,-\bs{\sigma}) $.
   \end{proof}
 \end{proofbox}
 
@@ -435,7 +449,7 @@ Moreover, note that by Clebsch-Gordan decomposition $ \ve{\left( \frac{1}{2},\fr
 
 \paragraph{Parity}
 
-Note that $ \mathcal{P} \ve{K} = -\ve{K} $, as the velocity of the boost gets reversed, while $ \mathcal{P} \ve{J} = \ve{J} $: this means that $ \mathcal{P} \ve{J}_\pm = \ve{J}_\mp $, i.e. parity exchanges a $ \ve{\left( j_-,j_+ \right)} $ representation into a $ \ve{\left( j_+,j_- \right)} $ representation. Therefore, a $ \ve{\left( j_-,j_+ \right)} $ representation of $ \lorg $ is a basis for the representation of the parity transformation iff $ j_- = j_+ $.
+Note that $ \mathcal{P} \ve{K} = -\ve{K} $, as the velocity of the boost gets reversed, while $ \mathcal{P} \ve{J} = \ve{J} $: this means that $ \mathcal{P} \ve{J}_\pm = \ve{J}_\mp $, i.e. parity exchanges a $ \ve{\left( j_-,j_+ \right)} $ representation into a $ \ve{\left( j_+,j_- \right)} $ representation. Therefore, a $ \ve{\left( j_-,j_+ \right)} $ representation of $ \lorg $ is a basis for the representation of the parity transformation if and only if $ j_- = j_+ $.
 
 \begin{example}{Parity on spinors}{}
   While Weyl spinors (separately) are not a basis for a representation of the parity operator, Dirac spinors are.
