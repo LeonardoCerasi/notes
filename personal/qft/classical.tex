@@ -308,7 +308,7 @@ The Lie algebras $ \mathfrak{su}(2) $ and $ \mathfrak{so}(3) $ both have three g
 which means that $ \SUn{2} $ and $ \SOn{3} $ are indistinguishable by infinitesimal transformations; however, they are globally different, as $ \SOn{3} $ rotations are periodic by $ 2\pi $, while $ \SUn{2} $ rotations are periodic by $ 4\pi $: in particular, it can be shown that $ \SOn{3} \cong \SUn{2} / \Z_2 $, i.e. $ \SUn{2} $ is the universal cover of $ \SOn{3} $. This means that $ \SUn{2} $ representations can be labelled by $ j \in \frac{1}{2} \N_0 $, where half-integer spin representations are known as \bctxt{spinorial representations}: they act on spinors, i.e. objects which change sign under rotations of $ 2\pi $ (thus not suitable to represent $ \SOn{3} $).
 
 \begin{example}{Composition of two spin-$ \frac{1}{2} $}{}
-  The $ \ve{\frac{1}{2}} $ representation of $ \SUn{2} $ is a 2-dimensional representation where $ J^i = \frac{\sigma^i}{2} $: the Pauli matrices satisfy $ \sigma^i \sigma^j = \delta^{ij} + \img \epsilon^{ijk} \sigma^k $, thus the $ \mathfrak{su}(2) $ algebra is satisfied. Denoting the $ m = \pm \frac{1}{2} $ states in the $ \ve{\frac{1}{2}} $ representation as $ \ket{\uparrow} $ and $ \ket{\downarrow} $, the Clebsch-Gordan decomposition $ \ve{\frac{1}{2}} \otimes \ve{\frac{1}{2}} = \ve{0} \oplus \ve{1} $ yields the triplet ($ j = 1 $) $ \ket{\uparrow\uparrow} $, $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} + \ket{\downarrow\uparrow} \right) $, $ \ket{\downarrow\downarrow} $ and the singlet ($ j = 0 $) $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} - \ket{\downarrow\uparrow} \right) $.
+  The $ \ve{\frac{1}{2}} $ representation of $ \SUn{2} $ is a 2-dimensional representation where $ J^i = \frac{\sigma^i}{2} $: the Pauli matrices satisfy $ \sigma^i \sigma^j = \delta^{ij} + \img \epsilon^{ijk} \sigma^k $, thus the $ \mathfrak{su}(2) $ algebra is satisfied. Denoting the $ m = \pm \frac{1}{2} $ states in the $ \ve{\frac{1}{2}} $ representation as $ \ket{\uparrow} $ and $ \ket{\downarrow} $, the Clebsch--Gordan decomposition $ \ve{\frac{1}{2}} \otimes \ve{\frac{1}{2}} = \ve{0} \oplus \ve{1} $ yields the triplet ($ j = 1 $) $ \ket{\uparrow\uparrow} $, $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} + \ket{\downarrow\uparrow} \right) $, $ \ket{\downarrow\downarrow} $ and the singlet ($ j = 0 $) $ \frac{1}{\sqrt{2}}\left( \ket{\uparrow\downarrow} - \ket{\downarrow\uparrow} \right) $.
 \end{example}
 
 \begin{proposition}[before upper = {\tcbtitle}]{Lorentz algebra}{lorentz-algebra}
@@ -328,7 +328,7 @@ which means that $ \SUn{2} $ and $ \SOn{3} $ are indistinguishable by infinitesi
       [\ve{J}_{\pm}^i , \ve{J}_{\mp}^j] = \ve{0}
       \label{eq:lora-su2-gen}
     \end{equation}
-    These are two commuting $ \mathfrak{su}(2) $ algebras, thus proving the thesis\footnote{To be precise, $ \lora \cong \sla{2,\C} $, but complexification yields the following isomorphisms (with \eref{eq:lora-su2-gen}):
+    These are two commuting $ \mathfrak{su}(2) $ algebras, thus proving the thesis\footnote{To be precise, $ \lora_\C \cong \sua{2}_\C \oplus \sua{2}_\C $, while $ \lora \cong \sla{2,\C} $ since complexification yields the following isomorphisms (with \eref{eq:lora-su2-gen}):
     \begin{equation*}
       \lora \hookrightarrow \lora_\C \cong \sua{2}_\C \oplus \sua{2}_\C \cong \sla{2,\C} \oplus \sla{2,\C} \cong \sla{2,\C}_\C \hookleftarrow \sla{2,\C}
     \end{equation*}
@@ -409,19 +409,18 @@ $ \ve{\left( \frac{1}{2},0 \right)} \oplus \ve{\left( 0,\frac{1}{2} \right)} $ i
 
 This definition reflect the fact that charge conjugation changes the representation of the Weyl spinors (\pref{prop:weyl-spin-par}), i.e. the chirality of the components of the Dirac spinor.
 
-\paragraph{4-vector representation}
+\begin{observation}{4-vector representation}{}
+  The other $ 4 $-dimensional representation of the Lorentz group is $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $. To see that this is, in fact, the 4-vector representation, first consider the double-covering $ \lorg \cong \SL{2,\C} / \Z_2 $.
 
-To see how $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the 4-vector representation, consider the space $ \mathcal{H}(2) \defeq \{\mt{H} \in \C^{2 \times 2} : \mt{H}\dg = \mt{H}\} $ of all $ \C^{2 \times 2} $ Hermitian matrices.
-
-\begin{lemma}[before upper = {\tcbtitle}]{Minkowski space and Hermitian matrices}{mink-herm-iso}
+\begin{lemma}[before upper = {\tcbtitle}]{Double-covering of Lorentz group}{lor-double-cov}
   \begin{equation}
-    \mathcal{H}(2) \cong \R^{1,3}
+    \lorg \cong \SL{2,\C} / \Z_2
   \end{equation}
 \end{lemma}
 
 \begin{proofbox}
   \begin{proof}
-    Trivially:
+    Define the set $ \mathcal{H}(2) \defeq \{\mt{H} \in \C^{2 \times 2} : \mt{H}\dg = \mt{H}\} $ of all $ \C^{2 \times 2} $ Hermitian matrices. Trivially $ \mathcal{H}(2) \cong \R^{1,3} $, since:
     \begin{equation*}
       \R^{1,3} \ni v^\mu = (v^0,v^1,v^2,v^3) \longleftrightarrow
       \begin{pmatrix}
@@ -430,22 +429,83 @@ To see how $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the 4-vector repre
       \end{pmatrix}
       = V \in \mathcal{H}(2)
     \end{equation*}
-    where the isomorphisms are $ V = v_\mu \sigma^\mu , v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\mt{I}_2,\bs{\sigma}) , \bar{\sigma}^\mu \equiv (\mt{I}_2,-\bs{\sigma}) $.
+    where the isomorphisms are $ V = v_\mu \sigma^\mu , v^\mu = \frac{1}{2} \tr \left( \bar{\sigma}^\mu V \right) $, with $ \sigma^\mu \equiv (\mt{I}_2,\bs{\sigma}) , \bar{\sigma}^\mu \equiv (\mt{I}_2,-\bs{\sigma}) $, since $ \{\mt{I}_2 , \sigma^1 , \sigma^2 , \sigma^3\} $ is a basis of $ \mathcal{H}(2) $.
+
+    Now, consider $ \mt{M} \in \SL{2,\C} $ and define its linear action on $ \mathcal{H}(2) $ as $ V \mapsto \mt{M} V \mt{M}\dg $: then, $ \SL{2,\C} $ is an endomorphism group of $ \mathcal{H}(2) $, since its action preserves Hermiticity, and $ \det V \mapsto \det V $ as $ \det \mt{M} = 1 $ by definition. But $ \det V = v_\mu v^\mu $, hence the action of $ \SL{2,\C} $ leaves the Minkowski norm invariant: it is thus possible to define a group homomorphism $ \Phi : \SL{2,\C} \ra \On{1,3} $. WTS $ \Phi(\SL{2,\C}) \ssq \lorg $: since $ \SL{2,\C} $ is simply connected (it is homeomorphic to $ \Sn{3} \times \R^3 $) and $ \mt{I}_2 \in \SL{2,\C} $, then $ \Phi(\SL{2,\C}) $ must be connected, as $ \Phi $ can be shown to be continuous, and it must contain the identity, but the only connected compontent of $ \On{1,3} $ which satisfies these conditions is $ \lorg $, hence $ \Phi(\SL{2,\C)} \ssq \lorg $. Then:
+    \begin{itemize}
+      \item surjectivity: to show that $ \Phi $ surjective, recall that $ \lorg $ is generated by spatial (trigonometric) rotations and boosts (i.e. hyperbolic rotations). The former are clearly realized by $ \Phi $, since $ \SUn{2} < \SL{2,\C} $ and $ \Phi \vert_{\SUn{2}} $ is the standard double-covering map for $ \SOn{3} \cong \SUn{2} / \Z_2 $. Then, by polar decomposition, any $ \mt{M} \in \SL{2,\C} $ can be written as $ \mt{M} = \mt{U} \mt{P} $, with $ \mt{U} \in \SUn{2} $ and $ \mt{P} = \exp \left( \ve{a} \cdot \bs{\sigma} \right) , \ve{a} \in \R^3 $: since $ \mt{P} $ represents\footnote{
+          First, note that, given a versor $ \hat{\ve{n}} \in \R^3 $, it is always possible to find a rotation $ \mt{U}_n \in \SUn{2} $ such that $ \hat{\ve{n}} \cdot \bs{\sigma} = \mt{U}_n \sigma^3 \mt{U}_n\dg $, hence $ \mt{P} = \mt{U}_a \exp (a \sigma^3) \mt{U}_a\dg $, thus WTS $ \exp (a \sigma^3) = \diag (e^a , e^{-a}) $ is a boost along the $ z $-axis:
+          \begin{equation*}
+            \begin{bmatrix}
+              e^a & 0 \\ 0 & e^{-a}
+            \end{bmatrix}
+            \begin{pmatrix}
+              v^0 - v^3 & - v^1 + \img v^2 \\
+              - v^1 - \img v^2 & v^0 + v^3
+            \end{pmatrix}
+            \begin{bmatrix}
+              e^a & 0 \\ 0 & e^{-a}
+            \end{bmatrix}
+            =
+            \begin{pmatrix}
+              e^{2a} (v^0 - v^3) & - v^1 + \img v^2 \\
+              - v^1 - \img v^2 & e^{-2a} (v^0 + v^3)
+            \end{pmatrix}
+          \end{equation*}
+          i.e. $ v^0 \pm v^3 \mapsto e^{\mp 2a} (v^0 \pm v^3) $ and $ (v^1 , v^2) \mapsto (v^1 , v^2) $, which is equivalent to:
+          \begin{equation*}
+            \begin{pmatrix}
+              v^0 \\ v^3
+            \end{pmatrix}
+            \mapsto
+            \begin{bmatrix}
+              \cosh \eta & - \sinh \eta \\
+              - \sinh \eta & \cosh \eta
+            \end{bmatrix}
+            \begin{pmatrix}
+              v^0 \\ v^3
+            \end{pmatrix}
+          \end{equation*}
+        which is exactly the Lorentz transformation realizing a boost along the $ z $-axis.
+      } a boost along the direction $ \hat{\ve{a}} $ of rapidity $ 2a $, all generators of $ \lorg $ are represented by $ \Phi $, i.e. $ \Im\{\Phi\} = \lorg $.
+    \item $ \ker \Phi = \{\mt{I}_2 , -\mt{I}_2\} $: solving $ \Phi(\mt{M}) = \id_{\lorg} $ means that $ \mt{M} V \mt{M}\dg = V \,\, \forall V \in \mathcal{H}(2) $. $ V = \mt{I}_2 $ results in $ \mt{M} \in \SUn{2} < \SL{2,\C} $, hand $ V = \sigma_i $ that $ \mt{M} $ commutes with all the Pauli matrices: this means that $ \mt{M} $ commutes with all elements of $ \mathcal{H}(2) $, hence it is a multiple of $ \mt{I}_2 $ by Schur's Lemma (applicable since the Pauli matrices form the basis of an irreducible representation of $ \SUn{2} $), and $ \det \mt{M} = 1 \implies \mt{M} = \pm \mt{I}_2 $.
+    \end{itemize}
+    Since $ \{\mt{I}_2 , -\mt{I}_2\} \cong \Z_2 $, by the first isomorphism theorem $ \lorg \cong \SL{2,\C} / \Z_2 $.
   \end{proof}
 \end{proofbox}
 
-As of \lref{lemma:mink-herm-iso}, given $ \Lambda \in \lorg $ acting on 4-vectors as $ v^\mu \mapsto \tensor{\Lambda}{^\mu _\nu} v^\nu $, it is isomorphic to the action of $ \Lambda_\text{s} \in \SL{2,\C} $ on Hermitian matrices as $ V \mapsto \Lambda_\text{s} V \Lambda_\text{s}\dg $: indeed, this transformation preserves Hermiticity and the Minkowski norm $ \det V = v_\mu v^\mu $ (as $ \det \Lambda_\text{s} = 1 $). This transformation can be explicited as:
+As of \lref{lemma:lor-double-cov}, given $ \Lambda \in \lorg $, it is possible to associate to it $ \Lambda_\text{s} \in \SL{2,\C} $ such that:
 \begin{equation}
   \tensor{\Lambda}{^\mu_\nu} \sigma^\nu = \Lambda_\text{s} \sigma^\mu \Lambda_\text{s}\dg
 \end{equation}
-By \eref{eq:sun-trace} and \pref{prop:lorentz-algebra}, $ \sla{2,\C} = \{\mt{X} \in \C^{2 \times 2} : \tr \mt{X} = 0\} $ and an $ \R $-basis is $ \{\frac{\bs{\sigma}}{2},\img\frac{\bs{\sigma}}{2}\} $, then:
+Recalling the proof of \pref{prop:lorentz-algebra} $ \sla{2,\C} \cong \sua{2}_\C \oplus \sua{2}_\C $, hence:
 \begin{equation*}
-  \Lambda_\text{s} = \exp \left[ -\img \left( \bs{\theta} + \img \bs{\eta} \right) \cdot \frac{\bs{\sigma}}{2} \right] = \Lambda_\text{R}
+  \Lambda_\text{s} = \exp \left[ \left( \ve{a} + \img \ve{b} \right) \cdot \frac{\bs{\sigma}}{2} \right]
   \quad \implies \quad
-  \Lambda_\text{s}\dg = \exp \left[ \left( \img \bs{\theta} + \bs{\eta} \right) \cdot \frac{\bs{\sigma}}{2} \right] = \sigma^2 \Lambda_\text{L}^\intercal \sigma^2
+  \Lambda_\text{s}\dg = \exp \left[ \left( - \ve{a} + \img \ve{b} \right) \cdot \frac{\bs{\sigma}\tsp}{2} \right]
 \end{equation*}
-where $ \sigma^2 \bs{\sigma} \sigma^2 = - \bs{\sigma}^\intercal $ was used. This is exactly the $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ representation, where the left component is considered in a unitarily-equivalent form $ \psi_\text{L}' \defeq \psi_\text{L}^\intercal \sigma^2 $ (so that $ \psi_\text{L}' \mapsto \psi_\text{L}' \Lambda_\text{s}\dg $ by transposing \eref{eq:lor-left-hand-weyl}).\\
-Moreover, note that by Clebsch-Gordan decomposition $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} \cong \ve{0} \oplus \ve{1} $, which is exactly the representation which acts on 4-vectors ($ v^0 \in \ve{0} $ and $ \ve{v} \in \ve{1} $).
+where $ \sigma^2 \bs{\sigma} \sigma^2 = - \bs{\sigma}^\intercal $ was used. Since $ \exp(\img \alpha \sigma^k) = \mt{I}_2 \cos \alpha - \img \sigma^k \sin \alpha $, the exponential is periodic of $ 2\pi $ in $ \ve{b} $, so identify $ \ve{a} \equiv - \bs{\eta} $ and $ \ve{b} \equiv - \bs{\theta} $, i.e. $ \Lambda_\text{s} \equiv \Lambda_\text{L} $ and $ \Lambda_\text{s}\dg = \sigma^2 \Lambda_\text{R}\tsp \sigma^2 $: it is then clear that the representation of $ \lorg $ acting on 4-vectors is $ \ve{\left( \frac{1}{2},0 \right)} \otimes \ve{ \left( 0,\frac{1}{2} \right)} $, with\footnotemark:
+\begin{equation*}
+  (\psi \otimes \xi) \equiv \psi \xi\tsp \sigma^2
+  \quad \implies \quad
+  \Lambda (\psi \otimes \xi) = \Lambda_\text{s} (\psi \otimes \xi) \Lambda_\text{s}\dg = (\Lambda_\text{L} \psi) \otimes (\Lambda_\text{R} \xi)
+\end{equation*}
+Note that the restriction of $ (\psi \otimes \xi) $ being Hermitian correctly reduces the real dimension of the basis space from $ 8 $ to $ 4 $ (i.e. the basis space from $ \C^2 \otimes \C^2 $ to $ \mathcal{H}(2) $). Now, given the canonical isomorphism $ V \otimes W \cong W \otimes V $ for generic $ \K $-vector spaces, the following equivalence relation holds\footnotemark:
+\begin{equation*}
+  \ve{\left( \tfrac{1}{2},0 \right)} \otimes \ve{\left( 0,\tfrac{1}{2} \right)}
+  \cong
+  \ve{\left( \tfrac{1}{2} \otimes 0 , 0 \otimes \tfrac{1}{2} \right)}
+  \cong
+  \ve{\left( \tfrac{1}{2} , \tfrac{1}{2} \right)}
+\end{equation*}
+where Clebsch--Gordan decomposition was used. This shows that $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} $ is the representation of $ \lorg $ acting on 4-vectors.
+
+Moreover, by Clebsch--Gordan decomposition, $ \ve{\left( \frac{1}{2},\frac{1}{2} \right)} \cong \ve{0} \oplus \ve{1} $, which is exactly the representation acting on 4-vectors ($ v^0 \in \ve{0} $ and $ \ve{v} \in \ve{1} $).
+\end{observation}
+
+\footnotetext{To be precise, this is a representation equivalent to $ \ve{\left( \frac{1}{2},0 \right)} \otimes \ve{\left( 0,\frac{1}{2} \right)} $, which would act on $ [\psi \otimes \xi]_{(ij)} = \psi_i \xi_j $.}
+
+\footnotetext{In particular, a consequence is that, given two Lie algebras $ \mathfrak{g} $ and $ \mathfrak{h} $, and given $ \rho_1 : \mathfrak{g} \ra V_1 $, $ \rho_2 : \mathfrak{g} \ra V_2 $, $ \pi_1 : \mathfrak{h} \ra W_1 $ and $ \pi_2 : \mathfrak{h} \ra W_2 $ their representations on $ \C $-vector spaces, then $ (\rho_1 \otimes \pi_1) \otimes (\rho_2 \otimes \pi_2) : (\mathfrak{g} \times \mathfrak{h}) \times (\mathfrak{g} \times \mathfrak{h}) \ra \mathfrak{gl}((V_1 \otimes W_1) \otimes (V_2 \otimes W_2)) $ and $ (\rho_1 \otimes \rho_2) \otimes (\pi_1 \otimes \pi_2) : (\mathfrak{g} \times \mathfrak{g}) \times (\mathfrak{h} \times \mathfrak{h}) \ra \mathfrak{gl}((V_1 \otimes V_2) \otimes (W_1 \otimes W_2)) $ are equivalent.}
 
 \paragraph{Parity}
 
