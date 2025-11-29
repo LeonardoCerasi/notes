@@ -1,0 +1,222 @@
+\selectlanguage{english}
+
+\chapter{Lecture 10/11--14/11}
+
+\section{Vibrations of polyatomic molecules}
+
+Consider a generic molecule with $ N $ atoms and let $ \ve{R}_\text{eq} \equiv \{\ve{R}^\text{eq}_i\}_{i = 1,\dots,N} \in \R^{3N} $ be the equilibrium positions: then, in a neighborhood of $ R_\text{eq} $, the interactions between each pair of atoms can be modelled by an elastic force. This molecule has $ 3N $ degrees of freedom: $ 3 $ of them are translational and describe the free-particle motion of the CM of the system, and $ 3 $ are rotational\footnotemark, hence the remaining $ 3N - 6 $ degrees of freedom are vibrational.
+
+\footnotetext{Actually, for linear molecules the rotational degrees of freedom are only $ 2 $, hence the vibrational degrees of freedom are $ 3N - 5 $.}
+
+To study the dynamics of this system, define the positions relative to the equilibrium positions as $ \ve{Q} \equiv \{\ve{Q}_i\}_{i = 1, \dots, N} \in \R^{3N} $, with $ \ve{Q}_i \equiv \ve{R}_i - \ve{R}_i^\text{eq} $, and the total force vector $ \ve{F} \equiv \{\ve{F}_i\}_{i = 1, \dots, n} $, where $ \ve{F}_i $ is the net force acting on the $ i^\text{th} $ atom. The dynamics is then given by a generalized Hook's law:
+\begin{equation}
+  \ve{F} = - \mt{K} \ve{Q}
+  \label{eq:generalized-hook}
+\end{equation}
+To give an explicit expression for the \bctxt{force-constants matrix} $ \mt{K} $, we first set a suitable representation of $ \ve{Q} $ and $ \ve{F} $:
+\begin{equation*}
+  \ve{Q} =
+  \begin{pmatrix}
+    Q_{1,x} & \dots & Q_{N,x} & Q_{1,y} & \dots & Q_{N,y} & Q_{1,z} & \dots & Q_{N,z}
+  \end{pmatrix}\tsp
+  \end{equation*}
+  \begin{equation*}
+  \ve{F} =
+  \begin{pmatrix}
+    F_{1,x} & \dots & F_{N,x} & F_{1,y} & \dots & F_{N,y} & F_{1,z} & \dots & F_{N,z}
+  \end{pmatrix}\tsp
+\end{equation*}
+Then, the force-constants matrix can be represented as:
+\begin{equation}
+  \mt{K} =
+  \begin{bmatrix}
+    k_{x,x}^{1,1} & \dots & k_{x,x}^{1,N} & k_{x,y}^{1,1} & \dots & k_{x,y}^{1,N} & k_{x,z}^{1,1} & \dots & k_{x,z}^{1,N} \\
+    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+    k_{x,x}^{N,1} & \dots & k_{x,x}^{N,N} & k_{x,y}^{N,1} & \dots & k_{x,y}^{N,N} & k_{x,z}^{N,1} & \dots & k_{x,z}^{N,N} \\
+    %
+    k_{y,x}^{1,1} & \dots & k_{y,x}^{1,N} & k_{y,y}^{1,1} & \dots & k_{y,y}^{1,N} & k_{y,z}^{1,1} & \dots & k_{y,z}^{1,N} \\
+    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+    k_{y,x}^{N,1} & \dots & k_{y,x}^{N,N} & k_{y,y}^{N,1} & \dots & k_{y,y}^{N,N} & k_{y,z}^{N,1} & \dots & k_{y,z}^{N,N} \\
+    %
+    k_{z,x}^{1,1} & \dots & k_{z,x}^{1,N} & k_{z,y}^{1,1} & \dots & k_{z,y}^{1,N} & k_{z,z}^{1,1} & \dots & k_{z,z}^{1,N} \\
+    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+    k_{z,x}^{N,1} & \dots & k_{z,x}^{N,N} & k_{z,y}^{N,1} & \dots & k_{z,y}^{N,N} & k_{z,z}^{N,1} & \dots & k_{z,z}^{N,N} \\
+  \end{bmatrix}
+\end{equation}
+where the general $ k_{a,b}^{i,j} $ is the elastic constant which gives the contribution of $ Q_{j,b} $ to $ F_{i,a} $, i.e.:
+\begin{equation}
+  F_{i,a} = - \sum_{j = 1}^N \sum_{b = x,y,z} k_{a,b}^{i,j} Q_{j,b}
+  \label{eq:force-matrix-expl}
+\end{equation}
+Note that the third Newton's law implies that $ \mt{K} $ must be symmetric, since exchanging the two interacting atoms must yield the same force between them.
+
+Since $ \ve{F}_i = m_i \ddot{\ve{Q}}_i $, we can use the ansatz $ \ve{Q}_i = \ve{A}_i \exp(\img \omega t) $: therefore, $ \ddot{\ve{Q}}_i = -\omega^2 \ve{Q}_i $, and \eref{eq:generalized-hook} becomes:
+\begin{equation}
+  \left( \mt{K} - \omega^2 \mt{M} \right) \ve{Q} = \ve{0}
+  \label{eq:omega-eigen}
+\end{equation}
+where the the \bctxt{mass matrix} is define as (in the representation we fixed):
+\begin{equation}
+  \mt{M} = \diag \left( m_1 , \dots , m_N , m_1 , \dots , m_N , m_1 , \dots , m_N \right)
+\end{equation}
+In general, \eref{eq:omega-eigen} has $ 3N $ solutions for $ \omega^2 $: among these, we expect to find a number ($ 5 $ of $ 6 $, as per the above observations) of trivial $ \omega = 0 $ solutions, which correspond to translational and rotational normal modes (which are not subject to a Hook-type force and have no period), while the non-vanishing solutions are the frequencies of vibrational normal modes.
+
+Moreover, note that, in general, the force-constants matrix can be expressed in terms of the potential of interaction between the various atoms as:
+\begin{equation}
+  k_{a,b}^{i,j} = \frac{\pa^2 V(Q)}{\pa Q_{i,a} \pa Q_{j,b}}
+\end{equation}
+since $ \ve{F}_i = - \grad_i V(Q) $ and given \eref{eq:force-matrix-expl}.
+
+\begin{example}{Biatomic molecule}{}
+  For the biatomic molecule, the interaction potential can be modelled as a simple harmonic potential, in a neighborhood of $ \ve{R}_\text{eq} $:
+  \begin{equation*}
+    V(Q) = \frac{1}{2} k \left( Q_{1,x} - Q_{2,x} \right)^2
+  \end{equation*}
+  where we set the $ x $-axis to be the axis of the molecule. Then, the force-constants matrix is:
+  \begin{equation*}
+    \mt{K} =
+    \begin{bmatrix}
+      k & -k & 0 & 0 & 0 & 0 \\
+      -k & k & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 \\
+    \end{bmatrix}
+  \end{equation*}
+  Consequently, \eref{eq:omega-eigen} becomes:
+  \begin{equation*}
+    \begin{bmatrix}
+      k - \omega^2 m_1 & -k & 0 & 0 & 0 & 0 \\
+      -k & k - \omega^2 m_2 & 0 & 0 & 0 & 0 \\
+      0 & 0 & - \omega^2 m_1 & 0 & 0 & 0 \\
+      0 & 0 & 0 & - \omega^2 m_2 & 0 & 0 \\
+      0 & 0 & 0 & 0 & - \omega^2 m_1 & 0 \\
+      0 & 0 & 0 & 0 & 0 & - \omega^2 m_2 \\
+    \end{bmatrix}
+    \begin{pmatrix}
+      Q_{1,x} \\ Q_{2,x} \\ Q_{1,y} \\ Q_{2,y} \\ Q_{1,z} \\ Q_{2,z}
+    \end{pmatrix}
+    = \ve{0}
+  \end{equation*}
+  The last four rows correspond to four $ \omega^2 = 0 $ solutions, which correspond to translations along the $ y $- and $ z $-axis and rotations in the $ xy $- and $ zx $- planes, so we focus on the first $ 2 \times 2 $ submatrix:
+  \begin{equation*}
+    \begin{bmatrix}
+      k - \omega^2 m_1 & -k \\
+      -k & k - \omega^2 m_2 \\
+    \end{bmatrix}
+    \begin{pmatrix}
+      Q_{1,x} \\ Q_{2,x}
+    \end{pmatrix}
+    = \ve{0}
+  \end{equation*}
+  Since this is a homogeneus system, the solutions are found imposing that the determinant of the matrix vanishes:
+  \begin{equation*}
+    \left( k - \omega^2 m_1 \right) \left( k - \omega^2 m_2 \right) - k^2 = 0
+    \quad \implies \quad
+    \omega^2 \left[ \omega^2 - k \frac{m_1 + m_2}{m_1 m_2} \right] = 0
+  \end{equation*}
+  Now, the $ \omega^2 = 0 $ solution corresponds to a translation along the $ x $-axis, while the non-vanishing solution is the expected vibration along the molecular axis with frequency:
+  \begin{equation*}
+    \omega^2 = \frac{k}{\mu}
+  \end{equation*}
+  All in all, we recovered the five roto-translational and the single vibrational normal modes of biatomic molecules.
+\end{example}
+
+\begin{example}{Carbon dioxide}{}
+  Consider a $ \ch{CO_2} $ molecule, identifying the two oxygen atoms as $ 1 $ and $ 3 $ and the carbon atom as $ 2 $. Fixing the molecular axis along the $ x $-axis, we can model the interaction between the atoms as a sum of harmonic potentials:
+  \begin{equation*}
+    \begin{split}
+      V(Q)
+      & = \frac{1}{2} k_x \left( Q_{1,x} - Q_{2,x} \right)^2 + \frac{1}{2} k_x \left( Q_{2,x} - Q_{3,x} \right)^2 + \frac{1}{2} k_x' \left( Q_{1,x} - Q_{3,x} \right)^2 \\
+      & \quad + \frac{1}{2} k_y \left( Q_{1,y} + Q_{3,y} - 2 Q_{2,y} \right)^2 + \frac{1}{2} k_z \left( Q_{1,z} + Q_{3,z} - 2 Q_{2,z} \right)^2
+    \end{split}
+  \end{equation*}
+  where $ k_x $ is the elastic constant for the elastic interaction $ \ch{C} - \ch{O} $, $ k_x' $ is that for $ \ch{O} - \ch{O} $, and $ k_y $ and $ k_z $ are responsible for the recall force which maintains the molecule linear, i.e. opposes to the bending of the molecule. Since the two oxygen atoms are further apart, with respect to the carbon atom, $ k_x' \ll k_x $, hence we can suppress the $ \ch{O} - \ch{O} $ interaction at first-order approximation. Moreover, due to cylindrical symmetry, $ k_y = k_z $, so we set $ k_x \equiv k $ and $ k_y = k_z \equiv \kappa $ The force-constants matrix then is:
+  \begin{equation*}
+    \begin{split}
+      \mt{K}
+      &=
+      \begin{bmatrix}
+        k_x + k_x' & -k_x & -k_x' & 0 & 0 & 0 & 0 & 0 & 0 \\
+        -k_x & 2k_x & -k_x & 0 & 0 & 0 & 0 & 0 & 0 \\
+        -k_x' & -k_x & k_x + k_x' & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & k_y & -2k_y & k_y & 0 & 0 & 0 \\
+        0 & 0 & 0 & -2k_y & 4k_y & -2k_y & 0 & 0 & 0 \\
+        0 & 0 & 0 & k_y & -2k_y & k_y & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & k_z & -2k_z & k_z \\
+        0 & 0 & 0 & 0 & 0 & 0 & -2k_z & 4k_z & -2k_z \\
+        0 & 0 & 0 & 0 & 0 & 0 & k_z & -2k_z & k_z \\
+      \end{bmatrix}
+      \\
+      &\simeq
+      \begin{bmatrix}
+        k & -k & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        -k & 2k & -k & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & -k & k & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & \kappa & -2\kappa & \kappa & 0 & 0 & 0 \\
+        0 & 0 & 0 & -2\kappa & 4\kappa & -2\kappa & 0 & 0 & 0 \\
+        0 & 0 & 0 & \kappa & -2\kappa & \kappa & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & \kappa & -2\kappa & \kappa \\
+        0 & 0 & 0 & 0 & 0 & 0 & -2\kappa & 4\kappa & -2\kappa \\
+        0 & 0 & 0 & 0 & 0 & 0 & \kappa & -2\kappa & \kappa \\
+      \end{bmatrix}
+    \end{split}
+  \end{equation*}
+  This is a block-diagonal matrix, hence \eref{eq:omega-eigen} reduces from a $ 9 \times 9 $ homogeneous system to a three $ 3 \times 3 $ homogeneous systems. Setting $ m_1 = m_3 \equiv M $ and $ m_2 \equiv m $, the solutions for the $ x $-system are:
+  \begin{equation*}
+    \begin{vmatrix}
+      k - \omega^2 M & -k & 0 \\
+      -k & 2k - \omega^2 m & -k \\
+      0 & -k & k - \omega^2 M \\
+    \end{vmatrix}
+    = \left( k - \omega^2 M \right) \left[ \left( k - \omega^2 M \right) \left( 2k - \omega^2 m \right) - 2k^2 \right] = 0
+  \end{equation*}
+  whose solutions are:
+  \begin{equation*}
+    \omega^2 = \frac{k}{M}
+    \qquad \qquad
+    \omega^2 = \frac{2M + m}{mM} k
+    \qquad \qquad
+    \omega^2 = 0
+  \end{equation*}
+  The third solution is a translation along the $ x $-axis (since it produces a system with solutions to $ Q_{1,x} = Q_{2,x} = Q_{3,x} $), while the other two are vibrations along the $ x $-axis: the first one is a vibration of oxygen atoms with opposite phases, while the carbon atoms remains fixed (since it corresponds to $ Q_{2,x} = 0 $ and $ Q_{1,x} = - Q_{3,x} $), while in the second one the two oxygen atoms vibrate with equal phase, while the carbon atom vibrates with opposite phase (since $ Q_{1,x} = Q_{3,x} $ and $ Q_{2,x} = - \frac{2M}{m} Q_{1,x} $, to leave the CM fixed). These vibrations are respectively called \bcex{symmetric} and \bcex{asymmetric stretching}: note that in the antisymmetric stretching the two bonds oscillate asimmetrically, hence the distribution of positive and negative are displaced (i.e. their barycenters do not coincide), and an electric dipole is present, contrary to the symmetric stretching, which means that the asymmetric stretching is IR-active.
+
+  The $ y $- and $ z $-systems are equivalent, so WLOG we solve the $ y $-system:
+  \begin{equation*}
+    \begin{vmatrix}
+      \kappa - \omega^2 M & -2 \kappa & \kappa \\
+      -2 \kappa & 4 \kappa - \omega^2 m & -2 \kappa \\
+      \kappa & -2 \kappa & \kappa - \omega^2 \kappa \\
+    \end{vmatrix}
+    = 0
+  \end{equation*}
+  which results into:
+  \begin{equation*}
+    \begin{split}
+      0
+      & = \left( \kappa - \omega^2 M \right)^2 \left( 4 \kappa - \omega^2 m \right) - 8 \kappa^2 \left( \kappa - \omega^2 M \right) - \kappa^2 \left( 4 \kappa - \omega^2 m \right) + 8 \kappa^3 \\
+      & = \left( 4 \kappa - \omega^2 m \right) \left( \omega^4 M^2 - 2 \kappa \omega^2 M \right) + 8 \kappa^2 \omega^2 M \\
+      & = \omega^2 M \left[ \left( 4 \kappa - \omega^2 m \right) \left( \omega^2 M - 2 \kappa \right) + 8 \kappa^2 \right] = \omega^4 M \left( 2 \kappa m + 4 \kappa M - \omega^2 m M \right)
+    \end{split}
+  \end{equation*}
+  whose solutions are:
+  \begin{equation*}
+    \omega^2 = 0
+    \qquad \qquad
+    \omega^2 = 2 \frac{2M + m}{m M} \kappa
+  \end{equation*}
+  The first one is a two-fold solution, representing a translation along the $ y $-axis and a rotation in the $ xy $-plane, while the second one is a vibration where the carbon atom oscillates with opposite phase with respect to the oxygen atoms (since $ y_1 = y_3 $ and $ y_2 = - \frac{2M}{m} y_1 $), called \bcex{symmetric bending}. It is clear that in this vibrational mode an electric dipole is present, hence the symmetric bending is IR-active.
+
+  All in all, we correctly find $ 5 $ roto-translations and $ 4 $ vibrations.
+\end{example}
+
+
+
+
+
+
+
+
+
+
