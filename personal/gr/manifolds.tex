@@ -1,0 +1,816 @@
+\selectlanguage{english}
+
+\section{Topological spaces}
+
+\begin{definition}{Topological space}{}
+  The \bcdef{topology} $ \mathcal{T} $ of a set $ X $ is a family of subsets of $ X $, i.e. $ \mathcal{T} \subseteq \pwst{X} $, defined as \bcdef{open sets}, with the following properties:
+  \begin{enumerate}
+    \item $ \emptyset,X \in \mathcal{T} $;
+    \item $ O_{\alpha},O_{\beta} \in \mathcal{T} \implies O_{\alpha}\cap O_{\beta} \in \mathcal{T} $;
+    \item $ \{O_{\alpha}\}_{\alpha \in \mathcal{I}} \subset \mathcal{T} \implies \bigcup_{\alpha \in \mathcal{I}} O_{\alpha} \in \mathcal{T} $.
+  \end{enumerate}
+  A \bcdef{topological space} $ M $ is a set of points, endowed with a topology $ \mathcal{T} $.
+\end{definition}
+
+Given a topological space $ (M,\mathcal{T}) $, $ O \in \mathcal{T} $ is a \bctxt{neighbourhood} of a point $ p \in M $ if $ p \in O $: then, $ (M,\mathcal{T}) $ is \bctxt{Hausdorff} if $ \forall p,q \in M \,\, \exists O_1, O_2 \in \mathcal{T} $ neighbourhoods of $ p $ and $ q $ respectively such that $ O_1 \cap O_2 = \emptyset $.
+
+Topological spaces allow to introduce the concept of continuity: given two topological spaces $ (M_1, \mathcal{T}_1) $ and $ (M_2, \mathcal{T}_2) $, a map $ f : M_1 \ra M_2 $ is \bctxt{continuous} if $ O \in \mathcal{T}_2 \,\Rightarrow\, f^{-1}(O)\in \mathcal{T}_1 $.
+
+\begin{definition}{Homeomorphism}{}
+  Given two topological spaces $ (M_1, \mathcal{T}_1) $ and $ (M_2, \mathcal{T}_2) $, a map $ f : M_1 \rightarrow M_2 $ is a \bcdef{homeomorphism} if it is bijective and bicontinuous, i.e. both $ f $ and $ f^{-1} $ are continuous.
+\end{definition}
+
+\section{Differentiable Manifolds}
+
+\begin{definition}{Differentiable manifold}{}
+  An $ n $-dimensional \bcdef{differentiable manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
+  \begin{enumerate}
+    \item $ \mathcal{M} $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\mathcal{M} \,\, \exists O \in \mathcal{T}(\mathcal{M}) : p \in O \land \exists \varphi : O \rightarrow U \in \mathcal{T}(\R^n) $ homeomorphism;
+    \item given $ O_{\alpha},O_{\beta} \in \mathcal{T}(\mathcal{M}) : O_{\alpha} \cap O_{\beta} \neq \emptyset $, the corresponding maps $ \varphi_{\alpha} : O_{\alpha} \rightarrow U_{\alpha}$ and $ \varphi_{\beta} : O_{\beta} \rightarrow U_{\beta} $ must be \textit{compatible}, i.e. $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} : \varphi_{\alpha}(O_{\alpha} \cap O_{\beta}) \rightarrow \varphi_{\beta}(O_{\alpha} \cap O_{\beta}) $ and its inverse must be smooth (of $ \mathcal{C}^{\infty} $ class).
+  \end{enumerate}
+\end{definition}
+
+The maps $ \varphi_{\alpha} $ are called \bctxt{charts} and a collection of compatible charts is called an \bctxt{atlas}: a maximal atlas $ \mathcal{A} $ is an atlas such that $ \bigcup_{\alpha \in \mathcal{I}} O_{\alpha} = \mathcal{M} $. Two atlases are compatible if each chart of one atlas is compatible with every chart of the other: they define the same differentiable structure on the manifold.
+
+Each chart $ \varphi_{\alpha} $ provides a coordinate system on $ O_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^{\mu}(p), \dots, x^n(p) \right) $. The transition functions $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions.
+
+\begin{example}{Spheres}{}
+  $ \mathbb{S}^n $ is a differentiable manifold for $ n \in \N $. In particular, to define a differentiable structure on $ \mathbb{S}^1 $, an atlas of two charts is needed: the standard parametrization $ \vartheta \in [0, 2\pi) $ is not a well-defined chart because $ [0,2\pi) $ is not an open set in the Euclidean topology of $ \R $, therefore the elimination of a point is necessary; usually, the two charts of the atlas are defined by $ \vartheta_1 \in (0,2\pi) $, excluding $ (1,0) $ (in the embedding space $ \R^2 $), and $ \vartheta_2 \in (-\pi,\pi) $, excluding $ (-1,0) $: they are evidently compatible, thus they form a maximal atlas.
+\end{example}
+
+In the remainder of these notes, $ \mathcal{M} $ is always taken to be an $ n $-dimensional differentiable manifold.
+
+\subsection{Maps between manifolds}
+
+Locally mapping $ \mathcal{M} $ to $ \R^n $ allows for the extension of the concepts of Analysis from $ \R^n $ to $ \mathcal{M} $.
+
+\begin{definition}{Smooth maps}
+  A function $ f : \mathcal{M} \rightarrow \R $ on a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ is \bcdef{smooth} if $ f \circ \varphi_{\alpha}^{-1} : U_{\alpha} \rightarrow \R $ is smooth for all charts $ (U_{\alpha},\varphi_{\alpha}) \in \mathcal{A} $.
+
+  A map $ f : \mathcal{M} \rightarrow \mathcal{N} $ between two differentiable manifolds $ (\mathcal{M},\mathcal{A}_1), (\mathcal{N},\mathcal{A}_2) $ is \bcdef{smooth} if $ \psi_{\alpha_2} \circ f \circ \varphi_{\alpha_1}^{-1} : U_{\alpha_1} \rightarrow V_{\alpha_2} $ is smooth for all charts $ (U_{\alpha_1},\varphi_{\alpha_1}) \in \mathcal{A}_1, (V_{\alpha_2},\varphi_{\alpha_2}) \in \mathcal{A}_2 $.
+\end{definition}
+
+A smooth homeomorphism $ f : \mathcal{M} \ra \mathcal{N} $ between two differentiable manifolds $ \mathcal{M} $ and $ \mathcal{N} $ is called a \bctxt{diffeomorphism}.
+
+\begin{proposition}{Diffeomorphic manifolds}{}
+  If $ \mathcal{M} $ and $ \mathcal{N} $ are \bcprop{diffeomorphic}, then $ \dim_{\R}\mathcal{M} = \dim_{\R}\mathcal{N} $.
+\end{proposition}
+
+\begin{example}{Diffenetiable structures}{}
+  $ \Sn{7} $ can be covered by multiple incompatible atlases: the resulting manifolds are homeomorphic but not diffeomorphic.
+
+  $ \R^n $ has a unique differentiable structure for all $ n \in \N $, except for $ n = 4 $: $ \R^4 $ can be covered by infinitely-many incompatible atlases.
+\end{example}
+
+\section{Tangent spaces}
+
+The notions of calculus can be defined on a differential manifold $ (\mathcal{M},\mathcal{A}) $ with the notion of tangent spaces. Indeed, the derivative of a function $ f : \mathcal{M} \rightarrow \R $ at a point $ p \in \mathcal{M} $, covered by the chart $ (\varphi,U) $, is defined as:
+\begin{equation}
+  \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p \defeq \frac{\pa (f \circ \varphi^{-1})}{\pa x^{\mu}}\bigg\vert_{\varphi(p)}
+  \label{eq:derivative-def}
+\end{equation}
+
+Evidently, this definition depends on the choise of coordinates $ x^{\mu} $, thus it depends on the chart.
+
+\subsection{Tangent vectors}
+
+\begin{definition}{Space of smooth functions}{}
+  The set of all smooth functions on $ \mathcal{M} $ is denoted by $ \cm $.
+\end{definition}
+
+\begin{definition}{Tangent vector}{tangent-vector}
+  A \bcdef{tangent vector} to $ \mathcal{M} $ in $ p \in \mathcal{M} $ is an operator $ X_p : \cm \rightarrow \R $ such that:
+  \begin{enumerate}
+    \item $ X_p(f + g) = X_p(f) + X_p(g) \,\, \forall f,g \in\cm $;
+    \item $ X_p(f) = 0 $ for all constant functions $ f \in \cm $;
+    \item $ X_p(fg) = X_p(f)g(p) + f(p)X_p(g) \,\, \forall f,g \in\cm $.
+  \end{enumerate}
+\end{definition}
+
+Conditions 2. and 3. trivially imply that $ X_p(\alpha f) = \alpha X_p(f) \,\, \forall \alpha \in \R $, which means that $ X_p $ is a linear operator, i.e. $ X_p \in \Hom_\R(\cm , \R) $. Moreover, it is simple to check that $ \pa_{\mu}\vert_p $ satisfies the conditions of \dref{def:tangent-vector}.
+
+\begin{theorem}{Tangent space}{}
+  The set $ T_p\mathcal{M} $ of all tangent vectors at a point $ p\in\mathcal{M} $ forms an $ n $-dimensional space, called \bcth{tangent space}, and $ \{\pa_{\mu}\vert_p\}_{\mu = 1,\dots,n} $ is a basis of such space.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Defining $ f \circ \varphi^{-1} \equiv F : U \subset \mathcal{M} \rightarrow \R $, with $ f : \mathcal{M} \rightarrow \mathcal{M} $ and $ (\varphi,U) \in \mathcal{A} $, it can be shown that, in some neighbourhood of $ p $ (not necessarily $ U $), $ F $ cal always be written as:
+    \begin{equation*}
+      F(x) = F(x^{\mu}(p)) + \left( x^{\mu} - x^{\mu}(p) \right) F_{\mu}(x)
+    \end{equation*}
+    for some functions $ \{F_{\mu}\}_{\mu = 1 , \dots , n} $ (e.g. $ F(x) = F(0) + x \int_0^1 \dd t\,F(xt) $). Applying $ \pa_{\mu}\vert_{x(p)} $:
+    \begin{equation*}
+      \frac{\pa F}{\pa x^{\mu}}\bigg\vert_{x(p)} = F_{\mu}(x(p))
+    \end{equation*}
+    Defining $ f_{\mu} \equiv F_{\mu} \circ \varphi $, for any $ q \in \mathcal{M} $ in an appropriate neighbourhood of $ p $:
+    \begin{equation*}
+      f(q) = f(p) + \left( x^{\mu}(q) - x^{\mu}(p) \right) f_{\mu}(q)
+    \end{equation*}
+    Moreover, remembering Eq. \eref{eq:derivative-def}:
+    \begin{equation*}
+      f_{\mu}(p) = F_{\mu} \circ \varphi(p) = F_{\mu}(x(p)) = \frac{\pa F}{\pa x^{\mu}}\bigg\vert_{x(p)} = \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p
+    \end{equation*}
+    Using these facts, the action of a tangent vector can be written explicitly:
+    \begin{equation*}
+      \begin{split}
+        X_p(f)
+        &= X_p\left( f(p) + \left( x^{\mu} - x^{\mu}(p) \right) f_{\mu} \right)\\
+        &= X_p\left( f(p) \right) + X_p\left( \left( x^{\mu} - x^{\mu}(p) \right) \right) f_{\mu}(p) + \left( x^{\mu} - x^{\mu}(p) \right)(p) X_p\left( f_{\mu} \right)\\
+        &= X_p\left( x^{\mu} \right) f_{\mu}(p)
+      \end{split}
+    \end{equation*}
+    because $ f(p) $ is a constant and $ \left( x^{\mu} - x^{\mu}(p) \right)(p) = x^{\mu}(p) - x^{\mu}(p) = 0 $. Therefore, remembering the expression for $ f_{\mu}(p) $:
+    \begin{equation*}
+      X_p = X_p(x^{\mu}) \frac{\pa}{\pa x^{\mu}}\bigg\vert_p \equiv X^{\mu} \frac{\pa}{\pa x^{\mu}}\bigg\vert_p
+    \end{equation*}
+    Thus, $ T_p\mathcal{M} = \braket{\{\pa_{\mu}\vert_p\}_{\mu = 1 , \dots , n}} $. To check for linear independence, suppose $ \alpha = \alpha^{\mu} \pa_{\mu}\vert_p \equiv 0 $: acting on $ f = x^{\nu} $, it gives $ \alpha(f) = \alpha_{\mu} \pa_{\mu}(x^{\nu})\vert_p = \alpha_{\nu} = 0 $. This concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Changing coordinates}
+
+Although $ \pa_{\mu}\vert_p $ depends on the choice of coordinates (it is a \bctxt{coordinate basis}), the existence of $ X_p $ is independent of that choice.
+
+If two different charts $ (\varphi,U) $ and $ (\tilde{\varphi},V) $ intersect in a neighbourhood of $ p \in U \cap V $, the transition from $ x^{\mu} $ to $ y^{\mu} $ can be expressed as:
+\begin{equation}
+  X_p(f) = X^{\mu} \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p = X^{\mu} \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)} \frac{\pa f}{\pa y^{\nu}}\bigg\vert_p
+\end{equation}
+This equation can have two interpretations, namely the alibi interpretation:
+\begin{equation}
+  \frac{\pa}{\pa x^{\mu}}\bigg\vert_p = \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)} \frac{\pa}{\pa y^{\nu}}\bigg\vert_p
+  \label{eq:vector-coord-basis}
+\end{equation}
+and the alias interpretation:
+\begin{equation}
+  \tilde{X}^{\nu} = X^{\mu} \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)}
+\end{equation}
+Components of vectors which transform this way are called \bctxt{contravariant}.
+
+\subsubsection{Curves}
+
+Consider a smooth curve on $ \mathcal{M} $, i.e. a smooth map $ \sigma : I \in \mathcal{T}(\R) \rightarrow \mathcal{M} $, WLOG parametrized as $ \sigma(t) : \sigma(0) = p \in \mathcal{M} $; with a given chart $ (\varphi,U) $, this curve becomes $ \varphi \circ \sigma : I \rightarrow \R^n $, parametrized by $ x^{\mu}(t) $.
+The tangent vector to the curve in $ p $ is:
+\begin{equation}
+  X_p = \frac{dx^{\mu}(t)}{dt}\bigg\vert_{t=0} \frac{\pa}{\pa x^{\mu}}\bigg\vert_p
+  \label{eq:tangent-curve}
+\end{equation}
+This operator, applied to a function $ f \in\cm $, computes the directional derivative of $ f $ along the curve. It can be showed that every tangent vector can be written as in Eq. \eref{eq:tangent-curve}, therefore the tangent space can be seen as the space of all possible tangent vectors to curves passing through $ p $.
+
+It must be noted that tangent spaces at different points are entirely different spaces: there is no way to directly compare vectors between them.
+
+\subsection{Vector fields}
+
+\begin{definition}{Vector fields}{}
+  A \bcdef{vector field} $ X $ is a smooth map $ X : p \in \mathcal{M} \mapsto X_p \in T_p\mathcal{M} $. The space of all vector fields on $ \mathcal{M} $ is denoted by $ \xm $.
+\end{definition}
+
+Note that a vector field can also be viewed as a smooth map $ X : \cm \rightarrow \cm $, since $ (X(f))(p) = X_p(f) \in \R $.
+Given a chart $ (\varphi,U) $, a vector field $ X $ can be expressed as:
+\begin{equation}
+  X = X^{\mu} \frac{\pa}{\pa x^{\mu}}
+\end{equation}
+with $ X^{\mu} \in \cm $. This expression is only defined on $ U $.
+
+\subsubsection{Lie brakets}
+
+Given two vector fields $ X,Y \in\xm $, their product is clearly not a vector field, as it does not satisfy Leibniz' rule:
+\begin{equation*}
+  XY(fg) = XY(f) g + Y(f) X(g) + X(f) Y(g) + f XY(g) \neq XY(f) g + f XY(g)
+\end{equation*}
+where $ XY(f) \equiv X(Y(f)) $.
+
+\begin{definition}{Lie brackets}{}
+  Given two vector fields $ X,Y \in\xm $, their commutator (or \bcdef{Lie bracket}) is defined as:
+  \begin{equation}
+    \left[ X,Y \right](f) = XY(f) - YX(f)
+  \end{equation}
+\end{definition}
+
+With a given chart:
+\begin{equation*}
+  \begin{split}
+    \left[ X,Y \right](f)
+    &= X^{\mu} \frac{\pa}{\pa x^{\mu}} \left( Y^{\nu} \frac{\pa f}{\pa x^{\nu}} \right) - Y^{\mu} \frac{\pa}{\pa x^{\mu}} \left( X^{\nu} \frac{\pa f}{\pa x^{\nu}} \right)\\
+    &= \left( X^{\mu} \frac{\pa Y^{\nu}}{\pa x^{\mu}} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \right) \frac{\pa f}{\pa x^{\nu}}
+  \end{split}
+\end{equation*}
+therefore:
+\begin{equation}
+  \left[ X,Y \right] = \left( X^{\mu} \frac{\pa Y^{\nu}}{\pa x^{\mu}} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \right) \frac{\pa}{\pa x^{\nu}}
+  \label{eq:2.8}
+\end{equation}
+
+\begin{theorem}{Jacobi identity}{}
+  Given $ X,Y,Z \in\xm $, then:
+  \begin{equation}
+    \left[ X, \left[ Y,Z \right] \right] + \left[ Y, \left[ Z,X \right] \right] + \left[ Z, \left[ X,Y \right] \right] = 0
+  \end{equation}
+\end{theorem}
+
+With Lie brackets, $ \xm $ can be given the structure of a Lie algebra.
+
+\subsubsection{Integral curves}
+
+\begin{definition}{Flow}{}
+  A \bcdef{flow} on $ \mathcal{M} $ is a one-parameter family of diffeomorphisms $ \sigma_t : \mathcal{M} \rightarrow \mathcal{M} $, labelled by $ t\in\R $, with group structure: $ \sigma_0 = \id_{\mathcal{M}} $ and $ \sigma_s \circ \sigma_t = \sigma_{s+t} $, thus $ \sigma_{-t} = \sigma_t^{-1} $.
+\end{definition}
+
+Such flows give rise to streamlines on the manifold: these streamlines are required to be smooth.
+Defining $ x^{\mu}(\sigma_t) \equiv x^{\mu}(t) $, a vector field can be defined by the tangent to the streamlines at each point on the manifold:
+\begin{equation}
+  X^{\mu}(x^{\mu}(t)) = \frac{\dd x^{\mu}(t)}{\dd t}
+  \label{eq:tangent-flow}
+\end{equation}
+The inverse reasoning is also possible: given $ X \in \xm $, the streamlines defined by \eref{eq:tangent-flow} are the \bctxt{integral curves} of $ X $.
+
+\begin{proposition}{Infinitesimal flow}{}
+  The \bcprop{infinitesimal flow} generated by $ X \in\xm $ is:
+  \begin{equation}
+    x^{\mu}(t) = x^{\mu}(0) + tX^{\mu}(x(t)) + o(t)
+    \label{eq:infinitesimal-flow}
+  \end{equation}
+\end{proposition}
+
+A vector field which generates a flow defined for all $ t \in \R $ is called \bctxt{complete}.
+
+\begin{theorem}{}
+  If $ \mathcal{M} $ is compact, then all $ X \in \xm $ are complete.
+\end{theorem}
+
+\begin{example}{Integral curves on the $ 2 $-sphere}{}
+  On $ \mathbb{S}^2 $, the flow generated by $ X = \pa_{\phi} $ is described by $ \dot{\phi} = 1, \dot{\theta} = 0 $, thus $ \theta(t) = \theta_0 $ and $ \phi(t) = \phi_0 + t $: the flow lines are lines of constant latitude.
+\end{example}
+
+\subsection{Lie derivative}
+
+Defining calculus for vector fields requires a way to compare vectors of different tangent spaces.
+
+\begin{definition}{Pull-back}{}
+  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a function $ f : \mathcal{N} \rightarrow \R $, the \bcdef{pull-back} of $ f $ is the function $ \varphi^*f : \mathcal{M} \rightarrow \R $ such that $ \varphi^*f(p) = f(\varphi(p)) $.
+\end{definition}
+
+\begin{definition}{Push-forward}{}
+  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a vector field $ X \in \xm $, the \bcdef{push-forward} of $ X $ is the vector field $ \varphi_*X \in \mathfrak{X}(\mathcal{N}) $ such that $ \varphi_*X(f) = X(\varphi^*f) $.
+\end{definition}
+
+This last equality must be evaluated at the appropriate points: $ [ \varphi_*X(f) ](\varphi(p)) = [ X(\varphi^*f) ](p) $.
+
+With the appropriate charts on $ \mathcal{M} $ and $ \mathcal{N} $, the definitions above can be rewritten with coordinates:
+\begin{equation}
+  \varphi^*f(x) = f(y(x))
+\end{equation}
+\begin{equation}
+  \varphi_*X(f) = X^{\mu} \frac{\pa f(y(x))}{\pa x^{\mu}} = X^{\mu} \frac{\pa y^{\alpha}}{\pa x^{\mu}} \frac{\pa f(y)}{\pa y^{\alpha}}
+\end{equation}
+
+The notions of pull-back and push-forward allow to compare tangent vectors at neighbouring points and, in particular, to define the derivative along a vector field.
+
+\begin{definition}{Lie derivative of functions}{}
+  Given a function $ f : \mathcal{M} \rightarrow \R $ and a vector field $ X \in\xm $, the derivative of $ f $ along $ X $, called \bcdef{Lie derivative}, is defined as:
+  \begin{equation}
+    \ld_X f(x) \defeq \lim_{t \rightarrow 0} \frac{f(\sigma_t(x)) - f(x)}{t} = \frac{df(\sigma_t(x))}{dt}\bigg\vert_{t=0}
+    \label{eq:2.14}
+  \end{equation}
+  where $ \sigma_t $ is the flow generated by $ X $.
+\end{definition}
+
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \ld_X f = X(f)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ \ld_X f = \frac{df(\sigma_t)}{dt} = \frac{\pa f}{\pa x^{\mu}} \frac{dx^{\mu}(t)}{dt} = X^{\mu} \frac{\pa f}{\pa x^{\mu}} = X(f) $.
+  \end{proof}
+\end{proofbox}
+
+The Lie derivative can be extended to vector fields.
+
+\begin{definition}{Lie derivative of vector fields}{}
+  Given two vector fields $ X,Y \in\xm $, the \bcdef{Lie derivative} of $ Y $ along $ X $ is defined as:
+  \begin{equation}
+    \ld_X Y_p \defeq \lim_{t \rightarrow 0} \frac{((\sigma_{-t})_*Y)_p - Y_p}{t}
+  \end{equation}
+  where $ \sigma_t $ is the flow generated by $ X $.
+\end{definition}
+
+The use of the inverse flow $ \sigma_{-t} $ is necessary because to evaluate the vector field $ \ld_X Y $ at the point $ p \in \mathcal{M} $, the tangent vector $ Y_{\sigma_t(p)} \in T_{\sigma_t(p)}\mathcal{M} $ must be ``pushed-back" to $ T_p\mathcal{M} = T_{\sigma_0(p)}\mathcal{M} $.
+
+With $ t \rightarrow 0 $, the infinitesimal flow $ \sigma_{-t} $ is, according to \eref{eq:infinitesimal-flow}, $ x^{\mu}(t) = x^{\mu}(0) - tX^{\mu} + o(t) $, therefore the Lie derivative of basis tangent vectors can be expressed as:
+\begin{equation}
+  (\sigma_{-t})_* \pa_{\mu} = \frac{\pa x^{\nu}(t)}{\pa x^{\mu}} \frac{\pa}{\pa x^{\nu}(t)} = \left( \delta^{\nu}_{\mu} - t \frac{\pa X^{\nu}}{\pa x^{\mu}} + o(t) \right) \pa_{\nu}(t)
+  \quad\Longrightarrow\quad
+  \ld_X \pa_{\mu} = - \frac{\pa X^{\nu}}{\pa x^{\mu}} \pa_{\nu}
+  \label{eq:lie-der-basis-vector}
+\end{equation}
+Moreover, by the Jacobi identity it follows that:
+\begin{equation}
+  \ld_X \ld_Y Z - \ld_Y \ld_X Z = \ld_{\left[ X,Y \right]} Z
+  \label{eq:prop-lie-algebra}
+\end{equation}
+
+\begin{lemma}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \ld_X Y = \left[ X,Y \right]
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ \ld_X Y = \ld_X (Y^{\mu} \pa_{\mu}) = \left( \ld_X Y^{\mu} \right) \pa_{\mu} + Y^{\mu} \left( \ld_X \pa_{\mu} \right) = X^{\nu} \frac{\pa Y^{\mu}}{\pa x^{\nu}} \pa_{\mu} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \pa_{\nu} = \left[ X,Y \right] $.
+  \end{proof}
+\end{proofbox}
+
+\section{Tensors}
+
+\subsection{Dual Spaces}
+
+\begin{definition}{Dual space}{}
+  Given a vector space $ V $, its \bcdef{dual space} $ V^* $ is the space of all linear maps $ f : V \rightarrow \R $.
+\end{definition}
+
+Given a basis $ \{\ve{e}_{\mu}\}_{\mu = 1,\dots,n} $ of $ V $, its \bctxt{dual basis} $ \{\ve{f}^{\mu}\}_{\mu=1,\dots,n} $ of $ V^* $ can be defined by:
+\begin{equation}
+  \ve{f}^{\nu}(\ve{e}_{\mu}) = \delta^{\nu}_{\mu}
+  \label{eq:dual-basis}
+\end{equation}
+A general vector in $ V $ can be written as $ X = X^{\mu} \ve{e}_{\mu} $, thus, according to \eref{eq:dual-basis}, $ X^{\mu} = \ve{f}^{\mu}(X) $.
+Clearly, the map $ f : \ve{e}_{\mu} \mapsto \ve{f}^{\mu} $ is a non-canonical isomorphism between $ V $ and $ V^* $, hence $ \dim_{\R}V = \dim_{\R}V^* $.
+
+\begin{proposition}[before upper = {\tcbtitle}]{Dual of the dual}{}
+  \begin{equation}
+    (V^*)^* \cong V
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The natural isomorphism between $ (V^*)^* $ and $ V $ is basis-independent: suppose $ X \in V $ and $ \omega \in V^* $, so that $ \omega(X) \in \R $; $ X $ can be viewed as $ X \in (V^*)^* $ by setting $ X(\omega) \equiv \omega(X) $.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Cotangent vectors}
+
+\begin{definition}{Cotangent space}{}
+  Given a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ and a point $ p \in \mathcal{M} $, the \bcdef{cotangent space} to $ \mathcal{M} $ at $ p $ is defined as $ T^*_p\mathcal{M} \defeq (T_p\mathcal{M})^* $.
+\end{definition}
+
+Elements of $ T^*_p\mathcal{M} $ are called cotangent vectors (or \bctxt{covectors}).
+
+\begin{definition}{Covector field}{}
+  A covector field (or \bcdef{1-form}) is a smooth map $ \omega : p \in \mathcal{M} \mapsto \omega_p \in T^*_p\mathcal{M} $. The space of all 1-forms on $ \mathcal{M} $ is denoted by $ \lm{1} $.
+\end{definition}
+
+Note that a 1-form can also be viewed as a smooth map $ \omega : \xm \rightarrow \cm $, since $ (\omega(X))(p) = \omega_p(X_p) \in \R $.
+
+\begin{proposition}{}{}
+  $ \{\dd x^{\mu}\}_{\mu = 1,\dots,n} $ is a basis of $ \lm{1} $, dual to the basis $ \{\pa_{\mu}\}_{\mu = 1,\dots,n} $ of $ \xm $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider $ f \in \cm $ and define $ \dd f \in \lm{1} $ by $ \dd f(X) = X(f) $: taking $ f = x^{\mu} $ and $ X = \pa_{\mu} $, $ \dd f(X) = \pa_{\nu}(x^{\mu}) = \delta^{\mu}_{\nu} $, therefore $ \{\dd x^{\mu}\}_{\mu = 1,\dots,n} $ is the dual basis of $ \lm{1} $.
+  \end{proof}
+\end{proofbox}
+
+This is also confirmed by $ \dd f = \frac{\pa f}{\pa x^{\mu}} \dd x^{\mu} $. These are coordinate bases: in fact, given two different charts $ (\varphi,U), (\tilde{\varphi},V) $:
+\begin{equation}
+  \dd y^{\mu} = \frac{\dd y^{\mu}}{\dd x^{\nu}}\dd x^{\nu}
+\end{equation}
+which is the inverse of \eref{eq:vector-coord-basis} (not evaluated at a specific point). This ensures that:
+\begin{equation*}
+  \dd y^{\mu}\left( \frac{\pa}{\pa y^{\nu}} \right) = \frac{\pa y^{\mu}}{\pa x^{\alpha}} \frac{\pa x^{\beta}}{\pa y^{\nu}} \dd x^{\alpha}\left( \frac{\pa}{\pa x^{\beta}} \right) = \frac{\pa y^{\mu}}{\pa x^{\alpha}} \frac{\pa x^{\alpha}}{\pa y^{\nu}} = \delta^{\mu}_{\nu}
+\end{equation*}
+A 1-form $ \omega \in \lm{1} $ can thus be expressed both as $ \omega = \omega_{\mu} \dd x^{\mu} = \tilde{\omega}_{\mu} \dd y^{\mu} $, with:
+\begin{equation}
+  \tilde{\omega}_{\omega} = \frac{\pa x^{\nu}}{\pa y^{\mu}} \omega_{\nu}
+\end{equation}
+Components of 1-forms which transform this way are called \bctxt{covariant}.
+
+\begin{definition}{Pull-back of 1-forms}{}
+  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a 1-form $ \omega \in \Lambda^1(\mathcal{N}) $, the \bcdef{pull-back} of $ \omega $ is the 1-form $ \varphi^*\omega \in \lm{1} $ such that $ \varphi^*\omega(X) = \omega(\varphi_*X) $.
+\end{definition}
+
+With the appropriate charts on $ \mathcal{M} $ and $ \mathcal{N} $, the definition above can be rewritten with coordinates:
+\begin{equation}
+  \varphi^*\omega = \omega_{\alpha} \frac{\pa y^{\alpha}}{\pa x^{\mu}} \dd x^{\mu}
+\end{equation}
+
+\begin{definition}{Lie derivative of 1-forms}{}
+  Given a vector field $ X \in \xm $ and a 1-form $ \omega \in \lm{1} $, the \bcdef{Lie derivative} of $ \omega $ along $ X $ is defined as:
+  \begin{equation}
+    \ld_X \omega_p \defeq \lim_{t \rightarrow 0} \frac{(\sigma_t^* \omega)_p - \omega_p}{t}
+  \end{equation}
+  where $ \sigma_t $ is the flow generated by $ X $.
+\end{definition}
+
+In contrast with the Lie derivative of a vector field, which pushes forward with $ \sigma_{-t} $ (i.e. pushes back), the Lie derivative of a 1-form pulls back with $ \sigma_t $: this results in the difference of a minus sign with respect to \eref{eq:lie-der-basis-vector}, giving:
+\begin{equation}
+  \ld_X \dd x^{\mu} = \frac{\pa X^{\mu}}{\pa x^{\nu}} \dd x^{\nu}
+\end{equation}
+Therefore, on a general 1-form $ \omega = \omega_{\mu} \dd x^{\mu} $:
+\begin{equation}
+  \ld_X \omega = \left( X^{\nu} \pa_{\nu} \omega_{\mu} + \omega_{\nu} \pa_{\mu} X^{\nu} \right) \dd x^{\mu}
+  \label{eq:2.23}
+\end{equation}
+
+\subsection{Tensor fields}
+
+\begin{definition}{Tensor}{}
+  A \bcdef{tensor} of rank $ (r,s) $ at a $ p\in\mathcal{M} $ of a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ is a multilinear map defined as:
+  \begin{equation}
+    T_p : \overbrace{T^*_p \mathcal{M} \times \dots \times T^*_p \mathcal{M}}^{r} \times \overbrace{T_p \mathcal{M} \times \dots \times T_p \mathcal{M}}^{s} \rightarrow \R
+    \label{eq:2.24}
+  \end{equation}
+\end{definition}
+
+For example, a cotangent vector $ \omega_p \in T^*_p \mathcal{M} $ is a tensor of rank $ (1,0) $, while a tangent vector $ X_p \in T_p \mathcal{M} $ is a tensor of rank $ (0,1) $.
+
+\begin{definition}{Tensor field}{}
+  A \bcdef{tensor field} of rank $ (r,s) $ is a smooth map $ T : p \in \mathcal{M} \mapsto T_p $ tensor of rank $ (r,s) $ at $ p $. It can also be viewed as a smooth map $ T : [\lm{1}]^r \times [\xm]^s \rightarrow \cm $.
+\end{definition}
+
+Given appropriate bases for vector fields $ \{\ve{e}_{\mu}\}_{\mu = 1,\dots,n} $ and 1-forms $ \{\ve{f}^{\mu}\}_{\mu = 1,\dots,n} $, the components of a tensor field are defined as:
+\begin{equation}
+  \tensor{T}{^{\mu_1}^{\dots}^{\mu_r}_{\nu_1}_{\dots}_{\nu_s}} \defeq T(\ve{f}^{\mu_1},\dots,\ve{f}^{\mu_r},\ve{e}_{\nu_1},\dots,\ve{e}_{\nu_s})
+\end{equation}
+
+\begin{proposition}{Components of tensor fields}{}
+  On an $ n $-dimensional manifold, a $ (r,s) $ tensor field has $ n^{r+s} $ components, each being an element of $ \cm $.
+\end{proposition}
+
+Consider two general basis transformations, for vector fields and 1-forms, described by invertible matrices $ \mt{A} $ and $ \mt{B} $ such that $ \tilde{\ve{e}}_{\mu} = \tensor{A}{^\nu_\mu}\ve{e}_{\nu} $ and $ \tilde{\ve{f}}^{\mu} = \tensor{B}{^\mu_\nu}\ve{f}^{\nu} $, with necessary condition $ \tensor{A}{^\mu_\nu} \tensor{B}{^\rho_\mu} = \delta^{\rho}_{\nu} $ to ensure duality: this implies $ \mt{B} = \mt{A}^{-1} $, i.e. covectors transform inversely with respect to vectors. Thus:
+\begin{equation}
+  \tensor{\tilde{T}}{^{\mu_1}^{\dots}^{\mu_r}_{\nu_1}_{\dots}_{\nu_s}} = \tensor{B}{^{\mu_1}_{\rho_1}} \dots \tensor{B}{^{\mu_r}_{\rho_r}} \tensor{A}{^{k_1}_{\nu_1}} \dots \tensor{A}{^{k_s}_{\nu_s}} \tensor{T}{^{\rho_1}^{\dots}^{\rho_r}_{k_1}_{\dots}_{k_s}}
+  \label{eq:2.26}
+\end{equation}
+If the considered basis are coordinate basis, then $ \tensor{A}{^\mu_\nu} = \frac{\pa x^{\mu}}{\pa y^{\nu}} $ and $ \tensor{B}{^\mu_\nu} = \frac{\pa y^{\mu}}{\pa x^{\nu}} $.
+
+\subsection{Operations on tensors}
+
+Algebric addition and multiplication by functions are trivially defined on tensors of the same rank.
+
+\begin{proposition}
+  The space of all $ (r,s) $ tensors at a point $ p \in \mathcal{M} $ is a vector space.
+\end{proposition}
+
+\begin{definition}
+  Given two tensor fields $ S $ of rank $ (p,q) $ and $ T $ of rank $ (r,s) $, their \textit{tensor product} is defined as:
+  \begin{equation}
+    \begin{split}
+      &S \otimes T (\omega_1,\dots,\omega_p,\eta_1,\dots,\eta_r,X_1,\dots,X_q,Y_1,\dots,Y_s)\\
+      &\qquad\qquad\qquad = S(\omega_1,\dots,\omega_p,X_1,\dots,X_q) T(\eta_1,\dots,\eta_r,Y_1,\dots,Y_s)
+    \end{split}
+    \label{eq:2.27}
+  \end{equation}
+  or, in components:
+  \begin{equation}
+    \tensor{(S \otimes T)}{^{\mu_1}^{\dots}^{\mu_p}^{\nu_1}^{\dots}^{\nu_r}_{\rho_1}_{\dots}_{\rho_q}_{\dots}_{\sigma_1}_{\dots}_{\sigma_s}} = \tensor{S}{^{\mu_1}^{\dots}^{\mu_p}_{\rho_1}_{\dots}_{\rho_q}} \tensor{T}{^{\nu_1}^{\dots}^{\nu_r}_{\sigma_1}_{\dots}_{\sigma_s}}
+    \label{eq:2.28}
+  \end{equation}
+\end{definition}
+
+It is also possible to contract tensor ($ (r,s) \mapsto (r-1,s-1) $): for example, given a rank $ (2,1) $ tensor, a rank $ (1,0) $ tensor can be defined as $ S(\omega) = T(\omega, \ve{f}^{\mu}, \ve{e}_{\mu}) $, with components $ \tensor{S}{^\mu} = \tensor{T}{^\nu^\mu_\mu} $; it must be noted that, in general, $ \tensor{T}{^\nu^\mu_\mu} \neq \tensor{T}{^\mu^\nu_\mu} $.
+
+\begin{definition}
+  Given an object $ T_{\mu_1 \dots \mu_n} $ dependent on some indices, its \textit{symmetric} and \textit{antisymmetric} parts are respectively defined as:
+  \begin{equation}
+    T_{(\mu_1 \dots \mu_n)} \defeq \frac{1}{n!} \sum_{\sigma \in S^n} T_{\sigma(\mu_1) \dots \sigma(\mu_n)}
+    \label{eq:2.29}
+  \end{equation}
+  \begin{equation}
+    T_{[\mu_1 \dots \mu_n]} \defeq \frac{1}{n!} \sum_{\sigma \in S^n} \sgn(\sigma) T_{\sigma(\mu_1) \dots \sigma(\mu_n)}
+    \label{eq:2.30}
+  \end{equation}
+\end{definition}
+
+Conventionally, indices surrounded by $ || $ are not (anti-)symmetrized (ex: $ T_{[\mu|\nu|\rho]} = \frac{1}{2} \left( T_{\mu \nu \rho} - T_{\rho \nu \mu} \right) $).\\
+As previously seen, vector fields are pushed forward and 1-form are pulled back: tensors will thus behave in a mixed way.
+
+\begin{definition}
+  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a $ (r,s) $ tensor field $ T $ on $ \mathcal{M} $, the \textit{push-forward} of $ T $ is the $ (r,s) $ tensor field $ \varphi_* T $ on $ \mathcal{N} $ such that, for $ \omega_j \in \Lambda^1(\mathcal{N}) $ and $ X_j \in \mathfrak{X}(\mathcal{N}) $:
+  \begin{equation}
+    \varphi_* T(\omega_1, \dots, \omega_r, X_1, \dots, X_s) = T(\varphi^* \omega_1, \dots, \varphi^* \omega_r, \varphi_*^{-1} X_1, \dots, \varphi_*^{-1} X_s)
+    \label{eq:2.31}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  Given a vector field $ X \in \xm $ and a $ (r,s) $ tensor field $ T $ on $ \mathcal{M} $, the \textit{Lie derivative} of $ T $ along $ X $ is defined as:
+  \begin{equation}
+    \ld_X T_p \defeq \lim_{t \rightarrow 0} \frac{((\sigma_{-t})_* T)_p - T_p}{t}
+    \label{eq:2.32}
+  \end{equation}
+  where $ \sigma_t $ is the flow generated by $ X $.
+\end{definition}
+
+\section{Differential forms}
+
+\begin{definition}
+  A totally anti-symmetric $ (0,p) $ tensor is defined as a \textit{$ p $-form}. The set of all $ p $-forms over a manifold $ \mathcal{M} $ is denoted as $ \lm{p} $.
+\end{definition}
+
+\begin{proposition}
+  A $ p $-form has $ \binom{n}{p} $ independent components. 
+\end{proposition}
+\begin{proposition}
+  The maximum degree of differential forms is $ p = n \equiv \dim_{\R}\mathcal{M} $: forms in $ \lm{n} $ are called \textit{top forms}.
+\end{proposition}
+
+\begin{definition}
+  Given $ \omega \in \lm{p}, \eta \in \lm{q} $, their \textit{wedge product} is a $ (p+q) $-form defined as:
+  \begin{equation}
+    (\omega \wedge \eta)_{\mu_1 \dots \mu_p \nu_1 \dots \nu_q} = \frac{(p + q)!}{p! q!} \omega_{[\mu_1 \dots \mu_p} \eta_{\nu_1 \dots \nu_q]}
+    \label{eq:2.33}
+  \end{equation}
+\end{definition}
+
+\begin{example}
+  Given $ \omega,\eta \in \lm{2} $, their wedge product is $ (\omega \wedge \eta)_{\mu \nu} = \omega_{\mu} \eta_{\nu} - \omega_{\nu} \eta_{\mu} $.
+\end{example}
+
+\begin{proposition}
+  Given $ \omega \in\lm{p}, \eta \in\lm{q} $:
+  \begin{equation}
+    \omega \wedge \eta = (-1)^{pq} \eta \wedge \omega
+    \label{eq:2.34}
+  \end{equation}
+\end{proposition}
+
+\begin{propcorollary}
+  $ \omega \wedge \omega = 0 \,\,\forall \omega \in\lm{p} : p $ is odd.
+\end{propcorollary}
+
+\begin{proposition}
+  The wedge product is associative.
+\end{proposition}
+
+\begin{proposition}
+  If $ \{\ve{f}^{\mu}\}_{\mu = 1,\dots,n} $ is a basis of $ \lm{1} $, then 
+  $ \{\ve{f}^{\mu_1} \wedge \dots \wedge \ve{f}^{\mu_p}\}_{\mu_1,\dots,\mu_p = 1,\dots,n} $ is a basis of $ \lm{p} $.
+\end{proposition}
+
+Locally $ \{dx^{\mu}\}_{\mu = 1,\dots,n} $ is a basis of $ T^*_p \mathcal{M} $, thus a general $ p $-form can be locally written as:
+\begin{equation}
+  \omega = \frac{1}{p!} \omega_{\mu_1 \dots \mu_p} dx^{\mu_1} \wedge \dots \wedge dx^{\mu_p}
+  \label{eq:2.35}
+\end{equation}
+
+\begin{definition}
+  The \textit{exterior derivative} is a map $ d : \lm{p} \rightarrow \lm{p+1} $ defined as:
+  \begin{equation}
+    (d\omega)_{\mu_1 \dots \mu_{p+1}} = (p + 1) \pa_{[\mu_1} \omega_{\mu_2 \dots \mu_{p+1}]}
+    \label{eq:2.36}
+  \end{equation}
+\end{definition}
+
+In local coordinates:
+\begin{equation}
+  d\omega = \frac{1}{p!} \frac{\pa \omega_{\mu_1 \dots \mu_p}}{\pa x^{\nu}} dx^{\nu} \wedge dx^{\mu_1} \wedge \dots \wedge dx^{\mu_p}
+  \label{eq:2.37}
+\end{equation}
+
+\begin{theorem}[Poincaré]
+  $ d^2 = 0 $.
+\end{theorem}
+\begin{proof}
+  Consequence of Schwarz lemma.
+\end{proof}
+
+\begin{proposition}
+  Given $ \omega \in \lm{p}, \eta \in \lm{q} $, then:
+  \begin{equation}
+    d(\omega \wedge \eta) = d\omega \wedge \eta + (-1)^p \omega \wedge d\eta
+    \label{eq:2.38}
+  \end{equation}
+\end{proposition}
+
+\begin{proposition}
+  Given a diffeomorphism between two manifolds $ \varphi: \mathcal{M} \rightarrow \mathcal{N} $ and $ \omega \in\lm{p} $, then $ d(\varphi^* \omega) = \varphi^* (d\omega) $.
+\end{proposition}
+
+\begin{propcorollary}
+  Given $ X \in \xm, \omega \in\lm{p} $, then $ d(\ld_X \omega) = \ld_X (d\omega) $.
+\end{propcorollary}
+
+\begin{definition}
+  $ \omega \in\lm{p} $ is \textit{closed} if $ d\omega = 0 $.
+\end{definition}
+\begin{definition}
+  $ \omega \in\lm{p} $ is \textit{exact} if $ \exists \eta \in\lm{p-1} : \omega = d\eta $.
+\end{definition}
+
+\begin{theorem}
+  $ \omega \in\lm{p} $ is exact $ \Rightarrow $ it is closed.
+\end{theorem}
+
+\begin{definition}
+  Given a vector field $ X \in\xm $, the \textit{interior product} determined by $ X $ is a map $ \iota_X : \lm{p} \rightarrow \lm{p-1} $ defined as:
+  \begin{equation}
+    \iota_X \omega (Y_1, \dots, Y_{p-1}) \defeq \omega (X, Y_1, \dots, Y_{p-1})
+    \label{eq:2.39}
+  \end{equation}
+\end{definition}
+
+On 0-forms (i.e. scalar functions), it is defined as $ \iota_X f \equiv 0 $.
+
+\begin{proposition}
+  Given $ X,Y \in\xm $, then $ \iota_X \iota_Y = - \iota_Y \iota_X $.
+\end{proposition}
+\begin{proof}
+  Consequence of the total anti-symmetry of $ p $-forms.
+\end{proof}
+
+\begin{proposition}
+  Given $ X \in\xm, \omega \in\lm{p}, \eta \in\lm{q} $, then:
+  \begin{equation}
+    \iota_X (\omega \wedge \eta) = \iota_X \omega \wedge \eta + (-1)^p \omega \wedge \iota_X \eta
+    \label{eq:2.40}
+  \end{equation}
+\end{proposition}
+
+\begin{theorem}[Cartan]
+  Given a vector field $ X \in\xm $, then:
+  \begin{equation}
+    \ld_X = d \circ \iota_X + \iota_X \circ d
+    \label{eq:2.41}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Consider $ \omega \in\lm{1} $:
+  \begin{equation*}
+    \iota_X (d\omega) = \iota_X \frac{1}{2} \left( \pa_{\mu} \omega_{\nu} - \pa_{\nu} \omega_{\mu} \right) dx^{\mu} \wedge dx^{\nu} = X^{\mu} \pa_{\mu} \omega_{\nu} dx^{\nu} - X^{\nu} \pa_{\mu} \omega_{\nu} dx^{\mu}
+  \end{equation*}
+  \begin{equation*}
+    d(\iota_X \omega) = d (\omega_{\mu} X^{\mu}) = X^{\mu} \pa_{\nu} \omega_{\mu} dx^{\nu} + \omega_{\mu} \pa_{\nu} X^{\mu} dx^{\nu}
+  \end{equation*}
+  Thus, adding these expressions and recalling Eq. \ref{eq:2.23}:
+  \begin{equation*}
+    (d \iota_X + \iota_X d) \omega = \left( X^{\mu} \pa_{\mu} \omega_{\nu} + \omega_{\mu} \pa_{\nu} X^{\mu} \right) dx^{\nu} = \ld_X \omega
+  \end{equation*}
+\end{proof}
+
+\subsection{de Rham cohomology}
+
+While exact $ \Rightarrow $ closed, the converse is not true, in general: it depends on the topological properties of the manifold.
+
+\begin{lemma}[Poincaré]
+  If $ \mathcal{M} $ is simply connected, then $ \omega\in\lm{p} $ closed $ \Rightarrow $ $ \omega $ exact.
+\end{lemma}
+
+In general, it is always possible to choose a simply connected neighbourhood of a point $ p \in \mathcal{M} $, in which every closed form is exact, but that may not always be possible globally.\\
+It is convenient to set the notation $ d_p \equiv d : \lm{p} \rightarrow \lm{p+1} $.
+
+\begin{definition}
+  The set of all closed $ p $-forms on $ \mathcal{M} $ is denoted by $ Z^p(\mathcal{M}) \defeq \ker d_p $.
+\end{definition}
+
+\begin{definition}
+  The set of all exact $ p $-forms on $ \mathcal{M} $ is denoted by $ B^p(\mathcal{M}) \defeq \ran d_{p-1} $.
+\end{definition}
+
+\begin{definition}
+  Two closed $ p $-forms $ \omega,\omega' \in Z^P(\mathcal{M}) $ are said to be \textit{equivalent} if $ \omega = \omega' + \eta $ for some $ \eta \in B^p(\mathcal{M}) $.
+\end{definition}
+
+\begin{definition}
+  The $ p^{\text{th}} $ \textit{de Rham cohomolgy group} of a manifold $ \mathcal{M} $ is defined to be:
+  \begin{equation}
+    H^p(\mathcal{M}) \defeq Z^p(\mathcal{M}) / B^p(\mathcal{M})
+    \label{eq:2.42}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  The \textit{Betti numbers} of a manifold $ \mathcal{M} $ are defined as:
+  \begin{equation}
+    B_p \defeq \dim_{\R} H^p(\mathcal{M})
+    \label{eq:2.43}
+  \end{equation}
+\end{definition}
+
+\begin{theorem}
+  Given a differentiable manifold, its Betti numbers are always finite.
+\end{theorem}
+
+$ B_0 = 1 $ for any connected manifold: there exist constant functions, which are manifestly closed and not exact, due to the non-existence of $ \virgolette{-1-forms} $. Higher Betti numbers are non-zero only if the manifold has some non-trivial topology.
+
+\begin{definition}
+  The \textit{Euler's character} of a manifold $ \mathcal{M} $ is defined as:
+  \begin{equation}
+    \chi(\mathcal{M}) \defeq \sum_{p \in \N_0} (-1)^p B_p
+    \label{eq:2.44}
+  \end{equation}
+\end{definition}
+
+\begin{example}
+  The $ n $-sphere $ \mathbb{S}^n $ has only $ B_0 = B_n = 1 $, thus $ \chi(\mathbb{S}^n) = 1 + (-1)^n $.
+\end{example}
+\begin{example}
+  The $ n $-torus $ \mathbb{T}^n $ has $ B_p = \binom{n}{p} $, thus $ \chi(\mathbb{T}^n) = 0 $.
+\end{example}
+
+\subsection{Integration}
+
+\begin{definition}
+  A \textit{volume form} on an $ n $-dimensional differentiable manifold $ \mathcal{M} $ is a nowhere-venishing top form $ v $, i.e. locally $ v = v(x) dx^1 \wedge \dots \wedge dx^n : v(x) \neq 0 $. If such a form exists, the manifold is said to be \textit{orientable}.
+\end{definition}
+
+\begin{definition}
+  Given an orientable manifold $ \mathcal{M} $ with volume form $ v $, the orientation is:
+  \begin{itemize}
+    \item right-handed if $ v(x) > 0 $ locally on every neighbourhood of $ \mathcal{M} $;
+    \item left-handed if $ v(x) < 0 $ locally on every neighbourhood of $ \mathcal{M} $;
+  \end{itemize}
+\end{definition}
+
+To ensure that the handedness of the manifold doesn't change on overlapping charts:
+\begin{equation*}
+  v = v(x) \frac{\pa x^1}{\pa y^{\mu_1}} dy^{\mu_1} \wedge \dots \wedge \frac{\pa x^n}{\pa x^{\mu_n}} dx^{\mu_n} = v(x) \det \left( \frac{\pa x^{\mu}}{\pa y^{\nu}} \right) dy^1 \wedge \dots \wedge dy^n
+\end{equation*}
+It is therefore necessary that the two sets of coordinates on the overlapping region satisfy:
+\begin{equation}
+  \det \left( \frac{\pa x^{\mu}}{\pa y^{\nu}} \right) > 0
+  \label{eq:2.45}
+\end{equation}
+Non-orientable manifolds cannot be covered by overlapping charts satisfying this condition.
+
+\begin{example}
+  The real projective space $ \mathbb{RP}^n $ is orientable for odd $ n $ and non-orientable for even $ n $.
+\end{example}
+\begin{example}
+  The complex projective space $ \mathbb{CP}^n $ is orientable for all $ n \in \N $.
+\end{example}
+
+\begin{definition}
+  Given a function $ f : \mathcal{M} \rightarrow \R $ on an orientable manifold $ \mathcal{M} $ with volume form $ v $ and a chart $ (\varphi,U) $ on $ \mathcal{M} $ with coordinates $ \{x^{\mu}\}_{\mu = 1,\dots,n} $, the \textit{integral} of $ f $ on $ O = \varphi^{-1}(U) \subset \mathcal{M} $ is defined as:
+  \begin{equation}
+    \int_{O} fv \defeq \int_{U} dx_1 \dots dx_n \, f(x) v(x)
+    \label{eq:2.46}
+  \end{equation}
+\end{definition}
+
+It is clear that the volume form acts like a measure on the manifold. To integrate over the whole manifold, it must be divided up into different regions, each covered by a single chart.
+
+\begin{definition}
+  A $ k $-dimensional manifold $ \Sigma $ is a \textit{submanifold} of an $ n $-dimensional manifold $ \mathcal{M} $, with $ n > k $, if there exists an injective map $ \varphi : \Sigma \rightarrow \mathcal{M} $ such that $ \varphi_* : T_p(\Sigma) \rightarrow T_{\varphi(p)}(\mathcal{M}) $ is injective.
+\end{definition}
+
+\begin{definition}
+  Given a $ k $-form $ \omega \in\lm{k} $, its integral over a $ k $-dimensional submanifold $ \Sigma $ of $ \mathcal{M} $ is defined as:
+  \begin{equation}
+    \int_{\varphi(\Sigma)} \omega \defeq \int_{\Sigma} \varphi^* \omega
+    \label{eq:2.47}
+  \end{equation}
+\end{definition}
+
+\begin{example}
+  Consider a 1-form $ \omega \in\lm{1} $ and a 1-dimensional submanifold $ \gamma $ of $ \mathcal{M} $ described by a curve $ \sigma : \gamma \rightarrow \mathcal{M}: x^{\mu} = \sigma^{\mu}(t) $: locally $ \omega = \omega_{\mu}(x) dx^{\mu} $, thus the integral of $ \omega $ on $ \gamma $ can be calculated as $ \int_{\sigma(\gamma)} \omega = \int_{\gamma} \sigma^* \omega = \int_{\gamma} d\tau \,\omega_{\mu}(x) \frac{dx^{\mu}}{d\tau} $.
+\end{example}
+
+\subsubsection{Stokes' theorem}
+
+Integration can be generalized beyond smooth (i.e. differentiable) manifolds.
+
+\begin{definition}
+  An $ n $-dimensional \textit{manifold with boundary} is a Hausdorff topological space, equipped with a compatible maximal atlas, which is locally homeomorphic to $ \R^{n-1} \times [a,\infty) : a \in\R $.
+  The \textit{boundary} $ \pa \mathcal{M} $ is the 1-dimensional submanifold determined by $ x^n = a $.
+\end{definition}
+
+\begin{theorem}[Stokes]
+  Given an $ n $-dimensional manifold $ \mathcal{M} $ with boundary $ \pa \mathcal{M} $, then for any $ \omega \in\lm{n-1} $:
+  \begin{equation}
+    \int_{\mathcal{M}} d\omega = \int_{\pa \mathcal{M}} \omega
+    \label{eq:2.48}
+  \end{equation}
+\end{theorem}
+
+This important theorem unifies many different results.\\
+Given the 1-dimensional manifold $ I = [a,b] \subset \R $, then for any $ 0 $-form (i.e. scalar function) $ \omega = \omega(x) $:
+\begin{equation*}
+  \int_{I} d\omega = \int_a^b \frac{d\omega}{dx} dx = \int_{\pa I} \omega = \omega(b) - \omega(a)
+\end{equation*}
+which is the fundamental theorem of calculus.\\
+Given a 2-dimensional manifold with boundary $ S \subset \R^2 $ and a 1-form $ \omega = \omega_1 dx^1 + \omega_2 dx^2 $, then $ d\omega = (\pa_1 \omega_2 - \pa_2 \omega_1) dx^1 \wedge dx^2 $ and:
+\begin{equation*}
+  \int_{S} d\omega = \int_{S} \left( \frac{\pa \omega_2}{\pa x^1} - \frac{\pa \omega_1}{\pa x^2} \right) dx^1 dx^2 = \int_{\pa S} \omega = \int_{\pa S} \omega_1 dx^1 + \omega_2 dx^2
+\end{equation*}
+which is Green's theorem.\\
+Given a 3-dimensional manifold with boundary $ V \subset \R^3 $ and a 2-form $ \omega = \omega_1 dx^2 \wedge dx^3 + \omega_2 dx^3 \wedge dx^1 + \omega_3 dx^1 \wedge dx^2 $, then $ d\omega = (\pa_1 \omega_1 + \pa_2 \omega_2 + \pa_3 \omega_3) dx^1 \wedge dx^2 \wedge dx^3 $ and:
+\begin{equation*}
+  \int_{V} d\omega = \int_{V} \left( \frac{\pa \omega_1}{\pa x^1} + \frac{\pa \omega_2}{\pa x^2} + \frac{\pa \omega_3}{\pa x^3} \right) = \int_{\pa V} \omega = \int_{\pa V} \omega_1 dx^2 dx^3 + \omega_2 dx^3 dx^1 + \omega_3 dx^1 dx^2
+\end{equation*}
+which is Gauss' theorem.
+
+
+
+
+
+
+
+
+
+
