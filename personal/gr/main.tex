@@ -9,9 +9,33 @@
 \captionsetup[figure]{labelfont={sf}}
 %\captionsetup[table]{labelfont={sf}}
 
+% bibliography
+
+\usepackage{csquotes}
+\usepackage[
+backend = biber,
+style = numeric-comp,
+sorting = ynt
+]{biblatex}
+\addbibresource{bibl.bib}
+
+\renewbibmacro{in:}{}
+
+\AtEveryBibitem{%
+	\clearfield{publisher}%
+	\clearfield{month}%
+	\clearfield{numpages}%
+	\clearfield{issue}%
+	\clearfield{isbn}%
+}
+
+\DeclareFieldFormat[book,article]{journaltitle}{#1}
+\DeclareFieldFormat[book,article]{volume}{\mkbibbold{#1}}
+
 % macros
 
 \newcommand{\volf}{\dd \mt{V}}
+\newcommand{\man}{\mathcal{M}}
 
 \title{\Huge\sffamily\textbf{General Relativity and Cosmology}}
 \author{Leonardo Cerasi}
@@ -47,11 +71,11 @@
 
 \newpage
 
-\pagestyle{contents}
 \toc
+\pagestyle{contents}
 
-\pagestyle{introd}
 \chapter{Introduction}
+\pagestyle{introd}
 \input{intro.tex}
 
 \mainmatter
@@ -68,7 +92,20 @@
 \part{General Relativity}
 \pagestyle{body}
 
+\chapter{External Gravitationa Fields}
+\input{external.tex}
+
 \chapter{Geometrodynamics}
 \input{einstein.tex}
+
+\chapter{Weak Gravity}
+\input{waves.tex}
+
+\chapter{Black Holes}
+\input{holes.tex}
+
+\bookmarksetupnext{level = -1}
+\pagestyle{biblio}
+\printbibliography[heading = bibintoc, title = {Bibliography}]
 
 \end{document}

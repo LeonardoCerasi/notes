@@ -1,0 +1,123 @@
+\selectlanguage{english}
+
+In classical field theories, two distinct classes of objects are considered: particles and fields. Fields determine the motion of particles, while particles induce oscillations in fields.
+
+\section{Geodesic motion}
+
+Particles moving on an $ n $-dimensional metric manifold $ (\man,g) $ have geodesics as trajectories, which are found as extrema of the action functional. For the rest of this chapter, $ g $
+
+\subsection{Non-relativistic particles}
+
+The action of a free particle is composed of the sole kinetic term, which, for a non-relativistic particle, is $ \frac{1}{2} m \dot{\ve{x}} \cdot \dot{\ve{x}} $, hence:
+\begin{equation}
+  L = \frac{m}{2} g_{ij}(\ve{x}) \dot{x}^i \dot{x}^j
+  \label{eq:non-rel-lag}
+\end{equation}
+where $ \{x^i\}_{i = 1 , \dots , n} $ are the coordinates of the chart(s) which cover the portion of $ \man $ spanned by the trajectory.
+
+\begin{proposition}{Non-relativistic motion}{}
+  The equations of motion of the Lagrangian \eref{eq:non-rel-lag} are:
+  \begin{equation}
+    \ddot{x}^i + \Gamma^i_{jk} \dot{x}^j \dot{x}^k = 0
+  \end{equation}
+  where $ \Gamma^i_{jk} $ are the Christoffel symbols of the Levi--Civita connection on $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Varying the action of \eref{eq:non-rel-lag} on trajectories between $ \ve{x}_1 \equiv \ve{x}(t_1) , \ve{x}_2 \equiv \ve{x}(t_2) \in \man $:
+    \begin{equation*}
+      \begin{split}
+        \delta \act
+        & = \frac{m}{2} \int_{\ve{x}_1}^{\ve{x_2}} \dd^n x \sqg \, \delta \left[ g_{ij} \dot{x}^i \dot{x}^j \right]
+        = \frac{m}{2} \int_{\ve{x}_1}^{\ve{x_2}} \dd^n x \sqg \, \delta x^k \left[ g_{ij,k} \dot{x}^i \dot{x}^j - 2 \frac{\dd}{\dd t} \left( g_{ik} \dot{x}^i \right) \right]
+      \end{split}
+    \end{equation*}
+    Setting the term in parentheses to zero yields:
+    \begin{equation*}
+      \frac{1}{2} g_{ij,k} \dot{x}^i \dot{x}^j - g_{ik,j} \dot{x}^i \dot{x}^j - g_{ik} \ddot{x}^i = 0
+    \end{equation*}
+    Symmetrizing $ \frac{1}{2} g_{ij,k} - g_{ik,j} $ results in $ - g_{i l} \Gamma^l_{jk} $, hence the geodesic equation is recovered.
+  \end{proof}
+\end{proofbox}
+
+This is precisely the geodesic equation on $ \man $.
+
+\subsection{Relativistic particles}
+
+Consider now a relativistic particle moving on an $ n $-dimensional Lorentzian manifold $ (\mat,g) $. In this case, the free action is the distance between the two endpoints $ x_1 , x_2 \in \mat $ of the trajectory:
+\begin{equation}
+  \act = - m c \int_{x_1}^{x_2} \sqrt{- \dd s^2} = - m c \int_{\sigma_1}^{\sigma_2} \dd \sigma \sqrt{- g_{\mu \nu} \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma}}
+  \label{eq:rel-act}
+\end{equation}
+where the negative sign clarifies that particles can only move on timelike and null geodesics, and $ \sigma \in [\sigma_1 , \sigma_2] \ssq \R $ parametrizes the trajectory. Note that $ g_{\mu \nu} = g_{\mu \nu}(x(\sigma)) $, and the Lagrangian of the relativistic free particle is:
+\begin{equation}
+  L = - m c \sqrt{- g_{\mu \nu} \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma}}
+  \label{eq:rel-lag}
+\end{equation}
+This action is clearly reparametrization-invariant, since:
+\begin{equation*}
+  \tilde{\act} = - m c \int_{\tilde{\sigma}_1}^{\tilde{\sigma}_2} \dd \tilde{\sigma} \sqrt{- g_{\mu \nu} \frac{\dd x^{\mu}}{\dd \tilde{\sigma}} \frac{\dd x^{\nu}}{\dd \tilde{\sigma}}} = - m c \int_{\sigma_1}^{\sigma_2} \dd \sigma \frac{\dd \tilde{\sigma}}{\dd \sigma} \sqrt{- g_{\mu \nu} \frac{\dd x^{\mu}}{\dd \sigma} \frac{\dd x^{\nu}}{\dd \sigma} \left( \frac{\dd \sigma}{\dd \tilde{\sigma}} \right)^2} = \act
+\end{equation*}
+By this invariance, the value of the action between two points on a trajectory has a well-define meaning: it is the elapsed \bctxt{proper time} measured by the particle along the motion:
+\begin{equation}
+  \tau(\sigma) \equiv \frac{1}{c} \int_0^\sigma \dd \sigma' \sqrt{- g_{\mu \nu} \frac{\dd x^\mu}{\dd \sigma'} \frac{\dd x^\nu}{\dd \sigma'}}
+  \label{eq:proper-time}
+\end{equation}
+Being this a monotone function on the trajectory, it is possible to parametrize the action in terms of proper time:
+\begin{equation}
+  \act = - m c \int_{\tau_1}^{\tau_2} \dd \tau \sqrt{- g_{\mu \nu} \dot{x}^\mu \dot{x}^\nu}
+\end{equation}
+where it is conventional to set $ \dot{x} \equiv \frac{\dd x}{\dd \tau} $.
+
+\begin{proposition}{Relativistic motion}{}
+  The equations of motion of the action \eref{eq:rel-act} are:
+  \begin{equation}
+    \frac{\dd^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\nu \rho} \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\rho}{\dd \tau} = 0
+  \end{equation}
+  where $ \Gamma^\mu_{\nu \rho} $ are the Christoffel symbols of the Levi--Civita connection on $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Varying the action yields the following equations of motion:
+    \begin{equation*}
+      - \frac{1}{2L} g_{\mu \nu , \rho} \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma} - \frac{\dd}{\dd \sigma} \left( - \frac{1}{L} g_{\rho \nu} \frac{\dd x^\nu}{\dd \sigma} \right) = 0
+    \end{equation*}
+    Performing the differentiation and using the fact that $ L \neq 0 $ (for a massive particle):
+    \begin{equation*}
+      g_{\mu \rho} \frac{\dd^2 x^\rho}{\dd \sigma^2} + \frac{1}{2} \left( g_{\mu \rho , \nu} + g_{\mu \nu , \rho} - g_{\nu \rho , \mu} \right) \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\rho}{\dd \sigma} = \frac{1}{L} \frac{\dd L}{\dd \sigma} g_{\mu \rho} \frac{\dd x^\rho}{\dd \sigma}
+    \end{equation*}
+    This is the equation for a non-affinely-parametrized geodesic. To see this, note that from \eref{eq:proper-time}:
+    \begin{equation*}
+      c \frac{\dd \tau}{\dd \sigma} = L(\sigma)
+      \quad \implies \quad
+      L(\tau) = \sqrt{- g_{\mu \nu} \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau}} = \frac{\dd \sigma}{\dd \tau} L(\sigma) = c
+    \end{equation*}
+    Therefore, the Lagrangian can be made constant with any affine parametrization $ \sigma = a \tau + b $, with $ a \in \R - \{0\} , b \in \R $. This completes the proof.
+  \end{proof}
+\end{proofbox}
+
+It is straightforward to compute the conjugate momentum from \eref{eq:rel-lag}:
+\begin{equation*}
+  p_{\mu} = \frac{\dd L}{\dd x^{\mu}} = - m c \frac{\dd}{\dd x^{\mu}} \sqrt{- g_{\nu \rho} \dot{x}^{\nu} \dot{x}^{\rho}} = - \frac{m^2 c^2}{L} \left( g_{\mu \nu} x^\nu + g_{\nu \rho , \mu} \dot{x}^\mu \dot{x}^\nu \right)
+\end{equation*}
+Evaluating this expression in normal coordinates, the \bctxt{mass-shell condition} is obtained, valid in all reference frames:
+\begin{equation}
+  p^2 = - m^2 c^2
+\end{equation}
+Moreover, in normal coordinates, the time component of $ p^\mu $ is found to be $ (p^0)^2 = m^2 c^2 + \ve{p}^2 $, which has two important consequences: first of all, $ p^0 \neq 0 $, which means that the particle is never at rest in the temporal direction (which was to be expected); secondly, $ p^\mu $ only has $ n - 1 $ independent components, which is a consequence of the reparametrization invariance of the action\footnotemark.
+
+\footnotetext{The $ n $ equations of motion are $ x^\mu = x^\mu(\sigma) $, but $ \sigma $ cannot contain any information about the system, thus one equation must be used to eliminate the $ \sigma $ dependence, resulting in $ n - 1 $ degrees of freedom. This was to be expected from the non-relativistic limit, which has $ n - 1 $ degrees of freedom too (since time is absolute in this limit).}
+
+\subsubsection{Interactions}
+
+
+
+
+
+
+
+
+
+
