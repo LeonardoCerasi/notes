@@ -2,7 +2,7 @@
 
 In classical field theories, two distinct classes of objects are considered: particles and fields. Fields determine the motion of particles, while particles induce oscillations in fields.
 
-\section{Geodesic motion}
+\section{Geodetic motion}
 
 Particles moving on an $ n $-dimensional metric manifold $ (\man,g) $ have geodesics as trajectories, which are found as extrema of the action functional. For the rest of this chapter, $ g $
 
@@ -110,7 +110,162 @@ Moreover, in normal coordinates, the time component of $ p^\mu $ is found to be 
 
 \footnotetext{The $ n $ equations of motion are $ x^\mu = x^\mu(\sigma) $, but $ \sigma $ cannot contain any information about the system, thus one equation must be used to eliminate the $ \sigma $ dependence, resulting in $ n - 1 $ degrees of freedom. This was to be expected from the non-relativistic limit, which has $ n - 1 $ degrees of freedom too (since time is absolute in this limit).}
 
-\subsubsection{Interactions}
+\subsection{Interactions}
+
+Once the relativistic motion of a (massive) free particle on a general $ n $-dimensional Lorentzian manifold has been clarified, focus now on Minkowski spacetime $ \R^{1,3} $ with the Lorentz--Minkowski metric $ \eta_{\mu \nu} = \diag(-1,+1,+1,+1) $. The action then takes the form:
+\begin{equation*}
+  \act = - m c \int_{\sigma_1}^{\sigma_2} \dd \sigma \sqrt{- \eta_{\mu \nu} \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma}}
+\end{equation*}
+Clearly, there are two possibilities to introduce an interaction term: either inside or outside the square root.
+
+\subsubsection{Electromagnetism}
+
+The addition of a term $ + \dd \sigma \, V(x) $ outside the square root is not reparametrization-invariant. Indeed, the simplest interaction term which satisfies both reparametrization invariance and Lorentz invariance is:
+\begin{equation}
+  \act = \int_{\sigma_1}^{\sigma_2} \dd \sigma \left[ - m c \sqrt{- \eta_{\mu \nu} \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma}} - q A_\mu(x) \frac{\dd x^\mu}{\dd \sigma} \right]
+  \label{eq:em-act}
+\end{equation}
+where $ A_\mu(x) $ is the potential of the field and $ q \in \R $ is the charge of the coupling. To determine the potential $ A_\mu $ for the electromagnetic interaction, compare the classical limit \eref{eq:em-act} to the action of a non-relativistic particle in an external electromagnetic field:
+\begin{equation*}
+  \act \xrightarrow{c \ra \infty} \int_{t_1}^{t_2} \dd t \left[ - m c^2 + \frac{m}{2} \dot{\ve{x}}^2 - q A_0(x) c - q \ve{A}(x) \cdot \dot{\ve{x}} \right]
+\end{equation*}
+\begin{equation*}
+  \act_\text{em} = \int_{t_1}^{t_2} \dd t \left[ \frac{m}{2} \dot{\ve{x}}^2 - q \phi(x) - q \ve{A}(x) \cdot \dot{\ve{x}} \right]
+\end{equation*}
+Comparing the individual terms, the electromagnetic interaction is described by the potential $ A_\mu(x) = (\phi(x) / c , \ve{A}(x)) $.
+
+\subsubsection{Gravity}
+\label{sssec:gravity}
+
+While the addition of an interaction outside the square root forces it to be described by a vector field (at least in its simplest form), doing so inside the square root requires a tensor field, in order to satisfy both reparametrization invariance and Lorentz invariance. The resulting action then is:
+\begin{equation*}
+  \act = - m c \int_{\sigma_1}^{\sigma_2} \dd \sigma \sqrt{- \left( \eta_{\mu \nu} + V_{\mu \nu}(x) \right) \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma}}
+\end{equation*}
+However, this can be interpreted\footnotemark as the action of a relativistic free particle on a curved 4-dimensional Lorentzian manifold with metric $ g_{\mu \nu}(x) \equiv \eta_{\mu \nu} + V_{\mu \nu}(x) $. To compute the non-relativistic limit of this action, expand the term in the square root:
+\begin{equation*}
+  \act = - m c^2 \int_{\sigma_1}^{\sigma_2} \dd \sigma \sqrt{- g_{00}(x) - \frac{1}{c} \left( 2 g_{0i} \dot{x}^i + \frac{1}{c} g_{ij} \dot{x}^i \dot{x}^j \right)}
+\end{equation*}
+The only interesting case is $ V_{\mu \nu}(x) \equiv - c^{-2} V(x) \delta_{\mu , 0} \delta_{\nu , 0} $, in which case:
+\begin{equation*}
+  \act \xrightarrow{c \ra \infty} \int_{t_1}^{t_2} \dd t \left[ - m c^2 - m \frac{V(x)}{2} + \frac{m}{2} \dot{\ve{x}}^2 \right]
+\end{equation*}
+Now, compare this to the action of a non-relativistic particle in an external gravitational field:
+\begin{equation*}
+  \act_\text{g} = \int_{t_1}^{t_2} \dd t \left[ - m c^2 + \frac{m}{2} \dot{\ve{x}}^2 - m \Phi(x) \right]
+\end{equation*}
+The comparison gives $ V(x) = 2 \Phi(x) $: therefore, the gravitational interaction naturally induces the notion of a curved spacetime. Moreover, this is the condition that a metric describing the gravitational interaction must satisfy in the weak-field limit (i.e. the non-relativistic limit):
+\begin{equation}
+  g_{00}(x) \approx - \left[ 1 + \frac{2 \Phi(x)}{c^2} \right]
+  \label{eq:newtonian-limit}
+\end{equation}
+with $ \Phi(x) $ the Newtonian potential (indeed, this is seldom called the ``Newtonian limit").
+
+\footnotetext{To be precise, this is true assuming that the tensor $ g_{\mu \nu}(x) $ satisfies the conditions in \dref{def:metric}.}
+
+\section{Equivalence principle}
+
+As per the discussion in \secref{sssec:gravity}, the particle's mass $ m $ can be regarded as the ``charge" which couples it to the gravitational field. This fact is known as the \bctxt{weak equivalence principle} (WEP), which states the equivalence between inertial mass $ m_\text{i} : \ve{F}_\text{tot} = m_\text{i} \ddot{\ve{x}} $ and gravitational mass $ m_\text{g} $:
+\begin{equation}
+  m_\text{i} = m_\text{g}
+\end{equation}
+This equivalence has been experimentally verified with relative error $ \sim 10^{-13} $.
+
+\subsection{Kottler--Möller metric}
+
+A direct consequence of the WEP is the indistinguishability of a uniform gravitational field from a constant acceleration.
+
+Consider a massive particle with a constant acceleration $ \ve{a} = a \hat{\ve{e}}_x $ with respect to an inertial reference frame $ \mathcal{O} $ in Minkowski spacetime. A constant acceleration means that the rapidity grows linearly in proper time as $ \varphi(\tau) = \frac{a \tau}{c} $, so that the particle's velocity (along $ \hat{\ve{e}}_x $) is:
+\begin{equation}
+  v(\tau) = c \sech \frac{a \tau}{c}
+\end{equation}
+Since $ \frac{\dd t}{\dd \tau} = \gamma(\tau) $ and $ \frac{\dd x}{\dd \tau} = v(\tau) $, inserting the expression for $ v(\tau) $ in the Lorentz factor yields:
+\begin{equation}
+  t(\tau) = \frac{c}{a} \sinh \frac{a \tau}{c}
+  \qquad \qquad
+  x(\tau) = \frac{c^2}{a} \cosh \frac{a \tau}{c} - \frac{c^2}{a}
+\end{equation}
+where the integration constants have been chosen so that $ t(0) = 0 $ and $ x(0) = 0 $. The worldline (i.e. trajectory) of the particle is thus described by a hyperbola in $ \mathcal{O} $:
+\begin{equation}
+  \left( x + \frac{c^2}{a} \right)^2 - c^2 t^2 = \frac{c^4}{a^2}
+\end{equation}
+The coordinate transformation from the inertial reference frame $ \mathcal{O} $, with coordinates $ (t,x) $, to the non-inertial comoving reference frame of the particle, with coordinates $ (\tau , \rho) $, is given by:
+\begin{equation}
+  ct = \left( \rho + \frac{c^2}{a} \right) \sinh \frac{a\tau}{c}
+  \qquad \qquad
+  x = \left( \rho + \frac{c^2}{a} \right) \cosh \frac{a\tau}{c} - \frac{c^2}{a}
+\end{equation}
+Indeed, the particle's spatial trajectory is correctly described by $ \rho = 0 $. Note that the comoving coordinates $ (\tau , \rho) $ do not cover the whole Minkowski spacetime: this shows that there are regions of spacetime which are causally disconnected from the particle. The pull-back of the metric in the comoving frame is:
+\begin{equation}
+  \dd s^2 = - \left( 1 + \frac{a \rho}{c^2} \right)^2 c^2 \dd \tau^2 + \dd \rho^2 + \dd y^2 + \dd z^2
+\end{equation}
+This is known as the \bctxt{Kottler--Möller metric}. This metric tensor has precisely the form discussed in \secref{sssec:gravity}, since in the sub-relativistic limit its temporal component is $ g_{00} \approx - \left( 1 + \frac{2 a \rho}{c^2} \right) $, and it describes a gravitational field with potential $ \Phi(\rho) = a \rho $, which is a uniform gravitational field.
+
+\subsection{Einstein's equivalence principle}
+
+A corollary of the WEP is that a uniform gravitational field can be nullified by choosing a particular non-inertial reference frame, the \emph{free-fall reference frame}, which is comoving with the considered particle.
+
+Einstein generalized the WEP to a stronger principle, \bctxt{Einstein's equivalence principle}, which states that \emph{any} gravitational field can be locally nullified by a suitable choice of (non-inertial) reference frame. Formally, this is equivalent to \tref{th:equivalence}: one can always choose normal coordinates in a given point so that spacetime locally looks flat, i.e. $ g_{\mu \nu}(p) = \eta_{\mu \nu} $.
+
+Although locally nullifiable, the effects of a non-uniform gravitational field become measurable when it is possible to conduct non-local measurements, due to the presence of \bctxt{tidal forces}.
+
+\begin{example}{Einstein's elevator Gedankenexperiment}{}
+  Consider an observer in a closed box which is falling towards the Earth. Although in the free-fall reference frame the observer cannot establish weather it is fluctuating in space or falling towards the Earth, they can do so with a non-local experiment: taking two test masses (i.e. not affected by their mutual gravitational attraction), if the box is fluctuating in space they will remain in their initial position due to inertia, meanwhile if the box is falling towards the Earth they will have a horizontal displacement, due to the fact that the Earth's gravitational field is radial (and thus non-uniform). This is the case of a tidal force.
+\end{example}
+
+\subsection{Gravitational time dilation}
+
+Consider a spherically-symmetric body of uniform mass $ M $. In the weak-field approximation, the gravitational field generated by the body is given by a metric such that $ g_{00}(x) = - 1 - \frac{2 \Phi(x)}{c^2} $, with $ \Phi(x) = - \frac{GM}{r} $ and $ r \equiv \norm{\ve{x}} $. Therefore, a stationary observer at a distance $ r $ from the body will measure time intervals given by (using $ \dd \tau^2 \defeq \dd s^2 $):
+\begin{equation*}
+  \dd \tau^2 = \left( 1 - \frac{2GM}{rc^2} \right) \dd t^2
+\end{equation*}
+Defining the Schwarzschild radius of a mass $ M $ as $ \sr \equiv 2GM / c^2 $ and integrating, the \bctxt{gravitational time dilation} is found:
+\begin{equation}
+  \Delta \tau(r) = \Delta t \sqrt{1 - \frac{\sr}{r}}
+  \label{eq:gravitational-time-dilation}
+\end{equation}
+which means that time flows slower near massive objects.
+
+\begin{proposition}{Relative gravitational time dilation}{}
+  Given two stationary observers at distances $ r $ and $ r + \Delta r $ from a mass $ M $, with $ \Delta r \ll r $ and $ \sr \ll r $, then:
+  \begin{equation}
+    \frac{\Delta \tau(r + \Delta r)}{\Delta \tau(r)} = 1 + \frac{\sr \Delta r}{2 r^2}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \eref{eq:gravitational-time-dilation}:
+    \begin{equation*}
+      \begin{split}
+        \Delta \tau(r + \Delta r) = \Delta t \sqrt{1 - \frac{\sr}{r + \Delta r}}
+        & \approx \Delta t \sqrt{1 - \frac{\sr}{r} + \frac{\sr \Delta r}{r^2}} \\
+        & \approx \Delta t \sqrt{1 - \frac{\sr}{r}} \left( 1 + \frac{\sr \Delta r}{2 r^2} \right) = \Delta \tau(r) \left( 1 + \frac{\sr \Delta r}{2 r^2} \right)
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+Accounting for the relative gravitational time dilation is extremely important in precision applications (like the GPS): for example, with an elevation difference of $ \Delta r \sim 10^3 \, \text{m} $ with respect to sea level $ r \sim 6 \cdot 10^6 \, \text{m} $, the measured time difference is $ \sim 10^{-12} \, \text{s} $.
+
+\begin{proposition}{Gravitational redshift}{}
+  Consider a photon emitted with frequency $ \omega_1 $ at a distance $ r_1 $ from the center of a weak gravitational potential $ \Phi(r) $. An observer at distance $ r_2 $ will measure a shifted frequency $ \omega_2 $ given by:
+  \begin{equation}
+    \frac{\omega_2}{\omega_1} = \left[ 1 + \frac{\Phi(r_2) - \Phi(r_1)}{c^2} \right]^{-1}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Since $ \omega = \frac{2\pi}{\Delta \tau} $, where $ \Delta \tau $ is the time elapsed during an oscillation of a full wavelength, by \eref{eq:newtonian-limit}:
+    \begin{equation*}
+      \frac{\Delta \tau_2}{\Delta \tau_1} = \sqrt{\frac{1 + 2\Phi(r_2)/c^2}{1 + 2\Phi(r_1)/c^2}} \approx 1 + \frac{\Phi(r_2) - \Phi(r_1)}{c^2}
+    \end{equation*}
+    This is equivalent to the thesis.
+  \end{proof}
+\end{proofbox}
+
+In the case of the (weak) gravitational field generated by a mass $ M $, since $ \Phi(r) \propto - r^{-1} $, then $ r_2 > r_1 \implies \omega_2 < \omega_1 $ (redshift) and vice versa (blueshift).
 
 
 

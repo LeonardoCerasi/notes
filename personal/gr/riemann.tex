@@ -2,7 +2,7 @@
 
 \section{Metric manifolds}
 
-\begin{definition}{Metric}{}
+\begin{definition}{Metric}{metric}
   A \bcdef{metric} $ g $ is a (0,2) tensor field on a manifold $ \mathcal{M} $ that is:
   \begin{enumerate}
     \item symmetric: $ g(X,Y) = g(Y,X) $;
@@ -100,7 +100,15 @@ The metric defines a natural isomorphism between vectors and covectors.
   Given a metric manifold $ (\mathcal{M},g) $, the metric defines for each $ p \in \mathcal{M} $ a natural isomorphism $ g : X_p \in T_p \mathcal{M} \rightarrow \omega_p \in T^*_p \mathcal{M} : \omega_p(Y_p) = g(X_p,Y_p) \,\,\forall Y_p \in T_p \mathcal{M} $.
 \end{proposition}
 
-In a chosen coordinate basis, the vector $ X = X^{\mu} \pa_{\mu} $ is mapped to the one-form $ X = X_{\mu} \dd x^{\mu} $, thus the following identity holds:
+Truly, this is an isomorphism between the tangent bundle $ T\man $ and the cotangent bundle $ T^*\man $ of $ \man $, which are defined as:
+\begin{equation}
+  T\mat \defeq \bigsqcup_{p \in \mat} T_p \man
+  \qquad \qquad
+  T^*\mat \defeq \bigsqcup_{p \in \mat} T_p^* \man
+\end{equation}
+Then, the natural isomorphism determined by the metric is divided into two musical isomorphism: the \bctxt{flat isomorphism} $ \flat : T\man \ra T^*\man $ and the \bctxt{sharp isomorphism} $ \sharp : T^*\man \ra T\man $.
+
+In a chosen coordinate basis, the vector $ X = X^{\mu} \pa_{\mu} $ is mapped to the one-form $ X^\flat = X_{\mu} \dd x^{\mu} $, thus the following identity holds:
 \begin{equation}
   X_{\mu} = g_{\mu \nu} X^{\nu}
 \end{equation}
@@ -801,7 +809,7 @@ For the Levi--Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely t
 
 \subsection{Normal coordinates}
 
-\begin{theorem}{Equivalence principle}{}
+\begin{theorem}{Equivalence principle}{equivalence}
   Given a Riemannian manifold $ (\mathcal{M},g) $ and $ p \in \mathcal{M} $, in a neighbourhood of $ p $ it's always possible to find coordinates, called \bcth{normal coordinates}, such that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $ and $ g_{\mu \nu , \rho}(p) = 0 $.
 \end{theorem}
 

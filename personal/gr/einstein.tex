@@ -81,6 +81,7 @@ To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consid
   The Euler-Lagrange equations of the Einstein-Hilbert action are:
   \begin{equation}
     G_{\mu \nu} = 0
+    \label{eq:vacuum-feq}
   \end{equation}
 \end{proposition}
 
@@ -509,6 +510,7 @@ The symmetries of Minkowski spacetime are familiar: translations and rotations o
 It is important to characterize the symmetries of a general metric.
 
 \subsection{Isometries}
+\label{ssec:isometries}
 
 Recall \dref{def:flow} of flow on a manifold: by \eref{eq:tangent-flow}, it is possible to identify a flow with a vector field $ K \in \xm $ such that it is tangent to the flow at each point of the manifold: $ K^\mu = \frac{\dd x^\mu}{\dd t} $, with $ x^\mu(t) \equiv x^\mu(\sigma_t) $.
 
@@ -1272,165 +1274,77 @@ The dominant energy condition requires that, in addition to the weak energy cond
 \end{equation}
 This means that the energy density current is either timelike or null, so requiring that energy doesn't flow faster than time.
 
-It's possible to check that this condition is always satisfied by a classical scalar field theory, while for a perfect fluid it imposes $ \rho^2 \ge p^2 $.
+It is possible to check that this condition is always satisfied by a classical scalar field theory, while for a perfect fluid it imposes $ \rho^2 \ge p^2 $.
 
 \newpage
-\section{Cosmology}
+\section{Schwarzschild solution}
 
-Of the few situations in which Einstein field equations sourced by matter \eref{eq:ef-eq} need to be solved directly, the one where $ T_{\mu \nu} $ plays a crucial role is Cosmology, the study of the universe as a whole.
+The Schwarzschild solution is the unique static and spherically-symmetric vacuum solution to the Einstein field equations \eref{eq:vacuum-feq}: it describes spacetime outside a spherically-symmetric body, and it is the most important exact solution of the field equations.
 
-\subsection{FLRW metric}
+\subsection{Birkhoff theorem}
 
-The key assumption of cosmology is that the universe is spatially homogeneous and isotropic. These conditions restrict the possible spatial geometries to only three:
-\begin{itemize}
-  \item Euclidean space $ \R^3 $, with vanishing curvature and metric:
-    \begin{equation*}
-      \dd s^2 = \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
-    \end{equation*}
-  \item sphere $ \Sn{3} $, with uniform positive curvature and metric (implicit unitary radius):
-    \begin{equation*}
-      \dd s^2 = \frac{1}{1 - r^2} \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
-    \end{equation*}
-  \item hyperboloid $ \hyp{3} $, with uniform negative curvature and metric:
-    \begin{equation*}
-      \dd s^2 = \frac{1}{1 + r^2} \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
-    \end{equation*}
-\end{itemize}
-The existence of these three symmetric spaces is analogous to the existence of three symmetric spacetimes as solutions of the vacuum field equations: dS and AdS have constant spacetime curvature, supplied by the cosmological constant, while $ \Sn{3} $ and $ \hyp{3} $ have constant spatial curvature. Indeed, the metric on $ \mathbb{S}^3 $ corresponds to the spatial part of the de Sitter metric \eref{eq:dS-metric}, while the metric on $ \hyp{3} $ corresponds to the spatial part of the anti-de Sitter metric \eref{eq:ads-metric}.
+To prove the uniqueness of the Schwarzschild solution, first a definition of ``static" spacetime is required. Given that symmetries are defined through Killing vector fields (\secref{ssec:isometries}), it is straightforward to formulate precise definitions of ``stationary" and ``static" using them.
 
-These spatial metrics are written in a unified form as:
-\begin{equation}
-  \dd s^2 = \gamma_{ij} \dd x^i \dd x^j = \frac{\dd r^2}{1 - kr^2} + r^2 \dd \Omega_2^2
-\end{equation}
-with $ k = +1,0,-1 $ on $ \Sn{3}, \R^3, \hyp{3} $ respectively. Cosmology studies spacetimes in which space expands as the universe evolves, thus the metric takes the form:
-\begin{equation}
-  \dd s^2 = - \dd t^2 + a^2(t) \gamma_{ij} \dd x^i \dd x^j
-\end{equation}
-This is the \bctxt{Friedmann--Lemaître--Robertson--Walker metric} and the dimensionless factor $ a(t) $ can be viewed as the size of the spatial dimensions.
+\begin{definition}{Stationary spacetime}{}
+  A Lorentzian manifold $ (\man , g) $ is \bcdef{stationary} if there exists a globally-timelike Killing vector field $ K \in \xm $.
+\end{definition}
 
-\begin{example}{de Sitter metric}{}
-  de Sitter metric in global coordinates \eref{eq:ds-global-coo} is a FLRW metric with $ k = +1 $.
-\end{example}
+This means that an observer moving along the flow of $ K $, which is timelike, perceives no changes in spacetime, since the flow of $ K $ is an isometry group of $ \man $. It may happen that $ K $ is timelike only in some open region of $ \man $: then, only this part of spacetime is said stationary.
 
-\subsubsection{Curvature tensors}
-
-To solve the field equations for FLRW metrics, first compute the Ricci tensor. Christoffel symbols are straightforward:
-\begin{equation*}
-  \Gamma^\mu_{00} = \Gamma^0_{i0} = 0
-  \qquad
-  \Gamma^0_{ij} = a\dot{a} \gamma_{ij}
-  \qquad
-  \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j
-  \qquad
-  \Gamma^i_{jk} = \frac{1}{2} \gamma^{il} \left( \pa_j \gamma_{kl} + \pa_k \gamma_{jl} - \pa_l \gamma_{jk} \right)
-\end{equation*}
-
-\begin{proposition}{Ricci tensor}{}
-  The Ricci tensor for a FLRW metric has non-vanishing components:
-  \begin{equation}
-    R_{00} = - 3 \frac{\ddot{a}}{a}
-    \qquad
-    R_{ij} = \left( \frac{\ddot{a}}{a} + 2 \left( \frac{\dot{a}}{a} \right)^2 + 2 \frac{k}{a^2} \right) g_{ij}
-  \end{equation}
+\begin{proposition}{Stationary metric}{}
+  If $ (\man , g) $ is a stationary Lorentzian manifold, then $ g_{\mu \nu , 0} = 0 \,\, \forall \mu , \nu = 0,1,2,3 $.
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    First, $ R_{0i} = 0 $ because there's no covariant 3-vector that it could possibly equal to. Then, contracting \eref{eq:riemann-comp} and recalling the only non-vanishing Christoffel symbols:
+    Consider a spacelike hypersurface $ \Sigma \ssq \man $ and be $ \phi : \R \times \man \ra \man $ the flow of $ K $ on $ \man $ defined by \eref{eq:tangent-flow}. Then, define the following local coordinates on $ \man $: if $ p = \phi_t(p_0) $, with $ p_0 \in \Sigma $ and $ t \in \R $, then the coordinates of $ p $ are $ (t , x^1(p_0) , x^2(p_0) , x^3(p_0)) $, where $ x^\mu $ are local coordinates on $ \Sigma $. In terms of these coordinates, clearly $ K = \pa_0 $, hence using \eref{eq:tensor-lie-der}:
     \begin{equation*}
-      R_{00} = - \pa_0 \Gamma^i_{i0} - \Gamma^j_{i0} \Gamma^i_{j0} = - 3 \frac{\dd}{\dd t} \left( \frac{\dot{a}}{a} \right) - 3 \left( \frac{\dot{a}}{a} \right)^2 = - 3 \frac{\ddot{a}}{a}
+      (\ld_K g)_{\mu \nu} = g_{\mu \nu , \rho} K^\rho + g_{\rho \nu} \tensor{K}{^\rho_{,\mu}} + g_{\mu \rho} \tensor{K}{^\rho_{,\nu}} = g_{\mu \nu , 0} + 0 + 0 = g_{\mu \nu , 0}
     \end{equation*}
-    For the spatial components, consider the spatial metric in Cartesian coordinates:
-    \begin{equation*}
-      \gamma_{ij} = \delta_{ij} + \frac{k x_i x_j}{1 - k \ve{x} \cdot \ve{x}}
-    \end{equation*}
-    The Christoffel symbols depend on $ \pa \gamma $ and the Ricci tensor on $ \pa^2 \gamma $, thus to evaluate the latter at $ \ve{x} = 0 $ one only needs the metric up to quadratic order:
-    \begin{equation*}
-      \gamma_{ij} = \delta_{ij} + k x_i x_j + o(x^4)
-      \quad \Rightarrow \quad
-      \gamma^{ij} = \delta^{ij} - k x^i x^j + o(x^4)
-      \quad \Rightarrow \quad
-      \Gamma^i_{jk} = k x^i \delta_{jk} + o(x^3)
-    \end{equation*}
-    where $ i,j $ indices are raised or lowered by $ \delta^{ij} $. The Ricci tensor is then computed as:
-    \begin{equation*}
-      \begin{split}
-        R_{ij}
-        &= \pa_\rho \Gamma^\rho_{ij} - \pa_j \Gamma^\rho_{\rho i} + \Gamma^\lambda_{ij} \Gamma^\rho_{\rho \lambda} - \Gamma^\Gamma_{\rho i} \Gamma^\rho_{j \lambda} \\
-        &= (\pa_0 \Gamma^0_{ij} + \pa_k \Gamma^k_{ij}) - \pa_j \Gamma^k_{ki} + (\Gamma^0_{ij} \Gamma^k_{k0} + \Gamma^k_{ij} \Gamma^l_{lk}) - (\Gamma^0_{ki} \Gamma^k_{j0} + \Gamma^k_{0i} \Gamma^0_{jk} + \Gamma^k_{li} \Gamma^l_{jk})
-      \end{split}
-    \end{equation*}
-    Evaluating this expression at $ \ve{x} = \ve{0} $ allows to drop the $ \Gamma^k_{ij} \Gamma^l_{lk} $ term and to replace any undifferentiated $ \gamma_{ij} $ with $ \delta_{ij} $, so that:
-    \begin{equation*}
-      \begin{split}
-        R_{ij} (\ve{x} = \ve{0})
-        &= \left( \pa_0 (a\dot{a}) + 3k - k + 3 \dot{a}^2 - \dot{a}^2 - \dot{a}^2 \right) \delta_{ij} + o(x^2) \\
-        &= \left( a\ddot{a} + 2 \dot{a}^2 + 2k \right) \delta_{ij} + o(x^2)
-      \end{split}
-    \end{equation*}
-    Covariance implies that $ R_{ij} \sim \gamma_{ij} $, thus the general result is:
-    \begin{equation*}
-      R_{ij} = \left( a\ddot{a} + 2\dot{a}^2 + 2k \right) \gamma_{ij} = \frac{1}{a^2} \left( a\ddot{a} + 2\dot{a}^2 + 2k \right) g_{ij}
-    \end{equation*}
-    which completes the proof.
+    Therefore, Killing equation $ \ld_K g = 0 $ implies the thesis.
   \end{proof}
 \end{proofbox}
 
-The Ricci scalar is then easily computed:
-\begin{equation}
-  R = 6 \left( \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right)
-\end{equation}
-Finally, the non-vanishing components of the Einstein tensor are:
-\begin{equation}
-  G_{00} = 3 \left( \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right)
-  \qquad
-  G_{ij} = - \left( 2 \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right) g_{ij}
-\end{equation}
-
-\subsection{Friedmann equations}
-
-There only remains to specify the matter content of the universe. By hypothesis, it is filled by a perfect fluid, so that the energy-momentum tensor is that in \eref{eq:em-tens-fluid}. Assuming that the fluid is at rest in the preferred frame of the universe, i.e. $ u^\mu = (1,0,0,0) $ in the FLRW coordinates, the Bianchi identity $ \na_\mu T^{\mu \nu} = 0 $ reads:
+These coordinates are called \emph{adapted coordinates} to the Killing field. To deduce a definition of static spacetime, which is a special case of stationary spacetime, consider adapted coordinates such that $ g_{0i} = 0 \,\, \forall i = 1,2,3 $, so that the Killing field is orthogonal to all spatial sections $ \{t = \text{const.}\} $. Then, the 1-form $ \omega = K^\flat $ associated to $ K $ is:
 \begin{equation*}
-  u^\mu \na_\mu \rho + (\rho + p) \na_\mu u^\mu = 0
+  \omega = g_{\mu \nu} K^\mu \dd x^\nu = g_{00} \dd t = g(K,K) \dd t
 \end{equation*}
-Recalling that $ \na_\mu u^\mu = \pa_\mu u^\mu + \Gamma^\mu_{\mu \rho} u^\rho = \Gamma^i_{i0} u^0  = \dot{a} / a $, the \bctxt{continuity equation} is obtained:
+since $ g_{00} = g(\pa_0 , \pa_0) = g(K , K) $. This trivially implies the \bctxt{Froebenius condition} for $ \omega $:
 \begin{equation}
-  \dot{\rho} + \frac{3\dot{a}}{a} (\rho + p) = 0
+  \omega \wedge \dd \omega = 0
+  \label{eq:froebenius-cond}
 \end{equation}
-This equation expresses the conservation of energy in an expanding universe. The second constraint \eref{eq:euler-eq} is trivial for homogeneous isotropic fluids. There remains the equation of state, which for fluids of cosmological interest is simply:
-\begin{equation}
-  p = w \rho
-\end{equation}
-In particular, $ w = 0 $ describes pressureless dust, while $ w = \frac{1}{3} $ radiation. The continuity equation thus becomes:
+Conversely, assume that the Froebenius condition holds for the Killing field $ K $ of a stationary Lorentzian manifold $ (\man , g) $. Then, applying $ \iota_K $ to \eref{eq:froebenius-cond} and using \tref{th:cartan} yields:
 \begin{equation*}
-  \frac{\dot{\rho}}{\rho} = - 3 (1 + w) \frac{\dot{a}}{a}
+  0 = \iota_K (\omega \wedge \dd \omega) = (\iota_K \omega) \wedge \dd \omega - \omega \wedge (\iota_K \dd \omega) = g(K,K) \dd \omega - \omega \wedge (\ld_K \omega - \dd g(K , K))
 \end{equation*}
-This means that the energy density dillutes as the universe expands, for:
-\begin{equation}
-  \rho = \frac{\rho_0}{a^{3 (1 + w)}}
-  \label{eq:flwr-state-eq}
-\end{equation}
-For pressureless dust $ \rho \sim a^{-3} $, which is the expected scaling of energy density with volume, while for radiation $ \rho \sim a^{-4} $, accounting for an extra $ a^{-1} $ factor due to redshift.
-
-With this setting, the temporal component of the Einstein field equations becomes:
-\begin{equation}
-  \left( \frac{\dot{a}}{a} \right)^2 = \frac{8\pi G}{3} \rho + \frac{\Lambda}{3} - \frac{k}{a^2}
-  \label{eq:friedmann-eq}
-\end{equation}
-This is the \bctxt{Friedmann equation}, and with \eref{eq:flwr-state-eq} it describe how the universe expands. The spatial component of the field equations, computed using the Friedmann equation too, reads:
-\begin{equation}
-  \frac{\ddot{a}}{a} - \frac{\Lambda}{3} = -\frac{4\pi G}{3} (\rho + 3p)
-  \label{eq:ray-eq}
-\end{equation}
-This is the \bctxt{Raychaudhuri equation}, and it describes the acceleration of the expansion of the universe: it isn't independent of the Friedmann equation, as a time derivative of \eref{eq:friedmann-eq} yields \eref{eq:ray-eq}.
-
-A particularly simple solution can be found by setting $ k = \Lambda = 0 $, i.e. considering a universe dominated only by a single homogeneous isotropic fluid with energy density \eref{eq:flwr-state-eq}:
+To show that $ \ld_K \omega = 0 $, expand both $ \ld_K \omega $ and $ \ld_K g $:
 \begin{equation*}
-  \left( \frac{\dot{a}}{a} \right)^2 \sim \frac{1}{a^{3(1 + w)}}
-  \quad \implies \quad
-  a(t) = \left( \frac{t}{t_0} \right)^{2 / (3 + 3w)}
+  (\ld_K \omega)(X) = K(\omega(X)) - \omega([K,X]) = K(g(K,X)) - g(K , [K,X])
+  % TODO proof of second term
 \end{equation*}
-The solution $ w = \frac{1}{3} $, i.e. $ a(t) \sim t^{1/2} $, describes a radiation-dominated universe, which is a model for roughly the first 50'000 years of our Universe, while $ w = 0 $, i.e. $ a(t) \sim t^{2/3} $, describes a matter-dominated universe, which is a model for roughly the following 10 billion years of our Universe.
+\begin{equation*}
+  0 = (\ld_K g)(K,X) = K(g(K,X)) - g([K,K] , X) - g([K,X],K) = K(g(K,X)) - g(K , [K,X])
+\end{equation*}
+Hence, setting $ V \equiv g(K,K) \neq 0 $, the above equation becomes:
+\begin{equation*}
+  0 = V \dd \omega + \omega \wedge \dd V = \dd (V^{-1} \omega)
+\end{equation*}
+Assuming $ \man $ to be simply connected, by the Poincaré Lemma $ \omega = V \dd f $, with $ f \in \cm $. Using this function as a time coordinate, then, the expression $ \omega = g(K , K) \dd t $ is recovered, which shows that $ K $ is orthogonal to all spacelike sections $ \{t = \text{const.}\} $, since taken $ X \in \xm $ tangential to one of these sections $ g(K,X) = \omega(X) = V \dd t(X) = V X(\dd t) = 0 $. Switching to adapted coordinates, $ K = \pa_t $, so $ g_{0i} = g(\pa_t , \pa_i) = g(K , \pa_i) = 0 $. Therefore, this reasoning shows that, if the globally-timelike Killing vector field $ K $ satisfies the Froebenius condition, then the metric locally splits as:
+\begin{equation}
+  \dd s^2 = g_{00}(\ve{x}) \dd t^2 + g_{ij}(\ve{x}) \dd x^i \dd x^j
+\end{equation}
+This justifies the following definition.
+
+\begin{definition}{Static spacetime}{}
+  Given a stationary Lorentzian manifold $ (\man , g) $ with globally-timelike Killing vector field $ K $, then it is said to be \bcdef{static} if, setting $ \omega \equiv K^\flat $, then $ \omega \wedge \dd \omega = 0 $ and locally $ \omega = g(K , K) \dd t $ for an adapted time coordinate $ t $, which is unique up to an additive constant.
+\end{definition}
+
+In a static spacetime, the flow of $ K $ isometrically maps spacelike sections $ \{t = \text{const.}\} $ onto each other, and an observer at rest moves along integral curves of $ K $.
+
+\subsection{Motion in a Schwarzschild field}
+
+\subsection{Classical test of General Relativity}
 
 
 
