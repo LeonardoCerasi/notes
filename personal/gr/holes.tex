@@ -9,57 +9,16 @@ The simplest black hole solution is the Schwarzschild metric:
 \end{equation}
 This is a special case of the general metric in \secref{ssec:dS-space} with $ f(r)^2 = 1 - 2GM / r $: it solves the vacuum Einstein equations $ R_{\mu \nu} = 0 $.
 
-This solution depends on a single parameter $ M $, which is identified as the mass of the black hole: from the Newtonian approximation $ g_{00} = - (1 + 2\Phi) $, so $ \Phi = - \frac{GM}{r} $, which is precisely the potential for a point mass $ M $ at the origin. The same can be shown via Komar integrals: note that the Schwarzschild metric admits a timelike Killing vector field $ K = \pa_t $, with dual 1-form $ K = g_{00} \dd t $ and 2-form:
+This solution depends on a single parameter $ M $, which is identified as the mass of the black hole, as highlighted in \secref{sec:schwarz-sol}. The same can be shown via Komar integrals: note that the Schwarzschild metric admits a timelike Killing vector field $ K = \pa_t $, with dual 1-form $ K^\flat = g_{00} \dd t $ and Komar charge:
 \begin{equation*}
-  F = \dd K = - \frac{2GM}{r^2} \dd r \wedge \dd t
-\end{equation*}
-The associated Komar charge is:
-\begin{equation*}
+  F = \dd K^\flat = - \frac{2GM}{r^2} \dd r \wedge \dd t
+  \quad \implies \quad
   M_{\text{Komar}} = - \frac{1}{8\pi G} \int_{\Sn{2}_R} \star\, F = M
 \end{equation*}
 for all $ R > 2GM $ (radius of the horizon). Although the 2-form $ F $ obeys the vacuum Maxwell equations $ \dd \star F = 0 $, thus one would expect the associated Komar charge to vanish as there's no current, $ M_{\text{Komar}} = M \neq 0 $: this is possible because the mass of the black hole is localized at the origin, where $ F $ diverges. Moreover, the Schwarzschild solution is mathematically valid for $ M \in \R $: the solution $ M = 0 $ is just Minkowski spacetime, while $ M < 0 $ will be shown to be unphysical.
 
-\subsection{Birkhoff theorem}
-
-\begin{theorem}{Birkhoff theorem}{}
-  The Schwarzschild solution is the unique spherically-symmetric and asimptotically-flat solution to the vacuum Einstein field equations.
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    First, spherical symmetry means that the metric has an $ \SOn{3} $ isometry. It can be shown that any metric with such isometry can be written as:
-    \begin{equation*}
-      \dd s^2 = g_{\tau \tau}(\tau, \rho) \dd \tau^2 + 2 g_{\tau \rho}(\tau, \rho) \dd \tau\,\dd \rho + g_{\rho \rho}(\tau, \rho) \dd \rho^2 + r^2(\tau, \rho) \dd \Omega_2^2
-    \end{equation*}
-    These coordinates make the $ \SOn{3} $ isometry manifest, as it acts on $ \Sn{2} $ leaving $ \tau $ and $ \rho $ unchanged: this is a \textit{foliation} of the space by $ \Sn{2} $. Being $ r(\tau,\rho) $ the size of the sphere, it is useful to change coordinates to $ \tau $ and $ r $:
-    \begin{equation*}
-      \dd s^2 = g_{\tau \tau}(\tau,r) \dd \tau^2 + 2g_{\tau r}(\tau,r) \dd \tau\,\dd r + g_{rr}(\tau,r) \dd r^2 + r^2 \dd \Omega_2^2
-    \end{equation*}
-    Note a subtlety: for some functions $ r(\tau,\rho) $ it's not possible to exchange $ r $ and $ \rho $ (ex.: $ r = \tau $), but these counterexamples are ruled out by the assumption that the spacetime is asymptotically the Minkowski spacetime. Now, to get rid of the cross-term, consider $ \tilde{t}(\tau,r) $:
-    \begin{equation*}
-      \dd \tilde{t}^2 = \left( \frac{\pa \tilde{t}}{\pa \tau} \right)^2 \dd \tau^2 + 2 \frac{\pa \tilde{t}}{\pa \tau} \frac{\pa \tilde{t}}{\pa r} \dd \tau\,\dd r + \left( \frac{\pa \tilde{t}}{\pa r} \right)^2 \dd r^2
-    \end{equation*}
-    It's always possible to pick $ \tilde{t}(\tau,r) $ such that the cross-term vanishes, so that:
-    \begin{equation*}
-      \dd s^2 = - f(\tilde{t},r) \dd \tilde{t}^2 + g(\tilde{t},r) \dd r^2 + r^2 \dd \Omega_2^2
-    \end{equation*}
-    Solving the Einstein field equations requires that $ f(\tilde{t},r) = h(\tilde{t}) f(r) $ and $ g(\tilde{t},r) = g(r) $, thus redefining $ h(\tilde{t}) \dd \tilde{t}^2 = \dd t^2 $ yields:
-    \begin{equation*}
-      \dd s^2 = - f(r) \dd t^2 + g(r) \dd r^2 + r^2 \dd \Omega_2^2
-    \end{equation*}
-    Note that, even though time-independence was not assumed, it was derived from the field equations: this metric has the timelike Killing vector $ K = \pa_t $, besides those from the $ \SOn{3} $ isometry. At this point, the field equations require that $ f(r) = g(r)^{-1} $, thus this metric reduces to that considered in \secref{ssec:geo-dev}: the Schwarzschild metric is the most general solution with $ \Lambda = 0 $.
-  \end{proof}
-\end{proofbox}
-
-Therefore, the Schwarzschild metric does not only describe a black hole, but it describes the spacetime outside any non-rotating spherically-symmetric object, even in the presence of time-dependence (e.g. a collapsing star).
-
-\begin{definition}{Stationary spacetime}{def-t-ind}
-  A spacetime is said to be \bcdef{stationary} if it admits a globally-timelike Killing vector field $ K $. In addition, being $ t $ the coordinate along the integral curves of $ K $, if it is invariant under $ t \rightarrow -t $, then it is said to be \bcdef{static}.
-\end{definition}
-
-The definition of static spacetime rules out $ \dd t \, \dd x $ cross-terms in the metric. Moreover, by Birkhoff theorem, a spherically-symmetric metric must be static.
-
 \subsection{Horizon}
+\label{sec:schwarz-horizon}
 
 The Schwarzschild metric diverges at $ r = 0 $ and $ r = 2GM \equiv \sr $. To distinguish between true singularities and coordinate singularities, the usual way is defining a coordinate-independent scalar quantity and studying it at divergence points.
 
@@ -279,7 +238,7 @@ The Kruskal diagram makes it clear that, once an observer crosses the event hori
   \quad \implies \quad
   g_{\mu \nu} K^\mu K^\nu = - \left( 1 - \frac{2GM}{r} \right)
 \end{equation*}
-Ouside of the horizon $ K_\mu K^\mu < 0 $ as expected. But inside, with $ r < 2GM $, the Killing vector field is spacelike: therefore, by \dref{def:def-t-ind}, the full Schwarzschild spacetime is not time-independent, but it becomes clear only after crossing the event horizon.
+Ouside of the horizon $ K_\mu K^\mu < 0 $ as expected. But inside, with $ r < 2GM $, the Killing vector field is spacelike: therefore, by \dref{def:stationary-spacetime} and \pref{prop:time-independent-metric}, the full Schwarzschild spacetime is not time-independent, but it becomes clear only after crossing the event horizon.
 
 \paragraph{Einstein--Rosen bridge}
 

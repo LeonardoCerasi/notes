@@ -637,7 +637,7 @@ It is possible to reframe Noether's theorem in the context of Killing vectors.
 \begin{definition}{Komar form}{}
   Given a Killing vector $ K = K^\mu \pa_\mu $, defined the 1-form $ K \equiv K_\mu dx^\mu $, the associated \bcdef{Komar form} is the 2-form defined as:
   \begin{equation}
-    F \defeq dK
+    F \defeq \dd K
   \end{equation}
 \end{definition}
 
@@ -657,7 +657,7 @@ It is possible to reframe Noether's theorem in the context of Killing vectors.
 \begin{theorem}{Generalized Maxwell equations}{}
   If the vacuum Einstein equations $ R_{\mu \nu} = 0 $ hold, then a Komar form obeys the vacuum Maxwell equations:
   \begin{equation}
-    d \star F = 0
+    \dd \star F = 0
     \quad \iff \quad
     \na^\mu F_{\mu \nu} = 0
     \label{eq:komar}
@@ -1278,6 +1278,7 @@ It is possible to check that this condition is always satisfied by a classical s
 
 \newpage
 \section{Schwarzschild solution}
+\label{sec:schwarz-sol}
 
 The Schwarzschild solution is the unique static and spherically-symmetric vacuum solution to the Einstein field equations \eref{eq:vacuum-feq}: it describes spacetime outside a spherically-symmetric body, and it is the most important exact solution of the field equations.
 
@@ -1285,13 +1286,13 @@ The Schwarzschild solution is the unique static and spherically-symmetric vacuum
 
 To prove the uniqueness of the Schwarzschild solution, first a definition of ``static" spacetime is required. Given that symmetries are defined through Killing vector fields (\secref{ssec:isometries}), it is straightforward to formulate precise definitions of ``stationary" and ``static" using them.
 
-\begin{definition}{Stationary spacetime}{}
+\begin{definition}{Stationary spacetime}{stationary-spacetime}
   A Lorentzian manifold $ (\man , g) $ is \bcdef{stationary} if there exists a globally-timelike Killing vector field $ K \in \xm $.
 \end{definition}
 
 This means that an observer moving along the flow of $ K $, which is timelike, perceives no changes in spacetime, since the flow of $ K $ is an isometry group of $ \man $. It may happen that $ K $ is timelike only in some open region of $ \man $: then, only this part of spacetime is said stationary.
 
-\begin{proposition}{Stationary metric}{}
+\begin{proposition}{Stationary metric}{time-independent-metric}
   If $ (\man , g) $ is a stationary Lorentzian manifold, then $ g_{\mu \nu , 0} = 0 \,\, \forall \mu , \nu = 0,1,2,3 $.
 \end{proposition}
 
@@ -1340,11 +1341,134 @@ This justifies the following definition.
   Given a stationary Lorentzian manifold $ (\man , g) $ with globally-timelike Killing vector field $ K $, then it is said to be \bcdef{static} if, setting $ \omega \equiv K^\flat $, then $ \omega \wedge \dd \omega = 0 $ and locally $ \omega = g(K , K) \dd t $ for an adapted time coordinate $ t $, which is unique up to an additive constant.
 \end{definition}
 
-In a static spacetime, the flow of $ K $ isometrically maps spacelike sections $ \{t = \text{const.}\} $ onto each other, and an observer at rest moves along integral curves of $ K $.
+In a static spacetime, the flow of $ K $ isometrically maps spacelike sections $ \{t = \text{const.}\} $ onto each other, and an observer at rest moves along integral curves of $ K $. In the following, $ K $ is assumed to be the only globally-timelike Killing vector field, so that there is a \emph{distinguished time}.
+
+\begin{theorem}{Birkhoff's theorem}{}
+  A spherically-symmetric vacuum solution to the Einstein field equations must be static, and it is uniquely given by the \bcth{Schwarzschild solution}:
+  \begin{equation}
+    \dd s^2 = - \left( 1 - \frac{2m}{r} \right) \dd t^2 + \left( 1 - \frac{2m}{r} \right)^{-1} \dd r^2 + r^2 \left[ \dd \vartheta^2 + \sin^2 \vartheta \, \dd \varphi^2 \right]
+  \end{equation}
+  on the manifold $ \man = \R \times \R^+_{> 2m} \times \Sn{2} $, with $ m \in \R $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First of all, spherical symmetry requires that the Lorentzian manifold considered has $ \SOn{3} $ as an isometry group, with the conditions that the group orbits\footnote{Given a group $ G $ which acts on a set $ X $, the orbit of $ x \in X $ is defined as $ G(x) \defeq \{g x \in X : g \in G\} \ssq X $.} are 2-dimensional spacelike hypersurfaces. Thus, the manifold splits into $ \man = \Sigma \times \Sn{2} $, where $ \Sigma $ is a 2-dimensional Lorentzian submanifold. Since the metric on a 2-dimensional pseudo-Riemannian manifold can be always diagonalized\footnote{Needs a proof.}, the most general spherically-symmetric metric takes the form:
+    \begin{equation*}
+      \dd s^2 = - e^{2a(t,r)} \dd t^2 + e^{2b(t,r)} \dd r^2 + r^2 \left[ \dd \vartheta^2 + \sin^2 \varphi \, \dd \varphi^2 \right]
+    \end{equation*}
+    The $ \vartheta , \varphi $ are the standard coordinates on $ \Sn{2} $, $ t \in \R $ and the radial coordinate $ r $ is determined by the foliation of the spacial part of the manifold by invariant 2-spheres: in particular, each 2-sphere is characterized by a surface area $ A $, and $ r $ is defined by $ A = 4\pi r^2 $.
+
+    With notation $ f' \equiv \frac{\dd f}{\dd r} $ and $ \dot{f} \equiv \frac{\dd f}{\dd t} $, the only non-vanishing components of the Einstein tensor are computed to be:
+    \begin{equation*}
+      \tensor{G}{^0_0} = - \frac{1}{r^2} + e^{-2b} \left( \frac{1}{r^2} - \frac{2b'}{r} \right)
+      \qquad
+      \tensor{G}{^1_1} = - \frac{1}{r^2} + e^{-2b} \left( \frac{1}{r^2} + \frac{2a'}{r} \right)
+      \qquad
+      \tensor{G}{^1_0} = \frac{2\dot{b}}{r} e^{-a -b}
+    \end{equation*}
+    \begin{equation*}
+      \tensor{G}{^2_2} = \tensor{G}{^3_3} = e^{-2b} \left( a'^2 - a'b' + a'' + \frac{a' - b'}{r} \right) + e^{-2a} \left( -\dot{b}^2 + \dot{a} \dot{b} - \ddot{b} \right)
+    \end{equation*}
+    Now, the vacuum field equations read $ \tensor{G}{^\mu_\nu} = 0 $. From $ \tensor{G}{^1_0} = 0 $ it is clear that $ b = b(r) $; then, $ \tensor{G}{^0_0} + \tensor{G}{^1_1} = 0 $ implies the partial differential equation $ a' + b' = 0 $, which has the general solution $ a(t,r) = -b(r) + f(t) $. To determine $ b(r) $, consider $ \tensor{G}{^0_0} = 0 $:
+    \begin{equation*}
+      - \frac{1}{r^2} + e^{-2b} \left( \frac{1}{r^2} - \frac{2b'}{r} \right) = 0
+      \quad \implies \quad
+      \left( r e^{-2b} \right) = 1
+      \quad \implies \quad
+      e^{-2b} = 1 - \frac{2m}{r}
+    \end{equation*}
+    where $ m \in \R $ is an integration constant. Then, the other vacuum field equations are satisfied, and the metric takes the form:
+    \begin{equation*}
+      \dd s^2 = - e^{2f(t)} \left( 1 - \frac{2m}{r} \right) \dd t^2 + \left( 1 - \frac{2m}{r} \right)^{-1} + r^2 \left[ \dd \vartheta^2 + \sin^2 \varphi \, \dd \varphi^2 \right]
+    \end{equation*}
+    Introducing a new time coordinate $ \tilde{t} = \int \dd t \, e^{f(t)} $, this metric reduces to the Schwarzschild solution, which is manifestly static with the timelike Killing vector field $ K = \pa_t $.
+  \end{proof}
+\end{proofbox}
+
+The converse of Birkhoff's theorem is also true, and it is called Israel's theorem. The physical meaning of the parameter $ m \in \R $ is clarified by studying the Newtonian limit for $ g_{00} $ at large distances:
+\begin{equation*}
+  - \left( 1 - \frac{2m}{r} \right) \approx - \left( 1 + \frac{2 \Phi(r)}{c^2} \right)
+\end{equation*}
+Since $ \Phi(r) = - GM / r $, where $ M $ is the total mass generating the gravitational field, then:
+\begin{equation}
+  m = \frac{GM}{c^2}
+\end{equation}
+Hence, $ m $ can be seen as the mass of the spherically-symmetric object which generates the Schwarzschild field: this restricts the physical significance of $ m $ to $ m \in \R^+ $, as $ m = 0 $ corresponds to flat Minkowski space. As a consequence, the Schwarzschild metric describes the spacetime outside any non-rotating spherically-symmetric object, even in presence of time dependence in the internal distribution of matter (e.g. a collapsing star).
+
+Note that the solution is singular at $ r = 2m \equiv \sr $: indeed, Birkhoff's theorem only applies in the $ r > \sr $ region, while the ``interior" region, as well as the nature of the singularitis $ r = \sr $ and $ r = 0 $, remains to be studied (in \secref{sec:schwarz-horizon}).
 
 \subsection{Motion in a Schwarzschild field}
 
-\subsection{Classical test of General Relativity}
+The Lagrangian for a test body in a Schwarzschild field, parametrized with proper time, is:
+\begin{equation*}
+    2L = - \left( 1 - \frac{2m}{r} \right) \dot{t}^2 + \left( 1 - \frac{2m}{r} \right)^{-1} \dot{r}^2 + r^2 \left[ \dot{\vartheta}^2 + \sin^2 \vartheta \, \dot{\varphi}^2 \right]
+\end{equation*}
+Note that, along the worldline $ x^\mu(\tau) $, which is a geodetic on $ \man $, the Lagrangian takes the value $ 2L = -1 $, as $ \dd s^2 = - \dd \tau^2 $. The equation of motion for $ \vartheta $ reads:
+\begin{equation*}
+  \frac{\dd}{\dd \tau} (r^2 \dot{\vartheta}) = r^2 \sin \vartheta \cos \vartheta \, \dot{\varphi}^2
+\end{equation*}
+Therefore, if the motion is initially in the equatorial plane, i.e. $ \vartheta = \frac{\pi}{2} $ and $ \dot{\vartheta} = 0 $, it will remain so, hence WLOG $ \vartheta \equiv \frac{\pi}{2} $ and the Lagrangian reduces to:
+\begin{equation}
+  2L = - \left( 1 - \frac{2m}{r} \right) \dot{t}^2 + \left( 1 - \frac{2m}{r} \right)^{-1} \dot{r}^2 + r^2 \dot{\varphi}^2
+\end{equation}
+The variables $ t $ and $ \varphi $ are cyclic, and they correspond to two conserved quantities:
+\begin{equation}
+  \frac{\pa L}{\pa \dot{\varphi}} = r^2 \dot{\varphi} \equiv \ell
+  \qquad \qquad
+  - \frac{\pa L}{\pa \dot{t}} = \left( 1 - \frac{2m}{r} \right) \dot{t} \equiv E
+\end{equation}
+which are identified respectively with the angular momentum and the energy of the test body. Inserting these definitions into $ 2L = -1 $, the equation of motion becomes:
+\begin{equation}
+  \dot{r}^2 + V_\text{eff}(r) = E^2
+\end{equation}
+with the effective potential:
+\begin{equation}
+  V_\text{eff}(r) = \left( 1 - \frac{2m}{r} \right) \left( 1 + \frac{\ell^2}{r^2} \right)
+\end{equation}
+This potential always has asymptotics $ V_\text{eff}(r) \ra -\infty $ for $ r \ra 0 $ and $ V_\text{eff}(r) \ra 1 $ for $ r \ra + \infty $, but the intermediate behavior depends on the ratio $ \ell / m $: in particular, for $ \ell / m < 2 \sqrt{3} $ the potential has no critical points, hence any incoming particle falls towards the singularity at $ r = \sr $.
+
+The main physically-interesting quantity is the orbit $ r = r(\varphi) $, which can be determined from this equation of motion.
+
+\begin{proposition}{Quasi-Keplerian motion}{}
+  Defining $ u(\varphi) \equiv \frac{1}{r(\varphi)} $ and $ u' \equiv \frac{\dd u}{\dd \varphi} $, then the orbital equation becomes:
+  \begin{equation}
+    u'' + u = \frac{m}{\ell^2} + 3mu^2
+    \label{eq:schwarz-kepler}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, note that by the chain rule:
+    \begin{equation*}
+      \dot{r} = r' \dot{\varphi} = r' \frac{\ell}{r^2}
+      \quad \implies \quad
+      r'^2 \frac{\ell^2}{r^4} = E^2 - V_\text{eff}(r)
+    \end{equation*}
+    Then, introducing $ r' = - u' / u^2 $:
+    \begin{equation*}
+      \ell^2 u'^2 = E^2 - \left( 1 - 2m u \right) \left( 1 + \ell^2 u^2 \right)
+    \end{equation*}
+    Differentiating with respect to $ \varphi $ results in:
+    \begin{equation*}
+      2 u' u'' + 2 u u' = \frac{2m}{\ell^2} u' + 6m u^2 u'
+    \end{equation*}
+    Hence, either $ u' = 0 $, which is the equation for circular motion $ r = \text{const.} $, or it solves the ODE \eref{eq:schwarz-kepler}.
+  \end{proof}
+\end{proofbox}
+
+In the Newtonian case $ L = \frac{1}{2} \dot{\ve{x}}^2 + \frac{GM}{r^2} $, which results in the Keplerian orbital equation:
+\begin{equation}
+  u'' + u = \frac{GM}{\ell^2}
+\end{equation}
+Therefore, the motion in a Schwarzschild field is quasi-Keplerian, since the orbital equation contains an additional perturbative term $ 3mu^2 $. For our planet system, this perturbation is relatively small, e.g. for Mercury:
+\begin{equation*}
+  \frac{3mu^2}{m / \ell^2} = 3 u^2 \ell^2 = \frac{3}{r^2} \left( r^2 \dot{\varphi} \right)^2 \simeq \frac{3}{c^2} \left( r \frac{\dd \varphi}{\dd t} \right)^2 \simeq \frac{3 v_\perp^2}{c^2} \simeq 7.7 \cdot 10^{-8}
+\end{equation*}
+where $ v_\perp $ is the velocity component perpendicular to the radius vector.
+
+\subsection{Classical tests of General Relativity}
 
 
 
