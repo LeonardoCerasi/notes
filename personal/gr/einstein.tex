@@ -1470,6 +1470,80 @@ where $ v_\perp $ is the velocity component perpendicular to the radius vector.
 
 \subsection{Classical tests of General Relativity}
 
+\subsubsection{Periastron precession}
+
+The perihelion shift of Mercury was, at the start of the $ 20^\text{th} $ century, one of the main unsolved problem of celestial mechanics: even after the perturbing effects of other planets on Mercury's orbit had been accounted for, there remained in the data an unexplained advance in its perihelion. This precession is explained by General Relativity.
+
+To study in general the precession of the periastron of a generic planet, \eref{eq:schwarz-kepler} is treated perturbatively. In the Newtonian limit, the Keplerian orbit is an ellipse:
+\begin{equation}
+  u(\varphi) = \frac{1}{p} \left( 1 + e \cos \varphi \right)
+  \qquad \qquad
+  p = a \left( 1 + e^2 \right) = \frac{\ell^2}{m}
+  \label{eq:keplerian-orbit}
+\end{equation}
+where $ e $ is the eccentricity of the orbit and $ a $ its greater semiaxis. Then, at fist order of approximation, this solution is inserted in the perturbative term, yielding:
+\begin{equation*}
+  u'' + u = \frac{m}{\ell^2} + \frac{3m^3}{\ell^4} \left( 1 + e \cos \varphi \right)^2
+\end{equation*}
+
+\begin{lemma}{}{ode-sol}
+  For a constant $ A \in \R $, the following ODEs have particular solutions:
+  \begin{equation}
+    v'' + v =
+    \begin{cases}
+      A \\
+      A \cos \varphi \\
+      A \cos^2 \varphi
+    \end{cases}
+    \quad \implies \quad
+    v(\varphi) =
+    \begin{cases}
+      A \\
+      \tfrac{1}{2} A \varphi \sin \varphi \\
+      \tfrac{1}{2} A - \tfrac{1}{6} A \cos 2 \varphi
+    \end{cases}
+  \end{equation}
+\end{lemma}
+
+Using \lref{lemma:ode-sol}, it is trivial to see that the perturbative term leads to the following relativistic correction to the Keplerian elliptic orbit:
+\begin{equation}
+  u(\varphi) = \frac{m}{\ell^2} \left( 1 + e \cos \varphi \right) + \frac{3m^3 e}{\ell^4} \left[ 1 + \frac{e^2}{2} - \frac{e^2}{6} \cos 2 \varphi + e \varphi \sin \varphi \right]
+\end{equation}
+with an initial periastron at $ \varphi = 0 $. The important term, in this perturbation, is the \emph{secular term} proportional to $ \varphi \sin \varphi $, which is responsible (at first-order approximation) for the periastron precession.
+
+\begin{proposition}{Periastron precession}{}
+  If $ \varphi = 0 $ is a periastron, then the next periastron is at $ \varphi = 2\pi + \delta \varphi $, with:
+  \begin{equation}
+    \delta \varphi \simeq 3\pi \frac{\sr}{a \left( 1 - e^2 \right)}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The periastron is determined by the condition $ u' = 0 $, i.e.:
+    \begin{equation*}
+      \sin \varphi = \frac{3m^3}{\ell^2} \left[ \frac{e}{3} \sin 2\varphi + \sin \varphi + \varphi \cos \varphi \right]
+    \end{equation*}
+    Introducing the periastron anomaly $ \varphi = 2\pi + \delta \varphi $, this becomes:
+    \begin{equation*}
+      \sin \delta \varphi = \frac{3m^3}{\ell^2} \left[ \frac{e}{3} \sin 2 \delta \varphi + \sin \delta \varphi + \delta \varphi \cos \delta \varphi + 2 \pi \cos \delta \varphi \right]
+    \end{equation*}
+    Now, assume that $ e \ll 1 $ and $ \abs{\delta \varphi} \ll 1 $: then, $ \abs{\sin \delta \varphi} \ll 1 $ and $ \cos \delta \varphi \simeq 1 $, so that the only term which determines the anomaly is, approximately, the last one:
+    \begin{equation*}
+      \sin \delta \varphi \simeq 6\pi \frac{m^3}{\ell^2} \cos \delta \varphi
+    \end{equation*}
+    Then, using $ \tan \delta \varphi \simeq \delta \varphi $, $ 2m \equiv \sr $ and \eref{eq:keplerian-orbit}, the thesis is obtained.
+  \end{proof}
+\end{proofbox}
+
+Although an approximation valid for $ e \ll 1 $ and $ \abs{\delta \varphi} \ll 1 $, this expression is increadibly accurate for predictions in the solar system. Defining the rate of periastron shift:
+\begin{equation}
+  \dot{\omega} \equiv \frac{\delta \varphi}{T}
+  \qquad \qquad
+  T = 2\pi \sqrt{\frac{a^3}{GM}}
+\end{equation}
+where the orbital period is computed from Kepler's third law, the prediction for Mercury is $ \dot{\omega} \simeq 42.98'' $ per century, which is accurate at $ 0.1\% $ error with respect to the observed data.
+
 
 
 
