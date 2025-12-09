@@ -1396,7 +1396,7 @@ Since $ \Phi(r) = - GM / r $, where $ M $ is the total mass generating the gravi
 \end{equation}
 Hence, $ m $ can be seen as the mass of the spherically-symmetric object which generates the Schwarzschild field: this restricts the physical significance of $ m $ to $ m \in \R^+ $, as $ m = 0 $ corresponds to flat Minkowski space. As a consequence, the Schwarzschild metric describes the spacetime outside any non-rotating spherically-symmetric object, even in presence of time dependence in the internal distribution of matter (e.g. a collapsing star).
 
-Note that the solution is singular at $ r = 2m \equiv \sr $: indeed, Birkhoff's theorem only applies in the $ r > \sr $ region, while the ``interior" region, as well as the nature of the singularitis $ r = \sr $ and $ r = 0 $, remains to be studied (in \secref{sec:schwarz-horizon}).
+Note that the solution is singular at $ r = 2m \equiv \sr $: indeed, Birkhoff's theorem only applies in the $ r > \sr $ region, while the ``interior" region, as well as the nature of the singularitis $ r = \sr $ and $ r = 0 $, remains to be studied (in \secref{sec:schwarz-horizon}). It is important to notice that $ r $ is not the ``distance from the center": indeed, given the foliated structure of the Schwarzschild spacetime, $ \dd r $ is not the distance between two 2-spheres with $ r $ and $ r + \dd r $ (defined by their surface area), which is instead $ \dd l = \dd r / \sqrt{1 - 2m / r} $. Therefore, it is clear that the $ \{t = \text{const.}\} $ sections of spacetime are non-Euclidean.
 
 \subsection{Motion in a Schwarzschild field}
 
@@ -1411,6 +1411,7 @@ Note that, along the worldline $ x^\mu(\tau) $, which is a geodetic on $ \man $,
 Therefore, if the motion is initially in the equatorial plane, i.e. $ \vartheta = \frac{\pi}{2} $ and $ \dot{\vartheta} = 0 $, it will remain so, hence WLOG $ \vartheta \equiv \frac{\pi}{2} $ and the Lagrangian reduces to:
 \begin{equation}
   2L = - \left( 1 - \frac{2m}{r} \right) \dot{t}^2 + \left( 1 - \frac{2m}{r} \right)^{-1} \dot{r}^2 + r^2 \dot{\varphi}^2
+  \label{eq:schwarz-lag}
 \end{equation}
 The variables $ t $ and $ \varphi $ are cyclic, and they correspond to two conserved quantities:
 \begin{equation}
@@ -1468,7 +1469,23 @@ Therefore, the motion in a Schwarzschild field is quasi-Keplerian, since the orb
 \end{equation*}
 where $ v_\perp $ is the velocity component perpendicular to the radius vector.
 
+\subsubsection{Freely-falling emitter}
+
 \subsection{Classical tests of General Relativity}
+
+\subsubsection{Gravitational redshift}
+
+Consider a stationary clock, i.e. a clock on a spacetime section $ \{(r,\vartheta,\varphi) = \text{const.}\} $. Then, the time measured by it is:
+\begin{equation}
+  \dd \tau = \dd t \sqrt{1 - \frac{2m}{r}}
+\end{equation}
+Then, if two stationary cloks at $ r_1 = r $ and $ r_2 = r + \Delta r $ exchange light signals, the non-Euclidean nature of spacetime determines a gravitational redshift:
+\begin{equation}
+  \frac{\nu_2}{\nu_1} = \sqrt{\frac{1 - \sr / r_1}{1 - \sr / r_2}} \simeq 1 - \frac{\sr \Delta r}{2 r^2}
+\end{equation}
+where the approximation holds for $ \Delta r \ll r $ and $ \sr \ll r $.
+
+% TODO add Observation on GPS
 
 \subsubsection{Periastron precession}
 
@@ -1543,6 +1560,141 @@ Although an approximation valid for $ e \ll 1 $ and $ \abs{\delta \varphi} \ll 1
   T = 2\pi \sqrt{\frac{a^3}{GM}}
 \end{equation}
 where the orbital period is computed from Kepler's third law, the prediction for Mercury is $ \dot{\omega} \simeq 42.98'' $ per century, which is accurate at $ 0.1\% $ error with respect to the observed data.
+
+\subsubsection{Deflection of light}
+
+Recalling \eref{eq:schwarz-lag}, the motion of lightrays is determined by $ L = 0 $, since for null curves $ \dd s^2 = 0 $:
+\begin{equation}
+  \left( 1 - \frac{2m}{r} \right)^{-1} E^2 - \left( 1 - \frac{2m}{r} \right)^{-1} \dot{r}^2 - \frac{\ell^2}{r^2} = 0
+  \label{eq:schwarz-lightray}
+\end{equation}
+This equation results in a simpler orbital equation.
+
+\begin{proposition}[before upper = {\tcbtitle}]{Motion of lightrays}{}
+  \begin{equation}
+    u'' + u = 3mu^2
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    \eref{eq:schwarz-lightray} can be rewritten, with $ \dot{r} = - u' \ell $, as:
+    \begin{equation*}
+      E^2 - \left( 1 - 2mu \right) \ell^2 u^2 = \ell^2 u'^2
+      \quad \implies \quad
+      u'^2 + u^2 = \frac{E^2}{\ell^2} + 2mu^3
+    \end{equation*}
+    Differentiating yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+In the solar system, the perturbative term is relatively small, since:
+\begin{equation*}
+  \frac{3mu^2}{u} = \frac{3\sr}{2r} \leq \frac{\sr}{\solr} \simeq 4.24 \cdot 10^{-6}
+\end{equation*}
+The unperturbed solution, found neglecting the $ 3mu^2 $ term, is a straight light-path:
+\begin{equation}
+  u(\varphi) = \frac{1}{b} \sin \varphi
+\end{equation}
+where $ b $ is the impact parameter, i.e. the distance between the asymptotic initial direction of the lightray and the center of the mass distribution which determines the curvature of spacetime.
+At first order in perturbation theory, then:
+\begin{equation*}
+  u'' + u = \frac{3m}{b^2} \left( 1 - \cos^2 \varphi \right)
+\end{equation*}
+Solving this with unperturbed solution $ + $ particular solution yields the first-order solution:
+\begin{equation}
+  u(\varphi) = \frac{1}{b} \sin \varphi + \frac{3m}{2b^2} \left( 1 + \frac{1}{3} \cos 2\varphi \right)
+  \label{eq:schwarz-light}
+\end{equation}
+For large $ r $ (small $ u $), $ \abs{\varphi} $ is either small or close to $ \pi $. For small $ \varphi $, take $ \sin \varphi \simeq \varphi $ and $ \cos \varphi \simeq 1 $, and define the asymptotic initial direction $ \varphi_\infty \equiv \lim_{u \ra 0} \varphi $, so that by \eref{eq:schwarz-light}:
+\begin{equation}
+  \varphi_\infty = - \frac{2m}{b}
+\end{equation}
+For an observer at large distance, then, the \bctxt{total deflection} is $ \delta = 2 \abs{\varphi_\infty} $, that is:
+\begin{equation}
+  \delta = \frac{2\sr}{b}
+\end{equation}
+For the Sun, this results in $ \delta \simeq 1.75'' \sr / b $, which as of today is accurate within $ 0.02\% $ from radioastronomical measurements of quasars: the experimental confirmation of this deviation was the first historical test of General Relativity.
+
+\subsubsection{Gravitational time delay}
+
+Suppose that a signal is transmitted from a point $ (r_1 , \varphi_1) $ to another point $ (r_2 , \varphi_2) $ on the equatorial plane $ \vartheta = \frac{\pi}{2} $. It is possible to compute the coordinate time required for this trasmission.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.90 \textwidth]{time-delay.png}
+  \caption{Path of a radar signal between two points in Schwarzschild spacetime.}
+  \label{fig:time-delay}
+\end{figure}
+
+\begin{proposition}{Elapsed coordinate time}{}
+  Let $ r_0 \in \R^+_{\ge \sr} $ be the distance of closest approach of a lightray. Then, the coordinate time elapsed during a transmission between $ r_0 $ and $ r \ge r_0 $ is:
+  \begin{equation}
+    \Delta t(r,r_0) = \int_{r_0}^r \dd r \left( 1 - \frac{\sr}{r} \right)^{-1} \left[ 1 - \frac{1 - \sr / r}{1 - \sr / r_0} \left( \frac{r_0}{r} \right)^2 \right]^{- \frac{1}{2}}
+  \end{equation}
+  Assuming that $ r , r_0 \gg \sr $, then:
+  \begin{equation}
+    \Delta(r,r_0) \simeq \sqrt{r^2 - r_0^2} + \sr \ln \left[ \frac{r + \sqrt{r^2 - r_0^2}}{r_0} \right] + \frac{\sr}{2} \sqrt{\frac{r - r_0}{r + r_0}}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, express $ \dot{r} $ in terms of $ E $:
+    \begin{equation*}
+      \dot{r} = \frac{\dd r}{\dd t} \dot{t} = \frac{\dd r}{\dd t} \frac{E}{1 - \sr / r}
+    \end{equation*}
+    Then, recalling \eref{eq:schwarz-lightray}:
+    \begin{equation*}
+      \left( 1 - \frac{\sr}{r} \right)^{-3} \left( \frac{\dd r}{\dd t} \right)^2 = \left( 1 - \frac{\sr}{r} \right)^{-1} - \frac{\ell^2}{E^2} \frac{1}{r^2}
+    \end{equation*}
+    If $ r_0 $ is the distance of closest approach, then $ \frac{\dd r}{\dd t} \bigg\vert_{r = r_0} = 0 $, so that:
+    \begin{equation*}
+      \frac{\ell^2}{E^2} = \frac{r_0^2}{1 - \sr / r_0}
+    \end{equation*}
+    Substituting this into the above equation and integrating yields the thesis. Then, if $ r,r_0 \gg \sr $:
+    \begin{equation*}
+      \Delta t(r,r_0) \simeq \int_{r_0}^r \dd r \left( 1 + \frac{\sr}{r} \right) \left[ 1 - \left( \frac{\sr}{r_0} - \frac{\sr}{r} \right) \left( \frac{r_0}{r} \right)^2 \right]^{- \frac{1}{2}}
+    \end{equation*}
+    This expression can be rearranged as:
+    \begin{equation*}
+      \Delta t(r,r_0) \simeq \int_{r_0}^r \dd r \left( 1 - \frac{r_0^2}{r^2} \right)^{- \frac{1}{2}} \left[ 1 + \frac{\sr}{r} + \frac{\sr r_0}{2r (r + r_0)} \right]
+    \end{equation*}
+    Integrating gives the thesis.
+  \end{proof}
+\end{proofbox}
+
+Note that the first term in the approximate expression is the non-relativistic term, while the other terms give the correction determined by the non-Euclidean nature of the Schwarzschild spacetime.
+
+Now, if $ \abs{\varphi_1 - \varphi_2} > \frac{\pi}{2} $ as in \figref{fig:time-delay}, the total elapsed coordinate time is $ \Delta t_{1,2} = \Delta t(r_1 , r_0) + \Delta t(r_2 , r_0) $, hence the time delay due to non-Euclideanity is given by the \bctxt{Shapiro delay in coordinate time}:
+\begin{equation}
+  \begin{split}
+    \Delta t
+    & \defeq 2 \left[ \Delta t(r_1 , r_0) + \Delta t(r_2 , r_0) - \sqrt{r_1^2 - r_0^2} - \sqrt{r_2^2 - r_0^2} \right] \\
+    & \simeq 2\sr \ln \left[ \frac{\left( r_1 + \sqrt{r_1^2 - r_0^2} \right) \left( r_2 + \sqrt{r_2^2 - r_0^2} \right)}{r_0^2} \right] + \sr \left[ \sqrt{\frac{r_1 - r_0}{r_1 + r_0}} + \sqrt{\frac{r_2 - r_0}{r_2 + r_0}} \right]
+  \end{split}
+\end{equation}
+Although the coordinate time is not observable, since clocks measure their proper time, the Shapiro delay in coordinate time still gives a general idea of the magnitude of the general relativistic time delay.
+
+\begin{example}{Earth--Mars time delay}{}
+  Consider a radar transmission from Earth to Mars and then back to Earth. The Shapiro delay in coordinate time is (with $ r_0 \ll r_1 , r_2 $):
+  \begin{equation*}
+    \Delta t \simeq 2\sr \left[ \ln \frac{4 r_1 r_2}{r_0^2} + 1 \right] \lesssim 240 \, \mu\text{s}
+  \end{equation*}
+\end{example}
+
+\subsubsection{Gravitational microlensing}
+
+A direct consequence of the deflection of light due to a mass density is the lensing effect of the latter on the light emitted from objects further along the line of sight.
+
+It is important to distinguish between two kinds of gravitational lensing: the cosmological lensing, where the source is a distant quasar and the lens is galaxy, and the gravitational microlensing, where the source is a distant star and the lens is a concentrated and relatively small mass density. The former has a much more complex theory, due to the extended nature of the lens, hence only microlensing is considered here: the main experimental application of microlensing is the search for massive galactic halo objects (MACHOs, $ \sin 10 \,\text{kpc} $), which act as lenses for stars in the Magellanic clouds ($ \sim 50 \,\text{kpc} $) and whose main candidates are brown dwarfs, inactive white dwarfs, neutron stars and black holes.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{lensing.png}
+  \caption{Schematics of the lens geometry.}
+  \label{fig:lensing}
+\end{figure}
 
 
 
