@@ -1613,6 +1613,7 @@ For large $ r $ (small $ u $), $ \abs{\varphi} $ is either small or close to $ \
 For an observer at large distance, then, the \bctxt{total deflection} is $ \delta = 2 \abs{\varphi_\infty} $, that is:
 \begin{equation}
   \delta = \frac{2\sr}{b}
+  \label{eq:light-deflection}
 \end{equation}
 For the Sun, this results in $ \delta \simeq 1.75'' \sr / b $, which as of today is accurate within $ 0.02\% $ from radioastronomical measurements of quasars: the experimental confirmation of this deviation was the first historical test of General Relativity.
 
@@ -1691,10 +1692,121 @@ It is important to distinguish between two kinds of gravitational lensing: the c
 
 \begin{figure}
   \centering
-  \includegraphics[width = 0.50 \textwidth]{lensing.png}
+   \begin{tikzpicture}
+    \begin{feynman}
+      \vertex [dot] (s) {};
+      \vertex [right = 20em of s, dot] (l) {};
+      \vertex [right = 14em of l, dot] (rp) {};
+      \vertex [above = 4em of rp, dot] (r) {};
+
+      \vertex [above = 8em of l, dot] (q) {};
+      \vertex [above = 4em of l, dot] (rpp) {};
+      \vertex [above = 2.352941176em of l, dot] (qp) {};
+
+      \vertex [right = 5em of q] (ap);
+      \vertex [above = 2em of ap] (a);
+
+      % labels
+      \vertex [left = 1em of rpp] (lql) {$ b $};
+      \vertex [left = 1em of s] (ls) {$ \text{S} $};
+      \vertex [below = 1em of l] (ll) {$ \text{L} $};
+      \vertex [right = 1em of r] (lr) {$ \text{R} $};
+      \vertex [right = 1em of rp] (lrp) {$ \text{R}' $};
+      \vertex [above = 1em of q] (lq) {$ \text{Q} $};
+
+      \diagram* {
+        (s) -- [edge label' = $ D_\text{s} $] (l) -- [edge label' = $ D_\text{r} $] (rp),
+        (s) -- (q) -- (r),
+
+        (r) -- [scalar, edge label = $ r $] (rp),
+        (r) -- [scalar] (rpp),
+        (r) -- [scalar] (s),
+        (q) -- [scalar] (qp),
+        (qp) -- [scalar, edge label = $ r' $] (l),
+
+        (q) -- [scalar] (a),
+      };
+    \end{feynman}
+
+    \path pic["$ \theta_\text{s} $", draw, angle radius = 3em, angle eccentricity = 1.2] {angle = l--s--q};
+    \path pic["$ \theta_\text{r} $", draw, angle radius = 4em, angle eccentricity = 1.2] {angle = q--r--rpp};
+    \path pic["$ \delta $", draw, angle radius = 2em, angle eccentricity = 1.2] {angle = r--q--a};
+  \end{tikzpicture}
   \caption{Schematics of the lens geometry.}
   \label{fig:lensing}
 \end{figure}
+
+\paragraph{Optical schematics}
+
+The optical scheme of a gravitational lens is composed of three points: the source $ \text{S} $, the lens $ \text{L} $ and the observer $ \text{R} $. Then, set $ \text{R}' $ the projection of $ \text{R} $ on the line $ \text{SL} $ and define the distances $ D_\text{s} \equiv \overline{\text{SL}} $, $ D_\text{r} \equiv \overline{\text{LR}'} $ and $ r \equiv \overline{\text{RR}'} $, as in Fig. \figref{fig:lensing}.
+
+At first approximation, it is possible to identify the lightray emitted from the source and deflected by the lens with its two asymptotes, which are lines passing through a common point $ Q $ at a distance $ b $ from the lens and forming an angle $ \delta $ given by \eref{eq:light-deflection}, with $ \overline{\text{QL}} \perp \overline{\text{SL}} $: these assumptions only induce errors of order $ \smo(b^{-2}) $, where $ b,r \ll D_\text{s} , D_\text{r} $ is supposed.
+
+\begin{proposition}{Lensed image}{}
+  The imaged produced by the lens has dimension:
+  \begin{equation}
+    b_\pm = \frac{1}{2} \left[ r' \pm \sqrt{r'^2 + 4b_\text{E}^2} \right]
+    \label{eq:grav-lensing}
+  \end{equation}
+  with:
+  \begin{equation}
+    b_\text{E} \equiv \sqrt{2\sr \frac{D_\text{s} D_\text{r}}{D_\text{s} + D_\text{r}}}
+    \qquad \qquad
+    r' \equiv \frac{D_\text{s}}{D_\text{s} + D_\text{r}} r
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Geometrically, the following relations are clear (with $ b \ll \sr $):
+    \begin{equation*}
+      \theta_\text{s} + \theta_\text{r} = \delta
+      \qquad \qquad
+      D_\text{s} \theta_\text{s} = b
+      \qquad \qquad
+      D_\text{r} \theta_\text{r} = b - r
+    \end{equation*}
+    Substituting \eref{eq:light-deflection} and combining these equations, then:
+    \begin{equation*}
+      \frac{b}{D_\text{s}} + \frac{b - r}{D_\text{r}} = \frac{2\sr}{b}
+      \quad \implies \quad
+      b^2 - \frac{D_\text{s} r}{D_\text{s} + D_\text{r}} b = 2\sr \frac{D_\text{s} D_\text{r}}{D_\text{s} + D_\text{r}}
+    \end{equation*}
+    Solving this equation yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+Note that the two solutions correspond to the lightray passing either ``above" (like in \figref{fig:lensing}) or ``below" the lens: this does not mean that the lens forms two images, since, for an image to form, it is necessary that a small beam of light passes through the same point after being lensed, but this does not happen in gravitational lenses, which are highly astigmatic.
+
+While $ r' $ has a clear geometrical meaning, $ b_\text{E} $ corresponds to the case of a perfect alignment, i.e. $ r = 0 $. In this case, the lighrays which get lensed are not only the two already analyzed, which confined on the plane determined by $ \text{S} $, $ \text{L} $ and $ \text{R} $, but are infinitely many, and they lie on a cone with axis $ \overline{\text{SR}} $ and semiangle $ \theta_\text{r} $. In this case, the lens does not produce two images, but a whole circumference of radius $ b_\text{E} $: an \bctxt{Einstein ring}.
+
+Note that these Einstein rings are nearly impossible to observe for relatively close sources: with $ D_\text{s} = D_\text{r} = 1 \,\text{kpc} $ and $ \sr = 3 \,\text{km} $, the angular semiopening of the ring is $ \theta_\text{r} = b_\text{E} / D_\text{r} \simeq 0.002'' $. On the other hand, these rings are fairly common on cosmological scales, e.g. with a galaxy as lens, but on these scales it is not possible to apply a Euclidean analysis.
+
+\paragraph{Microlensing}
+
+In the conditions of gravitational microlensing, observing lensed images or Einstein rings is impossible, as already seen. However, an observable effect is a magnification of the source. Assuming that the source isotropically emits a luminosity $ L $, the power irradiated on an area $ \dd \sigma $ in the absence of any lens is:
+\begin{equation*}
+  P_0 = \frac{L}{4\pi} \frac{\dd \sigma}{(D_\text{s} + D_\text{r})^2}
+\end{equation*}
+On the other hand, if a lens is present, the power irradiated on $ \dd \sigma $ is given by the luminosity emitted in the solid angle $ \dd \Omega = \sin \theta_\text{s} \dd \theta_\text{s} \dd \varphi $, while $ \dd \sigma = r \, \dd r \dd \varphi $ by axial symmetry, so that:
+\begin{equation*}
+  P = L \frac{\dd \Omega}{4\pi}
+\end{equation*}
+The magnification $ A $ is the ratio between $ P $ and $ P_0 $, that is:
+\begin{equation*}
+  A = \frac{P}{P_0} = (D_\text{s} + D_\text{r})^2 \frac{\dd \Omega}{\dd \sigma} \simeq (D_\text{s} + D_\text{r})^2 \frac{\theta_\text{s} \dd \theta_\text{s}}{r \, \dd r} = \left( \frac{D_\text{s} + D_\text{r}}{D_\text{s}} \right)^2 \frac{b \, \dd b}{r \, \dd r} = \frac{b \, \dd b}{r' \dd r'}
+\end{equation*}
+Recalling \eref{eq:grav-lensing}, one must add the two contributions from each image, thus finding:
+\begin{equation*}
+  A = \frac{b_+^2}{r' \abs{2b_+ - r'}} + \frac{b_-^2}{r' \abs{2b_- - r'}}
+\end{equation*}
+where the absolute value is necessary in order to keep $ A $ positive. A trivial manipulation yields the final expression:
+\begin{equation}
+  A = \frac{r'^2 + 2 b_\text{E}^2}{r' \sqrt{r'^2 + 4 b_\text{E}^2}}
+\end{equation}
+This expression seams to have a pole for $ r' \ra 0 $: this is easily avoided by considering the source as an extended object, rather than a point.
+
+Searching for these kinds of magnifications in the light of distant stars allows to study MACHOs: to distinguish the resulting luminous variability from variable stars, it is important to note that the microlensing effect is exactly symmetrical in time and non-dispersive, i.e. equal for all wavelengths.
 
 
 
