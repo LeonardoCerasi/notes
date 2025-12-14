@@ -1347,6 +1347,7 @@ In a static spacetime, the flow of $ K $ isometrically maps spacelike sections $
   A spherically-symmetric vacuum solution to the Einstein field equations must be static, and it is uniquely given by the \bcth{Schwarzschild solution}:
   \begin{equation}
     \dd s^2 = - \left( 1 - \frac{2m}{r} \right) \dd t^2 + \left( 1 - \frac{2m}{r} \right)^{-1} \dd r^2 + r^2 \left[ \dd \vartheta^2 + \sin^2 \vartheta \, \dd \varphi^2 \right]
+    \label{eq:schwarz-sol}
   \end{equation}
   on the manifold $ \man = \R \times \R^+_{> 2m} \times \Sn{2} $, with $ m \in \R $.
 \end{theorem}
@@ -1418,6 +1419,7 @@ The variables $ t $ and $ \varphi $ are cyclic, and they correspond to two conse
   \frac{\pa L}{\pa \dot{\varphi}} = r^2 \dot{\varphi} \equiv \ell
   \qquad \qquad
   - \frac{\pa L}{\pa \dot{t}} = \left( 1 - \frac{2m}{r} \right) \dot{t} \equiv E
+  \label{eq:schwarz-energy}
 \end{equation}
 which are identified respectively with the angular momentum and the energy of the test body. Inserting these definitions into $ 2L = -1 $, the equation of motion becomes:
 \begin{equation}
@@ -1426,6 +1428,7 @@ which are identified respectively with the angular momentum and the energy of th
 with the effective potential:
 \begin{equation}
   V_\text{eff}(r) = \left( 1 - \frac{2m}{r} \right) \left( 1 + \frac{\ell^2}{r^2} \right)
+  \label{eq:schwarz-effective-pot}
 \end{equation}
 This potential always has asymptotics $ V_\text{eff}(r) \ra -\infty $ for $ r \ra 0 $ and $ V_\text{eff}(r) \ra 1 $ for $ r \ra + \infty $, but the intermediate behavior depends on the ratio $ \ell / m $: in particular, for $ \ell / m < 2 \sqrt{3} $ the potential has no critical points, hence any incoming particle falls towards the singularity at $ r = \sr $.
 
@@ -1470,6 +1473,57 @@ Therefore, the motion in a Schwarzschild field is quasi-Keplerian, since the orb
 where $ v_\perp $ is the velocity component perpendicular to the radius vector.
 
 \subsubsection{Freely-falling emitter}
+
+Consider a point-like source, emitting light in a constant and isotropic way in its comoving reference frame, which is radially falling from infinity. The emitted light is detected by an observer in a fixed position, along the same radial direction, at $ r = R \gg \sr $.
+
+Since light propagates on null curves with $ \dd s^2 = 0 $, from \eref{eq:schwarz-sol}:
+\begin{equation*}
+  \dd t = \pm \frac{r}{r - \sr} \dd r
+  \quad \implies \quad
+  t = r + \sr \ln (r - \sr) + \text{const.}
+\end{equation*}
+where the positive solution has been chosen and the $ \Sn{2} $ component has been ignored, since the motion is radial (i.e. with fixed $ \vartheta $ and $ \varphi $).
+Now, fix an emission event $ (t_\text{e} , r_\text{e}) $, which is detected at $ (t_\text{r},R) $. Clearly, by the above relation:
+\begin{equation}
+  t_\text{r} - R - \sr \ln (R - \sr) = t_\text{e} - r_\text{e} - \sr \ln (r_\text{e} - \sr)
+  \label{eq:aux-1}
+\end{equation}
+It is possible to make the relation between $ t_\text{e} $ and $ r_\text{e} $ explicit. Recall \eref{eq:schwarz-effective-pot} and set $ \ell = 0 $ (radial motion), so that:
+\begin{equation*}
+  \dot{r}^2 = E^2 - 1 + \frac{\sr}{r} \equiv \frac{\sr}{r} - \frac{\sr}{r_0}
+  \qquad \qquad
+  r_0 \equiv \frac{\sr}{1 - E^2}
+\end{equation*}
+where $ r_0 $ is the initial radial coordinate of the geodesic. Note that this is the same equation which can be derived from energy conservation in Newtonian mechanics, with $ \Phi(r) = - GM m_\text{s} / r $. Since the source is falling from infinity, $ E = 1 $ (which justifies the choice of the positive solution for $ t = t(r) $), hence the geodesic is described by:
+\begin{equation}
+  r = \sr s^2
+  \qquad \qquad
+  \tau = - \frac{2}{3} \sr s^3
+  \label{eq:aux-2}
+\end{equation}
+where $ s \in \R^+_{>1} $ is an auxiliary variable and the choice of the sign of $ \tau $ is dictated by the fact that the source is falling, so $ s $ decreases along the trajectory while $ \tau $ must always increase. Then, by \eref{eq:schwarz-energy}:
+\begin{equation*}
+  \frac{r - \sr}{r} \frac{\dd t}{\dd \tau} = 1
+  \quad \implies \quad
+  t = - \frac{2}{3} \sr s^3 - 2 \sr s + \sr \ln \frac{s + 1}{s - 1}
+\end{equation*}
+Inserting this into \eref{eq:aux-1} in place of $ (t_\text{e} , r_\text{e}) $:
+\begin{equation*}
+  t_\text{r} = - \frac{2}{3} \sr s^3 - \sr s^2 - 2 \sr s - 2 \sr \ln (s - 1) - R - \sr \ln \left( \frac{R}{\sr} - 1 \right)
+\end{equation*}
+In the limit $ s \ra 1 $, i.e. $ r \ra \sr $, this equation becomes:
+\begin{equation*}
+  t_\text{r} \ra - 2 \sr \ln (s - 1) + \text{const.}
+  \quad \implies \quad
+  s \ra 1 + a e^{- \frac{t_\text{r}}{2\sr}}
+\end{equation*}
+with $ a \equiv \exp (\text{const.} / 2\sr) $. Differentiating this equation and \eref{eq:aux-2}, then:
+\begin{equation}
+  \frac{\dd t_\text{r}}{\dd \tau} \ra a^{-1} e^{\frac{t_\text{r}}{2\sr}}
+\end{equation}
+Note that $ \tau $ is the proper time of the source, while $ t_\text{r} $ can be identified with the proper time of the observer, since $ R \gg \sr $. This means that the rate of reception of photons by the observer is exponentially damped, resulting in an exponential decrease of the observed intensity of the source as it approaches $ r = \sr $. Additionally, the light emitted by the source is exponentially redshifted\footnotemark, near the horizon: combining these effects, the source eventually becomes undetectable, but the radiation intensity never drops to zero, although the source crosses the horizon in a finite proper time (as per \eref{eq:aux-2}).
+
+\footnotetext{Requires proof.}
 
 \subsection{Classical tests of General Relativity}
 
