@@ -1,0 +1,62 @@
+\selectlanguage{english}
+
+\chapter{Crystal vibrations}
+
+Like for molecules, we expect to find multiple normal modes, since the crystal can be seen as a molecule with an extremely large number of atoms: in particular, since for a molecule with $ N $ atoms there are $ 3N - 6 $ normal frequencies, for a crystal we similarly expect $ \sim 3N $ normal frequencies.
+
+\section{Linear chain}
+
+Consider a monoatomic linear chain, and adopt the approximation where the only interactions are between neighbouring atoms and have a harmonic nature. Then, label each atom with $ s = 0 , 1 , \dots , N - 1 $ and assume that their equilibrium distance is $ a $, so that the total length of the chain is $ L = (N - 1) a $, and that their mass is $ M $. Defining $ u_s $ as the longitudinal displacement (analogous to stretching modes in molecules) from its equilibrium position of the atom $ s $, then its equation of motion is:
+\begin{equation}
+  C \left( u_{s + 1} - 2 u_s + u_{s - 1} \right) = M \ddot{u}_s
+  \label{eq:linear-chain}
+\end{equation}
+where $ C \in \R^+ $ is the spring constant of the harmonic interaction between neighbouring atoms. The wave ansatz reads:
+\begin{equation}
+  u_s(t) = u_0 e^{\img \left( k s a - \omega t \right)}
+\end{equation}
+where we set the $ s = 0 $ atom at the origin. Inserting this ansatz into \eref{eq:linear-chain}:
+\begin{equation*}
+  - \omega^2 M = C \left( e^{\img k a} + e^{-\img k a} - 2 \right) = 2C \left( \cos k a - 1 \right)
+\end{equation*}
+which results in the \bctxt{dispersion relation} for vibrations in a crystal:
+\begin{equation}
+  \omega = 2 \sqrt{\frac{C}{M}} \abs{\sin \frac{k a}{2}}
+\end{equation}
+Contrary to waves in a continuous medium (EM waves in vacuum $ \omega = c k $, sound waves in air $ \omega = v_\text{s} k $), crystal vibrations propagate in a discrete medium, hence their dispersion relation is non-linear (see \figref{fig:acoustic}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{acoustic-branch.png}
+  \caption{Acoustic branches in a monoatomic crystal.}
+  \label{fig:acoustic}
+\end{figure}
+
+Note that this analysis holds for all atoms in the linear chains, except for the endpoints: since $ N \sim \av $, these endpoints can be ignored, and the chain can be assumed to be infinite. To do so, it is necessary to impose \bctxt{perdiodic boundary conditions}, i.e.:
+\begin{equation}
+  u(L) = u(0)
+  \qquad \qquad
+  u'(L) = u'(0)
+\end{equation}
+These imply that $ \exp \img k L = 1 $, i.e. they make the normal frequencies discrete. It is trivial to see that two waves whose wave-vectors differ by a vector in the discrete lattice. i.e. $ k $ and $ k + 2 \pi n / a $, determine the same normal mode: all of the physical information is then contained in the interval $ k \in \left( - \frac{\pi}{a} , \frac{\pi}{a} \right] $, as pictured in \figref{fig:acoustic}.
+The discrete normal frequencies then are:
+\begin{equation}
+  k_n = \frac{2\pi n}{L}
+  \qquad
+  n = 0, \pm 1 , \pm 2 , \dots , + \frac{N}{2}
+\end{equation}
+where $ N $ is assumed even. The total number of normal modes has been computed as:
+\begin{equation*}
+  \frac{2\pi}{a} \div \frac{2\pi}{L} = \frac{L}{a} = N
+\end{equation*}
+Note that the $ n = 0 $ normal mode is a translation, since $ k = 0 $ and $ \omega = 0 $. Moreover, we again see a reciprocity between real space and momentum space: the finiteness of the chain determines discrete normal frequencies, while its discreteness determines a finite number of normal frequencies.
+
+
+
+
+
+
+
+
+
+

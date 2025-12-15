@@ -54,7 +54,67 @@ All of the physical information of the lattice is present in the Wigner--Seitz c
 
 \subsection{Diffraction}
 
+When a plane EM wave scatters on a single atom, it makes the electronic cloud oscillate, thus emitting spherical EM waves. In presence of multiple atoms, the various spherical waves start interfering with each other, analogously to the diffraction grating. The main difference now is that the atoms are arranged in a 3D lattice and that they are in number $ \sim \av $, hence, if the constructive-interference condition is not satisfied (even slightly), then no outgoing radiation is observed, as it is always possible to find an atom which produces an EM wave with $ \pi $ phase shift, thus causing destructive interference.
 
+In a 3D lattice, there are three conditions for constructive interference. First of all, assuming that the periodic lattice of atoms is divided into parallel (crystal) planes:
+\begin{enumerate}
+  \item the plane determined by the incoming wave-vector and the outgoing wave-vector is perpendicular to the planes determined by the atoms, which guarantees that all the atoms in the same position on different planes receive and emit EM radiation with the same phase;
+  \item the angle of incidence is equal to the angle of emission, which guarantees that all the atoms on the same plane receive and emit EM radiation with the same phase;
+\end{enumerate}
+These condition impose that each crystal plane behaves like a perfect mirror. The last condition is obtained imposing that two consecutive planes determine a constructive interference:
+\begin{equation}
+  2 d \sin \vartheta = n \lambda
+\end{equation}
+where $ d = d_{h,k,\ell} $ is the distance between the consecutive planes, $ \vartheta $ is the angle of incidence, $ \lambda $ is the wavelength of the incident EM radiation and $ n \in \N $ is the diffraction order. This is known as the \bctxt{Bragg relation}.
+
+The diffraction order can be always fixed to $ n \equiv 1 $ by adding $ n $ intermediate (imaginary) planes between the two consecutive planes: this is done by multiplying each Miller index by $ n $, that is $ d_{h,k,\ell} \mapsto d_{nh, hk, n\ell} \equiv d $. Then, since $ \sin \vartheta \leq 1 $, the incident radiation has a maximum-wavelength condition to be able to diffract off of the considered lattice:
+\begin{equation}
+  \lambda < 2d
+\end{equation}
+Hence, since $ d \sim 0.1 \,\text{nm} $, only X-rays and gamma rays with $ \lambda \lesssim 0.1 \,\text{nm} $ can produce a diffraction pattern.
+
+\subsection{Reciprocal lattice}
+
+It is possible to rewrite the Bragg condition in terms of the wave-vectors $ \ve{k} , \ve{k}' $ of the incoming and outgoing EM radiation. In particular, geometrically $ \norm{\ve{k}' - \ve{k}} = 2 k \sin \vartheta $ (since for elastic scattering $ k = k' $), thus the Bragg condition can be recast in vectorial form as:
+\begin{equation}
+  \ve{k}' - \ve{k} = \frac{2\pi}{d_{h, k, \ell}} \hat{\ve{n}}_{h, k, \ell} \equiv \ve{G}_{h,k,\ell}
+  \label{eq:rec-def}
+\end{equation}
+where $ \hat{\ve{n}}_{h,k,\ell} $ is the normal vector of the family of crystal planes with Miller indices $ (h \ k \ \ell) $. Note that the same vector in the reciprocal lattice is obtained by multiple non-equivalent choices for $ \ve{k} $ and $ \ve{k}' $. It is trivial to see that:
+\begin{equation}
+  \ve{G}_{h,k,\ell} = h \ve{A}_1 + k \ve{A}_2 + \ell \ve{A}_3
+\end{equation}
+where $ \{\ve{A}_i\}_{i = 1,2,3} \in \R^3 $ are the generators of the reciprocal lattice, which are related to the generators $ \{\ve{R}_i\}_{i = 1,2,3} \in \R^3 $ of the real lattice by:
+\begin{equation}
+  \ve{R}_i \cdot \ve{A}_j = 2 \pi \delta_{ij}
+\end{equation}
+Defining the volume of the primitive cell of the real lattice $ \pv \equiv (\ve{R}_1 \times \ve{R}_2) \cdot \ve{R}_3 $ (assuming a right-handed triplet of primitive vectors), the generators of the reciprocal lattice are clearly given by:
+\begin{equation}
+  \ve{A}_1 = \frac{2\pi}{\pv} \ve{R}_2 \times \ve{R}_3
+  \qquad \qquad
+  \ve{A}_2 = \frac{2\pi}{\pv} \ve{R}_3 \times \ve{R}_1
+  \qquad \qquad
+  \ve{A}_3 = \frac{2\pi}{\pv} \ve{R}_1 \times \ve{R}_2
+\end{equation}
+These expressions allow to express the volume $ \pvr $ of the primitive cell of the reciprocal lattice in terms of $ \pv $:
+\begin{equation}
+  \pvr = \frac{(2\pi)^3}{\pv}
+\end{equation}
+
+\begin{example}{Reciprocal lattices}{}
+  The reciprocal of an sc lattice with side $ a $ is an sc lattice with side $ \frac{2\pi}{a} $, while the reciprocal of a bcc(fcc) lattice with side $ a $ is an fcc(bcc) lattice with side $ \frac{4\pi}{a} $.
+\end{example}
+
+Note that, by \eref{eq:rec-def}, the Bragg scattering of X rays on a crystal lattice can be studied in the reciprocal lattice using the \bctxt{Ewald construction}: fixed the incoming wave-vector $ \ve{k} $ pointing to a point of the reciprocal lattice, draw a sphere with $ \ve{k} $ as radius, so that the possible $ \ve{G} $ vectors (and so $ \ve{k}' = \ve{k} + \ve{G} $) are determined by other points of the reciprocal lattice which intersect the sphere (see \figref{fig:ewald}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{diffr-e.png}
+  \caption{Ewald construction.}
+  \label{fig:ewald}
+\end{figure}
+
+In practice, to generate an X-ray diffraction on a single crystal, the reciprocal lattice is moved with respect to the Ewald construction until there are at least two points of the reciprocal lattice intersecting the sphere: this is achieved either varying the wavelength of the incoming radiation (thus modifying the radius of the Ewald sphere), or rotating the crystal sample (since the reciprocal lattice rotates in the same manner as the real lattice).
 
 
 
