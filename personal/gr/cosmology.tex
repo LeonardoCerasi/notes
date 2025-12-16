@@ -1,38 +1,310 @@
+\selectlanguage{english}
 
 Of the few situations in which Einstein field equations sourced by matter \eref{eq:ef-eq} need to be solved directly, the one where $ T_{\mu \nu} $ plays a crucial role is Cosmology, the study of the universe as a whole.
 
-\section{FLRW metric}
+\section{Geometry}
 
-The key assumption of cosmology is that the universe is spatially homogeneous and isotropic. These conditions restrict the possible spatial geometries to only three:
-\begin{itemize}
-  \item Euclidean space $ \R^3 $, with vanishing curvature and metric:
-    \begin{equation*}
-      \dd s^2 = \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
-    \end{equation*}
-  \item sphere $ \Sn{3} $, with uniform positive curvature and metric (implicit unitary radius):
-    \begin{equation*}
-      \dd s^2 = \frac{1}{1 - r^2} \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
-    \end{equation*}
-  \item hyperboloid $ \hyp{3} $, with uniform negative curvature and metric:
-    \begin{equation*}
-      \dd s^2 = \frac{1}{1 + r^2} \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
-    \end{equation*}
-\end{itemize}
-The existence of these three symmetric spaces is analogous to the existence of three symmetric spacetimes as solutions of the vacuum field equations: dS and AdS have constant spacetime curvature, supplied by the cosmological constant, while $ \Sn{3} $ and $ \hyp{3} $ have constant spatial curvature. Indeed, the metric on $ \mathbb{S}^3 $ corresponds to the spatial part of the de Sitter metric \eref{eq:dS-metric}, while the metric on $ \hyp{3} $ corresponds to the spatial part of the anti-de Sitter metric \eref{eq:ads-metric}.
+The key assumption of cosmology is that the universe is \emph{spatially homogeneous and isotropic}: this determines a foliation of spacetime into three-dimensional spatial sections $ \Sigma_t $ at various times $ t \in \R $, with each section being homogeneous and isotropic, i.e. maximally-symmetric.
 
-These spatial metrics are written in a unified form as:
-\begin{equation}
-  \dd s^2 = \gamma_{ij} \dd x^i \dd x^j = \frac{\dd r^2}{1 - kr^2} + r^2 \dd \Omega_2^2
-\end{equation}
-with $ k = +1,0,-1 $ on $ \Sn{3}, \R^3, \hyp{3} $ respectively. Cosmology studies spacetimes in which space expands as the universe evolves, thus the metric takes the form:
+\begin{lemma}{Maximally-symmetric 3-spaces}{}
+  The three possible maximally-symmetric 3-spaces are:
+  \begin{itemize}
+    \item Euclidean space $ \R^3 $, with vanishing curvature and metric:
+      \begin{equation*}
+        \dd \ell^2 = \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
+      \end{equation*}
+    \item the 3-sphere $ \Sn{3} $, with uniform positive curvature and metric (implicit unitary radius):
+      \begin{equation*}
+        \dd \ell^2 = \frac{1}{1 - r^2} \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
+      \end{equation*}
+    \item the 3-hyperboloid $ \hyp{3} $, with uniform negative curvature and metric:
+      \begin{equation*}
+        \dd \ell^2 = \frac{1}{1 + r^2} \dd r^2 + r^2 \left( \dd \vartheta^2 + \sin^2 \vartheta\, \dd \varphi^2 \right)
+      \end{equation*}
+  \end{itemize}
+  These spatial metrics can be unified as:
+  \begin{equation}
+    \dd \ell^2 = \gamma_{ij} \dd x^i \dd x^j = \frac{\dd r^2}{1 - kr^2} + r^2 \dd \Omega_2^2
+  \end{equation}
+  with $ k = +1,0,-1 $ on $ \Sn{3}, \R^3, \hyp{3} $ respectively. 
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    First, show that these spaces are homogeneous and isotropic:
+    \begin{itemize}
+      \item Euclidean space $ \R^3 $ is clearly invariant under both translations and rotations;
+      \item the 3-sphere $ \Sn{3} $ can be embedded in $ \R^4 $ as:
+        \begin{equation*}
+          \dd \ell^2 = \dd \ve{x}^2 + \dd u^2
+          \qquad \qquad
+          \ve{x}^2 + u^2 = a^2
+        \end{equation*}
+        where $ a \in \R^+ $ is the radius of the 3-sphere. Then, homogeneity and isotropy are inherited from the invariance under 4-rotations of the embedding space;
+      \item the 3-hyperboloid $ \hyp{3} $ can be embedded in $ \R^{1,3} $ as:
+        \begin{equation*}
+          \dd \ell^2 = \dd \ve{x}^2 - \dd u^2
+          \qquad \qquad
+          \ve{x}^2 - u^2 = - a^2
+        \end{equation*}
+        where $ a \in \R^+ $ is an arbitrary constant and $ u $ is a time coordinate. Then, homogeneity and isotropy are inherited from the invariance under pseudo-rotations, i.e. Lorentz transformations, of the embedding space.
+    \end{itemize}
+    In the last two cases, the coordinates can be rescaled as $ \ve{x} \mapsto a \ve{x} , u \mapsto a u $, so that the spaces can be written as:
+    \begin{equation*}
+      \dd \ell^2 = a^2 \left[ \dd \ve{x}^2 + k \dd u^2 \right]
+      \qquad \qquad
+      \ve{x}^2 + k u^2 = k
+    \end{equation*}
+    with $ k = + 1 $ for $ \Sn{3} $ and $ k = -1 $ for $ \hyp{3} $. The embedding condition gives $ \ve{x} \cdot \dd \ve{x} = - k u \, \dd u $, so that:
+    \begin{equation*}
+      \dd \ell^2 = a^2 \left[ \dd \ve{x}^2 + k \frac{\left( \ve{x} \cdot \dd \ve{x} \right)^2}{1 - k \ve{x}^2} \right]
+    \end{equation*}
+    which also includes Euclidean space for $ k = 0 $. Switching to spherical coordinates and using $ \ve{x} \cdot \dd \ve{x} = r \, \dd r $ the thesis is found.
+  \end{proof}
+\end{proofbox}
+
+The existence of these three maximally-symmetric 3-spaces is analogous to the existence of three maximally-symmetric spacetimes as solutions of the vacuum field equations: dS and AdS have constant spacetime curvature, supplied by the cosmological constant, while $ \Sn{3} $ and $ \hyp{3} $ have constant spatial curvature. Indeed, the metric on $ \mathbb{S}^3 $ corresponds to the spatial part of the de Sitter metric \eref{eq:dS-metric}, while the metric on $ \hyp{3} $ corresponds to the spatial part of the anti-de Sitter metric \eref{eq:ads-metric}.
+
+\subsection{FLRW metric}
+
+Cosmology studies spacetimes in which space expands as the universe evolves, thus the metric takes the form:
 \begin{equation}
   \dd s^2 = - \dd t^2 + a^2(t) \gamma_{ij} \dd x^i \dd x^j
 \end{equation}
-This is the \bctxt{Friedmann--Lemaître--Robertson--Walker metric} and the dimensionless factor $ a(t) $ can be viewed as the size of the spatial dimensions.
+This is the \bctxt{Friedmann--Lemaître--Robertson--Walker metric} and the dimensionless factor $ a(t) $ can be viewed as the size of the spatial dimensions, called the \emph{scale factor}.
 
 \begin{example}{de Sitter metric}{}
   de Sitter metric in global coordinates \eref{eq:ds-global-coo} is a FLRW metric with $ k = +1 $.
 \end{example}
+
+The FLRW metric has an important scale invariance:
+\begin{equation}
+  a \mapsto \lambda a
+  \qquad
+  r \mapsto \lambda^{-1} r
+  \qquad
+  k \mapsto \lambda^2 k
+\end{equation}
+This symmetry can be used to set $ a_0 \defeq a(t_0) \equiv 1 $, where $ t_0 $ is the present coordinate time. Therefore, the scale factor is dimensionless, while both $ r $ and $ k^{-1/2} $ have dimensions of a length.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{comoving.png}
+  \caption{Comoving distance and physical distance between two fixed points: as the universe expands, the comoving distance remains constant, while the physical distance varies with $ a(t) $.}
+  \label{fig:comoving}
+\end{figure}
+
+An important clarification must be made on $ r $: this is called a \emph{comoving coordinate}, while the physical results depend only on the \emph{physical coordinate} $ r_\text{phys} \defeq a(t) r $, as illustrated in \figref{fig:comoving}. Then, the physical velocity of an object clearly is:
+\begin{equation}
+  v_\text{phys} = v_\text{pec} + H r_\text{phys}
+  \label{eq:hubble-flow}
+\end{equation}
+where the peculiar velocity $ v_\text{pec} = a(t) \dot{r} $ is the velocity measured by a comoving observer, i.e. an observer which follows the Hubble flow, and the \bctxt{Hubble flow} $ H r_\text{phys} $ is the contribution due to the expansion of the universe, with the \emph{Hubble parameter} defined as:
+\begin{equation}
+  H \defeq \frac{\dot{a}}{a}
+\end{equation}
+Note that the dot always represents a derivative with respect to coordinate time $ t $.
+
+It is convenient to express the metric in terms of redefined time a radial coordinates, defined as:
+\begin{equation}
+  \dd \chi \equiv \frac{\dd r}{\sqrt{1 - k r^2}}
+  \qquad \qquad
+  \dd \eta \equiv \frac{\dd t}{a(t)}
+\end{equation}
+where $ \eta $ is called \bctxt{conformal time}. The new radial coordinate allows to simplify the expression for $ g_{rr} $, while conformal time determines a factorization of the FLRW metric into a static metric and a time-dependent conformal factor:
+\begin{equation}
+  \dd s^2 = a^2(\eta) \left[ \dd \eta^2 - \left( \dd \chi^2 + S_k^2(\chi) \dd \Omega_2^2 \right) \right]
+\end{equation}
+with:
+\begin{equation}
+  S_k(\chi) = \frac{1}{\sqrt{k}}
+  \begin{cases}
+    \sinh (\sqrt{k} \chi) & k < 0 \\
+    \sqrt{k} \chi & k = 0 \\
+    \sin (\sqrt{k} \chi) & k > 0
+  \end{cases}
+\end{equation}
+
+\newpage
+\section{Kinematics}
+
+\subsection{Particle motion}
+
+In order to study the dynamics of particles in the FLRW metric from the geodesic equation, it is necessary to first compute the Christoffel symbols for this metric. It is straightforward to prove that the only non-vanishing Christoffel symbols are:
+\begin{equation}
+  \Gamma^0_{ij} = a\dot{a} \gamma_{ij}
+  \qquad \qquad
+  \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j
+  \qquad \qquad
+  \Gamma^i_{jk} = \frac{1}{2} \gamma^{il} \left( \pa_j \gamma_{kl} + \pa_k \gamma_{jl} - \pa_l \gamma_{jk} \right)
+\end{equation}
+
+\begin{proposition}{Geodesics and 4-momentum}{}
+  A particle with 4-momentum $ p^\mu $ moves along geodesics described by:
+  \begin{equation}
+    p^\alpha \pa_\alpha p^\mu = - \Gamma^\mu_{\alpha \beta} p^\alpha p^\beta
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recall \eref{eq:geodesic-equation} and express it in terms of the 4-velocity $ u^\mu \equiv \frac{\dd x^\mu}{\dd \tau} $:
+    \begin{equation*}
+      \frac{\dd u^\mu}{\dd \tau} + \Gamma^\mu_{\nu \rho} u^\nu u^\rho = 0
+    \end{equation*}
+    But, using the chain rule:
+    \begin{equation*}
+      \frac{\dd u^\mu}{\dd \tau} = \frac{\dd x^\alpha}{\dd \tau} \frac{\pa u^\mu}{\pa x^\alpha} = u^\alpha \pa_\alpha u^\mu
+    \end{equation*}
+    Substituting $ p^\mu = m u^\mu $ yields the thesis (which is valid in the massless case too).
+  \end{proof}
+\end{proofbox}
+
+Note that this is nothing but the condition for $ p^\mu $ to be parallely-transported along the geodesic, i.e. $ p^\alpha \na_\alpha p^\mu = 0 $. By the spatial homogeneity of the FLRW metric $ \pa_i p^\mu = 0 $, hence:
+\begin{equation*}
+  p^0 \dot{p}^\mu = - \Gamma^\mu_{\alpha \beta} p^\alpha p^\beta = - \left( 2 \Gamma^\mu_{0j} p^0 + \Gamma^\mu_{ij} p^i \right) p^j
+\end{equation*}
+First of all, a consequence of this equation is that massive particles which are at rest in the comoving frame, i.e. $ p^j = 0 $, remain at rest since $ \dot{p}^\mu = 0 $. Then, consider the $ \mu = 0 $ component of this equation and set $ p^0 \equiv E $:
+\begin{equation*}
+  E \dot{E} = - a \dot{a} \gamma_{ij} p^i p^j = - \frac{\dot{a}}{a} \ve{p}^2
+\end{equation*}
+where $ \ve{p}^2 \equiv - g_{ij} p^i p^j $ so that $ p^2 = E^2 - \ve{p}^2 = m^2 $. Therefore $ E \, \dd E = \ve{p} \cdot \dd \ve{p} \equiv p \, \dd p $, with $ p \equiv \norm{\ve{p}} $, and:
+\begin{equation}
+  \frac{\dot{p}}{p} = - \frac{\dot{a}}{a}
+  \quad \implies \quad
+  p \propto \frac{1}{a}
+  \label{eq:geodesic-momentum}
+\end{equation}
+Thus, the physical 3-momentum of any particle decays with the expansion of the universe. In particular, for massless particles $ E = p $ decays with the expansion, while for massive particles:
+\begin{equation*}
+  p = \frac{m v}{\sqrt{1 - \ve{v}^2}} \propto \frac{1}{a}
+\end{equation*}
+where $ v^i = \dot{x}^i $ is the comoving peculiar velocity, i.e. the velocity with respect to the comoving frame. Hence, freely-falling particles converge onto the Hubble flow, as per \eref{eq:hubble-flow}.
+
+\subsection{Redshift}
+
+Since the physical properties of the universe are inferred from light signals, it is crucial to quantify how the wavelength of light gets redshifted by the expansions of the universe.
+
+From a quantum point of view, the wavelenght of a light signal is linked to the photon's momentum by the de Broglie relation $ \lambda = h / p $. From \eref{eq:geodesic-momentum}, then, $ \lambda \propto a $, i.e.:
+\begin{equation}
+  \lambda_0 = \frac{a_0}{a(t)} \lambda(t)
+  \label{eq:redshift}
+\end{equation}
+where $ t < t_0 $ is the time of emission of the photon. As $ a(t) < a_0 $, the light is redshifted.
+
+The same result can be derived for classical EM waves. Consider a galaxy at fixed comoving distance $ d $ which, at a time $ \eta $, emits a signal of short conformal duration $ \Delta \eta $. The light signal arrives on Earth at $ \eta_0 = \eta + d $ with the same conformal duration, but the physical time interval is differrent:
+\begin{equation*}
+  \Delta t = a(\eta) \Delta \eta
+  \qquad \qquad
+  \Delta t_0 = a_0 \Delta \eta
+\end{equation*}
+Assuming $ \Delta t $ to be the period of the EM wave, then $ \lambda(t) = \Delta t $, hence \eref{eq:redshift} is recovered.
+
+\begin{definition}{Redshift parameter}{}
+  The \bcdef{redshift parameter} of a light signal emitted at $ t < t_0 $ with a wavelength $ \lambda(t) $ is
+  \begin{equation}
+    z \defeq \frac{\lambda_0 - \lambda(t)}{\lambda(t)}
+  \end{equation}
+  i.e. as the fractional shift in the photon's wavelength.
+\end{definition}
+
+By \eref{eq:redshift}, setting $ a_0 \equiv 1 $, the common definition of $ z $ is found:
+\begin{equation}
+  1 + z = \frac{1}{a(t)}
+\end{equation}
+For nearby sources, it is possible to expand $ a(t) $ as a power series:
+\begin{equation*}
+  a(t) = a_0 \left[ 1 + H_0 (t - t_0) + \dots \right]
+\end{equation*}
+where the \bctxt{Hubble constant} is defined as:
+\begin{equation}
+  H_0 \equiv \frac{\dot{a}(t_0)}{a(t_0)} = 100 h \, \text{km} \, \text{s}^{-1} \text{Mpc}^{-1}
+  \qquad
+  h \approx 0.67 \pm 0.01
+\end{equation}
+The dimensionless parameter $ h $ is introduced to keep track of how the uncertainties in the measurement of $ H_0 $ propagate in other physical quantities, since $ H_0 $ normalizes everything.
+Inserting this expansion in the definition of $ z $ yields $ z = H_0 (t_0 - t) + \dots $, which, for close objects at distance $ d = t_0 - t $, becomes:
+\begin{equation}
+  z \simeq H_0 d
+\end{equation}
+Hence, the rate of redshift of nearby objects measures the current expansion rate of the universe.
+
+\subsection{Distances}
+
+For distant objects, it is important to precisely state which notion of distance is adopted.
+
+\paragraph{Metric distance}
+
+Rewrite the FLRW metric as:
+\begin{equation*}
+  \dd s^2 = \dd t^2 - a^2(t) \left[ \dd \chi^2 + S_k^2(\chi) \dd \Omega_2^2 \right]
+  \qquad \qquad
+  S_k(\chi) =
+  \begin{cases}
+    R_0 \sinh (\chi / R_0) & k = -1 \\
+    \chi & k = 0 \\
+    R_0 \sin (\chi / R_0) & k = + 1
+  \end{cases}
+\end{equation*}
+where the length scale $ R_0 $ has been introduced thanks to the scale invariance of the metric to compensate for the imposition of $ a_0 \equiv 1 $. The distance multiplying the solid angle element is the \emph{metric distance}:
+\begin{equation}
+  d_\text{m} = S_k(\chi)
+\end{equation}
+In a flat universe, the metric distance is equal to the \emph{comoving distance} $ \chi $, which can be computed as a function of redshift:
+\begin{equation}
+  \chi(z) = \int_t^{t_0} \frac{\dd t'}{a(t')} = \int_0^z \frac{\dd z'}{H_0(z')}
+\end{equation}
+which depends on the matter content of the universe through $ H(z) $. It must be emphasized that neither the metric distance nor the comoving distance is physically observable.
+
+\paragraph{Luminosity distance}
+
+Type IA supernovae are called ``standard candles", since they are believed to be objects of known absolute luminosity $ L $, i.e. energy emitted per second: therefore, the observed flux $ F $, i.e. energy per second per receiving area, from a supernova explosion can then be used to infer its \emph{luminosity distance}. Considering a source at fixed vomoving distance $ \chi $, in a static Euclidean space the relation between $ F $ and $ L $ would be:
+\begin{equation*}
+  F = \frac{L}{4\pi \chi^2}
+\end{equation*}
+However, in a generic FLRW spacetime, this relation needs to be modified for three reasons:
+\begin{enumerate}
+  \item the proper area of a 3-sphere grows like $ 4\pi d_\text{m}^2 $, not like $ 4\pi \chi^2 $;
+  \item the rate of received photons is lower than the rate of emitted photons by a factor of $ 1 / (1 + z) $;
+  \item received photons have an energy that is lower than the energy of emitted photons by the same factor of $ 1 / (1 + z) $.
+\end{enumerate}
+Hence, the correct relation is:
+\begin{equation}
+  F = \frac{L}{4\pi d_L^2}
+  \qquad \qquad
+  d_L = (1 + z) d_\text{m}
+\end{equation}
+where $ d_L $ is the \emph{luminosity distance}.
+
+\paragraph{Angular diameter distance}
+
+Sometimes, it is possible to make use of ``standard rulers", i.e. objects of known physical size $ D $ (e.g. CMB fluctuations). Assuming that a standard ruler is at a fixed comoving distance $ \chi $, the \emph{angular diameter distance} can be defined as:
+\begin{equation*}
+  d_\text{A} = \frac{D}{\delta \theta}
+\end{equation*}
+where $ \delta \theta \ll 1 $ is the observed angular size of the object (small for all cosmological objects). In a generic FLRW spacetime, the relation between the physical transverse size of the object and its angular size in the sky instead is:
+\begin{equation*}
+  D = a(t) S_k(\chi) \delta \theta = \frac{d_\text{m}}{1 + z} \delta \theta
+\end{equation*}
+Hence, the angular diameter distance is:
+\begin{equation}
+  d_\text{A} = \frac{d_\text{m}}{1 + z}
+\end{equation}
+This is the measured distance between Earth and the object when the light was emitted, and in fact it is related to the luminosity distance by:
+\begin{equation}
+  d_\text{A} = \frac{d_L}{(1 + z)^2}
+\end{equation}
+The redshift dependence of the three distances $ d_\text{m} $, $ d_L $ and $ d_\text{A} $ is plotted in \figref{fig:redshift-distance}: note that the presence of a cosmological constant makes distances larger, a fact that has been crucial for the discovery of dark energy.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{redshift-distance.png}
+  \caption{Distances measured in a flat universe, with matter only (dotted lines) and with $ 70\% $ dark energy (solid lines).}
+  \label{fig:redshift-distance}
+\end{figure}
+
+\newpage
+\section{Dynamics}
 
 \subsection{Curvature tensors}
 
