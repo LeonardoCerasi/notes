@@ -51,6 +51,118 @@ where $ N $ is assumed even. The total number of normal modes has been computed 
 \end{equation*}
 Note that the $ n = 0 $ normal mode is a translation, since $ k = 0 $ and $ \omega = 0 $. Moreover, we again see a reciprocity between real space and momentum space: the finiteness of the chain determines discrete normal frequencies, while its discreteness determines a finite number of normal frequencies.
 
+Consider now the limit for $ \abs{k} \ll \frac{\pi}{a} $, i.e. $ \lambda \gg 2a $: since the wavelength is much larger than the separation between atoms, the oscillation is not affected by the discreteness of the medium, hence the dispersion curve is linear:
+\begin{equation*}
+  \lim_{k \ra 0} \omega = \sqrt{\frac{C}{M}} a k \equiv v_\text{s} k
+\end{equation*}
+where $ v_\text{s} $ is the ``sound wave" in the 1D crystal considered. In general, the \bctxt{group velocity}, i.e. the velocity in the transfer of mechanical energy in the crystal, is defined as:
+\begin{equation}
+  v_\text{g}(k) \defeq \frac{\dd \omega}{\dd k}
+\end{equation}
+For the 1D crystal:
+\begin{equation*}
+  v_\text{g}(k) = \sgn(k) \sqrt{\frac{C}{M}} \cos \frac{k a}{2}
+\end{equation*}
+Note that the group velocity vanishes at the boundary $ v_\text{g}(\pm \frac{\pi}{a}) = 0 $. To understand this, consider the displacement of the atoms:
+\begin{equation*}
+  u_s(t) = u_0 e^{\pm \img \pi s - \omega t} = (-1)^s u_0 e^{- \img \omega t}
+\end{equation*}
+which is a stationary wave.
+
+\section{3D crystal}
+
+In the case of a 3D crystal, it is still possible to have both longitudinal and transversal: however, contrary to the 1D crystal, the elastic constant of the oscillation is an ``effective" elastic constant, since each atom has multiple ``closest" atoms.
+
+Consider an oscillation with wave-vector $ k $ along a principal crystal direction in an sc crystal, WLOG $ [1 \ 0 \ 0] $. Since this is a wave, it can undergo Bragg scattering, and in particular there could be the phenomenon of \bctxt{back-scattering}, i.e. the wave is reflected backward: from the Bragg relation \eref{eq:bragg} with $ n = 1 $ and $ \vartheta = \frac{\pi}{2} $ (reflection), since the distance between two atoms in the $ [1 \ 0 \ 0] $ direction is $ d = a $, it is trivial to find:
+\begin{equation*}
+  \lambda = 2a
+  \quad \iff \quad
+  k = \pm \frac{\pi}{a}
+\end{equation*}
+Now, note that if the wave is totally reflected, the total oscillation given by the sum of the two waves is a stationary wave, hence the same result as for the 1D crystal is recovered.
+
+If instead the oscillation propagates along the $ [1 \ 1 \ 0] $ crystal direction, then $ d = \frac{a}{\sqrt{2}} $ and the back-scattering condition becomes:
+\begin{equation*}
+  \lambda = \sqrt{2} a
+  \quad \iff \quad
+  k = \pm \sqrt{2} \frac{\pi}{a}
+\end{equation*}
+In the general case, the back-scattering happens for all wave-vector which lie on the boundary of the primitive cell of the reciprocal lattice, which is called \bctxt{first Brilluoin zone} (1BZ): indeed, it is possible to show that, given a wave-vector $ \ve{k} $ on the boundary of the 1BZ and its diffracted wave-vector $ \ve{k}' $ according to Bragg diffraction, then $ \norm{\ve{k}' - \ve{k}} = \frac{2\pi}{a} $, i.e. a stationary wave.
+
+\subsection{Vibrational bands}
+
+\begin{example}{Biatomic linear chain}{}
+  Consider a 1D crystal where two kinds of atoms, with masses $ M_1 $ and $ M_2 $, alternate: the primitive cell is then composed of a couple of nearby atoms, and define $ s \in \N_0 $ the index of the primitive cells in the chain (of periodicity $ a $).
+
+  In the first-order harmonic approximation where only nearby atoms interact with an elastic constant $ C $, denoting the displacement of the mass $ M_1 $ in the $ s $ cell as $ u_s $ and that of the mass $ M_2 $ as $ v_s $, the equations of motion read:
+  \begin{equation*}
+    M_1 \ddot{u}_s = C \left( v_s - 2 u_s + v_{s - 1} \right)
+    \qquad \qquad
+    M_2 \ddot{v}_s = C \left( u_{s + 1} - 2 v_s + u_s \right)
+  \end{equation*}
+  The plane-wave ansatz now reads:
+  \begin{equation*}
+    u_s(t) = u_0 \exp \left( \img s k a - \img \omega t \right)
+    \qquad \qquad
+    v_s(t) = v_0 \exp \left( \img s k a - \img \omega t + \img \varphi \right) \equiv v_0' \exp \left( \img s k a - \img \omega t \right)
+  \end{equation*}
+  with $ u_0 , v_0 \in \R $ and $ v_0' \in \C $. Inserting these expressions in the equations of motion:
+  \begin{equation*}
+    - \omega^2 M_1 = C \left[ v_0' \left( 1 + e^{-\img k a} \right) - 2 u_0 \right]
+    \qquad \qquad
+    - \omega^2 M_2 = C \left[ u_0 \left( e^{\img k a} + 1 \right) - 2 v_0' \right]
+  \end{equation*}
+  which reduce to a linear system:
+  \begin{equation*}
+    \begin{bmatrix}
+      2C - \omega^2 M_1 & -C \left( 1 + e^{-\img k a} \right) \\
+      -C \left( 1 + e^{\img k a} \right) & 2C - \omega^2 M_2
+    \end{bmatrix}
+    \begin{pmatrix}
+      u_0 \\ v_0'
+    \end{pmatrix}
+    = \ve{0}
+    \quad \implies \quad
+    \begin{vmatrix}
+      2C - \omega^2 M_1 & -C \left( 1 + e^{-\img k a} \right) \\
+      -C \left( 1 + e^{\img k a} \right) & 2C - \omega^2 M_2
+    \end{vmatrix}
+    = 0
+  \end{equation*}
+  The equation for $ \omega^2 $ then is:
+  \begin{equation*}
+    M_1 M_2 \omega^4 - 2 C \left( M_1 + M_2 \right) \omega^2 + 2 C^2 \left( 1 - \cos ka \right) = 0
+  \end{equation*}
+  which in general has two solutions for $ \omega^2 $. The interesting behaviour is in the limits for $ k \ra 0 $ and $ k \ra \pm \frac{\pi}{a} $. For $ k \ra 0 $:
+  \begin{equation*}
+    M_1 M_2 \omega^2 - 2C \left( M_1 + M_2 \right) \omega^2 + C^2 (ka)^2 = 0
+  \end{equation*}
+  whose solutions are:
+  \begin{equation*}
+    \begin{split}
+      \omega^2
+      & = \frac{C \left( M_1 + M_2 \right) \pm \sqrt{C^2 \left( M_1 + M_2 \right)^2 - C^2 M_1 M_2 (ka)^2}}{M_1 M_2} \\
+      & = \frac{C}{\mu} \left[ 1 \pm \sqrt{1 - \mu (ka)^2} \right] \approx \frac{C}{\mu} \left[ 1 \pm 1 \mp \frac{\mu}{2(M_1 + M_2)} (ka)^2 + \smo(k^3) \right]
+    \end{split}
+  \end{equation*}
+  where $ \mu = M_1 M_2 / (M_1 + M_2) $ is the reduced mass of the primitive cell. Then, at first order:
+  \begin{equation*}
+    \omega_+ = \sqrt{\frac{2C}{\mu}} + \smo(k^2)
+    \qquad \qquad
+    \omega_- = \sqrt{\frac{C}{2(M_1 + M_2)}} a k + \smo(k^2) \equiv v_\text{s} k + \smo(k^2)
+  \end{equation*}
+  The $ \omega_- $ is analogous to that of the monoatomic linear chain, while $ \omega_+ $ is new. Substituting $ \omega_+ $ in the above linear system and setting $ k = 0 $:
+  \begin{equation*}
+    \begin{cases}
+      \left( 1 - \frac{M_1}{\mu} \right) u_0 - v_0' = 0 \\
+      - u_0 + \left( 1 - \frac{M_2}{\mu} \right) v_0' = 0
+    \end{cases}
+    \quad \iff \quad
+    v_0' = - \frac{M_1}{M_2} u_0
+  \end{equation*}
+  This means that the two atoms in the primitive cell oscillate in phase-opposition, corresponding to a stationary wave: this justifies the dispersion curve being parallel to the $ k $-axis, since the group velocity of a stationary wave is $ v_\text{g} = 0 $.
+\end{example}
+
 
 
 
