@@ -133,7 +133,7 @@ In the general case, the back-scattering happens for all wave-vector which lie o
   \begin{equation*}
     M_1 M_2 \omega^4 - 2 C \left( M_1 + M_2 \right) \omega^2 + 2 C^2 \left( 1 - \cos ka \right) = 0
   \end{equation*}
-  which in general has two solutions for $ \omega^2 $. The interesting behaviour is in the limits for $ k \ra 0 $ and $ k \ra \pm \frac{\pi}{a} $. For $ k \ra 0 $:
+  which in general has two solutions for $ \omega^2 $. The interesting behavior is in the limits for $ k \ra 0 $ and $ k \ra \pm \frac{\pi}{a} $. For $ k \ra 0 $:
   \begin{equation*}
     M_1 M_2 \omega^2 - 2C \left( M_1 + M_2 \right) \omega^2 + C^2 (ka)^2 = 0
   \end{equation*}
@@ -160,8 +160,108 @@ In the general case, the back-scattering happens for all wave-vector which lie o
     \quad \iff \quad
     v_0' = - \frac{M_1}{M_2} u_0
   \end{equation*}
-  This means that the two atoms in the primitive cell oscillate in phase-opposition, corresponding to a stationary wave: this justifies the dispersion curve being parallel to the $ k $-axis, since the group velocity of a stationary wave is $ v_\text{g} = 0 $.
+  This means that the two atoms in the primitive cell oscillate in phase-opposition, corresponding to a stationary wave: this justifies the dispersion curve being parallel to the $ k $-axis, since the group velocity of a stationary wave is $ v_\text{g} = 0 $. Note that, on the other hand, $ \omega_- = 0 $ at $ k = 0 $, which is not a vibration, but a translation ($ u_0 = v_0' $).
+
+  Now, consider $ k \ra \pm \frac{\pi}{a} $:
+  \begin{equation*}
+    M_1 M_2 \omega^4 - 2C \left( M_1 + M_2 \right) \omega^2 + 4C^2 = 0
+  \end{equation*}
+  which has solutions:
+  \begin{equation*}
+    \omega^2 = \frac{C \left( M_1 + M_2 \right) \pm \sqrt{C^2 \left( M_1 + M_2 \right)^2 - 4C^2 M_1 M_2}}{M_1 M_2} = \frac{C \left( M_1 + M_2 \right) \pm C \left( M_1 - M_2 \right)}{M_1 M_2}
+  \end{equation*}
+  where $ M_1 > M_2 $ is assumed WLOG. The two solutions then read:
+  \begin{equation*}
+    \omega_+ = \frac{2C}{M_2} + \smo\left( \left( k \mp \frac{\pi}{a} \right)^2 \right)
+    \qquad \qquad
+    \omega_- = \frac{2C}{M_1} + \smo\left( \left( k \mp \frac{\pi}{a} \right)^2 \right)
+  \end{equation*}
+  To show that these correctly are stationary waves, insert these expressions in the above linear system with $ k = \pm \frac{\pi}{a} $: for $ \omega_+ $ it is $ u_0 = 0 $, and indeed the frequency only depends on $ M_2 $, and conversely for $ \omega_- $ it is $ v_0' = 0 $, and the frequency only depends on $ M_1 $.
+
+  Note that $ \omega_+(0) > \omega_+(\pm \frac{\pi}{a}) $ and $ \omega_-(0) < \omega_-(\pm \frac{\pi}{a}) $. The full solutions $ \omega_+(k) $ and $ \omega_-(k) $ are plotted in \figref{fig:opt-mod} (where both the longitudinal and the two transversal normal modes are present): these are called bands, and in particular $ \omega_-(k) $ is an \bcex{acoustic band}, since it is linear for $ k \ra 0 $ and the atoms oscillate in phase, while $ \omega_+(k) $ is an \bcex{optical band}, since it is constant for $ k \ra 0 $ and the atoms oscillate in phase-opposition.
 \end{example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{opt-mod.png}
+  \caption{Phonon dispersion curves for an $ n_d = 2 $ crystal.}
+  \label{fig:opt-mod}
+\end{figure}
+
+In general, a crystal with $ n_d \in \N $ atoms in its primitive cell presents $ 3 $ acoustic bands and $ 3n_d - 3 $ optical bands, for a total of $ 3n_d $ bands.
+
+\subsection{Thermal properties}
+
+For a perfect gas composed of $ N $ particles, the mean energy of the system is found by the \emph{equipartition principle} for energy:
+\begin{equation*}
+  \braket{E} = \frac{3}{2} N \kbt
+\end{equation*}
+Then, recalling that $ \dd Q = \dd E + P \dd V $, its specific heat and molar specific heat at constant volume are:
+\begin{equation*}
+  C_V \defeq \frac{\dd Q}{\dd T} = \frac{3}{2} N \kb
+  \qquad \qquad
+  c_V \defeq \frac{C_V}{n} = \frac{3}{2} R
+\end{equation*}
+with $ R \equiv \av \kb $.
+
+The same classical treatment can be performed for a crystal: in this case, there are both kinetic and potential degrees of freedom, hence there is twice the total number of degrees of freedom, i.e. the expected classical result is $ c_V = 3 R $.
+
+However, the crystal is a quantum system, hence the treatment must be extended to account for quantum effects. A crystal at $ T > 0 $ has all its atoms randomly oscillating: this random motion can be expressed as a linear combination of normal modes.
+
+Suppose that we can filter a particular frequency $ \omega $: in general, the equation $ \omega(k) = \omega $ has multiple solutions for $ k $ in multiple bands, and they all depend on the crystal direction considered (since bands in different directions are generally different). Nonentheless, quantistically the energy only depends on $ \omega $ and it is quantized (for oscillations in a single direction) as:
+\begin{equation}
+  E_n = \left( n + \frac{1}{2} \right) \hbar \omega
+  \label{eq:osc-quant}
+\end{equation}
+where the population of the $ n^\text{th} $ energy level follows a Boltzmann distribution:
+\begin{equation}
+  P(n) = A e^{- \frac{E_n}{\kbt}}
+\end{equation}
+Taking the ground state as reference $ E_0 \equiv 0 $, then:
+\begin{equation*}
+  \braket{E} = \frac{\sum_{n \in \N_0} n \hbar \omega P(n)}{\sum_{n \in \N_0} P(n)} = \frac{\sum_{n \in \N_0} n \hbar \omega e^{- n \frac{\hbar \omega}{\kbt}}}{\sum_{n \in \N_0} e^{- n \frac{\hbar \omega}{\kbt}}} = \hbar \omega \frac{\sum_{n \in \N_0} n e^{nx}}{\sum_{n \in \N_0} e^{nx}}
+\end{equation*}
+where $ x \equiv - \frac{\hbar \omega}{\kbt} $. Since $ e^x \in (0,1) $:
+\begin{equation*}
+  \braket{E} = \hbar \omega \left( \frac{1}{1 - e^x} \right)^{-1} \frac{\dd}{\dd x} \frac{1}{1 - e^x} = \frac{\hbar \omega}{e^{-x} - 1}
+\end{equation*}
+i.e.:
+\begin{equation}
+  \braket{E} = \frac{\hbar \omega}{e^\frac{\hbar \omega}{\kbt} - 1}
+\end{equation}
+Note that $ \lim_{T \ra \infty} \braket{E} = \kbt $: since there are three directions of oscillation (each with its own quantum number $ n_j $), the classical limit $ c_V = 3R $ is found. Moreover, writing $ \braket{E} = \hbar \omega n(\omega,T) $ from \eref{eq:osc-quant}, the \bctxt{phonon distribution} is found:
+\begin{equation}
+  n(\omega,T) = \frac{1}{e^\frac{\hbar \omega}{\kbt} - 1}
+\end{equation}
+where phonons are the quanta of vibrational energy. This is the Bose-Einstein distribution, hence phonons are bosons. At fixed temperature, the singularity at $ \omega = 0 $ means that lower level are more populated, since they require less energy; at fixed frequency, the distribution is asymptotically linear in $ T $ with angular coefficient $ \kb / (\hbar \omega) $, which means that lower frequencies are more easily populated since they require less energy.
+
+Experimentally, the classical limit $ \lim_{T \ra \infty} c_V = 3R $ is confirmed. Moreover, we find that $ \lim_{T \ra 0} c_V \sim T^3 $: this is compatible with the quantum description, since for a sufficiently small temperature the energy will not be enough to excite the atoms to the first excited state, hence only the ground state will be populated and $ c_V = 0 $.
+
+\subsubsection{Einstein model}
+
+To study the limit of $ c_V(T) $ as $ T \ra 0 $, make the (erroneous) simplification that all atoms oscillate with the same frequency $ \omega_\text{E} $, thus ignoring the vibrational bands. Therefore:
+\begin{equation}
+  E_\text{E} = \frac{3N \hbar \omega}{e^\frac{\hbar \omega}{\kbt} - 1}
+  \quad \implies \quad
+  c_V = 3R \left( \frac{\hbar \omega}{\kbt} \right)^2 \frac{e^\frac{\hbar \omega}{\kbt}}{\left( e^\frac{\hbar \omega}{\kbt} - 1 \right)^2}
+\end{equation}
+In the low-temperature limit:
+\begin{equation*}
+  c_V \approx 3R \left( \frac{\hbar \omega}{\kbt} \right)^2 e^{- \frac{\hbar \omega}{\kbt}}
+\end{equation*}
+which correctly goes to $ c_V = 0 $, but it does not reproduce the experimental behavior.
+
+\subsubsection{Debye model}
+
+An improved model accounts for the various possible frequencies. The simplification adopted in this case is that these frequencies are continuously-distributed (i.e. we assume $ a \ra 0 $). Hence:
+\begin{equation}
+  E_\text{D} = \int_{\R^+} \dd \omega \, D(\omega) \frac{\hbar \omega}{e^\frac{\hbar \omega}{\kbt} - 1}
+\end{equation}
+where $ D(\omega) $ is the density of state, defined so that the number of states between $ \omega $ and $ \omega + \dd \omega $ is $ \dd N = D(\omega) \dd \omega $. To perform the computation, switch to the $ k $ variable, so that $ \dd N = D(\omega) \dd \omega = \tilde{D}(k) \dd k $: then, for the monoatomic linear chain of total length $ L $:
+\begin{equation*}
+  \tilde{D}(k) = \frac{\dd N}{\dd k} = \frac{1}{\frac{2\pi}{L}} = \frac{L}{2\pi}
+\end{equation*}
+since the spacing between discretized wave-vectors is $ \frac{2\pi}{L} $.
 
 
 
