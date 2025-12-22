@@ -1,12 +1,12 @@
 \selectlanguage{english}
 
-Of the few situations in which Einstein field equations sourced by matter \eref{eq:ef-eq} need to be solved directly, the one where $ T_{\mu \nu} $ plays a crucial role is Cosmology, the study of the universe as a whole.
+Of the few situations in which Einstein field equations sourced by matter \eref{eq:ef-eq} need to be solved directly, the one where $ T_{\mu \nu} $ plays a crucial role is Cosmology, the study of the universe.
 
 \section{Geometry}
 
-The key assumption of cosmology is that the universe is \emph{spatially homogeneous and isotropic}: this determines a foliation of spacetime into three-dimensional spatial sections $ \Sigma_t $ at various times $ t \in \R $, with each section being homogeneous and isotropic, i.e. maximally-symmetric.
+The key assumption of cosmology is that the universe is \emph{spatially homogeneous and isotropic}, as inferred from empirical observations (at least on large scales): this determines a foliation of spacetime into three-dimensional spatial sections $ \Sigma_t $ at various times $ t \in \R $, with each section being homogeneous and isotropic, i.e. maximally-symmetric.
 
-\begin{lemma}{Maximally-symmetric 3-spaces}{}
+\begin{lemma}{Maximally-symmetric 3-spaces}{max-sym}
   The three possible maximally-symmetric 3-spaces are:
   \begin{itemize}
     \item Euclidean space $ \R^3 $, with vanishing curvature and metric:
@@ -102,6 +102,7 @@ An important clarification must be made on $ r $: this is called a \emph{comovin
 where the peculiar velocity $ v_\text{pec} = a(t) \dot{r} $ is the velocity measured by a comoving observer, i.e. an observer which follows the Hubble flow, and the \bctxt{Hubble flow} $ H r_\text{phys} $ is the contribution due to the expansion of the universe, with the \emph{Hubble parameter} defined as:
 \begin{equation}
   H \defeq \frac{\dot{a}}{a}
+  \label{eq:hubble-param}
 \end{equation}
 Note that the dot always represents a derivative with respect to coordinate time $ t $.
 
@@ -137,6 +138,7 @@ In order to study the dynamics of particles in the FLRW metric from the geodesic
   \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j
   \qquad \qquad
   \Gamma^i_{jk} = \frac{1}{2} \gamma^{il} \left( \pa_j \gamma_{kl} + \pa_k \gamma_{jl} - \pa_l \gamma_{jk} \right)
+  \label{eq:flrw-christoffel}
 \end{equation}
 
 \begin{proposition}{Geodesics and 4-momentum}{}
@@ -168,16 +170,16 @@ First of all, a consequence of this equation is that massive particles which are
 \begin{equation*}
   E \dot{E} = - a \dot{a} \gamma_{ij} p^i p^j = - \frac{\dot{a}}{a} \ve{p}^2
 \end{equation*}
-where $ \ve{p}^2 \equiv - g_{ij} p^i p^j $ so that $ p^2 = E^2 - \ve{p}^2 = m^2 $. Therefore $ E \, \dd E = \ve{p} \cdot \dd \ve{p} \equiv p \, \dd p $, with $ p \equiv \norm{\ve{p}} $, and:
+where $ \ve{p}^2 \equiv - g_{ij} p^i p^j $ so that $ p^2 = E^2 - \ve{p}^2 = m^2 $. Thus, $ E \, \dd E = \ve{p} \cdot \dd \ve{p} \equiv \text{p} \, \dd \text{p} $, with $ \text{p} \equiv \norm{\ve{p}} $, and:
 \begin{equation}
-  \frac{\dot{p}}{p} = - \frac{\dot{a}}{a}
+  \frac{\dot{\text{p}}}{\text{p}} = - \frac{\dot{a}}{a}
   \quad \implies \quad
-  p \propto \frac{1}{a}
+  \text{p} \propto \frac{1}{a}
   \label{eq:geodesic-momentum}
 \end{equation}
-Thus, the physical 3-momentum of any particle decays with the expansion of the universe. In particular, for massless particles $ E = p $ decays with the expansion, while for massive particles:
+Thus, the physical 3-momentum of any particle decays with the expansion of the universe. In particular, for massless particles $ E = \text{p} $ decays with the expansion, while for massive particles:
 \begin{equation*}
-  p = \frac{m v}{\sqrt{1 - \ve{v}^2}} \propto \frac{1}{a}
+  \text{p} = \frac{m v}{\sqrt{1 - \ve{v}^2}} \propto \frac{1}{a}
 \end{equation*}
 where $ v^i = \dot{x}^i $ is the comoving peculiar velocity, i.e. the velocity with respect to the comoving frame. Hence, freely-falling particles converge onto the Hubble flow, as per \eref{eq:hubble-flow}.
 
@@ -306,35 +308,129 @@ The redshift dependence of the three distances $ d_\text{m} $, $ d_L $ and $ d_\
 \newpage
 \section{Dynamics}
 
+\subsection{Matter sources}
+
+The requirements of spatial homogeneity and isotropy impose strict constraints on the energy-momentum tensor, so that it can only assume the form \eref{eq:em-tens-fluid} for a perfect fluid.
+
+\subsubsection{Number density}
+
+First, consider the number 4-current $ N^\mu $, whose components are the number density $ N^0 $ of ``particles" (where here particles have a generic nature, e.g. a particle could be a galaxy) and the flux of particles $ N^i $ in the direction $ x^i $.
+
+\begin{definition}{Isotropy and homogeneity}{}
+  A spacetime is \bcdef{isotropic} if the mean value of any 3-vector vanishes, while it is \bcdef{homogeneous} if the mean value of any 3-scalar\footnote{A 3-scalar is a scalar which is invariant under purely spatial coordinate transformations.} is a function of the time coordinate only.
+\end{definition}
+
+The isotropy and homogeneity conditions than impose that a comoving observer measures a number 4-current $ N^\mu = (n(t) , \ve{0}) $, where $ n(t) $ is the number of particles per proper volume as measured by the comoving observer. A general observer with a relative 4-velocity $ u^\mu $ with respect to the rest frame of the particle distribution measures instead:
+\begin{equation}
+  N^\mu = n u^\mu
+\end{equation}
+Indeed, for a comoving observer $ u^\mu = (1,\ve{0}) $, while in general $ u^\mu = \gamma (1,\ve{v}) $, which is the correctly boosted result.
+Since the number of particles has to be conserved, in Minkowski spacetime $ \dot{n}^0 = - \pa_i N^i $, i.e. $ \pa_\mu N^\mu = 0 $, which generalizes to a curved spacetime as:
+\begin{equation}
+  \na_\mu N^\mu = 0
+\end{equation}
+In the comoving frame, then, recalling \eref{eq:flrw-christoffel}:
+\begin{equation*}
+  \frac{\dd n}{\dd t} + \Gamma^i_{i0} n = 0
+  \quad \implies \quad
+  \frac{\dot{n}}{n} = -3 \frac{\dot{a}}{a}
+  \quad \implies \quad
+  n(t) \propto a^{-3}(t)
+\end{equation*}
+which means that the number density is proportional to the inverse of the proper volume, as expected.
+
+\subsubsection{Energy-momentum tensor}
+
+In order to extend this analysis to the energy-momentum tensor $ T_{\mu \nu} $, decompose it into a 3-scalar $ T_{00} $, a 3-vector $ T_{i0} $ (recall that it is symmetric) and a 3-tensor $ T_{ij} $. By isotropy $ \pi_i \equiv T_{i0} = 0 $ (energy-momentum flow in the $ x^i $ direction), while around a point $ \ve{x} = \ve{0} $ it must be:
+\begin{equation*}
+  T_{ij}(\ve{x} \propto \ve{0}) \propto \delta_{ij} \propto g_{ij}(\ve{x} = \ve{0})
+\end{equation*}
+Since by homogeneity the proportionality constant can only depend on time, the energy-momentum tensor measured by a comoving observer takes the form:
+\begin{equation*}
+  T_{00} = \rho(t)
+  \qquad \qquad
+  \pi_i \equiv T_{i0} = 0
+  \qquad \qquad
+  T_{ij} = - P(t) g_{ij}(t,\ve{x})
+\end{equation*}
+or, with mixed indices, $ \tensor{T}{^\mu_\nu} = \diag \left( \rho , -P , -P , -P \right) $, which is precisely the energy-momentum tensor for a perfect fluid with energy density $ \rho(t) $ and pressure $ P(t) $ in its comoving frame. For a general observer with a 4-velocity $ u^\mu $ with respect to the rest frame of the fluid:
+\begin{equation}
+  \tensor{T}{^\mu_\nu} = \left( \rho + P \right) u^\mu u_\nu - P \delta^\mu_\nu
+  \label{eq:flrw-en-mom-tens}
+\end{equation}
+To study the evolution of $ \rho(t) $ and $ P(t) $, recall that, in Minkowski spacetime, the fluid is subject to the continuity equation $ \dot{\rho} = -\pa_i \pi^i $ and to the Euler equation $ \dot{\pi}_i = \pa_i P $, which are combined into $ \pa_\mu \tensor{T}{^\mu_\nu} $. Generalizing to curved spacetime:
+\begin{equation}
+  \na_\mu \tensor{T}{^\mu_\nu} = 0
+\end{equation}
+i.e. the energy momentum tensor is covariantly-conserved. Recalling \eref{eq:flrw-christoffel}, it is easy to see that the evolution of the energy density is given by this generalized \bctxt{continuity equation}:
+\begin{equation}
+  \dot{\rho} + 3 \frac{\dot{a}}{a} \left( \rho + P \right) = 0
+  \label{eq:r-p}
+\end{equation}
+which is equivalent to $ \dd U = - P \dd V $, with $ U \equiv \rho V $ and using $ V \propto a^3 $.
+
+\subsubsection{Matter content}
+
+Since the universe is filled with a mixture of different matter components, it is useful to classify the various matter sources by their equation of state $ \rho = \rho(P) $, which can be cast in the form:
+\begin{equation}
+  \rho = w P
+\end{equation}
+with $ w \in \R $. With this relation, \eref{eq:r-p} implies the scaling relation:
+\begin{equation}
+  \rho \propto a^{-3 (1 + w)}
+\end{equation}
+
+\paragraph{Matter}
+
+Matter is characterized by $ w = 0 $, i.e. the pressure is negligible when compared to the energy density (to be precise, $ P = 0 $ for pressureless dust only). Then, the dilution of $ \rho \propto a^{-3} $ simply reflects the expansion of the volume $ V \propto a^3 $. This category has two elements:
+\begin{itemize}
+  \item \bctxt{baryons}, where in Cosmology this term is improperly used to denote both nuclei and electrons\footnotemark;
+  \item \bctxt{dark matter}, which is the dominant form of matter in the universe, although its nature is unknown.
+\end{itemize}
+
+\footnotetext{Since the mass of the lightest nucleus $ \ch{^1H} \equiv p^+ $ is $ m_p \simeq 1836 m_e $, this convention is approximately justified, since the mass of baryonic matter is dominated by the mass of the nuclei.}
+
+\paragraph{Radiation}
+
+Radiation is a characterized by $ w = \frac{1}{3} $, which is the case, for instance, for a gas of relativistic particles, whose energy density is dominated by the kinetic energy (i.e. $ \text{p} \gg m $). In this case, the dilution $ \rho \propto a^{-4} $ includes an additional factor for the redshift of the energy $ E \propto a^{-1} $. This category includes:
+\begin{itemize}
+  \item \bctxt{photons}, which are always relativistic (since they are massless particles) and dominated the early universe;
+  \item \bctxt{neutrinos}, which behaved like radiation for most of the history of the universe, and only recently started behaving like matter due to their small masses;
+  \item \bctxt{gravitons}, which are believed to have been formed in the early universe as a background of gravitational waves.
+\end{itemize}
+
+\paragraph{Dark energy}
+
+By experimental observations, the universe today seems to be dominated by a mysterious \emph{negative} pressure $ P = - \rho $, commonly referred to as dark energy. This mysterious form of energy has $ w = -1 $, hence its energy density does not dilute $ \rho \propto a^0 $, which means that energy has to be created as the universe expands\footnotemark.
+
+\footnotetext{Recall \secref{ssec:energy-conservation}: since it is not possible to clearly state an energy conservation principle for a gravitational system, the only meaningfull equation is \eref{eq:r-p}, which is not violated by the creation of additional dark energy as the universe expands.}
+
+A possible candidate as a form of dark energy is the vacuum energy predicted by Quantum Field Theory. Indeed, the ground state of the vacuum has the following energy-momentum tensor:
+\begin{equation*}
+  T^\text{vac}_{\mu \nu} = \rho_\text{vac} g_{\mu \nu}
+\end{equation*}
+which clearly implies $ P_\text{vac} = - \rho_\text{vac} $. However, the predicted $ \rho_\text{vac} $ is off of a factor of $ \sim 10^{120} $ with respect to the observed dark energy density, and this is called the ``cosmological constant problem".
+
 \subsection{Curvature tensors}
 
-To solve the field equations for FLRW metrics, first compute the Ricci tensor. Christoffel symbols are straightforward:
-\begin{equation*}
-  \Gamma^\mu_{00} = \Gamma^0_{i0} = 0
-  \qquad
-  \Gamma^0_{ij} = a\dot{a} \gamma_{ij}
-  \qquad
-  \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j
-  \qquad
-  \Gamma^i_{jk} = \frac{1}{2} \gamma^{il} \left( \pa_j \gamma_{kl} + \pa_k \gamma_{jl} - \pa_l \gamma_{jk} \right)
-\end{equation*}
+To compute the Einstein tensor for the FLRW metric, recall the Christoffel symbols \eref{eq:flrw-christoffel}.
 
 \begin{proposition}{Ricci tensor}{}
   The Ricci tensor for a FLRW metric has non-vanishing components:
   \begin{equation}
     R_{00} = - 3 \frac{\ddot{a}}{a}
     \qquad
-    R_{ij} = \left( \frac{\ddot{a}}{a} + 2 \left( \frac{\dot{a}}{a} \right)^2 + 2 \frac{k}{a^2} \right) g_{ij}
+    R_{ij} = \left[ \frac{\ddot{a}}{a} + 2 \left( \frac{\dot{a}}{a} \right)^2 + 2 \frac{k}{a^2} \right] g_{ij}
   \end{equation}
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    First, $ R_{0i} = 0 $ because there's no covariant 3-vector that it could possibly equal to. Then, contracting \eref{eq:riemann-comp} and recalling the only non-vanishing Christoffel symbols:
+    First, $ R_{0i} = 0 $ due to the isotropy of the FLRW metric. Then, contracting \eref{eq:riemann-comp} and recalling the only non-vanishing Christoffel symbols:
     \begin{equation*}
       R_{00} = - \pa_0 \Gamma^i_{i0} - \Gamma^j_{i0} \Gamma^i_{j0} = - 3 \frac{\dd}{\dd t} \left( \frac{\dot{a}}{a} \right) - 3 \left( \frac{\dot{a}}{a} \right)^2 = - 3 \frac{\ddot{a}}{a}
     \end{equation*}
-    For the spatial components, consider the spatial metric in Cartesian coordinates:
+    For the spatial components, consider the spatial metric in Cartesian coordinates (as derived in the proof of \lref{lemma:max-sym}):
     \begin{equation*}
       \gamma_{ij} = \delta_{ij} + \frac{k x_i x_j}{1 - k \ve{x} \cdot \ve{x}}
     \end{equation*}
@@ -362,70 +458,113 @@ To solve the field equations for FLRW metrics, first compute the Ricci tensor. C
         &= \left( a\ddot{a} + 2 \dot{a}^2 + 2k \right) \delta_{ij} + o(x^2)
       \end{split}
     \end{equation*}
-    Covariance implies that $ R_{ij} \sim \gamma_{ij} $, thus the general result is:
+    Spatial homogeneity and isotropy imply that $ R_{ij} \propto \gamma_{ij} $, thus the general result is:
     \begin{equation*}
       R_{ij} = \left( a\ddot{a} + 2\dot{a}^2 + 2k \right) \gamma_{ij} = \frac{1}{a^2} \left( a\ddot{a} + 2\dot{a}^2 + 2k \right) g_{ij}
     \end{equation*}
-    which completes the proof.
+    which is the thesis.
   \end{proof}
 \end{proofbox}
 
 The Ricci scalar is then easily computed:
 \begin{equation}
-  R = 6 \left( \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right)
+  R = 6 \left[ \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right]
 \end{equation}
 Finally, the non-vanishing components of the Einstein tensor are:
 \begin{equation}
-  G_{00} = 3 \left( \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right)
-  \qquad
-  G_{ij} = - \left( 2 \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right) g_{ij}
+  G_{00} = 3 \left[ \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right]
+  \qquad \qquad
+  G_{ij} = - \left[ 2 \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right] g_{ij}
+  \label{eq:flrw-einstein}
 \end{equation}
 
 \subsection{Friedmann equations}
 
-There only remains to specify the matter content of the universe. By hypothesis, it is filled by a perfect fluid, so that the energy-momentum tensor is that in \eref{eq:em-tens-fluid}. Assuming that the fluid is at rest in the preferred frame of the universe, i.e. $ u^\mu = (1,0,0,0) $ in the FLRW coordinates, the Bianchi identity $ \na_\mu T^{\mu \nu} = 0 $ reads:
+With \eref{eq:flrw-einstein}, the Einstein field equations \eref{eq:ef-eq} with the energy-momentum tensor \eref{eq:flrw-en-mom-tens} become (respectively the temporal and spatial components):
+\begin{equation}
+  \left( \frac{\dot{a}}{a} \right)^2 = \frac{8\pi G}{3} \rho - \frac{k}{a^2}
+  \qquad \qquad
+  \frac{\ddot{a}}{a} = - \frac{4\pi G}{3} \left( \rho + 3 P \right)
+\end{equation}
+where the cosmological constant has been suppressed since it is accounted for by dark energy as a form of matter content. Note that these equations are not independent, as the latter is the time derivative of the formed: nonetheless, these are called the \bctxt{Freedman equations}. The energy density $ \rho $ and the pressure $ P $ are to be understood as the sums of the contributions from the various forms of matter: the contribution from radiation $ \rho_r = \rho_\gamma + \rho_\nu $ (photons and neutrinos), the one from matter $ \rho_m = \rho_b + \rho_c $ (baryons and cold dark matter) and the vacuum energy contribution $ \rho_\Lambda $. Recalling the definition of the Hubble parameter \eref{eq:hubble-param}, the first Friedmann equation becomes:
+\begin{equation}
+  H^2 = \frac{8\pi G}{3} \rho - \frac{k}{a^2}
+  \label{eq:fried-hubble}
+\end{equation}
+It is convenient to define dimensionless density parameters. To do so, observe that a flat universe corresponds to the \bctxt{critical density} today:
 \begin{equation*}
-  u^\mu \na_\mu \rho + (\rho + p) \na_\mu u^\mu = 0
+  \rho_{\text{crit},0} = \frac{3H_0^2}{8\pi G} \simeq 1.9 \cdot 10^{-29} h^2 \,\text{g} \, \text{cm}^3
 \end{equation*}
-Recalling that $ \na_\mu u^\mu = \pa_\mu u^\mu + \Gamma^\mu_{\mu \rho} u^\rho = \Gamma^i_{i0} u^0  = \dot{a} / a $, the \bctxt{continuity equation} is obtained:
+Then, the dimensionless density parameters are defined as:
 \begin{equation}
-  \dot{\rho} + \frac{3\dot{a}}{a} (\rho + p) = 0
+  \Omega_a \equiv \frac{\rho_{a,0}}{\rho_{\text{crit},0}}
 \end{equation}
-This equation expresses the conservation of energy in an expanding universe. The second constraint \eref{eq:euler-eq} is trivial for homogeneous isotropic fluids. There remains the equation of state, which for fluids of cosmological interest is simply:
+with $ a = r,m,\Lambda,\dots $ running over all possible matter species. \eref{eq:fried-hubble} can thus be rewritten as:
 \begin{equation}
-  p = w \rho
+  H^2(a) = H_0^2 \left[ \Omega_r \left( \frac{a_0}{a} \right)^4 + \Omega_m \left( \frac{a_0}{a} \right)^3 + \Omega_k \left( \frac{a_0}{a} \right)^2 + \Omega_\Lambda \right]
 \end{equation}
-In particular, $ w = 0 $ describes pressureless dust, while $ w = \frac{1}{3} $ radiation. The continuity equation thus becomes:
+where a curvature density parameter was defined as:
+\begin{equation}
+  \Omega_k \equiv - \frac{k}{\left( a_0 H_0 \right)^2}
+\end{equation}
+Adopting the conventional normalization for the scale factor $ a_0 \equiv 1 $:
+\begin{equation}
+  \frac{H^2}{H_0^2} = \Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_k a^{-2} + \Omega_\Lambda
+\end{equation}
+
+\subsubsection{\texorpdfstring{$ \bs{\Lambda} $}{L}CDM}
+
+Empirical observations show that the universe is filled with radiation, matter and dark energy so that:
 \begin{equation*}
-  \frac{\dot{\rho}}{\rho} = - 3 (1 + w) \frac{\dot{a}}{a}
+  \abs{\Omega_k} \leq 0.01
+  \qquad
+  \Omega_r \simeq 9.4 \cdot 10^{-5}
+  \qquad
+  \Omega_m \simeq 0.32
+  \qquad
+  \Omega_\Lambda \simeq 0.68
 \end{equation*}
-This means that the energy density dillutes as the universe expands, for:
-\begin{equation}
-  \rho = \frac{\rho_0}{a^{3 (1 + w)}}
-  \label{eq:flwr-state-eq}
-\end{equation}
-For pressureless dust $ \rho \sim a^{-3} $, which is the expected scaling of energy density with volume, while for radiation $ \rho \sim a^{-4} $, accounting for an extra $ a^{-1} $ factor due to redshift.
+In particular, matter splits into $ 5\% $ baryonic matter, i.e. with $ \Omega_b \simeq 0.05 $, and $ 27\% $ cold dark matter, i.e. with $ \Omega \simeq 0.27 $. Moreover, note that even today curvature only contribute for less than $ 1\% $ of cosmic energy, and, since $ \Omega_k \propto a^{-2} $ while $ \Omega_m \propto a^{-3} $ and $ \Omega_r \propto a^{-4} $, in the past it was completely negligible: hence, setting $ \Omega \equiv 0 $ is justified.
 
-With this setting, the temporal component of the Einstein field equations becomes:
-\begin{equation}
-  \left( \frac{\dot{a}}{a} \right)^2 = \frac{8\pi G}{3} \rho + \frac{\Lambda}{3} - \frac{k}{a^2}
-  \label{eq:friedmann-eq}
-\end{equation}
-This is the \bctxt{Friedmann equation}, and with \eref{eq:flwr-state-eq} it describe how the universe expands. The spatial component of the field equations, computed using the Friedmann equation too, reads:
-\begin{equation}
-  \frac{\ddot{a}}{a} - \frac{\Lambda}{3} = -\frac{4\pi G}{3} (\rho + 3p)
-  \label{eq:ray-eq}
-\end{equation}
-This is the \bctxt{Raychaudhuri equation}, and it describes the acceleration of the expansion of the universe: it isn't independent of the Friedmann equation, as a time derivative of \eref{eq:friedmann-eq} yields \eref{eq:ray-eq}.
+\subsubsection{Single-component universe}
 
-A particularly simple solution can be found by setting $ k = \Lambda = 0 $, i.e. considering a universe dominated only by a single homogeneous isotropic fluid with energy density \eref{eq:flwr-state-eq}:
+Given the clearly distinct scalings of $ \Omega_r \propto a^{-4} $, $ \Omega_m \propto a^{-3} $ and $ \Omega_\Lambda \propto a^0 $, for most of its history the universe was dominated by a single component: first radiation, then matter and finally vacuum energy. This is illustrated in \figref{fig:scalings}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{scalings.png}
+  \caption{Evolution of energy densities in the universe.}
+  \label{fig:scalings}
+\end{figure}
+
+For a flat single-component universe, the first Friedmann equation becomes:
+\begin{equation}
+  \frac{\dot{a}}{a} = H_0 \sqrt{\Omega_a} a^{- \frac{3}{2} \left( 1 + w_a \right)}
+\end{equation}
+where $ w_a $ characterizes the component. This equation can be integrated, obtaining the time-dependence of the scale factor:
+\begin{equation}
+  a(t) \propto
+  \begin{cases}
+    t^{\frac{2}{3} \left( 1 + w_a \right)} & w_a \neq -1 \\
+    e^{Ht} & w_a = -1
+  \end{cases}
+\end{equation}
+Specializing for a radiation-dominated (RD), matter-dominated (MD) and $ \Lambda $-dominated ($ \Lambda $D) universe:
 \begin{equation*}
-  \left( \frac{\dot{a}}{a} \right)^2 \sim \frac{1}{a^{3(1 + w)}}
+  a(t) \propto
+  \begin{cases}
+    t^{2/3} & \text{RD} \\
+    t^{1/2} & \text{MD} \\
+    e^{Ht} & \Lambda\text{D}
+  \end{cases}
   \quad \implies \quad
-  a(t) = \left( \frac{t}{t_0} \right)^{2 / (3 + 3w)}
+  a(\eta) \propto
+  \begin{cases}
+    \eta^2 & \text{RD} \\
+    \eta & \text{MD} \\
+    - \eta^{-1} & \Lambda\text{D}
+  \end{cases}
 \end{equation*}
-The solution $ w = \frac{1}{3} $, i.e. $ a(t) \sim t^{1/2} $, describes a radiation-dominated universe, which is a model for roughly the first 50'000 years of our Universe, while $ w = 0 $, i.e. $ a(t) \sim t^{2/3} $, describes a matter-dominated universe, which is a model for roughly the following 10 billion years of our Universe.
-
 
 
 
