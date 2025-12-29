@@ -1,0 +1,110 @@
+\selectlanguage{english}
+
+%In place of Newton's constant $ G $, it is useful to use the reduced Planck mass:
+%\begin{equation*}
+%  \pl \equiv \sqrt{\frac{\hbar c}{8\pi G}} \simeq 2.4 \cdot 10^{18} \,\text{GeV}
+%\end{equation*}
+%so that \eref{eq:fried-hubble} for a flat spacetime can be written as $ H^2 = \rho / (3\pl^2) $.
+
+\section{Horizon problem}
+
+\subsection{Particle horizon}
+
+The propagation of lightrays is best studied using conformal time. Given the spatial isotropy of spacetime, it is always possible to define a coordinate system in which the lightrays moves radially, so that its motion is determined by a 2-dimensional line element:
+\begin{equation*}
+  \dd s^2 = a^2(\eta) \left[ \dd \eta^2 - \dd \chi^2 \right]
+\end{equation*}
+where, for a flat spacetime, $ \chi \equiv r $ as of \eref{eq:conformal-coordinates}. Since photons are massless, they move along null geodesics with $ \dd s^2 = 0 $, hence:
+\begin{equation*}
+  \Delta \chi (\eta) = \pm \Delta \eta
+\end{equation*}
+where the $ + $ describes outgoing photons and the $ - $ incoming photons. This means that the distance that time travels between $ \eta_1 $ and $ \eta_2 > \eta_1 $ is simply $ \Delta \eta = \eta_2 - \eta_1 $. Hence, assuming that the Big Bang started with a singularity\footnotemark at $ t_\text{i} \equiv 0 $, then the greatest distance from which an observer at time $ t $ is able to receive signals is:
+\begin{equation}
+  \chi_\text{p}(\eta) = \eta - \eta_\text{i} = \int_{t_\text{i}}^t \frac{\dd t}{a(t)}
+\end{equation}
+which is called the \bctxt{comoving particle horizon}. The particle horizon is obtained intersecting the past light-cone of the observer with the spacelike hypersurface $ \eta = \eta_\text{i} $, as shown in \figref{fig:particle-horizon}: causal influences on the observer can only come from within this region.
+
+\footnotetext{Note that the Big Bang singularity is a moment in time, but \emph{not} point in space: indeed, in general it is pictured as an extended (possibly infinite) spacelike hypersurface.}
+
+The comoving particle horizon $ \chi_\text{p} $ can be expressed in terms of the \emph{comoving Hubble radius} $ (aH)^{-1} $ as follows:
+\begin{equation*}
+  \chi_\text{p}(\eta) = \int_{a_\text{i}}^{a} \frac{\dd a}{a \dot{a}} = \int_{\ln a_\text{i}}^{\ln a} \frac{\dd \ln a}{a H}
+\end{equation*}
+where $ a_\text{i} $ corresponds to the Big Bang singularity. For a universe dominated by a single matter component with parameter $ w $, \eref{eq:a-sing-comp} determines the evolution of the comoving Hubble radius:
+\begin{equation}
+  (aH)^{-1} = H_0^{-1} a^{\frac{1}{2} \left( 1 + 3w \right)}
+\end{equation}
+Note that for ordinary matter sources the strong energy condition (SEC) $ 1 + 3w > 0 $ is satisfied, in which case the integral expression of $ \chi_\text{p} $ is dominated by the upper limit, while receiving vanishing contributions from earlier times. Performing the explicit integration:
+\begin{equation}
+  \chi_\text{p}(a) = \frac{2H_0^{-1}}{1 + 3 w} \left[ a^{\frac{1}{2} \left( 1 + 3 w \right)} - a_\text{i}^{\frac{1}{2} \left( 1 + 3 w \right)} \right] \equiv \eta - \eta_\text{i}
+\end{equation}
+Clearly, in presence of the SEC, $ \eta_\text{i} \ra 0 $ as $ a_\text{i} \ra 0 $, hence setting $ a_\text{i} \equiv 0 $ yields a finite comoving particle horizon:
+\begin{equation}
+  \chi_\text{p}(t) = \frac{2H_0^{-1}}{1 + 3 w} a^{\frac{1}{2} \left( 1 + 3 w \right)} = \frac{2}{1 + 3 w} (aH)^{-1}
+\end{equation}
+In the standard cosmology, then, $ \chi_\text{p} \sim (aH)^{-1} $, since the Big Bang model postulates $ a_\text{i} \ra 0 $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{particle-horizon.png}
+  \caption{Spacetime diagram in the $ \chi - \eta $ coordinate system illustrating the particle horizon.}
+  \label{fig:particle-horizon}
+\end{figure}
+
+\subsection{CMB uniformity}
+
+About $ 380'000 $ years after the Big Bang, the universe had cooled enough to allow the formation of the first hydrogen atoms: in this process, photons decoupled from the primordial plasma, a phenomenon known as Recombination (LINK TO SECTION) and observed today in the form of the cosmic microwave background (CMB).
+
+The CMB is almost perfectly isotropic, with anisotropies in the order of $ 10^{-5} $, and this is a serious problem for the Big Bang model. Indeed, $ a_\text{CMB} \simeq 1100^{-1} $ and, since $ a(\eta) \sim \eta^2 $ for a matter-dominated universe, $ \eta_\text{CMB} \sim \sqrt{a_\text{CMB}} $, which determines a comoving particle horizon of $ \chi_\text{CMB} = \eta_\text{CMB} \sim 1100^{-1/2} \sim 1^\circ $: this means that any two points in the CMB that are separated by more than $ 1^\circ $ in the sky are causally-disconnected.
+
+The fact that the $ \sim 10^4 $ causally-disconnected patches of the CMB are remarkably isotropic is known as the \emph{horizon problem}, since the comoving particle horizon in the Big Bang model is not sufficient to explain the isotropy of the CMB: there is not enough conformal time between the Big Bang and the CMB in the standard cosmology, as pictured in \figref{fig:horizon-problem}.
+
+\begin{figure}[b]
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{horizon-problem.png}
+  \caption{The horizon problem in the standard Big Bang model.}
+  \label{fig:horizon-problem}
+\end{figure}
+
+\subsection{SEC violation and Inflation}
+
+To explain the uniformity of the CMB, more conformal time between the Big Bang and Recombination is needed. In order to do so, the SEC must be violated: if e.g. $ w = - \frac{1}{3} $, then from a certain point in time $ (aH)^{-1} $ remains constant going backwards, resulting in an infinite available conformal time for the various patches of the CMB to come into causal contact with each other.
+
+However, the preferred model is one with $ w = -1 $ (constrained by other observations): in this case, the comoving Hubble radius expands going backwards in the past, as shown in \figref{fig:inflation}. Indeed:
+\begin{equation*}
+  \frac{\dd}{\dd t} (aH)^{-1} = \frac{1 + 3 w}{2} \frac{1}{a} < 0
+\end{equation*}
+which confirms the shrinking of the comoving Hubble radius, i.e. its expansion going backwards. Moreover:
+\begin{equation*}
+  \frac{\dd}{\dd t} (aH)^{-1} = \frac{\dd}{\dd t} \dot{a}^{-1} = - \frac{\ddot{a}}{\dot{a}^2}
+\end{equation*}
+which means that a shrinking comoving Hubble radius implies an accelerated expansion, as $ \ddot{a} > 0 $. For this reason, this is called an \emph{inflationary model}: in this model, the $ \eta = 0 $ surface is no longer the initial singulary of the Big Bang, but merely the end of the inflationary period, i.e. the transition between inflationary cosmology and standard cosmology, while the Big Bang singularity is pushed to negative conformal time:
+\begin{equation*}
+  \eta_\text{i} = \frac{2H_0^{-1}}{1 + 3 w} a_\text{i}^{\frac{1}{2} \left( 1 + 3 w \right)}
+  \xrightarrow{\quad a_\text{i} \ra 0 \ , \ w < - \frac{1}{3} \quad} - \infty
+\end{equation*}
+Moreover, since $ w = -1 $ in the inflationary period, the energy density of the dominant form of matter $ \rho_\text{I} $ was (approximately) constant, resulting in a constant Hubble parameter $ H_\text{I} $ and an exponential evolution of the scale parameter: $ a(t) = e^{H_\text{I} t} $, from \eref{eq:a-sing-comp}. The inflationary metric is then (approximately) expressed as:
+\begin{equation*}
+  \dd s^2 = \dd t^2 - e^{2H_\text{I} t} \dd \ve{x}^2
+\end{equation*}
+which is a de Sitter metric. In fact, Inflation is considered a period of quasi-de Sitter expansion.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{inflation.png}
+  \caption{Inflationary solution to the horizon problem.}
+  \label{fig:inflation}
+\end{figure}
+
+\newpage
+\section{Inflationary model}
+
+
+
+
+
+
+
+
+
+
