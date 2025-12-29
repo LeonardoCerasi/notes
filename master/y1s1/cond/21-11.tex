@@ -190,6 +190,23 @@ In the general case, the back-scattering happens for all wave-vector which lie o
 
 In general, a crystal with $ n_d \in \N $ atoms in its primitive cell presents $ 3 $ acoustic bands and $ 3n_d - 3 $ optical bands, for a total of $ 3n_d $ bands.
 
+To experimentally measure vibrational bands, consider an EM waves scattering on the sample crystal: the interaction with the EM waves makes electric charge oscillate, with positive charges and negative charges oscillating in opposite directions. To make the crystal vibrate, the EM wave $ \omega(\ve{k}) $ must resonate with the vibrational bands $ \Omega(\ve{K}) $, i.e. $ \ve{k} = \ve{K} $ and $ \Omega(\ve{k}) = \omega(\ve{k}) = \frac{c}{n} k $, where $ n $ is the refractive index of the crystal. This method only allows to study optical bands\footnotemark, since for acoustic bands $ v_\text{s} \ll \frac{c}{n} $. Quantistically, these resonance conditions correspond to an energy-momentum conservation condition for the transformation\footnotemark of a photon of energy $ \hbar \omega $ and momentum $ \hbar \ve{k} $ to a phonon of energy $ \hbar \Omega $ and momentum $ \hbar \ve{K} $.
+
+\footnotetext{A scattering $ \gamma \ra \gamma + \varphi $ is also possible, but energetic photons are needed: IR photons generate resonances, visible photons generate scatterings. In general, three peaks are observed: one for the resonance and two smaller ones, one for $ \gamma \ra \gamma + \varphi $ at $ \omega - \Omega $ and one for $ \gamma + \varphi \ra \gamma $ at $ \omega + \Omega $ (Brilluoin anelastic scattering).
+For even higher energies, e.g. X-rays, it is possible to combine Brilluoin scattering and Bragg scattering, so that the total energy-momentum conservation becomes:
+\begin{equation*}
+  \ve{k} - \ve{G} = \ve{k}' \pm \Omega
+  \qquad \qquad
+  \omega = \omega' \pm \Omega
+\end{equation*}
+since the crystal momentum $ \ve{G} $ does not determine an energy transfer between the EM wave and the crystal.}
+
+\footnotetext{Acoustic bands can be studied using neutrons, since their dispersion relations is:
+\begin{equation*}
+  E = \frac{\hbar^2 k^2}{2m_n}
+\end{equation*}
+which allows for an intersection even with acoustic bands, which have lower frequencies than optical bands.}
+
 \subsection{Thermal properties}
 
 For a perfect gas composed of $ N $ particles, the mean energy of the system is found by the \emph{equipartition principle} for energy:
@@ -262,6 +279,44 @@ where $ D(\omega) $ is the density of state, defined so that the number of state
   \tilde{D}(k) = \frac{\dd N}{\dd k} = \frac{1}{\frac{2\pi}{L}} = \frac{L}{2\pi}
 \end{equation*}
 since the spacing between discretized wave-vectors is $ \frac{2\pi}{L} $.
+
+\paragraph{High-temperature limit}
+
+In the high-temperature limit:
+\begin{equation*}
+  E_\text{D} \simeq \kbt \int_{\R^+} \dd \omega \, D(\omega) = 3N \kbt
+\end{equation*}
+since the total number of states is approximately $ 3N $ (for $ N \gg 1 $). This is the expected classical result.
+
+\paragraph{Low-temperature limit}
+
+In the low-temperature limit, on the other hand, due to the functional expression of the Bose--Einstein distribution, only low frequencies contribute to the integral, since high frequencies are exponentially suppressed: this means that only acoustic bands contribute to the integral, and we can set $ \omega \approx v_\text{s} k $. Supposing an isotropic crystal, so that $ v_\text{s} = \text{const.} $ in all directions, then near the origin in the $ k $-space (reciprocal space) the $ \omega = \text{const.} $ surfaces are spheres, i.e. $ k = \text{const.} $: this allows to directly count the number of states between $ \omega $ and $ \omega + \dd \omega $. The number of states inside the sphere of frequency $ \omega $ is simply given by:
+\begin{equation}
+  N(\omega) = \frac{\frac{4}{3} \pi k^3}{\left( \frac{2\pi}{L} \right)^3} = \frac{V}{6\pi^2 v_\text{s}^3} \omega^3
+\end{equation}
+where $ (2\pi)^3 / V $ is the volume of a single state in the reciprocal space. Then:
+\begin{equation}
+  D(\omega) = \frac{\dd N(\omega)}{\dd \omega} = \frac{V}{2\pi^2 v_\text{s}^3} \omega^2
+\end{equation}
+Since this only holds for low-frequencies, we introduce a cut-off frequency $ \omega_\text{D} $, called \bctxt{Debye frequency}, so that $ D(\omega) = 0 $ for $ \omega > \omega_\text{D} $ and:
+\begin{equation}
+  \int_0^{\omega_\text{D}} \dd \omega \, D(\omega) = 3N
+  \quad \implies \quad
+  \omega_\text{D} = v_\text{s} \sqrt[3]{6\pi^2 \frac{N}{V}}
+\end{equation}
+The energy then becomes:
+\begin{equation*}
+  E_\text{D} = \frac{V}{2\pi^2 v_\text{s}^3} \int_0^{\omega_\text{D}} \dd \omega \frac{\hbar \omega^3}{e^\frac{\hbar \omega}{\kbt} - 1} = \frac{3 \hbar V}{2\pi^2 v_\text{s}^3} \left( \frac{\kbt}{\hbar} \right)^4 \int_0^{x_\text{D}} \dd x \frac{x^3}{e^x - 1}
+\end{equation*}
+If $ T \ll \hbar \omega_\text{D} / \kb \equiv \theta_\text{D} $ (Debye temperature), then $ x_\text{D} \ra \infty $ and the integral is equal to $ \frac{\pi^4}{15} $:
+\begin{equation}
+  E_\text{D} \simeq \frac{\pi^2 \kb^4 V}{10 \hbar^3 v_\text{s}^3} T^4
+\end{equation}
+The specific heat then is:
+\begin{equation}
+  C_V = \frac{2}{5} \frac{\pi^2 \kb^4 V}{\hbar^3 v_\text{s}^3} T^3 = \frac{12 \pi^4}{5} N \kb \left( \frac{T}{\theta_\text{D}} \right)^3
+\end{equation}
+which is the expected classical result.
 
 
 
