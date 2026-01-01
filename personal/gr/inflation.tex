@@ -118,12 +118,93 @@ which is simply the sum of the kinetic energy density and the potential energy d
   P_\phi = \frac{1}{2} \dot{\phi}^2 - V(\phi)
 \end{equation}
 Since inflation requires $ P_\phi < - \frac{1}{3} \rho_\phi $, for the inflaton the potential energy must dominate over the kinetic energy. Inserting $ \rho_\phi $ into \eref{eq:fried-hubble} (rewritten in terms of the reduced Planck mass\footnotemark):
+\begin{equation}
+  H^2 = \frac{1}{3\pl^2} \left[ \frac{1}{2} \dot{\phi}^2 + V(\phi) \right]
+  \label{eq:inflaton-h2}
+\end{equation}
+
+\begin{proposition}{Klein--Gordon Equation}{}
+  The equation of motion for the inflaton field is:
+  \begin{equation}
+    \ddot{\phi} + 3H \dot{\phi} + V_{,\phi} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, from \ceref{eq:r-p}{eq:fried-hubble}:
+    \begin{equation*}
+      2H\dot{H} = \frac{\dot{\rho}}{3\pl^2} = - \frac{H}{\pl^2} \left( \rho + P \right)
+      \quad \implies \quad
+      \dot{H} = - \frac{\rho + P}{2\pl^2}
+    \end{equation*}
+    Since $ \rho_\phi + P_\phi = \dot{\phi} $, inserting this equation in the time derivative of \eref{eq:inflaton-h2}:
+    \begin{equation*}
+      2H\dot{H} = \frac{1}{3\pl^2} \left[ \dot{\phi} \ddot{\phi} + V_{,\phi} \dot{\phi} \right]
+      \quad \implies \quad
+      \ddot{\phi} + 3H \dot{\phi} + V_{,\phi} = 0
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+Note that the evolution of the inflaton field is sourced by the potential, which acts like a force $ V_{,\phi} $, while the expansion of the universe determines a \emph{friction} term $ 3 H \dot{\phi} $.
 
 \footnotetext{In place of Newton's constant $ G $, it is useful to use the reduced Planck mass:
 \begin{equation*}
   \pl \equiv \sqrt{\frac{\hbar c}{8\pi G}} \simeq 2.4 \cdot 10^{18} \,\text{GeV}
 \end{equation*}
 so that \eref{eq:fried-hubble} for a flat spacetime can be written as $ H^2 = \rho / (3\pl^2) $.}
+
+\subsubsection{Slow-roll inflation}
+
+Near a minimum $ \phi_0 $, the potential can be approximated by a harmonic potential:
+\begin{equation*}
+  V(\phi) \approx V_0 + \frac{1}{2} m^2 (\phi - \phi_0)^2
+\end{equation*}
+with $ V_0 \equiv V(\phi_0) $ and $ m^2 \equiv V_{,\phi\phi}(\phi_0) $. Since near the minimum $ \dot{\phi} \approx 0 $, the energy-momentum tensor can be written as:
+\begin{equation*}
+  \tensor{T}{^\mu_\nu} =
+  \begin{bmatrix}
+    \rho_\phi & 0 & 0 & 0 \\
+    0 & P_\phi & 0 & 0 \\
+    0 & 0 & P_\phi & 0 \\
+    0 & 0 & 0 & P_\phi
+  \end{bmatrix}
+  \approx
+  \begin{bmatrix}
+    V_0 & 0 & 0 & 0 \\
+    0 & -V_0 & 0 & 0 \\
+    0 & 0 & -V_0 & 0 \\
+    0 & 0 & 0 & -V_0
+  \end{bmatrix}
+\end{equation*}
+Comparing to \eref{eq:lambda-emt}, it is clear that $ V_0 $ acts like a cosmological constant $ \Lambda $. Moreover, near the minimum $ w \approx -1 $ as sought.
+
+However, with a harmonic potential the inflaton field does not significantly evolve over time, while in the inflationary cosmology Inflation must only occur between $ a_\text{I} $ and $ a_\text{e} $. To achieve this, a so-called ``slow-roll model" is introduced: the potential $ V(\phi) $ starts nearly constant, with a slightly negative slope, which imposes the condition $ T \gg V $ and results into $ w \approx -1 $. Then, the potential smoothly changes from linear to parabolic, reaching finally a minimum. An example of potential is drawn in \figref{fig:slow-roll}: the formulation of a precise model is futile, since it is not possible to empirically probe Inflation.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{slow-roll.png}
+  \caption{Example of slow-roll potential: inflation occurs in the shaded parts of the potential.}
+  \label{fig:slow-roll}
+\end{figure}
+
+\subsection{Reheating}
+
+During Inflation, the energy density of the universe is dominated by the inflaton potential $ V(\phi) $. Then, as Inflation ends and the inflaton field gains kinetic energy, the energy of the inflaton sector has to be transferred to the Standard Model sector: this process is called \bctxt{Reheating}.
+
+Setting WLOG $ V_0 \equiv 0 $, the homogeneous evolution of the inflaton field $ \phi = \phi(t) $ reads:
+\begin{equation*}
+  \ddot{\phi} = - m^2 \phi - 3H \dot{\phi}
+\end{equation*}
+The expansion timescale soon becomes much larger than the oscillation period, i.e. $ H^{-1} \gg m^{-1} $, hence the friction term can be neglected. Then, the continuity equation can be written as:
+\begin{equation*}
+  \dot{\rho}_\phi + 3H \rho_\phi = - 3H P_\phi = - \frac{3}{2} H \left[ m^2 \phi^2 - \dot{\phi}^2 \right]
+\end{equation*}
+Over a period of oscillation the term in parentheses averages to zero, hence the oscillating inflaton field behaves like pressureless matter with $ \rho_\phi \propto a^{-3} $, while the decrease of its energy density is reflected in a decrease of its oscillation amplitude.
+
+After Reheating, the universe is dominated by radiation and its evolution is described by the standard cosmology.
 
 
 
