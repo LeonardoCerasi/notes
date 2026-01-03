@@ -1,0 +1,212 @@
+\selectlanguage{english}
+
+\chapter{Electronic Properties of Crystals}
+
+Our main interest is in the description of metals. In the roughest approximations, the independent non-interacting electrons model, the valence electrons in the metal are assumed to be free and only bound to move inside the crystal: this approximation ignores the screening due to the interaction between electrons, since these are unaffected by any potential (except for the exclusion potential, since electrons are fermions).
+
+This approximation best describes alkali metals, where the single valence electron can be assumed to be free in the metal, while it fails for more complex systems.
+
+\section{Linear chain}
+
+\subsection{Monodimensional case}
+
+Consider a 1D linear chain, assuming it is infinite. The free-electron Schrödinger equation reads:
+\begin{equation*}
+  - \frac{\hbar^2}{2m_e} \frac{\dd^2 \psi}{\dd x^2} = E \psi
+  \quad \implies \quad
+  \psi \sim e^{-\img \left( k x - \frac{E}{\hbar} t \right)}
+\end{equation*}
+Denoting the distance between adjacent atoms with $ a $ and the total length of the chain with $ L $, the periodic boundary condition (so to have an infinite chain) impose:
+\begin{equation}
+  k_n = \frac{2\pi}{L} n
+  \qquad \qquad
+  n \in \Z - \{0\}
+\end{equation}
+analogously to the treatment of crystal vibrations. Inserting the functional expression for the wave-function in the Schrödinger equation, the dispersion curve for the free electron is recovered:
+\begin{equation}
+  E_n = \frac{\hbar^2 k_n^2}{2m_e} = \frac{2 \pi^2 \hbar^2}{m_e L^2} n^2
+\end{equation}
+Note that there is a double degeneracy: one due to $ E_n = E_{-n} $ and one due to spin. This means that the energy levels of these free electrons can be labelled with $ n \in \N $, and each state has degeneracy $ g = 4 $. Then, due to the Fermi--Dirac statistics, if there are $ N_e $ electrons, only the lowest $ N_e / 4 $ states are populated, and the energy of the highest state is called the \bctxt{Fermi energy}:
+\begin{equation}
+  E_\text{F} = \frac{\pi^2 \hbar^2}{8m_e} \left( \frac{N_e}{L} \right)^2
+\end{equation}
+Since $ N_e = n_v N_a $, where $ n_v $ is the number of valence electrons of the considered atomic species and $ N_a $ is the number of atoms in the linear chain, then $ N_a / L = 1 / a $ is the linear density of atoms.
+
+It is useful to define a density of states $ D(E) $ in this case too. The number of states up to energy $ E $, ignoring the spin degeneracy, is:
+\begin{equation*}
+  E(N) = \frac{\pi^2 \hbar^2}{8m_e} \left( \frac{N}{L} \right)^2
+  \quad \implies \quad
+  N(E) = \frac{L}{\pi \hbar} \sqrt{2m_e E}
+\end{equation*}
+and the density of states is:
+\begin{equation*}
+  D(E) = \frac{\dd N}{\dd E} = \frac{L}{\pi \hbar} \sqrt{\frac{m}{2E}}
+\end{equation*}
+
+\subsection{Tridimensional case}
+
+Generalizing to the 3D case:
+\begin{equation*}
+  - \frac{\hbar^2}{2m_e} \lap \psi = E \psi
+  \quad \implies \quad
+  \psi \sim e^{-\img \left( \ve{k} \cdot \ve{x} - \frac{E}{\hbar} t \right)}
+\end{equation*}
+and the periodic boundary conditions impose:
+\begin{equation}
+  k_i = \frac{2\pi}{L} n_i
+  \qquad
+  n_i \in \Z - \{0\}
+\end{equation}
+for $ i = x,y,z $. Then, the dispersion relation becomes:
+\begin{equation}
+  E = \frac{\hbar^2 k^2}{2m_e} = \frac{2 \pi^2 \hbar^2}{m_e L^2} \left( n_x^2 + n_y^2 + n_z^2 \right)
+\end{equation}
+In this case, the $ E = \text{const.} $ surfaces are \emph{always} spheres in reciprocal space (while for vibrations this was true only for small frequencies). Then:
+\begin{equation}
+  N(E) = 2 \frac{\frac{4}{3} \pi k^3}{\left( \frac{2\pi}{L} \right)^3} = \left( \frac{2m_e E}{\hbar^2} \right)^{3/2} \frac{V}{3\pi^2}
+  \label{eq:ne-metal}
+\end{equation}
+and the density of states reads:
+\begin{equation}
+  D(E) = \frac{\dd N}{\dd E} = \frac{V}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E}
+  \label{eq:de-metal}
+\end{equation}
+While in the 1D case $ D(E) $ decreases as $ E $ increases, since the gaps between levels become wider, in the 3D the opposite happens, as the number of states between $ E $ and $ E + \dd E $ increases as $ E $ increases. It is possible to show that in 2D the density of states is constant.
+
+To determine the Fermi energy, we can impose $ N(E_\text{F}) = N_e $, since we already accounted for spin in the expression for $ N(E) $. Solving this equation yields:
+\begin{equation}
+  N_e = \frac{2V}{3\pi^2} k_\text{F}^3
+  \quad \implies \quad
+  k_\text{F} = \sqrt[3]{3\pi^2 n_e}
+\end{equation}
+where $ n_e \equiv N_e / V \sim a^{-1} $ is the electron number density.
+
+%
+%
+%
+% MANCA REGISTRAZIONE
+%
+%
+%
+
+\newpage
+\section{Free electrons in metals}
+
+\begin{proposition}{}{}
+  For electrons in metals, which can be modelled as free electrons, the electronic contribution to the specific heat is:
+  \begin{equation}
+    C_V \simeq \frac{\pi^2}{2} N_e \kb \frac{T}{T_\text{F}}
+  \end{equation}
+  where $ T_\text{F} $ is the Fermi temperature of the electrons.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The total energy of the system is:
+    \begin{equation*}
+      U = \int_0^\infty \dd E \, D(E) f(E,T) E
+    \end{equation*}
+    where $ f(E,T) $ is the Fermi--Dirac distribution. Then, $ C_V = \frac{\dd U}{\dd T} $, so consider first the following integral:
+    \begin{equation*}
+      \int_0^\infty \dd E \, D(E) \frac{\pa f(E,T)}{\pa T} E_\text{F}
+    \end{equation*}
+    For metals $ T \ll T_\text{F} $, hence the variation with temperature of the distribution is, expressed as a function of energy, just two delta functions peaked at $ E = E_\text{F} $ (this is an approximation): one negative at $ E \ra E_\text{F}^- $, which represents the states which are devoid of electrons due to the increase in temperature, and one positive at $ E \ra E_\text{F}^+ $, which represents the states which are filled by those electrons. Then, since these delta functions peak the value of $ D(E) $ at $ D(E_\text{F}) $ and since they have the same area with opposite sign, the integral vanishes. This allows to rewrite:
+    \begin{equation*}
+      C_V = \int_0^\infty \dd E \, D(E) \frac{\pa f(E,T)}{\pa T} \left( E - E_\text{F} \right)
+    \end{equation*}
+    With the same reasoning, $ D(E) $ gets peaked at $ D(E_\text{F}) $ by the partial derivative. The latter can be written as:
+    \begin{equation*}
+      \frac{\pa f(E,T)}{\pa T} = \frac{\pa}{\pa T} \left[ e^{\left( E - E_\text{F} \right) / \kbt} + 1 \right]^{-1} = \frac{e^{\left( E - E_\text{F} \right) / \kbt}}{\left[ e^{\left( E - E_\text{F} \right) / \kbt} + 1 \right]^2} \frac{E - E_\text{F}}{\kbt^2} \equiv \frac{e^x}{\left[ e^x + 1 \right]^2} \frac{x}{T}
+    \end{equation*}
+    which results in:
+    \begin{equation*}
+      C_V = D(E_\text{F}) \kb^2 T \int_{-\frac{E_\text{F}}{\kbt}}^\infty \dd x \frac{x^2 e^x}{\left( e^x + 1 \right)^2} \simeq D(E_\text{F}) \kb^2 T \int_{-\infty}^{\infty} \dd x \frac{x^2 e^x}{\left( e^x + 1 \right)^2} = \frac{\pi^2}{3} D(E_\text{F}) \kb^2 T
+    \end{equation*}
+    since $ T \ll T_\text{F} $. By \eeref{eq:ne-metal}{eq:de-metal}:
+    \begin{equation*}
+      D(E) = \frac{3}{2} \frac{N(E)}{E}
+      \quad \implies \quad
+      D(E_\text{F}) = \frac{3}{2} \frac{N_e}{E_\text{F}}
+      \quad \implies \quad
+      C_V \simeq \frac{\pi^2}{2} N_e \kb \frac{T}{T_\text{F}}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+Then, the total specific heat of a metal at low temperature can be expressed as:
+\begin{equation*}
+  C_V(T) = \gamma T + A T^3
+\end{equation*}
+where the linear term is the electronic contribution, valid for $ T \ll T_\text{F} \sim 12'000 \,\text{K} $, and the cubic term is the lattice contribution. For insulators (non-metals) $ \gamma = 0 $.
+
+\subsection{Electrical conductivity}
+
+Electrical conductivity is a unique property of metals, since electrons in insulators are not free to oscillate. In presence of an EM field, an electron is subject to the Lorentz force, resulting in the following equation of motion:
+\begin{equation}
+  \hbar \frac{\dd \ve{k}}{\dd t} = - e \left( \ve{E} + \frac{\hbar}{m_e} \ve{k} \times \ve{B} \right)
+  \label{eq:lorentz}
+\end{equation}
+recalling that $ m_e \ve{v} = \ve{p} = \hbar \ve{k} $. If $ \ve{B} = \ve{0} $, the solution is:
+\begin{equation*}
+  \ve{k}(t) = \ve{k}(0) - \frac{eE}{\hbar} t
+\end{equation*}
+Since the filled electronic states are inside the Fermi sphere $ k \leq k_\text{F} $ (this is exact at $ T = 0 $, while at $ T > 0 $ this is approximately true since small variations only happen near the boundary of the Fermi sphere), this means that an electric field shifts the Fermi sphere in an opposite direction with respect to itself.
+
+This result does not agree with experiments: the measured current in the metal is $ i \propto v $, which means that if $ v $ increases linearly so must do $ i $, a phenomenon which is not observed. On the contrary, applying a constant electric field to a metal, a constant current and a constant potential difference are observed: this is known as \bctxt{Ohm's law}, which hints to the fact that the motion of the electrons in the metal is similar to the motion of a body in a viscous fluid (indeed, the free-electron model is only an approximation, and the electrons in the metal are not really free). Adding a viscous term to \eref{eq:lorentz}:
+\begin{equation}
+  \hbar \frac{\dd \ve{k}}{\dd t} - e \ve{E} - \frac{\hbar \ve{k}}{\tau}
+\end{equation}
+This viscous term $ - m_e \ve{v} / \tau $ represents the dissipative force determined by the random scatterings between electrons: $ \tau $ is then the mean time between collisions. To derive Ohm's law, impose $ \frac{\dd \ve{k}}{\dd t} = \ve{0} $, which has solution:
+\begin{equation}
+  \ve{v}_\text{d} = - \frac{e\tau}{m_e} \ve{E} \equiv - \mu \ve{E}
+  \label{eq:drift-velocity}
+\end{equation}
+which is called \emph{drift velocity}, while $ \mu $ is the \emph{electrical mobility} of the metal. The drift velocity is the average velocity at which electrons move in the metal.
+
+\subsubsection{Macroscopic analysis}
+
+Consider a volume of section $ S $ and length $ \ell $: the total charge inside the volume is $ Q = N_q q $, with $ N_q =  n_q \ell S $ and $ n_q $ numeric density of the charges. The density current then is:
+\begin{equation*}
+  J = \frac{Q}{S t} = \frac{n_q q \ell S}{S \frac{\ell}{v_\text{d}}} = n_q q v_\text{d}
+\end{equation*}
+Inserting \eref{eq:drift-velocity}:
+\begin{equation}
+  \ve{J} = \frac{n_q q^2 \tau}{m_q} \ve{E}
+\end{equation}
+For a metal the charges are the electrons, i.e. $ q = -e $, but note that Ohm's law is insensitive to the sign of the charges. This relation allows to defined both resistivity $ \rho $ and conductivity $ \sigma \equiv \frac{1}{\rho} $:
+\begin{equation}
+  \sigma = \frac{n_q q^2 \tau}{m_q}
+\end{equation}
+
+\begin{example}{Copper}{}
+  For $ \ch{Cu} $, resistivity is experimentally found to be $ \rho \simeq 1.80 \cdot 10^{-8} \, \Omega \, \text{m} $, while its density is $ d = 8930 \, \text{kg} \, \text{m}^3 $. Since copper has a single valence electron:
+  \begin{equation*}
+    n_e = \frac{N_e}{V} = \frac{N_e d}{M} = \frac{N_a d}{M} = \frac{d}{M_\text{Cu}}
+  \end{equation*}
+  Hence, the mean time between electronic collisions is:
+  \begin{equation*}
+    \tau = \frac{m_e M_\text{Cu}}{d e^2 \rho} \simeq 2.33 \cdot 10^{-14} \, \text{}
+  \end{equation*}
+  Then, it is possible to estimate the mean free path for the electrons in $ \ch{Cu} $:
+  \begin{equation*}
+    \lambda = \tau v_\text{F} = \tau \frac{\hbar}{m_e} k_\text{F} = \tau \frac{\hbar}{m_e} \sqrt[3]{3\pi^2 n_e}
+  \end{equation*}
+  The Fermi velocity, which is the maximum velocity of the electrons, is $ v_\text{F} \simeq 1.57 \cdot 10^6 \,\text{m} \, \text{s}^{-1} $, and the mean free path is $ \lambda \simeq 36.6 \, \text{nm} $, i.e. $ \lambda \gg a $: this justifies the free-electron approximation, since the electrons are effectively free in the primitive cell of the lattice, and it also confirms that the viscous effect on their motion is determined by electron-electron scattering, not by electron-nucleus scattering.
+
+  The shift $ \Delta k $ of the Fermi sphere can be estimated from $ \hbar \Delta k = m_e v_\text{d} $:
+  \begin{equation*}
+    \Delta k = \frac{m_e}{\hbar} v_\text{d} = \frac{m_e}{\hbar} \frac{e}{m_e} \tau E = \frac{e \tau}{m_e} \rho J
+  \end{equation*}
+  For a current density $ J = 1 \, \text{A} \, \text{m}^2 $ the shift is $ \Delta k \simeq 0.64 \, \text{m}^{-1} $, which is extremely small if compared to $ k_\text{F} \simeq 1.34 \cdot 10^{10} \, \text{m}^{-1} $: since the only electrons which contribute to the current density are those affected by the shift, which is extremely close to the boundary of the Fermi sphere, this justifies the computation of the mean free path using the Fermi velocity. This implies that $ v_\text{d} \ll v_\text{F} $, which is true since $ v_\text{d} \simeq 7.4 \cdot 10^{-5} \,\text{m} \, \text{s}^{-1} $.
+\end{example}
+
+
+
+
+
+
+
+
+
+
