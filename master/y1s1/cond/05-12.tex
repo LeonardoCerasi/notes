@@ -156,6 +156,7 @@ Since the filled electronic states are inside the Fermi sphere $ k \leq k_\text{
 This result does not agree with experiments: the measured current in the metal is $ i \propto v $, which means that if $ v $ increases linearly so must do $ i $, a phenomenon which is not observed. On the contrary, applying a constant electric field to a metal, a constant current and a constant potential difference are observed: this is known as \bctxt{Ohm's law}, which hints to the fact that the motion of the electrons in the metal is similar to the motion of a body in a viscous fluid (indeed, the free-electron model is only an approximation, and the electrons in the metal are not really free). Adding a viscous term to \eref{eq:lorentz}:
 \begin{equation}
   \hbar \frac{\dd \ve{k}}{\dd t} - e \ve{E} - \frac{\hbar \ve{k}}{\tau}
+  \label{eq:lorentz-ohm}
 \end{equation}
 This viscous term $ - m_e \ve{v} / \tau $ represents the dissipative force determined by the random scatterings between electrons: $ \tau $ is then the mean time between collisions. To derive Ohm's law, impose $ \frac{\dd \ve{k}}{\dd t} = \ve{0} $, which has solution:
 \begin{equation}
@@ -200,6 +201,163 @@ For a metal the charges are the electrons, i.e. $ q = -e $, but note that Ohm's 
   \end{equation*}
   For a current density $ J = 1 \, \text{A} \, \text{m}^2 $ the shift is $ \Delta k \simeq 0.64 \, \text{m}^{-1} $, which is extremely small if compared to $ k_\text{F} \simeq 1.34 \cdot 10^{10} \, \text{m}^{-1} $: since the only electrons which contribute to the current density are those affected by the shift, which is extremely close to the boundary of the Fermi sphere, this justifies the computation of the mean free path using the Fermi velocity. This implies that $ v_\text{d} \ll v_\text{F} $, which is true since $ v_\text{d} \simeq 7.4 \cdot 10^{-5} \,\text{m} \, \text{s}^{-1} $.
 \end{example}
+
+\subsection{Hall effect}
+
+Now, consider \eref{eq:lorentz-ohm} with a magnetic field $ \ve{B} \neq \ve{0} $:
+\begin{equation}
+  m_e \frac{\dd \ve{v}}{\dd t} = -e \left( \ve{E} + \ve{v} \times \ve{B} \right) - \frac{m_e}{\tau} \ve{v}
+\end{equation}
+Assuming $ \ve{B} = B \hat{\ve{e}}_z $:
+\begin{equation*}
+  m_e \left( \frac{\dd}{\dd t} + \frac{1}{\tau} \right) v_x = -e \left( E_x + B v_y \right)
+  \qquad \qquad
+  m_e \left( \frac{\dd}{\dd t} + \frac{1}{\tau} \right) v_y = -e \left( E_y - B v_x \right)
+\end{equation*}
+\begin{equation*}
+  m_e \left( \frac{\dd}{\dd t} + \frac{1}{\tau} \right) v_z = -e E_z
+\end{equation*}
+The EM field is assumed to be stationary, hence the electron reaches a constant velocity due to the viscous term. To find this drift velocity, it is useful to adopt the \bctxt{Hall geometry}: the $ z $-axis has been fixed by $ \ve{B} $, while the $ x $-axis if fixed by the current density $ \ve{J} = J \hat{\ve{e}}_x $, which is applied externally. In this geometry, it is intuitive to see that the drift velocity only has an $ x $-component: indeed, the current density puts the electrons in motion along $ \hat{\ve{e}}_x $, so they are subject to a Lorentz force along $ -\hat{\ve{e}}_y $ due to $ \ve{B} $, but this has only a transitory effect: indeed, due to the finite dimension of the metal sample we are considering (WLOG a parallelepiped), the electrons will accumulate on the side in the $ -\hat{\ve{e}}_y $, thus negatively charging it and positively charging the opposite side, and this generates a potential difference and an electric field which balance the magnetic Lorentz force. Then, setting $ v_x \equiv v_\text{d} $, the above system becomes:
+\begin{equation*}
+  m_e \frac{v_\text{d}}{\tau} = -e E_x
+  \qquad \qquad
+  0 = -e \left( E_y - v_\text{d} B \right)
+  \qquad \qquad
+  0 = 0
+\end{equation*}
+which has solutions:
+\begin{equation*}
+  v_\text{d} = - \frac{e \tau}{m_e} E_x
+  \qquad \qquad
+  E_y = - \frac{e \tau}{m_e} E_x B
+\end{equation*}
+Note that the drift velocity is the same as in the case without magnetic field.
+Recalling that $ J = - n_e e v_\text{d} $, the transverse electric field can be written as:
+\begin{equation}
+  E_y = - \frac{1}{n_e e} J B
+\end{equation}
+Note that this quantity is indeed sensitive to the sign of the charges, as for general charges the constant is $ (n_q q)^{-1} $.
+
+\subsection{Optical properties of metals}
+
+Empirically, no transparent metal is observed.
+
+\subsubsection{Electric fields in metals}
+
+Consider a metal sample (WLOG a parallelepiped) and apply a stationary electric field $ \ve{E} $ perpendicular to one of its sides: in a transient the electrons accumulate on the side opposite to the direction of the electric field, hence at equilibrium the sides are electrically charged and inside the metal an electric field $ - \ve{E} $ is present, since in stationary conditions the electric field inside a conductive object vanishes.
+
+Now, suppose that the external electric field is instantaneously turned off. To study how electrons return to their equilibrium conditions, notice that the two sides along $ \ve{E} $ have been charged with superficial charge densities $ \pm \sigma $: assuming that the electron distribution has been displaced by a displacement $ u $ and denoting the section of the metal in the direction of $ \ve{E} $ as $ S $, then $ Q = S u n_e e $ and $ \sigma \equiv \frac{Q}{S} = u n_e e $. The equation of motion for the displacement of the electron distribution is:
+\begin{equation*}
+  m_e \ddot{u} = -e E = -e \frac{\sigma}{\epsilon_0} = - \frac{ne^2}{\epsilon_0} u
+\end{equation*}
+where we are neglecting the viscous term $ - m_e \dot{u} / \tau $. The solution is a displacement which oscillates around the equilibrium configuration $ u = 0 $ with a frequency:
+\begin{equation}
+  \omega_\text{p} = \sqrt{\frac{n_e e^2}{m_e \epsilon_0}}
+\end{equation}
+which is called the \bctxt{plasma frequency} of the metal (a plasma is a gas with ions). Accounting for the viscous term makes the oscillation damped.
+
+\subsubsection{EM waves on metals}
+
+Consider the same setup as before, but now consider a time-dependent external electric field $ E(t) = E_0 e^{\img \omega t} $, so that $ u(t) = u_0 e^{\img \omega t} $ (now accounting for the viscous term would introduce a phase shift $ \varphi $). The equation of motion then becomes:
+\begin{equation*}
+  - m_e \omega^2 u_0 = -e E_0
+  \quad \implies \quad
+  u(t) = \frac{e}{m_e \omega^2} E(t)
+\end{equation*}
+Since the displacement of the electron distribution determines a shift of the positive-charge (holes) distribution too, an electric dipole is formed with electric-dipole moment $ p = q u = -e u $:
+\begin{equation}
+  p(t) = - \frac{e^2}{m_e \omega^2} E(t)
+\end{equation}
+The polarization is defined as $ P = \frac{1}{V} \sum_i p_i $, but since all the electrons have the same electric-dipole moment $ \sum_i p_i = N_e p = V n_e p $, i.e.:
+\begin{equation}
+  P(t) = - \frac{n_e e^2}{m_e \omega^2} E(t)
+\end{equation}
+Recall that the electric displacement is defined as $ \ve{D} = \epsilon_0 \epsilon_r \ve{E} = \epsilon_0 \ve{E} - \ve{P} $, hence the relative dielectric constant of the metal is found as:
+\begin{equation}
+  \epsilon_r = 1 + \frac{P}{\epsilon_0 E}
+\end{equation}
+Since the time dependence cancels in the fraction, the relative dielectric constant is only dependent on the incoming frequency, and it can be expressed in terms of the plasma frequency:
+\begin{equation}
+  \epsilon_r(\omega) = 1 - \frac{\omega_\text{p}^2}{\omega^2}
+\end{equation}
+The relative dielectric constant is related to the refractive index by $ n = \sqrt{\epsilon_r} $ (neglecting the relative magnetic permeability, which is assumed to be $ \mu_r = 1 $), so, assuming that the EM wave propagates in the $ x $-direction inside the metal, the complex exponential becomes:
+\begin{equation*}
+  \exp \left[ \img \left( k x - \omega t \right) \right] = \exp \left[ \img \omega \left( \frac{n}{c} x - t \right) \right]
+\end{equation*}
+where we used the dispersion relation $ \omega(k) = c k $. Note that the first term is real if $ \omega > \omega_\text{p} $, which results in the oscillatory behavior of EM waves, while it is complex if $ \omega < \omega_\text{p} $: this results in an exponential damping factor, which would mean that the medium is optically opaque.
+
+For metals $ \hbar \omega_\text{p} \sim 10 \ev $ (in the UV region), which means that metals are opaque to optical radiation, as empirically observed.
+
+\subsection{Electronic bands}
+
+\subsubsection{Linear chain}
+
+Consider a 1D metal modelled as a linear chain of atoms separated by $ a $. Since electrons can be considered free in a (ideal) metal, they are represented by waves $ \psi \propto e^{\img k x} $. Being interal waves of the linear chain, they must satisfy the back-scattering condition, so that $ k = \frac{\pi}{a} n $ with $ n \in \Z - \{0\} $. Then, consider the interference between the $ n = +1 $ and the $ n = -1 $ waves:
+\begin{equation*}
+  \psi^\pm \propto \frac{1}{\sqrt{2}} \left[ e^{\img \frac{\pi}{a} x} \pm e^{- \img \frac{\pi}{a} x} \right] \propto
+  \begin{cases}
+    \sqrt{2} \cos \frac{\pi}{a} x & (+) \\
+    \sqrt{2} \sin \frac{\pi}{a} x & (-)
+  \end{cases}
+\end{equation*}
+Recall that the charge density is $ \rho \propto \abs{\psi}^2 $: clearly, the $ + $ configuration is energeticaly favourable when compared to the $ - $ configuration, since $ \rho^+ $ peaks at $ na $, i.e. at the lattice positions where atoms are places and where the potential is deeper (more negative), as opposed to $ \rho^- $ which vanishes at $ na $. To be precise:
+\begin{equation*}
+  \rho^+(x) \propto 2 \cos^2 \frac{\pi}{a} x
+  \qquad \qquad
+  \rho^-(x) \propto 2 \sin^2 \frac{\pi}{a} x
+\end{equation*}
+Note that $ \rho_0 \propto \abs{\psi_0}^2 \propto \abs{e^{\pm \img \frac{\pi}{a} x}}^2 = 1 $, and defining its energy $ E_0(k) = \hbar^2 k^2 / (2m_e) $ it is clear that $ E^+ < E_0(\frac{\pi}{a}) < E^- $ (values on the boundary of the 1BZ): the energy transitions smoothly from the parabola $ E_0(k) $ inside the 1BZ to a function with horizontal tangent at $ k = \pm \frac{\pi}{a} $ and with value $ E(\pm \frac{\pi}{a}) = E^+ $. Then, for $ \frac{\pi}{a} < k < \frac{2\pi}{a} $, the energy has again the behavior of a parabola at the center, while becoming horizontal on the boundary: in particular, at $ k = \frac{\pi}{a} $ it has value $ E(\frac{\pi}{a}) = E^- $. It is clear that the boundary of the 1BZ presents a discontinuity, i.e. a \bctxt{gap}.
+
+To study how wide this gap is, note that it is determined by the periodic potential determined by the atoms placed in the lattice positions, which perturbes the otherwise free electrons. Since this potential $ V(x) $ is periodic, it is possible to express it as a Fourier series:
+\begin{equation}
+  V(x) = \sum_{h \in \Z} v_h e^{\img \frac{2\pi}{a} h x}
+\end{equation}
+In particular, in the case of the linear chain $ V(x) $ is an even function, i.e. $ V(-x) = V(x) $, hence the Fourier series reduces to a cosine series:
+\begin{equation}
+  V(x) = \sum_{h \in \N_0} v_h \cos \frac{2\pi h}{a} x
+\end{equation}
+The normalized wavefunctions are:
+\begin{equation}
+  \psi^+_n = \sqrt{\frac{2}{a}} \cos \frac{\pi n}{a} x
+  \qquad \qquad
+  \psi^-_n = \sqrt{\frac{2}{a}} \sin \frac{\pi n}{a} x
+\end{equation}
+It is now possible to compute the $ n^\text{th} $ energy gap:
+\begin{equation*}
+  \begin{split}
+    E_\text{g}^{(n)}
+    & \equiv \braket{\psi^-_n | V(x) | \psi^-_n} - \braket{\psi^+_n | V(x) | \psi^+_n} \\
+    & = \frac{2}{a} \sum_{h \in \N_0} v_h \int_0^a \dd x \, \cos \frac{2\pi h}{a} x \left[ \sin^2 \frac{\pi n}{a} x - \cos^2 \frac{\pi n}{a} x \right] \\
+    & = - \frac{2}{a} \sum_{h \in \N_0} v_h \int_0^a \dd x \, \cos \frac{2\pi h}{a} x \, \cos \frac{2\pi n}{a} x = - \frac{2}{a} \sum_{h \in \N_0} v_h \frac{a}{2} \delta_{hn} = - v_n
+  \end{split}
+\end{equation*}
+Note that $ v_h < 0 \,\, \forall n \in \N $, since the potential is attractive, hence $ E_\text{g}^{(n)} > 0 $ as expected. Qualitatively, this shows that free-electron states (i.e. atomic orbitals) subject to a periodic potential naturally quantize in \bctxt{energy bands} separated by gaps: this is an intermediate behavior between free electrons (continuous spectrum) and atomic orbitals (discrete spectrum).
+
+\subsubsection{Tridimensional case}
+
+The quantization into energy bands generalizes trivially to the tridimensional case. In particular, focusing on the 1BZ with $ - \frac{\pi}{a} < k < \frac{\pi}{a} $, it is possible to count how many states are present in the energy band, i.e. how many electrons it can contain:
+\begin{equation}
+  N = 2 \frac{V}{a^3} \equiv 2 N_\text{c}
+\end{equation}
+where the $ 2 $ comes from the spin degrees of freedom and $ N_\text{c} $ is the number of primitive cells (in real space). This number of available states is to be compared to the number of electrons: indeed, $ N_e = n_\text{v} N_\text{c} $, where $ n_\text{v} $ is the number of valence electrons in the primitive cell (e.g. $ n_\text{d} = 1 $ for alkali metals\footnotemark, $ n_\text{d} = 2 $ for alkali-earth metals, etc.).
+
+\footnotetext{This justifies the treatment of alkali metals using the free-electron approximation: only half of the energy band is filled with electrons, i.e. the energy can be approximated with the free-electron parabola.}
+
+\paragraph{Semiconductors}
+
+A particular case is that of semiconductors, i.e. elements of the IV group (in particular $ \ch{C} $, $ \ch{Si} $ and $ \ch{Ge} $), which are characterized by large gaps between energy bands: for example, diamond has gaps of $ 5.4 \ev $, which is way larger than visible light, and in fact it is transparent, while $ \ch{Si} $ has gaps of $ 1.17 \ev $ (IR) and is opaque.
+
+If a sample of IV-group metals is drugged with V-group (or higher) metals, the excess of electrons fills the second energy band, which becomes a conductive band, thus obtaining a semiconductor from what normally is an insulator (due to the large gaps). The same result is achieved with a III-group (or lower) drugging, where now the valence band itself becomes a conducting band (even if there are few available conducting states) since it is no longer full. In both cases, the energy band as seen by active electrons, i.e. those near the Fermi energy, can be approximated as a parabola:
+\begin{equation}
+  E(k) = \frac{\hbar^2 k^2}{2 m_\text{eff}}
+\end{equation}
+where $ m_\text{eff} \in \R $ is an effective mass (positive for V-group or higher and negative for III-group or lower). Therefore, all the results in the free-electron approximation are still valid, with the substitution $ m_e \mapsto \abs{m_\text{eff}} $ and $ q = -e \mapsto - \sgn (m_\text{eff}) e $: if $ m_\text{eff} < 0 $, the freed conducting states at the boundary of the energy band behave like positively-charged particles. For example, the value of the effective mass can be probed measuring the plasma frequency, while its sign can be determined with a Hall experiment; moreover, since there are few conducting states in semiconductors, the electric field generated by the Hall effect is stronger than in the metal case ($ E_y \propto n_q^{-1} $), at the cost of requiring a stronger current density due to the higher resistance of the medium.
+
+The effective mass is a general concept. Given an energy band $ E(k) $, the effective mass is defined by the curvature of the band:
+\begin{equation}
+  m_\text{eff} \defeq \hbar^2 \left[ \frac{\dd^2 E(k)}{\dd k^2} \right]^{-1}
+\end{equation}
+Intuitively, this effective mass is determined by the potential which perturbes the free electrons, modifying their inertia.
 
 
 
