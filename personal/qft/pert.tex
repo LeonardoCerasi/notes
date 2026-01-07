@@ -699,6 +699,7 @@ The problem of computing scattering amplitudes has been further reduced to that 
 The expression for the Feynman propagator in momentum space is trivially found:
 \begin{equation}
   \fprp(p) = \frac{\img}{p^2 - m^2 + \img \epsilon}
+  \label{eq:corr-func}
 \end{equation}
 Moreover, the Feynman propagator is just a Green function for the KG operator:
 \begin{equation*}
@@ -1542,6 +1543,7 @@ so that the $ 2 \rightarrow 2 $ scattering amplitude at one-loop level (i.e. $ o
 \end{equation}
 
 \subsubsection{Divergences}
+\label{sssec:div}
 
 The integral in \eref{eq:f4-loop-ampl} diverges at large $ k $, which is an example of \bctxt{UV divergence}. To study this divergence, first of all note that $ (p - k)^2 \rightarrow k^2 $ as $ k \rightarrow \infty $, so that it is safe to set $ p = 0 $. Due to the $ \img \epsilon $-presciption, in the complex $ k^0 $-plane the pole in $ k^0 > 0 $ is below the real axis, while that in $ k^0 < 0 $ is above it: the integration path can then be rotated counterclockwise from the real axis to the imaginary axis by $ k^0 \mapsto \img k^0 $, which is called a \bctxt{Wick rotation}. The amplitude then becomes:
 \begin{equation*}
@@ -1589,7 +1591,7 @@ This diagram is typically called a \bctxt{tadpole}. Its contribution can be comp
 \end{equation}
 Note that the tadpole is independent of $ p $, and it has both a quadratic and logarithmic UV divergence.
 
-\begin{lemma}{Tadpole resummation}{}
+\begin{lemma}{Tadpole resummation}{tadpole-resumm}
   In $ \lambda \phi^4 $-theory, for a $ \ket{\ve{p}} \rightarrow \ket{\ve{p}} $ scattering, tadpole diagrams collectively contribute as:
   \begin{equation*}
     \begin{tikzpicture}[baseline = (r.base)]
@@ -1960,7 +1962,7 @@ The photon propagator is derived in \secref{ssec:qed-path}:
 \begin{equation}
   \gpr_{\mu \nu}(x-y) \defeq \braket{0 | \tempord\{A_\mu(x) A_\nu(y)\} | 0}
   \quad \implies \quad
-  \gprp(k) = \frac{-\img}{k^2 + \img \epsilon} \eta_{\mu \nu}
+  \gprp_{\mu \nu}(k) = \frac{-\img}{k^2 + \img \epsilon} \eta_{\mu \nu}
   \label{eq:phot-prop}
 \end{equation}
 Note that the spatial components $ A_i(x) $ have the same propagator as a massless real scalar field, while $ A_0(x) $ has an additional negative sign.
