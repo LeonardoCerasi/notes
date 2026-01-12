@@ -39,9 +39,9 @@ It is useful to define a density of states $ D(E) $ in this case too. The number
   N(E) = \frac{L}{\pi \hbar} \sqrt{2m_e E}
 \end{equation*}
 and the density of states is:
-\begin{equation*}
+\begin{equation}
   D(E) = \frac{\dd N}{\dd E} = \frac{L}{\pi \hbar} \sqrt{\frac{m}{2E}}
-\end{equation*}
+\end{equation}
 
 \subsection{Tridimensional case}
 
@@ -75,29 +75,45 @@ While in the 1D case $ D(E) $ decreases as $ E $ increases, since the gaps betwe
 
 To determine the Fermi energy, we can impose $ N(E_\text{F}) = N_e $, since we already accounted for spin in the expression for $ N(E) $. Solving this equation yields:
 \begin{equation}
-  N_e = \frac{2V}{3\pi^2} k_\text{F}^3
+  N_e = \frac{V}{3\pi^2} k_\text{F}^3
   \quad \implies \quad
   k_\text{F} = \sqrt[3]{3\pi^2 n_e}
 \end{equation}
-where $ n_e \equiv N_e / V \sim a^{-1} $ is the electron number density.
+where $ n_e \equiv N_e / V \sim a^{-1} $ is the electron number density. This result allows for the computation of the Fermi energy and all other sensible quantities at the Fermi threshold.
 
-%
-%
-%
-% MANCA REGISTRAZIONE
-%
-%
-%
+Moreover, the electronic contribution to the specific heat can be estimated. First, recall the expression of the Fermi--Dirac distribution:
+\begin{equation}
+  f(E,T) = \frac{1}{e^\frac{E - \mu}{\kbt} + 1}
+\end{equation}
+where $ \mu = \mu(T) $ is the chemical potential.
+As $ T \ra 0 $, this distribution becomes a Heaviside distribution $ f(E,0) = \theta(\mu(0) - E) $, but at $ T = 0 $ the highest-energy states which are filled are precisely those at $ E = E_\text{F} $, hence $ \mu(0) = E_\text{F} $. In general:
+\begin{equation}
+  \mu(T) = E_\text{F} - \frac{\pi^2}{6} \frac{D'(E_\text{F})}{D(E_\text{F})} (\kbt)^2 + \smo(T^3)
+\end{equation}
+Recall that in $ d $-dimensions $ D(E) \propto E^{\frac{d}{2}-1} $, for $ d = 1,2,3 $, hence the chemical potential can be expressed as:
+\begin{equation*}
+  \mu(T) = E_\text{F} \left[ 1 - \frac{\pi^2}{6} \frac{d-2}{2} \left( \frac{T}{T_\text{F}} \right)^2 \right]
+\end{equation*}
+which shows that the chemical potential increases as temperature increases in 1D, remains constant in 2D and decreases in 3D.
+Since for metals $ T \ll T_\text{F} $ (as $ T_\text{F} $ is always way larger than the fusion threshold of the metal), it is always possible to approximate $ \mu \simeq E_\text{F} $.
 
-\newpage
+Now, to estimate the electronic contribution to the specific heat, we employ the classical relation $ E = \frac{3}{2} N \kbt $, but with a correct for the number of electrons: indeed, the only electrons which contribute to the specific heat are those above the Fermi threshold, whose fraction of the total number of electron can be estimated as $ T / T_\text{F} $ for $ T \ll T_\text{F} $. Then:
+\begin{equation*}
+  E \simeq \frac{3}{2} N_\text{eff} \kbt = \frac{3}{2} N_e \kb \frac{T^2}{T_\text{F}}
+  \quad \implies \quad
+  C_V(T) \simeq 3 N_e \kb \frac{T}{T_\text{F}}
+\end{equation*}
+
 \section{Free electrons in metals}
 
-\begin{proposition}{}{}
-  For electrons in metals, which can be modelled as free electrons, the electronic contribution to the specific heat is:
+The estimate for the electronic contribution to the specific heat of a metal can be refined with the free-electron model, which assumes that the valence electrons of the atoms in a metal can be treated as free electrons, due to the nature of the metallic bond.
+
+\begin{proposition}{Electronic specific heat}{}
+  The electronic contribution to the specific heat of a metal is:
   \begin{equation}
-    C_V \simeq \frac{\pi^2}{2} N_e \kb \frac{T}{T_\text{F}}
+    C_V(T) \simeq \frac{\pi^2}{2} N_e \kb \frac{T}{T_\text{F}}
   \end{equation}
-  where $ T_\text{F} $ is the Fermi temperature of the electrons.
+  where $ T_\text{F} $ is the Fermi temperature of the electron ensemble.
 \end{proposition}
 
 \begin{proofbox}
