@@ -196,9 +196,10 @@ where $ F(s,t) $ is called \bctxt{form factor}.
   \end{proof}
 \end{proofbox}
 
-\begin{lemma}[before upper = {\tcbtitle}]{Feynman parameters}{}
+\begin{lemma}{Feynman parameters}{feynman-parameters}
+  For $ \{A_i\}_{i = 1, \dots, n} \ssq \C $ and $ \{m_i\}_{i = 1, \dots, n} \ssq \R^+ $, with $ n \in \N $:
   \begin{equation}
-    \frac{1}{AB} = \int_0^1 \dd x \frac{1}{\left( x A + (1-x) B \right)^2}  
+    \frac{1}{A_1^{m_1} \hspace{-0.1em} \dots A_n^{m_n}} = \int_{[0,1]^n} \dd x_1 \dots \dd x_n \, \delta ( {\textstyle \sum_{i = 1}^n x_i} - 1 ) \frac{\prod_{i = 1}^n x_i^{m_i - 1}}{(\sum_{i = 1}^n x_i A_i)^{m_1 + \dots + m_n}} \frac{\Gamma(m_1 + \dots m_n)}{\Gamma(m_1) \dots \Gamma(m_n)}
   \end{equation}
 \end{lemma}
 
@@ -229,6 +230,7 @@ having defined:
     It can be shown that:
     \begin{equation}
       \int_{\R^+} \dd k_\text{E} \frac{k_\text{E}^{d-1}}{(k_\text{E}^2 + M^2)^n} = \frac{1}{2} \frac{\Gamma(n - \frac{d}{2}) \Gamma(\frac{d}{2})}{\Gamma(n)} \left( \frac{1}{M^2} \right)^{n - \frac{d}{2}}
+      \label{eq:auxiliary-integral}
     \end{equation}
     Inserting \eref{eq:solid-angle} yields the thesis.
   \end{proof}
@@ -301,6 +303,7 @@ The process of renormalization, which allows to obtain finite results from diver
 First of all, substitute the UV cut-off with a \bctxt{dimensional regularization scheme} ('t Hooft--Veltman scheme): this scheme consists in turning diverging loop integrals into meromorphic\footnotemark functions of $ d \in \C $, which is an analytic continuation of the number of spacetime dimensions. In particular:
 \begin{equation}
   d = 4 - 2 \epsilon
+  \label{eq:dim-reg}
 \end{equation}
 with $ \epsilon \in \C : \Re{\epsilon} < 0 $. By analytic continuation of the Lagrangian of the theory, the dimensionality of the various objects changes.
 
@@ -558,7 +561,7 @@ Although $ D < 0 $, the loop integral diverges: however, in renormalized perturb
 
 \subsubsection{\texorpdfstring{$ \lambda \phi^n $}{λφn}-theory}
 
-\begin{lemma}{Loop number}{}
+\begin{lemma}{Loop number}{loop-number}
   Given a diagram with $ P $ propagators and $ V $ vertices, then:
   \begin{equation}
     L = P - V + 1
@@ -1049,10 +1052,465 @@ agreeing with \secref{sssec:lag-count}. Tadpoles produced by the physical vertex
 
 \section{Renormalization of QED}
 
-Recall the QED Lagrangian:
+Recall the QED Lagrangian in the Landau gauge ($ \lambda = 0 $):
 \begin{equation}
-  \lag_\text{QED} = - \frac{1}{4} F_{\mu \nu} F^{\mu \nu} + \bar{\Psi} \left( \img \slashed{\pa} - m \right) \Psi - e \bar{\Psi} \slashed{A} \Psi
+  \lag_\text{QED} = - \frac{1}{4} F_{\mu \nu} F^{\mu \nu} + \bar{\Psi} \left( \img \slashed{\pa} - m_0 \right) \Psi - e_0 \bar{\Psi} \slashed{A} \Psi
+  \label{eq:qed-lagrangian}
 \end{equation}
+which is implicitly assumed to be normal-ordered. The interaction between the fermion field $ \Psi $ and the gauge field $ A_\mu $ is expressed by the interaction Lagrangian $ \lag_\text{int} = - e_0 \bar{\psi} \slashed{A} \psi $, which depends on the bare coupling $ e_0 $.
+
+\begin{observation}{Renormalizablity of QED}{}
+  Consider the QED Lagrangian \eref{eq:qed-lagrangian} in $ d \in \R^+ $ dimensions. Then, imposing $ [\lag_\text{QED}] = d $ and $ [m_0] = [\slashed{\pa}] = 1 $, it is trivial to see that:
+  \begin{equation}
+    [A_\mu] = \frac{d - 2}{2}
+    \qquad
+    [\Psi] = \frac{d - 1}{2}
+    \qquad
+    [e_0] = \frac{4 - d}{2}
+  \end{equation}
+  which hints to the fact that QED is renormalizable only for $ d \leq 4 $. To verify this, compute the superficial degree of divergence of a diagram with $ L $ loops, $ P_\text{b} $ bosonic propagators and $ P_\text{f} $ fermionic propagator:
+  \begin{equation*}
+    D = d L - 2 P_\text{b} - P_\text{f}
+  \end{equation*}
+  Recalling \lref{lemma:loop-number}, the loop number can be expressed as $ L = P_\text{b} + P_\text{f} - V + 1 $, so:
+  \begin{equation*}
+    D = d - d V + (d - 2) P_\text{b} + (d - 1) P_\text{f}
+  \end{equation*}
+  Finally, noting that each vertex has $ 2 $ fermionic lines and $ 1 $ bosonic line, i.e. $ 2V = 2 P_\text{f} + N_\text{f} $ and $ V = 2 P_\text{b} + N_\text{b} $, the following relation is found:
+  \begin{equation}
+    D = d + \frac{d - 4}{2} V - \frac{d - 2}{2} N_\text{b} - \frac{d - 1}{2} N_\text{f}
+  \end{equation}
+  Clearly, then, if $ d > 4 $ there is an infinite number of classes of diverging diagrams, since $ D $ increases as $ V $ increases. On the contrary, for $ d = 4 $ QED is renormalizable, as there are only a finitely-many classes of diverging diagrams (those with $ N_\text{b} + \frac{3}{2} N_\text{f} \leq 4 $), while for $ d < 4 $ it is super-renormalizable, as there are only finitely-many diverging diagrams.
+\end{observation}
+
+By \eref{eq:s-t-matrix}, the $ S $-matrix element for a generic scattering process $ \ket{\text{i}} \ra \ket{\text{f}} $ is $ S_\text{if} = \delta_\text{if} + \img T_\text{if} $. Assuming a non-trivial scattering, the significant quantity is the $ T $-matrix element, which can be computed from the LSZ formula and is found to be (\eref{eq:mat-el}):
+\begin{equation}
+  \img T_\text{if} = (2\pi)^4 \delta^{(4)}(p_\text{f} - p_\text{i}) \img \mat_\text{if}
+\end{equation}
+where the matrix element $ \mat_\text{if} $ receives contributions from all the diagrams arising from the possible contractions determined by Wick's theorem (\tref{th:wick-boson} and \tref{th:wick-fermion}). In particular, due to \eref{eq:corr-func-pert}, this contributions arrange themselves in a power series of the coupling constant, $ e_0 $ in the case of QED, hence the general matrix element can be written as:
+\begin{equation}
+  \mat_\text{if} = \sum_{n \in \N} \mat_\text{if}^{(n)}
+\end{equation}
+with $ \mat_\text{if}^{(n)} \propto e_0^n $. Note that the power series is over $ \N $ and not $ \N_0 $, since diagrams without interactions are disconnected (except for propagators) and do not contribute to $ S_\text{if} $.
+
+\begin{example}{Corrections to the photon propagator}{}
+  Consider the propagator of the gauge field $ A_\mu $. In the free theory, it is simply given by \eref{eq:photon-propagator}, while in an interacting theory it becomes:
+  \begin{equation*}
+    \gpr_{\mu \nu}(x - y) \equiv \braket{0 | \tempord\{A_\mu(x) A_\nu\}(y) | 0} = \sum_{n = 0}^\infty \frac{\img^n}{n!} \braket{0 | \tempord\{ {A_I}_\mu(x) {A_I}_\nu(y) \lag_I(x_1) \dots \lag_I(x_n) \} | 0}
+  \end{equation*}
+  where \eref{eq:corr-func-pert} was used (with the conventional normalization to ignore vacuum-to-vacuum diagrams). For ease of notation, in the following all fields are understood to be in the interaction picture. Specializing the computation for QED:
+  \begin{equation*}
+    \gpr_{\mu \nu}(x - y) \hspace{-0.1em} = \hspace{-0.1em} \sum_{n = 0}^\infty \frac{(- \img e_0)^n}{n!} \hspace{-0.2em} \int \hspace{-0.2em} \dd x_1 \dots \dd x_n \braket{0 | \tempord\{ A_\mu(x) A_\nu(y) j^{\alpha_1} \hspace{-0.1em} (x_1) A_{\alpha_1} \hspace{-0.1em} (x_1) \dots j^{\alpha_n} \hspace{-0.1em} (x_n) A_{\alpha_n} \hspace{-0.1em} (x_n) \} | 0}
+  \end{equation*}
+  where the fermionic vector current is defined as $ j^\mu \defeq \bar{\Psi} \gamma^\mu \Psi $. Now, it is possible to apply Wick's theorem: e.g. up to $ \smo(e_0^2) $ order:
+  \begin{equation*}
+      \gpr_{\mu \nu}(x - y)
+      =
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex [dot] (a) {};
+          \vertex (la) at ($ (a) + (-0.4 , 0) $) {$ \mu $};
+          \vertex (lax) at ($ (a) + (0 , 0.4) $) {$ x $};
+
+          \vertex [right = 2cm of a, dot] (b) {};
+          \vertex (lb) at ($ (b) + (0.4 , 0) $) {$ \nu $};
+          \vertex (lby) at ($ (b) + (0 , 0.4) $) {$ y $};
+
+          \vertex [below = 0.1em of a] (r);
+
+          \diagram* {
+            (a) -- [photon] (b),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \quad + \quad
+      \begin{tikzpicture}[baseline = (r.base)]
+        \begin{feynman}[inline = (r.base)]
+          \vertex [dot] (a) {};
+          \vertex (la) at ($ (a) + (-0.4 , 0) $) {$ \mu $};
+          \vertex (lax) at ($ (a) + (0 , 0.4) $) {$ x $};
+
+          \vertex [right = 1cm of a, dot] (v1) {};
+          \vertex (l1x) at ($ (v1) + (-0.2 , -0.3) $) {$ x_1 $};
+
+          \vertex [right = 1cm of v1, dot] (v2) {};
+          \vertex (l2x) at ($ (v2) + (0.25 , -0.3) $) {$ x_2 $};
+
+          \vertex [right = 1cm of v2, dot] (b) {};
+          \vertex (lb) at ($ (b) + (0.4 , 0) $) {$ \nu $};
+          \vertex (lby) at ($ (b) + (0 , 0.4) $) {$ y $};
+
+          \vertex [below = 0.1em of a] (r);
+
+          \diagram* {
+            (a) -- [photon] (v1),
+            (v1) -- [fermion, half left] (v2) -- [fermion, half left] (v1),
+            (v2) -- [photon] (b),
+          };
+        \end{feynman}
+      \end{tikzpicture}
+      \quad + \quad \smo(e_0^4)
+  \end{equation*}
+  since, due to the form of the interaction vertex $ \lag_\text{int} \sim A_\mu $, only terms with $ n \in \N_0 $ even give non-vanishing contributions. Therefore, all power series in QED can be expressed either in terms of the coupling constant $ e_0 $ or of the structure constant $ \alpha_0 \equiv \frac{e^2}{4\pi} $: indeed, it is useful to define the following notation for $ n \in \N_0 $ (highest number of loops in the corrections):
+  \begin{equation}
+    \gpr_{\mu \nu}(x - y) \equiv \gpr_{\mu \nu} \od n (x - y) + \smo(\alpha_0^{n+1})
+  \end{equation}
+  Note that the power series for the propagator can be rearranged as follows:
+  \begin{equation}
+    \gpr_{\mu \nu} = \,\,
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex [dot] (a) {};
+        \vertex [right = 2cm of a, dot] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (b),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \quad + \quad
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex [dot] (a) {};
+
+        \vertex [right = 1.2cm of a, blob] (v) {};
+
+        \vertex [right = 1.2cm of v, dot] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v) -- [photon] (b),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \quad + \quad
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex [dot] (a) {};
+
+        \vertex [right = 1.2cm of a, blob] (v1) {};
+        \vertex [right = 1.2cm of v1, blob] (v2) {};
+
+        \vertex [right = 1.2cm of v2, dot] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v1) -- [photon] (v2) -- [photon] (b),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \quad + \quad \dots
+    \label{eq:photon-propagator-series}
+  \end{equation}
+  with:
+  \begin{equation}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 0.7cm of a, blob] (v) {};
+
+        \vertex [right = 0.7cm of v] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v) -- [photon] (b),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \, = \,
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 0.7cm of a, dot] (v1) {};
+        \vertex [right = 1.5cm of v1, dot] (v2) {};
+
+        \vertex [right = 0.7cm of v2] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v1),
+          (v2) -- [photon] (b),
+
+          (v1) -- [fermion, half left] (v2) -- [fermion, half left] (v1),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \, + \,
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 0.7cm of a, dot] (v1) {};
+        \vertex [right = 1.5cm of v1, dot] (v2) {};
+
+        \vertex [dot] (i1) at ($ (v1) + (0.75 , 0.71) $) {};
+        \vertex [dot] (i2) at ($ (v1) + (0.75 , -0.71) $) {};
+
+        \vertex [right = 0.7cm of v2] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v1),
+          (v2) -- [photon] (b),
+
+          (v1) -- [fermion, quarter left] (i1) -- [fermion, quarter left] (v2),
+          (v2) -- [fermion, quarter left] (i2) -- [fermion, quarter left] (v1),
+
+          (i1) -- [photon] (i2),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \, + \,
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 0.7cm of a, dot] (v1) {};
+        \vertex [right = 2.5cm of v1, dot] (v2) {};
+
+        \vertex [dot] (i1) at ($ (v1) + (0.75 , 0.71) $) {};
+        \vertex [dot] (i2) at ($ (v1) + (0.75 , -0.71) $) {};
+
+        \vertex [right = 1cm of i1, dot] (i3) {};
+        \vertex [right = 1cm of i2, dot] (i4) {};
+
+        \vertex [right = 0.7cm of v2] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v1),
+          (v2) -- [photon] (b),
+
+          (v1) -- [fermion, quarter left] (i1) -- [fermion] (i3),
+          (i3) -- [fermion, quarter left] (v2),
+          (v2) -- [fermion, quarter left] (i4) -- [fermion] (i2),
+          (i2)-- [fermion, quarter left] (v1),
+
+          (i1) -- [photon] (i2),
+          (i3) -- [photon] (i4),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \, + \, \dots
+    \label{eq:photon-propagator-corrections}
+  \end{equation}
+  Hence, each blob is itself a power series in $ \alpha_0 $.
+\end{example}
+
+\subsection{Running coupling}
+
+For example, consider the Coulomb scattering $ e^- e^- \ra e^- e^- $, which at lowest order is:
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+
+      \vertex[dot] (a1) {};
+      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(e^-\)};
+
+      \vertex[right=4cm of a1, dot] (a2) {};
+      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(e^-\)};
+
+      \vertex[below=4em of a1, dot] (b1) {};
+      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(e^-\)};
+
+      \vertex[below=4em of a2, dot] (b2) {};
+      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(e^-\)};
+
+      \vertex[below=2em of a1] (c1) {};
+
+      \vertex[right=1cm of c1, dot] (c2) {};
+
+      \vertex[right=2cm of c2, dot] (c3) {};
+
+      \vertex[below=0.1em of c1] (r);
+
+      \diagram* {
+        (a1) -- [fermion, momentum = \(p_1\)] (c2),
+        (c2) -- [fermion, momentum = \(k_1\)] (b1),
+
+        (a2) -- [fermion, momentum' = $ p_2 $] (c3),
+        (c3) -- [fermion, momentum' = \(k_2\)] (b2),
+
+        (c2) -- [photon, momentum = \(q\)] (c3),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \quad \equiv
+  \img \mat_0 (q^2) = \frac{e_0^2}{q^2}
+\end{equation*}
+Including the correction to the photon propagator as in \eref{eq:photon-propagator-series}, the measured total matrix element is:
+\begin{equation*}
+  \mat = \mat_0 + \mat_0 \Pi \mat_0 + \mat_0 \Pi \mat_0 \Pi \mat_0 = \mat_0 \sum_{n = 0}^\infty (\Pi \mat_0)^n = \mat_0 (1 - \Pi \mat_0)^{-1} = (\mat_0 - \Pi)^{-1}
+\end{equation*}
+where $ \Pi(q^2) $ is the matrix element for the corrections in \eref{eq:photon-propagator-corrections}. Defining the measured electric charge at momentum transfer $ q $ as $ \mat \equiv e^2(q^2) / q^2 $, the previous manipulation of the formal power series yields a relation between the measured coupling and the bare coupling:
+\begin{equation}
+  \frac{1}{e^2(q^2)} = \frac{1}{e_0^2} - \frac{\Pi(q^2)}{q^2}
+  \label{eq:phys-bar-charge}
+\end{equation}
+Since $ \Pi(q^2) $ is a power series in $ e_0^2 $, this relation can be inverted, so as to express $ e_0^2 = e_0^2(e_2) $: most notably, the expression of the bare coupling in terms of the physical coupling is independent of the energy scale $ q^2 $.
+
+Moreover, note that all empirical measurements really are comparisons between different measurements, and this is reflected by \eref{eq:phys-bar-charge}. Indeed, suppose to measure the physical electric charge at two different energy scales $ q^2 $ and $ \mu^2 $; then, the relation between the two measurements is, defining $ \pi(q^2) \equiv \Pi(q^2) / q^2 $:
+\begin{equation}
+  \frac{1}{e^2(q^2)} - \frac{1}{e^2(\mu^2)} = \pi(\mu^2) - \pi(q^2)
+  \label{eq:charge-run}
+\end{equation}
+which is correctly independent of the unobservable bare electric charge. This relation is known as the ``running" of the coupling, as it determines the dependence of the physical coupling on the energy scale (which can be tested, and has been verified, experimentally).
+
+\begin{proposition}{Vacuum polarization}{}
+  At 1-loop order in dimensional regularization, the \bcprop{vacuum polarization} is:
+  \begin{equation}
+    \pi\od1(q^2) = \frac{e_0^2}{2\pi^2} (4\pi)^\epsilon \Gamma(\epsilon) \int_0^1 \dd x \, x (1 - x) \Delta^{-\epsilon}
+  \end{equation}
+  with $ \Delta \equiv m^2 - x(1 - x) q^2 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    At 1-loop order, \eref{eq:photon-propagator-corrections} reduces to:
+    \begin{equation*}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+        \vertex (l1) at ($ (a) + (-0.1 , 0) $) {$ \mu $};
+
+        \vertex [right = 1.5cm of a, dot] (v1) {};
+        \vertex [right = 1.5cm of v1, dot] (v2) {};
+
+        \vertex [right = 1.5cm of v2] (b) {};
+        \vertex (l2) at ($ (b) + (0.1 , 0) $) {$ \nu $};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon, momentum = $ q $] (v1),
+          (v2) -- [photon, momentum = $ q $] (b),
+
+          (v1) -- [fermion, half left] (v2) -- [fermion, half left] (v1),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \ \equiv \img \Pi\od1_{\mu \nu}(q^2)
+    \end{equation*}
+    Hence, recalling that fermionic loops determine an additional $ (-1) $ factor:
+    \begin{equation*}
+      \begin{split}
+        \img \Pi\od1_{\mu \nu}(q^2)
+        & = (-\img e_0)^2 (-1) \int \frac{\dd^4 k}{(2\pi)^4} \frac{\tr \{ \gamma_\mu \img (\slashed{k} + m) \gamma_\nu \img (\slashed{k} + \slashed{q} + m) \}}{(k^2 - m^2 + \img \epsilon) ((k + q)^2 - m^2 + \img \epsilon)} \\
+        & = - 4 e_0^2 \int \frac{\dd^4 k}{(2\pi)^4} \frac{2 k_\mu k_\nu + k_\mu q_\nu + q_\mu k_\nu - \eta_{\mu \nu} (k^2 + k \cdot q - m^2)}{(k^2 - m^2 + \img \epsilon) (k^2 + 2 k \cdot q + q^2 - m^2 + \img \epsilon)}
+      \end{split}
+    \end{equation*}
+    Introducing Feynman parameters (\lref{lemma:feynman-parameters}):
+    \begin{equation*}
+      \begin{split}
+        \Pi\od1_{\mu \nu}(q^2)
+        & = 4\img e_0^2 \int_0^1 \dd x \int \frac{\dd^4 \ell}{(2\pi)^4} \big[ 2 \ell_\mu \ell_\nu + (1 - 2x) (\ell_\mu q_\nu + \ell_\nu q_\mu) - 2x (1 - x) q^\mu q^\nu + \\
+        & \qquad \qquad \qquad \qquad \qquad - \eta_{\mu \nu} (\ell^2 + (1 - 2x) \ell \cdot q - x (1 - x) q^2 - m^2) \big] (\ell^2 - \Delta + \img \epsilon)^{-2}
+      \end{split}
+    \end{equation*}
+    where the integration has been shifted to $ \ell = k + x q $, with $ \Delta \equiv m^2 - x (1 - x) q^2 $. Note that both the integration measure and the denominator are even under $ \ell \ra - \ell $, hence all terms with an odd numerator vanish (i.e. the linear terms in $ \ell $, in this case). Then, the integral can be broken up into two contributions:
+    \begin{equation*}
+      \begin{split}
+        \Pi\od1_{\mu \nu}(q^2)
+        & = 4\img e_0^2 \int_0^1 \dd x \bigg[ \int \frac{\dd^4 \ell}{(2\pi^4)} \frac{2 \ell_\mu \ell_\nu - \eta_{\mu \nu} \ell^2}{(\ell^2 - \Delta + \img \epsilon)^2} + \\
+        & \qquad \qquad \qquad + (\eta_{\mu \nu} (m^2 + x (1 - x) q^2) - 2x (1 - x) q^\mu q^\nu) \int \frac{\dd^4 \ell}{(2\pi)^4} \frac{1}{(\ell^2 - \Delta + \img \epsilon)^2} \bigg]
+      \end{split}
+    \end{equation*}
+    The second integral is in the form of \eref{eq:int-dn}, while the first one requires additional treatment.
+
+    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{generalized-d-int}
+      \begin{equation}
+        \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \frac{\img^m (-1)^n}{(4\pi)^{d/2}} \frac{\Gamma(n - \frac{d}{2} - m) \Gamma(\frac{d}{2} + m)}{\Gamma(\frac{d}{2}) \Gamma(n)} \Delta^{-n + \frac{d}{2} + m}
+        \label{eq:int-dn-gen}
+      \end{equation}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        Performing a Wick rotation:
+        \begin{equation*}
+          \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \img^m (-1)^n \int \frac{\dd^d \ell_\text{E}}{(2\pi)^d} \frac{\ell_\text{E}^{2m}}{(\ell_\text{E}^2 + \Delta - \img \epsilon)^n}
+        \end{equation*}
+        Parametrizing the Euclidean domain of integration $ \R^d $ with spherical coordinates and using \eref{eq:solid-angle}:
+        \begin{equation*}
+          \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \frac{2 \img^m (-1)^n}{(4\pi)^{d/2} \Gamma(\frac{d}{2})} \int_{\R^+} \dd \ell \frac{\ell^{2m + d - 1}}{(\ell^2 + \Delta)^n}
+        \end{equation*}
+        Recalling \eref{eq:auxiliary-integral} yields the thesis.
+      \end{proof}
+    \end{proofbox}
+
+    Now, recall the following identity for tensorial momentum integrals, valid for a general integrable $ f(k^2) $:
+    \begin{equation}
+      \int \dd^d k \, k^\mu k^\nu f(k^2) = \frac{1}{d} \eta^{\mu \nu} \int \dd^d k \, k^2 f(k^2)
+    \end{equation}
+    which is a consequence of Lorentz invariance. With this identity, the numerator of the first integral becomes $ \eta_{\mu \nu} (1 - 2/d) \ell^2 $, so that, by \eref{eq:int-dn-gen}:
+    \begin{equation*}
+      \begin{split}
+        \Pi\od1_{\mu \nu}(q^2) = 8e_0^2 (q_\mu q_\nu - \eta_{\mu \nu} q^2) \int_0^1 \dd x \, x (1 - x) \frac{\Gamma(2 - \frac{d}{2})}{(4\pi)^{d/2}} \Delta^{d - 4} \equiv \left( \eta_{\mu \nu} - \frac{q_\mu q_\nu}{q^2} \right) \Pi(q^2)
+      \end{split}
+    \end{equation*}
+    where the transverse projector has been factored out. Then:
+    \begin{equation*}
+      \pi\od1(q^2) \equiv \frac{\Pi(q^2)}{q^2} = 8e_0^2 \int_0^1 \dd x \, x (1 - x) \frac{\Gamma(2 - \frac{d}{2})}{(4\pi)^{d/2}} \Delta^{d - 4}
+    \end{equation*}
+    Inserting \eref{eq:dim-reg} yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+The Laurent series in $ \epsilon $ of the vacuum polariazione then reads:
+\begin{equation}
+  \pi\od1(q^2) = - \frac{\alpha_0}{3\pi} \left( \frac{1}{\epsilon} - \gamma_\text{E} + \log 4\pi \right) + \frac{2\alpha_0}{\pi} \int_0^1 \dd x \, x (1 - x) \log \Delta + \smo(\epsilon)
+\end{equation}
+which clearly shows that the pole term at 1-loop order does not depend on the energy scale $ q^2 $, ensuring that \eref{eq:charge-run} is finite. This is a feature of all loop orders\footnotemark, and it can be shown that:
+\begin{equation}
+  \pi(\mu^2) - \pi(q^2) = \frac{1}{12\pi^2} \log \frac{q^2}{\mu^2}
+\end{equation}
+so that the running of the running of the physical coupling reads:
+\begin{equation}
+  \alpha(q^2) = \frac{\alpha(\mu^2)}{1 - \frac{\alpha(\mu^2)}{3\pi} \log \frac{q^2}{\mu^2}}
+\end{equation}
+which is precisely the empirically-observed dependence.
+
+\footnotetext{This is to be expected: in fact, the divergences encapsulated in the $ \epsilon $-poles are UV divergences, and in the UV limit $ q^2 $ and $ \mu^2 $ become equal, since they both $ q^2 , \mu^2 \ra \infty $.}
+
+\begin{observation}{Vacuum polarization and charge screening}{}
+  Consider corrections to the photon propagator like:
+  \begin{equation*}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+        \vertex (l1) at ($ (a) + (-0.1 , 0) $) {$ \mu $};
+
+        \vertex [right = 1.5cm of a, dot] (v1) {};
+        \vertex [right = 1.5cm of v1, dot] (v2) {};
+
+        \vertex [right = 1.5cm of v2] (b) {};
+        \vertex (l2) at ($ (b) + (0.1 , 0) $) {$ \nu $};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon, momentum = $ q $] (v1),
+          (v2) -- [photon, momentum = $ q $] (b),
+
+          (v1) -- [fermion, half left] (v2) -- [fermion, half left] (v1),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+  \end{equation*}
+  The physical interpretation of these corrections is that the vacuum is filled with virtual electric dipoles, hence the name of \bcobs{vacuum polarization}. In particular, in presence of an electric charge, e.g. a proton, these virtual dipoles orient themselves according to said charge, thus resulting in a screening of the Coulomb potential: this phenomenon is known as \emph{charge screening}.
+\end{observation}
+
+The running of the physical electric charge shows the effectiveness of the renormalization procedure: absorbing UV divergences into bare observables and then expressing all quantities in terms of physical observables yields the correct finite results.
 
 
 
