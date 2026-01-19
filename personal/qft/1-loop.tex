@@ -1079,6 +1079,7 @@ which is implicitly assumed to be normal-ordered. The interaction between the fe
   Finally, noting that each vertex has $ 2 $ fermionic lines and $ 1 $ bosonic line, i.e. $ 2V = 2 P_\text{f} + N_\text{f} $ and $ V = 2 P_\text{b} + N_\text{b} $, the following relation is found:
   \begin{equation}
     D = d + \frac{d - 4}{2} V - \frac{d - 2}{2} N_\text{b} - \frac{d - 1}{2} N_\text{f}
+    \label{eq:sup-div-qed}
   \end{equation}
   Clearly, then, if $ d > 4 $ there is an infinite number of classes of diverging diagrams, since $ D $ increases as $ V $ increases. On the contrary, for $ d = 4 $ QED is renormalizable, as there are only a finitely-many classes of diverging diagrams (those with $ N_\text{b} + \frac{3}{2} N_\text{f} \leq 4 $), while for $ d < 4 $ it is super-renormalizable, as there are only finitely-many diverging diagrams.
 \end{observation}
@@ -1206,7 +1207,6 @@ with $ \mat_\text{if}^{(n)} \propto e_0^n $. Note that the power series is over 
     \quad + \quad \dots
     \label{eq:photon-propagator-series}
   \end{equation}
-  with:
   \begin{equation}
     \begin{tikzpicture}[baseline = (r.base)]
       \begin{feynman}[inline = (r.base)]
@@ -1307,39 +1307,90 @@ with $ \mat_\text{if}^{(n)} \propto e_0^n $. Note that the power series is over 
   Hence, each blob is itself a power series in $ \alpha_0 $.
 \end{example}
 
+From \eref{eq:sup-div-qed} it is possible to state all relevant classes of diverging diagrams in $ d = 4 $ QED:
+\begin{equation*}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 1.2cm of a, blob] (v) {};
+
+        \vertex [right = 1.2cm of v] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v) -- [photon] (b),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \qquad \qquad
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 1.2cm of a, blob] (v) {};
+
+        \vertex [right = 1.2cm of v] (b) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [fermion] (v) -- [fermion] (b),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \qquad \qquad
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+
+        \vertex [right = 1.2cm of a, blob] (v) {};
+
+        \vertex [right = 1.2cm of v] (b) {};
+
+        \vertex [above = 0.6cm of b] (c) {};
+        \vertex [below = 0.6cm of b] (d) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon] (v),
+          (v) -- [fermion] (c),
+          (v) -- [anti fermion] (d),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+\end{equation*}
+
 \subsection{Running coupling}
 
 For example, consider the Coulomb scattering $ e^- e^- \ra e^- e^- $, which at lowest order is:
 \begin{equation*}
   \begin{tikzpicture}[baseline=(r.base)]
     \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
 
-      \vertex[dot] (a1) {};
-      \vertex (l1) at ($(a1)+(-0.4,0)$) {\(e^-\)};
+      \vertex[right=3.5cm of a1] (a2) {};
 
-      \vertex[right=4cm of a1, dot] (a2) {};
-      \vertex (l2) at ($(a2)+(+0.4,0)$) {\(e^-\)};
+      \vertex[below=1.2cm of a1] (b1) {};
 
-      \vertex[below=4em of a1, dot] (b1) {};
-      \vertex (l3) at ($(b1)+(-0.4,0)$) {\(e^-\)};
+      \vertex[below=1.2cm of a2] (b2) {};
 
-      \vertex[below=4em of a2, dot] (b2) {};
-      \vertex (l4) at ($(b2)+(+0.4,0)$) {\(e^-\)};
-
-      \vertex[below=2em of a1] (c1) {};
+      \vertex[below=0.6cm of a1] (c1) {};
 
       \vertex[right=1cm of c1, dot] (c2) {};
 
-      \vertex[right=2cm of c2, dot] (c3) {};
+      \vertex[right=1.5cm of c2, dot] (c3) {};
 
       \vertex[below=0.1em of c1] (r);
 
       \diagram* {
-        (a1) -- [fermion, momentum = \(p_1\)] (c2),
-        (c2) -- [fermion, momentum = \(k_1\)] (b1),
+        (a1) -- [fermion] (c2),
+        (c2) -- [fermion] (b1),
 
-        (a2) -- [fermion, momentum' = $ p_2 $] (c3),
-        (c3) -- [fermion, momentum' = \(k_2\)] (b2),
+        (a2) -- [fermion] (c3),
+        (c3) -- [fermion] (b2),
 
         (c2) -- [photon, momentum = \(q\)] (c3),
       };
@@ -1350,7 +1401,7 @@ For example, consider the Coulomb scattering $ e^- e^- \ra e^- e^- $, which at l
 \end{equation*}
 Including the correction to the photon propagator as in \eref{eq:photon-propagator-series}, the measured total matrix element is:
 \begin{equation*}
-  \mat = \mat_0 + \mat_0 \Pi \mat_0 + \mat_0 \Pi \mat_0 \Pi \mat_0 = \mat_0 \sum_{n = 0}^\infty (\Pi \mat_0)^n = \mat_0 (1 - \Pi \mat_0)^{-1} = (\mat_0 - \Pi)^{-1}
+  \mat = \mat_0 \sum_{n = 0}^\infty (\Pi \mat_0)^n = \mat_0 (1 - \Pi \mat_0)^{-1} = (\mat_0 - \Pi)^{-1}
 \end{equation*}
 where $ \Pi(q^2) $ is the matrix element for the corrections in \eref{eq:photon-propagator-corrections}. Defining the measured electric charge at momentum transfer $ q $ as $ \mat \equiv e^2(q^2) / q^2 $, the previous manipulation of the formal power series yields a relation between the measured coupling and the bare coupling:
 \begin{equation}
@@ -1429,7 +1480,7 @@ which is correctly independent of the unobservable bare electric charge. This re
 
     \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{generalized-d-int}
       \begin{equation}
-        \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \frac{\img^m (-1)^n}{(4\pi)^{d/2}} \frac{\Gamma(n - \frac{d}{2} - m) \Gamma(\frac{d}{2} + m)}{\Gamma(\frac{d}{2}) \Gamma(n)} \Delta^{-n + \frac{d}{2} + m}
+        \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \frac{\img (-1)^{n + m}}{(4\pi)^{d/2}} \frac{\Gamma(n - \frac{d}{2} - m) \Gamma(\frac{d}{2} + m)}{\Gamma(\frac{d}{2}) \Gamma(n)} \Delta^{-n + \frac{d}{2} + m}
         \label{eq:int-dn-gen}
       \end{equation}
     \end{lemma}
@@ -1438,11 +1489,11 @@ which is correctly independent of the unobservable bare electric charge. This re
       \begin{proof}
         Performing a Wick rotation:
         \begin{equation*}
-          \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \img^m (-1)^n \int \frac{\dd^d \ell_\text{E}}{(2\pi)^d} \frac{\ell_\text{E}^{2m}}{(\ell_\text{E}^2 + \Delta - \img \epsilon)^n}
+          \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \img (-1)^{n + m} \int \frac{\dd^d \ell_\text{E}}{(2\pi)^d} \frac{\ell_\text{E}^{2m}}{(\ell_\text{E}^2 + \Delta - \img \epsilon)^n}
         \end{equation*}
         Parametrizing the Euclidean domain of integration $ \R^d $ with spherical coordinates and using \eref{eq:solid-angle}:
         \begin{equation*}
-          \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \frac{2 \img^m (-1)^n}{(4\pi)^{d/2} \Gamma(\frac{d}{2})} \int_{\R^+} \dd \ell \frac{\ell^{2m + d - 1}}{(\ell^2 + \Delta)^n}
+          \int \frac{\dd^d k}{(2\pi)^d} \frac{k^{2m}}{(k^2 - \Delta + \img \epsilon)^n} = \frac{2 \img (-1)^{n + m}}{(4\pi)^{d/2} \Gamma(\frac{d}{2})} \int_{\R^+} \dd \ell \frac{\ell^{2m + d - 1}}{(\ell^2 + \Delta)^n}
         \end{equation*}
         Recalling \eref{eq:auxiliary-integral} yields the thesis.
       \end{proof}
@@ -1511,6 +1562,239 @@ which is precisely the empirically-observed dependence.
 \end{observation}
 
 The running of the physical electric charge shows the effectiveness of the renormalization procedure: absorbing UV divergences into bare observables and then expressing all quantities in terms of physical observables yields the correct finite results.
+
+\subsubsection{Anomalous magnetic moment}
+
+Another important class of diverging diagrams in QED is the electron-photon vertex, which at 1-loop order can be written as:
+\begin{equation*}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+        \vertex (l) at ($ (a) + (-0.1 , 0) $) {$ \mu $};
+
+        \vertex [right = 1.8cm of a, blob] (v) {};
+
+        \vertex [right = 1.4cm of v] (b) {};
+
+        \vertex [above = 1cm of b] (c) {};
+        \vertex [below = 1cm of b] (d) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon, momentum = $ q $] (v),
+          (v) -- [fermion] (c),
+          (v) -- [anti fermion] (d),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \ = \
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+        \vertex (l) at ($ (a) + (-0.1 , 0) $) {$ \mu $};
+
+        \vertex [right = 1.8cm of a, dot] (v) {};
+
+        \vertex [right = 1.4cm of v] (b) {};
+
+        \vertex [above = 1cm of b] (c) {};
+        \vertex [below = 1cm of b] (d) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon, momentum = $ q $] (v),
+          (v) -- [fermion] (c),
+          (v) -- [anti fermion] (d),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \ + \
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex (a) {};
+        \vertex (l) at ($ (a) + (-0.1 , 0) $) {$ \mu $};
+
+        \vertex [right = 1.8cm of a, dot] (v) {};
+
+        \vertex [right = 1.4cm of v] (b) {};
+
+        \vertex [above = 1cm of b] (c) {};
+        \vertex [below = 1cm of b] (d) {};
+
+        \vertex [dot] (v1) at ($ (v) + (0.7 , 0.5) $) {};
+        \vertex [dot] (v2) at ($ (v) + (0.7 , -0.5) $) {};
+
+        \vertex [below = 0.1cm of a] (r);
+
+        \diagram* {
+          (a) -- [photon, momentum = $ q $] (v),
+          (v) -- [fermion] (v1) -- [fermion] (c),
+          (d) -- [fermion] (v2) -- [fermion] (v),
+          (v1) -- [photon] (v2),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \ \equiv - \img e \Gamma\od1_\mu(q)
+\end{equation*}
+where the dependence on $ q $ only is to be proved. Note that vacuum polarization and electron self-energy diagrams (see later) have been omitted: these are indeed only corrections to the photon and electron propagators, and are accounted for by using the physical charge and mass of the electron.
+
+\begin{lemma}{Generalized vertex function}{}
+  The electron-photon vertex function can be expressed as:
+  \begin{equation}
+    \Gamma^\mu(q) = \gamma^\mu F_1(q^2) + \frac{\img \sigma^{\mu \nu}}{2m} q_\nu F_2(q^2)
+  \end{equation}
+  where $ F_1(q^2) $ is the \bclemma{Dirac form factor} and $ F_2(q^2) $ is the \bclemma{Pauli form factor}.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Denoting the incoming and outgoing fermionic momenta with $ p $ and $ p' $, in general $ \Gamma^\mu $ is expressed in terms of $ \gamma^\mu $, since $ \Gamma\od0_\mu = \gamma_\mu $, of the 4-vectors $ p $ and $ p' $ and of the constants $ e $ and $ m $: note that this is the physical mass of the electrons, since the electron and the photon propagators are assumed to be renormalized, otherwise the general expression of the vertex function would include corrections to those propagators too. This is an exhaustive list, since no other objects appear in the Feynman rules for the diagrams involved\footnote{In principle $ \epsilon^{\mu \nu \rho \sigma} $ (or equivalently $ \gamma^5 $) could be present too, but it is forbidden by the fact that QED is a parity-conserving theory.}.
+
+    The form of $ \Gamma^\mu $ is further constrained by Lorentz invariance. Indeed, it must transform as a 4-vector (in the sense of $ \gamma^\mu $, recall \tref{th:gamma-lorentz}), hence it can only be a linear combination of $ \gamma^\mu $, $ p^\mu $ and $ {p'}^\mu $, or, more conveniently, $ p'^\mu + p^\mu $ and $ p'^\mu - p^\mu $:
+    \begin{equation*}
+      \Gamma^\mu = A \gamma^\mu + B (p' + p)^\mu + C (p' - p)^\mu
+    \end{equation*}
+    A priori, the coefficients could contain $ \slashed{p} $ and $ \slashed{p}' $, but $ \slashed{p} u(p) = m u(p) $ and $ \bar{u}(p') \slashed{p'} = m \bar{u}(p') $ (note that $ \Gamma^\mu $ only has sense between Dirac spinors), hence it is possible to restrain the form of the coefficients to only contain ordinary scalars: the only non-trivial scalar available is $ q^2 = 2m^2 -2 p \cdot p' $, hence the coefficients can only be functions of $ q^2 $.
+
+    Now, make use of the Ward identity $ q_\mu \Gamma^\mu = 0 $. The second term trivially vanishes, as does the first one since $ \bar{u}(p') (\slashed{p}' - \slashed{p}) u(p) = \bar{u}(p') (m - m) u(p) = 0 $: the only remaining term is the third one, which does not identically vanish, therefore $ C \equiv 0 $.
+
+    Finally, it is customary to rewrite the $ B $ coefficient using the Gordon identity:
+    \begin{equation}
+      \bar{u}(p') \gamma^\mu u(p) = \bar{u}(p') \left[ \frac{p'^\mu + p^\mu}{2m} + \frac{\img \sigma^{\mu \nu}}{2m} q_\nu \right] u(p)
+    \end{equation}
+    so that the vertex function is expressed in the same form as in the thesis.
+  \end{proof}
+\end{proofbox}
+
+The vertex function, and in particular the form factors, contains all the information on how an electron is influenced by an electromagnetic field. In presence of an external classical field $ A^\text{cl}_\mu(x) $, the QED Lagrangian is modified with an additional interaction term $ - e A^\text{cl}_\mu j^\mu $, and the $ S $-matrix element for the scattering of an electric from this field is:
+\begin{equation*}
+  \img \mat (2\pi) \delta(p'^0 - p^0) = - \img e \bar{u}(p') \Gamma^\mu(q) u(p) \tilde{A}^\text{cl}_\mu(q)
+\end{equation*}
+where $ \tilde{A}^\text{cl}_\mu(q) $ is the Fourier transform of $ A^\text{cl}_\mu(x) $. This expression is particularly useful to compute the Coulomb scattering amplitude of a non-relativistic electron from static fields.
+
+\paragraph{Electrostatic field}
+
+Suppose $ A^\text{cl}_\mu(x) = (\phi(\ve{x}) , \ve{0}) $. Then $ \tilde{A}^\text{cl}_\mu(q) = ((2\pi) \delta(q^0) \tilde{\phi}(\ve{q}) , \ve{0}) $, and the matrix element becomes:
+\begin{equation*}
+  \img \mat = - \img e \bar{u}(p') \Gamma^0(q) u(p) \tilde{\phi}(\ve{q})
+\end{equation*}
+Moreover, assume that $ \phi(\ve{x}) $ is slowly varying over a large (even macroscopic) region, so that $ \tilde{\phi}(\ve{q}) $ is peaked at $ \ve{q} = \ve{0} $. This allows to take the limit $ \ve{q} \ra \ve{0} $ (i.e. $ q \ra 0 $, since $ q^0 = 0 $) in the spinor matrix element, meaning that only the Dirac form factor contributes:
+\begin{equation*}
+  \bar{u}(p') \gamma^0 u(p) = u\dg(p') u(p) \approx 2E_\ve{p} {\xi'}\dg \xi \approx 2m {\xi'}\dg \xi
+\end{equation*}
+where \eref{eq:uv-spin-id} in the limit $ p' - p \ra 0 $ was used. Thus, the matrix element is expressed as:
+\begin{equation*}
+  \img \mat \approx - \img e F_1(0) \tilde{\phi}(\ve{q}) \cdot 2m {\xi'}\dg \xi
+\end{equation*}
+which is the Born approximation\footnotemark for the non-relativistic scattering from a potential of the form:
+\begin{equation}
+  V(\ve{x}) = - e F_1(0) \phi(\ve{x})
+\end{equation}
+This means that $ F_1(0) $ is the electric charge of the electron, in units of $ -e $: hence, it must be $ F_1(0) = 1 $. Note that $ \Gamma\od0(q) = \gamma^\mu $, i.e. at leading order already $ F_1\od0(q^2) = 1 $, thus radiative corrections to the electric form factor must vanish at $ q^2 = 0 $.
+
+\footnotetext{In general, the Born approximation for the scattering  of an electron from a static potential $ V(\ve{x}) $ consists in modelling the incoming and outgoing electron asymptotic states as plane waves of defined momentum, so that the matrix element reads (with $ \ve{q} \equiv \ve{p}_\text{f} - \ve{p}_\text{i} $):
+\begin{equation}
+  \mat = \braket{\ve{p}_\text{f} , s_\text{f} | V(\ve{x}) | \ve{p}_\text{i} , s_\text{i}} = \int \dd^3 x \, e^{\img (\ve{p}_\text{f} - \ve{p}_\text{i}) \cdot \ve{x}} V(\ve{x}) \bar{u}^{s_\text{f}}(p_\text{f}) u^{s_\text{i}}(p_\text{i}) = \tilde{V}(\ve{q}) \bar{u}^{s_\text{f}}(p_\text{f}) u^{s_\text{i}}(p_\text{i})
+\end{equation}}
+
+\paragraph{Magnetostatic field}
+
+Suppose $ A^\text{cl}_\mu(x) = (0 , A^\text{cl}_i(\ve{x})) $. Then $ \tilde{A}^\text{cl}_\mu(q) = (0 , (2\pi) \delta(q^0) \tilde{A}^\text{cl}_i(\ve{q})) $, and the matrix element becomes:
+\begin{equation*}
+  \img \mat = - \img e \bar{u}(p') \Gamma^i(q) u(p) \tilde{A}^\text{cl}_i(\ve{q}) = - \img e \bar{u}(p') \left[ \gamma^i F_1(q^2) + \frac{\img \sigma^{i \nu}}{2m} q_\nu F_2(q^2) \right] u(p) \tilde{A}^\text{cl}_i(\ve{q})
+\end{equation*}
+In the non-relativistic limit, keeping only terms which are linear in momenta:
+\begin{equation*}
+  u(p) \approx \sqrt{m}
+  \begin{pmatrix}
+    \left( 1 - \frac{\ve{q} \cdot \bs{\sigma}}{2m} \right) \xi \\
+    \left( 1 + \frac{\ve{q} \cdot \bs{\sigma}}{2m} \right) \xi \\
+  \end{pmatrix}
+  \quad \implies \quad
+  \bar{u}(p') \gamma^i u(p) \approx 2m {\xi'}\dg \left[ \frac{\ve{p}' \cdot \bs{\sigma}}{2m} \sigma^i + \sigma^i \frac{\ve{p} \cdot \bs{\sigma}}{2m} \right] \xi
+\end{equation*}
+This expression for the electric term can be further expanded using $ \sigma^i \sigma^j = \delta^{ij} \mt{I}_2 + \img \epsilon^{ijk} \sigma^k $, which result in a spin-independent term proportional to $ (p' + p)^i \mt{I}_2 $ and a spin-dependent term proportional to $ \epsilon^{ijk} (p' - p)^j \sigma^k $. The first term contributes to the usual kinetic operator from non-relativistic quantum mechanics and can be ignored in this treatment, hence only the spin-dependent term is retained:
+\begin{equation*}
+  \bar{u}(p') \gamma^i u(p) \approx 2m {\xi'}\dg \left[ \frac{-\img}{2m} \epsilon^{ijk} q^j \sigma^k \right] \xi
+\end{equation*}
+The magnetic term is already linear in momentum, hence it can be approximated with only the leading term in the expansion for the spinors:
+\begin{equation*}
+  \bar{u}(p') \frac{\img \sigma^{i \nu}}{2m} q_\nu u(p) \approx m
+  \begin{pmatrix}
+    {\xi'}\dg & {\xi'}\dg
+  \end{pmatrix}
+  \frac{\img}{2m} \epsilon^{ijk}
+  \begin{bmatrix}
+    \sigma^k & 0 \\ 0 & \sigma^k
+  \end{bmatrix}
+  q_j
+  \begin{pmatrix}
+    \xi \\ \xi
+  \end{pmatrix}
+  = 2m {\xi'}\dg \left[ \frac{-\img}{2m} \epsilon^{ijk} q^j \sigma^k \right] \xi
+\end{equation*}
+Thus, the linear spin-dependent contribution to the vertex function reads, as $ q \ra 0 $:
+\begin{equation*}
+  \img \mat \approx -2\img me {\xi'}\dg \frac{-\img}{2m} \epsilon^{ijk} q^j \sigma^k [F_1(0) + F_2(0)] \xi \tilde{A}^\text{cl}_i(\ve{q}) = 2\img me {\xi'}\dg \frac{\sigma^k}{2m} [F_1(0) + F_2(0)] \xi \tilde{B}^k(\ve{q})
+\end{equation*}
+where $ \tilde{B}^k(\ve{q}) \equiv \img \epsilon^{ijk} q^i \tilde{A}_\text{cl}^k(\ve{q}) $ is the Fourier transform of the magnetic field generated by the classical vector potential $ \ve{A}^\text{cl}(\ve{x}) $. Again, this matrix element can be interpreted as the Born approximation for the non-relativistic scattering of an electron from a potential of the form:
+\begin{equation}
+  V(\ve{x}) = - \bs{\mu} \cdot \ve{B}(\ve{x})
+\end{equation}
+with the electron magnetic moment defined as:
+\begin{equation}
+  \bs{\mu} = - \frac{e}{m} [F_1(0) + F_2(0)] \frac{\bs{\sigma}}{2} \equiv - g \frac{e}{2m} \ve{S}
+\end{equation}
+where $ \ve{S} \equiv \frac{\bs{\sigma}}{2} $. The \bctxt{Landé factor} is the found to be:
+\begin{equation}
+  g = 2 [F_1(0) + F_2(0)] = 2 + 2 F_2(0)
+\end{equation}
+Since $ F_2\od0(0) = 0 $, at leading order $ g\od0 = 2 $. To compute the first-order correction to the Landé factor, it is necessary to compute the magnetic form factor at leading order.
+
+\begin{proposition}{Form factors}{}
+  At 1-loop order in dimensional regularization, the Dirac and Pauli form factors are:
+  \begin{equation}
+    F_1\od1(q^2) = 1 + \frac{\alpha}{2\pi} (4\pi)^\epsilon \Gamma(\epsilon) \int_0^1 \dd x \int_0^1 \dd y \int_0^1 \dd z \, \delta(x + y + z - 1) \mathcal{K}(\epsilon,x,y,z,q^2,m^2) \Delta^{-\epsilon}
+  \end{equation}
+  \begin{equation}
+    F_2\od1(q^2) = \frac{\alpha}{\pi} \int_0 \dd x \int_0^1 \dd y \int_0^1 \dd z \, \delta(x + y + z - 1) \frac{m^2 z (1 - z)}{m^2 (1 - z)^2 - xy q^2}
+  \end{equation}
+  with $ \Delta \equiv m^2 (1 - z)^2 - xy q^2 $ and the $ \epsilon $-finite function $ \mathcal{K} $ defined as:
+  \begin{equation}
+    \mathcal{K}(\epsilon,x,y,z,q^2,m^2) \equiv \left[ 1 - \epsilon + 2 \frac{\Gamma(1 - \epsilon)}{\Gamma(\epsilon)} \frac{(1-x)(1-y) q^2 + (1 - 4z + z^2) m^2}{m^2 (1-z)^2 - xy q^2} \right]
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    % TODO:
+    Copy proof from OneNote
+  \end{proof}
+\end{proofbox}
+
+Note that, in addition to the UV divergence encapsulated in $ \epsilon $, the electric form factor also presents an IR divergence on the light-cone $ q^2 = 0 $, which is usually regulated introducing a small photon mass $ \mu $.
+
+The integral in the magnetic form factor is trivial on the light-cone $ q^2 = 0 $, and the resulting expression $ F_2(0) = \frac{\alpha}{2\pi} $ determines the first-order correction to the Landé factor:
+\begin{equation*}
+  g\od1 = 2 + \frac{\alpha}{\pi}
+\end{equation*}
+As of today, corrections up to the 5-loop order have been numerically computed:
+\begin{equation*}
+  \frac{g\od5 - 2}{2} = 0.0011596521816(7)
+  \qquad \qquad
+  \frac{g_\text{exp} - 2}{2} = 0.0011596521806(1)
+\end{equation*}
+This result makes QED the most precise physical theory currently available.
+
+\newpage
+
+\subsection{Renormalization conditions}
+
+There is only one class of diverging diagrams that remains to be computed: the corrections to the electron propagator.
+
+%\subsubsection{Renormalization group}
 
 
 
