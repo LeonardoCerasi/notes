@@ -223,7 +223,7 @@ having defined:
 
 \begin{proofbox}
   \begin{proof}
-    The poles of the integrand function are $ k_0 = \pm \left[ \sqrt{M^2 + \ve{k}^2} - \img\epsilon \right] $, therefore the integration path $ I = \R $ can be rotated counterclockwise by $ \frac{\pi}{2} $ without overlapping with any pole. The resulting Wick rotation $ k_0 \mapsto \img k_0 $, i.e. $ k \mapsto k_\text{E} $ (REF TO OBSERVATION), therefore the $ d $-dimensional integral in Minkowskian metric becomes a $ d $-dimensional integral with (negative) Euclidean metric:
+    The poles of the integrand function are $ k_0 = \pm \left[ \sqrt{M^2 + \ve{k}^2} - \img\epsilon \right] $, therefore the integration path $ I = \R $ can be rotated counterclockwise by $ \frac{\pi}{2} $ without overlapping with any pole. The resulting Wick rotation $ k_0 \mapsto \img k_0 $, i.e. $ k \mapsto k_\text{E} $ (see \obsref{obs:wick-rotations}), therefore the $ d $-dimensional integral in Minkowskian metric becomes a $ d $-dimensional integral with (negative) Euclidean metric:
     \begin{equation*}
       I_d(n) = \img (-1)^n \int \frac{\dd^dk_\text{E}}{(2\pi)^d} \frac{1}{(k_\text{E}^2 + M^2 - \img\epsilon)^n} = \img (-1)^n \int_{\mathbb{S}^{d-1}} \frac{\dd \Omega_{d-1}}{(2\pi)^d} \int_{\R^+} \dd k_\text{E} \frac{k_\text{E}^{d-1}}{(k_\text{E}^2 + M^2)^n}
     \end{equation*}
@@ -235,6 +235,83 @@ having defined:
     Inserting \eref{eq:solid-angle} yields the thesis.
   \end{proof}
 \end{proofbox}
+
+\begin{observation}{Wick rotations}{wick-rotations}
+  Due to Lorentz invariance, the general form a $ d $-dimensional loop integral is:
+  \begin{equation*}
+    I = \int \dd^d k \, f(k^2)
+  \end{equation*}
+  However, these kinds of integrals cannot be treated with the standard techniques of Analysis, since the measure $ \dd^d k $ is defined on the Lorentzian manifold $ \R^{1,d-1} $ with Minkowskian metric $ \eta_{\mu \nu} = (+1 , -1 , \dots , -1) $. In order to treat them in a standard way, consider first the integral $ I_0 \equiv \int_\R \dd k^0 f(k^2) $ on the temporal component: by extending $ k^0 $ to the whole complex plane $ \C $, this integral turns into the integral of a meromorphic%
+  \footnote{Given an open set $ D \subset \C $, then $ f : D \rightarrow \C $ is \textit{meromorphic} if it is holomorphic on $ D - P $, where $ P \subset D $ is a set of isolated points called \textit{poles}. Recall that a function $ f : D \rightarrow \C $ is \textit{holomorphic} on $ D $ if it is complex differentiable at every point in $ D $.}
+  function $ f : \C \ra \C $ over the path $ \ell_\infty \equiv \R $ (identifying the curve with its support). In particular, consider the case of massive particles only, so that the poles of $ f(k^2) $ have non-vanishing real parts: in particular, due to the general form $ k^2 - m^2 + \img \epsilon $ of the denominators of propagators, the poles come in couples of the form $ k^0_\pm = \pm \sqrt{m^2 + \ve{k}^2} \mp \img \epsilon $. For example, the case of a single propagator is drawn as:
+  \begin{equation*}
+    \begin{tikzpicture}
+      \def\bigradius{3}
+
+      % axes
+      \draw [help lines,->] (-1.25 * \bigradius, 0) -- (1.25 * \bigradius,0);
+      \draw [help lines,->] (0, -1.25 * \bigradius) -- (0, 1.25 * \bigradius);
+
+      % path
+      \draw [line width=1pt,
+        decoration={markings,
+          mark=at position 0.5 with {\arrow[line width=1.2pt]{>}}},
+        postaction={decorate}]
+        (\bigradius , 0) arc (0 : 90 : \bigradius);
+        \node at (1.7 , 2.8) {$ \gamma_R $};
+
+      \draw [line width=1pt,
+        decoration={markings,
+          mark=at position 0.5 with {\arrow[line width=1.2pt]{>}}},
+        postaction={decorate}]
+        (0 , -\bigradius) arc (270 : 180 : \bigradius);
+        \node at (-2.8 , -1.7) {$ \gamma'_R $};
+
+      \draw [line width=1pt,
+        decoration={markings,
+          mark=at position 0.25 with {\arrow[line width=1.2pt]{>}},
+          mark=at position 0.75 with {\arrow[line width=1.2pt]{>}}},
+        postaction={decorate}]
+        (-\bigradius , 0) -- (\bigradius , 0);
+        \node at (1 , 0.27) {$ \ell_R $};
+
+      \draw [line width=1pt,
+        decoration={markings,
+          mark=at position 0.25 with {\arrow[line width=1.2pt]{>}},
+          mark=at position 0.75 with {\arrow[line width=1.2pt]{>}}},
+        postaction={decorate}]
+        (0 , \bigradius) -- (0 , -\bigradius);
+        \node at (-0.27 , -1) {$ \ell'_R $};
+
+      % poles
+      \fill [black] (2 , -0.5) circle [radius = 2pt];
+        \node at (2.35 , -0.8) {$ k^0_+ $};
+      \fill [black] (-2 , 0.5) circle [radius = 2pt];
+        \node at (-2.35 , 0.8) {$ k^0_- $};
+
+      % label
+      \draw [line width=0.2pt]
+        (\bigradius , 1.25 * \bigradius) -- (\bigradius , \bigradius)
+        -- (1.25 * \bigradius , \bigradius);
+        \node at (1.15 * \bigradius , 1.15 * \bigradius) {$ k^0 $};
+      \end{tikzpicture}
+  \end{equation*}
+  Considering the paths drawn in this figure, it is clear that, in the case of massive particle, the poles of $ f(k^2) $ will always be outside of the total closed path $ \gamma $; hence, by Cauchy's residue theorem:
+  \begin{equation*}
+    \oint_\gamma \dd k^0 f(k^2) = 0
+  \end{equation*}
+  The integrals over the arcs $ \gamma_R $ and $ \gamma'_R $ vanish for $ R \ra \infty $, hence this equation reduces to:
+  \begin{equation*}
+    \int_{-\infty}^\infty \dd k^0 f(k^2) = \int_{-\img\infty}^{\img\infty} \dd k^0 f(k^2)
+  \end{equation*}
+  Then, substituting $ k^0_\text{E} = \img k^0 , \ve{k}_\text{E} = \ve{k} $ in the second integral, i.e. the so-called \bcobs{Wick rotation}, the main result of this trick is found:
+  \begin{equation*}
+    \int_\R \dd k^0 f(k^2) = \img \int_\R \dd k^0_\text{E} f(-k_\text{E}^2)
+    \quad \implies \quad
+    \int \dd^d k \, f(k^2) = \img \int \dd^d k_\text{E} f(-k_\text{E}^2)
+  \end{equation*}
+  where the Euclidean momentum is now defined on the Euclidean manifold $ \R^d $ with Euclidean metric $ \delta_{\mu \nu} = (+1 , +1 , \dots , +1) $. The Wick rotation thus turns a Minkowskian integral into a Euclidean integral, which can therefor be treated with the standard techniques of Analysis.
+\end{observation}
 
 \eref{eq:int-dn} diverges for $ (d,n) = (4,2) $, as $ \Gamma(z) = \frac{1}{z} - \gamma_\text{E} + o(z) $, therefore a cutoff needs to be introduced to regularize the integral:
 \begin{equation*}
@@ -273,7 +350,7 @@ which is linked to the \bctxt{bare coupling constant} $ \lambda_\text{bare} \equ
     By \eref{eq:bare-phys-def}:
     \begin{equation*}
       \lambda_\text{phys} = \lambda (1 - c_0 \lambda) + \smo(\lambda^3)
-      \qquad \Leftrightarrow \qquad
+      \quad \iff \quad
       \lambda = \lambda_\text{phys} (1 + c_0 \lambda_\text{phys}) + \smo(\lambda_\text{phys}^3)
     \end{equation*}
     Therefore:
@@ -299,15 +376,47 @@ Thus, choosing $ \mu^2 \propto \Lambda^2 $, it is possible to express $ \lambda_
 
 \subsection{Renormalized perturbation theory}
 
-The process of renormalization, which allows to obtain finite results from diverging amplitudes, can be implemented in various ways. That of introducing a UV cut-off $ \Lambda $, expressing the bare observables in terms of the physical observables at some scale $ \mu $ and then setting $ \Lambda \rightarrow \infty $ is rather inefficient at higher orders in perturbation theory: thus, a more efficient renormalization scheme must be adopted. \\
-First of all, substitute the UV cut-off with a \bctxt{dimensional regularization scheme} ('t Hooft--Veltman scheme): this scheme consists in turning diverging loop integrals into meromorphic\footnotemark functions of $ d \in \C $, which is an analytic continuation of the number of spacetime dimensions. In particular:
-\begin{equation}
-  d = 4 - 2 \epsilon
-  \label{eq:dim-reg}
-\end{equation}
-with $ \epsilon \in \C : \Re{\epsilon} < 0 $. By analytic continuation of the Lagrangian of the theory, the dimensionality of the various objects changes.
+The process of renormalization, which allows to obtain finite results from diverging amplitudes, can be implemented in various ways. That of introducing a UV cut-off $ \Lambda $, expressing the bare observables in terms of the physical observables at some scale $ \mu $ and then setting $ \Lambda \rightarrow \infty $ is rather inefficient at higher orders in perturbation theory: thus, a more efficient regularization scheme must be adopted. The main regulators which are typically used are:
+\begin{itemize}
+  \item cut-off regulator: a parameter $ \Lambda \in \R^+ $ is introduced to cut off the UV regime, i.e. imposing $ k_\text{E}^2 \leq \Lambda^2 $, so that the domain of UV divergences is removed entirely from the itegration. However, this regulator effectively cuts off the infinite number of multi-particle states that can be produced at high energies (see \figref{fig:mass-2}), thus violating unitarity (and gauge symmetry, too);
+  \item lattice regularization: to avoid the high-momentum regime, a discretization parameter $ a \in \R^+ $ is introduced, so that the position space is discretized as $ x^\mu = n^\mu a $, with $ n^\mu \in \Z^d $, thus reducing the momentum space to the first Brillouin zone $ \abs{k^\mu} \leq \frac{2\pi}{a} \,\, \forall \mu = 0, 1, \dots, d-1 $. Clearly, this regularization scheme is analogous to the UV cut-off, therefore it carries the same problems of violation of unitarity and gauge symmetry, with the addition of violation of Lorentz symmetry too (it is not possible to define trigonometric and hyperbolic rotations in a discretized space);
+  \item convergent propagators: UV divergences can be cured by making propagators more convergent with additional higher-order terms in the denominator. For example, adding a term like $ + \frac{1}{\Lambda^2} \phi \dal \phi $ to the Lagrangian for a scalar field, the Feynman propagator becomes $ \img \fprp^{-1}(p) = p^2 + \frac{1}{\Lambda^2} p^4 - m^2 $, which is more convergent than the usual propagator. This higher-order terms, however, may break the symmetries of the original Lagrangians;
+  \item Pauli-Villars regulator: the UV behavior of loop integrals is modulated by the introduction of auxiliary particles, which are then eliminated by taking their masses to infinity. This regulator preserver gauge invariance in abelian gauge theories, but it is not gauge covariant in non-abelian gauge theories;
+  \item dimensional regularization: in this scheme, the regulator is the number of dimensions, and in fact it preserves both unitarity, gauge symmetry and Lorentz invariance.
+\end{itemize}
 
-\footnotetext{Given an open set $ D \subset \C $, then $ f : D \rightarrow \C $ is \textit{meromorphic} if it is holomorphic on $ D - P $, where $ P \subset D $ is a set of isolated points called \textit{poles}. Recall that a function $ f : D \rightarrow \C $ is \textit{holomorphic} on $ D $ if it is complex differentiable at every point in $ D $.}
+\begin{observation}{Dimensional regularization}{}
+  In general, the dimensional regularization scheme consists in the analytic continuation of loop momenta to $ d = 4 - 2 \epsilon $, with $ \epsilon \in \C : \Re \epsilon < 0 $. This procedure turnss loop integrals into meromorphic\footnotemark functions of $ \epsilon \in \C $, allowing for the isolation of divergences as poles in $ \epsilon $.
+
+  The dimensional regularization prescription leaves freedom in choosing the dimensionality of external momenta, as well as the number of polarizations of both external and internal particles, thus allowing for the definition of different regularization schemes: the \bcobs{conventional dimensional regularization} (CDR), in which all momenta and polarization are analytically continued to $ d $ dimensions, and the \bcobs{'t Hooft--Veltman scheme} (HV), in which only internal momenta and polarizations are.
+
+  When considering non-chiral gauge theories like QED and QCD, CDR is the most natural choice, as the main difference between CDR and HV is the treatment of purely $ 4 $-dimensional objects, i.e. $ \gamma^5 $ and $ \epsilon^{\mu \nu \sigma \rho} $. In particular, in CDR both the Dirac algebra and Lorentz indices are analytically continued to $ d $ dimensions, leading to a mathematical inconsistency when $ d \notin \N $.
+  In $ 4 $-dimensional Minkowski space $ \R^{1,3} $ with metric signature $ \eta = (+,-,-,-) $, the Dirac algebra is defined as $ \dira \cong \clar{1,3} \otimes \C $ and it admits a matrix representation with generators $ \{\gamma^\mu\}_{\mu = 0, 1, 2, 3} \subset \C^{4 \times 4} $ such that:
+  \begin{equation}
+    \{\gamma^\mu , \gamma^\nu\} = 2 \eta^{\mu \nu} \mt{I}_4
+    \label{eq:dir-alg}
+  \end{equation}
+  As in CDR Lorentz indices too are $ d $-dimensional, the Dirac algebra becomes $ \clac{1,d-1} \simeq \clar{1,d-1} \otimes \C $, where usual Minkowski space $ \R^{1,3} $ is replaced by the pseudo-Euclidean space $ \R^{1,d-1} $ with metric signature $ \eta = (+,-,\dots,-) $. This structure, however, is ill-defined, as for $ d \in \N $ then $ \dim_\C \clac{1,d-1} = 2^d $, but an algebra of dimension $ 2^d : d \notin \N $ is meaningless.
+
+  To solve this issue, in CDR spinor indices remain $ 4 $-dimensional: this is realized considering a matrix representation generated by $ \{\gamma^\mu\}_{\mu = 0, \dots, d-1} \subset \C^{4 \times 4} $ and imposing the formal relations \eref{eq:dir-alg}. Consistency is achieved with the analytical continuation of trace identities: indeed, traces obtained by recursively applying \eref{eq:dir-alg} (like $ \tr\{\gamma^\mu \gamma^\nu\} = 4 \eta^{\mu \nu} $) are still valid in $ d $-dimensions, as the only dependence on dimension comes from contractions such as $ \tensor{\eta}{^\mu_\mu} = d $.
+
+  A fatal inconsistency of CDR arises when considering $ \gamma^5 $. In $ \dira $, this matrix is defined as $ \gamma^5 \defeq \frac{i}{4!} \epsilon_{\mu \nu \rho \sigma} \gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 $ and has the property $ \{\gamma^5 , \gamma^\mu\} = 0 \,\, \forall \mu = 0,1,2,3 $, which allows to prove the following identity:
+  \begin{equation}
+    \tr\{\gamma^5 \gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma\} = -4 i \epsilon^{\mu \nu \rho \sigma}
+    \label{eq:top-form-gamma-5}
+  \end{equation}
+  This construction cannot be generalized consistently to $ d \notin \N $. To show this, assume a $ d $-dimensional generalization $ \gamma^5 \in \C^{4 \times 4} : \{\gamma^5 , \gamma^\mu\} = 0 \,\,\forall \mu = 0, \dots, d-1 $, so that $ \gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n} = \left( -1 \right)^n \gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5 $. By the cyclicity of the trace, then:
+  \begin{equation}
+    \left( 1 - \left( -1 \right)^n \right) \tr\{\gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n}\} = 0
+  \end{equation}
+  Consider $ n = d $: clearly $ 1 - \left( -1 \right)^d = 1 - e^{i \pi d} \neq 0 $ for $ d \notin \N $, so $ \tr\{\gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_d}\} = 0 $. This is an open contradiction to \eref{eq:top-form-gamma-5}, as analytic continuation should continuously preserve the top product of the algebra as $ \epsilon \ra 0 $.
+
+  This contradiction is the explicit manifestation of a more profound topological issue of analytically continuing the number of dimensions: the Levi-Civita symbol in $ d = 4 $ is linked\footnotemark to the Grassmann algebra $ \bigwedge(\R^{1,3}) $, and in particular to its top-form, but $ \bigwedge^k(\R^d) $ is only defined for $ d \in \N $, so the top exterior subspace $ \bigwedge^d(\R^{1,d-1}) $ is meaningless for $ d \notin \N $ and the Levi-Civita symbol cannot be analytically continued to $ d = 4 - 2 \epsilon $ dimensions.
+\end{observation}
+
+\footnotetext{Given an $ n $-dimensional vector space $ V(\K) $, its \textit{Grassmann algebra} (or exterior algebra) is the $ \N_0 $-graded algebra $ \bigwedge(V) = \bigoplus_{k = 0}^n \bigwedge^k(V) $ of $ k $-forms. It can be shown that $ \dim_\K \bigwedge^k(V) = \binom{n}{k} $, hence the top exterior subspace $ \bigwedge^n(V) $ is $ 1 $-dimensional: indeed, given a basis $ \{e_i\}_{i = 1,\dots,n} \subset V $, it is $ \bigwedge^n(V) = \braket{e_1 \wedge \dots \wedge e_n} $, and the Levi-Civita symbol is normalized so that $ \epsilon^{1 \dots n} $ has the same sign of $ e_1 \wedge \dots \wedge e_n $. See \secref{ssec:grassman-algebra}.}
+
+In the following, the CDR scheme is adopted, since no chiral interactions are considered.
 
 \begin{proposition}{Dimensional analysis}{}
   In $ d = 4 $:
@@ -329,16 +438,16 @@ with $ \epsilon \in \C : \Re{\epsilon} < 0 $. By analytic continuation of the La
     where $ E = m $ ($ c^2 = 1 $) was used. Therefore, $ [L] = [T] = [M]^{-1} $. In this system, the action must be a dimensionless quantity:
     \begin{equation*}
       \act = \int \dd^4x \,\lag
-      \qquad \Rightarrow \qquad
+      \quad \implies \quad
       1 = [L]^4 [\lag] = [M]^{-4} [\lag]
-      \qquad \Rightarrow \qquad
+      \quad \implies \quad
       [\lag] = [M]^4
     \end{equation*}
     As $ [\pa_\mu] = [L]^{-1} = [M] $, then, it is clear that $ [\phi] = [M] $ and, being $ \lag_\text{int} = - \frac{\lambda}{4!} \phi^4 $, $ [\lambda] = 1 $.
   \end{proof}
 \end{proofbox}
 
-\begin{proposition}{Dimensionality in 't Hooft--Veltman scheme}{}
+\begin{proposition}{Dimensionality in CDR}{}
   In $ d = 4 - 2\epsilon $:
   \begin{equation}
     [\phi] = [M]^{1 - \epsilon}
@@ -648,6 +757,20 @@ Although at first glance non-renormalizability may seem problematic, in reality 
 \end{equation*}
 where $ c_1, \dots, c_{n-1} $ are finite constant already fixed by physical conditions.
 As $ c_n $ should be fixed too by a new physical condition, the theory would not be predictive even at order $ n $: however, at low energy $ E \ll M $, this lack of predictivity due to $ c_n $ is negligible, as the quantity $ (E/M)^{nk} $ can be assumed to be below the sensitivity of the experimental apparatus taken into consideration. Therefore, it is clear that non-renormalizable theories are acceptable low-energy theories: they gain predictive power by limiting the set of counterterms to be fixed to those necessary at the desired energy scale, as the ignorance about higher-order divergences is beyond the required accuracy. At $ E \sim M $ the above series expansion diverges, signaling a lack of meaning of the theory: non-renormalizable theories have a built-in scale which provides their limit of validity, while renormalizable theories are in principle valid at all energy scales.
+
+\begin{example}{Fermi theory}{}
+  Consider the Fermi theory for $ \beta^- $ decay, which describes the decay $ n^0 \ra p^+ + e^- + \bar{\nu}_e $ as a 4-point vertex with interaction Lagrangian:
+  \begin{equation}
+    \lag_\text{F,int} = - G_\text{F} \bar{\Psi}_n \Psi_p \bar{\Psi}_\nu \Psi_e
+  \end{equation}
+  Since $ [\Psi] = \frac{d - 1}{2} $, then $ [G_\text{F}] = 2 - d $, which makes the Fermi theory clearly non-renormalizable in $ d = 4 $. This, however, hints to the fact that this theory is only a low-energy approximation (i.e. an ``effective" field theory) of the theory of the weak interaction, whose gauge bosons ($ W^\pm $ and $ Z^0 $) are massive and therefore short-lived, making the interaction a short-range one (and indeed approximated by a 4-point vertex).
+
+  Since the $ \beta^- $ decay is mediated by a $ W^- $ boson, the mass scale of the coupling is expected to be $ M_W $, which is exactly the case:
+  \begin{equation*}
+    G_\text{F} = \frac{\sqrt{2}}{8} \frac{g^2}{M_W^2} = 1.1663787(6) \cdot 10^{-5} \gev^{-2}
+  \end{equation*}
+  where $ g $ is the coupling constant of the weak interaction.
+\end{example}
 
 \subsubsection{\texorpdfstring{$ \lambda \phi^4 $}{λφ4}-theory}
 
@@ -967,8 +1090,9 @@ To make the definition of the counterterms effective, the physical conditions wh
   \qquad \text{at} \qquad
   s = 4m^2 \,\,,\,\, t = u = 0
 \end{equation*}
-These physical conditions fix the pole and the residue of the $ 2 $-point Green function and the zero-momentum $ 2 \rightarrow 2 $ scattering amplitude: once loop integrals have been regularized, the $ \delta_Z $, $ \delta_m $ and $ \delta_\lambda $ are adjusted (renormalized) to satisfy the renormalization conditions and, after this adjustment, the amplitudes should be finite and independent of the regulator. This marks the successful renormalization of the theory\footnote{Note that in the $ \msb $ scheme the physical conditions are replaced by subtraction of poles: this means that the $ \msb $ mass $ m_{\msb} $ is not the pole of the $ 2 $-point Green function, hence it is not physically observable.}. \\
-At $ \smo(\lambda) $ order only $ \delta_\lambda $ is non-trivial, as $ \delta_Z $ and $ \delta_m $ come into play only at $ \smo(\lambda)^2 $ with diagrams:
+These physical conditions fix the pole and the residue of the $ 2 $-point Green function and the zero-momentum $ 2 \rightarrow 2 $ scattering amplitude: once loop integrals have been regularized, the $ \delta_Z $, $ \delta_m $ and $ \delta_\lambda $ are adjusted (renormalized) to satisfy the renormalization conditions and, after this adjustment, the amplitudes should be finite and independent of the regulator. This marks the successful renormalization of the theory\footnote{Note that in the $ \msb $ scheme the physical conditions are replaced by subtraction of poles: this means that the $ \msb $ mass $ m_{\msb} $ is not the pole of the $ 2 $-point Green function, hence it is not physically observable.}.
+
+At $ \smo(\lambda) $ order only $ \delta_\lambda $ is non-trivial, as $ \delta_Z $ and $ \delta_m $ come into play only at $ \smo(\lambda^2) $ with diagrams:
 \begin{equation*}
   \begin{tikzpicture}[baseline = (r.base)]
     \begin{feynman}[inline = (r.base)]
@@ -1513,7 +1637,7 @@ which is correctly independent of the unobservable bare electric charge. This re
     \begin{equation*}
       \pi\od1(q^2) \equiv \frac{\Pi(q^2)}{q^2} = 8e_0^2 \int_0^1 \dd x \, x (1 - x) \frac{\Gamma(2 - \frac{d}{2})}{(4\pi)^{d/2}} \Delta^{d - 4}
     \end{equation*}
-    Inserting \eref{eq:dim-reg} yields the thesis.
+    Inserting $ d = 4 - 2 \epsilon $ yields the thesis.
   \end{proof}
 \end{proofbox}
 
