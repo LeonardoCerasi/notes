@@ -1736,6 +1736,7 @@ Now, consider the corrections to the photon propagator, i.e. the geometric serie
   The exact photon propagator can be written as:
   \begin{equation}
     \gprp_{\mu \nu}(k) = - \frac{\img \eta_{\mu \nu}}{k^2} \frac{1}{1 - \Pi(k)} + \frac{\img}{k^2} \frac{k_\mu k_\nu}{k^2} \frac{\Pi(k)}{1 - \Pi(k)}
+    \label{eq:exact-photon-prop}
   \end{equation}
   where the corrections are given by the \bclemma{vacuum polarization}:
   \begin{equation}
@@ -1792,7 +1793,7 @@ Note that, as long as \eref{eq:vac-pol-ward} is valid (which is just the Ward id
 \begin{proposition}{Vacuum polarization}{}
   At 1-loop order in dimensional regularization, the \bcprop{vacuum polarization} is:
   \begin{equation}
-    \Pi\od1(q^2) = \frac{2\alpha}{\pi} (4\pi)^\epsilon \Gamma(\epsilon) \int_0^1 \dd x \, x (1 - x) \Delta^{-\epsilon}
+    \Pi\od1(q^2) = - \frac{2\alpha}{\pi} (4\pi)^\epsilon \Gamma(\epsilon) \int_0^1 \dd x \, x (1 - x) \Delta^{-\epsilon}
     \label{eq:vacuum-polarization}
   \end{equation}
   with $ \Delta \equiv m^2 - x(1 - x) q^2 $.
@@ -1995,7 +1996,7 @@ This completes the computation of diverging diagrams in QED: the electron-photon
 \subsection{Renormalization conditions}
 
 At this point, the UV divergences of QED have been regularized, i.e. expressed in terms of a regulator (as poles in $ \epsilon $, in this case). There remains to fix renormalization conditions in order to absorb these divergences into unobservable bare parameters.
-To do so, define the renormalized (i.e. physical) field strengths, mass and charge as:
+To do so, define the renormalized (i.e. physical) field-strengths, mass and charge as:
 \begin{equation}
   \Psi = \sqrt{Z_2} \Psi_\text{r}
   \qquad \qquad
@@ -2345,7 +2346,13 @@ Comparing \eref{eq:qed-z2} and \eref{eq:qed-z1}, it may seem a coincidence that 
   \end{equation}
 \end{lemma}
 
-Note that the Ward--Takahashi identity is a direct consequence of the conservation of the Noether current $ j^\mu = \bar{\Psi} \gamma^\mu \Psi $, i.e. $ \pa_\mu j^\mu = 0 $.
+\begin{proofbox}
+  \begin{proof}
+    See §7.5 of \cite{peskin}.
+  \end{proof}
+\end{proofbox}
+
+Note that the Ward--Takahashi identity is a direct consequence of the conservation of the Noether current $ j^\mu = \bar{\Psi} \gamma^\mu \Psi $ associated to the gauge symmetry of QED, i.e. $ \pa_\mu j^\mu = 0 $.
 
 \begin{proposition}{}{}
   At all loop orders:
@@ -2384,6 +2391,169 @@ Note that the Ward--Takahashi identity is a direct consequence of the conservati
 From this equivalence, it follows that the charge truly is renormalized as $ e = Z_3^{-1/2} e_\text{r} $. This has an important consequence when considering QED with multiple fermionic species (e.g. muons): the renormalized electric charge has the same universal value for all the species, since it only depends on the renormalization coefficient for the photon field.
 
 \subsection{Renormalization group}
+
+Consider the Coulomb scattering $ e^- e^- \ra e^- e^- $, which at tree-level has the matrix element (in the $ t $-channel):
+\begin{equation*}
+  \begin{tikzpicture}[baseline=(r.base)]
+    \begin{feynman}[inline=(r.base)]
+      \vertex (a1) {};
+
+      \vertex[right=3.5cm of a1] (a2) {};
+
+      \vertex[below=1.2cm of a1] (b1) {};
+
+      \vertex[below=1.2cm of a2] (b2) {};
+
+      \vertex[below=0.6cm of a1] (c1) {};
+
+      \vertex[right=1cm of c1, dot] (c2) {};
+
+      \vertex[right=1.5cm of c2, dot] (c3) {};
+
+      \vertex[below=0.1em of c1] (r);
+
+      \diagram* {
+        (a1) -- [fermion] (c2),
+        (c2) -- [fermion] (b1),
+
+        (a2) -- [fermion] (c3),
+        (c3) -- [fermion] (b2),
+
+        (c2) -- [photon, momentum = \(q\)] (c3),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  \ \equiv
+  \img \mat_0 (q^2) \sim \frac{e^2}{q^2}
+\end{equation*}
+where $ e $ is the bare coupling constant. Accounting for loop corrections to the photon propagator, i.e. inserting \eref{eq:exact-photon-prop}, results into the observed matrix element:
+\begin{equation*}
+  \img \mat(q^2) \sim \frac{e^2}{q^2} \frac{1}{1 - \Pi(q^2)}
+\end{equation*}
+This allows to define an observed electron charge $ e_\text{obs}^2(q^2) $, which depends on the energy scale $ q^2 $ at which the experiment is performed:
+\begin{equation}
+  e_\text{obs}^2(q^2) \defeq \frac{e^2}{1 - \Pi(q^2)}
+  \label{eq:obs-charge-def}
+\end{equation}
+Recalling that $ e_\text{r}^2 = Z_3 e^2 = e^2 / (1 - \Pi(0)) $, it is clear that the renormalized charge is defined as $ e_\text{r} \equiv e_\text{obs}(0) $, i.e. as the electron charge observed at great distance, as already noted when imposing the renormalization condition for the electron-photon vertex.
+
+Moreover, note that $ \Pi(k^2) \propto e^2 $, hence, defining $ \pi(k^2) \equiv \Pi(k^2) / e^2 $, it is possible to invert this relation to find the bare electric charge in terms of the observed one:
+\begin{equation}
+  e^2 = \frac{e_\text{obs}^2(q^2)}{1 - e_\text{obs}^2(q^2) \pi(q^2)}
+\end{equation}
+Now, consider two measurements of $ e_\text{obs} $ at two different scales $ q^2 $ and $ \mu^2 $. From \eref{eq:obs-charge-def}:
+\begin{equation*}
+  \frac{1}{e_\text{obs}^2(q^2)} - \frac{1}{e_\text{obs}^2(\mu^2)} = \pi(\mu^2) - \pi(q^2)
+\end{equation*}
+Since the divergent part of the vacuum polarization is independent of the energy scale (\eref{eq:vacuum-polarization-div}), this expression is correctly finite, as it is to expect from physically observable quantities.
+
+\begin{lemma}{}{}
+  In the relativistic regime\footnotemark $ - q^2 , - \mu^2 \gg m^2 $:
+  \begin{equation*}
+    \pi\od1(\mu^2) - \pi\od1(q^2) \simeq \frac{1}{12\pi^2} \log \frac{q^2}{\mu^2}
+  \end{equation*}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eref{eq:vacuum-polarization}:
+    \begin{equation*}
+      \begin{split}
+        \pi\od1(\mu^2) - \pi\od1(q^2)
+        & = - \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \left[ - \log \Delta(\mu^2) + \log \Delta(q^2) + \smo(\epsilon) \right] \\
+        & = \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \log \frac{1 - x (1 - x) \frac{q^2}{m^2}}{1 - x (1 - x) \frac{\mu^2}{m^2}} \simeq \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \log \frac{q^2}{\mu^2}
+      \end{split}
+    \end{equation*}
+    Performing the integration yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{The two channels that contribute to the Coulomb scattering are the $ t $-channel and the $ u $-channel. In the CM frame, since $ p_1 = (E_\ve{p} , \ve{p}) $ , $ p_2 = (E_\ve{p} , - \ve{p}) $ , $ k_1 = (E_\ve{p} , \ve{p}') $ and $ k_2 = (E_\ve{p} , - \ve{p}') $, with $ \norm{\ve{p}'} = \norm{\ve{p}} $, defining the scattering angle $ \theta : \cos \theta = \hat{\ve{p}}' \cdot \hat{\ve{p}} $, the Mandelstam variables are:
+\begin{equation*}
+  t = - 2 \ve{p}^2 (1 - \cos \theta) \leq 0
+  \qquad \qquad
+  u = - 2 \ve{p}^2 (1 + \cos \theta) \leq 0
+\end{equation*}
+where $ t = 0 $ only for forward scattering ($ \theta = 0 $) and $ u = 0 $ only for backward scattering ($ \theta = \pi $). In the relativistic regime $ \ve{p}^2 \gg m^2 $, hence $ -t , -u \gg m^2 $.}
+
+With this relation, it is possible to relate directly the measurements of the electric charge at different energy scales:
+\begin{equation}
+  \alpha_\text{obs}(q^2) = \frac{\alpha_\text{obs}(\mu^2)}{1 - \frac{\alpha_\text{obs}(\mu^2)}{3\pi} \log \frac{q^2}{\mu^2}}
+\end{equation}
+This dependence of the physical coupling on the energy scale is known as the \bctxt{running of the coupling}, and it is effectively a prediction of the renormalization of thetheory (which has been verified experimentally).
+
+The above equation completely determines the dependence of the coupling on the energy scale (at 1-loop order). Switching the notation to $ q \mapsto \mu $ and $ \mu \mapsto \mu_0 $ and differentiating with respect to $ \log \mu^2 $:
+\begin{equation*}
+  \frac{\dd}{\dd \log \mu^2} \alpha_\text{obs}^{-1}(\mu^2) = - \frac{4}{3} \frac{1}{4\pi}
+  \quad \implies \quad
+  \frac{\dd \alpha_\text{obs}}{\dd \log \mu^2} = \frac{4}{3} \frac{\alpha_\text{obs}^2}{4\pi}
+\end{equation*}
+Generalizing to higher loop orders, the \bctxt{renormalization group} equation is found:
+\begin{equation}
+  \frac{\dd \alpha_\text{obs}(\mu^2)}{\dd \log \mu^2} = - \beta(\alpha_\text{obs}(\mu^2))
+\end{equation}
+where the \bctxt{Callan--Symanzik $ \beta $-function} is defined as:
+\begin{equation}
+  \beta(\alpha) \equiv \alpha \sum_{n \in N_0} \beta_n \left( \frac{\alpha}{4\pi} \right)^{n + 1}
+\end{equation}
+Clearly, for QED $ \beta_0 = - \frac{4}{3} $, which means that the coupling gets stronger as the energy increases. On the contrary, for theories with $ \beta_0 > 0 $ (like QCD), the coupling is weaker in the UV and stronger in the IR, a phenomenon known as \emph{asymptotic freedom}.
+
+Furthermore, viewing masses as additional couplings, it is possible to define a massive $ \beta $-function, so that the scale-dependence of the observed mass can be written as:
+\begin{equation}
+  \frac{\dd m_\text{obs}(\mu^2)}{\dd \log \mu^2} = - \beta_m(\alpha_\text{obs}(\mu^2) , m_\text{obs}(\mu^2))
+\end{equation}
+Now, it is possible to study the renormalization of $ n $-point Green functions. In particular, consider a connected 1PI Green function with $ k $ photon lines and $ n $ electron lines:
+\begin{equation*}
+  \tilde{G}^{(k,n)}(\{p_i\} , \alpha , m , \Lambda) = \braket{0 | \tempord\{A(p_1) \dots A(p_k) , \Psi{p_{k + 1}} \dots \Psi_{p_{k + n}} \} | 0}
+\end{equation*}
+where Lorentz indices and Dirac adjoints have been suppressed for brevity. Then, renormalizing the field-strengths:
+\begin{equation*}
+  \tilde{G}^{(k,n)}(\{p_i\} , \alpha , m , \Lambda) = Z_3^{k/2} Z_2^{n/2} \tilde{G}_\text{r}^{(k,n)}(\{p_i\} , \alpha_\text{r} , m_\text{r} , \mu)
+\end{equation*}
+where the regulator $ \Lambda $ is substituted by the renormalization scale $ \mu $. Note that $ \tilde{G}_\text{r} $, $ \alpha_\text{r} $ and $ m_\text{r} $ are finite, while $ \tilde{G} $, $ \alpha $, $ m $, $ Z_2 $ and $ Z_3 $ are divergent with respect to the regulator (i.e. for $ \Lambda \ra \infty $ with a UV cut-off or $ \epsilon \ra 0 $ in dimensional regularization): in particular, $ \tilde{G} $, $ \alpha $ and $ m $ only depend on the regulator $ \Lambda $ and not on the renormalization point $ \mu $, hence taking the derivative with respect to $ \log \mu^2 $ yields:
+\begin{equation*}
+  0 = \frac{k}{2} Z_3^{k/2} \frac{1}{Z_3} \frac{\pa Z_3}{\pa \log \mu^2} Z_2^{n/2} \tilde{G}_\text{r}^{(k,n)} + Z_3^{k/2} \frac{n}{2} \frac{1}{Z_2} \frac{\pa Z_2}{\pa \log \mu^2} \tilde{G}_\text{r}^{(k,n)} + Z_3^{k/2} Z_2^{n/2} \frac{\dd \tilde{G}_\text{r}^{(k,n)}}{\dd \log \mu}
+\end{equation*}
+Rewriting the first two terms and expanding the total derivative, this equation becomes:
+\begin{equation}
+  \left[ \frac{\pa}{\pa \log \mu^2} - \beta(\alpha_\text{r}) \frac{\pa}{\pa \alpha_\text{r}} - \beta_m(\alpha_\text{r} , m_\text{r}) \frac{\pa}{\pa m_\text{r}} + k \gamma_\gamma(\alpha_\text{r}) + k \gamma_e(\alpha_\text{r} , m_\text{r}) \right] \tilde{G}_\text{r}^{(k,n)}(\{p_i\} , \alpha_\text{r} , m_\text{r} , \mu)
+\end{equation}
+which is known as the \bctxt{Callan--Symanzik equation}. The two factors $ \gamma_\gamma $ and $ \gamma_e $ are know respectively as the photon and the electron \emph{anomalous dimensions}; in general, the anomalous dimension of a field $ \phi_i $ is defined as:
+\begin{equation}
+  \gamma_i(\{\lambda_j\}) \defeq \frac{\pa \log \sqrt{Z_i}}{\pa \log \mu^2}
+\end{equation}
+where $ Z_i $ is the renormalization coefficient of the field strength $ \phi_i = Z_i \phi^\text{r}_i $. Note that the anomalous dimension is independent of the regulator, contrary to $ Z_i $, but only on the various couplings of the theory which affect $ \phi_i $.
+
+\begin{example}{Evolution of a massless renormalizable theory}{}
+  Consider a quantum field theory with a single massless quantum field $ \phi $ and a single interaction vertex with dimensionless coupling $ \alpha $, and suppose to conduct two experiments to evaluate the $ n $-point Green function at two different energy scales, i.e. with momenta $ \{p_i\}_{i = 1 , \dots , n} $ and $ \{e^s p_i\}_{i = 1 , \dots , n} $, with $ s \in \R $ a rescaling parameter. Then, defining the dimension $ [\tilde{G}_\text{r}^{(n)}(\{p_i\} , \alpha_\text{r} , \mu)] \equiv d_n $, the $ n $-point Green function classically rescales as:
+  \begin{equation*}
+    \tilde{G}_\text{r}^{(n)}(\{e^s p_i\} , \alpha_\text{r} , \mu) = e^{d_n s} \tilde{G}_\text{r}^{(n)}(\{p_i\} , \alpha_\text{r} , e^{-s} \mu)
+  \end{equation*}
+  There remains to evaluate the scaling of the Green function due to the renormalization point. To do so, consider the Callan--Symanzik equation for this massless theory:
+  \begin{equation*}
+    \left[ \frac{\pa}{\pa \log \mu^2} - \beta(\alpha_\text{r}) \frac{\pa}{\pa \alpha_\text{r}} + n \gamma(\alpha_\text{r}) \right] \tilde{G}_\text{r}^{(n)}(\{p_i\} , \alpha_\text{r} , \mu) = 0
+  \end{equation*}
+  Now, parametrize\footnote{This is the \emph{method of characteristics} to solve quasi-linear first-order PDEs.} this equation in the $ (\mu , \alpha_\text{r}) $-plane so that:
+  \begin{equation*}
+    \frac{\dd \log \mu^2(s)}{\dd s} = 1
+    \qquad \qquad
+    \frac{\dd \alpha_\text{r}(s)}{\dd s} = - \beta(\alpha_\text{r}(s))
+  \end{equation*}
+  with initial conditions $ \mu(0) = \bar{\mu} , \alpha_\text{r}(0) = \bar{\alpha}_\text{r} $. The Callan--Symanzik equation then becomes:
+  \begin{equation*}
+    \frac{\dd}{\dd s} \tilde{G}_\text{r}^{(n)}(s) = - n \gamma(\alpha_\text{r}(s)) \tilde{G}_\text{r}^{(n)}(s)
+  \end{equation*}
+  with $ \tilde{G}_\text{r}^{(n)}(s) \equiv \tilde{G}_\text{r}^{(n)}(\{p_i\} , \alpha_\text{r}(s) , \mu(s)) $. This ODE is trivially solved as:
+  \begin{equation*}
+    \tilde{G}_\text{r}^{(n)}(s) = \tilde{G}_\text{r}^{(n)}(0) \exp \left[ -n \int_0^s \dd t \, \gamma(\alpha_\text{r}(t)) \right]
+  \end{equation*}
+  Since the characteristic equation for $ \mu(s) $ has solution $ \mu(s) = e^{s/2} \bar{\mu} $, the total scaling of the $ n $-point Green function is:
+  \begin{equation}
+    \tilde{G}_\text{r}^{(n)}(\{e^s p_i\} , \alpha_\text{r} , \mu) = \tilde{G}_\text{r}^{(n)}(\{p_i\} , \alpha_\text{r} , \mu) \exp \left[ d_n s - n \int_0^{-2s} \dd t \, \gamma(\alpha_\text{r}(t)) \right]
+  \end{equation}
+  This clarifies the nomenclature ``anomalous dimension".
+\end{example}
+
 
 
 
