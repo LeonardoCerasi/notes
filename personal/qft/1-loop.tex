@@ -29,7 +29,7 @@ Consider $ \lambda \phi^4 $-theory and compute the scattering cross-section for 
     \end{feynman}
   \end{tikzpicture}
   \quad \implies \quad
-  \dd \sigma^\text{LO} = \frac{1}{\Phi} \frac{\dd^3p_3}{(2\pi)^3 2E_{p_3}} \frac{\dd^3p_4}{(2\pi)^4 2E_{p_4}} (2\pi)^4 \delta^{(4)}(p_1 + p_2 - p_3 - p_4) \lambda^2
+  \dd \sigma^\text{LO} = \frac{1}{\Phi} \frac{\dd^3p_3}{(2\pi)^3 2E_{p_3}} \frac{\dd^3p_4}{(2\pi)^3 2E_{p_4}} (2\pi)^4 \delta^{(4)}(p_1 + p_2 - p_3 - p_4) \lambda^2
 \end{equation*}
 In the CM frame:
 \begin{equation*}
@@ -223,7 +223,7 @@ having defined:
 
 \begin{proofbox}
   \begin{proof}
-    The poles of the integrand function are $ k_0 = \pm \left[ \sqrt{M^2 + \ve{k}^2} - \img\epsilon \right] $, therefore the integration path $ I = \R $ can be rotated counterclockwise by $ \frac{\pi}{2} $ without overlapping with any pole. The resulting Wick rotation $ k_0 \mapsto \img k_0 $, i.e. $ k \mapsto k_\text{E} $ (see \obsref{obs:wick-rotations}), therefore the $ d $-dimensional integral in Minkowskian metric becomes a $ d $-dimensional integral with (negative) Euclidean metric:
+    The poles of the integrand function are $ k_0 = \pm \left[ \sqrt{M^2 + \ve{k}^2} - \img\epsilon \right] $, therefore the integration path $ I = \R $ can be rotated counterclockwise by $ \frac{\pi}{2} $ without overlapping with any pole. The resulting Wick rotation $ k_0 \mapsto \img k_0 $, i.e. $ k \mapsto k_\text{E} $ (see \obsref{obs:wick-rotations}), transforms the $ d $-dimensional integral with Minkowskian metric into a $ d $-dimensional integral with (negative) Euclidean metric:
     \begin{equation*}
       I_d(n) = \img (-1)^n \int \frac{\dd^dk_\text{E}}{(2\pi)^d} \frac{1}{(k_\text{E}^2 + M^2 - \img\epsilon)^n} = \img (-1)^n \int_{\mathbb{S}^{d-1}} \frac{\dd \Omega_{d-1}}{(2\pi)^d} \int_{\R^+} \dd k_\text{E} \frac{k_\text{E}^{d-1}}{(k_\text{E}^2 + M^2)^n}
     \end{equation*}
@@ -243,7 +243,7 @@ having defined:
   \end{equation*}
   However, these kinds of integrals cannot be treated with the standard techniques of Analysis, since the measure $ \dd^d k $ is defined on the Lorentzian manifold $ \R^{1,d-1} $ with Minkowskian metric $ \eta_{\mu \nu} = (+1 , -1 , \dots , -1) $. In order to treat them in a standard way, consider first the integral $ I_0 \equiv \int_\R \dd k^0 f(k^2) $ on the temporal component: by extending $ k^0 $ to the whole complex plane $ \C $, this integral turns into the integral of a meromorphic%
   \footnote{Given an open set $ D \subset \C $, then $ f : D \rightarrow \C $ is \textit{meromorphic} if it is holomorphic on $ D - P $, where $ P \subset D $ is a set of isolated points called \textit{poles}. Recall that a function $ f : D \rightarrow \C $ is \textit{holomorphic} on $ D $ if it is complex differentiable at every point in $ D $.}
-  function $ f : \C \ra \C $ over the path $ \ell_\infty \equiv \R $ (identifying the curve with its support). In particular, consider the case of massive particles only, so that the poles of $ f(k^2) $ have non-vanishing real parts: in particular, due to the general form $ k^2 - m^2 + \img \epsilon $ of the denominators of propagators, the poles come in couples of the form $ k^0_\pm = \pm \sqrt{m^2 + \ve{k}^2} \mp \img \epsilon $. For example, the case of a single propagator is drawn as:
+  function $ f : \C \ra \C $ over the path $ \ell_\infty \equiv \R $ (identifying the curve with its support). In particular, consider the case of massive particles only, so that the poles of $ f(k^2) $ have non-vanishing real parts: due to the general form $ k^2 - m^2 + \img \epsilon $ of the denominators of propagators, the poles come in couples of the form $ k^0_\pm = \pm \sqrt{m^2 + \ve{k}^2} \mp \img \epsilon $. For example, the case of a single propagator is drawn as:
   \begin{equation*}
     \begin{tikzpicture}
       \def\bigradius{3}
@@ -310,7 +310,7 @@ having defined:
     \quad \implies \quad
     \int \dd^d k \, f(k^2) = \img \int \dd^d k_\text{E} f(-k_\text{E}^2)
   \end{equation*}
-  where the Euclidean momentum is now defined on the Euclidean manifold $ \R^d $ with Euclidean metric $ \delta_{\mu \nu} = (+1 , +1 , \dots , +1) $. The Wick rotation thus turns a Minkowskian integral into a Euclidean integral, which can therefor be treated with the standard techniques of Analysis.
+  where the Euclidean momentum is now defined on the Euclidean manifold $ \R^d $ with Euclidean metric $ \delta_{\mu \nu} = (+1 , +1 , \dots , +1) $. The Wick rotation thus turns a Minkowskian integral into a Euclidean integral, which can be treated with the standard techniques of Analysis.
 \end{observation}
 
 \eref{eq:int-dn} diverges for $ (d,n) = (4,2) $, as $ \Gamma(z) = \frac{1}{z} - \gamma_\text{E} + o(z) $, therefore a cutoff needs to be introduced to regularize the integral:
@@ -378,7 +378,7 @@ Thus, choosing $ \mu^2 \propto \Lambda^2 $, it is possible to express $ \lambda_
 
 The process of renormalization, which allows to obtain finite results from diverging amplitudes, can be implemented in various ways. That of introducing a UV cut-off $ \Lambda $, expressing the bare observables in terms of the physical observables at some scale $ \mu $ and then setting $ \Lambda \rightarrow \infty $ is rather inefficient at higher orders in perturbation theory: thus, a more efficient regularization scheme must be adopted. The main regulators which are typically used are:
 \begin{itemize}
-  \item cut-off regulator: a parameter $ \Lambda \in \R^+ $ is introduced to cut off the UV regime, i.e. imposing $ k_\text{E}^2 \leq \Lambda^2 $, so that the domain of UV divergences is removed entirely from the itegration. However, this regulator effectively cuts off the infinite number of multi-particle states that can be produced at high energies (see \figref{fig:mass-2}), thus violating unitarity (and gauge symmetry, too);
+  \item cut-off regulator: a parameter $ \Lambda \in \R^+ $ is introduced to cut off the UV regime, i.e. imposing $ k_\text{E}^2 \leq \Lambda^2 $, so that the domain of UV divergences is removed entirely from the integration. However, this regulator effectively cuts off the infinite number of multi-particle states that can be produced at high energies (see \figref{fig:mass-2}), thus violating unitarity (and gauge symmetry, too);
   \item lattice regularization: to avoid the high-momentum regime, a discretization parameter $ a \in \R^+ $ is introduced, so that the position space is discretized as $ x^\mu = n^\mu a $, with $ n^\mu \in \Z^d $, thus reducing the momentum space to the first Brillouin zone $ \abs{k^\mu} \leq \frac{2\pi}{a} \,\, \forall \mu = 0, 1, \dots, d-1 $. Clearly, this regularization scheme is analogous to the UV cut-off, therefore it carries the same problems of violation of unitarity and gauge symmetry, with the addition of violation of Lorentz symmetry too (it is not possible to define trigonometric and hyperbolic rotations in a discretized space);
   \item convergent propagators: UV divergences can be cured by making propagators more convergent with additional higher-order terms in the denominator. For example, adding a term like $ + \frac{1}{\Lambda^2} \phi \dal \phi $ to the Lagrangian for a scalar field, the Feynman propagator becomes $ \img \fprp^{-1}(p) = p^2 + \frac{1}{\Lambda^2} p^4 - m^2 $, which is more convergent than the usual propagator. This higher-order terms, however, may break the symmetries of the original Lagrangians;
   \item Pauli-Villars regulator: the UV behavior of loop integrals is modulated by the introduction of auxiliary particles, which are then eliminated by taking their masses to infinity. This regulator preserver gauge invariance in abelian gauge theories, but it is not gauge covariant in non-abelian gauge theories;
@@ -386,7 +386,7 @@ The process of renormalization, which allows to obtain finite results from diver
 \end{itemize}
 
 \begin{observation}{Dimensional regularization}{}
-  In general, the dimensional regularization scheme consists in the analytic continuation of loop momenta to $ d = 4 - 2 \epsilon $, with $ \epsilon \in \C : \Re \epsilon < 0 $. This procedure turnss loop integrals into meromorphic\footnotemark functions of $ \epsilon \in \C $, allowing for the isolation of divergences as poles in $ \epsilon $.
+  In general, the dimensional regularization scheme consists in the analytic continuation of loop momenta to $ d = 4 - 2 \epsilon $, with $ \epsilon \in \C : \Re \epsilon < 0 $. This procedure turns loop integrals into meromorphic functions of $ \epsilon \in \C $, allowing for the isolation of divergences as poles in $ \epsilon $.
 
   The dimensional regularization prescription leaves freedom in choosing the dimensionality of external momenta, as well as the number of polarizations of both external and internal particles, thus allowing for the definition of different regularization schemes: the \bcobs{conventional dimensional regularization} (CDR), in which all momenta and polarization are analytically continued to $ d $ dimensions, and the \bcobs{'t Hooft--Veltman scheme} (HV), in which only internal momenta and polarizations are.
 
@@ -592,7 +592,7 @@ It is then clear that renormalizing the coupling constant is equivalent to addin
   \quad = \quad -i \delta_\lambda
   \label{eq:counterterm}
 \end{equation}
-This process is general: divergences are cured order by order in perturbation theory by adding each time new counterterms to the Lagrangian: hence the name of renormalized perturbation theory\footnote{The name may be confusing, as the counterterms still contain divergences.}. At each order, each new counterterms are fixed by an appropriate physical condition.
+This process is general: divergences are cured order by order in perturbation theory by adding each time new counterterms to the Lagrangian: hence the name of renormalized perturbation theory\footnote{The name may be confusing, as the counterterms still contain divergences.}. At each order, each new counterterm is fixed by an appropriate physical condition.
 
 \subsection{Renormalizability}
 
@@ -2433,27 +2433,47 @@ where $ e $ is the bare coupling constant. Accounting for loop corrections to th
 \begin{equation*}
   \img \mat(q^2) \sim \frac{e^2}{q^2} \frac{1}{1 - \Pi(q^2)}
 \end{equation*}
-This allows to define an observed electron charge $ e_\text{obs}^2(q^2) $, which depends on the energy scale $ q^2 $ at which the experiment is performed:
+This allows to define an observed ``effective" electron charge $ e_\text{eff}^2(q^2) $, which depends on the energy scale $ q^2 $ at which the experiment is performed:
 \begin{equation}
-  e_\text{obs}^2(q^2) \defeq \frac{e^2}{1 - \Pi(q^2)}
-  \label{eq:obs-charge-def}
+  e_\text{eff}^2(q^2) \defeq \frac{e^2}{1 - \Pi(q^2)}
+  \label{eq:eff-charge-def}
 \end{equation}
-Recalling that $ e_\text{r}^2 = Z_3 e^2 = e^2 / (1 - \Pi(0)) $, it is clear that the renormalized charge is defined as $ e_\text{r} \equiv e_\text{obs}(0) $, i.e. as the electron charge observed at great distance, as already noted when imposing the renormalization condition for the electron-photon vertex.
+Recalling that $ e_\text{r}^2 = Z_3 e^2 = e^2 / (1 - \Pi(0)) $, it is clear that the renormalized charge is defined as $ e_\text{r} \equiv e_\text{eff}(0) $, i.e. as the electron charge observed at great distance, as already noted when imposing the renormalization condition for the electron-photon vertex: this is the effect of vacuum polarization, where the physical charge of the electron $ e_\text{r} = 1.602176634 \cdot 10^{-19} \,\text{C} $ is affected by a progressively stronger screening effect when probed at smaller distances, i.e. at larger momenta. Indeed, at 1-loop order:
+\begin{equation*}
+  \alpha_\text{eff}\od1(q^2) = \alpha_\text{r} \frac{1 - \Pi\od1(0)}{1 - \Pi\od1(q^2)} = \frac{\alpha_\text{r}}{1 - \Pi\od1(q^2) + \Pi\od2(0)}
+\end{equation*}
+with $ \alpha_\text{r} = e_\text{r}^2 / 4\pi \simeq 1/137.036 $ and:
+\begin{equation*}
+  \Pi\od1(q^2) - \Pi\od1(0) = \frac{2\alpha\od1}{\pi} \int_0^1 \dd x \, x (1 - x) \log \left[ 1 - x (1 - x) \frac{q^2}{m^2} \right]
+\end{equation*}
+In the relativistic limit\footnotemark $ -q^2 \gg m^2 $ this expression becomes, using $ \alpha\od1 = \alpha_\text{r} $:
+\begin{equation*}
+  \Pi\od1(q^2) - \Pi\od1(0) = \frac{\alpha}{3\pi} \left[ \log \frac{- q^2}{m^2} - \frac{5}{3} + \smo \left( \frac{m^2}{q^2} \right) \right]
+\end{equation*}
+which clearly shows that $ \alpha_\text{eff}(q^2) $ becomes larger as $ \abs{q^2} $ increases, as predicted by the charge screening due to vacuum polarization.
+
+\footnotetext{The two channels that contribute to the Coulomb scattering are the $ t $-channel and the $ u $-channel. In the CM frame, since $ p_1 = (E_\ve{p} , \ve{p}) $, $ p_2 = (E_\ve{p} , - \ve{p}) $, $ k_1 = (E_\ve{p} , \ve{p}') $ and $ k_2 = (E_\ve{p} , - \ve{p}') $, with $ \norm{\ve{p}'} = \norm{\ve{p}} $, defining the scattering angle $ \theta : \cos \theta = \hat{\ve{p}}' \cdot \hat{\ve{p}} $, the Mandelstam variables are:
+\begin{equation*}
+  t = - 2 \ve{p}^2 (1 - \cos \theta) \leq 0
+  \qquad \qquad
+  u = - 2 \ve{p}^2 (1 + \cos \theta) \leq 0
+\end{equation*}
+where $ t = 0 $ only for forward scattering ($ \theta = 0 $) and $ u = 0 $ only for backward scattering ($ \theta = \pi $). In the relativistic regime $ \ve{p}^2 \gg m^2 $, hence $ -t , -u \gg m^2 $.}
 
 Moreover, note that $ \Pi(k^2) \propto e^2 $, hence, defining $ \pi(k^2) \equiv \Pi(k^2) / e^2 $, it is possible to invert this relation to find the bare electric charge in terms of the observed one:
 \begin{equation}
-  e^2 = \frac{e_\text{obs}^2(q^2)}{1 - e_\text{obs}^2(q^2) \pi(q^2)}
+  e^2 = \frac{e_\text{eff}^2(q^2)}{1 - e_\text{eff}^2(q^2) \pi(q^2)}
 \end{equation}
-Now, consider two measurements of $ e_\text{obs} $ at two different scales $ q^2 $ and $ \mu^2 $. From \eref{eq:obs-charge-def}:
+Now, consider two measurements of $ e_\text{eff} $ at two different scales $ q^2 $ and $ \mu^2 $. From \eref{eq:eff-charge-def}:
 \begin{equation*}
-  \frac{1}{e_\text{obs}^2(q^2)} - \frac{1}{e_\text{obs}^2(\mu^2)} = \pi(\mu^2) - \pi(q^2)
+  \frac{1}{e_\text{eff}^2(q^2)} - \frac{1}{e_\text{eff}^2(\mu^2)} = \pi(\mu^2) - \pi(q^2)
 \end{equation*}
-Since the divergent part of the vacuum polarization is independent of the energy scale (\eref{eq:vacuum-polarization-div}), this expression is correctly finite, as it is to expect from physically observable quantities.
+Since the divergent part of the vacuum polarization is independent of the energy scale (\eref{eq:vacuum-polarization-div}), this expression is correctly finite, as it is to be expected from physically observable quantities.
 
 \begin{lemma}{}{}
-  In the relativistic regime\footnotemark $ - q^2 , - \mu^2 \gg m^2 $:
+  In the relativistic regime $ - q^2 , - \mu^2 \gg m^2 $:
   \begin{equation*}
-    \pi\od1(\mu^2) - \pi\od1(q^2) \simeq \frac{1}{12\pi^2} \log \frac{q^2}{\mu^2}
+    \pi\od1(\mu^2) - \pi\od1(q^2) \simeq \frac{1}{12\pi^2} \log \frac{\mu^2}{q^2}
   \end{equation*}
 \end{lemma}
 
@@ -2464,36 +2484,28 @@ Since the divergent part of the vacuum polarization is independent of the energy
       \begin{split}
         \pi\od1(\mu^2) - \pi\od1(q^2)
         & = - \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \left[ - \log \Delta(\mu^2) + \log \Delta(q^2) + \smo(\epsilon) \right] \\
-        & = \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \log \frac{1 - x (1 - x) \frac{q^2}{m^2}}{1 - x (1 - x) \frac{\mu^2}{m^2}} \simeq \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \log \frac{q^2}{\mu^2}
+        & = \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \log \frac{1 - x (1 - x) \frac{\mu^2}{m^2}}{1 - x (1 - x) \frac{q^2}{m^2}} \simeq \frac{1}{2\pi^2} \int_0^1 \dd x \, x (1 - x) \log \frac{\mu^2}{q^2}
       \end{split}
     \end{equation*}
     Performing the integration yields the thesis.
   \end{proof}
 \end{proofbox}
 
-\footnotetext{The two channels that contribute to the Coulomb scattering are the $ t $-channel and the $ u $-channel. In the CM frame, since $ p_1 = (E_\ve{p} , \ve{p}) $ , $ p_2 = (E_\ve{p} , - \ve{p}) $ , $ k_1 = (E_\ve{p} , \ve{p}') $ and $ k_2 = (E_\ve{p} , - \ve{p}') $, with $ \norm{\ve{p}'} = \norm{\ve{p}} $, defining the scattering angle $ \theta : \cos \theta = \hat{\ve{p}}' \cdot \hat{\ve{p}} $, the Mandelstam variables are:
-\begin{equation*}
-  t = - 2 \ve{p}^2 (1 - \cos \theta) \leq 0
-  \qquad \qquad
-  u = - 2 \ve{p}^2 (1 + \cos \theta) \leq 0
-\end{equation*}
-where $ t = 0 $ only for forward scattering ($ \theta = 0 $) and $ u = 0 $ only for backward scattering ($ \theta = \pi $). In the relativistic regime $ \ve{p}^2 \gg m^2 $, hence $ -t , -u \gg m^2 $.}
-
 With this relation, it is possible to relate directly the measurements of the electric charge at different energy scales:
 \begin{equation}
-  \alpha_\text{obs}(q^2) = \frac{\alpha_\text{obs}(\mu^2)}{1 - \frac{\alpha_\text{obs}(\mu^2)}{3\pi} \log \frac{q^2}{\mu^2}}
+  \alpha_\text{eff}\od1(q^2) = \frac{\alpha_\text{eff}\od1(\mu^2)}{1 - \frac{\alpha_\text{eff}\od1(\mu^2)}{3\pi} \log \frac{q^2}{\mu^2}}
 \end{equation}
 This dependence of the physical coupling on the energy scale is known as the \bctxt{running of the coupling}, and it is effectively a prediction of the renormalization of thetheory (which has been verified experimentally).
 
 The above equation completely determines the dependence of the coupling on the energy scale (at 1-loop order). Switching the notation to $ q \mapsto \mu $ and $ \mu \mapsto \mu_0 $ and differentiating with respect to $ \log \mu^2 $:
 \begin{equation*}
-  \frac{\dd}{\dd \log \mu^2} \alpha_\text{obs}^{-1}(\mu^2) = - \frac{4}{3} \frac{1}{4\pi}
+  \frac{\dd}{\dd \log \mu^2} \frac{1}{\alpha_\text{eff}\od1(\mu^2)} = - \frac{1}{3\pi}
   \quad \implies \quad
-  \frac{\dd \alpha_\text{obs}}{\dd \log \mu^2} = \frac{4}{3} \frac{\alpha_\text{obs}^2}{4\pi}
+  \frac{\dd \alpha_\text{eff}\od1}{\dd \log \mu^2} = \alpha_\text{eff}\od1 \frac{4}{3} \frac{\alpha_\text{eff}\od1}{4\pi}
 \end{equation*}
 Generalizing to higher loop orders, the \bctxt{renormalization group} equation is found:
 \begin{equation}
-  \frac{\dd \alpha_\text{obs}(\mu^2)}{\dd \log \mu^2} = - \beta(\alpha_\text{obs}(\mu^2))
+  \frac{\dd \alpha_\text{eff}(\mu^2)}{\dd \log \mu^2} = - \beta(\alpha_\text{eff}(\mu^2))
 \end{equation}
 where the \bctxt{Callan--Symanzik $ \beta $-function} is defined as:
 \begin{equation}
@@ -2503,7 +2515,7 @@ Clearly, for QED $ \beta_0 = - \frac{4}{3} $, which means that the coupling gets
 
 Furthermore, viewing masses as additional couplings, it is possible to define a massive $ \beta $-function, so that the scale-dependence of the observed mass can be written as:
 \begin{equation}
-  \frac{\dd m_\text{obs}(\mu^2)}{\dd \log \mu^2} = - \beta_m(\alpha_\text{obs}(\mu^2) , m_\text{obs}(\mu^2))
+  \frac{\dd m_\text{eff}(\mu^2)}{\dd \log \mu^2} = - \beta_m(\alpha_\text{eff}(\mu^2) , m_\text{eff}(\mu^2))
 \end{equation}
 Now, it is possible to study the renormalization of $ n $-point Green functions. In particular, consider a connected 1PI Green function with $ k $ photon lines and $ n $ electron lines:
 \begin{equation*}
@@ -2556,6 +2568,8 @@ where $ Z_i $ is the renormalization coefficient of the field strength $ \phi_i 
   \end{equation}
   This clarifies the nomenclature ``anomalous dimension".
 \end{example}
+
+Intuitively, the Callan--Symanzik equation expresses the fact that physical observables cannot depend on the renormalization point $ \mu $, which is an arbitrary energy scale introduced in the calculations to eliminate the explicit dependence on the regulator. Indeed, it constraints the dependence of renormalized quantities on $ \mu $ in such a way that when the physical observables (i.e. $ S $-matrix elements) are expressed in terms of them, if the renormalization point varies, the renormalized quantities vary too but the physical observables do not.
 
 
 
