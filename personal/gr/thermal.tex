@@ -1,1 +1,286 @@
 \selectlanguage{english}
+
+At early times, the thermodynamical properties of the universe were determined by local equilibrium. However, non-equilibrium dynamics is crucial for massive particles to acquire cosmological abundances and to understand the CMB.
+
+\section{Hot Big Bang}
+
+To understand the thermal history of the universe, the key is to compare the \bctxt{rate of interactions} $ \Gamma $ with the \bctxt{rate of expansion} $ H $ (Hubble parameter). In particular, when $ \Gamma \gg H $, the timescale of particle interactions is much smaller that the expansion timescale:
+\begin{equation}
+  t_\Gamma \equiv \frac{1}{\Gamma} \ll \frac{1}{H} \equiv t_H
+  \label{eq:thermal-eq-cond}
+\end{equation}
+Therefore, local thermal equilibrium is reached before the effect of the expansion becomes relevant. As the universe cools, however, the rate of interactions typically decreases faster than the expansion rate, and as $ t_\Gamma \sim t_H $ the particles decouple from the thermal bath. Note that different species have different interaction rates and decouple at different times.
+
+Consider a generic $ 1 + 2 \lra 3 + 4 $ scattering process. In principle, each species has its own rate of interactions, e.g. $ \Gamma_1 = n_2 \sigma v_{1,2} $, where $ n_2 $ is the number density of the target species $ 2 $ and $ v_{1,2} $ is the average relative velocity between species $ 1 $ and $ 2 $, but at high energies it is expected that $ n_1 \sim n_2 \equiv n $, hence it is possible to define a single rate of interactions:
+\begin{equation}
+  \Gamma \equiv n \sigma v
+\end{equation}
+where $ n $ is the number density of particles, $ v $ is their average velocity and $ \sigma $ is the interaction cross-section. For $ T \simeq 100 \gev $, all known particles are ultra-relativistic, so $ v \sim 1 $, and their masses can be ignored, leaving the temperature $ T $ as the only dimensionful scale: by dimensional analysis $ n \sim T^3 $. Moreover, interactions are mediated by gauge bosons, which are massless above the scale of electroweak symmetry breaking, leaving a similar dependence for the cross-section of strong and electroweak processes:
+\begin{equation*}
+  \sigma \sim \Bigg|\hspace{-0.4em}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (v1) {};
+        \vertex[dot] (v2) at ($ (v1) + (1,0) $) {};
+
+        \vertex (a) at ($ (v1) + (-0.9,0.7) $) {};
+        \vertex (b) at ($ (v1) + (-0.9,-0.7) $) {};
+        \vertex (c) at ($ (v2) + (0.9,0.7) $) {};
+        \vertex (d) at ($ (v2) + (0.9,-0.7) $) {};
+
+        \vertex[below = 0.25em of v1] (r) {};
+
+        \diagram* {
+          (a) -- (v1) -- (b),
+          (c) -- (v2) -- (d),
+          (v1) -- [photon] (v2),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+  \hspace{-0.4em}\Bigg|^2
+  \sim \frac{\alpha^2}{T^2}
+\end{equation*}
+where $ \alpha \equiv g^2 / 4\pi $ is the generalized structure constant of the considered interaction. Then, dimensional analysis results into:
+\begin{equation*}
+  \Gamma = n \sigma v \sim T^3 \cdot \frac{\alpha^2}{T^2} \cdot 1 \sim \alpha^2 T
+\end{equation*}
+Now, recall \eref{eq:fried-hubble}, and in particular express it in terms of the reduced Planck mass:
+\begin{equation*}
+  \pl \equiv \sqrt{\frac{\hbar c}{8\pi G}} \simeq 2.4 \cdot 10^{18} \gev
+  \quad \implies \quad
+  H = \frac{\sqrt{\rho}}{3\pl}
+\end{equation*}
+The same argument as above gives $ \rho \sim T^4 $, thus $ H \sim T^2 / \pl $ and:
+\begin{equation}
+  \frac{\Gamma}{H} \sim \frac{\alpha^2 \pl}{T} \sim \frac{10^{16} \gev}{T}
+\end{equation}
+where $ \alpha \sim 0.01 $ has been used as numerical estimate. Therefore, the condition \eref{eq:thermal-eq-cond} is satisfied for $ 100 \gev \lesssim T \lesssim 10^{16} \gev $: in this range, all SM particles are in thermal equilibrium. This means that they exchange energy and momentum efficiently, thus reaching a state of maximum entropy: in this state, the number of particles per unit volume in phase space, i.e. the \emph{distribution function}, takes the form of the Bose--Einstein or the Fermi--Dirac distribution, depending on the statistics of the considered species.
+
+On the contrary, when temperature drops below the mass of a particle species, that species becomes sub-relativistic and its distribution function acquires an exponential suppression of the form $ \sim e^{-m / T} $: this means that relativistic particles dominate the density and pressure of the primordial plasma. Furthermore, another consequence is that, had equilibrium persisted until today, the universe would be mostly photons, since any massive particle would be exponentially suppressed: this is not the case, due to the \bctxt{freeze-out} of massive particles caused by deviations from equilibrium (see \figref{fig:freeze-out}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{freeze-out.png}
+  \caption{Schematic illustration of freeze-out: at high temperature ($ T \gg m $) the particle abundance tracks its equilibrium value, while at low temperature ($ T \ll m $) particles freeze-out and maintain a density that is much larger than the Boltzmann-suppressed equilibrium abundance.}
+  \label{fig:freeze-out}
+\end{figure}
+
+Below the scale of electroweak symmetry breaking, i.e. $ T \lesssim 100 \gev $, the gauge bosons of weak interactions receive masses through the Higgs mechanism ($ M_W \approx 80 \gev $ and $ M_Z \approx 90 \gev $), and the cross-section of weak processes becomes:
+\begin{equation*}
+  \sigma \sim \Bigg|\hspace{-0.4em}
+    \begin{tikzpicture}[baseline = (r.base)]
+      \begin{feynman}[inline = (r.base)]
+        \vertex[dot] (v) {};
+
+        \vertex (a) at ($ (v) + (-0.9,0.7) $) {};
+        \vertex (b) at ($ (v) + (-0.9,-0.7) $) {};
+        \vertex (c) at ($ (v) + (0.9,0.7) $) {};
+        \vertex (d) at ($ (v) + (0.9,-0.7) $) {};
+
+        \vertex[below = 0.25em of v1] (r) {};
+
+        \diagram* {
+          (a) -- (v) -- (b),
+          (c) -- (v) -- (d),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+  \hspace{-0.4em}\Bigg|^2
+  \sim G_\text{F}^2 T^2
+  \qquad \qquad
+  G_\text{F} \sim \frac{\alpha}{M_W^2} \simeq 1.17 \cdot 10^{-5} \gev^{-2}
+\end{equation*}
+The strength of weak interactions now decreases as the temperature of the universe drops, and the ration $ \Gamma / H $ becomes:
+\begin{equation}
+  \frac{\Gamma}{H} \sim \frac{\alpha^2 \pl T^3}{M_W^4} \sim \left( \frac{T}{1 \mev} \right)^3
+\end{equation}
+The \bctxt{decoupling} of particles which interact with the primordial plasma only through weak interactions then happens at $ T_\text{dec} \sim 1 \mev $.
+
+\newpage
+\section{Equilibrium}
+
+Observational evidence (mainly the perfect blackbody spectrum of the CMB) suggests that the early universe was in \emph{local thermal equilibrium}\footnotemark, a fact supported by the above analysis of the Standard Model at $ T \gtrsim 100 \gev $.
+
+\footnotetext{Note that the universe can never be in perfect equilibrium, strictly speaking, since the FLRW metric does not have a time-like Killing vector. However, if the expansion is slow enough, particles have enough time to settle close to local equilibrium, and, since the universe is homogeneous, local values of thermodynamic quantities are also global values.}
+
+\subsection{Equilibrium thermodynamics}
+
+Consider a gas of weakly interacting particles. Quantistically, the momentum eigenstates of a particle in a volume $ V $ have a discrete spectrum: in particular, the density of states in momentum space $ \{\ve{p}\} $ is $ V / h^3 $, and the density of states in phase space $ \{\ve{x} , \ve{p}\} $ is $ 1 / h^3 $.
+
+Considering a particle with $ g $ internal degrees of freedom (e.g. spin), in natural unit the density of states (which from now on is implicitly assumed to be in phase space) is $ g / (2\pi)^3 $. In order to obtain the number density, it is necessary to know how the particles are distributed amongst the momentum eigenstates: this information is encoded in the \emph{(phase space) distribution function} $ f(\ve{x} , \ve{p} , t) $. Homogeneity restricts $ f $ to be independent of $ \ve{x} $, while isotropy implies that the momentum-dependence is only through the magnitude $ p \equiv \norm{\ve{p}} $. The time dependence is typically left implicit, as it manifests itself in terms of the temperature dependence of the distribution function. Putting everything together, the number density of particles in real space is found to be:
+\begin{equation}
+  n(T) = \frac{g}{(2\pi)^3} \int \dd^3 p \, f(p,T)
+  \label{eq:num-dens-def}
+\end{equation}
+The energy density is instead found by weighting the integration over momentum eigenstates with their energy. In particular, the assumption of the particles being weakly-interacting allows to approximate the energy as $ E(p) = \sqrt{m^2 + p^2} $, so that:
+\begin{equation}
+  \rho(T) = \frac{g}{(2\pi)^3} \int \dd^3 p \, f(p,T) E(p)
+  \label{eq:en-dens-def}
+\end{equation}
+Pressure, on the other hand, requires more care.
+
+\begin{proposition}[before upper = {\tcbtitle}]{Pressure of a weakly-interacting gas}{}
+  \begin{equation}
+    P = \frac{g}{(2\pi)^3} \int \dd^3 p \, f(p,T) \frac{p^2}{3E}
+  \label{eq:press-def}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a small area element $ \dd A $ with normal versor $ \hat{\ve{n}} $. All particles with velocity $ v \equiv \norm{\ve{v}} $, striking this area element between $ t $ and $ t + \dd t $, were located at $ t = 0 $ on a spherical shell of radius $ R = v t $ and width $ v \, \dd t $, hence a solid angle $ \dd \Omega $ of this shell defines a volume $ \dd V = R^2 v \, \dd t \dd \Omega $. Given \eref{eq:num-dens-def}, the number of particles in this volume is:
+    \begin{equation*}
+      \dd N = \frac{g}{(2\pi)^3} f(E,T) R^2 v \, \dd t \dd \Omega
+    \end{equation*}
+    Not all particles in $ \dd V $ reach the target, only those with velocities directed to the area element do. Taking into account the isotropy of the velocity distribution, the total number of these striking particles is:
+    \begin{equation*}
+      \dd N_A = \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}} \dd A}{4 \pi R^2} \dd N = \frac{g}{(2\pi)^3} f(E,T) \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}}}{4 \pi} \dd A \dd t \dd \Omega
+    \end{equation*}
+    where $ \hat{\ve{n}} \cdot \hat{\ve{n}} < 0 $ since the striking particles are directed towards the area element. Assuming elastic reflections, each particles transfers a momentum $ 2 \abs{\ve{p} \cdot \hat{\ve{n}}} $ to the target, hence the contribution of particles with velocity $ v $ to the pressure is:
+    \begin{equation*}
+      P(v) = \int \dd N_A \frac{2 \abs{\ve{p} \cdot \hat{\ve{n}}}}{\dd A \dd t} = \frac{g}{(2\pi)^3} f(E,T) \frac{p^2}{2\pi E} \int_0^{2\pi} \dd \varphi \int_{-1}^0 \dd \cos \theta \, \cos^2 \theta = \frac{g}{(2\pi)^3} f(E,T) \frac{p^2}{3E}
+    \end{equation*}
+    where $ v = p / E $ was used, and $ \theta $ was defined as $ \hat{\ve{v}} \cdot \hat{\ve{n}} = - \cos \theta < 0 $. Integrating over energy or momentum yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+The form of the distribution function depends on the thermodynamical state of the system. Assuming that the gas is in \emph{kinetic equilibrium}, i.e. if the particles can exchange energy and momentum efficiently, then the system is in a state of maximal entropy and the distribution function is either the Fermi--Dirac distribution (fermions) or the Bose--Einstein distribution (bosons):
+\begin{equation}
+  f(p,T) = \left[ e^\frac{E(p) - \mu(T)}{T} \pm 1 \right]^{-1}
+\end{equation}
+with the $ + $ sign for fermions and the $ - $ sign for bosons. At low temperatures, i.e. $ T < E - \mu $, both distributions reduce to the Maxwell--Boltzmann distribution:
+\begin{equation}
+  f(p,T) \approx e^{- \frac{E(p) - \mu(T)}{T}}
+\end{equation}
+The chemical potential $ \mu(T) $ characterizes the response of a system to a change in particle number: the second law of thermodynamics implies that, given a reaction, particles flow towards the side of the reaction with the lower total chemical potential, until \emph{chemical equilibrium} is achieved:
+\begin{equation*}
+  \sum_\text{reactants} \mu_i = \sum_\text{products} \mu_j
+\end{equation*}
+Note that, since the number of photons is not conserved (e.g. double Compton scattering $ e^- \gamma \lra e^- \gamma \gamma $), then $ \mu_\gamma = 0 $ and $ \mu_{\bar{X}} = - \mu_X $, due to particle-antiparticle annihilation $ X \bar{X} \lra \gamma \gamma $.
+
+A system is in \bctxt{thermal equilibrium} if its species are both in kinetic and chemical equilibrium: these species then share a common temperature $ T_i = T $, which is often identified with the photon temperature $ T_\gamma $ (the ``temperature of the universe").
+
+\subsection{Density and pressure}
+
+At early times, the chemical potentials of all particles are so small that they can be neglected, thus \eeref{eq:num-dens-def}{eq:en-dens-def} can be written as:
+\begin{equation}
+  n(T) = \frac{g}{2\pi^2} T^3 I_\pm(x)
+  \qquad \qquad
+  \rho(T) = \frac{g}{2\pi^2} T^4 J_\pm(x)
+  \label{eq:exact-rho}
+\end{equation}
+with $ x \equiv m / T $, $ \xi \equiv p / T $ and:
+\begin{equation}
+  I_\pm(x) \equiv \int_0^\infty \dd \xi \frac{\xi^2}{\exp \sqrt{\xi^2 + x^2} \pm 1}
+  \qquad \qquad
+  J_\pm(x) \equiv \int_0^\infty \dd \xi \frac{\xi^2 \sqrt{\xi^2 + x^2}}{\exp \sqrt{\xi^2 + x^2} \pm 1}
+  \label{eq:integrals}
+\end{equation}
+These integrals need, in general, to be evaluated numerically, but analytic expressions are possible in the ultra-relativistic and sub-relativistic limits.
+
+\begin{lemma}{Ultra-relativistic limit}{}
+  In the limit of $ T \gg m $, i.e. $ x \ra 0 $:
+  \begin{equation}
+    n(T) = \frac{\zeta(3)}{\pi^2} g T^3
+    \begin{cases}
+      1 & \text{bosons} \\
+      \tfrac{3}{4} & \text{fermions}
+    \end{cases}
+    \qquad \qquad
+    \rho(T) = \frac{\pi^2}{30} g T^4
+    \begin{cases}
+      1 & \text{bosons} \\
+      \tfrac{7}{8} & \text{fermions} \\
+    \end{cases}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    For $ x \ra 0 $, the integrals in \eref{eq:integrals} reduce to:
+    \begin{equation*}
+      I_\pm(0) = \int_0^\infty \dd \xi \frac{\xi^2}{e^\xi \pm 1}
+      \qquad \qquad
+      J_\pm(0) = \int_0^\infty \dd \xi \frac{\xi^3}{e^\xi \pm 1}
+    \end{equation*}
+    These integrals can be solved using the standard integral:
+    \begin{equation}
+      \int_0^\infty \dd \xi \frac{\xi^n}{e^\xi - 1} = \zeta(n + 1) \Gamma(n + 1)
+    \end{equation}
+    In the bosonic case they are straightforward: $ I_-(0) = 2 \zeta(3) $ and $ J_-(0) = 6 \zeta(4) = \frac{\pi^4}{15} $. In the fermionic case, use instead:
+    \begin{equation*}
+      \frac{1}{e^\xi + 1} = \frac{1}{e^\xi - 1} - \frac{2}{e^{2\xi} - 1}
+    \end{equation*}
+    so that:
+    \begin{equation*}
+      I_+(0) = I_-(0) - 2 \left( \frac{1}{2} \right)^3 I_-(0) = \frac{3}{2} I_-(0)
+    \end{equation*}
+    \begin{equation*}
+      J_+(0) = J_-(0) - 2 \left( \frac{1}{2} \right)^4 J_-(0) = \frac{7}{8} J_-(0)
+    \end{equation*}
+    which concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+From \eref{eq:press-def} with $ E \simeq p $ in the relativistic limit, the equation of state for a relativistic gas $ P = \frac{1}{3} \rho $ is recovered. Moreover, recalling \eref{eq:omega-def}, using $ T_0 = 2.73 \,\text{K} $ it is possible to compute the density parameter of radiation:
+\begin{equation*}
+  \rho_{\gamma,0} = \frac{\pi^2}{15} T_0^4 \simeq 4.6 \cdot 10^{-34} \,\text{g} \,\text{cm}^{-3}
+  \quad \implies \quad
+  \Omega_\gamma h^2 \simeq 2.5 \cdot 10^{-5}
+\end{equation*}
+
+\begin{lemma}{Sub-relativistic limit}{}
+  In the limit $ T \ll m $, i.e. $ x \gg 1 $:
+  \begin{equation}
+    n(T) = g \left( \frac{m T}{2\pi} \right)^{3/2} e^{-m/T}
+    \qquad \qquad
+    \rho(T) = m n(T) + \frac{3}{2} n(T) T
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    For $ x \gg 1 $:
+    \begin{equation*}
+      I_\pm(x) \approx \int_0^\infty \dd \xi \, \xi^2 e^{-\sqrt{\xi^2 + x^2}}
+    \end{equation*}
+    Most of the contribution comes from the $ \xi \ll x $ regime, hence, at lowest order in $ \xi $:
+    \begin{equation*}
+      I_\pm(x) \approx \int_0^\infty \dd \xi \, \xi^2 \exp \left( x + \frac{\xi^2}{2x} \right) = (2x)^{3/2} e^{-x} \int_0^\infty \dd \xi \, \xi^2 e^{-\xi^2}
+    \end{equation*}
+    Recalling the standard integral:
+    \begin{equation}
+      \int_0^\infty \dd \xi \, \xi^n e^{-\xi^2} = \frac{1}{2} \Gamma\left( \frac{n + 1}{2} \right)
+    \end{equation}
+    with $ \Gamma(\frac{3}{2}) = \frac{\sqrt{\pi}}{2} $:
+    \begin{equation*}
+      I_\pm(x) = \sqrt{\frac{\pi}{2}} x^{3/2} e^{-x}
+      \quad \implies \quad
+      n(T) = g \left( \frac{m T}{2\pi} \right)^{3/2} e^{-m/T}
+    \end{equation*}
+    For the energy density, use the sub-relativistic expansion at lowest order in $ \xi $ in \eref{eq:integrals}:
+    \begin{equation*}
+      \begin{split}
+        J_\pm(x)
+        & \approx \int_0^\infty \dd \xi \, \xi^2 \left( x + \frac{\xi^2}{2x} \right) \exp \left( x + \frac{\xi^2}{2x} \right) = (2x)^{3/2} e^{-x} \int_0^\infty \dd \xi \, \xi^2 \left( x + \xi^2 \right) e^{-\xi^2} \\
+        & = (2x)^{3/2} e^{-x} \frac{1}{2} \left[ x \Gamma \left( \frac{3}{2} \right) + \Gamma \left( \frac{5}{2} \right) \right] = \sqrt{\frac{\pi}{2}} x^{3/2} e^{-x} \left( x + \frac{3}{2} \right)
+      \end{split}
+    \end{equation*}
+    Inserting $ x = m / T $ yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+In a similar way, from \eref{eq:press-def} it can be shown that $ P = n T $, which means that a non-relativistic gas behaves like pressureless dust since $ P = n T \ll n m = \rho $.
+
+As expected, in the sub-relativistic limit $ T \ll m $ the number density, the energy density and the pressure of massive particle species fall exponentially (Boltzmann suppression). This is interpreted as the annihilation of particles with antiparticles: at high temperature (i.e. energy), matter-antimatter annihilation is balanced by pair production, but as $ T $ decreases below the mass of the particle the thermal energy is no longer sufficient for pair production and the number density decreases exponentially.
+
+
+
+
+
+
+
+
+
+
+
