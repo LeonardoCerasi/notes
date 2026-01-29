@@ -3,6 +3,7 @@
 At early times, the thermodynamical properties of the universe were determined by local equilibrium. However, non-equilibrium dynamics is crucial for massive particles to acquire cosmological abundances and to understand the CMB.
 
 \section{Hot Big Bang}
+\label{sec:hot-big-bang}
 
 To understand the thermal history of the universe, the key is to compare the \bctxt{rate of interactions} $ \Gamma $ with the \bctxt{rate of expansion} $ H $ (Hubble parameter). In particular, when $ \Gamma \gg H $, the timescale of particle interactions is much smaller that the expansion timescale:
 \begin{equation}
@@ -14,6 +15,7 @@ Therefore, local thermal equilibrium is reached before the effect of the expansi
 Consider a generic $ 1 + 2 \lra 3 + 4 $ scattering process. In principle, each species has its own rate of interactions, e.g. $ \Gamma_1 = n_2 \sigma v_{1,2} $, where $ n_2 $ is the number density of the target species $ 2 $ and $ v_{1,2} $ is the average relative velocity between species $ 1 $ and $ 2 $, but at high energies it is expected that $ n_1 \sim n_2 \equiv n $, hence it is possible to define a single rate of interactions:
 \begin{equation}
   \Gamma \equiv n \sigma v
+  \label{eq:int-rate-def}
 \end{equation}
 where $ n $ is the number density of particles, $ v $ is their average velocity and $ \sigma $ is the interaction cross-section. For $ T \simeq 100 \gev $, all known particles are ultra-relativistic, so $ v \sim 1 $, and their masses can be ignored, leaving the temperature $ T $ as the only dimensionful scale: by dimensional analysis $ n \sim T^3 $. Moreover, interactions are mediated by gauge bosons, which are massless above the scale of electroweak symmetry breaking, leaving a similar dependence for the cross-section of strong and electroweak processes:
 \begin{equation*}
@@ -136,7 +138,7 @@ Pressure, on the other hand, requires more care.
     \begin{equation*}
       \dd N_A = \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}} \dd A}{4 \pi R^2} \dd N = \frac{g}{(2\pi)^3} f(E,T) \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}}}{4 \pi} \dd A \dd t \dd \Omega
     \end{equation*}
-    where $ \hat{\ve{n}} \cdot \hat{\ve{n}} < 0 $ since the striking particles are directed towards the area element. Assuming elastic reflections, each particles transfers a momentum $ 2 \abs{\ve{p} \cdot \hat{\ve{n}}} $ to the target, hence the contribution of particles with velocity $ v $ to the pressure is:
+    where $ \hat{\ve{v}} \cdot \hat{\ve{n}} < 0 $ since the striking particles are directed towards the area element. Assuming elastic reflections, each particles transfers a momentum $ 2 \abs{\ve{p} \cdot \hat{\ve{n}}} $ to the target, hence the contribution of particles with velocity $ v $ to the pressure is:
     \begin{equation*}
       P(v) = \int \dd N_A \frac{2 \abs{\ve{p} \cdot \hat{\ve{n}}}}{\dd A \dd t} = \frac{g}{(2\pi)^3} f(E,T) \frac{p^2}{2\pi E} \int_0^{2\pi} \dd \varphi \int_{-1}^0 \dd \cos \theta \, \cos^2 \theta = \frac{g}{(2\pi)^3} f(E,T) \frac{p^2}{3E}
     \end{equation*}
@@ -192,6 +194,7 @@ These integrals need, in general, to be evaluated numerically, but analytic expr
       1 & \text{bosons} \\
       \tfrac{7}{8} & \text{fermions} \\
     \end{cases}
+    \label{eq:ultra-rel}
   \end{equation}
 \end{lemma}
 
@@ -235,6 +238,7 @@ From \eref{eq:press-def} with $ E \simeq p $ in the relativistic limit, the equa
     n(T) = g \left( \frac{m T}{2\pi} \right)^{3/2} e^{-m/T}
     \qquad \qquad
     \rho(T) = m n(T) + \frac{3}{2} n(T) T
+    \label{eq:sub-rel}
   \end{equation}
 \end{lemma}
 
@@ -274,6 +278,242 @@ In a similar way, from \eref{eq:press-def} it can be shown that $ P = n T $, whi
 
 As expected, in the sub-relativistic limit $ T \ll m $ the number density, the energy density and the pressure of massive particle species fall exponentially (Boltzmann suppression). This is interpreted as the annihilation of particles with antiparticles: at high temperature (i.e. energy), matter-antimatter annihilation is balanced by pair production, but as $ T $ decreases below the mass of the particle the thermal energy is no longer sufficient for pair production and the number density decreases exponentially.
 
+\subsection{Effective number of relativistic species}
+
+From now on, the temperature of the universe is identified with the temperature of the photon gas: $ T \equiv T_\gamma $.
+
+\begin{definition}{Effective number of relativistic degrees of freedom}{}
+  The total radiation density in the universe is defined as:
+  \begin{equation}
+    \rho_\text{r} \defeq \sum_i \rho_i \equiv \frac{\pi^2}{30} \dof(T) T^4
+    \label{eq:rad-en-dens-def}
+  \end{equation}
+  where the sum runs over all relativistic particle species. The \bcdef{effective number of relativistic degrees of freedom} is denoted by $ \dof(T) $.
+\end{definition}
+
+Note that $ \dof(T) $ receives different contributions from relativistic species in thermal equilibrium with the photons, i.e. with $ T = T_i \gg m_i $, and from decoupled relativistic species, i.e. with $ T \neq T_i \gg m_i $. In particular, from \eref{eq:ultra-rel}:
+\begin{equation}
+  \dof^\text{eq}(T) = \sum_\text{bosons} g_i + \frac{7}{8} \sum_\text{fermions} g_j
+  \qquad \quad
+  \dof^\text{dec}(T) = \sum_\text{bosons} g_i \left( \frac{T_i}{T} \right)^4 + \frac{7}{8} \sum_\text{fermions} g_j \left( \frac{T_j}{T} \right)^4
+\end{equation}
+When the temperature drops below the mass $ m_i $ of a particle species, it becomes non-relativistic and no longer contributes to $ \dof(T) $.
+
+\begin{example}{$ \dof(T) $ above $ 100 \gev $}{}
+  For $ T \gtrsim 100 \gev $, all SM particles are relativistic (as noted in \secref{sec:hot-big-bang}), hence all species contribute to $ \dof^\text{eq}(T) $. The bosons have:
+  \begin{equation*}
+    g_\text{b} = g_\gamma + g_g + g_{W,Z} + g_H = 2_\text{spin} + 8_\text{colour} \cdot 2_\text{spin} + 3_{\SUn{2}} \cdot 3_\text{spin} + 1_\text{spin} = 28
+  \end{equation*}
+  since massless vector bosons only have transverse polarization. The fermions, on the other hand, have:
+  \begin{equation*}
+    \begin{split}
+      g_\text{f}
+      & = g_q + g_{e,\mu,\tau} + g_\nu \\
+      & = 6_\text{species} \cdot 2_\text{spin} \cdot 2_\text{anti} \cdot 3_\text{colour} + 3_\text{species} \cdot 2_\text{spin} \cdot 2_\text{anti} + 3_\text{species} \cdot 1_\text{spin} \cdot 2_\text{anti} = 90
+    \end{split}
+  \end{equation*}
+  since neutrinos only have one helicity state (left-handed neutrinos and right-handed antineutrinos). The effective number of relativistic degrees of freedom then is:
+  \begin{equation}
+    \dof = g_\text{b} + \tfrac{7}{8} g_\text{f} = 106.75
+  \end{equation}
+  As the temperature drops, various particle species become non-relativistic and annihilate: the evolution of $ \dof(T) $ is plotted in \figref{fig:rel-dof}. At $ T \sim 150 \mev $, before the strange quarks have time to annihilate, the QCD phase transition takes place: quarks combine into baryons and mesons, which are all non-relativistic under $ 150 \mev $, except for the pions ($ \pi^\pm , \pi^0 $). The only relativistic species left are then pions, electrons, muons, neutrinos and photons: since the pions are spin-$ 0 $ particles, they contribute to $ g_\text{b} $ with $ g_\pi = 3_\text{species} \cdot 1_\text{spin} $, resulting in $ \dof = 2 + 3 + \frac{7}{8} \cdot (4 + 4 + 6) = 17.25 $.
+
+  Moreover, it is important to note that the transition from relativistic to non-relativistic behaviour is not instantaneous: about $ 80\% $ of the particle-antiparticle annihilations takes place in the interval $ T = m \ra T = \frac{1}{6} m $.
+\end{example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.8 \textwidth]{rel-dof.png}
+  \caption{Evolution of $ \dof(T) $ with temperature, assuming Standard Model particles. The dotted line is the effective number of degrees of freedom in entropy $ \dofs(T) $.}
+  \label{fig:rel-dof}
+\end{figure}
+
+\subsubsection{Entropy}
+
+According to the second law of thermodynamics, the total entropy of the universe can only increase or stay constant. Since the fraction of baryons to photons is measured to be:
+\begin{equation}
+  \eta_\text{b} \equiv \frac{n_\text{b}}{n_\gamma} \sim 10^{-9}
+\end{equation}
+the entropy of the universe is dominated by the entropy of the photon bath (at least as long as the universe is sufficiently uniform): any entropy production from non-equilibrium processes is then insignificant relative to the total entropy, and therefore the expansion of the universe can be treated as \emph{adiabatic}, so that the total entropy stays constant, even beyond equilibrium.
+
+\begin{lemma}{Entropy at equilibrium}{}
+  The entropy of a system at equilibrium stays constant.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider the second law of thermodynamics: $ T \dd S = \dd U + P \dd V $. Using $ U = \rho V $:
+    \begin{equation*}
+      \dd S = \frac{\dd [(\rho + P) V]}{T} - \frac{V \dd P}{T} = \frac{V}{T} \frac{\pa \rho}{\pa T} \dd T + \frac{\rho + P}{T} \dd V
+    \end{equation*}
+    Since the entropy function must exist, this differential form must be exact. By \tref{th:poincare}, an exact form is also closed, hence:
+    \begin{equation}
+      \frac{\pa}{\pa V} \left[ \frac{V}{T} \frac{\pa \rho}{\pa T} \right] = \frac{\pa}{\pa T} \left[ \frac{\rho + P}{T} \right]
+      \quad \implies \quad
+      \frac{\pa P}{\pa T} = \frac{\rho + P}{T}
+      \label{eq:pt-thermo}
+    \end{equation}
+    Rearranging the second law of thermodynamics, then:
+    \begin{equation*}
+      \dd S = \frac{\dd [(\rho + P) V]}{T} - \frac{(\rho + P) V}{T^2} \dd T = \dd \left[ \frac{\rho + P}{T} V \right]
+    \end{equation*}
+    Tho show that entropy is conserved in equilibtrium, consider:
+    \begin{equation*}
+      \begin{split}
+        \frac{\dd S}{\dd t} = \frac{\dd}{\dd t} \left[ \frac{\rho + P}{T} V \right] = \frac{V}{T} \left[ \dot{\rho} + \frac{\dot{V}}{V} (\rho + P) \right] + \frac{V}{T} \left[ \dot{P} - \frac{\rho + P}{T} \dot{T} \right]
+      \end{split}
+    \end{equation*}
+    Since $ V \propto a^3 $, then $ \dot{V} / V = 3H $ and the first term vanishes by \eref{eq:r-p}, while the second vanishes by \eref{eq:pt-thermo}. Therefore, $ \dot{S} = 0 $ at equilibrium.
+  \end{proof}
+\end{proofbox}
+
+It is convenient to define the \bctxt{entropy density}, which ignoring a constant integration constant is (by the above proof):
+\begin{equation}
+  s = \frac{\rho + P}{T}
+\end{equation}
+which, by adiabaticity (i.e. $ \dd Q = 0 \, \implies \, \dd S = 0 $), scales like $ s \propto a^{-3} $. Since for a relativistic gas $ P = \frac{1}{3} \rho $, recalling \eref{eq:ultra-rel} it is possible to express the entropy density in the ultra-relativistic limit as:
+\begin{equation}
+  s = \frac{2\pi^2}{45} g(T) T^3
+\end{equation}
+
+\begin{definition}{Effective number of relativistic degrees of freedom in entropy}{}
+  The total entropy density in the universe is defined as:
+  \begin{equation}
+    s \defeq \sum_i s_i \equiv \frac{2\pi^2}{45} \dofs(T) T^3
+  \end{equation}
+  where the sum runs over all relativistic particle species. The \bcdef{effective number of degrees of freedom in entropy} is denoted by $ \dofs(T) $.
+\end{definition}
+
+As for $ \dof(T) $, there are two different contributions to $ \dofs(T) $ too: one from species in thermal equilibrium with the photon bath and one from decoupled species. Note that $ \dofs^\text{eq}(T) = \dof^\text{eq}(T) $, while, since $ s_i \propto T_i^3 $, for decoupled species:
+\begin{equation}
+  \dofs^\text{dec}(T) = \sum_\text{bosons} g_i \left( \frac{T_i}{T} \right)^3 + \frac{7}{8} \sum_\text{fermions} g_j \left( \frac{T_j}{T} \right)^3
+\end{equation}
+which is $ \dofs^\text{dec}(T) \neq \dof^\text{dec}(T) $. It follows that $ \dof(T) = \dofs(T) $ only when \emph{all} relativistic species are in thermal equilibrium with the photon bath: in the real universe, this is the case for until $ t \approx 1 \,\text{sec} $ (see \figref{fig:rel-dof}).
+
+The conservation of entropy has two important consequences:
+\begin{itemize}
+  \item since $ s \propto a^{-3} $, if the number of particles in a comoving volume $ N_i $ is conserved (i.e. $ n_i \propto a^{-3} $), then $ n_i \propto s $. This is the case, for example, for the net baryon number after baryogenesis, which is conserved, hence $ (n_\text{B} - n_{\bar{\text{B}}}) / s $ is constant;
+  \item from the definition of $ s $, it follows that $ T \propto \dofs^{-1/3} a^{-1} $. Away from mass thresholds, $ \dofs $ is approximately constant and $ T \propto a^{-1} $ as expected, but when a particle species becomes non-relativistic the factor $ \dofs $ accounts for the transfer of its entropy to other relativistic species, making $ T $ change in the scaling as a consequence.
+\end{itemize}
+
+\subsubsection{Neutrino decoupling}
+
+Neutrinos are coupled to the thermal bath only through weak interaction processes (e.g. $ \nu_e \bar{\nu}_e \lra e^+ e^- $), whose cross-section is estimated as $ \sigma \sim G_\text{F}^2 T^2 $. By \eref{eq:int-rate-def}, then, $ \Gamma \sim G_\text{F}^2 T^5 $, which allows to estimate the temperature for neutrino decoupling (with $ H \sim T^2 / \pl $):
+\begin{equation*}
+  \frac{\Gamma}{H} \sim \left( \frac{T}{1 \mev} \right)^3
+  \quad \implies \quad
+  T_\text{dec} \sim 1 \mev
+\end{equation*}
+A more accurate computation gives $ T_\text{dec} \sim 0.8 \mev $. After decoupling, neutrinos move freely along geodesics. Since $ p \propto a^{-1} $ (by \eref{eq:geodesic-momentum}), it is convenient to define the time-independent combination $ q \equiv a p $, so that the neutrino number density after decoupling can be written as:
+\begin{equation*}
+  n_\nu \propto a^{-3} \int \dd^3 q \left[ \exp \frac{q}{a T_\nu} + 1 \right]^{-1}
+\end{equation*}
+But, after decoupling, particle number conservation requires $ n_\nu \propto a^{-3} $, hence the neutrino temperature must scale as $ T_\nu \propto a^{-1} $. The neutrinos then follow a relativistic Fermi--Dirac distribution with decreasing temperature, even after they become non-relativistic at later times (when $ T_\nu \ll m_\mu $), due to the Louville theorem\footnotemark.
+
+\footnotetext{The Liouville theorem states that, in a Hamiltonian system, the phase-space probability density (i.e. distribution function) is constant along the trajectories defined by the Hamilton equations of motion.}
+
+\subsubsection{Electron-positron annihilation}
+
+Shortly after the neutrinos decouple, the temperature drops below the electron mass ($ m_e \simeq 0.511 \mev $), so that electron-positron annihilation is no longer balanced by the $ \gamma \gamma \ra e^- e^+ $ pair production. The energy density and entropy of electrons and positrons are then transferred to the photons, but not to the decoupled neutrinos: the photons are thus heated relative to the neutrinos (see \figref{fig:neutrino-temp}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{neutrino-temp.png}
+  \caption{Difference in redshift between neutrino temperature $ T_\nu \propto a^{-1} $ and photon temperature $ T_\gamma \propto \dofs^{-1/3} a^{-1} $.}
+    \label{fig:neutrino-temp}
+\end{figure}
+
+To quantify this effect, consider the change in the effective number of degrees of freedom in entropy. Neglecting neutrinos and other decoupled species\footnotemark:
+\begin{equation*}
+  \dofs^\text{eq} =
+  \begin{cases}
+    2_\gamma + \frac{7}{8} \cdot 4_e = \frac{11}{2} & T \gtrsim m_e \\
+    2_\gamma = 2 & T < m_e
+  \end{cases}
+\end{equation*}
+
+\footnotetext{Entropy is conserved separately for the thermal bath and the decoupled species, since they are non-interacting systems.}
+
+Since, in equilibrium, $ \dofs^\text{eq} T^3 a^3 $ remains constant, the photon temperature $ a T_\gamma \equiv a T $ must increase by a factor of $ (11/4)^{1/3} $ after electron-positron annihilation, while $ a T_\nu $ remains the same. This means that, for $ T < m_e $:
+\begin{equation}
+  T_\nu = \sqrt[3]{\frac{4}{11}} T_\gamma
+  \label{eq:t-nu-gamma}
+\end{equation}
+For $ T \ll m_e $, the only remaining relativistic species are photons and neutrinos, and the above equation implies that $ \dof \neq \dofs $:
+\begin{equation*}
+  \dof = 2_\gamma + \frac{7}{8} \cdot 2_\text{anti} \cdot N_\text{eff} \left( \frac{4}{11} \right)^{4/3} = 3.36
+  \qquad \qquad
+  \dofs = 2_\gamma + \frac{7}{8} \cdot 2_\text{anti} \cdot N_\text{eff} \left( \frac{4}{11} \right) = 3.94
+\end{equation*}
+where $ N_\text{eff} $ is the \bctxt{effective number of neutrino species}. If neutrino decoupling was instantaneous, then $ N_\text{eff} = 3 $; however, neutrino decoupling was not complete when $ e^+ e^- $ annihilation began, so a fraction of the released energy and entropy did leak to the neutrinos, resulting into $ N_\text{eff} = 3.046 $ (the current bound from the Planck satellite is $ N_\text{eff} = 3.04 \pm 0.18 $).
+
+Note that \eref{eq:t-nu-gamma} holds until the present, thus allowing to estimate the temperature of the \bctxt{cosmic neutrino background} (C$ \nu $B): given the present CMB temperature $ T_\text{CMB} = 2.73 \,\text{K} = 0.24 \mmev $, it is $ T_\text{C$ \nu $B} = 1.95 \,\text{K} = 0.17 \mmev $. From \eref{eq:ultra-rel}, the number density of neutrinos is:
+\begin{equation}
+  n_\nu = \frac{3}{4} N_\text{eff} \cdot \frac{4}{11} n_\gamma
+\end{equation}
+which today corresponds to $ n_\nu / N_\text{eff} \simeq 112 \,\text{cm}^{-3} $ per flavour, as $ n_\gamma(2.73 \,\text{K}) \simeq 5 \,\text{K}^3 \simeq 415 \,\text{cm}^{-3} $. On the other hand, the present energy density of neutrinos depends on whether they are relativistic or non-relativistic today:
+\begin{itemize}
+  \item massless neutrinos: massless neutrinos are always relativistic, hence, by \eref{eq:ultra-rel}:
+    \begin{equation*}
+      \rho_\nu = \frac{7}{8} N_\text{eff} \left( \frac{4}{11} \right)^{4/3} \rho_\gamma \quad \implies \quad \Omega_\nu h^2 \simeq 1.7 \cdot 10^{-5}
+    \end{equation*}
+    were $ \Omega_\gamma h^2 \simeq 2.5 \cdot 10^{-5} $ was used;
+  \item massive neutrinos: experiments on neutrino oscillations impose constraints on the sum of neutrino masses: $ 60 \mmev < \sum_i m_{\nu_i} < 1 \ev $. This means that neutrinos behave as radiation-like particles in the early universe ($ T \gg m_\nu $) and as matter-like particles in the late universe ($ T \ll m_\nu $), which means that $ \rho_{\nu,0} \approx \sum_i m_{\nu_i} n_{\nu_i , 0} $ (by \eref{eq:sub-rel}). Using the estimate $ n_{\nu_i} \simeq 112 \,\text{cm}^{-3} $:
+    \begin{equation}
+      \Omega_\nu h^2 \approx \frac{\sum_i m_{\nu_i}}{95 \ev}
+    \end{equation}
+    Hence neutrinos are a subdominant component, with $ 0.001 \lesssim \Omega_\nu \lesssim 0.02 $ (using $ h = 0.7 $).
+\end{itemize}
+
+\subsection{Thermal history}
+
+In radiation era $ a \propto \sqrt{t} $, hence $ H = \frac{1}{2t} $ and, using \eref{eq:rad-en-dens-def}:
+\begin{equation*}
+  \frac{1}{2t} = H \simeq \sqrt{\frac{\rho_\text{r}}{3\pl^2}} \simeq \frac{\pi}{3} \sqrt{\frac{\dof}{10}} \frac{T^2}{\pl}
+  \quad \implies \quad
+  \frac{T}{1 \mev} \simeq 1.5 \dof^{-1/4} \sqrt{\frac{1 \,\text{sec}}{t}}
+\end{equation*}
+Therefore, $ 1 $ second after the Big Bang the universe was about $ 1 \mev $. It is also possible to state an approximated thermal history of the universe (recalling \eref{eq:redshift-a}):
+
+\begin{center}
+  \begin{tabular}{cccc}
+    \hline
+    \hspace{5em} Event \hspace{5em} & \hspace{1em} time $ t $ \hspace{1em} & \hspace{1em} redshift $ z $ \hspace{1em} & \hspace{1em} temperature $ T $ \hspace{1em} \\
+    \hline
+    \textbf{Singularity} & $ \ve{0} $ & $ \bs{\infty} $ & $ \bs{\infty} $ \\ [1ex]
+    Inflation & $ \sim 10^{-35} \,\text{s} $ & $ \sim 10^{28} $ & $ \sim 10^{15} \gev $ \\ [1ex]
+    Baryogenesis & $ \lesssim 20 \,\text{ps} $ & $ > 10^{15} $ & $ > 100 \gev $ \\ [1ex]
+    EW phase transition & $ 20 \,\text{ps} $ & $ 10^{15} $ & $ 100 \gev $ \\ [1ex]
+    QCD phase transition & $ 20 \,\mu\text{s} $ & $ 10^{12} $ & $ 150 \mev $ \\ [1ex]
+    Dark matter freeze-out & ? & ? & ? \\ [1ex]
+    Neutrino decoupling & $ 1 \,\text{s} $ & $ 6 \cdot 10^9 $ & $ 1.5 \mev $ \\ [1ex]
+    $ e^- e^+ $ annihilation & $ 6 \,\text{s} $ & $ 2 \cdot 10^9 $ & $ 500 \kev $ \\ [1ex]
+    Big-Bang nucleosynthesis & $ 3 \,\text{min} $ & $ 4 \cdot 10^8 $ & $ 100 \kev $ \\ [1ex]
+    Matter-radiation equality & $ 60 \,\text{kyr} $ & $ 3400 $ & $ 0.75 \ev $ \\ [1ex]
+    Recombination & $ 260 - 380 \,\text{kyr} $ & $ 1100 - 1400 $ & $ 0.26 - 0.33 \ev $ \\ [1ex]
+    Photon decoupling (CMB) & $ 380 \,\text{kyr} $ & $ 1100 $ & $ 0.26 \ev $ \\ [1ex]
+    Reionization & $ 100 - 400 \,\text{Myr} $ & $ 10 - 30 $ & $ 2.6 - 7.0 \mmev $ \\ [1ex]
+    $ \Lambda $-matter equality & $ 9 \,\text{Gyr} $ & $ 0.4 $ & $ 0.33 \mmev $ \\ [1ex]
+    \textbf{Today} & $ \ve{13.8} \, \text{\textbf{Gyr}} $ & $ \ve{0} $ & $ \ve{0.24} \, \text{\textbf{meV}} $ \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Note that the expansion of the universe during Inflation had a very different timescale with respect to today, although in both cases it is exponential ($ a \propto \exp H t $):
+\begin{equation*}
+  H_\text{I} \sim \frac{T_\text{I}^2}{\pl} \sim 10^{11} \gev
+  \quad \implies \quad
+  t_{H_\text{I}} \equiv \frac{1}{H_\text{I}} \sim 10^{-35} \,\text{sec}
+\end{equation*}
+\begin{equation*}
+  H_0 \approx \frac{70 \,\text{km} \,\text{s}^{-1}}{1 \,\text{Mpc}}
+  \quad \implies \quad
+  t_{H_0} \equiv \frac{1}{H_0} \sim 4.5 \cdot 10^{17} \,\text{sec}
+\end{equation*}
+The expansion during Inflation was $ \sim 10^{52} $ times faster than it is today.
+
+\newpage
+\section{Beyond equilibrium}
 
 
 
