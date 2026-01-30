@@ -58,7 +58,7 @@ The same argument as above gives $ \rho \sim T^4 $, thus $ H \sim T^2 / \pl $ an
 \end{equation}
 where $ \alpha \sim 0.01 $ has been used as numerical estimate. Therefore, the condition \eref{eq:thermal-eq-cond} is satisfied for $ 100 \gev \lesssim T \lesssim 10^{16} \gev $: in this range, all SM particles are in thermal equilibrium. This means that they exchange energy and momentum efficiently, thus reaching a state of maximum entropy: in this state, the number of particles per unit volume in phase space, i.e. the \emph{distribution function}, takes the form of the Bose--Einstein or the Fermi--Dirac distribution, depending on the statistics of the considered species.
 
-On the contrary, when temperature drops below the mass of a particle species, that species becomes sub-relativistic and its distribution function acquires an exponential suppression of the form $ \sim e^{-m / T} $: this means that relativistic particles dominate the density and pressure of the primordial plasma. Furthermore, another consequence is that, had equilibrium persisted until today, the universe would be mostly photons, since any massive particle would be exponentially suppressed: this is not the case, due to the \bctxt{freeze-out} of massive particles caused by deviations from equilibrium (see \figref{fig:freeze-out}).
+On the contrary, when temperature drops below the mass of a particle species, that species becomes sub-relativistic and its distribution function acquires an exponential suppression of the form $ \sim e^{-m / T} $: this means that relativistic particles dominate the density and pressure of the primordial plasma. Furthermore, another consequence is that, had equilibrium persisted until today, the universe would be mostly photons, since any massive particle would be exponentially suppressed: this is not the case, due to the \bctxt{freeze-out} of massive particles caused by deviations from equilibrium (see \figref{fig:freeze-out} and \exref{ex:2-2-scattering}).
 
 \begin{figure}
   \centering
@@ -380,6 +380,7 @@ which, by adiabaticity (i.e. $ \dd Q = 0 \, \implies \, \dd S = 0 $), scales lik
   The total entropy density in the universe is defined as:
   \begin{equation}
     s \defeq \sum_i s_i \equiv \frac{2\pi^2}{45} \dofs(T) T^3
+    \label{eq:s-def}
   \end{equation}
   where the sum runs over all relativistic particle species. The \bcdef{effective number of degrees of freedom in entropy} is denoted by $ \dofs(T) $.
 \end{definition}
@@ -392,7 +393,7 @@ which is $ \dofs^\text{dec}(T) \neq \dof^\text{dec}(T) $. It follows that $ \dof
 
 The conservation of entropy has two important consequences:
 \begin{itemize}
-  \item since $ s \propto a^{-3} $, if the number of particles in a comoving volume $ N_i $ is conserved (i.e. $ n_i \propto a^{-3} $), then $ n_i \propto s $. This is the case, for example, for the net baryon number after baryogenesis, which is conserved, hence $ (n_\text{B} - n_{\bar{\text{B}}}) / s $ is constant;
+  \item since $ s \propto a^{-3} $, if the number of particles in a comoving volume $ N_i $ is conserved (i.e. $ n_i \propto a^{-3} $), then $ n_i \propto s $, with $ N_i = n_i / s $. This is the case, for example, for the net baryon number after baryogenesis, which is conserved, hence $ N_\text{net} \equiv (n_\text{B} - n_{\bar{\text{B}}}) / s $ is constant;
   \item from the definition of $ s $, it follows that $ T \propto \dofs^{-1/3} a^{-1} $. Away from mass thresholds, $ \dofs $ is approximately constant and $ T \propto a^{-1} $ as expected, but when a particle species becomes non-relativistic the factor $ \dofs $ accounts for the transfer of its entropy to other relativistic species, making $ T $ change in the scaling as a consequence.
 \end{itemize}
 
@@ -468,11 +469,12 @@ which today corresponds to $ n_\nu / N_\text{eff} \simeq 112 \,\text{cm}^{-3} $ 
 \subsection{Thermal history}
 
 In radiation era $ a \propto \sqrt{t} $, hence $ H = \frac{1}{2t} $ and, using \eref{eq:rad-en-dens-def}:
-\begin{equation*}
+\begin{equation}
   \frac{1}{2t} = H \simeq \sqrt{\frac{\rho_\text{r}}{3\pl^2}} \simeq \frac{\pi}{3} \sqrt{\frac{\dof}{10}} \frac{T^2}{\pl}
   \quad \implies \quad
   \frac{T}{1 \mev} \simeq 1.5 \dof^{-1/4} \sqrt{\frac{1 \,\text{sec}}{t}}
-\end{equation*}
+  \label{eq:thermal-history}
+\end{equation}
 Therefore, $ 1 $ second after the Big Bang the universe was about $ 1 \mev $. It is also possible to state an approximated thermal history of the universe (recalling \eref{eq:redshift-a}):
 
 \begin{center}
@@ -514,6 +516,120 @@ The expansion during Inflation was $ \sim 10^{52} $ times faster than it is toda
 
 \newpage
 \section{Beyond equilibrium}
+
+\subsection{Boltzmann equation}
+
+In the absence of interactions, the number of particles in a fixed physical volume $ V \propto a^3 $ is conserved, thus $ n_i \propto a^{-3} $ and:
+\begin{equation*}
+  \frac{\dot{n}_i}{n_i} = - 3 \frac{\dot{a}}{a}
+  \quad \iff \quad
+  \frac{1}{a^3} \frac{\dd (n_i a^3)}{\dd t} = 0
+\end{equation*}
+To include the effect of interactions, a collision term $ C_i(\{n_j\}) $ is added, which depends on the number density of all particle species:
+\begin{equation}
+  \frac{1}{a^3} \frac{\dd (n_i a^3)}{\dd t} = C_i(\{n_j\})
+\end{equation}
+This is the \bctxt{Boltzmann equation}, which describes the behaviour of the system beyond equilibrium. The form of the collision term depends on the specific interactions under consideration: interactions between three or more particles are very unlikely, so it is reasonable to assume only single-particle decays and two-particle scatterings/annihilations.
+
+\begin{example}{$ 2 \lra 2 $ scattering}{2-2-scattering}
+  Consider a generic process $ 1 + 2 \lra 3 + 4 $, and suppose to track the number density $ n_1 $ of species $ 1 $. The rate of change in the abundance of species $ 1 $ is given by the difference between the rates of annihilation (direct process) and production (inverse process) of the species, hence:
+  \begin{equation*}
+    \frac{1}{a^3} \frac{\dd (n_1 a^3)}{\dd t} = - \alpha n_1 n_2 + \beta n_3 n_4
+  \end{equation*}
+  The first term describes the direct process, and the parameter $ \alpha = \braket{\sigma v} $ is the \emph{thermally-averaged cross-section}\footnote{The angle brackets denote an average over the relative velocity $ v $ between particles $ 1 $ and $ 2 $.}. To determine the parameter $ \beta $, note that the collision term must vanish at (chemical) equilibrium, so that:
+  \begin{equation*}
+    \beta = \left( \frac{n_1 n_2}{n_3 n_4} \right)_\text{eq} \alpha
+  \end{equation*}
+  where the equilibrium number densities are given by \eref{eq:num-dens-def}. The Boltzmann equation then becomes:
+  \begin{equation}
+    \frac{1}{a^3} \frac{\dd (n_1 a^3)}{\dd t} = - \braket{\sigma v} \left[ n_1 n_2 - \left( \frac{n_1 n_2}{n_3 n_4} \right)_\text{eq} n_3 n_4 \right]
+    \label{eq:boltzmann-2-2}
+  \end{equation}
+  Rewriting this equation in terms of the number of particles in a comoving volume $ N_i \equiv n_i / s $:
+  \begin{equation}
+    \frac{\dd \ln N_1}{\dd \ln a} = - \frac{\Gamma_1}{H} \left[ 1 - \left( \frac{N_1 N_2}{N_3 N_4} \right)_\text{eq} \frac{N_3 N_4}{N_1 N_2} \right]
+  \end{equation}
+  with the interaction rate $ \Gamma_1 \equiv n_2 \braket{\sigma v} $. The r.h.s. contains two different factors: the $ \Gamma_1 / H $ factor, describing the \bcex{interaction efficiency}, and the $ [1 - \dots] $ factor, describing the \bcex{deviation from equilibrium}. There are two main regimes for the reaction:
+  \begin{itemize}
+    \item $ \Gamma_1 \gg H $: the natural state of the system is chemical equilibrium since, given the large interaction rate, if $ N_1 \gg N_1^\text{eq} $ the r.h.s. is negative and $ N_1 $ reduces towards $ N_1^\text{eq} $, while if $ N_1 \ll N_1^\text{eq} $ the r.h.s. is positive and $ N_1 $ increases towards $ N_1^\text{eq} $. At equilibrium, then, the r.h.s. vanishes and particles assume their equilibrium abundances;
+    \item $ \Gamma_1 < H $: when the reaction rate drops below the Hubble scale, the r.h.s. gets suppressed and the comoving density of particles approaches a constant \emph{relic density}, a phenomenon known as \bcex{freeze-out}.
+  \end{itemize}
+\end{example}
+
+\subsection{Dark matter relics}
+
+In this section, the hypothesis that dark matter is composed of weakly interacting massive particles (WIMPs) is assumed. WIMPs were in close contact with the rest of the cosmic plasma at high temperatures, but then experiences freeze-out at a critical temperature $ T_\text{f} $, which can be estimated using the Boltzmann equation.
+
+\subsubsection{Dark matter freeze-out}
+
+Some assumptions on the WIMP interactions have to be made. In particular, assume that a heavy dark matter particle $ X $ and its antiparticle $ \bar{X} $ can annihilate to produce two light (essentially massless) particle:
+\begin{equation*}
+  X + \bar{X} \lra \ell + \bar{\ell}
+\end{equation*}
+Moreover, assume the light particles to be tightly coupled to the cosmic plasma (e.g. if they are charged), so that they maintain their equilibrium densities $ n_\ell = n_\ell^\text{eq} $, and also that there are no initial asymmetries between $ X $ and $ \bar{X} $, i.e. $ n_X = n_{\bar{X}} $. \eref{eq:boltzmann-2-2} for the number of WIMPs in a comoving volume $ N_X \equiv n_X / s $ then is:
+\begin{equation*}
+  \frac{\dd N_X}{\dd t} = - s \braket{\sigma v} [N_X^2 - (N_X^\text{eq})^2]
+\end{equation*}
+Since the interesting dynamics takes place at $ T \sim M_X $, define $ x \equiv M_X / T $, so that:
+\begin{equation*}
+  \frac{\dd x}{\dd t} = \frac{\dd}{\dd t} \frac{M_X}{T} = - \frac{1}{T} \frac{\dd T}{\dd t} x \simeq H x
+\end{equation*}
+where $ T \propto a^{-1} $ was used (assuming $ \dofs \simeq \text{const.} \equiv \dofs(M_X) $) for the times relevant to freeze-out. Assuming radiation domination\footnotemark, i.e. $ H = H(M_X) / x^2 $, the Boltzmann equation reduces to the so-called \bctxt{Riccati equation}:
+\begin{equation}
+  \frac{\dd N_X}{\dd x} = - \frac{\lambda}{x^2} [N_X^2 - (N_X^\text{eq})^2]
+\end{equation}
+with:
+\begin{equation}
+  \lambda \equiv \frac{2\pi^2}{45} \dofs \frac{M_X^3 \braket{\sigma v}}{H(M_X)}
+\end{equation}
+
+\footnotetext{From \eref{eq:thermal-history} (with $ \dof \simeq \text{const.} $) $ H / T^2 = \text{const.} $, hence $ H / T^2 = H(M_X) / M_X^2 $, i.e. $ H = H(M_X) / x^2 $.}
+
+This parameter can be treated as a constant in most WIMP theories, but, despite this, the Riccati equation has no analytic solutions. Numerical solutions for two different values of $ \lambda $ are pictured in \figref{fig:dm-freeze}: at high temperatures ($ x < 1 $) $ N_X \approx N_X^\text{eq} \simeq 1 $, while at low temperatures ($ x \gg 1 $) the equilibrium abundance is exponentially suppressed as $ N_X^\text{eq} \sim e^{-x} $. Ultimately, WIMPs will become so rare that they will not be able to find each other fast enough to maintain the equilibrium abundance: numerically, this freeze-out happens at $ x_\text{f} \sim 10 $, where the solution $ N_X $ to the Riccati equation starts to deviate significantly from the Boltzmann-suppressed equilibrium abundance $ N_X^\text{eq} $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.7 \textwidth]{dm-freeze.png}
+  \caption{Abundance of WIMPs as the temperature drops below their mass.}
+  \label{fig:dm-freeze}
+\end{figure}
+
+The final relic abundance $ N_X^\infty \equiv N_X(x = \infty) $ determines the freeze-out density of dark matter, and it can be estimated as a function of $ \lambda $. For $ x \gg x_\text{f} $ (after freeze-out), $ N_X $ will be much larger than $ N_X^\text{eq} $, hence the Riccati equation reduces to:
+\begin{equation*}
+  \frac{\dd N_X}{\dd x} \simeq - \frac{\lambda}{x^2} N_X^2
+\end{equation*}
+Integrating over the domain $ (x_\text{f} , \infty) $, the following solution is found:
+\begin{equation*}
+  \frac{1}{N_X^\infty} - \frac{1}{N_X^\text{f}} = \frac{\lambda}{x_\text{f}}
+\end{equation*}
+with $ N_X^\text{f} \equiv N_X(x_\text{f}) $. Typically $ N_X^\text{f} \gg N_X^\infty $ (see \figref{fig:dm-freeze}), hence an estimate for the relic abundance is:
+\begin{equation}
+  N_X^\infty \simeq \frac{x_\text{f}}{\lambda}
+  \label{eq:dm-relic-estimate}
+\end{equation}
+This relation predicts that the relic abundance decreases as the interaction rate $ \lambda $ increases: this makes sense, since larger interaction rates maintain equilibrium longer, i.e. deeper in the Boltzmann-suppressed regime.
+
+Note that the value of $ x_\text{f} \sim 10 $ is not terribly sensitive to the precise value of $ \lambda $: indeed, $ x_\text{f} \propto \abs{\log \lambda} $.
+
+\subsubsection{WIMP miracle}
+
+The freeze-out abundance of dark matter relics can be related to the dark matter density today:
+\begin{equation*}
+  \Omega_X \equiv \frac{\rho_{X,0}}{\rho_{\text{crit},0}} = \frac{M_X n_{X,0}}{3 \pl^2 H_0^2} = \frac{M_X N_{X,0} s_0}{3 \pl^2 H_0^2} = M_X N_X^\infty \frac{s_0}{3\pl^2 H_0^2}
+\end{equation*}
+as the number of WIMPs is conserved after freeze-out, i.e. $ N_{X,0} = N_X^\infty $. Inserting \ceref{eq:s-def}{eq:dm-relic-estimate}:
+\begin{equation*}
+  \Omega_X \simeq \frac{M_X x_\text{f}}{\lambda} \frac{2\pi^2}{45} \frac{\dofs(T_0) T_0^3}{3\pl^2 H_0^2} = \frac{H(M_X)}{M_X^2} \frac{x_\text{f}}{\braket{\sigma v}} \frac{\dofs(T_0)}{\dofs(M_X)} \frac{T_0^3}{3\pl^2 H_0^2}
+\end{equation*}
+Using \eref{eq:thermal-history} for $ H(M_X) $ gives:
+\begin{equation}
+  \Omega_X \simeq \frac{\pi}{9} \frac{x_\text{f}}{\braket{\sigma v}} \sqrt{\frac{\dof(M_X)}{10}} \frac{\dofs(T_0)}{\dofs(M_X)} \frac{T_0^3}{\pl^3 H_0^2}
+\end{equation}
+Substituting the measured value $ T_0 = 2.73 \,\text{K} $ and using $ \dofs(T_0) = 3.91 $ and $ \dofs(M_X) \simeq \dof(M_X) $:
+\begin{equation*}
+  \Omega_X h^2 \simeq \frac{x_\text{f}}{100} \sqrt{\frac{10}{\dof(M_X)}} \frac{10^{-8} \gev^{-2}}{\braket{\sigma v}}
+\end{equation*}
+This reproduces the observed dark matter density if $ \sqrt{\braket{\sigma v}} \sim 10^{-4} \gev^{-1} \sim 0.1 \sqrt{G_\text{F}} $: the fact that a thermal relic with a cross-section typical of the weak interaction gives the right dark matter abundance is known as the \emph{WIMP miracle}.
 
 
 
