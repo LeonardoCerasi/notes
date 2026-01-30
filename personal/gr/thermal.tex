@@ -490,7 +490,7 @@ Therefore, $ 1 $ second after the Big Bang the universe was about $ 1 \mev $. It
     Dark matter freeze-out & ? & ? & ? \\ [1ex]
     Neutrino decoupling & $ 1 \,\text{s} $ & $ 6 \cdot 10^9 $ & $ 1.5 \mev $ \\ [1ex]
     $ e^- e^+ $ annihilation & $ 6 \,\text{s} $ & $ 2 \cdot 10^9 $ & $ 500 \kev $ \\ [1ex]
-    Big-Bang nucleosynthesis & $ 3 \,\text{min} $ & $ 4 \cdot 10^8 $ & $ 100 \kev $ \\ [1ex]
+    Big Bang nucleosynthesis & $ 3 \,\text{min} $ & $ 4 \cdot 10^8 $ & $ 100 \kev $ \\ [1ex]
     Matter-radiation equality & $ 60 \,\text{kyr} $ & $ 3400 $ & $ 0.75 \ev $ \\ [1ex]
     Recombination & $ 260 - 380 \,\text{kyr} $ & $ 1100 - 1400 $ & $ 0.26 - 0.33 \ev $ \\ [1ex]
     Photon decoupling (CMB) & $ 380 \,\text{kyr} $ & $ 1100 $ & $ 0.26 \ev $ \\ [1ex]
@@ -630,6 +630,115 @@ Substituting the measured value $ T_0 = 2.73 \,\text{K} $ and using $ \dofs(T_0)
   \Omega_X h^2 \simeq \frac{x_\text{f}}{100} \sqrt{\frac{10}{\dof(M_X)}} \frac{10^{-8} \gev^{-2}}{\braket{\sigma v}}
 \end{equation*}
 This reproduces the observed dark matter density if $ \sqrt{\braket{\sigma v}} \sim 10^{-4} \gev^{-1} \sim 0.1 \sqrt{G_\text{F}} $: the fact that a thermal relic with a cross-section typical of the weak interaction gives the right dark matter abundance is known as the \emph{WIMP miracle}.
+
+\subsection{Big Bang nucleosynthesis}
+
+At $ T \sim 1 \mev $, photons, electrons and positrons are in equilibrium, neutrinos are about to decouple and baryons are non-relativistic, hence much fewer in number than relativistic particles. However, due to baryon number conservation, the total number of nucleons remains constant: weak nuclear reactions may convert neutrons and protons into each other, while strong nuclear reactions may build nuclei from them. This is known as \bctxt{Big Bang nucleosynthesis} (BBN).
+
+In principle, BBN is a very complicated process involving many coupled Boltzmann equations. In practice, it is convenient to make two simplifications:
+\begin{enumerate}
+  \item only consider hydrogen and helium: no heavier element is produced at appreciable levels in BBN, hence one only needs to track $ \ch{^1H} \equiv \ch{H} $, $ \ch{^2H} \equiv \ch{D} $, $ \ch{^3H} \equiv \ch{T} $, $ \ch{^3He} $ and $ \ch{^4He} $;
+  \item only consider protons and neutrons for $ T \gtrsim 0.1 \mev $: at these temperatures, only free protons and neutrons exist, while other ligh nuclei have yet to form.
+\end{enumerate}
+
+\subsubsection{Equilibrium abundances}
+
+ To show the validity of these assumptions, recall that $ T \gtrsim 0.8 \mev $ protons and neutrons are coupled via weak interactions ($ \beta $-decay and inverse $ \beta $-decay):
+\begin{equation*}
+  n + \nu_e \lra p^+ + e^-
+  \quad \qquad
+  n + e^+ \lra p^+ + \bar\nu_e
+\end{equation*}
+Assume $ \mu_\nu , \mu_e \simeq 0 $, so that $ \mu_p = \mu_n $. Then, generalizing \eref{eq:sub-rel} to include the chemical potential:
+\begin{equation}
+  n_i^\text{eq} = g_i \left( \frac{m_i T}{2\pi} \right) e^\frac{\mu_i - m_i}{T}
+  \quad \implies \quad
+  \left( \frac{n_n}{n_p} \right)_\text{eq} = \left( \frac{m_n}{m_p} \right)^{3/2} e^{-(m_n - m_p) /T} \simeq e^{-Q/T}
+  \label{eq:n-to-p}
+\end{equation}
+where $ Q \equiv m_n - m_p \simeq 1.30 \mev \ll m_n , m_p $. This shows that for $ T \gg 1 \mev $ there are as many neutrons as protons, while for $ T < 1 \mev $ the neutron fraction gets smaller\footnotemark.
+
+\footnotetext{Were the up quark heavier than the down quark, then $ m_n < m_p $ and, with the decrease of temperature, protons would weakly decay into neutrons, producing a much different universe.}
+
+Next, consider deuterium, which is produced by the following relation:
+\begin{equation*}
+  n + p^+ \lra D + \gamma
+\end{equation*}
+Since $ \mu_\gamma = 0 $, then $ \mu_{\ch{D}} = \mu_n + \mu_p $, recalling that $ g_{\ch{D}} = 3 $ and $ g_n = g_p = 2 $:
+\begin{equation}
+  \left( \frac{n_{\ch{D}}}{n_n n_p} \right)_\text{eq} = \left( \frac{m_{\ch{D}}}{m_n m_p} \frac{2\pi}{T} \right)^{3/2} e^{- (m_{\ch{D}} - m_n - m_p) / T}
+\end{equation}
+In the prefactor $ m_{\ch{D}} \approx 2m_n \approx 2m_p \simeq 1.9 \gev $, while the exponent can be expressed in terms of the binding energy of deuterium $ B_{\ch{D}} \equiv m_n + m_p - m_{\ch{D}} \simeq 2.22 \mev $. Hence, as long as chemical equilibrium holds:
+\begin{equation*}
+  \left( \frac{n_{\ch{D}}}{n_p} \right)_\text{eq} = n_n^\text{eq} \left( \frac{4\pi}{m_p T} \right)^{3/2} e^{B_{\ch{D}} / T}
+\end{equation*}
+For an order-of-magnitude estimate, approximate the neutron density with the baryon density, so that:
+\begin{equation*}
+  n_n \sim n_\text{b} = \eta_\text{b} n_\gamma = \eta_\text{b} \frac{2\zeta(3)}{\pi^2} T^3
+  \quad \implies \quad
+  \left( \frac{n_{\ch{D}}}{n_p} \right)_\text{eq} \sim \eta_\text{b} \left( \frac{T}{m_p} \right)^{3/2} e^{B_{\ch{D}} / T}
+\end{equation*}
+The smallness of $ \eta_\text{b} \sim 10^{-9} $ inhibits deuterium production until the temperature drops well below the binding energy $ B_{\ch{D}} $, and the same applies to all other nuclei: at $ T \gtrsim 0.1 \mev $, then, virtually all baryons are in the form of neutrons and protons. At this time, deuterium and helium are produced, but the reaction rates are too slow to produce any heavier nucleus.
+
+\subsubsection{Neutron freeze-out and decay}
+
+The primordial ration of neutrons is particularly important for BBN, since essentially all neutrons became incorporated into $ \ch{^4He} $. Defining the neutron fraction $ X_n \equiv n_n / (n_n + n_p) $, with \eref{eq:n-to-p}:
+\begin{equation}
+  X_n^\text{eq}(T) = \frac{e^{-Q/T}}{1 + e^{-Q/T}}
+\end{equation}
+Neutrons follow this equilibrium abundance until neutrinos decouple\footnotemark at $ T_\text{dec} \simeq 0.8 \mev $, when weak processes like the $ \beta $-decay effectively shut off. At this moment $ X_n^\text{eq}(T_\text{dec}) \simeq 0.17 \simeq \frac{1}{6} $, which can be taken as a rough estimate of the final freeze-out abundance, so that $ X_n^\infty \sim \frac{1}{6} $ (a more precise estimate with QFT gives $ X_n^\infty = 0.15 $).
+
+\footnotetext{Note that $ Q \sim T_\text{dec} $ is just a coincidence, since the former is determined by the strong and electromagnetic interactions, while the latter by the weak interaction.}
+
+At $ T \lesssim 0.2 \mev $, i.e. $ t \lesssim 100 \,\text{sec} $, the finite lifetime of the neutron becomes important, and indeed neutron decay must be accounted for:
+\begin{equation}
+  X_n(t) = X_n^\infty e^{-t/\tau_n} \sim \frac{1}{6} e^{-t/\tau_n}
+  \label{eq:neutron-decay}
+\end{equation}
+where $ \tau_n = 886.7 \pm 0.8 \,\text{sec} $ is the neutron's lifetime.
+
+\subsubsection{Helium fusion}
+
+At this point, the universe is mostly made of protons and neutrons. Helium cannot form directly, since the density is too low and the time available is too short for reactions involving three or more nuclei to occur (at least at an appreciable rate). Heavier nuclei are instead formed sequentially, according to the following chain of reactions:
+\begin{equation*}
+  n + p^+ \lra \ch{D} + \gamma
+  \quad \longrightarrow \quad
+  D + p^+ \lra \ch{^3He} + \gamma
+  \quad \longrightarrow \quad
+  \ch{D} + \ch{^3He} \lra \ch{^4He} + p^+
+\end{equation*}
+Since deuterium is formed directly from neutrons and protons, it can follow its equilibrium abundance as long as there are enough free neutrons available. However, since $ B_{\ch{D}} $ is rather small, the deuterium abundance becomes large rather late (at $ T < 100 \kev $), so, although heavier nuclei have larger binding energy and hence would have larger equilibrium abundances, they cannot be formed until sufficient deuterium has become available, a phenomenon known as \bctxt{deuterium bottleneck}. Only when there is enough deuterium can helium be produced.
+
+To get a rough estimate for the time of nucleosynthesis, first estimate the temperature $ T_\text{nuc} $ when the deuterium fraction in equilibrium would be of order $ 1 $, i.e. $ (n_{\ch{D}} / n_p)_\text{eq} \sim 1 $:
+\begin{equation*}
+  \eta_\text{b} \left( \frac{T_\text{nuc}}{m_p} \right)^{3/2} e^{B_{\ch{D}} / T} \sim 1
+  \quad \implies \quad
+  T_\text{nuc} \sim 0.06 \mev
+\end{equation*}
+From \eref{eq:thermal-history} with $ \dof = 3.38 $, the time of nucleosynthesis is found:
+\begin{equation*}
+  t_\text{nuc} \simeq 120 \,\text{sec} \left( \frac{0.1 \mev}{T_\text{nuc}} \right)^2 \sim 330 \,\text{sec}
+\end{equation*}
+A better estimate would be imposing $ (n_{\ch{D}} / n_p)_\text{eq} \sim 10^{-3} $, resulting in $ t_\text{nuc} \sim 250 \,\text{sec} $: in both cases $ t_\text{nuc} \ll \tau_n $, so \eref{eq:neutron-decay} is not very sensitive to a precise estimate of $ t_\text{nuc} $. In both cases:
+\begin{equation}
+  X_n(t_\text{nuc}) \sim \frac{1}{8}
+\end{equation}
+Since $ B_{\ch{He}} > B_{\ch{D}} $, the Boltzmann factor $ e^{B/T} $ favours helium over deuterium, so helium is produced almost immediately after deuterium: virtually all remaining neutrons at $ t \sim t_\text{nuc} $ are then processed into $ \ch{^4He} $. Since two neutrons go into one nucleus of $ \ch{^4He} $, its final abundance is equal to half the neutron abundance at $ t_\text{nuc} $, hence:
+\begin{equation}
+  \frac{n_{\ch{He}}}{n_{\ch{H}}} = \frac{n_{\ch{He}}}{n_p} \simeq \frac{\frac{1}{2} X_n(t_\text{nuc})}{1 - X_n(t_\text{nuc})} \sim \frac{1}{16}
+\end{equation}
+This prediction is consistent with the observed helium in the universe, as shown in \figref{fig:he-abundance}. The only atomic species which deviates from theoretical predictions is litium, and in fact this is known as the \emph{Li problem}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.40 \textwidth]{he-abundance.png}
+  \caption{Theoretical predictions (coloured) and observational constraints (grey) on today abundances of light nuclei.}
+  \label{fig:he-abundance}
+\end{figure}
+
+%\subsection{Recombination}
+
+%At $ T \gtrsim 1 \ev $, the universe still consisted of a plasma of free electrons and nuclei: photons were tightly coupled to electrons through Compton scattering, while electrons were strongly coupled to protons via Coulomb scattering. When temperature became low enough, electrons and nuclei combined to form neutral atoms: this phenomenon is known as \bctxt{Recombination}. As a consequence, the electron density fell sharply, thus causing a growth of the photon mean free path, which became larger than the horizon distance: photons decoupled from matter and the universe became transparent. Today, these photons are the cosmic microwave background.
 
 
 
