@@ -332,7 +332,7 @@ When the temperature drops below the mass $ m_i $ of a particle species, it beco
 
 According to the second law of thermodynamics, the total entropy of the universe can only increase or stay constant. Since the fraction of baryons to photons is measured to be:
 \begin{equation}
-  \eta_\text{b} \equiv \frac{n_\text{b}}{n_\gamma} \sim 10^{-9}
+  \eta_\text{b} \equiv \frac{n_\text{b}}{n_\gamma} \simeq 5.5 \cdot 10^{-10} \frac{\Omega_\text{b} h^2}{0.020} \sim 10^{-9}
 \end{equation}
 the entropy of the universe is dominated by the entropy of the photon bath (at least as long as the universe is sufficiently uniform): any entropy production from non-equilibrium processes is then insignificant relative to the total entropy, and therefore the expansion of the universe can be treated as \emph{adiabatic}, so that the total entropy stays constant, even beyond equilibrium.
 
@@ -719,26 +719,131 @@ From \eref{eq:thermal-history} with $ \dof = 3.38 $, the time of nucleosynthesis
 \begin{equation*}
   t_\text{nuc} \simeq 120 \,\text{sec} \left( \frac{0.1 \mev}{T_\text{nuc}} \right)^2 \sim 330 \,\text{sec}
 \end{equation*}
-A better estimate would be imposing $ (n_{\ch{D}} / n_p)_\text{eq} \sim 10^{-3} $, resulting in $ t_\text{nuc} \sim 250 \,\text{sec} $: in both cases $ t_\text{nuc} \ll \tau_n $, so \eref{eq:neutron-decay} is not very sensitive to a precise estimate of $ t_\text{nuc} $. In both cases:
+A better estimate would be imposing $ (n_{\ch{D}} / n_p)_\text{eq} \sim 10^{-3} $, as suggested by \figref{fig:he-production}, resulting in $ t_\text{nuc} \sim 250 \,\text{sec} $: in both cases $ t_\text{nuc} \ll \tau_n $, so \eref{eq:neutron-decay} is not very sensitive to a precise estimate of $ t_\text{nuc} $. In both cases:
 \begin{equation}
   X_n(t_\text{nuc}) \sim \frac{1}{8}
 \end{equation}
 Since $ B_{\ch{He}} > B_{\ch{D}} $, the Boltzmann factor $ e^{B/T} $ favours helium over deuterium, so helium is produced almost immediately after deuterium: virtually all remaining neutrons at $ t \sim t_\text{nuc} $ are then processed into $ \ch{^4He} $. Since two neutrons go into one nucleus of $ \ch{^4He} $, its final abundance is equal to half the neutron abundance at $ t_\text{nuc} $, hence:
 \begin{equation}
   \frac{n_{\ch{He}}}{n_{\ch{H}}} = \frac{n_{\ch{He}}}{n_p} \simeq \frac{\frac{1}{2} X_n(t_\text{nuc})}{1 - X_n(t_\text{nuc})} \sim \frac{1}{16}
+  \label{eq:he-h-ratio}
 \end{equation}
-This prediction is consistent with the observed helium in the universe, as shown in \figref{fig:he-abundance}. The only atomic species which deviates from theoretical predictions is litium, and in fact this is known as the \emph{Li problem}.
+This prediction is consistent with the observed helium in the universe, as shown in \figref{fig:he-abundance}. The abundances of other light elements are determined numerically solving the system of coupled Boltzmann equation, and the result is shown in \figref{fig:he-production} and \figref{fig:light}: all these theoretical abundances have quantitative agreement with observational data, with the exception of lithium (the so-called \emph{lithium problem}).
 
 \begin{figure}
   \centering
-  \includegraphics[width = 0.40 \textwidth]{he-abundance.png}
+  \includegraphics[width = 0.50 \textwidth]{he-abundance.png}
   \caption{Theoretical predictions (coloured) and observational constraints (grey) on today abundances of light nuclei.}
   \label{fig:he-abundance}
 \end{figure}
 
-%\subsection{Recombination}
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{he-production.png}
+  \caption{Numerical results for helium production in the early universe.}
+  \label{fig:he-production}
+\end{figure}
 
-%At $ T \gtrsim 1 \ev $, the universe still consisted of a plasma of free electrons and nuclei: photons were tightly coupled to electrons through Compton scattering, while electrons were strongly coupled to protons via Coulomb scattering. When temperature became low enough, electrons and nuclei combined to form neutral atoms: this phenomenon is known as \bctxt{Recombination}. As a consequence, the electron density fell sharply, thus causing a growth of the photon mean free path, which became larger than the horizon distance: photons decoupled from matter and the universe became transparent. Today, these photons are the cosmic microwave background.
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{light-abundances.png}
+  \caption{Numerical results for the evolution of light element abundances.}
+  \label{fig:light}
+\end{figure}
+
+\subsubsection{Constraints on BSM physics}
+
+The result in \eref{eq:he-h-ratio} depends on several input parameters:
+\begin{itemize}
+  \item $ \dof $: during radiation era $ H \propto \dof^{1/2} T^2 $, hence variations in $ \dof $ affect the neutron freeze-out temperature $ T_\text{f} \sim T_\text{dec} $, since the neutrino decoupling temperature is determined by $ G_\text{F} T_\text{dec}^5 \sim \sqrt{G_\text{N} \dof} T_\text{dec}^2 $, i.e. $ T_\text{f} \sim T_\text{dec} \propto \dof^{1/6} $. An increase of $ \dof $ causes an increase of $ T_\text{f} $, which in turn increases the $ n_n / n_p $ ratio at freeze-out, hence increasing the final helium abundance;
+  \item $ \tau_n $: a larger neutron lifetime would reduce the amount of neutron decay after freeze-out, thus increasing the final helium abundance;
+  \item $ Q $: a larger mass difference between neutrons and protons would decrease the $ n_n / n_p $ ratio at freeze-out, so decreasing the final helium abundance;
+  \item $ \eta_\text{b} $: the final helium abundance increases with an increase of $ \eta_\text{b} $, as nucleosynthesis starts earlier for larger baryon density (i.e. larger deuterium density);
+  \item $ G_\text{N} $: increasing the strength of gravity would increase the neutron freeze-out temperature $ T_\text{f} \sim T_\text{dec} \propto G_\text{N}^{1/6} $, therefore increasing the final helium abundance;
+  \item $ G_\text{F} $: increasing the strength of the weak nuclear force would decrease the neutron freeze-out temperature $ T_\text{f} \sim T_\text{dec} \propto G_\text{F}^{-2/3} $, thus decreasing the final helium abundance.
+\end{itemize}
+
+The dependence of BBN on SM parameters makes it a probe (and a constraint) of BSM physics.
+
+\subsection{Recombination}
+
+At $ T \gtrsim 1 \ev $, the universe still consisted of a plasma of free electrons and nuclei: photons were tightly coupled to electrons through Compton scattering, while electrons were strongly coupled to protons via Coulomb scattering. When temperature became low enough, electrons and nuclei combined to form neutral atoms: this phenomenon is known as \bctxt{Recombination}. As a consequence, the electron density fell sharply, thus causing a growth of the photon mean free path, which became larger than the horizon distance: photons decoupled from matter and the universe became transparent. Today, these photons are the cosmic microwave background.
+
+\subsubsection{Saha equilibrium}
+
+At $ T > 1 \ev $, baryons and photons are still in equilibrium through electromagnetic reactions, e.g.:
+\begin{equation*}
+  e^- + p^+ \lra \ch{H} + \gamma
+\end{equation*}
+Since $ T < m_e < m_p < m_{\ch{H}} $, from \eref{eq:sub-rel} the equilibrium abundances of the various species are:
+\begin{equation}
+  n_i^\text{eq} = g_i \left( \frac{m_i T}{2\pi} \right)^{3/2} \exp \frac{\mu_i - m_i}{T}
+\end{equation}
+with $ \mu_p + \mu_e = \mu_{\ch{H}} $ (since $ \mu_\gamma = 0 $). Then:
+\begin{equation*}
+  \left( \frac{n_{\ch{H}}}{n_e n_p} \right)_\text{eq} = \frac{g_{\ch{H}}}{g_e g_p} \left( \frac{m_{\ch{H}}}{m_e m_p} \frac{2\pi}{T} \right)^{3/2} \exp \frac{m_p + m_e - m_{\ch{H}}}{T}
+\end{equation*}
+Introducing the binding energy of hydrogen $ B_{\ch{H}} \equiv m_p + m_e - m_{\ch{H}} \simeq 13.6 \ev $ and the spin factors $ g_{\ch{H}} = 4 $, $ g_p = g_e = 2 $, and noting that $ n_e = n_p $ since the universe is not electrically charged (at least according to current observations), this equation becomes:
+\begin{equation*}
+  \left( \frac{n_{\ch{H}}}{n_e^2} \right)_\text{eq} = \left( \frac{2\pi}{m_e T} \right)^{3/2} e^{B_{\ch{H}} / T}
+\end{equation*}
+Now, define the \emph{free electron-to-baryon fraction} as $ X_e \equiv n_e / n_\text{b} $, where the baryon number can be written as $ n_\text{b} = \eta_\text{b} (2\zeta(3)/\pi^2) T^3 $, and note that protons are over $ 90\% $ (in number) of all nuclei, so that $ n_\text{b} \approx n_p + n_{\ch{H}} = n_e + n_{\ch{H}} $, so that:
+\begin{equation}
+  \frac{1 - X_e}{X_e^2} = \frac{n_{\ch{H}}}{n_e^2} n_\text{b}
+\end{equation}
+Putting everything together, the \bctxt{Saha equation} is found:
+\begin{equation}
+  \left( \frac{1 - X_e}{X_e^2} \right)_\text{eq} = \frac{2 \zeta(3)}{\pi^2} \eta_\text{b} \left( \frac{2\pi T}{m_e} \right)^{3/2} e^{B_{\ch{H}} / T}
+\end{equation}
+The solution of this equation as a function of redshift is plotted in \figref{fig:e-b-ratio}: although the Saha approximation correctly identifies the onset of Recombination, it is clearly insufficient to determine the relic densities of electrons after freeze-out.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{e-b-ratio.png}
+  \caption{Free electron-to-baryon ratio as a function of redshift.}
+  \label{fig:e-b-ratio}
+\end{figure}
+
+\subsubsection{Hydrogen recombination}
+
+To study Recombination, define the recombination temperature $ T_\text{rec} $ as the temperature at which $ 90\% $ of electrons have combined with protons to form hydrogen, i.e.:
+\begin{equation}
+  X_e(T_\text{rec}) = 0.1
+  \quad \implies \quad
+  T_\text{rec} \approx 0.3 \ev \simeq 3600 \,\text{K}
+\end{equation}
+Note that $ T_\text{rec} \ll B_{\ch{H}} $: the reason is that there are many photons for each hydrogen atom ($ \eta_\text{b} \sim 10^{-9} $), hence, even when $ T < B_{\ch{H}} $, the high-energy tail of the photon distribution contains a sufficient number of photons with energy $ E > B_{\ch{H}} $ which can ionize the hydrogen atoms.
+
+This estimate puts $ z_\text{rec} \simeq 1320 $, since $ T_\text{rec} = T_0 (1 + z_\text{rec}) $, which puts Recombination in the matter-dominated era which started at $ z_\text{eq} \simeq 3500 $. Then, using $ a(t) = (t/t_0)^{2/3} $, the time of Recombination is found:
+\begin{equation}
+  t_\text{rec} = \frac{t_0}{(1 + z_\text{rec})^{3/2}} \simeq 290'000 \,\text{yrs}
+\end{equation}
+
+\subsubsection{Photon decoupling}
+
+At $ T = T_\text{rec} $ there are still free electrons which are coupled to the photon bath. Indeed, photons are coupled to matter mostly through their interactions with electrons:
+\begin{equation*}
+  e^- + \gamma \lra e^- + \gamma
+\end{equation*}
+with an interaction rate $ \Gamma_\gamma \approx n_e \sigma_\text{T} $ (as $ v \approx c = 1 $), where $ \sigma_\text{T} \simeq 2 \cdot 10^{-3} \mev^{-2} $ is the \emph{Thomson cross-section}. The interaction rate therefore decreases as the density of free electrons drops, and the decoupling of photons happens roughly when it becomes smaller than the expansion rate, i.e.:
+\begin{equation}
+  \Gamma_\gamma(T_\text{CMB}) \sim H(T_\text{CMB})
+\end{equation}
+Writing $ n_e = n_\text{b} X_e $, the interaction rate becomes:
+\begin{equation*}
+  \Gamma_\gamma(T) = n_\text{b} X_e(T) \sigma_\text{T} = \frac{2\zeta(3)}{\pi^2} \eta_\text{b} \sigma_\text{T} X_e(T) T^3
+\end{equation*}
+On the other hand, in matter era the $ \Omega_\text{m} $ term in \eref{eq:h-omega} dominates, so that:
+\begin{equation*}
+  H(T) \simeq H_0 \sqrt{\Omega_\text{m}} \left( \frac{T}{T_0} \right)^{3/2}
+\end{equation*}
+Combining this equation, $ T_\text{CMB} $ is found numerically as:
+\begin{equation}
+  X_e(T_\text{CMB}) T_\text{CMB}^{3/2} \sim \frac{\pi^2}{2\zeta(3)} \frac{H_0 \sqrt{\Omega_\text{m}}}{\eta_\text{b} \sigma_\text{T} T_0^{3/2}}
+  \quad \implies \quad
+  T_\text{CMB} \sim 0.27 \ev
+\end{equation}
+which corresponds to $ z_\text{CMB} \sim 1100 $ and $ t_\text{CMB} \sim 380 \,\text{kyrs} $. Note that, although $ T_\text{CMB} $ is not far from $ T_\text{rec} $, the ionization fraction decreases significantly between recombination and photon decoupling: $ X_e(T_\text{rec}) \simeq 0.1 \ra X_e(T_\text{CMB}) \simeq 0.01 $. This shows that a large degree of neutrality is necessary for the universe to become transparent to photon propagation: after decoupling, photons stream freely through the universe, and are observable today as the CMB.
 
 
 
