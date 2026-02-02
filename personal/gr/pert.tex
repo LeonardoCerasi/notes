@@ -1,0 +1,290 @@
+\selectlanguage{english}
+
+Observations of the CMB reveal that, at least until $ z_\text{CMB} $, the universe was extremely homogeneous, with temperature variations of the order $ \delta T / T \sim 10^{-5} $. However, to understand the formation and evolution of large-scale structures, it is necessary to introduce inhomogeneities: today these perturbations of the homogeneous background are huge (e.g. galaxies and voids), but up to $ z_\text{CMB} $ they can be treated with perturbation theory.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 1.00 \textwidth]{cosmo_plot.pdf}
+  \caption{Evolution of the comoving Hubble radius. Note that the wavenumber of the cosmological perturbations increase in the opposite sense of the axis for $ (aH)^{-1} $.}
+  \label{fig:hr}
+\end{figure}
+
+\figref{fig:hr} shows the evolution of the comoving Hubble radius with the key events of the history of the universe highlighted. Cosmic perturbations (assuming  a wake-like ansatz) are pictured: these perturbations evolve in a linear regime up to $ a_\text{CMB} $, which can be treated analytically, but then enter a non-linear regime which lasts to these days and has to be treated computationally.
+
+\section{Newtonian treatment}
+
+Since the perturbations are assumed small, the metric perturbation with respect to the background metric can be treated in the Newtonian approximation.
+
+\subsection{Flat background}
+
+First, consider the evolution of cosmological perturbations in a flat universe. In the Newtonian approximation, the gravitational potential is the:
+\begin{equation}
+  \Phi(t,\ve{x}) = \delta \Phi(t,\ve{x})
+\end{equation}
+since a flat background has $ \bar \Phi(t) \equiv 0 $. The matter source too must be perturbed: assuming the background to be at rest, i.e. $ \bar{\ve{u}}(t) \equiv 0 $:
+\begin{equation}
+  \rho(t,\ve{x}) = \bar \rho(t) + \delta \rho(t,\ve{x})
+  \qquad \qquad
+  P(t,\ve{x}) = \bar P(t) + \delta P(t,\ve{x})
+  \qquad \qquad
+  \ve{u}(t,\ve{x}) = \delta \ve{u}(t,\ve{x})
+\end{equation}
+The equations that dictate the physical evolution of these perturbations are the continuity equation, the Euler equation and the Poisson equation:
+\begin{equation}
+  \dot{\rho} + \dive (\rho \ve{u}) = 0
+  \label{eq:continuity}
+\end{equation}
+\begin{equation}
+  \left( \pa_t + \ve{u} \cdot \grad \right) \ve{u} = - \frac{1}{\rho} \grad P - \grad \Phi
+  \label{eq:euler}
+\end{equation}
+\begin{equation}
+  \lap \Phi = 4\pi G \rho
+  \label{eq:poisson}
+\end{equation}
+
+\subsubsection{Matter perturbations}
+
+To study how matter perturbations evolve, consider the complete absence of gravity, i.e. $ \Phi(t,\ve{x}) \equiv 0 $, and a static background $ \bar \rho, \bar P = \text{const.} $, so that the (linear) continuity and Euler equations read:
+\begin{equation*}
+  \delta \dot \rho + \bar \rho \, \dive \delta \ve{u} = 0
+  \qquad \qquad
+  \bar \rho \, \delta \dot{\ve{u}} = - \grad \delta P
+\end{equation*}
+Introducing the density contrast $ \delta \equiv \delta \rho / \bar \rho $, these equations are rewritten as:
+\begin{equation*}
+  \dot{\delta} = - \dive \delta \ve{u}
+  \qquad \qquad
+  \delta \dot{\ve{u}} = - c_\text{s}^2 \grad \delta
+\end{equation*}
+where the \bctxt{sound velocity} is defined as:
+\begin{equation}
+  c_\text{s}^2 \equiv \frac{\delta p}{\delta \rho}
+\end{equation}
+Combining the above equation, a wave equation for the density contrast is found:
+\begin{equation}
+  \ddot{\delta} - c_\text{s}^2 \lap \delta = 0
+\end{equation}
+Therefore, perturbations evolve as sound waves with sound velocity $ c_\text{s} $. Since for cosmological matter sources $ P = w \rho $, the sound velocity is $ c_\text{s}^2 = w $: in matter ($ w = 0 $) no sound waves propagate since there is no pressure. The resulting dispersion relation is:
+\begin{equation}
+  \omega^2(k) = c_\text{s}^2 k^2
+\end{equation}
+
+\subsubsection{Gravitational perturbations}
+
+Introducing gravitational perturbations in the universe, i.e. $ \delta \Phi(t,\ve{x}) \neq 0 $ (which evolves as $ \lap \delta \Phi = 4 \pi G \delta \rho $), the wave equation for the density contrast gains a source term:
+\begin{equation}
+  \ddot{\delta} - c_\text{s}^2 \lap \delta = 4 \pi G \bar{\rho} \, \delta
+  \label{eq:wave-no-grav}
+\end{equation}
+The dispersion relation is then modified as:
+\begin{equation}
+  \omega^2(k) = c_\text{s}^2 k^2 - 4 \pi G \bar \rho
+  \label{eq:jeans-no-grav}
+\end{equation}
+The source term then acts as a \emph{tachyonic mass term} (i.e. with $ m^2 < 0$), which introduces a characteristic scale of perturbations, the Jeans scale:
+\begin{equation}
+  k_\text{J}^2 \equiv \frac{4 \pi G \bar{\rho}}{c_\text{s}^2}
+\end{equation}
+For $ k > k_\text{J} $, i.e. for small-scale perturbations, $ \omega \in \R $ and the behavior of the perturbations is oscillating (sound waves), while for $ k < k_\text{J} $, i.e. large-scale perturbations, $ \omega \in \C $ and the perturbations experience an exponential evolution, which is known as \bctxt{Jeans' instability}: this is the expected collapse of large structures.
+
+After the decoupling of photons (i.e. the emission of the CMB), matter starts behaving with $ w = 0 $, i.e. $ c_\text{s} = 0 $: since there are no waves, $ \omega \in \C \,\, \forall k \in \R^+_0 $ (from \eref{eq:jeans-no-grav}), i.e. there is a collapse and consequent formation of structures at all scales (stars, galaxies, galaxy clusters, \dots).
+
+\subsection{FLRW background}
+
+Now, consider the evolution of cosmological perturbations in a FLRW background, which introduces the distinction between comoving coordinates $ \ve{x} $ and physical coordinates $ \ve{r} \defeq a(t) \ve{x} $. As a consequence, the physical velocity is $ \ve{u} \equiv \dot{\ve{r}} = H \ve{r} + \ve{v} $, where $ \ve{v} \equiv a(t) \dot{\ve{x}} $ is the physical peculiar velocity.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Derivatives in a FLRW background}{}
+  \begin{equation}
+  \grad_r = a^{-1}(t) \grad_x
+  \qquad \qquad
+  \pa_t \vert_r = \pa_t \vert_x - H \ve{x} \cdot \grad_x
+\end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider a function $ f(t,\ve{r}) = f(t,a(t)\ve{x}) $. Then, $ \grad_\ve{r} = a^{-1}(t) \grad_\ve{x} $ by definition, and:
+    \begin{equation*}
+      \left( \frac{\pa f}{\pa t} \right)_x = \frac{\pa}{\pa t} \bigg\vert_x f(t,a(t)\ve{x}) = \frac{\pa}{\pa t} \bigg\vert_r f(t,\ve{r}) + \frac{\pa (a(t) \ve{x})}{\pa t} \cdot \grad_r f(t,\ve{r}) = \left[ \frac{\pa}{\pa t} \bigg\vert_r + H \ve{x} \cdot \grad_x \right] f
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+This shows that, while in a static spacetime $ \pa_t $ and $ \grad $ are independent, in an expanding spacetime this is no longer true. Then, assuming that the quantities in \eeref{eq:continuity}{eq:poisson} are physical quantities, they are modified when expressed in terms of comoving coordinates.
+
+\begin{theorem}{Newtonian approximation in FLRW background}{}
+  Cosmological perturbations in a FLRW background are governed by:
+  \begin{equation}
+    \dot{\rho} + 3H \rho + \frac{1}{a} \dive (\rho \ve{v}) = 0
+  \end{equation}
+  \begin{equation}
+    \left( \frac{\pa}{\pa t} + \frac{\ve{v}}{a} \cdot \grad \right) \ve{u} = - \frac{1}{a \rho} \grad P - \frac{1}{a} \grad \Phi
+  \end{equation}
+  \begin{equation}
+    \lap \Phi = 4 \pi G a^2 \rho
+  \end{equation}
+  where $ \grad \equiv \grad_x $ and $ \pa_t \equiv \pa_t \vert_x $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, consider the continuity equation \eref{eq:continuity}:
+    \begin{equation*}
+      \begin{split}
+        0
+        & = \left( \frac{\pa \rho}{\pa t} \right)_r + \grad_r \cdot (\rho \ve{u}) = \left( \frac{\pa}{\pa t} \bigg\vert_x - H \ve{x} \cdot \grad_x \right) \rho + \frac{1}{a} \grad_x \cdot (\rho \dot{a} \ve{x} + \rho \ve{v}) \\
+        & \equiv \dot{\rho} - H \ve{x} \cdot \grad \rho + H \ve{x} \cdot \grad \rho + H \rho \dive \ve{x} + \frac{1}{a} \dive (\rho \ve{v}) = \dot{\rho} + 3 H \rho + \frac{1}{a} \dive (\rho \ve{v})
+      \end{split}
+    \end{equation*}
+    Then, consider the Euler equation \eref{eq:euler}:
+    \begin{equation*}
+      \begin{split}
+        \left( \frac{\pa}{\pa t} \bigg\vert_r + \ve{u} \cdot \grad_r \right) \ve{u} & = - \frac{1}{\rho} \grad_r P - \grad_r \Phi \\
+        \left( \frac{\pa}{\pa t} - H \ve{x} \cdot \grad + H \ve{x} \cdot \grad + \frac{\ve{v}}{a} \cdot \grad \right) \ve{u} & = - \frac{1}{a \rho} \grad P - \frac{1}{a} \grad \Phi
+      \end{split}
+    \end{equation*}
+    which is the thesis. Finally, the Poisson equation is trivially modified by $ \lap_r = a^{-2}(t) \lap $.
+  \end{proof}
+\end{proofbox}
+
+Introducing the density contrast $ \delta \ll 1 $, these equations can be linearized\footnotemark. The continuity equation at zeroth order and at first order reads:
+\begin{equation*}
+  \dot{\bar \rho} + 3 H \bar \rho = 0
+  \qquad \qquad
+  \frac{\pa (\bar{\rho} \delta)}{\pa t} + 3 H \bar{\rho} \delta + \frac{1}{a} \dive (\bar{\rho} \ve{v}) = 0
+\end{equation*}
+Using the zeroth order equation for the evolution of the background density, the evolution of the density contrast is found to be:
+\begin{equation}
+  \dot \delta = - \frac{1}{a} \dive \ve{v}
+  \label{eq:density-contrast}
+\end{equation}
+At linear order, the growth of density perturbations is sourced by the divergence of the fluid velocity. Then, the linearized Euler equation reads:
+\begin{equation*}
+  \frac{\pa (H \ve{r})}{\pa t} = - \frac{1}{a \bar{\rho}} \grad \bar P - \frac{1}{a} \grad \bar \Phi
+  \qquad \quad
+  \frac{\pa (H \ve{r} + \ve{v})}{\pa t} + \frac{\ve{v}}{a} H \cdot \grad \ve{r} = - \frac{1}{a \bar \rho} \grad (\bar P + \delta P) - \frac{1}{a} \grad (\bar \Phi + \delta \Pi)
+\end{equation*}
+which, using $ \ve{v} \cdot \grad \ve{x} = \ve{v} $, reduces to:
+\begin{equation}
+  \dot{\ve{v}} + H \ve{v} = - \frac{1}{a \bar \rho} \grad \delta P - \frac{1}{a} \grad \delta \Phi
+  \label{eq:peculiar-velocity}
+\end{equation}
+In the absence of perturbations, this equation simply states that $ \ve{v} \propto a^{-1}(t) $. Now, combine \eeref{eq:density-contrast}{eq:peculiar-velocity} and substitute the Poisson equation $ \lap \delta \Phi = 4\pi G a^2 \bar \rho \, \delta $ to obtain:
+\begin{equation}
+  \ddot{\delta} + 2 H \dot{\delta} - \frac{c_\text{s}^2}{a^2} \lap \delta = 4\pi G \bar \rho \, \delta
+  \label{eq:wave-newton}
+\end{equation}
+
+\footnotetext{Recall that, for the velocity field, the perturbation is the peculiar velocity $ \ve{v} $.}
+
+This equation is equivalent to \eref{eq:wave-no-grav}, but with two important differences caused by the Hubble flow: a redshift of the sound velocity $ a^{-1}(t) c_\text{s} $ and the presence of friction term, which makes this a damped wave equation.
+
+Note that the Jeans scale is still present, although now it is affected by the redshift due to the Hubble flow: if $ k > a k_\text{J} $, the perturbations behave like damped waves, while for $ k < a k_\text{J} $ the system presents Jeans' instability, which is no longer exponential due to the friction term (now it is a power-law instability).
+
+For baryons, the sound velocity, and so the Jeans scale, depend on time. Before recombination, baryons are strongly coupled to photons, forming a relativistic photon-baryon fluid with $ c_\text{s} \approx 1 / \sqrt{3} $: the Jeans scale is then of the order of the comoving Hubble radius, suppressing the growth of baryonic fluctuations at subhorizon scales (oscillatory regime). After recombination, the baryonic fluid starts behaving like pressureless dust and baryonic fluctuations at all scales start to grow.
+
+On the other hand, for cold dark matter (CDM) the sound speed is negligible at all times, so that subhorizon fluctuations can start to grow earlier.
+
+\subsubsection{Matter era}
+
+In matter era $ a \propto t^{2/3} $ and $ H(t) = \frac{2}{3t} $. The density contrast is just $ \delta \simeq \delta_\text{m} \equiv \delta \rho_\text{m} / \bar{\rho}_\text{m} $, since:
+\begin{equation*}
+  \delta = \frac{\delta \rho}{\bar \rho} \simeq \frac{\delta \rho_\text{r} + \delta \rho_\text{m}}{\bar{\rho}_\text{m}} \equiv \delta_\text{m} + \delta_\text{r} \frac{\bar{\rho}_\text{r}}{\bar{\rho}_\text{m}} \simeq \delta_\text{m}
+\end{equation*}
+By \eref{eq:fried-hubble}, then, $ 4\pi G \bar{\rho}_\text{m} = \frac{3}{2} H^2 = \frac{2}{3t^2} $, and \eref{eq:wave-newton} for subhorizon modes (i.e. $ \lambda < (aH)^{-1} $) becomes:
+\begin{equation}
+  \ddot{\delta}_\text{m} + \frac{4}{3t^2} \dot{\delta}_\text{m} - \frac{2}{3t^2} \delta_\text{m} = 0
+\end{equation}
+since $ c_\text{s}^2 \approx w = 0 $ in matter era. With a power-law ansatz $ \delta_\text{m} \propto t^\alpha $, two solutions are found:
+\begin{equation}
+  \delta_\text{m} \propto
+  \begin{cases}
+    t^{-1} \propto a^{-2/3}
+    t^{2/3} \propto a \\
+  \end{cases}
+\end{equation}
+The first solution is a \emph{decaying solution}, while the second one is a \emph{growing solution}. The growing solution is $ \delta \propto a $, which during matter era varies from $ a_\text{eq} \simeq 1/3401 $ to $ a_\Lambda \simeq 1/1.4 $, i.e. by $ \sim 10^3 $ times: assuming initial perturbations of order $ \delta_\text{m} \sim 10^{-5} $ (from CMB), at the end of matter era these perturbations have grown to $ \delta_\text{m} \sim 10^{-2} $, still not enough to explain the cosmic structures observed today. This is due to the fact that, after the CMB emission, cosmological perturbations enter the non-linear regime, and non-linear collapse is faster than the linear one.
+
+Moreover, note that a smaller matter era determines a smaller growth of fluctuations: this means that the existence of dark matter (i.e. an additional dominant contribution to $ \Omega_\text{m} $ other than baryonic matter) is necessary to explain the current cosmic structures.
+
+\subsubsection{Radiation era}
+
+In radiation era $ a \propto t^{1/2} $ and $ H(t) = \frac{1}{2t} $. Now, the density contrast is $ \delta \simeq \delta_\text{r} + \delta_\text{m} \frac{\bar{\rho}_\text{m}}{\bar{\rho}_\text{r}} $: since the radiation fluid has a large sound velocity $ c_\text{s} \approx 1 / \sqrt{3} $, it is expected to oscillate over scales smaller than the comoving Hubble horizon, so that, averaging over many oscillation periods, $ \braket{\delta_\text{r}} = 0 $ and the time-average density contrast reduces to the matter contribution. Then, \eref{eq:wave-newton} becomes:
+\begin{equation*}
+  \ddot{\delta}_\text{m} + 2 H \dot{\delta}_\text{m} - 4\pi G \bar{\rho}_\text{m} \delta_\text{m} = 0
+\end{equation*}
+Since $ \dot{\delta}_\text{m} \sim H \delta_\text{m} $, the first two terms are $ \sim H^2 \sim \bar \rho_\text{r} \gg \bar \rho_\text{m} $, hence the last term is negligible and the evolution of $ \delta_\text{m} $ is given by:
+\begin{equation}
+  \ddot{\delta}_\text{m} + \frac{1}{t} \dot{\delta}_\text{m} = 0
+\end{equation}
+With a power-law ansatz, two solution are found:
+\begin{equation}
+  \delta_\text{m} \propto
+  \begin{cases}
+    \text{const.} \\
+    \ln t \propto \ln a
+  \end{cases}
+\end{equation}
+Therefore, matter perturbations grow slower in radiation era, compared to matter era (\emph{Mészáros effect}). On the other hand, superhorizon modes (i.e. $ \lambda > (aH)^{-1} $) cannot causally interact, and their evolution can be studied with a relativistic analysis.
+
+To show how matter perturbations at different scales evolve, it is necessary to study their power spectrum $ \delta_\text{m}(k) $. In particular, Inflation predicts that, when perturbations enter the comoving Hubble horizon, they have the primordial power spectrum $ \delta_\text{m,initial}(k) \propto k^{-1} $ (\emph{Harrison--Zel'dovich spectrum}), and then they evolve according to a transfer function of the form (see \figref{fig:trans}):
+\begin{equation}
+  \mathcal{T}(k) \simeq
+  \begin{cases}
+    1 & k < k_\text{eq} \\
+    \left( \frac{k_\text{eq}}{k} \right)^2 \ln \frac{k}{k_\text{eq}} & k > k_\text{eq}
+  \end{cases}
+\end{equation}
+where $ k_\text{eq} \sim 60 $ is the wavenumber of perturbations entering the comoving Hubble horizon at radiation-matter equality ($ \lambda_\text{eq} \sim 100 \,\text{Mpc} $, approximately the size of a galaxy cluster). This means that large-scale perturbations grow less than small-scale perturbations, since they enter the Hubble radius later (see \figref{fig:hr}).
+
+Combining these, it is possible to compute the predicted (linear) matter power spectrum for matter fluctuations observed today:
+\begin{equation}
+  \delta_\text{m}^2 \propto
+  \begin{cases}
+    k & k < k_\text{eq} \\
+    k^{-3} \ln^2 \frac{k}{k_\text{eq}} & k > k_\text{eq}
+  \end{cases}
+\end{equation}
+which has excellent agreement with experimental observations (\figref{fig:dm-power}), except for the high-$ k $ (i.e. small-$ \lambda $) regime, a discrepancy which is due to the limited applicability of the linear approximation to small-scale fluctuations. Indeed, the linear analysis tends to underestimate the formation of small-scale structure fuelled by the faster non-linear collapse.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.45 \textwidth]{transfer-function.png}
+  \caption{Transfer function for matter perturbation: the shape of $ \mathcal{T}(k) $ is a consequence of the suppressed growth of subhorizon modes during the radiation era.}
+  \label{fig:trans}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.7 \textwidth]{dm-power.png}
+  \caption{Measurements of the linear matter power spectrum.}
+  \label{fig:dm-power}
+\end{figure}
+
+\subsubsection{Vacuum era}
+
+Finally, in vacuum era $ a \propto e^{H t} $, with $ H \approx \text{const.} $ during the dark-matter-dominated era. Again $ 4\pi G \bar{\rho}_\text{m} \ll H^2 \propto \rho_\Lambda $ (the density of dark energy does not fluctuate), hence \eref{eq:wave-newton} reduces to:
+\begin{equation}
+  \ddot{\delta}_\text{m} + 2 H \dot{\delta}_\text{m} = 0
+\end{equation}
+which, with a power-law ansatz, has two solutions:
+\begin{equation}
+  \delta_\text{m} \propto
+  \begin{cases}
+    e^{-2Ht} \propto a^{-2} \\
+    \text{const.}
+  \end{cases}
+\end{equation}
+which shows that, during the vacuum era, the growth of cosmological perturbations (i.e. of structures) halts.
+
+
+
+
+
+
+
+
+
+
