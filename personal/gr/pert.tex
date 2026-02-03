@@ -11,7 +11,7 @@ Observations of the CMB reveal that, at least until $ z_\text{CMB} $, the univer
 
 \figref{fig:hr} shows the evolution of the comoving Hubble radius with the key events of the history of the universe highlighted. Cosmic perturbations (assuming  a wake-like ansatz) are pictured: these perturbations evolve in a linear regime up to $ a_\text{CMB} $, which can be treated analytically, but then enter a non-linear regime which lasts to these days and has to be treated computationally.
 
-\section{Newtonian treatment}
+\section{Newtonian perturbation theory}
 
 Since the perturbations are assumed small, the metric perturbation with respect to the background metric can be treated in the Newtonian approximation.
 
@@ -278,6 +278,199 @@ which, with a power-law ansatz, has two solutions:
   \end{cases}
 \end{equation}
 which shows that, during the vacuum era, the growth of cosmological perturbations (i.e. of structures) halts.
+
+\newpage
+\section{Relativistic perturbation theory}
+
+The Newtonian analysis is inadequate on scales larger than the Hubble radius and for relativistic fluids (e.g. photons and neutrinos). Before photon decoupling, photons electrons and protons are strongly coupled by electromagnetic interactions, forming a single (relativistic) photon-baryon fluid: the matter perturbations then oscillate, since gravity makes perturbations collapse, causing an increase in radiation density that makes them re-expand. At photon decoupling, modes with different wavelengths are captured at different phases in their evolution, giving rise to a characteristic pattern in the CMB. After photon decoupling, the baryons lose the pressure support of the photons and fall into the gravitational potential wells created by dark matter, eventually forming starts and galaxies. These dark matter clusters only start to form after radiation-matter equality, since before that they are suppressed by the large radiation pressure of photons.
+
+\subsection{Perturbations}
+
+The Einstein field equations \eref{eq:ef-eq} couple perturbations in the stress-energy tensor to those in the metric, which then need to be studied simultaneously. In particular, working in conformal time, the perturbations with respect to the homogeneous background can be written as:
+\begin{equation}
+  g_{\mu \nu}(\eta , \ve{x}) = \bar g_{\mu \nu}(\eta) + \delta g_{\mu \nu}(\eta , \ve{x})
+\end{equation}
+\begin{equation}
+  T_{\mu \nu}(\eta , \ve{x}) = \bar T_{\mu \nu}(\eta) + \delta T_{\mu \nu}(\eta , \ve{x})
+\end{equation}
+To avoid clutter, from now on the dependence of perturbations from $ (\eta , \ve{x}) $ is suppressed. Note that the unperturbed metric is assumed to be the flat FLRW metric, so that:
+\begin{equation*}
+  \dd \bar s^2 \equiv \bar g_{\mu \nu} \dd x^\mu \dd x^\nu = a^2(\eta) \left[ \dd \eta^2 - \dd \ve{x}^2 \right]
+\end{equation*}
+
+\subsubsection{Metric perturbations}
+
+Since the metric tensor of a 4D manifold has $ 10 $ independent components, $ \delta g_{\mu \nu} $ can be written as:
+\begin{equation}
+  \dd s^2 \equiv g_{\mu \nu} \dd x^\mu \dd x^\nu = a^2(\eta) \left[ \left( 1 + 2A \right) \dd \eta^2 - 2 B_i \dd x^i \dd \eta - \left( \delta_{ij} + h_{ij} \right) \dd x^i \dd x^j \right]
+  \label{eq:metric-pert}
+\end{equation}
+where $ A $ is a scalar, $ B_i $ is a spatial 3-vector and $ h_{ij} $ is a symmetric spatial 3-tensor. Then, by convention $ B^i = \delta^{ij} B_j $ and $ \tensor{h}{^i_j} = \delta^{ik} h_{kj} $.
+
+\begin{lemma}{SVT decomposition of vectors}{}
+  Given a 3-vector $ B_i $, it can be decomposed as:
+  \begin{equation}
+    B_i = \pa_i B + \hat B_i
+  \end{equation}
+  where $ B $ is a scalar and $ \hat B_i : \pa^i \hat B_i = 0 $ is a divergenceless 3-vector.
+\end{lemma}
+
+\begin{lemma}{SVT decomposition of symmetric tensors}{}
+  Given a symmetric 3-tensor $ h_{ij} $, it can be decomposed as:
+  \begin{equation}
+    h_{ij} = 2C \delta_{ij} + 2 \pa_{\langle i} \pa_{j \rangle} E + 2 \pa_{(i} \hat E_{j)} + 2 \hat E_{ij}
+  \end{equation}
+  where $ C , E $ are scalars, $ \hat E_i : \pa^i \hat E_i = 0 $ is a divergenceless 3-vector, $ \hat E_{ij} : \pa^i \hat E_{ij} = 0 \,\,\land\,\, \tensor{\hat E}{^i_i} = 0 $ is a divergenceless traceless symmetric 3-tensor and:
+  \begin{equation}
+    \pa_{\langle i} \pa_{j \rangle} \defeq \pa_i \pa_j - \frac{1}{3} \delta_{ij} \lap
+  \end{equation}
+\end{lemma}
+
+With the SVT decomposition, the $ 3 $ degrees of freedom of $ B_i $ are decomposed into $ 1 + 2 $ and the $ 6 $ of $ h_{ij} $ into $ 1 + 1 + 2 + 2 $, resulting in a complete decomposition of the $ 10 $ degrees of freedom of $ \delta g_{\mu \nu} $ into $ 4 + 4 + 2 $: scalars $ A,B,C,E $, vectors $ \hat B_i , \hat E_i $ and tensor $ \hat E_{ij} $.
+
+The SVT decomposition is convenient since, at linear order, the Einstein equations for scalars, vectors and tensors do not mix and can therefore be treated separately. In particular, in the following vector perturbations are ignored, since they are not produced by Inflation, and even if they were, they would decay quickly with the expansion of the universe. On the other hand, $ \hat E_{ij} $ is a transverse traceless tensor, hence tensor perturbations are truly gravitational waves (\eref{eq:traceless}) and will be analyzed later.
+
+\paragraph{Gauge fixing}
+
+The remaining scalar perturbations can be further simplified with gauge invariance. Indeed, the perturbations in \eref{eq:metric-pert} are not uniquely defined, but depend on the choice of coordinates, i.e. on the choice of gauge: the chosen form of the perturbed metric has been determined by the implicit introduction of a specific time slicing of the spacetime and definition of specific coordinates on these time slices.
+In general, choosing different coordinates introduces ``fictious perturbations", known as \emph{gauge modes}.
+
+In order to avoid these gauge problems, there are two solutions: either define special combinations of the metric perturbations that do not transform under a change of coordinates, called \emph{Bardeen variables}, or fix a particular gauge. In the following, the \bctxt{Newtonian gauge} is used, where two of the four scalar perturbations are set to zero:
+\begin{equation}
+  B = E \equiv 0
+\end{equation}
+The perturbed metric then becomes:
+\begin{equation}
+  \dd s^2 = a^2(\eta) \left[ \left( 1 + 2 \Psi \right) \dd \eta^2 - \left( 1 - 2 \Phi \right) \delta_{ij} \dd x^i \dd x^j \right]
+  \label{eq:perturbed-metric}
+\end{equation}
+where the Bardeen potentials $ \Psi \equiv A $ and $ \Phi \equiv - C $ have been introduced. For perturbations that decay at spatial infinity, the Newtonian gauge is unique (i.e. the gauge is fixed completely). Note that, in this gauge, time slices are orthogonal to the worldlines of observers at rest in these coordinates (since $ B = 0 $), and the induced geometry on time slices is isotropic (since $ E = 0 $), thus making the physics transparent.
+
+The metric in the Newtonian gauge bears similarity to the weak-field limit in Minkwoski space \eref{eq:linear-newtonian}: this suggests that $ \Psi $ plays the role of a gravitational potential.
+
+\subsubsection{Matter perturbations}
+
+The perturbations of the stress-energy tensor can be written in term of the perturbed energy density $ \rho(\eta , \ve{x}) = \bar \rho(\eta) + \delta \rho(\eta , \ve{x}) $ and pressure $ P(\eta , \ve{x}) = \bar P(\eta) + \delta P(\eta , \ve{x}) $:
+\begin{align}
+  \tensor{\delta T}{^0_0} & = \delta \rho \\
+  \tensor{\delta T}{^i_0} & = \left( \bar{\rho} + \bar{P} \right) v^i \\
+  \tensor{\delta T}{^i_j} & = - \delta P \, \tensor{\delta}{^i_j} - \tensor{\Pi}{^i_j}
+\end{align}
+where $ v^i $ is a 3-vector, known as \emph{bulk velocity}, and $ \tensor{\Pi}{^i_j} $ is a symmetric traceless 3-tensor, known as \emph{anisotropic stress}. The $ 10 $ degrees of freedom of $ \delta \tensor{T}{^\mu_\nu} $ are then correctly decomposed as $ 1 + 1 + 3 + 5 $.
+In the following analysis, the anisotropic stress is ignored: $ \tensor{\Pi}{^i_j} \equiv 0 $.
+
+\subsection{Evolution}
+
+\begin{lemma}{Christoffel symbols in perturbed FLRW}{}
+  The Christoffel symbols associated to the metric \eref{eq:perturbed-metric} are:
+  \begin{align}
+    \Gamma^0_{00} & = \ham + \Psi' \\
+    \Gamma^0_{i0} & = \pa_i \Psi \\
+    \Gamma^i_{00} & = \delta^{ij} \pa_j \Psi \\
+    \Gamma^0_{ij} & = \ham \delta_{ij} - \left[ \Phi' + 2\ham (\Phi + \Psi) \right] \delta_{ij} \\
+    \Gamma^i_{j0} & = [\ham - \Phi'] \delta^i_j \\
+    \Gamma^i_{jk} & = - 2 \delta^i_{(j} \pa_{k)} \Phi + \delta_{jk} \delta^{i\ell} \pa_\ell \Phi
+  \end{align}
+  where $ \ham \equiv \frac{a'}{a} $ and $ a' \defeq \frac{\dd a}{\dd \eta} $.
+\end{lemma}
+
+The equations of motion of matter perturbations follow from the covariant conservation of the stress-energy tensor: $ \na_\mu \tensor{T}{^\mu_\nu} = 0 $. The $ \nu = 0 $ component is the continuity equation, which at zeroth and linear order in perturbations is:
+\begin{equation}
+  \bar \rho' + 3 \ham (\bar \rho + \bar P) = 0
+\end{equation}
+\begin{equation}
+  \delta \rho' + 3 \ham (\delta \rho + \delta P) - 3 \Phi' (\rho + P) + \dive [(\bar \rho + \bar P) \ve{v}] = 0
+\end{equation}
+The first equation is just the continuity equation \eref{eq:r-p} for the background, while the second equation describes the evolution of the density perturbations: in particular, the first term is the universal dilution due to the expansion, the second term is a local dilution due to the ``local scale factor" $ (1 - \Phi) a $ in the spatial part of the metric, and the third term is the local divergence of the fluid flow.
+
+The $ \nu = i $ component is the Euler equation, which reads:
+\begin{equation}
+  \ve{v}' + (1 - c_\text{s}^2) \ham \ve{v} = - \frac{1}{\bar \rho + \bar P} \dive \delta P - \dive \Psi
+\end{equation}
+where $ c_\text{s}^2 \equiv \bar p' / \bar \rho' = w $. Note the equivalence with \eref{eq:euler} and the fact that, in absence of energy density and pressure, this equation is equivalent to $ v \propto a^{-1} $ as expected.
+
+The equations of motion of metric perturbations follow instead from the Einstein field equations: $ \tensor{G}{^\mu_\nu} = 8\pi G \tensor{T}{^\mu_\nu} $. The $ (00) $-component at zeroth and linear order is:
+\begin{equation}
+  \ham^2 = \frac{8\pi G}{3} a^2 \bar \rho
+  \label{eq:001}
+\end{equation}
+\begin{equation}
+  \lap \Psi - 3 \ham (\Phi' + \ham \Psi) = 4\pi G a^2 \delta \rho
+  \label{eq:002}
+\end{equation}
+The first equation is just the Friedmann equation \eref{eq:fried-hubble}, while the second is the relativistic generalization of a sourced Poisson equation for $ \Psi $, coupled to $ \Phi $: for subhorizon modes, i.e. with $ k \gg a H = \ham $ (since $ \pa_\eta = a \pa_t $), it reduces to the Poisson equation in the Newtonian limit $ \lap \Psi = 4\pi G a^2 \delta \rho $. Then, the $ (0i) $-component reads:
+\begin{equation*}
+  \pa_i (\Phi' + \ham \Phi) = -4\pi G a^2 (\bar \rho + \bar P) v_i
+\end{equation*}
+Applying a SVT decomposition to $ v^i = \pa^i v + \hat v^i $ and ignoring vector perturbations (as already stated), this equation reduces to a scalar equation:
+\begin{equation}
+  \Phi' + \ham \Phi = - 4\pi G a^2 (\bar \rho + \bar P) v
+  \label{eq:0i}
+\end{equation}
+which is again a relativistic sourced Poisson equation for $ \Phi $. There only remain the spatial components, which are best studied in terms of their trace and traceless parts. The traceless component $ (ij - \frac{1}{3} ii) $ simply is:
+\begin{equation}
+  \Phi = \Psi
+\end{equation}
+while the trace component $ (ii) $ is:
+\begin{equation}
+  \Phi'' + 3\ham \Phi' + (2\ham' + \ham^2) \Phi = 4\pi G a^2 \delta P
+  \label{eq:ii}
+\end{equation}
+Note that these equations are only valid with $ \tensor{\Pi}{^i_j} \equiv 0 $: if the anisotropic stress cannot be ignored, then $ \Phi \neq \Psi $ and the last equation has an additional source term.
+
+\subsubsection{Metric evolution}
+
+The evolution of the potential $ \Phi $ differs between radiation era and matter era.
+
+\paragraph{Radiation era}
+
+In radiation era $ \ham = \eta^{-1} $ (\eref{eq:a-matt}), so that $ 2\ham' + \ham^2 = - \ham^2 $. Moreover, since $ \delta P = \frac{1}{3} \delta \rho $, combining \eref{eq:002} and \eref{eq:ii} results into:
+\begin{equation}
+  \Phi'' + 4\ham \Phi' - \frac{1}{3} \lap \Phi = 0
+\end{equation}
+which is a damped wave equation with $ c_\text{s} = 1/\sqrt{3} $ (as expected from $ c_\text{s}^2 = w $). Now, insert the Fourier expansion of the metric perturbation:
+\begin{equation}
+  \Phi(\eta , \ve{x}) = \int_{\R^3} \frac{\dd^3 k}{(2\pi)^{3/2}} \Phi_\ve{k}(\eta) e^{\img \ve{k} \cdot \ve{x}}
+\end{equation}
+so that the wave equation becomes an ODE:
+\begin{equation*}
+  \Phi_\ve{k}'' + \frac{4}{\eta} \Phi_\ve{k}' + \frac{k^2}{3} \Phi_\ve{k} = 0
+\end{equation*}
+The solutions to this equation have a distinct behavior in the superhorizon and subhorizon regimes:
+\begin{equation}
+  \Phi_\ve{k}(\eta) \approx
+  \begin{cases}
+    \text{const.} & \eta \ll \frac{1}{k} \\
+    - G \Phi_\text{k}(0) \frac{1}{(k \eta)^2} \cos \frac{k \eta}{\sqrt{3}} & \eta \gg \frac{1}{k}
+  \end{cases}
+  \label{eq:metric-pert-rad}
+\end{equation}
+This shows that outside the comoving Hubble horizon no linear evolution happens, and the metric perturbations only evolve with small non-linear terms. On the other hand, inside the comoving Hubble horizon, in radiation era the metric perturbations oscillate with a damped amplitude that decreases as $ a^{-2} $ (since $ a \propto \eta $).
+
+\paragraph{Matter era}
+
+In matter era $ \ham = 2 \eta^{-1} $, so that $ 2\ham' + \ham^2 = 0 $. Moreover, since $ w = 0 $, \eref{eq:ii} reduces to:
+\begin{equation}
+  \Phi'' + 3 \ham \Phi' = 0
+\end{equation}
+which has two solutions:
+\begin{equation}
+  \Phi(\eta) \propto
+  \begin{cases}
+    \text{const.} \\
+    \eta^{-5} \propto a^{-5/2}
+  \end{cases}
+\end{equation}
+In matter era, then, the growing solution is constant independently on the wavelength of the fluctuation.
+
+Putting everything together, it is possible to outline the linear evolution of curvature perturbations. Modes with $ k > k_\text{eq} $, which enter the Hubble radius in radiation era, are affected by the damped oscillations described by \eref{eq:metric-pert-rad} before freezing in matter era. On the contrary, modes with $ k < k_\text{eq} $ enter the Hubble radius in matter era, thus freezing immediately (see \figref{fig:metric-pert}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.7 \textwidth]{metric-pert.png}
+  \caption{Linear evolution of metric perturbations. The small suppression of modes $ k > k_\text{eq} $ is a minor effect due to the radiation-to-matter transition.}
+  \label{fig:metric-pert}
+\end{figure}
 
 
 
