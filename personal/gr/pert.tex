@@ -5,7 +5,7 @@ Observations of the CMB reveal that, at least until $ z_\text{CMB} $, the univer
 \begin{figure}
   \centering
   \includegraphics[width = 1.00 \textwidth]{cosmo_plot.pdf}
-  \caption{Evolution of the comoving Hubble radius. Note that the wavenumber of the cosmological perturbations increase in the opposite sense of the axis for $ (aH)^{-1} $.}
+  \caption{Evolution of the comoving Hubble radius. Four examples of cosmological perturbations with different wavelengths are drawn.}
   \label{fig:hr}
 \end{figure}
 
@@ -377,15 +377,37 @@ In the following analysis, the anisotropic stress is ignored: $ \tensor{\Pi}{^i_
 The equations of motion of matter perturbations follow from the covariant conservation of the stress-energy tensor: $ \na_\mu \tensor{T}{^\mu_\nu} = 0 $. The $ \nu = 0 $ component is the continuity equation, which at zeroth and linear order in perturbations is:
 \begin{equation}
   \bar \rho' + 3 \ham (\bar \rho + \bar P) = 0
+  \label{eq:continuity-friedmann}
 \end{equation}
 \begin{equation}
-  \delta \rho' + 3 \ham (\delta \rho + \delta P) - 3 \Phi' (\rho + P) + \dive [(\bar \rho + \bar P) \ve{v}] = 0
+  \delta \rho' + 3 \ham (\delta \rho + \delta P) - 3 \Phi' (\bar \rho + \bar P) + \dive [(\bar \rho + \bar P) \ve{v}] = 0
+  \label{eq:continuity-first}
 \end{equation}
-The first equation is just the continuity equation \eref{eq:r-p} for the background, while the second equation describes the evolution of the density perturbations: in particular, the first term is the universal dilution due to the expansion, the second term is a local dilution due to the ``local scale factor" $ (1 - \Phi) a $ in the spatial part of the metric, and the third term is the local divergence of the fluid flow.
+The first equation is just the continuity equation \eref{eq:r-p} for the background, while the second equation describes the evolution of the density perturbations: in particular, the first term is the universal dilution due to the expansion, the second term is a local dilution due to the ``local scale factor" $ (1 - \Phi) a $ in the spatial part of the metric, and the third term is the local divergence of the fluid flow. It is also possible to rewrite the linearized continuity equation in terms of the density contrast $ \delta \equiv \delta \rho / \bar \rho $.
 
-The $ \nu = i $ component is the Euler equation, which reads:
+\begin{proposition}[before upper = {\tcbtitle}]{Continuity equation for the density contrast}{}
+  \begin{equation}
+    \delta' = (1 + c_\text{s}^2) (\Phi' - \dive \ve{v})
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Since the background is homogeneous, i.e. $ \bar \rho = \bar \rho (\eta) $ and $ \bar P = \bar P (\eta) $, \eref{eq:continuity-first} becomes:
+    \begin{equation*}
+      \delta \rho' + 3 (1 + c_\text{s}^2) (\ham \delta \rho - \Phi' \bar \rho) + (1 + c_\text{s}^2) \bar \rho \dive \ve{v} = 0
+    \end{equation*}
+    where the sound velocity $ c_\text{s}^2 \equiv \bar P / \bar \rho = w $ has been introduced. Then, recall \eref{eq:continuity-friedmann}, so that:
+    \begin{equation*}
+      \delta' = \frac{\delta \rho'}{\bar \rho} - \delta \frac{\bar \rho'}{\bar \rho} = \frac{\delta \rho'}{\bar \rho} + 3 (1 + c_\text{s}^2) \ham \delta
+    \end{equation*}
+    Inserting the above expression for $ \delta \rho' $ yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+The $ \nu = i $ component is the Euler equation, which reads (using \eref{eq:continuity-friedmann}):
 \begin{equation}
-  \ve{v}' + (1 - c_\text{s}^2) \ham \ve{v} = - \frac{1}{\bar \rho + \bar P} \dive \delta P - \dive \Psi
+  \ve{v}' + (1 - 3 c_\text{s}^2) \ham \ve{v} = - \frac{1}{\bar \rho + \bar P} \dive \delta P - \dive \Psi
 \end{equation}
 where $ c_\text{s}^2 \equiv \bar p' / \bar \rho' = w $. Note the equivalence with \eref{eq:euler} and the fact that, in absence of energy density and pressure, this equation is equivalent to $ v \propto a^{-1} $ as expected.
 
@@ -431,6 +453,7 @@ In radiation era $ \ham = \eta^{-1} $ (\eref{eq:a-matt}), so that $ 2\ham' + \ha
 which is a damped wave equation with $ c_\text{s} = 1/\sqrt{3} $ (as expected from $ c_\text{s}^2 = w $). Now, insert the Fourier expansion of the metric perturbation:
 \begin{equation}
   \Phi(\eta , \ve{x}) = \int_{\R^3} \frac{\dd^3 k}{(2\pi)^{3/2}} \Phi_\ve{k}(\eta) e^{\img \ve{k} \cdot \ve{x}}
+  \label{eq:f-fourier}
 \end{equation}
 so that the wave equation becomes an ODE:
 \begin{equation*}
@@ -471,6 +494,85 @@ Putting everything together, it is possible to outline the linear evolution of c
   \caption{Linear evolution of metric perturbations. The small suppression of modes $ k > k_\text{eq} $ is a minor effect due to the radiation-to-matter transition.}
   \label{fig:metric-pert}
 \end{figure}
+
+\subsubsection{Radiation evolution}
+
+The evolution of perturbations in the radiation energy density, encapsulated in the radiation density contrast $ \delta_\text{r} \equiv \delta \rho_\text{r} / \bar \rho_\text{r} $, is of particular interest, since it predicts the shape of the CMB power spectrum (which is still described by the linear approximation): indeed, since $ \rho_\text{r} \propto T^4 $, then $ \delta \rho \propto 4 T^3 \delta T $ and:
+\begin{equation}
+  \delta_\text{r} = 4 \delta_T
+\end{equation}
+where $ \delta_T \equiv \delta T / \bar T $ is the temperature contrast, which is measured in CMB anisotropies. To study the evolution of $ \delta_\text{r} $, combine \eeref{eq:001}{eq:002}:
+\begin{equation}
+  \delta = \frac{2}{3} \frac{\lap \Phi}{\ham^2} - \frac{2 \Phi'}{\ham} - 2 \Phi
+\end{equation}
+After introducing the Fourier expansion \eref{eq:f-fourier}, this equation can be studied both in radiation era and in matter era.
+
+\paragraph{Radiation era}
+
+In radiation era $ \delta_\text{r} $ is dominant, i.e. $ \delta \approx \delta $, and $ \ham = \eta^{-1} $, so that:
+\begin{equation*}
+  \delta_\text{r} = - \frac{2}{3} (k\eta)^2 \Phi_\ve{k} - 2 \eta \Phi_\ve{k}' - 2 \Phi_\ve{k}
+\end{equation*}
+Recalling the expression \eref{eq:metric-pert-rad} for the metric perturbation, the solution for $ \delta_\text{r} $ is found:
+\begin{equation}
+  \delta_\text{r}(\eta) \approx
+  \begin{cases}
+    \text{const.} & \eta \ll \frac{1}{k} \\
+    4 \Phi_\ve{k}(0) \cos \frac{k \eta}{\sqrt{3}} & \eta \gg \frac{1}{k}
+  \end{cases}
+\end{equation}
+Note that superhorizon modes are still frozen in the linear regime, while subhorizon radiation fluctuations oscillate without damping (contrary to metric perturbations, which are damped).
+
+\paragraph{Matter era}
+
+In matter era $ \delta_\text{r} $ is subdominant, and its evolution has to be inferred from the continuity and the Euler equations: subhorizon modes still oscillate with the same frequency as in radiation era, however now with a decreased amplitude and a shift due to the gravitational potential of the dominant matter:
+\begin{equation}
+  \delta_\text{r}(\eta) \approx
+  \begin{cases}
+    \text{const.} & \eta \ll \frac{1}{k} \\
+    -4 \Phi_\text{m} + A \cos \frac{k \eta}{\sqrt{3}} & \eta \gg \frac{1}{k}
+  \end{cases}
+\end{equation}
+As seen in \figref{fig:hr}, radiation modes with $ k > k_\text{eq} $, i.e. those which enter the comoving Hubble horizon in matter era, do not evolve significantly before photon decoupling, while radiation modes with $ k < k_\text{eq} $ are affected by oscillations, hence arrive at the last-scattering surface with different phases. The power spectrum of the CMB is then expected to have a plateau at low $ k < k_\text{eq} $ (i.e. at high wavelengths): this is experimentally observed and is known as the \bctxt{Sachs--Wolfe plateau} (see \figref{fig:cmb-sw}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width = \textwidth]{cmb.png}
+  \caption{Power spectrum of the CMB anisotropies.}
+  \label{fig:cmb}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = \textwidth]{cmb-sw.png}
+  \caption{Illustration of the different contributions to the CMB power spectrum.}
+  \label{fig:cmb-sw}
+\end{figure}
+
+\subsubsection{CMB power spectrum}
+
+The radiation density contrast is not the only contribution to the temperature anisotropoies of the CMB. Indeed, the complete espression for $ \delta_T $ as a function of the direction of observation is:
+\begin{equation}
+  \delta_T(\hat{\ve{n}}) = \left( \frac{1}{4} \delta_\text{r} + \Psi \right)_* - \left( \hat{\ve{n}} \cdot \ve{v}_\text{b} \right)_* + \int_{\eta_*}^{\eta_0} \dd \eta \left( \Phi' + \Psi' \right)
+\end{equation}
+where $ \ve{v}_\text{b} $ is the bulk velocity of baryons relative to the observer RF, and the subscript $ * $ denotes the evaluation at $ \eta_* $, i.e. at last scattering. These three terms are separate contributions:
+\begin{itemize}
+  \item the first term is the \emph{Sachs--Wolfe term}, which combines the intrinsic temperature fluctuations associated to the radiation density contrast with the induced temperature perturbations arising from the gravitational redshift of the photons. With the sign convention adopted in \eref{eq:perturbed-metric}, $ \Psi < 0 $ corresponds to an overdensity (since, in the Newtonian limit, $ \Psi \propto -M $), hence $ \Psi_* < 0 $ leads as expected to a temperature decrement, since a photon loses energy when climbing out of a potential well;
+  \item the second term is a \emph{Doppler term}, due to the relative motion of the last-scattering surface with respect to the observer (see \figref{fig:cmb-d}). This contribution is subdominant on superhorizon scales, while its oscillations are out of phase with the oscillations in the Sachs--Wolfe term, thus reducing the contrast between the peaks in the spectrum;
+  \item the last term describes the additional gravitational redshift due to the evolution of the metric potentials along the line-of-sight, determining what is known as the \emph{integrated Sachs--Wolfe effect} (ISW). Since for most of the universe's history (namely, when it was matter dominated) these potential were constants, thus yielding no ISW effect. On the contrary, at early times the residual amount of radiation gives time-dependent gravitational potentials, resulting in an \emph{early ISW effect}: this contribution raises the height of the first peak in the power spectrum (see \figref{fig:cmb-sw}).
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.40 \textwidth]{cmb-doppler.png}
+  \hspace{6em}
+  \includegraphics[width = 0.30 \textwidth]{cmb_de.png}
+  \caption{Doppler effect on the last-scattering surface.}
+  \label{fig:cmb-d}
+\end{figure}
+
+The CMB power spectrum \figref{fig:cmb} imposes some constraints on the amount of matter, and in particularly of dark matter (since baryonic matter is observed), in the universe: indeed, the extension of the Sachs--Wolfe plateau is determined by $ k_\text{eq} $, and changing the amount of matter changed the time at which matter-radiation equality happens. Moreover, the second and third peaks of the power spectrum are sensible to the gravitational potential of matter: varying the amount of matter causes a variation in the height difference between the peaks.
+
 
 
 
