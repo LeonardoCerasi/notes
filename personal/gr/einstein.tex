@@ -11,7 +11,7 @@ Spacetime is a Lorentzian manifold $ \mathcal{M} $, thus, recalling the canonica
   \mathcal{S} = \int \dd^4 x \sqgm \, R
   \label{eq:einstein-hilbert-action}
 \end{equation}
-where the negative sign makes it manifest that the metric has signature $ (-,+,+,+) $. Schematically, the Riemann tensor is $ R \sim \pa \Gamma + \Gamma \Gamma $, while $ \Gamma \sim \pa g $, thus the Einstein-Hilbert action is second order in derivatives of the metric, like most other actions in physics.
+where the negative sign makes it manifest that the metric has signature $ (-,+,+,+) $. Schematically, the Riemann tensor is $ R \sim \pa \Gamma + \Gamma \Gamma $, while $ \Gamma \sim \pa g $, thus the Einstein-Hilbert action is second order in derivatives of the metric, like most other actions (for bosonic fields) in physics.
 
 \subsection{Equations of motion}
 
@@ -35,7 +35,7 @@ To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consid
   \begin{proof}
     Recall that for invertible matrices $ \log \det \mt{A} = \tr \log \mt{A} $, i.e. $ (\det \mt{A})^{-1} \delta (\det \mt{A}) = \tr (\mt{A}^{-1} \delta \mt{A}) $. Applying this to the metric:
     \begin{equation*}
-      \delta \sqgm = \frac{1}{2} \frac{1}{\sqgm} \delta (-\mt{g}) = \frac{1}{2} \frac{1}{\sqgm} (-\mt{g}) g^{\mu \nu} \delta g_{\mu \nu} = \frac{1}{2} \sqgm\, g^{\mu \nu} \delta g_{\mu \nu} = - \frac{1}{2} \sqgm\, g_{\mu \nu} g^{\mu \nu}
+      \delta \sqgm = \frac{1}{2} \frac{1}{\sqgm} \delta (-\mt{g}) = \frac{1}{2} \frac{1}{\sqgm} (-\mt{g}) g^{\mu \nu} \delta g_{\mu \nu} = \frac{1}{2} \sqgm\, g^{\mu \nu} \delta g_{\mu \nu} = - \frac{1}{2} \sqgm\, g_{\mu \nu} \delta g^{\mu \nu}
     \end{equation*}
     which is the thesis.
   \end{proof}
@@ -63,7 +63,7 @@ To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consid
 \begin{lemma}{}{}
   The variation of the Ricci tensor is:
   \begin{equation}
-    \delta R_{\mu \nu} = \na_\rho \delta \Gamma^\rho_{\rho \nu} - \na_\nu \delta \Gamma^\rho_{\rho \mu}
+    \delta R_{\mu \nu} = \na_\rho \delta \Gamma^\rho_{\mu \nu} - \na_\nu \delta \Gamma^\rho_{\rho \mu}
   \end{equation}
 \end{lemma}
 
@@ -95,7 +95,7 @@ To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consid
         &= \delta \int d^4 x \sqgm\, g^{\mu \nu} R_{\mu \nu} \\
         &= \int d^4 x \left[ \delta (\sqgm) g^{\mu \nu} R_{\mu \nu} + \sqgm (\delta g^{\mu \nu}) R_{\mu \nu} + \sqgm\, g^{\mu \nu} (\delta R_{\mu \nu}) \right] \\
         &= \int d^4 x \sqgm \left[ \left( - \frac{1}{2} R g_{\mu \nu} + R_{\mu \nu} \right) \delta g^{\mu \nu} + g^{\mu \nu} \left( \na_\rho \delta \Gamma^\rho_{\mu \nu} - \na_\nu \Gamma^\rho_{\rho \mu} \right) \right] \\
-        &= \int d^4 x \sqgm \left[ \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \delta g^{\mu \nu} + \na_\mu \left( g^{\rho \nu} \nu \Gamma^\mu_{\rho \nu} - g^{\mu \nu} \delta \Gamma^\rho_{\rho \nu} \right) \right]
+        &= \int d^4 x \sqgm \left[ \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \delta g^{\mu \nu} + \na_\mu \left( g^{\rho \nu} \delta \Gamma^\mu_{\rho \nu} - g^{\mu \nu} \delta \Gamma^\rho_{\rho \nu} \right) \right]
       \end{split}
     \end{equation*}
     The last term is a total derivative, hence by the divergence theorem \eref{eq:gauss-theorem} it yields a boundary term which can be ignored (Gibbons-Hawking boundary term). The Euler-Lagrange equations are then found imposing $ \delta \mathcal{S} = 0 $ for arbitrary $ \delta g_{\mu \nu} $, so recalling the definition of the Einstein tensor \eref{eq:einstein-def} the proof is completed.
@@ -289,7 +289,7 @@ More precisely, this is the \textit{static patch} of de Sitter space.
 
 To interpret a metric, it's useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
 \begin{equation}
-  \mathcal{S} = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \varphi^2) \right]
+  \mathcal{S} = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dd \dot{\varphi}^2) \right]
   \label{eq:dS-action}
 \end{equation}
 where $ \dot{x}^\mu \equiv \frac{\dd x^\mu}{\dd \sigma} $. This Lagrangian has two ignorable degrees of freedom which lead to conserved quantities: $ t(\sigma) $ and $ \varphi(\sigma) $, as they appear only with time derivatives. The first one has energy as the conserved quantity, while the second has angular momentum:
@@ -301,7 +301,7 @@ where $ \dot{x}^\mu \equiv \frac{\dd x^\mu}{\dd \sigma} $. This Lagrangian has t
   \ell = \frac{1}{2} \frac{\pa L}{\pa \dot{\varphi}} = r^2 \sin^2 \vartheta \dot{\varphi}
   \label{eq:dS-ang-mom}
 \end{equation}
-The $ \frac{1}{2} $ are due to the absence of the usual factor in the kinetic term. The equations of motion from the action Eq. \ref{eq:dS-action} should be supplemented with a constraint to distinguish whether a particle is massive or massless. For a massive particle, the trajectory must be timelike, so:
+The $ \frac{1}{2} $ are due to the absence of the usual factor in the kinetic term. The equations of motion from the action \eref{eq:dS-action} should be supplemented with a constraint to distinguish whether a particle is massive or massless. For a massive particle, the trajectory must be timelike, so:
 \begin{equation*}
   - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dot{\varphi}^2) = -1
 \end{equation*}
@@ -320,9 +320,9 @@ WLOG consider geodeiscs that lie in the $ \vartheta = \frac{\pi}{2} $ plane, so 
 \end{figure}
 
 For de Sitter space:
-\begin{equation*}
+\begin{equation}
   V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 - \frac{r^2}{R^2} \right)
-\end{equation*}
+\end{equation}
 This effective potential is plotted in \figref{fig:geo-ds}: immediately, one sees that the potential pushes the particle to larger values of $ r $. Focusing on geodesics with $ \ell = 0 $, the potential is a harmonic repulsor: a particle stationary at $ r = 0 $ is an unstable geodesic, since if it has non-zero initial velocity it will follow the trajectory:
 \begin{equation}
   r(\sigma) = R \sqrt{E^2 - 1} \sinh \frac{\sigma}{R}
@@ -364,7 +364,7 @@ Computing the respective variations, along with $ \sum_{i = 1}^{3} (\dd X^i)^2 =
 
 The coordinates $ \{X^i\}_{i = 0,\dots,4} $ so defined are not the most intuitive: they single out $ X^4 $ as special, when the constraint does no such thing, and they do not cover the whole hyperboloid, as they are limited to $ X^4 \ge 0 $. A better choice of parametrization is:
 \begin{equation*}
-  X^0 = R \sinh \frac{\tau}{T}
+  X^0 = R \sinh \frac{\tau}{R}
   \qquad \qquad
   X^i = y^i R \cosh \frac{\tau}{R}
   \,:\,
@@ -406,7 +406,7 @@ In AdS there is no coordinate singularity in $ r $, and indeed coordinates cover
 
 AdS has the same action as in \eref{eq:dS-action}, thus the radial trajectory of a massive particle moving along a geodesic in the $ \vartheta = \frac{\pi}{2} $ plane is $ \dot{r}^2 + V_{\text{eff}}(r) = E^2 $, with:
 \begin{equation}
-  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{R^2} \right) \left( 1 + \frac{r^2}{R^2} \right)
+  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 + \frac{r^2}{R^2} \right)
 \end{equation}
 
 \begin{figure}

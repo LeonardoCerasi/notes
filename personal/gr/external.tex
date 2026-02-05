@@ -4,7 +4,7 @@ In classical field theories, two distinct classes of objects are considered: par
 
 \section{Geodetic motion}
 
-Particles moving on an $ n $-dimensional metric manifold $ (\man,g) $ have geodesics as trajectories, which are found as extrema of the action functional. For the rest of this chapter, $ g $
+Free particles moving on an $ n $-dimensional metric manifold $ (\man,g) $ have geodesics as trajectories, which are found as extrema of the action functional.
 
 \subsection{Non-relativistic particles}
 
@@ -100,13 +100,13 @@ where it is conventional to set $ \dot{x} \equiv \frac{\dd x}{\dd \tau} $.
 
 It is straightforward to compute the conjugate momentum from \eref{eq:rel-lag}:
 \begin{equation*}
-  p_{\mu} = \frac{\dd L}{\dd x^{\mu}} = - m c \frac{\dd}{\dd x^{\mu}} \sqrt{- g_{\nu \rho} \dot{x}^{\nu} \dot{x}^{\rho}} = - \frac{m^2 c^2}{L} \left( g_{\mu \nu} x^\nu + g_{\nu \rho , \mu} \dot{x}^\mu \dot{x}^\nu \right)
+  p_{\mu} = \frac{\pa L}{\pa \dot x^{\mu}} = - m c \frac{\pa}{\pa \dot x^{\mu}} \sqrt{- g_{\nu \rho} \dot{x}^{\nu} \dot{x}^{\rho}} = - \frac{m^2 c^2}{L} \dot x_\mu
 \end{equation*}
-Evaluating this expression in normal coordinates, the \bctxt{mass-shell condition} is obtained, valid in all reference frames:
+which results into the \bctxt{mass-shell condition}:
 \begin{equation}
   p^2 = - m^2 c^2
 \end{equation}
-Moreover, in normal coordinates, the time component of $ p^\mu $ is found to be $ (p^0)^2 = m^2 c^2 + \ve{p}^2 $, which has two important consequences: first of all, $ p^0 \neq 0 $, which means that the particle is never at rest in the temporal direction (which was to be expected); secondly, $ p^\mu $ only has $ n - 1 $ independent components, which is a consequence of the reparametrization invariance of the action\footnotemark.
+Therefore, the time component of $ p^\mu $ is found to be $ (p^0)^2 = m^2 c^2 + \ve{p}^2 $, which has two important consequences: first of all, $ p^0 \neq 0 $, which means that the particle is never at rest in the temporal direction (which was to be expected); secondly, $ p^\mu $ only has $ n - 1 $ independent components, which is a consequence of the reparametrization invariance of the action\footnotemark.
 
 \footnotetext{The $ n $ equations of motion are $ x^\mu = x^\mu(\sigma) $, but $ \sigma $ cannot contain any information about the system, thus one equation must be used to eliminate the $ \sigma $ dependence, resulting in $ n - 1 $ degrees of freedom. This was to be expected from the non-relativistic limit, which has $ n - 1 $ degrees of freedom too (since time is absolute in this limit).}
 
@@ -125,7 +125,7 @@ The addition of a term $ + \dd \sigma \, V(x) $ outside the square root is not r
   \act = \int_{\sigma_1}^{\sigma_2} \dd \sigma \left[ - m c \sqrt{- \eta_{\mu \nu} \frac{\dd x^\mu}{\dd \sigma} \frac{\dd x^\nu}{\dd \sigma}} - q A_\mu(x) \frac{\dd x^\mu}{\dd \sigma} \right]
   \label{eq:em-act}
 \end{equation}
-where $ A_\mu(x) $ is the potential of the field and $ q \in \R $ is the charge of the coupling. To determine the potential $ A_\mu $ for the electromagnetic interaction, compare the classical limit \eref{eq:em-act} to the action of a non-relativistic particle in an external electromagnetic field:
+where $ A_\mu(x) $ is the potential of the field and $ q \in \R $ is the charge of the coupling. To determine the potential $ A_\mu $ for the electromagnetic interaction, compare the classical limit of \eref{eq:em-act} to the action of a non-relativistic particle in an external electromagnetic field:
 \begin{equation*}
   \act \xrightarrow{c \ra \infty} \int_{t_1}^{t_2} \dd t \left[ - m c^2 + \frac{m}{2} \dot{\ve{x}}^2 - q A_0(x) c - q \ve{A}(x) \cdot \dot{\ve{x}} \right]
 \end{equation*}
@@ -143,7 +143,7 @@ While the addition of an interaction outside the square root forces it to be des
 \end{equation*}
 However, this can be interpreted\footnotemark as the action of a relativistic free particle on a curved 4-dimensional Lorentzian manifold with metric $ g_{\mu \nu}(x) \equiv \eta_{\mu \nu} + V_{\mu \nu}(x) $. To compute the non-relativistic limit of this action, expand the term in the square root:
 \begin{equation*}
-  \act = - m c^2 \int_{\sigma_1}^{\sigma_2} \dd \sigma \sqrt{- g_{00}(x) - \frac{1}{c} \left( 2 g_{0i} \dot{x}^i + \frac{1}{c} g_{ij} \dot{x}^i \dot{x}^j \right)}
+  \act = - m c^2 \int_{t_1}^{t_2} \dd t \sqrt{- g_{00}(x) - \frac{1}{c} \left( 2 g_{0i} \dot{x}^i + \frac{1}{c} g_{ij} \dot{x}^i \dot{x}^j \right)}
 \end{equation*}
 The only interesting case is $ V_{\mu \nu}(x) \equiv - c^{-2} V(x) \delta_{\mu , 0} \delta_{\nu , 0} $, in which case:
 \begin{equation*}
@@ -209,12 +209,12 @@ Einstein generalized the WEP to a stronger principle, \bctxt{Einstein's equivale
 Although locally nullifiable, the effects of a non-uniform gravitational field become measurable when it is possible to conduct non-local measurements, due to the presence of \bctxt{tidal forces}.
 
 \begin{example}{Einstein's elevator Gedankenexperiment}{}
-  Consider an observer in a closed box which is falling towards the Earth. Although in the free-fall reference frame the observer cannot establish weather it is fluctuating in space or falling towards the Earth, they can do so with a non-local experiment: taking two test masses (i.e. not affected by their mutual gravitational attraction), if the box is fluctuating in space they will remain in their initial position due to inertia, meanwhile if the box is falling towards the Earth they will have a horizontal displacement, due to the fact that the Earth's gravitational field is radial (and thus non-uniform). This is the case of a tidal force.
+  Consider an observer in a closed box which is falling towards the Earth. Although in the free-fall reference frame the observer cannot establish whether it is fluctuating in space or falling towards the Earth, they can do so with a non-local experiment: taking two test masses (i.e. not affected by their mutual gravitational attraction), if the box is fluctuating in space they will remain in their initial position due to inertia, meanwhile if the box is falling towards the Earth they will have a horizontal displacement, due to the fact that the Earth's gravitational field is radial (and thus non-uniform). This is the case of a tidal force.
 \end{example}
 
 \subsection{Gravitational time dilation}
 
-Consider a spherically-symmetric body of uniform mass $ M $. In the weak-field approximation, the gravitational field generated by the body is given by a metric such that $ g_{00}(x) = - 1 - \frac{2 \Phi(x)}{c^2} $, with $ \Phi(x) = - \frac{GM}{r} $ and $ r \equiv \norm{\ve{x}} $. Therefore, a stationary observer at a distance $ r $ from the body will measure time intervals given by (using $ \dd \tau^2 \defeq \dd s^2 $):
+Consider a spherically-symmetric body of uniform mass $ M $. In the weak-field approximation, the gravitational field generated by the body is given by a metric such that $ g_{00}(x) = - 1 - \frac{2 \Phi(x)}{c^2} $, with $ \Phi(x) = - \frac{GM}{r} $ and $ r \equiv \norm{\ve{x}} $. Therefore, a stationary observer at a distance $ r $ from the body will measure time intervals given by (using $ \dd \tau^2 \defeq - \dd s^2 $):
 \begin{equation*}
   \dd \tau^2 = \left( 1 - \frac{2GM}{rc^2} \right) \dd t^2
 \end{equation*}
