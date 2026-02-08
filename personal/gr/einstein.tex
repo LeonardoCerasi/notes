@@ -536,7 +536,7 @@ Consider Minkowski spacetime $ \R^{1,3} $ with $ g_{\mu \nu} = \eta_{\mu \nu} $.
 \begin{equation*}
   \pa_\mu K_\nu + \pa_\nu K_\mu = 0
 \end{equation*}
-There two forms of solution. The first one is:
+There are two forms of solution. The first one is:
 \begin{equation*}
   K_\mu = c_\mu
 \end{equation*}
@@ -613,7 +613,7 @@ It is possible to reframe Noether's theorem in the context of Killing vectors.
   \begin{proof}
     First, show that $ Q $ is indeed conserved along the geodesic, recalling \eref{eq:killing}:
     \begin{equation*}
-      \frac{\dd Q}{\dd \tau} = \pa_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} + K_\mu \frac{\dd^2 x^\mu}{\dd \tau^2} = \pa_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} - K_\mu \Gamma^\mu_{\rho \sigma} \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = \na_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} = 0
+      \frac{\dd Q}{\dd \tau} = \pa_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} + K_\mu \frac{\dd^2 x^\mu}{\dd \tau^2} = \pa_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} - K_\mu \Gamma^\mu_{\rho \sigma} \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = \na_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} = 0
     \end{equation*}
     To show that $ Q $ follows from Noether's theorem, consider the action of the massive particle and introduce an infinitesimal transformation $ \delta x^\mu = K^\mu (x) $:
     \begin{equation*}
@@ -628,16 +628,16 @@ It is possible to reframe Noether's theorem in the context of Killing vectors.
   \end{proof}
 \end{proofbox}
 
-\begin{example}
+\begin{example}{}{}
   Energy and angular momentum defined on de Sitter geodesics by \eeref{eq:dS-energy}{eq:dS-ang-mom} are Noether charges associated to Killing vectors $ \pa_t $ and $ \pa_\varphi $ respectively.
 \end{example}
 
 \subsection{Komar integrals}
 
 \begin{definition}{Komar form}{}
-  Given a Killing vector $ K = K^\mu \pa_\mu $, defined the 1-form $ K \equiv K_\mu dx^\mu $, the associated \bcdef{Komar form} is the 2-form defined as:
+  Given a Killing vector $ K = K^\mu \pa_\mu $ and the 1-form $ K^\flat \equiv K_\mu \dd x^\mu $, the associated \bcdef{Komar form} is the 2-form defined as:
   \begin{equation}
-    F \defeq \dd K
+    F \defeq \dd K^\flat
   \end{equation}
 \end{definition}
 
@@ -672,7 +672,7 @@ It is possible to reframe Noether's theorem in the context of Killing vectors.
       \quad \implies \quad
       (\na_\mu \na_\nu - \na_\nu \na_\mu) K^\mu = R_{\rho \nu} K^\rho
     \end{equation*}
-    From Killing equation $ \na_{(\mu} K_{\nu)} = 0 \,\Rightarrow\, \na_\mu K^\mu = 0 $, thus $ \na_\mu \na_\nu K^\mu = R_{\rho \nu} K^\rho $ and:
+    From Killing equation $ \na_{(\mu} K_{\nu)} = 0 \implies \na_\mu K^\mu = 0 $, thus $ \na_\mu \na_\nu K^\mu = R_{\rho \nu} K^\rho $ and:
     \begin{equation*}
       \na^\mu F_{\mu \nu} = \na^\mu \na_\mu K_\nu - \na^\mu \na_\nu K_\mu = -2 \na^\mu \na_\nu K_\mu = -2 R_{\rho \nu} K^\rho
     \end{equation*}
@@ -683,11 +683,11 @@ It is possible to reframe Noether's theorem in the context of Killing vectors.
 \begin{definition}{Komar integral}{}
   Given a Komar form $ F $ associated to a Killing vector $ K $, the associated \bcdef{Komar charge} on a spatial submanifold $ \Sigma $ is defined as:
   \begin{equation}
-    Q_{\text{Komar}} \defeq - \frac{1}{8\pi G} \int_\Sigma \dd \star F = - \frac{1}{8\pi G} \int_{\pa \Sigma} \star\, F = - \frac{1}{8\pi G} \int_{\pa \Sigma} \star\, \dd K
+    Q_{\text{Komar}} \defeq - \frac{1}{8\pi G} \int_\Sigma \dd \star F = - \frac{1}{8\pi G} \int_{\pa \Sigma} \star\, F = - \frac{1}{8\pi G} \int_{\pa \Sigma} \star\, \dd K^\flat
   \end{equation}
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}{}{}
   If \eref{eq:komar} holds, then $ Q_{\text{Komar}} $ is conserved.
 \end{proposition}
 
@@ -1038,9 +1038,9 @@ Remember that the cosmological constant is present inside the energy-momentum te
 
 \subsection{Energy-momentum tensor}
 
-The action $ \mathcal{S}_M $ is, by hypothesis, diffeomorphism-invariant, thus, recalling the argument which lead to Bianchi identity \eref{eq:bianchi-id}, given $ \delta g_{\mu \nu} = (\ld_X g_{\mu \nu}) = 2 \na_{(\mu} X_{\nu)} $:
+The action $ \mathcal{S}_M $ is, by hypothesis, diffeomorphism-invariant, thus, recalling the argument which lead to Bianchi identity \eref{eq:bianchi-id}, given $ \delta g_{\mu \nu} = (\ld_X g)_{\mu \nu} = 2 \na_{(\mu} X_{\nu)} $:
 \begin{equation*}
-  \delta \mathcal{S}_M = - \frac{1}{2} \int \dd^4 x \sqgm \, T_{\mu \nu} \delta g^{\mu \nu} = -2 \int \dd^4 x \sqgm \, T_{\mu \nu} \na^\mu X^\nu
+  \delta \mathcal{S}_M = - \frac{1}{2} \int \dd^4 x \sqgm \, T_{\mu \nu} \delta g^{\mu \nu} = - \int \dd^4 x \sqgm \, T_{\mu \nu} \na^\mu X^\nu
 \end{equation*}
 Diffeomorphism invariance means that $ \delta \mathcal{S}_M = 0 $ for all $ X \in \xm $, hence, integrating by parts:
 \begin{equation}
@@ -1127,7 +1127,7 @@ which is a generalization of Euler equation, i.e. the fluid equivalent of Newton
 \subsection{Energy conservation}
 \label{ssec:energy-conservation}
 
-There iss a difference between the energy-momentum tensor and the current which arises from a global symmetry. Consider a conserved current $ J^\mu : \na_\mu J^\mu = 0 $. Invoking the divergence theorem \eref{eq:gauss-theorem}:
+There is a difference between the energy-momentum tensor and the current which arises from a global symmetry. Consider a conserved current $ J^\mu : \na_\mu J^\mu = 0 $. Invoking the divergence theorem \eref{eq:gauss-theorem}:
 \begin{equation*}
   0 = \int_V d^4 x \sqgm\, \na_\mu J^\mu = \int_{\pa V} d^3 x \sqrt{\gamma}\, n_{\mu} J^\mu
 \end{equation*}
@@ -1155,7 +1155,7 @@ Given a Killing vector $ K $, it is possible to define a conserved current assoc
 \end{equation}
 This current is covariantly conserved, as:
 \begin{equation*}
-  \na_\nu J_T^\nu = - \left( T^{\mu \nu} \na_\nu K_\mu + K_\mu \na_\nu T^{\mu \nu} \right) = - T^{\mu \nu} \na_{(\nu} K_{\mu)} = 0
+  \na_\nu J_T^\nu = - \left( T^{\mu \nu} \na_\nu K_\mu + K_\mu \na_\nu T^{\mu \nu} \right) = - 2 T^{\mu \nu} \na_{(\nu} K_{\mu)} = 0
 \end{equation*}
 Its associated conserved charge on a spatial hypersurface $ \Sigma $ is defined as:
 \begin{equation}
@@ -1167,7 +1167,7 @@ The interpretation of this charge depends on the properties of the Killing vecto
 
 The problem of energy conservation becomes subtle when dealing with spacetimes which do not have any globally timelike Killing vector.
 
-For example, a system comprised of two orbiting stars is modelled by a spacetime which does not have such a Killing vector: however, the problem of matter energy conservation does not arise in this case, as the stars, while orbiting each other, emit gravitational waves, thus losing energy and eventually spiraling towards each other. Nonetheless, a meaningful question is that of energy conservation of the total system, i.e. the two stars and the gravitational field. A guess would be to consider a total energy-momentum tensor defined similarly to \eref{eq:em-tens-def}, but:
+For example, a system comprised of two orbiting stars is modelled by a spacetime which does not have such a Killing vector: however, the problem of energy conservation does not arise in this case, as the stars, while orbiting each other, emit gravitational waves, thus losing energy and eventually spiraling towards each other. Nonetheless, a meaningful question is that of energy conservation of the total system, i.e. the two stars and the gravitational field. A guess would be to consider a total energy-momentum tensor defined similarly to \eref{eq:em-tens-def}, but:
 \begin{equation*}
   T^{\text{total}}_{\mu \nu} = - \frac{2}{\sqgm} \left[ \frac{1}{16\pi G} \frac{\delta \mathcal{S}_{\text{EH}}}{\delta g^{\mu \nu}} + \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \right] = - \frac{1}{8\pi G} G_{\mu \nu} + T_{\mu \nu} = 0
 \end{equation*}
@@ -1249,7 +1249,7 @@ whose solution is:
     p \ge -\rho & \varphi \rightarrow \infty
   \end{cases}
 \end{equation*}
-It's not difficult to show that $ \Lambda > 0 $ violates the strong energy condition: dS space is incompatible with it, as timelike geodesics are pulled apart by the expansion of space.
+It is possible to show that $ \Lambda > 0 $ violates the strong energy condition: dS space is incompatible with it, as timelike geodesics are pulled apart by the expansion of space.
 
 Moreover, any classical scalar field theory with $ V(\phi) \ge 0 $ violates the strong energy condition.
 
@@ -1274,7 +1274,7 @@ The dominant energy condition requires that, in addition to the WEC \eref{eq:wea
   J_\mu J^\mu \le 0
   \label{eq:dominant-en-cond}
 \end{equation}
-This means that the energy density current is either timelike or null, so requiring that energy doesn't flow faster than time.
+This means that the energy density current is either timelike or null, so requiring that energy does not flow faster than light.
 
 It is possible to check that this condition is always satisfied by a classical scalar field theory, while for a perfect fluid it imposes $ \rho^2 \ge p^2 $.
 
