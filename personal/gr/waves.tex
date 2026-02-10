@@ -12,7 +12,7 @@ where the perturbation of the metric is assumed to be small: $ \abs{h_{\mu \nu}}
 The aim is to expand the field equations to linear order in $ h_{\mu \nu} $: at this order, gravity can be thought as a symmetric spin 2 field $ h_{\mu \nu} $ propagating through flat Minkowski spacetime. Therefore, indices are raised and lowered by Minkowski metric $ \eta_{\mu \nu} = \diag \left( -1,+1,+1,+1 \right) $, and the field theory inherits Lorentz invariance:
 \begin{equation*}
   x^\mu \mapsto \tensor{\Lambda}{^\mu_\nu} x^\nu
-  \quad \Rightarrow \quad
+  \quad \implies \quad
   h^{\mu \nu} \mapsto \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma} h^{\rho \sigma} (\Lambda^{-1} x)
 \end{equation*}
 where $ h^{\mu \nu} = \eta^{\mu \rho} \eta^{\nu \sigma} h_{\rho \sigma} $. To leading order, the inverse metric is $ g^{\mu \nu} = \eta^{\mu \nu} - h^{\mu \nu} $, thus:
@@ -28,7 +28,7 @@ Contracting $ (\sigma,\rho) $, the Ricci tensor is:
 \begin{equation}
   R_{\mu \nu} = \frac{1}{2} \left( \pa^\rho \pa_\mu h_{\nu \rho} + \pa^\rho \pa_\nu h_{\mu \rho} - \dal h_{\mu \nu} - \pa_\mu \pa_\nu h \right)
 \end{equation}
-where $ \dal \defeq \pa^\mu \pa_\mu $ and $ h = \tensor{h}{^\mu_\mu} $ is the trace of $ h_{\mu \nu} $. The Ricci scalar is:
+where $ \dal \defeq \pa^\mu \pa_\mu $ and $ h \equiv \tensor{h}{^\mu_\mu} $ is the trace of $ h_{\mu \nu} $. The Ricci scalar is:
 \begin{equation}
   R = \pa^\mu \pa^\nu h_{\mu \nu} - \Box h
 \end{equation}
@@ -37,7 +37,7 @@ Finally, the Einstein tensor can be expressed as:
   G_{\mu \nu} = \frac{1}{2} \left[ \pa^\rho \pa_\mu h_{\nu \rho} + \pa^\rho \pa_\nu h_{\mu \rho} - \dal h_{\mu \nu} - \pa_\mu \pa_\nu h - \left( \pa^\rho \pa^\sigma h_{\rho \sigma} - \dal h \right) \eta_{\mu \nu} \right]
   \label{eq:weak-einst-tens}
 \end{equation}
-For linearized gravity, Bianchi identity $ \na^\mu G_{\mu \nu} = 0 $ becomes $ \pa^\mu G_{\mu \nu} = 0 $, which is indeed obeyed by \eref{eq:weak-einst-tens}. Einstein field equations with a source $ T_{\mu \nu} $, which, for consistency, must be suitably small, are then a set of linear PDEs:
+For linearized gravity, the Bianchi identity $ \na^\mu G_{\mu \nu} = 0 $ becomes $ \pa^\mu G_{\mu \nu} = 0 $, which is indeed obeyed by \eref{eq:weak-einst-tens}. Einstein field equations with a source $ T_{\mu \nu} $, which, for consistency, must be suitably small, are then a set of linear PDEs:
 \begin{equation}
   \pa^\rho \pa_\mu h_{\nu \rho} + \pa^\rho \pa_\nu h_{\mu \rho} - \dal h_{\mu \nu} - \pa_\mu \pa_\nu h - \left( \pa^\rho \pa^\sigma h_{\rho \sigma} - \dal h \right) \eta_{\mu \nu} = 16\pi G T_{\mu \nu}
   \label{eq:weak-einst-feq}
@@ -47,7 +47,7 @@ This can be thought as $ \mathfrak{L}(h_{\mu \nu}) = 16\pi G T_{\mu \nu} $, wher
 \begin{proposition}{Fierz--Pauli action}{}
   \eref{eq:weak-einst-feq} are the equations of motion derived from the \bcprop{Fierz-Pauli action}:
   \begin{equation}
-    \mathcal{S}_{\text{FP}} = \frac{1}{8\pi G} \int d^4 x \left[ - \frac{1}{4} \pa_\rho h_{\mu \nu} \pa^\rho h^{\mu \nu} + \frac{1}{2} \pa_\rho h_{\mu \nu} \pa^\nu h^{\rho \mu} + \frac{1}{4} \pa_\mu h \pa^\mu h - \frac{1}{2} \pa_\nu h^{\mu \nu} \pa_\mu h \right]
+    \mathcal{S}_{\text{FP}} = \frac{1}{8\pi G} \int \dd^4 x \left[ - \frac{1}{4} \pa_\rho h_{\mu \nu} \pa^\rho h^{\mu \nu} + \frac{1}{2} \pa_\rho h_{\mu \nu} \pa^\nu h^{\rho \mu} + \frac{1}{4} \pa_\mu h \pa^\mu h - \frac{1}{2} \pa_\nu h^{\mu \nu} \pa_\mu h \right]
     \label{eq:weak-pf-action}
   \end{equation}
 \end{proposition}
@@ -58,8 +58,8 @@ This can be thought as $ \mathfrak{L}(h_{\mu \nu}) = 16\pi G T_{\mu \nu} $, wher
     \begin{equation*}
       \begin{split}
         \delta \mathcal{S}_{\text{FP}}
-        &= \frac{1}{8\pi G} \int d^4 x \left[ \frac{1}{2} \pa_\rho \pa^\rho h_{\mu \nu} - \pa^\rho \pa_\nu h_{\rho \mu} - \frac{1}{2} \eta_{\mu \nu} \pa^\rho \pa_\rho h + \frac{1}{2} \pa_\nu \pa_\mu h + \frac{1}{2} \eta_{\mu \nu} \pa_\rho \pa_\sigma h^{\rho \sigma} \right] \delta h^{\mu \nu} \\
-        &= \frac{1}{8\pi G} \int d^4 x \left[ - G_{\mu \nu} \delta h^{\mu \nu} \right]
+        &= \frac{1}{8\pi G} \int \dd^4 x \left[ \frac{1}{2} \pa_\rho \pa^\rho h_{\mu \nu} - \pa^\rho \pa_\nu h_{\rho \mu} - \frac{1}{2} \eta_{\mu \nu} \pa^\rho \pa_\rho h + \frac{1}{2} \pa_\nu \pa_\mu h + \frac{1}{2} \eta_{\mu \nu} \pa_\rho \pa_\sigma h^{\rho \sigma} \right] \delta h^{\mu \nu} \\
+        &= \frac{1}{8\pi G} \int \dd^4 x \left[ - G_{\mu \nu} \delta h^{\mu \nu} \right]
       \end{split}
     \end{equation*}
     Hence, $ G_{\mu \nu} = 0 $. To get the matter coupling, add $ T_{\mu \nu} h^{\mu \nu} $ to the action.
@@ -130,7 +130,7 @@ Note that this is not a tensor equation, since $ \Gamma^\rho_{\mu \nu} $ is not 
 
 \subsection{Newtonian limit}
 
-In the presence of a low-density, slowly-moving distribution of matter, the linearized field equations reduce to the Newtonian theory of gravity. For a stationary matter configuration, the only non-vanishing component of the energy-momentum tensor is $ T_{00} = \rho(\ve{x}) $; moreover, since there's no time-dependence, $ \dal = -\pa_t^2 + \na^2 = \na^2 $. The Einstein equations become:
+In the presence of a low-density, slowly-moving distribution of matter, the linearized field equations reduce to the Newtonian theory of gravity. For a stationary matter configuration, the only non-vanishing component of the energy-momentum tensor is $ T_{00} = \rho(\ve{x}) $; moreover, since there is no time-dependence, $ \dal = -\pa_t^2 + \na^2 = \na^2 $. The Einstein equations become:
 \begin{equation*}
   \na^2 \bar{h}_{00} = -16\pi G \rho(\ve{x})
   \qquad
@@ -148,7 +148,7 @@ where $ \Phi : \na^2 \Phi = 4\pi G \rho $ is the Newtonian gravitational potenti
 \end{equation*}
 The full metric $ g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu} $ it thus expressed as:
 \begin{equation}
-  ds^2 = - \left( 1 + 2\Phi(\ve{x}) \right) \dd t^2 + \left( 1 - 2\Phi(\ve{x}) \right) \dd\ve{x}^2
+  \dd s^2 = - \left( 1 + 2\Phi(\ve{x}) \right) \dd t^2 + \left( 1 - 2\Phi(\ve{x}) \right) \dd\ve{x}^2
   \label{eq:linear-newtonian}
 \end{equation}
 This is exactly the condition \eref{eq:newtonian-limit}.
@@ -167,9 +167,7 @@ A possible solution is the gravitational wave:
   \bar{h}_{\mu \nu}(x) = \Re \{ H_{\mu \nu} e^{\img k_\rho x^\rho} \}
   \label{eq:wave-solution}
 \end{equation}
-where $ H_{\mu \nu} \in \C^{4 \times 4} $ is a symmetric polarization matrix and the wave-vector $ k^\mu $ is a real 4-vector. For simplicity, the $ \Re $ is made implicit in the following calculations. This plane-wave ansatz solves \eref{eq:wave} if the wave-vector is null: $ k_\mu k^\mu = 0 $.
-
-Therefore, gravitational waves propagate at the speed of light. Writing $ k^\mu = (\omega, \ve{k}) $, this condition becomes $ \omega = \pm \abs{\ve{k}} $. Moreover, being the vacuum wave equation linear, the general solution is just a linear combination of plane waves.
+where $ H_{\mu \nu} \in \C^{4 \times 4} $ is a symmetric polarization matrix and the wave-vector $ k^\mu $ is a real 4-vector. For simplicity, the $ \Re $ is made implicit in the following calculations. This plane-wave ansatz solves \eref{eq:wave} if the wave-vector is null: $ k_\mu k^\mu = 0 $: therefore, gravitational waves propagate at the speed of light. Writing $ k^\mu = (\omega, \ve{k}) $, this condition becomes $ \omega = \pm \abs{\ve{k}} $. Moreover, being the vacuum wave equation linear, the general solution is just a linear combination of plane waves.
 
 The polarization matrix has 10 components, but gauge conditions are yet to be imposed. The plane wave ansatz satisfies de Donder gauge condition $ \pa^\mu \bar{h}_{\mu \nu} = 0 $ only if:
 \begin{equation}
@@ -178,7 +176,7 @@ The polarization matrix has 10 components, but gauge conditions are yet to be im
 \end{equation}
 The polarization is then transverse to the direction of propagation. Furthermore, de Donder gauge still allows for gauge transformations $ h_{\mu \nu} \mapsto h_{\mu \nu} \pa_\mu \xi_\nu + \pa_\nu \xi_\mu $, i.e. $ \bar{h}_{\mu \nu} \mapsto \bar{h}_{\mu \nu} + \pa_\mu \xi_\nu + \pa_\nu \xi_\mu - \eta_{\mu \nu} \pa^\rho \xi_\rho $, so the solution is still in de Donder gauge only if:
 \begin{equation*}
-  \dal \xi_\mu = 0 \quad \Rightarrow \quad \xi_\mu(x) = \lambda_\mu e^{i k_\rho x^\rho}
+  \dal \xi_\mu = 0 \quad \Rightarrow \quad \xi_\mu(x) = \lambda_\mu e^{\img k_\rho x^\rho}
 \end{equation*}
 This gauge transformation shifts the polarization matrix as:
 \begin{equation}
@@ -190,7 +188,7 @@ Polarization matrices which differ by this term thus describe the same gravitati
   H_{0 \mu} = 0 \quad \land \quad \tensor{H}{^\mu_\mu} = 0
   \label{eq:traceless}
 \end{equation}
-These condition, together with \eref{eq:transverse}, are called \bctxt{transverse traceless gauge}. Being $ H_{\mu \nu} $ traceless, in this gauge $ \bar{h}_{\mu \nu} = h_{\mu \nu} $, as it is traceless too. Of the 10 components of the polarization matrix, only 2 are independent: de Donder condition \eref{eq:transverse} poses 4 constraints and the gauge transformation \eref{eq:gw-gauge-tr} poses 4 more of them. Therefore, there are only two independent polarizations in $ H_{\mu \nu} $.
+These condition, together with \eref{eq:transverse}, are called \bctxt{transverse traceless gauge}. Being $ H_{\mu \nu} $ traceless, in this gauge $ \bar{h}_{\mu \nu} = h_{\mu \nu} $, as it is traceless too. Of the 10 components of the polarization matrix, only 2 are independent: de Donder condition \eref{eq:transverse} poses 4 constraints and the gauge transformation \eref{eq:gw-gauge-tr} poses 4 more of them (since one of the $ H_{0\mu} = 0 $ conditions is made redundant by $ k^\mu H_{\mu \nu} = 0 $). Therefore, there are only two independent polarizations in $ H_{\mu \nu} $.
 
 \begin{example}{Linear polarizations}{}
   Consider a gravitational wave propagating in the $ z $ direction: $ k^\mu = (\omega,0,0,\omega) $, thus $ H_{0 \nu} + H_{3 \nu} = 0 $ by \eref{eq:transverse}. By \eref{eq:traceless}, the polarization matrix is then restricted to be:
@@ -215,7 +213,7 @@ Consider a family of geodesics $ x^\mu(\tau,s) $ with tangent vector field $ u^\
 \begin{equation*}
   \frac{D^2 S^\mu}{D \tau^2} = \tensor{R}{^\mu_{\rho \sigma \nu}} u^\rho u^\sigma S^\nu
 \end{equation*}
-Suppose that, in the absence of gravitational waves, the geodesics are in a rest-frame such that $ u^\mu = (1,0,0,0) $: as the gravitational wave passes $ u^\mu = (1,0,0,0) + o(h) $, so the aim is to compute the geodesic deviation to leading order in $ h $. The Riemann tensor is already $ o(h) $, thus other correction terms can be neglected; similarly, proper time $ \tau $ can be replaced with coordinate time $ t $, so that the geodesic deviation equation becomes $ \frac{\dd^2}{\dd t^2} S^\mu = \tensor{R}{^\mu_{00 \nu}} S^\nu $.
+Suppose that, in the absence of gravitational waves, the geodesics are in a rest-frame such that $ u^\mu = (1,0,0,0) $: as the gravitational wave passes $ u^\mu = (1,0,0,0) + \smo(h) $, so the aim is to compute the geodesic deviation to leading order in $ h $. The Riemann tensor is already $ \smo(h) $, thus other correction terms can be neglected; similarly, proper time $ \tau $ can be replaced with coordinate time $ t $, so that the geodesic deviation equation becomes $ \frac{\dd^2}{\dd t^2} S^\mu = \tensor{R}{^\mu_{00 \nu}} S^\nu $.
 
 In the linearized regime, the Riemann tensor is given by \eref{eq:weak-riem}, hence, using $ h_{\mu 0} = 0 $, the needed components are $ \tensor{R}{^\mu_{00 \nu}} = \frac{1}{2} \pa_0^2 \tensor{h}{^\mu_\nu} $ and:
 \begin{equation}
@@ -236,7 +234,7 @@ Solving perturbatively in $ H_+ $, at leading order:
 \begin{equation}
   S^1(t) = S^1(0) \left[ 1 + \frac{1}{2} H_+ e^{\img \omega t} + \dots \right]
   \qquad
-  S^2(t) = S^2(t) \left[ 1 - \frac{1}{2} H_+ e^{\img \omega t} + \dots \right]
+  S^2(t) = S^2(0) \left[ 1 - \frac{1}{2} H_+ e^{\img \omega t} + \dots \right]
   \label{eq:plus-polarization}
 \end{equation}
 where, again, the $ \Re $ is implicit (recall that in general $ H_+ \in \C $). To visualize these solutions, consider a family of neighbouring geodesics which, at $ t = 0 $, are arranged around a circle of radius $ R $: the initial conditions then satisfy $ S^1(0)^2 + S^2(0)^2 = R^2 $. The relative negative sign determines:
@@ -258,7 +256,7 @@ Solving perturbatively in $ H_\times $, at leading order:
 \begin{equation}
   S^1(t) = S^1(0) + \frac{1}{2} S^2(0) H_\times e^{\img \omega t} + \dots
   \qquad
-  S^2(t) = S^2(t) + \frac{1}{2} S^1(0) H_\times e^{\img \omega t} + \dots
+  S^2(t) = S^2(0) + \frac{1}{2} S^1(0) H_\times e^{\img \omega t} + \dots
 \end{equation}
 This is the same displacement as \eref{eq:plus-polarization}, but rotated by 45°: to see this, note that $ S^1(t) \pm S^2(t) $ have the same functional expression as \eref{eq:plus-polarization}. Thus:
 
@@ -342,7 +340,7 @@ Denoting the characteristic size of $ \Sigma $ as $ d $ and $ r \equiv \abs{x} $
   \quad \implies \quad
   \frac{1}{\abs{\ve{x} - \ve{x}'}} = \frac{1}{r} + \frac{\ve{x} \cdot \ve{x}'}{r^3} + \dots
 \end{equation*}
-To approximate the energy-momentum tensor, assume that the motion of matter is non-relativistic, so that $ T_{\mu \nu} $ does not change much over the time $ \tau \sim d $ needed to light to cross $ \Sigma $. For example, in the case of two objects orbiting each other with characteristic frequency $ \omega $, then $ T_{\mu \nu} \sim e^{-i \omega t} $ and the non-relativistic condition reads $ d \ll 1/\omega $. Taylor expanding $ T_{\mu \nu} $:
+To approximate the energy-momentum tensor, assume that the motion of matter is non-relativistic, so that $ T_{\mu \nu} $ does not change much over the time $ \tau \sim d $ needed to light to cross $ \Sigma $. For example, in the case of two objects orbiting each other with characteristic frequency $ \omega $, then $ T_{\mu \nu} \sim e^{-i \omega t} $ and the non-relativistic condition reads $ d \ll 1/\omega $. Taylor-expanding $ T_{\mu \nu} $:
 \begin{equation*}
   T_{\mu \nu}(\ve{x}',t_r) = T_{\mu \nu} (\ve{x}', t - r + \ve{x} \cdot \ve{x}' / r + \dots) = T_{\mu \nu}(\ve{x}', t - r) + \dot{T}_{\mu \nu} (\ve{x}', t - r) \frac{\ve{x} \cdot \ve{x}'}{r} + \dots
 \end{equation*}
@@ -352,7 +350,7 @@ At leading order in $ d/r $, then, the solution becomes:
 \end{equation*}
 The temporal component is:
 \begin{equation*}
-  \bar{h}_{\mu \nu}(\ve{x}) \approx \frac{4G}{r} E
+  \bar{h}_{00}(\ve{x}) \approx \frac{4G}{r} E
   \qquad \qquad
   E \equiv \int_\Sigma \dd^3 x'\, T_{00}(\ve{x}', t - r)
 \end{equation*}
@@ -379,7 +377,7 @@ Again, the total momentum of matter inside $ \Sigma $ is conserved, hence the ab
   \begin{proof}
     The thesis is equivalent to:
     \begin{equation*}
-      \int_\Sigma \dd^3 x'\, T_{ij}(\ve{x},t) = \frac{1}{2} \ddot{I}_{ij}(t)
+      \int_\Sigma \dd^3 x'\, T_{ij}(\ve{x}',t) = \frac{1}{2} \ddot{I}_{ij}(t)
     \end{equation*}
     Recalling current conservation $ \pa_\mu T^{\mu \nu} = 0 $:
     \begin{equation*}
@@ -400,17 +398,17 @@ The gauge condition $ \pa^\mu \bar{h}_{\mu \nu} = 0 $ means that $ \pa_0 \bar{h}
 \begin{equation*}
   \pa_0 \bar{h}_{0i} = - \frac{2G \hat{x}_j}{r^2} \ddot{I}_{ij}(t - r) - \frac{2G \hat{x}_j}{r} \dddot{I}_{ij}(t - r)
 \end{equation*}
-where $ \pa_j r = x_j / r \equiv \hat{x}_j $. Note that, though the first term is $ \sim 1/r^2 $ and the second $ \sim 1/r $, the latter has an additional time derivative, i.e. an extra factor of the characteristic source frequency $ \omega $: therefore, the second term dominates for $ r \gg 1/\omega $, i.e. $ r \gg \lambda $ (emitted gravitational waves' wavelength). This is the so-called \textit{far-field zone} or \bctxt{radiation zone}, and in this regime:
+where $ \pa_j r = x_j / r \equiv \hat{x}_j $. Note that, although the first term is $ \sim 1/r^2 $ and the second $ \sim 1/r $, the latter has an additional time derivative, i.e. an extra factor of the characteristic source frequency $ \omega $: therefore, the second term dominates for $ r \gg 1/\omega $, i.e. $ r \gg \lambda $ (emitted gravitational waves' wavelength). This is the so-called \textit{far-field zone} or \bctxt{radiation zone}, and in this regime:
 \begin{equation}
   \bar{h}_{0i} \approx - \frac{4G}{r} P_i - \frac{2G \hat{x}_j}{r} \ddot{I}_{ij} (t - r)
 \end{equation}
-Note that this expression, found integrating the preceding equation, contains an integration constant given by the aforementioned $ P_i $, but it can be set to zero choosing coordinates in which the center of mass of the system is stationary. With analogous reasoning:
+This expression, found integrating the preceding equation, contains an integration constant given by the aforementioned $ P_i $, but it can be set to zero choosing coordinates in which the center of mass of the system is stationary. With analogous reasoning:
 \begin{equation}
   \bar{h}_{00} \approx \frac{4G}{r} E + \frac{2G \hat{x}_i \hat{x}_j}{r} \ddot{I}_{ij} (t - r)
 \end{equation}
 
 \begin{example}{Gravitational waves in binary system}{}
-  Consider two objects of mass $ R $ and separated by a distance $ R $, orbiting in the $ (x,y) $ plane: by Newtonian gravity, the orbit frequency is $ \omega^2 = 2GM / R^3 $. Treating these objects as point particles, their energy density is:
+  Consider two objects of mass $ M $ and separated by a distance $ R $, orbiting in the $ (x,y) $ plane: by Newtonian gravity, the orbit frequency is $ \omega^2 = 2GM / R^3 $. Treating these objects as point particles, their energy density is:
   \begin{equation*}
     T^{00}(\ve{x},t) = M \delta(z) \left[ \delta \left( x - \tfrac{R}{2} \cos \omega t \right) \delta \left( y - \tfrac{R}{2} \sin \omega t \right) + \delta \left( x + \tfrac{R}{2} \cos \omega t \right) \delta \left( y + \tfrac{R}{2} \sin \omega t \right) \right]
   \end{equation*}
@@ -487,11 +485,11 @@ This is nothing other than the total angular momentum of the system, thus the di
 
 \subsection{Radiated power}
 
-In the context of Electromagnetism, the power radiated as electromagnetic waves are emitted is easily found defining the Poynting vector $ \ve{S} \defeq \frac{1}{\mu_0} \ve{E} \times \ve{B} $ and, using the dipole approximation, finding \bctxt{Larmor formula}:
+In the context of Electromagnetism, the power radiated as electromagnetic waves are emitted is easily found defining the Poynting vector $ \ve{S} \defeq \frac{1}{\mu_0} \ve{E} \times \ve{B} $ and, using the dipole approximation, finding the \bctxt{Larmor formula}:
 \begin{equation*}
   \mathcal{P} = \int_{\Sn{2}} \dd^2\ve{r} \cdot \ve{S} = \frac{\mu_0}{6\pi c} \abs{\ddot{p}}^2
 \end{equation*}
-Analogously, a source emitting gravitational waves loses energy which is carried by them. The problem of finding an equivalent to Larmor formula is that there's no local energy-momentum tensor for gravitational fields, so there's no analogue to the Poynting vector. A possible way forward is to define an energy-momentum tensor $ t_{\mu \nu} $ for gravitatonal waves which, in the linearized theory, obeys $ \pa^\mu t_{\mu \nu} = 0 $: \eref{eq:no-div-th} does not allow to do so in a diffeomorphism-invariant way, i.e. in the full non-linear theory $ t_{\mu \nu} $ is not a tensor and in the linearized theory it is not invariant under gauge transformations Eq. \ref{eq:weak-gauge-tr}. It turns out that there are a number of different ways to define such a tensor.
+Analogously, a source emitting gravitational waves loses energy which is carried by them. The problem of finding an equivalent to Larmor formula is that there is no local energy-momentum tensor for gravitational fields, so there is no analogue to the Poynting vector. A possible way forward is to define an energy-momentum tensor $ t_{\mu \nu} $ for gravitatonal waves which, in the linearized theory, obeys $ \pa^\mu t_{\mu \nu} = 0 $: \eref{eq:no-div-th} does not allow to do so in a diffeomorphism-invariant way, i.e. in the full non-linear theory $ t_{\mu \nu} $ is not a tensor and in the linearized theory it is not invariant under gauge transformations \eref{eq:weak-gauge-tr}. It turns out that there are a number of different ways to define such a tensor.
 
 \subsubsection{Fierz--Pauli action}
 
@@ -534,7 +532,7 @@ where the symmetry of $ T_{\mu \nu} $ was used. Note that $ \Gamma^\rho_{\mu \nu
 \begin{equation*}
   \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) = \frac{1}{16\pi G} \sqgm\, \pa_\nu g_{\mu \rho} \left( R^{\mu \rho} - \frac{1}{2} R g^{\mu \rho} \right) = \frac{1}{16\pi G} \sqgm\, \pa_\nu g_{\mu \rho} R^{\mu \rho}
 \end{equation*}
-The idea is to express this equation as $ \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) = - \pa_\mu (\sqgm\, \tensor{t}{^\mu_\rho}) $, for some $ \tensor{t}{^\mu_\nu} $ referred to as \bctxt{Landau-Lifshitz pseudotensor}: this suggests that the sum of matter energy $ \tensor{T}{^\mu_\nu} $ and gravitational energy $ \tensor{t}{^\mu_\nu} $ is conserved, however it would be coordinate-dependent as $ \tensor{t}{^\mu_\nu} $ is not a real tensor.\\
+The idea is to express this equation as $ \pa_\mu (\sqgm\, \tensor{T}{^\mu_\nu}) = - \pa_\mu (\sqgm\, \tensor{t}{^\mu_\rho}) $, for some $ \tensor{t}{^\mu_\nu} $ referred to as the \bctxt{Landau-Lifshitz pseudotensor}: this suggests that the sum of matter energy $ \tensor{T}{^\mu_\nu} $ and gravitational energy $ \tensor{t}{^\mu_\nu} $ is conserved, however it would be coordinate-dependent as $ \tensor{t}{^\mu_\nu} $ is not a real tensor.\\
 The final approach assumes that $ t_{\mu \nu} $ is quadratic in $ h_{\mu \nu} $, so, keeping $ g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu} $, expand the Einstein field equations to second order:
 \begin{equation*}
   \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(1)} + \left[ R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right]^{(2)} = 8\pi G T_{\mu \nu}
