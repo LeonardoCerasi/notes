@@ -17,7 +17,7 @@ Consider a generic $ 1 + 2 \lra 3 + 4 $ scattering process. In principle, each s
   \Gamma \equiv n \sigma v
   \label{eq:int-rate-def}
 \end{equation}
-where $ n $ is the number density of particles, $ v $ is their average velocity and $ \sigma $ is the interaction cross-section. For $ T \simeq 100 \gev $, all known particles are ultra-relativistic, so $ v \sim 1 $, and their masses can be ignored, leaving the temperature $ T $ as the only dimensionful scale: by dimensional analysis $ n \sim T^3 $. Moreover, interactions are mediated by gauge bosons, which are massless above the scale of electroweak symmetry breaking, leaving a similar dependence for the cross-section of strong and electroweak processes:
+where $ n $ is the number density of particles, $ v $ is their average velocity and $ \sigma $ is the interaction cross-section. For $ T \gtrsim 100 \gev $, all known particles are ultra-relativistic, so $ v \sim 1 $, and their masses can be ignored, leaving the temperature $ T $ as the only dimensionful scale: by dimensional analysis $ n \sim T^3 $. Moreover, interactions are mediated by gauge bosons, which are massless above the scale of electroweak symmetry breaking, leaving a similar dependence for the cross-section of strong and electroweak processes:
 \begin{equation*}
   \sigma \sim \Bigg|\hspace{-0.4em}
     \begin{tikzpicture}[baseline = (r.base)]
@@ -92,7 +92,7 @@ Below the scale of electroweak symmetry breaking, i.e. $ T \lesssim 100 \gev $, 
   \qquad \qquad
   G_\text{F} \sim \frac{\alpha}{M_W^2} \simeq 1.17 \cdot 10^{-5} \gev^{-2}
 \end{equation*}
-The strength of weak interactions now decreases as the temperature of the universe drops, and the ration $ \Gamma / H $ becomes:
+The strength of weak interactions now decreases as the temperature of the universe drops, and the ratio $ \Gamma / H $ becomes:
 \begin{equation}
   \frac{\Gamma}{H} \sim \frac{\alpha^2 \pl T^3}{M_W^4} \sim \left( \frac{T}{1 \mev} \right)^3
 \end{equation}
@@ -136,7 +136,7 @@ Pressure, on the other hand, requires more care.
     \end{equation*}
     Not all particles in $ \dd V $ reach the target, only those with velocities directed to the area element do. Taking into account the isotropy of the velocity distribution, the total number of these striking particles is:
     \begin{equation*}
-      \dd N_A = \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}} \dd A}{4 \pi R^2} \dd N = \frac{g}{(2\pi)^3} f(E,T) \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}}}{4 \pi} \dd A \dd t \dd \Omega
+      \dd N_A = \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}} \dd A}{4 \pi R^2} \dd N = \frac{g}{(2\pi)^3} f(E,T) v \frac{\abs{\hat{\ve{v}} \cdot \hat{\ve{n}}}}{4 \pi} \dd A \dd t \dd \Omega
     \end{equation*}
     where $ \hat{\ve{v}} \cdot \hat{\ve{n}} < 0 $ since the striking particles are directed towards the area element. Assuming elastic reflections, each particles transfers a momentum $ 2 \abs{\ve{p} \cdot \hat{\ve{n}}} $ to the target, hence the contribution of particles with velocity $ v $ to the pressure is:
     \begin{equation*}
@@ -250,7 +250,7 @@ From \eref{eq:press-def} with $ E \simeq p $ in the relativistic limit, the equa
     \end{equation*}
     Most of the contribution comes from the $ \xi \ll x $ regime, hence, at lowest order in $ \xi $:
     \begin{equation*}
-      I_\pm(x) \approx \int_0^\infty \dd \xi \, \xi^2 \exp \left( x + \frac{\xi^2}{2x} \right) = (2x)^{3/2} e^{-x} \int_0^\infty \dd \xi \, \xi^2 e^{-\xi^2}
+      I_\pm(x) \approx \int_0^\infty \dd \xi \, \xi^2 \exp \left( - x - \frac{\xi^2}{2x} \right) = (2x)^{3/2} e^{-x} \int_0^\infty \dd \xi \, \xi^2 e^{-\xi^2}
     \end{equation*}
     Recalling the standard integral:
     \begin{equation}
@@ -266,7 +266,7 @@ From \eref{eq:press-def} with $ E \simeq p $ in the relativistic limit, the equa
     \begin{equation*}
       \begin{split}
         J_\pm(x)
-        & \approx \int_0^\infty \dd \xi \, \xi^2 \left( x + \frac{\xi^2}{2x} \right) \exp \left( x + \frac{\xi^2}{2x} \right) = (2x)^{3/2} e^{-x} \int_0^\infty \dd \xi \, \xi^2 \left( x + \xi^2 \right) e^{-\xi^2} \\
+        & \approx \int_0^\infty \dd \xi \, \xi^2 \left( x + \frac{\xi^2}{2x} \right) \exp \left( - x - \frac{\xi^2}{2x} \right) = (2x)^{3/2} e^{-x} \int_0^\infty \dd \xi \, \xi^2 \left( x + \xi^2 \right) e^{-\xi^2} \\
         & = (2x)^{3/2} e^{-x} \frac{1}{2} \left[ x \Gamma \left( \frac{3}{2} \right) + \Gamma \left( \frac{5}{2} \right) \right] = \sqrt{\frac{\pi}{2}} x^{3/2} e^{-x} \left( x + \frac{3}{2} \right)
       \end{split}
     \end{equation*}
@@ -357,7 +357,7 @@ the entropy of the universe is dominated by the entropy of the photon bath (at l
     \begin{equation*}
       \dd S = \frac{\dd [(\rho + P) V]}{T} - \frac{(\rho + P) V}{T^2} \dd T = \dd \left[ \frac{\rho + P}{T} V \right]
     \end{equation*}
-    Tho show that entropy is conserved in equilibtrium, consider:
+    Tho show that entropy is conserved at equilibrium, consider:
     \begin{equation*}
       \begin{split}
         \frac{\dd S}{\dd t} = \frac{\dd}{\dd t} \left[ \frac{\rho + P}{T} V \right] = \frac{V}{T} \left[ \dot{\rho} + \frac{\dot{V}}{V} (\rho + P) \right] + \frac{V}{T} \left[ \dot{P} - \frac{\rho + P}{T} \dot{T} \right]
@@ -367,7 +367,7 @@ the entropy of the universe is dominated by the entropy of the photon bath (at l
   \end{proof}
 \end{proofbox}
 
-It is convenient to define the \bctxt{entropy density}, which ignoring a constant integration constant is (by the above proof):
+It is convenient to define the \bctxt{entropy density}, which ignoring an integration constant is (by the above proof):
 \begin{equation}
   s = \frac{\rho + P}{T}
 \end{equation}
@@ -389,7 +389,7 @@ As for $ \dof(T) $, there are two different contributions to $ \dofs(T) $ too: o
 \begin{equation}
   \dofs^\text{dec}(T) = \sum_\text{bosons} g_i \left( \frac{T_i}{T} \right)^3 + \frac{7}{8} \sum_\text{fermions} g_j \left( \frac{T_j}{T} \right)^3
 \end{equation}
-which is $ \dofs^\text{dec}(T) \neq \dof^\text{dec}(T) $. It follows that $ \dof(T) = \dofs(T) $ only when \emph{all} relativistic species are in thermal equilibrium with the photon bath: in the real universe, this is the case for until $ t \approx 1 \,\text{sec} $ (see \figref{fig:rel-dof}).
+which is $ \dofs^\text{dec}(T) \neq \dof^\text{dec}(T) $. It follows that $ \dof(T) = \dofs(T) $ only when \emph{all} relativistic species are in thermal equilibrium with the photon bath: in the real universe, this is the case until $ t \approx 1 \,\text{sec} $ (see \figref{fig:rel-dof}).
 The conservation of entropy has two important consequences:
 \begin{itemize}
   \item since $ s \propto a^{-3} $, if the number of particles in a comoving volume $ N_i $ is conserved (i.e. $ n_i \propto a^{-3} $), then $ n_i \propto s $, with $ N_i = n_i / s $ since it is a scale-invariant quantity. This is the case, for example, for the net baryon number after baryogenesis, which is conserved, hence $ N_\text{net} \equiv (n_\text{B} - n_{\bar{\text{B}}}) / s $ is constant;
@@ -487,7 +487,7 @@ Therefore, $ 1 $ second after the Big Bang the universe was about $ 1 \mev $. It
     EW phase transition & $ 20 \,\text{ps} $ & $ 10^{15} $ & $ 100 \gev $ \\ [1ex]
     QCD phase transition & $ 20 \,\mu\text{s} $ & $ 10^{12} $ & $ 150 \mev $ \\ [1ex]
     Dark matter freeze-out & ? & ? & ? \\ [1ex]
-    Neutrino decoupling & $ 1 \,\text{s} $ & $ 6 \cdot 10^9 $ & $ 1.5 \mev $ \\ [1ex]
+    Neutrino decoupling & $ 1 \,\text{s} $ & $ 6 \cdot 10^9 $ & $ 0.8 \mev $ \\ [1ex]
     $ e^- e^+ $ annihilation & $ 6 \,\text{s} $ & $ 2 \cdot 10^9 $ & $ 500 \kev $ \\ [1ex]
     Big Bang nucleosynthesis & $ 3 \,\text{min} $ & $ 4 \cdot 10^8 $ & $ 100 \kev $ \\ [1ex]
     Matter-radiation equality & $ 60 \,\text{kyr} $ & $ 3400 $ & $ 0.75 \ev $ \\ [1ex]
