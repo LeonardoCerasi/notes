@@ -19,7 +19,7 @@ where:
 \begin{equation}
   g_{\mu \nu} = g\left( \frac{\pa}{\pa x^{\mu}}, \frac{\pa}{\pa x^{\nu}} \right)
 \end{equation}
-It is often written also as $ ds^2 = g_{\mu \nu}(x) \dd x^{\mu} \dd x^{\nu} $. The matrix $ g_{\mu \nu}(x) \in \R^{n \times n} $ is symmetric, and there's always a choice of basis on each tangent space such that this matrix is diagonal: the non-degeneracy condition implies that none of the diagonal elements vanish.
+It is often written also as $ \dd s^2 = g_{\mu \nu}(x) \dd x^{\mu} \dd x^{\nu} $. The matrix $ g_{\mu \nu}(x) \in \R^{n \times n} $ is symmetric, and there's always a choice of basis on each tangent space such that this matrix is diagonal: the non-degeneracy condition implies that none of the diagonal elements vanish.
 
 \begin{proposition}{Signature}{}
   The \bcprop{signature} of a metric, i.e. the number of negative entries when diagonalized, is independent on the choice of basis.
@@ -51,7 +51,7 @@ Given $ Y \in \xm $, the \bctxt{angle} between $ X $ and $ Y $ at $ p \in \mathc
 \end{equation}
 This can be generalized to distances between points on a curve $ \sigma : \mathcal{\R} \rightarrow \mathcal{M} $:
 \begin{equation}
-  d(p,q) = \int_a^b dt \sqrt{g(X,X)\vert_{\sigma(t)}}
+  d(p,q) = \int_a^b \dd t \sqrt{g(X,X)\vert_{\sigma(t)}}
   \label{eq:distance}
 \end{equation}
 where $ \sigma(a) = p $, $ \sigma(b) = q $ and $ X $ is the tangent vector field of the curve. With parametrization $ x^{\mu}(t) $, the tangent vector has components $ X^{\mu} = \frac{\dd x^{\mu}}{\dd t} $, thus:
@@ -88,7 +88,7 @@ At each point $ p \in \mathcal{M} $ it is possible to draw \bctxt{lightcones}, i
 
 The distance between two points on a curve depends on the nature of the tangent vector field of the curve: a \textit{timelike curve} is a curve whose tangent vector field is everywhere timelike, and analogously for the other cases. The distance on a spacelike curve is defined as in \eref{eq:distance}, while that on a timelike curve gets a negative sign in the square root. With parametrization $ x^{\mu}(t) $, it is possible to define the \bctxt{proper time} on a timelike curve as:
 \begin{equation}
-  \tau = \int_a^b dt \sqrt{- g_{\mu \nu}(x) \frac{dx^{\mu}}{dt} \frac{dx^{\nu}}{dt}}
+  \tau = \int_a^b \dd t \sqrt{- g_{\mu \nu}(x) \frac{\dd x^{\mu}}{\dd t} \frac{\dd x^{\nu}}{\dd t}}
 \end{equation}
 This is precisely the action of a free particle moving in spacetime.
 
@@ -116,7 +116,7 @@ Being $ g $ non-degenerate, the matrix $ g_{\mu \nu} $ is invertible, with inver
 \begin{equation}
   g^{\mu \nu} g_{\nu \rho} = \delta^{\mu}_{\rho}
 \end{equation}
-Its elements are the components of a (2,0) symmetric tensor $ \hat{g} \defeq g^{\mu \nu} \pa_{\mu} \otimes \pa_{\nu} $, which defines the inverse of the natural isomorphism in \pref{prop:metric-isom}:
+Its elements are the components of a (2,0) symmetric tensor $ \hat{g} \defeq g^{\mu \nu} \pa_{\mu} \otimes \pa_{\nu} $, which defines the inverse of the natural isomorphism in \pref{prop:metric-isom} (i.e. the sharp isomorphism):
 \begin{equation}
   X^{\mu} = g^{\mu \nu} X_{\nu}
 \end{equation}
@@ -155,14 +155,14 @@ The volume form can be rewritten as:
 \begin{equation}
   \volf = \frac{1}{n!} v_{\mu_1 \dots \mu_n} \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_n} \equiv \frac{1}{n!} \sqg\, \epsilon_{\mu_1 \dots \mu_n} \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_n}
 \end{equation}
-where $ \epsilon_{\mu_1 \dots \mu_n} $ is the totally-antisymmetric $ n $-dimensional Levi--Civita symbol. $ \epsilon_{\mu_1 \dots \mu_n} $ cannot be considered a proper tensor, as its components are always $ +1,-1,0 $ independently if the indices are covariant or contravariant: it is, in fact, a \bcdef{tensor density}, i.e. a tensor divided by $ \sqg $. It can be shown that:
+where $ \epsilon_{\mu_1 \dots \mu_n} $ is the totally-antisymmetric $ n $-dimensional Levi--Civita symbol. $ \epsilon_{\mu_1 \dots \mu_n} $ cannot be considered a proper tensor, as its components are always $ +1,-1,0 $ independently if the indices are covariant or contravariant: it is, in fact, a \bctxt{tensor density}, i.e. a tensor divided by $ \sqg $. It can be shown that:
 \begin{equation}
   v^{\mu_1 \dots \mu_n} = g^{\mu_1 \nu_1} \dots g^{\mu_n \nu_n} v_{\mu_1 \dots \mu_n} = \sigma \frac{1}{\sqg} \epsilon^{\mu_1 \dots \mu_n}
 \end{equation}
 where $ \sigma $ is the sign of the signature, e.g. $ \sigma = +1 $ for Riemannian manifolds and $ \sigma = -1 $ for Lorentzian manifolds.
 As notation, the integral of a generic function $ f $ on $ \mathcal{M} $ is denoted as:
 \begin{equation}
-  \int_{\mathcal{M}} f \, \volf \equiv \int_{\mathcal{M}} \dd^n x \,\sqg f
+  \int_{\mathcal{M}} \volf \, f \equiv \int_{\mathcal{M}} \dd^n x \,\sqg f
 \end{equation}
 
 \subsubsection{Hodge theory}
@@ -248,7 +248,7 @@ It is possible to compute an explicit expression for the Laplacian of functions.
   \end{proof}
 \end{proofbox}
 
-\begin{proposition}
+\begin{proposition}{}{}
   Given $ f \in \cm $, then:
   \begin{equation}
     \lap f = - \frac{\sigma}{\sqg} \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right)
