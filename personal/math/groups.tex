@@ -1,0 +1,237 @@
+\selectlanguage{english}
+
+\section{Definitions}
+
+\begin{definition}{Group}{group}
+  A \bcdef{group} is a set $ G \neq \emptyset $ equipped with a binary operation $ * : G \times G \ra G $ such that:
+  \begin{enumerate}
+    \item (associativity) $ a * (b * c) = (a * b) * c \,\, \forall a,b,c \in G $
+    \item (identity) $ \exists e \in G : g * e = e * g = g \,\, \forall g \in G $
+    \item (inverse) $ \forall g \in G \, \exists g^{-1} \in G : g * g^{-1} = g^{-1} * g = e $
+  \end{enumerate}
+\end{definition}
+
+The identity element is unique, since if $ \exists e' \in G : e' * g = g * e' = g \,\,\forall g \in G $, then $ e * e' = e $ and $ e * e' = e' $, i.e. $ e' = e $ since $ * : G \times G \ra G $ must be a well-defined single-valued function. If $ * $ is sum-like, the identity is usually denoted by $ e \equiv 1 $, while if $ * $ is product-like, then $ e \equiv 0 $. Note that $ G = \{e\} $ is a group, called the \emph{trivial group}.
+
+By the definition of inverse element, it is clear that $ (g^{-1})^{-1} = g \,\,\forall g \in G $.
+
+The associative property is trivially generalized to the product of $ \{a_k\}_{k = 1, \dots, n} \subseteq G $, with $ n \in \N $: indeed, the products obtained by all the possible groupings of these elements have the same value, provided they preserve the ordering of the factors.
+
+A useful property derived from the definition of group is the \bctxt{cancellation rule}:
+\begin{equation}
+  a * b = a * c \ \lor \ b * a = c * a \implies b = c
+\end{equation}
+which is found multiplying by $ a^{-1} $ (which always exists, by \dref{def:group}) respectively on the left and on the right. With this cancellation rule, the applications $ S \ra S x $ and $ S \ra x S $, which given $ S \subseteq G $ associate $ S \ni s \mapsto s x \in Sx $ or $ xs \in Sx $, are bijections.
+
+\begin{example}{Power rules}{}
+  Given a group $ (G,*) $, setting $ a * b \equiv ab $ and $ a^n = a * a * \dots * a $, with $ a,b \in G $ and $ n \in \N $, then by associativity:
+  \begin{equation}
+    a^m a^n = a^{m+n}
+    \qquad \qquad
+    (a^m)^n = a^{mn}
+  \end{equation}
+  with $ m,n \in \N_0 $. By convention $ a^0 \equiv e $. It is possible to extend the power notation to $ \Z $ setting $ a^{-m} = (a^{-1})^m $.
+\end{example}
+
+Note that in general $ a * b \neq b * a $, hence:
+\begin{equation}
+  (a_1 * \dots * a_n)^{-1} = a_n^{-1} * \dots * a_1^{-1}
+\end{equation}
+If the commutative property $ a * b = b * a \,\,\forall a,b \in G $ holds, then $ (G,*) $ is an \bctxt{abelian group}.
+
+\begin{definition}{Group isomorphism}{}
+  Given two groups $ G_1(*) $ and $ G_2(\cdot) $, they are \bcdef{isomorphic} if $ \exists \varphi : G_1 \ra G_2 $ bijective such that $ \forall x,y \in G_1 $:
+  \begin{equation}
+    \varphi(x * y) = \varphi(x) \cdot \varphi(y)
+    \label{eq:group-isomorphism-def}
+  \end{equation}
+\end{definition}
+
+The isomorphic relation $ G_1 \cong G_2 $ is an equivalence relation on the set\footnotemark of all groups, thus determining isomorphism classes: an isomorphism class is seldom called a \emph{abstract group}, and a property which holds for all groups in an isomorphism class is a \emph{group property}.
+
+\footnotetext{To be precise it is not a set, hence it would be more appropriate to call it the ``class" of all groups.}
+
+\begin{proposition}{Identity invariance}{}
+  Given two isomorphic groups $ G_1(*) $ and $ G_2(\cdot) $ with group isomorphism $ \varphi : G_1 \ra G_2 $, denoting their identities with $ e_1 \in G_1 $ and $ e_2 \in G_2 $, then $ \forall g \in G_1 $:
+  \begin{equation}
+    \varphi(e_1) = e_2
+    \qquad \qquad
+    \varphi(g^{-1}) = \varphi(g)^{-1}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:group-isomorphism-def} $ \varphi(e_1) \cdot \varphi(g) = \varphi(e_1 * g) = \varphi(g) $, hence by the uniqueness of the identity $ \varphi(e_1) = e_2 $. Then:
+    \begin{equation*}
+      \varphi(g^{-1}) \cdot \varphi(g) = \varphi(g^{-1} * g) = \varphi(e_1) = e_2
+    \end{equation*}
+    hence $ \varphi(g^{-1}) = \varphi(g)^{-1} $.
+  \end{proof}
+\end{proofbox}
+
+Clearly, then, isomorphic groups have the same group structure.
+
+\begin{example}{Real numbers}{}
+  The groups $ \R^+(\cdot) $ and $ \R(+) $ are isomorphic: fixed $ a \in \R^+ $, then $ \varphi_a : r \mapsto \log_a r $ is a bijection $ \R^+ \ra \R $ which satisfies \eref{eq:group-isomorphism-def}, hence $ \R^+(\cdot) \cong \R(+) $.
+\end{example}
+
+\subsection{Permutations}
+
+Groups can be studied through permutations.
+
+\begin{definition}{Permutation}{}
+  A \bcdef{permutation} of a set $ \Omega $ is a bijective application $ \Omega \ra \Omega $. The set of permutations of $ \Omega $ is denoted by $ \prm \Omega $.
+\end{definition}
+
+An important case is that of $ \Omega $ finite. The elements of $ \Omega $ can then be represented as $ \Omega = \{1 , \dots , n\} $, where $ n = \abs{\Omega} $ is the cardinality of $ \Omega $, and a general permutation $ \sigma \in S^\Omega $ can be written as:
+\begin{equation*}
+  \sigma =
+  \begin{pmatrix}
+    1 & 2 & \dots & n \\
+    i_1 & i_2 & \dots & i_n
+  \end{pmatrix}
+\end{equation*}
+with $ i_k \equiv \sigma(k) $. Then $ \abs{S^\Omega} = n! $. If $ \exists a \in \Omega : \sigma(a) = a $, then $ a $ is said to be a \emph{fixed point} of $ \sigma \in \prm \Omega $.
+
+\begin{lemma}{Symmetric group}{}
+  $ \prm \Omega $ is a group under composition of applications, known as the \bclemma{symmetric group} of $ \Omega $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    First of all, show that the composition of permutations is still a permutation. Given $ \sigma , \tau \in \prm \Omega $, then $ \tau \circ \sigma $ is surjective since $ \forall a \in \Omega \, \exists ! b \in \Omega : a = \tau(b) $ (surjectivity of $ \tau $), and $ \forall b \in \Omega \, \exists ! c \in \Omega : b = \sigma(c) $ (surjectivity of $ \sigma $). Moreover, $ \sigma \circ \tau $ is injective, since if $ \tau(\sigma(a)) = \tau(\sigma(b)) $, then $ a = b $ by the injectivity of $ \tau $ and $ \sigma $. This shows that $ \circ : \prm \Omega \times \prm \Omega \ra \prm \Omega $.
+
+    The neutral element of composition clearly is $ e : a \mapsto a \,\, \forall a \in \Omega $, while the inverse of $ \sigma \in \prm \Omega $ is $ \tau \in \prm \Omega $ defined such that, given $ a \in \Omega $ and provided that $ \exists ! b \in \Omega : a = \sigma(b) $, it maps $ \tau : a \mapsto b $, so that $ \tau(\sigma(b)) = b \,\,\forall b \in \Omega $.
+  \end{proof}
+\end{proofbox}
+
+Note that, for $ \abs{\Omega} \geq 3 $, the symmetric group $ \prm \Omega $ is non-abelian:
+\begin{equation*}
+  \sigma =
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    2 & 1 & 3
+  \end{pmatrix}
+  \qquad
+  \tau =
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    3 & 2 & 1
+  \end{pmatrix}
+  \quad \implies \quad
+  \sigma \circ \tau =
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    2 & 3 & 1
+  \end{pmatrix}
+  \neq
+  \tau \circ \sigma =
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    3 & 1 & 2
+  \end{pmatrix}
+\end{equation*}
+
+Given two sets $ \Omega_1 $ and $ \Omega_2 $ with the same cardinality, then a bijection $ \phi : \Omega_1 \ra \Omega_2 $ induces a group isomorphism $ \varphi : \prm{\Omega_1} \ra \prm{\Omega_2} $ defined as:
+\begin{equation}
+  \varphi : \prm{\Omega_1} \ni \sigma \mapsto \phi \circ \sigma \circ \phi^{-1} \in \prm{\Omega_2}
+\end{equation}
+which means that $ \varphi(\sigma) $ acts as:
+\begin{equation*}
+  \Omega_2 \xrightarrow{\phi^{-1}} \Omega_1 \xrightarrow{\ \sigma \ } \Omega_1 \xrightarrow{\ \phi \ } \Omega_2
+\end{equation*}
+Therefore, the isomorphism class of $ \Omega $ depends only on the cardinality $ \abs{\Omega} $: in the finite case, the notation is then set to $ \prm \Omega \equiv \sy{n} $, with $ n \equiv \abs{\Omega} \in \N $.
+
+Now, consider a subset $ \Chi = \{i_j\}_{j = 1, \dots, k} \ssq \Omega $ and $ \sigma \in \sy n $ which only permutes elements of the subset, i.e. it acts as the identity on $ \Omega - \Chi $. Then, the elements of $ \Chi $ can be reordered in such a way that $ \sigma(i_1) = i_2 $, $ \sigma(i_2) = i_3 $, \dots, $ \sigma(i_{k-1}) = i_k $ and $ \sigma(i_k) = i_1 $, since the finiteness of $ \Chi $ requires the digits to repeat, hence the notation for $ \sigma $ can be rewritten as:
+\begin{equation*}
+  \sigma = (i_1 , i_2, \dots, i_k)
+\end{equation*}
+with the convention that $ \sigma $ acts as the identity on all digits which do not appear in this writing. This is known as a \bctxt{$ k $-cycle} of $ \sigma $, and the special case of $ k = n $ is a \emph{cyclic permutation} on $ \Omega $.
+
+\begin{proposition}{Permutations as cycles}{}
+  Given $ \sigma \in \sy n $, then $ \Omega = \{1, \dots, n\} $ is broken into disjoint subsets $ \Omega = \Omega_1 \cup \dots \cup \Omega_m $ on each of which $ \sigma $ is a cycle.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Take $ i_1 \in \Omega $ and construct the cycle $ (i_1 , \dots , i_k) $ with $ i_\ell = \sigma(i_{\ell-1}) = \sigma^{\ell-1}(i_1) $, where the finiteness of the cycle is guaranteed by the finiteness of $ \Omega $. If $ k = n $, the proof is completed, while if $ k < n $ consider $ j_1 \in \Omega - \{i_1 , \dots , i_k\} $ and apply the same procedure. Iteratively, the thesis is found.
+  \end{proof}
+\end{proofbox}
+
+Every permutation is then decomposed as a product of disjoint cycles, which commute since they act on disjoint sets.
+
+\begin{example}{$ \sy 7 $}{}
+  Consider a permutation in $ \sy 7 $:
+  \begin{equation*}
+    \sigma =
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+      4 & 2 & 7 & 5 & 1 & 6 & 3
+    \end{pmatrix}
+  \end{equation*}
+  Then, $ \Omega = \{1 , \dots , 7\} $ splits into $ \{1,4,5\} \cup \{2\} \cup \{3,7\} \cup \{6\} $, and $ \sigma $ can be written as disjoint cycles:
+  \begin{equation*}
+    \sigma = (1,4,5) (2) (3,7) (6)
+  \end{equation*}
+\end{example}
+
+\subsection{Subgroups}
+
+\begin{definition}{Subgroup}{}
+  Given a group $ (G,*) $, then $ H \ssq G : H \neq \emptyset $ is a \bcdef{subgroup} of $ G $ if $ (H,*) $ satisfies \dref{def:group}.
+\end{definition}
+
+Every group $ G $ has at least two subgroups: the trivial group $ \{e\} $ and the group $ G $ itself. $ H $ being a subgroup of $ G $ is written as $ H \leq G $: if $ H \neq G $, then it is a \emph{proper subgroup} and $ H < G $.
+
+By the cancellation rule, it is trivial that the identity of $ H $ coincides with the identity of $ G $, and that the inverse in $ H $ of an element $ a \in H $ is the same as its inverse in $ G $.
+
+\begin{lemma}{Necessary and sufficient condition}{}
+  Let $ (G , *) $ be a group and $ e \in G $ its identity. Then, $ H \ssq G $ is a subgroup of $ G $ if and only if $ a * b^{-1} \in H \,\, \forall a,b \in H $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Leftarrow) $ If $ H \leq G $ and $ a,b \in H $, then $ a * b^{-1} \in H $ by \dref{def:group}.
+
+    $ (\Rightarrow) $ The condition implies closure under $ * $, i.e. $ * : H \times H \ra H $. Moreover, taking $ a = b $, then $ e \in H $, while taking $ a = e $, then $ b^{-1} \in H \,\,\forall b \in H $, hence $ (H , *) $ is group.
+  \end{proof}
+\end{proofbox}
+
+It is possible to build subgroups from other subgroups.
+
+\begin{proposition}{Set operations on subgroups}{}
+  Given a group $ (G , *) $ and two subgroups $ H,K \leq G $, then:
+  \begin{enumerate}
+    \item $ H \cap K \leq G $
+    \item $ H \cup K \leq G \iff H \ssq K \lor K \ssq H $
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider first $ H \cap K $. Given $ x,y \in H \cap K $, then $ x,y \in H $ and $ x,y \in K $, but they are both subgroups, hence $ x * y \in H $ and $ x * y \in K $, i.e. $ x * y \in H \cap K $. Moreover, $ e \in H $ and $ e \in K $, i.e. $ e \in H \cap K $, and $ x \in H \cap K \implies x^{-1} \in H \land x^{-1} \in K $, i.e. $ x \in H \cap K $, therefore $ H \cap K \leq G $.
+
+    Now, consider $ H \cup K $, and in particular assume $ H \not\ssq K $ and $ K \not\ssq H $. Take $ x \in H - K $ and $ y \in K - H $: then, $ x * y \notin H $, since otherwise $ y \in H $ by closure, and analogously $ x * y \notin K $, hence $ H \cup K $ is not closed under $ * $. On the other hand, $ H \ssq K \implies H \cup K = K \leq G $ and vice versa.
+  \end{proof}
+\end{proofbox}
+
+The first property can be extended to the intersection of an arbitrary family of subgroups, which is still a subgroup.
+
+\begin{definition}{Generated subgroup}{}
+  Let $ (G,*) $ be a group and $ S \leq G $. The \bcdef{subgroup generated by $ S $} is the intersection of all the subgroups of $ G $ which contain $ S $ and is denoted by $ \braket{S} $.
+\end{definition}
+
+If $ S $ is finite, then $ \braket{S} $ is said to be \emph{finitely generated}. In general, $ S $ is a set of \emph{generators} of $ \braket{S} $: every group $ G $ has at least one set of generators $ S = G $.
+
+% \subsubsection{Cyclic groups}
+
+
+
+
+
+
+
+
+
+
