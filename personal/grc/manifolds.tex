@@ -2,6 +2,8 @@
 
 \section{Differentiable manifolds}
 
+To define a differentiable manifold, it is first necessary to give a topological structure to it.
+
 \begin{definition}{Topological space}{}
   The \bcdef{topology} $ \mathcal{T} $ of a set $ X $ is a family of subsets of $ X $, i.e. $ \mathcal{T} \subseteq \pwst{X} $, defined as \bcdef{open sets}, with the following properties:
   \begin{enumerate}
@@ -20,9 +22,9 @@ Topological spaces allow to introduce the concept of continuity: given two topol
   Given two topological spaces $ (M_1, \mathcal{T}_1) $ and $ (M_2, \mathcal{T}_2) $, a map $ f : M_1 \rightarrow M_2 $ is a \bcdef{homeomorphism} if it is bijective and bicontinuous, i.e. both $ f $ and $ f^{-1} $ are continuous.
 \end{definition}
 
-\subsection{Definitions}
+The composition of two homeomorphisms $ f : M_1 \ra M_2 $ and $ g : M_2 \ra M_3 $ is still a homeomorphism $ g \circ f : M_1 \ra M_3 $, since both bijectivity and continuity are preserved by composition.
 
-\begin{definition}{Differentiable manifold}{}
+\begin{definition}{Differentiable manifold}{manifold}
   An $ n $-dimensional \bcdef{differentiable manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
   \begin{enumerate}
     \item $ \mathcal{M} $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\mathcal{M} \,\, \exists O \in \mathcal{T}(\mathcal{M}) : p \in O \land \exists \varphi : O \rightarrow U \in \mathcal{T}(\R^n) $ homeomorphism;
@@ -41,11 +43,12 @@ Each chart $ \varphi_{\alpha} $ provides a coordinate system on $ O_{\alpha} $: 
 In the remainder of these notes, $ \mathcal{M} $ is always taken to be an $ n $-dimensional differentiable manifold.
 
 \subsection{Maps between manifolds}
+\label{ssec:maps}
 
 Locally mapping $ \mathcal{M} $ to $ \R^n $ allows for the extension of the concepts of Analysis from $ \R^n $ to $ \mathcal{M} $.
 
-\begin{definition}{Smooth maps}
-  A function $ f : \mathcal{M} \rightarrow \R $ on a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ is \bcdef{smooth} if $ f \circ \varphi_{\alpha}^{-1} : U_{\alpha} \rightarrow \R $ is smooth for all charts $ (U_{\alpha},\varphi_{\alpha}) \in \mathcal{A} $.
+\begin{definition}{Smooth maps}{smooth}
+  A function $ f : \mathcal{M} \rightarrow \R^n $ on a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ is \bcdef{smooth} if $ f \circ \varphi_{\alpha}^{-1} : U_{\alpha} \rightarrow \R^n $ is smooth for all charts $ (U_{\alpha},\varphi_{\alpha}) \in \mathcal{A} $.
 
   A map $ f : \mathcal{M} \rightarrow \mathcal{N} $ between two differentiable manifolds $ (\mathcal{M},\mathcal{A}_1), (\mathcal{N},\mathcal{A}_2) $ is \bcdef{smooth} if $ \psi_{\alpha_2} \circ f \circ \varphi_{\alpha_1}^{-1} : U_{\alpha_1} \rightarrow V_{\alpha_2} $ is smooth for all charts $ (U_{\alpha_1},\varphi_{\alpha_1}) \in \mathcal{A}_1, (V_{\alpha_2},\varphi_{\alpha_2}) \in \mathcal{A}_2 $.
 \end{definition}
@@ -61,6 +64,8 @@ A smooth homeomorphism $ f : \mathcal{M} \ra \mathcal{N} $ between two different
 
   $ \R^n $ has a unique differentiable structure for all $ n \in \N $, except for $ n = 4 $: $ \R^4 $ can be covered by infinitely-many incompatible atlases.
 \end{example}
+
+Note that transition maps between overlapping charts are indeed diffeomorphisms, since they are smooth homeomorphisms (composition of homeomorphisms).
 
 \newpage
 \section{Tangent spaces}
@@ -143,7 +148,18 @@ This equation can have two interpretations, namely the alibi and the alias inter
   \tilde{X}^{\nu} = X^{\mu} \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)}
   \label{eq:vector-coord-basis}
 \end{equation}
-Components of vectors which transform this way are called \bctxt{contravariant}.
+Components of vectors which transform this way are called \bctxt{contravariant}, since they transform according to the Jacobian of the change of coordinates, while the basis vectors transform according to its inverse.
+
+Since coordinate changes are just transition maps between overlapping charts on the manifold, they are diffeomorphisms from a patch of $ \man $ on itself (as noted in \secref{ssec:maps}). In general, a diffeomorphism $ f : \man \ra \man $ defines a change of coordinates on the whole $ \man $: indeed, given two charts $ (\varphi_1 , U) , (\varphi_2 , V) $ such that $ f(U) = V $, then:
+\begin{equation*}
+  \begin{tikzcd}
+    U \ar[d, "f", swap] \ar[r, "\varphi_1"]
+    & \R^n \ar[d, "\tilde{f}"] \\
+    V \ar[r, "\varphi_2", swap]
+    & \R^n
+  \end{tikzcd}
+\end{equation*}
+where $ \tilde{f} = \varphi_2 \circ f \circ \varphi_1^{-1} $, i.e. the change of basis, is a smooth (by \dref{def:smooth}) homeomorphism (composition of homeomorphism), i.e. a diffeomorphism. Then, the coordinates of a point $ p \in U $ change from $ x^\mu = \varphi_1(p) $ to $ y^\mu = \tilde{f}(x(p)) $, while the coordinate basis on $ T_p\man $ changes as in \eref{eq:vector-coord-basis}.
 
 \subsubsection{Curves}
 
@@ -185,7 +201,7 @@ where $ XY(f) \equiv X(Y(f)) $.
   \end{equation}
 \end{definition}
 
-With a given chart:
+Within a given chart:
 \begin{equation*}
   \begin{split}
     \left[ X,Y \right](f)
@@ -193,7 +209,7 @@ With a given chart:
     &= \left( X^{\mu} \frac{\pa Y^{\nu}}{\pa x^{\mu}} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \right) \frac{\pa f}{\pa x^{\nu}}
   \end{split}
 \end{equation*}
-therefore:
+Therefore, the Lie bracket of two vectors fields is still a vector field $ [X,Y] \in \xm $, which can be expressed as:
 \begin{equation}
   \left[ X,Y \right] = \left( X^{\mu} \frac{\pa Y^{\nu}}{\pa x^{\mu}} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \right) \frac{\pa}{\pa x^{\nu}}
 \end{equation}
@@ -205,7 +221,7 @@ therefore:
   \end{equation}
 \end{theorem}
 
-With Lie brackets, $ \xm $ can be given the structure of a Lie algebra.
+With Lie brackets, $ \xm $ can be given the structure of a Lie algebra with generators $ \{\pa_\mu\}_{\mu = 1, \dots, n} $.
 
 \subsubsection{Integral curves}
 

@@ -394,6 +394,7 @@ First of all, it is necessary to elucidate how the covariant derivative acts on 
 Recalling that $ \omega(Y) $ is a function, $ \na_X (\omega(Y)) = X(\omega(Y)) $, therefore:
 \begin{equation}
   (\na_X \omega)(Y) = X(\omega(Y)) - \omega(\na_X Y)
+  \label{eq:cov-der-form-aux}
 \end{equation}
 Expressing it in coordinates:
 \begin{equation*}
@@ -1101,10 +1102,11 @@ This section focuses on a Lorentzian manifold, but the discussion is equivalent 
 
 \subsubsection{Vielbeins}
 
-Although typically calculations are carried on a coordinate basis $ \{e_\mu\} = \{\pa_\mu\} $, there are possible bases without such an interpretation. For example, a linear combination of a coordinate basis is not in general a coordinate basis itself:
+Although typically calculations are carried on a coordinate basis $ \{e_\mu\} = \{\pa_\mu\} $, it is possible to choose bases without such an interpretation. For example, a linear combination of a coordinate basis is not in general a coordinate basis itself:
 \begin{equation}
   \hat{e}_a = \tensor{e}{_a^\mu} \pa_\mu
 \end{equation}
+with $ a = 1, \dots, n $ like $ \mu = 1, \dots, n $.
 A particularly useful non-coordinate basis is one such that:
 \begin{equation}
   g(\hat{e}_a, \hat{e}_b) = g_{\mu \nu} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu} = \eta_{ab}
@@ -1115,6 +1117,7 @@ The components $ \tensor{e}{_a^\mu} $ are called \bctxt{vielbeins} or \textit{te
 The vielbeins are not unique, for given a set of vielbeins $ \tensor{e}{_a^\mu} $ it is always possible to find a new one:
 \begin{equation}
   \tensor{\tilde{e}}{_a^\mu} = \tensor{e}{_b^\mu} \tensor{(\Lambda^{-1})}{^b_a}
+  \label{eq:vielbeins-trans}
 \end{equation}
 The transformation matrix must satisfy the condition imposed by \eref{eq:vielbeins-def}, i.e.:
 \begin{equation}
@@ -1134,25 +1137,41 @@ The metric is a tensor, therefore $ g = g_{\mu \nu} \dd x^\mu \otimes \dd x^\nu 
 
 On a non-coordinate basis $ \{\hat{e}_a\} $, connection components are computed in the usual way:
 \begin{equation}
-  \na_{\hat{e}_c} \hat{e}_b = \Gamma^a_{cb} \hat{e}_a
+  \na_{\hat{e}_c} \hat{e}_b = \omega^a_{cb} \hat{e}_a
   \label{eq:connection-vielbeins}
 \end{equation}
-However, these are not the same components $ \Gamma^\mu_{\nu \rho} $ as in a coordinate basis.
+where the $ n^3 $ functions $ \omega^a_{cb} $ are just the connection coefficients $ \Gamma^a_{cb} $ on the non-coordinate basis.
 
 \begin{definition}{Connection 1-form}{}
   On a metric manifold with vielbeins, the \bcdef{connection 1-form} is defined as:
   \begin{equation}
-    \tensor{\omega}{^a_b} \defeq \Gamma^a_{cb} \hat{\theta}^c
+    \tensor{\omega}{^a_b} \defeq \omega^a_{cb} \hat{\theta}^c
     \label{eq:connection-1-form}
   \end{equation}
 \end{definition}
 
-Note that these are really $ n^2 $ 1-forms, according to values of $ a,b = 1, \dots, n \equiv \dim_{\R} \mathcal{M} $. This is also known as the \textit{spin connection}, due to its relationship to spinors in curved spacetime.
+Note that these are really $ n^2 $ 1-forms, according to values of $ a,b = 1, \dots, n $. This is also known as the \textit{spin connection}, due to its relationship to spinors in curved spacetime.
+Then, the connection in the non-coordinate basis is easily defined:
+\begin{equation*}
+  \na_X Y = X(Y^a) \hat{e}_a + Y^a X^b \na_{\hat{e}_b} \hat{e}_a = X^b [\hat{e}_b(Y^a) + \omega^a_{bc} Y^c] \hat{e}_a
+\end{equation*}
+Hence, setting the notation $ \na_b Y^a \equiv (\na_{\hat{e}_b} Y)^a $, it is clear that the connection takes the form:
+\begin{equation}
+  \na_b Y^a = \hat{e}_b(Y^a) + \omega^a_{bc} Y^c
+\end{equation}
+In general, $ \hat{e}_b(Y^a) = \tensor{e}{_b^\mu} \pa_\mu Y^a $. Using \eref{eq:cov-der-form-aux}, the covariant derivative of forms is found:
+\begin{equation}
+  \na_b \zeta_a = \hat{e}_b(\zeta_a) - \omega^c_{ba} \zeta_c
+\end{equation}
+Finally, for tensors of general rank:
+\begin{equation}
+  \na_c \tensor{T}{^{a_1 \dots a_r}_{b_1 \dots b_s}} = \hat{e}_c(\tensor{T}{^{a_1 \dots a_r}_{b_1 \dots b_s}}) + \sum_{j = 1}^r \omega^{a_j}_{c d_j} \tensor{T}{^{a_1 \dots d_j \dots a_n}_{b_1 \dots b_s}} - \sum_{j = 1}^s \omega^{d_j}_{c b_j} \tensor{T}{^{a_1 \dots a_n}_{b_1 \dots d_j \dots b_n}}
+\end{equation}
 
 \begin{proposition}{Transformation law}{}
-  Given a local Lorentzian transformation $ \Lambda $:
+  Given a local Lorentzian transformation $ \Lambda $ acting as in \eref{eq:vielbeins-trans}:
   \begin{equation}
-    \tensor{\tilde{\omega}}{^a_b} = \tensor{\Lambda}{^a_c} \tensor{\omega}{^c_d} \tensor{(\Lambda^{-1})}{^d_b} + \tensor{\Lambda}{^a_c} \tensor{(d\Lambda^{-1})}{^c_b}
+    \tensor{\tilde{\omega}}{^a_b} = \tensor{\Lambda}{^a_c} \tensor{\omega}{^c_d} \tensor{(\Lambda^{-1})}{^d_b} + \tensor{\Lambda}{^a_c} \tensor{(\dd\Lambda^{-1})}{^c_b}
   \end{equation}
 \end{proposition}
 
@@ -1163,20 +1182,20 @@ The curvature of a metric manifold can also be studied through Cartan's structur
 \begin{theorem}{First Cartan structure equation}{}
   On a metric manifold with a torsion-free connection:
   \begin{equation}
-    d\hat{\theta}^a + \tensor{\omega}{^a_b} \wedge \hat{\theta}^b = 0
+    \dd\hat{\theta}^a + \tensor{\omega}{^a_b} \wedge \hat{\theta}^b = 0
     \label{eq:first-cartan-stru-eq}
   \end{equation}
 \end{theorem}
 
 \begin{proofbox}
   \begin{proof}
-    From \eref{eq:connection-vielbeins} $ \Gamma^a_{cb} = \tensor{e}{^a_\rho} \tensor{e}{_c^\mu} \na_\mu \tensor{e}{_b^\rho} $, thus, remembering $ \Gamma^\rho_{[\mu \nu]} = 0 $ (torsion-free):
+    From \eref{eq:connection-vielbeins} $ \omega^a_{cb} = \tensor{e}{^a_\rho} \tensor{e}{_c^\mu} \na_\mu \tensor{e}{_b^\rho} $, thus, remembering $ \Gamma^\rho_{[\mu \nu]} = 0 $ (torsion-free):
     \begin{equation*}
       \begin{split}
         \tensor{\omega}{^a_b} \wedge \hat{\theta}^b
-        &= \Gamma^a_{cb} \left( \tensor{e}{^c_\mu} dx^\mu \right) \wedge \left( \tensor{e}{^b_\nu} dx^\nu \right) \\
-        &= \tensor{e}{^a_\rho} \tensor{e}{_c^\mu} \left( \pa_\mu \tensor{e}{_b^\rho} + \tensor{e}{_b^\nu} \Gamma^\rho_{\mu \nu} \right) \left( \tensor{e}{^c_\mu} dx^\mu \right) \wedge \left( \tensor{e}{^b_\nu} dx^\nu \right) \\
-        &= \tensor{e}{^a_\rho} \underbrace{\tensor{e}{_c^\lambda} \tensor{e}{^c_\mu}}_{\delta_\mu^\lambda} \tensor{e}{^b_\nu} \left( \pa_\lambda \tensor{e}{_b^\rho} + \tensor{e}{_b^\sigma} \Gamma^\rho_{\lambda \sigma} \right) dx^\mu \wedge dx^\nu = \tensor{e}{^a_\rho} \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} dx^\mu \wedge dx^\nu
+        &= \omega^a_{cb} \left( \tensor{e}{^c_\mu} \dd x^\mu \right) \wedge \left( \tensor{e}{^b_\nu} \dd x^\nu \right) \\
+        &= \tensor{e}{^a_\rho} \tensor{e}{_c^\mu} \left( \pa_\mu \tensor{e}{_b^\rho} + \tensor{e}{_b^\nu} \Gamma^\rho_{\mu \nu} \right) \left( \tensor{e}{^c_\mu} \dd x^\mu \right) \wedge \left( \tensor{e}{^b_\nu} \dd x^\nu \right) \\
+        &= \tensor{e}{^a_\rho} \underbrace{\tensor{e}{_c^\lambda} \tensor{e}{^c_\mu}}_{\delta_\mu^\lambda} \tensor{e}{^b_\nu} \left( \pa_\lambda \tensor{e}{_b^\rho} + \tensor{e}{_b^\sigma} \Gamma^\rho_{\lambda \sigma} \right) \dd x^\mu \wedge \dd x^\nu = \tensor{e}{^a_\rho} \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} \dd x^\mu \wedge \dd x^\nu
       \end{split}
     \end{equation*}
     But $ \tensor{e}{^b_\nu} \tensor{e}{_b^\rho} = \delta_\nu^\rho $, so $ \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} = - \tensor{e}{_b^\rho} \pa_\mu \tensor{e}{^n_\nu} $, hence:
@@ -1202,12 +1221,12 @@ For a Levi--Civita connection, a stronger result holds.
     Being the Levi-Civita connection compatible with the metric:
     \begin{equation*}
       \begin{split}
-        \Gamma_{abc}
+        \omega_{abc}
         &= \eta_{ad} \tensor{e}{^d_\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{_c^\rho} = -\eta_{ad} \tensor{e}{_c^\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{^d_\rho} = -\eta_{cf} \tensor{e}{^f_\sigma} \tensor{e}{_b^\mu} \na_\mu (\eta_{ad} g^{\rho \sigma} \tensor{e}{^d_\rho}) \\
-        &= -\eta_{cf} \tensor{e}{^f_\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{_a^\rho} = -\Gamma_{cba}
+        &= -\eta_{cf} \tensor{e}{^f_\rho} \tensor{e}{_b^\mu} \na_\mu \tensor{e}{_a^\rho} = -\omega_{cba}
       \end{split}
     \end{equation*}
-    From \eref{eq:connection-1-form} $ \omega_{ab} = \Gamma_{acb} \hat{\theta}^c $, thus completing the proof.
+    From \eref{eq:connection-1-form} $ \omega_{ab} = \omega_{acb} \hat{\theta}^c $, thus completing the proof.
   \end{proof}
 \end{proofbox}
 
@@ -1220,17 +1239,17 @@ Recall \eref{eq:riemann-symm}, which holds for Levi--Civita connections. Computi
 \begin{definition}{Curvature 2-form}{}
   On a metric manifold with a Levi--Civita connection, the \bcdef{curvature 2-form} is defined as:
   \begin{equation}
-    \tensor{\mathcal{R}}{^a_b} \defeq \frac{1}{2} \tensor{R}{^a_{bcd}} \hat{\theta}^c \wedge \hat{\theta}^d
+    \tensor{\Omega}{^a_b} \defeq \frac{1}{2} \tensor{R}{^a_{bcd}} \hat{\theta}^c \wedge \hat{\theta}^d
     \label{eq:curvature-2-def}
   \end{equation}
 \end{definition}
 
-Again, these are really $ n^2 $ 2-forms. A second Cartan structure relation holds.
+Again, these are truly $ n^2 $ 2-forms. A second Cartan structure relation holds.
 
 \begin{theorem}{Second Cartan structure equation}{}
   On a metric manifold with a Levi--Civita connection:
   \begin{equation}
-    \tensor{\mathcal{R}}{^a_b} = \tensor{d\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b}
+    \tensor{\Omega}{^a_b} = \tensor{\dd\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b}
     \label{eq:second-cartan-stru-eq}
   \end{equation}
 \end{theorem}
