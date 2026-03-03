@@ -1,0 +1,229 @@
+\selectlanguage{italian}
+
+\chapter{Lecture 03/03}
+
+\section{Killing vector fields}
+
+Diffeomorfismi (diff) attivi sono equivalenti a meno di un segno a trasformazioni di coordinate.
+
+Killing vector $ \xi = \xi^\mu \pa_\mu $ agisce sullo spazio tangente come:
+\begin{equation*}
+  v' = v + \li_\xi v \equiv v + [\xi , v]
+\end{equation*}
+e la condizione di Killing è $ \li_\xi g = 0 $, equivalente (nel caso a torsione zero) a:
+\begin{equation}
+  \na_\nu \xi_\mu + \na_\mu \xi_\nu = 0
+  \label{eq:killing}
+\end{equation}
+In generale sarebbe:
+\begin{equation}
+  \xi^\alpha \pa_\alpha g_{\mu \nu} + \pa_\mu \xi^\alpha g_{\alpha \nu} + \pa_\nu \xi^\alpha g_{\mu \alpha} = 0
+\end{equation}
+è sempre possibile scegliere ``coordinate adattate" per cui $ \xi = \frac{\pa}{\pa x} $, così che l'equazione diventa:
+\begin{equation}
+  \frac{\pa}{\pa x} g_{\mu \nu} = 0
+\end{equation}
+ovvero la metrica non dipende da una delle coordinate: si possono così esprimere le simmetrie in GR.
+
+\begin{example}{}{}
+  Sia $ u $ tangente a una geodetica $ \gamma(x) $, ovvero $ \na_u u = 0 $. Si vuole mostrare che $ u \cdot \xi = \text{const.} $ lungo la geodetica. Ciò significa ce:
+  \begin{equation*}
+    \na_u (u \cdot \xi) = \frac{\pa}{\pa s} (u \cdot \xi) = \na_u u \cdot \xi + u \cdot \na_u \xi = u^\mu u^\nu \na_\nu \xi_\mu = u^\mu u^\nu \na_{(\nu} \xi_{\mu)} = 0
+  \end{equation*}
+  da \ref{eq:killing}, dove $ s $ è il parametro affine della geodetica.
+\end{example}
+
+\begin{example}
+  Si prenda la metric di Schwarzschild:
+  \begin{equation}
+    \dd s^2 = - h \dd t^2 + h^{-1} \dd r^2 + r^2 \dd \Omega^2
+    \qquad \qquad
+    h = 1 - \frac{2m}{r}
+  \end{equation}
+  Ci sono due Killing vectors palesi:
+  \begin{equation*}
+    \frac{\pa}{\pa t}
+    \qquad \qquad
+    \frac{\pa}{\pa \varphi}
+  \end{equation*}
+  Prendendo una geodetica con tangente $ u $:
+  \begin{equation*}
+    u \cdot \frac{\pa}{\pa t} = u^\mu g_{\mu 0} = u_0
+  \end{equation*}
+  L'energia $ E_\text{local} $ misurata da un osservatore con velocità $ v $ è $ E_\text{local} = - p \cdot v $, dove $ p $ è il momento della particella misurata.
+  \begin{equation*}
+    \left( \frac{\pa}{\pa t} \right)^2 = g_{00} = - h(r) \xrightarrow{r \ra \infty} -1
+  \end{equation*}
+  Quindi prendendo una sezione $ r = \text{const.} (\infty) , \theta,\varphi = \text{const.} $ si ha che il tempo di Schwarzschild è il tempo misurato da un osservatore all'infinito. Si ha quindi l'interpretazione fisica $ u \cdot \frac{\pa}{\pa t} = - E_\text{local} $ (vedere trattazione delle orbite di Schwarzschild sul Gravitation).
+
+  Equivalentemente $ u \cdot \frac{\pa}{\pa \varphi} $ è il momento angolare di una particella lungo la geodetica (definita da $ u $) misurato da un osservatore all'infinito.
+\end{example}
+
+Si prenda una teoria di campo su un manifold non-banale:
+\begin{equation}
+  \act = \act_\text{EH} + \act_\text{matter} = \int \dd^4x \sqg \left[ \frac{R}{16\pi G} + \lag(\phi,g) \right]
+\end{equation}
+Dalla def di tensore energia-impulso:
+\begin{equation*}
+  \delta \act = \int \dd^4x \sqg \left[ \frac{G_{\mu \nu}}{16\pi G} - \frac{1}{2} T_{\mu \nu} \right] \delta g^{\mu \nu} + \int \dd^4x \sqgm \frac{\delta \lag}{\delta \phi} \delta \phi + \text{boundary terms}
+\end{equation*}
+Le equazioni del moto risultanti saranno:
+\begin{equation}
+  G_{\mu \nu} = 8\pi G T_{\mu \nu}
+  \qquad \qquad
+  \frac{\delta \lag}{\delta \phi} = 0
+\end{equation}
+
+Si consideri ora il caso in cui la variazione sia un diff, ovvero $ \delta \phi = Z^\mu \pa_\mu \phi $ e $ \delta g_{\mu \nu} = (\lid_Z g)_{\mu \nu} = 2 \na_{(\mu} Z_{\nu)} $. Per l'invarianza sotto diffs, si deve avere che le variazioni dei due contributi dell'azione devono annullarsi separatamente, ovvero:
+\begin{equation*}
+  \delta_\text{diff} \act_\text{matter} = - \frac{1}{2} \int \dd^4x \sqg T_{\mu \nu} 2 \na^\mu Z^\nu = - \int \dd^4x \sqg \left[ \na^\mu (T_{\mu \nu} Z^\nu) - Z^\nu \na^\mu T_{\mu \nu} \right] + \frac{\delta \lag}{\delta \phi} \delta \phi_\text{diff}
+\end{equation*}
+Si ricordi che:
+\begin{equation}
+  \int \dd^4x \sqg \na_\mu X^\mu =  \int \dd^4x \pa_\mu(\sqg X^\mu) = \text{boundary term}
+\end{equation}
+Assumendo campi on-shell, ovvero soddisfano le eq del moto $ \frac{\delta \lag}{\delta \phi} = 0 $, si ha la covariant conservation di $ T_{\mu \nu} $:
+\begin{equation}
+  \na^\mu T_{\mu \nu} = 0
+\end{equation}
+La cov cons del T è quindi nient'altro che l'inv sotto diff infinitesimi dell'azione di materia per configurazioni on-shell (verificare per una teoria scalare come es).
+
+\begin{theorem}{Noether}{}
+  Se $ \xi^\mu $ è Killing vecotr, allora si ha la corrente conservata:
+  \begin{equation}
+    J^\mu \defeq T^{\mu \nu} \xi_\nu
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    \begin{equation*}
+      \na_\mu J^\mu = \na_\mu T^{\mu \nu} \xi_\nu + T^{\mu \nu} \na_{\mu} \xi_\nu = T^{\mu \nu} \na_{(\mu} \xi_{\nu)} = 0
+    \end{equation*}
+  \end{proof}
+\end{proofbox}
+
+Nel caso di sim spaziotemporali non vale il th di Goldstone, quindi rottura spontanea di simmetria bisogna stare attenti a contare i generatori (spesso si fa errore di double-counting).
+
+Si noti che i vettori di Killing hanno una struttura lineare, ovvero linear comb di Killing vectors sono ancora Killing vectors. Inoltre, grazie all'id di Jacobi, i Killling vectors formano un'algebra di Lie sotto il loro commutatore. Il numero di vettori di Killing è finito.
+
+Si trova un'identità col tensore di curvatura:
+\begin{equation*}
+  (\na_\mu \na_\nu - \na_\nu \na_\mu) \xi_\alpha \equiv R_{\mu \nu \alpha}^\beta \xi_\beta
+\end{equation*}
+Prendendo una comb lin di queste equazioni (vedi le note):
+\begin{equation}
+  \na_\nu \na_\alpha \xi_\mu = - R_{\alpha \mu \nu}^\beta \xi_\beta
+\end{equation}
+Dunque, le derivate seconde dei Killing vectors non sono libere, ma legate al tensore di curvatura. Questo è un sistema di equazioni differenziali per $ \xi $, risolvibile imponendo delle condizioni iniziali e integrando lungo una curva: si devono settare $ \xi^\mu(p) $ ($ d $ condizioni) e $ \na_{[\mu} \xi_{\nu]}(p) $ ($ \frac{1}{2} d (d-1) $ condizioni), quindi si trovano $ d + \frac{1}{2} d(d-1) = \frac{1}{2} d(d+1) $ Killing vectors linearmente indipendenti.
+
+Uno spaziotempo si dice maximally-symmetric se possiede il numero massimale di Killing vectors determinato dalla sua dimensione. Si dimostra che in un MSST (max-sym spacetime) il tensore di curvatura non può dipendere dal punto, quindi la sua forma è vincolata ad essere:
+\begin{equation*}
+  R_{\mu \nu \alpha \beta} = \lambda^2 \left( g_{\mu \alpha} g_{\nu \beta} - g_{\nu \alpha} g_{\mu \beta} \right)
+\end{equation*}
+dove $ \lambda^2 $ è legato all'inverso del raggio di curvatura dello spaziotempo. Si trovano quindi:
+\begin{equation*}
+  R_{\mu \nu} = 3 \lambda g_{\mu \nu}
+  \qquad \qquad
+  R = 12 \lambda
+\end{equation*}
+Si hanno tre casi:
+\begin{itemize}
+  \item $ \lambda = 0 $: lo spazio è il Minkowski space e i Killing vectors sono i generatori del gruppo di Poincaré;
+  \item $ \lambda > 0 $: lo spazio di de Sitter;
+  \item $ \lambda < 0 $: lo spazio di anti-de Sitter.
+\end{itemize}
+
+Una sezione dello spazio di de Sitter corrisponde all'Inflation period in Cosmologia. Si può vedere come una varietà 4d immersa in uno spazio 5d con metrica di Lorentz-Minkowski $ \eta_{AB} = \diag(-1,+1,+1,+1,+1) $, è una superficie pseudo-sferica:
+\begin{equation}
+  \eta_{MN} X^M X^N = L^2
+\end{equation}
+Risolvendo il vincolo si possono trovare vari tipi di coordinate locali sul dS space. Un esempio, legato all'Inflation, è:
+\begin{equation*}
+  \dd s^2 = - \dd t^2 + e^{2Ht} \delta_{ij} \dd X^i \dd x^j
+\end{equation*}
+con $ H \propto L^{-1} $. Si noti che questa carta non copre tutto il dS space. Inoltre, il dS space risolve le equazioni di Einstein $ G_{\mu \nu} = - \Lambda g_{\mu \nu} $ con $ \Lambda \propto L^{-1} > 0 $: questo tensore energia-impulso corrisponde ad un fluido cosmologico con $ w = -1 $. In questo caso, i Killing vectors generano il gruppo di de Sitter $ \SOn{4,1} $.
+
+\paragraph{Tridimensional case} Il caso $ d = 3 $ è interessante poiché in Cosmologia si studiano maximally-symmetric space-sections. In $ d = 3 $ i tre casi sono:
+\begin{itemize}
+  \item $ \lambda = 0 $: spazio piatto $ \R^3 $;
+  \item $ \lambda > 0 $: sfera $ \Sn{3} $;
+  \item $ \lambda < 0 $: pseudosfera $ \hyp{3} $ con metrica di Lobachevsky;
+\end{itemize}
+
+% nuova parte
+
+\chapter{Gravitational waves}
+
+Si possono approcciare in vari modi:
+\begin{enumerate}
+  \item perturbative
+  \item beyond linear order (vedi articolo di Bondi sull'energia all'infinito)
+  \item exact solutions
+\end{enumerate}
+
+\section{Perturbative approach}
+
+Si prende una metrica di background perturbata:
+\begin{equation}
+  g_{\mu \nu} = \bar{g}_{\mu \nu} + h_{\mu \nu}
+\end{equation}
+dove le GWs sono descritte da $ h_{\mu \nu} $. C'è un time-domain splitting in cui le variazioni di $ h_{\mu \nu} $ avvengono sulla scala del secondo, mentre quelle di $ \bar{g}_{\mu \nu} $ sul miliardo di anni ($ H_0^{-1} $): questo splitting non è invariante per coordinate.
+
+\subsection{Small perturbations}
+
+Prendendo $ g_{\mu \nu} = \bar{g}_{\mu \nu} + \lambda h_{\mu \nu} $ con $ \lambda \ll 1 $, si possono risolvere le Einstein equations (trattazione seguendo il Wald). Prendendo una metrica generica $ q_{\mu \nu} $ analitica in $ \lambda $:
+\begin{equation*}
+  q_{\mu \nu}(\lambda) = \bar{g}_{\mu \nu} = \lambda h_{\mu \nu} + \smo(\lambda^2)
+\end{equation*}
+quindi $ q_{\mu \nu}(0) = \bar{g}_{\mu \nu} $ e $ \frac{\dd q_{\mu \nu}}{\dd \lambda}(0) = h_{\mu \nu} $. Si può associare una connessione $ \tilde{\na}_\mu $ a $ q_{\mu \nu} $ e una connessione $ \bar{\na}_\mu $ a $ \bar{g}_{\mu \nu} $: si dimostra che, data una 1-form $ \omega_\alpha $, l'oggetto:
+\begin{equation}
+  \tilde{\na}_\mu \omega_\alpha - \bar{\na}_\mu \omega_\alpha = - C_{\mu \alpha}^\rho(\lambda) \omega_\rho
+  \label{eq:c}
+\end{equation}
+è un tensore (dimostrato nel corso Gauge Theories, dimostralo tu\footnote{Hint: use $ \na_\mu \na_\nu f = \na_\nu \na_\mu f $ per entrambe le connessioni e inseire \ref{eq:c}.}). In assenza di torsione (Levi--Civita) si ha $ C_{\mu \alpha}^\rho = C_{\alpha \mu}^\rho $. Inoltre, ci sono dei vincoli su $ C_{\mu \alpha}^\rho $ dati da $ \tilde{\na}_\alpha q_{\mu \nu} = 0 $ e $ \bar{\na}_\alpha \bar{g}_{\mu \nu} = 0 $, e si trova:
+\begin{equation*}
+  \tilde{\na}_\nu q_{\alpha \mu} - C_{\nu \alpha}^\rho q_{\rho \mu} - C_{\nu \mu}^\rho q_{\alpha \rho} = 0
+\end{equation*}
+che risulta:
+\begin{equation}
+  C_{\mu \nu}^\rho(\lambda) = \frac{1}{2} q^{\rho \alpha} (\bar{\na}_\mu q_{\nu \alpha} + \bar{\na}_\nu q_{\mu \alpha} - \bar{\na}_\alpha q_{\mu \nu})
+\end{equation}
+simile alla connessione di Levi--Civita. Questa è valida at all orders in $ \lambda $, quindi espandendo in $ \lambda $ (e usando $ q^{\mu \nu} = \bar{g}^{\mu \nu} - \lambda \bar{g}^{\mu \alpha} \bar{g}^{\nu \beta} h_{\alpha \beta} + \smo(\lambda^2) $):
+\begin{equation*}
+  C_{\mu \nu}^\rho(\lambda) = \frac{1}{2} \bar{g}^{\rho \alpha} (\bar{\na}_\mu h_{\nu \alpha} + \bar{\na}_\nu h_{\mu \alpha} - \bar{\na}_\alpha h_{\mu \nu}) \lambda + \smo(\lambda^2)
+\end{equation*}
+A questo punto si può trovare il tensore di Riemann per $ q $ a partire da quello per $ \bar{g} $, utilizzando la definizione come commutatore di derivate covarianti:
+\begin{equation*}
+  \tilde{\na}_\mu \tilde{\na}_\nu \omega_\alpha - \tilde{\na}_\nu \tilde{\na}_\mu \omega_\alpha = \tilde{R}_{\mu \nu \alpha}^\rho \omega_\rho
+\end{equation*}
+w si trova:
+\begin{equation}
+  \tilde{R}_{\mu \nu \alpha}^\rho = \bar{R}_{\mu \nu \alpha}^\rho + 2 \bar{\na}_{[\nu} C_{\mu]\alpha}^\rho + C_{\nu \beta}^\rho C_{\mu \alpha}^\beta - C_{\nu \alpha}^\beta C_{\mu \beta}^\rho
+\end{equation}
+Questa espressione è utilissima perché permette di calcolare il tensore di Riemann a qualsiasi ordine perturbativo, partendo dal tensore di background. All'ordine lineare:
+\begin{equation*}
+  \tilde{R}_{\mu \nu \alpha}^\rho = \bar{R}_{\mu \nu \alpha}^\rho + 2 \lambda \bar{\na}_\nu [C^{(1)}]_{\mu] \alpha}^\rho + \smo(\lambda^2)
+\end{equation*}
+Con questo formalismo, si possono scrivere le equazioni di Einstein perturbate, con $ T_{\mu \nu} = \bar{T}_{\mu \nu} + \lambda [T^{(1)}]_{\mu \nu} + \smo(\lambda^2) $ e $ G_{\mu \nu} = \bar{G}_{\mu \nu} + \lambda [G^{(1)}]_{\mu \nu} + \smo(\lambda^2) $:
+\begin{equation*}
+  \bar{G}_{\mu \nu} + \lambda [G^{(1)}]_{\mu \nu} + \smo(\lambda^2) = 8 \pi G \left[ \bar{T}_{\mu \nu} + \lambda [T^{(1)}]_{\mu \nu} + \smo(\lambda^2) \right]
+\end{equation*}
+Le equazioni si splittano quindi order-by-order: quelle di background e quelle lineari. Le equazioni si semplificano settando (scelta infelice di notazione con barra, non c'entra niente con il background):
+\begin{equation}
+  \bar{h}_{\mu \nu} \defeq h_{\mu \nu} - \frac{1}{2} h \bar{g}_{\mu \nu}
+  \qquad \qquad
+  h \equiv \bar{g}^{\mu \nu} h_{\mu \nu}
+\end{equation}
+Il tensore di Einstein diventa (con $ \bar{\Box} = \bar{g}^{\mu \nu} \bar{\na}_\mu \bar{\na}_\nu $):
+\begin{equation*}
+  [G^{(1)}]_{\mu \nu} = - \frac{1}{2} \bar{\Box} \bar{h}_{\mu \nu} + \bar{h}_{\mu \nu} \bar{R} + \bar{\na}_{(\nu} \bar{\na}^\alpha \bar{h}_{\mu)\alpha} + \bar{R}_{(\mu}^\alpha \bar{h}_{\nu)\alpha} + \bar{R}_{\alpha \nu \mu \beta} \bar{h}^{\alpha \beta} - \frac{1}{2} \bar{g}_{\mu \nu} \left[ \bar{R}_{\alpha \beta} \bar{h}^{\alpha \beta} + \bar{\na}^\alpha \bar{\na}^\beta \bar{h}_{\alpha \beta} \right]
+\end{equation*}
+Sotto un diff infinitesimo $ g_{\mu \nu} \mapsto g_{\mu \nu} + \na_{(\nu} \xi_{\mu)} $ e $ h_{\mu \nu} \mapsto h_{\mu \nu} + \bar{\na}_{(\mu} \xi_{\nu)} $, quindi conviene fare un gauge fixing nella gauge di Lorentz:
+\begin{equation}
+  \bar{\na}^\alpha \bar{h}_{\alpha \mu} = 0
+\end{equation}
+Nella gauge di Lorentz, le equazioni di Einstein linearizzate diventano:
+\begin{equation}
+  \Box \bar{h}_{\mu \nu} = - 16 \pi G [T^{(1)}]_{\mu \nu}
+\end{equation}

@@ -1,0 +1,202 @@
+\selectlanguage{english}
+
+\chapter{Lecture 03/03}
+
+Scalar field self-interaction (no mediator, just a point-like interaction):
+\begin{equation}
+  \lag = \frac{1}{2} \pa_\mu \phi \pa^\mu \phi - \frac{1}{2} m^2 \phi^2 - \frac{\lambda}{4!} \phi^4
+\end{equation}
+
+\section{Electron-positron annihilation}
+
+Amplitude $ e^- e^+ \ra \mu^- \mu^+ $ using Feynman rules (which are valid at all perturbation orders):
+\begin{equation*}
+  \begin{split}
+    \mat
+    & = \bar{v}_e(\ve{p}_2 , r_2) (-\img e \gamma^\alpha) u_e(\ve{p}_1 , r_1) \frac{-\img \eta_{\alpha \beta}}{q^2} \bar{u}_\mu(\ve{p}_3 , r_3) (-\img e \gamma^\beta) v_\mu(\ve{p}_4 , r_4) \\
+    & = \img e^2 [\bar{v}_e(\ve{p}_2 , r_2) \gamma^\alpha ue(\ve{p}_1 , r_1)] [\bar{u}_\mu(\ve{p}_3 , r_3) \gamma^\beta v(\ve{p}_4 , r_4)] \frac{\eta_{\alpha \beta}}{q^2}
+  \end{split}
+\end{equation*}
+with $ p_1 + p_2 = p_3 + p_4 $. We can use the fact that spinors are helicity eigenstates (see slides for eqs, derived in second/third lecture).
+
+Assume we have an unpolarized beam of $ e^- e^+ $ and that we do not measure final polarizations for $ \mu^+ \mu^- $: in this case we need to evaluate the averaged amplitude:
+\begin{equation}
+  \braket{\abs{\mat}^2} = \frac{1}{4} \sum_{\text{polarizations}} \abs{\mat}^2
+\end{equation}
+where the $ \frac{1}{4} $ factor comes from the fact that there are four possible initial polarizations and they are equally probable ($ ++ $, $ +- $, $ -+ $, $ -- $ helicities).
+
+Assume to be in the CM frame, i.e. $ \ve{p}_1 = - \ve{p}_2 $ and $ \ve{p}_3 = - \ve{p}_4 $, and to be in the ultra-relativistic limit, i.e. $ \sqrt{s} \equiv E_\text{cm} = (p_1 + p_2)^2 \gg m_e^2 , m_\mu^2 $. WLOG, assume that $ e^+ e^- $ are collimated along the $ z $-axis, so that:
+\begin{equation*}
+  p_1 = (E, 0, 0, E)
+  \qquad \qquad
+  p_2 = (E, 0, 0, -E)
+\end{equation*}
+and assume that $ \mu^+ \mu^- $ move in the $ xz $-plane, so that:
+\begin{equation*}
+  p_3 = (E, E \sin \theta, 0, E \cos \theta)
+  \qquad \quad
+  p_4 = (E, -E \sin \theta, 0, -E \cos \theta)
+\end{equation*}
+To compute the Dirac spinors for $ e^- $, take the $ E \gg m_e $ and $ \theta , \varphi \ra 0 $ of the eqs:
+\begin{equation*}
+  u_{e \uparrow} = \sqrt{E}
+  \begin{pmatrix}
+    1 \\ 0 \\ 1 \\ 0
+  \end{pmatrix}
+  \qquad \qquad
+  u_{e \downarrow} = \sqrt{E}
+  \begin{pmatrix}
+    0 \\ 1 \\ 0 \\ -1
+  \end{pmatrix}
+\end{equation*}
+For the $ e^+ $, take $ E \gg m_e $ and $ \theta , \varphi \ra \pi $ instead:
+\begin{equation*}
+  v_{e \uparrow} = \sqrt{E}
+  \begin{pmatrix}
+    1 \\ 0 \\ -1 \\ 0
+  \end{pmatrix}
+  \qquad \qquad
+  v_{e \downarrow} = \sqrt{E}
+  \begin{pmatrix}
+    0 \\ -1 \\ 0 \\ -1
+  \end{pmatrix}
+\end{equation*}
+To compute the Dirac spinors for $ \mu^- $, take the $ E \gg m_\mu $ and $ \varphi \ra 0 $ of the eqs:
+\begin{equation*}
+  u_{\mu \uparrow} = \sqrt{E}
+  \begin{pmatrix}
+    \cos \frac{\theta}{2} \\ \sin \frac{\theta}{2} \\ \cos \frac{\theta}{2} \\ \sin \frac{\theta}{2}
+  \end{pmatrix}
+  \qquad \qquad
+  u_{e \downarrow} = \sqrt{E}
+  \begin{pmatrix}
+    - \sin \frac{\theta}{2} \\ \cos \frac{\theta}{2} \\ \sin \frac{\theta}{2} \\ - \cos \frac{\theta}{2}
+  \end{pmatrix}
+\end{equation*}
+For the $ \mu^+ $, take $ E \gg m_\mu $ and $ \theta \ra \pi - \theta , \varphi \ra \pi $ instead:
+\begin{equation*}
+  v_{\mu \uparrow} = \sqrt{E}
+  \begin{pmatrix}
+    \cos \frac{\theta}{2} \\ \sin \frac{\theta}{2} \\ - \cos \frac{\theta}{2} \\ - \sin \frac{\theta}{2}
+  \end{pmatrix}
+  \qquad \qquad
+  v_{e \downarrow} = \sqrt{E}
+  \begin{pmatrix}
+    \sin \frac{\theta}{2} \\ - \cos \frac{\theta}{2} \\ \sin \frac{\theta}{2} \\ - \cos \frac{\theta}{2}
+  \end{pmatrix}
+\end{equation*}
+
+Now, we can compute the electron current for all possible polarizations:
+\begin{equation}
+  j_e^\alpha = \bar{v}_e \gamma^\alpha u_e
+\end{equation}
+\begin{equation*}
+  j_e^0 = \bar{v}_e \gamma^0 u_e = v_e\dg \gamma^0 \gamma^0 u_e = v_e\dg u_e = v_{e,1}^* u_{e,1} + v_{e,2}^* u_{e,2} + v_{e,3}^* u_{e,3} + v_{e,4}^* u_{e,4}
+\end{equation*}
+\begin{equation*}
+  j_e^1 = \bar{v}_e \gamma^1 u_e = v_e\dg \gamma^0 \gamma^1 u_e = v_{e,1}^* u_{e,4} + v_{e,2}^* u_{e,3} + v_{e,3}^* u_{e,2} + v_{e,4}^* u_{e,1}
+\end{equation*}
+\begin{equation*}
+  j_e^2 = \bar{v}_e \gamma^1 u_e = v_e\dg \gamma^0 \gamma^2 u_e = -\img [ v_{e,1}^* u_{e,4} + v_{e,2}^* u_{e,3} + v_{e,3}^* u_{e,2} + v_{e,4}^* u_{e,1} ]
+\end{equation*}
+\begin{equation*}
+  j_e^1 = \bar{v}_e \gamma^1 u_e = v_e\dg \gamma^0 \gamma^1 u_e = v_{e,1}^* u_{e,3} - v_{e,2}^* u_{e,4} + v_{e,3}^* u_{e,1} - v_{e,4}^* u_{e,2}
+\end{equation*}
+Using the above expressions:
+\begin{equation*}
+  j_{e \uparrow \uparrow}^\alpha = E (0,0,0,0)
+\end{equation*}
+\begin{equation*}
+  j_{e \downarrow \downarrow}^\alpha = E (0,0,0,0)
+\end{equation*}
+\begin{equation*}
+  j_{e \downarrow \uparrow}^\alpha = 2E (0,-1,\img,0)
+\end{equation*}
+\begin{equation*}
+  j_{e \uparrow \downarrow}^\alpha = 2E (0,-1,-\img,0)
+\end{equation*}
+
+Doing the same calculation for the muon current (in the ultra-relativistic limit, electrons and muons are equal, since their only difference is their mass):
+\begin{equation*}
+  j_{\mu \uparrow \uparrow}^\alpha = E (0,0,0,0)
+\end{equation*}
+\begin{equation*}
+  j_{\mu \downarrow \downarrow}^\alpha = E (0,0,0,0)
+\end{equation*}
+\begin{equation*}
+  j_{\mu \downarrow \uparrow}^\alpha = 2E (0, -\cos \theta, \img, \sin \theta)
+\end{equation*}
+\begin{equation*}
+  j_{\mu \uparrow \downarrow}^\alpha = 2E (0, - \cos \theta, -\img, \sin \theta)
+\end{equation*}
+
+It is now possible to evaluate the scattering amplitude in all non-vanishing cases (with $ \eta = (+,-,-,-) $ and $ q^2 = (2E)^2 $):
+\begin{equation*}
+  \mat_{\uparrow \downarrow \ra \uparrow \downarrow} = \img e^2 j_{e \uparrow \downarrow}^\alpha j_{\mu \uparrow \downarrow}^\beta \frac{\eta_{\alpha \beta}}{q^2} = \frac{\img e^2}{q^2} (2E)^2 \left[ -\cos \theta - 1 \right] = - \img e^2 \left[ 1 + \cos \theta \right]
+\end{equation*}
+\begin{equation*}
+  \abs{\mat_{\uparrow \downarrow \ra \uparrow \downarrow}}^2 = \alpha^2 (4\pi)^2 (1 + \cos \theta)^2
+\end{equation*}
+\begin{equation*}
+  \abs{\mat_{\downarrow \uparrow \ra \downarrow \uparrow}}^2 = \alpha^2 (4\pi)^2 (1 + \cos \theta)^2
+\end{equation*}
+
+\begin{equation*}
+  \mat_{\uparrow \downarrow \ra \downarrow \uparrow} = \img e^2 j_{e \uparrow \downarrow}^\alpha j_{\mu \downarrow \uparrow}^\beta \frac{\eta_{\alpha \beta}}{q^2} = \img e^2 \left[ 1 - \cos \theta \right]
+\end{equation*}
+\begin{equation*}
+  \abs{\mat_{\uparrow \downarrow \ra \downarrow \uparrow}}^2 = \alpha^2 (4\pi)^2 (1 - \cos \theta)^2
+\end{equation*}
+\begin{equation*}
+  \abs{\mat_{\downarrow \uparrow \ra \downarrow \uparrow}}^2 = \alpha^2 (4\pi)^2 (1 - \cos \theta)^2
+\end{equation*}
+
+Finally, the averaged amplitude is:
+\begin{equation*}
+  \begin{split}
+    \braket{\abs{\mat}^2}
+    & = \frac{1}{4} \left[ \abs{\mat_{\uparrow \downarrow \ra \uparrow \downarrow}}^2 + \abs{\mat_{\downarrow \uparrow \ra \downarrow \uparrow}}^2 + \abs{\mat_{\uparrow \downarrow \ra \downarrow \uparrow}}^2 + \abs{\mat_{\downarrow \uparrow \ra \downarrow \uparrow}}^2 \right] \\
+    & = \alpha^2 (4\pi)^2 \frac{1}{2} \left[ 1 + \cos^2 \theta + 2 \cos \theta + 1 + \cos^2 \theta - 2 \cos \theta \right] \\
+    & = \alpha^2 (4\pi)^2 [1 + \cos^2 \theta]
+  \end{split}
+\end{equation*}
+
+The cross-section can be computed using the formula derived a few lectures ago:
+\begin{equation}
+  \frac{\dd \theta}{\dd \Omega^*} = \frac{1}{64\pi^2 s} \frac{\abs{\ve{p}_4^*}}{\abs{\ve{p}_1^*}} \braket{\abs{\mat}^2}
+\end{equation}
+where $ \Omega^* $ is the solid angle in the CM frame. Therefore, for the $ e^+ e^- \ra \mu^+ \mu^- $ scattering:
+\begin{equation}
+  \frac{\dd \sigma}{\dd \Omega^*} = \frac{\alpha^2}{4s} (1 + \cos^2 \theta)
+\end{equation}
+This cross-section is a parabola in $ \cos \theta $: clearly, there is a forward-backward symmetry ($ \cos \theta \lra - \cos \theta $), linked to the conservation of angular momentum (in particular of spin, in this case).
+
+Consider first the $ + - \ra - + $ case with $ \theta = \pi $: this case is suppressed, since in the initial state the total spin is along the positive $ z $-axis, while in the final state it is along the negative $ z $-axis, thus violating angular momentum conservation. % --> + -->  ===>  <-- + <--  (spins)
+This contribution is proportional to $ \alpha (1 + \cos \theta) $, while the $ + - \ra + - $ contribution is proportional to $ \alpha (1 - \cos \theta) $, which result in the forward-backward symmetry.
+
+\subsection{Chirality}
+
+Chirality eigenstates are eigenstates of $ \gamma^5 \defeq \img \gamma^0 \gamma^1 \gamma^2 \gamma^3 $ (recall that $ (\gamma^5)^2 = \mt{I}_4 $, $ {\gamma^5}\dg = \gamma^5 $ and $ \{\gamma^5 , \gamma^\mu\} = 0 \,\,\forall \mu = 0,1,2,3 $). These eigenstates are found as:
+\begin{equation*}
+  \gamma^5 u = \lambda u
+  \quad \implies \quad
+  \gamma^5
+  \begin{pmatrix}
+    u_A \\ u_B
+  \end{pmatrix}
+  = \lambda
+  \begin{pmatrix}
+    u_A \\ u_B
+  \end{pmatrix}
+  \quad \implies \quad
+  \begin{cases}
+    u_A = \lambda u_B  \\
+    u_B = \lambda u_A  \\
+  \end{cases}
+  \quad \implies \quad
+  \begin{cases}
+    u_A = \lambda^2 u_A  \\
+    u_B = \lambda^2 u_B
+  \end{cases}
+\end{equation*}
+Clearly, $ \lambda = \pm 1 $: eigenstates with $ \lambda = +1 $ are called right-handed and $ \lambda = -1 $ left-handed.
