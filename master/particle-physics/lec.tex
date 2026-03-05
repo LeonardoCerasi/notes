@@ -200,3 +200,150 @@ Chirality eigenstates are eigenstates of $ \gamma^5 \defeq \img \gamma^0 \gamma^
   \end{cases}
 \end{equation*}
 Clearly, $ \lambda = \pm 1 $: eigenstates with $ \lambda = +1 $ are called right-handed and $ \lambda = -1 $ left-handed.
+
+\chapter{Lecture 05/03}
+
+\section{Trace techniques}
+
+To compute $ \abs{\mat}^2 $, we need to evaluate $ \mat^* $. Consider again $ e^+ e^- \ra \mu^+ \mu^- $, which has:
+\begin{equation*}
+  \mat = \frac{\img e^2}{q^2} \bar{v}_e(p_2) \gamma^\alpha u_e(p_1) \eta_{\alpha \beta} \bar{u}_\mu(p_3) \gamma^\beta v_\mu(p_4)
+\end{equation*}
+The conjugates of the vector currents are found as:
+\begin{equation*}
+  (\bar{v} \gamma^\alpha u)^* = (v\dg \gamma^0 \gamma^\alpha u)^* = (v\dg \gamma^0 \gamma^\alpha u)\dg = u\dg {\gamma^\alpha}\dg \gamma^0 v = u\dg \gamma^0 \gamma^\alpha v = \bar{u} \gamma^\alpha v
+\end{equation*}
+Where we used $ {\gamma^\alpha}\dg \gamma^0 = \gamma^0 \gamma^\alpha $. Therefore:
+\begin{equation*}
+  \begin{split}
+    \abs{\mat}^2
+    & = \frac{e^4}{q^4} \left[ \bar{v}_e(\ve{p}_2 , r_2) \gamma^\alpha u_e(\ve{p}_1 , r_1) \bar{u}_\mu(\ve{p}_3 , r_3) \gamma_\alpha v_\mu(\ve{p}_4 , r_4) \right] \times \\
+    & \qquad \qquad \qquad \qquad \left[ \bar{u}_e(\ve{p}_1 , r_1) \gamma^\beta v_e(\ve{p}_2 , r_2) \bar{v}_\mu(\ve{p}_4 , r_4) \gamma_\beta u_\mu(\ve{p}_3 , r_3) \right] \\
+    & = \frac{e^4}{q^4} \left[ \bar{v}_e(\ve{p}_2 , r_2) \gamma^\alpha u_e(\ve{p}_1 , r_1) \bar{u}_e(\ve{p}_1 , r_1) \gamma^\beta v_e(\ve{p}_2 , r_2) \right] \times \\
+    & \qquad \qquad \qquad \qquad \left[ \bar{u}_\mu(\ve{p}_3 , r_3) \gamma_\alpha v_\mu(\ve{p}_4 , r_4) \bar{v}_\mu(\ve{p}_4 , r_4) \gamma_\beta u_\mu(\ve{p}_3 , r_3) \right]
+  \end{split}
+\end{equation*}
+It is now possible to evaluate the averaged matrix element (with explicit spinor indices):
+\begin{equation*}
+  \begin{split}
+    \braket{\abs{\mat}^2}
+    & = \frac{e^4}{4q^4} \sum_{r_1 , r_2 , r_3 , r_4} \left[ \bar{v}_{e,a}(\ve{p}_2 , r_2) \gamma^\alpha_{ab} u_{e,b}(\ve{p}_1 , r_1) \bar{u}_{e,c}(\ve{p}_1 , r_1) \gamma^\beta_{cd} v_{e,d}(\ve{p}_2 , r_2) \right] \times \\
+    & \qquad \qquad \qquad \qquad \left[ \bar{u}_{\mu,f}(\ve{p}_3 , r_3) \gamma_{\alpha,fg} v_{\mu,g}(\ve{p}_4 , r_4) \bar{v}_{\mu,h}(\ve{p}_4 , r_4) \gamma_{\beta,hi} u_{\mu,i}(\ve{p}_3 , r_3) \right]
+  \end{split}
+\end{equation*}
+This expression can be simplified using completeness relations for spinors:
+\begin{equation}
+  \sum_s u(\ve{p},s) \bar{u}(\ve{p},s) = \slashed{p} + m
+  \qquad \qquad
+  \sum_s v(\ve{p},s) \bar{v}(\ve{p},s) = \slashed{p} - m
+\end{equation}
+With appropriate spinor indices:
+\begin{equation*}
+  \begin{split}
+    \braket{\abs{\mat}^2}
+    & = \frac{e^4}{4q^4} \left[ (\slashed{p}_2 - m_e)_{da} \gamma^\alpha_{ab} (\slashed{p}_1 + m_e)_{bc} \gamma^\beta_{cd} \right] \left[ (\slashed{p}_3 - m_\mu)_{if} \gamma_{\alpha,fg} (\slashed{p}_4 - m_\mu)_{gh} \gamma_{\beta,hi} \right] \\
+    & = \frac{e^4}{4q^4} \tr \left[ (\slashed{p}_2 - m_e) \gamma^\alpha (\slashed{p}_1 + m_e) \gamma^\beta \right] \tr \left[ (\slashed{p}_3 - m_\mu) \gamma_{\alpha} (\slashed{p}_4 - m_\mu) \gamma_{\beta} \right]
+  \end{split}
+\end{equation*}
+In the ultra-relativistic limit masses are negligible, thus:
+\begin{equation*}
+  \begin{split}
+    \braket{\abs{\mat}^2}
+    & = \frac{e^4}{4q^4} \tr \left[ \slashed{p}_2 \gamma^\alpha \slashed{p}_1 \gamma^\beta \right] \tr \left[ \slashed{p}_3 \gamma_{\alpha} \slashed{p}_4 \gamma_{\beta} \right] \\
+    & = \frac{e^4}{4q^4} {p_1}_\mu {p_2}_\nu p_3^\rho p_4^\sigma \tr \{ \gamma^\nu \gamma^\alpha \gamma^\mu \gamma^\beta \} \tr \{ \gamma_\rho \gamma_\alpha \gamma_\sigma \gamma_\beta \} \\
+  \end{split}
+\end{equation*}
+Using the trace identity:
+\begin{equation}
+  \tr \{ \gamma_\mu \gamma_\nu \gamma_\alpha \gamma_\beta \} = 4 \left( \eta_{\mu \nu} \eta_{\alpha \beta} - \eta_{\mu \alpha} \eta_{\nu \beta} + \eta_{\mu \beta} \eta_{\nu \alpha} \right)
+\end{equation}
+the unpolarized matrix element becomes:
+\begin{equation*}
+  \begin{split}
+    \braket{\abs{\mat}^2}
+    & = \frac{4e^4}{q^4} \left[ p_2^\alpha p_1^\beta + p_1^\alpha p_2^\beta - (p_1 \cdot p_2) \eta^{\alpha \beta} \right] \left[ {p_3}_\alpha {p_4}_\beta + {p_4}_\alpha {p_3}_\beta - (p_3 \cdot p_4) \eta_{\alpha \beta} \right] \\
+    & = \frac{4e^4}{q^4} \left[ 2 (p_1 \cdot p_3) (p_2 \cdot p_4) + 2 (p_1 \cdot p_4) (p_2 \cdot p_3) - 4 (p_1 \cdot p_2) (p_3 \cdot p_4) + 4 (p_1 \cdot p_2) (p_3 \cdot p_4) \right] \\
+    & = \frac{8e^4}{q^4} \left[ (p_1 \cdot p_3) (p_2 \cdot p_4) + (p_1 \cdot p_4) (p_2 \cdot p_3) \right]
+  \end{split}
+\end{equation*}
+This expression can be explicited in the CM frame, where:
+\begin{align*}
+  & p_1 = (E, 0, 0, E)
+  \qquad \qquad
+  & p_2 = (E, 0, 0, -E)
+  \\
+  & p_3 = (E, E \sin \theta, 0, E \cos \theta)
+  \qquad \quad
+  & p_4 = (E, -E \sin \theta, 0, -E \cos \theta)
+\end{align*}
+\begin{equation*}
+  \braket{\abs{\mat}^2} = \frac{8e^4}{q^4} \left[ E^4 \left( 1 + \cos \theta \right)^2 + E^4 \left( 1 - \cos \theta \right)^2 \right]
+\end{equation*}
+Using $ q^2 = (p_1 + p_2)^2 = 4E^2 $, the final expression is found to be:
+\begin{equation}
+  \braket{\abs{\mat}^2} = e^4 \left[ 1 + \cos^2 \theta \right]
+\end{equation}
+which is the same result obtained with Dirac spinors.
+
+\section{Crossing symmetry}
+
+Now, we want to compute the cross-section for $ e^- \mu^- \ra e^- \mu^- $. In this case:
+\begin{equation*}
+  \mat_{e\mu \ra e\mu} = \frac{\img e^2}{q^2} \bar{u}_e(\ve{p}_3 , r_3) \gamma^\alpha u_e(\ve{p}_1 , r_1) \bar{u}_\mu(\ve{p}_4 ,r_4) \gamma_\alpha u_\mu(\ve{p}_2 , r_2)
+\end{equation*}
+\begin{equation*}
+  \mat_{ee \ra \mu\mu} = \frac{\img e^2}{q^2} \bar{v}_e(\ve{p}_2 , r_2) \gamma^\alpha u_e(\ve{p}_1 , r_1) \bar{u}_\mu(\ve{p}_3 , r_3) \gamma_\alpha v_\mu(\ve{p}_4 , r_4)
+\end{equation*}
+The similarity between these matrix elements is not an accident: indeed, $ \mat_{e\mu \ra e\mu} $ can be obtained from $ \mat_{ee \ra \mu\mu} $ by substitutions:
+\begin{align*}
+  \bar{v}_e(\ve{p}_2 , r_2) &\longrightarrow \bar{u}_e(\ve{p}_3 , r_3)
+  \\
+  \bar{u}_\mu(\ve{p}_3 , r_3) &\longrightarrow \bar{u}_\mu(\ve{p}_4 , r_4)
+  \\
+  v_\mu(\ve{p}_4 , r_4) &\longrightarrow u_\mu(\ve{p}_2 , r_2)
+\end{align*}
+In order to take into account that the completeness relations for $ v $ and $ u $ differ by a negative sign in the mass term, the previous changes are equivalent to:
+\begin{equation}
+  p_2 \mapsto -p_3
+  \qquad
+  p_3 \mapsto p_4
+  \qquad
+  p_4 \mapsto -p_2
+\end{equation}
+In terms of Mandelstam variables:
+\begin{equation}
+  \braket{\abs{\mat_{ee \ra \mu\mu}^2}} = 2e^4 \frac{t^2 + u^2}{s^2}
+\end{equation}
+and the changes are:
+\begin{equation}
+  s \mapsto t
+  \qquad
+  t \mapsto u
+  \qquad
+  u \mapsto s
+\end{equation}
+hence:
+\begin{equation}
+  \braket{\abs{\mat_{e\mu \ra e\mu}}^2} = 2e^4 \frac{u^2 + s^2}{t^2}
+\end{equation}
+In general, \bctxt{crossing symmetry} states that scattering amplitudes do not change when exchanging an incoming particle with an outgoing antiparticle with momentum reversed, and vice versa.
+
+Consider the annihilation $ e^- e^+ \ra f \bar{f} $, where $ f $ is a generic fermion which might not be relativistic. Then it can be shown that:
+\begin{equation}
+  \sigma_{e\bar{e} \ra f\bar{f}} = \frac{4\pi\alpha^2 Q_f^2}{3s} \beta_f \frac{3 - \beta_f^2}{2}
+\end{equation}
+where $ Q_f $ is the electric charge of $ f $ in units of $ e $ and the $ \beta $-factor of $ f $ is:
+\begin{equation}
+  \beta_f^2 \equiv \frac{p_f}{E_f} = 1 - \frac{4m_f^2}{s}
+\end{equation}
+(prove it)
+
+
+
+
+
+
+
+
+
+

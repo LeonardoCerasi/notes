@@ -227,3 +227,233 @@ Nella gauge di Lorentz, le equazioni di Einstein linearizzate diventano:
 \begin{equation}
   \Box \bar{h}_{\mu \nu} = - 16 \pi G [T^{(1)}]_{\mu \nu}
 \end{equation}
+
+\chapter{Lecture 05/03}
+
+Consideriamo $ \tilde{g}_{\mu \nu} $ che varia su una scala tipica $ L $, mentre $ h_{\mu \nu} $ su una scala $ \lambda \ll L $ (a seconda dei casi, le scale possono essere spaziali, temporali o spaziotemporali, in ogni caso la trattazione è indipendente da questa natura).
+
+Considerando un generatore di diff infinitesimi $ Z^\mu $, la metrica varia come $ g_{\mu \nu} \mapsto g_{\mu \nu} + \ld_Z g_{\mu \nu} $, quindi:
+\begin{equation*}
+  g_{\mu \nu} \mapsto \bar{g}_{\mu \nu} + \ld_Z (\bar{g}_{\mu \nu} + h_{\mu \nu}) = \bar{g}_{\mu \nu} + \ld_Z \bar{g}_{\mu \nu} + \text{higher order terms}
+\end{equation*}
+Quindi $ h_{\mu \nu} $ e $ h_{\mu \nu} + \ld_Z \bar{g}_{\mu \nu} $ sono perturbazioni equivalenti. Questa invarianza di gauge semplifica le equazioni del moto, infatti si può scegliere $ Z^\mu $ tale per cui:
+\begin{equation}
+  \pa^\nu \bar{h}_{\mu \nu} = 0
+\end{equation}
+ovvero la gauge di Lorentz\footnote{Dimostra che questa gauge è equivalente a $ \Box x^\mu = 0 $ (coordinate), ovverosia gauge armonica (anche detta gauge di Lorentz non-perturbativa).} già definita (si ricordi che gli indici spaziotemporali sono alzati e abbassati dalla metrica di background), così che le equazioni di campo diventano:
+\begin{equation}
+  \Box \bar{h}_{\mu \nu} = - 16\pi G [T^{(1)}]_{\mu \nu} + \text{curvature terms}
+\end{equation}
+dove l'operatore di D'Alembert è definito tramite la metrica di background $ \Box \defeq \bar{g}^{\mu \nu} \na_\mu \na_\nu $.
+
+\begin{example}{Minkowskian background}{}
+  Si prenda $ \bar{g}_{\mu \nu} \simeq \eta_{\mu \nu} $ (non può essere esattamente piatto perché c'è backpropagation dell'onda, quindi background è curvo), che può essere visto come prendere una regione di spaziotempo piccola rispetto alla curvatura del background. Inoltre, si prende $ [T^{(1)}]_{\mu \nu} $ (analogo a propagazione di EM waves senza sorgente)\footnote{Questo ha senso solo in dimensione $ d \geq 4 $, poiché in $ d = 2,3 $ le equazioni di Einstein nel vuoto azzerano tutto il tensore di Riemann, quindi non possono esserci GWs}.
+
+  $ \bar{h}_{\mu \nu} $ ha 10 componenti indipendenti, e può essere visto come un campo massless di spin-$ 2 $ che propaga nello spazio di minkowski. All'ordine lineare, l'azione di Einstein--Hilbert può essere espressa con la Lagrangiana di Pauli--Fiersz:
+  \begin{equation}
+    \act_\text{EH} = \int \dd^4x \sqg \frac{R}{16\pi G} = \int \dd^4x \lag_\text{PF}(\pa h) + \smo^3(\pa h)
+  \end{equation}
+  che risulta invariante sotto trasformazioni di gauge $ h_{\mu \nu} \mapsto h_{\mu \nu} + \pa_\mu Z_\nu + \pa_\nu Z_\mu $ e determina le equazioni del moto:
+  \begin{equation}
+    \Box \bar{h}_{\mu \nu} = 0
+  \end{equation}
+  Riscrivendo l'invarianza di gauge:
+  \begin{equation*}
+    h_{\mu \nu} \mapsto h_{\mu \nu} + \ld_Z \bar{g}_{\mu \mu} = h_{\mu \nu} + \bar{\na}_\mu Z_\nu + \bar{\na}_\nu Z_\mu
+  \end{equation*}
+  ma per $ \bar{g}_{\mu \nu} = \eta_{\mu \nu} $ si ha $ \bar{\na}_\mu = \pa_\mu $.
+  
+  (un diff infinitesimo $ g_{\mu \nu} \mapsto g_{\mu \nu} + \ld_Z g_{\mu \nu} $ (attivo) è uguale a un cambio di coordinate $ x^\mu \mapsto x^\mu + Z^\mu $ (passivo))
+
+  Quindi:
+  \begin{equation*}
+    0 = \pa^\nu h_{\mu \nu} \mapsto \pa^\nu h_{\nu \mu} + \pa_\mu \pa^\nu Z_\nu + \Box Z_\mu = 0
+  \end{equation*}
+  L'invarianza di gauge elimina 4 gradi di libertà, ma poi rimane la gauge residua che agisce sulle equazioni del moto. Scrivendo la soluzione in trasformata di Fourier (in assenza di sorgenti e su spazio omogeneo e isotropo):
+  \begin{equation}
+    \bar{h}_{\mu \nu}(x) = \int \frac{\dd^4k}{(2\pi)^4} e^{\img k \cdot x} \bar{\varepsilon}_{\mu \nu}(k)
+  \end{equation}
+  Le eq del moto sono quindi:
+  \begin{equation*}
+    k^\alpha k^\beta \eta_{\alpha \beta} \bar{\varepsilon}_{\mu \nu} = 0
+  \end{equation*}
+  risultando in un massless mode $ k^2 = 0 $. On-shell la soluzione diventa quindi:
+  \begin{equation}
+    \bar{h}_{\mu \nu}(x) = \int \frac{\dd^4k}{(2\pi)^4} \delta^{(4)}(k^2) e^{\img k \cdot x} \bar{\varepsilon}_{\mu \nu}(k)
+  \end{equation}
+  Le soluzioni on-shell sono $ k^0 = \pm \sqrt{\ve{k}^2} = \pm \omega $, tipico di particelle massless (ovvero senza mass gap, l'energia può essere presa piccola a piacere). Inoltre, nella gauge di Lorentz:
+  \begin{equation*}
+    \pa^\nu \bar{h}_{\nu \mu} = 0
+    \quad \implies \quad
+    k^\nu \bar{\varepsilon}_{\mu \nu} = 0
+  \end{equation*}
+  ovvero la transverse condition. Per esercizio, verificare che c'è la gauge residua per cui questa transverse condition rimane invariata:
+  \begin{equation*}
+    \xi^\mu(x) = \int \frac{\dd^4k}{(2\pi)^4} e^{\img k \cdot x} \hat{\xi}^\mu(k)
+    \quad \implies \quad
+    \Box \hat{\xi}^\mu = k^2 \hat{\xi}^\mu = 0
+  \end{equation*}
+  Questa gauge residua elimina altri 4 gradi di libertà, lasciando soltanto 2 gradi di libertà a propagarsi. La scelta di gauge più comune è la TT gauge:
+  \begin{equation*}
+    \varepsilon_{\mu 0} = 0
+    \quad \implies \quad
+    \pa^i h_{ij} = 0
+    \quad \implies \quad
+    k^i \varepsilon_{ij} = 0
+  \end{equation*}
+  \begin{equation*}
+    \eta^{\mu \nu} \varepsilon_{\mu \nu} = 0
+    \quad \implies \quad
+    \eta^{\mu \nu} h_{\mu \nu} = 0
+  \end{equation*}
+  La traceless condition si ottiene con:
+  \begin{equation}
+    \varepsilon_{\mu \nu} \mapsto \varepsilon_{\mu \nu} + \img (k_\mu \hat{\xi}_\nu + k_\nu \hat{\xi}_\mu)
+  \end{equation}
+  scelgliendo $ \hat{\xi}_\mu $ tali per cui:
+  \begin{equation*}
+    \varepsilon_{\mu \nu} \eta^{\mu \nu} \mapsto \varepsilon_{\mu \nu} \eta^{\mu \nu} + 2 \img k_\mu \hat{\xi}^\mu = 0
+  \end{equation*}
+  Alla fine della scelta della gauge e della gauge residua, si ottiene nella TT gauge:
+  \begin{equation*}
+    \varepsilon_{\mu \nu} =
+    \begin{bmatrix}
+      0 & \ve{0} \\
+      \ve{0} & \varepsilon_{ij}
+    \end{bmatrix}
+  \end{equation*}
+  con $ \delta_{ij} \varepsilon_{ij} = 0 $ (traceless). Le condizioni che $ \varepsilon_{\mu \nu} $ deve soddisfare sono:
+  \begin{equation}
+    \varepsilon_{0\mu} = 0
+    \qquad \qquad
+    k_j \varepsilon_{ij} = 0
+    \qquad \qquad
+    \delta_{ij} \varepsilon_{ij} = 0
+  \end{equation}
+  Scegliendo una propagazione lungo l'asse $ z $, ovvero $ k^\mu = (\omega , 0 , 0 , \omega) $, si trovano le polarizzazioni esplicite:
+  \begin{equation}
+    \varepsilon_{\mu \nu} =
+    \begin{bmatrix}
+      0 & 0 & 0 & 0 \\
+      0 & H_+ & H_\times & 0 \\
+      0 & H_\times & - H_+ & 0 \\
+      0 & 0 & 0 & 0
+    \end{bmatrix}
+  \end{equation}
+  ovvero una sovrapposizione di due perturbazioni linearmente indipendenti:
+  \begin{equation*}
+    \varepsilon_{ij} = H_+
+    \begin{bmatrix}
+      1 & 0 & 0 \\
+      0 & -1 & 0 \\
+      0 & 0 & 0
+    \end{bmatrix}
+    + H_\times
+    \begin{bmatrix}
+      0 & 1 & 0 \\
+      1 & 0 & 0 \\
+      0 & 0 & 0
+    \end{bmatrix}
+  \end{equation*}
+  In generale, dato un qualsiasi tensore, si può sempre definire un transverse projector:
+  \begin{equation*}
+    \mathcal{P}_{ij} \equiv \delta_{ij} - n_i n_j
+  \end{equation*}
+  che rende il tensore transverse to $ \ve{\hat{n}} \equiv \ve{k} / \norm{\ve{k}} $, e poi lo si rende traceless come:
+  \begin{equation*}
+    q_{ij} \mapsto q_{ij} + \frac{1}{3} q_{nm} \delta_{nm} \delta_{ij} \equiv q^\text{TL}_{ij}
+  \end{equation*}
+  ovvero:
+  \begin{equation*}
+    q^\text{TT}_{ij} = \Lambda_{im} \Lambda_{jn} q_{ij} \equiv \left( \mathcal{P}_{im} \mathcal{P}_{jn} - \frac{1}{2} \mathcal{P}_{ij} \mathcal{P}_{mn} \right) q_{nm}
+  \end{equation*}
+  Questi quindi sono i due stati di polarizzazione del gravitone su spazio piatto, che sono governati da:
+  \begin{equation*}
+    \lag_\text{graviton} = \lag_\text{PF} + \lag_\text{int}
+  \end{equation*}
+  dove la teoria libera è data dalla lag di Pauli-Fiersz:
+  \begin{equation*}
+    \lag_\text{PF} \sim \pl^2 (\pa h)^2
+  \end{equation*}
+  ma così $ [h] = 0 $ dimensionless, quindi si definite il campo canonico $ \hat{h} \equiv \pl h $, così che:
+  \begin{equation*}
+    \lag_\text{graviton} = (\pa \hat{h})^2 + \lag_\text{int}
+  \end{equation*}
+  le interazioni:
+  \begin{equation*}
+    \lag_\text{int} \sim h (\pa h)^2 \pl^2 + \text{higher orders} \sim \frac{1}{\pl^2} (\pa \hat{h})^2 \hat{h}
+    % forma determinata da ragionamento dimensionale, lag deve avere dim 4 quindi
+  \end{equation*}
+  Così si vede che il coupling è negativo, ovvero la teoria è non-rinormalizzabile. Non è un problema perché questa va vista come teoria effettiva, non fondamentale, poiché la metrica inversa $ g^{\mu \nu} $ caccia infinite potenze di $ h $; le correzioni radiative da gravitoni virtuali sono quindi estremamente piccole, e se diventano non-trascurabili si perde controllo dell'espansione perturbativa e la teoria diventa inutile.
+
+  Quindi non è vero che non abbiamo una teoria quantistica della gravità, il problema è che è solo perturbativa (energie $ E \ll \pl $), non c'è controllo in situazioni per cui $ E \gtrsim \pl $.
+\end{example}
+
+\section{Geodetic deviation}
+
+Si considerino delle test massess in free-fall, ovvero che seguono le geodetiche dello spaziotempo. Siamo interessati a capire come si comporta la distanza tra queste geodetiche in presenza di curvatura non banale (questo è quello che si fa sperimentalmente, ovvero studiare come reagiscono le test massess al passaggio di una GW). Si vuole quindi studiare il fenomeno della geodesic deviation.
+
+Si prenda una famiglia a un parametro di geodetiche $ \gamma_s(\tau) $ (parametro $ s $, geodetiche parametrizzate da $ \tau $ affine, nel caso di geodetiche timelike il tempo proprio), ovvero una \emph{congruence}. Si possono definire quindi due vettori:
+\begin{equation}
+  u = \frac{\pa}{\pa \tau} \gamma_s(\tau)
+  \qquad \qquad
+  \xi = \frac{\pa}{\pa s} \gamma_s(\tau)
+\end{equation}
+$ u $ può essere visto come il campo delle velocità di una geodetica fissata (per geo timelike si ha $ u^2 = -1 $), mentre $ \xi $ è il vettore che, a parametro affine fissato, porta da una geodetica alla successiva. In generale $ u $ e $ \xi $ non sono perpendicolari, ma si possono scegliere come tali. Infatti, in generale $ s $ e $ \tau $ possono essere prese nel set di coordinate locali, ovvero $ [\xi , u] = 0 $. Per vedere che l'angolo tra $ u $ e $ \xi $ è costante, si studia:
+\begin{equation*}
+  \frac{\dd}{\dd \tau} (u \cdot \xi) = \na_u (u \cdot \xi) = \xi \cdot \na_u u + u \cdot \na_u \xi
+\end{equation*}
+In generale, una geodetica è determinata da $ \na_u u = f(\tau) u $, ma si dimostra che si può sempre scegliere il parametro come parametro affine tale per cui $ f(\tau) \equiv 0 $. Si ha quindi $ n_u u = 0 $:
+\begin{equation*}
+  \frac{\dd}{\dd \tau} (u \cdot \xi) = u \cdot \na_u \xi = u_\alpha u^\beta \na_\beta \xi^\alpha
+\end{equation*}
+Ma $ [\xi , u] = 0 \implies u^\alpha \na_\alpha \xi^\mu - \xi^\alpha \na_\alpha u^\mu = 0 $, quindi:
+\begin{equation*}
+  \frac{\dd}{\dd \tau} (u \cdot \xi) = u_\alpha \xi^\beta \na_\beta u^\alpha = 2 \na_\xi u^2 = 0
+  % l'ultimo uguale è stato probabilmente copiato male
+\end{equation*}
+L'angolo tra $ u $ e $ \alpha $ è quindi costante.
+
+La variazione di $ \xi $ dà la geodesic deviation. Si definiscono la velocità e l'accellerazione della deviazione geodetica come:
+\begin{equation}
+  v = \na_u \xi
+  \qquad \qquad
+  a = \na_u v
+\end{equation}
+In particolare, siamo interessati all'accellerazione geodetica, ovvero la velocità della variazione della distanza tra le geodetiche:
+\begin{equation*}
+  \begin{split}
+    a^\mu
+    & = u^\alpha \na_\alpha (u^\beta \na_\beta \xi^\mu) = u^\alpha \na_\alpha u^\beta \na_\beta \xi^\mu + u^\alpha u^\beta \na_\alpha \na_\beta \xi^\mu \\
+    & = u^\alpha \na_\alpha \xi^\beta \na_\beta u^\mu + u^\alpha u^\beta \na_\beta \na_\alpha \xi^\mu + \tensor{R}{_{\alpha \beta \rho}^\mu} u^\alpha u^\beta \xi^\rho \\
+    & = \xi^\alpha \na_\alpha (\na_u u)^\mu + \tensor{R}{_{\alpha \beta \rho}^\mu} u^\alpha u^\beta \xi^\rho
+  \end{split}
+\end{equation*}
+Dato che $ \na_u u = 0 $ si trova l'equazione della geodesic deviation:
+\begin{equation}
+  \na_u \na_u \xi^\mu = \tensor{R}{_{\alpha \beta \rho}^\mu} u^\alpha \xi^\beta u^\rho
+\end{equation}
+(c'è errore nelle equazioni sopra, rifare bene la dimostrazione, però questo risultato finale dovrebbe essere giusto)
+
+Si trova quindi che in assenza di curvatura non c'è moto relativo tra le geodetiche (a parte quello uniforme, esempio rette sghembe). Il passaggio di GWs determina un contributo ad alta frequenza nel tensore di Riemann, ovvero una geodesic deviation ad alta frequenza.
+
+Scrivendo:
+\begin{equation*}
+  R_{\mu \nu \alpha \beta} = \bar{R}_{\mu \nu \alpha \beta} + [R^{(1)}]_{\mu \nu \alpha \beta}
+\end{equation*}
+questo ha varie proprieta. In particolare, si trova che a livello lineare è gauge-invariant, quindi si può calcolare nella gauge preferita. Nella TT gauge, si trova che le uniche componenti non-nulle sono:
+\begin{equation*}
+  \tensor{[R^{(1)}]}{_{0j0}^i} = -\frac{1}{2} \pa_t^2 h^\text{TT}_{ii}
+\end{equation*}
+e questo è quindi vero in tutte le gauge, essendo gauge-invariant.
+
+
+
+
+
+
+
+
+
+
+
