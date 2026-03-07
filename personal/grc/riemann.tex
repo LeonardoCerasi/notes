@@ -441,11 +441,13 @@ Even though the connection is not a tensor, it is used to construct two importan
 \begin{definition}{Curvature tensor}{}
   The \bcdef{curvature} is a (1,3) tensor defined on $ \lm{1} \times \xm \times \xm \times \xm $ as:
   \begin{equation}
-    \riem(\omega,X,Y,Z) \defeq \omega (\na_X \na_Y Z - \na_Y \na_X Z - \na_{[X,Y]} Z)
+    \riem(\omega,Z,X,Y) \defeq \omega (\na_X \na_Y Z - \na_Y \na_X Z - \na_{[X,Y]} Z)
+    \label{eq:riemann-def}
   \end{equation}
   Alternatively, the curvature can be viewed as a map from $ \xm \times \xm $ to the space of differential operators on $ \xm $ such that:
   \begin{equation}
     \riem(X,Y) = \na_X \na_Y - \na_Y \na_X - \na_{[X,Y]}
+    \label{eq:riemann-operator-def}
   \end{equation}
 \end{definition}
 
@@ -489,7 +491,7 @@ Interestingly, even though $ \Gamma^\rho_{\mu \nu} $ is not a tensor, its anti-s
     By direct calculation:
     \begin{equation*}
       \begin{split}
-        \riem(\dd x^\sigma, \pa_\mu, \pa_\nu, \pa_\rho)
+        \riem(\dd x^\sigma, \pa_\rho, \pa_\mu, \pa_\nu)
         &= \dd x^\sigma (\na_\mu \na_\nu \pa_\rho - \na_\nu \na_\mu \pa_\rho - \na_{[\pa_\mu, \pa_\nu]} \pa_\rho) \\
         &= \dd x^\sigma (\na_\mu \na_\nu \pa_\rho - \na_\nu \na_\mu \pa_\rho) \\
         &= \dd x^\sigma (\na_\mu (\Gamma^\lambda_{\nu \rho} \pa_\lambda) - \na_\nu (\Gamma^\lambda_{\mu \rho} \pa_\lambda)) \\
@@ -529,9 +531,75 @@ Clearly, the curvature tensor is anti-symmetric in its last two lower indices, i
   \end{proof}
 \end{proofbox}
 
+\subsubsection{Levi--Civita connection}
+
+The discussion on the connection has so far been independent of the metric. Starting to consider it, an important result is the fundamental theorem of Riemannian geometry.
+
+\begin{theorem}{Riemann's theorem}{}
+  On a metric manifold $ (\mathcal{M},g) $, there exists a unique torsion-free connection that is compatible with the metric, i.e. for all $ X \in \xm $:
+  \begin{equation}
+    \na_X g = 0
+  \end{equation}
+  This is called the \bcth{Levi--Civita connection}.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    WTS uniqueness: suppose such a connection exists. Then, by Leibniz rule:
+    \begin{equation*}
+      X(g(Y,Z)) = \na_X (g(Y,Z)) = (\na_X g)(Y,Z) + g(\na_X Y, Z) + g(Y, \na_X, Z)
+    \end{equation*}
+    Since $ \na_X g = 0 $, by cyclic permutations of $ X $, $ Y $ and $ Z $:
+    \begin{equation*}
+      \begin{split}
+        X(g(Y,Z)) &= g(\na_X Y, Z) + g(Y, \na_X Z) \\
+        Y(g(Z,X)) &= g(\na_Y Z, X) + g(Z, \na_Y X) \\
+        Z(g(X,Y)) &= g(\na_Z X, Y) + g(X, \na_Z Y)
+      \end{split}
+    \end{equation*}
+    Since the connection is torsion-free, $ \na_X Y - \na_Y X = [X,Y] $, thus these equations become:
+    \begin{equation*}
+      \begin{split}
+        X(g(Y,Z)) &= g(\na_Y X, Z) + g(\na_X Z, Y) + g([X,Y], Z) \\
+        Y(g(Z,X)) &= g(\na_Z Y, X) + g(\na_Y X, Z) + g([Y,Z], X) \\
+        Z(g(X,Y)) &= g(\na_X Z, Y) + g(\na_Z Y, X) + g([Z,X], y)
+      \end{split}
+    \end{equation*}
+    Adding the first two and subtracting the third:
+    \begin{equation*}
+      \begin{split}
+        g(\na_Y X, Z) = \frac{1}{2} [ & X(g(Y,Z)) + Y(g(Z,X)) + Z(g(X,Y)) \\
+                                      & - g([X,Y],Z) - g([Y,Z],X) + g([Z,X],Y) ]
+      \end{split}
+    \end{equation*}
+    The metric is non-degenerate, thus this uniquely specifies the connection. By direct calculation it can be shown that it indeed satisfies all the properties of a connection.
+  \end{proof}
+\end{proofbox}
+
+It is possible to explicit the components of the Levi--Civita connection in terms of the metric.
+
+\begin{proposition}{Christoffel symbols}{}
+  On the coordinate basis $ \{\pa_\mu\} $ and $ \{dx^\mu\} $ the Levi--Civita connection's components, called \bcprop{Christoffel symbols}, are:
+  \begin{equation}
+    \Gamma^\lambda_{\mu \nu} = \frac{1}{2} g^{\lambda \rho} (\pa_\mu g_{\nu \rho} + \pa_\nu g_{\mu \rho} - \pa_\rho g_{\mu \nu})
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling that $ [\pa_\mu, \pa_\nu] = 0 $, $ \Gamma^\lambda_{\mu \nu} g_{\lambda \rho} = g(\na_\mu \pa_\nu, \pa_\rho) = \frac{1}{2} (\pa_\nu g_{\mu \rho} + \pa_\mu g_{\nu \rho} - \pa_\rho g_{\mu \nu}) $.
+  \end{proof}
+\end{proofbox}
+
+\begin{example}{Euclidean space}{}
+  In flat space $ \R^n $, endowed with either Euclidean or Minkowski metric, it is always possible to choose Cartesian coordinates, in which case the Christoffel symbols vanish. Being the Riemann tensor a genuine tensor, it therefore will vanish in all possible coordinate systems on $ \R^n $, even in those with $ \Gamma^\rho_{\mu \nu} \neq 0 $: this expresses the flatness of $ \R^n $.
+\end{example}
+
+\subsubsection{Einstein tensor}
+
 In addition to the anti-symmetry in its last two indices, the Riemann tensor presents additional subtle symmetries when using the Levi--Civita connection.
 
-\begin{proposition}{Symmetries of the Riemann tensor}{}
+\begin{proposition}{Symmetries of the Riemann tensor}{riemann-symmetries}
   On a metric manifold with a Levi--Civita connection:
   \begin{equation}
     R_{\sigma \rho \mu \nu} = - R_{\sigma \rho \nu \mu} = - R_{\rho \sigma \mu \nu} = R_{\mu \nu \sigma \rho}
@@ -624,70 +692,6 @@ Most importantly, the Einstein tensor is covariantly conserved, as of \eref{eq:r
 \begin{equation}
   \na^\mu G_{\mu \nu} = 0
 \end{equation}
-
-\subsubsection{Levi--Civita connection}
-
-The discussion on the connection has so far been independent of the metric. Starting to consider it, an important result is the fundamental theorem of Riemannian geometry.
-
-\begin{theorem}{Riemann's theorem}{}
-  On a metric manifold $ (\mathcal{M},g) $, there exists a unique torsion-free connection that is compatible with the metric, i.e. for all $ X \in \xm $:
-  \begin{equation}
-    \na_X g = 0
-  \end{equation}
-  This is called the \bcth{Levi--Civita connection}.
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    WTS uniqueness: suppose such a connection exists. Then, by Leibniz rule:
-    \begin{equation*}
-      X(g(Y,Z)) = \na_X (g(Y,Z)) = (\na_X g)(Y,Z) + g(\na_X Y, Z) + g(Y, \na_X, Z)
-    \end{equation*}
-    Since $ \na_X g = 0 $, by cyclic permutations of $ X $, $ Y $ and $ Z $:
-    \begin{equation*}
-      \begin{split}
-        X(g(Y,Z)) &= g(\na_X Y, Z) + g(Y, \na_X Z) \\
-        Y(g(Z,X)) &= g(\na_Y Z, X) + g(Z, \na_Y X) \\
-        Z(g(X,Y)) &= g(\na_Z X, Y) + g(X, \na_Z Y)
-      \end{split}
-    \end{equation*}
-    Since the connection is torsion-free, $ \na_X Y - \na_Y X = [X,Y] $, thus these equations become:
-    \begin{equation*}
-      \begin{split}
-        X(g(Y,Z)) &= g(\na_Y X, Z) + g(\na_X Z, Y) + g([X,Y], Z) \\
-        Y(g(Z,X)) &= g(\na_Z Y, X) + g(\na_Y X, Z) + g([Y,Z], X) \\
-        Z(g(X,Y)) &= g(\na_X Z, Y) + g(\na_Z Y, X) + g([Z,X], y)
-      \end{split}
-    \end{equation*}
-    Adding the first two and subtracting the third:
-    \begin{equation*}
-      \begin{split}
-        g(\na_Y X, Z) = \frac{1}{2} [ & X(g(Y,Z)) + Y(g(Z,X)) + Z(g(X,Y)) \\
-                                      & - g([X,Y],Z) - g([Y,Z],X) + g([Z,X],Y) ]
-      \end{split}
-    \end{equation*}
-    The metric is non-degenerate, thus this uniquely specifies the connection. By direct calculation it can be shown that it indeed satisfies all the properties of a connection.
-  \end{proof}
-\end{proofbox}
-
-It is possible to explicit the components of the Levi--Civita connection in terms of the metric.
-
-\begin{proposition}{Christoffel symbols}{}
-  On the coordinate basis $ \{\pa_\mu\} $ and $ \{dx^\mu\} $ the Levi--Civita connection's components, called \bcprop{Christoffel symbols}, are:
-  \begin{equation}
-    \Gamma^\lambda_{\mu \nu} = \frac{1}{2} g^{\lambda \rho} (\pa_\mu g_{\nu \rho} + \pa_\nu g_{\mu \rho} - \pa_\rho g_{\mu \nu})
-  \end{equation}
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    Recalling that $ [\pa_\mu, \pa_\nu] = 0 $, $ \Gamma^\lambda_{\mu \nu} g_{\lambda \rho} = g(\na_\mu \pa_\nu, \pa_\rho) = \frac{1}{2} (\pa_\nu g_{\mu \rho} + \pa_\mu g_{\nu \rho} - \pa_\rho g_{\mu \nu}) $.
-  \end{proof}
-\end{proofbox}
-
-\begin{example}{Euclidean space}{}
-  In flat space $ \R^n $, endowed with either Euclidean or Minkowski metric, it is always possible to choose Cartesian coordinates, in which case the Christoffel symbols vanish. Being the Riemann tensor a genuine tensor, it therefore will vanish in all possible coordinate systems on $ \R^n $, even in those with $ \Gamma^\rho_{\mu \nu} \neq 0 $: this expresses the flatness of $ \R^n $.
-\end{example}
 
 \subsubsection{Gauss' theorem}
 
@@ -1120,12 +1124,12 @@ The metric is a tensor, therefore $ g = g_{\mu \nu} \dd x^\mu \otimes \dd x^\nu 
 
 \subsection{Connection 1-form}
 
-On a non-coordinate basis $ \{e_a\} $, connection components are computed in the usual way:
+On a vielbein basis $ \{e_a\} $, connection components are computed in the usual way:
 \begin{equation}
   \na_{e_c} e_b \equiv \omega^a_{cb} e_a
   \label{eq:connection-vielbeins}
 \end{equation}
-where the $ n^3 $ functions $ \omega^a_{cb} $ are just the connection coefficients $ \Gamma^a_{cb} $ on the non-coordinate basis.
+where the $ n^3 $ functions $ \omega^a_{cb} $ are just the connection coefficients $ \Gamma^a_{cb} $ on the vielbein basis.
 
 \begin{definition}{Connection 1-form}{}
   On a metric manifold with vielbeins, the \bcdef{connection 1-form} is defined as:
@@ -1136,7 +1140,7 @@ where the $ n^3 $ functions $ \omega^a_{cb} $ are just the connection coefficien
 \end{definition}
 
 Note that these are really $ n^2 $ 1-forms, according to values of $ a,b = 1, \dots, n $. This is also known as the \textit{spin connection}, due to its relationship to spinors in curved spacetime.
-Then, the connection in the non-coordinate basis is easily defined:
+Then, the connection in the vielbein basis is easily defined:
 \begin{equation*}
   \na_X Y = X(Y^a) e_a + Y^a X^b \na_{e_b} e_a = X^b [e_b(Y^a) + \omega^a_{bc} Y^c] e_a
 \end{equation*}
@@ -1192,7 +1196,7 @@ Finally, for tensors of general rank:
 
 The second term reflects the second term in \pref{prop:gamma-non-tens}, which involves the derivative of the coordinate transformation.
 
-As for the connection coefficients, it is possible to compute the torsion tensor on a non-coordinate basis as $ \tensor{T}{^a_{bc}} = \tors(\theta^a , e_b , e_c) $, which retains the antisimmetry $ \tensor{T}{^a_{bc}} = - \tensor{T}{^a_{cb}} $.
+As for the connection coefficients, it is possible to compute the torsion tensor on a vielbein basis as $ \tensor{T}{^a_{bc}} = \tors(\theta^a , e_b , e_c) $, which retains the antisimmetry $ \tensor{T}{^a_{bc}} = - \tensor{T}{^a_{cb}} $.
 
 \begin{definition}{Torsion 2-form}{}
   On a metric manifold with vielbeins, the \bcdef{torsion 2-form} is defined as:
@@ -1201,11 +1205,11 @@ As for the connection coefficients, it is possible to compute the torsion tensor
   \end{equation}
 \end{definition}
 
-This is a vector-valued 2-form, i.e. $ T^a $ are truly $ n $ 2-forms. Like \eref{eq:torsion-comp}, the torsion 2-form is linked to the connection 1-form by the first Cartan structure equation.
+This is a vector-valued 2-form, thus $ T^a $ has $ n $ independent 2-forms. Like \eref{eq:torsion-comp}, the torsion 2-form is linked to the connection 1-form by the first Cartan structure equation.
 
 \begin{theorem}[before upper = {\tcbtitle}]{First Cartan structure equation}{}
   \begin{equation}
-    \dd\theta^a + \tensor{\omega}{^a_b} \wedge \theta^b = T^a
+    T^a = \dd\theta^a + \tensor{\omega}{^a_b} \wedge \theta^b
   \end{equation}
 \end{theorem}
 
@@ -1244,8 +1248,8 @@ This construction can be generalized to arbitrary vector-valued 1-forms, definin
 \end{equation}
 This is a map $ \dcov : \lm{p} \ra \lm{p+1} $, like the exterior derivative, but it has an important invariance property.
 
-\begin{lemma}{Lorentz invariance}{}
-  The covariant exterior derivative is invariant under local Lorentz transformations:
+\begin{lemma}{Lorentz invariance}{form-lor-inv}
+  The covariant exterior derivative transformations under local Lorentz as:
   \begin{equation}
     \zeta^a \mapsto \tensor{\Lambda}{^a_b} \zeta^b
     \quad \implies \quad
@@ -1273,10 +1277,19 @@ The exterior covariant derivative can be used to extend the covariant derivative
   \dcov \zeta^a = \pa_\mu \zeta^a \tensor{e}{_c^\mu} \wedge \theta^c + \omega^a_{cb} \zeta^b \wedge \theta^c = \left[ e_c(\zeta^a) + \omega^a_{cb} \zeta^b \right] \wedge \theta^c \equiv \tensor{\zeta}{^a_{;c}} \wedge \theta^c
 \end{equation}
 
-The same construction can be applied to form-valued 1-forms simply contracting with $ \eta_{ab} $:
+The same construction for the exterior covariant derivative can be generalized to tensor-valued $ p $-forms as:
 \begin{equation}
-  \dcov \zeta_a = \dd \zeta_a + \tensor{\omega}{_a^b} \wedge \zeta_b
+  \dcov \tensor{\zeta}{^{a_1 \dots a_r}_{b_1 \dots b_s}} = \dd \tensor{\zeta}{^{a_1 \dots a_r}_{b_1 \dots b_s}} + \sum_{j = 1}^r \tensor{\omega}{^{a_j}_c} \wedge \tensor{\zeta}{^{a_1 \dots c \dots a_r}_{b_1 \dots b_s}} - \sum_{j = 1}^s \tensor{\omega}{^c_{b_j}} \wedge \tensor{\zeta}{^{a_1 \dots a_r}_{b_1 \dots c \dots b_s}}
+  \label{eq:dcov}
 \end{equation}
+It is then trivial to show, using \lref{lemma:form-lor-inv}, that a local Lorentz transformation acts as:
+\begin{equation}
+  \tensor{\zeta}{^{a_1 \dots a_r}_{b_1 \dots b_s}} \mapsto \tensor{\Lambda}{^{a_1}_{c_1}} \dots \tensor{\Lambda}{^{a_r}_{c_r}} \tensor{\zeta}{^{c_1 \dots c_r}_{d_1 \dots d_s}} \tensor{(\Lambda^{-1})}{^{d_1}_{b_1}} \dots \tensor{(\Lambda^{-1})}{^{d_s}_{b_s}}
+\end{equation}
+\begin{equation}
+  \dcov\tensor{\zeta}{^{a_1 \dots a_r}_{b_1 \dots b_s}} \mapsto \tensor{\Lambda}{^{a_1}_{c_1}} \dots \tensor{\Lambda}{^{a_r}_{c_r}} \dcov\tensor{\zeta}{^{c_1 \dots c_r}_{d_1 \dots d_s}} \tensor{(\Lambda^{-1})}{^{d_1}_{b_1}} \dots \tensor{(\Lambda^{-1})}{^{d_s}_{b_s}}
+\end{equation}
+where the transformation rule $ \zeta_a \mapsto \zeta_b \tensor{(\Lambda^{-1})}{^b_a} $ follows from the requirement of $ \zeta^a \xi_a $ being Lorentz-invariant (as for usual Lorentz transformation).
 
 \subsubsection{Levi--Civita spin connection}
 
@@ -1315,14 +1328,234 @@ For a Levi--Civita connection, a stronger result holds.
 
 \eeref{eq:first-cartan-stru-eq}{eq:connection-form-symm} allow to quickly compute the spin connection of a Levi--Civita connection, as they uniquely define it. Indeed, by antisymmetry $ \omega_{ab} $ has $ \frac{1}{2} n (n-1) $ independent 1-forms, i.e. $ \frac{1}{2} n^2 (n-1) $ independent components. On the other hand, the first structure equation constraints a vector-valued 2-form, which has $ n $ 2-forms with $ \frac{1}{2} n (n-1) $ independent components each, thus posing $ \frac{1}{2} n^2 (n-1) $ constraints: this is the same number as the independent components of $ \omega_{ab} $, therefore the spin connection is uniquely determined.
 
-The Levi--Civita connection is the unique connection such that \eeref{eq:first-cartan-stru-eq}{eq:connection-form-symm} both hold. Moreover, for a Levi--Civita connection:
-\begin{equation}
-  \dcov (\zeta^a \xi_a) = \dd (\zeta^a \xi_a)
-\end{equation}
-for general vector/form-valued 1-forms, since $ \tensor{\omega}{_a^b} = - \tensor{\omega}{^b_a} $.
+The Levi--Civita connection is the unique connection such that \eeref{eq:first-cartan-stru-eq}{eq:connection-form-symm} both hold. Moreover, for a Levi--Civita connection $ \dcov (\zeta^a \xi_a) = \dd (\zeta^a \xi_a) $ and $ \dcov \eta_{ab} = 0 $, since $ \tensor{\omega}{_a^b} = - \tensor{\omega}{^b_a} $.
 
 \subsection{Curvature 2-form}
 
+As for the torsion tensor, it is possible to compute the curvature tensor on a vielbein basis as $ \tensor{R}{^a_{bcd}} = \riem(\theta^a , e_b , e_c , e_d) $, which retains the symmetries \pref{prop:riemann-symmetries}.
+
+\begin{definition}{Curvature 2-form}{}
+  On a metric manifold with vielbeins, the \bcdef{curvature 2-form} is defined as:
+  \begin{equation}
+    \tensor{\Omega}{^a_b} \defeq \frac{1}{2} \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d
+    \label{eq:curvature-2-def}
+  \end{equation}
+\end{definition}
+
+The curvature 2-form is a tensor-valued 2-form, hence $ \tensor{\Omega}{^a_b} $ has $ n^2 $ 2-forms, i.e. $ \frac{1}{2} n^3 (n-1) $ independent components (the same number as the curvature tensor, as expected). It is possible to derive a structure equation for the curvature 2-form too.
+
+\begin{theorem}[before upper = {\tcbtitle}]{Second Cartan structure equation}{}
+  \begin{equation}
+    \tensor{\Omega}{^a_b} = \dd \tensor{\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b}
+    \label{eq:second-cartan-stru-eq}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling \eref{eq:riemann-operator-def}, it is possible to write:
+    \begin{equation*}
+      \tensor{R}{^a_{bcd}} e_a = \riem(e_c , e_d) e_b = \na_{e_c} \na_{e_d} e_b - \na_{e_d} \na_{e_c} e_b - \na_{[e_c , e_d]} e_b
+    \end{equation*}
+    In general, by linearity of the connection, $ \na_X e_b = \tensor{\omega}{^c_b}(X) e_c $, hence (using $ \na_X f = X(f) $):
+    \begin{equation*}
+      \begin{split}
+        \tensor{R}{^a_{bcd}} e_a
+        & = \na_{e_c} [\omega^a_{db} e_a] - \na_{e_d} [\omega^a_{cb} e_a] - \tensor{\omega}{^a_b}([e_c , e_d]) e_a \\
+        & = e_c(\omega^a_{db}) e_a + \omega^f_{db} \omega^a_{cf} e_a - e_d(\omega^a_{cb}) e_a - \omega^f_{cb} \omega^a_{df} e_a - \tensor{\omega}{^a_b}([e_c , e_d]) e_a \\
+      \end{split}
+    \end{equation*}
+
+    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{connection-ext-der}
+      \begin{equation}
+        \dd \tensor{\omega}{^m_n}(e_a , e_b) = e_a(\omega^m_{bn}) - e_b(\omega^m_{an}) - \tensor{\omega}{^m_n}([e_a , e_b])
+      \end{equation}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        Writing $ \pa_\mu = \tensor{e}{^a_\mu} e_a $ and $ \dd x^\mu = \tensor{e}{_a^\mu} \theta^a $, by linearity of the connection:
+        \begin{equation*}
+          \dd \tensor{\omega}{^m_n} = \na_{e_a} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} \theta^a \wedge \theta^b = \frac{1}{2} \left[ \na_{e_a} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} - \na_{e_b} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_a^\mu} \right] \theta^a \wedge \theta^b
+        \end{equation*}
+        Since $ \omega^m_{cn} \tensor{e}{^c_\mu} $ is a scalar function, using the Leibniz rule:
+        \begin{equation*}
+          \dd \tensor{\omega}{^m_n}(e_a , e_b) = e_a(\omega^m_bn) - e_b(\omega^m_an) + \omega^m_{cn} \left[ e_a(\tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} - e_b(\tensor{e}{^c_\mu}) \tensor{e}{_a^\mu} \right]
+        \end{equation*}
+        Now, consider the action of the commutator of vielbeins on $ \cm $:
+        \begin{equation*}
+          \begin{split}
+            [e_a , e_b](f)
+            & \defeq e_a(e_b(f)) - e_b(e_a(f)) = \tensor{e}{_a^\mu} \pa_\mu (\tensor{e}{_b^\nu} \pa_\nu f) - \tensor{e}{_b^\nu} \pa_\nu (\tensor{e}{_a^\mu} \pa_\mu f) \\
+            & = \tensor{e}{_a^\mu} \pa_\mu \tensor{e}{_b^\nu} \pa_\nu f - \tensor{e}{_b^\nu} \pa_\nu \tensor{e}{_a^\mu} \pa_\mu f = \left[ e_a(\tensor{e}{_b^\mu}) \tensor{e}{^c_\mu} - e_b(\tensor{e}{_a^\mu}) \tensor{e}{^c_\mu} \right] e_c(f) \\
+          \end{split}
+        \end{equation*}
+        As $ \tensor{e}{_b^\mu} \tensor{e}{^c_\mu} = \delta^c_b $, by the Leibniz rule $ e_a(\tensor{e}{_b^\mu}) \tensor{e}{^c_\mu} + \tensor{e}{_b^\mu} e_a(\tensor{e}{^c_\mu}) = 0 $, hence:
+        \begin{equation}
+          ([e_a , e_b])^c = \tensor{e}{_a^\mu} e_b(\tensor{e}{^c_\mu}) - \tensor{e}{_b^\mu} e_a(\tensor{e}{^c_\mu})
+        \end{equation}
+        which, inserted in the expression for $ \dd \tensor{\omega}{^m_n}(e_a , e_b) $, yields the thesis.
+      \end{proof}
+    \end{proofbox}
+
+    Using \lref{lemma:connection-ext-der}, the above expression becomes:
+    \begin{equation*}
+      \tensor{R}{^a_{bcd}} = \dd \tensor{\omega}{^a_b}(e_c , e_d) + \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df}
+    \end{equation*}
+    But $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(e_c , e_d) $, while:
+    \begin{equation*}
+      \tensor{\omega}{^a_f} \wedge \tensor{\omega}{^f_b} = \omega^a_{cf} \omega^f_{db} \theta^c \wedge \theta^d = \frac{1}{2} \left[ \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df} \right] \theta^c \wedge \theta^d
+    \end{equation*}
+    thus the proof is complete.
+  \end{proof}
+\end{proofbox}
+
+Combining the two structure equations, it is possible to find simple expressions for the exterior covariant derivative of the torsion and curvature 2-forms.
+
+\begin{proposition}[before upper = {\tcbtitle}]{}{}
+  \begin{equation}
+    \dcov T^a = \tensor{\Omega}{^a_b} \wedge e^b
+    \qquad \qquad
+    \dcov \tensor{\Omega}{^a_b} = 0
+    \label{eq:cov-ext-der-torsion-curvature}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eref{eq:first-cartan-stru-eq}, taking the exterior derivative and using \pref{prop:ext-der-prod-rule}:
+    \begin{equation*}
+      \dd T^a = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge \dd \theta^b = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge (T^b - \tensor{\omega}{^b_c} \wedge \theta^c)
+    \end{equation*}
+    Rearranging the terms and inserting \eref{eq:second-cartan-stru-eq}:
+    \begin{equation*}
+      \dd T^a + \tensor{\omega}{^a_b} \wedge T^a = \left( \dd \tensor{\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b} \right) \wedge \theta^b
+      \quad \implies \quad
+      \dcov T^a = \tensor{\Omega}{^a_b} \wedge e^b
+    \end{equation*}
+    Now, take the exterior derivative of \eref{eq:second-cartan-stru-eq} and apply \pref{prop:ext-der-prod-rule}:
+    \begin{equation*}
+      \dd \tensor{\Omega}{^a_b} = \dd \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b} - \tensor{\omega}{^a_c} \wedge \dd \tensor{\omega}{^c_b} = \left( \tensor{\Omega}{^a_c} - \tensor{\omega}{^a_d} \wedge \tensor{\omega}{^d_c} \right) \wedge \tensor{\omega}{^c_b} - \tensor{\omega}{^a_c} \wedge \left( \tensor{\Omega}{^c_b} - \tensor{\omega}{^c_d} \wedge \tensor{\omega}{^d_b} \right)
+    \end{equation*}
+    The second and fourth terms cancel by renaming the mute indices, thus:
+    \begin{equation*}
+      0 = \dd \tensor{\Omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\Omega}{^c_b} - \tensor{\Omega}{^a_c} \wedge \tensor{\omega}{^c_b} = \dcov \tensor{\Omega}{^a_b}
+    \end{equation*}
+    since $ \tensor{\Omega}{^a_c} \wedge \tensor{\omega}{^c_b} = \tensor{\omega}{^c_b} \wedge \tensor{\Omega}{^a_c} $ by \pref{prop:form-skew-symmetry}.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Bianchi identities}
+
+The Bianchi identities are useful identities which hold for a torsionless connection and put symmetry constraints on the curvature tensor.
+
+\begin{theorem}{Bianchi identities}{}
+  For a torsionless connection:
+  \begin{equation}
+    \tensor{R}{^a_{[bcd]}} = 0
+    \qquad \qquad
+    \tensor{R}{^a_{b[cd;k]}} = 0
+    \label{eq:bianchi-vielbein}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Setting $ T^a \equiv 0 $ in the first \eref{eq:cov-ext-der-torsion-curvature}:
+    \begin{equation*}
+      0 = \tensor{\Omega}{^a_b} \wedge \theta^b = \frac{1}{2} \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d \wedge \theta^b = \frac{1}{2} \tensor{R}{^a_{[bcd]}} \theta^b \wedge \theta^c \wedge \theta^d
+    \end{equation*}
+    which is the first Bianchi identity. Then, from the second \eref{eq:cov-ext-der-torsion-curvature}:
+    \begin{equation*}
+      0 = \dcov \tensor{\Omega}{^a_b} = \frac{1}{2} \dcov \left[ \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d \right] = \frac{1}{2} \left[ \tensor{R}{^a_{bcd;k}} \theta^k \wedge \theta^c \wedge \theta^d + \tensor{R}{^a_{bcd}} \left( \dcov \theta^c \wedge \theta^d - \theta^c \wedge \dcov \theta^d \right) \right]
+    \end{equation*}
+    But $ \dcov \theta^a = T^a \equiv 0 $, hence this equation is equivalent to the second Bianchi identity.
+  \end{proof}
+\end{proofbox}
+
+In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \equiv \tensor{R}{^a_{bad}} $, while the Ricci scalar is the trace $ R \equiv \eta^{ab} R_{ab} $. In the same way, the Einstein tensor is defined as $ G_{ab} \equiv R_{ab} - \frac{1}{2} \eta_{ab} R $.
+
+\begin{corollary}{Einstein--Bianchi identity}{}
+  For a Levi--Civita connection:
+  \begin{equation}
+    \tensor{G}{_{ab}^{;b}} = 0
+  \end{equation}
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    From the second Bianchi identity \eref{eq:bianchi-vielbein}, using the antisymmetry $ \tensor{R}{^a_{bcd}} = \tensor{R}{^a_{b[cd]}} $:
+    \begin{equation*}
+      R_{bd;k} + \tensor{R}{^a_{bka;d}} + \tensor{R}{^a_{bdk;a}} = 0
+      \quad \implies \quad
+      R_{bd;k} - R_{bk;d} + \tensor{R}{^a_{bdk;a}} = 0
+    \end{equation*}
+    Now, contract with $ \eta^{bd} $:
+    \begin{equation*}
+      R_{;k} - \tensor{R}{^b_{k;b}} + \tensor{R}{^{ad}_{dk;a}} = 0
+      \quad \implies \quad
+    \end{equation*}
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Symmetries of Riemann tensor}{riemann-symmetry-vielbein}
+      For a Levi--Civita connection:
+      \begin{equation}
+        R_{abcd} = R_{[ab][cd]}
+      \end{equation}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        By \eref{eq:curvature-2-def} $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(e_c , e_d) $, thus to compute this expression first consider:
+        \begin{equation*}
+          \dd \tensor{\omega}{^a_b} = \dd \omega^a_{mb} \wedge \theta^m + \omega^a_{mb} \dd \theta^m = \dd \omega^a_{mb} \wedge \theta^m - \omega^a_{mb} \tensor{\omega}{^m_k} \wedge \theta^k
+        \end{equation*}
+        where \eref{eq:first-cartan-stru-eq} was used. Then, since $ \dd f = \pa_\mu f \tensor{e}{_a^\mu} \theta^a = e_a(f) \theta^a \,\, \forall f \in \cm $:
+        \begin{equation*}
+          \dd \tensor{\omega}{^a_b} = e_k(\omega^a_{mb}) \theta^k \wedge \theta^m - \omega^a_{mb} \tensor{\omega}{^m_k} \wedge \theta^k = \left[ e_m(\omega^a_{kb}) - \omega^a_{cb} \omega^c_{mk} \right] \theta^m \wedge \theta^k
+        \end{equation*}
+        Therefore, form \eref{eq:second-cartan-stru-eq}:
+        \begin{equation*}
+          \tensor{\Omega}{^a_b} = \left[ e_m(\omega^a_{kb}) - \omega^a_{cb} \omega^c_{mk} + \omega^a_{mc} \omega^c_{kb} \right] \theta^m \wedge \theta^k
+        \end{equation*}
+        Now, to evaluate $ \tensor{\Omega}{^a_b}(e_c , e_d) $, use:
+        \begin{equation*}
+          \theta^m \wedge \theta^k (e_c , e_d) \equiv
+          \begin{vmatrix}
+            \theta^m(e_c) & \theta^m(e_d) \\ \theta^k(e_c) & \theta^k(e_d)
+          \end{vmatrix}
+          = \delta^m_c \delta^k_d - \delta^m_d \delta^k_c \eqdef \delta^{mk}_{cd}
+        \end{equation*}
+        Hence, defining $ \omega_{abc} \equiv \eta_{ak} \omega^k_{bc} $, the curvature tensor is found to be:
+        \begin{equation*}
+          R_{abcd} = \left[ e_m(\omega_{akb}) - \omega_{agb} \omega^g_{mk} + \omega_{amg} \omega^g_{kb} \right] \delta^{mk}_{cd}
+        \end{equation*}
+        Then, since $ \delta^{mk}_{cd} = \delta^{[mk]}_{[cd]} $ and, recalling \eref{eq:connection-form-symm} for a Levi--Civita connection, $ \omega_{ab} = - \omega_{ba} \implies \omega_{acb} = \omega_{[a|c|b]} $, this is equivalente to the thesis.
+      \end{proof}
+    \end{proofbox}
+
+    Using \lref{lemma:riemann-symmetry-vielbein}, the above expression reduces to:
+    \begin{equation*}
+      R_{;k} = 2 \tensor{R}{^a_{k;a}}
+    \end{equation*}
+    Then, the thesis is trivial from the metric-compatibility of the connection.
+  \end{proof}
+\end{proofbox}
+
+Note that \lref{lemma:riemann-symmetry-vielbein} allows to explicitly compute the curvature tensor from connection coefficients:
+\begin{equation}
+  R_{abcd} = e_c(\omega_{adb}) - e_d(\omega_{acb}) - \omega_{agb} \left( \omega^g_{cd} - \omega^g_{dc} \right) + \omega_{acg} \omega^g_{db} - \omega_{adg} \omega^g_{cb}
+\end{equation}
+Moreover, by multilinearity, the curvature tensor in the vielbein basis retains the symmetry $ R_{abcd} = R_{cdab} $. This, together with $ R_{abcd} = R_{[ab][cd]} $, means that the Riemann tensor can be thought as having two symmetrized multi-indices $ [ab] $ and $ [cd] $, hence the number of independent components is $ \frac{1}{2} N (N+1) $, where $ N $ is the number of possible values for a single multi-index, i.e. $ N = \frac{1}{2} n (n-1) $. However, one has to account for the constraint posed by the first Bianchi identity: since there is one such constraint for each choise of four distinc indices, the total number of independent components of the Riemann tensor is:
+\begin{equation*}
+  f_\text{Riemann} = \frac{1}{2} \frac{n (n-1)}{2} \left( \frac{n(n-1)}{2} + 1 \right) - \binom{n}{4} = \frac{1}{8} (n-1) (n (n-1) + 2) - \frac{1}{24} n (n-1) (n-2) (n-3)
+\end{equation*}
+Simplifying this expression yields the classical result:
+\begin{equation}
+  f_\text{Riemann} = \frac{n^2 (n^2-1)}{12}
+\end{equation}
+In particular, on $ 4 $-dimensional manifolds this analysis yields the separation of the $ 20 $ degrees of freedom of the Riemann tensor into the $ 10 $ degrees of freedom of the Ricci tensor (``symmetric" part) and the $ 10 $ of the Weyl tensor (``antisymmetric" part).
+
+Note that, if the curvature tensor is computed on a non-coordinate and non-tetrad basis, then it is not possible to impose the symmetry $ R_{abcd} = R_{cdab} $ and the unconstrained components rise to $ 36 $ (i.e. $ N^2 $): the spurious $ 16 $ degrees of freedom thus need to be eliminated with additional constraints, depending on the formalism employed.
 
 
 
