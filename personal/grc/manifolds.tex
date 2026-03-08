@@ -1,6 +1,7 @@
 \selectlanguage{english}
 
 \section{Smooth manifolds}
+\label{sec:manifolds}
 
 \begin{definition}{Topological space}{}
   The \bcdef{topology} $ \mathcal{T} $ of a set $ X $ is a family of subsets of $ X $, i.e. $ \mathcal{T} \subseteq \pwst{X} $, defined as \bcdef{open sets}, with the following properties:
@@ -26,9 +27,11 @@ The composition of two homeomorphisms $ f : M_1 \ra M_2 $ and $ g : M_2 \ra M_3 
   An $ n $-dimensional \bcdef{topological manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
   \begin{enumerate}
     \item $ \man $ is \emph{second-countable}, i.e. there exists a countable basis for $ \tp(\mathcal{M}) $;
-    \item $ \mathcal{M} $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\mathcal{M} \,\, \exists O \in \mathcal{T}(\mathcal{M}) : p \in O \land \exists \varphi : O \rightarrow U \in \mathcal{T}(\R^n) $ homeomorphism;
+    \item $ \mathcal{M} $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\mathcal{M} \, \exists U \in \mathcal{T}(\mathcal{M}) : p \in U \land \exists \varphi : U \rightarrow O \in \mathcal{T}(\R^n) $ homeomorphism;
   \end{enumerate}
 \end{definition}
+
+The maps $ (U,\varphi) $ are called \bctxt{charts}, and a collection of charts $ \mathcal{A} = \{(U_\alpha , \varphi_\alpha\}_{\alpha \in \mathcal{I}} : \bigcup_{\alpha \in \mathcal{I}} U_{\alpha} = \mathcal{M} $ is called an \bctxt{atlas}: an atlas is \emph{maximal} if it is not properly contained in any other atlas.
 
 Note that, by definition, every topological manifold has a well-defined dimension. Indeed, using the theory of de Rham cohomology (see \secref{ssec:derham}), it is possible to prove the following theorem.
 
@@ -36,46 +39,36 @@ Note that, by definition, every topological manifold has a well-defined dimensio
   A non-empty $ n $-dimensional topological manifold cannot be homeomorphic to an $ m $-dimensional topoplogical manifold, unless $ m = n $.
 \end{theorem}
 
-The empty set satisfies the definition of $ n $-dimensional topological manifold for all $ n \in \N $, hence it is excluded.
+The empty set is excluded since it is an $ n $-dimensional topological manifold for all $ n \in \N $.
 
-\begin{definition}{Smooth manifold}{smooth-manifold}
-  An $ n $-dimensional topological manifold is a \bcdef{smooth manifold}
+Locally mapping $ \mathcal{M} $ to $ \R^n $ allows for the extension of the concepts of Analysis from $ \R^n $ to $ \mathcal{M} $ through the definition of a differentiable structure on the manifold.
+
+\begin{definition}{Smooth maps}{smooth}
+  A function $ f : \mathcal{M} \rightarrow \R^n $ on a topological manifold $ (\mathcal{M},\mathcal{A}) $ is \bcdef{smooth} if $ f \circ \varphi_{\alpha}^{-1} : U_{\alpha} \rightarrow \R^n $ is smooth for all charts $ (U_{\alpha},\varphi_{\alpha}) \in \mathcal{A} $.
+
+  A map $ f : \mathcal{M} \rightarrow \mathcal{N} $ between two smooth manifolds $ (\mathcal{M},\mathcal{A}_1), (\mathcal{N},\mathcal{A}_2) $ is \bcdef{smooth} if $ \psi_{\alpha_2} \circ f \circ \varphi_{\alpha_1}^{-1} : U_{\alpha_1} \rightarrow \R^m $ is smooth for all charts $ (U_{\alpha_1},\varphi_{\alpha_1}) \in \mathcal{A}_1, (V_{\alpha_2},\varphi_{\alpha_2}) \in \mathcal{A}_2 $.
 \end{definition}
 
-The maps $ \varphi_{\alpha} $ are called \bctxt{charts} and a collection of compatible charts is called an \bctxt{atlas}: a maximal atlas $ \mathcal{A} $ is an atlas such that $ \bigcup_{\alpha \in \mathcal{I}} O_{\alpha} = \mathcal{M} $. Two atlases are compatible if each chart of one atlas is compatible with every chart of the other: they define the same differentiable structure on the manifold.
+A smooth homeomorphism $ f : \mathcal{M} \ra \mathcal{N} $ between two topological manifolds $ \mathcal{M} $ and $ \mathcal{N} $ is called a \bctxt{diffeomorphism}.
 
-Each chart $ \varphi_{\alpha} $ provides a coordinate system on $ O_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^{\mu}(p), \dots, x^n(p) \right) $. The transition functions $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions.
+Given an atlas $ \mathcal{A} $, two charts $ (U , \varphi) , (V , \psi) \in \mathcal{A} $ are \emph{smoothly compatible} if either $ U \cap V = \empty $ or the transition map $ \psi \circ \varphi^{-1} : U \cap V \ra U \cap V $ is a diffeomorphism. If any two charts in an atlas are smoothly-compatible, then the atlas is a \bctxt{smooth atlas}.
+
+\begin{definition}{Smooth manifold}{smooth-manifold}
+  An $ n $-dimensional \bcdef{smooth manifold} is an $ n $-dimensional topological manifold equipped with a maximal smooth atlas.
+\end{definition}
+
+Two smooth atlases are compatible if each chart of one atlas is smoothly compatible with every chart of the other: they define the same differentiable structure on the manifold.
+
+Each chart $ \varphi_{\alpha} $ provides a coordinate system on $ O_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^{\mu}(p), \dots, x^n(p) \right) $. The transition functions $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions: note that transition maps between overlapping charts are indeed diffeomorphisms, since they are smooth homeomorphisms (composition of homeomorphisms).
 
 \begin{example}{Spheres}{}
   $ \mathbb{S}^n $ is a differentiable manifold for $ n \in \N $. In particular, to define a differentiable structure on $ \mathbb{S}^1 $, an atlas of two charts is needed: the standard parametrization $ \vartheta \in [0, 2\pi) $ is not a well-defined chart because $ [0,2\pi) $ is not an open set in the Euclidean topology of $ \R $, therefore the elimination of a point is necessary; usually, the two charts of the atlas are defined by $ \vartheta_1 \in (0,2\pi) $, excluding $ (1,0) $ (in the embedding space $ \R^2 $), and $ \vartheta_2 \in (-\pi,\pi) $, excluding $ (-1,0) $: they are evidently compatible, thus they form a maximal atlas.
 \end{example}
 
-In the remainder of these notes, $ \mathcal{M} $ is always taken to be an $ n $-dimensional differentiable manifold.
-
-\subsection{Maps between manifolds}
-\label{ssec:maps}
-
-Locally mapping $ \mathcal{M} $ to $ \R^n $ allows for the extension of the concepts of Analysis from $ \R^n $ to $ \mathcal{M} $.
-
-\begin{definition}{Smooth maps}{smooth}
-  A function $ f : \mathcal{M} \rightarrow \R^n $ on a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ is \bcdef{smooth} if $ f \circ \varphi_{\alpha}^{-1} : U_{\alpha} \rightarrow \R^n $ is smooth for all charts $ (U_{\alpha},\varphi_{\alpha}) \in \mathcal{A} $.
-
-  A map $ f : \mathcal{M} \rightarrow \mathcal{N} $ between two differentiable manifolds $ (\mathcal{M},\mathcal{A}_1), (\mathcal{N},\mathcal{A}_2) $ is \bcdef{smooth} if $ \psi_{\alpha_2} \circ f \circ \varphi_{\alpha_1}^{-1} : U_{\alpha_1} \rightarrow V_{\alpha_2} $ is smooth for all charts $ (U_{\alpha_1},\varphi_{\alpha_1}) \in \mathcal{A}_1, (V_{\alpha_2},\varphi_{\alpha_2}) \in \mathcal{A}_2 $.
-\end{definition}
-
-A smooth homeomorphism $ f : \mathcal{M} \ra \mathcal{N} $ between two differentiable manifolds $ \mathcal{M} $ and $ \mathcal{N} $ is called a \bctxt{diffeomorphism}.
-
-\begin{proposition}{Diffeomorphic manifolds}{}
-  If $ \mathcal{M} $ and $ \mathcal{N} $ are \bcprop{diffeomorphic}, then $ \dim_{\R}\mathcal{M} = \dim_{\R}\mathcal{N} $.
-\end{proposition}
-
 \begin{example}{Diffenetiable structures}{}
   $ \Sn{7} $ can be covered by multiple incompatible atlases: the resulting manifolds are homeomorphic but not diffeomorphic.
-
   $ \R^n $ has a unique differentiable structure for all $ n \in \N $, except for $ n = 4 $: $ \R^4 $ can be covered by infinitely-many incompatible atlases.
 \end{example}
-
-Note that transition maps between overlapping charts are indeed diffeomorphisms, since they are smooth homeomorphisms (composition of homeomorphisms).
 
 \newpage
 \section{Tangent spaces}
@@ -160,7 +153,7 @@ This equation can have two interpretations, namely the alibi and the alias inter
 \end{equation}
 Components of vectors which transform this way are called \bctxt{contravariant}, since they transform according to the Jacobian of the change of coordinates, while the basis vectors transform according to its inverse.
 
-Since coordinate changes are just transition maps between overlapping charts on the manifold, they are diffeomorphisms from a patch of $ \man $ on itself (as noted in \secref{ssec:maps}). In general, a diffeomorphism $ f : \man \ra \man $ defines a change of coordinates on the whole $ \man $: indeed, given two charts $ (\varphi_1 , U) , (\varphi_2 , V) $ such that $ f(U) = V $, then:
+Since coordinate changes are just transition maps between overlapping charts on the manifold, they are diffeomorphisms from a patch of $ \man $ on itself (as noted in \secref{sec:manifolds}). In general, a diffeomorphism $ f : \man \ra \man $ defines a change of coordinates on the whole $ \man $: indeed, given two charts $ (\varphi_1 , U) , (\varphi_2 , V) $ such that $ f(U) = V $, then:
 \begin{equation*}
   \begin{tikzcd}
     U \ar[d, "f", swap] \ar[r, "\varphi_1"]
@@ -378,7 +371,7 @@ Clearly, the map $ f : \ve{e}_{\mu} \mapsto \ve{f}^{\mu} $ is a non-canonical is
 \subsection{Cotangent vectors}
 
 \begin{definition}{Cotangent space}{}
-  Given a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ and a point $ p \in \mathcal{M} $, the \bcdef{cotangent space} to $ \mathcal{M} $ at $ p $ is defined as $ T^*_p\mathcal{M} \defeq (T_p\mathcal{M})^* $.
+  Given a smooth manifold $ (\mathcal{M},\mathcal{A}) $ and a point $ p \in \mathcal{M} $, the \bcdef{cotangent space} to $ \mathcal{M} $ at $ p $ is defined as $ T^*_p\mathcal{M} \defeq (T_p\mathcal{M})^* $.
 \end{definition}
 
 Elements of $ T^*_p\mathcal{M} $ are called cotangent vectors (or \bctxt{covectors}).
@@ -443,7 +436,7 @@ Therefore, on a general 1-form $ \omega = \omega_{\mu} \dd x^{\mu} $:
 \subsection{Tensor fields}
 
 \begin{definition}{Tensor}{}
-  A \bcdef{tensor} of rank $ (r,s) $ at a $ p\in\mathcal{M} $ of a differentiable manifold $ (\mathcal{M},\mathcal{A}) $ is a multilinear map defined as:
+  A \bcdef{tensor} of rank $ (r,s) $ at a $ p\in\mathcal{M} $ of a smooth manifold $ (\mathcal{M},\mathcal{A}) $ is a multilinear map defined as:
   \begin{equation}
     T_p : \overbrace{T^*_p \mathcal{M} \times \dots \times T^*_p \mathcal{M}}^{r} \times \overbrace{T_p \mathcal{M} \times \dots \times T_p \mathcal{M}}^{s} \rightarrow \R
   \end{equation}
