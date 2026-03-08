@@ -1,8 +1,6 @@
 \selectlanguage{english}
 
-\section{Differentiable manifolds}
-
-To define a differentiable manifold, it is first necessary to give a topological structure to it.
+\section{Smooth manifolds}
 
 \begin{definition}{Topological space}{}
   The \bcdef{topology} $ \mathcal{T} $ of a set $ X $ is a family of subsets of $ X $, i.e. $ \mathcal{T} \subseteq \pwst{X} $, defined as \bcdef{open sets}, with the following properties:
@@ -24,12 +22,24 @@ Topological spaces allow to introduce the concept of continuity: given two topol
 
 The composition of two homeomorphisms $ f : M_1 \ra M_2 $ and $ g : M_2 \ra M_3 $ is still a homeomorphism $ g \circ f : M_1 \ra M_3 $, since both bijectivity and continuity are preserved by composition.
 
-\begin{definition}{Differentiable manifold}{manifold}
-  An $ n $-dimensional \bcdef{differentiable manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
+\begin{definition}{Topological manifold}{topological-manifold}
+  An $ n $-dimensional \bcdef{topological manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
   \begin{enumerate}
+    \item $ \man $ is \emph{second-countable}, i.e. there exists a countable basis for $ \tp(\mathcal{M}) $;
     \item $ \mathcal{M} $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\mathcal{M} \,\, \exists O \in \mathcal{T}(\mathcal{M}) : p \in O \land \exists \varphi : O \rightarrow U \in \mathcal{T}(\R^n) $ homeomorphism;
-    \item given $ O_{\alpha},O_{\beta} \in \mathcal{T}(\mathcal{M}) : O_{\alpha} \cap O_{\beta} \neq \emptyset $, the corresponding maps $ \varphi_{\alpha} : O_{\alpha} \rightarrow U_{\alpha}$ and $ \varphi_{\beta} : O_{\beta} \rightarrow U_{\beta} $ must be \textit{compatible}, i.e. $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} : \varphi_{\alpha}(O_{\alpha} \cap O_{\beta}) \rightarrow \varphi_{\beta}(O_{\alpha} \cap O_{\beta}) $ and its inverse must be smooth (of $ \mathcal{C}^{\infty} $ class).
   \end{enumerate}
+\end{definition}
+
+Note that, by definition, every topological manifold has a well-defined dimension. Indeed, using the theory of de Rham cohomology (see \secref{ssec:derham}), it is possible to prove the following theorem.
+
+\begin{theorem}{Topological invariance of dimension}{}
+  A non-empty $ n $-dimensional topological manifold cannot be homeomorphic to an $ m $-dimensional topoplogical manifold, unless $ m = n $.
+\end{theorem}
+
+The empty set satisfies the definition of $ n $-dimensional topological manifold for all $ n \in \N $, hence it is excluded.
+
+\begin{definition}{Smooth manifold}{smooth-manifold}
+  An $ n $-dimensional topological manifold is a \bcdef{smooth manifold}
 \end{definition}
 
 The maps $ \varphi_{\alpha} $ are called \bctxt{charts} and a collection of compatible charts is called an \bctxt{atlas}: a maximal atlas $ \mathcal{A} $ is an atlas such that $ \bigcup_{\alpha \in \mathcal{I}} O_{\alpha} = \mathcal{M} $. Two atlases are compatible if each chart of one atlas is compatible with every chart of the other: they define the same differentiable structure on the manifold.
