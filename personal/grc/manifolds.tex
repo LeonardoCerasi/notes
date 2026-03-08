@@ -59,7 +59,7 @@ Given an atlas $ \mathcal{A} $, two charts $ (U , \varphi) , (V , \psi) \in \mat
 
 Two smooth atlases are compatible if each chart of one atlas is smoothly compatible with every chart of the other: they define the same differentiable structure on the manifold.
 
-Each chart $ \varphi_{\alpha} $ provides a coordinate system on $ O_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^{\mu}(p), \dots, x^n(p) \right) $. The transition functions $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions: note that transition maps between overlapping charts are indeed diffeomorphisms, since they are smooth homeomorphisms (composition of homeomorphisms).
+Each smooth coordinate map $ \varphi_{\alpha} $ provides a coordinate system on the smooth coordinate domain $ U_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^n(p) \right) $. The transition functions $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions.
 
 \begin{example}{Spheres}{}
   $ \mathbb{S}^n $ is a differentiable manifold for $ n \in \N $. In particular, to define a differentiable structure on $ \mathbb{S}^1 $, an atlas of two charts is needed: the standard parametrization $ \vartheta \in [0, 2\pi) $ is not a well-defined chart because $ [0,2\pi) $ is not an open set in the Euclidean topology of $ \R $, therefore the elimination of a point is necessary; usually, the two charts of the atlas are defined by $ \vartheta_1 \in (0,2\pi) $, excluding $ (1,0) $ (in the embedding space $ \R^2 $), and $ \vartheta_2 \in (-\pi,\pi) $, excluding $ (-1,0) $: they are evidently compatible, thus they form a maximal atlas.
@@ -73,7 +73,7 @@ Each chart $ \varphi_{\alpha} $ provides a coordinate system on $ O_{\alpha} $: 
 \newpage
 \section{Tangent spaces}
 
-The notions of calculus can be defined on a differential manifold $ (\mathcal{M},\mathcal{A}) $ with the notion of tangent spaces. Indeed, the derivative of a function $ f : \mathcal{M} \rightarrow \R $ at a point $ p \in \mathcal{M} $, covered by the chart $ (\varphi,U) $, is defined as:
+The notions of calculus can be defined on a smooth manifold $ (\mathcal{M},\mathcal{A}) $ with the notion of tangent spaces. Indeed, the derivative of a function $ f : \mathcal{M} \rightarrow \R $ at a point $ p \in \mathcal{M} $, covered by the chart $ (\varphi,U) $, is defined as:
 \begin{equation}
   \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p \defeq \frac{\pa (f \circ \varphi^{-1})}{\pa x^{\mu}}\bigg\vert_{\varphi(p)}
   \label{eq:derivative-def}
@@ -98,8 +98,8 @@ Evidently, this definition depends on the choise of coordinates $ x^{\mu} $, thu
 
 Conditions 2. and 3. trivially imply that $ X_p(\alpha f) = \alpha X_p(f) \,\, \forall \alpha \in \R $, which means that $ X_p $ is a linear operator, i.e. $ X_p \in \Hom_\R(\cm , \R) $. Moreover, it is simple to check that $ \pa_{\mu}\vert_p $ satisfies the conditions of \dref{def:tangent-vector}.
 
-\begin{theorem}{Tangent space}{}
-  The set $ T_p\mathcal{M} $ of all tangent vectors at a point $ p\in\mathcal{M} $ forms an $ n $-dimensional space, called \bcth{tangent space}, and $ \{\pa_{\mu}\vert_p\}_{\mu = 1,\dots,n} $ is a basis of such space.
+\begin{theorem}{Tangent space}{tangent-space}
+  The set $ T_p\mathcal{M} $ of all tangent vectors at a point $ p\in\mathcal{M} $ forms an $ n $-dimensional $ \R $-vector space, called \bcth{tangent space}, and $ \{\pa_{\mu}\vert_p\}_{\mu = 1,\dots,n} $ is a basis of such space.
 \end{theorem}
 
 \begin{proofbox}
@@ -445,7 +445,7 @@ Therefore, on a general 1-form $ \omega = \omega_{\mu} \dd x^{\mu} $:
 For example, a cotangent vector $ \omega_p \in T^*_p \mathcal{M} $ is a tensor of rank $ (1,0) $, while a tangent vector $ X_p \in T_p \mathcal{M} $ is a tensor of rank $ (0,1) $.
 
 \begin{definition}{Tensor field}{}
-  A \bcdef{tensor field} of rank $ (r,s) $ is a smooth map $ T : p \in \mathcal{M} \mapsto T_p $ tensor of rank $ (r,s) $ at $ p $. It can also be viewed as a smooth map $ T : [\lm{1}]^r \times [\xm]^s \rightarrow \cm $.
+  A \bcdef{tensor field} of rank $ (r,s) $ is a smooth map $ T : \man \ni p \mapsto T_p $ tensor of rank $ (r,s) $ at $ p $. It can also be viewed as a smooth map $ T : [\lm{1}]^r \times [\xm]^s \rightarrow \cm $.
 \end{definition}
 
 Given appropriate bases for vector fields $ \{\ve{e}_{\mu}\}_{\mu = 1,\dots,n} $ and 1-forms $ \{\ve{f}^{\mu}\}_{\mu = 1,\dots,n} $, the components of a tensor field are defined as:
@@ -469,12 +469,11 @@ Algebraic addition and multiplication by functions are trivially defined on tens
 
 \begin{definition}{Tensor product}{}
   Given two tensor fields $ S $ of rank $ (p,q) $ and $ T $ of rank $ (r,s) $, their \bcdef{tensor product} is defined as:
-  \begin{equation}
-    \begin{split}
-      &S \otimes T (\omega_1,\dots,\omega_p,\eta_1,\dots,\eta_r,X_1,\dots,X_q,Y_1,\dots,Y_s)\\
-      &\qquad\qquad\qquad = S(\omega_1,\dots,\omega_p,X_1,\dots,X_q) T(\eta_1,\dots,\eta_r,Y_1,\dots,Y_s)
-    \end{split}
-  \end{equation}
+  \begin{multline}
+    S \otimes T (\omega_1,\dots,\omega_p,\eta_1,\dots,\eta_r,X_1,\dots,X_q,Y_1,\dots,Y_s)
+    \\
+    = S(\omega_1,\dots,\omega_p,X_1,\dots,X_q) T(\eta_1,\dots,\eta_r,Y_1,\dots,Y_s)
+  \end{multline}
   or, in components:
   \begin{equation}
     \tensor{(S \otimes T)}{^{\mu_1}^{\dots}^{\mu_p}^{\nu_1}^{\dots}^{\nu_r}_{\rho_1}_{\dots}_{\rho_q}_{\dots}_{\sigma_1}_{\dots}_{\sigma_s}} = \tensor{S}{^{\mu_1}^{\dots}^{\mu_p}_{\rho_1}_{\dots}_{\rho_q}} \tensor{T}{^{\nu_1}^{\dots}^{\nu_r}_{\sigma_1}_{\dots}_{\sigma_s}}
