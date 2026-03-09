@@ -1,0 +1,107 @@
+\selectlanguage{english}
+
+\section{Maxwell action}
+
+Consider spacetime as a manifold $ \mathcal{M} $. The electromagnetic field can be described by a form on this manifold: indeed, the electromagnetic gauge field $ A_\mu = (\phi,\ve{A}) $ is to be thought as the components of a 1-form $ A = A_\mu(x) \dd x^\mu $. The exterior derivative of this form is a 2-form $ F = \dd A $:
+\begin{equation*}
+  F = \frac{1}{2} F_{\mu \nu} \dd x^\mu \wedge \dd x^\nu = \frac{1}{2} (\pa_\mu A_\nu - \pa_\nu A_\mu) \dd x^\mu \wedge \dd x^\nu
+\end{equation*}
+The components $ F_{\mu \nu} $ are in reality the components of a tensor, the Faraday tensor. By construction, a useful identity holds, sometimes called the \bctxt{Bianchi identity}:
+\begin{equation}
+  \dd F = 0
+\end{equation}
+From this identity derive two Maxwell equations: $ \nabla\cdot\ve{B} = 0 $ and $ \nabla\times\ve{E} + \pa_t \ve{B} = 0 $. Moreover, note that the gauge field is not unique: the gauge transformation $ A \mapsto A + \dd \alpha $, which equals $ A_\mu \mapsto A_\mu + \pa_\mu \alpha $, leaves $ F $ unchanged.
+
+To study the dynamics of these fields, an action is needed: Differential Geometry allows very few actions to be written down.
+
+For example, suppose that on the considered manifold no metric is defined. To integrate over $ \mathcal{M} $ a 4-form is needed, but $ F $ is a 2-form, thus the only possible action is:
+\begin{equation}
+  \mathcal{S}_{\text{top}} = - \frac{1}{2} \int F \wedge F
+\end{equation}
+The integrand become $ \dd x^0 \dd x^1 \dd x^2 \dd x^3 \, \ve{E}\cdot\ve{B} $. Actions of this kind, independent of the metric, are called \bctxt{topological actions} and are of no interest in classical physics: in fact, $ F \wedge F = \dd (A \wedge F) $, so the action is a total derivative and doesn't affect the equations of motion.
+
+To construct an action of classical interest, a metric is needed. This allows to introduce a second 2-form, $ \star\, F $, so to construct the Maxwell action:
+\begin{equation}
+  \mathcal{S}_{\text{M}} = - \frac{1}{2} \int F \wedge \star\, F
+  \label{eq:maxwell-action}
+\end{equation}
+The integrand can then be expanded as:
+\begin{equation*}
+  \mathcal{S}_{\text{M}} = - \frac{1}{4} \int \dd^4 x \sqg\, g^{\mu \nu} g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} = - \frac{1}{4} \int \dd^4 x \sqg F^{\mu \nu} F_{\mu \nu}
+\end{equation*}
+In flat spacetime $ F^{\mu \nu} F_{\mu \nu} = 2 (\ve{B}^2 - \ve{E}^2) $. In a general curved spacetime, the equation of motion resulting from the variation of the Maxwell action is $ \dd \star F = 0 $.
+
+To complete the theory, consider a gauge field coupled to a current, described by a 1-form $ J $. The Maxwell action then becomes:
+\begin{equation}
+  \mathcal{S}_{\text{M}} = \int - \frac{1}{2} F \wedge \star\, F + A \wedge \star J
+\end{equation}
+This action must retain its gauge invariance, but under $ A \mapsto A + \dd \alpha $ it transforms as $ S_{\text{M}} \mapsto S_{\text{M}} + \int \dd \alpha \wedge \star\, J $, therefore, after integrating by parts, the condition of gauge invariance translates to:
+\begin{equation}
+  \dd \star J = 0
+  \label{eq:charge-cons}
+\end{equation}
+This is current conservation in the language of forms. Varying the action in \eref{eq:maxwell-action} now leads to the Maxwell equations with source terms:
+\begin{equation}
+  \dd \star F = \star\, J
+\end{equation}
+To define electric and magnetic charges, integrate over submanifolds. Consider a 3-dimensional spatial submanifold $ \Sigma $: the electric charge in $ \Sigma $ is defined as:
+\begin{equation}
+  Q_e(\Sigma) \defeq \int_{\Sigma} \star\, J
+\end{equation}
+This agrees with the usual definition in flat spacetime $ Q_e = \int_{\Sigma} \dd^3 x J^0 $. Using the equations of motion and Stokes' theorem, a general form of Gauss' law is obtained:
+\begin{equation}
+  Q_e(\Sigma) = \int_{\pa \Sigma} \star\, F
+  \label{eq:electric-charge}
+\end{equation}
+Similarly, the magnetic charge in $ \Sigma $ is defined as:
+\begin{equation}
+  Q_m(\Sigma) \defeq \int_{\pa \Sigma} F
+\end{equation}
+The non-existence of magnetic charges, following from Bianchi identity, can be evaded in topologically interesting manifolds.\\
+From charge conservation in \eref{eq:charge-cons}, it follows that the electric charge in a region cannot change, unless current flows in or out of that region. Consider a cylindrical region of spacetime $ V $, ending in two spatial hypersurfaces $ \Sigma_1 $ and $ \Sigma_2 $: its boundary is $ \pa V = \Sigma_1 \cup \Sigma_2 \cup B $, where $ B $ is a cylindrical timelike hypersurface. The statement that no current flows in or out of $ V $ means that $ J \vert_B = 0 $. Then:
+\begin{equation*}
+  Q_e(\Sigma_1) - Q_e(\Sigma_2) = \int_{\Sigma_1} \star\, J - \int_{\Sigma_2} \star\, J = \int_{\pa V} \star\, J - \int_B \star\, J = \int_{\pa V} \star\, J = \int_V \dd \star J = 0
+\end{equation*}
+Thus, electric charge in remains constant in time.
+
+\subsection{Maxwell equations from connections}
+
+First note that, given the gauge field $ A \in \lm{1} $, the field strength can be expressed via covariant derivatives:
+\begin{equation*}
+  F_{\mu \nu} = \pa_\mu A_\nu - \pa_\nu A_\mu = \na_\mu A_\nu - \na_\nu A_\mu
+\end{equation*}
+The Christoffel symbols cancel out due to anti-symmetry: this is what allows to define the exterior derivative without introducing connections first.
+
+\begin{proposition}{Current conservation}{}
+  Current conservation can be written as: $ \dd \star J = 0 \iff \na_\mu J^\mu = 0 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling \lref{lemma:gauss-lemma}:
+    \begin{equation*}
+      \na_\mu J^\mu = \pa_\mu J^\mu + \Gamma^\mu_{\mu \rho} J^\rho = \pa_\mu J^\mu + \pa_\rho (\log \sqg) J^\rho = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) \propto \dd \star J
+    \end{equation*}
+    Hence, $ \dd \star J = 0 \iff \na_\mu J^\mu = 0 $.
+  \end{proof}
+\end{proofbox}
+
+As an aside, in general the divergence in different coordinate systems can be computed using the formula $ \na_\mu J^\mu = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) $.
+
+\begin{proposition}[before upper = {\tcbtitle}]{}{maxwell-equation-forms}
+  \begin{equation}
+    \dd \star F = \star\, J \iff \na_\mu F^{\mu \nu} = J^\nu
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling \lref{lemma:gauss-lemma}:
+    \begin{equation*}
+      \na_\mu F^{\mu \nu} = \pa_\mu F^{\mu \nu} + \Gamma^\mu_{\mu \rho} F^{\rho \nu} + \Gamma^\nu_{\mu \rho} F^{\mu \rho} = \frac{1}{\sqg} \pa_\mu (\sqg F^{\mu \nu})
+    \end{equation*}
+    where $ \Gamma^\nu_{\mu \rho} F^{\mu \rho} = 0 $ because $ \Gamma^\nu_{\mu \rho} $ is symmetric in $ \mu $ and $ \rho $, while $ F^{\mu \rho} $ is anti-symmetric. The proof follows recalling the definition of the Hodge dual in \eref{eq:hodge-dual}.
+  \end{proof}
+\end{proofbox}
+
+

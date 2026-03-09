@@ -3,22 +3,24 @@
 \section{Smooth manifolds}
 \label{sec:manifolds}
 
+\subsection{Topological manifolds}
+
 \begin{definition}{Topological space}{}
-  The \bcdef{topology} $ \mathcal{T} $ of a set $ X $ is a family of subsets of $ X $, i.e. $ \mathcal{T} \subseteq \pwst{X} $, defined as \bcdef{open sets}, with the following properties:
+  The \bcdef{topology} $ \tp $ of a set $ X $ is a family of subsets of $ X $, i.e. $ \tp \subseteq \pwst{X} $, defined as \bcdef{open sets}, with the following properties:
   \begin{enumerate}
-    \item $ \emptyset,X \in \mathcal{T} $;
-    \item $ O_{\alpha},O_{\beta} \in \mathcal{T} \implies O_{\alpha}\cap O_{\beta} \in \mathcal{T} $;
-    \item $ \{O_{\alpha}\}_{\alpha \in \mathcal{I}} \subset \mathcal{T} \implies \bigcup_{\alpha \in \mathcal{I}} O_{\alpha} \in \mathcal{T} $.
+    \item $ \emptyset,X \in \tp $;
+    \item $ O_{\alpha},O_{\beta} \in \tp \implies O_{\alpha}\cap O_{\beta} \in \tp $;
+    \item $ \{O_{\alpha}\}_{\alpha \in \mathcal{I}} \subset \tp \implies \bigcup_{\alpha \in \mathcal{I}} O_{\alpha} \in \tp $.
   \end{enumerate}
-  A \bcdef{topological space} $ M $ is a set of points, endowed with a topology $ \mathcal{T} $.
+  A \bcdef{topological space} $ M $ is a set of points, endowed with a topology $ \tp $.
 \end{definition}
 
-Given a topological space $ (M,\mathcal{T}) $, $ O \in \mathcal{T} $ is a \bctxt{neighbourhood} of a point $ p \in M $ if $ p \in O $: then, $ (M,\mathcal{T}) $ is \bctxt{Hausdorff} if $ \forall p,q \in M \,\, \exists O_1, O_2 \in \mathcal{T} $ neighbourhoods of $ p $ and $ q $ respectively such that $ O_1 \cap O_2 = \emptyset $.
+Given a topological space $ (M,\tp) $, $ O \in \tp $ is a \emph{neighbourhood} of a point $ p \in M $ if $ p \in O $: then, $ (M,\tp) $ is \bctxt{Hausdorff} if $ \forall p,q \in M \,\, \exists O_1, O_2 \in \tp : p \in O_1 , q \in O_2 \land O_1 \cap O_2 = \emptyset $.
 
-Topological spaces allow to introduce the concept of continuity: given two topological spaces $ (M_1, \mathcal{T}_1) $ and $ (M_2, \mathcal{T}_2) $, a map $ f : M_1 \ra M_2 $ is \bctxt{continuous} if $ O \in \mathcal{T}_2 \,\Rightarrow\, f^{-1}(O)\in \mathcal{T}_1 $.
+Topological spaces allow to introduce the concept of continuity: given two topological spaces $ (M_1, \tp_1) $ and $ (M_2, \tp_2) $, a map $ f : M_1 \ra M_2 $ is \bctxt{continuous} if $ O \in \tp_2 \implies f^{-1}(O)\in \tp_1 $.
 
 \begin{definition}{Homeomorphism}{}
-  Given two topological spaces $ (M_1, \mathcal{T}_1) $ and $ (M_2, \mathcal{T}_2) $, a map $ f : M_1 \rightarrow M_2 $ is a \bcdef{homeomorphism} if it is bijective and bicontinuous, i.e. both $ f $ and $ f^{-1} $ are continuous.
+  Given two topological spaces $ (M_1, \tp_1) $ and $ (M_2, \tp_2) $, a map $ f : M_1 \rightarrow M_2 $ is a \bcdef{homeomorphism} if it is bijective and bicontinuous, i.e. both $ f $ and $ f^{-1} $ are continuous.
 \end{definition}
 
 The composition of two homeomorphisms $ f : M_1 \ra M_2 $ and $ g : M_2 \ra M_3 $ is still a homeomorphism $ g \circ f : M_1 \ra M_3 $, since both bijectivity and continuity are preserved by composition.
@@ -26,49 +28,574 @@ The composition of two homeomorphisms $ f : M_1 \ra M_2 $ and $ g : M_2 \ra M_3 
 \begin{definition}{Topological manifold}{topological-manifold}
   An $ n $-dimensional \bcdef{topological manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
   \begin{enumerate}
-    \item $ \man $ is \emph{second-countable}, i.e. there exists a countable basis for $ \tp(\mathcal{M}) $;
-    \item $ \mathcal{M} $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\mathcal{M} \, \exists U \in \mathcal{T}(\mathcal{M}) : p \in U \land \exists \varphi : U \rightarrow O \in \mathcal{T}(\R^n) $ homeomorphism;
+    \item $ \man $ is \emph{second-countable}, i.e. there exists a countable basis for $ \tp(\man) $;
+    \item $ \man $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\man \, \exists U \in \tp(\man) : p \in U \land \exists \varphi : U \rightarrow O \in \tp(\R^n) $ homeomorphism;
   \end{enumerate}
 \end{definition}
 
-The maps $ (U,\varphi) $ are called \bctxt{charts}, and a collection of charts $ \mathcal{A} = \{(U_\alpha , \varphi_\alpha\}_{\alpha \in \mathcal{I}} : \bigcup_{\alpha \in \mathcal{I}} U_{\alpha} = \mathcal{M} $ is called an \bctxt{atlas}: an atlas is \emph{maximal} if it is not properly contained in any other atlas.
-
 Note that, by definition, every topological manifold has a well-defined dimension. Indeed, using the theory of de Rham cohomology (see \secref{ssec:derham}), it is possible to prove the following theorem.
 
-\begin{theorem}{Topological invariance of dimension}{}
+\begin{theorem}{Topological invariance of dimension}{topological-invariance-dimension}
   A non-empty $ n $-dimensional topological manifold cannot be homeomorphic to an $ m $-dimensional topoplogical manifold, unless $ m = n $.
 \end{theorem}
 
 The empty set is excluded since it is an $ n $-dimensional topological manifold for all $ n \in \N $.
 
-Locally mapping $ \mathcal{M} $ to $ \R^n $ allows for the extension of the concepts of Analysis from $ \R^n $ to $ \mathcal{M} $ through the definition of a differentiable structure on the manifold.
+\subsubsection{Coordinate charts}
 
-\begin{definition}{Smooth maps}{smooth}
-  A function $ f : \mathcal{M} \rightarrow \R^n $ on a topological manifold $ (\mathcal{M},\mathcal{A}) $ is \bcdef{smooth} if $ f \circ \varphi_{\alpha}^{-1} : U_{\alpha} \rightarrow \R^n $ is smooth for all charts $ (U_{\alpha},\varphi_{\alpha}) \in \mathcal{A} $.
-
-  A map $ f : \mathcal{M} \rightarrow \mathcal{N} $ between two smooth manifolds $ (\mathcal{M},\mathcal{A}_1), (\mathcal{N},\mathcal{A}_2) $ is \bcdef{smooth} if $ \psi_{\alpha_2} \circ f \circ \varphi_{\alpha_1}^{-1} : U_{\alpha_1} \rightarrow \R^m $ is smooth for all charts $ (U_{\alpha_1},\varphi_{\alpha_1}) \in \mathcal{A}_1, (V_{\alpha_2},\varphi_{\alpha_2}) \in \mathcal{A}_2 $.
+\begin{definition}{Coordinate chart}{}
+  Let $ M $ be a topological $ n $-manifold. A \bcdef{coordinate chart} (or just a \emph{chart}) on $ M $ is a pair $ (U , \varphi) $, where $ U \in \tp(M) $ and $ \varphi : U \ra \varphi(U) \in \tp(\R^n) $ is a homeomorphism.
 \end{definition}
 
-A smooth homeomorphism $ f : \mathcal{M} \ra \mathcal{N} $ between two topological manifolds $ \mathcal{M} $ and $ \mathcal{N} $ is called a \bctxt{diffeomorphism}.
+Given a chart $ (U , \varphi) $, the set $ U $ is called a \emph{coordinate domain}, while $ \varphi $ is a \emph{(local) coordinate map}, whose component functions $ \varphi = (x^1 , \dots , x^n) $ are called \emph{local coordinates} on $ U $.
 
-Given an atlas $ \mathcal{A} $, two charts $ (U , \varphi) , (V , \psi) \in \mathcal{A} $ are \emph{smoothly compatible} if either $ U \cap V = \empty $ or the transition map $ \psi \circ \varphi^{-1} : U \cap V \ra U \cap V $ is a diffeomorphism. If any two charts in an atlas are smoothly-compatible, then the atlas is a \bctxt{smooth atlas}.
+By \dref{def:topological-manifold}, each point $ p \in M $ is contained in the coordinate domain of a chart: if $ \varphi(p) = 0 $ in a chart $ (U , \varphi) $, then this chart is said to be ``centered at $ p $".
+
+\begin{example}{Spheres}{topological-spheres}
+  Consider the unit $ n $-sphere $ \Sn{n} $, with $ n \in \N_0 $. It is a second-countable Hausdorff topological space, since it is a topological subspace of $ \R^{n+1} $. To show local Euclideanity, for each index $ i = 1, \dots, n+1 $ let $ U_i^+ $ denote the subset of $ \R^{n+1} $ where the $ i^\text{th} $ coordinate if positive:
+  \begin{equation*}
+    U_i^+ \equiv \{(x^1 , \dots , x^{n+1}) \in \R^{n+1} : x^i > 0\}
+  \end{equation*}
+  and similarly $ U_i^- $ the set with $ x^i < 0 $. Then, let $ f : \Dn{n} \ra \R $ be the continuous function:
+  \begin{equation*}
+    f(u) = \sqrt{1 - \norm{u}^2}
+  \end{equation*}
+  For each $ i = 1 , \dots , n+1 $, it is easy to check that $ U_i^\pm \cap \Sn{n} $ is the graph of the function:
+  \begin{equation*}
+    x^i = \pm f(x^1 , \dots , x^{i-1} , x^{i+1} , \dots , x^{n+1})
+  \end{equation*}
+  Thus, each subset $ U_i^\pm \cap \Sn{n} \subset \Sn{n} $ is locally Euclidean of dimension $ n $, and the local coordinate maps are given by (see \figref{fig:sn-coordinates}):
+  \begin{equation*}
+    \varphi_i^\pm : U_i^\pm \cap \Sn{n} \ra \Dn{n}
+    \qquad
+    \varphi_i^\pm(x^1 , \dots , x^{n+1}) = (x^1 , \dots , x^{i-1} , x^{i+1} , \dots , x^{n+1})
+  \end{equation*}
+  Since each point of $ \Sn{n} $ is in the domain of at least one of these $ 2n+2 $ charts, $ \Sn{n} $ is a topological $ n $-manifold.
+\end{example}
+
+\begin{example}{Tori and product manifolds}{}
+  For $ n \in \N $, the $ n $-torus is the product space $ \Tn{n} \defeq \Sn{1} \times \dots \times \Sn{1} $ of $ n $ copies of $ \Sn{1} $. By \exref{ex:topological-spheres}, this is a topological $ n $-space.
+
+  Indeed, suppose $ M_1 , \dots , M_k $ are topological manifolds of dimensions $ n_1 , \dots , n_k $ respectively. The product space $ M_1 \times \dots \times M_k $ is itself a second-countable Hausdorff space, since it is a finite product of second-countable Hausdorff spaces, hence only local Euclideanity needs to be checked. Given any point $ (p_1 , \dots , p_k) \in M_1 \times \dots \times \dots M_k $, choose a chart $ (U_i , \varphi_i) $ on each $ M_i $ such that $ p_i \in U_i $. Then, the product map:
+  \begin{equation*}
+    \varphi_1 \times \dots \times \varphi_k : U_1 \times \dots \times U_k \ra \varphi_1(U_1) \times \dots \times \varphi_k(U_k) \in \tp(\R^{n_1 + \dots + n_k})
+  \end{equation*}
+  is a homeomorphism, thus $ M_1 \times \dots \times M_k $ is a topological manifold of dimension $ n_1 + \dots + n_k $.
+\end{example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.3 \textwidth]{sn-coordinates.png}
+  \caption{Charts on $ \Sn{n} $.}
+  \label{fig:sn-coordinates}
+\end{figure}
+
+A set of charts $ \atl = \{U_\alpha , \varphi_\alpha\} $ which cover $ \man $, i.e. such that $ \bigcup_\alpha U_\alpha = \man $ is called an \bctxt{atlas}. In general, an atlas may be contained in a larger atlas: a \emph{maximal atlas} is an atlas which is not properly contained in any larger atlas.
+
+\subsection{Smooth manifolds}
+
+Given $ U \in \tp(\R^n) $ and $ V \in \tp(\R^m) $, a function $ f : U \ra V $ is \bctxt{smooth} if each of its components is $ \cfk{\infty}(U) $. If $ f $ is also bijective and has a smooth inverse function, then it is a \emph{diffeomorphism}.
+
+\begin{definition}{Smooth compatibility}{smooth}
+  Let $ \man $ be a topological $ n $-manifold. Two charts $ (U , \varphi) $ and $ (V , \psi) $ of $ \man $ are \bcdef{smoothly compatible} if either $ U \cap V = \emptyset $ or $ \psi \circ \varphi^{-1} : \varphi(U \cap V) \ra \psi(U \cap V) $ is a diffeomorphism.
+\end{definition}
+
+If any two charts in an atlas are smoothly compatible, then the atlas is a \bctxt{smooth atlas}.
+
+The same definition applies to weaker conditions on the differentiability of a function, i.e. $ \cfk{k} $ functions which are continuously differentiable up to the $ k^\text{th} $ derivative, and to real-analytic functions, i.e. $ \cra $ functions which can be expressed as a convergent power series in a neighbourhood of each point.
 
 \begin{definition}{Smooth manifold}{smooth-manifold}
   An $ n $-dimensional \bcdef{smooth manifold} is an $ n $-dimensional topological manifold equipped with a maximal smooth atlas.
 \end{definition}
 
-Two smooth atlases are compatible if each chart of one atlas is smoothly compatible with every chart of the other: they define the same differentiable structure on the manifold.
+This definition can be extended to \emph{$ \cfk{k} $ manifolds} and \emph{real-analytic manifolds} by considering $ \cfk{k} $ of $ \cra $ atlases, respectively.
 
-Each smooth coordinate map $ \varphi_{\alpha} $ provides a coordinate system on the smooth coordinate domain $ U_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^n(p) \right) $. The transition functions $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions.
+\subsubsection{Smooth charts}
 
-\begin{example}{Spheres}{}
-  $ \mathbb{S}^n $ is a differentiable manifold for $ n \in \N $. In particular, to define a differentiable structure on $ \mathbb{S}^1 $, an atlas of two charts is needed: the standard parametrization $ \vartheta \in [0, 2\pi) $ is not a well-defined chart because $ [0,2\pi) $ is not an open set in the Euclidean topology of $ \R $, therefore the elimination of a point is necessary; usually, the two charts of the atlas are defined by $ \vartheta_1 \in (0,2\pi) $, excluding $ (1,0) $ (in the embedding space $ \R^2 $), and $ \vartheta_2 \in (-\pi,\pi) $, excluding $ (-1,0) $: they are evidently compatible, thus they form a maximal atlas.
+Each smooth coordinate map $ \varphi_{\alpha} $ provides a coordinate system on the smooth coordinate domain $ U_{\alpha} $: $ \varphi_{\alpha}(p) = \left( x^1(p), \dots, x^n(p) \right) $. The \emph{transition functions} $ \varphi_{\beta} \circ \varphi_{\alpha}^{-1} $ are therefore coordinate transformations on overlapping regions of the manifold, represented as diffeomorphism between open subsets of $ \R^n $.
+
+\begin{example}{Finite-dimensional vector spaces}{}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. Any norm on $ V $ determines a topology, which can be shown to be independent on the choice of norm. With this topology, $ V $ is a topological $ n $-manifold, and a natural smooth structure on it can be defined as follows.
+
+  Each ordered basis $ (E_1 , \dots , E_n) $ of $ V $ defines a basis isomorphism $ \beta : \R^n \ra V $ as:
+  \begin{equation*}
+    \beta(x) = \sum_{i = 1}^n x^i E_i
+  \end{equation*}
+  which is clearly continuous, i.e. a homeomorphism, so $ (V , \beta^{-1}) $ is a chart on $ V $. If $ (\tilde{E}_1 , \dots , \tilde{E}_n) $ is any other ordered basis of $ V $, denoting with $ \tilde{\beta} $ the corresponding homeomorphism, then $ \exists \mt{A} \in \GL{n,\R} $ such that (denoting the elements of $ \mt{A} $ as $ A_{ij} \equiv \tensor{A}{_i^j} $):
+  \begin{equation*}
+    E_i = \sum_{j = 1}^n \tensor{A}{_i^j} \tilde{E}_j
+  \end{equation*}
+  The transition map between the two charts $ (V , \beta^{-1}) $ and $ (V , \tilde{\beta}^{-1}) $ is then given by $ \tilde{\beta}^{-1} \circ \beta(x) = \tilde{x} $, where:
+  \begin{equation*}
+    \sum_{j = 1}^n \tilde{x}^j \tilde{E}_j = \sum_{i = 1}^n x^i E_i = \sum_{i,j = 1}^n x^i \tensor{A}{_i^j} \tilde{E}_j
+    \quad \implies \quad
+    \tilde{x}^j = \sum_{i = 1}^n x^i \tensor{A}{_i^j}
+  \end{equation*}
+  Since $ \mt{A} $ is invertible, this is clearly a diffeomorphism, so any two charts on $ V $ are smoothly compatible, and the collection of all such charts thus defines a maximal smooth atlas on $ V $, called the \emph{standard smooth structure} on $ V $.
 \end{example}
 
-\begin{example}{Diffenetiable structures}{}
-  $ \Sn{7} $ can be covered by multiple incompatible atlases: the resulting manifolds are homeomorphic but not diffeomorphic.
-  $ \R^n $ has a unique differentiable structure for all $ n \in \N $, except for $ n = 4 $: $ \R^4 $ can be covered by infinitely-many incompatible atlases.
+The construction of a smooth manifold is structured in two stages: starting from a topological space, first check that it is a topological manifold, and then specify a smooth atlas on it. However, it is convenient to combine these steps into a single one, especially when starting with a set which is not already equipped with a topology.
+
+\begin{lemma}{Smooth chart lemma}{smooth-chart-lemma}
+  Let $ M $ be a set, and consider a collection $ \{U_\alpha\} $ of subsets of $ M $ together with maps $ \varphi_\alpha : U_\alpha \ra \R^n $ such that:
+  \begin{enumerate}
+    \item \label{item:scl-1} $ \varphi_\alpha $ is a bijection between $ U_\alpha $ and $ \varphi_\alpha(U_\alpha) \in \tp(\R^n) $ for all $ \alpha $;
+    \item \label{item:scl-2} $ \varphi_\alpha(U_\alpha \cap U_\beta) , \varphi_\beta(U_\alpha \cap U_\beta) \in \tp(\R^n) $ for all $ \alpha , \beta $;
+    \item \label{item:scl-3} if $ U_\alpha \cap U_\beta \neq \emptyset $, then $ \varphi_\beta \circ \varphi_\alpha^{-1} : \varphi_\alpha(U_\alpha \cap U_\beta) \ra \varphi_\beta(U_\alpha \cap U_\beta) $ is smooth;
+    \item \label{item:scl-4} $ M = \bigcup_{\alpha \in \mathcal{I}} U_\alpha $, with $ \mathcal{I} $ countable;
+    \item \label{item:scl-5} given $ p \neq q \in M $, either $ \exists \alpha : p,q \in U_\alpha $, or $ \exists \alpha , \beta : p \in U_\alpha , q \in U_\beta \land U_\alpha \cap U_\beta = \emptyset $.
+  \end{enumerate}
+  Then, $ M $ has a unique smooth manifold structure with $ \tp = \{\varphi_\alpha^{-1}(V) : V \in \tp(\R^n)\} $ and $ \mathcal{A} = \{(U_\alpha , \varphi_\alpha)\} $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    To define a topology on $ M $, take all sets of the form $ \varphi_\alpha^{-1}(V) $, with $ V \in \tp(\R^n) $, as a basis. To prove that this is indeed the basis for a topology, consider two basis sets $ \varphi_\alpha^{-1}(V) $ and $ \varphi_\beta^{-1}(W) $ with non-empty intersection: WTS $ \forall p \in \varphi_\alpha^{-1}(V) \cap \varphi_\beta^{-1}(W) \, \exists B $ basis set such that $ p \in B \land B \ssq \varphi_\alpha^{-1}(V) \cap \varphi_\beta^{-1}(W) $.
+
+    It suffices to show that $ \varphi_\alpha^{-1}(V) \cap \varphi_\beta^{-1}(W) $ is itself a basis set (see \figref{fig:scl}). To see this, note that \itemref{item:scl-3} implies that $ (\varphi_\beta \circ \varphi_\alpha^{-1})^{-1}(W) $ is an open subset of $ \varphi_\alpha(U_\alpha \cap U_\beta) $ (as $ W \in \tp(\R^n) $), while \itemref{item:scl-2} implies that $ \varphi_\alpha(U_\alpha \cap U_\beta) \in \tp(\R^n) $. It follows that (see \figref{fig:scl}):
+    \begin{equation*}
+      \varphi_\alpha^{-1}(V) \cap \varphi_\beta^{-1}(W) = \varphi_\alpha^{-1}(V \cap (\varphi_\beta \circ \varphi_\alpha^{-1})^{-1}(W))
+    \end{equation*}
+    is also a basis set, as $ V \cap (\varphi_\beta \circ \varphi_\alpha^{-1})^{-1}(W) \in \tp(\R^n) $. Therefore, $ M $ is a topological space with topology $ \tp = \{\varphi_\alpha^{-1}(V) : V \in \tp(\R^n)\} $.
+
+    By this definition, each map $ \varphi_\alpha : U_\alpha \ra \varphi_\alpha(U_\alpha) \in \tp(\R^n) $ is a homeomorphism, so $ (M,\tp) $ is a topological $ n $-manifold, since the Hausdorff property follows directly from \itemref{item:scl-5}, while second-countability from \itemref{item:scl-4}. Finally, \itemref{item:scl-3} guarantees that the collection $ \atl = \{(U_\alpha , \varphi_\alpha)\} $ is a smooth atlas over $ M $, making $ (M,\tp,\atl) $ a smooth $ n $-manifold.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}[!b]
+  \centering
+  \includegraphics[width = 0.83 \textwidth]{smooth-chart-lemma.png}
+  \caption{Smooth chart lemma.}
+  \label{fig:scl}
+\end{figure}
+
+This lemma allows to define both a topology and a smooth structure on a set with suitable ``charts" that overlap smoothly.
+
+\subsubsection{Smooth maps}
+
+With the introduction of a smooth structure on a manifold, it is possible to import the concepts of Analysis on $ \R^n $ to functions between manifolds. In the reminder of these notes, the term ``function" typically denotes maps whose codomain is $ \R^k $, with $ k \in \N $.
+
+\begin{definition}{Smooth function}{}
+  Let $ (\man , \atl) $ be a smooth $ n $-manifold. A function $ f : \man \ra \R^k $, with $ k \in \N $, is a \bcdef{smooth function} if $ \forall p \in \man \, \exists (U , \varphi) \in \atl : p \in U \land f \circ \varphi^{-1} \in \cfk{\infty}(\varphi(U)) $.
+\end{definition}
+
+The function $ \hat{f}_\varphi \equiv f \circ \varphi^{-1} : \varphi(U) \ra \R^k $ is the \emph{coordinate representation} of $ f $: by definition, a function is smooth if and only if its coordinate representation is smooth in some smooth chart around each point. By smooth compatibility, a smooth function $ f : \man \ra \R^k $ is smooth on every smooth chart of $ \man $, hence smooth functions have smooth coordinate representations in every smooth chart.
+
+The most important case is that of smooth real-valued functions $ f : \man \ra \R $: the set of all such functions is denoted by $ \cm $, and it is an $ \R $-vector space under pointwise addition and constant multiplication.
+
+\begin{definition}{Smooth map}{}
+  Let $ (\man_1 , \atl_1) , (\man_2 , \atl_2) $ be smooth manifolds. A map $ f : \man_1 \ra \man_2 $ is a \bcdef{smooth map} if $ \forall p \in \man_1 \, \exists (U,\varphi) \in \atl_1 , (V,\psi) \in \atl_2 : p \in U , f(p) \in V \land f(U) \ssq V \land \psi \circ f \circ \varphi^{-1} \in \cfk{\infty}(\varphi(U)) $.
+\end{definition}
+
+From this definition of continuity it follows that smoothness implies continuity.
+
+\begin{proposition}{Smoothness and continuity}{}
+  Every smooth map is continuous.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Suppose $ f : \man_1 \ra \man_2 $ is smooth. Given $ p \in \man_1 $, by the smoothness of $ f $ there are smooth charts $ (U,\varphi) : p \in U $ and $ (V,\psi) : f(p) \in V $ such that $ f(U) \ssq V $ and $ \psi \circ f \circ \varphi^{-1} : \varphi(U) \ra \psi(V) $ is smooth, hence continuous. Since $ \varphi : U \ra \varphi(U) $ and $ \psi : V \ra \psi(V) $ are homeomorphisms:
+    \begin{equation*}
+      f \vert_U = \psi^{-1} \circ (\psi \circ f \circ \varphi^{-1}) \circ \varphi : U \ra V
+    \end{equation*}
+    which is a composition of continuous maps. Since $ f $ is continuous in a neighbourhood of each point, it is continuous on all $ \mat_1 $.
+  \end{proof}
+\end{proofbox}
+
+The condition that, for a map $ f : \mat_1 \ra \mat_2 $ to be smooth, for all $ p \in \mat_1 $ there need to be coordinate domains $ U \ni p $ and $ V \ni f(p) $ such that $ f(U) \ssq V $ is included in the definition of smoothness precisely so that smoothness automatically implies continuity.
+
+There are simple classes of maps which are automatically smooth, since they reduce to composition of smooth maps between subsets of Euclidean spaces. In particular:
+\begin{itemize}
+  \item every constant map is smooth;
+  \item $ \id_\man $ is smooth;
+  \item given an open submanifold $ \mathcal{U} \ssq \man $, the inclusion map $ U \hookrightarrow \man $ is smooth;
+  \item the composition of smooth maps is a smooth map.
+\end{itemize}
+
+\begin{proposition}{Smooth maps on product manifolds}{product-smooth-maps}
+  Let $ \man_1 , \dots , \man_k $ and $ \man $ be smooth manifolds, and for each $ i = 1 , \dots , k $ let $ \pi_i : \man_1 \times \dots \times \man_k \ra \man_i $ be the projection onto $ \man_i $. A map $ f : \man \ra \man_1 \times \dots \times \man_k $ is smooth if and only if each of the component maps $ f_i = \pi_i \circ f : \man \ra \man_i $ is smooth.
+\end{proposition}
+
+In general, to check that a map is smooth, it suffices to show that each of its component map is either smooth or a composition of smooth maps.
+
+\begin{example}{Circles and tori}{}
+  If the circle $ \Sn{1} $ is given its standard smooth structure, the map $ \varepsilon : \R \ra \Sn{1} $ defined by $ \varepsilon(t) = e^{2\pi \img t} $ is smooth, because with respect to any angle coordinate $ \theta $ on $ \Sn{1} $ it has a coordinate representation $ \hat{\varepsilon}_\theta = 2\pi t + c $, for some constant $ c \in \R $.
+
+  By \pref{prop:product-smooth-maps}, the map $ \varepsilon_n : \R^n \ra \Tn{n} $ defined as $ \varepsilon_n(t_1 , \dots , t_n) = (e^{2\pi \img t_1} , \dots , e^{2\pi \img t_n}) $ is smooth.
 \end{example}
+
+\begin{example}{Inclusions on spheres}{}
+  Consider the $ n $-sphere $ \Sn{n} $ with its standard smooth structure. The inclusion map $ \iota : \Sn{n} \hookrightarrow \R^{n+1} $ is clearly continuous, since it is the inclusion map of a topological space. Its coordinate representation with respect to any of the charts introduced in \exref{ex:topological-spheres} is:
+  \begin{equation*}
+    \hat{\iota}_\pm(u^1 , \dots , u^n) = \iota \circ (\varphi_i^\pm)^{-1}(u^1 , \dots , u^n) = (u^1 , \dots , u^{i-1} , \pm \sqrt{1 - \norm{u}^2} , u^{i+1} , \dots , u^n)
+  \end{equation*}
+  which is smooth on its domain $ \Dn{n} $, since $ \norm{u} < 1 $.
+\end{example}
+
+The most interesting class of smooth maps are smooth bijections with a smooth inverse, known as \bctxt{diffeomorphisms}. Since smoothness implies continuity, a diffeomorphism is also a homeomorphism; moreover, every composition of diffeomorphisms is a diffeomorphism, since composition preserves both continuity and smoothness, and by \pref{prop:product-smooth-maps} every finite product of diffeomorphisms is a diffeomorphism.
+
+Two smooth manifolds are said to be \emph{diffeomorphic} if there exists a diffeomorphisms between them: this is clearly an equivalence relation on the class of all smooth manifolds. A weaker version of \tref{th:topological-invariance-dimension} holds in the case of diffeomorphic manifolds.
+
+\begin{theorem}{Diffeomorphism invariance of dimension}{}
+  A non-empty $ n $-dimensional smooth manifold cannot be diffeomorphic to an $ m $-dimensional smooth manifold, unless $ m = n $.
+\end{theorem}
+
+Like two topological spaces are considered to be ``the same" if they are homeomorphic, two smooth manifolds are essentially indistinguishable if they are diffeomorphic. A natural question to ask, then, is whether a given topological manifold admits smooth structures which are not diffeomorphic to each other.
+
+\begin{proposition}{Uniqueness of smooth structures in low dimension}{}
+  Every $ n $-dimensional topological manifold, with $ n \in \N_{\leq 3} $, has a smooth structure that is unique up to diffeomorphism.
+\end{proposition}
+
+On the contrary, in higher dimensions it turns out that there are cases of topological manifolds which admit several non-diffeomorphic smooth structures. For example, the Euclidean space $ \R^n $ admits a unique smooth structure (up to diffeomorphism), except for $ n = 4 $: in this case, $ \R^4 $ admits uncountably-many non-diffeomorphic distinct smooth structures (seldom called \emph{fake $ \R^4 $'s}). Another example is $ \Sn{7} $, which admits exactly $ 15 $ diffeomorphism classes of smooth structures. Finally, in any dimension $ n \in \N_{\geq 4} $ there exist compact topological manifolds that have no smooth structures at all.
+
+\begin{example}{$ 0 $-dimensional manifolds}{}
+  A topological $ 0 $-manifold $ \man $ is just a countable discrete space. For each point $ p \in \man $, the only neighbourhood of $ p $ that is homeomorphic to an open subset of $ \R^0 $ is $ \{p\} $ itself, and there is exactly one coordinate map $ \varphi : \{p\} \ra \R^0 $. Thus, the set of all charts on $ \man $ trivially satisfies the smooth compatibility condition, since they have no overlapping coordinate domains, hence each $ 0 $-dimensional manifold has a unique smooth structure.
+\end{example}
+
+\newpage
+\section{Tangent vectors}
+
+The central idea of calculus is \emph{linear approximation}: for example, the approximations of a single-variable function with its tangent line, of a parametrized curve with its velocity vector, or of a surface with its tangent plane. In order to generalize calculus on smooth manifolds, then, one needs to introduce the notion of a ``tangent space" to a manifold at each of its points.
+
+\subsection{Derivations}
+
+Before considering generic smooth manifolds, it is convenient to analyze the Euclidean case first.
+
+\begin{definition}{Geometric tangent space}{}
+  Given a point $ a \in \R^n $, the \bcdef{geometric tangent space} to $ \R^n $ at $ a $ is the set $ \R^n_a \defeq \{a\} \times \R^n = \{(a,\ve{v}) : \ve{v} \in \R^n\} $. A \bcdef{geometric tangent vector} in $ \R^n $ is an element $ \ve{v}_a \equiv (a,\ve{v}) \in \R^n_a $, for some $ a \in \R^n $.
+\end{definition}
+
+Geometric tangent vectors can be thought as ``arrows" with initial point at $ a $. The set $ \R^n_a $ is an $ \R $-vector space under the natural operations of pointwise addition and constant multiplication.
+
+Given a basis $ \{e_i\}_{i = 1 , \dots , n} $ of $ \R^n $, then $ \{\ve{e}_i \vert_a\}_{i = 1 , \dots , n} $ is a basis of $ \R^n_a $: indeed, $ \R^n_a $ and $ \R^n $ are essentially the same space, with the index in $ \R^n_a $ only needed to distinguish between geometric tangent spaces at different points, since they are disjoint sets.
+
+The same geometric construction does not generalize to smooth manifolds, which are in general not embedded in any Euclidean space. However, a suitable construction can be defined starting from geometric vectors. Indeed, any geometric tangent vector $ \ve{v}_a \in \R^n_a $ defines a map $ D_\ve{v}\vert_a : \cfk{\infty}{\R^n} \ra \R $ which takes the directional derivative along $ \ve{v} $ at $ a $:
+\begin{equation*}
+  D_\ve{v} \vert_a f \equiv D_\ve{v} f(a) \defeq \frac{\dd}{\dd t} \bigg\vert_a f(a + t \ve{v})
+\end{equation*}
+In terms of the standard basis, by the chain rule the directional derivative can be written more concretely as:
+\begin{equation*}
+  D_\ve{v} \vert_a f = v^i \frac{\pa f}{\pa x^i}(a)
+\end{equation*}
+where the Einstein's summation convention is assumed. With this construction in mind, it is possible to give a general definition.
+
+\begin{definition}{Derivation}{}
+  Let $ \man $ be a smooth manifold. Then, a linear map $ X_p : \cm \ra \R $ is a \bcdef{derivation} at $ p \in \man $ if it satisfies the \emph{Leibniz rule}:
+  \begin{equation}
+    X_p (fg) = f(p) X_p(g) + g(p) X_p(f)
+    \qquad
+    \forall f,g \in \cm
+  \end{equation}
+\end{definition}
+
+The set of all derivations of $ \cm $ at a point $ p \in \man $, denoted by $ T_p\man $, is a $ \R $-vector space called the \bctxt{tangent space} to $ \man $ at $ p $, and its elements are called \emph{tangent vectors} to $ \man $ at $ p $.
+
+\begin{lemma}{Properties of derivations}{}
+  Let $ \man $ be a smooth manifold and $ p \in \man $. Then, given $ X_p \in T_p\man $ and $ f,g \in \cm $:
+  \begin{enumerate}
+    \item \label{item:der-1} if $ f $ is a constant function, then $ X_p f = 0 $;
+    \item \label{item:der-2} if $ f(p) = g(p) = 0 $, then $ X_p (fg) = 0 $;
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    \itemref{item:der-2} follows trivially from the Leibniz rule. To prove \itemref{item:der-1}, it suffices to check it for the constant function $ f_1(x) \equiv 1 $, since others follow from linearity. For $ f_1 $, the product rule gives:
+    \begin{equation*}
+      X_p(f_1) = X_p(f_1 f_1) = 2 f_1(p) X_p(f_1) = 2 X_p(f_1)
+    \end{equation*}
+    which implies $ X_p(f_1) = 0 $.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Differentials}
+
+To relate the abstract definition of tangent spaces through derivations to the geometric tangent spaces on $ \R^n $, one needs to study the relation between smooth maps and derivations.
+
+In the case of a smooth map between Euclidean spaces, the total derivative of the map at a point (represented by its Jacobian matrix) is a linear map that represents the linear approximation of the map near the given point. In the manifold case there is a similar map, but it makes no sense to talk about a linear map between manifolds: it will instead be a linear map between tangent spaces.
+
+\begin{definition}{Differential}{}
+  Let $ \man_1 , \man_2 $ be smooth manifolds and $ f : \man_1 \ra \man_2 $ a smooth map. The \bcdef{differential} of $ f $ at $ p \in \man_1 $ is the map $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ defined as follows: given $ X_p \in T_p\man_1 $, let $ \dd f_p(X_p) $ be the derivation at $ f(p) $ that acts on $ g \in \cfk{\infty}(\man_2) $ as:
+  \begin{equation}
+    \dd f_p(X_p)(g) \defeq X_p(g \circ f)
+  \end{equation}
+\end{definition}
+
+The nature of $ \dd f_p(X_p) $ as a derivation is naturally derived from the nature of $ X_p $ as a derivation:
+\begin{equation*}
+  \dd f_p(X_p)(gh) = X_p((gh) \circ f) = X_p((g \circ f) (h \circ f)) = g(f(p)) \dd f_p(X_p)(h) + h(f(p)) \dd f_p(X_p)(g)
+\end{equation*}
+
+\begin{lemma}{Properties of differentials}{differential-properties}
+  Let $ \man_1 , \man_2 , \man_3 $ be smooth manifolds and $ p \in \man_1 $. Then, given smooth maps $ f : \man_1 \ra \man_2 $ and $ g : \man_2 \ra \man_3 $:
+  \begin{enumerate}
+    \item \label{item:diff-1} $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ is linear;
+    \item \label{item:diff-2} $ \dd (g \circ f)_p = \dd g_{f(p)} \circ \dd f_p : T_p\man_1 \ra T_{g \circ f(p)}\man_3 $;
+    \item \label{item:diff-3} $ \dd (\id_{\man_1}) = \id_{T_p\man_1} : T_p\man_1 \ra T_p\man_1 $;
+    \item \label{item:diff-4} if $ f $ is a diffeomorphism, then $ \dd f_p $ is an isomorphism, and $ (\dd f_p)^{-1} = \dd (f^{-1})_{f(p)} $;
+  \end{enumerate}
+\end{lemma}
+
+The differential of a smooth map can be visualized as in \figref{fig:differential}. Its main application is to relate the tangent space to a smooth manifold with a Euclidean tangent space.
+
+There is, however, an important issue to be addressed first: while tangent spaces are defined in terms of smooth functions on the whole manifold, coordinate charts are in general defined only on open subsets. The key point is that tangent vectors (i.e. derivations) act locally.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{differential.png}
+  \caption{Visualization of the differential of a smooth map.}
+  \label{fig:differential}
+\end{figure}
+
+\begin{proposition}{Tangent space to an open submanifold}{isomorphic-tangent-space}
+  Let $ \man $ be a smooth manifold, $ U \in \tp(\man) $ and $ \iota : U \hookrightarrow \man $ the inclusion map. For every $ p \in U $, the differential $ \dd \iota_p : T_pU \ra T_p\man $ is an isomorphism.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    To prove injectivity, suppose $ X_p \in T_p\man $ and $ \dd \iota_p(X_p) = 0 \in T_p\man $. Let $ B \in \tp(\man) : p \in \man \land \overline{B} \ssq U $. If $ f \in \cfk{\infty} $ is arbitrary, it can be extended as $ \tilde{f} \in \cm : \tilde{f}\vert_{\bar{B}} \equiv f $.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Locality of derivations}{local-derivation}
+      Let $ \man $ be a smooth manifold and $ p \in \man $. Given $ X_p \in T_p\man $, if $ f , g \in \cm $ agree on some neighbourhood of $ p $, then $ X_p(f) = X_p(g) $.
+    \end{lemma}
+
+    By \lref{lemma:local-derivation}, since $ f $ and $ \tilde{f}\vert_U $ are smooth functions on $ U $ which agree on a neighbourhood of $ p $:
+    \begin{equation*}
+      X_p(f) = X_p(\tilde{f}\vert_U) = X_p(\tilde{f} \circ \iota) = \dd \iota_p (X_p) (\tilde{f}) = 0
+    \end{equation*}
+    Since this holds for every $ f \in \cfk{\infty}(U) $, then $ X_p \equiv 0 $, so $ \dd \iota_p $ is injective as $ \ker \dd \iota_p = \{0\} $.
+
+    To prove surjectivity, suppose $ U_p \in T_p\man $ is arbitrary. Define an operator $ X_p : \cfk{\infty}(U) \ra \R $ by setting $ X_p(f) = Y_p(\tilde{f}) $, where $ \tilde{f} $ is any smooth function on all $ \man $ which agrees with $ f $ on $ \overline{B} $. By \lref{lemma:local-derivation}, $ X_p(f) $ is independent of the choice of $ \tilde{f} $, hence $ X_p $ is well-defined, and it is easily checked to be a derivation of $ \cfk{\infty}(U) $ at $ p $. For any $ g \in \cm $, then:
+    \begin{equation*}
+      \dd \iota_p(X_p) (g) = X_p(g \circ \iota) = Y_p(\widetilde{g \circ \iota}) = Y_p(g)
+    \end{equation*}
+    where the last two equalities follow from the fact that $ g \circ \iota $, $ \widetilde{g \circ \iota} $ and $ g $ all agree on $ B $. Hence, $ \dd \iota_p $ is surjective, and therefore an isomorphism.
+  \end{proof}
+\end{proofbox}
+
+Given an open set $ U \ssq \man $, the isomorphism $ \dd \iota_p : T_pU \ra T_p\man $ is canonically defined, independently on any choices: it is then possible to identify $ T_pU \cong T_p\man $ for any point $ p \in U $. This identification comes from the fact that $ \dd \iota_p(X_p) $ is the same derivation as $ X_p $, just acting on functions on the whole manifold instead of on $ U $ only: since by \lref{lemma:local-derivation} the action of a derivation on a function depends only on the values of the function on arbitrarily small neighbourhoods, this identification is well-posed. In particular, this means that any tangent vector $ X_p \in T_p\man $ can be unambiguously applied to functions defined only in a neighbourhood of $ p $, not necessarily on the whole $ \man $.
+
+\begin{theorem}{Dimension of tangent spaces}{}
+  Let $ \man $ be a smooth $ n $-manifold and $ p \in \man $. Then $ T_p\man $ is an $ n $-dimensional $ \R $-vector space.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Given $ p \in \man $, let $ (U,\varphi) $ be a smooth coordinate chart containing $ p $. Since $ \varphi : U \ra \varphi(U) \ssq \R^n $ is a diffeomorphism, by \itemref{item:diff-4} of \lref{lemma:differential-properties} it follows that $ \dd \varphi_p : T_pU \ra T_{\varphi(p)}\varphi(U) $ is an isomorphism. \pref{prop:isomorphic-tangent-space} guarantees that $ T_pU \cong T_p\man $ and $ T_{\varphi(p)}\varphi(U) \cong T_{\varphi(p)}\R^n $, hence $ \dim_\R T_p\man = \dim_\R T_{\varphi(p)}\R^n = n $.
+  \end{proof}
+\end{proofbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Tensor bundles}
+
+The study of tensor fields on a smooth manifold $ \man $ can be extended with the definition of an additional structure: tensor bundles.
+
+\subsection{Vector bundles}
+
+Consider the disjoint union of all tangent spaces to points of a smooth manifold $ \man $:
+\begin{equation}
+  T\man \defeq \bigsqcup_{p \in \man} T_p\man \equiv \bigcup_{p \in \man} \{p\} \times T_p\man = \{(p , X_p) : p \in \man , X_p \in T_p\man\}
+\end{equation}
+This set comes equipped with a natural projection map $ \pi : T\man \ra \man $ which sends each vector in $ T_p\man $ to the point $ p \in \man $ at which it is tangent: $ \pi(p , X_p) = p $. In the following, with an abuse of notation, the tangent space $ T_p\man $ is often identified with its image under the canonical injection $ T_p\man \hookrightarrow T\man : X_p \mapsto (p , X_p) $, so as to write simply $ X_p $ in place of $ (p , X_p) $.
+
+It is possible to give additional structure to $ T\man $, other than that of disjoint union of tangent spaces.
+
+\begin{definition}{$ \R $-vector bundle}{}
+  Given a topological space $ M $, an \bcdef{$ \R $-vector bundle of rank $ k $} over $ M $ is a topological space $ E $ together with a surjective continuous map $ \pi : E \ra M $ such that:
+  \begin{enumerate}
+    \item $ \forall p \in M $ the \emph{fiber} $ E_p = \pi^{-1}(p) $ over $ p $ is endowed with the structure of a $ k $-dimensional $ \R $-vector space;
+    \item $ \forall p \in M \, \exists U \ssq M : p \in U \land \chi : \pi^{-1}(U) \ra U \times \R^k $ homeomorphism, called \emph{local trivialization of $ E $ over $ U $}, such that:
+      \begin{itemize}
+        \item $ \pi_U \circ \chi = \pi $, with the projector $ \pi_U : U \times \R^k \ra U $;
+        \item $ \forall q \in U $ the restriction of $ \chi $ to $ E_q $ is a vector-space isomorphism between $ E_q $ and $ \{q\} \times \R^k \cong \R^k $.
+      \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+This definition generalizes trivially to complex vector bundle substituting $ \R $ with $ \C $. In the following, only real vector bundles are considered.
+
+If $ M $ and $ E $ are smooth manifolds, $ \pi $ is a smooth map and the local trivializations can be chosen to be diffeomorphisms, then $ E $ is called a \bctxt{smooth vector bundle}. If there exists a local trivialization of $ E $ over the whole $ M $, i.e. $ \chi : E \ra M \times \R^k $, then $ E $ is said to be a \emph{trivial bundle}.
+
+\begin{proposition}{Tangent bundle}{}
+  Given a smooth $ n $-manifold $ \man $, then $ T\man $ has a natural structure of $ 2n $-dimensional smooth manifold. Moreover, the natural projection $ \pi : T\man \ra \man $ is smooth, giving to $ T\man $ the structure of smooth vector bundle of rank $ n $ over $ \man $, called the \bcprop{tangent bundle} of $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, show that $ T\man $ is a smooth $ 2n $-manifold. Since $ T\man $ does not come endowed with a topology, it is convenient to use \lref{lemma:smooth-chart-lemma}.
+
+    Given any smooth chart $ (U , \varphi) $ over $ \man $, note that $ \pi^{-1}(U) \ssq T\man $ is the set of all tangent vectors to $ \man $ at all points of $ U $. Denote the coordinate functions of $ \varphi $ as $ (x^1 , \dots , x^n) $, and define the map $ \tilde{\varphi} : \pi^{-1}(U) \ra \R^{2n} $ as:
+    \begin{equation*}
+      \tilde{\varphi} \left( X^\mu \frac{\pa}{\pa x^\mu} \bigg\vert_p \right) \equiv (x^1(p) , \dots , x^n(p) , X^1 , \dots , X^n)
+    \end{equation*}
+    Clearly, $ \im \tilde{\varphi} = \varphi(U) \times \R^n \in \tp(\R^{2n}) $, hence it is continuous. Moreover, it is a bijection onto its image, since its inverse can be written explicitly as:
+    \begin{equation*}
+      \tilde{\varphi}^{-1}(x^1 , \dots , x^n , X^1 , \dots , X^n) = X^\mu \frac{\pa}{\pa x^\mu} \bigg\vert_{\varphi^{-1}(p)}
+    \end{equation*}
+    Therefore, $ \tilde{\varphi} $ is a homeomorphism, and $ (\pi^{-1}(U) , \tilde{\varphi}) $ is a chart over $ T\man $. Then, consider two smooth charts $ (U , \varphi) , (V , \psi) $ over $ \man $, and the associated charts $ (\pi^{-1}(U) , \tilde{\varphi}) , (\pi^{-1}(V) , \tilde{\psi}) $ over $ T\man $. The following sets:
+    \begin{equation*}
+      \tilde{\varphi}(\pi^{-1}(U) \cap \pi^{-1}(V)) = \varphi(U \cap V) \times \R^n
+    \end{equation*}
+    \begin{equation*}
+      \tilde{\psi}(\pi^{-1}(U) \cap \pi^{-1}(V)) = \psi(U \cap V) \times \R^n
+    \end{equation*}
+    are in $ \tp(\R^{2n}) $, and the transition map $ \tilde{\psi} \circ \tilde{\varphi}^{-1} : \varphi(U \cap V) \times \R^n \ra \psi(U \cap V) \times \R^n $ between them can be written explicitly as:
+    \begin{equation*}
+      \tilde{\psi} \circ \tilde{\varphi}^{-1} (x^1 , \dots , X^1 , \dots , X^n) = \left( y^1(x) , \dots , y^n(x) , \frac{\pa y^1}{\pa x^\mu} X^\mu , \dots , \frac{\pa y^n}{\pa x^\mu} X^\mu \right)
+    \end{equation*}
+    where $ (y^1 , \dots , y^n) $ are the coordinate functions of $ \psi $. This is clearly smooth, hence the charts $ (\pi^{-1}(U) , \tilde{\varphi}) $ and $ (\pi^{-1}(V) , \tilde{\psi}) $ are smoothly compatible.
+
+    Choosing a countable cover $ \{U_\alpha\} $ of $ \man $ from the smooth coordinate domains of $ \man $, a countable cover of $ T\man $ is obtained as $ \{\pi^{-1}(U_\alpha)\} $: this countable cover satisfies the conditions \itemref{item:scl-1}-\itemref{item:scl-4} of \lref{lemma:smooth-chart-lemma}. To check the Hausdorff condition \itemref{item:scl-5}, just note that any two points in same fiber of $ \pi $ lie in the same chart, while if $ (p,X) $ and $ (q,Y) $ lie in different fibers, there exist disjoint smooth coordinate domains $ U , V \ssq \man $ such that $ p \in U $ and $ q \in V $, and $ \pi^{-1}(U) \ni (p,X) $ and $ \pi^{-1}(V) \ni (q,Y) $ are disjoint coordinate neighbourhoods. Therefore, by \lref{lemma:smooth-chart-lemma}, $ T\man $ is a smooth $ 2n $-manifold.
+
+    Now, to see that $ \pi : T\man \ra \man $ is smooth, note that, with respect to charts $ (U,\varphi) $ of $ \man $ and $ (\pi^{-1}(U) , \tilde{\varphi}) $ of $ T\man $, its coordinate representation is $ \pi(p , X) = (x^1 , \dots , x^n) $.
+
+    Finally, show that $ T\man $ is a vector bundle over $ \man $. The fibers $ \pi^{-1}(p) = T_p\man $ are $ n $-dimensional $ \R $-vector spaces by \tref{th:tangent-space}, hence only the smooth local trivializations need to be constructed.
+
+    Given any smooth chart $ (U,\varphi) $ of $ \man $ with coordinates $ (x^1 , \dots , x^n) $, define the map $ \chi : \pi^{-1}(U) \ra U \times \R^n $ as:
+    \begin{equation*}
+      \chi \left( X^\mu \frac{\pa}{\pa x^\mu} \bigg\vert_p \right) = (p , X^1 , \dots , X^n)
+    \end{equation*}
+    This is clearly linear on fibers and satisfies $ \pi_U \circ \chi = \pi $, i.e. the following diagram is commutative:
+    \begin{equation*}
+      \begin{tikzcd}
+        \pi^{-1}(U) \ar[r , "\chi"] \ar[dr, "\pi", swap] & U \times \R^n \ar[d , "\pi_U"] \\
+        & U
+      \end{tikzcd}
+    \end{equation*}
+    Now, note that the composite map $ (\varphi \times \id_{\R^n}) \circ \chi : \pi^{-1}(U) \varphi(U) \times \R^n $, i.e.:
+    \begin{equation*}
+      \pi^{-1}(U) \xrightarrow{\chi} U \times \R^n \xrightarrow{\varphi \times \id_{\R^n}} \varphi(U) \times \R^n \ssq \R^{2n}
+    \end{equation*}
+    is equal to the coordinate map $ \tilde{\varphi} : \pi^{-1}(U) \ra \R^{2n} $ defined above. Both $ \varphi \times \id_{\R^n} $ and $ \tilde{\varphi} $ are diffeomorphisms, hence so is $ \chi $. Thus, $ \chi $ is a smooth local trivialization of $ T\man $ over $ U \ssq \man $.
+  \end{proof}
+\end{proofbox}
+
+The coordinates $ (x^\mu , X^\mu) $ are called \emph{natural coordinates} on $ T\man $.
+
+The natural structure of $ T\man $ as a vector bundle over $ \man $ allows to import the notions of vector bundles on the tangent bundle.
+
+\begin{definition}{Section of vector bundle}{}
+  Let $ \pi : E \ra M $ be a vector bundle. A \bcdef{section} of $ E $ is a continuous map $ \sigma : M \ra E $ such that:
+  \begin{equation}
+    \pi \circ \sigma = \id_M
+  \end{equation}
+\end{definition}
+
+This means that $ \sigma $ associate to each point $ p \in M $ an element of its fiber, i.e. $ \sigma : p \mapsto \sigma(p) \in E_p $. In general, it is possible to define \emph{local} sections of $ E $ as continuous maps $ \sigma : U \ra E $ defined on $ U \in \tp(M) $ and satisfying $ \pi \circ \sigma = \id_U $: sections of $ E $ defined over all $ M $ are then called \emph{global} sections (clearly a local section over $ U $ is a global section of the restricted bundle $ E \vert_U $). If the vector bundle considered is a smooth vector bundle and $ \sigma $ is a smooth map from its domain to $ E $, then it is a \emph{smooth} (local or global) section of $ E $.
+
+The set of all smooth global sections of a smooth vector bundle $ \pi : E \ra M $, denoted by $ \Gamma(E) $, has the natural structure of $ \R $-vector space under pointwise addition and scalar multiplication:
+\begin{equation*}
+  (c_1 \sigma_1 + c_2 \sigma_2)(p) = c_1 \sigma_1(p) + c_2 \sigma_2(p)
+  \qquad
+  \forall c_1 , c_2 \in \R , \sigma_1 , \sigma_2 \in \Gamma(E) , p \in M
+\end{equation*}
+The multiplication of $ \sigma \in \Gamma(E) $ by $ f \in \mathcal{C}^\infty(M) $ yields a new section $ (f\sigma)(p) = f(p) \sigma(p) $.
+
+The identification of sections of $ T\man $ with vector fields over $ \man $ is then clear:
+\begin{equation}
+  \Gamma(T\man) = \xm
+\end{equation}
+
+To introduce frames on vector bundles, it is first necessary to import the notion of linear independence on sections. Given $ U \in \tp(M) $, an $ m $-tuple of local sections $ (\sigma_1 , \dots , \sigma_m) $ of $ E $ over $ U $ is linearly independent if $ (\sigma_1(p) , \dots , \sigma_m(p)) $ is a linearly independent $ m $-tuple in $ E_p $ for all $ p \in U $.
+
+\begin{definition}{Frame for vector bundle}{}
+  Let $ \pi : E \ra M $ be a vector bundle of rank $ k $. A \bcdef{local frame} for $ E $ over $ U \in \tp(M) $ is an ordered $ k $-tuple $ (\sigma_1 , \dots , \sigma_k) $ of linearly independent local sections over $ U $ such that:
+  \begin{equation*}
+    E_p = \lspan \{\sigma_1(p) , \dots , \sigma_k(p)\}
+    \qquad
+    \forall p \in U
+  \end{equation*}
+  If $ U = M $, then this is a \bcdef{global frame}.
+\end{definition}
+
+If $ E \ra M $ is a smooth vector bundle and each $ \sigma_i $ is a smooth (local or global) section, then $ (\sigma_1 , \dots , \sigma_k) $ is a \emph{smooth} (local or global) frame.
+
+Local frames are linked to local trivializations. To see this, consider a smooth vector bundle $ \pi : E \ra M $ of rank $ k $ and a smooth local trivializiation $ \chi : \pi^{-1}(U) \ra U \times \R^k $, with $ U \in \tp(M) $. Take the standard basis $ \{e_1 , \dots , e_k\} $ for $ \R^k $ and define $ \tilde{e}_i : U \ra U \times \R^k $ as $ \tilde{e}_i(p) = (p , e_i) $. Moreover, define the maps $ \sigma_1 , \dots , \sigma_k : U \ra E $ by:
+\begin{equation*}
+  \sigma_i(p) = \chi^{-1}(p,e_i) = \chi^{-1} \circ \tilde{e}_i(p)
+  \qquad \qquad
+  \begin{tikzcd}
+    \pi^{-1}(U) \ar[rr , "\chi"] \ar[dr , "\pi"] & & U \times \R^k \ar[dl , "\pi_U" , swap] \\
+                                                 & U \ar[ul, "\sigma_i", bend left = 40] \ar[ur, "\tilde{e}_i", bend right = 40] &
+  \end{tikzcd}
+\end{equation*}
+Then, $ \sigma_i $ is smooth since $ \chi $ is a diffeomorphism, and it is a section of $ E $:
+\begin{equation*}
+  \pi_U \circ \chi = \pi
+  \quad \implies \quad
+  \pi \circ \sigma_i(p) = \pi \circ \chi^{-1}(p , e_i) = \pi_U(p , e_i) = p
+\end{equation*}
+To see that $ (\sigma_1(p) , \dots , \sigma_k(p)) $ is a basis of $ E_p $, note that $ \chi $ is an isomorphism $ E_p \cong \{p\} \times \R^k $ such that $ \chi(\sigma_i(p)) = (p , e_i) $, hence $ \chi $ maps $ \{\sigma_1(p) , \dots , \sigma_k(p)\} $ to the standard basis of $ \{p\} \times \R^k \cong \R^k $. Therefore, $ (\sigma_1 , \dots , \sigma_k) $ is a \emph{local frame associated to $ \chi $}. It can be shown that every smooth local frame for a smooth vector bundle is associated to a smooth local trivialization in this way.
+
+On $ T\man $, local frames determine local bases for tangent spaces. An important case is that of \emph{coordinate frames}: given a smooth chart $ (U , \varphi) $ with coordinate functions $ (x^1 , \dots , x^n) $, then the coordinate vector fields $ (\pa_1 , \dots , \pa_k) $ form a smooth local frame on $ U $.
+
+\subsubsection{Cotangent bundle}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 \section{Tangent spaces}
