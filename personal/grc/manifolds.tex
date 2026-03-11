@@ -271,17 +271,18 @@ Geometric tangent vectors can be thought as ``arrows" with initial point at $ a 
 Given a basis $ \{e_i\}_{i = 1 , \dots , n} $ of $ \R^n $, then $ \{\ve{e}_i \vert_a\}_{i = 1 , \dots , n} $ is a basis of $ \R^n_a $: indeed, $ \R^n_a $ and $ \R^n $ are essentially the same space, with the index in $ \R^n_a $ only needed to distinguish between geometric tangent spaces at different points, since they are disjoint sets.
 
 The same geometric construction does not generalize to smooth manifolds, which are in general not embedded in any Euclidean space. However, a suitable construction can be defined starting from geometric vectors. Indeed, any geometric tangent vector $ \ve{v}_a \in \R^n_a $ defines a map $ D_\ve{v}\vert_a : \cfk{\infty}{\R^n} \ra \R $ which takes the directional derivative along $ \ve{v} $ at $ a $:
-\begin{equation*}
-  D_\ve{v} \vert_a f \equiv D_\ve{v} f(a) \defeq \frac{\dd}{\dd t} \bigg\vert_a f(a + t \ve{v})
-\end{equation*}
+\begin{equation}
+  D_\ve{v} \vert_a f \equiv D_\ve{v} f(a) \defeq \frac{\dd}{\dd t} \bigg\vert_{t = 0} f(a + t \ve{v})
+  \label{eq:directional-derivative}
+\end{equation}
 In terms of the standard basis, by the chain rule the directional derivative can be written more concretely as:
 \begin{equation*}
   D_\ve{v} \vert_a f = v^i \frac{\pa f}{\pa x^i}(a)
 \end{equation*}
 where the Einstein's summation convention is assumed. With this construction in mind, it is possible to give a general definition.
 
-\begin{definition}{Derivation}{}
-  Let $ \man $ be a smooth manifold. Then, a linear map $ X_p : \cm \ra \R $ is a \bcdef{derivation} at $ p \in \man $ if it satisfies the \emph{Leibniz rule}:
+\begin{definition}{Derivation}{derivation-at}
+  Let $ \man $ be a smooth manifold and $ p \in \man $. Then, a linear map $ X_p : \cm \ra \R $ is a \bcdef{derivation at $ p $} if it satisfies the \emph{Leibniz rule}:
   \begin{equation}
     X_p (fg) = f(p) X_p(g) + g(p) X_p(f)
     \qquad
@@ -315,7 +316,7 @@ To relate the abstract definition of tangent spaces through derivations to the g
 
 In the case of a smooth map between Euclidean spaces, the total derivative of the map at a point (represented by its Jacobian matrix) is a linear map that represents the linear approximation of the map near the given point. In the manifold case there is a similar map, but it makes no sense to talk about a linear map between manifolds: it will instead be a linear map between tangent spaces.
 
-\begin{definition}{Differential}{}
+\begin{definition}{Differential}{differential}
   Let $ \man_1 , \man_2 $ be smooth manifolds and $ f : \man_1 \ra \man_2 $ a smooth map. The \bcdef{differential} of $ f $ at $ p \in \man_1 $ is the map $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ defined as follows: given $ X_p \in T_p\man_1 $, let $ \dd f_p(X_p) $ be the derivation at $ f(p) $ that acts on $ g \in \cfk{\infty}(\man_2) $ as:
   \begin{equation}
     \dd f_p(X_p)(g) \defeq X_p(g \circ f)
@@ -328,12 +329,12 @@ The nature of $ \dd f_p(X_p) $ as a derivation is naturally derived from the nat
 \end{equation*}
 
 \begin{lemma}{Properties of differentials}{differential-properties}
-  Let $ \man_1 , \man_2 , \man_3 $ be smooth manifolds and $ p \in \man_1 $. Then, given smooth maps $ f : \man_1 \ra \man_2 $ and $ g : \man_2 \ra \man_3 $:
+  Let $ \man , \man_1 , \man_2 , \man_3 $ be smooth manifolds and $ p \in \man_1 $. Then, given smooth maps $ f : \man_1 \ra \man_2 $ and $ g : \man_2 \ra \man_3 $:
   \begin{enumerate}
     \item \label{item:diff-1} $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ is linear;
     \item \label{item:diff-2} $ \dd (g \circ f)_p = \dd g_{f(p)} \circ \dd f_p : T_p\man_1 \ra T_{g \circ f(p)}\man_3 $;
-    \item \label{item:diff-3} $ \dd (\id_{\man_1}) = \id_{T_p\man_1} : T_p\man_1 \ra T_p\man_1 $;
-    \item \label{item:diff-4} if $ f $ is a diffeomorphism, then $ \dd f_p $ is an isomorphism, and $ (\dd f_p)^{-1} = \dd (f^{-1})_{f(p)} $;
+    \item \label{item:diff-3} $ \dd (\id_\man) = \id_{T_p\man} $;
+    \item \label{item:diff-4} if $ f $ is a diffeomorphism, then $ \dd f_p $ is an isomorphism, and $ (\dd f_p)^{-1} = \dd (f^{-1})_{f(p)} $.
   \end{enumerate}
 \end{lemma}
 
@@ -386,6 +387,734 @@ Given an open set $ U \ssq \man $, the isomorphism $ \dd \iota_p : T_pU \ra T_p\
   \end{proof}
 \end{proofbox}
 
+In the case of finite-dimensional vector spaces, a stronger result holds. Given an $ n $-dimensional $ \R $-vector field $ V $ (with its standard smooth structure) and a point $ a \in V $, for each $ \ve{v} \in V $ consider the map $ D_\ve{v}\vert_a : \cfk{\infty}(V) \ra \R $ defined as in \eref{eq:directional-derivative}. Then, it can be shown that the map $ \ve{v} \mapsto D_\ve{v}\vert_a $ is a canonical isomorphism $ V \cong T_aV $, so that given $ L \in \Hom_\R(V,W) $ the following diagram commutes:
+\begin{equation}
+  \begin{tikzcd}
+    V \ar[r , "\cong"] \ar[d , "L" , swap] & T_aV \ar[d , "\dd L_a"] \\
+    W \ar[r , "\cong" , swap] & T_{L(a)} W
+  \end{tikzcd}
+  \label{eq:canonical-isomorphism-vector-spaces}
+\end{equation}
+The fact that $ V \cong T_aV $ is a canonical isomorphism (i.e. independent of the choice of basis) allows to identify the tangent vectors to a finite-dimensional vector space with the elements of the space itself. In particular, since isomorphisms map bases to bases, given the canonical basis $ \{\ve{e}_i\}_{i = 1,\dots,n} $ of $ V $, the canonical basis of $ T_aV $ is formed by:
+\begin{equation}
+  D_{\ve{e}_i}\vert_a = \frac{\pa}{\pa x^i}\bigg\vert_a
+  \label{eq:canonical-tangent-basis}
+\end{equation}
+More generally, if $ \man $ is an open submanifold of a vector space $ V $, then the isomorphisms $ T_p\man \cong T_pV \cong V $ allow to canonically identify each tangent space to $ \man $ with $ V $.
+
+\begin{proposition}{Tangent space to a product manifold}{}
+  Let $ \man_1 , \dots , \man_k $ be smooth manifolds, and for each $ j = 1 , \dots , k $ let $ \pi_j : \man_1 \times \dots \times \man_k \ra \man_j $ be the projection onto $ \man_j $. For any point $ p = (p_1 , \dots , p_k) \in \man_1 \times \dots \times \man_k $, the map $ \alpha : T_p(\man_1 \times \dots \times \man_k) \ra T_{p_1}\man_1 \oplus \dots \oplus T_{p_k}\man_k $ defined as:
+  \begin{equation*}
+    \alpha(\ve{v}) = (\dd (\pi_1)_p(\ve{v}) , \dots , \dd (\pi_k)_p(\ve{v}))
+  \end{equation*}
+  is a canonical isomorphism.
+\end{proposition}
+
+The canonical identification $ T_{p,q}(\man_1 \times \man_2) \cong T_p\man_1 \oplus T_q\man_2 $ is then justified.
+
+\subsection{Coordinate bases}
+
+To make tangent spaces less abstract, it is possible to introduce coordinates on them.
+
+\subsubsection{Derivations}
+
+Consider a smooth $ n $-manifold $ \man $ and let $ (U,\varphi) $ be a smooth chart on $ \man $. Since $ \varphi : U \ra \varphi(U) \ssq \R^n $ is a diffeomorphism, combining \itemref{item:diff-4} of \lref{lemma:differential-properties} and \pref{prop:isomorphic-tangent-space}, it is clear that $ \dd \varphi_p : T_p\man \ra T_{\varphi(p)}\R^n $ is an isomorphism. By \eref{eq:canonical-tangent-basis}, the canonical basis of $ T_{\varphi(p)}\R^n $ is $ \pa_1 \vert_{\varphi(p)} , \dots , \pa_n \vert_{\varphi(p)} $, therefore the preimages of these vectors under the isomorphism $ \dd \varphi_p $ form a basis of $ T_p\man $:
+\begin{equation*}
+  \frac{\pa}{\pa x^i} \bigg\vert_p \equiv (\dd \varphi_p)^{-1} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\varphi(p)} \right) = \dd (\varphi^{-1})_{\varphi(p)} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\varphi(p)} \right)
+\end{equation*}
+Then, by \dref{def:differential}, these basis vector act on $ \cfk{\infty}(U) $ as:
+\begin{equation}
+  \frac{\pa}{\pa x^i}\bigg\vert_p f = \frac{\pa}{\pa x^i}\bigg\vert_{\varphi(p)} (f \circ \varphi^{-1}) = \frac{\pa \hat{f}}{\pa x^i}(\hat{p})
+\end{equation}
+where the hat denotes the coordinate representation, as usual. Therefore, $ \pa_i\vert_p $ is the derivation that takes the $ i^\text{th} $ partial derivative of (the coordinate representation of) $ f \in \cfk{\infty}(U) $ at (the coordinate representation of) $ p \in U $: these are called the \bctxt{coordinate vectors} at $ p $, forming a \emph{coordinate basis} of $ T_p\man $ associated to the given coordinate system. In the special case $ \man = \R^n $, the coordinate vectors are precisely the partial derivative operators. Tangent vectors $ X_p \in T_p\man $ can thus be written uniquely as:
+\begin{equation}
+  X_p = X_p^i \frac{\pa}{\pa x^i}\bigg\vert_p
+  \label{eq:tangent-vector-components}
+\end{equation}
+Since $ p_i\vert_p x^j = \delta^j_i $, the components of $ X_p $ can be easily computed by its action the coordinate functions: $ X_p^i = X_p(x^i) $.
+
+\subsubsection{Differentials}
+
+To see how differentials are expressed in coordinates, consider first the special case of a smooth map $ f : U \ra V $, with $ U \in \tp(\R^n) $ and $ V \in \tp(\R^m) $. Denoting the coordinates in the domain $ U $ as $ (x^1 , \dots , x^n) $ and the coordinates in the codomain $ V $ as $ (y^1 , \dots , y^m) $, by the chain rule:
+\begin{equation*}
+  \dd f_p \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right)(g) = \frac{\pa}{\pa x^i} \bigg\vert_p (g \circ f) = \frac{\pa g}{\pa y^j} (f(p)) \frac{\pa f^j}{\pa x^i}(p) = \left( \frac{\pa f^j}{\pa x^i}(p) \frac{\pa}{\pa y^j} \bigg\vert_{(f(p))} \right) g
+\end{equation*}
+Therefore:
+\begin{equation}
+  \dd f_p \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right) = \frac{\pa f^j}{\pa x^i}(p) \frac{\pa}{\pa y^j} \bigg\vert_{(f(p))}
+  \label{eq:differential-jacobian}
+\end{equation}
+In other words, the matrix representation of the action of $ \dd f_p $ on $ T_pU $ is given by:
+\begin{equation*}
+  [\dd f_p] =
+  \begin{bmatrix}
+    \frac{\pa f^1}{\pa x^1}(p) & \dots & \frac{\pa f^1}{\pa x^n}(p) \\
+    \vdots & \ddots & \vdots \\
+    \frac{\pa f^m}{\pa x^1}(p) & \dots & \frac{\pa f^m}{\pa x^n}(p) \\
+  \end{bmatrix}
+\end{equation*}
+This is precisely the Jacobian of $ f $ at $ p $, which is the matrix representation of the total derivative: hence, the differential $ \dd f_p : T_p\R^n \ra T_{f(p)}\R^m $ corresponds to the total derivative $ [\dd f_p] : \R^n \ra \R^m $, under the usual identification $ T_p\R^n \cong \R^n $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{diff-coord.png}
+  \caption{The differential of a smooth map in coordinates.}
+  \label{fig:diff-coord}
+\end{figure}
+
+Now, consider the general case of a smooth map $ f : \man_1 \ra \man_2 $ between smooth manifolds. Choosing smooth charts $ (U,\varphi) : U \ni p $ for $ \man_1 $ and $ (V,\psi) : V \ni f(p) $ for $ \man_2 $, the coordinate representation of $ f $ reads $ \hat{f} = \psi \circ f \circ \varphi^{-1} : \varphi(U \cap f^{-1}(V)) \ra \psi(V) $ (see \figref{fig:diff-coord}). Denoting $ \hat{p} = \varphi(p) $, by \eref{eq:differential-jacobian} $ \dd \hat{f}_{\hat{p}} $ is represented with respect to the standard coordinate basis by the Jacobian matrix of $ \hat{f} $ at $ \hat{p} $. Using $ f \circ \varphi^{-1} = \psi^{-1} \circ \hat{f} $, then:
+\begin{equation*}
+  \dd f_p \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right) = \dd f_p \left( \dd (\varphi^{-1})_{\hat{p}} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\hat{p}} \right) \right) = \dd (\psi^{-1})_{\hat{f}(\hat{p})} \left( \dd \hat{f}_{\hat{p}} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\hat{p}} \right) \right)
+\end{equation*}
+Using \eref{eq:differential-jacobian}:
+\begin{equation}
+  \dd f_p \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right) = \dd (\psi^{-1})_{\hat{f}(\hat{p})} \left( \frac{\pa \hat{f}^j}{\pa x^i}(\hat{p}) \frac{\pa}{\pa y^j} \bigg\vert_{\hat{f}(\hat{p})} \right) = \frac{\pa \hat{f}^j}{\pa x^i}(\hat{p}) \frac{\pa}{\pa y^j}\bigg\vert_{f(p)}
+\end{equation}
+Therefore, the representation of the differential $ \dd f_p $ in the coordinate basis is the Jacobian matric of (the coordinate representation of) $ f $ at (the coordinate representation of) $ p $. Indeed, the differential is defined precisely to give a coordinate-independent meaning to the Jacobian. Moreover, since the differential ``pushes" tangent vectors forward from the domain manifold to the codomain manifold (as per \dref{def:differential}), it is also called the \emph{(pointwise) push-forward}.
+
+\subsubsection{Change of coordinates}
+
+Suppose $ (U,\varphi) $ and $ (V,\psi) $ are two smooth charts on $ \man $, and let $ p \in U \cap V $. Denoting the coordinate functions of $ \varphi $ by $ x^i $ and those of $ \psi $ by $ \tilde{x}^i $, any tangent vector at $ p $ can be expressed either on the basis $ \pa_i\vert_p $ or $ \tilde{\pa}_i\vert_p $. To see how these two representations are related, consider the transition map $ \psi \circ \varphi^{-1} : \varphi(U \cap V) \ra \psi(U \cap V) $, which is expressed as (with an abuse of notation):
+\begin{equation*}
+  \psi \circ \varphi^{-1} (x) = (\tilde{x}^1(x) , \dots , \tilde{x}^n(x))
+\end{equation*}
+Its differential $ \dd (\psi \circ \varphi^{-1})_{\varphi(p)} : T_{\varphi(p)}\R^n \ra T_{\psi(p)}\R^n $ can then be written using \eref{eq:differential-jacobian}:
+\begin{equation*}
+  \dd (\psi \circ \varphi^{-1})_{\varphi(p)} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\varphi(p)} \right) = \frac{\pa \tilde{x}^j}{\pa x^i}(\varphi(p)) \frac{\pa}{\pa \tilde{x}^j} \bigg\vert_{\psi(p)}
+\end{equation*}
+A visualization of this map is pictured in \figref{fig:coo-ch}. Using the definition of coordinate vectors:
+\begin{equation*}
+  \begin{split}
+    \frac{\pa}{\pa x^i} \bigg\vert_p
+    & = \dd (\varphi^{-1})_{\varphi(p)} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\varphi(p)} \right) \\
+    & = \dd (\psi^{-1})_{\psi(p)} \circ \dd (\psi \circ \varphi^{-1})_{\varphi(p)} \left( \frac{\pa}{\pa x^i} \bigg\vert_{\varphi(p)} \right)=  \dd (\psi^{-1})_{\psi(p)} \left( \frac{\pa \tilde{x}^j}{\pa x^i}(\varphi(p)) \frac{\pa}{\pa \tilde{x}^j} \bigg\vert_{\psi(p)} \right)
+  \end{split}
+\end{equation*}
+Using the chain rule and introducing the coordinate representation $ \hat{p} = \varphi(p) $:
+\begin{equation}
+  \frac{\pa}{\pa x^i} \bigg\vert_p = \frac{\pa \tilde{x}^j}{\pa x^i}(\hat{p}) \frac{\pa}{\pa \tilde{x}^j} \bigg\vert_p
+  \label{eq:contravariant-alibi}
+\end{equation}
+Applying this equation to \eref{eq:tangent-vector-components}, the transformation rule for the components of a tangent vector is found:
+\begin{equation}
+  \tilde{X}_p^j = \frac{\pa \tilde{x}^j}{\pa x^i}(\hat{p}) X_p^i
+  \label{eq:contravariant-alias}
+\end{equation}
+It is then clear that the components of tangent vectors transform inversely with respect to coordinate basis vectors: for this reason, they are known as \emph{contravariant vectors}. \eref{eq:contravariant-alibi} and \eref{eq:contravariant-alias} respectively give the \emph{alibi} (passive) and \emph{alias} (active) interpretation for the change of basis: either the components are left unchanged while the basis vector are transformed, or vice versa.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{coord-change.png}
+  \caption{Change of coordinates.}
+  \label{fig:coo-ch}
+\end{figure}
+
+\subsection{Tangent bundle}
+
+\begin{definition}{Tangent bundle}{}
+  Given a smooth manifold $ \man $, its \bcdef{tangent bundle} is defined by the following disjoint union:
+  \begin{equation}
+    T\man \defeq \bigsqcup_{p \in \man} T_p\man \equiv \bigcup_{p \in \man} \{p\} \times T_p\man = \{(p , X_p) : p \in \man , X_p \in T_p\man\}
+  \end{equation}
+\end{definition}
+This set comes equipped with a natural projection map $ \pi : T\man \ra \man $ which sends each vector in $ T_p\man $ to the point $ p \in \man $ at which it is tangent: $ \pi(p , X_p) = p $. In the following, with an abuse of notation, the tangent space $ T_p\man $ is often identified with its image under the canonical injection $ T_p\man \hookrightarrow T\man : X_p \mapsto (p , X_p) $, so as to write simply $ X_p $ in place of $ (p , X_p) $.
+
+Note that, in general, the tangent bundle can be identified as a Cartesian product only locally, while globally its structure may be more complex (see \secref{ssec:vector-bundles}).
+
+\begin{proposition}{Tangent bundle as smooth manifold}{}
+  Given a smooth $ n $-manifold $ \man $, its tangent bundle $ T\man $ has a natural structure of $ 2n $-dimensional smooth manifold, with respect to which the projection $ \pi : T\man \ra \man $ is smooth.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, show that $ T\man $ is a smooth $ 2n $-manifold. Since $ T\man $ does not come endowed with a topology, it is convenient to use \lref{lemma:smooth-chart-lemma}.
+
+    Given any smooth chart $ (U , \varphi) $ over $ \man $, note that $ \pi^{-1}(U) \ssq T\man $ is the set of all tangent vectors to $ \man $ at all points of $ U $. Denote the coordinate functions of $ \varphi $ as $ (x^1 , \dots , x^n) $, and define the map $ \tilde{\varphi} : \pi^{-1}(U) \ra \R^{2n} $ as:
+    \begin{equation*}
+      \tilde{\varphi} \left( X^i \frac{\pa}{\pa x^i} \bigg\vert_p \right) \equiv (x^1(p) , \dots , x^n(p) , X^1 , \dots , X^n)
+    \end{equation*}
+    Clearly, $ \im \tilde{\varphi} = \varphi(U) \times \R^n \in \tp(\R^{2n}) $, hence it is continuous. Moreover, it is a bijection onto its image, since its inverse can be written explicitly as:
+    \begin{equation*}
+      \tilde{\varphi}^{-1}(x^1 , \dots , x^n , X^1 , \dots , X^n) = X^i \frac{\pa}{\pa x^i} \bigg\vert_{\varphi^{-1}(p)}
+    \end{equation*}
+    Therefore, $ \tilde{\varphi} $ is a homeomorphism, and $ (\pi^{-1}(U) , \tilde{\varphi}) $ is a chart over $ T\man $. Then, consider two smooth charts $ (U , \varphi) , (V , \psi) $ over $ \man $, and the associated charts $ (\pi^{-1}(U) , \tilde{\varphi}) , (\pi^{-1}(V) , \tilde{\psi}) $ over $ T\man $. The following sets:
+    \begin{equation*}
+      \tilde{\varphi}(\pi^{-1}(U) \cap \pi^{-1}(V)) = \varphi(U \cap V) \times \R^n
+    \end{equation*}
+    \begin{equation*}
+      \tilde{\psi}(\pi^{-1}(U) \cap \pi^{-1}(V)) = \psi(U \cap V) \times \R^n
+    \end{equation*}
+    are in $ \tp(\R^{2n}) $, and the transition map $ \tilde{\psi} \circ \tilde{\varphi}^{-1} : \varphi(U \cap V) \times \R^n \ra \psi(U \cap V) \times \R^n $ between them can be written explicitly as:
+    \begin{equation*}
+      \tilde{\psi} \circ \tilde{\varphi}^{-1} (x^1 , \dots , x^n , X^1 , \dots , X^n) = \left( y^1(x) , \dots , y^n(x) , \frac{\pa y^1}{\pa x^i} X^i , \dots , \frac{\pa y^n}{\pa x^i} X^i \right)
+    \end{equation*}
+    where $ (y^1 , \dots , y^n) $ are the coordinate functions of $ \psi $. This is clearly smooth, hence the charts $ (\pi^{-1}(U) , \tilde{\varphi}) $ and $ (\pi^{-1}(V) , \tilde{\psi}) $ are smoothly compatible.
+
+    Choosing a countable cover $ \{U_\alpha\} $ of $ \man $ from the smooth coordinate domains of $ \man $, a countable cover of $ T\man $ is obtained as $ \{\pi^{-1}(U_\alpha)\} $: this countable cover satisfies the conditions \itemref{item:scl-1}-\itemref{item:scl-4} of \lref{lemma:smooth-chart-lemma}. To check the Hausdorff condition \itemref{item:scl-5}, just note that any two points in same fiber of $ \pi $ lie in the same chart, while if $ (p,X) $ and $ (q,Y) $ lie in different fibers, there exist disjoint smooth coordinate domains $ U , V \ssq \man $ such that $ p \in U $ and $ q \in V $, and $ \pi^{-1}(U) \ni (p,X) $ and $ \pi^{-1}(V) \ni (q,Y) $ are disjoint coordinate neighbourhoods. Therefore, by \lref{lemma:smooth-chart-lemma}, $ T\man $ is a smooth $ 2n $-manifold.
+
+    Now, to see that $ \pi : T\man \ra \man $ is smooth, note that, with respect to charts $ (U,\varphi) $ of $ \man $ and $ (\pi^{-1}(U) , \tilde{\varphi}) $ of $ T\man $, its coordinate representation is $ \pi(p , X) = (x^1 , \dots , x^n) $.
+  \end{proof}
+\end{proofbox}
+
+The coordinates $ (x^i , X^i) $ are called the \emph{natural coordinates} on $ T\man $.
+
+A particular case in which the tangent bundle can in fact be thought as a Cartesian product is that of a smooth $ n $-manifold $ \man $ which can be covered by a single smooth chart $ (\man,\varphi) $. In this case, $ \varphi $ is a diffeomorphism from $ \man $ to $ \varphi(\man) \ssq \R^n $: defining $ \tilde{\varphi} : \pi^{-1}(\man) = T\man \ra \man \times \R^n $ as in the previous proof, it retains the nature of diffeomorphism of $ \varphi $, hence $ T\man $ is diffeomorphic to $ \man \times \R^n $.
+
+Given a smooth map $ f : \man_1 \ra \man_2 $, the introduction of the tangent bundle allows to define a \bctxt{global differential} $ \dd f : T\man_1 \ra T\man_2 $, which is just the map whose restriction to each $ T_p\man_1 \ssq T\man_1 $ is $ \dd f_p $. The global differential $ \dd f : T\man_1 \ra T\man_2 $ is a smooth map, since in terms of natural coordinates on $ T\man_1 $ it is expressed as:
+\begin{equation*}
+  \dd f(x^1 , \dots , x^n , X^1 , \dots , X^n) = \left( f^1(x) , \dots , f^m(x) , \frac{\pa f^1}{\pa x^i}(x) X^i , \dots , \frac{\pa f^m}{\pa x^i}(x) X^i \right)
+\end{equation*}
+
+\begin{lemma}{Properties of global differentials}{global-differential-properties}
+  Let $ \man , \man_1 , \man_2 $ be smooth manifolds. Then, given smooth maps $ f : \man_1 \ra \man_2 $ and $ g : \man_2 \ra \man_3 $:
+  \begin{enumerate}
+    \item \label{item:glob-diff-1} $ \dd (g \circ f) = \dd g \circ \dd f $;
+    \item \label{item:glob-diff-2} $ \dd (\id_\man) = \id_{T\man} $;
+    \item \label{item:glob-diff-3} if $ f $ is a diffeomorphism, the $ \dd f $ is also a diffeomorphism, and $ (\dd f)^{-1} = \dd (f^{-1}) $.
+  \end{enumerate}
+\end{lemma}
+
+\itemref{item:glob-diff-3} allows to set unambiguous $ \dd f^{-1} \equiv (\dd f)^{-1} = \dd (f^{-1}) $ when $ f $ is a diffeomorphism.
+
+\subsection{Vector fields}
+
+The notion of a vector field over $ U \in \tp(\R^n) $ as a continuous map $ U \mapsto \R^n $ which assigns vector to each point $ p \in U $ can be extended directly to smooth manifolds.
+
+\begin{definition}{Vector field}{}
+  Let $ \man $ be a smooth manifold. A \bcdef{vector field} over $ \man $ is a continuous map $ X : \man \ra T\man $ such that $ \pi \circ X = \id_\man $, where $ \pi : T\man \ra \man $ is the natural projection.
+\end{definition}
+
+The map which defines a vector field is usually written as $ p \mapsto X_p $, hence the condition $ \pi \circ X = \id_\man $ is equivalent to $ X_p \in T\man $. If this map is smooth, it is called a \bctxt{smooth vector field}: the set of all the smooth vector fields on a smooth manifold $ \man $ is denoted by $ \xm $. This is trivially a vector space under pointwise addition and constant multiplication.
+
+Smooth vector fields can also be multiplied by smooth functions. Given $ f \in \cm $ and $ X \in \xm $, then $ fX : \man \ra T\man : (fX)_p = f(p) X_p $ is still a smooth vector field\footnotemark. Then, as per \eref{eq:tangent-vector-components}, a vector field can be expressed as:
+\begin{equation*}
+  X = X^i \frac{\pa}{\pa x^i}
+\end{equation*}
+where $ X^i : p \mapsto X_p^i $ are its \emph{component functions} in the given chart: a vector field is smooth if and only if its component functions are smooth.
+
+\footnotetext{This means that $ \xm $ is a module over the ring $ \cm $.}
+
+\begin{example}{Coordinate vector fields}{}
+  If $ (U,\varphi) $ is a smooth chart on the smooth manifold $ \man $ and $ (x^1 , \dots , x^n) $ are the coordinate functions of $ \varphi $, then the map:
+  \begin{equation*}
+    p \mapsto \frac{\pa}{\pa x^i} \bigg\vert_p
+  \end{equation*}
+  determines a vector field on $ U $, called the $ i^\text{th} $ \bcex{coordinate vector field}, which is trivially smooth since its component functions are constants.
+\end{example}
+
+\begin{example}{Angle coordinates on tori}{}
+  Let $ \theta $ be an angle coordinate on $ U \in \tp(\Sn{1}) $, and let $ \frac{\dd}{\dd \theta} $ denote the corresponding coordinate vector field. Since any other angle coordinate may differ from $ \theta $ only by an additive constant, by \eref{eq:contravariant-alibi} $ \frac{\dd}{\dd \tilde{\theta}} = \frac{\dd}{\dd \theta} $ on their common domain. Thus, there is a globally-defined smooth vector field on $ \Sn{1} $ whose coordinate representation is $ \frac{\dd}{\dd \theta} $ with respect to any angle coordinate.
+
+  Generalizing to $ \Tn{n} = \Sn{1} \times \dots \times \Sn{1} $, the globally-defined smooth vector fields are $ \frac{\dd}{\dd \theta^i} $, for each $ i = 1 , \dots , n $.
+\end{example}
+
+\subsubsection{Frames}
+
+Coordinate vector fields in a smooth chart are not the only way to represent vector fields.
+
+Suppose $ \man $ is a smooth $ n $-manifold. An ordered $ k $-tuple $ (X_1 , \dots , X_k) $ of vector fields defined on some subset $ U \ssq \man $ is said to be \bctxt{linearly independent} if $ (X_1 \vert_p , \dots , X_k \vert_p) $ is a linearly independent $ k $-tuple in $ T_p\man $ for each $ p \in U $, and is said to \emph{span the tangent bundle} if $ (X_1 \vert_p , \dots , X_k \vert_p) $ spans $ T_p\man $ at each $ p \in U $.
+
+\begin{definition}{Frame}{}
+  Let $ \man $ be a smooth $ n $-manifold. A \bcdef{local frame} on $ \man $ is an ordered $ n $-tuple $ (E_1 , \dots , E_n) $ of vector fields on $ U \in \tp(\man) $ that is linearly independent and spans the tangent bundle $ T\man $. If $ U = \man $, it is a \bcdef{global frame}, and a \bcdef{smooth frame} if the vector fields $ E_i $ are smooth.
+\end{definition}
+
+If $ (E_1 , \dots , E_n) $ is a local frame, then the tangent vectors $ (E_1 \vert_p , \dots , E_n \vert_p) $ form a basis of $ T_p\man $ for each $ p \in U $. The coordinate vector fields of some chart $ (U,\varphi) $ form a \emph{coordinate frame}.
+
+\begin{proposition}{Completion of local frames}{completion-local-frames}
+  Let $ \man $ be a smooth $ n $-manifold. Then:
+  \begin{enumerate}
+    \item \label{item:locfr-1} if $ (X_1 , \dots , X_k) $ is a linearly independent $ k $-tuple of smooth vector fields on $ U \in \tp(\man) $, with $ 1 \leq k < n $, then for each $ p \in U $ there exist $ X_{k+1} , \dots , X_n $ smooth vector fields on a neighbourhood $ V \ni p $ such that $ (X_1 , \dots , X_n) $ is a smooth local frame on $ U \cap V $;
+    \item \label{item:locfr-2} if $ (v_i , \dots , v_k) $ is a linearly independent $ k $-tuple of vectors in $ T_p\man $ for some $ p \in \man $, with $ 1 \leq k \leq n $, then there exists a smooth local frame $ (X_1 , \dots , X_n) $ on a neighbourhood of $ p $ such that $ X_i \vert_p = v_i \,\,\forall i = 1, \dots, k $;
+  \end{enumerate}
+\end{proposition}
+
+For subsets of $ \R^n $, there is a special type of frames. A $ k $-tuple of vector fields $ (E_1 , \dots , E_k) $ on some $ A \ssq \R^n $ is \emph{orthonormal} if for each $ p \in A $ the vectors $ (E_1 \vert_p , \dots , E_k \vert_p) $ are orthonormal with respect to the Euclidean scalar product (with the identification $ T_p\R^n \cong \R^n $). A (local or global) frame consisting of orthonormal vector fields is called an \bctxt{orthonormal frame}.
+
+Starting from a smooth local frame $ (X_1 , \dots , X_n) $ on $ T\R^n $ over $ U \in \tp(\R^n) $, it is possible to find a smooth orthonormal frame $ (E_1 , \dots , E_n) $ over $ U $, such that $ \lspan(E_1 \vert_p , \dots , E_j \vert_p) = \lspan(X_1 \vert_p , \dots , X_j \vert_p) $ for each $ j = 1 , \dots , n $ and each $ p \in U $, using the \emph{Gram--Schmidt algorithm}:
+\begin{equation}
+  E_j = \frac{X_j - \sum_{i = 1}^{j-1} (X_j \cdot E_i) E_i}{\norm{X_j - \sum_{i = 1}^{j-1} (X_j \cdot E_i) E_i}}
+\end{equation}
+This is a recursive definition, and it is well-posed since $ X_j \vert_p \notin \lspan(E_1 \vert_p , \dots , E_{j-1} \vert_p) $ for each $ j = 1 , \dots , n $ and each $ p \in U $, hence the denominator is a nowhere-vanishing smooth function on $ U $.
+
+While smooth local frames are easily found, using \pref{prop:completion-local-frames}, global ones are not. Indeed, smoth manifolds which admit a smooth local frames are said to be \bctxt{parallelizable}: for example, $ \R^n $ and $ \Tn{n} $ are all parallelizable, while the only parallelizable spheres are $ \Sn{1} $, $ \Sn{3} $ and $ \Sn{7} $. In general, the parallelizability of a smooth $ n $-manifold $ \man $ is linked to whether its tangent bundle is diffeomorphic to $ \man \times \R^n $ (see REF TO SEC).
+% TODO: REF TO SEC
+
+\subsubsection{Vector fields as derivations}
+
+A fundamental property of vector fields is that they define linear operators on the space smooth real-valued functions. If $ X \in \xm $ and $ f \in \cfk{\infty}(U) $, with $ U \in \tp(\man) $, then $ Xf : U \ra \R $ defined by:
+\begin{equation}
+  (Xf)(p) = X_p(f)
+\end{equation}
+which can be shown to be smooth over $ U $. Since the action of a tangent vector on a function is determined by the values of the function on an arbitrarily small neighbourhood, it follows that $ Xf $ is locally determined: on any open subset $ V \ssq U $, it is $ (Xf)\vert_V = X(f\vert_V) $.
+
+Since $ X \in \xm $ defines an endomorphism in $ \cm $ as $ f \mapsto Xf $ which obeys the Leibniz rule, it generalizes \dref{def:derivation-at}.
+
+\begin{definition}{Derivation}{}
+  Let $ \man $ be a smooth manifold. Then, $ X \in \End \cm $ is a \bcdef{derivation} of $ \cm $ if it satisfies the Leibniz rule:
+  \begin{equation}
+    X (fg) = f Xg + g Xf
+    \qquad
+    \forall f,g \in \cm
+  \end{equation}
+\end{definition}
+
+In general, derivations of $ \cm $ can be identified with smooth vectors, since it can be shown that a map $ D : \cm \ra \cm $ is a derivation if and only if it is of the form $ D f = X f $, for some $ X \in \xm $. For this reason, the same symbol $ X $ denotes both maps $ X : \man \ra T\man $ and $ X : \cm \ra \cm $.
+
+\subsubsection{Push-forward of vector fields}
+
+If $ f : \man_1 \ra \man_2 $ is a smooth map and $ X $ is a vector field on $ \man_1 $, then for each point $ p \in \man_1 $ a tangent vector to $ \man_2 $ is obtained as $ \dd f_p(X_p) \in T_{f(p)}\man_2 $. However, this does not in general defined a vector field on $ \man_2 $: for example, if $ f $ is not surjective, there is no way to decide how to assign tangent vectors to points $ q \in \man_2 - f(\man_1) $, while if $ f $ is not injective there are some points $ q \in \man_2 $ where many tangent vectors can be assigned, one for each point in $ f^{-1}(q) $.
+
+\begin{definition}{$ f $-relation}{}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map, $ X \in \xm $ and $ Y \in \xm $. Then, $ X $ and $ Y $ are \bcdef{$ f $-related} if $ \dd f_p(X_p) = Y_{f(p)} \,\,\forall p \in \man_1 $.
+\end{definition}
+
+$ f $-related vector fields can be characterized by their action on smooth functions.
+
+\begin{proposition}{}{f-relation-characterization}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map, $ X \in \xm $ and $ Y \in \xm $. Then, $ X $ and $ Y $ are $ f $-related if and only if for every $ g \in \cfk{\infty}(U) $, with $ U \in \tp(\man_2) $:
+  \begin{equation}
+    X(g \circ f) = Y(g) \circ f
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    For any $ p \in \man_1 $ and any $ g \in \cfk{\infty}(U) $, with $ U \in \tp(\man_2) : U \ni f(p) $:
+    \begin{equation*}
+      X(g \circ f)(p) = X_p(g \circ f) = \dd f_p(X_p) (g)
+    \end{equation*}
+    while:
+    \begin{equation*}
+      Y(g) \circ f(p) = (Y(g)) (f(p)) = Y_{f(p)} (g)
+    \end{equation*}
+    Therefore $ X(g \circ f) = Y(g) \circ f \iff \dd f_p(X_p) = Y_{f(p)} \,\,\forall p \in \man_1 $.
+  \end{proof}
+\end{proofbox}
+
+Note that, for a given smooth map $ f : \man_1 \ra \man_2 $, there may be no $ f $-related vector fields. In a special case, however, the existence is guaranteed.
+
+\begin{theorem}{Push-forward}{}
+  Let $ \man_1 , \man_2 $ be smooth manifolds and $ f : \man_1 \ra \man_2 $ a diffeomorphism. For every $ X \in \xm $ there is a unique $ Y \in \xm $ that is $ f $-related to $ X $, called the \bcth{push-forward} of $ X $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Given $ X \in \xm $, defined the vector field $ Y_p \equiv \dd f_{f^{-1}(q)}(X_{f^{-1}(q)}) \,\,\forall q \in \man_2 $. Clearly, this is the unique vector that is $ f $-related to $ X $. To show that it is smooth, note that $ Y : \man_2 \ra T\man_2 $ is the following composition:
+    \begin{equation*}
+      \man_2 \xrightarrow{f^{-1}} \man_1 \xrightarrow{X} T\man_1 \xrightarrow{\dd f} T\man_2
+    \end{equation*}
+    which is a composition of smooth maps, hence it is smooth.
+  \end{proof}
+\end{proofbox}
+
+The push-forward of $ X $ by a diffeomorphism $ f $ is usually denoted by $ f_* X $, thus by the preceding proof:
+\begin{equation}
+  (f_* X)_q \defeq \dd f_{f^{-1}(q)} (X_{f^{-1}(q)})
+\end{equation}
+An alternative characterization, in terms of vector fields directly, comes from \pref{prop:f-relation-characterization}. For any $ g \in \cfk{\infty}(\man_2) $:
+\begin{equation}
+  (f_* X)(g) \circ f = X(g \circ f)
+\end{equation}
+
+\subsubsection{Lie brakets}
+
+Consider a smooth manifold $ \man $ and $ X,Y \in \xm $. Since smooth vector fields are derivations of $ \cm $, given $ f \in \cm $ it is possible to apply $ Y $ to $ X(f) $, obtaining another smooth function $ Y(X(f)) \equiv YX(f) \in \cm $. The operator $ f \mapsto YX(f) $, however, does not satisfy Leibniz rule, hence it does not define a vector field.
+
+To obtain another vector field from two smooth vector fields, define the \bctxt{Lie bracket} of $ X $ and $ Y $ as $ [X,Y] : \cm \ra \cm $ such that:
+\begin{equation}
+  [X,Y](f) \defeq XY(f) - YX(f)
+\end{equation}
+
+\begin{lemma}{Lie bracket}{}
+  Let $ X,Y \in \xm $. Then $ [X,Y] \in \xm $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Since smooth vector fields are identified with derivations of $ \cm $, it suffices to show that $ [X,Y] $ is a derivation of $ \cm $. For arbitrary $ f,g \in \cm $:
+    \begin{equation*}
+      \begin{split}
+        [X,Y](fg)
+        & = X(Y(fg)) - Y(X(fg)) = X(f Y(g) - g Y(f)) - Y(f X(g) - g X(f)) \\
+        & = X(f) Y(g) + f XY(g) - X(g) Y(f) - g XY(f) + \\
+        & \quad - Y(f) X(g) - f YX(g) + Y(g) X(f) + g YX(f) \\
+        & = f XY(g) + g XY(f) - f YX(g) - g YX(f) = f [X,Y](g) + g [X,Y](f)
+      \end{split}
+    \end{equation*}
+    which concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+In general, the expression for $ [X,Y]_p(f) $ contains second derivatives of $ f $ at $ p \in \man $ that cancel out, leaving a simple expression. Since $ [X,Y] $ is a smooth vector field, its action on function is determined locally $ [X,Y](f) \vert_U = [X,Y](f\vert_U) $, thus its expression needs only to be computed in a single smooth chart $ (U,(x^i)) $:
+\begin{equation*}
+  [X,Y](f) = X^i \frac{\pa}{\pa x^i} \left( Y^j \frac{\pa f}{\pa x^j} \right) - Y^j \frac{\pa}{\pa x^j} \left( X^i \frac{\pa f}{\pa x^i} \right) = X^i \frac{\pa Y^j}{\pa x^i} \frac{\pa f}{\pa x^j} - Y^j \frac{\pa X^i}{\pa x^j} \frac{\pa f}{\pa x^i}
+\end{equation*}
+where the Schwarz lemma $ \pa_i \pa_j f = \pa_j \pa_i f $ has been used, as $ f \in \cm $. Renaming dummy indices, the coordinate expression of the Lie bracket is found:
+\begin{equation}
+  [X,Y] = \left( X^i \frac{\pa Y^j}{\pa x^i} - Y^i \frac{\pa X^j}{\pa x^i} \right) \frac{\pa}{\pa x^j}
+\end{equation}
+It is then clear, using again the Schwarz lemma, that for coordinate vector fields:
+\begin{equation*}
+  \left[ \frac{\pa}{\pa x^i} , \frac{\pa}{\pa x^j} \right] \equiv 0
+\end{equation*}
+
+\begin{lemma}{Properties of Lie brackets}{lieb-properties}
+  Let $ \man $ be a smooth manifold and $ X,Y,Z \in \xm $. Then:
+  \begin{enumerate}
+    \item \label{item:lieb-1} (bilinearity) for $ a,b \in \R $:
+      \begin{equation*}
+        [aX + bY , Z] = a [X,Z] + b [Y,Z]
+        \qquad \qquad
+        [Z , aX + bY] = a [Z,X] + b [Z,Y]
+      \end{equation*}
+    \item \label{item:lieb-2} (antisymmetry):
+      \begin{equation*}
+        [X,Y] = - [Y,X]
+      \end{equation*}
+    \item \label{item:lieb-3} (Jacobi identity):
+      \begin{equation}
+        [X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0
+      \end{equation}
+    \item \label{item:lieb-4} for $ f,g \in \cm $:
+      \begin{equation}
+        [fX , gY] = fg [X,Y] + (f X(g)) Y - (g Y(f)) X
+        \label{eq:lied-aux}
+      \end{equation}
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Bilinearity and antisymmetry are trivial by definition. The Jacobi identity and \itemref{item:lieb-4} are direct computations.
+  \end{proof}
+\end{proofbox}
+
+The importance of \eref{eq:lied-aux} will be clear once the Lie derivative is introduced (see \secref{ssec:lie-der}).
+
+\begin{proposition}{Naturality of Lie brackets}{}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map, $ X_1 , X_2 \in \xv(\man_1) $ and $ Y_1 , Y_2 \in \xv(\man_2) $ such that $ X_i $ is $ f $-related to $ Y_i $, for $ i = 1,2 $. Then, $ [X_1 , X_2] $ is $ f $-related to $ [Y_1 , Y_2] $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Using \pref{prop:f-relation-characterization} and the fact that $ X_i $ and $ Y_i $ are $ f $-related, given $ g \in \cfk{\infty}(\man_1) $:
+    \begin{equation*}
+      X_1 X_2 (g \circ f) = X_1 (Y_2(g) \circ f) = (Y_1 Y_2(g)) \circ f
+    \end{equation*}
+    and in a similar way $ X_2 X_1 (g \circ f) = (Y_2 Y_1(g)) \circ f $, therefore:
+    \begin{equation*}
+      [X_1 , X_2](g \circ f) = (Y_1 Y_2(g)) \circ f - (Y_2 Y_1(g)) \circ f = [Y_1 , Y_2](g) \circ f
+    \end{equation*}
+    which shows that $ [X_1 , X_2] $ and $ [Y_1 , Y_2] $ are $ f $-related.
+  \end{proof}
+\end{proofbox}
+
+The special case of $ f : \man_1 \ra \man_2 $ diffeomorphism yields the push-forward of a Lie bracket:
+\begin{equation}
+  f_* [X_1 , X_2] = [f_* X_1 , f_* X_2]
+\end{equation}
+
+\newpage
+\section{Curves}
+
+The familiar notion of curve in $ \R^n $ can be extended to generic manifolds.
+
+\begin{definition}{Curve}{}
+  Let $ \man $ be a topological manifold. A \bcdef{curve} on $ \man $ is a continuous map $ \gamma : J \ra \man $, where $ J \ssq \R $ is an interval.
+\end{definition}
+
+The definition of tangent spaces leads to a natural interpretation of velocity vectors of curves. Given a smooth curve $ \gamma : J \ra \man $ and $ t_0 \in J $, the \bctxt{velocity} of $ \gamma $ at $ t_0 $ is the vector:
+\begin{equation}
+  \gamma'(t_0) \defeq \dd \gamma \left( \frac{\dd}{\dd t} \bigg\vert_{t_0} \right) \in T_{\gamma(t_0)}\man
+\end{equation}
+where $ \frac{\dd}{\dd t} \vert_{t_0} $ is the standard coordinate basis vector in $ T_{t_0}\R $. This tangent vector acts on functions as:
+\begin{equation*}
+  \gamma'(t_0) (f) = \dd \gamma \left( \frac{\dd}{\dd t} \bigg\vert_{t_0} \right) f = \frac{\dd}{\dd t} \bigg\vert_{t_0} (f \circ \gamma) = (f \circ \gamma)'(t_0)
+\end{equation*}
+Therefore, $ \gamma'(t_0) $ is the derivation at $ \gamma(t_0) $ obtained by taking the derivative of a function along the curve\footnotemark. If $ (U,\varphi) $ is a smooth chart with coordinate functions $ (x^1 , \dots , x^n) $ and $ \gamma(t_0) \in U $, writing the coordinate representation of $ \gamma $ as $ \gamma(t) = (\gamma^1(t) , \dots , \gamma^n(t)) $, the coordinate expression for the velocity vector is:
+\begin{equation}
+  \gamma'(t_0) = \frac{\dd \gamma^i}{\dd t}(t_0) \frac{\pa}{\pa x^i} \bigg\vert_{\gamma(t_0)}
+\end{equation}
+
+\footnotetext{If $ J $ has one or two endpoints, the $ t $-derivative is interpreted as one-sided.}
+
+\begin{proposition}{Tangent vectors and curves}{}
+  Let $ \man $ be a smooth manifold and $ p \in \man $. Every $ X_p \in T_p\man $ is the velocity of some smooth curve on $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ (U,\varphi) $ be a smooth chart centered at $ p \in \man $, and write $ X_p = X_p^i \pa_i \vert_p $. For a sufficiently small $ \epsilon > 0 $, let $ \gamma : (-\epsilon , \epsilon) \ra U $ be the curve whose coordinate representation is:
+    \begin{equation*}
+      \gamma(t) = (t X_p^1 , \dots , t X_p^n)
+    \end{equation*}
+    Clearly, this is a smooth curve with $ \gamma(0) = p $ and $ \gamma'(0) = X_p $.
+  \end{proof}
+\end{proofbox}
+
+Given a smooth map $ f : \man_1 \ra \man_2 $ and a smooth curve $ \gamma : J \ra \man_1 $, the velocity of the composite curve $ f \circ \gamma : J \ra \man_2 $ if given, for any $ t_0 \in J $, by:
+\begin{equation*}
+  (f \circ \gamma)'(t_0) = \dd (f \circ \gamma) \left( \frac{\dd}{\dd t} \bigg\vert_{t_0} \right) = \dd f \circ \dd \gamma \left( \frac{\dd}{\dd t} \bigg\vert_{t_0} \right) = \dd f(\gamma'(t_0))
+\end{equation*}
+Since curves behave well under composition of smooth maps, it is possible to compute the action of the smooth map $ f : \man_1 \ra \man_2 $ on $ X_p \in T_p\man_1 $ as:
+\begin{equation}
+  \dd f_p(X_p) = (f \circ \gamma)'(0)
+\end{equation}
+for any smooth curve $ \gamma : J \ra \man_1 $ such that $ \gamma(0) = p $ and $ \gamma'(0) = X_p $.
+
+\subsection{Integral curves}
+
+A smooth curve $ \gamma : J \ra \man $ naturally determines a tangent vector $ \gamma'(t) \in T_{\gamma(t)}\man $ for each $ t \in J $. It is also possible to work backward, associating a curve to a vector field.
+
+\begin{definition}{Integral curve}{}
+  Let $ \man $ be a smooth manifold and $ X $ be a vector field on $ \man $. An \bcdef{integral curve} of $ X $ is a differentiable curve $ \gamma : J \ra \man $ such that $ \gamma'(t) = X_{\gamma(t)} \,\,\forall t \in J $.
+\end{definition}
+
+Finding an integral curve generally reduces to solving a system of ordinary differential equations (ODEs) in a smooth chart. Indeed, on a smooth coordinate domain $ U \ssq \man $, writing $ \gamma(t) = (\gamma^1(t) , \dots , \gamma^n(t)) $, the condition for $ \gamma $ to be an integral curve of $ X \in \xm $ becomes:
+\begin{equation*}
+  \dot{\gamma}^i(t) \frac{\pa}{\pa x^i} \bigg\vert_{\gamma(t)} = X^i_{\gamma(t)} \frac{\pa}{\pa x^i} \bigg\vert_{\gamma(t)}
+\end{equation*}
+which results in the following autonomous\footnotemark system of ODEs (setting $ X^i_p \equiv X^i(p) $):
+\begin{equation}
+  \begin{cases}
+    \dot{\gamma}^1(t) = X^1(\gamma^1(t) , \dots , \gamma^n(t)) \\
+    \qquad \vdots \\
+    \dot{\gamma}^n(t) = X^n(\gamma^1(t) , \dots , \gamma^n(t)) \\
+  \end{cases}
+\end{equation}
+
+\footnotetext{A system $ \dot{\ve{x}}(t) = \ve{f}(\ve{x}(t)) $ is \emph{autonomous} if $ \ve{f} $ does not depend explicitly on $ t $.}
+
+An important result of Real Analysis guarantees the existence of a solution to this system.
+
+\begin{theorem}{Fundamental theorem of autonomous ODEs}{}
+  Let $ U \in \tp(\R^n) $ and $ \ve{f}  : U \ra \R^n $ is a smooth vector-valued function. Consider the following Cauchy problem:
+  \begin{equation}
+    \begin{cases}
+      \dot{\ve{x}}(t) = \ve{f}(\ve{x}(t)) \\
+      \ve{x}(t_0) = \ve{c}
+    \end{cases}
+    \label{eq:aut-ode-sys}
+  \end{equation}
+  for arbitrary $ t_0 \in \R $ and $ \ve{c} \in U $. Then:
+  \begin{enumerate}
+    \item \label{item:aut-ode-1} (existence) for any $ t_0 \in \R $ and $ \ve{x}_0 \in U $, there exist an open interval $ J_0 \ni t_0 $ and an open subset $ U_0 \ssq U : U_0 \ni \ve{x}_0 $ such that for each $ \ve{c} \in U $ there is a $ \cfk{1} $ map $ \ve{x} : J_0 \ra U $ which solves \eref{eq:aut-ode-sys};
+    \item \label{item:aut-ode-2} (uniqueness) any two differentiable solutions agree on their common domain;
+    \item \label{item:aut-ode-3} (smoothness) given $ J_0 $ and $ U_0 $ as in \itemref{item:aut-ode-1}, and given $ \theta_0 : J_0 \times U_0 \ra U $ defined as $ \theta(t,\ve{c}) = \ve{x}(t) $, where $ \ve{x} : J_0 \ra U $ is the unique solution to \eref{eq:aut-ode-sys} with $ \ve{x}(t_0) = \ve{c} $, then $ \theta $ is smooth.
+  \end{enumerate}
+\end{theorem}
+
+Therefore, given $ X \in \xm $, for each $ p \in \man $ there exist $ \epsilon > 0 $ and a smooth curve $ \gamma : (-\epsilon , \epsilon) \ra \man $ which is an integral curve of $ X $.
+
+\begin{proposition}{Affine reparametrization invariance}{}
+  Let $ X \in \xm $ and $ \gamma : J \ra \man $ an integral curve of $ X $. For any $ a,b \in \R : a \neq 0 $, the curve $ \tilde{\gamma} : \tilde{J} \ra \man : \tilde{\gamma}(t) = a \gamma(t) + b $, with $ \tilde{J} = \{t \in \R : at + b \in J\} $, is still an integral curve of $ X $.
+\end{proposition}
+
+Moreover, it can be shown that, given a smooth map $ f : \man_1 \ra \man_2 $, then $ X \in \xv(\man_1) $ and $ Y \in \xv(\man_2) $ are $ f $-related if and only if $ f $ takes integral curves of $ X $ to integral curves of $ Y $, i.e. for each integral curve $ \gamma $ of $ X $, $ f \circ \gamma $ is an integral curve of $ Y $.
+
+\subsection{Flows}
+
+Another way to visualize the family of integral curves associated with a vector field is the following. Let $ \man $ be a smooth manifold and $ X \in \xm $, and suppose that, for each point $ p \in \man $, there is a unique integral curve $ \theta^{(p)} : \R \ra \man $ of $ X $ starting at $ p $ (i.e. with $ \gamma(0) = p $) and defined for all $ t \in \R $. For each $ t \in \R $, define $ \theta_t : \man \ra \man $ which sends each $ p \in \man $ to the point obtained by following for a time $ t $ the integral curve starting at $ p $, i.e.:
+\begin{equation*}
+  \theta_t(p) = \theta^{(p)}(t)
+\end{equation*}
+Therefore, each map $ \theta_t $ ``slides" the manifold along the integral curves of $ X $ for a time $ t $. By affine reparametrization invariance, for each $ s \in \R $ the map $ t \mapsto \theta^{(p)}(t + s) $ is still an integral curve of $ X $ starting at $ q = \theta^{(p)}(s) $: by the assumed uniqueness of integral curves, then, $ \theta^{(q)}(t) = \theta^{(p)}(s + t) $. Translating to the maps $ \theta_t $:
+\begin{equation*}
+  \theta_t \circ \theta_s = \theta_{t + s}
+\end{equation*}
+Together with $ \theta_0 = \id_\man $, which holds by definition, this implies that the map $ \theta : \R \times \man \ra \man $ is an action of the additive group $ \R_+ $ on $ \man $.
+
+\begin{definition}{Global flow}{}
+  Let $ \man $ be a topological manifold. A \bcdef{global flow} on $ \man $ is a continuous left $ \R_+ $-action on $ \man $, i.e. a continuous map $ \theta : \R \times \man \ra \man $ such that, for any $ s,t \in \R $ and $ p \in \man $:
+  \begin{equation}
+    \theta(t , \theta(s , p)) = \theta(t + s , p)
+    \qquad \qquad
+    \theta(0 , p) = p
+  \end{equation}
+\end{definition}
+
+$ \theta : \R \times \man \ra \man $ is also called a \emph{one-parameter group action}. Given a global flow $ \theta $ on $ \man $, two collections of maps are defined:
+\begin{itemize}
+  \item for each $ t \in \R $, the map $ \theta_t : \man \ra \man $ is defined as $ \theta_t(p) \equiv \theta(t,p) $;
+  \item for each $ p \in \man $, the map $ \theta^{(p)} : \R \ra \man $ is defined as $ \theta^{(q)}(t) = \theta(t,p) $.
+\end{itemize}
+As already noted, $ \theta_t $ follows the group laws, while the image of $ \theta^{(p)} $ is the orbit of $ p $ under the group action.
+Moreover, on a smooth manifold it is possible to associate a vector field $ X $ to the global flow as $ p \mapsto X_p = {\theta^{(p)}}'(0) \in T_p\man $: this is called the \bctxt{infinitesimal generator} of $ \theta $.
+
+\begin{proposition}{Smooth infinitesimal generator}{smooth-infinitesimal-generator}
+  Let $ \theta : \R \times \man \ra \man $ be a smooth global flow on a smooth manifold $ \man $. The infinitesimal generator $ X $ of $ \theta $ is a smooth vector field on $ \man $, and each curve $ \theta^{(p)} $ is an integral curve of $ X $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    To show that $ X \in \xm $, it suffices to show that $ X(f) \in \cfk{\infty}(U) \,\,\forall f \in \cfk{\infty}(U) $, with $ U \in \tp(\man) $. For any such $ f $ and any $ p \in U $:
+    \begin{equation*}
+      X(f)(p) = X_p(f) = {\theta^{(p)}}'(0)(f) = \frac{\dd}{\dd t} \bigg\vert_{t = 0} f(\theta^{(p)}(t)) =  \frac{\pa}{\pa t} \bigg\vert_{(0,p)} f(\theta(t,p))
+    \end{equation*}
+    Since $ f(\theta(t,p)) $ is a smooth function of $ (t,p) $ by composition, $ X(f)(p) $ depends smoothly on $ p $, hence $ X \in \xm $.
+
+    Next, show that $ \theta^{(p)} $ is an integral curve of $ X $ for all $ p \in \man $. This means that $ {\theta^{(p)}}'(t) = X_{\theta^{(p)}(t)} \,\,\forall p \in \man , t \in \R $. Let $ t_0 \in \R $ be arbitrary, and set $ q = \theta^{(p)}(t_0) = \theta_{t_0}(p) $, so WTS $ {\theta^{(p)}}'(t_0) = X_q $. By group law, for all $ t \in \R $:
+    \begin{equation*}
+      \theta^{(q)}(t) = \theta_t(q) = \theta_t(\theta_{t_0}(p)) = \theta_{t+t_0}(p) = \theta^{(p)}(t+t_0)
+    \end{equation*}
+    therefore, for any smooth real-valued function $ f $ defined on a neighbourhood of $ q $:
+    \begin{equation*}
+      X_q(f) = {\theta^{(q)}}'(0)(f) = \frac{\dd}{\dd t} \bigg\vert_{t=0} f(\theta^{(q)}(t)) = \frac{\dd}{\dd t} \bigg\vert_{t=0} f(\theta^{(p)}(t+t_0)) = {\theta^{(p)}}'(t_0)(f)
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+While every smooth global flow gives rise to a smooth vector field whose integral curves are precisely the curves defined by the flow, the converse is not true: indeed, there are smooth vector fields whose integral curves are not defined for all $ t \in \R $.
+
+\begin{definition}{Local flow}{}
+  Let $ \man $ be a smooth manifold. A \emph{flow domain} is $ \dom \in \tp(\R \times \man) $ such that, for each $ p \in \man $, the set $ \dom^{(p)} \equiv \{t \in \R : (t,p) \in \dom\} $ is an open interval with $ 0 \in \dom^{(p)} $. A \bcdef{local flow} on $ \man $ is a continuous map $ \theta : \dom \ra \man $ such that, for all $ p \in \man $:
+  \begin{enumerate}
+    \item $ \theta(0,p) = p $;
+    \item $ \theta(t,\theta(s,p)) = \theta(t+s,p) \,\,\forall s \in \dom^{(p)} , t \in \dom^{(\theta(s,p))} : s+t \in \dom^{(p)} $.
+  \end{enumerate}
+\end{definition}
+
+Just as for a global flow, whenever $ (t,p) \in \dom $, the maps $ \theta_t(p) = \theta^{(p)}(t) = \theta(t,p) $ are defined. Moreover, for each $ t \in \R $, the set $ \man_t \equiv \{p \in \man : (t,p) \in \dom\} $ is defined, so that:
+\begin{equation*}
+  p \in \man_t
+  \quad \iff \quad
+  t \in \dom^{(p)}
+  \quad \iff \quad
+  (t,p) \in \dom
+\end{equation*}
+Given a smooth local flow $ \theta $, its infinitesimal generator $ X $ is defined by $ X_p = {\theta^{(p)}}'(0) $. Identically to \pref{prop:smooth-infinitesimal-generator}, if $ \theta : \dom \ra \man $ is a smooth local flow, then the infinitesimal generator $ X $ of $ \theta $ is a smooth vector field, and each curve $ \theta^{(p)} $ is an integral curve of $ X $. From now on, local flows are simply called ``flows".
+
+A \bctxt{maximal integral curve} is an integral curve which cannot be extended to an integral curve on any larger open interval, while a \bctxt{maximal flow} is a flow which admits no extension to a flow on a larger flow domain.
+
+\begin{theorem}{Fundamental theorem of flows}{}
+  Let $ X \in \xm $. There is a unique smooth maximal flow $ \theta : \dom \ra \man $, called the \bcth{flow of $ X $}, whose infinitesimal generator is $ X $ and such that, for each $ p \in \man $:
+  \begin{enumerate}
+    \item \label{item:ftf-1} $ \theta^{(p)} : \dom^{(p)} \ra \man $ is the unique maximal integral curve of $ X $ starting at $ p $;
+    \item \label{item:ftf-2} if $ s \in \dom^{(p)} $, then $ \dom^{(\theta(s,p))} = \dom^{(p)} - s \equiv \{t-s : t \in \dom^{(p)}\} $.
+  \end{enumerate}
+\end{theorem}
+
+It can be shown that, given a smooth map $ f : \man_1 \ra \man_2 $ and two vector fields $ X \in \xv(\man_1) , Y \in \xv(\man_2) $, denoting the flow of $ X $ as $ \theta $ and the flow of $ Y $ as $ \eta $, if $ X $ and $ Y $ are $ f $-related, then for each $ t \in \R $ the following diagram commutes:
+\begin{equation}
+  f(\man_{1,t}) \ssq \man_{2,t}
+  \qquad \qquad
+  \begin{tikzcd}
+    \man_{1,t} \ar[r , "f"] \ar[d , "\theta_t" , swap] & \man_{2,t} \ar[d , "\eta_t"] \\
+    \man_{1,-t} \ar[r , "f" , swap] & \man_{2,-t}
+  \end{tikzcd}
+\end{equation}
+If $ f $ is a diffeomorphism, then clearly the flow of $ f_* X $ has the domain $ \mat_{2,t} = f(\man_{1,t}) $, for each $ t \in \R $, and is given by:
+\begin{equation}
+  \eta_t = f \circ \theta_t \circ f^{-1}
+\end{equation}
+
+A smooth vector field whose flow is a global flow is said to be \bctxt{complete}. Equivalently, the maximal integral curves of a complete vector field are defined for all $ t \in \R $. While it is difficult, in general, to determine a priori whether a vector field is complete or no, it turns out that a sufficient condition can be imposed on its \emph{support}, i.e. on the closure of the set $ \{p \in \man : X_p \neq 0\} $.
+
+\begin{proposition}{Compactly support and completeness}{}
+  Every compactly-supported smooth vector field on a smooth manifold is complete.
+\end{proposition}
+
+Trivially, then, on a compact smooth manifold every smooth vector field is complete.
+
+\subsection{Lie derivative}
+\label{ssec:lie-der}
+
+In Euclidean space $ \R^n $, the directional derivative is trivially generalized to smooth vector fields. Indeed, given $ X \in \xv(\R^n) $ and $ \ve{v} \in T_p\R^n $, the directional derivative of $ X $ along $ \ve{v} $ is:
+\begin{equation*}
+  D_\ve{v} X(p) = \frac{\dd}{\dd t} \bigg\vert_{t = 0} X_{p + t \ve{v}} = \lim_{t \ra 0} \frac{X_{p + t \ve{v}} - X_p}{t} = D_\ve{v} X^i_p \frac{\pa}{\pa x^i} \bigg\vert_p
+\end{equation*}
+This definition, however, relies on the fact that $ T_{p + t\ve{v}}\R^n \cong \R^n \cong T_p\R^n $, being it a vector space, while for a general manifold $ T_p\man $ and $ T_q\man $ are entirely different vector spaces for $ p \neq q $. The solution is to consider a vector field $ V \in \xm $, in place of $ \ve{v} \in T_p\man $, so as to use the flow of $ V $ to push values of $ X $ to the same point.
+
+\begin{definition}{Lie derivative of vector field}{lie-der-vec}
+  Let $ \man $ be a smooth manifold and $ X,V \in \xm $. The \bcdef{Lie derivative} of $ X $ with respect to $ V $ is the vector field (provided it exists):
+  \begin{equation}
+    (\ld_V X)_p \defeq \frac{\dd}{\dd t} \bigg\vert_{t = 0} \dd (\theta_{-t})_{\theta_t(p)} (X_{\theta_t(p)})
+  \end{equation}
+\end{definition}
+
+Since it is defined from smooth maps, it can be shown that $ \ld_V X \in \xm $. A visualization of the Lie derivative is pictured in \figref{fig:lie-der}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{lie-der.png}
+  \caption{Action of the Lie derivative on a vector field.}
+  \label{fig:lie-der}
+\end{figure}
+
+\dref{def:lie-der-vec} is not particularly useful for computations, since it requires first to find the flow of $ V \in \xm $. Fortunately, a simple formula can be proved to hold for $ X,Y \in \xm $:
+\begin{equation}
+  \ld_V X = [V , X]
+  \label{eq:lie-der-vec}
+\end{equation}
+which relates directly the Lie derivative to the two vector fields considered through their Lie bracket. This formula allows for an interpretation of the Lie bracket: it is the directional derivative of the second vector field along the flow of the first one.
+
+Moreover, a number of non-obvious properties of Lie derivatives follow from the properties of Lie brackets.
+
+\begin{lemma}{Properties of Lie derivative}{properties-lieder}
+  Let $ \man $ be a smooth manifold and $ V,X,Y \in \xm $. Then:
+  \begin{enumerate}
+    \item \label{item:lieder-1} $ \ld_V X = - \ld_X V $;
+    \item \label{item:lieder-2} $ \ld_V [X,Y] = [\ld_V X , Y] + [X , \ld_V Y] $;
+    \item \label{item:lieder-3} $ \ld_{[V,X]} Y = \ld_V \ld_X Y - \ld_X \ld_V Y $;
+    \item \label{item:lieder-4} if $ f \in \cm $, then $ \ld_V(fX) = V(f) X + f \ld_V X $;
+    \item \label{item:lieder-5} if $ f : \man \ra \man' $ is a diffeomorphism, then $ f_*(\ld_V X) = \ld_{f_* V} f_* X $.
+  \end{enumerate}
+\end{lemma}
+
+If $ V,X \in \xm $ and $ \theta $ if the flow of $ V $, the Lie derivative $ (\ld_V X)_p $ expressed, by definition, the $ t $-derivative of $ \dd (\theta_{-t})_{\theta_t(p)} (X_{\theta_t(p)}) $ at $ t = 0 $. To compute this $ t $-derivative at later times, the following formula is found:
+\begin{equation}
+  \frac{\dd}{\dd t} \bigg\vert_{t = t_0} \dd (\theta_{-t})_{\theta_t(p)} (X_{\theta_t(p)}) = \dd (\theta_{-t}) \left( (\ld_V X)_{\theta_{t_0}(p)} \right)
+  \label{eq:vec-dir-der-aux}
+\end{equation}
+
+\subsubsection{Commuting vector fields}
+
+Let $ \man $ be a smooth manifold. $ X,Y \in \xm $ are said to \bctxt{commute} if $ [X,Y] \equiv 0 $. Given a smooth flow $ \theta $ over $ \man $, a vector field if \emph{invariant under $ \theta $} if $ X $ is $ \theta_t $-related to itself for each $ t $: this means that $ X \vert_{\man_t} $ is $ \theta_t $-related to $ X \vert_{\man_{-t}} $ for each $ t $, or equivalently $ \dd (\theta_t)_p (X_p) = X_{\theta_t(p)} $ for all $ (t,p) $ in the domain of $ \theta $. These two concepts are closely related by the Lie derivative.
+
+\begin{proposition}{Commutativity and flow invariance}{comm-flow}
+  Let $ X,Y \in \xm $. Then the following conditions are equivalent:
+  \begin{enumerate}
+    \item \label{item:comm-flow-1} $ X $ and $ Y $ commute;
+    \item \label{item:comm-flow-2} $ X $ is invariant under the flow of $ Y $;
+    \item \label{item:comm-flow-3} $ Y $ is invariant under the flow of $ X $.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Denote the flow of $ Y $ with $ \theta $. If \itemref{item:comm-flow-2} holds, then $ X_{\theta_t(p)} = \dd (\theta_t)_p (X_p) $ for all $ (t,p) $ in the domain of $ \theta $. Applying $ \dd (\theta_{-t})_{\theta_t(p)} $ to both sides, $ X_p = \dd (\theta_{-t})_{\theta_t(p)}(X_{\theta_t(p)}) $ which directly implies $ [Y,X] = \ld_Y X = 0 $ from \dref{def:lie-der-vec}. The same argument shows that \itemref{item:comm-flow-3} $ \implies $ \itemref{item:comm-flow-1}.
+
+    To prove that \itemref{item:comm-flow-1} $ \implies $ \itemref{item:comm-flow-2}, assume $ [Y,X] = \ld_Y X = 0 $. Let $ p \in \man $ be arbitrary, and let $ W(t) = \dd (\theta_{-t})_{\theta_t(p)}(X_{\theta_t(p)}) $ for $ t \in \dom^{(p)} $. By \eref{eq:vec-dir-der-aux} $ W'(t) \equiv 0 $, but since $ W(0) = X_p $, this implies $ W(t) = X_p \,\,\forall t \in \dom^{(p)} $. Applying $ \dd (\theta_t)_p $ to both sides shows that $ X $ is invariant under $ \theta $. The same argument shows that \itemref{item:comm-flow-1} $ \implies $ \itemref{item:comm-flow-3}.
+  \end{proof}
+\end{proofbox}
+
+Trivially, then, every smooth vector field is invariant under its own flow, as $ [X,X] \equiv 0 $.
+
+A deeper characterization of commuting vector fields is in terms of the relationship between their respective flows. Suppose $ X,Y \in \xm $, and let $ \theta $ and $ \psi $ denote their respective flows. If $ X $ and $ Y $ are complete, these flows are said to \emph{commute} if $ \theta_t \circ \psi_s = \psi_s \circ \theta_t \,\,\forall s,t \in \R $. In general, however, the naive imposition of this relation on the intersection of the flow domains does not give the right result (i.e. the flows might not commute in this naive sense, even though the vector field do).
+
+\begin{definition}{Commuting flows}{}
+  Let $ \man $ be a smooth manifold and let $ \theta , \psi $ be smooth flows on $ \man $. Then, $ \theta $ and $ \psi $ are said to \bcdef{commute} if, for every $ p \in \man $, whenever $ J , K \ni 0 $ are open intervals such that one of the expressions $ \theta_t \circ \psi_s $ or $ \psi_s \circ \theta_t $ is defined for all $ (s,t) \in J \times K $, then both are defined and they are equal.
+\end{definition}
+
+Obviously, this definition includes the aforementioned case of global smooth flows.
+
+\begin{theorem}{Commutativity}{}
+  Smooth vector fields commute if and only if their flows commute.
+\end{theorem}
+
+An important application of commuting vector fields is in the study of frames on smooth manifolds. Given a smooth $ n $-manifold $ \man $, a smooth local frame $ (E_1 , \dots , E_n) $ is a \bctxt{commuting frame} (or \emph{holonomic frame}) if $ [E_i , E_j] = 0 \,\,\forall i,j = 1 , \dots , n $.
+
+Since every coordinate frame is a commuting frame, given that Lie brackets are defined independently of local charts, it follows that a necessary condition for a smooth frame to be expressible as a coordinate frame in some smooth chart is that it must be a commuting frame. It turns out that this is, in fact, a sufficient condition too.
+
+\begin{proposition}{Commuting and coordinate frames}{}
+  Let $ \man $ be a smooth $ n $-manifold, and let $ (X_1 , \dots , X_k) $ be a linearly independent $ k $-tuple of smooth commuting vector fields on $ V \in \tp(\man) $. Then, for each $ p \in V $, there exists a smooth coordinate chart $ (U , (x^i)) $ centered at $ p $ such that $ V_i = \pa_i $ for $ i = 1 , \dots , k $.
+\end{proposition}
+
+
+
+
+
 
 
 
@@ -424,14 +1153,9 @@ Given an open set $ U \ssq \man $, the isomorphism $ \dd \iota_p : T_pU \ra T_p\
 The study of tensor fields on a smooth manifold $ \man $ can be extended with the definition of an additional structure: tensor bundles.
 
 \subsection{Vector bundles}
+\label{ssec:vector-bundles}
 
-Consider the disjoint union of all tangent spaces to points of a smooth manifold $ \man $:
-\begin{equation}
-  T\man \defeq \bigsqcup_{p \in \man} T_p\man \equiv \bigcup_{p \in \man} \{p\} \times T_p\man = \{(p , X_p) : p \in \man , X_p \in T_p\man\}
-\end{equation}
-This set comes equipped with a natural projection map $ \pi : T\man \ra \man $ which sends each vector in $ T_p\man $ to the point $ p \in \man $ at which it is tangent: $ \pi(p , X_p) = p $. In the following, with an abuse of notation, the tangent space $ T_p\man $ is often identified with its image under the canonical injection $ T_p\man \hookrightarrow T\man : X_p \mapsto (p , X_p) $, so as to write simply $ X_p $ in place of $ (p , X_p) $.
-
-It is possible to give additional structure to $ T\man $, other than that of disjoint union of tangent spaces.
+It is possible to give additional structure to the tangent bundle $ T\man $ of a smooth manifold $ \man $, in addition to that of smooth manifold.
 
 \begin{definition}{$ \R $-vector bundle}{}
   Given a topological space $ M $, an \bcdef{$ \R $-vector bundle of rank $ k $} over $ M $ is a topological space $ E $ together with a surjective continuous map $ \pi : E \ra M $ such that:
@@ -449,39 +1173,12 @@ This definition generalizes trivially to complex vector bundle substituting $ \R
 
 If $ M $ and $ E $ are smooth manifolds, $ \pi $ is a smooth map and the local trivializations can be chosen to be diffeomorphisms, then $ E $ is called a \bctxt{smooth vector bundle}. If there exists a local trivialization of $ E $ over the whole $ M $, i.e. $ \chi : E \ra M \times \R^k $, then $ E $ is said to be a \emph{trivial bundle}.
 
-\begin{proposition}{Tangent bundle}{}
-  Given a smooth $ n $-manifold $ \man $, then $ T\man $ has a natural structure of $ 2n $-dimensional smooth manifold. Moreover, the natural projection $ \pi : T\man \ra \man $ is smooth, giving to $ T\man $ the structure of smooth vector bundle of rank $ n $ over $ \man $, called the \bcprop{tangent bundle} of $ \man $.
+\begin{proposition}{Tangent bundle as vector bundle}{}
+  Given a smooth $ n $-manifold $ \man $, then its tangent bundle $ T\man $ has the structure of smooth vector bundle of rank $ n $ over $ \man $.
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    First, show that $ T\man $ is a smooth $ 2n $-manifold. Since $ T\man $ does not come endowed with a topology, it is convenient to use \lref{lemma:smooth-chart-lemma}.
-
-    Given any smooth chart $ (U , \varphi) $ over $ \man $, note that $ \pi^{-1}(U) \ssq T\man $ is the set of all tangent vectors to $ \man $ at all points of $ U $. Denote the coordinate functions of $ \varphi $ as $ (x^1 , \dots , x^n) $, and define the map $ \tilde{\varphi} : \pi^{-1}(U) \ra \R^{2n} $ as:
-    \begin{equation*}
-      \tilde{\varphi} \left( X^\mu \frac{\pa}{\pa x^\mu} \bigg\vert_p \right) \equiv (x^1(p) , \dots , x^n(p) , X^1 , \dots , X^n)
-    \end{equation*}
-    Clearly, $ \im \tilde{\varphi} = \varphi(U) \times \R^n \in \tp(\R^{2n}) $, hence it is continuous. Moreover, it is a bijection onto its image, since its inverse can be written explicitly as:
-    \begin{equation*}
-      \tilde{\varphi}^{-1}(x^1 , \dots , x^n , X^1 , \dots , X^n) = X^\mu \frac{\pa}{\pa x^\mu} \bigg\vert_{\varphi^{-1}(p)}
-    \end{equation*}
-    Therefore, $ \tilde{\varphi} $ is a homeomorphism, and $ (\pi^{-1}(U) , \tilde{\varphi}) $ is a chart over $ T\man $. Then, consider two smooth charts $ (U , \varphi) , (V , \psi) $ over $ \man $, and the associated charts $ (\pi^{-1}(U) , \tilde{\varphi}) , (\pi^{-1}(V) , \tilde{\psi}) $ over $ T\man $. The following sets:
-    \begin{equation*}
-      \tilde{\varphi}(\pi^{-1}(U) \cap \pi^{-1}(V)) = \varphi(U \cap V) \times \R^n
-    \end{equation*}
-    \begin{equation*}
-      \tilde{\psi}(\pi^{-1}(U) \cap \pi^{-1}(V)) = \psi(U \cap V) \times \R^n
-    \end{equation*}
-    are in $ \tp(\R^{2n}) $, and the transition map $ \tilde{\psi} \circ \tilde{\varphi}^{-1} : \varphi(U \cap V) \times \R^n \ra \psi(U \cap V) \times \R^n $ between them can be written explicitly as:
-    \begin{equation*}
-      \tilde{\psi} \circ \tilde{\varphi}^{-1} (x^1 , \dots , X^1 , \dots , X^n) = \left( y^1(x) , \dots , y^n(x) , \frac{\pa y^1}{\pa x^\mu} X^\mu , \dots , \frac{\pa y^n}{\pa x^\mu} X^\mu \right)
-    \end{equation*}
-    where $ (y^1 , \dots , y^n) $ are the coordinate functions of $ \psi $. This is clearly smooth, hence the charts $ (\pi^{-1}(U) , \tilde{\varphi}) $ and $ (\pi^{-1}(V) , \tilde{\psi}) $ are smoothly compatible.
-
-    Choosing a countable cover $ \{U_\alpha\} $ of $ \man $ from the smooth coordinate domains of $ \man $, a countable cover of $ T\man $ is obtained as $ \{\pi^{-1}(U_\alpha)\} $: this countable cover satisfies the conditions \itemref{item:scl-1}-\itemref{item:scl-4} of \lref{lemma:smooth-chart-lemma}. To check the Hausdorff condition \itemref{item:scl-5}, just note that any two points in same fiber of $ \pi $ lie in the same chart, while if $ (p,X) $ and $ (q,Y) $ lie in different fibers, there exist disjoint smooth coordinate domains $ U , V \ssq \man $ such that $ p \in U $ and $ q \in V $, and $ \pi^{-1}(U) \ni (p,X) $ and $ \pi^{-1}(V) \ni (q,Y) $ are disjoint coordinate neighbourhoods. Therefore, by \lref{lemma:smooth-chart-lemma}, $ T\man $ is a smooth $ 2n $-manifold.
-
-    Now, to see that $ \pi : T\man \ra \man $ is smooth, note that, with respect to charts $ (U,\varphi) $ of $ \man $ and $ (\pi^{-1}(U) , \tilde{\varphi}) $ of $ T\man $, its coordinate representation is $ \pi(p , X) = (x^1 , \dots , x^n) $.
-
     Finally, show that $ T\man $ is a vector bundle over $ \man $. The fibers $ \pi^{-1}(p) = T_p\man $ are $ n $-dimensional $ \R $-vector spaces by \tref{th:tangent-space}, hence only the smooth local trivializations need to be constructed.
 
     Given any smooth chart $ (U,\varphi) $ of $ \man $ with coordinates $ (x^1 , \dots , x^n) $, define the map $ \chi : \pi^{-1}(U) \ra U \times \R^n $ as:
