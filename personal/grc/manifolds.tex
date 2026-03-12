@@ -377,7 +377,7 @@ There is, however, an important issue to be addressed first: while tangent space
 
 Given an open set $ U \ssq \man $, the isomorphism $ \dd \iota_p : T_pU \ra T_p\man $ is canonically defined, independently on any choices: it is then possible to identify $ T_pU \cong T_p\man $ for any point $ p \in U $. This identification comes from the fact that $ \dd \iota_p(X_p) $ is the same derivation as $ X_p $, just acting on functions on the whole manifold instead of on $ U $ only: since by \lref{lemma:local-derivation} the action of a derivation on a function depends only on the values of the function on arbitrarily small neighbourhoods, this identification is well-posed. In particular, this means that any tangent vector $ X_p \in T_p\man $ can be unambiguously applied to functions defined only in a neighbourhood of $ p $, not necessarily on the whole $ \man $.
 
-\begin{theorem}{Dimension of tangent spaces}{}
+\begin{theorem}{Dimension of tangent spaces}{tangent-space}
   Let $ \man $ be a smooth $ n $-manifold and $ p \in \man $. Then $ T_p\man $ is an $ n $-dimensional $ \R $-vector space.
 \end{theorem}
 
@@ -519,9 +519,9 @@ It is then clear that the components of tangent vectors transform inversely with
 \end{definition}
 This set comes equipped with a natural projection map $ \pi : T\man \ra \man $ which sends each vector in $ T_p\man $ to the point $ p \in \man $ at which it is tangent: $ \pi(p , X_p) = p $. In the following, with an abuse of notation, the tangent space $ T_p\man $ is often identified with its image under the canonical injection $ T_p\man \hookrightarrow T\man : X_p \mapsto (p , X_p) $, so as to write simply $ X_p $ in place of $ (p , X_p) $.
 
-Note that, in general, the tangent bundle can be identified as a Cartesian product only locally, while globally its structure may be more complex (see \secref{ssec:vector-bundles}).
+Note that, in general, the tangent bundle can be identified as a Cartesian product only locally, while globally its structure may be more complex (see \secref{ssec:tangent-bundle}).
 
-\begin{proposition}{Tangent bundle as smooth manifold}{}
+\begin{proposition}{Tangent bundle as smooth manifold}{tangent-bundle-smooth}
   Given a smooth $ n $-manifold $ \man $, its tangent bundle $ T\man $ has a natural structure of $ 2n $-dimensional smooth manifold, with respect to which the projection $ \pi : T\man \ra \man $ is smooth.
 \end{proposition}
 
@@ -866,7 +866,7 @@ for any smooth curve $ \gamma : J \ra \man_1 $ such that $ \gamma(0) = p $ and $
 
 A smooth curve $ \gamma : J \ra \man $ naturally determines a tangent vector $ \gamma'(t) \in T_{\gamma(t)}\man $ for each $ t \in J $. It is also possible to work backward, associating a curve to a vector field.
 
-\begin{definition}{Integral curve}{}
+\begin{definition}{Integral curve}{integral-curve}
   Let $ \man $ be a smooth manifold and $ X $ be a vector field on $ \man $. An \bcdef{integral curve} of $ X $ is a differentiable curve $ \gamma : J \ra \man $ such that $ \gamma'(t) = X_{\gamma(t)} \,\,\forall t \in J $.
 \end{definition}
 
@@ -881,13 +881,14 @@ which results in the following autonomous\footnotemark system of ODEs (setting $
     \qquad \vdots \\
     \dot{\gamma}^n(t) = X^n(\gamma^1(t) , \dots , \gamma^n(t)) \\
   \end{cases}
+  \label{eq:aut-sys}
 \end{equation}
 
 \footnotetext{A system $ \dot{\ve{x}}(t) = \ve{f}(\ve{x}(t)) $ is \emph{autonomous} if $ \ve{f} $ does not depend explicitly on $ t $.}
 
 An important result of Real Analysis guarantees the existence of a solution to this system.
 
-\begin{theorem}{Fundamental theorem of autonomous ODEs}{}
+\begin{theorem}{Fundamental theorem of autonomous ODEs}{aut-odes}
   Let $ U \in \tp(\R^n) $ and $ \ve{f}  : U \ra \R^n $ is a smooth vector-valued function. Consider the following Cauchy problem:
   \begin{equation}
     \begin{cases}
@@ -987,7 +988,7 @@ Given a smooth local flow $ \theta $, its infinitesimal generator $ X $ is defin
 
 A \bctxt{maximal integral curve} is an integral curve which cannot be extended to an integral curve on any larger open interval, while a \bctxt{maximal flow} is a flow which admits no extension to a flow on a larger flow domain.
 
-\begin{theorem}{Fundamental theorem of flows}{}
+\begin{theorem}{Fundamental theorem of flows}{fundamental-flows}
   Let $ X \in \xm $. There is a unique smooth maximal flow $ \theta : \dom \ra \man $, called the \bcth{flow of $ X $}, whose infinitesimal generator is $ X $ and such that, for each $ p \in \man $:
   \begin{enumerate}
     \item \label{item:ftf-1} $ \theta^{(p)} : \dom^{(p)} \ra \man $ is the unique maximal integral curve of $ X $ starting at $ p $;
@@ -1091,13 +1092,11 @@ Let $ \man $ be a smooth manifold. $ X,Y \in \xm $ are said to \bctxt{commute} i
 
 Trivially, then, every smooth vector field is invariant under its own flow, as $ [X,X] \equiv 0 $.
 
-A deeper characterization of commuting vector fields is in terms of the relationship between their respective flows. Suppose $ X,Y \in \xm $, and let $ \theta $ and $ \psi $ denote their respective flows. If $ X $ and $ Y $ are complete, these flows are said to \emph{commute} if $ \theta_t \circ \psi_s = \psi_s \circ \theta_t \,\,\forall s,t \in \R $. In general, however, the naive imposition of this relation on the intersection of the flow domains does not give the right result (i.e. the flows might not commute in this naive sense, even though the vector field do).
+A deeper characterization of commuting vector fields is in terms of the relationship between their respective flows. Suppose $ X,Y \in \xm $, and let $ \theta $ and $ \psi $ denote their respective flows. If $ X $ and $ Y $ are complete, these flows are said to \emph{commute} if $ \theta_t \circ \psi_s = \psi_s \circ \theta_t \,\,\forall s,t \in \R $. In general, however, the naive imposition of this relation on the intersection of the flow domains does not give the right result (i.e. the flows might not commute in this naive sense, even though the vector field do). A generalization of the commutation condition is possible.
 
 \begin{definition}{Commuting flows}{}
   Let $ \man $ be a smooth manifold and let $ \theta , \psi $ be smooth flows on $ \man $. Then, $ \theta $ and $ \psi $ are said to \bcdef{commute} if, for every $ p \in \man $, whenever $ J , K \ni 0 $ are open intervals such that one of the expressions $ \theta_t \circ \psi_s $ or $ \psi_s \circ \theta_t $ is defined for all $ (s,t) \in J \times K $, then both are defined and they are equal.
 \end{definition}
-
-Obviously, this definition includes the aforementioned case of global smooth flows.
 
 \begin{theorem}{Commutativity}{}
   Smooth vector fields commute if and only if their flows commute.
@@ -1111,51 +1110,48 @@ Since every coordinate frame is a commuting frame, given that Lie brackets are d
   Let $ \man $ be a smooth $ n $-manifold, and let $ (X_1 , \dots , X_k) $ be a linearly independent $ k $-tuple of smooth commuting vector fields on $ V \in \tp(\man) $. Then, for each $ p \in V $, there exists a smooth coordinate chart $ (U , (x^i)) $ centered at $ p $ such that $ V_i = \pa_i $ for $ i = 1 , \dots , k $.
 \end{proposition}
 
+\subsubsection{Time-dependent vector fields}
 
+The analysis of integral curves has been so far limited to time-independent vector fields, for which the system of autonomous ODEs \eref{eq:aut-sys} is granted to have a solution by \tref{th:aut-odes}. Now, the case of non-autonomous ODEs is explored.
 
+\begin{definition}{Time-dependent vector field}{}
+  Let $ \man $ be a smooth manifold. A \bcdef{time-dependent vector field} is a continuous map $ X : J \times \man \ra T\man $, where $ J \ssq \R $ is an interval, such that $ X(t,p) \in T_p\man $ for each $ (t,p) \in J \times \man $.
+\end{definition}
 
+By this definition, the map $ X_t : \man \ra T\man : X_t(p) = X(t,p) $ is clearly a vector field on $ \man $ for each $ t \in J $. Then, given an interval $ J_0 \ssq J $, a curve $ \gamma : J_0 \ra \man $ is an integral curve of $ X $ if:
+\begin{equation}
+  \gamma'(t) = X(t, \gamma(t))
+\end{equation}
+for all $ t \in J_0 $. This is a natural extension of \dref{def:integral-curve}: indeed, note that any ordinary vector field $ X $ on $ \man $ determines a time-dependent vector field on $ \R \times \man $ just by setting $ X(t,p) \equiv X_p $.
 
+A time-dependent vector field might not generate a flow, since two integral curves starting at the same point but at different times might follow a different path, while all integral curves of a flow through a given point must have the same image. In this context, the fundamental theorem of flows \tref{th:fundamental-flows} is generalized as follows.
 
+\begin{theorem}{Fundamental theorem of time-dependent flows}{}
+  Let $ \man $ be a smooth manifold, let $ J \ssq \R $ be an interval, and let $ X : J \times \man \ra T\man $ be a smooth time-dependent vector field on $ \man $. There exist $ \mathcal{E} \in \tp(J \times J \times \man) $ and a smooth map $ \psi : \mathcal{E} \ra \man $, called the \bcth{time-dependent flow of $ X $}, such that:
+  \begin{enumerate}
+    \item \label{item:fttdf-1} for each $ t_0 \in J $ and $ p \in \man $, the set $ \mathcal{E}^{(t_0,p)} = \{t \in J : (t,t_0,p) \in \mathcal{E}\} \ni t_0 $ is an open interval, and the smooth curve $ \psi^{(t_0,p)} : \mathcal{E}^{(t_0,p)} \ra \man $ defined by $ \psi^{(t_0,p)}(t) = \psi(t,t_0,p) $ is the unique maximal integral curve of $ X $ with initial condition $ \psi^{(t_0,p)}(t_0) = p $;
+    \item \label{item:fttdf-2} if $ t_1 \in \mathcal{E}^{(t_0,p)} $ and $ q = \psi^{(t_0,p)}(t_1) $, then $ \mathcal{E}^{(t_1,p)} = \mathcal{E}^{(t_0,p)} $ and $ \psi^{(t_1,p)} = \psi^{(t_0,p)} $;
+    \item \label{item:fttdf-3} for each $ (t_1,t_0) \in J \times J $, the set $ \man_{t_1,t_0} = \{p \in \man : (t_1,t_0,p) \in \mathcal{E}\} \in \tp(\man) $, and the map $ \psi_{t_1,t_0} : \man_{t_1,t_0} \ra \man $ defined by $ \psi_{t_1,t_0}(p) = \psi(t_1,t_0,p) $ is a diffeomorphism from $ \man_{t_1,t_0} $ to $ \man_{t_0,t_1} $ with inverse $ \psi_{t_0,t_1} $;
+    \item \label{item:fttdf-4} if $ p \in \man_{t_1,t_0} $ and $ \psi_{t_1,t_0}(p) \in \man_{t_2,t_1} $, then $ p \in \man_{t_2,t_0} $ and $ \psi_{t_2,t_1} \circ \psi_{t_1,t_0}(p) = \psi_{t_2,t_0}(p) $.
+  \end{enumerate}
+\end{theorem}
 
+\begin{example}{Euclidean example}{}
+  Define a time-dependent vector field $ X $ on $ \R^n $ as:
+  \begin{equation*}
+    X(t,x) = \frac{1}{t} x^i \frac{\pa}{\pa x^i} \bigg\vert_x
+    \qquad
+    (t,x) \in \R^+ \times \R^n
+  \end{equation*}
+  Consider arbitrary $ (t_0,x_0) \in \R_+ \times \R^n $, and let $ \gamma(t) = (x^1(t) , \dots , x^n(t)) $ denote the integral curve of $ X $ with initial condition $ \gamma(t_0) = x_0 $, described by the following system of non-autonomous ODEs: $ \dot{x}^i(t) = x^i(t) / t $ and $ x^i(t_0) = x^i_0 $, for $ i = 1 , \dots , n $.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  The maximal solution is easily found as $ x^i(t) = t x^i_0 / t_0 $, for $ t \in \R^+ $, hence the time-dependent flow of $ X $ is given by $ \psi(t,t_0,x) = t x / t_0 $, for $ (t,t_0,x) \in \R^+ \times \R^+ \times \R^n $.
+\end{example}
 
 \newpage
-\section{Tensor bundles}
+\section{Vector bundles}
 
-The study of tensor fields on a smooth manifold $ \man $ can be extended with the definition of an additional structure: tensor bundles.
-
-\subsection{Vector bundles}
-\label{ssec:vector-bundles}
-
-It is possible to give additional structure to the tangent bundle $ T\man $ of a smooth manifold $ \man $, in addition to that of smooth manifold.
+It is possible to define additional structure on a topological manifold, in addition to a smooth structure.
 
 \begin{definition}{$ \R $-vector bundle}{}
   Given a topological space $ M $, an \bcdef{$ \R $-vector bundle of rank $ k $} over $ M $ is a topological space $ E $ together with a surjective continuous map $ \pi : E \ra M $ such that:
@@ -1163,7 +1159,7 @@ It is possible to give additional structure to the tangent bundle $ T\man $ of a
     \item $ \forall p \in M $ the \emph{fiber} $ E_p = \pi^{-1}(p) $ over $ p $ is endowed with the structure of a $ k $-dimensional $ \R $-vector space;
     \item $ \forall p \in M \, \exists U \ssq M : p \in U \land \chi : \pi^{-1}(U) \ra U \times \R^k $ homeomorphism, called \emph{local trivialization of $ E $ over $ U $}, such that:
       \begin{itemize}
-        \item $ \pi_U \circ \chi = \pi $, with the projector $ \pi_U : U \times \R^k \ra U $;
+        \item $ \pi_1 \circ \chi = \pi $, with the projector $ \pi_1 : U \times \R^k \ra U $;
         \item $ \forall q \in U $ the restriction of $ \chi $ to $ E_q $ is a vector-space isomorphism between $ E_q $ and $ \{q\} \times \R^k \cong \R^k $.
       \end{itemize}
   \end{enumerate}
@@ -1171,7 +1167,48 @@ It is possible to give additional structure to the tangent bundle $ T\man $ of a
 
 This definition generalizes trivially to complex vector bundle substituting $ \R $ with $ \C $. In the following, only real vector bundles are considered.
 
-If $ M $ and $ E $ are smooth manifolds, $ \pi $ is a smooth map and the local trivializations can be chosen to be diffeomorphisms, then $ E $ is called a \bctxt{smooth vector bundle}. If there exists a local trivialization of $ E $ over the whole $ M $, i.e. $ \chi : E \ra M \times \R^k $, then $ E $ is said to be a \emph{trivial bundle}.
+If $ M $ and $ E $ are smooth manifolds, $ \pi $ is a smooth map and the local trivializations can be chosen to be diffeomorphisms, then $ E $ is called a \bctxt{smooth vector bundle}. If there exists a local trivialization of $ E $ over the whole $ M $, i.e. $ \chi : E \ra M \times \R^k $, then $ E $ is said to be a \emph{trivial bundle}: clearly, any non-trivial bundle requires more than one trivialization.
+
+\begin{lemma}{}{}
+  Let $ \pi : E \ra \man $ be a smooth vector bundle of rank $ k $ over $ \man $, and suppose $ \chi : \pi^{-1}(U) \ra U \times \R^k $ and $ \psi : \pi^{-1}(V) \ra V \times \R^k $ are smooth local trivializations of $ E $ such that $ U \cap V \neq \emptyset $. Then, there exists a smooth map $ \tau : U \cap V \ra \GL{k,\R} $ such that $ \chi \circ \psi^{-1} : (U \cap V) \times \R^k \ra (U \cap V) \times \R^k $ has the form:
+  \begin{equation}
+    \chi \circ \psi^{-1}(p,v) = (p , \tau(p)v)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By hypothesis, the following diagram commutes:
+    \begin{equation*}
+      \begin{tikzcd}
+        (U \cap V) \times \R^k \ar[dr , "\pi_1" , swap] & \pi^{-1}(U \cap V) \ar[l , "\psi" , swap] \ar[r , "\chi"] \ar[d , "\pi" , swap] & (U \cap V) \times \R^k \ar[dl , "\pi_1"] \\
+                                                                       & U \cap V
+      \end{tikzcd}
+    \end{equation*}
+    where the local trivialization are interpreted as the respective restrictions on $ \pi^{-1}(U \cap V) $. It follows that $ \pi_1 \circ (\chi \circ \psi^{-1}) = \pi_1 $, hence:
+    \begin{equation*}
+      \chi \circ \psi^{-1}(p,v) = (p , \sigma(p,v))
+    \end{equation*}
+    for some smooth map $ \sigma : (U \cap V) \times \R^k \ra \R^k $. Moreover, for each $ p \in U \cap V $, the map $ \R^k \ra \R^k $ defined as $ v \mapsto \sigma(p,v) $ is an invertible linear map, hence the thesis.
+  \end{proof}
+\end{proofbox}
+
+The smooth map $ \tau : U \cap V \ra \GL{n,\R} $ is called the \bctxt{transition function} between $ \chi $ and $ \psi $.
+
+A natural construction for a smooth vector bundle on a smooth manifold is to define a collection of vector spaces, one for each point of the manifold: this is the same idea as the tangent bundle, which is in fact a vector bundle (see \secref{ssec:tangent-bundle}). In order to make such a collection a smooth vector bundle, one first needs to define a manifold topology and a smooth structure on the total space of the bundle, i.e. on the disjoint union of said collection, and then construct the smooth local trivializations. However, these steps can be condensated, provided that local trivializations overlap with smooth transition functions.
+
+\begin{theorem}{Vector bundle construction theorem}{}
+  Let $ \man $ be a smooth manifold, and let $ \{U_\alpha\}_{\alpha \in \mathcal{I}} $ be an open cover of $ \man $. Suppose that, for each $ \alpha , \beta , \gamma \in \mathcal{I} $, there exists a smooth map $ \tau_{\alpha \beta} : U_\alpha \cap U_\beta \ra \GL{k,\R} $ such that:
+  \begin{equation}
+    \tau_{\alpha \beta}(p) \tau_{\beta \gamma}(p) = \tau_{\alpha \gamma}(p)
+    \qquad
+    \forall p \in U_\alpha \cap U_\beta \cap U_\beta
+  \end{equation}
+  Then, there exists a smooth rank-$ k $ vector bundle $ \pi : E \ra \man $ with smooth local trivializations $ \chi_\alpha : \pi^{-1}(U_\alpha) \ra U_\alpha \times \R^k $, whose transition functions are the given maps $ \tau_{\alpha \beta} $.
+\end{theorem}
+
+\subsection{Tangent bundle}
+\label{ssec:tangent-bundle}
 
 \begin{proposition}{Tangent bundle as vector bundle}{}
   Given a smooth $ n $-manifold $ \man $, then its tangent bundle $ T\man $ has the structure of smooth vector bundle of rank $ n $ over $ \man $.
@@ -1179,16 +1216,16 @@ If $ M $ and $ E $ are smooth manifolds, $ \pi $ is a smooth map and the local t
 
 \begin{proofbox}
   \begin{proof}
-    Finally, show that $ T\man $ is a vector bundle over $ \man $. The fibers $ \pi^{-1}(p) = T_p\man $ are $ n $-dimensional $ \R $-vector spaces by \tref{th:tangent-space}, hence only the smooth local trivializations need to be constructed.
+    Since the fibers $ \pi^{-1}(p) = T_p\man $ are $ n $-dimensional $ \R $-vector spaces by \tref{th:tangent-space}, only the smooth local trivializations need to be constructed.
 
     Given any smooth chart $ (U,\varphi) $ of $ \man $ with coordinates $ (x^1 , \dots , x^n) $, define the map $ \chi : \pi^{-1}(U) \ra U \times \R^n $ as:
     \begin{equation*}
-      \chi \left( X^\mu \frac{\pa}{\pa x^\mu} \bigg\vert_p \right) = (p , X^1 , \dots , X^n)
+      \chi : X^i \frac{\pa}{\pa x^i} \bigg\vert_p \mapsto (p , X^1 , \dots , X^n)
     \end{equation*}
-    This is clearly linear on fibers and satisfies $ \pi_U \circ \chi = \pi $, i.e. the following diagram is commutative:
+    This is linear on fibers and satisfies $ \pi_1 \circ \chi = \pi $, i.e. the following diagram is commutative:
     \begin{equation*}
       \begin{tikzcd}
-        \pi^{-1}(U) \ar[r , "\chi"] \ar[dr, "\pi", swap] & U \times \R^n \ar[d , "\pi_U"] \\
+        \pi^{-1}(U) \ar[r , "\chi"] \ar[dr, "\pi", swap] & U \times \R^n \ar[d , "\pi_1"] \\
         & U
       \end{tikzcd}
     \end{equation*}
@@ -1196,11 +1233,13 @@ If $ M $ and $ E $ are smooth manifolds, $ \pi $ is a smooth map and the local t
     \begin{equation*}
       \pi^{-1}(U) \xrightarrow{\chi} U \times \R^n \xrightarrow{\varphi \times \id_{\R^n}} \varphi(U) \times \R^n \ssq \R^{2n}
     \end{equation*}
-    is equal to the coordinate map $ \tilde{\varphi} : \pi^{-1}(U) \ra \R^{2n} $ defined above. Both $ \varphi \times \id_{\R^n} $ and $ \tilde{\varphi} $ are diffeomorphisms, hence so is $ \chi $. Thus, $ \chi $ is a smooth local trivialization of $ T\man $ over $ U \ssq \man $.
+    is equal to the coordinate map $ \tilde{\varphi} : \pi^{-1}(U) \ra \R^{2n} $ defined above. Both $ \varphi \times \id_{\R^n} $ and $ \tilde{\varphi} $ are diffeomorphisms, hence $ \chi $ is a smooth local trivialization of $ T\man $ over $ U \ssq \man $.
   \end{proof}
 \end{proofbox}
 
-The coordinates $ (x^\mu , X^\mu) $ are called \emph{natural coordinates} on $ T\man $.
+It can be shown that the smooth structure defined in \pref{prop:tangent-bundle-smooth} is the only smooth structure on $ T\man $ such that $ \pi : T\man \ra \man $ is smooth vector bundle. The coordinates $ (x^i , X^i) $ are called \emph{natural coordinates} on $ T\man $.
+
+\subsubsection{Sections and frames}
 
 The natural structure of $ T\man $ as a vector bundle over $ \man $ allows to import the notions of vector bundles on the tangent bundle.
 
@@ -1245,323 +1284,129 @@ Local frames are linked to local trivializations. To see this, consider a smooth
   \sigma_i(p) = \chi^{-1}(p,e_i) = \chi^{-1} \circ \tilde{e}_i(p)
   \qquad \qquad
   \begin{tikzcd}
-    \pi^{-1}(U) \ar[rr , "\chi"] \ar[dr , "\pi"] & & U \times \R^k \ar[dl , "\pi_U" , swap] \\
+    \pi^{-1}(U) \ar[rr , "\chi"] \ar[dr , "\pi"] & & U \times \R^k \ar[dl , "\pi_1" , swap] \\
                                                  & U \ar[ul, "\sigma_i", bend left = 40] \ar[ur, "\tilde{e}_i", bend right = 40] &
   \end{tikzcd}
 \end{equation*}
 Then, $ \sigma_i $ is smooth since $ \chi $ is a diffeomorphism, and it is a section of $ E $:
 \begin{equation*}
-  \pi_U \circ \chi = \pi
+  \pi_1 \circ \chi = \pi
   \quad \implies \quad
-  \pi \circ \sigma_i(p) = \pi \circ \chi^{-1}(p , e_i) = \pi_U(p , e_i) = p
+  \pi \circ \sigma_i(p) = \pi \circ \chi^{-1}(p , e_i) = \pi_1(p , e_i) = p
 \end{equation*}
 To see that $ (\sigma_1(p) , \dots , \sigma_k(p)) $ is a basis of $ E_p $, note that $ \chi $ is an isomorphism $ E_p \cong \{p\} \times \R^k $ such that $ \chi(\sigma_i(p)) = (p , e_i) $, hence $ \chi $ maps $ \{\sigma_1(p) , \dots , \sigma_k(p)\} $ to the standard basis of $ \{p\} \times \R^k \cong \R^k $. Therefore, $ (\sigma_1 , \dots , \sigma_k) $ is a \emph{local frame associated to $ \chi $}. It can be shown that every smooth local frame for a smooth vector bundle is associated to a smooth local trivialization in this way.
 
-On $ T\man $, local frames determine local bases for tangent spaces. An important case is that of \emph{coordinate frames}: given a smooth chart $ (U , \varphi) $ with coordinate functions $ (x^1 , \dots , x^n) $, then the coordinate vector fields $ (\pa_1 , \dots , \pa_k) $ form a smooth local frame on $ U $.
+On $ T\man $, local frames determine local bases for tangent spaces. An important case is that of \emph{coordinate frames}: given a smooth chart $ (U , \varphi) $ with coordinate functions $ (x^1 , \dots , x^n) $, then the coordinate vector fields $ (\pa_1 , \dots , \pa_n) $ form a smooth local frame on $ U $.
 
-\subsubsection{Cotangent bundle}
+\subsubsection{Bundle homomorphisms}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-\section{Tangent spaces}
-
-The notions of calculus can be defined on a smooth manifold $ (\mathcal{M},\mathcal{A}) $ with the notion of tangent spaces. Indeed, the derivative of a function $ f : \mathcal{M} \rightarrow \R $ at a point $ p \in \mathcal{M} $, covered by the chart $ (\varphi,U) $, is defined as:
-\begin{equation}
-  \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p \defeq \frac{\pa (f \circ \varphi^{-1})}{\pa x^{\mu}}\bigg\vert_{\varphi(p)}
-  \label{eq:derivative-def}
-\end{equation}
-
-Evidently, this definition depends on the choise of coordinates $ x^{\mu} $, thus it depends on the chart.
-
-\subsection{Tangent vectors}
-
-\begin{definition}{Space of smooth functions}{}
-  The set of all smooth functions on $ \mathcal{M} $ is denoted by $ \cm $.
-\end{definition}
-
-\begin{definition}{Tangent vector}{tangent-vector}
-  A \bcdef{tangent vector} to $ \mathcal{M} $ in $ p \in \mathcal{M} $ is an operator $ X_p : \cm \rightarrow \R $ such that:
-  \begin{enumerate}
-    \item $ X_p(f + g) = X_p(f) + X_p(g) \,\, \forall f,g \in\cm $;
-    \item $ X_p(f) = 0 $ for all constant functions $ f \in \cm $;
-    \item $ X_p(fg) = X_p(f)g(p) + f(p)X_p(g) \,\, \forall f,g \in\cm $.
-  \end{enumerate}
-\end{definition}
-
-Conditions 2. and 3. trivially imply that $ X_p(\alpha f) = \alpha X_p(f) \,\, \forall \alpha \in \R $, which means that $ X_p $ is a linear operator, i.e. $ X_p \in \Hom_\R(\cm , \R) $. Moreover, it is simple to check that $ \pa_{\mu}\vert_p $ satisfies the conditions of \dref{def:tangent-vector}.
-
-\begin{theorem}{Tangent space}{tangent-space}
-  The set $ T_p\mathcal{M} $ of all tangent vectors at a point $ p\in\mathcal{M} $ forms an $ n $-dimensional $ \R $-vector space, called \bcth{tangent space}, and $ \{\pa_{\mu}\vert_p\}_{\mu = 1,\dots,n} $ is a basis of such space.
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    Defining $ f \circ \varphi^{-1} \equiv F : U \subset \mathcal{M} \rightarrow \R $, with $ f : \mathcal{M} \rightarrow \mathcal{M} $ and $ (\varphi,U) \in \mathcal{A} $, it can be shown that, in some neighbourhood of $ p $ (not necessarily $ U $), $ F $ cal always be written as:
-    \begin{equation*}
-      F(x) = F(x^{\mu}(p)) + \left( x^{\mu} - x^{\mu}(p) \right) F_{\mu}(x)
-    \end{equation*}
-    for some functions $ \{F_{\mu}\}_{\mu = 1 , \dots , n} $ (e.g. $ F(x) = F(0) + x \int_0^1 \dd t\,F(xt) $). Applying $ \pa_{\mu}\vert_{x(p)} $:
-    \begin{equation*}
-      \frac{\pa F}{\pa x^{\mu}}\bigg\vert_{x(p)} = F_{\mu}(x(p))
-    \end{equation*}
-    Defining $ f_{\mu} \equiv F_{\mu} \circ \varphi $, for any $ q \in \mathcal{M} $ in an appropriate neighbourhood of $ p $:
-    \begin{equation*}
-      f(q) = f(p) + \left( x^{\mu}(q) - x^{\mu}(p) \right) f_{\mu}(q)
-    \end{equation*}
-    Moreover, remembering Eq. \eref{eq:derivative-def}:
-    \begin{equation*}
-      f_{\mu}(p) = F_{\mu} \circ \varphi(p) = F_{\mu}(x(p)) = \frac{\pa F}{\pa x^{\mu}}\bigg\vert_{x(p)} = \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p
-    \end{equation*}
-    Using these facts, the action of a tangent vector can be written explicitly:
-    \begin{equation*}
-      \begin{split}
-        X_p(f)
-        &= X_p\left( f(p) + \left( x^{\mu} - x^{\mu}(p) \right) f_{\mu} \right)\\
-        &= X_p\left( f(p) \right) + X_p\left( \left( x^{\mu} - x^{\mu}(p) \right) \right) f_{\mu}(p) + \left( x^{\mu} - x^{\mu}(p) \right)(p) X_p\left( f_{\mu} \right)\\
-        &= X_p\left( x^{\mu} \right) f_{\mu}(p)
-      \end{split}
-    \end{equation*}
-    because $ f(p) $ is a constant and $ \left( x^{\mu} - x^{\mu}(p) \right)(p) = x^{\mu}(p) - x^{\mu}(p) = 0 $. Therefore, remembering the expression for $ f_{\mu}(p) $:
-    \begin{equation*}
-      X_p = X_p(x^{\mu}) \frac{\pa}{\pa x^{\mu}}\bigg\vert_p \equiv X^{\mu} \frac{\pa}{\pa x^{\mu}}\bigg\vert_p
-    \end{equation*}
-    Thus, $ T_p\mathcal{M} = \braket{\{\pa_{\mu}\vert_p\}_{\mu = 1 , \dots , n}} $. To check for linear independence, suppose $ \alpha = \alpha^{\mu} \pa_{\mu}\vert_p \equiv 0 $: acting on $ f = x^{\nu} $, it gives $ \alpha(f) = \alpha_{\mu} \pa_{\mu}(x^{\nu})\vert_p = \alpha_{\nu} = 0 $. This concludes the proof.
-  \end{proof}
-\end{proofbox}
-
-\subsubsection{Changing coordinates}
-
-Although $ \pa_{\mu}\vert_p $ depends on the choice of coordinates (it is a \bctxt{coordinate basis}), the existence of $ X_p $ is independent of that choice.
-If two different charts $ (\varphi,U) $ and $ (\tilde{\varphi},V) $ intersect in a neighbourhood of $ p \in U \cap V $, the transition from $ x^{\mu} $ to $ y^{\mu} $ can be expressed as:
-\begin{equation}
-  X_p(f) = X^{\mu} \frac{\pa f}{\pa x^{\mu}}\bigg\vert_p = X^{\mu} \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)} \frac{\pa f}{\pa y^{\nu}}\bigg\vert_p
-\end{equation}
-This equation can have two interpretations, namely the alibi and the alias interpretation:
-\begin{equation}
-  \frac{\pa}{\pa x^{\mu}}\bigg\vert_p = \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)} \frac{\pa}{\pa y^{\nu}}\bigg\vert_p
-  \qquad \qquad
-  \tilde{X}^{\nu} = X^{\mu} \frac{\pa y^{\nu}}{\pa x^{\mu}}\bigg\vert_{\varphi(p)}
-  \label{eq:vector-coord-basis}
-\end{equation}
-Components of vectors which transform this way are called \bctxt{contravariant}, since they transform according to the Jacobian of the change of coordinates, while the basis vectors transform according to its inverse.
-
-Since coordinate changes are just transition maps between overlapping charts on the manifold, they are diffeomorphisms from a patch of $ \man $ on itself (as noted in \secref{sec:manifolds}). In general, a diffeomorphism $ f : \man \ra \man $ defines a change of coordinates on the whole $ \man $: indeed, given two charts $ (\varphi_1 , U) , (\varphi_2 , V) $ such that $ f(U) = V $, then:
-\begin{equation*}
-  \begin{tikzcd}
-    U \ar[d, "f", swap] \ar[r, "\varphi_1"]
-    & \R^n \ar[d, "\tilde{f}"] \\
-    V \ar[r, "\varphi_2", swap]
-    & \R^n
-  \end{tikzcd}
-\end{equation*}
-where $ \tilde{f} = \varphi_2 \circ f \circ \varphi_1^{-1} $, i.e. the change of basis, is a smooth (by \dref{def:smooth}) homeomorphism (composition of homeomorphism), i.e. a diffeomorphism. Then, the coordinates of a point $ p \in U $ change from $ x^\mu = \varphi_1(p) $ to $ y^\mu = \tilde{f}(x(p)) $, while the coordinate basis on $ T_p\man $ changes as in \eref{eq:vector-coord-basis}.
-
-\subsubsection{Curves}
-
-Consider a smooth curve on $ \mathcal{M} $, i.e. a smooth map $ \sigma : I \in \mathcal{T}(\R) \rightarrow \mathcal{M} $, WLOG parametrized as $ \sigma(t) : \sigma(0) = p \in \mathcal{M} $; with a given chart $ (\varphi,U) $, this curve becomes $ \varphi \circ \sigma : I \rightarrow \R^n $, parametrized by $ x^{\mu}(t) $.
-The tangent vector to the curve in $ p $ is:
-\begin{equation}
-  X_p = \frac{\dd x^{\mu}(t)}{\dd t}\bigg\vert_{t=0} \frac{\pa}{\pa x^{\mu}}\bigg\vert_p
-  \label{eq:tangent-curve}
-\end{equation}
-This operator, applied to a function $ f \in\cm $, computes the directional derivative of $ f $ along the curve. Every tangent vector can be written as in Eq. \eref{eq:tangent-curve}, therefore the tangent space can be seen as the space of all possible tangent vectors to curves passing through $ p $.
-
-It must be noted that tangent spaces at different points are entirely different spaces: there is no way to directly compare vectors between them.
-
-\subsection{Vector fields}
-
-\begin{definition}{Vector fields}{}
-  A \bcdef{vector field} $ X $ is a smooth map $ X : p \in \mathcal{M} \mapsto X_p \in T_p\mathcal{M} $. The space of all vector fields on $ \mathcal{M} $ is denoted by $ \xm $.
-\end{definition}
-
-Note that a vector field can also be viewed as a smooth map $ X : \cm \rightarrow \cm $, since $ (X(f))(p) = X_p(f) \in \R $.
-Given a chart $ (\varphi,U) $, a vector field $ X $ can be expressed as:
-\begin{equation}
-  X = X^{\mu} \frac{\pa}{\pa x^{\mu}}
-\end{equation}
-with $ X^{\mu} \in \cm $. This expression is only defined on $ U $.
-
-\subsubsection{Lie brakets}
-
-Given two vector fields $ X,Y \in\xm $, their product is clearly not a vector field, as it does not satisfy Leibniz' rule:
-\begin{equation*}
-  XY(fg) = XY(f) g + Y(f) X(g) + X(f) Y(g) + f XY(g) \neq XY(f) g + f XY(g)
-\end{equation*}
-where $ XY(f) \equiv X(Y(f)) $.
-
-\begin{definition}{Lie brackets}{}
-  Given two vector fields $ X,Y \in\xm $, their commutator (or \bcdef{Lie bracket}) is defined as:
+\begin{definition}{Bundle homomorphism}{}
+  Let $ \pi : E \ra \man $ and $ \pi' : E' \ra \man' $ be vector bundles. A continuous map $ f : E \ra E' $ is a \bcdef{bundle homomorphism} if there exists a map $ F : \man \ra \man' $ satisfying:
   \begin{equation}
-    \left[ X,Y \right](f) = XY(f) - YX(f)
+    \pi' \circ f = F \circ \pi
+    \qquad \qquad
+    \begin{tikzcd}
+      E \ar[r , "f"] \ar[d , "\pi" , swap] & E' \ar[d , "\pi'"] \\
+      \man \ar[r , "F" , swap] & \man'
+    \end{tikzcd}
   \end{equation}
+  and such that, for each $ p \in \man $, the restriction $ f \vert_{E_p} : E_p \ra E'_{F(p)} $ is linear.
 \end{definition}
 
-Within a given chart:
-\begin{equation*}
-  \begin{split}
-    \left[ X,Y \right](f)
-    &= X^{\mu} \frac{\pa}{\pa x^{\mu}} \left( Y^{\nu} \frac{\pa f}{\pa x^{\nu}} \right) - Y^{\mu} \frac{\pa}{\pa x^{\mu}} \left( X^{\nu} \frac{\pa f}{\pa x^{\nu}} \right)\\
-    &= \left( X^{\mu} \frac{\pa Y^{\nu}}{\pa x^{\mu}} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \right) \frac{\pa f}{\pa x^{\nu}}
-  \end{split}
-\end{equation*}
-Therefore, the Lie bracket of two vectors fields is still a vector field $ [X,Y] \in \xm $, which can be expressed as:
+The relation between $ f $ and $ F $ is expressed by saying that $ f $ \emph{covers} $ F $. The covered map $ F $ is continuous and uniquely by $ f $ as:
 \begin{equation}
-  \left[ X,Y \right] = \left( X^{\mu} \frac{\pa Y^{\nu}}{\pa x^{\mu}} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \right) \frac{\pa}{\pa x^{\nu}}
+  F = \pi' \circ f \circ \zeta
 \end{equation}
+where $ \zeta : \man \ra E $ is the \bctxt{zero section}, defined as $ \zeta(p) = 0 \in E_p \,\,\forall p \in \man $. Clearly, if $ f $ is smooth between smooth bundles, then $ F $ is smooth too.
+A bijective bundle homomorphism whose inverse is also a bundle homomorphism is called a \emph{bundle isomorphism}, and the two bundles are said to be isomorphic.
 
-\begin{theorem}{Jacobi identity}{}
-  Given $ X,Y,Z \in\xm $, then:
-  \begin{equation}
-    \left[ X, \left[ Y,Z \right] \right] + \left[ Y, \left[ Z,X \right] \right] + \left[ Z, \left[ X,Y \right] \right] = 0
-  \end{equation}
-\end{theorem}
-
-With Lie brackets, $ \xm $ can be given the structure of a Lie algebra with generators $ \{\pa_\mu\}_{\mu = 1, \dots, n} $.
-
-\subsubsection{Integral curves}
-
-\begin{definition}{Flow}{flow}
-  A \bcdef{flow} on $ \mathcal{M} $ is a one-parameter family of diffeomorphisms $ \sigma_t : \mathcal{M} \rightarrow \mathcal{M} $, labelled by $ t\in\R $, with group structure: $ \sigma_0 = \id_{\mathcal{M}} $ and $ \sigma_s \circ \sigma_t = \sigma_{s+t} $, thus $ \sigma_{-t} = \sigma_t^{-1} $.
-\end{definition}
-
-Such flows give rise to streamlines on the manifold: these streamlines are required to be smooth.
-Defining $ x^{\mu}(\sigma_t) \equiv x^{\mu}(t) $, a vector field can be defined by the tangent to the streamlines at each point on the manifold:
-\begin{equation}
-  X^{\mu}(x^{\mu}(t)) = \frac{\dd x^{\mu}(t)}{\dd t}
-  \label{eq:tangent-flow}
-\end{equation}
-The inverse reasoning is also possible: given $ X \in \xm $, the streamlines defined by \eref{eq:tangent-flow} are the \bctxt{integral curves} of $ X $.
-
-\begin{proposition}{Infinitesimal flow}{}
-  The \bcprop{infinitesimal flow} generated by $ X \in\xm $ is:
-  \begin{equation}
-    x^{\mu}(t) = x^{\mu}(0) + tX^{\mu}(x(0)) + \smo(t^2)
-    \label{eq:infinitesimal-flow}
-  \end{equation}
-\end{proposition}
-
-A vector field which generates a flow defined for all $ t \in \R $ is called \bctxt{complete}.
-
-\begin{theorem}{}{}
-  If $ \mathcal{M} $ is compact, then all $ X \in \xm $ are complete.
-\end{theorem}
-
-\begin{example}{Integral curves on the $ 2 $-sphere}{}
-  On $ \mathbb{S}^2 $, the flow generated by $ X = \pa_{\phi} $ is described by $ \dot{\phi} = 1, \dot{\theta} = 0 $, thus $ \theta(t) = \theta_0 $ and $ \phi(t) = \phi_0 + t $: the flow lines are lines of constant latitude.
+\begin{example}{Tangent bundle homomorphism}{}
+  Let $ \man_1 $ and $ \man_2 $ be smooth manifolds, and let $ f : \man_1 \ra \man_2 $ be a smooth map. Then, the global differential $ \dd f : T\man_1 \ra T\man_2 $ is a smooth bundle homomorphism covering $ f $.
 \end{example}
 
-\subsection{Lie derivative}
+A case of particular interest is that of vector bundles with the same basis. In this case, if $ \pi : E \ra \man $ and $ \pi' : E' \ra \man $ are homomorphic, the bundle homomorphism $ f : E \ra E' $ is said to be \emph{over} $ \man $ if it covers $ \id_\man $, i.e. if the following diagram commutes:
+\begin{equation*}
+  \begin{tikzcd}
+    E \ar[rd , "\pi" , swap] \ar[rr , "f"] & & E' \ar[dl , "\pi'"] \\
+                                          & \man &
+  \end{tikzcd}
+\end{equation*}
+and if the restriction of $ f $ to each fiber is linear.
+Given smooth bundles $ \pi : E \ra \man $ and $ \pi' : E' \ra \man $, if $ f : E \ra E' $ is a smooth bundle homomorphism over $ \man $, then composition with $ f $ induces a map $ \tilde{f} : \Gamma(E) \ra \Gamma(E') $ defined as $ \tilde{f}(\sigma) = f \circ \sigma $. Since a bundle homomorphism is linear on fibers, the resulting map $ \tilde{f} $ is linear over $ \R $. In fact, it is linear over $ \cm $:
+\begin{equation*}
+  \tilde{f}(g_1 \sigma_1 + g_2 \sigma_2) = g_1 \tilde{f}(\sigma_1) + g_2 \tilde{f}(\sigma_2)
+\end{equation*}
+for any $ g_1 , g_2 \in \cm $ and $ \sigma_1 , \sigma_2 \in \Gamma(E) $. The converse is true as well.
 
-Defining calculus for vector fields requires a way to compare vectors of different tangent spaces.
-
-\begin{definition}{Pull-back of functions}{}
-  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a function $ f : \mathcal{N} \rightarrow \R $, the \bcdef{pull-back} of $ f $ is the function $ \varphi^*f : \mathcal{M} \rightarrow \R $ such that $ \varphi^*f(p) = f(\varphi(p)) $.
-\end{definition}
-
-\begin{definition}{Push-forward of vector fields}{}
-  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a vector field $ X \in \xm $, the \bcdef{push-forward} of $ X $ is the vector field $ \varphi_*X \in \mathfrak{X}(\mathcal{N}) $ such that $ \varphi_*X(f) = X(\varphi^*f) $.
-\end{definition}
-
-This last equality must be evaluated at the appropriate points: $ [ \varphi_*X(f) ](\varphi(p)) = [ X(\varphi^*f) ](p) $.
-
-With the appropriate charts on $ \mathcal{M} $ and $ \mathcal{N} $, the definitions above can be rewritten with coordinates:
-\begin{equation}
-  \varphi^*f(x) = f(y(x))
-\end{equation}
-\begin{equation}
-  \varphi_*X(f) = X^{\mu} \frac{\pa f(y(x))}{\pa x^{\mu}} = X^{\mu} \frac{\pa y^{\alpha}}{\pa x^{\mu}} \frac{\pa f(y)}{\pa y^{\alpha}}
-\end{equation}
-
-The notions of pull-back and push-forward allow to compare tangent vectors at neighbouring points and, in particular, to define the derivative along a vector field.
-
-\begin{definition}{Lie derivative of functions}{}
-  Given a function $ f : \mathcal{M} \rightarrow \R $ and a vector field $ X \in\xm $, the derivative of $ f $ along $ X $, called \bcdef{Lie derivative}, is defined as:
-  \begin{equation}
-    \ld_X f(x) \defeq \lim_{t \rightarrow 0} \frac{f(\sigma_t(x)) - f(x)}{t} = \frac{\dd f(\sigma_t(x))}{\dd t}\bigg\vert_{t=0}
-  \end{equation}
-  where $ \sigma_t $ is the flow generated by $ X $.
-\end{definition}
-
-\begin{lemma}[before upper = {\tcbtitle}]{}{}
-  \begin{equation}
-    \ld_X f = X(f)
-  \end{equation}
+\begin{lemma}{Characterization of bundle homomorphisms}{}
+  Let $ \pi : E \ra \man $ and $ \pi' : E' \ra \man $ be smooth fiber bundles. A map $ \tilde{f} : \Gamma(E) \ra \Gamma(E') $ is linear over $ \cm $ if and only if there is a smooth bundle homomorphism $ f : E \ra E' $ over $ \man $ such that $ \tilde{f} = f \circ \sigma \,\,\forall \sigma \in \Gamma(E) $.
 \end{lemma}
 
-\begin{proofbox}
-  \begin{proof}
-    $ \ld_X f = \frac{df(\sigma_t)}{dt} = \frac{\pa f}{\pa x^{\mu}} \frac{dx^{\mu}(t)}{dt} = X^{\mu} \frac{\pa f}{\pa x^{\mu}} = X(f) $.
-  \end{proof}
-\end{proofbox}
+Given this lemma, it is customary to identify $ \tilde{f} $ with $ f $, hence writing directly $ f : \Gamma(E) \ra \Gamma(E') $, since the action on sections is obtained simply applying the bundle homomorphism pointwise: for example, if $ a \in \R $, then the same notation $ X \mapsto a X $ denotes both the operation of multiplying vectors in each tangent space $ T_p\man $ by $ a $, and the operation of multiplying vector fields by $ a $ (note that multiplying by $ a $ in indeed a bundle homomorphism $ T\man \ra T\man $).
 
-The Lie derivative can be extended to vector fields.
 
-\begin{definition}{Lie derivative of vector fields}{}
-  Given two vector fields $ X,Y \in\xm $, the \bcdef{Lie derivative} of $ Y $ along $ X $ is defined as:
-  \begin{equation}
-    \ld_X Y_p \defeq \lim_{t \rightarrow 0} \frac{((\sigma_{-t})_*Y)_p - Y_p}{t}
-  \end{equation}
-  where $ \sigma_t $ is the flow generated by $ X $.
-\end{definition}
 
-The use of the inverse flow $ \sigma_{-t} $ is necessary because to evaluate the vector field $ \ld_X Y $ at the point $ p \in \mathcal{M} $, the tangent vector $ Y_{\sigma_t(p)} \in T_{\sigma_t(p)}\mathcal{M} $ must be ``pushed-back" to $ T_p\mathcal{M} = T_{\sigma_0(p)}\mathcal{M} $.
 
-With $ t \rightarrow 0 $, the infinitesimal flow $ \sigma_{-t} $ is, according to \eref{eq:infinitesimal-flow}, $ x^{\mu}(t) = x^{\mu}(0) - tX^{\mu} + o(t) $, therefore the Lie derivative of basis tangent vectors can be expressed as:
-\begin{equation}
-  (\sigma_{-t})_* \pa_{\mu} = \frac{\pa x^{\nu}(t)}{\pa x^{\mu}} \frac{\pa}{\pa x^{\nu}(t)} = \left( \delta^{\nu}_{\mu} - t \frac{\pa X^{\nu}}{\pa x^{\mu}} + o(t) \right) \pa_{\nu}(t)
-  \quad\Longrightarrow\quad
-  \ld_X \pa_{\mu} = - \frac{\pa X^{\nu}}{\pa x^{\mu}} \pa_{\nu}
-  \label{eq:lie-der-basis-vector}
-\end{equation}
-Moreover, by the Jacobi identity it follows that:
-\begin{equation}
-  \ld_X \ld_Y Z - \ld_Y \ld_X Z = \ld_{\left[ X,Y \right]} Z
-  \label{eq:prop-lie-algebra}
-\end{equation}
 
-\begin{lemma}[before upper = {\tcbtitle}]{}{}
-  \begin{equation}
-    \ld_X Y = \left[ X,Y \right]
-  \end{equation}
-\end{lemma}
 
-\begin{proofbox}
-  \begin{proof}
-    $ \ld_X Y = \ld_X (Y^{\mu} \pa_{\mu}) = \left( \ld_X Y^{\mu} \right) \pa_{\mu} + Y^{\mu} \left( \ld_X \pa_{\mu} \right) = X^{\nu} \frac{\pa Y^{\mu}}{\pa x^{\nu}} \pa_{\mu} - Y^{\mu} \frac{\pa X^{\nu}}{\pa x^{\mu}} \pa_{\nu} = \left[ X,Y \right] $.
-  \end{proof}
-\end{proofbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 \section{Tensors}
@@ -1620,7 +1465,7 @@ This is also confirmed by $ \dd f = \frac{\pa f}{\pa x^{\mu}} \dd x^{\mu} $. The
 \begin{equation}
   \dd y^{\mu} = \frac{\pa y^{\mu}}{\pa x^{\nu}}\dd x^{\nu}
 \end{equation}
-which is the inverse of \eref{eq:vector-coord-basis} (not evaluated at a specific point). This ensures that:
+which is the inverse of OLD EQUATION (not evaluated at a specific point). This ensures that:
 \begin{equation*}
   \dd y^{\mu}\left( \frac{\pa}{\pa y^{\nu}} \right) = \frac{\pa y^{\mu}}{\pa x^{\alpha}} \frac{\pa x^{\beta}}{\pa y^{\nu}} \dd x^{\alpha}\left( \frac{\pa}{\pa x^{\beta}} \right) = \frac{\pa y^{\mu}}{\pa x^{\alpha}} \frac{\pa x^{\alpha}}{\pa y^{\nu}} = \delta^{\mu}_{\nu}
 \end{equation*}
@@ -1647,7 +1492,7 @@ With the appropriate charts on $ \mathcal{M} $ and $ \mathcal{N} $, the definiti
   where $ \sigma_t $ is the flow generated by $ X $.
 \end{definition}
 
-In contrast with the Lie derivative of a vector field, which pushes forward with $ \sigma_{-t} $ (i.e. pushes back), the Lie derivative of a 1-form pulls back with $ \sigma_t $: this results in the difference of a minus sign with respect to \eref{eq:lie-der-basis-vector}, giving:
+In contrast with the Lie derivative of a vector field, which pushes forward with $ \sigma_{-t} $ (i.e. pushes back), the Lie derivative of a 1-form pulls back with $ \sigma_t $: this results in the difference of a minus sign with respect to OLD EQUATION, giving:
 \begin{equation}
   \ld_X \dd x^{\mu} = \frac{\pa X^{\mu}}{\pa x^{\nu}} \dd x^{\nu}
 \end{equation}
