@@ -853,9 +853,10 @@ Therefore, $ \gamma'(t_0) $ is the derivation at $ \gamma(t_0) $ obtained by tak
 \end{proofbox}
 
 Given a smooth map $ f : \man_1 \ra \man_2 $ and a smooth curve $ \gamma : J \ra \man_1 $, the velocity of the composite curve $ f \circ \gamma : J \ra \man_2 $ if given, for any $ t_0 \in J $, by:
-\begin{equation*}
+\begin{equation}
   (f \circ \gamma)'(t_0) = \dd (f \circ \gamma) \left( \frac{\dd}{\dd t} \bigg\vert_{t_0} \right) = \dd f \circ \dd \gamma \left( \frac{\dd}{\dd t} \bigg\vert_{t_0} \right) = \dd f(\gamma'(t_0))
-\end{equation*}
+  \label{eq:composite-curve}
+\end{equation}
 Since curves behave well under composition of smooth maps, it is possible to compute the action of the smooth map $ f : \man_1 \ra \man_2 $ on $ X_p \in T_p\man_1 $ as:
 \begin{equation}
   \dd f_p(X_p) = (f \circ \gamma)'(0)
@@ -1210,7 +1211,7 @@ A natural construction for a smooth vector bundle on a smooth manifold is to def
 \subsection{Tangent bundle}
 \label{ssec:tangent-bundle}
 
-\begin{proposition}{Tangent bundle as vector bundle}{}
+\begin{proposition}{Tangent bundle as vector bundle}{tangent-bundle-vector-bundle}
   Given a smooth $ n $-manifold $ \man $, then its tangent bundle $ T\man $ has the structure of smooth vector bundle of rank $ n $ over $ \man $.
 \end{proposition}
 
@@ -1260,14 +1261,14 @@ The set of all smooth global sections of a smooth vector bundle $ \pi : E \ra M 
 \end{equation*}
 The multiplication of $ \sigma \in \Gamma(E) $ by $ f \in \mathcal{C}^\infty(M) $ yields a new section $ (f\sigma)(p) = f(p) \sigma(p) $.
 
-The identification of sections of $ T\man $ with vector fields over $ \man $ is then clear:
+The identification of sections of $ T\man $ with vector fields over $ \man $ is then clear, and in particular:
 \begin{equation}
   \Gamma(T\man) = \xm
 \end{equation}
 
 To introduce frames on vector bundles, it is first necessary to import the notion of linear independence on sections. Given $ U \in \tp(M) $, an $ m $-tuple of local sections $ (\sigma_1 , \dots , \sigma_m) $ of $ E $ over $ U $ is linearly independent if $ (\sigma_1(p) , \dots , \sigma_m(p)) $ is a linearly independent $ m $-tuple in $ E_p $ for all $ p \in U $.
 
-\begin{definition}{Frame for vector bundle}{}
+\begin{definition}{Frame for vector bundle}{vector-bundle-frame}
   Let $ \pi : E \ra M $ be a vector bundle of rank $ k $. A \bcdef{local frame} for $ E $ over $ U \in \tp(M) $ is an ordered $ k $-tuple $ (\sigma_1 , \dots , \sigma_k) $ of linearly independent local sections over $ U $ such that:
   \begin{equation*}
     E_p = \lspan \{\sigma_1(p) , \dots , \sigma_k(p)\}
@@ -1344,9 +1345,215 @@ for any $ g_1 , g_2 \in \cm $ and $ \sigma_1 , \sigma_2 \in \Gamma(E) $. The con
 
 Given this lemma, it is customary to identify $ \tilde{f} $ with $ f $, hence writing directly $ f : \Gamma(E) \ra \Gamma(E') $, since the action on sections is obtained simply applying the bundle homomorphism pointwise: for example, if $ a \in \R $, then the same notation $ X \mapsto a X $ denotes both the operation of multiplying vectors in each tangent space $ T_p\man $ by $ a $, and the operation of multiplying vector fields by $ a $ (note that multiplying by $ a $ in indeed a bundle homomorphism $ T\man \ra T\man $).
 
+\subsection{Cotangent bundle}
+
+While tangent vectors naturally give a coordinate-free interpretation of derivatives of curves, the same can be achieved for real-valued functions on manifolds introducing functionals on the tangent space at each point.
+
+\subsubsection{Covectors}
+
+\begin{definition}{Covector}{}
+  Let $ V $ be a finite-dimensional $ \R $-vector space. A \bcdef{covector} on $ V $ is a linear map $ \omega : V \ra \R $.
+\end{definition}
+
+The space of all covectors is itself a real vector space under pointwise addition and scalar multiplication, and it is usually denoted by $ V^* \defeq \Hom_\R(V,\R) $.
+
+\begin{proposition}{Dual basis}{dual-basis}
+  Let $ V $ be a finite-dimensional $ \R $-vector space. Given any basis $ (E_1 , \dots , E_n) $ of $ V $, its \bcprop{dual basis} $ (\varepsilon^1 , \dots , \varepsilon^n) \ssq V^* $ is defined by:
+  \begin{equation}
+    \varepsilon^i(E_j) = \delta^i_j
+  \end{equation}
+  and it is a basis of $ V^* $. Therefore, $ \dim_\R V_* = \dim_\R V $.
+\end{proposition}
+
+If $ (e_1 , \dots , e_n) $ is the standard basis of $ \R^n $, the dual basis $ (e^1 , \dots , e^n) $ is called the \emph{standard dual basis} of $ V^* $. In general, if $ (E_i) $ is a basis of $ V $ and $ (\varepsilon^i) $ is its dual basis, then given $ v = v^j E_j \in V $:
+\begin{equation*}
+  \varepsilon^i(v) = v^j \varepsilon^i(E_j) = v^j \delta^i_j = v^i
+\end{equation*}
+By \pref{prop:dual-basis}, any covector can be expressed as $ \omega = \omega_i \varepsilon^i \in V_* $, hence its action on $ v = v^j E_j \in V $ is clearly determined:
+\begin{equation}
+  \omega(v) = \omega_i v^i
+\end{equation}
+
+Given two finite-dimensional $ \R $-vector spaces $ V,W $ and $ A \in \Hom_\R(V,W) $, it is possible to define a \bctxt{dual map} (or transposed map) $ A^* \in \Hom_\R(W^* , V^*) $ as:
+\begin{equation}
+  A^* \circ \omega = \omega \circ A
+\end{equation}
+The dual map clearly satisfies $ (A \circ B)^* = B^* \circ A^* $ and $ \id_V^* = \id_{V^*} $.
+
+\begin{proposition}{Second dual space}{second-dual-basis}
+  For any finite-dimensional $ \R $-vector space $ V $, there exists a canonical isomorphism $ \xi : V \ra V^{**} \equiv (V^*)^* $ such that, for each $ v \in V $, $ \xi(v) : V^* \ra \R $ acts on $ \omega \in V^* $ as:
+  \begin{equation}
+    \xi(v)(\omega) = \omega(v)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \pref{prop:dual-basis}, $ \dim_\R V^{**} = \dim_\R V $, hence it suffices to verify that $ \xi $ is injective. Suppose $ v \in V - \{0\} $, extend it to a basis $ (v \equiv E_1 , E_2 , \dots , E_n) $ of $ V $ and let $ (\varepsilon^1 , \dots , \varepsilon^n) $ be its dual basis. Then, $ \xi(v) \neq 0 $ since:
+    \begin{equation*}
+      \xi(v)(\varepsilon^1) = \varepsilon^1(v) = \varepsilon^1(E_1) = 1
+    \end{equation*}
+    Therefore, $ \ker \xi = \{0\} $, i.e. it is injective.
+  \end{proof}
+\end{proofbox}
+
+The existence of this canonical isomorphism requires $ \dim_\R V $ to be finite: in the infinite-dimensional case, \pref{prop:dual-basis} does not hold in the first place, i.e. there exists in general no isomorphism $ V \cong V^* $, hence no canonical isomorphism $ V \cong V^{**} $ either. Moreover, note that the isomorphism $ V \cong V^* $ can never be canonical, since it depends explicitly on the choice of basis.
+
+Given \pref{prop:second-dual-basis}, $ \omega(v) \in \R $ is usually denoted with a more symmetric notation $ \braket{\omega , v} = \braket{v , \omega} $, which can be thought of either as the action of $ \omega \in V^* $ on $ v \in V $, or as the action of $ \xi(v) \in V^{**} $ on $ \omega \in V^* $. In the following, the map $ \xi $ is usually omitted, and $ v \in V $ is thought of either as a vector or as a linear functional on $ V^* $, depending on the context.
+
+\subsubsection{Tangent covectors and covector fields}
+
+\begin{definition}{Cotangent space}{}
+  Let $ \man $ be a smooth manifold. For each $ p \in \man $, the \bcdef{cotangent space} at $ p $ is $ T^*_p\man \defeq (T_p\man)^* $.
+\end{definition}
+
+The elements of $ T^*_p\man $ are called the \emph{tangent covectors} at $ p $. Given a smooth chart $ (U,(x^i)) $ of $ \man $, for each $ p \in U $ the coordinate basis $ (\pa_i \vert_p) $ of $ T_p\man $ determines a \emph{coordinate dual basis} $ (\lambda^i \vert_p) $ of $ T^*_p\man $. Hence, any covector $ \omega \in T^*_p\man $ can be written as:
+\begin{equation*}
+  \omega = \omega_i \lambda^i \vert_p
+  \qquad \qquad
+  \omega_i = \omega \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right)
+\end{equation*}
+Now, let $ (V , (\tilde{x}^i)) $ be another smooth chart that contains $ p $, and let $ (\tilde{\lambda}^i \vert_p) $ be the dual basis of $ (\pa_i \vert_p) $. Applying \ref{eq:contravariant-alibi}, by the linearity of $ \omega \in V^* $, the transformation rule for covectors is found:
+\begin{equation}
+  \omega_i = \frac{\pa \tilde{x}^j}{\pa x^i}(\hat{p}) \tilde{\omega}_j
+  \label{eq:covariant-alias}
+\end{equation}
+Since they transform as basis vectors, i.e. according to the Jacobian of the coordinate transformation, covectors are also called \emph{covariant vectors}.
+
+As for tangent vectors, it is possible to define the \bctxt{cotangent bundle} of a smooth manifold $ \man $ as the disjoint union:
+\begin{equation}
+  T^*\man \defeq \bigsqcup_{p \in \man} T^*_p\man
+\end{equation}
+which comes with a natural projection $ \pi : T^*\man \ra \man $ which sends $ (p,\omega) \mapsto p $.
+
+\begin{proposition}{Cotangent bundle as vector bundle}{}
+  Given a smooth $ n $-manifold $ \man $, then its cotangent bundle $ T^*\man $ has the structure of smooth vector bundle of rank $ n $ over $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is analogous to that of \pref{prop:tangent-bundle-vector-bundle}.
+  \end{proof}
+\end{proofbox}
+
+As in the case of the tangent bundle, the smooth structure on $ T^*\man $ determined by that of $ T\man $ is the unique one which gives to $ \pi : T^*\man \ra \man $ the structure of smooth rank-$ n $ vector bundle on $ \man $. Moreover, smooth local coordinates on $ \man $ yield smooth local coordinates on $ T^*\man $: indeed, if $ (x^i) $ are smooth coordinates on $ U \in \tp(\man) $, then the map $ \pi^{-1}(U) \ra \R^{2n} $ defined as:
+\begin{equation}
+  \xi_i \lambda^i \vert_p \mapsto (x^1(p) , \dots , x^n(p) , \xi_1 , \dots , \xi_n)
+\end{equation}
+is a smooth local coordinate map on $ \pi^{-1}(U) \in \tp(T^*\man) $. These are called the \emph{natural coordinates} on $ T^*\man $ associated to $ (x^i) $.
+
+As for vector fields, a (local or global) section of $ T^*\man $ is called a \bctxt{covector field} (or \emph{(differential) 1-form}). In any smooth local coordinates on $ U \in \tp(\man) $, a covector field $ \omega $ can be written in terms of coordinate covector fields $ \lambda^i $ as $ \omega = \omega_i \lambda^i $, with the $ n $ functions $ \omega_i : U \ra \R $ being the \emph{component functions} of $ \omega $:
+\begin{equation*}
+  \omega_i(p) = \omega_p \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right)
+\end{equation*}
+Given a vector field $ X $ and a covector field $ \omega $ over $ \man $, it is possible to form a function $ \omega(X) : \man \ra \R $ such that, for any $ p \in \man $:
+\begin{equation}
+  \omega(X)(p) = \omega_p(X_p)
+\end{equation}
+In terms of the respective component functions, this function has the coordinate representation $ \omega(X) = \omega_i X^i $.
+
+\begin{lemma}{Smoothness criteria for covector fields}{smooth-covector-fields}
+  Let $ \man $ be a smooth manifold, and let $ \omega : \man \ra T^*\man $ be a covector field. Then the following conditions are equivalent:
+  \begin{enumerate}
+    \item \label{item:sccf-1} $ \omega $ is smooth;
+    \item \label{item:sccf-2} in every coordinate chart, the component functions of $ \omega $ are smooth;
+    \item \label{item:sccf-3} each point of $ \man $ is contained in some coordinate chart in which $ \omega $ has smooth component functions;
+    \item \label{item:sccf-4} for every $ X \in \xm $, the function $ \omega(X) $ is smooth on $ \man $;
+    \item \label{item:sccf-5} for every $ U \in \tp(\man) $ and $ X \in \xv(U) $, the function $ \omega(X) : U \ra \R $ is smooth on $ U $.
+  \end{enumerate}
+\end{lemma}
+
+Since any open subset of a smooth manifold is again a smooth manifold, this lemma applies equally well on covector fields defined only on some open subset of $ \man $.
+
+\begin{definition}{Coframe}{}
+  Let $ \man $ be a smooth manifold, and let $ U \in \tp(\man) $. A \bcdef{local coframe} over $ U $ is an ordered $ n $-tuple of covector fields $ (\varepsilon^1 , \dots , \varepsilon^n) $ defined on $ U $ such that $ (\varepsilon^i \vert_p) $ forms a basis of $ T^*_p\man $ at each $ p \in U $. If $ U = \man $, this is a \bcdef{global coframe}.
+\end{definition}
+
+Clearly, a local coframe of $ \man $ is just a local frame of the vector bundle $ T^*\man $, as per \dref{def:vector-bundle-frame}. Given a local frame $ (E_1 , \dots , E_n) $ for $ T\man $ over $ U \in \tp(\man) $, there is a uniquely determined local coframe $ (\varepsilon^1 , \dots , \varepsilon^n) $ for $ T^*\man $ over $ U $ defined by $ \varepsilon^i(E_j) = \delta^i_j $: this coframe is the \emph{dual coframe}.
+
+\begin{lemma}{}{}
+  Let $ \man $ be a smooth manifold. If $ (E_i) $ is a local frame over $ U \in \tp(\man) $ and $ (\varepsilon^i) $ is its dual coframe, then $ (E^i) $ is smooth if and only if $ (\varepsilon^i) $ is smooth.
+\end{lemma}
+
+Given a local coframe $ (\varepsilon^i) $ over $ U \in \tp(\man) $, every covector field $ \omega $ over $ U $ can be expressed as $ \omega = \omega_i \varepsilon^i $, where the $ n $-functions $ \omega_i : U \ra \R $ are the component functions of $ \omega $ with respect to the given coframe and are determined by $ \omega_i = \omega(E_i) $, where $ (E_i) $ is the dual frame of $ (\omega^i) $.
+
+The $ \R $-vector space of all smooth covector fields on $ \man $ is denoted by $ \xms \equiv \Gamma(T^*\man) $. As smooth sections of a vector bundle, elements of $ \xms $ can be multiplied by $ \R $-valued functions, yielding new elements\footnotemark of $ \xms $: given $ f \in \cm $ and $ \omega \in \xms $, then $ f\omega \in \xms $ is defined as $ (f\omega)_p = f(p) \omega_p $.
+
+\footnotetext{This means that $ \xms $ is a module over the ring $ \cm $.}
+
+\subsubsection{Differential of functions}
+
+The partial derivatives of a smooth function cannot be interpreted in a coordinate-free way as the components of a vector fields, but they can be as the components of a covector field.
+
+\begin{definition}{Differential}{differential-function}
+  Let $ f \in \cm $. The \bcdef{differential of $ f $} is the covector field $ \dd f : \man \ra T^*\man $ defined by:
+  \begin{equation}
+    \dd f_p(X_p) = X_p(f)
+    \qquad
+    \forall X_p \in T_p\man
+  \end{equation}
+\end{definition}
+
+By \itemref{item:sccf-4} of \lref{lemma:smooth-covector-fields}, the differential of a smooth function is a smooth covector field. To compute the coordinate expression of $ \dd f $, consider a smooth map $ (U,(x^i)) $ on $ \man $: on the coordinate basis, the components of $ \dd f_p $ are $ \dd f_p (\pa_i \vert_p) = \pa_i \vert_p f $, hence:
+\begin{equation}
+  \dd f_p = \frac{\pa f}{\pa x^i} (p) \lambda^i \vert_p
+\end{equation}
+The differential can then be though of as the analogue of the gradient, reinterpreted in a coordinate-free way. In the special case $ f = x^j : U \ra \R $, the differential is:
+\begin{equation*}
+  \dd x^j \vert_p = \frac{\pa x^j}{\pa x^i} (p) \lambda^i \vert_p = \delta^j_i \lambda^i \vert_p = \lambda^j \vert_p
+\end{equation*}
+This shows that the coordinate dual basis $ \lambda^i \vert_p $ is composed just by the differentials of the coordinate functions. Hence, in terms of covector fields:
+\begin{equation}
+  \dd f = \frac{\pa f}{\pa x^i} \dd x^i
+\end{equation}
+which is the usual expression, reinterpreted in terms of covector fields. The so-defined differential has the usual properties expected from Analysis.
+
+\begin{lemma}{Properties of the differential}{}
+  Let $ \man $ be a smooth manifold, and let $ f,g \in \cm $. Then:
+  \begin{enumerate}
+    \item $ \dd (a f + b g) = a \dd f + b \dd g \,\,\forall a,b \in \R $;
+    \item $ \dd (fg) = f \dd g + g \dd f $;
+    \item if $ h : J \ra \R $ is smooth over the interval $ J \ssq \R : J \supseteq \im f $, then $ \dd (h \circ f) = (h' \circ f) \dd f $.
+  \end{enumerate}
+\end{lemma}
+
+The differential can also be used to express derivatives along curves. Consider a smooth manifold $ \man $, a curve $ \gamma : J \ra \man $ and $ f \in \cm $. Then, the derivative of the function $ f \circ \gamma : J \ra \R $ is (from definitions):
+\begin{equation}
+  (f \circ \gamma)'(t) = \dd f_{\gamma(t)}(\gamma'(t))
+  \label{eq:composite-curve-function}
+\end{equation}
+Moreover, the notions of differential of a function $ f \in \cm $ given by \dref{def:differential} and by \dref{def:differential-function} are truly the same object, once the canonical identification $ \R \cong T_{f(p)}\R $ is taken into account, and they are both represented by a row vector whose components are the partial derivatives of $ f $. Similarly, given a smooth curve $ \gamma : J \ra \man $, the expression $ (f \circ \gamma)'(t) $ has two different meanings. On the one hand, $ f \circ \gamma $ can be interpreted as a smooth curve over $ \R $, and thus $ (f \circ \gamma)'(t) $ is the velocity at the point $ f \circ \gamma(t) $, which is an element of $ T_{f \circ \gamma(t)}\R $ and equal to $ \dd f_{\gamma(t)}(\gamma'(t)) $ as per \eref{eq:composite-curve}. On the other hand, $ f \circ \gamma $ can also be interpreted simply as a single-variable $ \R $-valued function, and $ (f \circ \gamma)'(t) $ is thus its ordinary derivative and equal to $ \dd f_{\gamma(t)}(\gamma'(t)) $ as per \eref{eq:composite-curve-function}, now seen as an ordinary real number. The two interpretations are again equivalent as $ \R \cong T_{f \circ \gamma(t)}\R $.
+
+\subsubsection{Pull-back of covector fields}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \subsubsection{Line integrals}
+% \subsubsection{Conservative covector fields}
 
 
 
