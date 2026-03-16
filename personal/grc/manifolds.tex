@@ -693,7 +693,7 @@ $ f $-related vector fields can be characterized by their action on smooth funct
 
 Note that, for a given smooth map $ f : \man_1 \ra \man_2 $, there may be no $ f $-related vector fields. In a special case, however, the existence is guaranteed.
 
-\begin{theorem}{Push-forward}{}
+\begin{theorem}{Push-forward}{push-forward-vector-fields}
   Let $ \man_1 , \man_2 $ be smooth manifolds and $ f : \man_1 \ra \man_2 $ a diffeomorphism. For every $ X \in \xm $ there is a unique $ Y \in \xm $ that is $ f $-related to $ X $, called the \bcth{push-forward} of $ X $.
 \end{theorem}
 
@@ -1526,270 +1526,224 @@ Moreover, the notions of differential of a function $ f \in \cm $ given by \dref
 
 \subsubsection{Pull-back of covector fields}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% \subsubsection{Line integrals}
-% \subsubsection{Conservative covector fields}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Since the differential is a linear map on tangent vectors, its dual is a linear map on covectors in the opposite direction.
+
+\begin{definition}{Pull-back}{pull-back}
+  Let $ f : \man_1 \ra \man_2 $ be smooth map, and let $ p \in \man_1 $. The differential $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ yields a dual linear map $ \dd f_p^* : T_{f(p)}^*\man_2 \ra T_p^*\man_1 $, called the \bcdef{(pointwise) pull-back} by $ f $ at $ p $, defined as:
+  \begin{equation}
+    \dd f_p^*(\omega)(v) = \omega(\dd f_p(v))
+    \qquad
+    \forall \omega \in T_{f(p)}^*\man_2 , v \in T_p\man_1
+  \end{equation}
+\end{definition}
+
+Contrary to vector fields, whose push-forwards are only defined in presence of diffeomorphisms (\tref{th:push-forward-vector-fields}), covector fields are always pulled-back to covector fields. Given a smooth map $ f : \man_1 \ra \man_2 $ and a covector field $ \omega $ on $ \man_2 $, the pull-back of $ \omega $ by $ f $ is defined as:
+\begin{equation}
+  (f^*\omega)_p \defeq \dd f^*_p(\omega_{f(p)})
+\end{equation}
+which is a covector in $ T_p^*\man_1 $ and, as per \dref{def:pull-back}, acts on $ v \in T_p\man_1 $ as:
+\begin{equation*}
+  (f^*\omega)_p(v) = \omega_{f(p)}(\dd f_p(v))
+\end{equation*}
+
+\begin{proposition}{Smoothness of pull-back}{}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map, and let $ \omega $ be a covector field on $ \man_2 $. Then, $ f^*\omega $ is a (continuous) covector field on $ \man_1 $. Moreover, if $ \omega $ is smooth, then $ f^*\omega $ is smooth.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ p \in \man_1 $ arbitrary, and choose a smooth chart $ (V,(y^i)) $ on $ \man_2 $ which contains $ f(p) $, so that $ U = f^{-1}(V) $ is a neighbourhood of $ p $.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{pb-cont-aux}
+      Let $ f : \man_1 \ra \man_2 $ be a smooth map, and suppose that $ u : \man_2 \ra \R $ is a continuous function and that $ \omega $ is a covector field on $ \man_2 $. Then:
+      \begin{equation}
+        f^*(u\omega) = (u \circ f) f^*\omega
+      \end{equation}
+      In addition, if $ u $ is smooth:
+      \begin{equation}
+        f^* \dd u = \dd (u \circ f)
+      \end{equation}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        By direct computation, using the definitions:
+        \begin{equation*}
+          \begin{split}
+            (f^*(u\omega))_p = \dd f_p^* ((u\omega)_{f(p)})
+            & = \dd f_p^*(u(f(p)) \omega_{f(p)}) \\
+            & = u(f(p)) \dd f_p^*(\omega_{f(p)}) = u(f(p)) (f^*\omega)_p = ((u \circ f) f^*\omega)_p
+          \end{split}
+        \end{equation*}
+        Letting $ v \in T_p\man_1 $, then:
+        \begin{equation*}
+          (f^* \dd u)_p(v) = (\dd f_p^*(\dd u_{f(p)}))(v) = \dd u_{f(p)} (\dd f_p(v)) = \dd f_p(v) u = v(u \circ f) = \dd (u \circ f)_p(v)
+        \end{equation*}
+        This completes the proof.
+      \end{proof}
+    \end{proofbox}
+
+    Writing $ \omega $ in coordinate as $ \omega = \omega_j \dd y^j $, with continuous component functions $ \omega_j $ on $ V $, and using \lref{lemma:pb-cont-aux} twice (applied to $ f \vert_U $):
+    \begin{equation*}
+      f^* \omega = f^* (\omega_j \dd y^j) = (\omega_j \circ f) f^* \dd y^j = (\omega_j \circ f) \dd (y^j \circ f)
+    \end{equation*}
+    which is clearly continuous, and smooth if $ \omega $ is smooth.
+  \end{proof}
+\end{proofbox}
+
+The formula derived in this proof provides a straightforward expression to compute the pull-back of a covector field, using the fact that $ y^j \circ f = f^j $ is the $ j^\text{th} $ component function of $ f $ in the $ (y^j) $ coordinates:
+\begin{equation}
+  f^* \omega = (\omega_j \circ f) \dd f^j
+  \label{eq:pull-back-simple}
+\end{equation}
+
+\begin{example}{Euclidean spaces}{}
+  Let $ f : \R^3 \ra \R^2 $ be the map:
+  \begin{equation*}
+    (u,v) = f(x,y,z) = (x^2y , y \sin z)
+  \end{equation*}
+  and let $ \omega \in \xvs(\R^2) $ be the covector field:
+  \begin{equation*}
+    \omega = v \, \dd u + u \, \dd v
+  \end{equation*}
+  Using \eref{eq:pull-back-simple}, the pull-back of $ \omega $ by $ f $ reads:
+  \begin{equation*}
+    \begin{split}
+      f^*\omega
+      & = (v \circ f) \dd (u \circ f) + (u \circ f) \dd (v \circ f) \\
+      & = (x^2 y) \dd (y \sin z) + (y \sin z) \dd (x^2 y) = 2xy^2 \sin z \, \dd x + 2 x^2 y \sin z \, \dd y + x^2 y^2 \cos z \, \dd z
+    \end{split}
+  \end{equation*}
+\end{example}
 
 \newpage
 \section{Tensors}
 
-\subsection{Dual Spaces}
+So far, the analysis of smooth manifold has been carried by importing concepts of Linear Algebra to them. Now, this approach is extended by considering multilinear maps.
 
-\begin{definition}{Dual space}{}
-  Given a vector space $ V $, its \bcdef{dual space} $ V^* $ is the space of all linear maps $ f : V \rightarrow \R $.
-\end{definition}
+\subsection{Multilinear algebra}
 
-Given a basis $ \{\ve{e}_{\mu}\}_{\mu = 1,\dots,n} $ of $ V $, its \bctxt{dual basis} $ \{\ve{f}^{\mu}\}_{\mu=1,\dots,n} $ of $ V^* $ can be defined by:
-\begin{equation}
-  \ve{f}^{\nu}(\ve{e}_{\mu}) = \delta^{\nu}_{\mu}
-  \label{eq:dual-basis}
-\end{equation}
-A general vector in $ V $ can be written as $ X = X^{\mu} \ve{e}_{\mu} $, thus, according to \eref{eq:dual-basis}, $ X^{\mu} = \ve{f}^{\mu}(X) $.
-Clearly, the map $ f : \ve{e}_{\mu} \mapsto \ve{f}^{\mu} $ is a non-canonical isomorphism between $ V $ and $ V^* $, hence $ \dim_{\R}V = \dim_{\R}V^* $.
-
-\begin{proposition}[before upper = {\tcbtitle}]{Dual of the dual}{}
-  \begin{equation}
-    (V^*)^* \cong V
-  \end{equation}
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    The natural isomorphism between $ (V^*)^* $ and $ V $ is basis-independent: suppose $ X \in V $ and $ \omega \in V^* $, so that $ \omega(X) \in \R $; $ X $ can be viewed as $ X \in (V^*)^* $ by setting $ X(\omega) \equiv \omega(X) $.
-  \end{proof}
-\end{proofbox}
-
-\subsection{Cotangent vectors}
-
-\begin{definition}{Cotangent space}{}
-  Given a smooth manifold $ (\mathcal{M},\mathcal{A}) $ and a point $ p \in \mathcal{M} $, the \bcdef{cotangent space} to $ \mathcal{M} $ at $ p $ is defined as $ T^*_p\mathcal{M} \defeq (T_p\mathcal{M})^* $.
-\end{definition}
-
-Elements of $ T^*_p\mathcal{M} $ are called cotangent vectors (or \bctxt{covectors}).
-
-\begin{definition}{Covector field}{}
-  A covector field (or \bcdef{1-form}) is a smooth map $ \omega : p \in \mathcal{M} \mapsto \omega_p \in T^*_p\mathcal{M} $. The space of all 1-forms on $ \mathcal{M} $ is denoted by $ \lm{1} $.
-\end{definition}
-
-Note that a 1-form can also be viewed as a smooth map $ \omega : \xm \rightarrow \cm $, since $ (\omega(X))(p) = \omega_p(X_p) \in \R $.
-
-\begin{proposition}{}{}
-  $ \{\dd x^{\mu}\}_{\mu = 1,\dots,n} $ is a basis of $ \lm{1} $, dual to the basis $ \{\pa_{\mu}\}_{\mu = 1,\dots,n} $ of $ \xm $.
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    Consider $ f \in \cm $ and define $ \dd f \in \lm{1} $ by $ \dd f(X) = X(f) $: taking $ f = x^{\mu} $ and $ X = \pa_{\mu} $, $ \dd f(X) = \pa_{\nu}(x^{\mu}) = \delta^{\mu}_{\nu} $, therefore $ \{\dd x^{\mu}\}_{\mu = 1,\dots,n} $ is the dual basis of $ \lm{1} $.
-  \end{proof}
-\end{proofbox}
-
-This is also confirmed by $ \dd f = \frac{\pa f}{\pa x^{\mu}} \dd x^{\mu} $. These are coordinate bases: in fact, given two different charts $ (\varphi,U), (\tilde{\varphi},V) $:
-\begin{equation}
-  \dd y^{\mu} = \frac{\pa y^{\mu}}{\pa x^{\nu}}\dd x^{\nu}
-\end{equation}
-which is the inverse of OLD EQUATION (not evaluated at a specific point). This ensures that:
+Let $ V_1 , \dots , V_k , W $ be $ \R $-vector spaces. A map $ f : V_1 \times \dots \times V_k \ra W $ is said to be \bcdef{multilinear} if it is linear in each variable, i.e. for each $ i = 1 , \dots , k $ and arbitrary $ a,b \in \R $:
 \begin{equation*}
-  \dd y^{\mu}\left( \frac{\pa}{\pa y^{\nu}} \right) = \frac{\pa y^{\mu}}{\pa x^{\alpha}} \frac{\pa x^{\beta}}{\pa y^{\nu}} \dd x^{\alpha}\left( \frac{\pa}{\pa x^{\beta}} \right) = \frac{\pa y^{\mu}}{\pa x^{\alpha}} \frac{\pa x^{\alpha}}{\pa y^{\nu}} = \delta^{\mu}_{\nu}
+  f(v_1 , \dots , a v_i + b v'_i , \dots , v_k) = a f(v_1 , \dots , v_i , \dots , v_k) + b f(v_1 , \dots , v'_i , \dots , v_k)
 \end{equation*}
-A 1-form $ \omega \in \lm{1} $ can thus be expressed both as $ \omega = \omega_{\mu} \dd x^{\mu} = \tilde{\omega}_{\mu} \dd y^{\mu} $, with:
-\begin{equation}
-  \tilde{\omega}_{\omega} = \frac{\pa x^{\nu}}{\pa y^{\mu}} \omega_{\nu}
-\end{equation}
-Components of 1-forms which transform this way are called \bctxt{covariant}.
+The set of multilinear maps from $ V_1 \times \dots \times V_k $ to $ W $ is denoted by $ \Mult(V_1 , \dots , V_k ; W) $: it clearly is a $ \R $-vector space under pointwise addition and scalar multiplication.
 
-\begin{definition}{Pull-back of 1-forms}{}
-  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a 1-form $ \omega \in \Lambda^1(\mathcal{N}) $, the \bcdef{pull-back} of $ \omega $ is the 1-form $ \varphi^*\omega \in \lm{1} $ such that $ \varphi^*\omega(X) = \omega(\varphi_*X) $.
-\end{definition}
+\begin{example}{Familiar multilinear maps}{}
+  Both the dot product and the determinant are multilinear functions on $ \R^n $: the first one is a bilinear function, while the second one is an $ n $-linear function.
+  In the special case of $ \R^3 $, another bilinear map is encountered: the cross product, which has $ \R^3 $ itself as codomain.
+\end{example}
 
-With the appropriate charts on $ \mathcal{M} $ and $ \mathcal{N} $, the definition above can be rewritten with coordinates:
-\begin{equation}
-  \varphi^*\omega = \omega_{\alpha} \frac{\pa y^{\alpha}}{\pa x^{\mu}} \dd x^{\mu}
-\end{equation}
-
-\begin{definition}{Lie derivative of 1-forms}{}
-  Given a vector field $ X \in \xm $ and a 1-form $ \omega \in \lm{1} $, the \bcdef{Lie derivative} of $ \omega $ along $ X $ is defined as:
-  \begin{equation}
-    \ld_X \omega_p \defeq \lim_{t \rightarrow 0} \frac{(\sigma_t^* \omega)_p - \omega_p}{t}
-  \end{equation}
-  where $ \sigma_t $ is the flow generated by $ X $.
-\end{definition}
-
-In contrast with the Lie derivative of a vector field, which pushes forward with $ \sigma_{-t} $ (i.e. pushes back), the Lie derivative of a 1-form pulls back with $ \sigma_t $: this results in the difference of a minus sign with respect to OLD EQUATION, giving:
-\begin{equation}
-  \ld_X \dd x^{\mu} = \frac{\pa X^{\mu}}{\pa x^{\nu}} \dd x^{\nu}
-\end{equation}
-Therefore, on a general 1-form $ \omega = \omega_{\mu} \dd x^{\mu} $:
-\begin{equation}
-  \ld_X \omega = \left( X^{\nu} \pa_{\nu} \omega_{\mu} + \omega_{\nu} \pa_{\mu} X^{\nu} \right) \dd x^{\mu}
-  \label{eq:lie-derivative-1-forms}
-\end{equation}
-
-\subsection{Tensor fields}
-
-\begin{definition}{Tensor}{}
-  A \bcdef{tensor} of rank $ (r,s) $ at a $ p\in\mathcal{M} $ of a smooth manifold $ (\mathcal{M},\mathcal{A}) $ is a multilinear map defined as:
-  \begin{equation}
-    T_p : \overbrace{T^*_p \mathcal{M} \times \dots \times T^*_p \mathcal{M}}^{r} \times \overbrace{T_p \mathcal{M} \times \dots \times T_p \mathcal{M}}^{s} \rightarrow \R
-  \end{equation}
-\end{definition}
-
-For example, a cotangent vector $ \omega_p \in T^*_p \mathcal{M} $ is a tensor of rank $ (1,0) $, while a tangent vector $ X_p \in T_p \mathcal{M} $ is a tensor of rank $ (0,1) $.
-
-\begin{definition}{Tensor field}{}
-  A \bcdef{tensor field} of rank $ (r,s) $ is a smooth map $ T : \man \ni p \mapsto T_p $ tensor of rank $ (r,s) $ at $ p $. It can also be viewed as a smooth map $ T : [\lm{1}]^r \times [\xm]^s \rightarrow \cm $.
-\end{definition}
-
-Given appropriate bases for vector fields $ \{\ve{e}_{\mu}\}_{\mu = 1,\dots,n} $ and 1-forms $ \{\ve{f}^{\mu}\}_{\mu = 1,\dots,n} $, the components of a tensor field are defined as:
-\begin{equation}
-  \tensor{T}{^{\mu_1}^{\dots}^{\mu_r}_{\nu_1}_{\dots}_{\nu_s}} \defeq T(\ve{f}^{\mu_1},\dots,\ve{f}^{\mu_r},\ve{e}_{\nu_1},\dots,\ve{e}_{\nu_s})
-\end{equation}
-
-\begin{proposition}{Components of tensor fields}{}
-  On an $ n $-dimensional manifold, a $ (r,s) $ tensor field has $ n^{r+s} $ components, each being an element of $ \cm $.
-\end{proposition}
-
-Consider two general basis transformations, for vector fields and 1-forms, described by invertible matrices $ \mt{A} $ and $ \mt{B} $ such that $ \tilde{\ve{e}}_{\mu} = \tensor{A}{^\nu_\mu}\ve{e}_{\nu} $ and $ \tilde{\ve{f}}^{\mu} = \tensor{B}{^\mu_\nu}\ve{f}^{\nu} $, with necessary condition $ \tensor{A}{^\mu_\nu} \tensor{B}{^\rho_\mu} = \delta^{\rho}_{\nu} $ to ensure duality: this implies $ \mt{B} = \mt{A}^{-1} $, i.e. covectors transform inversely with respect to vectors. Thus:
-\begin{equation}
-  \tensor{\tilde{T}}{^{\mu_1}^{\dots}^{\mu_r}_{\nu_1}_{\dots}_{\nu_s}} = \tensor{B}{^{\mu_1}_{\rho_1}} \dots \tensor{B}{^{\mu_r}_{\rho_r}} \tensor{A}{^{k_1}_{\nu_1}} \dots \tensor{A}{^{k_s}_{\nu_s}} \tensor{T}{^{\rho_1}^{\dots}^{\rho_r}_{k_1}_{\dots}_{k_s}}
-\end{equation}
-If the considered basis are coordinate basis, then $ \tensor{A}{^\mu_\nu} = \frac{\pa x^{\mu}}{\pa y^{\nu}} $ and $ \tensor{B}{^\mu_\nu} = \frac{\pa y^{\mu}}{\pa x^{\nu}} $.
-
-\subsection{Operations on tensors}
-
-Algebraic addition and multiplication by functions are trivially defined on tensors of the same rank, and in fact the space of all $ (r,s) $ tensors at a point $ p \in \mathcal{M} $ is a vector space.
+An extremely important example of multilinear map is the following one.
 
 \begin{definition}{Tensor product}{}
-  Given two tensor fields $ S $ of rank $ (p,q) $ and $ T $ of rank $ (r,s) $, their \bcdef{tensor product} is defined as:
-  \begin{multline}
-    S \otimes T (\omega_1,\dots,\omega_p,\eta_1,\dots,\eta_r,X_1,\dots,X_q,Y_1,\dots,Y_s)
-    \\
-    = S(\omega_1,\dots,\omega_p,X_1,\dots,X_q) T(\eta_1,\dots,\eta_r,Y_1,\dots,Y_s)
-  \end{multline}
-  or, in components:
+  Let $ V_1 , \dots , V_k , W_1 , \dots , W_\ell $ be $ \R $-vector spaces, and suppose $ f \in \Mult(V_1 , \dots , V_k ; \R) $ and $ g \in \Mult(W_1 , \dots , W_\ell ; \R) $. The \bcdef{tensor product} of $ f $ and $ g $ is a function $ f \otimes g : V_1 \times \dots \times V_k \times W_1 \times \dots \times W_\ell \ra \R $ defined as:
   \begin{equation}
-    \tensor{(S \otimes T)}{^{\mu_1}^{\dots}^{\mu_p}^{\nu_1}^{\dots}^{\nu_r}_{\rho_1}_{\dots}_{\rho_q}_{\dots}_{\sigma_1}_{\dots}_{\sigma_s}} = \tensor{S}{^{\mu_1}^{\dots}^{\mu_p}_{\rho_1}_{\dots}_{\rho_q}} \tensor{T}{^{\nu_1}^{\dots}^{\nu_r}_{\sigma_1}_{\dots}_{\sigma_s}}
+    f \otimes g (v_1 , \dots , v_k , w_1 , \dots , w_\ell) \defeq f(v_1 , \dots , v_k) g(w_1 , \dots , w_\ell)
   \end{equation}
+  which is an element of $ \Mult(V_1 , \dots , V_k , W_1 , \dots , W_\ell ; \R) $.
 \end{definition}
 
-It is also possible to contract tensor ($ (r,s) \mapsto (r-1,s-1) $): for example, given a rank $ (2,1) $ tensor, a rank $ (1,0) $ tensor can be defined as $ S(\omega) = T(\omega, \ve{f}^{\mu}, \ve{e}_{\mu}) $, with components $ \tensor{S}{^\mu} = \tensor{T}{^\nu^\mu_\mu} $; obviously, in general, $ \tensor{T}{^\nu^\mu_\mu} \neq \tensor{T}{^\mu^\nu_\mu} $.
+It is easy to check that the tensor product is bilinear and associative, hence tensor products of three or more multilinear maps can be written anambiguously without parantheses.
 
-It is convenient to introduce some notation: given an object $ T_{\mu_1 \dots \mu_n} $ dependent on some indices, its symmetric and antisymmetric parts are respectively defined as:
-  \begin{equation}
-    T_{(\mu_1 \dots \mu_n)} \defeq \frac{1}{n!} \sum_{\sigma \in \sy{n}} T_{\sigma(\mu_1) \dots \sigma(\mu_n)}
-  \end{equation}
-  \begin{equation}
-    T_{[\mu_1 \dots \mu_n]} \defeq \frac{1}{n!} \sum_{\sigma \in \sy{n}} \sgn(\sigma) T_{\sigma(\mu_1) \dots \sigma(\mu_n)}
-  \end{equation}
-Conventionally, indices surrounded by $ |\cdot| $ are ignored, e.g. $ T_{[\mu|\nu|\rho]} = \frac{1}{2} \left( T_{\mu \nu \rho} - T_{\rho \nu \mu} \right) $.
+Since linear maps on vector spaces are covectors, a natural description of multilinear maps is through tensor products of covectors.
 
-As previously seen, vector fields are pushed forward and 1-form are pulled back: tensors will thus behave in a mixed way.
+\begin{proposition}{Basis for multilinear functions}{}
+  Let $ V_1 , \dots , V_k $ be $ \R $-vector spaces of dimensions $ n_1 , \dots , n_k $, respectively, and, for each $ j = 1 , \dots , k $, let $ (E_1^{(j)} , \dots , E_{n_j}^{(j)}) $ be a basis for $ V_j $, with $ (\varepsilon_{(j)}^1 , \dots , \varepsilon_{(j)}^{n_j}) $ the corresponding dual basis of $ V_j^* $. Then, the set:
+  \begin{equation*}
+    \bas \defeq \{ \varepsilon_{(1)}^{i_1} \otimes \dots \otimes \varepsilon_{(k)}^{i_k} : 1 \leq i_1 \leq n_1 , \dots , 1 \leq i_k \leq n_k \}
+  \end{equation*}
+  is a basis of $ \Mult(V_1 , \dots , V_k ; \R) $, which therefore has dimension $ n_1 \dots n_k $.
+\end{proposition}
 
-\begin{definition}{Push-forward of tensors}{}
-  Given a diffeomorphism between two manifolds $ \varphi : \mathcal{M} \rightarrow \mathcal{N} $ and a $ (r,s) $ tensor field $ T $ on $ \mathcal{M} $, the \bcdef{push-forward} of $ T $ is the $ (r,s) $ tensor field $ \varphi_* T $ on $ \mathcal{N} $ such that, for $ \{\omega_j\}_{j = 1 , \dots , r} \ssq \Lambda^1(\mathcal{N}) $ and $ \{X_j\}_{j = 1 , \dots , s} \ssq \mathfrak{X}(\mathcal{N}) $:
-  \begin{equation}
-    \varphi_* T(\omega_1, \dots, \omega_r, X_1, \dots, X_s) = T(\varphi^* \omega_1, \dots, \varphi^* \omega_r, \varphi_*^{-1} X_1, \dots, \varphi_*^{-1} X_s)
-  \end{equation}
-\end{definition}
+\begin{proofbox}
+  \begin{proof}
+    Show that $ \bas $ is linearly independent and spans $ \Mult(V_1 , \dots , V_k ; \R) $. Suppose $ f \in \Mult(V_1 , \dots , V_k ; \R) $ is arbitrary. For each ordered $ k $-tuple $ (i_1 , \dots , i_k) $ of integers such that $ 1 \leq i_j \leq n_j $, define the real number $ f_{i_1 \dots i_k} = f(E_{i_1}^{(1)} , \dots , E_{i_k}^{(k)}) $. WTS $ f = f_{i_1 \dots i_k} \varepsilon_{(1)}^{i_1} \otimes \dots \otimes \varepsilon_{(k)}^{i_k} $.
+    For any $ k $-tuple $ (v_1 , \dots , v_k) \in V_1 \times \dots \times V_k $, write $ v_j = v_j^{i_j} E_{i_j}^{(j)} $:
+    \begin{equation*}
+      f_{i_1 \dots i_k} \varepsilon_{(1)}^{i_1} \otimes \dots \otimes \varepsilon_{(k)}^{i_k}(v_1 , \dots , v_k) = f_{i_1 \dots i_k} \varepsilon_{(1)}^{i_1}(v_1) \dots \varepsilon_{(k)}^{i_k}(v_k) = f_{i_1 \dots i_k} v^1 \dots v^k
+    \end{equation*}
+    which is just $ f(v_1 , \dots , v_k) $ by multilinearity. This proves that $ \bas $ spans $ \Mult(V_1 , \dots , V_k ; \R) $.
 
-\begin{definition}{Lie derivative of tensors}{}
-  Given a vector field $ X \in \xm $ and a $ (r,s) $ tensor field $ T $ on $ \mathcal{M} $, the \bcdef{Lie derivative} of $ T $ along $ X $ is defined as:
-  \begin{equation}
-    \ld_X T_p \defeq \lim_{t \rightarrow 0} \frac{((\sigma_{-t})_* T)_p - T_p}{t}
-  \end{equation}
-  where $ \sigma_t $ is the flow generated by $ X $.
-\end{definition}
+    To show that $ \bas $ is linearly independent, suppos some linear combination vanishes:
+    \begin{equation*}
+      f_{i_1 \dots i_k} \varepsilon_{(1)}^{i_1} \otimes \dots \otimes \varepsilon_{(k)}^{i_k} = 0
+    \end{equation*}
+    Apply this to any ordered $ k $-tuple of basis vectors $ (E_{j_1}^{(1)} , \dots , E_{j_k}^{(k)}) $. By the same computation above, this implies that all the coefficients vanish: $ f_{i_1 \dots i_k} \equiv 0 $. Thus, $ \bas $ is linearly independent.
+  \end{proof}
+\end{proofbox}
 
-It can be shown that the components of the Lie derivative of a general $ (r,s) $ tensor are:
+This proof shows that the components of $ f \in \Mult(V_1 , \dots , V_k ; \R) $ in the basis $ \bas $ are:
 \begin{equation}
-  \begin{split}
-    \tensor{(\ld_X T)}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}} = \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s , \rho}} X^\rho
-    & - \tensor{T}{^{\rho \mu_2 \dots \mu_r}_{\nu_1 \dots \nu_s}} \tensor{X}{^{\mu_1}_{,\rho}} - \dots - \tensor{T}{^{\mu_1 \dots \mu_{r-1} \rho}_{\nu_1 \dots \nu_s}} \tensor{X}{^{\mu_r}_{,\rho}} + \\
-    & + \tensor{T}{^{\mu_1 \dots \mu_r}_{\rho \nu_2 \dots \nu_s}} \tensor{X}{^{\rho}_{,\nu_1}} + \dots + \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_{s-1} \rho}} \tensor{X}{^{\rho}_{,\nu_s}}
-  \end{split}
-  \label{eq:tensor-lie-der}
+  f_{i_1 \dots i_k} = f(E_{i_1}^{(1)} , \dots , E_{i_k}^{(k)})
 \end{equation}
+Thus, $ f $ is completely determined by its action on all possible sequences of basis vectors.
+
+\subsubsection{Abstract tensor products}
+
+The idea that $ \Mult(V_1 , \dots , V_k ; \R) $ can be viewed as the set of all linear combinations of objects of the for $ \omega^1 \otimes \dots \otimes \omega^k $, where $ \omega^1 , \dots , \omega^k $ are covectors, can be extended with the introduction of ``formal linear combinations".
+
+Let $ S $ be a set. A \emph{formal linear combination} of elements of $ S $ is an expression of the form $ \sum_{i = 1}^m a_i x_i $, where $ a_1 , \dots , a_m \in \R $ and $ x_1 , \dots , x_m \in S $. Since no algebraic structure is being imposed on $ S $, its elements cannot literally be added or multiplied by numbers, however such an expression is completely determined by which elements of $ S $ appear in the sum and with which coefficients, hence this definition can in fact be formalized.
+
+\begin{definition}{Free real vector space}{}
+  Let $ S $ be a set. A \bcdef{formal linear combination} of elements of $ S $ is a function $ f : S \ra \R $ such that $ f(s) = 0 $ for all but finitely many $ s \in S $. The \bcdef{free $ \R $-vector space} on $ S $, denoted by $ \free(S) $, is the set of all formal linear combinations of elements of $ S $.
+\end{definition}
+
+$ \free(S) $ is indeed a $ \R $-vector space under pointwise addition and scalar multiplication. For each $ x \in S $, there is a function $ \delta_x \in \free(S) $ that takes the value $ 1 $ on $ x $ and vanishes on $ S - \{x\} $: typically, the element $ x $ is identified with $ \delta_x $, hence $ S $ can be thought as a subset of $ \free(S) $, and every $ f \in \free(S) $ can be written uniquely in the form $ f = \sum_{i = 1}^m a_i x_i $, where $ x_1 , \dots , x_m $ are the elements of $ S $ such that $ a_i = f(x_i) \neq 0 $. Thus, $ S $ is a basis of $ \free(S) $, which is therefore finite-dimensional if and only if $ S $ is a finite set.
+
+\begin{proposition}{Characteristic property of free vector spaces}{char-prop-free-vector-spaces}
+  For any set $ S $ and any $ \R $-vector space $ W $, every map $ A : S \ra W $ has a unique extension to a linear map $ \bar{A} : \free(S) \ra W $.
+\end{proposition}
+
+It is now possible to generalize the tensor product. Let $ V_1 , \dots , V_k $ be $ \R $-vector spaces, and let $ \free(V_1 \times \dots \times V_k) $ be the set of all finite formal combinations of $ k $-tuples $ (v_1 , \dots , v_k) $, with $ v_i \in V_i $ for $ i = 1 , \dots , k $. Then, define $ \free_0 $ as the subspace of $ \free(V_1 \times \dots \times V_k) $ spanned by all elements of the forms:
+\begin{equation*}
+  (v_1 , \dots , a v_i , \dots , v_k) - a (v_1 , \dots , v_i , \dots , v_k)
+\end{equation*}
+\begin{equation*}
+  (v_1 , \dots , v_i + v_i' , \dots , v_k) - (v_1 , \dots , v_i , \dots , v_k) - (v_1 , \dots , v_i' , \dots , v_k)
+\end{equation*}
+with $ v_j , v_j' \in V_j $ for $ j = 1 , \dots , k $ and $ a \in \R $. The \emph{tensor product} of the spaces $ V_1 , \dots , V_k $, denoted as $ V_1 \otimes \dots \otimes V_k $, is defined as the following quotient vector space:
+\begin{equation}
+  V_1 \otimes \dots \otimes V_k \defeq \free(V_1 \times \dots \times V_k) / \free_0
+\end{equation}
+Moreover, define the natural projection $ \Pi : \free(V_1 \times \dots \times V_k) \ra V_1 \otimes \dots \otimes V_k $, so that the equivalence class of an element $ (v_1 , \dots , v_k) \in V_1 \times \dots \times V_k $ is $ V_1 \otimes \dots \otimes V_k $ is denoted by:
+\begin{equation}
+  v_1 \otimes \dots \otimes v_k \equiv \Pi(v_1 , \dots , v_k)
+\end{equation}
+This is called the \bctxt{(abstract) tensor product} of $ v_1 , \dots , v_k $. It follows from definition that abstract tensor products satisfy:
+\begin{equation*}
+  v_1 \otimes \dots \otimes (a v_i + b v_i') \otimes \dots \otimes v_k = a (v_1 \otimes \dots \otimes v_i \otimes \dots \otimes v_k) + b (v_1 \otimes \dots \otimes v_i' \otimes \dots \otimes v_k)
+\end{equation*}
+
+Note that, although by definition every element of $ V_1 \otimes \dots \otimes V_k $ can be expressed as a linear combination of elements of the form $ v_1 \otimes \dots \otimes v_k $, it is not true in general that every element of the tensor product space is of the form $ v_1 \otimes \dots \otimes v_k $.
+
+\begin{theorem}{Characteristic property of tensor product spaces}{}
+  Let $ V_1 , \dots , V_k $ be finite-dimensional $ \R $-vector spaces. If $ A : V_1 \times \dots \times V_k \ra X $ is any multilinear map into a vector space $ X $, then there is a unique linear map $ \tilde{A} : V_1 \otimes \dots \otimes V_k \ra X $ such that the following diagram commutes:
+  \begin{equation}
+    \begin{tikzcd}
+      V_1 \times \dots \times V_k \ar[r , "A"] \ar[d , "\pi" , swap] & X \\
+      V_1 \otimes \dots \otimes V_k \ar[ur , "\tilde{A}" , swap , dashed] &
+    \end{tikzcd}
+  \end{equation}
+  where $ \pi : V_1 \times \dots \times V_k \ra V_1 \otimes \dots \otimes V_k $ is the map $ \pi(v_1 , \dots , v_k) = v_1 \otimes \dots \otimes v_k $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, note that any map $ A : V_1 \times \dots \times V_k \ra X $ extends uniquely to a linear map $ \bar{A} : \free(V_1 \times \dots \times V_k) \ra X $ by \pref{prop:char-prop-free-vector-spaces}, which is characterized by $ \tilde{A}(v_1 , \dots , v_k) = A(v_1 , \dots , v_k) $ whenever $ (v_1 , \dots , v_k) \in V_1 \times \dots \times V_k \ssq \free(V_1 \times \dots \times V_k) $. Since $ A $ is multilinear, the subspace $ \free_0 $ is contained in $ \ker \tilde{A} $, therefore $ \bar{A} $ determines a linear map $ \tilde{A} : V_1 \otimes \dots \otimes V_k = \free(V_1 \times \dots \times V_k) / \free_0 \ra X $ satisfying $ \tilde{A} \circ \Pi = \bar{A} $. Since $ \pi $ is equal to the inclusion $ V_1 \times \dots \times V_k \hookrightarrow \free(V_1 \times \dots \times V_k) $ followed by $ \Pi $, this implies $ \tilde{A} \circ \pi = A $, which is the thesis.
+
+    Uniqueness follows from the fact that every element of $ V_1 \otimes \dots \otimes V_k $ can be written as a linear combination of elements of the form $ v_1 \otimes \dots \otimes v_k $, and $ \tilde{A} $ is uniquely determined on such elements by $ \tilde{A}(v_1 \otimes \dots \otimes v_k) = \bar{A}(v_1 , \dots , v_k) = A(v_1 , \dots , v_k) $.
+  \end{proof}
+\end{proofbox}
+
+This is called the ``characteristic property" of the tensor product since it uniquely characterizes the tensor product up to isomorphism.
+
+
+
+
+
+
+
+
+
+
