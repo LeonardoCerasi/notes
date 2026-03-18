@@ -320,6 +320,7 @@ In the case of a smooth map between Euclidean spaces, the total derivative of th
   Let $ \man_1 , \man_2 $ be smooth manifolds and $ f : \man_1 \ra \man_2 $ a smooth map. The \bcdef{differential} of $ f $ at $ p \in \man_1 $ is the map $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ defined as follows: given $ X_p \in T_p\man_1 $, let $ \dd f_p(X_p) $ be the derivation at $ f(p) $ that acts on $ g \in \cfk{\infty}(\man_2) $ as:
   \begin{equation}
     \dd f_p(X_p)(g) \defeq X_p(g \circ f)
+    \label{eq:differential-def}
   \end{equation}
 \end{definition}
 
@@ -636,8 +637,7 @@ Starting from a smooth local frame $ (X_1 , \dots , X_n) $ on $ T\R^n $ over $ U
 \end{equation}
 This is a recursive definition, and it is well-posed since $ X_j \vert_p \notin \lspan(E_1 \vert_p , \dots , E_{j-1} \vert_p) $ for each $ j = 1 , \dots , n $ and each $ p \in U $, hence the denominator is a nowhere-vanishing smooth function on $ U $.
 
-While smooth local frames are easily found, using \pref{prop:completion-local-frames}, global ones are not. Indeed, smoth manifolds which admit a smooth local frames are said to be \bctxt{parallelizable}: for example, $ \R^n $ and $ \Tn{n} $ are all parallelizable, while the only parallelizable spheres are $ \Sn{1} $, $ \Sn{3} $ and $ \Sn{7} $. In general, the parallelizability of a smooth $ n $-manifold $ \man $ is linked to whether its tangent bundle is diffeomorphic to $ \man \times \R^n $ (see REF TO SEC).
-% TODO: REF TO SEC
+While smooth local frames are easily found, using \pref{prop:completion-local-frames}, global ones are not. Indeed, smoth manifolds which admit a smooth local frames are said to be \bctxt{parallelizable}: for example, $ \R^n $ and $ \Tn{n} $ are all parallelizable, while the only parallelizable spheres are $ \Sn{1} $, $ \Sn{3} $ and $ \Sn{7} $. In general, the parallelizability of a smooth $ n $-manifold $ \man $ is linked to whether its tangent bundle is diffeomorphic to $ \man \times \R^n $.
 
 \subsubsection{Vector fields as derivations}
 
@@ -709,7 +709,7 @@ Note that, for a given smooth map $ f : \man_1 \ra \man_2 $, there may be no $ f
 
 The push-forward of $ X $ by a diffeomorphism $ f $ is usually denoted by $ f_* X $, thus by the preceding proof:
 \begin{equation}
-  (f_* X)_q \defeq \dd f_{f^{-1}(q)} (X_{f^{-1}(q)})
+  (f_* X)_{f(p)} \defeq \dd f_p (X_p)
 \end{equation}
 An alternative characterization, in terms of vector fields directly, comes from \pref{prop:f-relation-characterization}. For any $ g \in \cfk{\infty}(\man_2) $:
 \begin{equation}
@@ -752,6 +752,7 @@ In general, the expression for $ [X,Y]_p(f) $ contains second derivatives of $ f
 where the Schwarz lemma $ \pa_i \pa_j f = \pa_j \pa_i f $ has been used, as $ f \in \cm $. Renaming dummy indices, the coordinate expression of the Lie bracket is found:
 \begin{equation}
   [X,Y] = \left( X^i \frac{\pa Y^j}{\pa x^i} - Y^i \frac{\pa X^j}{\pa x^i} \right) \frac{\pa}{\pa x^j}
+  \label{eq:lie-bra-comp}
 \end{equation}
 It is then clear, using again the Schwarz lemma, that for coordinate vector fields:
 \begin{equation*}
@@ -1029,7 +1030,7 @@ In Euclidean space $ \R^n $, the directional derivative is trivially generalized
 This definition, however, relies on the fact that $ T_{p + t\ve{v}}\R^n \cong \R^n \cong T_p\R^n $, being it a vector space, while for a general manifold $ T_p\man $ and $ T_q\man $ are entirely different vector spaces for $ p \neq q $. The solution is to consider a vector field $ V \in \xm $, in place of $ \ve{v} \in T_p\man $, so as to use the flow of $ V $ to push values of $ X $ to the same point.
 
 \begin{definition}{Lie derivative of vector field}{lie-der-vec}
-  Let $ \man $ be a smooth manifold and $ X,V \in \xm $. The \bcdef{Lie derivative} of $ X $ with respect to $ V $ is the vector field (provided it exists):
+  Let $ \man $ be a smooth manifold and $ X,V \in \xm $. Denoting as $ \theta $ the flow of $ V $ on $ \man $, the \bcdef{Lie derivative} of $ X $ with respect to $ V $ is the vector field (provided it exists):
   \begin{equation}
     (\ld_V X)_p \defeq \frac{\dd}{\dd t} \bigg\vert_{t = 0} \dd (\theta_{-t})_{\theta_t(p)} (X_{\theta_t(p)})
   \end{equation}
@@ -1505,6 +1506,7 @@ The differential can then be though of as the analogue of the gradient, reinterp
 This shows that the coordinate dual basis $ \lambda^i \vert_p $ is composed just by the differentials of the coordinate functions. Hence, in terms of covector fields:
 \begin{equation}
   \dd f = \frac{\pa f}{\pa x^i} \dd x^i
+  \label{eq:func-diff}
 \end{equation}
 which is the usual expression, reinterpreted in terms of covector fields. The so-defined differential has the usual properties expected from Analysis.
 
@@ -1531,9 +1533,10 @@ Since the differential is a linear map on tangent vectors, its dual is a linear 
 \begin{definition}{Pull-back}{pull-back}
   Let $ f : \man_1 \ra \man_2 $ be smooth map, and let $ p \in \man_1 $. The differential $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ yields a dual linear map $ \dd f_p^* : T_{f(p)}^*\man_2 \ra T_p^*\man_1 $, called the \bcdef{(pointwise) pull-back} by $ f $ at $ p $, defined as:
   \begin{equation}
-    \dd f_p^*(\omega)(v) = \omega(\dd f_p(v))
+    \dd f_p^*(\omega_{f(p)})(v) = \omega_{f(p)}(\dd f_p(v))
     \qquad
-    \forall \omega \in T_{f(p)}^*\man_2 , v \in T_p\man_1
+    \forall \omega_{f(p)} \in T_{f(p)}^*\man_2 , v \in T_p\man_1
+    \label{eq:pull-back-def}
   \end{equation}
 \end{definition}
 
@@ -1648,7 +1651,7 @@ It is easy to check that the tensor product is bilinear and associative, hence t
 
 Since linear maps on vector spaces are covectors, a natural description of multilinear maps is through tensor products of covectors.
 
-\begin{proposition}{Basis for multilinear functions}{}
+\begin{proposition}{Basis for multilinear functions}{mult-basis}
   Let $ V_1 , \dots , V_k $ be $ \R $-vector spaces of dimensions $ n_1 , \dots , n_k $, respectively, and, for each $ j = 1 , \dots , k $, let $ (E_1^{(j)} , \dots , E_{n_j}^{(j)}) $ be a basis for $ V_j $, with $ (\varepsilon_{(j)}^1 , \dots , \varepsilon_{(j)}^{n_j}) $ the corresponding dual basis of $ V_j^* $. Then, the set:
   \begin{equation*}
     \bas \defeq \{ \varepsilon_{(1)}^{i_1} \otimes \dots \otimes \varepsilon_{(k)}^{i_k} : 1 \leq i_1 \leq n_1 , \dots , 1 \leq i_k \leq n_k \}
@@ -1717,7 +1720,7 @@ This is called the \bctxt{(abstract) tensor product} of $ v_1 , \dots , v_k $. I
 
 Note that, although by definition every element of $ V_1 \otimes \dots \otimes V_k $ can be expressed as a linear combination of elements of the form $ v_1 \otimes \dots \otimes v_k $, it is not true in general that every element of the tensor product space is of the form $ v_1 \otimes \dots \otimes v_k $.
 
-\begin{theorem}{Characteristic property of tensor product spaces}{}
+\begin{theorem}{Characteristic property of tensor product spaces}{char-prop-tensor-prod}
   Let $ V_1 , \dots , V_k $ be finite-dimensional $ \R $-vector spaces. If $ A : V_1 \times \dots \times V_k \ra X $ is any multilinear map into a vector space $ X $, then there is a unique linear map $ \tilde{A} : V_1 \otimes \dots \otimes V_k \ra X $ such that the following diagram commutes:
   \begin{equation}
     \begin{tikzcd}
@@ -1736,9 +1739,227 @@ Note that, although by definition every element of $ V_1 \otimes \dots \otimes V
   \end{proof}
 \end{proofbox}
 
-This is called the ``characteristic property" of the tensor product since it uniquely characterizes the tensor product up to isomorphism.
+This is called the ``characteristic property" of the tensor product since it uniquely characterizes the tensor product up to isomorphism. Using this characteristic property, it is possible to show that the tensor product is associative. i.e. there are unique isomorphisms:
+\begin{equation*}
+  V_1 \otimes (V_2 \otimes V_3) \cong V_1 \otimes V_2 \otimes V_3 \cong (V_1 \otimes V_2) \otimes V_3
+\end{equation*}
+under which elements of the forms $ v_1 \otimes (v_2 \otimes v_3) $, $ v_1 \otimes v_2 \otimes v_3 $ and $ (v_1 \otimes v_2) \otimes v_3 $ all correspond.
 
+\begin{proposition}{Basis of tensor product space}{tensor-prod-basis}
+  Let $ V_1 , \dots , V_k $ be $ \R $-vector spaces of dimensions $ n_1 , \dots , n_k $, respectively, and, for each $ j = 1 , \dots , k $, let $ (E_1^{(j)} , \dots , E_{n_j}^{(j)}) $ be a basis for $ V_j $. Then, the set:
+  \begin{equation*}
+    \bas \defeq \{ E_{i_1}^{(1)} \otimes \dots \otimes E_{i_k}^{(k)} : i \leq i_1 \leq n_1 , \dots , 1 \leq i_k \leq n_k \}
+  \end{equation*}
+  is a basis for $ V_1 \otimes \dots \otimes V_k $, which therefore has dimension equal to $ n_1 \dots n_k $.
+\end{proposition}
 
+\begin{proofbox}
+  \begin{proof}
+    Elements of the form $ v_1 \otimes \dots \otimes v_k $ span the tensor space by definition: expanding each $ v_i $ in such an expression in terms of its basis representation shows that $ \bas $ spans $ V_1 \otimes \dots \otimes V_k $.
+
+    To prove that $ \bas $ is linearly independent, assume that some linear combination vanishes:
+    \begin{equation*}
+      a^{i_1 \dots i_k} E_{i_1}^{(1)} \otimes \dots \otimes E_{i_k}^{(k)} = 0
+    \end{equation*}
+    For each ordered $ k $-tuple of indices $ (m_1 , \dots , m_k) $, define a multilinear map $ \tau^{m_1 \dots m_k} : V_1 \times \dots \times V_k \ra \R $ by:
+    \begin{equation*}
+      \tau^{m_1 \dots m_k}(v_1 , \dots , v_k) = \varepsilon_{(1)}^{m_1}(v_1) \dots \varepsilon_{(k)}^{m_k}(v_k)
+    \end{equation*}
+    where $ (\varepsilon_{(j)}^j) $ is the basis of $ V_j^* $ dual to $ (E_j^{(j)}) $. Since $ \tau^{m_1 \dots m_k} $ is multilinear, it determines a linear map $ \tilde{\tau}^{m_1 \dots m_k} : V_1 \otimes \dots \otimes V_k \ra \R $ by \tref{th:char-prop-tensor-prod}. It follows that:
+    \begin{equation*}
+      0 = \tilde{\tau}^{m_1 \dots m_k}(a^{i_1 \dots i_k} E_{i_1}^{(1)} \otimes \dots \otimes E_{i_k}^{(k)}) = a^{i_1 \dots i_k} \tau^{m_1 \dots m_k}(E_{i_1}^{(1)} , \dots , E_{i_k}^{(k)}) = a^{m_1 \dots m_k}
+    \end{equation*}
+    which shows that $ \bas $ is linearly independent.
+  \end{proof}
+\end{proofbox}
+
+It is now possible to show the connection between ``abstract" tensor products and ``concrete" tensor products.
+
+\begin{lemma}
+  If $ V_1 , \dots , V_k $ are finite-dimensional vector spaces, there is a canonical isomorphism:
+  \begin{equation}
+    V_1^* \otimes \dots \otimes V_k^* \cong \Mult(V_1 , \dots , V_k ; \R)
+  \end{equation}
+  under which the $ \omega^1 \otimes \dots \otimes \omega^k \in \Mult(V_1 , \dots , V_k ; \R) $, defined by $ \omega^1 \otimes \dots \otimes \omega^k (v_1 , \dots , v_k) = \omega^1(v_1) \dots \omega^k(v_k) $, and $ \omega^1 \otimes \dots \otimes \omega^k \in V_1^* \otimes \dots \otimes V_k^* $, defined by $ \omega^1 \otimes \dots \otimes \omega^k = \Pi(\omega^1 , \dots , \omega^k) $, correspond.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Define the map $ \Phi : V_1^* \times \dots \times V_k^* \ra \Mult(V_1 , \dots , V_k ; \R) $ as:
+    \begin{equation*}
+      \Phi(\omega^1 , \dots , \omega^k)(v_1 , \dots , v_k) = \omega^1(v_1) \dots \omega^k(v_k)
+    \end{equation*}
+    which is clearly multilinear in $ (v_1 , \dots , v_k) $. Moreover, $ \Phi(\omega^1 , \dots , \omega^k) $ is multilinear in $ (\omega^1 , \dots , \omega^k) $, hence by the characteristic property of the tensor product it determined a unique linear map $ \tilde{\Phi} : V_1^* \otimes \dots \otimes V_k^* \ra \Mult(V_1 , \dots , V_k ; \R) $ which satisfies:
+    \begin{equation*}
+      \tilde{\Phi}(\omega^1 \otimes \dots \otimes \omega^k)(v_1 , \dots , v_k) = \omega^1(v_1) \dots \omega^k(v_k)
+    \end{equation*}
+    By this defintion, $ \tilde{\Phi} $ clearly maps abstract tensor products to tensor products of covectors, and it also maps the basis of $ V_1^* \otimes \dots \otimes V_k^* $ given by \pref{prop:tensor-prod-basis} to the basis of $ \Mult(V_1 , \dots , V_k ; \R) $ given by \pref{prop:mult-basis}, therefore it is an isomorphism.
+  \end{proof}
+\end{proofbox}
+
+In presence of this canonical isomorphism, $ \Mult(V_1 , \dots , V_k ; \R) $ is henceforth identified with $ V_1^* \otimes \dots \otimes V_k^* $. Moreover, given that the vector spaces considered are finite-dimensional, the canonical isomorphism $ V \cong V^{**} $ allows for another canonical identification:
+\begin{equation}
+  V_1 \otimes \dots \otimes V_k \cong \Mult(V_1^* , \dots , V_k^* ; \R)
+\end{equation}
+which emphasizes again the symmetry between $ V $ and $ V^* $ for finite-dimensional vector spaces.
+
+\subsubsection{Mixed tensors}
+
+Having defined tensor products of vector spaces, it is now possible to characterize multilinear maps on a $ \R $-vector space $ V $. Elements of the $ k $-fold tensor product $ V^* \otimes \dots \otimes V^* $ are called \emph{covariant $ k $-tensors} on $ V $: these are just multilinear maps $ \alpha : V \times \dots \times V \ra \R $. Similarly, elemnts of the $ k $-fold product $ V \otimes \dots \otimes V $ are called \emph{contravariant $ k $-tensors} on $ V $, which are multilinear maps $ \alpha : V^* \times \dots \times V^* \ra \R $.
+
+\begin{definition}{Tensor}{}
+  Let $ V $ be a $ \R $-vector space. Given $ k,l \in \N_0 $, the space of \bcdef{tensors of rank $ (k,l) $} is defined as:
+  \begin{equation}
+    T^k_l(V) \defeq \underbrace{V \otimes \dots \otimes V}_{k \text{ times}} \otimes \underbrace{V^* \otimes \dots \otimes V^*}_{l \text{ times}}
+  \end{equation}
+\end{definition}
+
+Clearly, $ T^0_0(V) = \R $, $ T^1_0(V) = V $ and $ T^0_1(V) = V^* $, hence scalars, vectors and covectors can be thought as tensors. Moreover, by \pref{prop:tensor-prod-basis}, when $ V $ is finite-dimensional, any choice of basis $ (E_i) $ of $ V $ yields automatically a basis of $ T^k_l(V) $:
+\begin{equation}
+  \bas = \{E_{i_1} \otimes \dots \otimes E_{i_k} \otimes \varepsilon^{j_1} \otimes \dots \otimes \varepsilon^{j_l} \in T^k_l(V) : 1 \leq i_1 , \dots , i_k , j_1 , \dots , j_l \leq n\}
+\end{equation}
+where $ (\varepsilon^i) $ is the dual basis of $ V^* $ and $ n \equiv \dim_\R V $. Therefore, $ \dim_\R T^k_l(V) = n^{k+l} $, and given $ \alpha \in T^k_l(V) $, its $ n^{k+l} $ components are found as:
+\begin{equation}
+  \tensor{\alpha}{^{i_1 \dots i_k}_{j_1 \dots j_l}} = \alpha(\varepsilon^{i_1} , \dots , \varepsilon^{i_k} , E_{j_1} , \dots , E_{j_l})
+  \label{eq:tensor-components}
+\end{equation}
+
+\subsection{Tensor fields}
+
+\begin{definition}{Tensor bundles}{}
+  Given a smooth manifold $ \man $, its \bcdef{tensor bundle of rank $ (k,l) $} is defined as:
+  \begin{equation}
+    T^k_l\man \defeq \bigsqcup_{p \in \man} T^k_l(T_p\man)
+  \end{equation}
+\end{definition}
+
+There are some natural identifications: $ T^0_0\man = \man \times \R $, $ T^1_0\man = T\man $ and $ T^0_1\man = T^*\man $. As for vector fields, sections of $ T^k_l\man $ are \bctxt{tensor fields of rank $ (k,l) $} over $ \man $, and in any smooth chart $ (x^i) $ on $ \man $ they can be written as:
+\begin{equation}
+  A = \tensor{A}{^{i_1 \dots i_k}_{j_1 \dots j_l}} \frac{\pa}{\pa x^{i_1}} \otimes \dots \otimes \frac{\pa}{\pa x^{i_k}} \otimes \dd x^{j_1} \otimes \dots \otimes \dd x^{j_l}
+\end{equation}
+The space of smooth sections of $ T^k_l\man $ is an infinite-dimensional $ \R $-vector space and a module over $ \cm $, denoted by:
+\begin{equation}
+  \tns{k}{l}(\man) \equiv \Gamma(T^k_l\man)
+\end{equation}
+Note that, given $ A \in \tns{k}{l}(\man) $ and $ B \in \tns{p}{q}(\man) $, then trivially $ A \otimes B \in \tns{k+p}{l+q}(\man) $. Moreover, if $ A \in \tns{k}{l}(\man) $, $ \omega^1 , \dots , \omega^k \in \xms $ and $ X_1 , \dots , X_l \in \xm $, then $ A(\omega^1 , \dots , \omega^k , X_1 , \dots , X_l) \in \cm $, hence a rank-$ (k,l) $ tensor field $ A \in \tns{k}{l}(\man) $ induces a map:
+\begin{equation*}
+  A : \underbrace{\xms \times \dots \times \xms}_{k \text{ times}} \times \underbrace{\xm \times \dots \times \xm}_{l \text{ times}} \ra \R
+\end{equation*}
+which is multilinear\footnotemark over $ \cm $.
+
+\footnotetext{A map $ A : \xm \ra \R $ is linear over $ \cm $ if $ A(fX + gY) = f A(X) + g A(Y) \,\,\forall f,g \in \cm , X,Y \in \xm $, with obvious generalization to $ \xms $ and to the multilinear case.}
+
+\subsubsection{Pull-back of tensor fields}
+
+Recall that a diffeomorphism $ f : \man_1 \ra \man_2 $ induces two maps: the push-forward of vector fields through the differential $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ and the pull-back of covector fields through the dual of the differential $ \dd f_p^* : T_{f(p)}^*\man_2 \ra T_p^*\man_1 $. These are respectively defined by \ceref{eq:differential-def}{eq:pull-back-def}, and are denoted as $ (f_*X)_{f(p)} \defeq \dd f_p(X_p) $ and $ (f^*\omega)_p \defeq \dd f_p^*(\omega_{f(p)}) $, respectively.
+
+\begin{definition}{Pull-back of tensor field}{}
+  Let $ f : \man_1 \ra \man_2 $ be a diffeomorphism. Then, the \bcdef{pull-back} by $ f $ at $ p $ is defined as the map $ f^*_p : T^k_l(T_{f(p)}\man_2) \ra T^k_l(T_p\man_1) $ which acts on $ A \in T^k_l(T_{f(p)}\man_2) $ as:
+  \begin{equation}
+    (f^*A)_p(\omega^1 , \dots , \omega^k , X_1 , \dots , X_l) \defeq A((f^*\omega^1)_p , \dots , (f^*\omega^k)_p , (f^{-1}_* X_1)_p , \dots , (f^{-1}_* X_l)_p)
+  \end{equation}
+  with $ \omega^1 , \dots , \omega^k \in T^*\man_2 $, $ X_1 , \dots , X_l \in T\man_2 $ and $ f^{-1}_* \equiv (f^{-1})_* $.
+\end{definition}
+
+Note that the vector fields are ``pushed-back" by the inverse diffeomorphism $ f^{-1} : \man_2 \ra \man_1 $, so that all fields are mapped from $ \man_2 $ to $ \man_1 $.
+
+The definition of a pull-back on tensor fields allows for the extension of the Lie derivative on them (which was defined in \dref{def:lie-der-vec} on vector fields through their ``push-back").
+
+\begin{definition}{Lie derivative of tensor field}{}
+  Let $ \man $ be a smooth manifold, and let $ V \in \xm , A \in \tns{k}{l}(\man) $. Denoting as $ \theta $ the flow of $ V $ on $ \man $, the \bcdef{Lie derivative} of $ A $ with respect to $ V $ is the tensor field (provided it exists):
+  \begin{equation}
+    (\ld_V A)_p \defeq \frac{\dd}{\dd t} \bigg\vert_{t = 0} (\theta_t^* A)_p
+  \end{equation}
+\end{definition}
+
+Note that the expression being differentiated lies in $ T^k_l(T_p\man) $ for all $ t $, hence correctly $ (\ld_V A)_p \in T^k_l(T_p\man) $. Moreover, since it is defined from smooth maps, it can be shown that indeed $ \ld_V A \in \tns{k}{l}(\man) $.
+
+\begin{lemma}{Properties of Lie derivative}{}
+  Let $ V \in \xm $, $ f \in \cm $, $ A \in \tns{k}{l}(\man) $ and $ B \in \tns{p}{q}(\man) $. Then:
+  \begin{enumerate}
+    \item \label{item:ld-prop-1} $ \ld_V f = V(f) $;
+    \item \label{item:ld-prop-2} $ \ld_V (fA) = \ld_V(f) A + f \ld_V A $;
+    \item \label{item:ld-prop-3} $ \ld_V (A \otimes B) = (\ld_V A) \otimes B + A \otimes (\ld_V B) $;
+  \end{enumerate}
+\end{lemma}
+
+A fundamental property of the Lie derivative is that it obeys a convenient product rule.
+
+\begin{proposition}{Product rule}{}
+  Let $ V \in \xm $, $ A \in \tns{k}{l}(\man) $ and $ \omega^1 , \dots , \omega^k \in \xms $, $ X_1 , \dots , X_l \in \xm $. Then:
+  \begin{equation}
+    \begin{split}
+      \ld_V (A(\omega^1 , \dots , \omega^k , X_1 , \dots , X_l))
+      & = (\ld_V A)(\omega^1 , \dots , \omega^k , X_1 , \dots , X_l) + \\
+      & \quad + \sum_{i = 1}^k A(\omega^1 , \dots , \ld_V \omega^i , \dots , \omega^k , X_1 , \dots , X_l) + \\
+      & \quad + \sum_{j = 1}^l A(\omega^1 , \dots , \omega^k , X_1 , \dots , \ld_V X_j , \dots , X_l)
+    \end{split}
+    \label{eq:tensor-prod-rule}
+  \end{equation}
+\end{proposition}
+
+\begin{propcorollary}{Components of Lie derivative}{}
+  Let $ V \in \xm $ and $ A \in \tns{k}{l}(\man) $. In a smooth chart $ (U,(x^i)) $ on $ \man $, the components of $ \ld_V A \in \tns{k}{l}(\man) $ are:
+  \begin{equation}
+    \tensor{(\ld_V A)}{^{i_1 \dots i_k}_{j_1 \dots j_l}} = V^\ell \pa_\ell \tensor{A}{^{i_1 \dots i_k}_{j_1 \dots j_l}} - \sum_{i = 1}^k \tensor{A}{^{i_1 \dots \ell \dots i_k}_{j_1 \dots j_l}} \pa_\ell V^{i_i} + \sum_{j = 1}^l \tensor{A}{^{i_1 \dots i_k}_{j_1 \dots \ell \dots j_l}} \pa_{j_j} V^\ell
+    \label{eq:tensor-lie-der}
+  \end{equation}
+\end{propcorollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Recall \eref{eq:tensor-components}. By \eref{eq:tensor-prod-rule}, it is necessary to compute $ \ld_V \pa_i $ and $ \ld_V \dd x^i $. The first one is straighforward, using $ \ld_V \pa_i = [V , \pa_i] $ and \eref{eq:lie-bra-comp}:
+    \begin{equation}
+      \ld_V \pa_i = - \pa_i V^\ell \pa_\ell
+    \end{equation}
+    The second one needs more care.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Lie derivative and differential}{lie-der-diff}
+      If $ V \in \xm $ and $ f \in \cm $, then:
+      \begin{equation}
+        \ld_V (\dd f) = \dd (\ld_V f)
+        \label{eq:lie-der-vec-basis}
+      \end{equation}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        By \eref{eq:tensor-prod-rule}, for any $ X \in \xm $:
+        \begin{equation*}
+          \begin{split}
+            (\ld_V (\dd f))(X)
+            & = V(\dd f(X)) - \dd f([V,X]) = VX(f) - [V,X](f) = XV(f)
+          \end{split}
+        \end{equation*}
+        Since $ XV(f) = \dd (V(f))(X) = \dd (\ld_V f)(X) $, the proof is complete.
+      \end{proof}
+    \end{proofbox}
+
+    By \lref{lemma:lie-der-diff}, then, $ \ld_V \dd x^i = \dd (\ld_V x^i) = \dd (V^j \pa_j x^i) = \dd V^i $, so using \eref{eq:func-diff}:
+    \begin{equation}
+      \ld_V \dd x^i = \pa_\ell V^i \dd x^\ell
+      \label{eq:lie-der-covec-basis}
+    \end{equation}
+    Inserting \eeref{eq:lie-der-vec-basis}{eq:lie-der-covec-basis} into \eref{eq:tensor-prod-rule} yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+In particular, the Lie derivative of a covector field $ \omega \in \xms $ reads (in components):
+\begin{equation}
+  \ld_V \omega = (V^\ell \pa_\ell \omega_i + \omega_\ell \pa_i V^\ell) \dd x^i
+  \label{eq:lie-der-covec}
+\end{equation}
+
+Finally, it is possible to characterize tensor fields which remain unchanged under certain flows. Given a flow $ \theta $ on $ \man $, a tensor field $ A $ over $ \man $ is said to be \bctxt{invariant under $ \theta $} if, for any $ (t,p) $ in the domain of $ \theta $:
+\begin{equation*}
+  (\theta_t^* A)_p = A_p
+\end{equation*}
+
+\begin{theorem}{Invariance under flow}{}
+  Let $ \man $ be a smooth manifold, and let $ V \in \xms $ and $ A \in \tns{k}{l}(\man) $. Then, $ A $ is invariant under the flow of $ V $ if and only if $ \ld_V A = 0 $.
+\end{theorem}
+
+This theorem gives a clear interpretation to the Lie derivative.
 
 
 
