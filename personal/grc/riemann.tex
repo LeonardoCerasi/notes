@@ -2,6 +2,324 @@
 
 \section{Metric manifolds}
 
+To import concepts of Geometry on smooth manifolds, it is necessary to define additional structure on them.
+
+Consider an $ n $-dimensional $ \R $-vector space $ V $ and a symmetric tensor $ g \in T^0_2(V) $, i.e. such that $ g(v,w) = g(w,v) \,\,\forall v,w \in V $. Then, $ g $ is \bctxt{non-degenerate} if the linear map $ \hat{g} : V \ra V^* : \hat{g}(v)(w) = g(v,w) $ is an isomorphism, or equivalently if $ \forall v \in V : v \neq 0 \, \exists w \in V : g(v,w) \neq 0 $. With an adaptation of the Gram--Schmidt algorithm, every non-degenerate symmetric rank-$ (0,2) $ tensor can be transformed, by a change of basis, to one whose (local) matrix representation, i.e. $ [g_{ij}]_{i,j = 1 , \dots , n} $, is diagonal with all entries equal to $ \pm 1 $. By a result known as \emph{Sylvester's law of inertia}, the numbers $ r $ and $ s $ of negative and positive entries, respectively, are basis-independent, thus the ordered pair $ (r,s) $ is an invariant of $ g $, called its \bctxt{signature}.
+
+\begin{definition}{Metric}{}
+  Let $ \man $ be a smooth manifold. A symmetric tensor field $ g \in \tns{0}{2}(\man) $ is a \bcdef{metric} on $ \man $ if it is non-degenerate at each point $ p \in \man $ and if it has the same signature on all $ \man $. A smooth manifold equipped with a metric is a \bcdef{metric manifold}.
+\end{definition}
+
+The two most important cases for the signature of the metric tensor are $ (0,n) $, in which case it is a \emph{Riemannian metric}, and $ (1,n-1) $, which is a \emph{Lorentzian metric}. In general, any metric with $ r > 0 $ is called a pseudo-Riemannian metric.
+
+\begin{observation}{Symmetric tensors}{}
+  The expression of the metric in smooth chart $ (U,(x^i)) $ on $ \man $ does not make its symmetry clear:
+  \begin{equation*}
+    g = g_{ij} \dd x^i \otimes \dd x^j
+  \end{equation*}
+  To make the symmetry explicit, it is first necessary to further characterize symmetric tensors. Let $ V $ be an $ n $-dimensional $ \R $-vector space. A covariant $ k $-tensor is a rank-$ (0,k) $ tensor on $ V $, and it is said to be symmetric if its value is unchanged under the interchange of any pair of arguments: the set of symmetric covariant $ k $-tensors on $ V $ is denoted as $ \sv{k}(V) \ssq T^0_k(V) $. It is possible to define a natural projection $ \Sym : T^0_k(V) \ra \sv{k}(V) $ as:
+  \begin{equation}
+    (\Sym \alpha)(v_1 , \dots , v_k) \defeq \frac{1}{k!} \sum_{\sigma \in \sy{k}} \alpha(v_{\sigma(1)} , \dots , v_{\sigma(k)})
+  \end{equation}
+  which is clearly a symmetric $ k $-tensor. Note that $ \Sym \vert_{\sv{k}(V)} = \id_{\sv{k}(V)} $. In general, the tensor product of two symmetric tensors is not symmetric, but the symmetrization operator allows to define a \bcobs{symmetric product} of $ \alpha \in \sv{k}(V) $ and $ \beta \in \sv{l}(V) $:
+  \begin{equation}
+    \alpha \spr \beta \defeq \Sym(\alpha \otimes \beta)
+  \end{equation}
+  Clearly $ \alpha \spr \beta \in \sv{k+l}(V) $, since its explicit action is:
+  \begin{equation}
+    \alpha \spr \beta(v_1 , \dots , v_{k+l}) = \sum_{\sigma \in \sy{k+l}} \alpha(v_{\sigma(1)} , \dots , v_{\sigma(k)}) \beta(v_{\sigma(k+1)} \dots , v_{\sigma(k+l)})
+  \end{equation}
+  It can be shown that the symmetric product is symmetric and bilinear, and it has a particularly simple action on covectors $ \alpha , \beta \in V^* $:
+  \begin{equation}
+    \alpha \spr \beta = \frac{1}{2} (\alpha \otimes \beta + \beta \otimes \alpha)
+  \end{equation}
+  This last expression allows to make the symmetry of the metric transparent:
+  \begin{equation*}
+    g = g_{ij} \dd x^i \otimes \dd x^i = \frac{1}{2} (g_{ij} \dd x^i \otimes \dd x^j + g_{ji} \dd x^i \otimes \dd x^j) = \frac{1}{2} g_{ij} (\dd x^i \otimes \dd x^j + \dd x^j \otimes \dd x^i)
+  \end{equation*}
+  where $ g_{ij} = g_{ji} $ has been used. This is just the symmetric product of $ \dd x^i $ and $ \dd x^j $, hence:
+  \begin{equation}
+    g = g_{ij} \dd x^i \dd x^j
+  \end{equation}
+  which is now manifestly symmetric.
+\end{observation}
+
+\subsection{Riemannian manifolds}
+
+Since the diagonal representation of a Riemannian metric is the identity matrix, $ g_p $ clearly defines an inner product on $ T_p\man $, since it is positive-definite: therefore, given $ v,w \in T_p\man $, the notation $ g_p(v,w) \equiv \braket{v,w}_g $ is set.
+
+\begin{example}{Euclidean metric}{}
+  The simplest example of a Riemannian metric is the Euclidean metric $ \bar{g} $ on $ \R^n $, which is expressed in standard coordinates as:
+  \begin{equation*}
+    \bar{g} = \delta_{ij} \dd x^i \dd x^j
+  \end{equation*}
+  It is common to abbreviate the symmetric product as $ \alpha \alpha \equiv \alpha^2 $, hence the Euclidean metric can be written as:
+  \begin{equation*}
+    \bar{g} = (\dd x^1)^2 + \dots + (\dd x^n)^2
+  \end{equation*}
+  Applied to $ v,w \in T_p\R^n $, it yields the Euclidean inner product:
+  \begin{equation*}
+    \bar{g}(v,w) = \delta_{ij} v^i w^j = \sum_{i = 1}^n v^i w^i \equiv v \cdot w
+  \end{equation*}
+\end{example}
+
+A peculiar feature of Riemannian metrics, which is not present in pseudo-Riemannian metrics, is their abundance.
+
+\begin{theorem}{Existence of Riemannian metric}{riemann-existence}
+  Every smooth manifold admits a Riemannian metric.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \man $ be a smooth manifold with a smooth atlas $ \atl = \{(U_\alpha , \varphi_\alpha)\} $. In each coordinate domain there is a Riemannian metric given by the pull-back of the Euclidean metric $ g_\alpha = \varphi_\alpha^* \bar{g} $, whose coordinate expression is $ \delta_{ij} \dd x^i \dd x^j $. Then, consider a smooth partition of unity\footnotemark $ \{\psi_\alpha\} $ subordinate to the cover $ \{U_\alpha\} $, and define:
+    \begin{equation*}
+      g = \sum_\alpha \psi_\alpha g_\alpha
+    \end{equation*}
+    By local finiteness, this sum has only finitely many non-zero terms in the neighbourhood of each point $ p \in \man $, hence this expression defines a smooth tensor field on $ \man $. Since it is obviously symmetric, only positive-definiteness needs to be checked. Given any $ v \in T_p\man : v \neq 0 $:
+    \begin{equation*}
+      g_p(v,v) = \sum_\alpha \psi_\alpha(p) g_\alpha \vert_p(v,v)
+    \end{equation*}
+    This sum is non-negative, as each term is non-negative. Moreover, at least one function $ \psi_\alpha $ is strictly positive at $ p $ (as they must sum to $ 1 $), and $ g_\alpha \vert_p(v,v) > 0 $ since $ v \neq 0 $, therefore $ g_p(v,v) > 0 $.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{Let $ \man $ be a topological space, and let $ \EuScript{X} = \{X_\alpha\}_{\alpha \in \mathcal{I}} $ be an arbitrary open cover of $ \man $. A \emph{partition of unity} subordinate to $ \EuScript{X} $ is a family $ \{\psi_\alpha\}_{\alpha \in \mathcal{I}} $ of continuous functions $ \psi_\alpha : \man \ra [0,1] \ssq \R $ such that:
+\begin{enumerate}
+  \item \label{item:pu-1} $ \supp \psi_\alpha \ssq X_\alpha \,\,\forall \alpha \in \mathcal{I} $;
+  \item \label{item:pu-2} the family $ \{\supp \psi_\alpha\}_{\alpha \in \mathcal{I}} $ is locally finite, i.e. every point has a neighbourhood that intersects $ \supp \psi_\alpha $ only for finitely many $ \alpha \in \mathcal{I} $;
+  \item \label{item:pu-3} $ \sum_{\alpha \in \mathcal{I}} \psi_\alpha(p) = 1 \,\,\forall p \in \man $.
+\end{enumerate}
+The sum in \itemref{item:pu-3} has no convergence problems, since it has only a finite number of non-zero terms due to \itemref{item:pu-2}. If $ \man $ is a smooth manifold and each function $ \psi_\alpha $ is smooth, then this is a smooth partition of unity.}
+
+This proof shows that there is a great amount of arbitrariness in the construction of a metric on a smooth manifold: indeed, the same manifold can be equipped with extremely different metrics, yielding extremely different geometric properties. The main geometric constructions induced by a Riemannian metric are:
+\begin{itemize}
+  \item the \bctxt{norm} of a tangent vector $ v \in T_p\man $:
+    \begin{equation}
+      \norm{v}_g \defeq \sqrt{\braket{v,v}_g}
+    \end{equation}
+  \item the \bctxt{angle} between two non-zero tangent vectors $ v,w \in T_p\man $, which is the unique $ \theta \in [0,\pi] $ such that:
+    \begin{equation}
+      \cos \theta \defeq \frac{\braket{v,w}_g}{\norm{v}_g \norm{w}_g}
+    \end{equation}
+  \item two tangent vectors $ v,w \in T_p\man $ are \bctxt{orthogonal} if $ \braket{v,w}_g = 0 $.
+\end{itemize}
+
+Note that two vectors are orthogonal either if one or both are zero or if the angle between them is $ \frac{\pi}{2} $.
+
+\begin{definition}{Orthonormal frame}{}
+  Let $ (\man,g) $ be a Riemannian manifold. A local frame $ (E_1 , \dots , E_n) $ on $ U \in \tp(\man) $ is an \bcdef{orthonormal frame} is $ (E_1\vert_p , \dots , E_n\vert_p) $ is an orthonormal basis of $ T_p\man $ at each point $ p \in U $, or equivalently if $ \braket{E_i , E_j}_g = \delta_{ij} $.
+\end{definition}
+
+In general, a smooth orthonormal frame can be found starting from a smooth local frame and applying the Gram--Schmidt algorithm: therefore, for each point $ p \in \man $, there is a smooth orthonormal frame on a neighbourhood of $ p $, found applying the Gram--Schmidt algorithm to the coordinate frame on said neighbourhood.
+
+\subsubsection{Pull-back metrics}
+
+Suppose $ \man_1 , \man_2 $ are smooth manifolds, $ g $ is a Riemannian metric on $ \man_2 $ and $ f : \man_1 \ra \man_2 $ is a smooth map. Then, the pull-back $ f^*g $ is a smooth covariant $ 2 $-tensor field on $ \man_1 $: if it is positive-definite, $ f^*g $ is a Riemannian metric on $ \man_1 $, called the \bctxt{pull-back} metric on $ \man_1 $ determined by $ f $.
+
+\begin{example}{Helicoid}{}
+  Consider the smooth map $ f : \R^2 \ra \R^3 $ given by:
+  \begin{equation*}
+    f(u,v) = (u \cos v , u \sin v , v)
+  \end{equation*}
+  whose image is a surface known as a \bcex{helicoid}. The pull-back metric $ f^*\bar{g} $ on the helicoid can be computed substituting the component functions of $ f $ in the coordinate expression of $ \bar{g} $:
+  \begin{equation*}
+    f^*\bar{g} = \dd (u \cos v)^2 + \dd (u \sin v)^2 + \dd v^2 = \dd u^2 + (1 + u^2) \dd v^2
+  \end{equation*}
+\end{example}
+
+The same procedure can be applied to transform a Riemannian metric under a change of coordinates, which is thought as the identity map expressed in terms of different coordinates for the domain and the codomain.
+
+Another important application of pull-back metrics is the study of geometrical invariants under isometries.
+
+\begin{definition}{Riemannian isometry}{}
+  Let $ (\man,g) $ and $ (\tilde{\man},\tilde{g}) $ be Riemannian manifolds. A diffeomorphism $ f : \man \ra \tilde{\man} $ is a \bcdef{Riemannian isometry} if $ f^* \tilde{g} = g $.
+\end{definition}
+
+This definition can be generalized to \emph{local Riemannian isometries}, where the condition of isometry is only enforced on some $ U \in \tp(\tilde{\man}) $. If there exists a Riemannian isometry between two Riemannian manifolds, they are said to be \emph{isometric}.
+
+\subsubsection{Riemannian distance}
+
+The introduction of a metric on a smooth manifold allows to measure the lengths of curves.
+
+\begin{definition}{Length of curve}{}
+  Let $ (\man,g) $ be a Riemannian manifold. If $ \gamma : [a,b] \ra \man $ is a piecewise-smooth curve, the \bcdef{length of $ \gamma $} is defined as:
+  \begin{equation}
+    \lng_g(\gamma) \defeq \int_a^b \dd t \norm{\gamma'(t)}_g
+  \end{equation}
+\end{definition}
+
+This integral is well-defined since $ \norm{\gamma'(t)}_g $ is continuous on $ [a,b] $, except for finitely many values of $ t $. In general, given $ c \in (a,b) $:
+\begin{equation}
+  \lng_g(\gamma) = \lng_g(\gamma \vert_{[a,c]}) + \lng_g(\gamma \vert_{[c,b]})
+\end{equation}
+The lengths of curves are local isometry invariants of Riemannian manifolds: given a Riemannian isometry $ f : \man \ra \tilde{\man} $, for every piecewise-smooth curve $ \gamma $ on $ \man $ it is trivial to show that $ \lng_{\tilde{g}}(f \circ \gamma) = \lng_g(\gamma) $.
+
+Moreover, the length of a curve is also invariant under reparametrizations of the curve. Given a piecewise-smooth curve $ \gamma : [a,b] \ra \man $ on a Riemannian manifold, a \bctxt{reparametrization} of $ \gamma $ induced by a diffeomorphism $ \varphi : [c,d] \ra [a,b] $ is a piecewise-smooth curve $ \tilde{\gamma} = \gamma \circ \varphi $.
+
+\begin{proposition}{Reparametrization-invariance of length}{}
+  Let $ (\man,g) $ be a Riemannian manifold, and let $ \gamma : [a,b] \ra \man $ be a piecewise-smooth curve. If $ \tilde{\gamma} $ is a reparametrization of $ \gamma $, then $ \lng_g(\tilde{\gamma}) = \lng_g(\gamma) $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Assume first that $ \gamma $ is smooth, and let $ \varphi : [c,d] \ra [a,b] $ be a diffeomorphism such that $ \tilde{\gamma} = \gamma \circ \varphi $: since it is a diffeomorphism, either $ \varphi' > 0 $ or $ \varphi' < 0 $ everywhere. Inserting the reparametrization in the integral:
+    \begin{equation*}
+      \begin{split}
+        \lng_g(\tilde{\gamma})
+        & = \int_c^d \dd t \norm{\tilde{\gamma}'(t)}_g = \int_c^d \dd t \norm{\frac{\dd}{\dd t} (\gamma \circ \varphi)(t)}_g \\
+        & = \int_c^d \dd t \norm{\varphi'(t) \gamma'(\varphi(t))}_g = \int_c^d \dd t \abs{\varphi'(t)} \norm{\gamma'(\varphi(t))}_g
+      \end{split}
+    \end{equation*}
+    Now, if $ \varphi' > 0 $, then $ \abs{\varphi'(t)} = \varphi'(t) $ and, under the change of integration variable $ s = \varphi(t) $, the integral becomes:
+    \begin{equation*}
+      \lng_g(\tilde{\gamma}) = \int_a^b \dd s \norm{\gamma'(s)}_g = \lng_g(\gamma)
+    \end{equation*}
+    On the other hand, if $ \varphi' < 0 $, then $ \abs{\varphi'(t)} = - \varphi'(t) $, and the same transformation yields:
+    \begin{equation*}
+      \lng_g(\tilde{\gamma}) = - \int_d^c \dd s \norm{\gamma'(s)}_g = \lng_g(\gamma)
+    \end{equation*}
+    If $ \gamma $ is only piecewise-smooth, apply the same reasoning to each subinterval on which it is smooth.
+  \end{proof}
+\end{proofbox}
+
+Having defined the notion of length for curves, it is then possible to introduce the notion of distance between points of the manifold. Consider a connected patch $ U \in \tp(\man) $ of a Riemannian manifold $ (U,g) $: for any $ p,q \in U $, the \bctxt{(Riemannian) distance} from $ p $ to $ q $ is defined as:
+\begin{equation}
+  \dist_g(p,q) \defeq \inf_\R \big\{ \lng_g(\gamma) \in \R^+_0 : \gamma : [a,b] \ra \man : \gamma(a) = p , \gamma(b) = q \big\}
+\end{equation}
+which is well-defined since $ p,q \in U $ connected. If $ \man $ is connected, the distance function is defined on the whole $ \man $, and in fact it gives $ \man $ the structure of metric space.
+
+\begin{theorem}{Riemannian manifolds as metric spaces}{}
+  Let $ (\man,g) $ be a connected Riemannian manifold. Then, $ (\man,\dist_g) $ is a metric space whose topology is the same as the original manifold topology.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    By definition $ \dist_g(p,q) \leq 0 \,\,\forall p,q \in \man $. Since every constant curve has vanishing length, $ \dist_g(p,p) = 0 \,\,\forall p \in \man $, while $ \dist_g(p,q) = \dist_g(q,p) $ by reparametrization invariance.
+
+    Now, suppose $ \gamma_1 $ and $ \gamma_2 $ are piecewise-smooth curves from $ p $ to $ q $ and from $ q $ to $ r $, respectively, and let $ \gamma $ be the piecewise-smooth curve that first follows $ \gamma_1 $ and then follows $ \gamma_2 $ (suitably reparametrized). Then:
+    \begin{equation*}
+      \dist_g(p,r) \leq \lng_g(\gamma) = \lng_g(\gamma_1) + \lng_g(\gamma_2)
+    \end{equation*}
+    Taking the infimum over all such $ \gamma_1 $ and $ \gamma_2 $, the triangle inequality $ \dist_g(p,r) \leq \dist_g(p,q) + \dist_g(q,r) $ is found.
+
+    To prove that $ (\man,g) $ is a metric space, there only remains to show that $ \dist_g(p,q) > 0 $ for $ p \neq q \in \man $. To do so, let $ U $ be a smooth coordinate domain containing $ p $ and not $ q $, and identify it with $ U \in \tp(\R^n) $ through the corresponding smooth coordinate map.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{norm-ineq}
+      Let $ g $ be a Riemannian metric on $ U \in \tp(\R^n) $. Given a compact subset $ K \ssq U $, there exist $ c,C \in \R^+ $ such that:
+      \begin{equation}
+        c \norm{v}_{\bar{g}} \leq \norm{v}_g \leq C \norm{v}_{\bar{g}}
+        \qquad
+        \forall v \in T_x \R^n \, \forall x \in K
+        \label{eq:norm-ineq}
+      \end{equation}
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        For any compact subset $ K \ssq U $, let $ L \ssq T\R^n $ defined as:
+        \begin{equation*}
+          L = \{(x,y) \in T\R^n : x \in K , \norm{v}_g = 1\}
+        \end{equation*}
+        Given the canonical identification $ T\R^n \cong \R^n \times \R^n $, then $ L \cong K \times \Sn{n-1} $, hence it is compact. Since the norm is continuous and strictly positive over $ L $, there exist $ c,C \in \R^+ $ such that $ c \leq \norm{v}_g \leq C $ whenever $ (x,v) \in L $. If $ x \in K $ and $ v \neq 0 \in T_x\R^n $, let $ \lambda = \norm{v}_{\bar{g}} $, so that $ (x,\lambda^{-1}v) \in L $ and, by homogeneity of the norm:
+        \begin{equation*}
+          \norm{v}_g = \lambda \norm{\lambda^{-1} v}_g \leq \lambda C = C \norm{v}_{\bar{g}}
+        \end{equation*}
+        and similarly for the lower bound. The same inequalities become trivial for $ v = 0 $.
+      \end{proof}
+    \end{proofbox}
+
+    Consider a regular coordinate ball $ V $ of radius $ \varepsilon > 0 $ and centered at $ p $ such that $ \overline{V} \ssq U $. Applying \lref{lemma:norm-ineq}, there are $ c,C \in \R^+ $ such that \eref{eq:norm-ineq} holds for all $ x \in \overline{V} $ and $ v \in T_x \man $. Then, for any piecewise-smooth curve $ \gamma $ lying entirely in $ \overline{V} $:
+    \begin{equation*}
+      c \lng_{\bar{g}}(\gamma) \leq \lng_g(\gamma) \leq C \lng_{\bar{g}}(\gamma)
+    \end{equation*}
+    Now, suppose $ \gamma : [a,b] \ra \man $ is a piecewise-smooth curve from $ p $ to $ q $, and let $ t_0 $ be the infimum of $ t \in [a,b] : \gamma(t) \notin \overline{V} $: by continuity $ \gamma(t_0) \in \pa V $ (indeed $ \pa V \cap \supp \gamma = \{t_0\} $), and $ \gamma(t) \in \overline{V} \,\,\forall t \in [a,t_0] $. Thus:
+    \begin{equation*}
+      \lng_g(\gamma) \geq \lng_g(\gamma \vert_{[a,t_0]}) \geq c \lng_{\bar{g}}(\gamma \vert_{[a,t_0]}) \geq c \dist_{\bar{g}}(p , \gamma(t_0)) = c \varepsilon > 0
+    \end{equation*}
+    Taking the infimum over all such curves, $ \dist_g(p,q) \geq c \varepsilon > 0 $ is concluded.
+
+    Finally, there remains to show that the metric topology generated by $ \dist_g $ is the same as the given manifold topology on $ \man $. To do so, WTS $ U \in \tp_\text{man}(\man) \iff U \in \tp_\text{dist}(\man) $.
+
+    Suppose fist that $ U \in \tp_\text{man}(\man) $, let $ p \in U $ and let $ V $ be a regular coordinate ball of radius $ \varepsilon > 0 $ centered at $ p $ suc that $ \overline{V} \ssq U $. The previous argument shows that $ \dist_g(p,q) \geq c \varepsilon $ for $ q \notin \overline{V} $, hence $ \dist_g(p,q) < c \varepsilon \implies q \in \overline{V} \ssq U $, i.e. the metric ball of radius $ c \varepsilon $ centered at $ p $ is contained in $ U $. Hence, $ U \in \tp_\text{dist}(\man) $.
+
+    Conversely, suppose $ W \in \tp_\text{dist}(\man) $, and let $ p \in W $. Furthermore, let $ V $ be a regular coordinate ball of radius $ r > 0 $ centered at $ p $, let $ \bar{g} $ be the Euclidean metric on $ \overline{V} $ determined by the given coordinates, and let $ c , C \in \R^+ $ such that \eref{eq:norm-ineq} is satisfied for $ v \in T_q\man , q \in \overline{V} $. Consider $ \varepsilon \in (0,r) $ small enough that the metric ball centered at $ p $ of radius $ C \varepsilon $ is contained in $ W $, and let $ V_\varepsilon $ be the set of points in $ \overline{V} $ whose Euclidean distance from $ p $ is less than $ \varepsilon $. If $ q \in V_\varepsilon $, let $ \gamma $ be the straight-line segment in coordinates from $ p $ to $ q $. By \lref{lemma:norm-ineq} as above:
+    \begin{equation*}
+      \dist_g(p,q) \leq \lng_g(\gamma) \leq C \lng_{\bar{g}}(\gamma) \leq C \varepsilon
+    \end{equation*}
+    This shows that $ V_\varepsilon $ is contained in the metric ball of radius $ C \varepsilon $ centered at $ p $, and therefore in $ W $. Sinve $ V_\varepsilon \in \tp_\text{man}(\man) $ is a neighbourhood of $ p $, this shows that $ W \in \tp_\text{man}(\man) $.
+  \end{proof}
+\end{proofbox}
+
+By this theorem, all of the terminology of metric spaces can be carried over to connected Riemannian manifolds. A connected Riemannian manifold $ (\man,g) $ is complete if $ (\man,\dist_g) $ is a complete metric space, i.e. if every Cauchy sequence in $ \man $ converges to a point in $ \man $, and $ g $ is then said to be a \bctxt{complete Riemannian metric}: it can be shown that every connected smooth manifold admits a complete Riemannian metric.
+
+\subsection{Lorentzian manifolds}
+
+The Lorentzian manifold is more subtle to study, since there is no analogue of \tref{th:riemann-existence} for Lorentzian metrics, a consequence of the fact that it is not generally true that a linear combination of non-degenerate covariant $ 2 $-tensors with positive coefficients is necessarily non-degenerate: indeed, not every smooth manifold admits a Lorentzian metric.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Metric manifolds}
+
 \begin{definition}{Metric}{metric}
   A \bcdef{metric} $ g $ is a (0,2) tensor field on a manifold $ \mathcal{M} $ that is:
   \begin{enumerate}
