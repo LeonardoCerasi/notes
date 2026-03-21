@@ -1302,7 +1302,7 @@ On $ T\man $, local frames determine local bases for tangent spaces. An importan
 
 \subsubsection{Bundle homomorphisms}
 
-\begin{definition}{Bundle homomorphism}{}
+\begin{definition}{Bundle homomorphism}{bundle-homomorphism}
   Let $ \pi : E \ra \man $ and $ \pi' : E' \ra \man' $ be vector bundles. A continuous map $ f : E \ra E' $ is a \bcdef{bundle homomorphism} if there exists a map $ F : \man \ra \man' $ satisfying:
   \begin{equation}
     \pi' \circ f = F \circ \pi
@@ -1340,8 +1340,8 @@ Given smooth bundles $ \pi : E \ra \man $ and $ \pi' : E' \ra \man $, if $ f : E
 \end{equation*}
 for any $ g_1 , g_2 \in \cm $ and $ \sigma_1 , \sigma_2 \in \Gamma(E) $. The converse is true as well.
 
-\begin{lemma}{Characterization of bundle homomorphisms}{}
-  Let $ \pi : E \ra \man $ and $ \pi' : E' \ra \man $ be smooth fiber bundles. A map $ \tilde{f} : \Gamma(E) \ra \Gamma(E') $ is linear over $ \cm $ if and only if there is a smooth bundle homomorphism $ f : E \ra E' $ over $ \man $ such that $ \tilde{f} = f \circ \sigma \,\,\forall \sigma \in \Gamma(E) $.
+\begin{lemma}{Characterization of bundle homomorphisms}{char-bundle-homo}
+  Let $ \pi : E \ra \man $ and $ \pi' : E' \ra \man $ be smooth vector bundles. A map $ \tilde{f} : \Gamma(E) \ra \Gamma(E') $ is linear over $ \cm $ if and only if there is a smooth bundle homomorphism $ f : E \ra E' $ over $ \man $ such that $ \tilde{f} = f \circ \sigma \,\,\forall \sigma \in \Gamma(E) $.
 \end{lemma}
 
 Given this lemma, it is customary to identify $ \tilde{f} $ with $ f $, hence writing directly $ f : \Gamma(E) \ra \Gamma(E') $, since the action on sections is obtained simply applying the bundle homomorphism pointwise: for example, if $ a \in \R $, then the same notation $ X \mapsto a X $ denotes both the operation of multiplying vectors in each tangent space $ T_p\man $ by $ a $, and the operation of multiplying vector fields by $ a $ (note that multiplying by $ a $ in indeed a bundle homomorphism $ T\man \ra T\man $).
@@ -1414,7 +1414,7 @@ The elements of $ T^*_p\man $ are called the \emph{tangent covectors} at $ p $. 
   \qquad \qquad
   \omega_i = \omega \left( \frac{\pa}{\pa x^i} \bigg\vert_p \right)
 \end{equation*}
-Now, let $ (V , (\tilde{x}^i)) $ be another smooth chart that contains $ p $, and let $ (\tilde{\lambda}^i \vert_p) $ be the dual basis of $ (\pa_i \vert_p) $. Applying \ref{eq:contravariant-alibi}, by the linearity of $ \omega \in V^* $, the transformation rule for covectors is found:
+Now, let $ (V , (\tilde{x}^i)) $ be another smooth chart that contains $ p $, and let $ (\tilde{\lambda}^i \vert_p) $ be the dual basis of $ (\pa_i \vert_p) $. Applying \eref{eq:contravariant-alibi}, by the linearity of $ \omega \in V^* $, the transformation rule for covectors is found:
 \begin{equation}
   \omega_i = \frac{\pa \tilde{x}^j}{\pa x^i}(\hat{p}) \tilde{\omega}_j
   \label{eq:covariant-alias}
@@ -1826,7 +1826,7 @@ where $ (\varepsilon^i) $ is the dual basis of $ V^* $ and $ n \equiv \dim_\R V 
 
 \subsection{Tensor fields}
 
-\begin{definition}{Tensor bundles}{}
+\begin{definition}{Tensor bundles}{tensor-bundle}
   Given a smooth manifold $ \man $, its \bcdef{tensor bundle of rank $ (k,l) $} is defined as:
   \begin{equation}
     T^k_l\man \defeq \bigsqcup_{p \in \man} T^k_l(T_p\man)
@@ -1836,15 +1836,23 @@ where $ (\varepsilon^i) $ is the dual basis of $ V^* $ and $ n \equiv \dim_\R V 
 There are some natural identifications: $ T^0_0\man = \man \times \R $, $ T^1_0\man = T\man $ and $ T^0_1\man = T^*\man $. As for vector fields, sections of $ T^k_l\man $ are \bctxt{tensor fields of rank $ (k,l) $} over $ \man $, and in any smooth chart $ (x^i) $ on $ \man $ they can be written as:
 \begin{equation}
   A = \tensor{A}{^{i_1 \dots i_k}_{j_1 \dots j_l}} \frac{\pa}{\pa x^{i_1}} \otimes \dots \otimes \frac{\pa}{\pa x^{i_k}} \otimes \dd x^{j_1} \otimes \dots \otimes \dd x^{j_l}
+  \label{eq:tensor-comp}
 \end{equation}
+ This expression clearly determined the alias transformation rule for tensor fields. Consider two overlapping charts $ (U,(x^i)) , (V,(\tilde{x}^i)) $, and suppose that $ \tensor{A}{^{i_1 \dots i_k}_{j_1 \dots j_l}} $ are the components of a rank-$ (k,l) $ tensor field $ A $ over $ \man $ in the first chart. Then, the components of $ A $ in the second chart are:
+\begin{equation}
+  \tensor{\tilde{A}}{^{i_1 \dots i_k}_{j_1 \dots j_l}} = \frac{\pa \tilde{x}^{i_1}}{\pa x^{\alpha_1}} \dots \frac{\pa \tilde{x}^{i_k}}{\pa x^{\alpha_k}} \frac{\pa x^{\beta_1}}{\pa \tilde{x}^{j_1}} \dots \frac{\pa x^{\beta_l}}{\pa \tilde{x}^{j_l}} \tensor{A}{^{\alpha_1 \dots \alpha_k}_{\beta_1 \dots \beta_l}}
+  \label{eq:tensor-trans}
+\end{equation}
+
 The space of smooth sections of $ T^k_l\man $ is an infinite-dimensional $ \R $-vector space and a module over $ \cm $, denoted by:
 \begin{equation}
   \tns{k}{l}(\man) \equiv \Gamma(T^k_l\man)
 \end{equation}
 Note that, given $ A \in \tns{k}{l}(\man) $ and $ B \in \tns{p}{q}(\man) $, then trivially $ A \otimes B \in \tns{k+p}{l+q}(\man) $. Moreover, if $ A \in \tns{k}{l}(\man) $, $ \omega^1 , \dots , \omega^k \in \xms $ and $ X_1 , \dots , X_l \in \xm $, then $ A(\omega^1 , \dots , \omega^k , X_1 , \dots , X_l) \in \cm $, hence a rank-$ (k,l) $ tensor field $ A \in \tns{k}{l}(\man) $ induces a map:
-\begin{equation*}
+\begin{equation}
   A : \underbrace{\xms \times \dots \times \xms}_{k \text{ times}} \times \underbrace{\xm \times \dots \times \xm}_{l \text{ times}} \ra \R
-\end{equation*}
+  \label{eq:tensor-linear}
+\end{equation}
 which is multilinear\footnotemark over $ \cm $.
 
 \footnotetext{A map $ A : \xm \ra \R $ is linear over $ \cm $ if $ A(fX + gY) = f A(X) + g A(Y) \,\,\forall f,g \in \cm , X,Y \in \xm $, with obvious generalization to $ \xms $ and to the multilinear case.}

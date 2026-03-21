@@ -6,7 +6,7 @@ To import concepts of Geometry on smooth manifolds, it is necessary to define ad
 
 Consider an $ n $-dimensional $ \R $-vector space $ V $ and a symmetric tensor $ g \in T^0_2(V) $, i.e. such that $ g(v,w) = g(w,v) \,\,\forall v,w \in V $. Then, $ g $ is \bctxt{non-degenerate} if the linear map $ \hat{g} : V \ra V^* : \hat{g}(v)(w) = g(v,w) $ is an isomorphism, or equivalently if $ \forall v \in V : v \neq 0 \, \exists w \in V : g(v,w) \neq 0 $. With an adaptation of the Gram--Schmidt algorithm, every non-degenerate symmetric rank-$ (0,2) $ tensor can be transformed, by a change of basis, to one whose (local) matrix representation, i.e. $ [g_{ij}]_{i,j = 1 , \dots , n} $, is diagonal with all entries equal to $ \pm 1 $. By a result known as \emph{Sylvester's law of inertia}, the numbers $ r $ and $ s $ of negative and positive entries, respectively, are basis-independent, thus the ordered pair $ (r,s) $ is an invariant of $ g $, called its \bctxt{signature}.
 
-\begin{definition}{Metric}{}
+\begin{definition}{Metric}{metric}
   Let $ \man $ be a smooth manifold. A symmetric tensor field $ g \in \tns{0}{2}(\man) $ is a \bcdef{metric} on $ \man $ if it is non-degenerate at each point $ p \in \man $ and if it has the same signature on all $ \man $. A smooth manifold equipped with a metric is a \bcdef{metric manifold}.
 \end{definition}
 
@@ -256,159 +256,146 @@ By this theorem, all of the terminology of metric spaces can be carried over to 
 
 The Lorentzian manifold is more subtle to study, since there is no analogue of \tref{th:riemann-existence} for Lorentzian metrics, a consequence of the fact that it is not generally true that a linear combination of non-degenerate covariant $ 2 $-tensors with positive coefficients is necessarily non-degenerate: indeed, not every smooth manifold admits a Lorentzian metric.
 
+\begin{example}{Minkowski space}{}
+  The simplest example of Lorentzian manifold is $ \R^n $ with the \bcex{Lorentz--Minkowski metric}:
+  \begin{equation}
+    \eta = - (\dd x^0)^2 + (\dd x^1)^2 + \dots + (\dd x^{n-1})^2
+  \end{equation}
+  Note that it is conventional to define the coordinate corresponding to the negative entry of the metric as the $ 0^\text{th} $ coordinate.
+\end{example}
 
+A Lorentzian metric does not induce naturally an inner product on tangent vectors, since the negative entry makes it non-positive-definite. Nonetheless, it is possible to define one on restricted classes of tangent vectors. To do so, classify $ v \in T_p\man $ as follows:
+\begin{itemize}
+  \item \bctxt{timelike} if $ g_p(v,v) < 0 $;
+  \item \bctxt{lightlike} (or \emph{null}) if $ g_p(v,v) = 0 $;
+  \item \bctxt{spacelike} if $ g_p(v,v) > 0 $.
+\end{itemize}
+Similarly, a \emph{timelike curve} is a curve whose tangent vector is everywhere timelike, and analogously for the other cases. Then, keeping the three classes of tangent vectors and curves separate, it is possible to import the same geometric constructions defined on Riemannian manifolds on spacelike vectors in a direct way, and on timelike vectors changing the sign of the inner product. Hence, for example, the length of a timelike piecewise-smooth curve $ \gamma : [a,b] \ra \man $ is defined as:
+\begin{equation*}
+  \lng_g(\gamma) \defeq \int_a^b \dd t \sqrt{- \braket{\gamma'(t) , \gamma'(t)}_g}
+\end{equation*}
+This is known as the \emph{proper time} of the timelike curve $ \gamma $ elapsed between $ \gamma(a) $ and $ \gamma(b) $. In general, the affine parameter of a timelike curve is its proper time. Indeed, defining the proper time of a timelike curve $ \gamma : [t_0,t_\text{f}] \ra \man $ as:
+\begin{equation}
+  \tau(t) \defeq \int_{t_0}^t \dd t \sqrt{-\braket{\gamma'(t) , \gamma'(t)}_g}
+\end{equation}
+then it is clear that $ \lng_g(\gamma) = \int_0^{\tau_\text{f}} \dd \tau $, with $ \tau_\text{f} \equiv \tau(t_\text{f}) $.
 
+\begin{observation}{Negative Lorentzian metric}{}
+  By \dref{def:metric}, if $ g $ is a metric on a smooth manifold $ \man $, then so is $ \tilde{g} = - g $. Obviously, the geometric description determined by $ \tilde{g} $ is completely equivalent to that of $ g $, provided that the sign change is accounted in all expressions involving an odd number of metric coefficients.
 
+  In the Lorentzian case, the negative metric has the opposite signature of the ``ordinary" metric: this means that spacelike and timelike vectors are exchanged with each other, while null vectors remain unchanged.
+\end{observation}
 
+\subsection{Tangent-cotangent isomorphism}
 
+The definition of a metric on a smooth manifold also provides a natural isomorphism between the tangent and cotangent bundles.
 
+Let $ (\man,g) $ be a metric manifold, and define a bundle homomorphism (\dref{def:bundle-homomorphism}) $ \hat{g} : T\man \ra T^*\man $ as follows: for each $ p \in \man $ and $ v \in T_p\man $, let $ \hat{g}(v) \in T_p^*\man $ defined as:
+\begin{equation}
+  \hat{g}(v)(w) \defeq g_p(v,w)
+  \qquad
+  \forall w \in T_p\man
+\end{equation}
+To see that this is a smooth bundle homomorphism, consider its action on smooth vector fields: $ \hat{g}(X)(Y) = g(X,Y) $, with $ X,Y \in \xm $. Recall \eref{eq:tensor-linear}: as $ \hat{g}(X)(Y) $ is multilinear over $ \cm $, it is linear over $ \cm $ as a function of $ Y $, thus $ \hat{g}(X) $ is a smooth covector (i.e. rank-$ (0,1) $ tensor) field; then, since $ \hat{g}(X) $ is linear over $ \cm $ as a function of $ X $, $ \hat{g} $ is a smooth bundle homomorphism by \lref{lemma:char-bundle-homo}. Note that the same symbol is used for the pointwise bundle homomorphism $ \hat{g} : T\man \ra T^*\man $ and for the linear map on sections $ \hat{g} : \xm \ra \xms $.
 
+Since the metric is non-degenerate, $ \hat{g}(v) = 0 \implies 0 = \hat{g}(v)(v) = \braket{v,v}_g \iff v = 0 \in T_p\man $, hence $ \ker \hat{g}\vert_{T_p\man} = 0 $, i.e. $ \hat{g} $ is injective. For dimensional reasons, therefore, $ \hat{g} $ is bijection, so it is a canonical smooth bundle isomorphism.
 
+Given the canonical isomorphism $ T\man \cong T^*\man $, it is conventional to set a simpler notation through the so-called \emph{musical isomorphisms}:
+\begin{equation*}
+  T\man \ni X \xrightarrow{\ \hat{g} \ } X^\flat \equiv \hat{g}(X) \in T^*\man
+  \qquad \qquad
+  T^*\man \ni \omega \xrightarrow{\ \hat{g}^{-1}} \omega^\sharp \equiv \hat{g}^{-1}(\omega) \in T\man
+\end{equation*}
 
+In any smooth chart on $ \man $, the metric tensor is $ g = g_{ij} \dd x^i \dd x^j $, thus, given $ X,Y \in \xm $, the action of the bundle isomorphism is $ \hat{g}(X)(Y) = g_{ij} X^i X^j $, which implies that:
+\begin{equation}
+  X^\flat = \hat{g}(X) = g_{ij} X^i \dd x^j \equiv X_j \dd x^j
+\end{equation}
+It is then clear that the action of $ \hat{g} $ on a vector field lowers its contravariant index to a covariant one. The action of $ \hat{g} $ on $ \omega \in \xms $ is similar, since $ g_{ij} $ is invertible at each point (being the matrix representation of an isomorphism, which is invertible) with inverse denoted by $ g^{ij} $ (i.e. such that $ g_{ij} g^{jk} = g^{jk} g_{ij} = \delta^k_i $):
+\begin{equation}
+  \omega^\sharp = \hat{g}^{-1}(\omega) = g^{ij} \omega_i \frac{\pa}{\pa x^j} \equiv \omega^j \frac{\pa}{\pa x^j}
+\end{equation}
+Hence, the action of $ \hat{g}^{-1} $ on a covector field raises its covariant index to a contravariant one.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{example}{Gradient operator}{}
+  Given $ f \in \cm $, its \bcex{gradient} is defined as:
+  \begin{equation}
+    \grad f \defeq (\dd f)^\sharp
+  \end{equation}
+  Note that $ \grad f $ is the unique vector field such that, for any vector field $ X $ over $ \man $, satisfies:
+  \begin{equation*}
+    \braket{\grad f , X}_g = \hat{g}(\grad f)(X) = \dd f(X) = X(f)
+  \end{equation*}
+  In a smooth coordinate chart $ (U,(x^i)) $, the gradient has the expression:
+  \begin{equation*}
+    \grad f = g^{ij} \frac{\pa f}{\pa x^i} \frac{\pa}{\pa x^j}
+  \end{equation*}
+  which reduces to the usual expression in the Euclidean case.
+\end{example}
 
 \newpage
-\section{Metric manifolds}
+\section{Differential forms}
 
-\begin{definition}{Metric}{metric}
-  A \bcdef{metric} $ g $ is a (0,2) tensor field on a manifold $ \mathcal{M} $ that is:
-  \begin{enumerate}
-    \item symmetric: $ g(X,Y) = g(Y,X) $;
-    \item non-degenerate: $ \exists p \in \mathcal{M} : g(X,Y)\vert_p = 0 \,\,\forall Y \in T_p \mathcal{M} \iff X_p = 0 $.
-  \end{enumerate}
-  A manifold equipped with a metric $ (\mathcal{M} , g) $ is called a \bcdef{metric manifold}.
-\end{definition}
 
-With a choice of coordinates, the metric can be written as:
-\begin{equation}
-  g = g_{\mu \nu}(x) \dd x^{\mu} \otimes \dd x^{\nu}
-\end{equation}
-where:
-\begin{equation}
-  g_{\mu \nu} = g\left( \frac{\pa}{\pa x^{\mu}}, \frac{\pa}{\pa x^{\nu}} \right)
-\end{equation}
-It is often written also as $ \dd s^2 = g_{\mu \nu}(x) \dd x^{\mu} \dd x^{\nu} $. The matrix $ g_{\mu \nu}(x) \in \R^{n \times n} $ is symmetric, and there's always a choice of basis on each tangent space such that this matrix is diagonal: the non-degeneracy condition implies that none of the diagonal elements vanish.
 
-\begin{proposition}{Signature}{}
-  The \bcprop{signature} of a metric, i.e. the number of negative entries when diagonalized, is independent on the choice of basis.
-\end{proposition}
 
-\begin{proofbox}
-  \begin{proof}
-    From Sylvester's theorem of inertia.
-  \end{proof}
-\end{proofbox}
 
-\subsection{Riemannian manifolds}
 
-\begin{definition}{Riemannian manifold}{}
-  A \bcdef{Riemannian manifold} $ (\mathcal{M},g) $ is a manifold equipped with a metric with totally-positive signature.
-\end{definition}
 
-\begin{example}{Euclidean space}{}
-  The Euclidean space $ \R^n $, equipped with the metric $ g_{\mu \nu} = \delta_{\mu \nu} $ (in Cartesian coordinates), is a Riemannian manifold.
-\end{example}
 
-In a Riemannian manifold $ (\mathcal{M},g) $ and $ X \in \xm $, the \bctxt{length} of $ X $ at $ p \in \mathcal{M} $ is defined as:
-\begin{equation}
-  \abs{X_p} \defeq \sqrt{g(X,X)\vert_p}
-\end{equation}
-Given $ Y \in \xm $, the \bctxt{angle} between $ X $ and $ Y $ at $ p \in \mathcal{M} $ is defined as:
-\begin{equation}
-  \cos \theta \defeq \frac{g(X,Y) \vert_p}{\abs{X_p} \abs{Y_p}}
-\end{equation}
-This can be generalized to distances between points on a curve $ \sigma : \mathcal{\R} \rightarrow \mathcal{M} $:
-\begin{equation}
-  d(p,q) = \int_a^b \dd t \sqrt{g(X,X)\vert_{\sigma(t)}}
-  \label{eq:distance}
-\end{equation}
-where $ \sigma(a) = p $, $ \sigma(b) = q $ and $ X $ is the tangent vector field of the curve. With parametrization $ x^{\mu}(t) $, the tangent vector has components $ X^{\mu} = \frac{\dd x^{\mu}}{\dd t} $, thus:
-\begin{equation}
-  d(p,q) = \int_a^b \dd t \sqrt{g_{\mu \nu}(x) \frac{\dd x^{\mu}}{\dd t} \frac{\dd x^{\nu}}{\dd t}}
-\end{equation}
-It is important to note that this distance is independent of the parametrization.
 
-\subsection{Lorentzian manifolds}
 
-\begin{definition}{Lorentzian manifold}{}
-  A \bcdef{Lorentzian manifold} $ (\mathcal{M},g) $ is a manifold equipped with a metric which has a signature with a single negative sign.
-\end{definition}
 
-\begin{example}{Lorentz--Minkowski metric}{}
-  The simplest Lorentzian manifold is $ \R^n $ with the \bcex{Lorentz--Minkowski metric}:
-  \begin{equation}
-    \eta = - \dd x^0 \otimes \dd x^0 + \dd x^1 \otimes \dd x^1 + \dots + \dd x^{n-1} \otimes \dd x^{n-1}
-  \end{equation}
-  Its components are $ \eta_{\mu \nu} = \diag (-1,+1,\dots,+1) $, thus this is a Lorentzian manifold.
-\end{example}
 
-On a general Lorentzian manifold, at any point $ p \in \mathcal{M} $ it is always possible to choose an orthonormal basis $ \{e_{\mu}\}_{\mu = 0,\dots,n-1} $ of $ T_p \mathcal{M} $ such that $ g_{\mu \nu} \vert_p = \eta_{\mu \nu} $: this fact is closely related to the equivalence principle. Consider a different basis $ \tilde{e}_{\mu} = \tensor{\Lambda}{^\nu _\mu} e_{\nu} $: the condition for it to leave the Lorentz--Minkowski metric unchanged is:
-\begin{equation}
-  \eta_{\mu \nu} = \tensor{\Lambda}{^\rho _\mu} \tensor{\Lambda}{^\sigma _\nu} \eta_{\rho \sigma}
-\end{equation}
-This is the defining equation of a Lorentz transformation: on a Lorentzian manifold, the basic features of special relativity are locally recovered. Thus, other ideas from special relativity can be imported.
 
-\begin{definition}{Curves in a Lorentzian manifold}{}
-  Given a Lorentzian manifold $ (\mathcal{M},g) $ and $ X \in \xm $, at $ p \in \mathcal{M} $ the vector field is said to be \bcdef{timelike} if $ g(X_p,X_p) < 0 $, \bcdef{null} if $ g(X_p,X_p) = 0 $ or \bcdef{spacelike} if $ g(X_p,X_p) > 0 $.
-\end{definition}
 
-At each point $ p \in \mathcal{M} $ it is possible to draw \bctxt{lightcones}, i.e. the null tangent vectors at that point, which are past-directed or future-directed: these lightcones vary smoothly as the point is varied smoothly on the manifold, elucidating the causal structure of spacetime.
 
-The distance between two points on a curve depends on the nature of the tangent vector field of the curve: a \textit{timelike curve} is a curve whose tangent vector field is everywhere timelike, and analogously for the other cases. The distance on a spacelike curve is defined as in \eref{eq:distance}, while that on a timelike curve gets a negative sign in the square root. With parametrization $ x^{\mu}(t) $, it is possible to define the \bctxt{proper time} on a timelike curve as:
-\begin{equation}
-  \tau = \int_a^b \dd t \sqrt{- g_{\mu \nu}(x) \frac{\dd x^{\mu}}{\dd t} \frac{\dd x^{\nu}}{\dd t}}
-\end{equation}
-This is precisely the action of a free particle moving in spacetime.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 \section{Connections}
