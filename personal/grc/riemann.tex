@@ -12,7 +12,7 @@ Consider an $ n $-dimensional $ \R $-vector space $ V $ and a symmetric tensor $
 
 The two most important cases for the signature of the metric tensor are $ (0,n) $, in which case it is a \emph{Riemannian metric}, and $ (1,n-1) $, which is a \emph{Lorentzian metric}. In general, any metric with $ r > 0 $ is called a pseudo-Riemannian metric.
 
-\begin{observation}{Symmetric tensors}{}
+\begin{observation}{Symmetric tensors}{symmetric-tensors}
   The expression of the metric in smooth chart $ (U,(x^i)) $ on $ \man $ does not make its symmetry clear:
   \begin{equation*}
     g = g_{ij} \dd x^i \otimes \dd x^j
@@ -336,9 +336,124 @@ Hence, the action of $ \hat{g}^{-1} $ on a covector field raises its covariant i
 \newpage
 \section{Differential forms}
 
+\subsection{Grassmann algebra}
 
+Let $ V $ be an $ n $-dimensional $ \R $-vector space. A covariant $ k $-tensor is said to be \emph{alternating} if its value changes sign under any interchange of two arguments, or equivalently if any permutation of its arguments results in an overall multiplication by the sign of said permutation. Alternating covariant $ k $-tensors are called \bctxt{exterior forms}, and they form a vector space $ \lv{k}(V) \ssq T^0_k(V) $.
 
+\begin{lemma}{Characterization of alternating tensors}{cat}
+  Let $ \alpha \in T^0_k(V) $. Then the following conditions are equivalent:
+  \begin{enumerate}
+    \item \label{item:cat-1} $ \alpha $ is alternating;
+    \item \label{item:cat-2} $ \alpha(v_1 , \dots , v_k) = 0 $ whenever $ (v_1 , \dots , v_k) $ is linearly dependent;
+    \item \label{item:cat-3} $ \alpha $ vanishes whenever two of its arguments are equal.
+  \end{enumerate}
+\end{lemma}
 
+\begin{proofbox}
+  \begin{proof}
+    \itemref{item:cat-1} $ \implies $ \itemref{item:cat-3} and \itemref{item:cat-2} $ \implies $ \itemref{item:cat-3} trivially. WTS \itemref{item:cat-3} $ \implies $ \itemref{item:cat-1} and \itemref{item:cat-3} $ \implies $ \itemref{item:cat-2}.
+    Assume that $ \alpha $ satisfies \itemref{item:cat-3}. For any $ k $-tuple $ (v_1 , \dots , v_k) $ of vectors, then:
+    \begin{equation*}
+      \begin{split}
+        0
+        & = \alpha(v_1 , \dots , v_i + v_j , \dots , v_i + v_j , \dots , v_k) \\
+        & = \alpha(v_1 , \dots , v_i , \dots , v_i , \dots , v_k) + \alpha(v_1 , \dots , v_i , \dots , v_j , \dots , v_k) \\
+        & \qquad \qquad + \alpha(v_1 , \dots , v_j , \dots , v_i , \dots , v_k) + \alpha(v_1 , \dots , v_j , \dots , v_j , \dots , v_k) \\
+        & = \alpha(v_1 , \dots , v_i \dots , \dots , v_j , v_k) + \alpha(v_1 , \dots , v_j , \dots , v_i , \dots , v_k)
+      \end{split}
+    \end{equation*}
+    Thus $ \alpha $ is alternating. On the other hand, if $ (v_1 , \dots , v_k) $ is linearly independent, then one vector, WLOG $ v_k $, can be written as a linear combination of the others, hence $ \alpha(v_1 , \dots , v_k) $ breaks down into a sum of vanishing terms by \itemref{item:cat-3}.
+  \end{proof}
+\end{proofbox}
+
+Similarly to \obsref{obs:symmetric-tensors}, it is possible to define a natural projection $ \Alt : T^0_k(V) \ra \lv{k}(V) $ as:
+\begin{equation}
+  (\Alt \alpha)(v_1 , \dots , v_k) \defeq \frac{1}{k!} \sum_{\sigma \in \sy{k}} (\sgn \sigma) \alpha(v_{\sigma(1)} , \dots , v_{\sigma(k)})
+\end{equation}
+which is clearly an alternating $ k $-tensor. Note that $ \Alt \vert_{\lv{k}(V)} = \id_{\lv{k}(V)} $. For computations involving alternating tensors, it is convenient to define the following notation: given $ k \in \N $, an ordered $ k $-tuple $ I = (i_1 , \dots , i_k) \in \N^k $ is a \emph{multi-index of length $ k $}. Moreover, given $ \sigma \in \sy{n} $, the permutation of $ I $ under $ \sigma $ is denoted by $ I_\sigma \equiv (i_{\sigma(1)} , \dots , i_{\sigma(k)}) $, with the convention $ I_{\sigma \tau} \equiv (I_\sigma)_\tau $ for $ \sigma , \tau \in \sy{k} $.
+
+Multi-indices allow to generalize the construction of the determinant in $ \R^n $. Let $ V $ be an $ n $-dimensional $ \R $-vector space, and suppose $ (\varepsilon^1 , \dots , \varepsilon^n) $ is a basis of $ V^* $. For each multi-index $ I = (i_1 , \dots , i_k) $ such that $ 1 \leq i_1 , \dots , i_k \leq n $, define $ \varepsilon^I \equiv \varepsilon^{i_1 \dots i_k} \in T^0_k(V) $ by:
+\begin{equation}
+  \varepsilon^I(v_1 , \dots , v_k) \defeq
+  \begin{vmatrix}
+    \varepsilon^{i_1}(v_1) & \dots & \varepsilon^{i_1}(v_k) \\
+    \vdots & \ddots & \vdots \\
+    \varepsilon^{i_k}(v_1) & \dots & \varepsilon^{i_k}(v_k)
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+    v_1^{i_1} & \dots & v_k^{i_1} \\
+    \vdots & \ddots & \vdots \\
+    v_1^{i_k} & \dots & v_k^{i_k}
+  \end{vmatrix}
+\end{equation}
+Since the determinant changes sign under the interchange of any two columns, $ \varepsilon^I \in \lv{k}(V) $: this is called an \emph{elementary exterior form}.
+
+\begin{lemma}{Properties of elementary exterior forms}{peef}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space, and let $ (E_i) $ be a basis of $ V $. If $ (\varepsilon^i) $ is the dual basis of $ V^* $ and $ I = (i_1 , \dots , i_k) $ is a multi-index, then:
+  \begin{itemize}
+    \item \label{item:peef-1} if $ I $ has a repeated index, then $ \varepsilon^I \equiv 0 $;
+    \item \label{item:peef-2} if $ J = I_\sigma $ for some $ \sigma \in \sy{k} $, then $ \varepsilon^I = (\sgn \sigma) \varepsilon^J $;
+    \item \label{item:peef-3} defining the \bclemma{generalized Kronecker delta} as:
+      \begin{equation}
+        \delta^I_J \defeq
+        \begin{vmatrix}
+          \delta^{i_1}_{j_1} & \dots & \delta^{i_1}_{j_k} \\
+          \vdots & \ddots & \vdots \\
+          \delta^{i_k}_{j_1} & \dots & \delta^{i_k}_{j_k}
+        \end{vmatrix}
+      \end{equation}
+      then:
+      \begin{equation}
+        \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \delta^I_J
+      \end{equation}
+  \end{itemize}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ I $ has a repeated index, then $ \varepsilon^I $ vanishes since the determinant of a matrix with two equal columns is zero, proving \itemref{item:peef-1}. On the other hand, \itemref{item:peef-2} is trivial by the alternating property of the determinant. Finally, \itemref{item:peef-3} follows directly from the definition of $ \varepsilon^I $.
+  \end{proof}
+\end{proofbox}
+
+Although $ \{\varepsilon^I\}_{I \in [0,n]^k} $ is not linearly independent by \itemref{item:peef-1}-\itemref{item:peef-2} of \lref{lemma:peef}, it is possible to define a basis of $ \lv{k}(V) $ choosing an appropriate subset of multi-indices.
+
+\begin{proposition}{Basis of exterior forms}{ext-form-basis}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. If $ (\varepsilon^i) $ is a basis of $ V^* $, then for each $ k \in \N_{\leq n} $ a basis of $ \lv{k}(V) $ is found as:
+  \begin{equation}
+    \bas_k = \bigg\{ \varepsilon^I \in \lv{k}(V) : I = (i_1 , \dots , i_k) : 1 \leq i_1 < \dots < i_k \leq n \bigg\}
+  \end{equation}
+  Therefore $ \dim_\R \lv{k}(V) = \binom{n}{k} $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The fact that $ \dim_\R \lv{k}(V) = 0 $ for $ k > n $ follows immediately from \itemref{item:cat-2} of \lref{lemma:cat}.
+
+    In the $ k \leq n $ case, let $ (E^i) $ be the dual basis of $ V $. To show that $ \lv{k}(V) = \lspan_\R \bas_k $, let $ \alpha \in \lv{k}(V) $ and, for each arbitrary multi-index $ I = (i_1 , \dots , i_k) $, define a real number $ \alpha_I $ as:
+    \begin{equation*}
+      \alpha_I = \alpha(E_{i_1} , \dots , E_{i_k})
+    \end{equation*}
+    Since $ \alpha $ is alternating, by \lref{lemma:peef} $ \alpha_I = 0 $ if $ I $ contains a repeated index, and $ \alpha_J = (\sgn \sigma) \alpha_I $ if $ J = I_\sigma $ for some $ \sigma \in \sy{k} $. Therefore:
+    \begin{equation*}
+      \sum_{I : 1 \leq i_1 < \dots < i_k \leq n} \alpha_I \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \sum_{I : 1 \leq i_1 < \dots < i_k \leq n} \alpha_I \delta^I_J = \alpha_J = \alpha(E_{j_1} , \dots , E_{j_k})
+    \end{equation*}
+    Denoting the sum over \emph{increasing} multi-indices as $ \sum'_I $, this shows that $ \sum'_I \alpha_I \varepsilon^I = \alpha $, hence $ \lv{k}(V) = \lspan_\R \bas_k $.
+
+    Then, to show that $ \bas_k $ is linearly independent, suppose that $ \sum'_I \alpha_I \varepsilon^I = 0 $ for some coefficients $ \alpha_I $, and let $ J $ be an increasing multi-index. Applying both sides to $ (E_{j_1} , \dots , E_{j_k}) $, by \lref{lemma:peef}:
+    \begin{equation*}
+      0 = \sum'_I \alpha_I \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \alpha_J
+    \end{equation*}
+    Thus, each coefficient $ \alpha_J $ vanishes, proving linear independence.
+  \end{proof}
+\end{proofbox}
+
+\pref{prop:ext-form-basis} shows that there is a particular class of exterior forms: those with $ k = n $, known as \bctxt{top forms}. Indeed, $ \lv{n}(V) $ is $ 1 $-dimensional and spanned by $ \varepsilon^{1 \dots n} $: on $ \R^n $, this is just the determinant function $ e^{1 \dots n} $. Top forms behave simply under linear transformations. Consider a linear map $ T : V \ra V $, and defint $ \det T $ as the determinant of the representation matrix of $ T $ (in any basis, by the Binet theorem): then, $ \omega \in \lv{n}(V) $ transforms as:
+\begin{equation}
+  \omega(T v_1 , \dots , T v_n) = (\det T) \omega(v_1 , \dots , v_n)
+\end{equation}
+
+\subsubsection{Exterior product}
 
 
 
