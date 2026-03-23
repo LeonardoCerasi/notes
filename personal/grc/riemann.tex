@@ -452,8 +452,134 @@ Although $ \{\varepsilon^I\}_{I \in [0,n]^k} $ is not linearly independent by \i
 \begin{equation}
   \omega(T v_1 , \dots , T v_n) = (\det T) \omega(v_1 , \dots , v_n)
 \end{equation}
+Note that, like $ \sv{0}(V) = \R $ and $ \sv{1}(V) = V^* $, so $ \lv{0}(V) = \R $ and $ \lv{1}(V) = V^* $.
 
 \subsubsection{Exterior product}
+
+Analogously to the symmetric product of symmetric tensors $ \alpha \beta = \Sym (\alpha \otimes \beta) $, it is possible to define an alternating product of alternating tensors.
+
+\begin{definition}{Exterior product}{}
+  Let $ V $ an $ n $-dimensional $ \R $-vector space. Given $ \omega \in \lv{k}(V) $ and $ \eta \in \lv{l}(V) $, their \bcdef{exterior product} is the alternating tensor $ \omega \wedge \eta \in \lv{k+l}(V) $ defined as:
+  \begin{equation}
+    \omega \wedge \eta \defeq \frac{(k+l)!}{k!l!} \Alt(\omega \otimes \eta)
+  \end{equation}
+\end{definition}
+
+The choice of the coefficient is motivated by the simple form taken by exterior product of elementary exterior forms. Given multi-indices $ I = (i_1 , \dots , i_k) $ and $ J = (j_1 , \dots , j_l) $, it can be shown that:
+\begin{equation}
+  \varepsilon^I \wedge \varepsilon^J = \varepsilon^{IJ}
+  \label{eq:eef-prod}
+\end{equation}
+with $ IJ \equiv (i_1 , \dots , i_k , j_1 , \dots , j_l) $, i.e. a concatenation.
+
+\begin{lemma}{Properties of the interior product}{}
+  Suppose $ \omega , \eta , \xi $ are exterior forms on a finite-dimensional $ \R $-vector space $ V $. Then:
+  \begin{enumerate}
+    \item \label{item:pwp-1} (bilinearity) for $ a , a' \in \R $:
+      \begin{equation*}
+        (a \omega + a' \eta ) \wedge \xi = a (\omega \wedge \xi) + a' (\eta \wedge \xi)
+        \qquad \qquad
+        \xi \wedge (a \omega + a' \eta) = a (\xi \wedge \omega) + a' (\xi \wedge \eta)
+      \end{equation*}
+    \item \label{item:pwp-2} (associativity):
+      \begin{equation*}
+        \omega \wedge (\eta \wedge \xi) = (\omega \wedge \eta) \wedge \xi
+      \end{equation*}
+    \item \label{item:pwp-3} (anticommutativity) for $ \omega \in \lv{k}(V) $ and $ \eta \in \lv{l}(V) $:
+      \begin{equation}
+        \omega \wedge \eta = (-1)^{kl} \eta \wedge \omega
+      \end{equation}
+    \item \label{item:pwp-4} if $ (\varepsilon^i) $ is a basis of $ V^* $ and $ I = (i_1 , \dots , i_k) $ is a multi-index, then:
+      \begin{equation}
+        \varepsilon^I = \varepsilon^{i_1} \wedge \dots \wedge \varepsilon^{i_k}
+      \end{equation}
+    \item \label{item:pwp-5} for any $ \omega_1 , \dots , \omega_k \in V^* $ and $ v_1 , \dots , v_k \in V $:
+      \begin{equation}
+        \omega^1 \wedge \dots \wedge \omega^k (v_1 , \dots , v_k) = \det [\omega^j(v_i)]
+      \end{equation}
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Bilinearity follows immediately from definition, since the tensor product is bilinear and $ \Alt $ is linear. To prove associativity, use \eref{eq:eef-prod}:
+    \begin{equation*}
+      (\varepsilon^I \wedge \varepsilon^J) \wedge \varepsilon^K = \varepsilon^{IJK} = \varepsilon^I \wedge (\varepsilon^J \wedge \varepsilon^K)
+    \end{equation*}
+    and the general case following from multilinearity. Similarly, using \eref{eq:eef-prod} again:
+    \begin{equation*}
+      \varepsilon^I \wedge \varepsilon^J = \varepsilon^{IJ} = (\sgn \sigma) \varepsilon^{JI} = (\sgn \sigma) \varepsilon^J \wedge \varepsilon^I
+    \end{equation*}
+    where $ \sigma \in \sy{k+l} : IJ \mapsto JI $. Since $ \sgn \sigma = (-1)^{kl} $, as it can be decomposed into $ kl $ transpositions (each index of $ I $ must be moved past each of the indices of $ J $), anticommutativity is found from multilinearity. Finally, \itemref{item:pwp-4} follows by induction from \eref{eq:eef-prod}, while to prove \itemref{item:pwp-5} note that, when $ \omega^j = \varepsilon^{i_j} $, it reduces to \itemref{item:pwp-4}, and then use multilinearity.
+  \end{proof}
+\end{proofbox}
+
+In general, an exterior $ k $-form is said to be decomposable if it can be written as the exterior product of $ k $ exterior $ 1 $-forms. Note that, although not every exterior $ k $-form is decomposable when $ k > 1 $, every exterior $ k $-form can be written as a linear combination of decomposable exterior $ k $-forms (elementary exterior $ k $-forms).
+
+Since it can be shown that the exterior product is the unique associate bilinear anticommutative map $ \lv{k}(V) \times \lv{l}(V) \ra \lv{k+l}(V) $, the ensemble of $ \lv{k}(V) $ spaces form a natural structure on $ V $.
+
+\begin{definition}{Grassmann algebra}{}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. The \bcdef{Grassmann algebra} (or \emph{exterior algebra}) of $ V $ is defined as:
+  \begin{equation}
+    \ga(V) \defeq \bigoplus_{k = 0}^n \lv{k}(V)
+  \end{equation}
+\end{definition}
+
+By \pref{prop:ext-form-basis}, it follows that $ \dim_\R \ga(V) = 2^n $. The Grassmann algebra has the structure of $ 2^n $-dimensional $ \R $-vector space and of anticommutative $ \N_0 $-graded\footnote{Given an index set $ \mathcal{I} $, a $ \K $-vector space $ V $ is said to be \emph{$ \mathcal{I} $-graded} if there exists a family of subspaces $ \{V_i\}_{i \in \mathcal{I}} $ such that $ V = \bigoplus_{i \in \mathcal{I}} V_i $.} unital associative algebra\footnotemark.
+
+\footnotetext{An $ n $-dimensional \emph{associative $ \K $-algebra} is an $ n $-dimensional $ \K $-vector space $ \mathcal{A} $ equipped with a bilinear map $ \mathcal{A} \times \mathcal{A} \ni (a,b) \mapsto ab \in \mathcal{A} $ such that:
+\begin{enumerate}
+  \item $ (ab)c = a(cb) \,\,\forall a,b,c \in \mathcal{A} $;
+  \item $ a (b + c) = ab + ac \land (a + b) c = ac + ab \,\,\forall a,b,c \in \mathcal{A} $;
+  \item $ \lambda (ab) = (\lambda a) b = a (\lambda b) \,\,\forall \lambda \in \K , a,b \in \mathcal{A} $.
+\end{enumerate}
+An algebra is said to be \emph{unital} if $ \exists \emph{1} \in \mathcal{A} : \emph{1} a = a \emph{1} = a \,\,\forall a \in \mathcal{A} $. Moreover, given an index set $ \mathcal{I} $, an algebra $ \mathcal{A} $ is $ \mathcal{I} $-graded if $ \mathcal{A} $ is an $ \mathcal{I} $-graded vector space and the product satisfies $ (\mathcal{A}_k) (\mathcal{A}_l) \ssq \mathcal{A}_{k+l} \,\,\forall k,l \in \mathcal{I} $, and it is anticommutative if $ ab = (-1)^{kl} ba \,\,\forall a \in \mathcal{A}_k , b \in \mathcal{A}_l $.}
+
+\subsubsection{Interior product}
+
+While the exterior products allows to build higher-rank exterior forms from lower-rank one, there is another operation which has the opposite effect, resulting in a lower-rank exterior form from a higher-rank one.
+
+\begin{definition}{Interior product}{}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. For each $ v \in V $, the linear map $ \iota_v : \lv{k}(V) \ra \lv{k-1}(V) $, called the \bcdef{interior product} with $ v $, is defined as:
+  \begin{equation}
+    \iota_v \omega(w_1 , \dots , w_{k-1}) \defeq \omega(v , w_1 , \dots , w_{k-1})
+  \end{equation}
+\end{definition}
+
+Therefore, $ \iota_v \omega $ is obtained inserting $ v $ as the first argument of $ \omega $. By convention, $ \iota_v \vert_{\lv{0}(V)} \equiv 0 $.
+
+\begin{lemma}{Properties of the interior product}{}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space and $ v \in V $. Then:
+  \begin{enumerate}
+    \item \label{item:pip-1} $ \iota_v \circ \iota_v = 0 $;
+    \item \label{item:pip-2} if $ \omega \in \lv{k}(V) $ and $ \eta \in \lv{l}(V) $, then:
+      \begin{equation}
+        \iota_v(\omega \wedge \eta) = (\iota_v \omega) \wedge \eta + (-1)^k \omega \wedge (\iota_v \eta)
+      \end{equation}
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    For exterior $ k $-forms with $ k \geq 2 $, \itemref{item:pip-1} is immediate from definition by the alternating nature of exterior forms, while for $ k = 1,0 $ it follows from the convention $ \iota_v \vert_{\lv{0}(V)} \equiv 0 $.
+
+    To prove \itemref{item:pip-2}, it suffices to consider the case of $ \omega , \eta $ decomposable, since every exterior $ k $-form can be written as a linear combination of decomposable ones. For general $ \omega^1 , \dots , \omega^k \in \lv{1}(V) $ WTS:
+    \begin{equation}
+      \iota_v(\omega^1 \wedge \dots \wedge \omega^k) = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v) \omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k
+    \end{equation}
+    which clearly implies \itemref{item:pip-2}. To prove this equation, write $ v_1 \equiv v $ and apply both sides to the $ (k-1) $-tuple of vectors $ (v_2 , \dots , v_k) $:
+    \begin{equation*}
+      (\omega^1 \wedge \dots \wedge \omega^k)(v_1 , \dots , v_k) = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v_1) (\omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k)(v_2 , \dots , v_k)
+    \end{equation*}
+    The left-hand side is just $ \det [\omega^i(v_j)] \equiv \det \mathrm{v} $. Now, define $ \mathrm{v}^i_j $ as the $ (k-1) \times (k-1) $ submatrix of $ \mathrm{v} $ obtained removing the $ i^\text{th} $ row and the $ j^\text{th} $ column. Then, this equation becomes:
+    \begin{equation*}
+      \det \mathrm{v} = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v_1) \det \mathrm{v}^i_1
+    \end{equation*}
+    which is just the Laplace expansion of $ \det \mathrm{v} $ by minors along the first column, hence it is an identity.
+  \end{proof}
+\end{proofbox}
+
+\subsection{Differential forms}
 
 
 

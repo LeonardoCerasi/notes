@@ -1,7 +1,23 @@
 % equation numbering
+\numberwithin{equation}{section}
+
+
 \makeatletter
 \def\tagform@#1{\maketag@@@{\ignorespaces\sffamily(#1)\unskip\@@italiccorr}}
 \makeatother
+
+% enumerate numbering
+
+\usepackage{enumitem}
+
+\setlist[enumerate]{label = (\arabic*), ref = \arabic*, font = \sffamily}
+
+% footnote numbering
+
+\makeatletter
+\renewcommand{\@makefnmark}{\hbox{\@textsuperscript{\sffamily\@thefnmark}}}
+\makeatother
+
 
 % sectioning
 \usepackage{titlesec}
@@ -402,7 +418,7 @@
 
 \newcommand{\secref}[1]{\textcolor{red!70!black}{\textsf{§\ref{#1}}}}
 
-\newcommand{\itemref}[1]{(\ref{#1})}
+\newcommand{\itemref}[1]{\textsf{(\ref{#1})}}
 
 % hyper-references
 \usepackage{hyperref}
