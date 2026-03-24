@@ -438,11 +438,11 @@ Although $ \{\varepsilon^I\}_{I \in [0,n]^k} $ is not linearly independent by \i
     \begin{equation*}
       \sum_{I : 1 \leq i_1 < \dots < i_k \leq n} \alpha_I \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \sum_{I : 1 \leq i_1 < \dots < i_k \leq n} \alpha_I \delta^I_J = \alpha_J = \alpha(E_{j_1} , \dots , E_{j_k})
     \end{equation*}
-    Denoting the sum over \emph{increasing} multi-indices as $ \sum'_I $, this shows that $ \sum'_I \alpha_I \varepsilon^I = \alpha $, hence $ \lv{k}(V) = \lspan_\R \bas_k $.
+    Denoting the sum over \emph{increasing} multi-indices as $ {\sum_I}' $, this shows that $ {\sum_I}' \alpha_I \varepsilon^I = \alpha $, hence $ \lv{k}(V) = \lspan_\R \bas_k $.
 
-    Then, to show that $ \bas_k $ is linearly independent, suppose that $ \sum'_I \alpha_I \varepsilon^I = 0 $ for some coefficients $ \alpha_I $, and let $ J $ be an increasing multi-index. Applying both sides to $ (E_{j_1} , \dots , E_{j_k}) $, by \lref{lemma:peef}:
+    Then, to show that $ \bas_k $ is linearly independent, suppose that $ {\sum_I}' \alpha_I \varepsilon^I = 0 $ for some coefficients $ \alpha_I $, and let $ J $ be an increasing multi-index. Applying both sides to $ (E_{j_1} , \dots , E_{j_k}) $, by \lref{lemma:peef}:
     \begin{equation*}
-      0 = \sum'_I \alpha_I \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \alpha_J
+      0 = {\sum_I}' \alpha_I \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \alpha_J
     \end{equation*}
     Thus, each coefficient $ \alpha_J $ vanishes, proving linear independence.
   \end{proof}
@@ -472,13 +472,14 @@ The choice of the coefficient is motivated by the simple form taken by exterior 
 \end{equation}
 with $ IJ \equiv (i_1 , \dots , i_k , j_1 , \dots , j_l) $, i.e. a concatenation.
 
-\begin{lemma}{Properties of the interior product}{}
+\begin{lemma}{Properties of the exterior product}{prop-exterior-product}
   Suppose $ \omega , \eta , \xi $ are exterior forms on a finite-dimensional $ \R $-vector space $ V $. Then:
   \begin{enumerate}
     \item \label{item:pwp-1} (bilinearity) for $ a , a' \in \R $:
       \begin{equation*}
         (a \omega + a' \eta ) \wedge \xi = a (\omega \wedge \xi) + a' (\eta \wedge \xi)
-        \qquad \qquad
+      \end{equation*}
+      \begin{equation*}
         \xi \wedge (a \omega + a' \eta) = a (\xi \wedge \omega) + a' (\xi \wedge \eta)
       \end{equation*}
     \item \label{item:pwp-2} (associativity):
@@ -568,9 +569,10 @@ Therefore, $ \iota_v \omega $ is obtained inserting $ v $ as the first argument 
       \iota_v(\omega^1 \wedge \dots \wedge \omega^k) = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v) \omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k
     \end{equation}
     which clearly implies \itemref{item:pip-2}. To prove this equation, write $ v_1 \equiv v $ and apply both sides to the $ (k-1) $-tuple of vectors $ (v_2 , \dots , v_k) $:
-    \begin{equation*}
-      (\omega^1 \wedge \dots \wedge \omega^k)(v_1 , \dots , v_k) = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v_1) (\omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k)(v_2 , \dots , v_k)
-    \end{equation*}
+    \begin{multline*}
+      (\omega^1 \wedge \dots \wedge \omega^k)(v_1 , \dots , v_k) \\
+      = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v_1) (\omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k)(v_2 , \dots , v_k)
+    \end{multline*}
     The left-hand side is just $ \det [\omega^i(v_j)] \equiv \det \mathrm{v} $. Now, define $ \mathrm{v}^i_j $ as the $ (k-1) \times (k-1) $ submatrix of $ \mathrm{v} $ obtained removing the $ i^\text{th} $ row and the $ j^\text{th} $ column. Then, this equation becomes:
     \begin{equation*}
       \det \mathrm{v} = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v_1) \det \mathrm{v}^i_1
@@ -581,9 +583,244 @@ Therefore, $ \iota_v \omega $ is obtained inserting $ v $ as the first argument 
 
 \subsection{Differential forms}
 
+Consider an $ n $-dimensional smooth manifold. It is possible to define the subset of $ T^0_k\man $ of alternating rank-$ k $ covariant tensors on $ \man $ as:
+\begin{equation}
+  \lm{k} \defeq \bigsqcup_{p \in \man} \lv{k}(T_p\man)
+\end{equation}
+It can be shown that $ \lm{k} $ is a smooth rank-$ \binom{n}{k} $ vector subbundle of $ T^0_k\man $. Sections of $ \lm{k} $ are called \bctxt{differential $ k $-forms} (or just $ k $-forms): therefore, a $ k $-form is a (continuous) tensor field whose value at each point is an alternating tensor. The $ \R $-vector space of smooth $ k $-forms is denoted as:
+\begin{equation}
+  \df{k} \defeq \Gamma(\lm{k})
+\end{equation}
+The wedge product is extended to $ k $-forms in a pointwise manner, i.e. $ (\omega \wedge \eta)_p = \omega_p \wedge \eta_p $. Then, it is possible to define the following direct product:
+\begin{equation}
+  \dft \defeq \bigoplus_{k = 0}^n \df{k}
+\end{equation}
+which, equipped with the wedge product, is an anticommutative $ \N_0 $-graded associative unital algebra. In any smooth chart $ (U,(x^i)) $, a $ k $-form $ \omega $ can be written locally as:
+\begin{equation*}
+  \omega = \frac{1}{k!} \omega_{i_1 \dots i_k} \dd x^{i_1} \wedge \dots \wedge \dd x^{i_k} = {\sum_I}' \omega_I \dd x^I
+\end{equation*}
+where the coefficients $ \omega_I $ are continuous functions defined on the coordinate domain, and $ \dd x^I \equiv \dd x^{i_1} \wedge \dots \wedge \dd x^{i_k} $. Using \lref{lemma:peef}, the component functions are found as:
+\begin{equation*}
+  \omega_I = \omega\left( \frac{\pa}{\pa x^{i_1}} , \dots , \frac{\pa}{\pa x^{i_k}} \right)
+\end{equation*}
+If $ f : \man_1 \ra \man_2 $ is a smooth map and $ \omega $ is a $ k $-form on $ \man_2 $, its pull-back on $ \man_1 $ is given by \eref{eq:tens-pb}:
+\begin{equation*}
+  (f^*\omega)_p(v_1 , \dots , v_k) = \omega_{f(p)}(\dd f_p(v_1) , \dots , \dd f_p(v_k))
+\end{equation*}
 
+\begin{lemma}{Pull-back of differential forms}{pull-back-diff-forms}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map. Then:
+  \begin{enumerate}
+    \item \label{item:pbdf-1} $ f^* : \dfm{k}(\man_2) \ra \dfm{k}(\man_1) $ is linear over $ \R $;
+    \item \label{item:pbdf-2} $ f^*(\omega \wedge \eta) = (f^*\omega) \wedge (f^*\eta) $;
+    \item \label{item:pbdf-3} in any smooth chart $ (U,(y^i)) $ of $ \man_2 $:
+      \begin{equation}
+        f^*\left( \frac{1}{k!} \omega_{i_1 \dots i_k} \dd y^{i_1} \wedge \dots \wedge \dd y^{i_k} \right) = \frac{1}{k!} (\omega_{i_1 \dots i_k} \circ f) \dd (y^{i_1} \circ f) \wedge \dots \wedge \dd (y^{i_k} \circ f)
+      \end{equation}
+  \end{enumerate}
+\end{lemma}
 
+Hence, the pull-back of differential forms is computed similarly to that of arbitrary tensor fields.
 
+\begin{proposition}{Pull-back of top forms}{pull-back-top-forms}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map between smooth $ n $-manifolds. If $ (U,(x^i)) $ and $ (V,(y^i)) $ are smooth charts on $ \man_1 $ and $ \man_2 $, respectively, and $ u $ is a continuous function $ u : \man_2 \ra \R $, then on $ U \cap f^{-1}(V) $:
+  \begin{equation}
+    f^*(u \, \dd y^1 \wedge \dots \wedge \dd y^n) = (u \circ f) (\det \jac{f}) \dd x^1 \wedge \dots \wedge \dd x^n
+    \label{eq:jacobian}
+  \end{equation}
+  where $ \jac{f} $ is the Jacobian matrix of $ f $ in these coordinates.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Since the fiber of $ \lm{n} $ is spanned by $ \dd x^1 \wedge \dots \wedge \dd x^n $ at each point, it suffices to show that both sides of \eref{eq:jacobian} give the same result when applied to $ (\pa_1 , \dots , \pa_n) $. From \lref{lemma:pull-back-diff-forms}:
+    \begin{equation*}
+      f^*(u \, \dd y^1 \wedge \dots \wedge \dd y^n) = (u \circ f) \dd f^1 \wedge \dots \wedge \dd f^n
+    \end{equation*}
+    Then, using \itemref{item:pwp-5} of \lref{lemma:prop-exterior-product}:
+    \begin{equation*}
+      \dd f^1 \wedge \dots \wedge \dd f^n \left( \frac{\pa}{\pa x^1} , \dots , \frac{\pa}{\pa x^n} \right) = \det \left[ \dd f^j \left( \frac{\pa}{\pa x^i} \right) \right] = \det \jac{f}
+    \end{equation*}
+    The left-hand side then gives $ (u \circ f) \det \jac{f} $, which is equal to the right-hand side since $ \dd x^1 \wedge \dots \wedge \dd x^n (\pa_1 , \dots , \pa_n) = 1 $.
+  \end{proof}
+\end{proofbox}
+
+An obvious application of \pref{prop:pull-back-top-forms} is to coordinate changes. Indeed, given two overlapping smooth charts $ (U,(x^i)) $ and $ (\tilde{U},\tilde{x}^i) $ on a smooth $ n $-manifold $ \man $, then on $ U \cap \tilde{U} $:
+\begin{equation*}
+  \dd \tilde{x}^1 \wedge \dots \wedge \dd \tilde{x}^n = \det \left[ \frac{\pa \tilde{x}^j}{\pa x^i} \right] \dd x^1 \wedge \dots \wedge \dd x^n
+\end{equation*}
+
+The interior product too extends naturally to vector fields and differential forms by letting it act pointwise. If $ X \in \xm $ and $ \omega \in \df{k} $, then $ \iota_X \omega \in \df{k-1} $ is defined by $ (\iota_X \omega)_p = \iota_{X_p} \omega_p $: therefore, $ \iota_X : \df{k} \ra \df{k-1} $ is linear over $ \cm $ and defined a smooth bundle homomorphism $ \iota_X : \lm{k} \ra \lm{k-1} $.
+
+\subsubsection{Exterior derivative}
+
+It is possible to define a natural differential operator on smooth forms, which generalizes the differential of a function, but first it is necessary to analyze the Euclidean case.
+
+If $ \omega = {\sum_J}' \omega_J \dd x^J $ is a smooth $ k $-form on $ U \in \tp(\R^n) $, its \bctxt{exterior derivative} $ \dd \omega $ is the $ (k+1) $-form defined as:
+\begin{equation}
+  \dd \omega \defeq {\sum_J}' \dd \omega_J \wedge \dd x^J = {\sum_J}' \sum_{i = 1}^n \frac{\pa \omega_J}{\pa x^i} \dd x^i \wedge \dd x^J
+\end{equation}
+where $ \dd \omega_J $ is the differential of the component function $ \omega_J $. On $ \R $-valued functions ($ 0 $-forms), the exterior derivative reduces to the differential.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Properties ot the Euclidean exterior derivative}{peed}
+  \begin{enumerate}
+    \item \label{item:peed-1} $ \dd $ is linear over $ \R $;
+    \item \label{item:peed-2} if $ \omega \in \dfm{k}(U) $ and $ \eta \in \dfm{l}(U) $, with $ U \in \tp(\R^n) $, then:
+      \begin{equation}
+        \dd (\omega \wedge \eta) = \dd \omega \wedge \eta + (-1)^k \omega \wedge \dd \eta
+      \end{equation}
+    \item \label{item:peed-3} $ \dd \circ \dd \equiv 0 $;
+    \item \label{item:peed-4} $ \dd $ commutes with pull-backs, i.e. given a smooth map $ f : U \ra V $, with $ U \in \tp(\R^n) $ and $ V \in \tp(\R^m) $, and $ \omega \in \dfm{k}(V) $, then:
+      \begin{equation}
+        f^*(\dd \omega) = \dd (f^* \omega)
+      \end{equation}
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Linearity over $ \R $ is trivial from definition. To prove \itemref{item:peed-2}, by linearity it suffices to consider $ \omega = u \, \dd x^I \in \dfm{k}(U) $ and $ \eta = v \, \dd x^J \in \dfm{l}(U) $, for smooth functions $ u $ and $ v $:
+    \begin{equation*}
+      \begin{split}
+        \dd (\omega \wedge \eta)
+        & = \dd (u v \, \dd x^I \wedge \dd x^J) = (u \, \dd v + v \, \dd u) \wedge \dd x^I \wedge \dd x^J \\
+        & = (\dd u \wedge \dd x^I) \wedge (v \, \dd x^J) + (-1)^k (u \, \dd x^I) \wedge (\dd v \wedge \dd x^J)
+      \end{split}
+    \end{equation*}
+    where the $ (-1)^k $ comes from $ \dd v \wedge \dd x^I = (-1)^k \dd x^I \wedge \dd v $, since $ \dd x^I $ is a $ k $-form and $ \dd v $ is a $ 1 $-form.
+    WTS $ \dd (u \, \dd x^I) = \dd u \wedge \dd x^I $ for any multi-index $ I $, not just increasing ones: if $ I $ has repeated indices, then $ \dd (u \, \dd x^I) = 0 = \dd u \wedge \dd x^I $, otherwise let $ \sigma $ be a permutation of $ I $ which sends it to an increasing multi-index $ J $, so that:
+    \begin{equation*}
+      \dd (u \, \dd x^I) = (\sgn \sigma) \dd (u \, \dd x^I) = (\sgn \sigma) \dd u \wedge \dd x^J = \dd u \wedge \dd x^I
+    \end{equation*}
+    Inserting this into the above expression yields \itemref{item:peed-2}. Now, consider \itemref{item:peed-3} in the case of a $ 0 $-form:
+    \begin{equation*}
+      \dd (\dd u) = \dd \left( \frac{\pa u}{\pa x^i} \dd x^i \right) = \frac{\pa u^2}{\pa x^i \pa x^j} \dd x^i \wedge \dd x^j = 0
+    \end{equation*}
+    which vanishes since the first factor is symmetric under $ i \lra j $ by the Schwartz lemma on smooth functions $ \pa_i \pa_j u = \pa_j \pa_i u $, while the second factor is antisymmetric under $ i \lra j $ by definition. In the general case:
+    \begin{equation*}
+      \dd (\dd \omega) = \dd {\sum_J}' \dd \omega_J \wedge \dd x^J = {\sum_J}' \dd (\dd \omega_J) \wedge \dd x^J + {\sum_J}' \sum_{i = 1}^k (-1)^i \dd x^{j_1} \wedge \dots \wedge \dd (\dd x^{j_i}) \wedge \dots \wedge \dd x^{j_k}
+    \end{equation*}
+    The first term vanishes since $ \omega_J $ is a $ 0 $-form, while the second vanishes as $ \pa_i 1 = 0 $. Finally, to prove \itemref{item:peed-4}, again it suffices to consider $ \omega = u \, \dd x^{i_1} \wedge \dots \wedge \dd x^{i_k} $:
+    \begin{equation*}
+      f^*(\dd (u \, \dd x^I)) = f^*(\dd u \wedge \dd x^I) = \dd (u \circ f) \wedge \dd (x^{i_1} \circ f) \wedge \dots \wedge \dd (x^{i_k} \circ f)
+    \end{equation*}
+    \begin{equation*}
+      \dd (f^*(u \, \dd x^I)) = \dd ((u \circ f) \dd (x^{i_1} \circ f) \wedge \dots \wedge \dd (x^{i_k} \circ f))
+    \end{equation*}
+    which are equal.
+  \end{proof}
+\end{proofbox}
+
+Usually $ \dd \circ \dd \equiv \dd^2 $.
+It is now possible to extend the definition of exterior derivative to manifolds.
+
+\begin{theorem}{Existence and uniqueness of exterior derivative}{}
+  Let $ \man $ be a smooth $ n $-manifold. There exists a unique operator $ \dd : \df{k} \ra \df{k+1} $ for all $ k = 0, \dots, n-1 $, called \bcth{exterior derivative}, which satisfies:
+  \begin{enumerate}
+    \item \label{item:eued-1} $ \dd $ is linear over $ \R $;
+    \item \label{item:eued-2} if $ \omega \in \df{k} $ and $ \eta \in \df{l} $, then:
+      \begin{equation}
+        \dd (\omega \wedge \eta) = \dd \omega \wedge \eta + (-1)^k \omega \wedge \dd \eta
+      \end{equation}
+    \item \label{item:eued-3} $ \dd^2 \equiv 0 $;
+    \item \label{item:eued-4} given $ f \in \cm = \df{0} $, then $ \dd f $ is the differential of $ f $, defined by $ \dd f(X) = X(f) $;
+    \item \label{item:eued-5} in any smooth chart $ (U,(x^i)) $ on $ \man $, given $ \omega \in \df{k} $:
+      \begin{equation}
+        \dd \omega = {\sum_J}' \dd \omega_J \wedge \dd x^J
+        \label{eq:exterior-derivative-def}
+      \end{equation}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    To prove existence, suppose $ \omega \in \df{k} $, and define $ \dd \omega $ by \eref{eq:exterior-derivative-def} in each smooth chart on $ \man $. More precisely, in each smooth chart $ (U,\varphi) $ on $ \man $, set:
+    \begin{equation*}
+      \dd \omega = \varphi^* \dd ((\varphi^{-1})^* \omega)
+    \end{equation*}
+    To see that this is well-defined, note that, for any other smooth chart $ (V,\psi) $, the map $ \varphi \circ \psi^{-1} $ is a diffeomorphism $ V \ra U $, hence by \itemref{item:peed-4} of \lref{lemma:peed}:
+    \begin{equation*}
+      (\varphi \circ \psi^{-1})^* \dd ((\varphi^{-1})^* \omega) = \dd ((\varphi \circ \psi^{-1})^* (\varphi^{-1})^* \omega)
+    \end{equation*}
+    Together with $ (\varphi \circ \psi^{-1})^* = (\psi^{-1})^* \circ \varphi^* $, this implies $ \varphi^* \dd ((\varphi^{-1})^* \omega) = \psi^* \dd ((\psi^{-1})^* \omega) $, so $ \dd \omega $ is well-defined, and it satisfies \iitemref{item:eued-1}{item:eued-4} by \pref{lemma:peed}.
+
+    To prove uniqueness, suppose $ \dd $ is any operator satisfying \iitemref{item:eued-1}{item:eued-4}. It can be proved that $ \dd \omega $ is determined locally, i.e. if $ \omega_1 $ and $ \omega_2 $ are $ k $-forms which agree on $ U \in \tp(\man) $, then $ \dd \omega_1 = \dd \omega_2 $ on $ U $. With this, let $ \omega \in \df{k} $ arbitrary, and let $ (U,\varphi) $ be any smooth coordinate chart on $ \man $: then, $ \omega $ can be written on $ U $ as $ \omega = {\sum_I}' \omega_I \dd x^I $. For any $ p \in U $, it is possible to construct global smooth functions $ \tilde{\omega}_I $ and $ \tilde{x}^i $ on $ \man $ which agree with $ \omega_I $ and $ x^i $ in a neighbourhood of $ p $. Using \iitemref{item:eued-1}{item:eued-4} and the preceding observation, it follows that $ \dd $ is given by \eref{eq:exterior-derivative-def} at $ p $. Since $ p $ is arbitrary, then this $ \dd $ must be equal to the one defined above.
+  \end{proof}
+\end{proofbox}
+
+If $ \mathcal{A} = \bigoplus_{k \in \mathcal{I}} \mathcal{A}_k $ is an $ \mathcal{I} $-graded algebra, a linear map $ T : \mathcal{A} \ra \mathcal{A} $ is a \emph{map of degree $ m $} if $ T(\mathcal{A}_k) \ssq \mathcal{A}_{m+k} \,\,\forall k \in \mathcal{I} $, and it is an \emph{antiderivation} if $ T(xy) = T(x) y+ (-1)^k x T(y) \,\,\forall x \in \mathcal{A}_k , y \in \mathcal{A}_l $. Therefore, in the language of graded algebras, $ \dd $ is an antiderivation on $ \dft $ of degree $ +1 $ whose square is zero, while $ \iota_X $ is an antiderivation of $ \dft $ of degree $ -1 $ whose square is zero, for $ X \in \xm $.
+
+Note that \itemref{item:peed-4} of \lref{lemma:peed} holds for the general exterior derivative too. If $ f : \man_1 \ra \man_2 $ is a smooth map, then for each $ k $ the pull-back map $ f^* : \dfm{k}(\man_2) \ra \dfm{k}(\man_1) $ commutes with $ \dd $, i.e. for all $ \omega \in \dfm{k}(\man_2) $:
+\begin{equation}
+  f^*(\dd \omega) = \dd (f^* \omega)
+\end{equation}
+
+The exterior derivative can be thought, in a certain sense, as the dual of the Lie bracket, as knowing all the Lie brackets of basis vector fields in a smooth local frame allows to compute the exterior derivatives of dual covector fields, and vice versa.
+
+\begin{proposition}{Duality between exterior derivative and Lie brackets}{duality-edlb}
+  Let $ \man $ be a smooth $ n $-manifold, let $ (E_i) $ be a smooth local frame on $ \man $ and let $ (\varepsilon^i) $ be its dual coframe. For each $ i = 1 , \dots  , n $, let $ b^i_{jk} $ and $ c^i_{jk} $ be defined so that:
+  \begin{equation*}
+    \dd \varepsilon^i = \sum_{j < k = 1}^n b^i_{jk} \varepsilon^j \wedge \varepsilon^k
+    \qquad \qquad
+    [E_j , E_k] = c^i_{jk} E_i
+  \end{equation*}
+  Then, $ b^i_{jk} = - c^i_{jk} $.
+\end{proposition}
+
+With \pref{prop:duality-edlb}, it is possible to prove an invariant expression for the exterior derivative of $ \omega \in \df{k} $, in addition to the coordinate formula \eref{eq:exterior-derivative-def}: for any $ X_1 , \dots , X_{k+1} \in \xm $:
+\begin{multline}
+  \dd \omega(X_1 , \dots , X_{k+1}) = \sum_{1 \leq i \leq k+1} (-1)^{i-1} X_i(\omega(X_1 , \dots , X_{i-1} , X_{i+1} , \dots , X_{k+1})) + \\
+  + \sum_{1 \leq i < j \leq k+1} (-1)^{i+j} \omega([X_i , X_j] , X_1 , \dots , X_{i-1} , X_{i+1} , \dots , X_{j-1} , X_{j+1} , \dots , X_{k+1})
+\end{multline}
+The restriction of this formula to $ 1 $-forms is particularly useful:
+\begin{equation}
+  \dd \omega(X,Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X,Y])
+\end{equation}
+
+\subsubsection{Lie derivatives of differential forms}
+
+\eref{eq:tensor-lie-der} applies to differential forms too. However, the Lie derivative takes a particularly simple form on $ \dft $ due to the exterior derivative.
+
+\begin{theorem}{Cartan's theorem}{}
+  Let $ \man $ be a smooth $ n $-manifold. Then, for any $ V \in \xm $ and $ \omega \in \dft $:
+  \begin{equation}
+    \ld_V \omega = (\iota_V \circ \dd + \dd \circ \iota_V) \omega
+    \label{eq:cartan-formula}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    To show the thesis for $ \df{k} $, with $ k = 0 , \dots , n $, use induction on $ k $. First, consider a $ 0 $-form $ f \in \cm $:
+    \begin{equation*}
+      \iota_V (\dd f) + \dd (\iota_V f) = \iota_V \dd f = \dd f(V) = V(f) = \ld_V f
+    \end{equation*}
+    Now, let $ k \geq 1 $, and suppose that \eref{eq:cartan-formula} holds for all forms of degree less than $ k $. Let $ \omega \in \df{k} $ arbitrary, which in smooth local coordinates is $ \omega = {\sum_I}' \omega_I \dd x^I $, and write e.g. $ u = x^{i_1} $ and $ \beta = \omega_I \dd x^{i_2} \wedge \dots \wedge \dd x^{i_k} $. Then, it is clear that each term of the sum can be written as $ \dd u \wedge \beta $, for some $ u \in \cm $ and $ \beta \in \df{k-1} $.
+
+    \begin{lemma}{}{prod-rule-forms}
+      Let $ \man $ be a smooth manifold, $ V \in \xm $ and $ \omega , \eta \in \dft $. Then:
+      \begin{equation}
+        \ld_V (\omega \wedge \eta) = (\ld_V \omega) \wedge \eta + \omega \wedge (\ld_V \eta)
+      \end{equation}
+    \end{lemma}
+
+    Since on smooth functions $ \ld_V \dd u = \dd (\ld_V u) = \dd (V(u)) $, by the inductive hypothesis and \lref{lemma:prod-rule-forms}:
+    \begin{equation*}
+      \ld_V (\dd u \wedge \beta) = (\ld_V \dd u) \wedge \beta + \dd u \wedge \ld_V \beta = \dd (V(u)) \wedge \beta + \dd u \wedge (\iota_V \dd \beta + \dd (\iota_V \beta))
+    \end{equation*}
+    On the other hand, as both $ \dd $ and $ \iota_V $ are antiderivations on $ \dft $ and $ \iota_V \dd u = \dd u(V) = V(u) $:
+    \begin{equation*}
+      \begin{split}
+        & \iota_V \circ \dd (\dd u \wedge \beta) + \dd \circ \iota_V (\dd u \wedge \beta) \\
+        & \qquad \qquad \qquad \qquad = \iota_V (- \dd u \wedge \dd \beta) + \dd (V(u) \beta - \dd u \wedge \iota_V \beta) \\
+        & \qquad \qquad \qquad \qquad = - V(u) \dd \beta + \dd u \wedge \iota_V \dd \beta + \dd (V(u)) \wedge \beta + V(u) \dd \beta + \dd u \wedge \dd (\iota_V \beta)
+      \end{split}
+    \end{equation*}
+    After cancellations, this expression is equal to the above one, proving the thesis.
+  \end{proof}
+\end{proofbox}
+
+Since $ \dd^2 = 0 $, the Lie derivative commutes with the exterior derivative: $ \ld_V (\dd \omega) = \dd (\ld_V \omega) $.
 
 
 
