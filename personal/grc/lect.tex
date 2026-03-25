@@ -447,6 +447,191 @@ questo ha varie proprieta. In particolare, si trova che a livello lineare è gau
 \end{equation*}
 e questo è quindi vero in tutte le gauge, essendo gauge-invariant.
 
+\chapter{Lecture 17/03}
+
+\section{GW generatrion: linear theory}
+
+Teoria lineare in potenze di $ \frac{v^2}{c^2} $. Nella TT gauge $ \pa^\nu \bar{h}_{\mu \nu} = 0 $:
+\begin{equation*}
+  \Box \bar{h}_{\mu \nu} = - 16 \pi G T_{\mu \nu}
+\end{equation*}
+La funzione di Green ritardata (per esprimere la causalità) del Laplaciano è:
+\begin{equation}
+  G_\text{rit} = - \frac{1}{2\pi} \theta(x^0 - {x'}^0) \delta^{(4)}((x - x')^2)
+\end{equation}
+così che la soluzione è:
+\begin{equation}
+  \bar{h}_{\mu \nu}(x) = - 16\pi G \int \dd^4x' \, G_\text{rit}(x,x') T_{\mu \nu}(x')
+\end{equation}
+La delta seleziona $ (t - t')^2 - (\ve{x} - \ve{x}')^2 = 0 $, quindi $ t - t' \equiv \norm{\ve{x} - \ve{x}'}^2 $, e definendo il tempo ritardato $ \tilde{t}_\text{rit} \equiv t' + \norm{\ve{x} - \ve{x}'} $ (e $ t_\text{rit} = \tilde{t}_\text{rit} - r $):
+\begin{equation*}
+  G_\text{rit}(x) = - \frac{1}{2\pi} \delta(t' - \tilde{t}_\text{rit}) \frac{1}{\norm{\frac{\pa}{\pa t} (\ve{x} - \ve{x}')^2}} = - \frac{1}{4\pi} \delta(t' - \tilde{t}_\text{rit}) \frac{1}{\norm{\ve{x} - \ve{x}'}}
+\end{equation*}
+Dunque la soluzione diventa:
+\begin{equation}
+  \bar{h}_{\mu \nu}(x) = 4G \int \dd^3 \ve{x}' \frac{T_{\mu \nu}(\tilde{t}_\text{rit} , \ve{x}')}{\norm{\ve{x} - \ve{x}'}}
+\end{equation}
+dove l'integrale è sulla regione spaziale in cui $ T_{\mu \nu} \neq 0 $. Nella gauge TT (dato che stiamo calcolando $ h $ fuori dalla regione in cui è presente la sorgente, ovvero $ \norm{\ve{x}} \gg d $ tipica dimensione della sorgente):
+\begin{equation*}
+  h_{ij}^\text{TT} = 4G \Lambda_{im} \Lambda_{jn} \bar{h}_{ij}
+\end{equation*}
+dove $ \Lambda{im} $ è il proiettore TT trovato in precedenza. La tipica scala temporale della sorgente è $ \omega_\text{s} \sim \frac{v}{d} $, dunque $ v \sim \frac{2\pi}{\omega_\text{s}} $, ma per le GWs $ \lambda \nu = c $, dunque $ \frac{\lambda}{2\pi} = \frac{c d}{v} $ (come in Elettromagnetismo), ovvero $ \frac{v}{c} = 2\pi \frac{d}{\varepsilon} $. Il regime lineare è quindi $ \frac{\lambda}{2\lambda} \gg d $ (non sempre vero). Espandendo per $ \norm{\ve{x}} \equiv r \gg d $:
+\begin{equation*}
+  \norm{\ve{x} - \ve{x}'} = \sqrt{\ve{x}^2 + {\ve{x}'}^2 - 2 \ve{x} \cdot \ve{x}'} = r \sqrt{1 + \frac{{x'}^2}{r^2} - 2 \frac{\ve{x} \cdot \ve{x}'}{r}} = r - \hat{\ve{n}} \cdot \ve{r} + \frac{{x'}^2}{2r} + \dots
+\end{equation*}
+Si potevano usare anche le armoniche sferiche (vedi libro Maggiore o articoli Thorne). Inserendo nel tempo ritardato:
+\begin{equation*}
+  t_\text{rit} = t - r + {x'}^i \left( n^i - \delta^{ik} \frac{{x'}^k}{r} \right) + \dots
+\end{equation*}
+Per quanto riguarda $ \bar{h} $, i leading terms sono dati inserendo le due espansioni e tenendo i termini $ T(t_\text{rit}) / r $ e $ T(t) / \norm{\ve{x} - \ve{x}'} $, ottenendo:
+\begin{equation*}
+  h_{ij}^\text{TT} = 4 G \Lambda_{im} \Lambda_{in} \int \dd^3x' \left[ T_{mn}(t_\text{rit} , \ve{x}') + \pa_t T_{mn}(t , \ve{x}') x^k \hat{n}^k + \pa_t^2 T_{mn}(t , \ve{x}') {x'}^k x^\ell \frac{1}{2} \hat{n}^k n^\ell + \dots \right]
+\end{equation*}
+Questi sono rispettivamente il quadrupole moment, il mass octupole moment e il current quadrupole moment. Tenendo solo il leading order (quadrupole moment):
+\begin{equation}
+  h_{ij}^\text{TT} = 4 G \Lambda_{im} \Lambda_{jn} \frac{1}{r} \left[ S_{mn} + \dots \right]
+\end{equation}
+Ottenuto solo con due ipotesi fondamentali: grande distanza dalla sorgente e grande lunghezza d'onda rispetto alle dimensioni della sorgente. Bisogna ora calcolare:
+\begin{equation*}
+  S_{mn} = \int \dd^3x' \, T_{mn}(t,\ve{x}')
+\end{equation*}
+Dato che si assume il background piatto, la conservazione del tensore energie-impulso è $ \pa^\nu T_{\mu \nu} = 0 $: questo significa che le particelle della sorgente si muovono lungo rette (geodetiche dello spazio piatto), ovvero non risentono della gravità (per i sistemi binari quindi serve una giustificazione formale per le orbite curve chiuse). Nel limite non-relativistico, è comodo usare $ T_{00} $ dato che gli altri termini sono di ordine superiore $ T_{0i} \sim \frac{v}{c} $ e $ T_{ij} \sim \frac{v^2}{c^2} $.
+
+La massa, il momento di dipolo ed il momento di quadrupolo della sorgente sono definiti come:
+\begin{equation}
+  M(t) \defeq \int \dd^3x \, T_{00}(t,\ve{x})
+\end{equation}
+\begin{equation}
+  M^i(t) \defeq \int \dd^3x \, T_{00}(t,\ve{x}) x^i
+\end{equation}
+\begin{equation}
+  M^{ij}(t) \defeq \int \dd^3x \, T_{00}(t,\ve{x}) x^i x^j
+\end{equation}
+Integrando su una regione di spazio $ V $ più grande della sorgente (tanto $ T = 0 $ fuori, almeno si tolgono eventuali termini di bordo dovuti alla sorgente, questo è sempre possibile per sorgenti a supporto compatto), si trova la conservazione della massa:
+\begin{equation*}
+  - \pa_t M + \int_V \dd^3x \, \pa_j T_{0j} = 0
+\end{equation*}
+e la conservazione del momento:
+\begin{equation*}
+  \pa_t M^i = - \int_V \dd^3x \, T^{0i} \equiv P_i
+\end{equation*}
+Con ulteriori integrazioni per parti, si trova:
+\begin{equation*}
+  \frac{\dd}{\dd t} M^{ij} = - \int \dd^3x \, T_{0\ell} \left[ x^i \delta^j_\ell + x^j \delta^i_\ell \right]
+\end{equation*}
+Derivando una seconda volta, si trova:
+\begin{equation*}
+  \frac{\dd^2}{\dd t^2} M^{ij} = S_{ij} + S_{ji}
+\end{equation*}
+Dunque, diversamente dall'Elettromagnetismo (in cui la conservazione vettoriale della corrente elimina il contributo di monopolo), il leading order dell'espansione in multipoli è il quadrupolo (dato che la conservazione tensoriale del tensore energia-impulso elimina il contributo di monopolo e dipolo): questo implica che le GW sono ad ordine di $ \frac{v}{c} $ superiore rispetto alle EW, dunque sono più difficili da rivelare. Alla fine si trova:
+\begin{equation*}
+  h_{ij}^\text{TT} = \frac{4G}{r} \Lambda_{im} \Lambda_{jn} \frac{1}{2} \ddot{M}_{ij}^\text{TT}
+\end{equation*}
+dove $ M_{ij}^\text{TT} $ è la parte traceless di $ M_{ij} $ (che è già simmetrico di suo). Questa è la \emph{quadrupole formula}.
+
+\begin{example}{}{}
+  Se la GW propaga lungo $ z $, il proiettore tansverse è:
+  \begin{equation*}
+    \mathcal{P}_{ij} =
+    \begin{bmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 0 \\
+    \end{bmatrix}
+  \end{equation*}
+  dunque $ \Lambda_{ijmn} \equiv \Lambda_{im} \Lambda_{jn} $ diventa:
+  \begin{equation*}
+    \Lambda_{ijmn} = \mathcal{P}_{im} \mathcal{P}_{jn} - \frac{1}{2} \mathcal{P}_{ij} \mathcal{P}_{mn}
+  \end{equation*}
+  Data la propagazione lungo $ z $, la parte transverse di $ M_{ij} $ è:
+  \begin{equation*}
+    M_{ij} =
+    \begin{bmatrix}
+      M_{11} & M_{12} & 0 \\
+      M_{12} & M_{22} & 0 \\
+      0 & 0 & 0
+    \end{bmatrix}
+  \end{equation*}
+  e quindi:
+  \begin{equation*}
+    h_{ij}^\text{TT} = \frac{2G}{r} \ddot{M}_{12}(t_\text{rit})
+    \begin{bmatrix}
+      0 & 1 & 0 \\
+      1 & 0 & 0 \\
+      0 & 0 & 0 \\
+    \end{bmatrix}
+    + (\frac{2G}{r} \ddot{M}_{11}(t_\text{rit}) - \ddot{M}_{22}(t_\text{rit}))
+    \begin{bmatrix}
+      1 & 0 & 0 \\
+      0 & -1 & 0 \\
+      0 & 0 & 0 \\
+    \end{bmatrix}
+  \end{equation*}
+  che sono chiaramente le polarizzazioni cross e plus, rispettivamente, dunque si scrivono:
+  \begin{equation}
+    h_{ij}^\text{TT} = \frac{2G}{r} \left[ \ddot{M}_{12} \varepsilon_{ij}^{(\times)} + (\ddot{M}_{11} - \ddot{M}_{22}) \varepsilon_{ij}^{(+)} \right]_{t_\text{rit}}
+  \end{equation}
+\end{example}
+
+\begin{example}{}{}
+  Se la GW propaga lungo un asse generico, basta ruotare la soluzione precedente come $ \varepsilon_{ij} \mapsto R \varepsilon_{ij} R\tsp $.
+\end{example}
+
+Per calcolare la potenza emessa, si deve considerare lo psudo-tensore energia-impulso gravitazionale:
+\begin{equation*}
+  t^{\mu \nu} = \frac{1}{32 \pi G} \braket{\pa^\mu h_{ij}^\text{TT} \pa^\nu h_{ij}^\text{TT}}
+\end{equation*}
+dove la media di Brie--Hurtle--Hawking elimina gli effetti di gauge, quindi si può usare la gauge TT (attenzione ché il Maggiore fa un ragionamento strano, un po' sbagliato). A tutti gli ordini e in qualunque background si ha $ \pa_\nu t^{\mu \nu} = 0 $, dunque si trova:
+\begin{equation*}
+  E_\nu \defeq \int_V \dd^3x \, t_{0\nu}
+  \quad \implies \quad
+  \frac{\dd P}{\dd t} = - \int_{\pa V} \dd^2S \, n_i t^{0i}
+\end{equation*}
+con $ \dd^2S = r^2 \dd \Omega_2 $.
+A meno di un segno $ \pa_i h_{mn} \sim \dot{h}_{mn} \frac{x^i}{r} $, e svolgendo i calcoli si trova:
+\begin{equation*}
+  P = - \int_{\pa V} \dd^2S \, n_i t^{0i} = \frac{G}{8\pi} \int_{\pa V} \dd \Omega_2 \left[ \braket{\dot{h}_+^2} \varepsilon_{ij}^{(+)} n^i n^j + \braket{\dot{h}_\times^2} \varepsilon_{ij}^{(\times)} n^i n^j \right]
+\end{equation*}
+dove all'ordine di quadrupolo non ci sono cross-terms tra plus e cross polarizations (a ordini successivi ci sono). A livello dimensionale $ \dot{h} \sim \dddot{Q} \sim \frac{M L^2}{T^3} \sim \frac{E_\text{kin}}{t} \sim E^2 $, dunque $ P \sim \pl^{-2} E^4 \sim E^2 $ giusto. Si può quindi vedere la quadrupole formula per la potenza emessa come:
+\begin{equation}
+  P = P_G^{-1} P_\text{s}^2
+\end{equation}
+dove $ P_\text{s} $ è la potenza emessa dalla sorgente e $ P_G \sim \pl^2 $ è una scala di potenza gravitazionale. Riscrivendo in unità cgs:
+\begin{equation}
+  P_G \simeq 3.63 \cdot 10^{59} \,\text{erg} \, \text{s}^{-1}
+\end{equation}
+
+\begin{example}{}{}
+  Per vedere la tipica potenza gravitazionale generata in un laboratorio, si prenda un cilindro lungo $ 20 \,\text{m} $, di raggio $ 1 \,\text{m} $ e di massa $ 5 \cdot 10^8 \,\text{g} $, e lo si metta in rotazione rispetto al suo asse con $ \omega = 28 \,\text{rad} \,\text{s}^{-1} $ (setup sperimentale folle preso dal Gravitation, per illustrare quanto sono flebili le GWs). La potenza emessa dalla sorgente è:
+  \begin{equation*}
+    P_\text{s} \sim 10^{-23} \,\text{erg} \,\text{s}^{-1}
+  \end{equation*}
+  Dunque, si vede che le GWs possono essere rilevate solo da sorgenti astrofisiche.
+\end{example}
+
+\section{Binary systems}
+
+Si consideri un sistema binario con due point-particles di masse $ M_1 $ ed $ M_2 $. L'azione di una point-particle è data da:
+\begin{equation*}
+  \act = - m \int \dd \lambda \sqrt{- g^{\mu \nu} U_\mu U_\nu}
+\end{equation*}
+con $ U^2 < 0 $. Variando l'azione si trova il tensore energia-impulso come:
+\begin{equation*}
+  \act = - \frac{1}{2} \int \dd^4x \,\sqg T_{\mu \nu} \delta g^{\mu \nu}
+\end{equation*}
+Riscrivendo l'azione come:
+\begin{equation*}
+  \act = - m \int \dd^4x \,\sqg \int \dd \lambda \sqrt{-U^2} \frac{1}{\sqg} \delta^{(4)}(x^\mu - y^\mu(\lambda))
+\end{equation*}
+dove $ y^\mu(\lambda) $ sono le coordinate del supporto della world-line della particella (che sono date dal potenziale Newtoniano (al leading order) dato), si trova:
+\begin{equation*}
+  T^{\mu \nu}(x) = m \int \dd \lambda \frac{U^\mu U^\nu}{\sqg} \delta^{(4)}(x - y(\lambda))
+\end{equation*}
+Riscrivendo in termini di $ p^\mu = m U^\mu $ e risolvendo l'integrale con parametrizzazione $ \lambda = \tau $ (tempo proprio):
+\begin{equation}
+  T^{\mu \nu}(x) = \frac{p^\mu p^\nu}{m \sqg} \frac{\dd \tau}{\dd t} \delta^{(3)}(\ve{x} - \ve{y}(\tau))
+\end{equation}
+dove $ \frac{\dd \tau}{\dd t} = \left( \frac{E}{m} \right)^{-1} $, dove $ E $ è l'energia della particella.
 
 
 

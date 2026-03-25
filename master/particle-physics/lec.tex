@@ -338,6 +338,156 @@ where $ Q_f $ is the electric charge of $ f $ in units of $ e $ and the $ \beta 
 \end{equation}
 (prove it)
 
+\chapter{Lecture 17/03}
+
+The electron (probe) starts interacting with the constituents of the proton: the cross-section becomes an incoherent sum over all possible electron-parton scatterings, reproducing experimental results. However, to compute these cross-section the parton distribution functions are needed.
+
+The structure function of the proton is (Callan--Gross relation):
+\begin{equation*}
+  F_2^{ep}(x,Q^2) = 2x F_1^{eq}(x,Q^2) = x \sum_i Q_i^2 q_i^p(x)
+\end{equation*}
+For up and down quarks $ Q_u = \frac{2}{3} $ and $ Q_d = - \frac{1}{3} $, hence:
+\begin{equation*}
+  F_2^{ep}(x,Q^2) = x \left[ \frac{4}{9} u^p(x) + \frac{1}{9} d^p(x) + \frac{4}{9} \bar{u}^p(x) + \frac{1}{3} \bar{d}^p(x) + \dots \right]
+\end{equation*}
+where the contributions from heavier particles (which are virtual in the proton, due to their large mass) are neglected. Doing the same thing for the neutron:
+\begin{equation*}
+  F_2^{en}(x,Q^2) = x \left[ \frac{4}{9} u^n(x) + \frac{1}{9} d^n(x) + \frac{4}{9} \bar{u}^n(x) + \frac{1}{3} \bar{d}^n(x) + \dots \right]
+\end{equation*}
+At first order, the problem is equivalent to the neutron by making the transformation $ u \lra d $, hence we expect $ d^n(x) = u^p(x) $ and $ d^p(x) = u^n(x) $ (and respective charge conjugates). In order to simplify the notation, define:
+\begin{equation*}
+  u(x) \equiv u^p(x) = d^n(x)
+  \qquad \qquad
+  d(x) = d^p(x) = u^n(x)
+\end{equation*}
+so that:
+\begin{equation}
+  F_2^{ep}(x,Q^2) = x \left[ \frac{4}{9} u(x) + \frac{1}{9} d(x) + \frac{4}{9} \bar{u}(x) + \frac{1}{3} \bar{d}(x) + \dots \right]
+\end{equation}
+\begin{equation}
+  F_2^{en}(x,Q^2) = x \left[ \frac{4}{9} d(x) + \frac{1}{9} u(x) + \frac{4}{9} \bar{d}(x) + \frac{1}{3} \bar{u}(x) + \dots \right]
+\end{equation}
+Then:
+\begin{equation*}
+  \int_0^1 \dd x \, F_2^{ep}(x) = \frac{4}{9} f_u + \frac{1}{9} f_d
+  \qquad \qquad
+  \int_0^1 \dd x \, F_2^{en}(x) = \frac{4}{9} f_d + \frac{1}{9} f_u
+\end{equation*}
+where the momentum fractions are defined as:
+\begin{equation*}
+  f_u \equiv \int_0^1 \dd x \, x \left[ u(x) + \bar{u}(x) \right]
+  \qquad \quad
+  f_d \equiv \int_0^1 \dd x \, x \left[ d(x) + \bar{d}(x) \right]
+\end{equation*}
+From SLAC data (see notes) $ \int_0^1 \dd x \, F_2^{ep}(x) = 0.18 $, and similarly $ \int_0^1 \dd x \, F_2^{en}(x) = 0.12 $, thus:
+\begin{equation*}
+  \begin{cases}
+    \frac{4}{9} f_u + \frac{1}{9} f_d = 0.18 \\
+    \frac{1}{9} f_u + \frac{4}{9} f_d = 0.12 \\
+  \end{cases}
+  \quad \implies \quad
+  f_u \simeq 0.36
+  \qquad
+  f_d \simeq 0.18
+\end{equation*}
+The fraction $ f_u $, which is the momentum fraction of up quarks in the proton and down quarks in the neutron, is twice the fraction $ f_d $, suggesting that $ p = uud $ and $ n = udd $. But doing the sum $ f_u + f_d \simeq 0.51 $, thus half the momentum of nucleons is missing: this is evidence that gluons\footnotemark carry much of the total momentum.
+
+\footnotetext{Gluons cannot be studied with electromagnetic probes, since they only interact through the strong force.}
+
+Studying the structure function of deuterium $ \ch{D} = pn $:
+\begin{equation*}
+  F_2^{e\ch{D}}(x,Q^2) = \frac{1}{2} \left[ F_2^{ep}(x,Q^2) + F_2^{en}(x,Q^2) \right] = \frac{5}{18} x \left[ u(x) + \bar{u}(x) + d(x) + \bar{d}(x) \right]
+\end{equation*}
+results into:
+\begin{equation*}
+  \int_0^1 \dd x \, F_2^{e\ch{D}}(x) = \frac{5}{18} ( f_u + f_d )
+  \quad \implies \quad
+  \frac{\int_0^1 \dd x \, F_2^{e\ch{D}}(x)}{\int_0^1 \dd x \, F_2^{ep}(x)} = \frac{5}{2} \frac{f_u + f_d}{4 f_u + f_d} = 0.84
+  \quad \implies \quad
+  \frac{f_d}{f_u} \simeq 0.52
+\end{equation*}
+which confirms the preceding result.
+
+Now, we rewrite $ F_2 $ in terms of parton distribution functions for valence and sea quarks. Sea quarks are produced by gluons in pairs $ q\bar{q} $, while valence quarks are the main constituents (e.g. $ p = uud $). Writing $ u(x) = u_\text{v}(x) + u_\text{s}(x) $, $ d(x) = d_\text{v}(x) + d_\text{s}(x) $, $ \bar{u}(x) = \bar{u}_\text{s}(x) $ and $ \bar{d}(x) = \bar{d}_\text{s}(x) $ (since, being the proton a particle, antiparticles can only be produced in $ q\bar{q} $ pairs), we expect:
+\begin{equation*}
+  \int_0^1 \dd x \, u_\text{v}(x) = 2
+  \qquad \qquad
+  \int_0^1 \dd x \, d_\text{v}(x) = 1
+\end{equation*}
+Since sea quarks are produced in pairs, we expect that $ u_\text{s}(x) = \bar{u}_\text{s}(x) = d_\text{s}(x) = \bar{d}_\text{s}(x) \equiv \text{s}(x) $, so that:
+\begin{equation*}
+  F_2^{ep}(x) = x \left[ \frac{4}{9} u_\text{v}(x) + \frac{1}{9} d_\text{v}(x) + \frac{10}{9} \text{s}(x) \right]
+\end{equation*}
+\begin{equation*}
+  F_2^{en}(x) = x \left[ \frac{4}{9} d_\text{v}(x) + \frac{1}{9} u_\text{v}(x) + \frac{10}{9} \text{s}(x) \right]
+\end{equation*}
+Then:
+\begin{equation*}
+  \frac{F_2^{en}(x)}{F_2^{ep}(x)} = \frac{4 d_\text{v}(x) + u_\text{v}(x) + 10 \text{s}(x)}{d u_\text{v}(x) + d_\text{v}(x) + 10 \text{s}(x)}
+\end{equation*}
+We expect that:
+\begin{itemize}
+  \item for $ x \ra 0 $, i.e. very low carried momentum fraction, the sea quarks dominate, hence the ratio is expected to go to $ 1 $;
+  \item for $ x \ra 1 $, i.e. very high carried momentum fraction, the sea quarks are negligible, hence using the approximation $ u_\text{v}(x) \sim 2 d_\text{v}(x) $ the ratio is expected to go to $ \frac{2}{3} $.
+\end{itemize}
+From SLAC data (see notes), the $ x \ra 0 $ limit matches experimental data, confirming that sea quarks dominate, while the $ x \ra 1 $ is wrong: from experimental data, in the $ x \ra 1 $ limit the ratio goes to $ \frac{1}{4} $. We still don't know precisely why this is the case, but the most simple explanation comes from the Pauli exclusion principle: if one quarks carries $ x \ra 1 $, the other two both carry $ x \ra 0 $, but if the latter ones are the up quarks, this violates the Pauli exclusion principle. For this reason, the $ x \ra 1 $ limit can only be determined by an up quark carrying almost all momentum, hence setting $ d_\text{v} \sim 0 $ the result $ \frac{1}{4} $ is recovered.
+
+\paragraph{Violation of Bjorken scaling}
+
+Bjorken scaling implies that $ F_2(x,Q^2) $ is independent of $ Q^2 $, however experimental data shows that this is true only for $ 0.01 \ll x \ll 0.5 $: this means that $ F_2(x,Q^2) $ is actually weakly dependent on $ Q^2 $. For $ x \ll 0.01 $, $ F_2 $ increases with $ Q^2 $, while for $ x \gg 0.5 $ it decreases with $ Q^2 $.
+
+This violation of Bjorken scaling is expected: higher $ Q^2 $ means lower probe wavelength, hence higher resolution power, allowing for a better measurement of sea particles (thus shifting the structure function towards low $ x $, since sea quarks carry lower momentum fractions).
+
+\paragraph{Asimmetry in sea quarks}
+
+The expectation of all sea quarks' distribution function being equal (to $ \text{s}(x) $) is wrong too, probably due to the Pauli exclusion principle again.
+
+\begin{example}{Exercise on deep inelastic scattering $ ep $}{}
+  Assume that $ e(p_1) $, $ p(p_2) $ and the scattered electron $ e(p_3) $ have momenta:
+  \begin{equation*}
+    p_1 = (E_1 , 0 , 0 , E_1)
+    \qquad \qquad
+    p_" = (E_2 , 0 , 0 , - E_2)
+    \qquad \qquad
+    p_3 = (E_3 , E_3 \sin \theta , 0 , E_3 \cos \theta)
+  \end{equation*}
+  so that $ q^2 = (p_1 - p_3)^2 \simeq - 2 p_1 \cdot p_3 = - 2 E_1 E_3 (1 - \cos \theta) $ and $ p_2 \cdot q = 2 E_1 E_2 - E_2 E_3 (1 + \cos \theta) $, hence:
+  \begin{equation*}
+    x \defeq \frac{Q^2}{2 p_2 \cdot q} \simeq - \frac{q^2}{2 p_2 \cdot q} = \frac{E_3}{E_2} \frac{1 - \cos \theta}{2 - \frac{E_3}{E_1} (1 + \cos \theta)}
+  \end{equation*}
+  Assuming $ \theta \simeq 150\deg $: $ Q^2 \simeq 3 \cdot 10^4 \gev^2 $ and $ x \simeq 0.7 $.
+\end{example}
+
+\section{Decays in QED}
+
+At tree-level, the only QED decays are decays of bound states. The simplest one is positronium decay: $ e^+ e^- \ra \gamma \gamma $. In this case, the mediator of the decay is a virtual electron. The matrix element is found by crossing-symmetry from the Compton scattering, but in this case the amplitude is not computed averaging over spins, since now $ e^+ e^- $ form a ground state. Assuming the ground state of positronium, which is a singlet state (like the helium atom). At tree level, there are the $ t $-channel and the $ u $-channel, which have to be coherently summed as they are undistinguishable:
+\begin{equation*}
+  \begin{split}
+    \mat_t
+    & = \bar{v}(p_2) (-\img e \gamma^\mu) \frac{\img(\slashed{q} + m_e)}{q^2 - m_e^2} (-\img \gamma^\nu) u(p_1) \varepsilon_\mu^*(p_4) \varepsilon_\nu^*(p_3) \\
+    & = - \img e^2 \bar{v}(p_2) \slashed{\varepsilon}^*(p_4) \frac{\slashed{p}_1 - \slashed{p}_3 + m_e}{(p_1 - p_3)^2 - m_2^2} \slashed{\varepsilon}^*(p_3) u(p_1)
+  \end{split}
+\end{equation*}
+\begin{equation*}
+  \begin{split}
+    \mat_u
+    & = \bar{v}(p_2) (-\img e \gamma^\mu) \frac{\img(\slashed{q} + m_e)}{q^2 - m_e^2} (-\img \gamma^\nu) u(p_1) \varepsilon_\mu^*(p_3) \varepsilon_\nu^*(p_4) \\
+    & = - \img e^2 \bar{v}(p_2) \slashed{\varepsilon}^*(p_3) \frac{\slashed{p}_1 - \slashed{p}_4 + m_e}{(p_1 - p_4)^2 - m_2^2} \slashed{\varepsilon}^*(p_4) u(p_1)
+  \end{split}
+\end{equation*}
+The total amplitude then is:
+\begin{equation*}
+  \man = - \img e^2 \bar{v}(p_2) \left[ \slashed{\varepsilon}^*(p_4)  \frac{\slashed{p}_1 - \slashed{p}_3 + m_e}{(p_1 - p_3)^2 - m_2^2} \slashed{\varepsilon}^*(p_3) + \slashed{\varepsilon}^*(p_3) \frac{\slashed{p}_1 - \slashed{p}_4 + m_e}{(p_1 - p_4)^2 - m_2^2} \slashed{\varepsilon}^*(p_4) \right] u(p_1)
+\end{equation*}
+Assume to be in the rest frame of the positronium, so that:
+\begin{equation*}
+  p_1 = (m_e,0,0,0)
+  \qquad p_2 = (m_e,0,0,0)
+  \qquad p_3 = m_e (1,0,0,1)
+  \qquad p_4 = m_E (1,0,0,-1)
+\end{equation*}
+Then $ (p_1 - p_3)^2 = - 2 m_2^2 $ and $ \slashed{p}_1 \slashed{\varepsilon}^*(p_3) = - \slashed{\varepsilon}^*(p_3) \slashed{p}_1 + 2 p_1 \cdot \varepsilon^*(p_3) $, but $ p_1 $ is purely temporal while $ \varepsilon(p_3) $ is purely spatial, hence $ p_1 \cdot \varepsilon^*(p_3) = 0 $ and $ \slashed{p}_1 \slashed{\varepsilon}^*(p_3) = - \slashed{\varepsilon}^*(p_3) \slashed{p}_1 $. Analogously $ \slashed{p}_3 \slashed{\varepsilon}^*(p_3) = - \slashed{\varepsilon}^*(p_3) \slashed{p}_3 $, since $ p_0 \cdot \varepsilon(p_3) = 0 $ by the Lorentz condition.
+
 
 
 
