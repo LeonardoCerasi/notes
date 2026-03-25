@@ -633,6 +633,205 @@ Riscrivendo in termini di $ p^\mu = m U^\mu $ e risolvendo l'integrale con param
 \end{equation}
 dove $ \frac{\dd \tau}{\dd t} = \left( \frac{E}{m} \right)^{-1} $, dove $ E $ è l'energia della particella.
 
+\chapter{Lecture 25/03}
+
+\section{Propagazione di GW a livello cosmologico}
+
+Le fonti cosmologiche sono transizioni di fase di prima specie nell'universo primordiale: si pensa che per queste ph-tr nel plasma primordiale inducano un quadrupolo dipendente dal tempo. C'è anche un fondo cosmologico di GW difficilmente osservabili, con un power spectrum apparentemente senza scala.
+
+Si prenda un universo FLRW con $ k = 0 $:
+\begin{equation*}
+  \dd s^2 = a^2(\eta) \left[ \eta_{\mu \nu} + h_{\mu \nu} \right] \dd x^\mu \dd x^\nu
+\end{equation*}
+Si possono caratterizzare le perturbazioni cosmologiche con le simmetrie del background: in questo caso, $ \SOn{3} $ spaziale. Le rappresentazioni irriducibili di $ \SOn{3} $ sono scalari (spin-$ 0 $), vettori (spin-$ 1 $), traceless tensors (spin-$ 2 $), etc., dunque si può scrivere:
+\begin{equation}
+  h_{\mu \nu} = h_{\mu \nu}^\text{(s)} + h_{\mu \nu}^\text{(v)} + h_{\mu \nu}^\text{(t)}
+\end{equation}
+con:
+\begin{equation}
+  h_{00}^\text{(s)} = - 2 \Phi
+  \qquad
+  h_{0i}^\text{(s)} = \pa_i B
+  \qquad
+  h_{0i}^\text{(v)} = B_i
+\end{equation}
+con $ \pa_i B_i = 0 $ transverse vector. Questi contributi non mixano tra loro.
+
+Si distingue tra \emph{spectator fields}, tali per cui il loro EM tensor non modifica il backgrounf FLRW, e \emph{dynamical fields}, i quali invece entrano nella dinamica del sistema. Le equazioni di Einstein sono:
+\begin{equation*}
+  G_{\mu \nu} = 8 \pi G T_{\mu \nu}
+\end{equation*}
+Nel caso FLRW $ T_{\mu \nu} $ è quello di un fluido perfetto cosmologico:
+\begin{equation}
+  T_{\mu \nu} = (\rho + P) u_\mu u_\nu + P g_{\mu \nu}
+\end{equation}
+con $ u^2 = -1 $. Su grande scala, l'universo può essere trattato come fluido perfetto cosmologico + piccole perturbazioni. Queste perturbazioni sono scritte come:
+\begin{equation*}
+  P = \bar{P} + \delta P
+  \qquad \qquad
+  \rho = \bar{\rho} + \delta \rho
+\end{equation*}
+Si può anche aggiungere un anisotropic stress (perturbazioni non da fluido perfetto), ma lo ignoriamo. Nel free-fall RF del fluido, in cui non c'è alcuna velocità peculiare, $ \bar{u}^\mu = a^{-1} (1,0,0,0) $, dunque:
+\begin{equation*}
+  \bar{T}_{\mu \nu} = \diag(\bar{\rho} , \bar{P} , \bar{P} , \bar{P})
+\end{equation*}
+Le equazioni di Einstein diventano:
+\begin{equation}
+  3 \mathcal{H}^2 = 8 \pi G a^2 \bar{\rho}
+  \qquad \qquad
+  \mathcal{H}^2 + \mathcal{H}' = 8 \pi G \bar{P}
+\end{equation}
+Ci sarebbe anche l'equazione di continuità $ \bar{\rho}' + 3 \mathcal{H} (\bar{\rho} + \bar{P}) = 0 $, ma non è indipendente dalle altre.
+
+\subsection{Tensor perturbations}
+
+Per scrivere le TP, basta prendere le perturbazioni e mettersi nella gauge TT:
+\begin{equation*}
+  h^\text{(T)}_{00} = h^\text{(T)}_{0i} = 0
+  \qquad \qquad
+  h^\text{(T)}_{ij} = \chi_{ij}
+\end{equation*}
+con $ \delta_{ij} \chi_{ij} = 0 $ e $ \pa_j \chi_{ij} = 0 $ (traceless and transverse). Per perturbare la sorgente, si possono ignorare le perturbazioni di pressione e densità, poiché sono nel settore scalare, e quelle di velocità, nel settore vettoriale, dunque rimangono solo quelle della metrica, e le eq di Einstein linearizzate $ G^{(1)}_{\mu \nu} = 8 \pi G T^{(1)}_{\mu \nu} $ diventano (dimostrare per esercizio col formalismo di Cartan):
+\begin{equation}
+  \pa_\eta^2 \chi_{ij} + 2 \mathcal{H} \pa_\eta \chi_{ij} - \lap \chi_{ij} = 0
+  \label{eq:tp}
+\end{equation}
+Simile a eq del moto per uno spectator field in background FLRW: nel caso di uno sp-field scalare massless libero $ \phi $ si trova che l'eq del moto $ \Box \phi = 0 $ diventa:
+\begin{equation*}
+  \frac{1}{\sqg} \pa_\mu (\sqg g^{\mu \nu} \pa_\nu \phi) = 0
+\end{equation*}
+e svolgendo il calcolo (per esercizio) esce identica a \eref{eq:tp} con $ \chi_{ij} \lra  \phi $. Dunque, è come lavorare con un campo scalare, e in trasformata di Fourier spaziale:
+\begin{equation*}
+  \phi(\eta , \ve{x}) = \int \frac{\dd^3 k}{(2\pi)^3} e^{\img \ve{x} \cdot \ve{k}} \hat{\phi}(\eta , \ve{k})
+\end{equation*}
+\begin{equation}
+  \chi_{ij} = \sum_{s = 1,2} \int \frac{\dd^3k}{(2\pi)^3} e^{\img \ve{k} \cdot \ve{x}} \varepsilon_{ij}^{(s)}(k) \hat{h}_{(s)}(\eta,\ve{k})
+\end{equation}
+Così che l'eq del moto diventa:
+\begin{equation*}
+  h''_{(s)} + 2 \mathcal{H} h'_{(s)} + k^2 h_{(s)} = 0
+\end{equation*}
+con $ k \equiv \abs{\ve{k}} $. Questo descrive la propagazione cosmologica di una GW, ovvero una perturbazione di spin-$ 2 $. La matematica è la stessa di un campo scalare in background FLRW. In generale, il fattore di scala ha la forma:
+\begin{equation*}
+  a(\eta) = \left( \frac{\eta}{\eta_0} \right)^\alpha
+\end{equation*}
+e.g. $ \alpha = 1 $ matter domination, $ \alpha = 2 $ radiation domination, $ \alpha = -2 $ $ \Lambda $ domination. Per eliminare la dipendenza dalla derivata prima $ \pa_\eta $, si può semplicemente riscalare il campo per $ a $, ovvero ponendo $ h \equiv a^{-1} \tilde{h} $ (d'ora in poi l'indice per la polarizzazione è soppresso, l'analisi vale per tutte le polarizzazioni):
+\begin{equation}
+  \tilde{h}'' - \left( \frac{a''}{a} - k^2 \right) \tilde{h} = 0
+\end{equation}
+Il comportamento è molto simile, nonostante i vari valori possibili di $ \alpha $, e si trova in generale un'equazione di tipo Bessell del tipo:
+\begin{equation*}
+  \tilde{h} - \left( \frac{A}{\eta^2} - k^2 \right) \tilde{h} = 0
+\end{equation*}
+Risolvendo con le funzioni di Bessell si trova:
+\begin{equation}
+  \tilde{h} = \sqrt{k \eta} \left[ \alpha_1 J_\nu(k \eta) + \alpha_2 Y_\nu (k \eta) \right]
+\end{equation}
+dove l'ordine delle funzioni di Bessell è $ \nu = \frac{1}{2} \sqrt{1 + 4 A} $. Si trovano principalmente due regimi:
+\begin{itemize}
+  \item super-horizon regime $ k \ll \frac{1}{\eta} $, i.e. $ k \eta \ll 1 $, in cui la scala delle perturbazioni è maggiore del raggio di curvatura dell'universo;
+  \item sub-horizon regime $ k \gg \frac{1}{\eta} $, i.e. $ k \eta \gg 1 $, in cui la scala delle perturbazioni è minore del raggio di curvatura dell'universo.
+\end{itemize}
+
+\subsubsection{Sub-horizon regime}
+
+Caso di maggiore importanza, dato che tipicamente le onde gravitazionali hanno scale molto minori del raggio di curvatura dell'universo (che è negli ordini dei Gpc). In questo caso:
+\begin{equation*}
+  \tilde{h}'' - \frac{A - k^2 \eta^2}{\eta^2} \tilde{h} = 0
+\end{equation*}
+ma $ k\eta \gg 1 $, dunque domina e:
+\begin{equation*}
+  \tilde{h} + k^2 \tilde{h} = 0
+  \qquad \implies \qquad
+  \tilde{h} \propto e^{- \img k \eta}
+\end{equation*}
+dunque:
+\begin{equation}
+  h_{\ve{k}}(\eta , \ve{x}) = \frac{1}{a(\eta)} e^{-\img \eta k + \ve{k} \cdot \ve{x}} \bar{h}(\ve{k})
+\end{equation}
+dunque la perturbazione viene soppressa da $ a^{-1} $.
+
+\subsubsection{Super-horizon regime}
+
+Nel caso delle GW non è molto importante, ma si trova, dato che $ k \eta \ll 1 $:
+\begin{equation*}
+  \tilde{h} - \frac{A}{\eta^2} \tilde{h} = 0
+  \qquad \implies \qquad
+  \tilde{h} \propto \eta^\beta
+\end{equation*}
+con $ \beta^2 - \beta = A $. Si trovano quindi due modes: tipicamente uno cresce e uno decresce con $ \eta $. Per matter domination si trova $ \beta = 0,1 $, ovvero:
+\begin{equation*}
+  h = \frac{1}{a} (\bar{h}_1 + \bar{h}_2 \eta) \sim (\bar{h}_1 \eta^{-1} + \bar{h}_2)
+\end{equation*}
+quindi un mode è costante e uno decaying.
+
+\subsection{Soluzioni esatte}
+
+Si prenda un'onda piana nella linear theory con background Minkowski:
+\begin{equation*}
+  \dd s^2 = \eta_{\mu \nu} \dd x^\mu \dd x^\nu + h_{ij}^\text{(TT)} \dd x^i \dd x^j
+\end{equation*}
+con (TT lungo $ z $):
+\begin{equation*}
+  h_{ij} =
+  \begin{bmatrix}
+    h_+ & h_\times & 0 \\
+    h_\times & -h_+ & 0 \\
+    0 & 0 & 0
+  \end{bmatrix}
+  \cos [\omega (t - z)]
+\end{equation*}
+Introducendo le coordinate lightcone $ u = t - z $ (tempo ritardato) e $ v = t + z $ (tempo avanzato), si trova in generale:
+\begin{equation*}
+  \dd s^2 = \eta_{\mu \nu} \dd x^\mu \dd x^\nu + h_+ f(u) \dd x^2 - h_+ f(u) \dd y^2 + 2 h_\times f(u) \dd x \dd y
+\end{equation*}
+Sostituendo $ t = \frac{u + v}{2} $ e $ z = \frac{v - u}{2} $, si possono usare come coordinate $ (u,v,x,y) $. Prendendo per esempio la polarizzazione cross:
+\begin{equation*}
+  \dd s^2 = - \frac{1}{2} \dd u \dd v + (1 + h_+ f(u)) \dd x^2 + (1 - h_+ f(u)) \dd y^2
+\end{equation*}
+Si noti che $ f(u) $ soddisfa l'equazione d'onda $ \Box f = 0 $, ovvero $ \eta^{\mu \nu} \pa_\mu \pa_\nu f(u) = 0 $. Si vuole trovare una soluzione esatta delle eq di Einstein che, nel caso linearizzato, si riduce a questo. Un possibile ansatz è:
+\begin{equation*}
+  \dd s^2 = - \frac{1}{2} \dd u \dd v + L^2(u) \left[ e^{2\beta} \dd x^2 + e^{-2\beta} \dd y^2 \right]
+\end{equation*}
+con $ \beta \ll 1 $, così da ricondursi nel caso precedente con una semplice espansione. In generale $ \beta , L $ sono funzioni di $ u $, con $ \beta $ contente informazioni riguardo la deviazione della soluzione da Minkowski, mentre $ L $ va a modulare l'onda. Le eq di Einstein nel vuoto $ R_{\mu \nu} = 0 $ diventano (dato che l'unica componente non-nulla è $ R_{uu} $):
+\begin{equation*}
+  R_{uu} = - \frac{2}{L} \left[ L'' + L (\beta')^2 \right] = 0
+  \qquad \implies \qquad
+  L'' + L (\beta')^2 = 0
+\end{equation*}
+Con $ \beta \ll 1 $ il secondo termine è trascurabile e si trova $ L' = \text{const.} $ e $ \beta $ arbitrary: si trova la corrispondenza con la GW settando $ \beta(u) = \frac{1}{2} h_+ f(u) $ (linear limit). Nella teoria completa (beyond linear order), si cerca $ \beta(u) $ a supporto compatto (ovvero un pacchetto d'onda), ad esempio:
+\begin{equation*}
+  \beta(u) =
+  \begin{cases}
+    0 & u < -T \\
+    \tilde{\beta}(u) & -T \leq u \leq T \\
+    0 & u > T
+  \end{cases}
+\end{equation*}
+Fuori da $ [-T,T] $, l'eq di prima diventa $ L'' = 0 $, ovvero $ L(u) = L_0 + L_1 u $. Per $ u < -T $ si impone $ L = 1 $ per avere il regular Minkowski space, ovvero $ L_0 = 1 $ ed $ L_1 = 0 $. Nella regione $ [-T,T] $ si ha:
+\begin{equation*}
+  L'' + (\beta'(u))^2 L = 0
+  \quad \implies \quad
+  L'(u) - L_1 + \int_{-T}^u \dd s \, (\beta'(s))^2 L(s) = 0
+\end{equation*}
+e integrando una seconda volta (come con serie di Dyson):
+\begin{equation*}
+  L(u) = L_0 + L_1 u - \int_{-T}^u \dd s \int_{-T}^s \dd \tilde{s} \, (\beta'(\tilde{s}))^2 L(\tilde{s})
+\end{equation*}
+Al leading order $ L(\tilde{s}) = 1 $ (valore asintotico nel passato), dunque:
+\begin{equation*}
+  L(u) \simeq L_0 + L_1 u - \int_{-T}^u \dd s \int_{-T}^s \dd \tilde{s} \, (\beta'(\tilde{s}))^2
+\end{equation*}
+Imponendo la continuità $ L(-T) = 1 $ si trova $ L_0 = 1 $ ed $ L_1 = 0 $, ovvero:
+\begin{equation}
+  L(u) \simeq 1 - \int_{-T}^u \dd s \int_{-T}^s \dd \tilde{s} \, (\beta'(\tilde{s}))^2
+\end{equation}
+Per $ u > T $ si ha di nuovo $ L(u) = \tilde{L}_0 + \tilde{L}_1 u $, dunque imponendo la continuità a $ u = T $ si trova (esercizio):
+\begin{equation*}
+  L(u) = 1 - u \int_{-T}^T \dd s \, (\beta'(s))^2
+\end{equation*}
+Si vede dunque che, col passaggio, la GW cambia il background, e anche a seguito del passaggio il background non è più Minkowski (\bctxt{memory effect}): ci si aspetta che, a seguito del passaggio, le masse test risultino spostate (ma effetto è estremamente difficile da osservare, poichè la frequenza $ \nu \sim \abs{\beta''} $ tende a $ 0 $). Si potrebbero anche avere singolarità $ L = 0 $, ma queste sono solo coordinate singularities: le true singularities ci possono essere solo per $ \beta \neq 0 $. Per $ \beta \neq 0 $ si trova $ R_{uu} = L'' / L $, quindi la scala di curvatura del background è $ \lng_\text{B} \sim \sqrt{\abs{L / L''}} $, mentre $ \lambda/2\pi \sim 1/\abs{\beta''} $, quindi si trova $ \lambda/2\pi \ll \lng_\text{B} $, ovvero ci troviamo nel regime lineare come desiderato.
+
 
 
 
