@@ -451,6 +451,7 @@ Although $ \{\varepsilon^I\}_{I \in [0,n]^k} $ is not linearly independent by \i
 \pref{prop:ext-form-basis} shows that there is a particular class of exterior forms: those with $ k = n $, known as \bctxt{top forms}. Indeed, $ \lv{n}(V) $ is $ 1 $-dimensional and spanned by $ \varepsilon^{1 \dots n} $: on $ \R^n $, this is just the determinant function $ e^{1 \dots n} $. Top forms behave simply under linear transformations. Consider a linear map $ T : V \ra V $, and defint $ \det T $ as the determinant of the representation matrix of $ T $ (in any basis, by the Binet theorem): then, $ \omega \in \lv{n}(V) $ transforms as:
 \begin{equation}
   \omega(T v_1 , \dots , T v_n) = (\det T) \omega(v_1 , \dots , v_n)
+  \label{eq:forms-determinant}
 \end{equation}
 Note that, like $ \sv{0}(V) = \R $ and $ \sv{1}(V) = V^* $, so $ \lv{0}(V) = \R $ and $ \lv{1}(V) = V^* $.
 
@@ -541,32 +542,32 @@ An algebra is said to be \emph{unital} if $ \exists \emph{1} \in \mathcal{A} : \
 While the exterior products allows to build higher-rank exterior forms from lower-rank one, there is another operation which has the opposite effect, resulting in a lower-rank exterior form from a higher-rank one.
 
 \begin{definition}{Interior product}{}
-  Let $ V $ be an $ n $-dimensional $ \R $-vector space. For each $ v \in V $, the linear map $ \iota_v : \lv{k}(V) \ra \lv{k-1}(V) $, called the \bcdef{interior product} with $ v $, is defined as:
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. For each $ v \in V $, the linear map $ \ip_v : \lv{k}(V) \ra \lv{k-1}(V) $, called the \bcdef{interior product} with $ v $, is defined as:
   \begin{equation}
-    \iota_v \omega(w_1 , \dots , w_{k-1}) \defeq \omega(v , w_1 , \dots , w_{k-1})
+    \ip_v \omega(w_1 , \dots , w_{k-1}) \defeq \omega(v , w_1 , \dots , w_{k-1})
   \end{equation}
 \end{definition}
 
-Therefore, $ \iota_v \omega $ is obtained inserting $ v $ as the first argument of $ \omega $. By convention, $ \iota_v \vert_{\lv{0}(V)} \equiv 0 $.
+Therefore, $ \ip_v \omega $ is obtained inserting $ v $ as the first argument of $ \omega $. By convention, $ \ip_v \vert_{\lv{0}(V)} \equiv 0 $.
 
 \begin{lemma}{Properties of the interior product}{}
   Let $ V $ be an $ n $-dimensional $ \R $-vector space and $ v \in V $. Then:
   \begin{enumerate}
-    \item \label{item:pip-1} $ \iota_v \circ \iota_v = 0 $;
+    \item \label{item:pip-1} $ \ip_v \circ \ip_v = 0 $;
     \item \label{item:pip-2} if $ \omega \in \lv{k}(V) $ and $ \eta \in \lv{l}(V) $, then:
       \begin{equation}
-        \iota_v(\omega \wedge \eta) = (\iota_v \omega) \wedge \eta + (-1)^k \omega \wedge (\iota_v \eta)
+        \ip_v(\omega \wedge \eta) = (\ip_v \omega) \wedge \eta + (-1)^k \omega \wedge (\ip_v \eta)
       \end{equation}
   \end{enumerate}
 \end{lemma}
 
 \begin{proofbox}
   \begin{proof}
-    For exterior $ k $-forms with $ k \geq 2 $, \itemref{item:pip-1} is immediate from definition by the alternating nature of exterior forms, while for $ k = 1,0 $ it follows from the convention $ \iota_v \vert_{\lv{0}(V)} \equiv 0 $.
+    For exterior $ k $-forms with $ k \geq 2 $, \itemref{item:pip-1} is immediate from definition by the alternating nature of exterior forms, while for $ k = 1,0 $ it follows from the convention $ \ip_v \vert_{\lv{0}(V)} \equiv 0 $.
 
     To prove \itemref{item:pip-2}, it suffices to consider the case of $ \omega , \eta $ decomposable, since every exterior $ k $-form can be written as a linear combination of decomposable ones. For general $ \omega^1 , \dots , \omega^k \in \lv{1}(V) $ WTS:
     \begin{equation}
-      \iota_v(\omega^1 \wedge \dots \wedge \omega^k) = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v) \omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k
+      \ip_v(\omega^1 \wedge \dots \wedge \omega^k) = \sum_{i = 1}^k (-1)^{i-1} \omega^i(v) \omega^1 \wedge \dots \wedge \omega^{i-1} \wedge \omega^{i+1} \wedge \dots \wedge \omega^k
     \end{equation}
     which clearly implies \itemref{item:pip-2}. To prove this equation, write $ v_1 \equiv v $ and apply both sides to the $ (k-1) $-tuple of vectors $ (v_2 , \dots , v_k) $:
     \begin{multline*}
@@ -650,7 +651,7 @@ An obvious application of \pref{prop:pull-back-top-forms} is to coordinate chang
   \dd \tilde{x}^1 \wedge \dots \wedge \dd \tilde{x}^n = \det \left[ \frac{\pa \tilde{x}^j}{\pa x^i} \right] \dd x^1 \wedge \dots \wedge \dd x^n
 \end{equation*}
 
-The interior product too extends naturally to vector fields and differential forms by letting it act pointwise. If $ X \in \xm $ and $ \omega \in \df{k} $, then $ \iota_X \omega \in \df{k-1} $ is defined by $ (\iota_X \omega)_p = \iota_{X_p} \omega_p $: therefore, $ \iota_X : \df{k} \ra \df{k-1} $ is linear over $ \cm $ and defined a smooth bundle homomorphism $ \iota_X : \lm{k} \ra \lm{k-1} $.
+The interior product too extends naturally to vector fields and differential forms by letting it act pointwise. If $ X \in \xm $ and $ \omega \in \df{k} $, then $ \ip_X \omega \in \df{k-1} $ is defined by $ (\ip_X \omega)_p = \ip_{X_p} \omega_p $: therefore, $ \ip_X : \df{k} \ra \df{k-1} $ is linear over $ \cm $ and defined a smooth bundle homomorphism $ \ip_X : \lm{k} \ra \lm{k-1} $.
 
 \subsubsection{Exterior derivative}
 
@@ -748,7 +749,7 @@ It is now possible to extend the definition of exterior derivative to manifolds.
   \end{proof}
 \end{proofbox}
 
-If $ \mathcal{A} = \bigoplus_{k \in \mathcal{I}} \mathcal{A}_k $ is an $ \mathcal{I} $-graded algebra, a linear map $ T : \mathcal{A} \ra \mathcal{A} $ is a \emph{map of degree $ m $} if $ T(\mathcal{A}_k) \ssq \mathcal{A}_{m+k} \,\,\forall k \in \mathcal{I} $, and it is an \emph{antiderivation} if $ T(xy) = T(x) y+ (-1)^k x T(y) \,\,\forall x \in \mathcal{A}_k , y \in \mathcal{A}_l $. Therefore, in the language of graded algebras, $ \dd $ is an antiderivation on $ \dft $ of degree $ +1 $ whose square is zero, while $ \iota_X $ is an antiderivation of $ \dft $ of degree $ -1 $ whose square is zero, for $ X \in \xm $.
+If $ \mathcal{A} = \bigoplus_{k \in \mathcal{I}} \mathcal{A}_k $ is an $ \mathcal{I} $-graded algebra, a linear map $ T : \mathcal{A} \ra \mathcal{A} $ is a \emph{map of degree $ m $} if $ T(\mathcal{A}_k) \ssq \mathcal{A}_{m+k} \,\,\forall k \in \mathcal{I} $, and it is an \emph{antiderivation} if $ T(xy) = T(x) y+ (-1)^k x T(y) \,\,\forall x \in \mathcal{A}_k , y \in \mathcal{A}_l $. Therefore, in the language of graded algebras, $ \dd $ is an antiderivation on $ \dft $ of degree $ +1 $ whose square is zero, while $ \ip_X $ is an antiderivation of $ \dft $ of degree $ -1 $ whose square is zero, for $ X \in \xm $.
 
 Note that \itemref{item:peed-4} of \lref{lemma:peed} holds for the general exterior derivative too. If $ f : \man_1 \ra \man_2 $ is a smooth map, then for each $ k $ the pull-back map $ f^* : \dfm{k}(\man_2) \ra \dfm{k}(\man_1) $ commutes with $ \dd $, i.e. for all $ \omega \in \dfm{k}(\man_2) $:
 \begin{equation}
@@ -784,7 +785,7 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
 \begin{theorem}{Cartan's theorem}{}
   Let $ \man $ be a smooth $ n $-manifold. Then, for any $ V \in \xm $ and $ \omega \in \dft $:
   \begin{equation}
-    \ld_V \omega = (\iota_V \circ \dd + \dd \circ \iota_V) \omega
+    \ld_V \omega = (\ip_V \circ \dd + \dd \circ \ip_V) \omega
     \label{eq:cartan-formula}
   \end{equation}
 \end{theorem}
@@ -793,7 +794,7 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
   \begin{proof}
     To show the thesis for $ \df{k} $, with $ k = 0 , \dots , n $, use induction on $ k $. First, consider a $ 0 $-form $ f \in \cm $:
     \begin{equation*}
-      \iota_V (\dd f) + \dd (\iota_V f) = \iota_V \dd f = \dd f(V) = V(f) = \ld_V f
+      \ip_V (\dd f) + \dd (\ip_V f) = \ip_V \dd f = \dd f(V) = V(f) = \ld_V f
     \end{equation*}
     Now, let $ k \geq 1 $, and suppose that \eref{eq:cartan-formula} holds for all forms of degree less than $ k $. Let $ \omega \in \df{k} $ arbitrary, which in smooth local coordinates is $ \omega = {\sum_I}' \omega_I \dd x^I $, and write e.g. $ u = x^{i_1} $ and $ \beta = \omega_I \dd x^{i_2} \wedge \dots \wedge \dd x^{i_k} $. Then, it is clear that each term of the sum can be written as $ \dd u \wedge \beta $, for some $ u \in \cm $ and $ \beta \in \df{k-1} $.
 
@@ -806,14 +807,14 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
 
     Since on smooth functions $ \ld_V \dd u = \dd (\ld_V u) = \dd (V(u)) $, by the inductive hypothesis and \lref{lemma:prod-rule-forms}:
     \begin{equation*}
-      \ld_V (\dd u \wedge \beta) = (\ld_V \dd u) \wedge \beta + \dd u \wedge \ld_V \beta = \dd (V(u)) \wedge \beta + \dd u \wedge (\iota_V \dd \beta + \dd (\iota_V \beta))
+      \ld_V (\dd u \wedge \beta) = (\ld_V \dd u) \wedge \beta + \dd u \wedge \ld_V \beta = \dd (V(u)) \wedge \beta + \dd u \wedge (\ip_V \dd \beta + \dd (\ip_V \beta))
     \end{equation*}
-    On the other hand, as both $ \dd $ and $ \iota_V $ are antiderivations on $ \dft $ and $ \iota_V \dd u = \dd u(V) = V(u) $:
+    On the other hand, as both $ \dd $ and $ \ip_V $ are antiderivations on $ \dft $ and $ \ip_V \dd u = \dd u(V) = V(u) $:
     \begin{equation*}
       \begin{split}
-        & \iota_V \circ \dd (\dd u \wedge \beta) + \dd \circ \iota_V (\dd u \wedge \beta) \\
-        & \qquad \qquad \qquad \qquad = \iota_V (- \dd u \wedge \dd \beta) + \dd (V(u) \beta - \dd u \wedge \iota_V \beta) \\
-        & \qquad \qquad \qquad \qquad = - V(u) \dd \beta + \dd u \wedge \iota_V \dd \beta + \dd (V(u)) \wedge \beta + V(u) \dd \beta + \dd u \wedge \dd (\iota_V \beta)
+        & \ip_V \circ \dd (\dd u \wedge \beta) + \dd \circ \ip_V (\dd u \wedge \beta) \\
+        & \qquad \qquad \qquad \qquad = \ip_V (- \dd u \wedge \dd \beta) + \dd (V(u) \beta - \dd u \wedge \ip_V \beta) \\
+        & \qquad \qquad \qquad \qquad = - V(u) \dd \beta + \dd u \wedge \ip_V \dd \beta + \dd (V(u)) \wedge \beta + V(u) \dd \beta + \dd u \wedge \dd (\ip_V \beta)
       \end{split}
     \end{equation*}
     After cancellations, this expression is equal to the above one, proving the thesis.
@@ -822,6 +823,77 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
 
 Since $ \dd^2 = 0 $, the Lie derivative commutes with the exterior derivative: $ \ld_V (\dd \omega) = \dd (\ld_V \omega) $.
 
+\newpage
+\section{Integration}
+\label{sec:integration}
+
+In order to properly define integration on manifolds, it is first necessary to analyze submanifolds and to introduce the notion of orientation.
+
+\subsection{Submanifolds}
+
+\newpage
+\subsection{Orientation}
+
+\begin{definition}{Consistent orientation}{}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space, with $ n \geq 1 $. Two ordered bases $ (E_1 , \dots , E_n) $ and $ (\tilde{E}_1 , \dots , \tilde{E}_n) $ of $ V $ are said to be \bcdef{consistently oriented} if the transition matrix $ [B_i^j] \in \R^{n \times n} : E_i = B_i^j \tilde{E}_j $ has positive determinant.
+\end{definition}
+
+Being consistently oriented is an equivalence relation on the set of all ordered bases of $ V $: it is clearly reflexive (as $ \det \mt{I}_n = n > 0 $), symmetric (as $ \det \mt{B}^{-1} = (\det \mt{B})^{-1} $) and transitive (by Binet's theorem). Moreover, the equivalence classes are only two, since the sign of the transition matrix between two bases is either positive or negative: these two equivalence classes are the two possible \bctxt{orientations} of $ V $. Given an ordered basis $ (E_1 , \dots , E_n) $ of $ V $, the orientation determined by this basis (i.e. its equivalence class) is denoted as $ [E_1 , \dots , E_n] $, while the opposite orientation as $ - [E_1 , \dots , E_n] $. In the case of $ 0 $-dimensional vector spaces, the orientation is simply defined to be a choice of one of the numbers $ \pm 1 $.
+
+\begin{proposition}{}{ext-form-orientation}
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. Each $ \omega \in \lv{n}(V) : \omega \neq 0 $ determines an orientation $ \mathcal{O}_\omega $ of $ V $ as follows:
+  \begin{itemize}
+    \item if $ n \geq 1 $, then $ \mathcal{O}_\omega $ is the set of ordered bases $ (E_1 , \dots , E_n) : \omega(E_1 , \dots , E_n) > 0 $;
+    \item if $ n = 0 $, then $ \mathcal{O}_\omega $ is $ +1 $ if $ \omega > 0 $ and $ -1 $ if $ \omega < 0 $.
+  \end{itemize}
+  Two non-zero exterior $ n $-forms determine the same orientation if and only if each is a positive multiple of the other.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The $ 0 $-dimensional case is trivial, since $ \lv{0}(V) = \R $. If $ n \geq 1 $, let $ \omega \in \lv{n}(V) - \{0\} $, and let $ \mathcal{O}_\omega $ denote the set of ordered bases $ (E_1 , \dots , E_n) : \omega(E_1 , \dots , E_n) > 0 $. WTS $ \mathcal{O}_\omega $ is exactly one equivalence class.
+
+    Suppose $ (E_i) $ and $ (\tilde{E}_i) $ are any two ordered bases of $ V $, and let $ B : V \ra V $ be a linear map sending $ E_i \mapsto \tilde{E}_i $, i.e. $ \tilde{E}_j = B^i_j E_i $. By \eref{eq:forms-determinant}:
+    \begin{equation*}
+      \omega(\tilde{E}_1 , \dots , \tilde{E}_n) = (\det B) \omega(E_1 , \dots , E_n)
+    \end{equation*}
+    Therefore, if $ (\tilde{E}_i) $ is consistently oriented with $ (E_1 , \dots , E_n) $, i.e. $ \det B > 0 $, then $ \omega(\tilde{E}_1 , \dots , \tilde{E}_n) $ and $ \omega(E_1 , \dots , E_n) $ have the same sign, i.e. $ \mathcal{O}_\omega $ is one equivalence class.
+  \end{proof}
+\end{proofbox}
+
+Since $ \dim_\R \lv{n}(V) = 1 $ for any $ n $-dimensional $ \R $-vector space $ V $, choosing an orientation of $ V $ is equivalent to choosing one of the two disconnected components of $ \lv{n}(V) - \{0\} $, which are called the \emph{positive} and \emph{negative orientations}.
+
+The concept of orientation is trivially imported on smooth manifolds in a pointwise manner: the \emph{pointwise orientation} of a smooth manifold is a choice of orientation of each tangent space. However, this concept is only useful if nearby tangent spaces have consistent orientations. Thus, if $ \man $ is a smooth $ n $-manifold, a local frame $ (E_i) $ on $ U \in \tp(T\man) $ is \bctxt{(positively) oriented} if $ (E_1 \vert_p , \dots , E_n \vert_p) $ is a positively oriented basis of $ T_p\man $ at each point $ p \in U $. Negatively oriented frames are defined analogously. A pointwise orientation is said to be \emph{continuous} if every point of $ \man $ is in the domain of an oriented local frame (since vector fields which determine a local frame are continuous by definition).
+
+\begin{definition}{Oriented manifold}{}
+  Let $ \man $ be a smooth $ n $-manifold. An \bcdef{orientation} $ \mathcal{O} $ of $ \man $ is a continuous pointwise orientation, and $ (\man,\mathcal{O}) $ is said to be an \bcdef{oriented manifold}.
+\end{definition}
+
+If such a pointwise orientation does not exist, $ \man $ is called a \emph{non-orientable manifold}. Given the chosen orientation $ \mathcal{O} $, the orientation of $ T_p\man $ is denoted by $ \mathcal{O}_p $, for each $ p \in \man $.
+
+\begin{proposition}{Orientation and top forms}{orientation-top-forms}
+  Let $ \man $ be a smooth $ n $-manifold. Any nowhere-vanishing $ n $-form $ \omega $ determines a unique orientation on $ \man $ for which $ \omega $ is positively oriented at each point. Conversely, if $ \man $ has a given orientation, then there is $ \omega \in \df{n} : \omega \neq 0 $ that is positively oriented at each point.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \omega $ be a nowhere-vanishing $ n $-form on $ \man $. By \pref{prop:ext-form-orientation}, $ \omega $ defines a pointwise orientation on $ \man $, hence only continuity needs to be checked. The case $ n = 0 $ is trivial, so assume $ n \geq 1 $. Given $ p \in \man $, let $ (E_i) $ be a local frame on a connected neighbourhood $ U $ of $ p $, and let $ (\varepsilon^i) $ be the dual coframe. Then, $ \omega = f \, \varepsilon^1 \wedge \dots \wedge \varepsilon^n $ on $ U $, for some continuous $ f : \man \ra \R $. Since $ \omega $ is nowhere-vanishing, $ f $ is nowhere-vanishing too, hence:
+    \begin{equation*}
+      \omega(E_1 , \dots , E_n) = f \neq 0
+    \end{equation*}
+    at all points of $ U $. By the connectedness of $ U $, this means that $ f $ is either always positive or always negative on $ U $, therefore the given frame is either positively or negatively oriented. If negatively, it suffices to replace $ E_1 $ with $ -E_1 $ to get a positively oriented frame. Thus, the pointwise orientation determined by $ \omega $ is continuous.
+
+    Conversely, suppose $ \man $ is oriented, and let $ \Lambda_+^n(\man) \ssq \lm{n} $ be the open subset of positively oriented $ n $-forms at all points of $ \man $. Then, at each $ p \in \man $, the intersection of $ \Lambda_+^n(\man) $ with the fiber $ \lv{n}(T_p\man) $ is an open half-line, and therefore convex. Thus, with a suitable partition of unity, there exists a smooth global section of $ \Lambda_+^n(\man) $, i.e. a positively oriented smooth global $ n $-form.
+  \end{proof}
+\end{proofbox}
+
+Because of \pref{prop:orientation-top-forms}, any nowhere-vanishing $ n $-form on $ \man $ is called an \emph{orientation form}, and if it determines the given orientation on $ \man $ it is said to be \emph{(positively) oriented}. Clearly, if $ \omega , \tilde{\omega} \in \df{n} $ are both positively oriented, then $ \tilde{\omega} = f \omega $ for some strictly positive $ f \in \cm $.
+
+The same analysis can be made with charts. A smooth coordinate chart $ (x^i) $ on an oriented smooth manifold is said to be \emph{(positively) oriented} if the coordinate frame $ (\pa_i) $ is positively oriented, and idem for a negatively oriented one. A smooth atlas $ \{(U_\alpha,\varphi_\alpha)\} $ is said to be \emph{consistently oriented} if $ \det \jac{\varphi_\beta \circ \varphi_\alpha^{-1}} > 0 $ on $ \varphi_\alpha(U_\alpha \cap U_\beta) $, for each $ \alpha , \beta $.
+
+\begin{proposition}{Orientation and coordiante atlases}{}
+  Let $ \man $ be a smooth $ n $-manifold, with $ n \geq 1 $. Given a consistently oriented smooth atlas of $ \man $, there is a unique orientation of $ \man $ such that each chart in the atlas is positively oriented. Conversely, if $ \man $ is oriented and either $ \pa \man = \emptyset $ or $ n > 1 $, then the collection of all oriented smooth charts is a consistently oriented atlas of $ \man $.
+\end{proposition}
 
 
 

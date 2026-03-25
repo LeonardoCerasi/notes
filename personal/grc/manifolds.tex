@@ -73,7 +73,7 @@ By \dref{def:topological-manifold}, each point $ p \in M $ is contained in the c
   Since each point of $ \Sn{n} $ is in the domain of at least one of these $ 2n+2 $ charts, $ \Sn{n} $ is a topological $ n $-manifold.
 \end{example}
 
-\begin{example}{Tori and product manifolds}{}
+\begin{example}{Tori and product manifolds}{product-manifolds}
   For $ n \in \N $, the $ n $-torus is the product space $ \Tn{n} \defeq \Sn{1} \times \dots \times \Sn{1} $ of $ n $ copies of $ \Sn{1} $. By \exref{ex:topological-spheres}, this is a topological $ n $-space.
 
   Indeed, suppose $ M_1 , \dots , M_k $ are topological manifolds of dimensions $ n_1 , \dots , n_k $ respectively. The product space $ M_1 \times \dots \times M_k $ is itself a second-countable Hausdorff space, since it is a finite product of second-countable Hausdorff spaces, hence only local Euclideanity needs to be checked. Given any point $ (p_1 , \dots , p_k) \in M_1 \times \dots \times \dots M_k $, choose a chart $ (U_i , \varphi_i) $ on each $ M_i $ such that $ p_i \in U_i $. Then, the product map:
@@ -226,9 +226,9 @@ In general, to check that a map is smooth, it suffices to show that each of its 
 \end{example}
 
 \begin{example}{Inclusions on spheres}{}
-  Consider the $ n $-sphere $ \Sn{n} $ with its standard smooth structure. The inclusion map $ \iota : \Sn{n} \hookrightarrow \R^{n+1} $ is clearly continuous, since it is the inclusion map of a topological space. Its coordinate representation with respect to any of the charts introduced in \exref{ex:topological-spheres} is:
+  Consider the $ n $-sphere $ \Sn{n} $ with its standard smooth structure. The inclusion map $ \inc : \Sn{n} \hookrightarrow \R^{n+1} $ is clearly continuous, since it is the inclusion map of a topological space. Its coordinate representation with respect to any of the charts introduced in \exref{ex:topological-spheres} is:
   \begin{equation*}
-    \hat{\iota}_\pm(u^1 , \dots , u^n) = \iota \circ (\varphi_i^\pm)^{-1}(u^1 , \dots , u^n) = (u^1 , \dots , u^{i-1} , \pm \sqrt{1 - \norm{u}^2} , u^{i+1} , \dots , u^n)
+    \hat{\inc}_\pm(u^1 , \dots , u^n) = \inc \circ (\varphi_i^\pm)^{-1}(u^1 , \dots , u^n) = (u^1 , \dots , u^{i-1} , \pm \sqrt{1 - \norm{u}^2} , u^{i+1} , \dots , u^n)
   \end{equation*}
   which is smooth on its domain $ \Dn{n} $, since $ \norm{u} < 1 $.
 \end{example}
@@ -252,6 +252,77 @@ On the contrary, in higher dimensions it turns out that there are cases of topol
 \begin{example}{$ 0 $-dimensional manifolds}{}
   A topological $ 0 $-manifold $ \man $ is just a countable discrete space. For each point $ p \in \man $, the only neighbourhood of $ p $ that is homeomorphic to an open subset of $ \R^0 $ is $ \{p\} $ itself, and there is exactly one coordinate map $ \varphi : \{p\} \ra \R^0 $. Thus, the set of all charts on $ \man $ trivially satisfies the smooth compatibility condition, since they have no overlapping coordinate domains, hence each $ 0 $-dimensional manifold has a unique smooth structure.
 \end{example}
+
+\subsection{Manifolds with boundary}
+
+In the analysis of integration on smooth manifolds (\secref{sec:integration}), one often encounters spaces which would be smooth except for a ``boundary" of some sort, e.g. closed balls in $ \R^n $ or closed hemispheres in $ \Sn{n} $. To describe these objects, the definition of manifold needs to be extended. To do so, define the \emph{closed $ n $-dimensional upper half-plane} $ \U^n \ssq \R^n $ as:
+\begin{equation}
+  \U^n \defeq \{(x^1 , \dots , x^n) \in \R^n : x^n \geq 0\}
+\end{equation}
+Clearly, for $ n > 0 $ this means that $ \Int \U^n = \{x^n > 0\} $ and $ \pa \U^n = \{x^n = 0\} $, while for $ n = 0 $ trivially $ \U^0 = \R^0 = \{0\} $, hence $ \Int \U^0 = \R^0 $ and $ \pa \U^0 = \emptyset $.
+
+\begin{definition}{Topologival manifold with boundary}{}
+  An $ n $-dimensional \bcdef{topological manifold with boundary} $ \man $ is a second-countable Hausdorff space in which every point has a neighbourhood homeomorphic to either an open subset of $ \R^n $ or a (relatively) open subset of $ \U^n $.
+\end{definition}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.75 \textwidth]{manifold-boundary.png}
+  \caption{A manifold with boundary.}
+  \label{fig:man-bound}
+\end{figure}
+
+The intuition behind this definition is depicted in \figref{fig:man-bound}. A chart $ (U,\varphi) $ of $ \man $ is then classified as a \emph{interior chart} if $ \varphi(U) \in \tp(\R^n) : \varphi(U) \cap \pa \U^n = \emptyset $, or as a \emph{boundary chart} if $ \varphi(U) \in \tp(\U^n) : \varphi(U) \cap \pa \U^n \neq \emptyset $. Boundary chart whose image is of the form $ \ball_r(x) \cap \U^n $ for some $ x \in \pa \U^n $ and $ r \in \R^+ $ is called a coordinate half-ball.
+
+A point $ p \in \man $ is an interior point of $ \man $ if it is in the domain of some interior chart, while it is a boundary point of $ \man $ if it is in the domain of some boundary chart $ (U,\varphi) : \varphi(p) \in \pa \U^n $: the set of all boundary points of $ \man $ is the \bctxt{boundary} $ \pa \man $ of $ \man $.
+
+\begin{theorem}{Topological invariance of boundary}{}
+  Let $ \man $ be a topological manifold with boundary. Then, each point of $ \man $ is either a boundary point of an interior point, but not both.
+\end{theorem}
+
+Therefore, $ \pa \man \cap \Int \man = \emptyset $ and $ \man = \Int \man \sqcup \pa \man $.
+
+\begin{observation}{Topological boundary and manifold boundary}{}
+  The notions of topological boundary and manifold boundary are well-distinct: a manifold with boundary may have a non-empty manifold boundary, irrespective of whether it has a topological boundary as a subset of some other topological space.
+
+  A clear example is the closed unit ball $ \Dn{n} $. Indeed, it is a topological manifold with boundary whose manifold boundary is $ \pa \Dn{n} = \Sn{n-1} $. When viewed as a subset of $ \R^n $, the topological boundary coincides with the manifold boundary; however, if $ \Dn{n} $ is thought of as a subset of $ \R^{n+1} $, its topological boundary is $ \Dn{n} $ itself.
+\end{observation}
+
+Note that a topological manifold with a boundary does not in general satisfy the definition of topological manifold. On the contrary, all topological manifolds are topological manifolds with a boundary, whose boundary is empty. In the following, the term manifold is used to denote a manifold that may or may not have a boundary, with further specification given only if required.
+
+\begin{proposition}{Characterization of manifolds with boundary}{}
+  Let $ \man $ be a topological $ n $-manifold with boundary. Then:
+  \begin{enumerate}
+    \item $ \Int \man \ssq \man $ is open and a topological $ n $-manifold without boundary;
+    \item $ \pa \man \ssq \man $ is closed and a topological $ (n-1) $-manifold without boundary;
+    \item $ \man $ is a topological manifold if and only if $ \pa \man = \emptyset $;
+    \item if $ n = 0 $, then $ \pa \man = \emptyset $ and $ \man $ is a topological $ 0 $-manifold.
+  \end{enumerate}
+\end{proposition}
+
+\subsubsection{Smooth manifolds with boundary}
+
+Recall that a map from an arbitrary $ A \ssq \R^n $ to $ \R^k $ is said to be \emph{smooth} if in a neighbourhood of each point of $ A $ it admits an extension to a smooth map defined on an open subset of $ \R^n $. Thus, given $ U \in \tp(\U^n) $, a map $ f : U \ra \R^k $ is smooth if for each $ x \in U $ there exist $ \tilde{U} \in \tp(\U^n) : x \in \tilde{U} $ and a smooth map $ \tilde{f} : \tilde{U} \ra \R^k $ that agrees with $ f $ on $ \tilde{U} \cap \U^n $ (see \figref{fig:bound-smooth}). Clearly, the restriction of $ f $ to $ U \cap \Int \U^n $ is smooth in the usual sense. Moreover, all partial derivatives of $ f $ at points of $ U \cap \pa \U^n $ are determined by continuity by their values in $ \Int \U^n $, hence they are independent on the choice of extension.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{bound-smooth.png}
+  \caption{Smoothness of maps on open subsets $ \U^n $.}
+  \label{fig:bound-smooth}
+\end{figure}
+
+\begin{example}{Functions on the plane}{}
+  Let $ \Int \Dn{2} \ssq \R^2 $ be the open unit disk, let $ U = \U^2 \cap \Int \Dn{2} $ and $ f : U \ra \R $ defined as $ f(x,y) = \sqrt{1 - x^2 - y^2} $. This expression naturally extends to all $ \Int \Dn{2} $ in a smooth way, hence $ f $ is smooth on $ U $. On the other hand, $ g(x,y) = \sqrt{y} $ has no smooth extension to any neighbourhood of $ (0,0) \in \R^2 $, since $ \pa_y g \ra \infty $ as $ y \ra 0 $. Therefore, $ g $ is not smooth on $ U $.
+\end{example}
+
+With this notion of smoothness, \dref{def:smooth-manifold} directly generalizes to smooth manifolds with boundary. As noted before, every smooth manifold without boundary is automatically a smooth manifold with boundary, whose boundary is empty. Moreover, if $ \man $ is a smooth manifold with boundary, then $ \Int \man $ is an open smooth submanifold of $ \man $ without boundary.
+
+The construction of smooth structures on finite products illustrated in \exref{ex:product-manifolds} does not extend directly to smooth manifolds with boundary. This is due to the fact that $ \U^n \times \U^m $ is not itself a half-space, hence a finite product of smooth manifolds with boundary cannot generally be considered as a smooth manifold with boundary (it is instead a smooth manifold with corners, see REF-TO-DEF). However, it can be shown that if $ \man_1 , \dots , \man_k $ are smooth manifolds without boundary and $ \man $ is a smooth manifold with boundary, then $ \man_1 \times \dots \times \man_k \times \man $ is a smooth manifold with boundary, and $ \pa (\man_1 \times \dots \times \man_k \times \man) = \man_1 \times \dots \times \man_k \times \pa \man $.
+% TODO: add ref to def of smooth manifold with corners
+
+\begin{theorem}{Smooth invariance of boundary}{}
+  Let $ \man $ be a smooth manifold with boundary, and let $ p \in \man $. If there exists a chart $ (U,\varphi) $ of $ \man $ such that $ \varphi(U) \ssq \U^n $ and $ \varphi(p) \in \pa \U^n $, then the same is true for every smooth chart of $ \man $ whose domain contains $ p $.
+\end{theorem}
 
 \newpage
 \section{Tangent vectors}
@@ -351,12 +422,12 @@ There is, however, an important issue to be addressed first: while tangent space
 \end{figure}
 
 \begin{proposition}{Tangent space to an open submanifold}{isomorphic-tangent-space}
-  Let $ \man $ be a smooth manifold, $ U \in \tp(\man) $ and $ \iota : U \hookrightarrow \man $ the inclusion map. For every $ p \in U $, the differential $ \dd \iota_p : T_pU \ra T_p\man $ is an isomorphism.
+  Let $ \man $ be a smooth manifold, $ U \in \tp(\man) $ and $ \inc : U \hookrightarrow \man $ the inclusion map. For every $ p \in U $, the differential $ \dd \inc_p : T_pU \ra T_p\man $ is an isomorphism.
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    To prove injectivity, suppose $ X_p \in T_p\man $ and $ \dd \iota_p(X_p) = 0 \in T_p\man $. Let $ B \in \tp(\man) : p \in \man \land \overline{B} \ssq U $. If $ f \in \cfk{\infty} $ is arbitrary, it can be extended as $ \tilde{f} \in \cm : \tilde{f}\vert_{\bar{B}} \equiv f $.
+    To prove injectivity, suppose $ X_p \in T_p\man $ and $ \dd \inc_p(X_p) = 0 \in T_p\man $. Let $ B \in \tp(\man) : p \in \man \land \overline{B} \ssq U $. If $ f \in \cfk{\infty} $ is arbitrary, it can be extended as $ \tilde{f} \in \cm : \tilde{f}\vert_{\bar{B}} \equiv f $.
 
     \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Locality of derivations}{local-derivation}
       Let $ \man $ be a smooth manifold and $ p \in \man $. Given $ X_p \in T_p\man $, if $ f , g \in \cm $ agree on some neighbourhood of $ p $, then $ X_p(f) = X_p(g) $.
@@ -364,19 +435,19 @@ There is, however, an important issue to be addressed first: while tangent space
 
     By \lref{lemma:local-derivation}, since $ f $ and $ \tilde{f}\vert_U $ are smooth functions on $ U $ which agree on a neighbourhood of $ p $:
     \begin{equation*}
-      X_p(f) = X_p(\tilde{f}\vert_U) = X_p(\tilde{f} \circ \iota) = \dd \iota_p (X_p) (\tilde{f}) = 0
+      X_p(f) = X_p(\tilde{f}\vert_U) = X_p(\tilde{f} \circ \inc) = \dd \inc_p (X_p) (\tilde{f}) = 0
     \end{equation*}
-    Since this holds for every $ f \in \cfk{\infty}(U) $, then $ X_p \equiv 0 $, so $ \dd \iota_p $ is injective as $ \ker \dd \iota_p = \{0\} $.
+    Since this holds for every $ f \in \cfk{\infty}(U) $, then $ X_p \equiv 0 $, so $ \dd \inc_p $ is injective as $ \ker \dd \inc_p = \{0\} $.
 
     To prove surjectivity, suppose $ U_p \in T_p\man $ is arbitrary. Define an operator $ X_p : \cfk{\infty}(U) \ra \R $ by setting $ X_p(f) = Y_p(\tilde{f}) $, where $ \tilde{f} $ is any smooth function on all $ \man $ which agrees with $ f $ on $ \overline{B} $. By \lref{lemma:local-derivation}, $ X_p(f) $ is independent of the choice of $ \tilde{f} $, hence $ X_p $ is well-defined, and it is easily checked to be a derivation of $ \cfk{\infty}(U) $ at $ p $. For any $ g \in \cm $, then:
     \begin{equation*}
-      \dd \iota_p(X_p) (g) = X_p(g \circ \iota) = Y_p(\widetilde{g \circ \iota}) = Y_p(g)
+      \dd \inc_p(X_p) (g) = X_p(g \circ \inc) = Y_p(\widetilde{g \circ \inc}) = Y_p(g)
     \end{equation*}
-    where the last two equalities follow from the fact that $ g \circ \iota $, $ \widetilde{g \circ \iota} $ and $ g $ all agree on $ B $. Hence, $ \dd \iota_p $ is surjective, and therefore an isomorphism.
+    where the last two equalities follow from the fact that $ g \circ \inc $, $ \widetilde{g \circ \inc} $ and $ g $ all agree on $ B $. Hence, $ \dd \inc_p $ is surjective, and therefore an isomorphism.
   \end{proof}
 \end{proofbox}
 
-Given an open set $ U \ssq \man $, the isomorphism $ \dd \iota_p : T_pU \ra T_p\man $ is canonically defined, independently on any choices: it is then possible to identify $ T_pU \cong T_p\man $ for any point $ p \in U $. This identification comes from the fact that $ \dd \iota_p(X_p) $ is the same derivation as $ X_p $, just acting on functions on the whole manifold instead of on $ U $ only: since by \lref{lemma:local-derivation} the action of a derivation on a function depends only on the values of the function on arbitrarily small neighbourhoods, this identification is well-posed. In particular, this means that any tangent vector $ X_p \in T_p\man $ can be unambiguously applied to functions defined only in a neighbourhood of $ p $, not necessarily on the whole $ \man $.
+Given an open set $ U \ssq \man $, the isomorphism $ \dd \inc_p : T_pU \ra T_p\man $ is canonically defined, independently on any choices: it is then possible to identify $ T_pU \cong T_p\man $ for any point $ p \in U $. This identification comes from the fact that $ \dd \inc_p(X_p) $ is the same derivation as $ X_p $, just acting on functions on the whole manifold instead of on $ U $ only: since by \lref{lemma:local-derivation} the action of a derivation on a function depends only on the values of the function on arbitrarily small neighbourhoods, this identification is well-posed. In particular, this means that any tangent vector $ X_p \in T_p\man $ can be unambiguously applied to functions defined only in a neighbourhood of $ p $, not necessarily on the whole $ \man $.
 
 \begin{theorem}{Dimension of tangent spaces}{tangent-space}
   Let $ \man $ be a smooth $ n $-manifold and $ p \in \man $. Then $ T_p\man $ is an $ n $-dimensional $ \R $-vector space.
