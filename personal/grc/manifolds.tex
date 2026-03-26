@@ -887,6 +887,371 @@ The special case of $ f : \man_1 \ra \man_2 $ diffeomorphism yields the push-for
 \end{equation}
 
 \newpage
+\section{Submanifolds}
+
+In the study of integration (\secref{sec:integration}), a fundamental class of objects are submanifolds, i.e. manifolds which are defined inside other manifolds through special kinds of functions: immersions and embeddings.
+
+\subsection{Submersions, immersions and embeddings}
+
+\begin{definition}{Rank of smooth map}{}
+  Let $ \man_1 $ and $ \man_2 $ be smooth manifolds. Given a smooth map $ f : \man_1 \ra \man_2 $, its \bcdef{rank} at $ p \in \man_1 $ is the rank\footnotemark of the linear map $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $.
+\end{definition}
+
+\footnotetext{Given a linear map $ T : V \ra W $ between finite-dimensional $ \K $-vector spaces, the \emph{rank} of $ T $ is defined as $ \rk T \defeq \dim_\K \im T $, while its \emph{nullity} as $ \nul T \defeq \dim_\K \ker T $. They are linked by the rank-nullity theorem:
+\begin{equation}
+  \dim_\K V = \rk T + \nul T
+  \label{eq:rank-nullity-th}
+\end{equation}}
+
+Since the rank of $ f $ is the dimension of $ \im \dd f_p \ssq T_{f(p)}\man_2 $, and by \eref{eq:rank-nullity-th}, the rank of $ f $ is always bounded above by $ \min_\R \{\dim_\R \man_1 , \dim_\R \man_2\} $: in particular, if the rank of $ \dd f_p $ is equal to this upper bound at some point $ p \in \man_1 $, $ f $ is said to have \emph{full rank} at $ p $. The interesting class of smooth maps are those with \bctxt{constant rank}, which have the same rank $ r $ at each point of their domain: in this case, it is written $ \rk f = r $.
+
+\begin{definition}{Submersions and immersions}{}
+  A smooth map $ f : \man_1 \ra \man_2 $ is a \bcdef{smooth submersion} if $ \dd f_p $ is surjective at each point, i.e. $ \rk f = \dim_\R \man_2 $, while it is a \bcdef{smooth immersion} if $ \dd f_p $ is injective at each point, i.e. $ \rk f = \dim_\R \man_1 $.
+\end{definition}
+
+By continuity, if $ \dd f_p $ is surjective/injective, then there exists a neighbourhood $ U \in \tp(\man_1) : p \in U $ such that $ f \vert_U $ is a submersion/immersion.
+
+\begin{example}{Submersions and immersions}
+  Suppose $ \man_1 , \dots \man_k $ are smooth manifolds. Then, each projection map $ \pi_i : \man_1 \times \dots \times \man_k \ra \man_i $ is a smooth submersion. In particular, the projection $ \pi : \R^{n+k} \ra \R^n $ on the first $ n $ coordinates is a smooth submersion.
+
+  The follwing smooth map $ f : \R^2 \ra \R^3 $ (torus of revolution) is a smooth immersion of $ \R^2 $ into $ \R^3 $:
+  \begin{equation*}
+    f(u,v) = ((2 + \cos 2\pi u) \cos 2\pi v , (2 + \cos 2\pi u) \sin 2\pi v , \sin 2\pi u)
+  \end{equation*}
+\end{example}
+
+The inverse function theorem has a particular corollary for constant-rank smooth maps.
+
+\begin{theorem}{Rank theorem}{local-rank}
+  Let $ \man_1 $ and $ \man_2 $ are smooth manifolds without boundary of dimensions $ m $ and $ n $, respectively, and let $ f : \man_1 \ra \man_2 $ be a smooth map of constant rank $ r $. For each $ p \in \man_1 $, there exist smooth charts $ (U,\varphi) $ of $ \man_1 $ and $ (V,\psi) : f(U) \ssq V $ of $ \man_2 $ centered at $ p $ and $ f(p) $, respectively, such that $ f $ has a coordinate representation of the form:
+  \begin{equation}
+    \hat{f}(x^1 , \dots , x^r , x^{r+1} , \dots , x^m) = (x^1 , \dots , x^r , 0 , \dots , 0)
+    \label{eq:rank-canonical-form}
+  \end{equation}
+\end{theorem}
+
+Although the rank theorem has a local nature, it has an important global corollary.
+
+\begin{corollary}{Global rank theorem}{global-rank}
+  Given a smooth map $ f : \man_1 \ra \man_2 $ between smooth manifolds without boundary, then:
+  \begin{enumerate}
+    \item if $ f $ is surjective, then it is a smooth submersion;
+    \item if $ f $ is injective, then it is a smooth immersion;
+    \item if $ f $ is bijective, then it is a diffeomorphism.
+  \end{enumerate}
+\end{corollary}
+
+In the case of smooth manifolds with boundary, the rank theorem applies unchanged to interior points. For boundary points, the result holds for smooth immersions.
+
+\begin{theorem}{Local immersion theorem for boundaries}{local-bound}
+  Let $ \man_1 $ be a smooth $ m $-manifold with boundary and $ \man_2 $ a smooth $ n $-manifold without boundary, and let $ f : \man_1 \ra \man_2 $ be a smooth immersion. For any $ p \in \pa \man_1 $, there exists a smooth boundary chart $ (U,\varphi) $ of $ \man_1 $ and a smooth chart $ (V,\psi) : f(U) \ssq V $ centered at $ p $ and $ f(p) $, respectively, such that $ f $ has a coordinate representation of the form:
+  \begin{equation}
+    \hat{f}(x^1 , \dots , x^m) = (x^1 , \dots , x^m , 0 , \dots , 0)
+    \label{eq:local-immersion}
+  \end{equation}
+\end{theorem}
+
+No such theorem can be formulated for smooth maps whose codomain has a boundary, since the image of the map could intersect the boundary in unpredictable ways, hence the map cannot be put in a simple canonical forms without imposing strong constraints on it.
+
+\subsubsection{Embeddings}
+
+A continuous map $ f : \man_1 \ra \man_2 $ is a \bctxt{topological embedding} if it is a homeomorphism $ \man_1 \ra f(\man_1) \ssq \man_2 $ in the subspace topology of $ f(\man_1) $ determined by that of $ \man_2 $.
+
+\begin{definition}{Smooth embedding}{}
+  A smooth immersion $ f : \man_1 \ra \man_2 $ is a \bcdef{smooth embedding} if it is also a topological embedding.
+\end{definition}
+
+Clearly, every composition of smooth embeddings is still a smooth embedding. Note that a smooth embedding is \emph{both} a topological embedding and a smooth immersion, and not just a topological embedding that happens to be smooth.
+
+\begin{proposition}{Criteria for smooth embeddings}{cse}
+  Let $ f : \man_1 \ra \man_2 $ be an injective smooth immersion. If any of the following conditions hold, then $ f $ is a smooth embedding:
+  \begin{enumerate}
+    \item \label{item:cse-1} $ f $ is an open or closed map\footnote{An arbitrary map $ f : X \ra Y $ between topological spaces is said to be an \emph{open/closed map} if it maps open/closed subsets to open/closed subsets. Note that continuous maps can be open, closed, both or neither.};
+    \item \label{item:cse-2} $ f $ is a proper map\footnote{An arbitrary map $ f : X \ra Y $ between topological spaces is said to be a \emph{proper map} if, for every compact subset $ K \ssq Y $, the preimage $ f^{-1}(K) \ssq X $ is compact.};
+    \item \label{item:cse-3} $ \man_1 $ is compact;
+    \item \label{item:cse-4} $ \pa \man_1 = \emptyset $ and $ \dim_\R \man_1 = \dim_\R \man_2 $.
+  \end{enumerate}
+\end{proposition}
+
+This topological conditions allow to formulate a local condition for smooth immersions.
+
+\begin{theorem}{Local embedding theorem}{}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map. Then, $ f $ is a smooth immersion if and only if every point in $ \man_1 $ has a neighbourhood $ U \in \tp(\man_1) $ such that $ f \vert_U : U \ra \man_2 $ is a smooth embedding.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Leftarrow) $ If every point in $ \man_1 $ has a neighbourhood on which $ f $ is a smooth embedding, then $ f $ has full rank everywhere on $ \man_1 $, so it is a smooth immersion.
+
+    $ (\Rightarrow) $ Suppose $ f $ is a smooth immersion, and let $ p \in \man_1 $. First, show that $ p $ has a neighbourhood on which $ f $ is injective. If $ f(p) \notin \pa \man_2 $, then either by \tref{th:local-rank} (if $ p \notin \pa \man_1 $) or by \tref{th:local-bound} (if $ p \in \pa \man_1 $) there is a neighbourhood $ U_1 $ of $ p $ on which $ f $ has coordinate representation of the form \eref{eq:local-immersion}, hence $ f \vert_{U_1} $ is injective. If, on the other hand, $ f(p) \in \pa \man_2 $, let $ (W,\psi) $ be any smooth boundary chart of $ \man_2 $ centered at $ f(p) $. Let $ U_0 = f^{-1}(W) \ni p $, and let $ \inc : \U^n \hookrightarrow \R^n $ be the inclusion map, so that the preceding argument can be applied to $ \inc \circ \psi \circ f \vert_{U_0} : U_0 \ra \R^n $ to show that $ p $ has a neighbourhood $ U_1 \ssq U_0 $ such that $ \inc \circ \psi \circ f \vert_{U_1} $ is injective, from which it follows that $ f \vert_{U_1} $ is injective.
+
+    Now, let $ p \in \man_1 $ be arbitrary, and let $ U $ be a neighbourhood of $ p $ on which $ f $ is injective. It can be shown that $ f \vert_U $ is a topological embedding, hence, being $ f $ a smooth immersion, $ f \vert_U $ is a smooth embedding.
+  \end{proof}
+\end{proofbox}
+
+This local embedding theorem hints to a topological definition of immersions: given two topological spaces $ X,Y $, a continuous map $ f : X \ra Y $ is a \bctxt{topological immersion} if every point of $ X $ has a neighbourhood $ U \in \tp(X) $ such that $ f \vert_U : U \ra Y $ is a topological embedding. Therefore, every smooth immersion is also a topological immersion, but, just like embeddings, a smooth immersion is not a topological immersion that happens to be smooth.
+
+\subsubsection{Submersions}
+
+If $ \pi : \man_1 \ra \man_2 $ is any continuous map, a \emph{section} of $ \pi $ is a continuous right inverse for $ \pi $, i.e. a continuous map $ \sigma : \man_2 \ra \man_1 $ such that $ \pi \circ \sigma = \id_{\man_2} $. Similarly, a local section is a section only defined on some $ U \in \tp(\man_2) $. A key property of submersions is that they admit a pletora of smooth local sections.
+
+\begin{theorem}{Local section theorem}{}
+  Let $ \pi : \man_1 \ra \man_2 $ be a smooth map. Then, $ \pi $ is a smooth submersion if and only if every point of $ \man_1 $ is in the image of a smooth local section of $ \pi $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    $ (\Rightarrow) $ Suppose $ \pi $ is a smooth submersion. Given $ p \in \man_1 $, let $ q = \pi(p) \in \man_2 $. By \tref{th:local-rank}, it is possible to choose coordinates $ (x^1 , \dots , x^m) $ centered at $ p $ and $ (y^1 , \dots , y^n) $ centered at $ q $ in which $ \pi $ has coordinate representation:
+    \begin{equation*}
+      \hat{\pi}(x^1 , \dots , x^n , \dots , x^{n+1} , \dots , x^m) = (x^1 , \dots , x^n)
+    \end{equation*}
+    Given a sufficiently small $ \varepsilon \in \R^+ $, the coordinate cube defined as $ C_\varepsilon \equiv \{x \in \R^m : \abs{x^i} \leq \varepsilon \,\,\forall i = 1, \dots , m\} $ is a neighbourhood of $ p $, whose image under $ \pi $ is the cube $ C'_\varepsilon \equiv \{y \in \R^n : \abs{y^i} \leq \varepsilon \,\,\forall i = 1, \dots , n\} $. Then, the map $ \sigma : C'_\varepsilon \ra C_\varepsilon $ whose coordinate representation is:
+    \begin{equation*}
+      \sigma(x^1 , \dots , x^n) = (x^1 , \dots , x^n , 0 , \dots , 0)
+    \end{equation*}
+    is a smooth local section of $ \pi $ such that $ \sigma(q) = p $ (see \figref{fig:sec-sub}).
+
+    $ (\Leftarrow) $ Assume that each point of $ \man_1 $ is in the image of a smooth local section of $ \pi $. Then, given $ p \in \man_1 $, let $ \sigma : U \ra \man_1 $ be a smooth local section of $ \pi $ such that $ \sigma(q) = p $, where $ q = \pi(p) \in U \ssq \man_2 $. The equation $ \pi \circ \sigma = \id_U $ implies $ \dd \pi_p \circ \dd \sigma_q = \id_{T_q\man_2} $, which in turn implies that $ \dd \pi_p $ is surjective, i.e. that $ \pi $ is a smooth submersion.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.62 \textwidth]{section-submersion.png}
+  \caption{Local section of a smooth submersion.}
+  \label{fig:sec-sub}
+\end{figure}
+
+This theorem hints to a topological definition of submersions: given two topological spaces $ X,Y $, a continuous map $ \pi : X \ra Y $ is a \bctxt{topological submersion} if every point of $ X $ is in the image of a continuous local section of $ \pi $. Therefore, every smooth submersion is also a topological submersion.
+
+\subsection{Embedded submanifolds}
+
+\begin{definition}{Embedded submanifold}{}
+  Let $ \man $ be a smooth manifold. An \bcdef{embedded submanifold} of $ \man $ is a subset $ S \ssq \man $ that is a manifold in the subspace topology, endowed with a smooth structure with respect to which the inclusion map $ S \hookrightarrow \man $ is a smooth embedding.
+\end{definition}
+
+Given an embedded submanifold $ S $ of $ \man $, the \bctxt{codimension} of $ S $ is defined as $ \codim_\R S \defeq \dim_\R \man - \dim_\R S $, and $ \man $ is called the \emph{ambient manifold} of $ S $. A codimension-$ 1 $ embedded submanifold is an \emph{embedded hypersurface}.
+
+\begin{proposition}{Embeddings and submanifolds}{embedded-submanifolds}
+  Let $ \man_1 $ be a smooth submanifold with/without boundary and $ \man_2 $ a smooth submanifold, and let $ f : \man_1 \ra \man_2 $ be a smooth embedding. With the subspace topology, $ f(\man_1) $ is a topological manifold with/without boundary, and it has a unique smooth structure which makes it an embedded submanifold with/without boundary of $ \man_2 $ such that $ f : \man_1 \ra f(\man_1) $ is a diffeomorphism.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Set $ S = f(\man_1) $ and give it the subspace topology inherited from $ \man_2 $. Then, $ f $ being an embedding means that $ f : \man_1 \ra S $ is a homeomorphism, and thus $ S $ is a topological manifold. Give $ S $ a smooth structure by taking smooth charts of the form $ (f(U) , \varphi \circ f^{-1}) $, where $ (U,\varphi) $ is any smooth chart of $ \man_1 $: smooth compatibility of these charts follows from smooth compatibility of charts of $ \man_1 $. With this smooth structure on $ S $, the map $ f : \man_1 \ra f(\man_1) $ is a diffeomorphism essentially by definition, and this is clearly the only smooth structure on $ S $ with this property. Then, the inclusion map $ \inc : S \hookrightarrow \man_2 $ is just the composition of $ S \xrightarrow{f^{-1}} \man_1 \xrightarrow{f} \man_2 $, i.e. the composition of a diffeomorphism with a smooth embedding, and it therefore is a smooth embedding.
+  \end{proof}
+\end{proofbox}
+
+By \pref{prop:embedded-submanifolds}, every embedded submanifold is the image of a smooth embedding: its own inclusion map. An embedded submanifold $ S \ssq \man $ is said to be \emph{properly embedded} if the inclusion $ S \hookrightarrow \man $ is a proper map. By topological considerations, it can be shown that $ S \ssq \man $ is properly embedded if and only if it is a closed subset of $ \man $: in particular, every compact embedded submanifold is properly embedded, as compact subsets of Hausdorff spaces are closed.
+
+\begin{lemma}{Codimension-$ 0 $ embedded submanifolds}{}
+  Let $ \man $ be a smooth manifold. Then, every open subset of $ \man $ is an embedded codimension-$ 0 $ submanifold.
+\end{lemma}
+
+Given a smooth map $ f : \man_1 \ra \man_2 $, it is crucial to know whether $ f $ is still smooth when its domain or codomain is restricted to a submanifold. The case of a restricted domain is not difficult, while the case of a restricted codomain requires more care.
+
+\begin{theorem}{Restricting maps to submanifolds}{}
+  Let $ \man_1 $ and $ \man_2 $ be smooth manifolds, and let $ S \ssq \man_1 $ be an embedded submanifold. Then:
+  \begin{enumerate}
+    \item \label{item:rms-1} if $ f : \man_1 \ra \man_2 $ is a smooth map, then $ f \vert_S : S \ra \man_2 $ is smooth;
+    \item \label{item:rms-2} if $ f : \man_2 \ra \man_1 $ is a smooth map such that $ f(\man_2) \ssq S $, then $ f \man_2 \ra S $ is smooth.
+  \end{enumerate}
+\end{theorem}
+
+\subsubsection{Slice charts}
+
+Given $ U \in \tp(\R^n) $ and $ k \in \{0,\dots,n\} $, a \emph{$ k $-dimensional slice of $ U $} (or simply a $ k $-slice) is any subset of $ U $ of the form:
+\begin{equation*}
+  S = \{(x^1 , \dots , x^k , x^{k+1} , \dots , x^n) \in U : x^{k+1} = c^{k+1} , \dots , x^n = c^n\}
+\end{equation*}
+for some constants $ c^{k+1} , \dots , c^n \in \R $. Trivially, the only $ n $-slice is $ S = U $. Moreover, it is also possible to defined slices by setting different coordinates other then the last ones to constants: in any case, every $ k $-slice is homeomorphic to an open subset of $ \R^k $.
+
+Let $ \man $ be a smooth $ n $-manifold, and let $ (U,\varphi) $ be a smooth chart on $ \man $. If $ S \ssq U $ such that $ \varphi(S) $ is a $ k $-slice of $ \varphi(U) $, then $ S $ is a \emph{$ k $-slice} of $ U $. A typical $ k $-slice is defined by setting the $ n - k $ constants to zero: this can always be achieved by subtracting said constants from the respective coordinate functions. Given $ S \ssq \man $ and $ k \in \{0,\dots,n\} $, then $ S $ satisfies the \emph{local $ k $-slice condition} if each point of $ S $ is contained in the domain of a smooht chart $ (U,\varphi) $ of $ \man $ such that $ S \cap U $ is a single $ k $-slice of $ U $ (see \figref{fig:k-slice}): any such chart is a \bctxt{slice chart} of $ S $ in $ \man $, and the corresponding coordinates are called \emph{slice coordinates}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{k-slice.png}
+  \caption{A slice chart of a subset satisfying the $ k $-chart condition.}
+  \label{fig:k-slice}
+\end{figure}
+
+\begin{theorem}{Local slice criterion for embedded submanifolds}{}
+  Let $ \man $ be a smooth $ n $-submanifold without boundary. If $ S \ssq \man $ is an embedded $ k $-dimensional submanifold without boundary, then $ S $ satisfies the local $ k $-slice condition. Conversely, if $ S \ssq \man $ satisfies the local $ k $-slice condition, then it is a topological $ k $-manifold without boundary with the subspace topology, and it has a unique smooth structure making it a $ k $-dimensional embedded submanifold without boundary of $ \man $.
+\end{theorem}
+
+Note that the local slice condition is a condition on the subset $ S \ssq \man $ only: it does not presuppose any particular topology or smooth structure on $ S $.
+
+\begin{example}{Spheres as submanifolds}{spheres-slices}
+  To show that $ \Sn{n} $ is an embedded submanifold of $ \R^{n+1} $, recall \exref{ex:topological-spheres}: the intersection of $ \Sn{n} $ with the open subset $ \{x \in \R^{n+1} : x^i > 0\} $ is the graph of a smooth function:
+  \begin{equation*}
+    x^i = f(x^1 , \dots , x^{i-1} , x^{i+1} , \dots , x^{n+1})
+  \end{equation*}
+  Similarly, the intersection of $ \Sn{n} $ with the open subset $ \{x \in \R^{n+1} : x^i < 0\} $ is the graph of $ -f $. This means that every point in $ \Sn{n} $ is in one of these sets, hence $ \Sn{n} $ satisfies the local $ n $-slice condition: therefore, $ \Sn{n} $ is an embedded submanifold of $ \R^{n+1} $, with slice charts exactly given by \exref{ex:topological-spheres}.
+\end{example}
+
+If $ \man $ is a smooth manifold with non-empty boundary, then $ S $ might intersect $ \pa \man $ in complicated ways, hence it is very difficult to prove general results about the existence of slice charts of $ S $ in $ \man $ in this case. However, there is a special case: if $ \man $ is a smooth $ n $-manifold with boundary, then $ \pa \man $ is a topological $ (n-1) $-manifold without boundary with the subspace topology, and it has a unique smooth structure such that it is a properly embedded submanifold of $ \man $.
+
+\subsubsection{Level sets}
+
+Embedded manifolds are often presented as solution sets of system of equations.
+
+\begin{definition}{Level set}{}
+  Let $ \Phi : \man_1 \ra \man_2 $ be any map between smooth manifolds. A \bcdef{level set} of $ \Phi $ is a set $ \Phi^{-1}(c) $, with $ c \in \man_2 $.
+\end{definition}
+
+Obviously, there are plenty of level sets of smooth functions which are not smooth submanifolds. However, a particular case is that of constant-rank smooth maps between manifolds without boundary, in which case the rank theorem applies.
+
+\begin{proposition}{Constant-rank level sets}{crls}
+  Let $ \man_1 $ and $ \man_2 $ be smooth manifolds without boundary, and let $ \Phi : \man_1 \ra \man_2 $ be a smooth map with constant rank $ r $. Then, each level set of $ \Phi $ is a properly embedded submanifold of codimension $ r $ in $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Setting $ m = \dim_\R \man_1 $, $ n = \dim_\R \man_2 $ and $ k = m - r $, let $ c \in \man_2 $ be arbitrary, and let $ S = \Phi^{-1}(c) \ssq \man_1 $. From \tref{th:local-rank}, for each $ p \in S $ there are smooth charts $ (U,\varphi) $ centered at $ p $ and $ (V,\psi) $ centered at $ c = \Phi(p) $ in which $ \Phi $ has the coordinate expression given in \eref{eq:rank-canonical-form}, so that $ S \cap U $ is the following $ k $-slice:
+    \begin{equation*}
+      S \cap U = \{(x^1 , \dots , x^r , x^{r+1} , \dots , x^m) \in U : x^1 = \dots = x^r = 0\}
+    \end{equation*}
+    Therefore, $ S $ satisfies the local $ k $-slice condition, so it is an embedded submanifold of dimension $ k $. It is closed in $ \man_1 $ by continuity, hence it is properly embedded.
+  \end{proof}
+\end{proofbox}
+
+In the case of a smooth submersion, which by definition has constant rank equal to the dimension of the codomain, the level sets are properly embedded submanifolds of dimension $ \dim_\R \man_1 - \dim_\R \man_2 $ in $ \man_1 $. This is analogous to the fact that the kernel of a linear map $ L : \R^m \ra \R^r $ is a linear subspace of codimension $ r $, by the rank-nullity theorem (\eref{eq:rank-nullity-th}).
+
+Given a smooth map $ \Phi : \man_1 \ra \man_2 $, a point $ p \in \man_1 $ can be classified as follows: if $ \dd \Phi_p : T_p\man_1 \ra T_{\Phi(p)}\man_2 $ is sujective, then $ p $ is a \bctxt{regular point} of $ \Phi $, otherwise it is a \bctxt{critical point}. In particular, every point of $ \man_1 $ is critical if $ \dim_\R \man_1 < \dim_\R \man_2 $, while every point of $ \man_1 $ is regular if and only if $ \Phi $ is a submersion.: in any case, the set of regular points of $ \Phi $ is always an open subset of $ \man_1 $. The same denominations can be imported on points of $ \man_2 $: a point $ c \in \man_2 $ is a \emph{regular value} of $ \Phi $ if every point of the level set $ \Phi^{-1}(c) $ is a regular point, otherwise it is a \emph{critical value}. By convention, if $ \Phi^{-1}(c) = \emptyset $, then $ c $ is a regular value of $ \Phi $. If $ c $ is a regular value of $ \Phi $, then $ \Phi^{-1}(c) $ is a \bctxt{regular level set}: in other words, a regular level set consists entirely of regular points of $ \Phi $ (points $ p $ where $ \dd \Phi_p $ is surjective).
+
+\begin{theorem}{Regular level set theorem}{regular-level-sets}
+  Every regular level set of a smooth map between smooth manifolds without boundary is a properly embedded submanifold of codimension is equal to the dimension of the codomain.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \Phi : \man_1 \ra \man_2 $ be a smooth map and let $ c \in \man_2 $ be a regular value of $ \Phi $: the set $ U $ of points $ p \in \man_1 $ where $ \rk \dd \Phi_p = \dim_\R \man_2 $ is open in $ \man_1 $ and contains $ \Phi^{-1}(c) $ by hypothesis. Therefore, $ \Phi \vert_U : \man_1 \ra \man_2 $ is a smooth submersion, and by \pref{prop:crls} $ \Phi^{-1}(c) $ is an embedded submanifold of $ U $. Since the composition of smooth embeddings $ \Phi^{-1}(c) \hookrightarrow U \hookrightarrow \man_1 $ is again a smooth embedding, it follows that $ \Phi^{-1}(c) $ is an embedded submanifold of $ \man_1 $, and it is closed by continuity.
+  \end{proof}
+\end{proofbox}
+
+Note that \tref{th:regular-level-sets} also applies to empty level sets, which are both regular level sets and properly embedded submanifolds.
+
+\begin{definition}{Defining map}{}
+  Let $ S \ssq \man $ be an embedded submanifolds. A smooth map $ \Phi : \man \ra \man' $ is a \bcdef{defining map} of $ S $ if $ S $ is a regular level set of $ \Phi $.
+\end{definition}
+
+More generally, if $ U \in \tp(\man) $ and $ \Phi : U \ra \man' $ is a smooth map such that $ S \cap U $ is a regular level set of $ \Phi $, then $ \Phi $ is a \emph{local defining map} of $ S $. It can be shown that every embedded submanifold admits a local defining function (i.e. $ \man' = \R^{\dim_\R \man - \rk \dd \Phi} $) in a neighbourhood of each one of its points.
+
+\begin{example}{Surfaces of revolution}{}
+  Let $ H = \{(r,z) \in \R^2 : r > 0\} $ and suppose $ C \ssq H $ is an embedded $ 1 $-dimensional submanifold of $ H $. The \bcex{surface of revolution} determined by $ C $ is the subset $ S_C \ssq \R^3 $ defined as:
+  \begin{equation*}
+    S_C = \big\{ (x,y,z) \in \R^3 : (\sqrt{x^2 + y^2} , z) \in C \big\}
+  \end{equation*}
+  The set $ C $ is the \emph{generating curve} of $ S_C $. If $ \varphi : U \ra \R $ is any local defining function of $ C $ in $ H $, a local defining function $ \Phi $ for $ S_C $ is found as:
+  \begin{equation*}
+    \Phi(x,y,z) = \varphi(\sqrt{x^2 + y^2} , z)
+  \end{equation*}
+  defined on:
+  \begin{equation*}
+    \tilde{U} = \big\{ (x,y,z) \in \R^3 : (\sqrt{x^2 + y^2} , z) \in U \big\}
+  \end{equation*}
+  A straightforward computation shows that the Jacobian of $ \Phi $ is:
+  \begin{equation*}
+    \jac{\Phi}(x,y,z) = \left( \frac{x}{r} \frac{\pa \varphi}{\pa r} (r,z) , \frac{y}{r} \frac{\pa \varphi}{\pa r} (r,z) , \frac{\pa \varphi}{\pa z} (r,z) \right)
+  \end{equation*}
+  As $ \jac{\Phi} \vert_{S_C} \neq 0 $, $ S_C $ is a regular level set of $ \Phi $ and is an embedded $ 2 $-submanifold of $ \R^3 $.
+\end{example}
+
+If $ \man $ is a smooth manifold with boundary, a \bctxt{boundary-defining function} is a smooth function $ f : \man \ra [0,\infty) $ such that $ f^{-1}(0) = \pa \man $ and $ \dd f_p \neq 0 $ at all points $ p \in \pa \man $. For example, $ f(x) = 1 - \norm{x}^2 $ is a boundary-defining function for the unit disk $ \Dn{n} $. It can be shown that every smooth manifold with boundary admits a boundary-defining function.
+
+\subsubsection{Tangent space to a submanifold}
+
+Let $ \man $ be a smooth manifold, and let $ S \ssq \man $ be an embedded submanifold. Since the inclusion map $ \inc : S \hookrightarrow \man $ is a smooth immersion, at each point $ p \in S $ the linear map $ \dd \inc_p : T_pS \ra T_p\man $ is injective: for any vector $ v \in T_pS $, the image vector $ \tilde{v} = \dd \inc_p(v) \in T_p\man $ acts on $ f \in \cm $ as:
+\begin{equation*}
+  \tilde{v}(f) = \dd \inc_p(v)(f) = v(f \circ \inc) = v(f \vert_S)
+\end{equation*}
+Identifying $ T_pS $ with its image under $ \dd \inc_p $, from now on $ T_pS $ is thought of as a linear subspace of $ T_p\man $, as illustrated in \figref{fig:tan-sub}. There are several ways of characterizing $ T_pS \ssq T_p\man $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.75 \textwidth]{tangent-embedded.png}
+  \caption{Tangent space to an embedded submanifold.}
+  \label{fig:tan-sub}
+\end{figure}
+
+\begin{proposition}{}{}
+  Let $ \man $ be a smooth manifold and $ S \ssq \man $ an embedded submanifold, and let $ p \in S $. Then, $ T_pS $ is characterized as a subspace of $ T_p\man $ as:
+  \begin{equation}
+    T_pS = \{v \in T_p\man : v(f) = 0 \,\,\forall f \in \cm : f \vert_S = 0\}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, suppose $ v \in T_pS \ssq T_p\man $: more precisely, $ v = \dd \inc_p(w) $ for some $ w \in T_pS $, where $ \inc : S \hookrightarrow \man $ is the inclusion map. Given $ f \in \cm : f \vert_S = 0 $, then $ f \circ \inc \equiv 0 $, so:
+    \begin{equation*}
+      v(f) = \dd \inc_p(w)(f) = w(f \circ \inc) = 0
+    \end{equation*}
+    Conversely, if $ v \in T_p\man $ satisfies $ v(f) = 0 $ whenever $ f \in \cm : f \vert_S = 0 $, WTS $ \exists w \in T_pS : v = \dd \inc_p(w) $. Let $ (x^1 , \dots , x^n) $ be slice coordinates of $ S $ in some neighbourhood $ U $ of $ p $, so that $ U \cap S $ is the subset of $ U $ where $ x^{k+1} = \dots = x^n = 0 $, and $ (x^1 , \dots , x^k) $ are coordinates for $ U \cap S $. In these coordinates, the inclusion map $ \inc : S \cap U \hookrightarrow \man $ has the following coordinate expression:
+    \begin{equation*}
+      \inc(x^1 , \dots , x^k) = (x^1 , \dots , x^k , 0 , \dots , 0)
+    \end{equation*}
+    Thus, $ T_pS $ (to be precise $ \dd \inc_p(T_pS) $) is exactly the subspace of $ T_p\man $ spanned by $ \pa_1 \vert_p , \dots , \pa_k \vert_p $. Writing the coordinate expression of $ v \in T_p\man $:
+    \begin{equation*}
+      v = \sum_{i = 1}^n v^i \frac{\pa}{\pa x^i} \bigg\vert_p
+    \end{equation*}
+    hence $ v \in T_pS $ if and only if $ v^i = 0 $ for all $ i > k $. Now, consider $ \hat{f} = x^j $, for an index $ j > k $: clearly $ f \vert_S = 0 $, hence:
+    \begin{equation*}
+      0 = v(f) = \sum_{i = 1}^n v^i \frac{\pa x^j}{\pa x^i} = v^j
+    \end{equation*}
+    Therefore, $ v^i = 0 $ for all $ i > k $, thus $ v \in T_pS $.
+  \end{proof}
+\end{proofbox}
+
+If an embedded submanifold is defined by a defining map, this map gives a straighforward characterization of the tangent space to each point of the submanifold.
+
+\begin{proposition}{}{}
+  Let $ \man $ be a smooth manifold and $ S \ssq \man $ an embedded submanifold. If $ \Phi : U \ra \man' $ is any local defining map of $ S $, with $ U \ssq \man $, then $ T_pS = \ker \dd \Phi_p $ for each $ p \in S \cap U $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Identify $ T_pS $ with the subspace $ \dd \inc_p(T_pS) \ssq T_p\man $, where $ \inc : S \hookrightarrow \man $ is the inclusion map. Since $ \Phi \circ \inc $ is constant on $ S \cap U $, it follows that $ \dd \Phi_p \circ \dd \inc_p $ is the zero map $ T_pS \ra T_{\Phi(p)}\man' $, hence $ \im \dd \inc_p \ssq \ker \dd \Phi_p $. On the other hand, $ \dd \Phi_p $ is surjective by definition of defining map, hence \eref{eq:rank-nullity-th} implies:
+    \begin{equation*}
+      \dim_\R \ker \dd \Phi_p = \dim_\R T_p\man - \dim_\R T_{\Phi(p)} \man' = \dim_\R T_pS = \dim_\R \im \dd \inc_p
+    \end{equation*}
+    Therefore, $ \im \dd \inc_p = \ker \dd \Phi_p $.
+  \end{proof}
+\end{proofbox}
+
+In the special case of $ \man' = \R^k $, this means that a vector $ v \in T_p\man $ is tangent to $ S $ if and only if $ v(\Phi^i) = 0 $ for each $ i = 1 , \dots , k $.
+
+\subsubsection{Regular domains}
+
+\begin{definition}{Regular domain}{}
+  Let $ \man $ be a smooth manifold. A \bcdef{regular domain} is a properly embedded codimension-$ 0 $ submanifold with boundary of $ \man $.
+\end{definition}
+
+Familiar examples of regular domains are $ \U^n \ssq \R^n $ and $ \Dn{n} \ssq \R^n $.
+
+Given a topological space $ X $, an \emph{exhaustion function} of $ X $ is a continuous function $ f : X \ra \R $ such that the set $ f^{-1}((-\infty,c]) $, called a \emph{sublevel set} of $ f $, is compact for each $ c \in \R $.
+
+\begin{proposition}{}{rsls}
+  Suppose $ \man $ is a smooth manifold and $ f \in \cm $. Then:
+  \begin{enumerate}
+    \item \label{item:rsls-1} for each regular value $ b $ of $ f $, the sublevel set $ f^{-1}((-\infty,b]) $ is a regular domain in $ \man $;
+    \item \label{item:rsls-2} if $ a $ and $ b $ are two regular values of $ f $, with $ a < b $, then $ f^{-1}([a,b]) $ is a regular domain in $ \man $.
+  \end{enumerate}
+\end{proposition}
+
+A set of the form $ f^{-1}((-\infty,b]) $ for $ b $ regular value of $ f \in \cm $ is called a \emph{regular sublevel set} of $ f $: \itemref{item:rsls-1} of \pref{prop:rsls} shows that every regular sublevel set of a smooth $ \R $-valued function is a regular domain. If $ D \ssq \man $ is a regular domain and $ f \in \cm $ is a smooth function such that $ D $ is a regular sublevel set of $ f $, then $ f $ is called a \emph{defining function} of $ D $.
+
+\begin{theorem}{Defining function of regular domain}{}
+  Let $ \man $ be a smooth manifold and $ D \ssq \man $ a regular domain. Then, there exists a defining function for $ D $, which can be taken to be a smooth exhaustion function of $ \man $ if $ D $ is compact.
+\end{theorem}
+
+\subsection{Sard's and Whitney's theorems}
+
+Fundamental theorems of differential topology are found extending the notion of sets of measure zero to manifolds.
+
+\subsubsection{Sets of measure zero}
+
+\newpage
 \section{Curves}
 
 The familiar notion of curve in $ \R^n $ can be extended to generic manifolds.
