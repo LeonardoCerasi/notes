@@ -1,0 +1,108 @@
+\selectlanguage{english}
+
+\section{Homotopy}
+\label{sec:homotopy}
+
+\begin{definition}{Homotopy}{}
+  Let $ X,Y $ be topological spaces, and let $ f_0 , f_1 : X \ra Y $ be continuous maps. A \bcdef{homotopy} from $ f_0 $ to $ f_1 $ is a continuous map $ H : X \times [0,1] \ra Y $ such that, for all $ x \in X $:
+  \begin{equation*}
+    H(x,0) = f_0(x)
+    \qquad \qquad
+    H(x,1) = f_1(x)
+  \end{equation*}
+\end{definition}
+
+If there exists a homotopy from $ f_0 $ to $ f_1 $, these maps are said to be \emph{homotopic}. If $ H(x,t) = f_0(x) = f_1(x) \,\,\forall t \in [0,1] $ at all points $ x \in A \ssq X $, then $ f_0 $ and $ f_1 $ are said to be \emph{homotopic relative to $ A $}. Both of these relations are equivalence relations on the set of all continuous maps from $ X $ to $ Y $.
+
+\begin{definition}{Path homotopy}{}
+  Let $ X $ be a topological space. Two paths $ f_0 , f_1 : [0,1] \ra X $ are \bcdef{path-homotopic} if they are homotopic relative to $ \{0,1\} $.
+\end{definition}
+
+Explicitly, two paths $ f_0 , f_1 : [0,1] \ra X $ are path-homotopic if there exists a continuous map $ H : [0,1]^2 \ra X $ such that, for all $ s,t \in [0,1] $:
+\begin{align*}
+  H(s,0) &= f_0(s) & H(0,t) &= f_0(0) = f_1(0) \\
+  H(s,1) &= f_1(s) & H(1,t) &= f_0(1) = f_1(1)
+\end{align*}
+For any given $ p,q \in X $, path-homotopy is an equivalence relation on the set of all paths from $ p $ to $ q $, denoted by $ f_0 \sim f_1 $: the equivalence class of a path $ f $ is called its \emph{path class} $ [f] $.
+
+Given two paths $ f,g : [0,1] \ra X $ such that $ f(1) = g(0) $, their product is the path $ f \cdot g : [0,1] \ra X $ defined as:
+\begin{equation}
+  f \cdot g (s) =
+  \begin{cases}
+    f(2s) & 0 \leq s \leq \frac{1}{2} \\
+    g(2s - 1) & \frac{1}{2} \leq s \leq 1
+  \end{cases}
+  \label{eq:path-product}
+\end{equation}
+If $ f \sim f' $ and $ g \sim g' $, then $ f \cdot g \sim f' \cdot g' $, hence it makes sense to define the product of path classes: $ [f] \cdot [g] = [f \cdot g] $. Note that this product is not associative, so the convention of evaluation from left to right $ f \cdot g \cdot h = (f \cdot g) \cdot h $ is adopted; however, it is associative up to path-homotopy, hence $ ([f] \cdot [g]) \cdot [h] = [f] \cdot ([g] \cdot [h]) $.
+
+Given $ q \in X $, a \emph{loop} in $ X $ at $ q $ is a path in $ X $ from $ q $ to $ q $, i.e. a continuous map $ f : [0,1] \ra X $ such that $ f(0) = f(1) = q $. The set of path classes of loops at $ q $ is denoted by $ \pi_1(X,q) $, and it has a group structure with the product \eref{eq:path-product}, hence it is called the \bctxt{fundamental group} of $ X $ at $ q $: the identity element is the path class of the \emph{constant paths} $ c_q(s) \equiv q $, while the inverse of $ [f] $ is the path class of the \emph{reverse path} $ \bar{f}(s) = f(1-s) $. It can be shown that, for a path-connected topological space, the fundamental groups at different points are isomorphic.
+
+\begin{definition}{Simply connected space}{}
+  If $ X $ is a path-connected topological space and, for some $ q \in X $, the fundamental group $ \pi_1(X,q) $ is the trivial group consisting of $ [c_q] $ alone, then $ X $ is said to be \bcdef{simply connected}.
+\end{definition}
+
+This means that in a simply connected space every loop is path-homotopic to a constant path (i.e. to a point).
+
+\begin{proposition}{}{}
+  Let $ X $ be a path-connected topological space. Then, $ X $ is simply connected if and only if every pair of paths in $ X $ with the same starting and ending points are path-homotopic.
+\end{proposition}
+
+A key feature of homotopy is that it is preserved by composition.
+
+\begin{proposition}{}{}
+  Let $ X,Y,Z $ be topological spaces, and let $ f_0,f_1 : X \ra Y $ and $ g_0,g_1 : Y \ra Z $ be continuous maps such that $ f_0 $ is homotopic to $ f_1 $ and $ g_0 $ is homotopic to $ g_1 $. Then, $ g_0 \circ f_0 $ is homotopic to $ g_1 \circ f_1 $.
+\end{proposition}
+
+Similarly, given $ f_0 \sim f_1 $ paths in $ X $ and a continuous map $ F : X \ra Y $, then $ F \circ f_0 \sim F \circ f_1 $. Thus, for each $ q \in X $ there is a well defined map:
+\begin{equation}
+  F_* : \pi_1(X,q) \ra \pi_1(Y,F(q)) : [f] \mapsto [F \circ f]
+\end{equation}
+which is a group homomorphism, known as the \emph{homomorphism induced} by $ F $.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Properties of the induced homomorphism}{pih}
+  \begin{enumerate}
+    \item \label{item:pih-1} Let $ F : X \ra Y $ and $ G : Y \ra Z $ be continuous maps. Then, $ (G \circ F)_* = G_* \circ F_* : \pi_1(X,q) \ra \pi_1(Z , G(F(q))) $ for each $ q \in X $.
+    \item \label{item:pih-2} For each topological space $ X $ and each $ q \in X $, $ (\id_X)_* = \id_{\pi_1(X,q)} $.
+    \item \label{item:pih-3} If $ F : X \ra Y $ is a homeomorphism, then $ F_* : \pi_1(X,q) \ra \pi_1(Y,F(q)) $ is an isomorphism.
+  \end{enumerate}
+\end{lemma}
+
+By \itemref{item:pih-3} of \lref{lemma:pih}, homeomorphic topological spaces have isomorphic fundamental groups.
+
+\begin{example}{Fundamental groups of spheres}{}
+  $ \pi_1(\Sn{1} , (1,0)) $ is the infinite cyclic group generated by the path class of the loop $ \omega : [0,1] \ra \Sn{1} $ defined as $ \omega(s) = (\cos 2\pi s , \sin 2\pi s) $.
+  On the contrary, $ \Sn{n} $ is simply connected for all $ n > 1 $.
+\end{example}
+
+\begin{proposition}{Fundamental group of product spaces}{}
+  Let $ X_1 , \dots , X_k $ be topological spaces, and let $ p_i : X_1 \times \dots \times X_k \ra X_i $ be the $ i^\text{th} $ projection map. For any points $ q_i \in X_i $, with $ i = 1 , \dots , k $, the following map is an isomorphism:
+  \begin{align*}
+    P : \pi_1(X_1 \times \dots \times X_k , (q_1 , \dots , q_k)) &\ra \pi_1(X_1 , q_1) \times \dots \times \pi_1(X_k , q_k) \\
+    [f] &\mapsto ({p_1}_*[f] , \dots , {p_k}_*[f])
+  \end{align*}
+\end{proposition}
+
+A continuous map $ F : X \ra Y $ between topological spaces is said to be a \emph{homotopy equivalence} if there is a continuous map $ G : Y \ra X $ such that $ F \circ G $ is homotopic to $ \id_Y $ and $ G \circ F $ is homotopic to $ \id_X $: such a map $ G $ is called the \emph{homotopy inverse} of $ F $. If there exists a homotopy equivalence between two topological spaces, thees are said to be \emph{homotopy equivalent}.
+
+\begin{example}{Homotopy equivalence of spheres}{}
+  The inclusion map $ \inc : \Sn{n-1} \hookrightarrow \R^n - \{0\} $ is a homotopy equivalence with homotopy inverse $ r(x) = x / \norm{x} $, since $ r \circ \inc = \id_{\Sn{n-1}} $ and $ \inc \circ r $ is homotopic to $ \id_{\R^n - \{0\}} $ via a straight-line homotopy:
+  \begin{equation*}
+    H(x,t) = t x + (1 - t) \frac{x}{\norm{x}}
+  \end{equation*}
+\end{example}
+
+\begin{theorem}{Homotopy invariance}{}
+  If $ F : X \ra Y $ is a homotopy equivalence, then $ F_* : \pi_1(X,p) \ra \pi_1(Y,F(p)) $ is an isomorphism for each $ p \in X $.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+

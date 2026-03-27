@@ -1119,7 +1119,7 @@ In the case of a smooth submersion, which by definition has constant rank equal 
 
 Given a smooth map $ \Phi : \man_1 \ra \man_2 $, a point $ p \in \man_1 $ can be classified as follows: if $ \dd \Phi_p : T_p\man_1 \ra T_{\Phi(p)}\man_2 $ is sujective, then $ p $ is a \bctxt{regular point} of $ \Phi $, otherwise it is a \bctxt{critical point}. In particular, every point of $ \man_1 $ is critical if $ \dim_\R \man_1 < \dim_\R \man_2 $, while every point of $ \man_1 $ is regular if and only if $ \Phi $ is a submersion.: in any case, the set of regular points of $ \Phi $ is always an open subset of $ \man_1 $. The same denominations can be imported on points of $ \man_2 $: a point $ c \in \man_2 $ is a \emph{regular value} of $ \Phi $ if every point of the level set $ \Phi^{-1}(c) $ is a regular point, otherwise it is a \emph{critical value}. By convention, if $ \Phi^{-1}(c) = \emptyset $, then $ c $ is a regular value of $ \Phi $. If $ c $ is a regular value of $ \Phi $, then $ \Phi^{-1}(c) $ is a \bctxt{regular level set}: in other words, a regular level set consists entirely of regular points of $ \Phi $ (points $ p $ where $ \dd \Phi_p $ is surjective).
 
-\begin{theorem}{Regular level set theorem}{regular-level-sets}
+\begin{theorem}{Regular level set theorem}{regular-level-set}
   Every regular level set of a smooth map between smooth manifolds without boundary is a properly embedded submanifold of codimension is equal to the dimension of the codomain.
 \end{theorem}
 
@@ -1129,7 +1129,7 @@ Given a smooth map $ \Phi : \man_1 \ra \man_2 $, a point $ p \in \man_1 $ can be
   \end{proof}
 \end{proofbox}
 
-Note that \tref{th:regular-level-sets} also applies to empty level sets, which are both regular level sets and properly embedded submanifolds.
+Note that \tref{th:regular-level-set} also applies to empty level sets, which are both regular level sets and properly embedded submanifolds.
 
 \begin{definition}{Defining map}{}
   Let $ S \ssq \man $ be an embedded submanifolds. A smooth map $ \Phi : \man \ra \man' $ is a \bcdef{defining map} of $ S $ if $ S $ is a regular level set of $ \Phi $.
@@ -1250,6 +1250,364 @@ A set of the form $ f^{-1}((-\infty,b]) $ for $ b $ regular value of $ f \in \cm
 Fundamental theorems of differential topology are found extending the notion of sets of measure zero to manifolds.
 
 \subsubsection{Sets of measure zero}
+
+A key notion in Analysis is that of measure-zero sets, i.e. sets which are negligible in integrals.
+
+A \emph{closed rectangle} in $ \R^n $ is a product set $ [a_1 , b_1] \times \dots \times [a_n , b_n] $, with $ a_i < b_i $ for each $ i = 1 , \dots , n $, and an \emph{open rectangle} is defined analogously with open intervals. In either case, the \bctxt{volume} of a rectangle $ A $ is defined as:
+\begin{equation}
+  \Vol_n(A) \defeq \prod_{i = 1}^n (b_i - a_i)
+\end{equation}
+
+\begin{definition}{Set of measure zero}{measure-zero}
+  A subset $ X \ssq \R^n $ is said to have \bcdef{$ n $-dimensional measure zero} if for every $ \delta \in \R^+ $ there exists a countable cover of $ X $ by open rectangles $ \{C_i\}_{i \in \mathcal{I}} $ such that:
+  \begin{equation}
+    \sum_{i \in \mathcal{I}} \Vol_n(C_i) < \delta
+  \end{equation}
+\end{definition}
+
+The same definition applies if open rectangles are replaced with open cubes or open balls.
+Note that the property of being measure-zero depends on the particular Euclidean space considered: for example, an open interval in the $ x $-axis has measure zero in $ \R^2 $, but not in $ \R^1 $.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Properties of measure-zero sets}{pmzs}
+  \begin{enumerate}
+    \item \label{item:pmzs-1} Every subset of a measure-zero set in $ \R^n $ has measure zero in $ \R^n $.
+    \item \label{item:pmzs-2} A countable union of sets of measure zero in $ \R^n $ has measure zero in $ \R^n $.
+    \item \label{item:pmzs-3} If $ k < n $, then every subset of $ \R^k $ has measure zero in $ \R^n $.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proposition}{Measure and smooth maps}{measure-smooth}
+  Suppose $ A \ssq \R^n $ has measure zero in $ \R^n $ and $ f : A \ra \R^n $ is a smooth map. Then, $ f(A) $ has measure zero in $ \R^n $.
+\end{proposition}
+
+The notion of measure-zero set can be extended in a diffeomorphism-invariant way to smooth manifolds: a subset $ A \ssq \man $ of a smooth $ n $-manifold has \bctxt{measure zero in $ \man $} if, for every smooth chart $ (U,\varphi) $ on $ \man $, the subset $ \varphi(A \cap U) \ssq \R^n $ has $ n $-dimensional measure zero.
+
+\begin{lemma}{}{}
+  Let $ \man $ be a smooth $ n $-manifold and $ A \ssq \man $, and let $ \{U_\alpha , \varphi_\alpha\} $ be a countable collection of smooth charts on $ \man $ such that $ A \ssq \bigcup_\alpha U_\alpha $ and $ \varphi_\alpha(A \cap U_\alpha) $ has measure zero in $ \R^n $ for each $ \alpha $. Then, $ A $ has measure zero in $ \man $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ (V,\psi) $ be an arbitrary smooth chart on $ \man $. WTS $ \psi(A \cap V) $ has measure zero in $ \R^n $. For each $ U_\alpha $:
+    \begin{equation*}
+      \psi(A \cap V \cap U_\alpha) = (\psi \circ \varphi_\alpha^{-1}) \circ \varphi_\alpha(A \cap V \cap U_\alpha)
+    \end{equation*}
+    Now, $ \varphi_\alpha(A \cap V \cap U_\alpha) \ssq \varphi_\alpha(A \cap U_\alpha) $, which has measure zero in $ \R^n $ by hypothesis. By \pref{prop:measure-smooth}, then, $ \psi(A \cap V \cap U_\alpha) $ has measure zero. Since $ \psi(V \cap A) $ is the union of countably many such sets, by \itemref{item:pmzs-2} of \lref{lemma:pmzs} it too has measure zero.
+  \end{proof}
+\end{proofbox}
+
+\itemref{item:pmzs-2} of \lref{lemma:pmzs} holds in the manifold case too: a countable union of sets of measure zero in $ \man $ has measure zero in $ \man $.
+
+\begin{proposition}{Measure and smooth maps}{measure-manifold}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map between smooth $ n $-manifolds, and let $ A \ssq \man_1 $ be a set of measure zero in $ \man_1 $. Then, $ f(A) $ has measure zero in $ \man_2 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \{(U_i , \varphi_i)\} $ be a countable cover of $ \man_1 $ by smooth charts, and let $ (V,\psi) $ be an arbitrary smooth chart on $ \man_2 $. WTS $ \psi(f(A) \cap V) $ has measure zero in $ \R^n $: this set is the union of countably many subsets of the form $ \psi \circ f \circ \varphi_i^{-1}(\varphi_i(A \cap U_i \cap f^{-1}(V))) $, each of which has measure zero in $ \R^n $ by \pref{prop:measure-smooth}.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Sard's theorem}
+
+Sard's theorem is fundamental in the study of embedded manifolds.
+
+\begin{theorem}{Sard's theorem}{sard}
+  The set of critical values of a smooth map $ f : \man_1 \ra \man_2 $ has measure zero in $ \man_2 $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ m = \dim_\R \man_1 $ and $ n = \dim_\R \man_2 $: the proof is by induction on $ m $.
+
+    $ (m = 0) $ In this case the result is immediate: if $ n = 0 $, the $ f $ has no critical points, while if $ n > 0 $ the entire image of $ f $ has measure zero by \itemref{item:pmzs-3} of \lref{lemma:pmzs}.
+
+    $ (m \leq 1) $ Assume the thesis to be true for maps whose domains have dimension less then $ m $. By covering $ \man_1 $ and $ \man_2 $ with countably many smooth charts, the proof reduces to the case of $ f $ being a smooth map from $ U \in \tp(\R^m) $ (or $ \U^m $) to $ \R^n $. Let $ (x^1 , \dots , x^m) $ be smooth coordinates on the domain $ U $ and $ (y^1 , \dots , y^n) $ smooth coordinates on the codomain, and let $ C \ssq U $ denote the set of critical points of $ f $. Define a decreasing sequence of subsets $ C \supseteq C_1 \supseteq C_2 \supseteq \dots $ as:
+    \begin{equation*}
+      C_k \equiv \{ x \in C : \text{all $ i^\text{th} $ partial derivatives of $ f $ vanish at $ x $, for $ 1 \leq i \leq k $} \}
+    \end{equation*}
+    By continuity, $ C $ and $ C_k $ are closed in $ U $, for all $ k \in \N $. The proof of $ f(C) $ has measure zero in $ \man_2 $ is in three steps:
+    \begin{enumerate}
+      \item WTS $ f(C - C_1) $ has measure zero. Since $ C_1 $ is closed in $ U $, it is possible to replace $ U $ with $ U - C_1 $ and assume $ C_1 = \emptyset $. Let $ a \in C $: this assumption means that some first partial derivative of $ f $ is not zero at $ a $. WLOG let $ \pa_1 f^1(a) \neq 0 $: this means that it is possible to defined new smooth coordinates $ (u,v) = (u,v^2 , \dots , v^m) $ in some neighbourhood $ V_a \ssq U $ of $ a $ as:
+        \begin{equation*}
+          u = f^1
+          \qquad
+          v^2 = x^2
+          \qquad
+          \dots
+          \qquad
+          v^m = x^m
+        \end{equation*}
+        since the Jacobian of the coordinate transformation is non-singular at $ a $. Shrinking $ V_a $ if necessary, assume that $ \overline{V}_a $ is a compact set of $ U $ and that this coordinates extend smoothly to $ \overline{V}_a $. The coordinate representation of $ f $ and its jacobian in this coordinates is:
+        \begin{equation*}
+          f(u , v^2 , \dots , v^m) = (u , f^2(u,v) , \dots , f^n(u,v))
+          \qquad \qquad
+          \jac{f}(u,v) =
+          \begin{bmatrix}
+            1 & 0 \\
+            \cdot & \frac{\pa F^i}{\pa v^j}
+          \end{bmatrix}
+        \end{equation*}
+        Therefore, $ C \cap \overline{V}_a $ consists of exactly those points where the $ (n-1) \times (m-1) $ matrix $ [\pa F^i / \pa v^j] $ has rank less that $ n - 1 $.
+        WTS $ f(C \cap \overline{V}_a) $ has measure zero in $ \R^n $.
+
+        \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Compact sets of measure zero}{compact-measure-zero}
+          Let $ K \ssq \R^n $ be a compact subset such that $ K \cap (\{c\} \times \R^{n-1}) $ has $ (n-1) $-dimensional measure zero for every $ c \in \R $. Then $ K $ has $ n $-dimensional measure zero.
+        \end{lemma}
+
+        Since $ f(C \cap \overline{V}_a) $ is compact, by \lref{lemma:compact-measure-zero} it suffices to show that its intersection with the hyperplane $ y^1 = c $ has $ (n-1) $-dimensional measure zero. For $ c \in \R $, let $ B_c \equiv \{v \in \R^{m-1} : (c,v) \in \overline{V}_a\} $ and define $ f_c : B_c \ra \R^{n-1} $ as:
+        \begin{equation*}
+          f_c(v) = (f^2(c,v) , \dots , f^n(c,v))
+        \end{equation*}
+        Since $ f(c,v) = (c,f_c(v)) $, the critical values of $ f \vert_{\overline{V}_a} $ that lie in the hyperplane $ y^1 = c $ are of the form $ (c,w) $, with $ w $ critical value of $ f_c $. By the inductive hypothesis, the set of critical values of each $ f_c $ has $ (n-1) $-dimensional measure zero: thus, by \lref{lemma:compact-measure-zero}, $ f(C \cap \overline{V}_a) $ has measure zero.
+        As $ U $ is covered by countably many sets of the form $ \overline{V}_a $, $ f(C \cap U) $ is a countable union of sets of measure zero and thus has measure zero.
+      %
+      \item WTS $ f(C_k - C_{k+1}) $ has measure zero for each $ k \in \N $. Again, since $ C_{k+1} $ is closed in $ U $, it is possible to set $ C_{k+1} = \emptyset $ and assume that at every point of $ C_k $ there is some $ (k+1)^\text{th} $ partial derivative of $ f $ that does not vanish. Let $ a \in C_k $, and let $ y : U \ra \R $ denote the $ k^\text{th} $ partial derivative of $ f $ that has at least one non-vanishing first partial derivative at $ a $. Then, $ a $ is a regular point of the smooth map $ y $, so there is a neighbourhood $ V_a $ of $ a $ consisting of regular points of $ y $. Let $ Y = y^{-1}(0) \cap V_a $ be the zero set of $ y $ in $ V_a $, which is a smooth hypersurface by \tref{th:regular-level-set}: by definition of $ C_k $, all $ k^\text{th} $ derivative of $ f $ (including $ y $) vanish on $ C_k $, so $ C_k \cap V_a \ssq Y $. At any $ p \in C_k \cap V_a $, $ \dd f_p $ is not surjective, so $ \dd (f \vert_Y)_p = \dd f_p \vert_{T_pY} $ is not surjective either. Thus, $ f(C_k \cap V_a) $ is contained in the set of critical values of $ f \vert_Y : Y \ra \R^n $, whish has measure zero by the induction hypothesis. As $ U $ can be covered by countably many sets $ V_a $, $ f(C_k - C_{k+1}) $ is contained in a countable union of sets $ f(C_k \cap V_a) $, thus it has measure zero.
+      %
+      \item WTS $ f(C_k) $ has measure zero for $ k > m/n - 1 $. For each $ a \in U $, there is a closed cube $ E \ssq U : a \in E $: since $ U $ can be covered by countably many such cubes, it suffices to show that $ f(C_k \cap E) $ has measure zero. Let $ A $ be a constant that bounds the absolute values of all the $ (k+1)^\text{th} $ derivatives of $ f $ in $ E $, let $ R $ denote the side length of $ E $ and let $ K \in \N $ large (see later). Subdividing $ E $ into $ K^m $ cubes of side $ R/K $, denoted by $ (E_1 , \dots , E_{K^m}) $, if there is a point $ a_i \in C_k \cap E_i $, then it can be shown (using Taylor's reminder theorem) that:
+        \begin{equation*}
+          \norm{f(x) - f(a_i)} \leq A' \norm{x - a_i}^{k+1}
+        \end{equation*}
+        for some constant $ A' $ which depends on $ A $, $ k $ and $ m $. Thus, $ f(E_i) $ is contained in a ball of radius $ A'(R/K)^{k+1} $, implying that $ f(C_k \cap E) $ is contained in a union of $ K^m $ balls whose total $ n $-dimensional volume is no more than:
+        \begin{equation*}
+          K^m (A')^n (E/K)^{n(k+1)} \equiv A'' K^{m - nk - n}
+        \end{equation*}
+        Since $ k > m/n - 1 $, i.e. $ m - nk - n < 0 $, by choosing $ K $ sufficiently large this volume can be made as small as desired, so $ f(C_k \cap E) $ has measure zero by \dref{def:measure-zero}.
+    \end{enumerate}
+    These steps cover all possible subsets of $ C \cap U $, hence $ f(C \cap U) $ has measure zero.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{}{sard-cor-1}
+  Let $ f : \man_1 \ra \man_2 $ be a smooth map. If $ \dim_\R \man_1 < \dim_\R \man_2 $, then $ f(\man_1) $ has measure zero in $ \man_2 $.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    In this case each point of $ \man_1 $ is a critical point of $ f $.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{}{sard-cor-2}
+  Let $ \man $ be a smooth manifold and $ S \ssq \man $ an embedded submanifold. If $ \codim_\R S > 0 $, then $ S $ has measure zero in $ \man $.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Apply \cref{cor:sard-cor-1} to the inclusion map $ S \hookrightarrow \man $.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Whitney's embedding theorem}
+
+An important application of Sard's theorem is to show that every smooth manifold can be embedded into a Euclidean space.
+
+\begin{theorem}{Whitney's embedding theorem}{whitney-embedding}
+  Every smooth $ n $-manifold admits a proper smooth embedding into $ \R^{2n+1} $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof can be considerably simpified with the following lemma.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{smooth-embedding}
+      Let $ \man $ be a smooth $ n $-manifold. If $ \man $ admits a smooth embedding into $ \R^N $ for some $ N $, then it admits a proper smooth embedding into $ \R^{2n+1} $.
+    \end{lemma}
+
+    By \lref{lemma:smooth-embedding}, it suffices to show that $ \man $ admits a smooth embedding into some Euclidean space.
+
+    Fist, suppose $ \man $ is compact, i.e. it admits a finite cover $ \{B_1 , \dots, B_m\} $ in which each $ B_i $ is a regular coordinate ball (or half-ball). This means that for each $ i = 1 , \dots , m $ there exist a coordinate domain $ B_i' \supseteq \overline{B}_i $ and a smooth coordinate map $ \varphi_i : B_i' \ra \R^n $ that restricts to a diffeomorphism from $ \overline{B}_i $ to a compact subset of $ \R^n $. For each $ i $, let $ \rho_i : M \ra \R $ be a smooth bump function\footnotemark for $ \overline{B}_i $ supported in $ B_i' $, and define a smooth map $ f : \man \ra \R^{nm + m} $ as:
+    \begin{equation*}
+      f(p) = (\rho_1(p) \varphi_1(p) , \dots , \rho_m(p) \varphi_m(p) , \rho_1(p) , \dots , \rho_m(p))
+    \end{equation*}
+    where $ \rho_i \varphi_i $ is extended to be zero outside of the support of $ \rho_i $. WTS $ f $ is an injective smooth immersion, since, by compactess of $ \man $, this implies that $ f $ is a smooth embedding.
+
+    To see that $ f $ is injective, suppose $ f(p) = f(q) $. Since $ \{B_1 , \dots , B_m\} $ covers $ \man $, there is some $ i $ such that $ p \in B_i $. Then $ \rho_i(p) = 1 $, and $ \rho_i(q) = \rho_i(p) = 1 $ implies that $ q \in \supp \rho_i \ssq B_i' $, so:
+    \begin{equation*}
+      \varphi_i(q) = \rho_i(q) \varphi_i(q) = \rho_i(p) \varphi_i(p) = \varphi_i(p)
+    \end{equation*}
+    Since $ \varphi_i $ is injective on $ B_i' $, this means that $ p = q $, hence $ f $ is injective.
+
+    Next, to see that $ f $ is a smooth immersion, let $ p \in \man $ be arbitrary and choose $ i $ such that $ p \in B_i $. As $ \rho_i \equiv 1 $ on a neighbourhood of $ p $, $ \dd (\rho_i \varphi_i)_p = \dd (\varphi_i)_p $, which is injective. It follows that $ \dd f_p $ is injective, thus $ f $ is an injective smooth immersion, and hence an embedding.
+
+    Now, suppose $ \man $ is non-compact. Let $ f : \man \ra \R $ be a smooth exhaustion function of $ \man $: \tref{th:sard} shows that for each $ i \in \N_0 $ there are regular values of $ f $ such that $ i < a_i < b_i < i + 1 $. Define the subsets $ D_i , E_i \ssq \man $ as:
+    \begin{equation*}
+      D_i =
+      \begin{cases}
+        f^{-1}((-\infty , 1]) & i = 0 \\
+        f^{-1}([i , i+1]) & i \leq 1
+      \end{cases}
+      \qquad \qquad
+      E_i =
+      \begin{cases}
+        f^{-1}((-\infty , a_1]) & i = 0 \\
+        f^{-1}([b_{i-1} , a_{i+1}]) & i \leq 1
+      \end{cases}
+    \end{equation*}
+    By \pref{prop:rsls}, each $ E_i $ is a compact regular domain. Clearly $ D_i \ssq \Int E_i $, $ \man = \bigcup_{i \in \N_0} B_i $ and $ E_i \cap E_j = \emptyset $ unless $ j = i-1,i,i+1 $. By the above discussion, since for each $ i \in \N_0 $ there is a smooth embedding of $ E_i $ into some Euclidean space, and therefore by \lref{lemma:smooth-embedding} there is an embedding $ \varphi_i : E_i \ra \R^{2n+1} $. For each $ i $, let $ \rho_i : \man \ra \R $ be a smooth bump function on $ D_i $ and supported in $ \Int E_i $, and define $ F : \man \ra \R^{2n+1} \times \R^{2n+1} \times \R $ as:
+    \begin{equation*}
+      F(p) = \left( \sum_{k \in \N_0} \rho_{2k}(p) \varphi_{2k}(p) , \sum_{k \in \N_0} \rho_{2k+1}(p) \varphi_{2k+1}(p) , f(p) \right)
+    \end{equation*}
+    $ F $ is smooth because only one term in each sum is non-zero in a neighbourhood of each point, and $ F $ is proper because $ f $ is.
+
+    WTS $ F $ is an injective smooth immersion, and hence a smooth embedding. Suppose $ F(p) = F(q) $. Then, $ p \in D_j $ for some $ j $, and $ f(p) = f(q) $ implies $ q \in D_j $ as well: as in the compact case, then, $ p = q $, i.e. $ F $ is injective. Now, let $ p \in \man $ arbitrary, and choose $ j $ such that $ p \in D_j $: then $ \rho_j \equiv 1 $ on a neighbourhood of $ p $. Assuming $ j $ odd, for all $ q $ in this neighbourhood $ F(q) = (\varphi_j(q) , \dots , \dots) $, which implies that $ \dd f_p $ is injective, and similarly for $ j $ even: this shows that $ f $ is a smooth immersion, concluding the proof.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{If $ X $ is a topological space, $ A \ssq X $ is a closed set and $ U \in \tp(X) : U \supseteq A $, a continuous function $ \psi : X \ra \R $ is a \emph{bump function for $ A $ supported in $ U $} if $ 0 \leq \psi \vert_X \leq 1 $, $ \psi \vert_A \equiv 1 $ and $ \supp \psi \ssq U $.}
+
+This means that every smooth $ n $-manifold is diffeomorphic to a properly embedded submanifold of $ \R^{2n+1} $. Moreover, if only immersions rather than embeddings are required, it is possible to lower the dimensionality of the ambient Euclidean space by one.
+
+\begin{theorem}{Whitney's immersion theorem}{whitney-immersion}
+  Every smooth $ n $-manifold admits a smooth immersion into $ \R^{2n} $.
+\end{theorem}
+
+Using much more sophisticated techniques of algebraic geometry, it is possible to prove that, in the case $ n > 0 $, in both theorems the dimensionality of the ambient Euclidean space can be further decreased by one (Whiteny's \emph{strong} theorems).
+
+\subsubsection{Whitney's approximation theorems}
+
+It is possible to show that continuous maps can be approximated by smooth ones. To formalize the concept of approximation, given a smooth manifold $ \man $, if $ \delta : \man \ra \R^+ $ is a positive continuous function, two functions $ f , g : \man \ra \R^k $ are \bctxt{$ \delta $-close} if $ \norm{f(x) - g(x)} < \delta(x) \,\,\forall x \in \man $.
+
+\begin{theorem}{Whitney's approximation theorem for functions}{whitney-approx-function}
+  Let $ \man $ be a smooth manifold and $ f : \man \ra \R^k $ a continuous function. Given any positive continuous function $ \delta : \man \ra \R $, there exists a smooth function $ g : \man \ra \R^k $ that is $ \delta $-close to $ g $. If $ f $ is smooth on a closed subset $ A \ssq \man $, then $ g $ can be chosen to be equal to $ f $ on $ A $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ f $ is smooth on a closed subset $ A \ssq \man $, it can be extended to a smooth function $ f_0 : \man \ra \R^k : f_0 \vert_A = f \vert_A $. Then, let:
+    \begin{equation*}
+      U_0 \equiv \{y \in \man : \norm{f_0(y) - f(y)} < \delta(y)\}
+    \end{equation*}
+    Clearly $ U_0 \in \tp(\man) : U_0 \supseteq A $ (if $ A = \emptyset $, just take $ U_0 = \emptyset $ and $ f_0 \equiv 0 $).
+
+    WTS there exist $ \{x_i\}_{i \in \N} \ssq \man - A $ and neighbourhoods $ U_i \ssq \man - A : x_i \in U_i $ such that $ \{U_i\}_{i \in \N} $ is an open countable cover of $ \man - A $, and $ \norm{f(y) - f(x_i)} < \delta(y) \,\,\forall y \in U_i $. To see this, for any $ x \in \man - A $ let $ U_x $ be a neighbourhood of $ x $ contained in $ \man - A $ and small enough that, for all $ y \in U_x $:
+    \begin{equation*}
+      \delta(y) > \frac{1}{2} \delta(x)
+      \qquad \qquad
+      \norm{f(y) - f(x)} < \frac{1}{2} \delta(x)
+    \end{equation*}
+    Such a neighbourhood exists by continuity of $ \delta $ and $ f $. Then, if $ y \in U_x $:
+    \begin{equation*}
+      \norm{f(y) - f(x)} < \frac{1}{2} \delta(x) < \delta(y)
+    \end{equation*}
+    The collection $ \{U_x : x \in \man - A\} $ is an open cover of $ \man - A $: choosing a countable subcover $ \{U_{x_i}\}_{i \in \N} $ and setting $ U_i = U_{x_i} $, the desired countable open cover is found.
+
+    Now, let $ \{\varphi_0 , \varphi_i\} $ be a partition of unity subordinate to the cover $ \{U_0 , U_i\} $ of $ \man $, and define $ g : \man \ra \R^k $ as:
+    \begin{equation*}
+      g(y) = \varphi_0(y) f_0(y) + \sum_{i \in \N} \varphi_i(y) f(x_i)
+    \end{equation*}
+    Clearly $ g $ is smooth, and $ g \vert_A = f \vert_A $. For any $ y \in \man $, the condition $ \sum_{i \in \N_0} \varphi_i \equiv 1 $ implies:
+    \begin{equation*}
+      \begin{split}
+        \norm{g(y) - f(y)}
+        & = \norm{\varphi_0(y) f_0(y) + \sum_{i \in \N} \varphi_i(y) f(x_i) - \left( \varphi_0(y) + \sum_{i \in \N} \varphi_i(y) \right) f(y)} \\
+        & \leq \varphi_0(y) \norm{f_0(y) - f(y)} + \sum_{i \in \N} \varphi_i(y) \norm{f(x_i) - f(y)} \\
+        & < \varphi_0(y) \delta(y) + \sum_{i \in \N} \varphi_i(y) \delta(y) = \delta(y)
+      \end{split}
+    \end{equation*}
+    which concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{}{}
+  Let $ \man $ be a smooth manifold and $ \delta : \man \ra \R^+ $ a positive continuous function. Then, there is a smooth function $ e : \man \ra \R^+ $ such that $ 0 < e(x) < \delta(x) \,\,\forall x \in \man $.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Use \tref{th:whitney-approx-function} to construct a smooth function $ e : \man \ra \R^+ $ such that:
+    \begin{equation*}
+      \norm{e(x) - \frac{1}{2} \delta(x)} < \frac{1}{2} \delta(x)
+    \end{equation*}
+    for all $ x \in \man $.
+  \end{proof}
+\end{proofbox}
+
+To find an analogous theorem for continuous maps between smooth manifolds, it is necessary to introduce additional concepts.
+
+For each $ x \in \R^n $, recall the canonical identification $ T_x \R^n \cong \R^n $ and the canonical diffeomorphism $ T\R^n \cong \R^n \times \R^n $: by these identifications, each $ T_x \R^n $ inherits a Euclidean inner product. Let $ \man \ssq \R^n $ be an embedded $ m $-submanifold without boundary: for each $ x \in \man $, the \emph{normal space} to $ \man $ at $ x $ is the defined as the $ (n-m) $-dimensional subspace $ N_x\man \ssq T_x \R^n $ consisting of all vectors that are orthogonal to $ T_x\man $ with respect to the Euclidean dot product. The \bctxt{normal bundle} of $ \man $, denoted by $ N\man $, is the subset of $ T\R^n \cong \R^n \times \R^n $ consisting of vectors normal to $ \man $:
+\begin{equation}
+  N\man = \{(x,v) \in \R^n \times \R^n : x \in \man , v \in N_x\man\}
+\end{equation}
+There is a natural projection $ \pi_N : N\man \ra \man $ defined as the restriction to $ N\man $ of $ \pi : T\R^n \ra \R^n $. Moreover, it is possible to show that $ N\man $ is an embedded $ n $-submanifold of $ T\R^n \cong \R^n \times \R^n $. Then, defining the smooth map $ E : N\man \ssq \R^n \times \R^n \ra \R^n $ by $ E(x,v) = x + v $, each normal space $ N_x\man $ is affinely mapped onto the affine subspace through $ x $ and orthogonal to $ T_x\man $: a \emph{tubular neighbourhood} of $ \man $ is a neighbourhood $ U $ of $ \man $ in $ \R^n $ that is the diffeomorphic image under $ E $ of an open $ V \ssq N\man $ of the form:
+\begin{equation}
+  V = \{(x,v) \in N\man : \norm{v} < \delta(x)\}
+\end{equation}
+for some positive continuous function $ \delta : \man \ra \R^+ $ (see \figref{fig:tub-neig}). It can be shown that every embedded submanifold of $ \R^n $ has a tubular neighbourhood.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{tubular-neig.png}
+  \caption{Tubular neighbourhood.}
+  \label{fig:tub-neig}
+\end{figure}
+
+\begin{proposition}{Tubular neighbouhoods and submersions}{tubular-retraction}
+  Let $ \man \ssq \R^n $ be an embedded submanifold without boundary. If $ U $ is any tubular neighbourhood of $ \man $, there exists a smooth map $ r : U \ra \man $ that is both a retraction\footnotemark and a smooth submersion.
+\end{proposition}
+
+\footnotetext{Given a topological space $ X $, a \emph{retraction} of $ X $ onto a subspace $ Y \ssq X $ is a continuous map $ r : X \ra Y $ such that $ r \vert_Y = \id_Y $.}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ N\man \ssq T\R^n $ be the normal bundle of $ \man $, and let $ \man_0 \equiv \{(x,0) \in N\man : x \in \man\} $. By definition of tubular neighbourhood, there is an open $ V \ssq N\man : V \supseteq \man_0 $ such that $ E : V \ra U $ is a diffeomorphism. Define $ r \equiv \pi_N \circ E^{-1} : U \ra \man $, which is smooth by composition: for $ x \in \man $, note that $ E(x,0) = x $, so $ r(x) = \pi \circ E^{-1}(x) = \pi(x,0) = x $, which shows that $ r $ is a retraction. Since $ \pi $ is a smooth submersion and $ E^{-1} $ is a diffeomorphism, it follows that $ r $ is a smooth submersion.
+  \end{proof}
+\end{proofbox}
+
+It is then possible to generalize Whitney's approximation theorem to maps between manifolds. Reference \secref{sec:homotopy} for properties of homotopies.
+
+\begin{theorem}{Whiteny's approximation theorem}{whitney-approx}
+  Let $ \man_1 $ be a smooth manifold, $ \man_2 $ a smooth manifold without boundary and $ f : \man_1 \ra \man_2 $ a continuous map. Then, $ f $ is homotopic to a smooth map. If $ f $ is smooth on a closed subset $ A \ssq \man_1 $, then the homotopy can be taken to be relative to $ A $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    By \tref{th:whitney-embedding}, assume $ \man_2 $ is a properly embedded submanifold of $ \R^n $. Let $ U $ be a tubular neighbourhood of $ \man_2 $ in $ \R^n $, and let $ r : U \ra \man_2 $ be the smooth retraction given by \pref{prop:tubular-retraction}. For any $ x \in \man_2 $, let:
+    \begin{equation*}
+      \delta(x) \equiv \sup_\R \{\varepsilon \leq 1 : \ball_\varepsilon(x) \ssq U\}
+    \end{equation*}
+    Using the triangle inequality, it is possible to show that $ \delta : \man_2 \ra \R^+ $ is continuous. Let $ \tilde{\delta} \equiv \delta \circ f : \man_1 \ra \R^+ $: by \tref{th:whitney-approx-function}, there exists a smooth function $ g : \man_1 \ra \R^n $ that is $ \tilde{\delta} $-close to $ f $, and is equal to $ f $ on $ A $ (which might be empty). Let $ H : \man_1 \times [0,1] \ra \man_2 $ be the composition of $ r $ with the straight-line homotopy between $ f $ and $ g $:
+    \begin{equation*}
+      H(p,t) = r((1-t) f(p) + t g(p))
+    \end{equation*}
+    This is well-defined, as $ \norm{g(p) - f(p)} < \tilde{\delta}(p) = \delta(f(p)) \,\,\forall p \in \man_2 $ by $ \tilde{\delta} $-closeness, which means that $ g(p) $ is contained in a ball of radius $ \delta(f(p)) $ around $ f(p) $: since this ball is contained in $ U $, so is the entire line segment from $ f(p) $ to $ g(p) $.
+
+    Therefore, $ H $ is a homotopy between $ H(p,0) = f(p) $ and $ H(p,1) = r(g(p)) $, which is a smooth map by composition. Moreover, it satisfies $ H(p,t) = f(p) $ for $ p \in A $, since $ f \vert_A = g \vert_A $.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{Extension lemma for smooth maps}{}
+  Let $ \man_1 $ be a smooth manifold, $ \man_2 $ a smooth manifold without boundary and $ f : A \ra \man_2 $ a smooth map, with $ A \ssq \man_1 $ closed. Then, $ f $ has a smooth extension on $ \man_1 $ if and only if it has a continuous extension on $ \man_1 $.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ F : \man_1 \ra \man_2 $ is a continuous extension of $ f $ on all $ \man_1 $, \tref{th:whitney-approx} guarantees the existence of a smooth map $ \tilde{F} $ that agrees with $ f $ on $ A $, i.e. a smooth extension of $ f $. The converse is trivial since smoothness implies continuity.
+  \end{proof}
+\end{proofbox}
+
+If $ \man_1 , \man_2 $ are smooth manifolds, a homotopy $ H : \man_1 \times [0,1] \ra \man_2 $ is a \emph{smooth homotopy} if it is also a smooth map, i.e. if it extends to a smooth map on some neighbourhood of $ \man_1 \times [0,1] $ in $ \man_1 \times \R $. Two maps are \emph{smoothly homotopic} if there is a smooth homotopy between them: smooth homotopy is an equivalence relation on the set of all smooth maps $ \man_1 \ra \man_2 $.
+
+\begin{proposition}{Smooth homotopy of smooth maps}{smooth-homotopy}
+  Let $ \man_1 $ be a smooth manifold, $ \man_2 $ a smooth manifold without boundary and $ f,g : \man_1 \ra \man_2 $ two smooth maps. If $ f $ and $ g $ are homotopic, then they are smoothly homotopic. If $ f $ and $ g $ are homotopic relative to some closed subset $ A \ssq \man_1 $, then they are smoothly homotopic relative to $ A $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ H : \man_1 \times [0,1] \ra \man_2 $ be a homotopy from $ f $ to $ g $ (relative to $ A $, which may be empty): WTS $ H $ can be replaced with a smooth homotopy. To do so, define $ \bar{H} : \man_1 \times \R \ra \man_2 $ as:
+    \begin{equation*}
+      \bar{H}(x,t) =
+      \begin{cases}
+        H(x,t) & t \in [0,1] \\
+        H(x,0) & t \leq 0 \\
+        H(x,1) & t \geq 1
+      \end{cases}
+    \end{equation*}
+    which is continuous. The restriction of $ \bar{H} $ to $ (\man_1 \times \{0\}) \cup (\man_1 \times \{1\}) $ is smooth, since it is equal to $ f \circ \pi_1 $ on $ \man_1 \times \{0\} $ and to $ g \circ \pi_1 $ on $ \man_1 \times \{1\} $, where $ \pi_1 : \man_1 \times \R \ra \man_1 $ is the projection on the first component. If $ H $ is a homotopy relative to $ A $, then $ \bar{H} $ is also smooth on $ A \times [0,1] $. Since $ \man_1 \times \R $ is a smooth manifold, \tref{th:whitney-approx} guarantees that there is a smooth map $ \tilde{H} : \man_1 \times \R \ra \man_2 $ whose restriction to $ (\man_1 \times \{0\}) \cup (\man_2 \times \{1\}) \cup (A \times [0,1]) $ agrees with $ \bar{H} $, and thus with $ H $: then, $ \tilde{H}\vert_{\man_1 \times [0,1]} $ is a smooth homotopy (relative to $ A $) between $ f $ and $ g $.
+  \end{proof}
+\end{proofbox}
+
+When the codomain manifold has non-empty boundary, \tref{th:whitney-approx} and $ \pref{prop:smooth-homotopy} $ do not hold, since it might not be possible to find a smooth map that agrees with $ f $ on $ A $. However, discarding homotopy relative to a subset, the other results can be extended to maps between manifolds with boundary.
 
 \newpage
 \section{Curves}
