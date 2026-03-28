@@ -258,6 +258,7 @@ On the contrary, in higher dimensions it turns out that there are cases of topol
 In the analysis of integration on smooth manifolds (\secref{sec:integration}), one often encounters spaces which would be smooth except for a ``boundary" of some sort, e.g. closed balls in $ \R^n $ or closed hemispheres in $ \Sn{n} $. To describe these objects, the definition of manifold needs to be extended. To do so, define the \emph{closed $ n $-dimensional upper half-plane} $ \U^n \ssq \R^n $ as:
 \begin{equation}
   \U^n \defeq \{(x^1 , \dots , x^n) \in \R^n : x^n \geq 0\}
+  \label{eq:upper-half-plane}
 \end{equation}
 Clearly, for $ n > 0 $ this means that $ \Int \U^n = \{x^n > 0\} $ and $ \pa \U^n = \{x^n = 0\} $, while for $ n = 0 $ trivially $ \U^0 = \R^0 = \{0\} $, hence $ \Int \U^0 = \R^0 $ and $ \pa \U^0 = \emptyset $.
 
@@ -1026,11 +1027,11 @@ This theorem hints to a topological definition of submersions: given two topolog
 
 \subsection{Embedded submanifolds}
 
-\begin{definition}{Embedded submanifold}{}
+\begin{definition}{Embedded submanifold}{embedded-submanifold}
   Let $ \man $ be a smooth manifold. An \bcdef{embedded submanifold} of $ \man $ is a subset $ S \ssq \man $ that is a manifold in the subspace topology, endowed with a smooth structure with respect to which the inclusion map $ S \hookrightarrow \man $ is a smooth embedding.
 \end{definition}
 
-Given an embedded submanifold $ S $ of $ \man $, the \bctxt{codimension} of $ S $ is defined as $ \codim_\R S \defeq \dim_\R \man - \dim_\R S $, and $ \man $ is called the \emph{ambient manifold} of $ S $. A codimension-$ 1 $ embedded submanifold is an \emph{embedded hypersurface}.
+Given an embedded submanifold $ S $ of $ \man $, the \bctxt{codimension} of $ S $ is defined as $ \codim_\R S \defeq \dim_\R \man - \dim_\R S $, and $ \man $ is called the \emph{ambient manifold} of $ S $. A codimension-$ 1 $ embedded submanifold is an \emph{embedded hypersurface}. If the inclusion map $ S \hookrightarrow \man $ is only a smooth immersion, the $ S $ is an \emph{immersed submanifold}.
 
 \begin{proposition}{Embeddings and submanifolds}{embedded-submanifolds}
   Let $ \man_1 $ be a smooth submanifold with/without boundary and $ \man_2 $ a smooth submanifold, and let $ f : \man_1 \ra \man_2 $ be a smooth embedding. With the subspace topology, $ f(\man_1) $ is a topological manifold with/without boundary, and it has a unique smooth structure which makes it an embedded submanifold with/without boundary of $ \man_2 $ such that $ f : \man_1 \ra f(\man_1) $ is a diffeomorphism.
@@ -1045,7 +1046,7 @@ Given an embedded submanifold $ S $ of $ \man $, the \bctxt{codimension} of $ S 
 By \pref{prop:embedded-submanifolds}, every embedded submanifold is the image of a smooth embedding: its own inclusion map. An embedded submanifold $ S \ssq \man $ is said to be \emph{properly embedded} if the inclusion $ S \hookrightarrow \man $ is a proper map. By topological considerations, it can be shown that $ S \ssq \man $ is properly embedded if and only if it is a closed subset of $ \man $: in particular, every compact embedded submanifold is properly embedded, as compact subsets of Hausdorff spaces are closed.
 
 \begin{lemma}{Codimension-$ 0 $ embedded submanifolds}{}
-  Let $ \man $ be a smooth manifold. Then, every open subset of $ \man $ is an embedded codimension-$ 0 $ submanifold.
+  Every open subset of a smooth manifold is an embedded codimension-$ 0 $ submanifold.
 \end{lemma}
 
 Given a smooth map $ f : \man_1 \ra \man_2 $, it is crucial to know whether $ f $ is still smooth when its domain or codomain is restricted to a submanifold. The case of a restricted domain is not difficult, while the case of a restricted codomain requires more care.

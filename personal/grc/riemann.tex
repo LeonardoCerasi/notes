@@ -827,7 +827,6 @@ Since $ \dd^2 = 0 $, the Lie derivative commutes with the exterior derivative: $
 \section{Integration}
 \label{sec:integration}
 
-
 \subsection{Orientation}
 
 In order to properly define integration on manifolds, it is first necessary to introduce the notion of orientation.
@@ -839,23 +838,23 @@ In order to properly define integration on manifolds, it is first necessary to i
 Being consistently oriented is an equivalence relation on the set of all ordered bases of $ V $: it is clearly reflexive (as $ \det \mt{I}_n = n > 0 $), symmetric (as $ \det \mt{B}^{-1} = (\det \mt{B})^{-1} $) and transitive (by Binet's theorem). Moreover, the equivalence classes are only two, since the sign of the transition matrix between two bases is either positive or negative: these two equivalence classes are the two possible \bctxt{orientations} of $ V $. Given an ordered basis $ (E_1 , \dots , E_n) $ of $ V $, the orientation determined by this basis (i.e. its equivalence class) is denoted as $ [E_1 , \dots , E_n] $, while the opposite orientation as $ - [E_1 , \dots , E_n] $. In the case of $ 0 $-dimensional vector spaces, the orientation is simply defined to be a choice of one of the numbers $ \pm 1 $.
 
 \begin{proposition}{}{ext-form-orientation}
-  Let $ V $ be an $ n $-dimensional $ \R $-vector space. Each $ \omega \in \lv{n}(V) : \omega \neq 0 $ determines an orientation $ \mathcal{O}_\omega $ of $ V $ as follows:
+  Let $ V $ be an $ n $-dimensional $ \R $-vector space. Each $ \omega \in \lv{n}(V) : \omega \neq 0 $ determines an orientation $ \ori_\omega $ of $ V $ as follows:
   \begin{itemize}
-    \item if $ n \geq 1 $, then $ \mathcal{O}_\omega $ is the set of ordered bases $ (E_1 , \dots , E_n) : \omega(E_1 , \dots , E_n) > 0 $;
-    \item if $ n = 0 $, then $ \mathcal{O}_\omega $ is $ +1 $ if $ \omega > 0 $ and $ -1 $ if $ \omega < 0 $.
+    \item if $ n \geq 1 $, then $ \ori_\omega $ is the set of ordered bases $ (E_1 , \dots , E_n) : \omega(E_1 , \dots , E_n) > 0 $;
+    \item if $ n = 0 $, then $ \ori_\omega $ is $ +1 $ if $ \omega > 0 $ and $ -1 $ if $ \omega < 0 $.
   \end{itemize}
   Two non-zero exterior $ n $-forms determine the same orientation if and only if each is a positive multiple of the other.
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    The $ 0 $-dimensional case is trivial, since $ \lv{0}(V) = \R $. If $ n \geq 1 $, let $ \omega \in \lv{n}(V) - \{0\} $, and let $ \mathcal{O}_\omega $ denote the set of ordered bases $ (E_1 , \dots , E_n) : \omega(E_1 , \dots , E_n) > 0 $. WTS $ \mathcal{O}_\omega $ is exactly one equivalence class.
+    The $ 0 $-dimensional case is trivial, since $ \lv{0}(V) = \R $. If $ n \geq 1 $, let $ \omega \in \lv{n}(V) - \{0\} $, and let $ \ori_\omega $ denote the set of ordered bases $ (E_1 , \dots , E_n) : \omega(E_1 , \dots , E_n) > 0 $. WTS $ \ori_\omega $ is exactly one equivalence class.
 
     Suppose $ (E_i) $ and $ (\tilde{E}_i) $ are any two ordered bases of $ V $, and let $ B : V \ra V $ be a linear map sending $ E_i \mapsto \tilde{E}_i $, i.e. $ \tilde{E}_j = B^i_j E_i $. By \eref{eq:forms-determinant}:
     \begin{equation*}
       \omega(\tilde{E}_1 , \dots , \tilde{E}_n) = (\det B) \omega(E_1 , \dots , E_n)
     \end{equation*}
-    Therefore, if $ (\tilde{E}_i) $ is consistently oriented with $ (E_1 , \dots , E_n) $, i.e. $ \det B > 0 $, then $ \omega(\tilde{E}_1 , \dots , \tilde{E}_n) $ and $ \omega(E_1 , \dots , E_n) $ have the same sign, i.e. $ \mathcal{O}_\omega $ is one equivalence class.
+    Therefore, if $ (\tilde{E}_i) $ is consistently oriented with $ (E_1 , \dots , E_n) $, i.e. $ \det B > 0 $, then $ \omega(\tilde{E}_1 , \dots , \tilde{E}_n) $ and $ \omega(E_1 , \dots , E_n) $ have the same sign, i.e. $ \ori_\omega $ is one equivalence class.
   \end{proof}
 \end{proofbox}
 
@@ -864,10 +863,10 @@ Since $ \dim_\R \lv{n}(V) = 1 $ for any $ n $-dimensional $ \R $-vector space $ 
 The concept of orientation is trivially imported on smooth manifolds in a pointwise manner: the \emph{pointwise orientation} of a smooth manifold is a choice of orientation of each tangent space. However, this concept is only useful if nearby tangent spaces have consistent orientations. Thus, if $ \man $ is a smooth $ n $-manifold, a local frame $ (E_i) $ on $ U \in \tp(T\man) $ is \bctxt{(positively) oriented} if $ (E_1 \vert_p , \dots , E_n \vert_p) $ is a positively oriented basis of $ T_p\man $ at each point $ p \in U $. Negatively oriented frames are defined analogously. A pointwise orientation is said to be \emph{continuous} if every point of $ \man $ is in the domain of an oriented local frame (since vector fields which determine a local frame are continuous by definition).
 
 \begin{definition}{Oriented manifold}{}
-  Let $ \man $ be a smooth $ n $-manifold. An \bcdef{orientation} $ \mathcal{O} $ of $ \man $ is a continuous pointwise orientation, and $ (\man,\mathcal{O}) $ is said to be an \bcdef{oriented manifold}.
+  Let $ \man $ be a smooth $ n $-manifold. An \bcdef{orientation} $ \ori $ of $ \man $ is a continuous pointwise orientation, and $ (\man,\ori) $ is said to be an \bcdef{oriented manifold}.
 \end{definition}
 
-If such a pointwise orientation does not exist, $ \man $ is called a \emph{non-orientable manifold}. Given the chosen orientation $ \mathcal{O} $, the orientation of $ T_p\man $ is denoted by $ \mathcal{O}_p $, for each $ p \in \man $.
+If such a pointwise orientation does not exist, $ \man $ is called a \emph{non-orientable manifold}. Given the chosen orientation $ \ori $, the orientation of $ T_p\man $ is denoted by $ \ori_p $, for each $ p \in \man $.
 
 \begin{proposition}{Orientation and top forms}{orientation-top-forms}
   Let $ \man $ be a smooth $ n $-manifold. Any nowhere-vanishing $ n $-form $ \omega $ determines a unique orientation on $ \man $ for which $ \omega $ is positively oriented at each point. Conversely, if $ \man $ has a given orientation, then there is $ \omega \in \df{n} : \omega \neq 0 $ that is positively oriented at each point.
@@ -892,6 +891,268 @@ The same analysis can be made with charts. A smooth coordinate chart $ (x^i) $ o
 \begin{proposition}{Orientation and coordiante atlases}{}
   Let $ \man $ be a smooth $ n $-manifold, with $ n \geq 1 $. Given a consistently oriented smooth atlas of $ \man $, there is a unique orientation of $ \man $ such that each chart in the atlas is positively oriented. Conversely, if $ \man $ is oriented and either $ \pa \man = \emptyset $ or $ n > 1 $, then the collection of all oriented smooth charts is a consistently oriented atlas of $ \man $.
 \end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, suppose $ \man $ has a consistently oriented smooth atlas. Each chart determines a pointwise orientation at each point of its domain, and wherever two charts overlap, the transition matrix between their respective coordinate frames is the Jacobian matrix of the transition map, which has positive determinant by hypothesis, hence they determine the same orientation at each point. The orientation thus determined is continuous since each point is in the domain of an oriented coordinate frame.
+
+    Conversely, assume $ \man $ is oriented: each point is in the domain of a smooth chart, and if the chart is negatively oriented the replacement $ x^1 \mapsto - x^1 $ turns it into a positively oriented chart. Since all these charts are positively oriented, their transition maps are guaranteed to have positive Jacobian determinants, hence they form a consistently oriented atlas. Note that the replacement $ x^1 \mapsto - x^1 $ cannot happen in a $ 1 $-manifold with boundary, since by \eref{eq:upper-half-plane} the last coordinate of boundary charts must be non-negative, hence either $ \pa \man = \emptyset $ or $ \dim_\R \man > 1 $ is required.
+  \end{proof}
+\end{proofbox}
+
+If $ \man_1 , \dots , \man_k $ are orientable smooth manifolds with orientation forms $ \omega_i $ on $ \man_i $, for each $ i = 1,\dots,k $, then it is possible to show that the product manifold $ \man_1 \times \dots \times \man_k $ has a unique orientation, and the orientation form is given by $ \pi_1^* \omega_1 \wedge \dots \wedge \pi_k^* \omega_k $, where $ \pi_i : \man_1 \times \dots \times \man_k \ra \man_i $ is the projection on the $ i^\text{th} $ component.
+
+\begin{proposition}{Connected manifolds}{}
+  Let $ \man $ be a connected orientable smooth manifold. Then, $ \man $ has exactly two orientations, and if two orientations of $ \man $ agree at one point, they are equal.
+\end{proposition}
+
+\begin{proposition}{Codimension-$ 0 $ submanifolds}{orientation-codimension}
+  Let $ \man $ be an oriented smooth manifold, and let $ D \ssq \man $ be a codimension-$ 0 $ smooth submanifold. Then, the orientation of $ \man $ restricts to an orientation of $ D $, and if $ \omega $ is an orientation form on $ \man $, then $ \inc_D^* \omega $ is an orientation form on $ D $.
+\end{proposition}
+
+Let $ \man_1 , \man_2 $ be smooth $ n $-manifolds, with $ n \geq 1 $, and let $ f : \man_1 \ra \man_2 $ be a local diffeomorphism\footnotemark: $ f $ is \bctxt{orientation-preserving} if, for each $ p \in \man_1 $, the isomoprhism $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ takes oriented bases to oriented bases, while it is \bctxt{orientation-reversing} if it takes oriented bases to negatively oriented bases. If $ n = 0 $, instead, $ f $ is orientation-preserving if $ p $ and $ f(p) $ have the same orientation, and orientation-reversing if they have opposite orientation. The composition of orientation-preserving maps is orientation preserving.
+
+\footnotetext{A map $ f : \man_1 \ra \man_2 $ between smooth manifolds is a \emph{local diffeomorphism} if every $ p \in \man_1 $ has a neighbourhood $ U \in \tp(\man_1) $ such that $ f(U) \in \tp(\man_2) $ and $ f \vert_U : U \ra f(U) $ is a diffeomorphism.}
+
+\begin{proposition}{Pull-back orientation}{}
+  Let $ f : \man_1 \ra \man_2 $ be a local diffeomorphism between smooth manifolds. If $ \man_2 $ is oriented, then $ \man_1 $ has a unique orientation, called the \bcprop{pull-back orientation} by $ f $, such that $ f $ is orientation-preserving.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    For each $ p \in \man_1 $, there is a unique orientation on $ T_p\man_1 $ that makes the isomorphism $ \dd f_p : T_p\man_1 \ra T_{f(p)}\man_2 $ orientation-preserving, thus defining a pointwise orientation on $ \man_1 $. To see that thi is continuous, choose a smooth orientation form $ \omega \dfm{n}(\man_2) $ and note that $ f^* \omega $ is a smooth orientation form on $ \man_1 $: since this pointwise orientation on $ \man_1 $ is continuous, it is the unique orientation on $ \man_1 $ with respect to which $ f $ is orientation-preserving.
+  \end{proof}
+\end{proofbox}
+
+If $ \ori $ is the given orientation on $ \man_2 $, the pull-back orientation on $ \man_1 $ is denoted by $ f^* \ori $. It can be shown that if $ f : \man_1 \ra \man_2 $ and $ g : \man_2 \ra \man_3 $ are local diffeomorphisms and $ \ori $ is an orientaion on $ \man_3 $, then the pull-back orientation on $ \man_1 $ is $ (g \circ f)^* \ori = f^*(g^* \ori) $.
+
+\begin{proposition}{Parallelizability and orientation}{}
+  Every parallelizable smooth manifold is orientable.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Suppose $ \man $ is parallelizable, i.e. it admits a global smooth frame $ (E_1 , \dots , E_n) $. Define a pointwise orientation on $ \man $ by setting $ (E_1\vert_p , \dots , E_n\vert_p) $ to be positively oriented at each $ p \in \man $: this is clearly continuous, since every $ p \in \man $ is in the domain of the global oriented frame $ (E_i) $, hence it is an orientation on $ \man $.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Orientation of hypersurfaces}
+
+If $ \man $ is an oriented smooth manifold and $ S $ is a smooth submanifold of $ \man $, then $ S $ might not inherit an orientation from $ \man $, even if $ S $ is embedded: indeed, it is not sufficient to restrict an orientation form from $ \man $ to $ S $, since the restriction of a top form to a lower-dimensional manifold must necessarily vanish (and the case of codimension-$ 0 $ submanifolds is treated in \pref{prop:orientation-codimension}). However, with an additional restriction, it is possible to induce an orientation on a hypersurface (a codimension-$ 1 $ submanifold).
+
+Let $ \man $ be a smooth manifold and $ S \ssq \man $ an immersed or embedded submanifold. A \emph{vector field along $ S $} is a section of the ambient tangent bundle $ T\man \vert_S $ (see \figref{fig:vec-sub}), i.e. a continuous map $ N : S \ra T\man $ such that $ N_p \in T_p\man $ for each $ p \in S $ (do not confuse this with vector fields \emph{on} $ S $, i.e. sections of $ TS $). In general, any vector field on $ \man $ restricts to a vector field along $ S $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{vec-sub.png}
+  \caption{A vector field along a submanifold.}
+  \label{fig:vec-sub}
+\end{figure}
+
+\begin{proposition}{Orientation of hypersurface}{orientation-normal}
+  Let $ \man $ be an oriented smooth $ n $-manifold, $ S \ssq \man $ an immersed hypersurface and $ N $ a vector field along $ S $ that is nowhere tangent to $ S $. Then, $ S $ has a unique orientation such that, for each $ p \in S $, $ (E_1 , \dots , E_{n-1}) $ is an oriented basis of $ T_pS $ if and only if $ (N_p , E_1 , \dots , E_{n-1}) $ is an oriented basis of $ T_p\man $. If $ \omega $ is an orientation form on $ \man $, then $ \inc_S^*(\ip_N \omega) $ is an orientation form on $ S $ with respect to this orientation.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \omega $ be an orientation form on $ \man $. Then, $ \sigma = \inc_S^*(\ip_N \omega) $ is an $ (n-1) $-form on $ S $, as the pull-back $ \inc_S^* $ is just a restriction on vectors tangent to $ S $. If $ \sigma $ is nowhere vanishing, then it is an orientation form on $ S $. To show this, consider a basis $ (E_1 , \dots , E_{n-1}) $ of $ T_pS $: since $ N $ is nowhere tangent to $ S $, then $ (N_p , E_1 , \dots , E_{n-1}) $ is a basis of $ T_p\man $. The fact that $ \omega $ is non-vanishing implies:
+    \begin{equation*}
+      \sigma_p(E_1 , \dots , E_{n-1}) = \omega_p(N_p , E_1 , \dots , E_{n-1}) \neq 0
+    \end{equation*}
+    Moreover, since $ \sigma_p(E_1 , \dots , E_{n-1}) $ and $ \omega_p(N_p , E_1 , \dots , E_{n-1}) $ are equal, they have the same sign, hence $ \sigma $ is the desired orientation form.
+  \end{proof}
+\end{proofbox}
+
+\begin{example}{Standard orientation on spheres}{}
+  $ \Sn{n} $ is a hypersurface in $ \R^{n+1} $ to which the vector field $ N = x^i \pa_i $ is nowhere tangent, so by \pref{prop:orientation-normal} $ N $ induces an orientation on $ \Sn{n} $, called the \bcex{standard orientation}: this shows that all spheres are orientable.
+\end{example}
+
+Not every hypersurface admits a nowhere tangent vector field, however a sufficient condition holds in many cases.
+
+\begin{lemma}{Orientation of regular level set}{level-set-orientation}
+  Let $ \man $ be an oriented smooth manifold, and let $ S \ssq \man $ be a regular level set of a smooth function $ f : \man \ra \R $. Then, $ S $ is orientable.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Choose any Riemannian metric on $ \man $, which always exists by \tref{th:riemann-existence}, and let $ N = \grad f \vert_S $. The hypotheses imply that $ N $ is a nowhere tangent vector field along $ S $, so the result follows from \pref{prop:orientation-normal}.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Orientation of boundaries}
+
+Recall that, if $ \man $ is a smooth manifold with boundary, then $ \pa \man $ is an embedded hypersurface in $ \man $. Given $ p \in \man $, vectors in $ T_p\man $ can be separated into three classes: those tangent to the boundary, those pointing inward and those pointing outward. Formally, if $ p \in \man $, a vector $ v \in T_p\man - T_p \pa \man $ is said to be \emph{inward-pointing} if for some $ \varepsilon > 0 $ there exists a smooth curve $ \gamma : [0,\varepsilon) \ra \man $ such that $ \gamma(0) = p $ and $ \gamma'(0) = p $, and it is \emph{outward-pointing} if such curve has domain $ (-\varepsilon,0] $ (see \figref{fig:inw-p}).
+
+\begin{lemma}{Characterization of tangent vectors to a boundary}{}
+  Let $ \man $ be a smooth $ n $-manifold with boundary, $ p \in \pa \man $ and $ (x^i) $ any smooth boundary coordinates in a neighbourhood of $ p $. The inward-pointing vectors in $ T_p\man $ are precisely those with positive $ x^n $-component, the outward-pointing ones those with negative $ x^n $-component and the ones tangent to $ \pa \man $ those with zero $ x^n $-component.
+\end{lemma}
+
+Therefore, $ T_p\man $ with $ p \in \man $ is the disjoint union of $ T_p \pa \man $, of the set of inward-pointing vectors and the set of outward-pointing vectors. Moreover, $ v \in T_p\man $ is inward-pointing if and only if $ -v $ is outward-pointing.
+Since an outward-pointing vector field is nowhere tangent to $ \pa \man $, it determines an orientation on $ \pa \man $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{inward-pointing.png}
+  \caption{Inward-pointing vector.}
+  \label{fig:inw-p}
+\end{figure}
+
+\begin{proposition}{Induced orientation on boundary}{induced-orientation}
+  Let $ \man $ be a smooth oriented $ n $-manifold with boundary, with $ n \geq 1 $. Then, $ \pa \man $ is orientable, and all outward-pointing vector fields along $ \pa \man $ determine the same orientation on $ \pa \man $, known as the \emph{induced} or \bcprop{Stokes orientation}.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ \omega $ be an orientation form on $ \man $, and let $ N $ be a smooth outward-pointing vector field along $ \pa \man $. The $ (n-1) $-form $ \inc_{\pa \man}^* (\ip_N \omega) $ is an orientation on $ \pa \man $ by \pref{prop:orientation-normal}, so $ \pa \man $ is orientable.
+
+    WTS this orientation is independent of the choice of $ N $. Let $ p \in \man $, and let $ (x^i) $ be smooth boundary coordinates on $ M $ on a neighbourhood of $ p $. If $ N $ and $ \tilde{N} $ are two outward-pointing vector fields along $ \pa \man $, the last components $ N^n(p) $ and $ \tilde{N}^n(p) $ are both negative, hence the transition matrix between bases $ (N_p , \pa_1 \vert_p , \dots , \pa_{n-1}\vert_p) $ and $ (\tilde{N}_p , \pa_1 \vert_p , \dots , \pa_{n-1}\vert_p) $ of $ T_p\man $ has determinant $ N^n(p) / \tilde{N}^n(p) > 0 $. Therefore, both bases determine the same orientation on $ T_p\man $, so $ N $ and $ \tilde{N} $ determine the same orientation on $ T_p \pa\man $.
+  \end{proof}
+\end{proofbox}
+
+The most useful way of describing submanifolds is by means of local parametrizations.
+
+\begin{lemma}{Orientation-preserving local parametrization}{local-parametrization-orientation}
+  Let $ \man $ be a smooth oriented $ n $-manifold with boundary. Suppose $ U \in \tp(\R^{n-1}) $ and $ F : (a,b] \times U \ra \man $ is a smooth embedding, with $ a,b \in \R : a < b $, such that $ F : \{b\} \times U \ra \pa \man $ is an embedding. Then, the parametrization $ f : U \ra \pa \man $ given by $ f(x) = F(b,x) $ is orientation-preserving for $ \pa \man $ if and only if $ f $ is orientation-preserving for $ \man $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ x \in U $ arbitrary, and let $ p = f(x) = F(b,x) \in \pa \man $ (see \figref{fig:loc-par-or}). Since $ F $ is an embedding, the linear map $ \dd F_{(b,x)} : (T_b\R \oplus T_x\R^{n-1}) \ra T_p\man $ is bijective. The restriction of $ \dd F_{(b,x)} $ to $ T_x\R^{n-1} $ reduces to $ \dd f_x : T_x\R^{n-1} \ra T_p \pa \man $, which is already bijective, hence $ \dd F(\frac{\pa}{\pa s} \vert_{(b,x)}) \notin T_p \pa \man $, where $ s $ is the coordinate on $ (a,b] $. Then, define the smooth curve $ \gamma : [0,\varepsilon) \ra \man $ as:
+    \begin{equation*}
+      \gamma(t) = F(b-t , x)
+    \end{equation*}
+    This curve satisfies $ \gamma(0) = p $ and $ \gamma'(0) = \dd F(\frac{\pa}{\pa s} \vert_{(b,x)}) \notin T_p \pa \man $, therefore $ - \dd F(\frac{\pa}{\pa s} \vert_{(b,x)}) $ is inward-pointing, so $ \dd F(\frac{\pa}{\pa s} \vert_{(b,x)}) $ is outward-pointing. $ F $ is orientation-preserving for $ \man $ if and only if $ (\dd F(\frac{\pa}{\pa s}) , \dd F(\frac{\pa}{\pa x^1}) , \dots , \dd F(\frac{\pa}{\pa x^{n-1}})) $ is oriented in $ T\man $, i.e. (by \pref{prop:induced-orientation}) if and only if $ (\dd F(\frac{\pa}{\pa x^1}) , \dots , \dd F(\frac{\pa}{\pa x^{n-1}})) $ is oriented in $ T \pa\man $: this is true if and only if $ (\dd f(\frac{\pa}{\pa x^1}) , \dots , \dd f(\frac{\pa}{\pa x^{n-1}})) $ is oriented in $ T \pa \man $, i.e. if and only if $ f $ is oriention-preserving for $ \pa \man $.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{loc-par-or.png}
+  \caption{Orientation criterion for a boundary parametrization.}
+  \label{fig:loc-par-or}
+\end{figure}
+
+\begin{example}{Spherical coordinates}{}
+  Spherical coordinates yield a smooth local parametrization of $ \Sn{2} $ as follows. Let $ U = (0,\pi) \times (0,2\pi) \ssq \R^2 $ and $ X : U \ra \R^3 $ defined as:
+  \begin{equation*}
+    X(\varphi,\vartheta) = (\sin \varphi \cos \vartheta , \sin \varphi \sin \vartheta , \cos \vartheta)
+  \end{equation*}
+  To check whether this preserves or reverses orientation, notice that $ X $ is the restriction of the $ 3 $-dimensional spherical coordinate parametrization $ f : (0,1] \times U \ra \Dn{3} $ defined as:
+  \begin{equation*}
+    f(\varrho , \varphi , \vartheta) = (\varrho \sin \varphi \cos \vartheta , \varrho \sin \varphi \sin \vartheta , \varrho \cos \varphi)
+  \end{equation*}
+  Clearly $ X(\varphi , \vartheta) = f(q , \varphi , \vartheta) $ and, by direct computation, $ \jac{f}(\varrho , \varphi , \vartheta) = \varrho^2 \sin \varphi $ is positive on $ (0,1] \times U $. Therefore, by \lref{lemma:local-parametrization-orientation}, $ X $ is orientation-preserving.
+\end{example}
+
+\subsubsection{Riemannian volume form}
+
+Let $ (\man,g) $ be a Riemannian $ n $-manifold, with $ n \leq 1 $. By the Gram--Schmidt algorithm, there is a smooth orthonormal frame $ (E_1 , \dots , E_n) $ in a neighbourhood of each point of $ \man $, therefore it is always possible to find an oriented orthonormal frame in a neighbourhood of each point (replacing $ E_1 \mapsto -E_1 $ if necessary).
+
+\begin{proposition}{Riemannian volume form}{}
+  Let $ (\man,g) $ be an oriented Riemannian $ n $-manifold, with $ n \geq 1 $. There is a unique smooth orientation for $ \omega_g \in \df{n} $, called the \bcprop{Riemannian volume form}, such that:
+  \begin{equation}
+    \omega_g (E_1 , \dots , E_n) = 1
+    \label{eq:riemannian-volume-form-def}
+  \end{equation}
+  for every local oriented orthonormal frame $ (E_i) $ on $ \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, suppose such a form $ \omega_g \in \df{n} $ exists. If $ (E_1 , \dots , E_n) $ is any local oriented orthonormal frame on $ U \in \tp(\man) $ and $ (\varepsilon^1 , \dots , \varepsilon^n) $ is its dual frame, the volume form can be written as $ \omega_g = f \, \varepsilon^1 \wedge \dots \wedge \varepsilon^n $ on $ U $, for some $ f \in \cfk{\infty}(U) $: then, \eref{eq:riemannian-volume-form-def} reduces to $ f \equiv 1 $, so:
+    \begin{equation*}
+      \omega_g = \varepsilon^1 \wedge \dots \wedge \varepsilon^n
+    \end{equation*}
+    Therefore, such a form is uniquely determined.
+
+    To prove existence, define $ \omega_g \in \df{n} $ in a neighbourhood of each point by $ \omega_g = \varepsilon^1 \wedge \dots \wedge \varepsilon^n $, so WTS this definition is independent of the choice of oriented orthonormal frame. If $ (\tilde{E}_1 , \dots , \tilde{E}_n) $ is another oriented orthonormal frame with dual coframe $ (\tilde{\varepsilon}^1 , \dots , \tilde{\varepsilon}^n) $, let $ \tilde{\omega}_g = \tilde{\varepsilon}^1 \wedge \dots \wedge \tilde{\varepsilon}^n $. The transformation between these smooth orthonormal frames can be written as:
+    \begin{equation*}
+      \tilde{E}_i = A_i^j E_j
+    \end{equation*}
+    for some matrix of smooth functions $ [A_i^j] $. Since these frames are both orthonormal, $ [A_i^j](p) \in \On{n} $ for each $ p \in \man $, so $ \det [A_i^j] = \pm 1 $, and the fact that these frames are consistently oriented restricts to the positive sign. Therefore:
+    \begin{equation*}
+      \omega_g(\tilde{E}_1 , \dots , \tilde{E}_n) = \det [\varepsilon^j(\tilde{E}_i)] = \det [A_i^j] = 1 = \tilde{\omega}_g(\tilde{E}_1 , \dots , \tilde{E}_n)
+    \end{equation*}
+    thus $ \omega_g = \tilde{\omega}_g $. Defining such $ \omega_g $ in a neighbourhood of each point hence yields a global smooth $ n $-form which satisfies \eref{eq:riemannian-volume-form-def}.
+  \end{proof}
+\end{proofbox}
+
+Moreover, if $ (\man , g) $ and $ (\tilde{\man} , \tilde{g}) $ are two positive-dimensional Riemannian manifolds and $ f : \man \ra \tilde{\man} $ is a local isometry, it can be shown that $ f^* \omega_{\tilde{g}} = \omega_g $.
+
+Although the expression of the Riemannian form with respect to an oriented orthonormal frame is particularly simple, it is more useful to express it in smooth coordinates.
+
+\begin{proposition}{Coordinate expression of Riemannian form}{}
+  Let $ (\man,g) $ be an oriented Riemannian $ n $-manifold, with $ n \geq 1 $, and let $ (x^i) $ be any oriented smooth coordinates. Then, the local expression of the Riemannian volume form is:
+  \begin{equation}
+    \omega_g = \sqrt{\det [g_{ij}]} \, \dd x^1 \wedge \dots \wedge \dd x^n
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ (U,(x^i)) $ be an oriented smooth chart on $ \man $, and let $ p \in U $. In these coordinates $ \omega_g = f \, \dd x^1 \wedge \dots \wedge \dd x^n $ for some positive $ f \in \cm $. Let $ (E_i) $ be any smooth oriented orthonormal frame on a neighbourhood of $ p $, and let $ (\varepsilon^i) $ be the dual coframe, so that the coordinate frame can be written as:
+    \begin{equation*}
+      \frac{\pa}{\pa x^i} = A_i^j E_j
+    \end{equation*}
+    Then, by direct computation:
+    \begin{equation*}
+      f = \omega_g \left( \frac{\pa}{\pa x^1} , \dots , \frac{\pa}{\pa x^n} \right) = \varepsilon^1 \wedge \dots \wedge \varepsilon^n \left( \frac{\pa}{\pa x^1} , \dots , \frac{\pa}{\pa x^n} \right) = \det \left[ \varepsilon^j \left( \frac{\pa}{\pa x^i} \right) \right] = \det \mt{A}
+    \end{equation*}
+    On the other hand:
+    \begin{equation*}
+      g_{ij} = \left\langle \frac{\pa}{\pa x^i} , \frac{\pa}{\pa x^j} \right\rangle_g = \left\langle A_i^k E_k , A_j^l E_l \right\rangle_g = A_i^k A_j^l \braket{E_k , E_l}_g = \sum_{k = 1}^n A_i^k A_j^k = [\mt{A}\tsp \mt{A}]_{ij}
+    \end{equation*}
+    Therefore:
+    \begin{equation*}
+      \det [g_{ij}] = \det (\mt{A}\tsp \mt{A}) = (\det \mt{A})^2
+    \end{equation*}
+    from which it follows that $ f = \det \mt{A} = \pm \sqrt{\det [g_{ij}]} $. Since both frames $ (\pa_i) $ and $ (E_i) $ are oriented, the sign must be positive.
+  \end{proof}
+\end{proofbox}
+
+An expression which holds for Lorentzian manifolds too is found setting $ \sqg \equiv \sqrt{\abs{\det [g_{ij}]}} $, so that the Riemannian form is expressed as:
+\begin{equation}
+  \omega_g = \sqg \, \dd x^1 \wedge \dots \wedge \dd x^n
+\end{equation}
+
+Let $ (\man,g) $ be an oriented Riemannian manifold, and let $ S \ssq \man $ be an immersed hypersurface. Any unit normal vector field along $ S $ is nowhere tangent to $ S $, so it determines an orientation on $ S $ by \pref{prop:orientation-normal}.
+
+\begin{proposition}{Induced volume form on immersed hypersurface}{hypersurface-volume-form}
+  Let $ (\man,g) $ be an oriented Riemannian manifold, let $ S \ssq \man $ be an immersed hypersurface, and let $ \tilde{g} $ denote the induced metric on $ S $. If $ N $ is a smooth unit normal vector field along $ S $, the volume form of $ (S,\tilde{g}) $ with respect to the orientation of $ S $ determined by $ N $ is:
+  \begin{equation}
+    \omega_{\tilde{g}} = \inc_S^*(\ip_N \omega_g)
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \pref{prop:orientation-normal}, the $ (n-1) $-form $ \inc_S^*(\ip_N \omega_g) $ is an orientation form for $ S $: WTS this is the volume form for the induced Riemannian metric on $ S $. To prove this, it suffices to show that it gives $ 1 $ whenever it is applied to an oriented orthonormal frame of $ S $, thus let $ (E_1 , \dots , E_{n-1}) $ be such a frame. At each $ p \in S $, the basis $ (N_p , E_1 \vert_p , \dots , E_{n-1} \vert_p) $ is orthonormal and oriented for $ T_p\man $ (by definition of orientation determined by $ N $), thus:
+    \begin{equation*}
+      \inc_S^*(\ip_N \omega)(E_1 , \dots , E_{n-1}) = \omega_g(N , E_1 , \dots , E_{n-1}) = 1
+    \end{equation*}
+    which concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+A particularly important case is that of Riemannian manifold with boundaries.
+
+\begin{proposition}{Unit normal vector along boundary}{}
+  Let $ \man $ be a Riemannian manifold with boundary. There is a unique smooth outward-pointing unit normal vector field $ N $ along $ \pa \man $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, prove uniqueness. At any point $ p \in \pa \man $, the subspace $ (T_p \pa \man)^\perp \ssq T_p\man $ is $ 1 $-dimensional, so there are exactly two unit vectors at $ p $ that are normal to $ \pa \man $. Since any unit normal vector $ N $ is nowhere tangent to $ \pa \man $, it must have non-zero $ x^n $-component in any smooth boundary chart, thus exactly one of the two choices of unit normal vector has negative $ x^n $-component, which is equivalent to being outward-pointing.
+
+    Now, prove existence. Let $ f : \man \ra \R $ a boundary-defining function\footnotemark for $ \man $, and let $ N $ be the restriction to $ \pa \man $ of the unit normal vector $ - \grad f / \norm{\grad f}_g $: since $ \dd f \neq 0 $ on $ \pa \man $, $ N $ is well-defined and smooth on $ \pa \man $. Then, it can be shown that $ N $ is normal to $ \pa \man $ and outward-pointing, since $ N(f) = - \braket{\grad f , \grad f}_g / \norm{\grad f}_g = - \norm{\grad f}_g < 0 $.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{If $ \man $ is a smooth manifold with boundary, a \emph{boundary-defining function} for $ \man $ is a smooth function $ f : \man \ra \R^+_0 $ such that $ f^{-1}(0) = \pa \man $ and $ \dd f_p \neq 0 $ for all $ p \in \pa \man $, e.g. $ f(x) = 1 - \norm{x}^2 $ for $ \Dn{n} $. Every smooth manifold with boundary admits a boundary-defining function.}
+
+By \pref{prop:hypersurface-volume-form}, if $ (\man , g) $ is an oriented Riemannian manifold with boundary and $ \tilde{g} $ is the induced Riemannian metric on $ \pa \man $, the the volume form of $ \tilde{g} $ is $ \omega_{\tilde{g}} = \inc_{\pa \man}^* (\ip_N \omega_g) $, where $ N $ is the outward-pointing unit norm vector field along $ \pa \man $.
+
+\subsection{Integration on manifolds}
 
 
 
