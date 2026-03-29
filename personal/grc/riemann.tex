@@ -490,6 +490,7 @@ with $ IJ \equiv (i_1 , \dots , i_k , j_1 , \dots , j_l) $, i.e. a concatenation
     \item \label{item:pwp-3} (anticommutativity) for $ \omega \in \lv{k}(V) $ and $ \eta \in \lv{l}(V) $:
       \begin{equation}
         \omega \wedge \eta = (-1)^{kl} \eta \wedge \omega
+        \label{eq:form-skew-symmetry}
       \end{equation}
     \item \label{item:pwp-4} if $ (\varepsilon^i) $ is a basis of $ V^* $ and $ I = (i_1 , \dots , i_k) $ is a multi-index, then:
       \begin{equation}
@@ -669,6 +670,7 @@ where $ \dd \omega_J $ is the differential of the component function $ \omega_J 
     \item \label{item:peed-2} if $ \omega \in \dfm{k}(U) $ and $ \eta \in \dfm{l}(U) $, with $ U \in \tp(\R^n) $, then:
       \begin{equation}
         \dd (\omega \wedge \eta) = \dd \omega \wedge \eta + (-1)^k \omega \wedge \dd \eta
+        \label{eq:ext-der-prod-rule}
       \end{equation}
     \item \label{item:peed-3} $ \dd \circ \dd \equiv 0 $;
     \item \label{item:peed-4} $ \dd $ commutes with pull-backs, i.e. given a smooth map $ f : U \ra V $, with $ U \in \tp(\R^n) $ and $ V \in \tp(\R^m) $, and $ \omega \in \dfm{k}(V) $, then:
@@ -782,7 +784,7 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
 
 \eref{eq:tensor-lie-der} applies to differential forms too. However, the Lie derivative takes a particularly simple form on $ \dft $ due to the exterior derivative.
 
-\begin{theorem}{Cartan's theorem}{}
+\begin{theorem}{Cartan's theorem}{cartan}
   Let $ \man $ be a smooth $ n $-manifold. Then, for any $ V \in \xm $ and $ \omega \in \dft $:
   \begin{equation}
     \ld_V \omega = (\ip_V \circ \dd + \dd \circ \ip_V) \omega
@@ -1032,7 +1034,7 @@ The most useful way of describing submanifolds is by means of local parametrizat
   \label{fig:loc-par-or}
 \end{figure}
 
-\begin{example}{Spherical coordinates}{}
+\begin{example}{Spherical coordinates}{spherical-coordinates}
   Spherical coordinates yield a smooth local parametrization of $ \Sn{2} $ as follows. Let $ U = (0,\pi) \times (0,2\pi) \ssq \R^2 $ and $ X : U \ra \R^3 $ defined as:
   \begin{equation*}
     X(\varphi,\vartheta) = (\sin \varphi \cos \vartheta , \sin \varphi \sin \vartheta , \cos \vartheta)
@@ -1113,6 +1115,7 @@ Although the expression of the Riemannian form with respect to an oriented ortho
 An expression which holds for Lorentzian manifolds too is found setting $ \sqg \equiv \sqrt{\abs{\det [g_{ij}]}} $, so that the Riemannian form is expressed as:
 \begin{equation}
   \omega_g = \sqg \, \dd x^1 \wedge \dots \wedge \dd x^n
+  \label{eq:volume-form}
 \end{equation}
 
 Let $ (\man,g) $ be an oriented Riemannian manifold, and let $ S \ssq \man $ be an immersed hypersurface. Any unit normal vector field along $ S $ is nowhere tangent to $ S $, so it determines an orientation on $ S $ by \pref{prop:orientation-normal}.
@@ -1154,12 +1157,349 @@ By \pref{prop:hypersurface-volume-form}, if $ (\man , g) $ is an oriented Rieman
 
 \subsection{Integration on manifolds}
 
+To introduce a coordinate-independent notion of integration, first note that there is no way to integrate $ \R $-values functions in a coordinate-independent way on a manifold. Indeed, given a closed ball $ B \ssq C $ and $ f : B \ra \R $ the constant function $ f \equiv 1 $, then:
+\begin{equation*}
+  \int_B \volf \, f = \Vol(B)
+\end{equation*}
+which is clearly not invariant under coordinate transformations. To obtain a coordinate-independent integral on a $ k $-dimensional submanifold, differential $ k $-forms are needed.
 
+\subsubsection{Integration of differential forms}
 
+Recall that a \bctxt{domain of integration} in $ \R^n $ is a bounded subset whose boundary has measure zero. Let $ D \ssq \R^n $ be a domain of integration, and let $ \omega $ be a continuous $ n $-form on $ \overline{D} $: any such form can be written as $ \omega = f \, \dd x^1 \wedge \dots \wedge \dd x^n $ for some continuous function $ f : \overline{D} \ra \R $, hence the \emph{integral} of $ \omega $ over $ D $ is defined to be:
+\begin{equation*}
+  \int_D \omega = \int_D \volf \, f
+\end{equation*}
+In simple terms, the integral is computed by just ``erasing the wedges". In a more general way, if $ U \in \tp(\R^n) $ (or $ \U^n $) and $ \omega $ is a compactly supported $ n $-form on $ U $, then:
+\begin{equation*}
+  \int_U \omega = \int_D \omega
+\end{equation*}
+where $ D \ssq \R^n $ (or $ \U^n $) is any domain of integration such that $ \supp \omega \ssq D $, and $ \omega $ is extended to be zero on the complement of its support. This definition is independent of the domain $ D $ chosen.
 
+\begin{proposition}{Orientation and integration}{orientation-integration}
+  Let $ D , E \in \tp(\R^n) $ (or $ \U^n $) be domain of integration, and let $ f : \overline{D} \ra \overline{E} $ be a smooth map that restricts to an orientation-preserving or reversing diffeomorphism from $ D $ to $ E $. If $ \omega $ is an $ n $-form on $ \overline{E} $, then:
+  \begin{equation*}
+    \int_D f^* \omega = \pm \int_E \omega
+  \end{equation*}
+  with $ + $ if $ f $ is orientation-preserving and $ - $ if it is orientation-reversing.
+\end{proposition}
 
+\begin{proofbox}
+  \begin{proof}
+    Let $ (y^i) $ denote standard coordinates on $ E $ and $ (x^i) $ those on $ D $. Then, writing $ \omega = g \, \dd y^1 \wedge \dots \wedge \dd y^n $ on $ E $ and recalling \eref{eq:jacobian}, changing variables in the integral with $ f $ yields:
+    \begin{equation*}
+      \int_E \omega = \int_E \volf \, g = \int_D \volf \, \abs{\det \jac{f}} (g \circ f) = \pm \int_D \volf \, (g \circ f) (\det \jac{f}) \dd x^1 \wedge \dots \wedge \dd x^n = \int_D f^* \omega
+    \end{equation*}
+    with $ + $ if $ f $ is orientation-preserving and $ - $ if it is orientation-reversing.
+  \end{proof}
+\end{proofbox}
 
+This result also extends to compactly supported $ n $-forms defined on open subsets.
 
+\begin{proposition}{Orientation and integration}{orientation-integration-compact}
+  Let $ U,V \in \tp(\R^n) $ (or $ \U^n $), and let $ f : U \ra V $ an orientation-preserving or reversing diffeomorphism. If $ \omega $ is a compactly supported $ n $-form on $ V $, then:
+  \begin{equation*}
+    \int_V \omega = \pm \int_U f^* \omega
+  \end{equation*}
+  with $ + $ if $ f $ is orientation-preserving and $ - $ if it is orientation-reversing.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ E $ be an open domain of integration such that $ \supp \omega \ssq E \ssq \overline{E} \ssq V $, which always exists by the following lemma.
+
+    \begin{lemma}{Compact subsets and open domains}{}
+      Let $ U \in \tp(\R^n) $ (or $ \U^n $) and $ K \ssq U $ compact. Then, there is an open domain of integration $ D $ such that $ K \ssq D \ssq \overline{D} \ssq U $.
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        For each $ p \in K $, there is an open ball or half-ball containing $ p $ whose closure is contained in $ U $: by compactness, finitely many such sets $ B_1 , \dots , B_m $ cover $ K $. Since the boundary of an open ball is a codimension-$ 1 $ submanifold and since the boundary of an half-ball is contained in the union of two such submanifolds, the boundary of each has measure zero by \cref{cor:sard-cor-2}, hence $ D = B_1 \cup \dots \cup B_m $ is the required domain of integration.
+      \end{proof}
+    \end{proofbox}
+
+    Since diffeomorphisms take interiors to interiors, boundaries to boundaries and measure-zero sets to measure-zero sets, $ D = f^{-1}(E) \ssq U $ is an open domain of integration containing $ \supp f^* \omega $, so the result follows from \pref{prop:orientation-integration}.
+  \end{proof}
+\end{proofbox}
+
+With these results on Euclidean integration, it is possible to generalize the integration of differential forms to manifolds.
+
+\begin{definition}{Integral over manifold}{integral-over-manifold}
+  Let $ \man $ be an oriented smooth $ n $-manifold, and let $ \omega $ be an $ n $-form over $ \man $. If $ \omega $ is compactly supported in the domain of a single smooth chart $ (U,\varphi) $ that is either positively or negatively oriented, then the \bcdef{integral} of $ \omega $ over $ \man $ is defined as:
+  \begin{equation}
+    \int_\man \omega \defeq \pm \int_{\varphi(U)} (\varphi^{-1})^* \omega
+  \end{equation}
+  with $ + $ if the chart is positively oriented and $ - $ otherwise.
+
+  If, on the other hand, $ \omega $ is compactly supported in $ \man $, let $ \{U_i\} $ be a finite open cover of $ \supp \omega $ by domains of positively or negatively oriented smooth charts, and let $ \{\psi_i\} $ be a subordinate smooth partition of unity. Then, the \bcdef{integral} of $ \omega $ over $ \man $ is defined as:
+  \begin{equation}
+    \int_\man \omega = \sum_i \int_\man \psi_i \omega
+    \label{eq:integration-manifold-pou}
+  \end{equation}
+\end{definition}
+
+Both these integrals are well-defined, since the former is defined as a Euclidean integral and does not depend on the choice of smooth chart $ U \supseteq \supp \omega $, while the latter is defined in terms of the former and does not depend on the choice of open cover or partition of unity.
+
+In the $ 0 $-dimensional case, a compactly supported $ 0 $-form is just an $ \R $-valued function which is non-zero only on finitely many points of a $ 0 $-dimensional manifold $ \man $, hence:
+\begin{equation*}
+  \int_\man f = \sum_{p \in \man} \pm f(p)
+\end{equation*}
+where the sign depends on the local orientation of each point.
+
+If $ S \ssq \man $ is an oriented immersed $ k $-dimensional submanifold and $ \omega $ is a $ k $-form over $ \man $ whose restriction to $ S $ is compactly supported, then:
+\begin{equation*}
+  \int_S \omega \equiv \int_S \inc_S^* \omega
+\end{equation*}
+where $ \inc_S : S \hookrightarrow \man $ is the inclusion map. In particular, if $ \man $ is a compact oriented smooth $ n $-manifold with boundary and $ \omega $ is a $ (n-1) $-form on $ \man $, then:
+\begin{equation*}
+  \int_{\pa \man} \omega \equiv \int_{\pa \man} \inc_{\pa \man}^* \omega
+\end{equation*}
+where the orientation of $ \pa \man $ is always understood to be the induced orientation.
+
+\begin{lemma}{Properties of integration of forms}{pif}
+  Let $ \man , \man' $ be non-empty oriented smooth $ n $-manifolds, and let $ \omega , \eta $ be compactly supported $ n $-forms on $ \man $. Then:
+  \begin{enumerate}
+    \item \label{pif-1} (linearity) if $ a,b \in R $, then:
+      \begin{equation*}
+        \int_\man a \omega + b \eta = a \int_\man \omega + b \int_\man \eta
+      \end{equation*}
+    \item \label{pif-2} (orientation reversal) if $ -\man $ denoted $ \man $ with opposite orientation, then:
+      \begin{equation*}
+        \int_{-\man} \omega = \int_\man \omega
+      \end{equation*}
+    \item \label{pif-3} (positivity) if $ \omega $ is a positively oriented orientation form, then $ \int_\man \omega > 0 $;
+    \item \label{pif-4} (diffeomorphism invariance) if $ f : \man' \ra \man $ is an orientation-preserving of reversing diffeomorphism, then:
+      \begin{equation*}
+        \int_\man \omega = \pm \int_{\man'} f^* \omega
+      \end{equation*}
+      with $ + $ if $ f $ is orientation-preserving and $ - $ if it is orientation-reversing.
+  \end{enumerate}
+\end{lemma}
+
+The definition of integral of forms based on partitions of unity is convenient for theoretical purposes, but quite useless for actual computations: for these, it is much more convenient for separate the manifold into a finite number of pieces whose boundaries are sets of measure zero, and then compute the integral on each piece separately with local parametrizations.
+
+\begin{proposition}{Integration and local parametrizations}{integration-parametrization}
+  Let $ \man $ be an oriented smooth $ n $-manifold, and let $ \omega $ be a compactly supported $ n $-form on $ \man $. Suppose $ D_1 , \dots , D_k $ are open domains of integrations in $ \R^n $, and for each $ i = 1 , \dots , k $ let $ f_i : \overline{D}_i \ra \man $ be smooth maps satisfying:
+  \begin{enumerate}
+    \item $ f_i $ restricts to an orientation-preserving diffeomorphism from $ D_i $ onto some $ W_i \in \tp(\man) $;
+    \item $ W_i \cap W_j = \emptyset $ when $ i \neq j $;
+    \item $ \supp \omega \ssq \overline{W}_1 \cup \dots \cup \overline{W}_k $.
+  \end{enumerate}
+  Then:
+  \begin{equation}
+    \int_\man \omega = \sum_{i = 1}^k \int_{D_i} f_i^* \omega
+  \end{equation}
+\end{proposition}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{int-param.png}
+  \caption{Integration over local parametrizations.}
+  \label{fig:int-param}
+\end{figure}
+
+The hypotheses of \pref{prop:integration-parametrization} can be somewhat relaxed. The requirement that each map $ f_i $ is smooth on $ \overline{D}_i $ ensures that the boundaries of the image sets $ W_i $ have measure zero and that the pull-back forms $ f_i^* \omega $ are continuous on $ \overline{D}_i $. However, provided that the open subsets $ W_i $ together cover all of $ \man $ except for a measure-zero set, the maps $ f_i $ are allows to not extend smoothly to the boundary, thus interpreting the resulting integrals of unbounded forms either as improper Riemannian integrals or as Lebesgue integrals.
+
+\begin{example}{Integration on the $ 2 $-sphere}{}
+  Let $ \omega $ be the following $ 2 $-form on $ \R^3 $:
+  \begin{equation*}
+    \omega = x \, \dd y \wedge \dd z + y \, \dd z \wedge \dd x + z \, \dd x \wedge \dd y
+  \end{equation*}
+  Let $ D = (0,\pi) \times (0,2\pi) $ (open rectangle) and $ f : \overline{D} \ra \Sn{2} $ the spherical coordinate parametrization $ f(\varphi , \vartheta) = (\sin \varphi \cos \vartheta , \sin \varphi \sin \vartheta , \cos \varphi) $. By \exref{ex:spherical-coordinates}, $ f \vert_D $ is orientation preserving, so it satisfies the hypotheses of \pref{prop:integration-parametrization}. Note that:
+  \begin{equation*}
+    \begin{split}
+      f^* \dd x & = \cos \varphi \cos \vartheta \, \dd \varphi - \sin \varphi \sin \vartheta \, \dd \vartheta \\
+      f^* \dd y & = \cos \varphi \sin \vartheta \, \dd \varphi + \sin \varphi \cos \vartheta \, \dd \vartheta \\
+      f^* \dd z & = - \sin \varphi \, \dd \varphi
+    \end{split}
+  \end{equation*}
+  Therefore:
+  \begin{equation*}
+    \begin{split}
+      \int_{\Sn{2}} \omega
+      & = \int_D \big[ (- \sin^3 \sin \varphi \cos^2 \vartheta - \cos^2 \varphi \sin \varphi \sin^2 \vartheta ) \dd \vartheta \wedge \dd \varphi \\
+      & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad + (\sin^3 \varphi \sin^2 \vartheta + \cos^2 \varphi \sin \varphi \cos^2 \vartheta) \dd \varphi \wedge \dd \vartheta \big] \\
+      & = \int_D \sin \varphi \, \dd \varphi \wedge \dd \vartheta = \int_0^{2\pi} \dd \vartheta \int_0^\pi \dd \varphi \, \sin \varphi = 4\pi
+    \end{split}
+  \end{equation*}
+\end{example}
+
+It is now possible to prove the central theorem of integration on manifolds, which generalizs many classical results.
+
+\begin{theorem}{Stokes' theorem}{stokes}
+  Let $ \man $ be an oriented smooth $ n $-manifold with boundary, and let $ \omega \in \df{n-1} $ be compactly supported on $ \man $. Then:
+  \begin{equation}
+    \int_\man \dd \omega = \int_{\pa \man} \omega
+    \label{eq:stokes-th}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider first a special case: suppose $ \man = \U^n $. Then, since $ \omega $ has compact support, there exists $ R \in \R^+ $ such that $ \supp \omega \ssq A = [-R,R]^{n-1} \times [0,R] $ (see \figref{fig:stokes-th}). In the standard basis, $ \omega $ can be written as:
+    \begin{equation*}
+      \omega = \sum_{i = 1}^n \omega_i \dd x^1 \wedge \dots \wedge \dd x^{i-1} \wedge \dd x^{i+1} \wedge \dots \wedge \dd x^n
+    \end{equation*}
+    \begin{equation*}
+      \begin{split}
+        \implies \dd \omega
+        & = \sum_{i,j = 1}^n \frac{\pa \omega_i}{\pa x^j} \dd x^j \wedge \dd x^1 \wedge \dots \wedge \dd x^{i-1} \wedge \dd x^{i+1} \wedge \dots \wedge \dd x^n \\
+        & = \sum_{i = 1}^n (-1)^{i-1} \frac{\pa \omega_i}{\pa x^i} \dd x^1 \wedge \dots \wedge \dd x^n
+      \end{split}
+    \end{equation*}
+    Therefore, by direct computation:
+    \begin{equation*}
+      \begin{split}
+        \int_{\U^n} \dd \omega
+        & = \sum_{i = 1}^n (-1)^{i-1} \int_A \frac{\pa \omega_i}{\pa x^i} \dd x^1 \wedge \dots \wedge \dd x^n = \sum_{i = 1}^n (-1)^{i-1} \int_0^R \dd x^n \int_{-R}^R \dd x^{n-1} \dots \int_{-R}^R \dd x^1 \frac{\pa \omega^i}{\pa x^i} \\
+        & = \sum_{i = 1}^n (-1)^{i-1} \int_0^R \dd x^n \int_{-R}^R \dd x^{n-1} \dots \int_{-R}^R \dd x^1 \int_{-R}^R \dd x^i \frac{\pa \omega_i}{\pa x^i} + (i = n) \\
+        & = \sum_{i = 1}^n (-1)^{i-1} \int_0^R \dd x^n \int_{-R}^R \dd x^{n-1} \dots \int_{-R}^R \dd x^1 [\omega_i(x)]_{x^i = -R}^{x^i = R} + (i = n) = 0 + (i = n)
+      \end{split}
+    \end{equation*}
+    since $ R \in \R^+ $ can be chosen sufficiently large so that $ \omega \vert_{x^i = \pm R} = 0 $ (see \figref{fig:stokes-th}). The only term which might be non-zero is the $ i = n $ term:
+    \begin{equation*}
+      \begin{split}
+        \int_{\U^n} \dd \omega
+        & = (-1)^{n-1} \int_{-R}^R \dd x^{n-1} \dots \int_{-R}^R \dd x^1 \int_0^R \dd x^n \frac{\pa \omega_n}{\pa x^n} \\
+        & = (-1)^{n-1} \int_{-R}^R \dd x^{n-1} \dots \int_{-R}^R \dd x^1 [\omega_n(x)]_{x^n = 0}^{x^n = R} \\
+        & = (-1)^n \int_{-R}^R \dd x^{n-1} \dots \int_{-R}^R \dd x^1 \omega_n(x^1 , \dots , x^{n-1} , 0)
+      \end{split}
+    \end{equation*}
+    since, as above, $ \omega_n \vert_{x^n = R} = 0 $. Then, compute:
+    \begin{equation*}
+      \int_{\pa \U^n} \omega = \sum_{i = 1}^n \int_{A \cap \pa \U^n} \omega_i(x^1 , \dots , x^{n-1} , 0) \dd x^1 \wedge \dots \wedge \dd x^{i-1} \wedge \dd x^{i+1} \wedge \dots \wedge \dd x^n
+    \end{equation*}
+    Note that $ x^n = 0 $ on $ \pa \U^n $, hence the pull-back of $ \dd x^n $ to the boundary identically vanishes, and the above sum has only the $ i = n $ term which is non-zero:
+    \begin{equation*}
+      \int_{\pa \U^n} \omega = \int_{A \cap \pa \U^n} \omega_n(x^1 , \dots , x^{n-1} , 0) \dd x^1 \wedge \dots \wedge \dd x^{n-1}
+    \end{equation*}
+
+    \begin{observation}{Induced orientation on $ \pa \U^n $}{orientation-pa-un}
+      Consider $ \U^n $ with the standard orientation inherited by $ \R^n $, and identify $ \pa \U^n \cong \R^{n-1} $ under the correspondence $ (x^1 , \dots , x^{n-1} , 0) \lra (x^1 , \dots , x^{n-1}) $. The vector field $ - \pa_n $ is outward-pointing along $ \pa \U^n $, hence the standard coordinate frame on $ \R^{n-1} $ is positively oriented for $ \pa \U^n $ if and only if $ [-\pa_n , \pa_1 , \dots , \pa_{n-1}] $ is the standard orientation of $ \R^n $. This orientation satisfies:
+      \begin{equation*}
+        [-\pa_n , \pa_1 , \dots , \pa_{n-1}] = - [\pa_n , \pa_1 , \dots , \pa_{n-1}] = (-1)^n [\pa_1 , \dots , \pa_n]
+      \end{equation*}
+      Therefore, the induced orientation on $ \pa \U^n $ is equal to the standard orientation of $ \R^{n-1} $ when $ n $ is even, while it is opposite to the standard orientation when $ n $ is odd: in particular, the standard coordinates on $ \pa \U^n \cong \R^{n-1} $ are positively oriented if and only if $ n $ is even.
+    \end{observation}
+
+    By \obsref{obs:orientation-pa-un}, the standard coordinates $ (x^1 , \dots , x^{n-1}) $ are positively oriented on $ \pa \U^n $ when $ n $ is even and negatively oriented when $ n $ is odd, hence correctly:
+    \begin{equation*}
+      \int_{\U^n} \dd \omega = \int_{\pa \U^n} \omega
+    \end{equation*}
+
+    Next, consider $ \man = \R^n $. In this case $ \supp \omega \ssq A = [-R,R]^n $, hence the same computation as above shows that the left-hand side of Stokes' theorem vanishes, while the right-hand side vanishes too since $ \pa \R^n = \emptyset $.
+
+    Now, consider an arbitrary smooth manifold $ \man $ with boundary, and consider $ \omega \in \df{n-1} $ which is compactly supported in the domain of a single positively or negatively oriented smooth chart $ (U,\varphi) $. Assuming $ \varphi $ is a positively oriented boundary chart, by \dref{def:integral-over-manifold}:
+    \begin{equation*}
+      \int_\man \dd \omega = \int_{\U^n} (\varphi^{-1})^* \dd \omega = \int_{\U^n} \dd ((\varphi^{-1})^* \omega) = \int_{\pa \U^n} (\varphi^{-1})^* \omega
+    \end{equation*}
+    where the last equality follows from the computation above (with $ \pa \U^n $ assumed with the induced orientation). Since $ \dd \varphi $ takes outward-pointing vectors on $ \pa \man $ to outward-pointing vectors on $ \U^n $, it follows that $ \varphi \vert_{U \cap \pa \man} $ is an orientation-preserving diffeomorphism onto $ \varphi(U) \cap \pa \U^n $, and thus:
+    \begin{equation*}
+      \int_\man \dd \omega = \int_{\pa \U^n} (\varphi^{-1})^* \omega = \int_{\pa \man} \omega
+    \end{equation*}
+    For a negatively oriented smooth boundary chart, the argument applies verbatim with an additional negative sign on both sides of the equation. For an interior chart, the calculation is performed equivalently with $ \R^n $ in place of $ \U^n $.
+
+    Finally, let $ \omega \in \df{n-1} $ be arbitrarily compactly supported. Choosing a cover of $ \supp \omega $ by finitely many domains of positively or negatively oriented smooth charts $ \{U_i\} $ and choosing a subordinate smooth partition of unity $ \{\psi_i\} $, the preceding argument can be applied to $ \psi_i \omega $ for each $ i $:
+    \begin{equation*}
+      \begin{split}
+        \int_{\pa \man} \omega
+        & = \sum_i \int_{\pa \man} \psi_i \omega = \sum_i \int_\man \dd (\psi_i \omega) = \sum_i \int_\man \dd \psi_i \wedge \omega + \psi_i \dd \omega \\
+        & = \int_\man \dd \left( \sum_i \psi_i \right) \wedge \omega + \int_\man \left( \sum_i \psi_i \right) \omega = 0 + \int_\man \dd \omega
+      \end{split}
+    \end{equation*}
+    since $ \sum_i \psi \equiv 1 $.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{stokes-th.png}
+  \caption{Proof of Stokes' theorem.}
+  \label{fig:stokes-th}
+\end{figure}
+
+This result generalizes many classical integral results. For example, let $ \man $ be a smooth manifold and $ \gamma : [a,b] \ra \man $ a smooth embedding, so that $ S = \gamma([a,b]) $ is an embedded $ 1 $-submanifold with boundary in $ \man $. If $ S $ is given an orientation such that $ \gamma $ is orientation preserving, then for any $ f \in \cm $ Stokes' theorem states that:
+\begin{equation*}
+  \int_\gamma \dd f = \int_{[a,b]} \gamma^* \dd f = \int_S \dd f = \int_{\pa S} f = f(\gamma(b)) - f(\gamma(a))
+\end{equation*}
+which is just the fundamental theorem of line integrals. In particular, when $ \gamma : [a,b] \hookrightarrow \R $ is the inclusion map in $ \man = \R $, this is the fundamental theorem of calculus.
+
+\subsubsection{Manifolds with corners}
+
+Many applications of Stokes' theorem involve geometric objects such as triangles, squares or cubes which, although topological manifolds, are not smooth manifolds with boundary, since they have ``corners". It is therefore necessary to generalize Stokes' theorem to these manifolds. Let $ \rp^n $ be the model for this kind of corners:
+\begin{equation}
+  \rp^n \defeq \{(x^1 , \dots , x^n) \in \R^n : x^i \leq 0 \,\,\forall i = 1 , \dots , n\}
+\end{equation}
+It can be shown that $ \rp^n $ is homeomorphic to $ \U^n $. The boundary of $ \pa \rp^n $ in $ \R^n $ is the set of points at which at least one coordinate vanishes, while points at which more than one coordinate vanishes are called its \emph{corner points}.
+
+Given a topological $ n $-manifold $ \man $, a \bctxt{chart with corners} is a pair $ (U,\varphi) $ with $ U \in \tp(\man) $ and a homeomorphism $ \varphi : U \ra \varphi(U) \in \tp(\rp^n) $, as illustrated in \figref{fig:chart-corner}. Two charts with corners $ (U,\varphi) $ and $ (V,\psi) $ are smoothly compatible if the composite map $ \varphi \circ \psi^{-1} : \psi(U \cap V) \ra \varphi(U \cap V) $ is smooth, i.e. if it admits a smooth extension in an open neighbourhood of each point. A \emph{smooth structure with corners} on a topological manifold with boundary is a maximal collection of smoothly compatible interior charts and charts with corners whose domains cover $ \man $: a topological manifold with boundary equipped with a smooth structure with corners is a \bctxt{smooth manifold with corners}, and any chart with corners in said smooth structure with corners is a \emph{smooth chart with corners} on $ \man $.
+For example, any closed rectangle in $ \R^n $ is a smooth $ n $-manifold with corners.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{chart-corner.png}
+  \caption{A chart with corners.}
+  \label{fig:chart-corner}
+\end{figure}
+
+With the homeomorphism between $ \rp^n $ and $ \U^n $, charts with corners are topologically indistinguishable from boundary charts, thus from a topological point of view there is no difference between manifolds with boundary and manifolds with corners. The difference is in the smooth structure, because for $ \dim_\R \man > 1 $ the compatibility condition for charts with corners is different from that for boundary charts: since $ \rp^n = \U^1 $, smooth $ 1 $-manifolds with corners are no different from smooth manifolds with boundary.
+
+\begin{proposition}{Invariance of corner points}{}
+  Let $ \man $ be a smooth $ n $-manifold with corners, with $ n \geq 2 $, and let $ p \in \man $. If $ \varphi(p) $ is a corner point of $ \rp^n $ for some smooth chart with corners $ (U,\varphi) $, then the same is true for every such chart whose domain contains $ p $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ (U,\varphi) $ and $ (V,\psi) $ be smooth charts with corners such that $ \varphi(p) $ is a corner point by $ \psi(p) $ is not: WLOG assume $ \varphi(p) = (x^1 , \dots , x^k , 0 , \dots , 0) $, with $ k \leq n - 2 $. Then, $ \psi(V) $ contains an open subset of some $ (n-1) $-dimensional linear subspace $ S \ssq \R^n $, with $ \psi(p) \in S $: if $ \psi(p) \in \pa \rp^n $, take $ S $ to be the unique subspace defined by an equation of the form $ x^i = 0 $ that contains $ \psi(p) $, otherwise if $ \psi(p) $ is an interior point, and $ (n-1) $-dimensional subspaces containing $ \psi(p) $ works.
+
+    Let $ S' = S \cap \psi(U \cap V) $, and let $ \alpha : S' \ra \R^n $ be the restriction of $ \varphi \circ \psi^{-1} $ to $ S' $. Since $ \varphi \circ \psi^{-1} $ is a diffeomorphism from $ \psi(U \cap V) $ to $ \varphi(U \cap V) $, it follows that $ \psi \circ \varphi^{-1} \circ \alpha = \id_{S'} $, therefore $ \dd \alpha_{\psi(p)} $ is an injective linear map. Let $ T = \dd \alpha_{\psi(p)}(T_{\psi(p)}S) \ssq \R^n $: since $ T $ is $ (n-1) $-dimensional, it must contain a vector $ v $ such that one of the last two components, $ v^{n-1} $ or $ v^n $, is non-zero, otherwise $ T $ would be contained in a codimension-$ 2 $ subspace. Renumbering the coordinates and replacing $ v $ with $ -v $ if necessary, $ v^n < 0 $ can be assumed.
+
+    Now, let $ \gamma : (-\varepsilon , \varepsilon) \ra S $ be a smooth curve such that $ \gamma(0) = p $ and $ \dd \alpha(\gamma'(0)) = v $. Then, $ \alpha \circ \gamma(t) $ has negative $ x^n $ coordinate for small $ t > 0 $, which contradicts the fact that $ \alpha $ takes its values in $ \rp^n $ $ \absurd $
+  \end{proof}
+\end{proofbox}
+
+If $ \man $ is a smooth manifold with corners, a point $ p \in \man $ is called a \emph{corner point} if $ \varphi(p) $ is a corner point of $ \rp^n $ with respect to some (and hence every) smooth chart with corners $ (U,\varphi) $; similarly, $ p $ is a \emph{boundary point} if $ \varphi(p) \in \pa \rp^n $ with respect to some (and hence every) such chart.
+
+Every smooth manifold is also a smooth manifold with corners (with no corner points), but a smooth manifold with corners is a smooth manifold with boundary if and only if it has no corner points. On the contrary, the boundary of a smooth manifold with corners is not, in general, a smooth manifold with corners (e.g. the boundary of a cube). The boundary of $ \rp^n $ can, however, be expressed as the union of finitely many smooth manifolds with corners: $ \pa \rp^n = H_1 \cup \dots \cup H_n $, with:
+\begin{equation}
+  H_i \defeq \{(x^1 , \dots , x^n) \in \rp^n : x^i = 0\}
+  \label{eq:boundary-rp}
+\end{equation}
+which is an $ (n-1) $-dimensional smooth manifold with corners contained in the subspace defined by $ x^i = 0 $.
+
+To generalize Stokes' theorem, it is necessary to define integration on the boundary of a smooth manifold with corners: this needs to be defined separately since this boundary is not itself a smooth manifold with boundary. Let $ \man $ be an oriented smooth $ n $-manifold with corners, and suppose $ \omega $ is an $ (n-1) $-dimensional form on $ \pa \man $ that is compactly supported in the domain of a single oriented smooth chart with corners $ (U,\varphi) $. The integral of $ \omega $ over $ \pa \man $ is defined as:
+\begin{equation*}
+  \int_{\pa \man} \omega \defeq \sum_{i = 1}^n \int_{H_i} (\varphi^{-1})^* \omega
+\end{equation*}
+where each $ H_i $, defined in \eref{eq:boundary-rp}, is given the induced orientation as part of the boundary of the subset where $ x^i \geq 0 $. This means that $ \omega $ is integrated in coordinates over the codimension-$ 1 $ of the boundary. If $ \omega $ is instead compactly supported on $ \man $, the integral of $ \omega $ over $ \pa \man $ is defined piecing together with a partition of unity, just like \eref{eq:integration-manifold-pou}. In practice, one always uses \pref{prop:integration-parametrization}, which holds on compact oriented smooth manifolds with corners too.
+
+\begin{theorem}{Stokes' theorem on manifolds with corners}{stokes-corners}
+  Let $ \man $ be an oriented smooth $ n $-manifold with corners, and let $ \omega \in \df{n-1} $ be compactly supported on $ \man $. Then:
+  \begin{equation}
+    \int_\man \dd \omega = \int_{\pa \man} \omega
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof is identical to that of \tref{th:stokes}, with a few minor changes. By means of smooth charts and a partition of unity, the theorem can be reduced to two cases: $ \man = \R^n $ and $ \man = \rp^n $. The $ \R^n $ yields zero on both sides just as before. In the case of a chart with corners, $ \omega $ is supported on the cube $ [0,R]^n $, as illustrated in \figref{fig:stokes-corn}, hence as before:
+    \begin{equation*}
+      \begin{split}
+        \int_{\rp^n} \dd \omega
+        & = \sum_{i = 1}^n (-1)^{i-1} \int_0^R \dd x^n \dots \int_0^R \dd x^1 \frac{\pa \omega_i}{\pa x^i} = \sum_{i = 1}^n (-1)^{i-1} \int_0^R \dd x^n \dots \int_0^R \dd x^1 \int_0^R \dd x^i \frac{\pa \omega_i}{\pa x^i} \\
+        & = \sum_{i = 1}^n (-1)^{i-1} \int_0^R \dd x^n \dots \int_0^R \dd x^1 [\omega_i(x)]_{x^i = 0}^{x^i = R} \\
+        & = \sum_{i = 1}^n (-1)^i \int_0^R \dd x^n \dots \int_0^R \dd x^1 \omega_i(x^1 , \dots , 0 , \dots , x^n) = \sum_{i = 1}^n \int_{H_i} \omega = \int_{\pa \rp^n} \omega
+      \end{split}
+    \end{equation*}
+    where the $ (-1)^i $ factor has been absorbed into $ \omega $, since the induced orientation on $ H_i $ is $ (-1)^i $ times that of the standard coordinates $ [x^1 , \dots , x^{i-1} , x^{i+1} , \dots , x^n] $.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{stokes-corners.png}
+  \caption{Proof of Stokes' theorem on manifolds with corners.}
+  \label{fig:stokes-corn}
+\end{figure}
 
 
 

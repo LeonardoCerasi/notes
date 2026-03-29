@@ -1,271 +1,10 @@
 \selectlanguage{english}
 
-\section{Differential forms}
-
-\begin{definition}{$ p $-forms}{}
-  A \bcdef{$ p $-form} totally anti-symmetric $ (0,p) $ tensor. The set of all $ p $-forms over a manifold $ \mathcal{M} $ is denoted as $ \lm{p} $.
-\end{definition}
-
-\begin{lemma}[before upper = {\tcbtitle}]{Independent components of $ p $-forms}{}
-  \begin{equation}
-    \dim_{\R} \lm{p} = \binom{n}{p}
-  \end{equation}
-\end{lemma}
-
-The maximum degree of differential forms thus is $ p = n \equiv \dim_{\R}\mathcal{M} $: forms in $ \lm{n} $ are called \bctxt{top forms}.
-
-\subsubsection{Operations on forms}
-
-There are three main operations defined on forms: the wedge product, the exterior derivative and the interior product.
-
-\begin{definition}{Wedge product}{}
-  Given $ \omega \in \lm{p}, \eta \in \lm{q} $, their \bcdef{wedge product} is a $ (p+q) $-form defined as:
-  \begin{equation}
-    (\omega \wedge \eta)_{\mu_1 \dots \mu_p \nu_1 \dots \nu_q} = \frac{(p + q)!}{p! q!} \omega_{[\mu_1 \dots \mu_p} \eta_{\nu_1 \dots \nu_q]}
-  \end{equation}
-\end{definition}
-
-\begin{example}{1-forms to 2-form}{}
-  Given $ \omega,\eta \in \lm{1} $, their wedge product is $ (\omega \wedge \eta)_{\mu \nu} = \omega_{\mu} \eta_{\nu} - \omega_{\nu} \eta_{\mu} $.
-\end{example}
-
-The wedge product is essentially a linear map $ \lm{p} \times \lm{q} \ra \lm{p + q} $. Moreover, it can be shown to be associative.
-
-\begin{proposition}{Skew-symmetry}{form-skew-symmetry}
-  Given $ \omega \in\lm{p}, \eta \in\lm{q} $, then:
-  \begin{equation}
-    \omega \wedge \eta = (-1)^{pq} \eta \wedge \omega
-  \end{equation}
-\end{proposition}
-
-Then, clearly, $ \omega \wedge \omega = 0 \,\,\forall \omega \in\lm{p} : p $ is odd.
-
-\begin{proposition}{Bases for $ p $-forms}{}
-  If $ \{\ve{f}^{\mu}\}_{\mu = 1,\dots,n} $ is a basis of $ \lm{1} $, then $ \{\ve{f}^{\mu_1} \wedge \dots \wedge \ve{f}^{\mu_p}\}_{\mu_1,\dots,\mu_p = 1,\dots,n} $ is a basis of $ \lm{p} $.
-\end{proposition}
-
-Locally $ \{\dd x^{\mu}\}_{\mu = 1,\dots,n} $ is a basis of $ T^*_p \mathcal{M} $, thus a general $ p $-form can be locally written as:
-\begin{equation}
-  \omega = \frac{1}{p!} \omega_{\mu_1 \dots \mu_p} \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_p}
-\end{equation}
-
-\begin{definition}{Exterior derivative}{}
-  The \bcdef{exterior derivative} is a map $ \dd : \lm{p} \rightarrow \lm{p+1} $ defined as:
-  \begin{equation}
-    (\dd \omega)_{\mu_1 \dots \mu_{p+1}} = (p + 1) \pa_{[\mu_1} \omega_{\mu_2 \dots \mu_{p+1}]}
-  \end{equation}
-\end{definition}
-
-In local coordinates:
-\begin{equation}
-  \dd \omega = \frac{1}{p!} \frac{\pa \omega_{\mu_1 \dots \mu_p}}{\pa x^{\nu}} \dd x^{\nu} \wedge \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_p}
-\end{equation}
-
-\begin{theorem}[before upper = {\tcbtitle}]{Poincaré's theorem}{poincare}
-  \begin{equation}
-    \dd^2 = 0
-  \end{equation}
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    Consequence of Schwarz lemma.
-  \end{proof}
-\end{proofbox}
-
-\begin{proposition}{Product rule}{ext-der-prod-rule}
-  Given $ \omega \in \lm{p}, \eta \in \lm{q} $, then:
-  \begin{equation}
-    \dd (\omega \wedge \eta) = \dd \omega \wedge \eta + (-1)^p \omega \wedge \dd \eta
-    \label{eq:wedge-prod-rule}
-  \end{equation}
-\end{proposition}
-
-\begin{proposition}{Pull-back and exterior derivative}{}
-  Given a diffeomorphism between two manifolds $ \varphi: \mathcal{M} \rightarrow \mathcal{N} $ and $ \omega \in\lm{p} $, then $ \dd (\varphi^* \omega) = \varphi^* (\dd \omega) $.
-\end{proposition}
-
-\begin{propcorollary}{Lie derivative and exterior derivative}{}
-  Given $ X \in \xm, \omega \in\lm{p} $, then $ \dd (\ld_X \omega) = \ld_X (\dd \omega) $.
-\end{propcorollary}
-
-\begin{definition}{Closed and exact forms}{}
-  Given $ \omega \in \lm{p} $, it is:
-  \begin{itemize}
-    \item \bcdef{closed} if $ \dd \omega = 0 $;
-    \item \bcdef{exact} if $ \exists \eta \in \lm{p - 1} : \omega = \dd \eta $.
-  \end{itemize}
-\end{definition}
-
-By Poincaré's theorem, clearly $ \omega \in\lm{p} $ exact $ \implies \omega $ closed, while the converse is not true in general, but depends on the topology of the manifold: a full treatment of this matter led to the development of cohomology, as outlined in \secref{ssec:derham}.
-
-\begin{definition}{Interior product}{}
-  Given a vector field $ X \in\xm $, the \bcdef{interior product} determined by $ X $ is the linear map $ \iota_X : \lm{p} \rightarrow \lm{p-1} $ defined as:
-  \begin{equation}
-    \iota_X \omega (Y_1, \dots, Y_{p-1}) \defeq \omega (X, Y_1, \dots, Y_{p-1})
-  \end{equation}
-\end{definition}
-
-On 0-forms (i.e. scalar functions), the interior product is defined as $ \iota_X f \equiv 0 \,\, \forall X \in \xm $.
-
-\begin{proposition}{Anti-commutation}{}
-  Given $ X,Y \in\xm $, then $ \iota_X \iota_Y = - \iota_Y \iota_X $.
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    Consequence of the total anti-symmetry of $ p $-forms.
-  \end{proof}
-\end{proofbox}
-
-\begin{proposition}{Distributivity}{}
-  Given $ X \in\xm, \omega \in\lm{p}, \eta \in\lm{q} $, then:
-  \begin{equation}
-    \iota_X (\omega \wedge \eta) = \iota_X \omega \wedge \eta + (-1)^p \omega \wedge \iota_X \eta
-  \end{equation}
-\end{proposition}
-
-\begin{theorem}{Cartan's theorem}{cartan}
-  Given a vector field $ X \in\xm $, then:
-  \begin{equation}
-    \ld_X = \dd \circ \iota_X + \iota_X \circ \dd
-  \end{equation}
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    Consider $ \omega \in\lm{1} $:
-    \begin{equation*}
-      \iota_X (\dd \omega) = \iota_X \frac{1}{2} \left( \pa_{\mu} \omega_{\nu} - \pa_{\nu} \omega_{\mu} \right) \dd x^{\mu} \wedge \dd x^{\nu} = X^{\mu} \pa_{\mu} \omega_{\nu} \dd x^{\nu} - X^{\nu} \pa_{\mu} \omega_{\nu} \dd x^{\mu}
-    \end{equation*}
-    \begin{equation*}
-      \dd (\iota_X \omega) = \dd (\omega_{\mu} X^{\mu}) = X^{\mu} \pa_{\nu} \omega_{\mu} \dd x^{\nu} + \omega_{\mu} \pa_{\nu} X^{\mu} \dd x^{\nu}
-    \end{equation*}
-    Thus, adding these expressions and recalling \eref{eq:lie-der-covec}:
-    \begin{equation*}
-      (\dd \iota_X + \iota_X \dd) \omega = \left( X^{\mu} \pa_{\mu} \omega_{\nu} + \omega_{\mu} \pa_{\nu} X^{\mu} \right) \dd x^{\nu} = \ld_X \omega
-    \end{equation*}
-    The $ p > 1 $ case is more complex.
-  \end{proof}
-\end{proofbox}
-
-\subsection{Integration}
-
-\begin{definition}{Volume form}{}
-  A \bcdef{volume form} on an $ n $-dimensional smooth manifold $ \mathcal{M} $ is a nowhere-vanishing top form $ \volf $, i.e. locally $ \volf = v(x) \dd x^1 \wedge \dots \wedge \dd x^n : v(x) \neq 0 $.
-
-  If such a form exists, the manifold is said to be \bcdef{orientable}, and its orientation is right/left-handed if respectively $ v(x) > 0 $ or $ v(x) < 0 $ locally on every subset of $ \mathcal{M} $.
-\end{definition}
-
-To ensure that the handedness of the manifold doesn't change on overlapping charts:
-\begin{equation*}
-  \volf = v(x) \frac{\pa x^1}{\pa y^{\mu_1}} \dd y^{\mu_1} \wedge \dots \wedge \frac{\pa x^n}{\pa x^{\mu_n}} \dd x^{\mu_n} = v(x) \det \left[ \frac{\pa x^{\mu}}{\pa y^{\nu}} \right] \dd y^1 \wedge \dots \wedge \dd y^n
-\end{equation*}
-It is therefore necessary that the two sets of coordinates on the overlapping region satisfy:
-\begin{equation}
-  \det \left[ \frac{\pa x^{\mu}}{\pa y^{\nu}} \right] > 0
-\end{equation}
-Non-orientable manifolds cannot be covered by overlapping charts satisfying this condition.
-
-\begin{example}{Projective spaces}{}
-  The real projective space $ \mathbb{RP}^n $ is orientable for odd $ n $ and non-orientable for even $ n $, while the complex projective space $ \mathbb{CP}^n $ is orientable for all $ n \in \N $.
-\end{example}
-
-\begin{definition}{Integration over manifolds}{}
-  Given a function $ f : \mathcal{M} \rightarrow \R $ on an orientable manifold $ \mathcal{M} $ with volume form $ \volf $ and a chart $ (\varphi,U) $ on $ \mathcal{M} $ with coordinates $ \{x^{\mu}\}_{\mu = 1,\dots,n} $, the \bcdef{integral} of $ f $ on $ O = \varphi^{-1}(U) \subset \mathcal{M} $ is defined as:
-  \begin{equation}
-    \int_{O} \volf \, f \defeq \int_{U} \dd x_1 \dots \dd x_n \, v(x) f(x)
-  \end{equation}
-\end{definition}
-
-It is clear that the volume form acts like a measure on the manifold. To integrate over the whole manifold, it must be divided up into different regions, each covered by a single chart.
-
-\begin{definition}{Submanifold}{}
-  A $ k $-dimensional manifold $ \Sigma $ is a \bcdef{submanifold} of an $ n $-dimensional manifold $ \mathcal{M} $, with $ n > k $, if there exists an injective map $ \varphi : \Sigma \rightarrow \mathcal{M} $ such that $ \varphi_* : T_p(\Sigma) \rightarrow T_{\varphi(p)}(\mathcal{M}) $ is injective.
-\end{definition}
-
-\begin{definition}{Integration over submanifolds}{}
-  Given a $ k $-form $ \omega \in\lm{k} $, its integral over a $ k $-dimensional submanifold $ \Sigma $ of $ \mathcal{M} $ is defined as:
-  \begin{equation}
-    \int_{\varphi(\Sigma)} \omega \defeq \int_{\Sigma} \varphi^* \omega
-  \end{equation}
-\end{definition}
-
-\begin{example}{Integration over a curve}{}
-  Consider a 1-form $ \omega \in\lm{1} $ and a 1-dimensional submanifold $ \gamma $ of $ \mathcal{M} $ described by a curve $ \sigma : \gamma \rightarrow \mathcal{M}: x^{\mu} = \sigma^{\mu}(t) $: locally $ \omega = \omega_{\mu}(x) \dd x^{\mu} $, thus the integral of $ \omega $ on $ \gamma $ can be calculated as $ \int_{\sigma(\gamma)} \omega = \int_{\gamma} \sigma^* \omega = \int_{\gamma} \dd \tau \,\omega_{\mu}(x) \frac{\dd x^{\mu}}{\dd \tau} $.
-\end{example}
-
-\subsubsection{Stokes' theorem}
-
-Integration can be generalized beyond smooth manifolds.
-
-\begin{definition}{Manifold with boundary}{}
-  An $ n $-dimensional \bcdef{manifold with boundary} is a Hausdorff topological space, equipped with a compatible maximal atlas, which is locally homeomorphic to $ \R^{n-1} \times [a,\infty) : a \in\R $.
-
-  The \bcdef{boundary} $ \pa \mathcal{M} $ is the 1-dimensional submanifold determined parametrically by $ x^n = a $.
-\end{definition}
-
-\begin{theorem}{Stokes' theorem}{}
-  Given an $ n $-dimensional manifold $ \mathcal{M} $ with boundary $ \pa \mathcal{M} $, then for any $ \omega \in\lm{n-1} $:
-  \begin{equation}
-    \int_{\mathcal{M}} \dd\omega = \int_{\pa \mathcal{M}} \omega
-  \end{equation}
-\end{theorem}
-
-This important theorem unifies many different results, in particular the fundamental theorem of calculus, Green's theorem and Gauss' theorem.
-
-\subsubsection{Volume form}
-
-The metric also defines a natural volume form on the manifold:
-\begin{equation}
-  \volf \defeq \sqg\, \dd x^1 \wedge \dots \wedge \dd x^n
-  \label{eq:volume-form}
-\end{equation}
-where $ \mt{g} \equiv \abs{\det g_{\mu \nu}} $.
-
-\begin{proposition}{}{}
-  The volume form is basis-independent.
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    Consider a new set of coordinates $ y^{\mu} $ such that $ \dd x^{\mu} = \tensor{A}{^\mu _\nu} \dd y^{\nu} $, where $ \tensor{A}{^\mu _\nu} = \frac{\pa x^{\mu}}{\pa y^{\nu}} $. In general:
-    \begin{equation*}
-      \dd x^1 \wedge \dots \wedge \dd x^n = \tensor{A}{^1 _{\mu_1}} \dots \tensor{A}{^n _{\mu_n}} \dd y^{\mu_1} \wedge \dots \wedge \dd y^{\mu_n}
-    \end{equation*}
-    Recalling the anti-symmetry of the wedge product and the definition of determinant, this can be rewritten as:
-    \begin{equation*}
-      \dd x^1 \wedge \dots \wedge \dd x^n = \sum_{\pi \in S^n} \sgn(\pi) \tensor{A}{^1 _{\pi(1)}} \dots \tensor{A}{^n _{\pi(n)}} \dd y^1 \wedge \dots \wedge \dd y^n = \det \mt{A} \, \dd y^1 \wedge \dots \wedge \dd y^n
-    \end{equation*}
-    Note the Jacobian factor which arises when changing the measure. On the other hand:
-    \begin{equation*}
-      g_{\mu \nu} = \frac{\pa y^{\rho}}{\pa x^{\mu}} \frac{\pa y^{\sigma}}{\pa x^{\nu}} \tilde{g}_{\rho \sigma} = \tensor{(A^{-1})}{^\rho _\mu} \tensor{(A^{-1})}{^\sigma _\nu} \tilde{g}_{\rho \sigma}
-      \quad \implies \quad
-      \det g_{\mu \nu} = \frac{\det \tilde{g}_{\mu \nu}}{\left( \det \mt{A} \right)^2}
-    \end{equation*}
-    The factors $ \det \mt{A} $ and $ \left( \det \mt{A} \right)^{-1} $ cancel, thus yielding the thesis.
-  \end{proof}
-\end{proofbox}
-
-The volume form can be rewritten as:
-\begin{equation}
-  \volf = \frac{1}{n!} v_{\mu_1 \dots \mu_n} \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_n} \equiv \frac{1}{n!} \sqg\, \epsilon_{\mu_1 \dots \mu_n} \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_n}
-\end{equation}
-where $ \epsilon_{\mu_1 \dots \mu_n} $ is the totally-antisymmetric $ n $-dimensional Levi--Civita symbol. $ \epsilon_{\mu_1 \dots \mu_n} $ cannot be considered a proper tensor, as its components are always $ +1,-1,0 $ independently if the indices are covariant or contravariant: it is, in fact, a \bctxt{tensor density}, i.e. a tensor divided by $ \sqg $. It can be shown that:
-\begin{equation}
-  v^{\mu_1 \dots \mu_n} = g^{\mu_1 \nu_1} \dots g^{\mu_n \nu_n} v_{\mu_1 \dots \mu_n} = \sigma \frac{1}{\sqg} \epsilon^{\mu_1 \dots \mu_n}
-\end{equation}
-where $ \sigma $ is the sign of the signature, e.g. $ \sigma = +1 $ for Riemannian manifolds and $ \sigma = -1 $ for Lorentzian manifolds.
-As notation, the integral of a generic function $ f $ on $ \mathcal{M} $ is denoted as:
-\begin{equation}
-  \int_{\mathcal{M}} \volf \, f \equiv \int_{\mathcal{M}} \dd^n x \,\sqg f
-\end{equation}
-
-\subsection{Hodge theory}
+\section{Hodge theory}
 
 To study the topological properties of a smooth manifold through its cohomology groups, it is convenient to define an additional operation on forms: the Hodge dual.
 
-\subsubsection{Hodge operator}
+\subsection{Hodge operator}
 
 \begin{definition}{Hodge dual}{}
   Given an $ n $-dimensional oriented metric manifold $ (\mathcal{M},g) $, the \bcdef{Hodge dual} is defined as the map $ \star : \lm{p} \rightarrow \lm{n-p} : \omega \mapsto \star\, \omega $ such that:
@@ -315,7 +54,7 @@ This allows to define operators and their adjoints on form spaces.
 
 \begin{proofbox}
   \begin{proof}
-    To simplify the proof, consider a closed manifold; then, from Stokes' theorem and \eref{eq:wedge-prod-rule}:
+    To simplify the proof, consider a closed manifold; then, from Stokes' theorem and \eref{eq:ext-der-prod-rule}:
     \begin{equation*}
       0 = \int_{\mathcal{M}} \dd ( \alpha \wedge \star\, \omega ) = \braket{\dd\alpha, \omega} + \int_{\mathcal{M}} \left( -1 \right)^{p-1} \alpha \wedge \dd \star \omega
     \end{equation*}
@@ -800,7 +539,7 @@ Combining the two structure equations, it is possible to find simple expressions
 
 \begin{proofbox}
   \begin{proof}
-    From \eref{eq:first-cartan-stru-eq}, taking the exterior derivative and using \pref{prop:ext-der-prod-rule}:
+    From \eref{eq:first-cartan-stru-eq}, taking the exterior derivative and using \eref{eq:ext-der-prod-rule}:
     \begin{equation*}
       \dd T^a = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge \dd \theta^b = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge (T^b - \tensor{\omega}{^b_c} \wedge \theta^c)
     \end{equation*}
@@ -810,7 +549,7 @@ Combining the two structure equations, it is possible to find simple expressions
       \quad \implies \quad
       \dcov T^a = \tensor{\Omega}{^a_b} \wedge e^b
     \end{equation*}
-    Now, take the exterior derivative of \eref{eq:second-cartan-stru-eq} and apply \pref{prop:ext-der-prod-rule}:
+    Now, take the exterior derivative of \eref{eq:second-cartan-stru-eq} and apply \eref{eq:ext-der-prod-rule}:
     \begin{equation*}
       \dd \tensor{\Omega}{^a_b} = \dd \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b} - \tensor{\omega}{^a_c} \wedge \dd \tensor{\omega}{^c_b} = \left( \tensor{\Omega}{^a_c} - \tensor{\omega}{^a_d} \wedge \tensor{\omega}{^d_c} \right) \wedge \tensor{\omega}{^c_b} - \tensor{\omega}{^a_c} \wedge \left( \tensor{\Omega}{^c_b} - \tensor{\omega}{^c_d} \wedge \tensor{\omega}{^d_b} \right)
     \end{equation*}
@@ -818,7 +557,7 @@ Combining the two structure equations, it is possible to find simple expressions
     \begin{equation*}
       0 = \dd \tensor{\Omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\Omega}{^c_b} - \tensor{\Omega}{^a_c} \wedge \tensor{\omega}{^c_b} = \dcov \tensor{\Omega}{^a_b}
     \end{equation*}
-    since $ \tensor{\Omega}{^a_c} \wedge \tensor{\omega}{^c_b} = \tensor{\omega}{^c_b} \wedge \tensor{\Omega}{^a_c} $ by \pref{prop:form-skew-symmetry}.
+    since $ \tensor{\Omega}{^a_c} \wedge \tensor{\omega}{^c_b} = \tensor{\omega}{^c_b} \wedge \tensor{\Omega}{^a_c} $ by \eref{eq:form-skew-symmetry}.
   \end{proof}
 \end{proofbox}
 
