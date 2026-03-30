@@ -1258,16 +1258,16 @@ where the orientation of $ \pa \man $ is always understood to be the induced ori
 \begin{lemma}{Properties of integration of forms}{pif}
   Let $ \man , \man' $ be non-empty oriented smooth $ n $-manifolds, and let $ \omega , \eta $ be compactly supported $ n $-forms on $ \man $. Then:
   \begin{enumerate}
-    \item \label{pif-1} (linearity) if $ a,b \in R $, then:
+    \item \label{item:pif-1} (linearity) if $ a,b \in R $, then:
       \begin{equation*}
         \int_\man a \omega + b \eta = a \int_\man \omega + b \int_\man \eta
       \end{equation*}
-    \item \label{pif-2} (orientation reversal) if $ -\man $ denoted $ \man $ with opposite orientation, then:
+    \item \label{item:pif-2} (orientation reversal) if $ -\man $ denoted $ \man $ with opposite orientation, then:
       \begin{equation*}
         \int_{-\man} \omega = \int_\man \omega
       \end{equation*}
-    \item \label{pif-3} (positivity) if $ \omega $ is a positively oriented orientation form, then $ \int_\man \omega > 0 $;
-    \item \label{pif-4} (diffeomorphism invariance) if $ f : \man' \ra \man $ is an orientation-preserving of reversing diffeomorphism, then:
+    \item \label{item:pif-3} (positivity) if $ \omega $ is a positively oriented orientation form, then $ \int_\man \omega > 0 $;
+    \item \label{item:pif-4} (diffeomorphism invariance) if $ f : \man' \ra \man $ is an orientation-preserving of reversing diffeomorphism, then:
       \begin{equation*}
         \int_\man \omega = \pm \int_{\man'} f^* \omega
       \end{equation*}
@@ -1419,9 +1419,9 @@ It is now possible to prove the central theorem of integration on manifolds, whi
 
 This result generalizes many classical integral results. For example, let $ \man $ be a smooth manifold and $ \gamma : [a,b] \ra \man $ a smooth embedding, so that $ S = \gamma([a,b]) $ is an embedded $ 1 $-submanifold with boundary in $ \man $. If $ S $ is given an orientation such that $ \gamma $ is orientation preserving, then for any $ f \in \cm $ Stokes' theorem states that:
 \begin{equation*}
-  \int_\gamma \dd f = \int_{[a,b]} \gamma^* \dd f = \int_S \dd f = \int_{\pa S} f = f(\gamma(b)) - f(\gamma(a))
+  \int_S \dd f = \int_{\pa S} f = f(\gamma(b)) - f(\gamma(a))
 \end{equation*}
-which is just the fundamental theorem of line integrals. In particular, when $ \gamma : [a,b] \hookrightarrow \R $ is the inclusion map in $ \man = \R $, this is the fundamental theorem of calculus.
+which is just the fundamental theorem of line integrals \eref{eq:fundamental-th-line-integrals}. In particular, when $ \gamma : [a,b] \hookrightarrow \R $ is the inclusion map in $ \man = \R $, this is the fundamental theorem of calculus.
 
 \subsubsection{Manifolds with corners}
 
@@ -1500,6 +1500,78 @@ where each $ H_i $, defined in \eref{eq:boundary-rp}, is given the induced orien
   \caption{Proof of Stokes' theorem on manifolds with corners.}
   \label{fig:stokes-corn}
 \end{figure}
+
+\subsubsection{Line integrals}
+
+A particular case of integration on manifolds is that of line integrals, i.e. the integration of a $ 1 $-form over the support of a curve.
+
+Let $ \man $ be a smooth manifold. A \bctxt{curve segment} is a continuous curve $ \gamma : [a,b] \ra \man $ whose domain is a compact interval in $ \R $. A \emph{smooth curve segment} is a curve segment which is smooth when $ [a,b] $ is considered as a manifold with boundary, or equivalently if $ \gamma $ has an extension to a smooth curve defined in a neighbourhood of each endpoint: a \emph{piecewise smooth curve segment} is a curve segment on which there exists a partition $ a = a_0 < a_1 < \dots < a_k = b $ of $ [a,b] $ such that $ \gamma \vert_{[a_{i-1} , a_i]} $ is smooth for each $ i = 1 , \dots , k $.
+
+It can be shown that if $ \man $ is a connected smooth manifold, then any two points of $ \man $ can be joined by a piecewise smooth curve segment.
+
+\begin{definition}{Line integral}{line-integral}
+  Let $ \man $ be a smooth manifold, $ \gamma : [a,b] \ra \man $ a smooth curve segment and $ \omega \in \df{1} $. Then, the \bcdef{line integral} of $ \omega $ over $ \gamma $ is defined as:
+  \begin{equation}
+    \int_\gamma \omega \defeq \int_{[a,b]} \gamma^* \omega
+  \end{equation}
+\end{definition}
+
+Line integrals inherit the linearity of Euclidean integrals. Moreover, if $ \gamma $ is a constant map, then $ \int_\gamma \omega = 0 $, while if $ \gamma $ is piecewise smooth with a partition $ a = a_0 < a_1 < \dots < a_k = b $:
+\begin{equation}
+  \int_\gamma \omega = \sum_{i = 1}^k \int_{[a_{i-1} , a_i]} \gamma^* \omega
+  \label{eq:line-piece}
+\end{equation}
+A result similar to \itemref{item:pif-4} of \lref{lemma:pif} holds for line integrals. Given a smooth manp $ f : \man \ra \man' $ and $ \omega \in \df{1}(\man') $, then:
+\begin{equation}
+  \int_\gamma f^* \omega = \int_{f \circ \gamma} \omega
+\end{equation}
+A key feature of line integrals is that they are independent of the parametrization. If $ \gamma : [a,b] \ra \man $ and $ \tilde{\gamma} : [c,d] \ra \man $ are piecewise smooth curve segments, then $ \tilde{\gamma} $ is a \bctxt{reparametrization} of $ \gamma $ if $ \tilde{\gamma} = \gamma \circ \varphi $ for some diffeomorphism $ \varphi : [c,d] \ra [a,b] $: if $ \varphi $ is an increasing function, this is a \emph{forward reparametrization}, while if $ \varphi $ is a decreasing function, it is a \emph{backward reparametrization}. It is then trivial to show that, given $ \omega \in \df{1} $:
+\begin{equation}
+  \int_{\tilde{\gamma}} \omega = \pm \int_\gamma \omega
+  \label{eq:line-reparam}
+\end{equation}
+with $ + $ for a forward parametrization and $ - $ otherwise.
+
+\begin{proposition}{Line integrals and Euclidean integrals}{line-euclidean}
+  Let $ \man $ be a smooth manifold, $ \gamma : [a,b] \ra \man $ a piecewise smooth curve segment and $ \omega \in \df{1} $. Then:
+  \begin{equation}
+    \int_\gamma \omega = \int_a^b \dd t \, \omega_{\gamma(t)}(\gamma'(t))
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, suppose $ \gamma $ is smooth and that its image is contained in the domain of a single smooth chart. Writing the coordinate representation of:
+    \begin{equation*}
+      \omega_{\gamma(t)}(\gamma'(t)) = \omega_i(\gamma(t)) \dd x^i (\dot{\gamma}^j(t) \pa_j) = \omega_i(\gamma(t)) \dot{\gamma}^i(t)
+    \end{equation*}
+    Using \eref{eq:pull-back-simple}, then:
+    \begin{equation*}
+      (\gamma^* \omega)_t = (\omega_i \circ \gamma)(t) \dd (\gamma^i)_t = \omega_i(\gamma(t)) \dot{\gamma}^i(t) \dd t = \omega_{\gamma(t)}(\gamma'(t)) \dd t
+    \end{equation*}
+    Therefore, by \dref{def:line-integral}:
+    \begin{equation*}
+      \int_\gamma \omega = \int_{[a,b]} \gamma^* \omega = \int_a^b \dd t \, \omega_{\gamma(t)}(\gamma'(t))
+    \end{equation*}
+    If $ \gamma $ is an arbitrary smooth curve segment, by compactness there exists a finite partition $ a = a_0 < a_1 < \dots < a_k = b $ of $ [a,b] $ such that $ \gamma([a_{i-1} , a_i]) $ is contained in the domain of a single smooth chart for each $ i = 1 , \dots , k $, thus the preceding argument can be applied on each such subinterval.
+
+    Finally, if $ \gamma $ is only piecewise smooth, simply apply the same argument on each subinterval on which $ \gamma $ is smooth.
+  \end{proof}
+\end{proofbox}
+
+A special case of line integral is that of a differential. If $ \gamma : [a,b] \ra \man $ is a piecewise smooth curve segment and $ f \in \cm $, then by \pref{prop:line-euclidean}:
+\begin{equation}
+  \int_\gamma \dd f = f(\gamma(b)) - f(\gamma(a))
+  \label{eq:fundamental-th-line-integrals}
+\end{equation}
+which is known as the \emph{fundamental theorem of line integrals}.
+
+\begin{theorem}{}{integral-path-homotopy}
+  Let $ \man $ be a smooth manifold, $ \gamma_0 , \gamma_1 : [a,b] \ra \man $ path-homotopic piecewise smooth curve segments and $ \omega \in \df{1} $. Then:
+  \begin{equation*}
+    \int_{\gamma_0} \omega = \int_{\gamma_1} \omega
+  \end{equation*}
+\end{theorem}
 
 
 
@@ -1661,7 +1733,7 @@ The pattern is clear: for each upper index $ \mu $ there is a $ + \Gamma^\mu_{\r
 Even though the connection is not a tensor, it is used to construct two important tensors.
 
 \begin{definition}{Torsion tensor}{}
-  The \bcdef{torsion} is a (1,2) tensor defined on $ \lm{1} \times \xm \times \xm $ as:
+  The \bcdef{torsion} is a (1,2) tensor defined on $ \df{1} \times \xm \times \xm $ as:
   \begin{equation}
     \tors(\omega,X,Y) \defeq \omega (\na_X Y - \na_Y X - [X,Y])
   \end{equation}
@@ -1672,7 +1744,7 @@ Even though the connection is not a tensor, it is used to construct two importan
 \end{definition}
 
 \begin{definition}{Curvature tensor}{}
-  The \bcdef{curvature} is a (1,3) tensor defined on $ \lm{1} \times \xm \times \xm \times \xm $ as:
+  The \bcdef{curvature} is a (1,3) tensor defined on $ \df{1} \times \xm \times \xm \times \xm $ as:
   \begin{equation}
     \riem(\omega,Z,X,Y) \defeq \omega (\na_X \na_Y Z - \na_Y \na_X Z - \na_{[X,Y]} Z)
     \label{eq:riemann-def}

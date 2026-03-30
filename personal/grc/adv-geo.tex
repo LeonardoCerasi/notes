@@ -1,5 +1,550 @@
 \selectlanguage{english}
 
+\section{de Rham cohomology}
+
+\begin{definition}{Closed form}{}
+  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{k} $ is \bcdef{closed} if $ \defcol{\dd \omega = 0} $.
+\end{definition}
+
+\begin{definition}{Exact form}{}
+  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{k} $ is \bcdef{exact} if $ \exists \eta \in \df{k-1} : \defcol{\omega = \dd \eta} $, known as the \emph{potential} of $ \omega $.
+\end{definition}
+
+Since $ \dd^2 = 0 $, every exact for is closed. The converse, however, is in general not true: every closed form is exact only on manifolds with particular topological properties. By Stokes' theorem, it is clear that the integral of an exact form over any compact submanifold without boundary vanishes.
+
+\subsection{Conservative covector fields}
+
+Given a smooth manifold $ \man $, a smooth covector field $ \omega \in \df{1} $ is \bctxt{conservative} if its line integral over every piecewise smooth closed curve segment vanishes: it can be shown that this condition is equivalent to the requirement that the line integrals of $ \gamma $ are path-independent once the endpoints are fixed.
+
+\begin{theorem}{Conservative forms and exact forms}{conservative-exact}
+  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{1} $ is conservative if and only if it is exact.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ \omega \in \df{1} $ is exact, then it is conservative by \ref{eq:fundamental-th-line-integrals} it is conservative.
+
+    Suppose $ \omega \in \df{1} $ is conservative, and assume $ \man $ to be connected. Since the line integrals of $ \omega $ are path-independent, denote by $ \int_p^q \omega $ the line integral of $ \omega $ along any piecewise smooth curve segment from $ p \in \man $ to $ q \in \man $. As a backward reparametrization of a path from $ p $ to $ q $ is a path to $ q $ to $ p $, then \eref{eq:line-reparam} implies $ \int_q^p \omega = - \int_p^q \omega $, while \eref{eq:line-piece} implies:
+    \begin{equation*}
+      \int_{p_1}^{p_2} \omega + \int_{p_2}^{p_3} \omega = \int_{p_1}^{p_3} \omega
+    \end{equation*}
+    Choose any $ p_0 \in \man $ and define $ f : \man \ra \R $ as $ f(q) = \int_{p_0}^q \man $: WTS $ \dd f = \omega $. Let $ q_0 \in \man $ arbitrary, let $ (U,(x^i)) $ be a smooth chart centered at $ q_0 $ and write the coordinate representation $ \omega = \omega_i \dd x^i $ on $ U $. $ \dd f_{q_0} = \omega_{q_0} $ is then equivalent to:
+    \begin{equation*}
+      \frac{\pa f}{\pa x^j}(q_0) = \omega_j(q_0)
+    \end{equation*}
+    for $ j = 1 , \dots , n $. First, suppose $ q_0 \in \Int \man $, Fix $ j $ and let $ \gamma : [-\varepsilon , \varepsilon] \ra U $ be the smooth curve segment $ \gamma(t) = (0, \dots , t , \dots , 0) $, with $ t $ in the $ j^\text{th} $ place, and with $ \varepsilon \in \R^+ $ small enough that $ \gamma([-\varepsilon , \varepsilon]) \ssq U $. Let $ p_1 = \gamma(-\varepsilon) $ and define $ \tilde{f} : \man \ra \R $ as $ \tilde{f}(q) = \int_{p_1}^q \omega $. Then, for all $ q \in \man $:
+    \begin{equation*}
+      f(q) - \tilde{f}(q) = \int_{p_0}^q \omega - \int_{p_1}^q \omega = \int_{p_0}^q \omega + \int_q^{p_1} = \int_{p_0}^{p_1} \omega
+    \end{equation*}
+    which is independent of $ q $, thus $ \tilde{f} $ and $ f $ differ only by a constant, so it suffices to show that $ \pa_j \tilde{f}(q_0) = \omega_j(q_0) $. Since $ \gamma'(t) = \pa_j \vert_{\gamma(t)} $ by construction:
+    \begin{equation*}
+      \omega_{\gamma(t)}(\gamma'(t)) = \omega_i(\gamma(t)) \dd x^i \left( \frac{\pa}{\pa x^j} \bigg\vert_{\gamma(t)} \right) = \omega_j(\gamma(t))
+    \end{equation*}
+    Since the restriction of $ \gamma $ to $ [-\varepsilon , t] $ is a smooth curve from $ p_1 $ to $ \gamma(t) $:
+    \begin{equation*}
+      \tilde{f} \circ \gamma(t) = \int_{p_1}^{\gamma(t)} \omega = \int_{-\varepsilon}^t \dd s \, \omega_{\gamma(s)}(\gamma'(s)) = \int_{-\varepsilon}^t \dd s \, \omega_j(\gamma(s))
+    \end{equation*}
+    Thus, by the fundamental theorem of calculus:
+    \begin{equation*}
+      \frac{\pa \tilde{f}}{\pa x^j}(q_0) = \gamma'(0)(\tilde{f}) = \frac{\dd}{\dd t} \bigg\vert_{t = 0} \tilde{f} \circ \gamma(t) = \frac{\dd}{\dd t} \bigg\vert_{t = 0} \int_{-\varepsilon}^t \dd s \, \omega_j(\gamma(s)) = \omega_j(\gamma(0)) = \omega_j(q_0)
+    \end{equation*}
+    Therefore $ \dd f_{q_0} = \omega_{q_0} $ for $ q_0 \in \Int \man $. Now, consider $ q_0 \in \pa \man $ with a boundary chart $ (U,(x^i)) $ centered at $ q_0 $. The proof above still works, except for $ j = n \equiv \dim_\R \man $, since $ x^n $ can only take non-negative values in this case. Let $ p_1 = \gamma(0) $ (instead of $ \gamma(-\varepsilon) $), and proceed as before: this shows that $ \dd f = \omega $ on $ \man $ connected.
+
+    Finally, if $ \man $ is not connected, let $ \{\man_i\} $ be the connected components of $ \man $. By the argument above, on each component there is a function $ f_i \in \cfk{\infty}(\man_i) $ such that $ \dd f_i = \omega $ on $ \man_i $. Letting $ f : \man \ra \R $ be the function that is equal to $ f_i $ on $ \man_i $ for each $ i $, then $ \dd f = \omega $, completing the proof.
+  \end{proof}
+\end{proofbox}
+
+While not all closed forms are exact on a generic smooth manifold, since it depends on its shape, it is possible to show that \emph{locally} this is always true. Given a finite-dimensional $ \R $-vector space $ V $, then $ U \ssq V $ is said to be \bctxt{star-shaped} if there is a point $ x \in U $ such that for every $ x \in U $ the line segment from $ c $ to $ x $ is entirely contained in $ U $. For example, every convex subset if star-shaped.
+
+\begin{theorem}{Poincaré lemma}{poincare-1}
+  If $ U \in \tp(\R^n) $ (or $ \U^n $) is star-shaped, then every closed $ \omega \in \dfm{1}(U) $ is exact.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Suppose $ U $ is star-shaped with respect to $ c \in U $, and let $ \omega = \omega_i \dd x^i \in \dfm{1}(U) $ closed. Since diffeomorphisms take closed forms to closed forms and exact forms to exact forms, translate $ U $ so that $ c = 0 $. Then, for any $ x \in U $, let $ \gamma_x : [0,1] \ra U $ denote the line segment from $ 0 $ to $ x $ parametrized as $ \gamma_x(t) = tx $: by hypothesis $ \gamma_x([0,1]) \ssq U \,\,\forall x \in U $. Define $ f : U \ra \R $ as:
+    \begin{equation*}
+      f(x) = \int_{\gamma_x} \omega
+    \end{equation*}
+    WTS $ \dd f = \omega $, or equivalently $ \pa_j f = \omega_j $ for $ j = 1 , \dots , n $. First, compute:
+    \begin{equation*}
+      f(x) = \int_0^1 \dd t \, \omega_{\gamma_x(t)}(\gamma'_x(t)) = \int_0^1 \dd t \, \omega_i(tx) x^i
+    \end{equation*}
+    Since the integrand is smooth in all variables, it is permissible to differentiate under the integral sign:
+    \begin{equation*}
+      \frac{\pa f}{\pa x^j}(x) = \int_0^1 \dd t \left[ t \frac{\pa \omega_i}{\pa x^j}(tx) x^i + \omega_j(tx) \right]
+    \end{equation*}
+    Since $ \omega $ is closed, $ \pa_i \omega_j = \pa_j \omega_i $, hence:
+    \begin{equation*}
+      \frac{\pa f}{\pa x^j}(x) = \int_0^1 \dd t \left[ t \frac{\pa \omega_j}{\pa x^i}(tx) x^i + \omega_j(tx) \right] = \int_0^1 \dd t \frac{\dd}{\dd t} \left[ t \omega_j(tx) \right] = \left[ t \omega_j(tx) \right]_{t = 0}^{t = 1} = \omega_j(x)
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{Local exactness of closed forms}{}
+  Let $ \man $ be a smooth manifold and $ \omega \in \df{1} $ closed. Then, every point of $ \man $ has a neighbourhood on which $ \omega $ is exact.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ p \in \man $ be arbitrary. By hypothesis $ \pa_i \omega_j = \pa_j \omega_i $ in some smooth coordinate ball or half-ball $ (U,\varphi) $ containing $ p $. Balls and half-balls are convex and hence star-shaped, therefore applying \tref{th:poincare} to the coordinate representation of $ \omega $ there exists $ f \in \cfk{\infty}(U) : \omega \vert_U = \dd f $.
+  \end{proof}
+\end{proofbox}
+
+The key feature in constructing the potential function in \tref{th:poincare} is that every point of $ x \in U $ can be reached by a definite path from $ c \in U $ to $ x $, chosen to vary smoothly as $ x $ varies. This fails, for example, on a punctured plane, i.e. a plane with a hole.
+
+\begin{example}{Swirl form on the plane}{}
+  Consider $ \man = \R^2 - \{0\} $ and the closed $ \omega \in \df{1} $ defined as:
+  \begin{equation*}
+    \omega = \frac{x \, \dd y - y \, \dd x}{x^2 + y^2}
+  \end{equation*}
+  Choosing the smooth closed curve segment $ \gamma : [0,2\pi] \ra \man $ defined as $ \gamma(\vartheta) = (\cos \vartheta , \sin \vartheta) $:
+  \begin{equation*}
+    \int_\gamma \omega = \int_{[0,2\pi]} \frac{\cos \vartheta (\cos \vartheta \, \dd \vartheta) - \sin \vartheta (\sin \vartheta \, \dd \vartheta)}{\sin^2 \vartheta + \cos^2 \vartheta} = \int_0^{2\pi} \dd \vartheta = 2\pi
+  \end{equation*}
+  which shows, by \tref{th:conservative-exact} that $ \omega $ is not exact on $ \R^2 - \{0\} $. However, restricting the domain to $ U = \{(x,y) \in \R^2 : x > 0\} $, by direct computation $ \omega = \dd f $ with potential function $ f : U \ra \R $ given by:
+  \begin{equation*}
+    f(x) = \arctan \frac{y}{x}
+  \end{equation*}
+  or, more clearly, in polar coordinates $ \omega = \dd \vartheta $. The problem is then that there is no smooth (or even continuous) angle function on all of $ \R^2 - \{0\} $, which is a consequence of the hole in the center.
+\end{example}
+
+\subsection{de Rham cohomology groups}
+
+The aim of de Rham cohomology is to study whether closed forms are exact on a smooth manifold by means of its global topological properties.
+
+Let $ \man $ be a smooth $ n $-manifold. Since $ \dd : \df{k} \ra \df{k+1} $ is defined for all $ k = 0 , \dots , n-1 $, given $ p \in \N_0 $ denote $ \dd_p : \df{p} \ra \df{p+1} $, with the convention $ \df{p} = \{0\} \equiv 0 $ for $ p < 0 $ and $ p > n $. Then, define:
+\begin{equation}
+  \zp{p}(\man) \defeq \ker \dd_p
+\end{equation}
+\begin{equation}
+  \bp{p}(\man) \defeq \im \dd_{p-1}
+\end{equation}
+which are respectively the $ \R $-vector spaces of closed $ p $-forms and exact $ p $-forms on $ \man $. By the above conventions, $ \bp{0}(\man) = 0 $ and $ \zp{n}(\man) = \df{n} $.
+
+\begin{definition}{de Rham cohomology groups}{}
+  Let $ \man $ be a smooth manifold. The \bcdef{de Rham cohomology group of degree $ p $}, with $ p \in \N_0 $, is defined as:
+  \begin{equation}
+    \defcol{\hp{p}(\man)} \defeq \frac{\zp{p}(\man)}{\bp{p}(\man)}
+  \end{equation}
+\end{definition}
+
+This quotient vector space is well-defined for all $ p \in \N_0 $, since every exact form is closed, i.e. $ \bp{p}(\man) \ssq \zp{p}(\man) $, and it is a group under vector addition. Clearly, $ \hp{p}(\man) = 0 $ for $ p < 0 $ and $ p > n $, while for $ 0 \leq p \leq n $ the condition $ \hp{p}(\man) = 0 $ holds if and only if every closed $ p $-form on $ \man $ is exact.
+
+For any $ \omega \in \df{p} $, let $ [\omega] \in \hp{p}(\man) $ denote the equivalence class of $ \omega $, known its \emph{cohomology class}: if $ [\omega] = [\omega'] $, i.e. if $ \omega $ and $ \omega' $ differ by an exact form, then $ \omega $ and $ \omega' $ are said to be \emph{cohomologous}.
+
+\begin{proposition}{Induced cohomology map}{induced-cohomology}
+  For any smooth map $ f : \man_1 \ra \man_2 $, the pull-back $ f^* : \dfm{p}(\man_2) \ra \dfm{p}(\man_1) $ maps $ \zp{p}(\man_2) \mapsto \zp{p}(\man_1) $ and $ \bp{p}(\man_2) \mapsto \bp{p}(\man_1) $. It therefore descends to a linear map $ \propcol{f^* : \hp{p}(\man_2) \ra \hp{p}(\man_1)} $, called the \bcprop{induced cohomology map}, such that $ \id_\man^* = \id_{\hp{p}(\man)} $ and, if $ g : \man_2 \ra \man_3 $ is another smooth map, then:
+  \begin{equation*}
+    (g \circ f)^* = f^* \circ g^* : \hp{p}(\man_3) \ra \hp{p}(\man_1)
+  \end{equation*}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ \omega $ is closed, then $ \dd (f^*\omega) = f^*(\dd \omega) = 0 $, so $ f^*\omega $ is also closed. If $ \omega = \dd \eta $ is exact, then $ f^*\omega = f^*(\dd \eta) = \dd (f^*\eta) $, which is also exact. Therefore, $ f^* $ maps $ \zp{p}(\man_2) \mapsto \zp{p}(\man_1) $ and $ \bp{p}(\man_2) \mapsto \bp{p}(\man_1) $.
+
+    The induced cohomology map $ f^* : \hp{p}(\man_2) \ra \hp{p}(\man_1) $ is defined as follows: for $ \omega \in \df{p} $ closed, let $ f^*[\omega] = [f^*\omega] $, so if $ \omega' = \omega + \dd \eta $, then $ [f^*\omega'] = [f^*\omega + \dd (f^*\eta)] = [f^*\omega] = f^*[\omega] $, hence this map is well-defined. Its properties follow immediately from the analogous properties of pull-back maps on forms.
+  \end{proof}
+\end{proofbox}
+
+\begin{propcorollary}{Diffeomorphism-invariance of de Rham cohomology}{dr-diff-inv}
+  Diffeomorphic smooth manifolds have isomorphic de Rham cohomology groups.
+\end{propcorollary}
+
+Although in general the direct computation of de Rham groups is not easy, this process can be simplified with the following result.
+
+\begin{proposition}{Cohomology of disjoint unions}{}
+  Let $ \{\man_j\} $ be a countable collection of smooth $ n $-manifolds, and let $ \man = \bigsqcup_j \man_j $. The inclusion maps $ \inc_j : \man_j \hookrightarrow \man $ induce an isomorphism:
+  \begin{equation*}
+    \hp{p}(\man) \cong \prod_j \hp{p}(\man_j)
+  \end{equation*}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The pullback maps $ \inc_j^* : \df{p} \ra \dfm{p}(\man_j) $ alread induce an isomorphism $ \df{p} \cong \prod_j \dfm{p}(\man_j) $ as:
+    \begin{equation*}
+      \omega \mapsto (\inc_1^* \omega , \inc_2^* \omega , \dots) = (\omega \vert_{\man_1} , \omega \vert_{\man_2} , \dots)
+    \end{equation*}
+    since it is injective, as any $ \omega \in \df{p} $ whose restriction to each $ \man_j $ is zero must itself be zero, and surjective, since defining an arbitrary $ \omega_j \in \dfm{p}(\man_j) $ on each $ \man_j $ defines a global $ \omega \in \df{p} $.
+  \end{proof}
+\end{proofbox}
+
+Therefore, each de Rham group of a disconnected manifold is just the direct product of the corresponding groups of its components. The main objective is thus to compute the de Rham groups of connected manifolds.
+
+\begin{example}{Cohomology of degree zero}{cohomology-zero}
+  Let $ \man $ be a connected smooth manifolds. First, note that $ \bp{0}(\man) = 0 $, since there are no $ (-1) $-forms. Then, observe that a closed $ 0 $-form is $ f \in \cm : \dd f = 0 $, and since $ \man $ is connected, this is true if and only if $ f $ is constant: therefore, $ \hp{0}(\man) = \zp{0}(\man) $ is just the space of constant functions, which is $ 1 $-dimensiona.
+
+  If $ \man $ is a $ 0 $-manifold, then $ \hp{0}(\man) $ is a direct product of $ 1 $-dimensional vector spaces, one for each point of $ \man $, and the cohomology groups with non-zero degree vanish for dimensional reasons.
+\end{example}
+
+\subsection{Homotopy invariance}
+
+\cref{cor:dr-diff-inv} has a profound generalization: de Rham cohomology groups are topological invariants (actually, they are homotopy invariants, see \secref{sec:homotopy} for homotopy equivalence).
+
+\begin{definition}{Cochain homotopy}{}
+  Let $ f , g : \man_1 \ra \man_2 $ be smooth maps. A collection of linear maps $ \defcol{h_p : \dfm{p}(\man_2) \ra \dfm{p-1}(\man_1)} $ is a \bcdef{cochain homotopy} between $ f^* $ and $ g^* $ if, for all $ \omega \in \dfm{p}(\man_2) $:
+  \begin{equation}
+    (\dd_{p-1} \circ h_p \omega + h_{p+1} \circ \dd_p) \omega = g^* \omega - f^* \omega
+    \label{eq:cochain-homotopy-def}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}{Cochain homotopy and induced cohomology maps}{}
+  Let $ f , g : \man_1 \ra \man_2 $ be smooth maps. If there exists a cochain homotopy between $ f^* $ and $ g^* $, then the induced cohomology maps $ f^* , g^* : \hp{p}(\man_2) \ra \hp{p}(\man_1) $ are equal.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider $ \omega \in \df{p}(\man_2) $ closed. Then, by \eref{eq:cochain-homotopy-def}:
+    \begin{equation*}
+      \dd_{p-1} (h_p \omega) = g^* \omega - f^* \omega
+      \quad \implies \quad
+      g^* [\omega] - f^* [\omega] = [\dd \eta] = 0
+    \end{equation*}
+    where $ \eta \equiv h_p \omega \in \dfm{p-1}(\man_1) $.
+  \end{proof}
+\end{proofbox}
+
+Consider a smooth manifold $ \man $ and, for each $ t \in [0,1] $, let $ \inc_t : \man \ra \man \times [0,1] $ be the map $ \inc_t(x) = (x,t) $. If $ \pa \man = \emptyset $, then $ \man \times I $ is a smooth manifold with boundary, while if $ \pa \man \neq \emptyset $, then $ \man \times I $ is a smooth manifold with corners: it is straightforward to check that the definitions of de Rham groups and induced cohomology maps remain unchanged in the context of smooth manifolds with corners.
+
+\begin{lemma}{Existence of cochain homotopy}{cochain-homotopy-existence}
+  For any smooth manifold $ \man $, there exists a cochain homotopy between the two maps $ \inc_0^* , \inc_1^* : \dfv(\man \times [0,1]) \ra \dft $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    For each $ p \in \N_0 $, WTS there exists a linear map $ h_p : \dfm{p}(\man \times I) \ra \dfm{p-1}(\man) $ such that, for all $ \omega \in \dfm{p}(\man \times I) $:
+    \begin{equation*}
+      h_{p+1}(\dd_p \omega) + \dd_{p-1} (h_p \omega) = \inc_1^* \omega - \inc_0^* \omega
+    \end{equation*}
+    Let $ s $ denote the standard coordinate on $ \R $, and let $ S $ be the vector field on $ \man \times \R $ defined as $ S_{q,s} = (0 , \pa/\pa s \vert_s) $ under the usual identification $ T_{(q,s)}\man \cong T_q\man \times T_s\R $. Given $ \omega \in \dfm{p}(\man \times [0,1]) $, define $ h_p \omega \in \df{p-1} $ as:
+    \begin{equation*}
+      h_p \omega = \int_0^1 \dd t \, \inc_t^* (\ip_S \omega)
+    \end{equation*}
+    which, for any $ q \in \man $, is expressed as:
+    \begin{equation*}
+      (h_p \omega)_p = \int_0^1 \dd t \, \inc_t^* ((\ip_S \omega)_{(q,t)})
+    \end{equation*}
+    where the integrand is a map $ t \mapsto \lv{p-1}(T_q\man) $. On any smooth coordinate domain $ U \ssq \man $, the components of the integrand are smooth function of $ (q,t) \in U \times I $, so correctly $ h_p \omega \in \df{p-1} $. Then, $ \dd_{p-1} (h_p \omega) $ can be computed at any point by differentiating under the integral sign in local coordinates:
+    \begin{equation*}
+      \dd_{p-1} (h_p \omega) = \int_0^1 \dd t \, \dd (\inc_t^* (\ip_S \omega))
+    \end{equation*}
+    Therefore, using \tref{th:cartan}:
+    \begin{equation*}
+      \begin{split}
+        h_{p+1} (\dd_p \omega) + \dd_{p-1} (h_p \omega)
+        & = \int_0^1 \dd t \left[ \inc_t^* (\ip_S \dd \omega) + \dd (\inc_t^* (\ip_S \omega)) \right] \\
+        & = \int_0^1 \dd t \, \inc_t^* \left( \ip_S (\dd \omega) + \dd (\ip_S \omega) \right) = \int_0^1 \dd t \, \inc_t^* \ld_S \omega
+      \end{split}
+    \end{equation*}
+    To simplify this expression, use the flow of $ S $ over $ \man \times \R $, which is given explicitly by $ \theta_t(q,s) = (q , t+s) $. Then, using \eref{eq:tens-flow-aux}:
+    \begin{equation*}
+      \inc_t^* (\ld_S \omega) = \inc_0^* (\theta_t^* (\ld_S \omega)) = \inc_0^* \left( \frac{\dd}{\dd t} (\theta_t^* \omega) \right) = \frac{\dd}{\dd t} \inc_0^* (\theta_t^* \omega) = \frac{\dd}{\dd t} \inc_t^* \omega
+    \end{equation*}
+    Inserting this into the integral and applying the fundamental theorem of calculus yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+This lemma allows to prove the homotopy invariance of de Rham cohomology.
+
+\begin{theorem}{Homotopy invariance of de Rham cohomology}{dr-homo-inv}
+  Let $ \man_1 $ and $ \man_2 $ be homotopy equivalent smooth manifolds. Then, any smooth homotopy equivalence $ f : \man_1 \ra \man_2 $ induces an isomorphism $ \hp{p}(\man_1) \cong \hp{p}(\man_2) $ for each $ p \in \N_0 $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ f : \man_1 \ra \man_2 $ be a homotopy equivalence, with homotopy inverse $ g : \man_2 \ra \man_1 $: by the Whiteny approximation theorem \tref{th:whitney-approx}, there are smooth maps $ \tilde{f} : \man_1 \ra \man_2 $ homotopic to $ f $ and $ \tilde{g} : \man_2 \ra \man_1 $ homotopic to $ g $. Since homotopy is preserved by composition, it follows that $ \tilde{f} \circ \tilde{g} \homo f \circ g \homo \id_{\man_2} $ and $ \tilde{g} \circ \tilde{f} \homo g \circ f \homo \id_{\man_1} $, hence $ \tilde{f} $ and $ \tilde{g} $ are homotopy inverses of each other.
+
+    \begin{lemma}{}{homo-inv-aux}
+      If $ \man_1 , \man_2 $ are smooth manifolds and $ f,g : \man_1 \ra \man_2 $ are homotopic smooth maps, then the induced cohomology maps $ f^* , g^* : \hp{p}(\man_2) \ra \hp{p}(\man_1) $ are equal for every $ p \in \N_0 $.
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        By \lref{lemma:cochain-homotopy-existence} the two chomology maps $ \inc_0^* , \inc_1^* : \hp{p}(\man_1 \times [0,1]) \ra \hp{p}(\man_1) $ are equal. Moreover, it can be shown that if $ f , g : \man_1 \ra \man_2 $ are homotopic smooth maps, then they are smoothly homotopic, i.e. there is a smooth homotopy $ H : \man_1 \times [0,1] \ra \man_2 $ from $ f $ to $ g $. Since $ f = H \circ \inc_0 $ and $ g = H \circ \inc_1 $ (see \figref{fig:homo-maps}), by \pref{prop:induced-cohomology}:
+        \begin{equation*}
+          f^* = (H \circ \inc_0)^* = \inc_0^* \circ H^* = \inc_1^* \circ H^* = (H \circ \inc_1)^* = g^*
+        \end{equation*}
+        which is the thesis.
+      \end{proof}
+    \end{proofbox}
+
+    Using \lref{lemma:homo-inv-aux}, then, on the cohomology:
+    \begin{equation*}
+      \tilde{f}^* \circ \tilde{g}^* = (\tilde{g} \circ \tilde{g})^* = \id_{\man_1}^* = \id_{\hp{p}(\man_1)}
+    \end{equation*}
+    and equivalently for $ \tilde{g}^* \circ \tilde{f}^* = \id_{\hp{p}(\man_2)} $. Therefore, $ \tilde{f}^* : \hp{p}(\man_2) \ra \hp{p}(\man_1) $ is an isomorphism.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{homotopic-maps.png}
+  \caption{Homotopic maps.}
+  \label{fig:homo-maps}
+\end{figure}
+
+\begin{corollary}{Topological invariance of de Rham cohomology}{dr-top-inv}
+  Let $ \man_1 $ and $ \man_2 $ are homeomorphic smooth manifolds, then their de Rham cohomology groups are isomorphic.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Every homeomorphism is a homotopy equivalence, thus use \tref{th:dr-homo-inv}.
+  \end{proof}
+\end{proofbox}
+
+Homotopy invariance can be used to compute some de Rham groups.
+
+\begin{proposition}{Cohomology of contractible manifolds}{cohomology-contractible}
+  Let $ \man $ be a contractible\footnotemark smooth manifold. Then, $ \hp{p}(\man) = 0 $ for $ p \geq 1 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By the hypothesis, there is some $ q \in \man $ such that $ \id_\man \homo c_q : \man \ra \man $ which sends all of $ \man $ to $ q $. Denoting the inclusion map as $ \inc_q : \{q\} \hookrightarrow \man $, it follows that $ c_q \circ \inc_q = \id_{\{q\}} $ and $ \inc_q \circ c_q \homo \id_\man $, so $ \inc_q $ is a homotopy equivalence between $ \{q\} $ and $ \man $. Then, by homotopy invariance, the de Rham groups of $ \man $ are isomorphic to those of a $ 0 $-manifold, which vanish for $ p \geq 1 $ as per \exref{ex:cohomology-zero}.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{A topological space $ X $ is \emph{contractible} if $ \id_X $ is homotopic to a constant map.}
+
+The Poincaré lemma \tref{th:poincare-1} can be generalized can be generalized to forms of all degrees.
+
+\begin{theorem}{Poincaré lemma}{poincare}
+  If $ U \in \tp(\R^n) $ (or $ \U^n $) is star-shaped, then $ \hp{p}(U) = 0 $ for $ p \geq 1 $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ U $ is star-shaped with respect to $ c \in \R^n $, then it is contractible by the followinf straight-line homotopy:
+    \begin{equation*}
+      H(x,t) = c + t (x - c)
+    \end{equation*}
+    The thesis follows from \pref{prop:cohomology-contractible}.
+  \end{proof}
+\end{proofbox}
+
+\begin{corollary}{Local exactness of closed forms}{}
+  Each point of a smooth manifold has a neighbourhood on which every closed form is exact.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Every point of a smooth manifold has a neighbourhood diffeomorphic ot an open ball in $ \R^n $ or half-ball in $ \U^n $, each of which are star-shaped. The result follows from \tref{th:poincare}.
+  \end{proof}
+\end{proofbox}
+
+Since $ \R^n $ and $ \U^n $ are both star-shaped for $ n \in \N_0 $, $ \hp{p}(\R^n) = 0 $ and $ \hp{p}(\U^n) = 0 $ for $ p \geq 1 $.
+
+Another case in which de Rham cohomology can be studied quite extensively is in degree $ 1 $. Let $ \man $ be a connected smooth manifold and $ q \in \man $. Let $ \Hom(\pi_1(\man,q) , \R) $ denote the set of group homomorphisms from $ \pi_1(\man,q) $ to the additive group $ \R(+) $: this is a $ \R $-vector space under pointwise addition of homomorphisms and multiplication by constants. Define a linear map $ \Phi : \hp{1}(\man) \ra \Hom{\pi_1(\man,q),\R} $ as follows: given a cohomology class $ [\omega] \in \hp{1}(\man) $, define $ \Phi[\omega] : \pi_1(\man,q) \ra \R $ as:
+\begin{equation*}
+  \Phi[\omega][\gamma] \equiv \int_{\tilde{\gamma}} \omega
+\end{equation*}
+where $ \gamma $ is any piecewise smooth curve representing the path homotopy class $ [\gamma] \in \pi_1(\man,q) $.
+
+\begin{theorem}{First cohomology and fundamental group}{}
+  Let $ \man $ be a connected smooth manifold. For each $ q \in \man $, the linear map $ \Phi : \hp{1}(\man) \to \Hom(\pi_1(\man,q),\R) $ is an isomorphism.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    The proof that $ \Phi $ is surjective requires more advanced instruments, so WTS $ \Phi $ is well-defined and injective. Given $ [\gamma] \in \pi_1(\man,q) $, by the Whitney approximation theorem \tref{th:whitney-approx} there is a smooth closed curve segment $ \tilde{\gamma} $ in the same path class of $ \gamma $, and by \tref{th:integral-path-homotopy}, $ \int_{\tilde{\gamma}} \omega $ gives the same result for every piecewise smooth curve $ \tilde{\gamma} $ in the given class. Moreover, if $ \tilde{\omega} \in \df{1} $ is in the same cohomology class of $ \omega $, then $ \tilde{\omega} - \omega = \dd f $ for some $ f \in \cm $, so:
+    \begin{equation*}
+      \int_{\tilde{\gamma}} \tilde{\omega} - \int_{\tilde{\gamma}} \omega = \int_{\tilde{\gamma}} \dd f = f(q) - f(q) = 0
+    \end{equation*}
+    Thus $ \Phi $ is well-defined. By \eref{eq:line-piece}, $ \Phi[\omega] $ is a group homomorphism from $ \pi_1(\man,q) $ to $ \R $, and from linearity of the line integral $ \Phi $ is itself a linear map.
+
+    To see that $ \Phi $ is injective, suppose $ \Phi[\omega] \equiv 0 $, which means that $ \int_{\tilde{\gamma}} \omega = 0 $ for every piecewise smooth closed curve starting at $ q $. If $ \sigma $ is a piecewise smooth closed curve starting at some other point $ q' \in \man $, then a piecewise smooth curve $ \alpha $ from $ q $ to $ q' $ can be chosen so that the path product $ \alpha \cdot \sigma \cdot \bar{\alpha} $ is a closed curve based at $ q $, where $ \bar{\alpha} $ is a backward reparametrization of $ \alpha $. Then:
+    \begin{equation*}
+      0 = \int_{\alpha \cdot \sigma \cdot \bar{\alpha}} \omega = \int_\alpha \omega + \int_\sigma \omega - \int_\alpha \omega = \int_\sigma \omega
+    \end{equation*}
+    Therefore, $ \omega $ is conservative and thus exact.
+  \end{proof}
+\end{proofbox}
+
+By \tref{th:integral-path-homotopy}, on simply connected smooth manifolds every closed $ 1 $-form is exact, therefore $ \hp{1}(\man) = 0 $. This result can be generalized.
+
+\begin{corollary}{}{}
+  If $ \man $ is a connected smooth manifold with finite fundamental group, then $ \hp{1}(\man) = 0 $.
+\end{corollary}
+
+\begin{proofbox}
+  \begin{proof}
+    There are no non-trivial homomorphisms from a finite group to $ \R $.
+  \end{proof}
+\end{proofbox}
+
+The same result holds if the fundamental group of a connected smooth manifold is a torsion group\footnotemark.
+
+\footnotetext{A group $ \Gamma $ is a \emph{torsion group} if $ \forall g \in \Gamma \, \exists k \in \N : g^k = e $.}
+
+\subsection{Mayer--Vietoris theorem}
+
+\subsubsection{Concepts of algebraic topology}
+\label{sssec:alg-top}
+
+Let $ \ring $ be a commutative ring\footnotemark, and consider the following sequence of $ \ring $-modules and $ \ring $-linear maps:
+\begin{equation}
+  \dots \longrightarrow A^{p-1} \xrightarrow{\ \dd_{p-1} \ } A^p \xrightarrow{\ \dd_p \ } A^{p+1} \longrightarrow \dots
+  \label{eq:sequence}
+\end{equation}
+
+\footnotetext{A \emph{ring} is a set $ \ring $ equipped with two binary operations $ + , \cdot : \ring \times \ring \ra \ring $ (addition and multiplication) which satisfy the following ring axioms:
+\begin{enumerate}
+  \item $ (\ring,+) $ is an abelian group;
+  \item $ (\ring,\cdot) $ is a monoid (i.e. multiplication is associative and has an identity);
+  \item multiplication is distributive (from left and right) with respect to addition.
+\end{enumerate}
+The identities of addition and multiplication are usually denoted by $ \zz $ and $ \uz $, respectively.
+If multiplication is commutative, $ \ring $ is a commutative ring.
+
+A \emph{left-module} over a ring is an abelian group $ (M,+) $ with an operation $ \odot : \ring \times M \ra M $ (scalar multiplication) such that, for all $ r,s \in \ring $ and $ x,y \in M $:
+\begin{enumerate}
+  \item $ r \odot (x + y) = r \odot x + r \odot y $ and $ (r + s) \odot x = r \odot x + s \odot x $;
+  \item $ (r \cdot s) \odot x = r \odot (s \odot x) $ and $ \uz \odot x = x $.
+\end{enumerate}
+A \emph{righ-module} is defined analogously with $ \odot : M \times \ring \ra M $. If $ \ring $ is a commutative ring, the two definitions coincide and $ (M,+) $ is just a \emph{module} over $ \ring $. In practice, $ \cdot $ is omitted for multiplication and used in place of $ \odot $.}
+
+denoted by $ A^* $. Such a sequence is called a \bctxt{(cochain) complex}\footnotemark if the composition of any successive applications is the zero map, i.e. if for each $ p \in \N_0 $:
+\begin{equation}
+  \dd_p \circ \dd_{p+1} \equiv 0 : A^p \ra A^{p+2}
+\end{equation}
+
+\footnotetext{A \emph{chain complex} is defined analogously, but with maps $ \pa_p : A^p \ra A^{p-1} $ going in the opposite direction. In this case, the term \emph{homology} is used in place of cohomology. The conclusions of this section hold for chain complexes too: in particular, chain maps induce linear maps on homologies.}
+
+If $ \im \dd_p = \ker \dd_{p+1} $, the sequence is said to be an \bctxt{exact sequence}. Clearly, every exact sequence is a complex, while the converse is not true in general.
+
+If $ A^* $ is a cochain complex, it is possible to define the \emph{$ p^\textit{th} $ cohomology group} of $ A^* $ as the quotient module which gives a quantitative measure of the failure of exactness at $ A^p $:
+\begin{equation}
+  \hp{p}(A^*) \defeq \frac{\ker \dd_p}{\im \dd_{p-1}}
+\end{equation}
+If $ A^* $ and $ B^* $ are cochain complexes, a \emph{cochain map} from $ A^* $ to $ B^* $, denoted by $ f : A^* \ra B^* $, is a collection of linear maps $ f_p : A^p \ra B^p $ such that the following diagram commutes for each $ p \in \N_0 $:
+\begin{equation*}
+  \begin{tikzcd}
+    \dots \ar[r] & A^p \ar[r , "\dd_p"] \ar[d , "f_p" , swap] & A^{p+1} \ar[d , "f_{p+1}"] \ar[r] & \dots \\
+    \dots \ar[r] & B^p \ar[r , "\dd_p" , swap] & B^{p+1} \ar[r] & \dots \\
+  \end{tikzcd}
+\end{equation*}
+Suppressing indices, this condition can be written as $ f \circ \dd = \dd \circ f $, which means that any cochain map $ f : A^* \ra B^* $ induces a linear cohomology map $ f_p : \hp{p}(A^*) \ra \hp{p}(B^*) $ for each $ p \in \N_0 $. A \bctxt{short exact sequence} of complexes consists of three complexes $ A^* , B^* , C^* $ together with cochain maps:
+\begin{equation}
+  0 \longrightarrow A^* \xrightarrow{\ f \ } B^* \xrightarrow{\ g \ } C^* \longrightarrow 0
+  \label{eq:short-exact-sequence}
+\end{equation}
+such that each sequence:
+\begin{equation*}
+  0 \longrightarrow A^p \xrightarrow{\ f_p \ } B^p \xrightarrow{\ g_p \ } C^p \longrightarrow 0
+\end{equation*}
+is exact. This means that $ f_p $ is injective, $ g_p $ is surjective and $ \im f_p = \ker g_p $ for each $ p \in \N_0 $.
+
+\begin{lemma}{Zigzag lemma}{}
+  Given a short exact sequence of complexes as in \eref{eq:short-exact-sequence}, for each $ p \in \N_0 $ there is a linear map $ \lemmacol{\delta_p : \hp{p}(C^*) \ra \hp{p+1}(A^*)} $, called the \bclemma{connecting homomorphism}, such that the following sequence is exact:
+  \begin{equation*}
+    \dots \xrightarrow{\ \delta_{p-1} \ } \hp{p}(A^*) \xrightarrow{\ f_p^* \ } \hp{p}(B^*) \xrightarrow{\ g_p^* \ } \hp{p}(C^*) \xrightarrow{\ \delta_p \ } \hp{p+1} \xrightarrow{\ f_{p+1}^* \ } \dots
+  \end{equation*}
+\end{lemma}
+
+\subsubsection{Proof of the Mayer--Vietoris theorem}
+
+The discussion of cochain complexes in \secref{sssec:alg-top} applies equally well e.g. to $ \ring = \Z $, in which case the sequence is composed of abelian groups and homomorphisms, and to $ \ring = \R $, in which case it is composed of vector spaces and linear maps. The case of interest here is $ \ring = \R $.
+
+Let $ \man $ be a smooth manifold, and let $ U,V \in \tp(\man) : \man = U \cup V $. There are then four inclusion maps and four induced pull-back maps:
+\begin{equation*}
+  \begin{tikzcd}
+    & U \ar[rd , "k"] & \\
+    U \cup V \ar[ru , "i"] \ar[rd , "j" , swap] & & \man \\
+                                                & V \ar[ru , "l" , swap] &
+  \end{tikzcd}
+  \qquad \qquad
+  \begin{tikzcd}
+    & \dfm{p}(U) \ar[ld , "i^*" , swap] & \\
+    \dfm{p}(U \cup V)  & & \df{p} \ar[lu , "k^*" , swap] \ar[ld , "l^*"] \\
+                       & \dfm{p}(V) \ar[lu , "j^*"] &
+  \end{tikzcd}
+\end{equation*}
+There are also corresponding cohomology maps. Note that these pull-back maps are just restrictions, e.g. $ k^*\omega = \omega \vert_U $. Consider the following sequence of maps:
+\begin{equation}
+  0 \longrightarrow \df{p} \xrightarrow{k^* \oplus \, l^*} \dfm{p}(U) \oplus \dfm{p}(V) \xrightarrow{i^* - j^*} \dfm{p}(U \cap V) \longrightarrow 0
+\end{equation}
+with:
+\begin{equation}
+  (k^* \oplus l^*) \omega \equiv (k^* \omega , l^* \omega)
+  \qquad \qquad
+  (i^* - j^*) (\omega , \eta) \equiv i^* \omega - j^* \eta
+\end{equation}
+Since pull-backs commute with exterior derivatives, these maps descend to linear maps on the corresponding de Rham cohomology groups.
+
+\begin{theorem}{Mayes--Vietoris theorem}{}
+  Let $ \man $ be a smooth manifold and $ U,V \in \tp(\man) : U \cup V $. For each $ p \in \N_0 $, there is a linear map $ \delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man) $ such that the following sequence, called the \bcth{Mayer--Vietoris sequence} for the open cover $ \{U,V\} $, is exact:
+  \begin{equation*}
+    \dots \xrightarrow{\ \delta_p \ } \hp{p}(\man) \xrightarrow{k^* \oplus \, l^*} \hp{p}(U) \oplus \hp{p}(V) \xrightarrow{i^* - j^*} \hp{p}(U \cap V) \xrightarrow{\ \delta_{p+1} \ } \hp{p+1}(\man) \xrightarrow{k^* \oplus \, l^*} \dots
+  \end{equation*}
+\end{theorem}
+
+\begin{corollary}{Characterization of connecting homomorphism}{}
+  The \bcthcol{connecting homomorphism} $ \thcorcol{\delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man)} $ of the Mayer--Veitoris sequence is defined as follows. For each $ \omega \in \zp{p}(U \cap V) $, there are $ \eta \in \dfm{p}(U) , \eta' \in \dfm{p}(V) $ such that $ \omega = \eta \vert_{U \cap V} - \eta' \vert_{U \cap V} $: then, $ \delta_p [\omega] = [\sigma] $, where $ \sigma \in \df{p+1} : \sigma \vert_U = \dd \eta \land \sigma \vert_V = \dd \eta' $.
+
+  If $ \{\varphi , \psi\} $ is a smooth partition of unity subordinate to $ \{U,V\} $, then one can take $ \eta = \psi \omega $ and $ \eta' = - \varphi \omega $, both extended to zero outside of the supports of $ \psi $ and $ \varphi $.
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \section{Hodge theory}
 
 To study the topological properties of a smooth manifold through its cohomology groups, it is convenient to define an additional operation on forms: the Hodge dual.
@@ -362,7 +907,7 @@ This construction can be generalized to arbitrary vector-valued 1-forms, definin
 \begin{equation}
   \dcov \zeta^a \defeq \dd \zeta^a + \tensor{\omega}{^a_b} \wedge \zeta^b
 \end{equation}
-This is a map $ \dcov : \lm{p} \ra \lm{p+1} $, like the exterior derivative, but it has an important invariance property.
+This is a map $ \dcov : \df{p} \ra \df{p+1} $, like the exterior derivative, but it has an important invariance property.
 
 \begin{lemma}{Lorentz invariance}{form-lor-inv}
   The covariant exterior derivative transformations under local Lorentz as:
