@@ -345,7 +345,7 @@ Another case in which de Rham cohomology can be studied quite extensively is in 
 \end{equation*}
 where $ \gamma $ is any piecewise smooth curve representing the path homotopy class $ [\gamma] \in \pi_1(\man,q) $.
 
-\begin{theorem}{First cohomology and fundamental group}{}
+\begin{theorem}{First cohomology and fundamental group}{cohomology-fundamental-group}
   Let $ \man $ be a connected smooth manifold. For each $ q \in \man $, the linear map $ \Phi : \hp{1}(\man) \to \Hom(\pi_1(\man,q),\R) $ is an isomorphism.
 \end{theorem}
 
@@ -367,7 +367,7 @@ where $ \gamma $ is any piecewise smooth curve representing the path homotopy cl
 
 By \tref{th:integral-path-homotopy}, on simply connected smooth manifolds every closed $ 1 $-form is exact, therefore $ \hp{1}(\man) = 0 $. This result can be generalized.
 
-\begin{corollary}{}{}
+\begin{corollary}{}{connected-cohomology}
   If $ \man $ is a connected smooth manifold with finite fundamental group, then $ \hp{1}(\man) = 0 $.
 \end{corollary}
 
@@ -439,7 +439,7 @@ such that each sequence:
 \end{equation*}
 is exact. This means that $ f_p $ is injective, $ g_p $ is surjective and $ \im f_p = \ker g_p $ for each $ p \in \N_0 $.
 
-\begin{lemma}{Zigzag lemma}{}
+\begin{lemma}{Zigzag lemma}{zigzag}
   Given a short exact sequence of complexes as in \eref{eq:short-exact-sequence}, for each $ p \in \N_0 $ there is a linear map $ \lemmacol{\delta_p : \hp{p}(C^*) \ra \hp{p+1}(A^*)} $, called the \bclemma{connecting homomorphism}, such that the following sequence is exact:
   \begin{equation*}
     \dots \xrightarrow{\ \delta_{p-1} \ } \hp{p}(A^*) \xrightarrow{\ f_p^* \ } \hp{p}(B^*) \xrightarrow{\ g_p^* \ } \hp{p}(C^*) \xrightarrow{\ \delta_p \ } \hp{p+1} \xrightarrow{\ f_{p+1}^* \ } \dots
@@ -467,6 +467,7 @@ Let $ \man $ be a smooth manifold, and let $ U,V \in \tp(\man) : \man = U \cup V
 There are also corresponding cohomology maps. Note that these pull-back maps are just restrictions, e.g. $ k^*\omega = \omega \vert_U $. Consider the following sequence of maps:
 \begin{equation}
   0 \longrightarrow \df{p} \xrightarrow{k^* \oplus \, l^*} \dfm{p}(U) \oplus \dfm{p}(V) \xrightarrow{i^* - j^*} \dfm{p}(U \cap V) \longrightarrow 0
+  \label{eq:mv-aux}
 \end{equation}
 with:
 \begin{equation}
@@ -476,19 +477,278 @@ with:
 \end{equation}
 Since pull-backs commute with exterior derivatives, these maps descend to linear maps on the corresponding de Rham cohomology groups.
 
-\begin{theorem}{Mayes--Vietoris theorem}{}
+\begin{theorem}{Mayer--Vietoris theorem}{mayer-vietoris}
   Let $ \man $ be a smooth manifold and $ U,V \in \tp(\man) : U \cup V $. For each $ p \in \N_0 $, there is a linear map $ \delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man) $ such that the following sequence, called the \bcth{Mayer--Vietoris sequence} for the open cover $ \{U,V\} $, is exact:
   \begin{equation*}
     \dots \xrightarrow{\ \delta_p \ } \hp{p}(\man) \xrightarrow{k^* \oplus \, l^*} \hp{p}(U) \oplus \hp{p}(V) \xrightarrow{i^* - j^*} \hp{p}(U \cap V) \xrightarrow{\ \delta_{p+1} \ } \hp{p+1}(\man) \xrightarrow{k^* \oplus \, l^*} \dots
   \end{equation*}
 \end{theorem}
 
+\begin{proofbox}
+  \begin{proof}
+    It suffices to show that the sequence \eref{eq:mv-aux} is exact for each $ p $, as then, because then, since pull-back maps commute with exterior derivatives, it defines a short exact sequence of cochain maps, and the Mayer--Vietoris sequence is exact by \lref{lemma:zigzag}.
+
+    First, prove exactness at $ \df{p} $: WTS $ k^* \oplus l^* $ is injective. Let $ \sigma \in \df{p} : (k^* \oplus l^*) \sigma = (\sigma \vert_U , \sigma \vert_V) = (0,0) $: since $ \{U,V\} $ is an open cover of $ \man $, this implies $ \sigma = 0 $, hence $ k^* \oplus l^* $ is injective.
+
+    Now, prove exactness at $ \dfm{p}(U) \oplus \dfm{p}(V) $. Observe that:
+    \begin{equation*}
+      (i^* - j^*) \circ (k^* \oplus l^*) (\sigma) = (i^* - j^*) (\sigma \vert_U , \sigma \vert_V)  = \sigma \vert_{U \cap V} - \sigma \vert_{U \cap V} = 0
+    \end{equation*}
+    which shows $ \im(k^* \oplus l^*) \ssq \ker (i^* - j^*) $. Conversely, let $ (\eta , \eta') \in \dfm{p}(U) \oplus \dfm{p}(V) : (i^* - j^*)(\eta , \eta') = 0 $, which means that $ \eta \vert_{U \cap V} = \eta' \vert_{U \cap V} $, so there is a global $ \sigma \in \df{p} $ defined by:
+    \begin{equation*}
+      \sigma =
+      \begin{cases}
+        \eta & \text{on $ U $} \\
+        \eta' & \text{on $ V $}
+      \end{cases}
+    \end{equation*}
+    Clearly $ (\eta , \eta') = (k^* \oplus l^*) \sigma $, hence $ \ker(i^* - j^*) \ssq \im(k^* \oplus l^*) $, i.e. $ \ker(i^* - j^*) = \im(k^* \oplus l^*) $.
+
+    Finally, prove exactness at $ \dfm{p}(U \cap V) $. Let $ \omega \in \dfm{p}(U \cap V) $ arbitrary: WTS there exist $ \eta \in \dfm{p}(U) $ and $ \eta' \in \dfm{p}(V) $ such that (see \figref{fig:mv-th}):
+    \begin{equation*}
+      \omega = (i^* - j^*) (\eta , \eta') = i^* \eta - j^* \eta' = \eta \vert_{U \cap V} - \eta' \vert_{U \cap V}
+    \end{equation*}
+    Let $ \{\varphi , \psi\} $ be a smooth partition of unity subordinate to the open cover $ \{U,V\} $, and define $ \eta \in \dfm{p}(U) $ and $ \eta' \in \dfm{p}(V) $ as:
+    \begin{equation*}
+      \eta =
+      \begin{cases}
+        \psi \omega & \text{on $ U \cap V $} \\
+        0 & \text{on $ U - \supp \psi $}
+      \end{cases}
+      \qquad \qquad
+      \eta' =
+      \begin{cases}
+        -\varphi \omega & \text{on $ U \cap V $} \\
+        0 & \text{on $ V - \supp \varphi $}
+      \end{cases}
+    \end{equation*}
+    In each form, on the sets where the two definitions overlap, they both vanish, so $ \eta \in \dfm{p}(U) $ and $ \eta' \in \dfm{p}(V) $ are well-defined. Then:
+    \begin{equation*}
+      \eta \vert_{U \cap V} - \eta' \vert_{U \cap V} = \psi \omega - (- \varphi \omega) = (\psi + \varphi) \omega = \omega
+    \end{equation*}
+    which concludes the proof.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{mv-th.png}
+  \caption{Surjectivity of $ i^* - j^* $.}
+  \label{fig:mv-th}
+\end{figure}
+
 \begin{corollary}{Characterization of connecting homomorphism}{}
-  The \bcthcol{connecting homomorphism} $ \thcorcol{\delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man)} $ of the Mayer--Veitoris sequence is defined as follows. For each $ \omega \in \zp{p}(U \cap V) $, there are $ \eta \in \dfm{p}(U) , \eta' \in \dfm{p}(V) $ such that $ \omega = \eta \vert_{U \cap V} - \eta' \vert_{U \cap V} $: then, $ \delta_p [\omega] = [\sigma] $, where $ \sigma \in \df{p+1} : \sigma \vert_U = \dd \eta \land \sigma \vert_V = \dd \eta' $.
+  The \bcthcol{connecting homomorphism} $ \thcorcol{\delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man)} $ of the Mayer--Veitoris sequence is defined as follows. For each $ \omega \in \zp{p}(U \cap V) $, there are $ \eta \in \dfm{p}(U) , \eta' \in \dfm{p}(V) $ such that $ \omega = \eta \vert_{U \cap V} - \eta' \vert_{U \cap V} $: then, $ \delta_p [\omega] = [\sigma] $, where $ \sigma \in \df{p+1} $ such that $ \sigma \vert_U = \dd \eta $ and $ \sigma \vert_V = \dd \eta' $.
 
   If $ \{\varphi , \psi\} $ is a smooth partition of unity subordinate to $ \{U,V\} $, then one can take $ \eta = \psi \omega $ and $ \eta' = - \varphi \omega $, both extended to zero outside of the supports of $ \psi $ and $ \varphi $.
 \end{corollary}
 
+\subsubsection{Applications of the Mayer--Vietoris theorem}
+
+The Mayer--Vietoris theorem allows to compute all of the de Rham cohomology groups of spheres.
+
+\begin{proposition}{Cohomology of spheres}{cohomology-sphere}
+  For $ n \in \N $, the de Rham cohomology groups of $ \Sn{n} $ are:
+  \begin{equation}
+    \hp{p}(\Sn{n}) \cong
+    \begin{cases}
+      \R & p = 0,n \\
+      0 & 0 < p < n
+    \end{cases}
+  \end{equation}
+  The cohomology class of any smooth orientation form is a basis for $ \hp{p}(\Sn{n}) $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By \exref{ex:cohomology-zero}, $ \hp{0}(\Sn{n}) \cong \R $, so consider $ p \geq 1 $. The proof is by induction on $ n \in \N $.
+
+    $ (n = 1) $ Any orientation for on $ \Sn{1} $ has non-zero integral, so it is not exact by Stokes' theorem, hence $ \dim_\R \hp{1}(\Sn{1}) \geq 1 $. On the other hand, by \tref{th:cohomology-fundamental-group} there is an injective linear map $ \hp{1}(\Sn{1}) \ra \Hom(\pi_1(\Sn{1},1) , \R) $, but $ \dim_\R \Hom(\pi_1(\Sn{1},1) , \R) $, thus $ \dim_\R \hp{1}(\Sn{1}) = 1 $, and is spanned by the cohomology class of any smooth orientation form.
+
+    $ (n \geq 2) $ Assume that the theorem is true for $ \Sn{n-1} $. Since $ \Sn{n} $ is simply connected (for $ n \geq 1 $), $ \hp{1}(\Sn{n}) = 0 $ by \cref{cor:connected-cohomology}. For $ p > 1 $, use \tref{th:mayer-vietoris} as follows: let $ N $ and $ S $ be the north and south poles in $ \Sn{n} $, respectively, and let $ U = \Sn{n} - \{S\} $ and $ V = \Sn{n} - \{N\} $, which are both diffeomorphic to $ \R^n $ (through the stereographic projection, see \figref{fig:coho-sph}), thus $ U \cap V $ is diffeomorphic to $ \R^n - \{0\} $. Part of the Mayer--Vietoris sequence for $ \{U,V\} $ reads:
+    \begin{equation*}
+      \hp{p-1}(U) \oplus \hp{p-1}(V) \ra \hp{p-1}(U \cap V) \ra \hp{p}(\Sn{n}) \ra \hp{p}(U) \oplus \hp{p}(V)
+    \end{equation*}
+    Since $ U , V $ are diffeomorphic to $ \R^n $, the groups at both ends are trivial when $ p > 1 $, hence $ \hp{p}(\Sn{n}) \cong \hp{p-1}(U \cap V) $. Moreover, $ U \cap V $ is diffeomorphic to $ \R^n - \{0\} $ and thus homotopy equivalent to $ \Sn{n-1} $ by \exref{ex:homotopy-spheres}, so in the end $ \hp{p}(\Sn{n}) \cong \hp{p-1}(\Sn{n-1}) $ for $ p > 1 $. The thesis then follows by induction. As in the $ n = 1 $ case, any smooth orientation on $ \Sn{n} $ determines a non-zero cohomology class, which therefore spans $ \hp{n}(\Sn{n}) $.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.45 \textwidth]{coho-sph.png}
+  \caption{Stereographic projections on $ \Sn{n} $.}
+  \label{fig:coho-sph}
+\end{figure}
+
+It can be shown that $ \eta \in \dfm{n}(\Sn{n}) $ is exact if and only if $ \int_{\Sn{n}} \eta = 0 $.
+
+\begin{propcorollary}{Cohomology of punctured Euclidean spaces}{cohomology-punctured}
+  Let $ x \in \R^n $ and $ \man = \R^n - \{x\} $, with $ n \geq 2 $. The only non-trivial de Rham groups of $ \man $ are $ \hp{0}(\man) \cong \R $ and $ \hp{n-1}(\man) \cong \R $.
+  A closed $ \eta \in \df{n-1} $ is exact if and only if $ \int_S \eta = 0 $ for some (and hence every) $ (n-1) $-dimensional sphere $ S \ssq \man $ centered at $ x $.
+\end{propcorollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ S \ssq \man $ be any $ (n-1) $-dimensional sphere centered at $ x $. The inclusion map $ \inc : S \hookrightarrow \man $ is a homotopy equivalence, thus $ \inc^* : \hp{p}(\man) \ra \hp{p}(S) $ is an isomorphism for each $ p \in \N_0 $ and the result on de Rham groups of $ \man $ follows from \pref{prop:cohomology-sphere}.
+
+    If $ \eta \in \zp{n-1}(\man) $, then $ \eta \in \bp{n-1}(\man) $ if and only if $ \inc^* \eta \in \bp{n-1}(S) $, which is true if and only if $ \int_S \eta = \int_S \inc^* \eta = 0 $ by the observation above.
+  \end{proof}
+\end{proofbox}
+
+This result remains true even when $ \man = \R^n - \overline{B} $, for some closed ball $ \overline{B} \ssq \R^n $.
+
+\begin{propcorollary}{}{cohomology-open-subset}
+  Let $ U \in \tp(\R^n) $, with $ n \geq 2 $, and $ x \in U $. Then $ \hp{n-1}(U - \{x\}) \neq 0 $.
+\end{propcorollary}
+
+\begin{proofbox}
+  \begin{proof}
+    Since $ U $ is open, there is an $ (n-1) $-dimensional sphere $ S $ centered at $ x $ such that $ S \ssq U - \{x\} $. Let $ \inc : S \hookrightarrow U - \{x\} $ be the inclusion map and $ r : U - \{x\} \ra S $ be the radial projection onto $ S $. Then, $ r $ and $ \inc $ are smooth with $ r \circ \inc = \id_S $, which implies $ \inc^* \circ r^* = \id_{\hp{n-1}(S)} $, and therefore $ r^* : \hp{n-1}(S) \ra \hp{n-1}(U - \{x\}) $ is injective: since $ \hp{n-1}(S) \neq 0 $ by \pref{prop:cohomology-sphere}, the thesis follows.
+  \end{proof}
+\end{proofbox}
+
+An important application of the topological invariance of the de Rham cohomology groups is the proof of the topological invariance of dimension.
+
+\begin{theorem}{Topological invariance of dimension}{topological-invariance-dimension-proof}
+  A non-empty $ n $-dimensional topological manifold cannot be homeomorphic to an $ m $-dimensional topoplogical manifold, unless $ m = n $.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ \man $ is a topological $ n $-mnaifold that is homeomorphic to an $ m $-manifold, then $ \man $ is itself both an $ n $-manifold and an $ m $-manifold. The case in which $ m = 0 $ or $ n = 0 $ is trivial, hence WLOG $ m > n \geq 1 $. Since $ \man $ is an $ m $-manifold, there is $ V \in \tp(\man) $ that is homeomorphic to $ \R^m $, but an open subset of an $ n $-manifold is itself an $ n $-manifold, hence any point $ x \in V $ has a neighbourhood $ U \ssq V $ that is homeomorphic to $ \R^n $. Since $ U $ is homeomorphic to $ \R^n $, the homeomorphism can be used to define a smooth structure on $ U $, and then $ \hp{m-1}(U - \{x\}) = 0 $ by \cref{cor:cohomology-punctured}. On the other hand, since $ U $ is homeomorphic to an open set of $ \R^m $, this homeomorphism can be used to define another smooth structure on $ U $, and \cref{cor:cohomology-open-subset} implies $ \hp{m-1}(U - \{x\}) \neq 0 $, which contradicts the topological invariance of de Rham cohomology $ \absurd $
+  \end{proof}
+\end{proofbox}
+
+\subsection{Degree theory}
+
+Top-degree cohomology can be used to prove some properties of smooth functions between certain compact manifolds of the same dimension.
+
+It is useful to introduce a generalization of the de Rham cohomology groups using compactly supported forms. Let $ \man $ be a smooth manifold: the $ \R $-vector space of compactly supported smooth $ p $-forms on $ \man $ is denoted by $ \dfcm{p}(\man) \ssq \df{p} $. Then, restricting to compactly supported smooth $ p $-forms the spaces $ \zpc{p}(\man) \ssq \zp{p}(\man) $ and $ \bpc{p}(\man) \ssq \bp{p}(\man) $, the \emph{$ p^\textit{th} $ compactly supported de Rham cohomology group} of $ \man $ is the quotient space:
+\begin{equation}
+  \hpc{p}(\man) \defeq \frac{\zpc{p}(\man)}{\bpc{p}(\man)}
+\end{equation}
+This reduces to the ordinary de Rham cohomology when $ \man $ is compact. For non-compact manifolds, however, these are different groups: for example, when $ n \geq 1 $:
+\begin{equation}
+  \hpc{p}(\R^n) \cong
+  \begin{cases}
+    \R & p = n \\
+    0 & 0 \leq p < n
+  \end{cases}
+\end{equation}
+contrary to $ \hp{p}(\R^n) = 0 $ for $ p \geq 1 $. In general, smooth maps need not pull-back compactly supported forms to compactly supported forms, so they don't induce maps on compactly supported cohomology. However, a proper map does pull-back compactly supported forms to compactly supported forms, so a proper map $ f : \man_1 \ra \man_2 $ induces a cohomology map $ f^* : \hpc{p}(\man_2) \ra \hpc{p}(\man_1) $ for each $ p \in \N_0 $.
+
+\subsubsection{Top-degree cohomology}
+
+Let $ \man $ be an oriented smooth $ n $-manifold. There is a natural linear map $ I : \dfc{n} \ra \R $ given by integration over $ \man $:
+\begin{equation*}
+  I(\omega) \defeq \int_\man \omega
+\end{equation*}
+Since the integral of the exterior derivative of a compactly supported $ (n-1) $-form vanishes, $ I $ descends to a linear map $ I : \hpc{n}(\man) \ra \R $ (every smooth $ n $-form on an $ n $-manifold is closed).
+
+\begin{proposition}{Top cohomology, orientable compact support case}{top-or-comp-supp}
+  If $ \man $ is a connected oriented $ n $-manifold, then the integration map $ I : \hpc{n}(\man) \ra \R $ is an isomorphism, so $ \dim_\R \hpc{n}(\man) = 1 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ n = 0 $, the thesis is trivial by \exref{ex:cohomology-zero}, so assume $ n \geq 1 $. Let $ (U,(x^i)) $ be an oriented smooth coordinate chart on $ \man $, and let $ f $ be a smooth bump function with compact support in $ U $: then, the $ n $-form defined as $ \theta_0 = f \, \dd x^1 \wedge \dots \wedge \dd x^n $ in $ U $ and $ 0 $ outside $ U $ is smooth and compactly supported on $ \man $, and satisfies $ I(\theta_0) > 0 $. Therefore, $ I $ is surjective, so WTS $ I $ is injective, which is equivalent to showing that if $ \omega \in \dfc{n} $ such that $ \int_\man \omega = 0 $, then $ \exists \eta \in \dfc{n-1} : \omega = \dd \eta $.
+
+    Let $ \{U_i\}_{i \in \N} $ be a countable open cover of $ \man $ such that each $ U_i $ is diffeomorphic to $ \R^n $, and let $ \man_k \equiv \bigcup_{i = 1}^k U_i $ for each $ k \in \N $. Since $ \man $ is connected, it is possible to arrange the series so that $ \man_k \cap U_{k+1} \neq \emptyset \,\,\forall k \in \N $. Since every compactly supported $ n $-form is supported in $ \man_k $ for some $ k \in \N $, it suffices to prove that if $ \omega \in \dfcm{n}(\man_k) $ has $ \int_{\man_k} \omega = 0 $, then $ \omega = \dd \eta $ for some $ \eta \in \dfcm{n-1}(\man_k) $, which can then be extended by zero to a compactly supported form on all of $ \man $. The proof is by induction on $ k \in \N $.
+
+    $ (k = 1) $ Since $ \man_1 = U_1 $ is diffeomorphic to $ \R^n $, the claim is proved by the following lemma.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Poincaré lemma with compact support}{poincare-compact}
+      Let $ n \geq p \geq 1 $ and let $ \omega $ be a compactly supported $ p $-form on $ \R^n $. if $ p = n $, suppose $ \int_{\R^n} \omega = 0 $. Then, there exists $ \eta \in \dfcm{p-1}(\R^n) $ such that $ \omega = \dd \eta $.
+    \end{lemma}
+
+    $ (k \geq 1) $ Assume the claim to be true for some $ k \geq 1 $, and suppose $ \omega \in \dfcm{n}(\man_{k+1}) $, with $ \man_{k+1} = \man_k \cup U_{k+1} $ that satisfies $ \int_{\man_{k+1}} \omega = 0 $. Let $ \theta \in \dfcm{n}(\man_{k+1}) $ be supported in $ \man_k \cap U_{k+1} $ and usch that $ \int_{\man_{k+1}} \theta = 1 $. Let $ \{\varphi , \psi\} $ be a smooth partition of unity for $ \man_{k+1} $ subordinate to the cover $ \{\man_k , U_{k+1}\} $, as in \figref{fig:top-deg-coho}, and let $ c \equiv \int_{\man_{k+1}} \varphi \omega $. Since $ \varphi \omega - c \theta $ is compactly supported in $ \man_k $ and its integral vanished by definition of $ c $, by the inductive hypothesis there is $ \alpha \in \dfcm{n-1}(\man_k) $ such that $ \dd \alpha = \varphi \omega - c \theta $. Similarly, $ \psi \omega + c \theta $ is compactly supported in $ U_{k+1} $ and:
+    \begin{equation*}
+      \int_{U_{k+1}} (\psi \omega + c \theta) = \int_{\man_{k+1}} (1 - \vartheta) \omega + c \int_{\man_{k+1}} \theta = \int_{\man_{k+1}} \omega - \int_{\man_{k+1}} \varphi \omega + c = 0
+    \end{equation*}
+    Thus, by \lref{lemma:poincare-compact}, there exists $ \beta \in \dfcm{n-1}(U_{k+1}) $ such that $ \dd \beta = \psi \omega + c \theta $. Both $ \alpha $ and $ \beta $ can be extended by zero to smooth compactly supported forms on $ \man_{k+1} $, and:
+    \begin{equation*}
+      \dd (\theta + \beta) = (\varphi \omega - c \theta) + (\psi \omega + c \theta) = (\varphi + \psi) \omega = \omega
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{top-def-coho.png}
+  \caption{Computation of top-degree cohomology.}
+  \label{fig:top-deg-coho}
+\end{figure}
+
+\begin{propcorollary}{Top cohomology, orientable compact case}{top-or-comp}
+  If $ \man $ is a compact connected orientable smooth $ n $-manifold, then $ \dim_\R \hp{n}(\man) = 1 $ and is spanned by the cohomology class of any smooth orientation form.
+\end{propcorollary}
+
+\begin{proofbox}
+  \begin{proof}
+    For compact manifolds $ \hpc{p}(\man) = \hp{p}(\man) $, hence use \pref{prop:top-or-comp-supp} and the fact that any orientation form has non-vanishing integral.
+  \end{proof}
+\end{proofbox}
+
+
+\begin{proposition}{Top cohomology, orientable non-compact case}{}
+  If $ \man $ is a non-compact connected orientable smooth $ n $-manifold, then $ \hp{n}(\man) = 0 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, choose an orientation on $ \man $. Let $ f \in \cm $ be a smooth exhaustion function: by adding a constant, it is possible to set $ \inf_\man f = 0 $, and then connectedness and non-compactness of $ \man $ imply $ f(\man) = [0 , \infty) $. For each $ i \in \N $, let $ V_i = f^{-1}((i - 1 , i)) $: clearly, $ \{V_i\}_{i \in \N} $ is a cover of $ \man $ by non-empty precompact\footnotemark open sets, with $ V_i \cap V_j \neq \emptyset $ if and only if $ j = i-1,i,i+1 $. Let $ \{\psi_i\} $ be a smooth partition of unity subordinate to this cover and, for each $ i \in \N $, let $ \theta_i \in \dfc{n} $ be compactly supported in $ V_i \cap V_{i+1} $ with $ \int_\man \theta_i = 1 $.
+
+    Let $ \omega \in \df{n} $ arbitrary, and let $ \omega_i = \psi_i \omega \in \dfcm{n}(V_i) $ for each $ i \in \N $. Let $ c_1 = \int_{V_1} \omega_1 $, so that $ \omega_1 - c_1 \theta_1 $ is compactly supported in $ V_1 $ and has non-zero integral. It follows form \pref{prop:top-or-comp-supp} that there exists $ \eta_1 \in \dfcm{n}(V_1) $ such that $ \dd \eta_1 = \omega_1 - c_1 \theta_1 $. Next, choose $ c_2 \in \R $ such that $ \int_{V_2} (\omega_2 + c_1 \theta_1 - c_2 \theta_2) = 0 $, so there exists $ \eta_2 \in \dfcm{n}(V_2) $ such that $ \dd \eta_2 = \omega_2 + c_1 \theta_1 - c_2 \theta_2 $. Continuining by induction, choose $ c_j \in \R $ and $ \eta_j \in \dfcm{n}(V_j) $ such that $ \dd \eta_j = \omega_j + c_{j-1} \theta_{j-1} - c_j \theta_j $.
+
+    Now, set $ \eta \equiv \sum_{j \in \N} \eta_j $, with each $ \eta_j $ extended by zero on $ \man - V_j $. Since at most three terms in this sum are non-zero on each $ V_i $, this is $ \eta \in \df{n} $. When taking the exterior derivative, the $ c_j \theta_j $ terms cancel, so $ \dd \eta = \sum_{j \in \N} \omega_j = \omega $.
+  \end{proof}
+\end{proofbox}
+
+\footnotetext{Given a topological space $ X $, $ U \ssq X $ is \emph{precompact} if $ \overline{U} $ is compact.}
+
+An analogous result for non-orientable manifolds can be found in a similar way.
+
+\begin{proposition}{Top cohomology, non-orientable case}{}
+  If $ \man $ is a connected non-orientable smooth $ n $-manifold, then $ \hpc{n}(\man) = 0 $ and $ \hp{n}(\man) = 0 $.
+\end{proposition}
+
+\subsubsection{Smooth maps}
+
+Once the top-degree cohomology groups of all compact manifolds are found, smooth maps between them can be studied by assigning an integer to them in such a way that homotopic maps have the same integer.
+
+\begin{theorem}{Degree of smooth map}{}
+  Let $ \man_1 , \man_2 $ be compact oriented smooth $ n $-manifolds, and let $ f : \man_1 \ra \man_2 $ be a smooth map. There exists a unique $ \thcol{k_f \in \Z} $, called the \bcth{degree of $ f $}, that satisfies:
+  \begin{enumerate}
+    \item \label{item:deg-1} for every $ \omega \in \dfm{n}(\man_2) $:
+      \begin{equation*}
+        \int_{\man_1} f^* \omega = k_f \int_{\man_2} \omega
+      \end{equation*}
+    \item \label{item:deg-2} if $ q \in \man_2 $ is a regular value of $ f $, then:
+      \begin{equation*}
+        k_f = \sum_{x \in f^{-1}(q)} \sgn(x)
+      \end{equation*}
+      where $ \sgn(x) = +1 $ if $ \dd f_x $ is orientation-preserving, and $ -1 $ otherwise.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    By \cref{cor:top-or-comp}, two smooth $ n $-forms on either $ \man_1 $ or $ \man_2 $ are cohomologous if and only if they have the same integral. Let $ \theta \in \dfm{n}(\man_2) : \int_{\man_2} \theta = 1 $, and let $ k_f = \int_{\man_1} f^* \theta $. If $ \omega \in \dfm{n}(\man_2) $ is arbitrary, then $ \omega $ is cohomologous to $ a \theta $, where $ a \in \int_{\man_2} \omega $, and therefore $ f^* \omega $ is cohomologous to $ a f^* \omega $. Then:
+    \begin{equation*}
+      \int_{\man_1} f^* \omega = a \int_{\man_1} f^* \theta = a k_f = k_f \int_{\man_2} \omega
+    \end{equation*}
+    Thus $ k_f $ satisfies \itemref{item:deg-1} and is clearly the only number that does so.
+
+    Next WTS \itemref{item:deg-2}, from which it also follows that $ k_f \in \Z $. Let $ q \in \man_2 $ be an arbitrary regular value of $ f $: since $ f^{-1}(q) $ is a properly embedded $ 0 $-submanifold of $ \man $, it is finite. Suppose first that $ f^{-1}(q) $ is not empty, i.e. $ f^{-1}(q) = \{x_1 , \dots , x_m\} $. By the inverse function theorem, for each $ i = 1 , \dots , m $ there is a neighbourhood $ U_i $ of $ x_i $ such that $ f $ is a diffeomorphism from $ U_i $ to a neighbourhood $ W_i $ of $ q $, and, by shrinking the $ U_i $ sets if necessary, they can be assumed to be disjoint. Then, $ K = \man - (U_1 \cup \dots \cup U_m) $ is closed in $ \man $ and thus compact, so $ f(K) $ is closed in $ \man_2 $ and disjoint from $ q $. Let $ W $ be the connected component of $ W_1 \cap \dots \cap W_m \cap (\man_2 - f(K)) $ containing $ q $, and let $ V_i = f^{-1}(W) \cap U_i $: it follows that $ W $ is a connected neighbourhood of $ q $ such that $ f^{-1}(W) = V_1 \sqcup \dots \sqcup V_m $, and $ f $ restricts to a diffeomorphism from each $ V_i $ to $ W $. Since each $ V_i $ is connected, the restriction of $ f $ to $ V_i $ must be either orientation-preserving or reversing.
+
+    Let $ \omega \in \dfm{n}(\man_2) $ be compactly supported in $ W $ and satisfying $ \int_{\man_2} \omega = \int_W \omega = 1 $. From \itemref{item:deg-1} it follows that $ \int_{\man_1} f^* \omega = k_f $ and, since $ f^*\omega $ is compactly supported in $ f^{-1}(W) $, $ \int_{\man_1} f^* \omega = \sum_{i = 1}^m \int_{V_i} f^* \omega $. From \itemref{item:pif-4} of \lref{lemma:pif}, $ \int_{V_i} f^* \omega = \pm \int_W \omega = \pm 1 $ for each $ i = 1 , \dots , m $, with positive sign if $ f $ is orientation-preserving on $ V_i $ and negative otherwise. This proves \itemref{item:deg-2} when $ f^{-1}(q) \neq \emptyset $.
+
+    If $ f^{-1}(q) = \emptyset $, then $ q $ has a neighbourhood $ W \ssq \man_2 - f(\man_1) $ since $ f(\man_1) $ is compact and thus closed. Given $ \omega \in \dfm{n}(\man_2) $ compactly supported in $ W $, then $ \int_{\man_1} f^* \omega = 0 $, so $ k_f = 0 $. This proves \itemref{item:deg-2}.
+  \end{proof}
+\end{proofbox}
+
+The importance of degree theory comes from the fact that these two characterizations are independent of each other: for example, it is often easy to compute the degree of a map by simply counting the points in the preimage of a regular value, and then use the characterization in terms of differential forms to prove important properties.
 
 
 
