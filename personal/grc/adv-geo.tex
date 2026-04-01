@@ -717,7 +717,7 @@ An analogous result for non-orientable manifolds can be found in a similar way.
 
 Once the top-degree cohomology groups of all compact manifolds are found, smooth maps between them can be studied by assigning an integer to them in such a way that homotopic maps have the same integer.
 
-\begin{theorem}{Degree of smooth map}{}
+\begin{theorem}{Degree of smooth map}{deg}
   Let $ \man_1 , \man_2 $ be compact oriented smooth $ n $-manifolds, and let $ f : \man_1 \ra \man_2 $ be a smooth map. There exists a unique $ \thcol{k_f \in \Z} $, called the \bcth{degree of $ f $}, that satisfies:
   \begin{enumerate}
     \item \label{item:deg-1} for every $ \omega \in \dfm{n}(\man_2) $:
@@ -749,6 +749,51 @@ Once the top-degree cohomology groups of all compact manifolds are found, smooth
 \end{proofbox}
 
 The importance of degree theory comes from the fact that these two characterizations are independent of each other: for example, it is often easy to compute the degree of a map by simply counting the points in the preimage of a regular value, and then use the characterization in terms of differential forms to prove important properties.
+
+\begin{lemma}{Properties of degree}{pd}
+  Let $ \man_1 , \man_2 , \man_3 $ be compact connected oriented smooth $ n $-manifolds. Then:
+  \begin{enumerate}
+    \item \label{item:pd-1} if $ f : \man_1 \ra \man_2 $ and $ g : \man_2 \ra \man_3 $ are smooth maps, then $ k_{g \circ f} = k_g k_f $;
+    \item \label{item:pd-2} if $ f : \man_1 \ra \man-2 $ is a diffeomorphism, the $ k_f = + 1 $ if $ f $ is orientation-preserving and $ -1 $ otherwise;
+    \item \label{item:pd-3} if two smooth maps $ f_0 , f_1 : \man_1 \ra \man_2 $ are homotopic, then $ k_{f_0} = k_{f_1} $.
+  \end{enumerate}
+\end{lemma}
+
+By \lref{lemma:pd}, it is possible to defined the degree of a continuous map $ f : \man_1 \ra \man_2 $ between compact connected oriented smooth $ n $-manifolds as the degree of any smooth map that is homotopic to $ f $: the Whitney approximation theorem \tref{th:whitney-approx} guarantees the existence of such a map.
+
+\begin{proposition}{}{brouwer-aux}
+  Let $ \man $ be a compact connected oriented smooth $ n $-manifold, and $ X $ a compact oriented smooth $ (n+1) $-manifold with boundary. If $ f : \pa X \ra \man $ is a continuous map that has a continuous extension to $ X $, then $ k_f = 0 $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Let $ F : X \ra \man $ be the continuous extension of $ f $ on $ X $. By \tref{th:whitney-approx}, there is a smooth map $ \tilde{f} : X \ra \man $ that is homotopic to $ F $. Replacing $ F $ by $ \tilde{F} $ and $ f $ by $ \tilde{F} \vert_{\pa X} $, it is possible to assume that both $ f $ and $ F $ are smooth.
+
+    Let $ \omega \in \dfm{n}(\man) $: then, $ \dd \omega = 0 $ since $ \omega $ is a top form. From Stokes' theorem:
+    \begin{equation*}
+      \int_{\pa X} f^* \omega = \int_{\pa X} F^* \omega = \int_X \dd (F^* \omega) = \int_X F^* \dd \omega = 0
+    \end{equation*}
+    By \itemref{item:deg-1} of \tref{th:deg}, then, $ k_f = 0 $.
+  \end{proof}
+\end{proofbox}
+
+\begin{theorem}{Brouwer fixed-point theorem}{brouwer}
+  Every continuous map $ \Dn{n} \ra \Dn{n} $ has a fixed point.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Suppose that $ F : \Dn{n} \ra \Dn{n} $ is continuous and has no fixed points. It is then possible to define a continuous map $ G : \Dn{n} \ra \Sn{n-1} $ as:
+    \begin{equation*}
+      G(x) = \frac{x - F(x)}{\norm{x - F(x)}}
+    \end{equation*}
+    and let $ g = G \vert_{\Sn{n-1}} : \Sn{n-1} \ra \Sn{n-1} $. By \pref{prop:brouwer-aux} $ k_g = 0 $. On the other hand, consider $ H : \Sn{n-1} \times [0,1] \ra \Sn{n-1} $ defined as:
+    \begin{equation*}
+      H(x,t) = \frac{x - t F(x)}{\norm{x - t F(x)}}
+    \end{equation*}
+    which is well-defined since the denominator never vanishes when $ t = 1 $, as $ F $ has no fixed points, and when $ t < 1 $, as $ \norm{x} = 1 $ while $ \norm{t F(x)} \leq t < 1 $. Therefore, $ H $ is continuous and a homotopy from $ \id_{\Sn{n-1}} $ to $ g $: this implies $ k_g = 1 $ by \itemref{item:pd-3} of \lref{lemma:pd} $ \absurd $
+  \end{proof}
+\end{proofbox}
 
 
 
