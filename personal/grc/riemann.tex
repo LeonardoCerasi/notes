@@ -13,7 +13,7 @@ Consider an $ n $-dimensional $ \R $-vector space $ V $ and a symmetric tensor $
 The two most important cases for the signature of the metric tensor are $ (0,n) $, in which case it is a \emph{Riemannian metric}, and $ (1,n-1) $, which is a \emph{Lorentzian metric}. In general, any metric with $ r > 0 $ is called a pseudo-Riemannian metric.
 
 \begin{observation}{Symmetric tensors}{symmetric-tensors}
-  The expression of the metric in smooth chart $ (U,(x^i)) $ on $ \man $ does not make its symmetry clear:
+  The expression of the metric in a smooth chart $ (U,(x^i)) $ on $ \man $ does not make its symmetry clear:
   \begin{equation*}
     g = g_{ij} \dd x^i \otimes \dd x^j
   \end{equation*}
@@ -287,6 +287,7 @@ then it is clear that $ \lng_g(\gamma) = \int_0^{\tau_\text{f}} \dd \tau $, with
 \end{observation}
 
 \subsection{Tangent-cotangent isomorphism}
+\label{ssec:tan-cot-isomorphism}
 
 The definition of a metric on a smooth manifold also provides a natural isomorphism between the tangent and cotangent bundles.
 
@@ -391,7 +392,7 @@ Since the determinant changes sign under the interchange of any two columns, $ \
 
 \begin{lemma}{Properties of elementary exterior forms}{peef}
   Let $ V $ be an $ n $-dimensional $ \R $-vector space, and let $ (E_i) $ be a basis of $ V $. If $ (\varepsilon^i) $ is the dual basis of $ V^* $ and $ I = (i_1 , \dots , i_k) $ is a multi-index, then:
-  \begin{itemize}
+  \begin{enumerate}
     \item \label{item:peef-1} if $ I $ has a repeated index, then $ \varepsilon^I \equiv 0 $;
     \item \label{item:peef-2} if $ J = I_\sigma $ for some $ \sigma \in \sy{k} $, then $ \varepsilon^I = (\sgn \sigma) \varepsilon^J $;
     \item \label{item:peef-3} defining the \bclemma{generalized Kronecker delta} as:
@@ -407,7 +408,7 @@ Since the determinant changes sign under the interchange of any two columns, $ \
       \begin{equation}
         \varepsilon^I(E_{j_1} , \dots , E_{j_k}) = \delta^I_J
       \end{equation}
-  \end{itemize}
+  \end{enumerate}
 \end{lemma}
 
 \begin{proofbox}
@@ -585,7 +586,7 @@ Therefore, $ \ip_v \omega $ is obtained inserting $ v $ as the first argument of
 
 \subsection{Differential forms}
 
-Consider an $ n $-dimensional smooth manifold. It is possible to define the subset of $ T^0_k\man $ of alternating rank-$ k $ covariant tensors on $ \man $ as:
+Consider an $ n $-dimensional smooth manifold $ \man $. It is possible to define the subset of $ T^0_k\man $ of alternating rank-$ k $ covariant tensors on $ \man $ as:
 \begin{equation}
   \lm{k} \defeq \bigsqcup_{p \in \man} \lv{k}(T_p\man)
 \end{equation}
@@ -598,9 +599,10 @@ The wedge product is extended to $ k $-forms in a pointwise manner, i.e. $ (\ome
   \dft \defeq \bigoplus_{k = 0}^n \df{k}
 \end{equation}
 which, equipped with the wedge product, is an anticommutative $ \N_0 $-graded associative unital algebra. In any smooth chart $ (U,(x^i)) $, a $ k $-form $ \omega $ can be written locally as:
-\begin{equation*}
+\begin{equation}
   \omega = \frac{1}{k!} \omega_{i_1 \dots i_k} \dd x^{i_1} \wedge \dots \wedge \dd x^{i_k} = {\sum_I}' \omega_I \dd x^I
-\end{equation*}
+  \label{eq:diff-form-basis}
+\end{equation}
 where the coefficients $ \omega_I $ are continuous functions defined on the coordinate domain, and $ \dd x^I \equiv \dd x^{i_1} \wedge \dots \wedge \dd x^{i_k} $. Using \lref{lemma:peef}, the component functions are found as:
 \begin{equation*}
   \omega_I = \omega\left( \frac{\pa}{\pa x^{i_1}} , \dots , \frac{\pa}{\pa x^{i_k}} \right)
@@ -1050,7 +1052,7 @@ The most useful way of describing submanifolds is by means of local parametrizat
 
 Let $ (\man,g) $ be a Riemannian $ n $-manifold, with $ n \leq 1 $. By the Gram--Schmidt algorithm, there is a smooth orthonormal frame $ (E_1 , \dots , E_n) $ in a neighbourhood of each point of $ \man $, therefore it is always possible to find an oriented orthonormal frame in a neighbourhood of each point (replacing $ E_1 \mapsto -E_1 $ if necessary).
 
-\begin{proposition}{Riemannian volume form}{}
+\begin{proposition}{Riemannian volume form}{riemannian-volume-form}
   Let $ (\man,g) $ be an oriented Riemannian $ n $-manifold, with $ n \geq 1 $. There is a unique smooth orientation for $ \omega_g \in \df{n} $, called the \bcprop{Riemannian volume form}, such that:
   \begin{equation}
     \omega_g (E_1 , \dots , E_n) = 1
@@ -1114,7 +1116,7 @@ Although the expression of the Riemannian form with respect to an oriented ortho
 
 An expression which holds for Lorentzian manifolds too is found setting $ \sqg \equiv \sqrt{\abs{\det [g_{ij}]}} $, so that the Riemannian form is expressed as:
 \begin{equation}
-  \omega_g = \sqg \, \dd x^1 \wedge \dots \wedge \dd x^n
+  \volfg \equiv \omega_g = \sqg \, \dd x^1 \wedge \dots \wedge \dd x^n
   \label{eq:volume-form}
 \end{equation}
 
@@ -1161,7 +1163,8 @@ To introduce a coordinate-independent notion of integration, first note that the
 \begin{equation*}
   \int_B \volf \, f = \Vol(B)
 \end{equation*}
-which is clearly not invariant under coordinate transformations. To obtain a coordinate-independent integral on a $ k $-dimensional submanifold, differential $ k $-forms are needed.
+where the shorthand $ \volf \equiv \dd x^1 \wedge \dots \wedge \dd x^n $ has been introduced.
+This is clearly not invariant under coordinate transformations. To obtain a coordinate-independent integral on a $ k $-dimensional submanifold, differential $ k $-forms are needed.
 
 \subsubsection{Integration of differential forms}
 
@@ -1187,7 +1190,7 @@ where $ D \ssq \R^n $ (or $ \U^n $) is any domain of integration such that $ \su
   \begin{proof}
     Let $ (y^i) $ denote standard coordinates on $ E $ and $ (x^i) $ those on $ D $. Then, writing $ \omega = g \, \dd y^1 \wedge \dots \wedge \dd y^n $ on $ E $ and recalling \eref{eq:jacobian}, changing variables in the integral with $ f $ yields:
     \begin{equation*}
-      \int_E \omega = \int_E \volf \, g = \int_D \volf \, \abs{\det \jac{f}} (g \circ f) = \pm \int_D \volf \, (g \circ f) (\det \jac{f}) \dd x^1 \wedge \dots \wedge \dd x^n = \int_D f^* \omega
+      \int_E \omega = \int_E \volf_y g = \int_D \volf_x \abs{\det \jac{f}} (g \circ f) = \pm \int_D \volf \, (g \circ f) (\det \jac{f}) \dd x^1 \wedge \dots \wedge \dd x^n = \int_D f^* \omega
     \end{equation*}
     with $ + $ if $ f $ is orientation-preserving and $ - $ if it is orientation-reversing.
   \end{proof}

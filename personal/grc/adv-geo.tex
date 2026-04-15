@@ -111,6 +111,7 @@ The key feature in constructing the potential function in \tref{th:poincare} is 
 \end{example}
 
 \subsection{de Rham cohomology groups}
+\label{ssec:de-rham-cohomology-groups}
 
 The aim of de Rham cohomology is to study whether closed forms are exact on a smooth manifold by means of its global topological properties.
 
@@ -658,7 +659,7 @@ Since the integral of the exterior derivative of a compactly supported $ (n-1) $
     $ (k = 1) $ Since $ \man_1 = U_1 $ is diffeomorphic to $ \R^n $, the claim is proved by the following lemma.
 
     \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Poincaré lemma with compact support}{poincare-compact}
-      Let $ n \geq p \geq 1 $ and let $ \omega $ be a compactly supported $ p $-form on $ \R^n $. if $ p = n $, suppose $ \int_{\R^n} \omega = 0 $. Then, there exists $ \eta \in \dfcm{p-1}(\R^n) $ such that $ \omega = \dd \eta $.
+      Let $ n \geq p \geq 1 $ and let $ \omega $ be a compactly supported $ p $-form on $ \R^n $. If $ p = n $, suppose $ \int_{\R^n} \omega = 0 $. Then, there exists $ \eta \in \dfcm{p-1}(\R^n) $ such that $ \omega = \dd \eta $.
     \end{lemma}
 
     $ (k \geq 1) $ Assume the claim to be true for some $ k \geq 1 $, and suppose $ \omega \in \dfcm{n}(\man_{k+1}) $, with $ \man_{k+1} = \man_k \cup U_{k+1} $ that satisfies $ \int_{\man_{k+1}} \omega = 0 $. Let $ \theta \in \dfcm{n}(\man_{k+1}) $ be supported in $ \man_k \cap U_{k+1} $ and usch that $ \int_{\man_{k+1}} \theta = 1 $. Let $ \{\varphi , \psi\} $ be a smooth partition of unity for $ \man_{k+1} $ subordinate to the cover $ \{\man_k , U_{k+1}\} $, as in \figref{fig:top-deg-coho}, and let $ c \equiv \int_{\man_{k+1}} \varphi \omega $. Since $ \varphi \omega - c \theta $ is compactly supported in $ \man_k $ and its integral vanished by definition of $ c $, by the inductive hypothesis there is $ \alpha \in \dfcm{n-1}(\man_k) $ such that $ \dd \alpha = \varphi \omega - c \theta $. Similarly, $ \psi \omega + c \theta $ is compactly supported in $ U_{k+1} $ and:
@@ -795,262 +796,326 @@ By \lref{lemma:pd}, it is possible to defined the degree of a continuous map $ f
   \end{proof}
 \end{proofbox}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% TODO: complete the treatment of cohomology from Lee
 
 \newpage
 \section{Hodge theory}
 
-To study the topological properties of a smooth manifold through its cohomology groups, it is convenient to define an additional operation on forms: the Hodge dual.
+The study of the de Rham cohomology of a metric manifold makes use of the additional structure given by the metric.
 
-\subsection{Hodge operator}
+\subsection{Inner product on differential forms}
 
-\begin{definition}{Hodge dual}{}
-  Given an $ n $-dimensional oriented metric manifold $ (\mathcal{M},g) $, the \bcdef{Hodge dual} is defined as the map $ \star : \lm{p} \rightarrow \lm{n-p} : \omega \mapsto \star\, \omega $ such that:
-  \begin{equation}
-    (\star\, \omega)_{\mu_1 \dots \mu_{n-p}} \defeq \frac{1}{p!} \sqg\, \epsilon_{\nu_1 \dots \nu_p \mu_1 \dots \mu_{n-p}} \omega^{\nu_1 \dots \nu_p}
-    \label{eq:hodge-dual}
-  \end{equation}
-\end{definition}
+Recall \secref{ssec:tan-cot-isomorphism}: on a metric manifold $ (\man,g) $, the canonical smooth bundle isomorphism $ T\man \cong T^*\man $ allows the metric to define an inner product on $ T_p^*\man $ as:
+\begin{equation*}
+  \braket{\omega , \eta}_g \equiv \braket{\omega^\sharp , \eta^\sharp}_g
+\end{equation*}
+where the inner product on the right-hand side is that on $ T_p\man $, i.e. $ \braket{v,w}_g \defeq g_p(v,w) $, which is positive-definite on Riemannian manifolds. Clearly, then, $ \braket{\omega , \eta}_g = \omega(\eta^\sharp) = \eta(\omega^\sharp) $ by definition of the sharp isomorphism.
 
-The factorials need to be treated carefully:
+This construction is easily generalized to decomposable differential forms. Indeed, given two decomposable $ p $-forms $ \alpha = \alpha_1 \wedge \dots \alpha_p $ and $ \beta = \beta_1 \wedge \dots \wedge \beta_p $, their metric-induced inner product can be defined through the \bctxt{Gram determinant}:
 \begin{equation}
-  \star\, \omega \equiv \frac{1}{(n-p)!} (\star\, \omega)_{\mu_1 \dots \mu_{n-p}} \dd x^{\mu_1} \wedge \dots \wedge \dd x^{\mu_{n-p}}
+  \braket{\alpha , \beta}_g \defeq \det [\braket{\alpha_i , \beta_j}_g]
+  \label{eq:gram-determinant}
 \end{equation}
+This is a natural choice since the determinant is alternating under the exchange of columns, thus preserving the alternating nature of the exterior product, and it reduces to the inner product on $ 1 $-forms defined above. This definition clearly generalizes bilinearly to arbitrary $ p $-forms, since any $ p $-form can be expressed as a linear combination of decomposable forms (\eref{eq:diff-form-basis}).
 
-In this section, the orientedness and $ n $-dimensionality of the manifold $ \mathcal{M} $ are implied.
-
-\begin{proposition}{Invariance of the Hodge dual}{}
-  The Hodge dual is basis-independent and conformally-invariant.
-\end{proposition}
-
-It is useful to state a lemma for future calculations.
-
-\begin{lemma}{Generalized Kronecker delta}{}
-  $ v^{\mu_1 \dots \mu_p \rho_1 \dots \rho_{n-p}} v_{\nu_1 \dots \nu_p \rho_1 \dots \rho_{n-p}} = \sigma p! (n-p)! \delta^{\mu_1}_{[\nu_1} \dots \delta^{\mu_p}_{\nu_p]} $.
-\end{lemma}
-
-\begin{proposition}{Nilpotence}{hodge-hodge}
-  $ \star \left( \star\, \omega \right) = \sigma \left( -1 \right)^{p (n-p)} \omega $.
-\end{proposition}
-
-The Hodge dual defines an inner product on each $ \lm{p} $:
-\begin{equation}
-  \braket{\omega, \eta} \defeq \int_{\mathcal{M}} \omega \wedge \star\, \eta
-\end{equation}
-This allows to define operators and their adjoints on form spaces.
-
-\begin{proposition}{Adjoint exterior derivative}{}
-  Given a metric manifold $ (\mathcal{M},g) $ and two forms $ \omega \in \lm{p}, \alpha \in \lm{p-1} $, then:
+\begin{proposition}{Inner product of $ p $-forms}{inner-product-forms}
+  Let $ (\man,g) $ be a metric manifold, and let $ \omega , \eta $ be two $ p $-forms on $ \man $. Then, their inner product is:
   \begin{equation}
-    \braket{\dd \alpha,\omega} = \braket{\alpha,\dd^{\dagger}\omega}
+    \braket{\omega , \eta}_g = \frac{1}{p!} \omega_{i_1 \dots i_p} \eta_{j_1 \dots j_p} g^{i_1 j_1} \dots g^{i_p j_p}
   \end{equation}
-  where the adjoint of the exterior derivative $ \dd^{\dagger} : \lm{p} \rightarrow \lm{p-1} $ is defined as:
-  \begin{equation}
-    \dd^{\dagger} \defeq \sigma \left( -1 \right)^{np + n -1} \star \dd \, \star
-  \end{equation}
+  on every local oriented orthonormal frame on $ \man $.
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    To simplify the proof, consider a closed manifold; then, from Stokes' theorem and \eref{eq:ext-der-prod-rule}:
-    \begin{equation*}
-      0 = \int_{\mathcal{M}} \dd ( \alpha \wedge \star\, \omega ) = \braket{\dd\alpha, \omega} + \int_{\mathcal{M}} \left( -1 \right)^{p-1} \alpha \wedge \dd \star \omega
-    \end{equation*}
-    The second term is proportional to $ \braket{\alpha, \star\, \dd \star \omega} $: to determine the relative sign, note that $ \dd \star \omega \in \lm{n-p+1} $, thus, from \pref{prop:hodge-hodge}, $ \star \star \dd \star \omega = \sigma \left( -1 \right)^{(n-p+1)(p-1)} \dd \star \omega $. In conclusion:
-    \begin{multline*}
-      \braket{\alpha, \star\, \dd \star \omega} = \sigma \left( -1 \right)^{(n-p)(p-1)} \int_{\mathcal{M}} \left( -1 \right)^{p-1} \alpha \wedge \dd \star \omega \\
-      \quad \implies \quad
-      \braket{d\alpha, \omega} = \sigma \left( -1 \right)^{(n-p)(p-1) + 1} \braket{\alpha, \star\, \dd \star \omega}
-    \end{multline*}
-    Noting that $ \left( -1 \right)^{(n-p)(p-1) + 1} = \left( -1 \right)^{np + n - 1} $, as in general $ \left( -1 \right)^{-n} = \left( -1 \right)^n $ and $ \left( -1 \right)^{-p^2 + p + 1} = \left( -1 \right)^{-1} $ due to $ p (p-1) $ being always even, concludes the proof.
-  \end{proof}
-\end{proofbox}
-
-\begin{definition}{Laplace--Beltrami operator}{}
-  Given a metric manifold $ (\mathcal{M},g) $, the \bcdef{Laplace--Beltrami operator} $ \lap : \lm{p} \rightarrow \lm{p} $ is defined as the operator:
-  \begin{equation}
-    \lap \defeq ( \dd + \dd^{\dagger} )^2
-  \end{equation}
-\end{definition}
-
-Clearly, since $ \dd^2 = {\dd\dg}^2 = 0 $:
-\begin{equation}
-  \lap = \dd\dd^{\dagger} + \dd^{\dagger}\dd \equiv \{\dd,\dd^{\dagger}\}
-\end{equation}
-
-It is possible to compute an explicit expression for the action of the Laplace--Beltrami operator on functions (usually called the ``Laplacian").
-
-\begin{lemma}{}{lap-calc}
-  Given $ f \in \cm $, then $ \dd^{\dagger} f = 0 $.
-\end{lemma}
-
-\begin{proofbox}
-  \begin{proof}
-    Trivial noting that $ \star\, f $ is a top-form.
-  \end{proof}
-\end{proofbox}
-
-\begin{proposition}{}{}
-  Given $ f \in \cm $, then:
-  \begin{equation}
-    \lap f = - \frac{\sigma}{\sqg} \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right)
-  \end{equation}
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    Via direct calculation, using \lref{lemma:lap-calc}:
+    Let $ (x^i) $ be a smooth chart on $ \man $, so that $ \omega $ and $ \eta $ can be expressed as in \eref{eq:diff-form-basis}. Then, extending bilinearly \eref{eq:gram-determinant}:
     \begin{equation*}
       \begin{split}
-        \lap f
-        &= \sigma \left( -1 \right)^{2n - 1} \star \dd \star \left( \pa_{\mu} f \dd x^{\mu} \right) = - \sigma \star \dd \left( \pa_{\mu} f \star \dd x^{\mu} \right) \\
-        &= - \frac{\sigma}{(n-1)!} \star \dd \left( \pa_{\mu} f g^{\mu \nu} \sqg\, \epsilon_{\nu \rho_1 \dots \rho_{n-1}} \dd x^{\rho_1} \wedge \dots \wedge \dd x^{\rho_{n-1}} \right) \\
-        &= - \frac{\sigma}{(n-1)!} \star \pa_{\alpha} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right) \epsilon_{\nu \rho_1 \dots \rho_{n-1}} \dd x^{\alpha} \wedge \dd x^{\rho_1} \wedge \dots \wedge \dd x^{\rho_{n-1}} \\
-        &= - \sigma \star \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right) \dd x^1 \wedge \dots \dd x^n = - \frac{\sigma}{\sqg} \pa_{\nu} \left( \sqg\, g^{\mu \nu} \pa_{\mu} f \right)
+        \braket{\omega , \eta}_g
+        & = \frac{1}{(p!)^2} \omega_{i_1 \dots i_p} \eta_{j_1 \dots j_p} \det[\braket{\dd x^{i_a} , \dd x^{j_b}}_g] = \frac{1}{(p!)^2} \omega_{i_1 \dots i_p} \eta_{j_1 \dots j_p} \det[g^{i_a j_b}] \\
+        & = \frac{1}{(p!)^2} \omega_{i_1 \dots i_p} \eta_{j_1 \dots j_p} \sum_{\sigma \in \sy{p}} \sgn(\sigma) g^{i_1 j_{\sigma(1)}} \dots g^{i_p j_{\sigma(p)}} = \frac{1}{p!} \omega_{i_1 \dots i_p} \eta_{j_1 \dots j_p} g^{i_1 j_1} \dots g^{i_p j_p}
+      \end{split}
+    \end{equation*}
+    where in the last step the total antisymmetry of $ \omega_{i_1 \dots i_p} $ was used. To show that this expression is basis-independent, consider two oriented orthonormal frames $ (E_1 , \dots , E_n) $ and $ (\tilde{E}_1 , \dots , \tilde{E_n}) $ on $ \man $ such that:
+    \begin{equation*}
+      \tilde{E}_i = A^j_i E_j
+    \end{equation*}
+    for some smooth functions $ [A^j_i] $. Since these frames are consistently oriented, $ [A^j_i](p) \in \SOn{n} $ for each $ p \in \man $. Then, the components of $ \omega $ in the two bases are linked by (\eref{eq:covariant-alias}):
+    \begin{equation*}
+      \tilde{\omega}_{i_1 \dots i_p} = A^{j_1}_{i_1} \dots A^{j_p}_{i_p} \omega_{j_1 \dots j_p}
+    \end{equation*}
+    and similarly for $ \eta $. Then, given the expression for the metric $ g^{ij} = \braket{\varepsilon^i , \varepsilon^j}_g $ and the transformation law $ \tilde{\varepsilon}^i = [A^{-1}]^i_j \varepsilon^j $ for the dual coframes, the inner product in the transformed frame is:
+    \begin{equation*}
+      \begin{split}
+        \braket{\omega , \eta}_g
+        & = \tilde{\omega}_{i_1 \dots i_p} \tilde{\eta}_{j_1 \dots j_p} \tilde{g}^{i_1 j_1} \dots \tilde{g}^{i_p j_p} \\
+        & = A^{\ell_1}_{i_1} \dots A^{\ell_p}_{i_p} \omega_{\ell_1 \dots \ell_p} A^{m_1}_{j_1} \dots A^{m_p}_{j_p} \eta_{m_1 \dots m_p} [A^{-1}]^{i_1}_{a_1} [A^{-1}]^{j_1}_{b_1} \dots [A^{-1}]^{i_p}_{a_p} [A^{-1}]^{j_p}_{b_p} g^{a_1 b_1} \dots g^{a_p b_p} \\
+        & = \delta^{\ell_1}_{a_1} \delta^{m_1}_{b_1} \dots \delta^{\ell_p}_{a_p} \delta^{m_p}_{b_p} \omega_{\ell_1 \dots \ell_p} \eta_{m_1 \dots m_p} g^{a_1 b_1} \dots g^{a_p b_p} = \omega_{i_1 \dots i_p} \eta_{j_1 \dots j_p} g^{i_1 j_1} \dots g^{i_p j_p}
+      \end{split}
+    \end{equation*}
+    which indeed shows that the above expression for the inner product is independent of the choice of oriented orthonormal frame.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{\texorpdfstring{$ L^2 $}{L²}-inner product}
+
+Another usefuld inner product is the \emph{$ \sqi $-inner product} of compactly supported $ p $-forms, which can be defined on orientable metric manifolds:
+\begin{equation}
+  (\omega , \eta) \defeq \int_\man \braket{\omega , \eta}_g \volfg
+\end{equation}
+where $ \omega_g $ is the volume form on $ \man $ induced by $ g $ (\eref{eq:volume-form}). To be precise, this inner product is well-defined on \emph{square-integrable $ p $-forms}:
+\begin{equation}
+  \dfs{p} \defeq \{\omega \in \df{p} : \norm{\omega}_{L^2} < \infty\}
+\end{equation}
+where $ \norm{\omega}_{L^2} = (\omega , \omega) $. Clearly, $ \dfc{p} \subsetneq \dfs{p} \subsetneq \df{p} $ in general (if $ \man $ is compact, they are all equal), and it can be shown that $ \dfc{p} $ is dense\footnotemark in $ \dfs{p} $. Note that $ \dfs{p} $ is a pre-Hilbert space, since it is not complete: it is possible to construct a Cauchy sequence of forms in $ \dfs{p} $ whose limit exists in a $ L^2 $ sense, but is not smooth.
+
+\footnotetext{Given a topological space $ X $ and a subset $ A \ssq X $, a \emph{limit point} of $ A $ in $ X $ is a point $ p \in X $ such that every neighbourhood of $ x $ contains at least one point of $ A $ different from $ x $ itself. Then, $ A $ is said to be \emph{dense} in $ X $ if every point of $ X $ either is in $ A $ or is a limit point of $ A $.}
+
+\subsection{Hodge dual}
+
+\begin{definition}{Hodge operator}{hodge-dual}
+  Let $ (\man,g) $ be a metric manifold. The \bcdef{Hodge operator} $ \star : \df{p} \ra \df{n-p} $ is defined such that, given $ \omega , \eta \in \df{p} $:
+  \begin{equation}
+    \omega \wedge \star \eta = \braket{\omega , \eta}_g \volfg
+    \label{eq:hodge-def}
+  \end{equation}
+\end{definition}
+
+The image $ \star \eta \in \df{n-p} $ is often called the \emph{Hodge dual} of $ \eta \in \df{p} $. It is trivial to show that the Hodge operator is a linear operator, hence it is completely determined by its action on the basis $ p $-forms (in each smooth map on $ \man $):
+\begin{equation}
+  \star ( \dd x^{i_1} \wedge \dots \wedge \dd x^{i_p} ) = \frac{\sqg}{(n-p)!} g^{i_1 j_1} \dots g^{i_p j_p} \epsilon_{j_1 \dots j_n} \dd x^{j_{p+1}} \wedge \dots \wedge \dd x^{j_n}
+  \label{eq:hodge-alibi}
+\end{equation}
+where the factorial accounts for the contraction of $ n-p $ indices between two totally antisymmetric objects. This expression makes it clear that $ \volfg = \star 1 $. Equivalently, the Hodge dual of $ \omega \in \df{p} $ can be expressed as:
+\begin{equation*}
+  \star \omega = \frac{1}{(n-p)!} (\star \omega)_{i_1 \dots i_{n-p}} \dd x^{i_1} \wedge \dots \wedge \dd x^{i_{n-p}}
+\end{equation*}
+with components:
+\begin{equation}
+  (\star \omega)_{i_1 \dots i_{n-p}} = \frac{\sqg}{n!} \omega_{j_1 \dots j_p} g^{j_1 \ell_1} \dots g^{j_p \ell_p} \epsilon_{\ell_1 \dots \ell_k i_1 \dots i_{n-p}}
+  \label{eq:hodge-alias}
+\end{equation}
+
+\begin{lemma}{Invariance of the Hodge dual}{}
+  The Hodge dual is independent of the choice of oriented orthonormal frame.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    This invariance is trivially derived from \eref{eq:hodge-def}, since both the inner product (\pref{prop:inner-product-forms}) and the volume form (\pref{prop:riemannian-volume-form}) are independent of the choice of oriented orthonromal frame.
+
+    This can also be seen directly from \eref{eq:hodge-alibi} (alibi interpretation) or \eref{eq:hodge-alias} (alias interpretation). For example, given two smooth charts $ (U,x^i) , (V,y^i) : U \cap V \neq \emptyset $, then on $ U \cap V $:
+    \begin{equation*}
+      \begin{split}
+        \star (\dd y^{i_1} \wedge \dots \wedge \dd y^{i_p}) \hspace{-0.15em}
+        & = \frac{1}{(n-p)!} \sqrt{\abs{\det [\tilde{g}_{ij}]}} \, \tilde{g}^{i_1 j_1} \dots \tilde{g}^{i_p j_p} \epsilon_{j_1 \dots j_n} \dd y^{j_{p+1}} \wedge \dots \wedge \dd y^{j_n} \\
+        & = \frac{1}{(n-p)!} \sqrt{\abs{\det \left[ \frac{\pa x^s}{\pa y^i} \right] \det \left[ \frac{\pa x^t}{\pa y^j} \right] \det [g_{st}]}} \times \\
+        & \quad \times \frac{\pa y^{i_1}}{\pa x^{a_1}} \frac{\pa y^{j_1}}{\pa x^{b_1}} g^{a_1 b_1} \dots \frac{\pa y^{i_p}}{\pa x^{a_p}} \frac{\pa y^{j_p}}{\pa x^{b_p}} g^{a_p b_p} \epsilon_{j_1 \dots j_n} \frac{\pa y^{j_{p+1}}}{\pa x^{b_{p+1}}} \dd x^{b_{p+1}} \wedge \dots \wedge \frac{\pa y^{j_n}}{\pa x^{b_n}} \dd x^{b_n} \\
+        & = \abs{\det \left[ \frac{\pa x}{\pa y} \right]} \frac{\pa y^{i_1}}{\pa x^{a_1}} \frac{\pa y^{j_1}}{\pa x^{b_1}} \dots \frac{\pa y^{i_p}}{\pa x^{a_p}} \frac{\pa y^{j_p}}{\pa x^{b_p}} \frac{\pa y^{j_{p+1}}}{\pa x^{b_{p+1}}} \dots \frac{\pa y^{j_n}}{\pa x^{b_n}} \epsilon_{j_1 \dots j_n} \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \frac{\sqg}{(n-p)!} g^{a_1 b_1} \dots g^{a_p b_p} \dd x^{b_{p+1}} \wedge \dots \dd x^{b_n} \\
+        & = \abs{\det \left[ \frac{\pa x}{\pa y} \right]} \frac{\pa y^{i_1}}{\pa x^{a_1}} \dots \frac{\pa y^{i_p}}{\pa x^{a_p}} \epsilon_{b_1 \dots b_n} \det \left[ \frac{\pa y}{\pa x} \right] \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \frac{\sqg}{(n-p)!} g^{a_1 b_1} \dots g^{a_p b_p} \dd x^{b_{p+1}} \wedge \dots \dd x^{b_n} \\
+        & = \sgn \left( \det \left[ \frac{\pa y}{\pa x} \right] \right) \frac{\pa y^{i_1}}{\pa x^{j_1}} \dots \frac{\pa y^{i_p}}{\pa x^{j_p}} \star (\dd x^{j_1} \wedge \dots \wedge \dd x^{j_p})
+      \end{split}
+    \end{equation*}
+    where the following identity for $ \mt{M} \in \R^{n \times n} $ has been used:
+    \begin{equation}
+      \epsilon^{i_1 \dots i_n} M_{i_1 j_1} \dots M_{i_n j_n} = \epsilon_{j_1 \dots j_n} \det \mt{M}
+      \label{eq:matrix-identity}
+    \end{equation}
+    Since the two charts are assumed to be have the same orientation, the sign function returns $ +1 $, and the relation found clearly shows that the factors coming from the transformation of $ \star (\dd y^{i_1} \wedge \dots \wedge \dd y^{i_p}) $ exactly cancel those in the transformation of $ \omega_{i_1 \dots i_p} $, leaving $ \star \omega $ unchanged.
+  \end{proof}
+\end{proofbox}
+
+Therefore, the Hodge operator is a well-defined operator.
+
+\begin{lemma}{Nilpotence of the Hodge operator}{}
+  Let $ (\man,g) $ be a metric manifold, and let $ \omega \in \df{p} $. Then:
+  \begin{equation}
+    \star (\star \omega) = \sigma (-1)^{k (n-p)} \omega
+    \label{eq:hodge-nilpotence}
+  \end{equation}
+  where $ \sigma \defeq \sgn \det [g_{ij}] $ is the \bclemma{parity} of the signature of $ g $ (basis-independent).
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By linearity, it suffices to show the result only for basis $ p $-forms:
+    \begin{equation*}
+      \begin{split}
+        \star (\star (\dd x^{i_1} \wedge \dots \wedge \dd x^{i_p}))
+        & = \frac{\sqg}{(n-p)!} g^{i_1 j_1} \dots g^{i_p j_p} \epsilon_{j_1 \dots j_n} \star (\dd x^{j_{p+1}} \wedge \dots \wedge \dd x^{j_n}) \\
+        & = \frac{\abs{\det [g_{ij}]}}{(n-p)! p!} g^{i_1 j_1} \dots g^{i_p j_p} g^{j_{p+1} a_1} \dots g^{j_n a_{n-p}} \epsilon_{j_1 \dots j_n} \epsilon_{a_1 \dots a_n} \times \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \dd x^{a_{n-p+1}} \wedge \dots \wedge \dd x^{a_n} \\
+        & = \frac{\abs{\det [g_{ij}]}}{(n-p)! p!} \det [g_{ij}] \epsilon^{i_1 \dots i_p a_1 \dots a_{n-p}} \epsilon_{a_1 \dots a_n} \dd x^{a_{n-p+1}} \wedge \dots \wedge \dd x^{a_n} \\
+        & = \frac{\sigma}{(n-p)! p!} (-1)^{p(n-p)} \epsilon^{a_1 \dots a_{n-p} i_1 \dots i_p} \epsilon_{a_1 \dots a_{n-p} j_1 \dots j_p} \dd x^{j_1} \wedge \dots \wedge \dd x^{j_p}
+      \end{split}
+    \end{equation*}
+    where \eref{eq:matrix-identity} has been used. Now, the following identity for the generalized Kroncker delta can be used:
+    \begin{equation}
+      \delta^{i_1 \dots i_p}_{j_1 \dots j_p} = \frac{1}{m!} \epsilon^{a_1 \dots a_m i_1 \dots i_p} \epsilon_{a_1 \dots a_m j_1 \dots j_p}
+    \end{equation}
+    yielding:
+    \begin{equation*}
+      \begin{split}
+        \star (\star (\dd x^{i_1} \wedge \dots \wedge \dd x^{i_p}))
+        & = \frac{\sigma}{p!} (-1)^{p(n-p)} \delta^{i_1 \dots i_p}_{j_1 \dots j_p} \dd x^{j_1} \wedge \dots \wedge \dd x^{j_p} \\
+        & = \sigma (-1)^{p(n-p)} \delta^{i_1}_{[j_1} \dots \delta^{i_p}_{j_p]} \dd x^{j_1} \wedge \dots \wedge \dd x^{j_p} \\
+        & = \sigma (-1)^{p(n-p)} \dd x^{i_1} \wedge \dots \wedge \dd x^{i_p}
       \end{split}
     \end{equation*}
     which is the thesis.
   \end{proof}
 \end{proofbox}
 
-\subsection{de Rham cohomology}
-\label{ssec:derham}
+The nilpotence of the Hodge operator allows to define a simple expression for its inverse $ \star^{-1} : \df{p} \ra \df{n-p} $:
+\begin{equation}
+  \star^{-1} = \sigma (-1)^{p(n-p)} \star
+\end{equation}
 
-While exact $ \implies $ closed, the converse is not true, in general: it depends on the topological properties of the manifold.
+\subsubsection{Codifferential}
 
-\begin{lemma}{Poincaré's lemma}{}
-  If $ \mathcal{M} $ is simply connected, then $ \omega\in\lm{p} $ closed $ \implies \omega $ exact.
-\end{lemma}
+Using the Hodge operator, the $ L^2 $-inner product of $ \omega , \eta \in \dfs{p} $ can be written as:
+\begin{equation}
+  (\omega,\eta) = \int_\man \omega \wedge \star \eta
+\end{equation}
 
-In general, it is always possible to choose a simply connected neighbourhood of a point $ p \in \mathcal{M} $, in which every closed form is exact, but that may not always be possible globally.
-
-It is convenient to set the notation $ d_p \equiv d : \lm{p} \rightarrow \lm{p+1} $, so that the set of all closed $ p $-forms on $ \mathcal{M} $ is denoted by $ Z^p(\mathcal{M}) \defeq \ker d_p $, while the set of all exact $ p $-forms by $ B^p(\mathcal{M}) \defeq \ran d_{p-1} $.
-
-\begin{definition}{Equivalent forms}{}
-  Two closed $ p $-forms $ \omega,\omega' \in Z^P(\mathcal{M}) $ are said to be \bcdef{equivalent} if $ \omega = \omega' + \eta $ for some $ \eta \in B^p(\mathcal{M}) $.
-\end{definition}
-
-\begin{definition}{de Rahm cohomology}{}
-  The \bcdef{$ p^{\text{th}} $ de Rham cohomolgy group} of a manifold $ \mathcal{M} $ is defined to be:
+\begin{proposition}{Codifferential}{}
+  Let $ (\man,g) $ be a metric manifold without boundary. Then, the \bcprop{codifferential} is the unique operator $ \cdd : \df{p} \ra \df{p-1} $ such that, for any $ \omega \in \dfs{p-1} , \eta \in \dfs{p} $:
   \begin{equation}
-    H^p(\mathcal{M}) \defeq Z^p(\mathcal{M}) / B^p(\mathcal{M})
+    (\dd \omega , \eta) = (\omega , \cdd \eta)
   \end{equation}
-  and its dimension is the $ p^\text{th} $ \bcdef{Betti number} of $ \mathcal{M} $:
+  Its expression is:
   \begin{equation}
-    B_p \defeq \dim_{\R} H^p(\mathcal{M})
+    \cdd = \sigma (-1)^{n(p+1)+1} \star \dd \star
   \end{equation}
-\end{definition}
-
-\begin{theorem}{Betti numbers}{}
-  Given a smooth manifold, its Betti numbers are always finite.
-\end{theorem}
-
-$ B_0 = 1 $ for any connected manifold: there exist constant functions, which are manifestly closed and not exact, due to the non-existence of ``$ (-1) $-forms". Higher Betti numbers are non-zero only if the manifold has some non-trivial topology.
-
-\begin{definition}{Eulerv's character}{}
-  The \bcdef{Euler's character} of a manifold $ \mathcal{M} $ is defined as:
-  \begin{equation}
-    \chi(\mathcal{M}) \defeq \sum_{p \in \N_0} (-1)^p B_p
-  \end{equation}
-\end{definition}
-
-\begin{example}{Spheres and tori}{}
-  The $ n $-sphere $ \mathbb{S}^n $ has only non-vanishing $ B_0 = B_n = 1 $, thus $ \chi(\mathbb{S}^n) = 1 + (-1)^n $, while the $ n $-torus $ \mathbb{T}^n $ has $ B_p = \binom{n}{p} $, hence $ \chi(\mathbb{T}^n) = 0 $.
-\end{example}
-
-There is an additional characterization of the de Rham cohomology through the Laplace--Beltrami operator.
-
-\begin{definition}{Harmonic $ p $-forms}{}
-  Given $ \omega \in \lm{p} $, it is said to be \bcdef{harmonic} if $ \lap \omega = 0 $.
-  The space of harmonic $ p $-forms on $ (\mathcal{M},g) $ is denoted as $ \hrm{p} $.
-\end{definition}
-
-\begin{proposition}{}{harm-closed}
-  A harmonic form is both \bcprop{closed} and \bcprop{co-closed}.
 \end{proposition}
 
 \begin{proofbox}
   \begin{proof}
-    $ 0 = \braket{\omega, \lap \omega} = \braket{\dd\omega, \dd\omega} + \braket{\dd^{\dagger} \omega, \dd^{\dagger}{\omega}} $, thus $ \dd\omega = 0 $ and $ \dd^{\dagger} \omega = 0 $, for the inner product is positive-defined.
+    It suffices to consider $ \omega \in \dfs{p-1} , \eta \in \dfs{p} $. Then, $ \omega \wedge \star \eta \in \df{n-1} $, and by \eref{eq:ext-der-prod-rule}:
+    \begin{equation*}
+      \dd (\omega \wedge \star \eta) = \dd \omega \wedge \star \eta + (-1)^{p-1} \omega \wedge \dd \star \eta \in \df{n}
+    \end{equation*}
+    By Stokes' theorem, then, since $ \pa \man = \emptyset $:
+    \begin{equation*}
+      0 = \int_\man \dd (\omega \wedge \star \eta) = \int_\man \dd \omega \wedge \star \eta + (-1)^{p-1} \int_\man \omega \wedge \dd \star \eta
+    \end{equation*}
+    The first term is just $ (\dd \omega , \eta) $, while the second term is proportional to $ (\omega , \star \dd \star \eta) $. To determine the coefficient, note that $ \dd \star \eta \in \df{n-p+1} $, so using \eref{eq:hodge-nilpotence}:
+    \begin{equation*}
+      (\omega , \star \dd \star \eta) = \int_\man \omega \wedge \star (\star \dd \star \eta) = \sigma (-1)^{(n-p+1)(p-1)} \int_\man \omega \wedge \dd \star \eta
+    \end{equation*}
+    Thus, combining the two relations:
+    \begin{equation*}
+      (\omega , \star \dd \star \eta) = - \sigma (-1)^{(n-p)(p-1)} (\dd \omega , \eta)
+    \end{equation*}
+    Noting that $ \sigma^2 = 1 $ and:
+    \begin{equation*}
+      (n-p)(p-1) + 1 = n (p-1) - p (p - 1) + 1 \equiv n (p + 1) + 1 \quad (\mod 2)
+    \end{equation*}
+    yields the expression for $ \cdd $.
   \end{proof}
 \end{proofbox}
 
-\begin{theorem}{Harmonic decomposition of forms}{form-decomp}
-  Given a compact Riemannian manifold $ (\mathcal{M},g) $, any $ \omega \in \lm{p} $ can be uniquely decomposed as $ \omega = \dd \alpha + \dd^{\dagger}\beta + \gamma $, with $ \alpha \in \lm{p-1} $, $ \beta \in \lm{p+1} $ and $ \gamma \in \hrm{p} $.
-\end{theorem}
+For metric manifolds with boundary, the $ \cdd $ is not the adjoint of $ \dd $ in the operator-theoretic sense, since $ (\dd \omega , \eta) $ and $ (\omega , \cdd \eta) $ differ by a boundary term proportional to $ \int_{\pa \man} \omega \wedge \star \eta $.
 
-\begin{theorem}{Hodge's theorem}{}
-  Given a compact Riemannian manifold $ (\mathcal{M},g) $, then:
+\begin{definition}{Laplace--de Rham operator}{}
+  Let $ (\man,g) $ be a metric manifold. The \bcdef{Laplace--Beltrami operator} is the operator $ \lapd : \df{p} \ra \df{p} $ defined as:
   \begin{equation}
-    \hrm{p} \cong H^p(\mathcal{M})
+    \lapd \defeq (\dd + \cdd)^2
+  \end{equation}
+\end{definition}
+
+To simplify the expression for the Laplace--de Rham operator, it is crucial to extend the nilpotence $ \dd^2 = 0 $ to the codifferential.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Nilpotence of the codifferential}{}
+  \begin{equation}
+    \cdd \circ \cdd \equiv 0
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct computation, given $ \omega \in \df{p} $, then $ \dd \star \omega \in \df{n-p+1} $:
+    \begin{equation*}
+      \begin{split}
+        \cdd (\cdd \omega)
+        & = \star \dd \star \star \dd \star \omega = \sigma (-1)^{(n-p+1)(p-1)} \star \dd \circ \dd \star \omega
+      \end{split}
+    \end{equation*}
+    Using $ \dd \circ \dd \equiv 0 $ completes the proof.
+  \end{proof}
+\end{proofbox}
+
+By the nilpotence of both $ \dd $ and $ \cdd $, the Laplace--de Rham operator can be expressed as:
+\begin{equation}
+  \lapd = \dd \cdd + \cdd \dd
+\end{equation}
+
+\begin{example}{Laplacian of functions}{}
+  Let $ (\man,g) $ be an oriented metric manifold. Trivially, $ \cdd f = 0 $ for any $ f \in \cm = \dd{0} $, since $ \star f \in \df{n} $ is a top form, hence in a smooth chart $ (U,x^i) $ on $ \man $:
+  \begin{equation*}
+    \begin{split}
+      \lapd f
+      & = \cdd \dd f = \sigma (-1)^{2n+1} \star \dd \star (\pa_i f \dd x^i) = - \sigma \star \dd (\pa_i f \star \dd x^i) \\
+      & = - \frac{\sigma}{(n-1)!} \star \dd \left( \pa_i f \sqg \, g^{i j_1} \epsilon_{j_1 \dots j_n} \dd x^{j_2} \wedge \dots \wedge \dd x^{j_n} \right) \\
+      & = - \frac{\sigma}{(n-1)!} \star \left[ \pa_\ell (\sqg \, g^{ij_1} \pa_i f) \epsilon_{j_1 \dots j_n} \dd x^\ell \wedge \dd x^{j_2} \wedge \dots \wedge \dd x^{j_n} \right] = - \sigma \pa_\ell (\sqg \, g^{i\ell} \pa_i f) \star \volf
+    \end{split}
+  \end{equation*}
+  Now, since $ \volfg = \star 1 $, by \eref{eq:hodge-nilpotence} it follows that $ \star \volfg = \sigma $, so inserting $ \volfg = \sqg \volf $ the final expression for the Laplacian of a function is found:
+  \begin{equation}
+    \lapd f = - \frac{1}{\sqg} \frac{\pa}{\pa x^i} \left( \sqg \, g^{ij} \frac{\pa f}{\pa x^j} \right)
+    \label{eq:laplacian-function}
+  \end{equation}
+\end{example}
+
+As hinted by \eref{eq:laplacian-function}, the Laplace--de Rham operator is the opposite of the ordinary Laplace--Beltrami operator: $ \lapd = - \lap $.
+
+\subsubsection{Harmonic forms and de Rham cohomology}
+
+The Laplace--de Rham operator is the link connecting Hodge theory to the de Rham cohomology. In particular, it is possible to define a new space of differential forms.
+
+Let $ (\man,g) $ be a metric manifold: $ \omega \in \df{p} $ is said to be \bctxt{harmonic} if $ \lapd \omega = 0 $. The space of such harmonic $ p $-forms is denoted by $ \hrm{p} \ssq \df{p} $. Note that, on oriented Riemannian manifolds, harmonic forms are both closed and co-closed, since:
+\begin{equation*}
+  0 = (\omega , \lapd \omega) = (\dd \omega , \dd \omega) + (\cdd \omega , \cdd \omega)
+\end{equation*}
+As the $ L^2 $-inner product is positive-definite in the Riemannian case, this relation holds if and only if both $ \dd \omega = 0 $ and $ \cdd \omega = 0 $. The Riemannian case also has additional properties.
+
+\begin{theorem}{Harmonic decomposition of forms}{harmonic-decomposition}
+  Let $ (\man,g) $ be a compact Riemannian manifold. Then, for all $ p \in \N_0 $:
+  \begin{equation}
+    \df{k} = \im \dd_{p-1} \oplus \im \cdd_{p+1} \oplus \hrm{p}
   \end{equation}
 \end{theorem}
 
 \begin{proofbox}
   \begin{proof}
-    From \pref{prop:harm-closed} $ \hrm{p} \subset Z^p(\mathcal{M}) $, but the uniqueness of decomposition in \tref{th:form-decomp} implies $ \forall \gamma \in \hrm{p} \,\exists \eta_{\gamma} \in \lm{p-1} : \gamma \neq \dd\eta_{\gamma} $, thus $ \hrm{p} \subset H^p(\mathcal{M}) $.
-
-    WTS that any equivalence class $ [\omega] \in H^p(\mathcal{M}) $ can be represented by a harmonic form. By \tref{th:form-decomp} $ \omega = \dd\alpha + \dd^{\dagger}\beta + \gamma $, but $ \omega \in H^p(\mathcal{M}) $ implies $ \dd\omega = 0 $ by definition, so:
-    \begin{equation*}
-      0 = \braket{\dd\omega, \beta} = \braket{\omega, \dd^{\dagger} \beta} = \braket{\dd\alpha + \dd^{\dagger}\beta + \gamma, \dd^{\dagger}\beta} = \braket{\dd^{\dagger} \beta, \dd^{\dagger} \beta}
-    \end{equation*}
-    The inner product is positive-definite, thus $ \dd^{\dagger} \beta = 0 $, hence $ \omega = \gamma + \dd\alpha $. By definition $ H^p(\mathcal{M}) \defeq Z^p(\mathcal{M}) / B^p(\mathcal{M}) $, so $ [\omega] = \gamma $.
+    See \S 5 of \cite{voisin}.
   \end{proof}
 \end{proofbox}
 
-Betti numbers can then be computed as $ B_p = \dim_{\R} \hrm{p} $.
+As in \secref{ssec:de-rham-cohomology-groups}, the form-degree of $ \dd_p : \df{p} \ra \df{p+1} $ and $ \cdd_p : \df{p} \ra \df{p-1} $ has been made explicit for convenience. With this direct sum, on a compact Riemannian manifold $ \man $, any $ \omega \in \df{p} $ can be uniquely decomposed as $ \omega = \dd \alpha + \cdd \beta + \gamma $, with $ \alpha \in \df{p-1} $, $ \beta \in \df{p+1} $ and $ \gamma \in \df{p} $.
+
+\begin{theorem}{Hodge's theorem}{}
+  Let $ (\man,g) $ be a compact Riemannian manifold. Then, for all $ p \in \N_0 $:
+  \begin{equation}
+    \hp{p}(\man) \cong \hrm{p}
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    Since harmonic $ p $-forms are closed, $ \hrm{p} \ssq \zp{p}(\man) $. Moreover, \tref{th:harmonic-decomposition} implies that $ \hrm{p} \cap \im \dd_{p-1} = \emptyset $, hence $ \hrm{p} \ssq \hp{p}(\man) $.
+
+    WTS any equivalence class $ [\omega] \in \hp{p}(\man) $ can be represented by a harmonic $ p $-form. By \tref{th:harmonic-decomposition}, let $ \omega = \dd \alpha + \cdd \beta + \gamma $ be the unique decomposition of $ \omega \in \zp{p}(\man) $, with $ \alpha \in \df{p-1} $, $ \beta \in \df{p+1} $ and $ \gamma \in \hrm{p} $. By definition $ \dd \omega = 0 $, but $ \dd^2 = 0 $ and $ \dd \gamma = 0 $ since harmonic forms are closed, hence $ \dd \omega = \dd \cdd \beta = 0 $ and:
+    \begin{equation*}
+      0 = (\dd \omega , \beta) = (\dd \cdd \beta , \beta) = (\cdd \beta , \cdd \beta)
+    \end{equation*}
+    Since the $ L^2 $-inner product is positive-definite on Riemannian manifolds, this implies $ \cdd \beta = 0 $, therefore $ \omega = \dd \alpha + \gamma $. By definition $ \hp{p}(\man) \defeq \zp{p}(\man) / \bp{p}(\man) $, so $ [\omega] = \gamma $ as sought.
+  \end{proof}
+\end{proofbox}
+
+This is the fundamental result of Hodge theory: each de Rham cohomology class contains exactly one harmonic form.
 
 \newpage
 \section{Cartan formalism}
