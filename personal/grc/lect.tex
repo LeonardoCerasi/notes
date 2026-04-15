@@ -832,6 +832,86 @@ Per $ u > T $ si ha di nuovo $ L(u) = \tilde{L}_0 + \tilde{L}_1 u $, dunque impo
 \end{equation*}
 Si vede dunque che, col passaggio, la GW cambia il background, e anche a seguito del passaggio il background non è più Minkowski (\bctxt{memory effect}): ci si aspetta che, a seguito del passaggio, le masse test risultino spostate (ma effetto è estremamente difficile da osservare, poichè la frequenza $ \nu \sim \abs{\beta''} $ tende a $ 0 $). Si potrebbero anche avere singolarità $ L = 0 $, ma queste sono solo coordinate singularities: le true singularities ci possono essere solo per $ \beta \neq 0 $. Per $ \beta \neq 0 $ si trova $ R_{uu} = L'' / L $, quindi la scala di curvatura del background è $ \lng_\text{B} \sim \sqrt{\abs{L / L''}} $, mentre $ \lambda/2\pi \sim 1/\abs{\beta''} $, quindi si trova $ \lambda/2\pi \ll \lng_\text{B} $, ovvero ci troviamo nel regime lineare come desiderato.
 
+\chapter{Lecture 14/04}
+
+\section{Penrose diagrams}
+
+Date due metriche $ \tilde{g}_{\mu \nu} = \Omega^2(x) g_{\mu \nu} $ legate da una trasformazione conforme (con $ \Omega^2 > 0 $ così da non cambiare la segnatura), si vuole studiare come una geodetica in $ g_{\mu \nu} $ diventa in $ \tilde{g}_{\mu \nu} $: in generale, geodetiche non diventano geodetiche sotto trasformazioni conformi, ma geodeiche nulle rimangono geodetiche nulle, quindi la struttura causale è preservata dalle trasformazioni conformi. Questo permette di studiare la struttura causale all'infinito dello spaziotempo, tramite una conformal completion: ciò significa che lo spaziotempo $ \tilde{g}_{\mu \nu} $ è una porzione dello spaziotempo $ g_{\mu \nu} $, con $ \Omega^2(x) $ che va a zero sul bordo (+ condizioni tecniche di differenziabilità). In particolari, siamo interessati agli spaziotempi asintoticamente piatti, ovvero la struttura all'infinito dello spaziotempo è quella di Minkowski.
+
+Dati due campi vettoriali $ X,Y $, abbiamo visto (e calcolato) che:
+\begin{equation}
+  \na_X Y - \tilde{\na}_X Y = C(X,Y)
+\end{equation}
+Questo tensore in componenti è:
+\begin{equation}
+  C^\mu_{\alpha \beta} = \frac{1}{2} \tilde{g}^{\mu \rho} (\na_\alpha \tilde{g}_{\beta \rho} + \na_\beta \tilde{g}_{\alpha \rho} - \na_\rho \tilde{g}_{\alpha \beta}) = C^\mu_{\alpha \beta} = 2 \delta^\mu_{(\alpha} \na_{\beta)} \log \Omega - g_{\alpha \beta} g^{\mu \nu} \na_\nu \log \Omega
+\end{equation}
+Se $ X $ è null per $ g $, allora da queste relazioni risulta che esso è null anche per $ g $ (ed equivalentemente se timelike o spacelike). Se $ X : \na_X X = 0 $ determina una null geodesic, allora:
+\begin{equation*}
+  \tilde{\na}_X X = (2 \na_X \log \Omega) X
+\end{equation*}
+che è una null geodesic con parametrizzazione non-affine.
+
+Per studiare come si comporta il tensore di Riemann sotto trasformazioni conformi (calcolo diretto noioso, meglio usare Cartan), si trova:
+\begin{equation*}
+  \tensor{\tilde{R}}{^\rho_\mu \nu \alpha} = \tensor{R}{^\rho_{\mu \nu \alpha}} + (\text{higher order terms in $ g $ and derivatives of $ \Omega $})
+\end{equation*}
+Si può definire un nuovo tensore, il tensore di Weyl, come la parte a traccia nulla del tensore di Riemann (ovvero togliendogli tutte le possibili contrazioni), che risulta essere conformally invariant:
+\begin{equation*}
+  R_{\mu \mu \alpha \beta} = W_{\mu \nu \nu \beta} + \frac{2}{n-2} \left( g_{\mu [\alpha} R_{\beta] \nu} - g_{\nu [\alpha} R_{\beta] \nu} \right) - \frac{2}{(n-1)(n-2)} R g_{\mu [\alpha} g_{\beta] \nu}
+\end{equation*}
+dove $ n \in \N $ è la dimensione dello spaziotempo. Questa formula ha singolarità in $ n = 1 , 2 $, giustificato poiché $ n < 3 $ è banale: in $ n = 3 $ il tensore di Riemann ha solo le componenti del tensore di Ricci, mentre in $ n = 2 $ c'è solo il tensore di Ricci. Il tensore di Weyl è quindi legato agli effetti di marea, in quanto questi sono conformally invariant (ovvero non variano riscalando il volume).
+
+Il tensore di Weyl permette di clasificare le soluzioni di vuoto (Petrov classes): dato che in generale si può associare ad ogni quadrivettore uno spinore, al tensore di Weyl si possono associare 4 spinori, e se due o più di loro risultano essere proporzionali si possono sfruttare delle simmetrie.
+
+\subsubsection{Minkowski spacetime}
+
+In coordinate sferiche:
+\begin{equation*}
+  \dd s^2 = - \dd t^2 + \dd r^2 + r^2 \dd \Omega_2^2
+\end{equation*}
+Si vede che si può giungere all'infinito con $ t \ra \infty $ (timelike infinity), $ r \ra \infty $ (spacelike infinity) e seguendo un lightray (null infinity). In lightcone coordinates:
+\begin{equation*}
+  \dd s^2 = - \dd u \, \dd v + \frac{(u - v)^2}{4} \dd \Omega_2^2
+\end{equation*}
+con $ u , v \in \R $. Per compattificare, si scrive $ u = \tan \tilde{u} , v = \tan \tilde{v} $, così che $ \tilde{u} , \tilde{v} \in \left( - \frac{\pi}{2} , \frac{\pi}{2} \right) $, così che:
+\begin{equation*}
+  \dd s^2 = \frac{1}{4 \cos^2 \tilde{u} \cos^2 \tilde{v}} \left[ - 4 \dd \tilde{u} \, \dd \tilde{v} + \sin^2 (\tilde{u} - \tilde{v}) \dd \Omega_2^2 \right]
+\end{equation*}
+Si vede quindi che la metrica di Minkowski è conforme ad una metrica relativamente semplice, nota come \emph{Einstein static universe} (la prima soluzione cosmologica mai scritta): $ g_{\mu \nu} = \Omega^2 \eta_{\mu \nu} $, dove il fattore conforme si annulla sul bordo di $ [-\frac{\pi}{2} , \frac{\pi}{2}]^2 \times \Sn{2} $, come desiderato. Ciò fa sì che ciò che era a distanza infinita nello spaziotempo di Minkowski è invece a distanza finita nell'ESU. Introducento $ \tilde{t} = \tilde{u} + \tilde{v} , \tilde{\chi} = \tilde{v} - \tilde{u} $, l'ESU diventa:
+\begin{equation*}
+  \dd s^2 = - \dd \tilde{t}^2 + \dd \tilde{\chi}^2 + \sin^2 \tilde{\chi} \, \dd \Omega_2^2
+\end{equation*}
+che rende chiaro come l'ESU sia una soluzione delle equazioni di Friedman con curvatura positiva (topologia spaziale $ \Sn{3} $). Gli infiniti dello spazio di Minkowski sono quindi rappresentati come:
+\begin{itemize}
+  \item spatial infinity $ i_0 $, con $ \tilde{v} \ra \frac{\pi}{2} , \tilde{u} \ra - \frac{\pi}{2} $, ovvero $ \tilde{t} \ra 0 , \tilde{\chi} \ra \pi $;
+  \item future/past timelike infinities $ i_\pm $, con $ \tilde{u} \ra \pm \pm \frac{\pi}{2} , \tilde{v} \ra \pm \frac{\pi}{2} $, ovvero $ \tilde{t} \ra \pm \pi , \tilde{\chi} \ra 0 $;
+  \item future/past null infinities $ \mathscr{I}^\pm $, con $ \mathscr{I}^+ : \tilde{v} \ra \frac{\pi}{2} , \tilde{u} \neq \frac{\pi}{2} $ e $ \mathscr{I}^- : \tilde{u} \ra \frac{\pi}{2} , \tilde{v} \neq \frac{\pi}{2} $.
+\end{itemize}
+Notare che $ i_0 $ è un punto angoloso, quindi il bordo non sarebbe differenziabile, ma lasciamo perdere.
+
+\subsubsection{Schwarzschild spacetime}
+
+In Kruskal coordinates (maximal extension):
+\begin{equation*}
+  \dd s^2 = - \frac{4\sr^3}{r} e^{-r / \sr} \dd U \, \dd V + r^2 \dd \Omega_2^2
+\end{equation*}
+dove $ r = r(U,V) $ implicitamente come:
+\begin{equation*}
+  e^{r / \sr} \left( \frac{r}{\sr} - 1 \right) = - U V
+\end{equation*}
+Quindi $ r = 0 \iff UV = 1 $ e $ r = \sr \iff UV = 0 $. Anche in questo caso si pone $ U = \tan \tilde{u} , V = \tan \tilde{v} $, col vincolo $ r > 0 \iff UV < 1 $ che determina $ \tilde{u} , \tilde{v} \in \left( - \frac{\pi}{2} , \frac{\pi}{2} \right) : \cos (\tilde{u} + \tilde{v}) > 0 $, ovvero $ \tilde{u} + \tilde{v} \in \left( - \frac{\pi}{2} , \frac{\pi}{2} \right) $. Intoducendo di nuovo $ \tilde{t} = \tilde{v} + \tilde{u} , \tilde{\chi} = \tilde{v} - \tilde{u} $, si trovano di nuovo un infinito spaziale $ i_0 $, i future/past timelike infinities e i future/past null infinities. In questo caso, però, ci sono anche l'orizzonte futuro $ \mathscr{H}^+ : U = 0 $, l'orizzonte passato $ \mathscr{H}^- : V = 0 $ e la singolarità $ r = 0 \iff UV = 1 \iff \tilde{t} = \pm \frac{\pi}{2} $: la singolarità quindi corrisponde a due sezioni spaziali, una nel futuro e una nel passato, collegate dai due orizzonti.
+
+\section{No hair theorem}
+
+Si prenda uno spaziotempo 4D con metrica analitica (ipotesi abbastanza forte, in quanto richiede una metrica infinitamente differenziabile), asymptotically flat e stationary (quindi con vettore di Killing globalmente timelike), e in vacuum (both matter and electrical). Se si prende un bucon nero con orizzonte connesso (ci sono casi patologici con orizzonti disconnessi, Papandreu black holes) tale per cui nella regione esterna al BH non ci sono closed timelike curves (no viaggi nel tempo, requisito di causalità), allora si può dimostrare che le uniche soluzioni possibili sono Schwarzschild e Kerr.
+
+Le ipotesi più stringenti sono la richiesta di analiticità della metrica e la connectedness dell'orizzonte degli eventi.
+
+Il no hair theorem significa che, indipendentemente dal collasso che lo forma, un BH è completamente determinato dai primi due momenti di multipolo: la massa ($ \ell = 0 $) e il momento angolare ($ \ell = 1 $).
+
+I buchi neri stazionari quindi hanno o una simmetria sferica (Schwarzschild) o quantomeno assiale (Kerr).
+
 
 
 
