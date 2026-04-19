@@ -1,0 +1,361 @@
+\selectlanguage{italian}
+
+\chapter{Lecture 14/04}
+
+QCD come teoria di gauge $ \SUn{3} $. Il campo spinoriale è:
+\begin{equation*}
+  \Psi =
+  \begin{pmatrix}
+    \psi_\mathtt{r} \\ \psi_\mathtt{g} \\ \psi_\mathtt{b}
+  \end{pmatrix}
+\end{equation*}
+Il ket è prodotto diretto di stato spaziale e stato di colore $ \ket{\Psi} = \ket{\psi} \ket{c} $, con (conventzione):
+\begin{equation}
+  \ket{\mathtt{r}} =
+  \begin{pmatrix}
+    1 \\ 0 \\ 0
+  \end{pmatrix}
+  \qquad
+  \ket{\mathtt{g}} =
+  \begin{pmatrix}
+    0 \\ 1 \\ 0
+  \end{pmatrix}
+  \qquad
+  \ket{\mathtt{b}} =
+  \begin{pmatrix}
+    0 \\ 0 \\ 1
+  \end{pmatrix}
+  \label{eq:su3-rappr}
+\end{equation}
+Si può anche esprimere:
+\begin{equation}
+  \Psi = \sum_{\mathtt{c} = \mathtt{r},\mathtt{g},\mathtt{b}} \sum_{r = 1,2} \int \frac{\dd^3 p}{(2\pi)^3} \frac{1}{\sqrt{2E(\ve{p})}} \left[ u(\ve{p},r) e^{-\img p \cdot x} b_\mathtt{c}(\ve{p},r) + v(\ve{p},r) e^{\img p \cdot x} b_\mathtt{d}\dg(\ve{p},r) \right]
+\end{equation}
+Si vede quindi che lo stato di spin non influisce sullo stato di color (conferma del prodotto diretto). Le trasformazioni $ \SUn{3} $ possono essere scritte come:
+\begin{equation}
+  \mt{U} = \exp \left[ \img g_s \mt{T}_a \alpha_a \right]
+\end{equation}
+dove i generatori sono proporzionali alle matrici di Gell--Mann: $ \mt{T}_a = \frac{1}{2} \lambda_a $. Analogamente (algebricamente) al flavour, si possono diagonalizzare simultaneamente $ \mt{T}_3 $, definendo un isospin di colore con terza componente $ I_3^\mathtt{c} $, e $ \mt{T}_8 $, definendo un ipercarica di colore $ Y^\mathtt{c} $. Si trova un tripletto di carica:
+\begin{equation*}
+  I_3^\mathtt{g} = -\frac{1}{2} , Y^\mathtt{g} = \frac{1}{3}
+  \qquad
+  I_3^\mathtt{r} = \frac{1}{2} , Y^\mathtt{r} = \frac{1}{3}
+  \qquad
+  I_3^\mathtt{b} = 0 , Y^\mathtt{g} = - \frac{2}{3}
+\end{equation*}
+che corrisponde alla rappresentazione fondamentale di $ \SUn{3} $. Gli antiquark trasformano secondo la rappresentazione aggiunta a quella fondamentale, ovvero con i complessi coniugati delle matrici, quindi per gli anticolori sia l'isospin che l'ipercarica di colore hanno segno invertito.
+
+Per studiare i vertici di interazione tra i quark, si consideri la seguente Lagrangiana:
+\begin{equation}
+  \lag = \bar{\Psi} \left( \img \gamma^\mu \pa_\mu - m \right) \Psi - g_s \left[ \bar{\Psi} \gamma^\mu T_a \bar{\Psi} \right] G_\mu^a - \frac{1}{4} G_{\mu \nu}^a G_a^{\mu \nu}
+\end{equation}
+Il secondo termine sono 8 quadricorrenti fermioniche di colore che interagiscono con 8 campi gluonici, mentre il terzo rappresenta la dinamica libera e le self-interactions dei gluoni, dove $ G_{\mu \nu}^a $ è il field-strength tensor antisimmetrico determinato dai campi vettoriali $ G_\mu^a $. A livello diagrammatico, il secondo termine corrisponde a un vertice a tre $ q_i q_j g $ caratterizzato da $ a = 1, \dots, 8 $ e $ \mu = 0 , \dots , 3 $, e si noti che si può avere $ i \neq j $, ovvero un cambio di colore, poiché le matrici di Gell--Mann non sono diagonali, con matrix element:
+\begin{equation*}
+  \mat^\mu_a = -\img g_s \left[ \bar{u}(\ve{p}_3 , r_3) \gamma^\mu u(\ve{p}_1 , r_1) \right] \mathtt{c}_j\dg \mt{T}_a \mathtt{c}_i
+\end{equation*}
+dove $ \mathtt{c}_i $ sono \eref{eq:su3-rappr}, dunque:
+\begin{equation}
+  \mat_a^\mu = - \img g_s \left[ \bar{u}(\ve{p}_3 , r_3) \gamma^\mu u(\ve{p}_1 , r_1) \right] \frac{1}{2} [\lambda_a]_{ji}
+\end{equation}
+Quindi, ogni vertice d'interazione determina un contributo $ - \frac{1}{2} \img g_s [\lambda_a]_{ji} $. Il propagatore del gluone è:
+\begin{equation*}
+  \Delta_{\mu \nu}^{ab}(q^2) = - \frac{\img \eta_{\mu \nu}}{q^2} \delta^{ab}
+\end{equation*}
+Lo stesso vertice appena descritto può essere visto come un'annichilazione $ q_i \bar{q}_j \ra g $: dato che la QCD conserva il colore, dunque il gluone uscente deve avere gli stessi numeri quantici di colore della coppia quark-antiquark annichilata, ovvero è portatore di una coppia colore-anticolore. I gluoni trasformano quindi come $ \ve{3} \otimes \bar{\ve{3}} = \ve{8} \oplus \ve{1} $: gli otto gluoni appartengono al multipletto $ \ve{8} $. Ad esempio $ \mathtt{r}\bar{\mathtt{g}} $ ha $ I_3^c = 1 , Y^c = 0 $, dunque è uno stato possibile, come anche $ \mathtt{g}\bar{\mathtt{r}} $, $ \mathtt{r}\bar{\mathtt{b}} $, $ \mathtt{b}\bar{\mathtt{r}} $, $ \mathtt{g}\bar{\mathtt{b}} $, $ \mathtt{b}\bar{\mathtt{g}} $; invece, per quanto riguarda le coppie $ \mathtt{c}\bar{\mathtt{c}} $, ci sono solo i due rimanenti stati:
+\begin{equation*}
+  \frac{1}{\sqrt{2}} (\mathtt{r}\bar{\mathtt{r}} - \mathtt{g}\bar{\mathtt{g}})
+  \qquad \qquad
+  \frac{1}{\sqrt{6}} (\mathtt{r}\bar{\mathtt{r}} + \mathtt{g}\bar{\mathtt{g}} - 2 \mathtt{b}\bar{\mathtt{b}})
+\end{equation*}
+Ciò significa che i gluoni sono carichi rispetto al colore, ovvero che interagiscono tra di loro. Lo stato di singoletto non corrisponde a un gluone poiché uno stato iniziale quark-antiquark di singoletto non determina alcun contributo non-nullo al processo, a causa della struttura dei generatori di $ \SUn{3} $: ; inoltre, per il color-confinement, in natura si possono osservare solo singoletti di colore, dunque non si possono osservare gluoni liberi.
+
+\section{Rinormalizzazione}
+
+\subsection{QED}
+
+Per la QED, la costante di struttura fine $ \alpha \equiv \frac{e^2}{4\pi} \simeq \frac{1}{137} $ è piccola, dunque si può effettuare uno sviluppo perturbativo dei diagrammi. A livello osservativo, $ \alpha $ è misurato studiando il comportamento di una particella carica in un potenziale (idealmente) statico (ovvero generato da un corpo molto massi: questa misura, però, comprende tutti i contributi a tutti gli ordini, quindi il valore osservato non è il valore di $ \alpha $ che viene inserito nella lagrangiana. Per le teorie di gauge valgono le identità di Ward, che fanno sì che, a tutti gli ordini perturbativi, le correzioni al vertice sommino a zero, quindi le uniche correzioni ad ordini superiori sono le correzioni di loop ai propagatori (uno dei motivi per cui piacciono le teorie di gauge), quindi per la QED il propagatore fotonico (ignorando strutture di spin date da $ \img \eta_{\mu \nu} $, ovvero $ \Delta_0 = e_0^2 / q^2 $):
+\begin{equation*}
+  \Delta = \Delta_0 + \Delta_0 \pi(q^2) \Delta_0 + \Delta_0 \pi(q^2) \Delta_0 \pi(q^2) \Delta_0 + \dots = \frac{\Delta_0}{1 - \pi(q^2) \Delta_0} = \frac{\Delta_0}{1 - e_0^2 \Pi(q^2)}
+\end{equation*}
+dove $ \pi(q^2) $ è il loop fermionico con momento entrante/uscente totale $ q^2 $, e $ \Pi(q^2) \equiv \pi(q^2) / q^2 $ è la 1-loop self-energy correction del propagatore fotonico. Si vede quindi che il matrix element dello scattering dipende dall'energia a cui avviene il processo: la QED è debole a bassa energia e diventa forte ad alta energia. Si definisce la costante d'accoppiamento effettiva come:
+\begin{equation*}
+  \Delta(q^2) \equiv \frac{e^2(q^2)}{q^2} = \frac{e_0^2}{q^2} \frac{1}{1 - e_0^2 \Pi(q^2)}
+\end{equation*}
+Si può quindi mettere in relazione la coupling constant misurata ad una scala d'energia $ \mu^2 $ con quella misurata ad un'altra scala $ q^2 $:
+\begin{equation*}
+  e^2(\mu^2) = e_0^2 \frac{1}{1 - e_0^2 \Pi(\mu^2)}
+  \quad \implies \quad
+  e_0^2 = \frac{e^2(\mu^2)}{1 + e^2(\mu^2) \Pi(\mu^2)}
+\end{equation*}
+quindi:
+\begin{equation*}
+  e^2(q^2) = \frac{e^2(\mu^2)}{1 - e^2(\mu^2) [ \Pi(q^2) - \Pi(\mu^2) ]}
+\end{equation*}
+Nonostante $ \Pi(q^2) $ contenga le singolarità di un loop, la differenza $ \Pi(q^2) - \Pi(\mu^2) $ è finita e calcolabile, e ad alte energia risulta essere:
+\begin{equation*}
+  \Pi(q^2) - \Pi(\mu^2) \simeq \frac{1}{12\pi^2} \log \frac{q^2}{\mu^2}
+\end{equation*}
+Si trova inoltre il running della fine structure constant:
+\begin{equation*}
+  \alpha(q^2) = \frac{\alpha(\mu^2)}{1 - \frac{\alpha(\mu^2)}{3\pi} \log \frac{q^2}{\mu^2}}
+\end{equation*}
+
+\subsection{QCD}
+
+Lo stesso ragionamento si può applicare alla QCD. In questo caso, però, vanno considerate le gluon self-interactions: in particolare, ci sono vertici $ ggg $ e $ gggg $. Per la QCD si trova:
+\begin{equation*}
+  \Pi(q2) - \Pi(\mu^2) = - \frac{B}{4\pi} \ln \frac{q^2}{\mu^2}
+\end{equation*}
+dove $ B $ dipende dal numero di loop bosonici e fermionici:
+\begin{equation*}
+  B = \frac{11 n_c - 12 n_f}{12 \pi}
+\end{equation*}
+dove $ n_c $ è il numero di colori e $ n_f $ è il numero di flavours. Nel Modello Standard $ B > 0 $, quindi la differenza decresce all'aumentare dell'energia, ovvero $ \alpha_s $ decresce all'aumentare del'energia: questo fenomeno è noto come asymptotic freedom, per cui la QCD diventa perturbativa ad alte energie. Per questo stesso motivo, a basse energie si ha il color confinement, dato che un oggetto colorato interagirebbe in maniera estremamente intensa tramite la strong interaction.
+
+\chapter{Lecture 16/04}
+
+\section{Operatore parità}
+
+Le interazioni deboli non conservano la parità, quindi è importante studiare $ \oppar $. Esso è un operatore unitario, quindi per ogni stato $ \ket{\psi} , \ket{\phi} $, definiti $ \ket{\tilde{\psi}} = \oppar \ket{\psi} , \ket{\tilde{\phi}} = \oppar \ket{\phi} $, si ha:
+\begin{equation*}
+  \braket{\tilde{\psi} | \tilde{\phi}} = \braket{\psi | \oppar\deg \oppar | \phi} = \braket{\psi | \id | \phi} = \braket{\psi | \phi}
+\end{equation*}
+La parità inverte agisce in modo che, dato un qualsiasi operatore vettoriale polare $ \hat{\ve{v}} $ (e.g. posizione, impulso):
+\begin{equation*}
+  \braket{\tilde{\psi} | \hat{\ve{v}} | \tilde{\phi}} = - \braket{\psi | \hat{\ve{v}} | \phi}
+\end{equation*}
+quindi a livello operatoriale:
+\begin{equation}
+  \oppar\dg \hat{\ve{v}} \oppar = - \hat{\ve{v}}
+\end{equation}
+Al contrario, i vettori assiali (e.g. momento angolare) rimangono invariati sotto effetto di parità. Ciò rispecchia il fatto che, passando da un sistema di riferimento destrogiro ad uno levogiro, i vettori polari assumono un segno negativo, mentre i vettori assiali rimangono invariati. I vettori polari ed assiali vengono anche detti rispettivamente vettori e pseudovettori.
+
+Dato che l'operatore di parità deve essere sia unitario che nilpotente, allora esso è anche hermitiano:
+\begin{equation*}
+  \oppar\dg \oppar = \id
+  \qquad
+  \oppar^2 = \id
+  \quad \implies \quad
+  \oppar = \oppar^{-1} = \oppar\dg
+\end{equation*}
+Ciò significa che esso è un osservabile con autovalori reali, ed in particolare $ \oppar \ket{p} = \eta_p \ket{p} \implies \ket{p} = \eta_p^2 \ket{p} $, quindi i possibili autovalori sono $ \eta_p = \pm 1 $. Le interazioni elettromagnetiche e forti conservano la parità, quindi gli autostati elettromagnetici e forti hanno un autovalore di parità ben definito.
+
+\subsection{Campi scalari}
+
+\subsubsection{Campo scalare reale}
+
+Si consideri un campo scalare reale:
+\begin{equation*}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img p \cdot x} + a\dg(\ve{p}) e^{\img p \cdot x} \right]
+\end{equation*}
+che è un operatore hermitiano. Sotto parità:
+\begin{equation*}
+  \phi(x) \mapsto \oppar\dg \phi(x) \oppar = \oppar \phi(x) \oppar = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \oppar a(\ve{p}) \oppar e^{-\img p \cdot x} + \oppar a\dg(\ve{p}) \oppar e^{\img p \cdot x} \right]
+\end{equation*}
+Per capire come esprimere $ \oppar a\dg(\ve{p}) \oppar $, lo si faccia agire sul vuoto:
+\begin{equation*}
+  a\dg(\ve{p}) \ket{0} = \ket{\ve{p}}
+  \quad \implies \quad
+  (\oppar a\dg(\ve{p}) \oppar) = \eta_p \ket{-\ve{p}}
+\end{equation*}
+dove $ \eta_p \in \R $ poiché $ \oppar a\dg(\ve{p}) \oppar $ è hermitiano, e $ \eta^2 = \pm 1 $ poiché NON HO CAPITO, quindi:
+\begin{equation}
+  \oppar a\dg(\ve{p}) \oppar = \eta_p a\dg(-\ve{p})
+  \qquad
+  \eta_p = \pm 1
+  \label{eq:ad}
+\end{equation}
+e ugualmente per l'operatore di distruzione, prendendo il coniugato hermitiano:
+\begin{equation}
+  \oppar a(\ve{p}) \oppar = \eta_p a(-\ve{p})
+  \qquad
+  \eta_p = \pm 1
+  \label{eq:a}
+\end{equation}
+Dunque, per il campo scalare:
+\begin{equation}
+  \begin{split}
+    \oppar \phi(x) \oppar
+    & = \eta_p \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(-\ve{p}) e^{-\img (E t - \ve{p} \cdot \ve{x})} + a\dg(-\ve{p}) e^{\img (E t - \ve{p} \cdot \ve{x})} \right] \\
+    & = \eta_p \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img (E t + \ve{p} \cdot \ve{x})} + a\dg(\ve{p}) e^{\img (E t + \ve{p} \cdot \ve{x})} \right] \\
+    & = \eta_p \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img (E t - \ve{p} \cdot (-\ve{x}))} + a\dg(\ve{p}) e^{\img (E t - \ve{p} \cdot (-\ve{x}))} \right] \\
+  \end{split}
+\end{equation}
+ovvero:
+\begin{equation}
+  \oppar \phi(t,\ve{x}) \oppar = \eta_b \phi(t,-\ve{x})
+\end{equation}
+Se il campo ha parità intrinseca $ \eta_b = +1 $ si parla di \emph{campo scalare}, se invece $ \eta_b = -1 $ di \emph{campo pseudoscalare}. Per esempio i pioni sono particelle pseudoscalari.
+
+\subsubsection{Campo scalare complesso}
+
+Si consideri un campo scalare complesso:
+\begin{equation*}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img p \cdot x} + b\dg(\ve{p}) e^{\img p \cdot x} \right]
+\end{equation*}
+Con lo stesso ragionamento, si trovano di nuovo \ref{eq:ad}-\ref{eq:a} e anche:
+\begin{equation}
+  \oppar b(\ve{p}) \oppar = \eta_{\bar{p}} b(-\ve{p})
+  \qquad
+  \eta_{\hat{p}} = \pm 1
+  \label{eq:b}
+\end{equation}
+\begin{equation}
+  \oppar b\dg(\ve{p}) \oppar = \eta_{\bar{p}} b\dg(-\ve{p})
+  \qquad
+  \eta_{\hat{p}} = \pm 1
+  \label{eq:bd}
+\end{equation}
+Quindi:
+\begin{equation*}
+    \oppar \phi(x) \oppar = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \eta_p a(-\ve{p}) e^{-\img p \cdot x} + \eta_{\bar{p}} b\dg(-\ve{p}) e^{\img p \cdot x} \right]
+\end{equation*}
+A questo punto, si deve assumere che $ \eta_{\bar{p}} = \eta_p $, ovvero che particella e antiparticella abbiano la stessa parità intrinseca, così da avere come prima:
+\begin{equation}
+  \oppar \phi(t,\ve{x}) \oppar = \eta_p \phi(t,-\ve{x})
+\end{equation}
+Domanda da fare al prof: l'assunto $ \eta_{\bar{p}} = \eta_p $ si può derivare in altro modo o è un'ipotesi a priori che va verificata sperimentalmente?
+
+\subsection{Campi spinoriali}
+
+\subsubsection{Campo di Dirac}
+
+Un campo di Dirac $ \Psi(x) $ risolve l'equazione di Dirac:
+\begin{equation}
+  (\img \slashed{\pa} - m) \Psi(x) = 0
+\end{equation}
+Espandendo:
+\begin{equation*}
+  (\img \gamma^0 \pa_0 + \img \gamma^i \pa_i - m) \Psi(x) = 0
+\end{equation*}
+\begin{equation*}
+  (\img \gamma^i \pa_i - m) \Psi(x) = - \img \gamma^0 \pa_0 \Psi(x)
+\end{equation*}
+Sotto trasformatione di parità, si consideri $ \Psi(x) \mapsto \oppar \Psi(x) \oppar \equiv \Psi'(x') $, con $ x'  \equiv (t , -\ve{x}) $. Settando:
+\begin{equation*}
+  \Psi'(x') = \hat{\Pi} \Psi(x)
+\end{equation*}
+dove $ \hat{\Pi} $ è un operatore che può rimescolare le componenti di $ \Psi $. Si richiede che $ \Psi'(x') $ soddisfi l'equazione di Dirac trasformata sotto parità:
+\begin{equation*}
+  \img \left( \gamma^1 \frac{\pa}{\pa {x^1}'} + \gamma^2 \frac{\pa}{\pa {x^2}'} + \gamma^3 \frac{\pa}{\pa {x^3}'} \right) \Psi'(x') - m \Psi'(x') = - \img \gamma^0 \frac{\pa}{\pa {x^0}'}
+\end{equation*}
+Per comodità $ (x^0,x^1,x^2,x^3) \equiv (t,x,y,z) $ e $ ({x^0}' , {x^1}' , {x^2}' , {x^3}') \equiv (t',x',y,',z') $, così sotto parità $ t = t' $ e $ (x',y',z') = - (x,y,z) $, quindi:
+\begin{equation*}
+  - \img \left( \gamma^1 \frac{\pa}{\pa x^1} + \gamma^2 \frac{\pa}{\pa x^2} + \gamma^3 \frac{\pa}{\pa x^3} \right) \hat{\Pi} \Psi(x) - m \hat{\Pi} \Psi(x) = - \img \gamma^0 \frac{\pa}{\pa x^0} \hat{\Pi} \Psi(x)
+\end{equation*}
+\begin{equation*}
+  - \img \left( \gamma^1 \hat{\Pi} \frac{\pa}{\pa x^1} + \gamma^2 \hat{\Pi} \frac{\pa}{\pa x^2} + \gamma^3 \hat{\Pi} \frac{\pa}{\pa x^3} \right) \Psi(x) - m \hat{\Pi} \Psi(x) = - \img \gamma^0 \hat{\Pi} \frac{\pa}{\pa x^0} \Psi(x)
+\end{equation*}
+Per ottenere l'invarianza, questa equazione deve ridursi all'equazione di Dirac originale, imponendo così delle condizioni su $ \hat{\Pi} $:
+\begin{equation*}
+  - \img \left( \gamma^0 \gamma^1 \hat{\Pi} \frac{\pa}{\pa x^1} + \gamma^0 \gamma^2 \hat{\Pi} \frac{\pa}{\pa x^2} + \gamma^0 \gamma^3 \hat{\Pi} \frac{\pa}{\pa x^3} \right) \Psi(x) - m \gamma^0 \hat{\Pi} \Psi(x) = - \img \hat{\Pi} \frac{\pa}{\pa x^0} \Psi(x)
+\end{equation*}
+Si deve quindi avere:
+\begin{equation*}
+  \gamma^0 \gamma^1 \hat{\Pi} = - \gamma^1 \mt{A}
+  \qquad
+  \gamma^0 \gamma^2 \hat{\Pi} = - \gamma^2 \mt{A}
+  \qquad
+  \gamma^0 \gamma^3 \hat{\Pi} = - \gamma^3 \mt{A}
+  \qquad
+  \gamma^0 \hat{\Pi} = \id \mt{A}
+  \qquad
+  \hat{\Pi} = \gamma^0 \mt{A}
+\end{equation*}
+Ai trova quindi banalmente $ \hat{\Pi} = \gamma^0 \mt{A} $, quindi si può prendere semplicemente $ \mt{A} $ così che $ \hat{\Pi} = \gamma^0 $, quindi indipendentemente dalla rappresentazione dell'algebra di Dirac:
+\begin{equation}
+  \oppar \Psi(x) \oppar = \gamma^0 \Psi(x)
+\end{equation}
+Per vedere come trasformano gli stati, si decompone:
+\begin{equation*}
+  \Psi(x) = \sum_{r = 1,2} \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ u(\ve{p},r) e^{-\img p \cdot x} b(\ve{p},r) + v(\ve{p},r) e^{\img p \cdot x} d\dg(\ve{p},r) \right]
+\end{equation*}
+Quindi:
+\begin{equation*}
+  \begin{split}
+    \Psi'(x)
+    & = \gamma^0 \Psi(t,-\ve{x}) = \sum_{r = 1,2} \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \gamm^0 u(\ve{p},r) e^{-\img (Et - \ve{p} \cdot (-\ve{x}))} b(\ve{p},r) + \gamma^0 v(\ve{p},r) e^{\img (Et - \ve{p} \cdot (-\ve{x}))} d\dg(\ve{p},r) \right] \\
+    & = \sum_{r = 1,2} \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \gamm^0 u(-\ve{p},r) e^{-\img (Et - \ve{p} \cdot \ve{x})} b(-\ve{p},r) + \gamma^0 v(-\ve{p},r) e^{\img (Et - \ve{p} \cdot \ve{x})} d\dg(-\ve{p},r) \right] \\
+  \end{split}
+\end{equation*}
+Sotto parità quindi $ u(\ve{p},r) \mapsto \tilde{u}(-\ve{p},r') = \gamma^0 u(\ve{p},r) $ e $ v(\ve{p},r) \mapsto \tilde{v}(-\ve{p},r') = \gamma^0 v(\ve{p},r) $. Per studiarne l'elicità, si prenda l'operatore elicità:
+\begin{equation*}
+  \hat{h} = \frac{\ve{S} \cdot \ve{p}}{\norm{\ve{p}}} = \frac{1}{2p}
+  \begin{bmatrix}
+    \bs{\sigma} \cdot \hat{\ve{p}} & 0 \\ 0 & \bs{\sigma} \cdot \hat{\ve{p}}
+  \end{bmatrix}
+\end{equation*}
+così che:
+\begin{equation*}
+  \hat{h} \tilde{u}(-\ve{p} , r') = \frac{1}{2p}
+  \begin{bmatrix}
+    \bs{\sigma} \cdot \hat{\ve{p}} & 0 \\ 0 & \bs{\sigma} \cdot \hat{\ve{p}}
+  \end{bmatrix}
+  \tilde{u}(-\ve{p},r')
+  = \frac{1}{2p}
+  \begin{bmatrix}
+    - \bs{\sigma} \cdot \ve{p} & 0 \\ 0 & - \bs{\sigma} \cdot \ve{p}
+  \end{bmatrix}
+  \tilde{u}(-\ve{p},r')
+\end{equation*}
+Moltiplicando da sinistra per $ \id = \gamma^0 \gamma^0 $, nella rappresentazione di Dirac--Pauli ($ \gamma^0 = \diag(\id_2 , -\id_2) $:
+\begin{equation*}
+  \hat{h} \tilde{u}(-\ve{p},r') = \gamma^0 \frac{1}{2p}
+  \begin{bmatrix}
+    - \bs{\sigma} \cdot \ve{p} & 0 \\ 0 & \bs{\sigma} \cdot \ve{p}
+  \end{bmatrix}
+  \tilde{u}(-\ve{p},r')
+  = \gamma^0 \frac{1}{2p}
+  \begin{bmatrix}
+    - \bs{\sigma} \cdot \ve{p} & 0 \\ 0 & \bs{\sigma} \cdot \ve{p}
+  \end{bmatrix}
+  \gamma^0 u(\ve{p},r)
+  = - \gamma^0 \hat{h} u(\ve{p},r) = - r \gamma^0 u(\ve{p},r) = - r \tilde{u}(-\ve{p},r')
+\end{equation*}
+Quindi, la parità preserva la natura degli spinori come autostati dell'elicità, ma ne inverte il segno dell'autovalore $ r' = -r $: questo è ciò che ci aspettavamo, dato che lo spin è un vettore assiale che rimane invariato sotto parità, mentre il momento è un vettore polare ed acquisice un segno negativo sotto parità:
+
+Per studiare la parità intrinseca, dobbiamo osservare come trasformano gli stati ad impulso nullo, poiché essi trasformano o in sé stessi o nell'opposto di sé stessi, a seconda della parità intrinseca. In generale:
+\begin{equation*}
+  u(\ve{p},r) \mapsto \tilde{u}(-\ve{p},-r) = \gamma^0 u(\ve{p},r)
+  \qquad
+  v(\ve{p},r) \mapsto \tilde{v}(-\ve{p},-r) = \gamma^0 v(\ve{p},r)
+\end{equation*}
+Per $ \ve{p} \ra \ve{0} $ la particella diventa non-relativistica, e gli spinori diventano:
+\begin{equation*}
+  u(\ve{0},r) = \sqrt{2m}
+  \begin{pmatrix}
+    \xi_r \\ 0
+  \end{pmatrix}
+  \qquad
+  v(\ve{0},r) = \sqrt{2m}
+  \begin{pmatrix}
+    0 \\ \xi_r
+  \end{pmatrix}
+\end{equation*}
+Quindi, molitplicando per $ \gamma^0 = \diag(\id_2 , - \id_2) $, si vede subito che $ u $ rimane invariato, mentre $ v $ prende un segno negativo: ciò significa che particelle ed antiparticelle con spin-$ \frac{1}{2} $ hanno parità intrinseche uguali ed opposte.
+
+\subsection{Campi vettoriali}
+
+Nel caso di particelle con spin-$ 1 $, si deve distinguere tra componente temporale e componenti spaziali. Sotto parità, un campo vettoriale polare $ A_\mu(x) $ trasforma come:
+\begin{equation*}
+  \oppar A_0(t,\ve{x}) \oppar = A_0(t,-\ve{x})
+  \qquad
+  \oppar A_i(t,\ve{x}) \oppar = - A_i(t,-\ve{x})
+\end{equation*}
+mentre un campo vettoriale assiale $ B_\mu(x) $:
+\begin{equation*}
+  \oppar B_0(t,\ve{x}) \oppar = - B_0(t,-\ve{x})
+  \qquad
+  \oppar B_i(t,\ve{x}) \oppar = B_i(t,-\ve{x})
+\end{equation*}
+Dato che i termini d'interazione vettoriale sono del tipo $ J^\mu A_\mu = \bar{\Psi} \gamma^\mu \Psi A_\mu $ e conservano la parità, dato che $ \Psi $ ha parità intrinseca $ \pm 1 $ e $ \bar{\Psi} $ ha parità intrinseca $ \mp 1 $, si deve assegnare al fotone parità intrinseca $ -1 $ (i dettagli li vediamo settimana prossima), poiché il vertice $ e^-e^+ \ra \gamma $ ha parità intrinseca totale iniziale $ (+1)(-1) = -1 $.
+
+
+
+
+
+
+
+
+
+

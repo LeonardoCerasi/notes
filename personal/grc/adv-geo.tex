@@ -1120,77 +1120,91 @@ This is the fundamental result of Hodge theory: each de Rham cohomology class co
 \newpage
 \section{Cartan formalism}
 
-Although typically calculations are carried on a coordinate basis $ \{e_\mu\} = \{\pa_\mu\} $, it is possible to choose bases without such an interpretation. For example, a linear combination of a coordinate basis is not in general a coordinate basis itself:
+Given a metric $ n $-manifold $ \man $ and a smooth chart $ (U , (x^\mu)) $, consider a local smooth frame on $ U $ defined as a linear combination of the coordinate basis:
 \begin{equation}
-  e_a = \tensor{e}{_a^\mu} \pa_\mu
+  E_a = \tensor{e}{_a^\mu} \pa_\mu
 \end{equation}
-with $ a = 1, \dots, n $ like $ \mu = 1, \dots, n $.
-A particularly useful non-coordinate basis is one such that:
+where both $ a,\mu = 1 , \dots , n $. A particularly useful choice of a non-coordinate frame is one in which the metric looks flat:
 \begin{equation}
-  g(e_a, e_b) = g_{\mu \nu} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu} = \eta_{ab}
+  g(E_a, E_b) = g_{\mu \nu} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu} \equiv \eta_{ab}
   \label{eq:vielbeins-def}
 \end{equation}
-The components $ \tensor{e}{_a^\mu} $ are called \bctxt{vielbeins} or \textit{tetrads}. In this non-coordinate system, the manifold looks flat (or, at least, its patch covered by the given chart). In the following computations, Greek indices are raised/lowered by the metric $ g_{\mu \nu} $, while Latin indices by the metric $ \eta_{ab} $.
+where $ \eta_{ab} \equiv \diag(-1 , \dots , -1 , 1 , \dots , 1) $ is the flat metric with signature $ (r,s) $ (which is assumed to exist on $ \man $).
+Such a frame $ (E_a) $ is called \emph{vielbein} or \bctxt{tetrad frame}. In the following computations, Greek indices denote quantities computed in the $ (\pa_\mu) $ coordinate frame, which are raised/lowered by the metric $ g_{\mu \nu} $, while Latin indices denote quantities computed in the $ (E_a) $ tetrad frame, which are raised/lowered by the metric $ \eta_{ab} $.
 
-The vielbeins are not unique: given $ \{\tensor{e}{_a^\mu}\} $, it is always possible to find a new vielbeins like:
-\begin{equation}
-  \tensor{\tilde{e}}{_a^\mu} = \tensor{e}{_b^\mu} \tensor{(\Lambda^{-1})}{^b_a}
-  \label{eq:vielbeins-trans}
-\end{equation}
-The transformation matrix must satisfy the condition imposed by \eref{eq:vielbeins-def}, i.e.:
-\begin{equation}
-  \tensor{\Lambda}{^c_a} \tensor{\Lambda}{^d_b} \eta_{cd} = \eta_{ab}
-\end{equation}
-These are \bctxt{local Lorentz transformations}, because this condition defines an $ \lorgn $ transformation\footnotemark, but $ \Lambda $ is now allowed to vary over the manifold. The dual basis of 1-forms $ \{\theta^a\} $ is defined by $ \theta^a(e_b) = \delta^a_b $. The relation to the coordinate basis is:
+The dual tetrad frame $ (\theta^a) $ is defined by $ \theta^a(E_b) = \delta^a_b $. The relation to the dual coordinate frame is:
 \begin{equation}
   \theta^a = \tensor{e}{^a_\mu} \dd x^\mu
 \end{equation}
 where the coefficients satisfy $ \tensor{e}{^a_\mu} \tensor{e}{_b^\mu} = \delta^a_b $ and $ \tensor{e}{^a_\mu} \tensor{e}{_a^\nu} = \delta_\mu^\nu $.
-The metric is a tensor, therefore $ g = g_{\mu \nu} \dd x^\mu \otimes \dd x^\nu = \eta_{ab} \theta^a \otimes \theta^b $, thus it is related to the vielbeins by:
+The metric tensor can be written in both frames as $ g = g_{\mu \nu} \dd x^\mu \otimes \dd x^\nu = \eta_{ab} \theta^a \otimes \theta^b $, thus the inverse relation of \eref{eq:vielbeins-def} is found:
 \begin{equation}
   g_{\mu \nu} = \tensor{e}{^a_\mu} \tensor{e}{^b_\nu} \eta_{ab}
 \end{equation}
 
-\footnotetext{To be precise, this condition defines a $ \On{1,n} $ transformation on $ \R^{1,n} $, but this orthogonal group has four disconnected components: the $ \lorgn $ component is the one defined by $ \det \Lambda = 1 $ and $ \tensor{\Lambda}{^0_0} \ge 1 $, while the other three components can be obtained by composition of $ \lorgn $ with the possible combinations of parity reversal and time reversal. For a more detailed account on the Lorentz group, see \S 1.2 of \cite{leonardo}.}
+\begin{observation}{Vielbeins and Lorentz transformations}{}
+  Given a smooth chart $ (U,(x^\mu)) $ on $ \man $, vielbeins are not uniquely-defined. Indeed, if $ (E_a) $ is a tetrad frame, it is always possible to find a new tetrad frame like:
+  \begin{equation*}
+    \tilde{E}_a = \tensor{\mt{L}}{_a^b} E_b
+    \quad \iff \quad
+    \tensor{\tilde{e}}{_a^\mu} = \tensor{\mt{L}}{_a^b} \tensor{e}{_b^\mu}
+  \end{equation*}
+  The transformation matrix must then satisfy the condition imposed by \eref{eq:vielbeins-def}:
+  \begin{equation*}
+    \tensor{\mt{L}}{_a^c} \tensor{\mt{L}}{_b^d} \eta_{cd} = \eta_{ab}
+  \end{equation*}
+  which must hold locally at each $ p \in U $. Rewriting in standard contravariant notation $ \Lambda \equiv \mt{L}^{-1} $, then:
+  \begin{equation}
+    \tensor{\tilde{e}}{_a^\mu} = \tensor{e}{_b^\mu} \tensor{(\Lambda^{-1})}{^b_a}
+    \qquad \qquad
+    \tensor{\Lambda}{^c_a} \tensor{\Lambda}{^d_b} \eta_{cd} = \eta_{ab}
+    \label{eq:vielbeins-trans}
+  \end{equation}
+  This is the definition of a local $ \On{r,s} $ at each $ p \in U $.
+  In the Lorentzian case, then, $ \Lambda \in \On{1,n-1} $: this group has four disconnected components, defined by the four combinations of $ \det \Lambda = \pm 1 $ and $ \tensor{\Lambda}{^0_0} \geq 1 $ or $ \tensor{\Lambda}{^0_0} \leq -1 $; the special orthochronous component $ \lorgn $, defined by $ \det \Lambda = 1 $ and $ \tensor{\Lambda}{^0_0} \geq 1 $, is the group of Lorentz transformations on $ T_pU $ (for a more detailed account on the Lorentz group, see \S 1.2 of \cite{leonardo}).
+  Transformations between tetrad frames therefore are \bcobs{local Lorentz transformations}, since, contrary to usual Lorentz transformations, they can vary from point to point of $ U $.
+\end{observation}
+
+\newpage
 
 \subsection{Connection 1-form}
 
-On a vielbein basis $ \{e_a\} $, connection components are computed in the usual way:
+In a vielbein frame $ (E_a) $, connection components are computed in the usual way:
 \begin{equation}
-  \na_{e_c} e_b \equiv \omega^a_{cb} e_a
+  \na_{E_c} E_b \equiv \omega^a_{cb} E_a
   \label{eq:connection-vielbeins}
 \end{equation}
 where the $ n^3 $ functions $ \omega^a_{cb} $ are just the connection coefficients $ \Gamma^a_{cb} $ on the vielbein basis.
 
 \begin{definition}{Connection 1-form}{}
-  On a metric manifold with vielbeins, the \bcdef{connection 1-form} is defined as:
+  Let $ (\man,g) $ be a metric manifold, and let $ (E_a) $ be a vielbein frame on $ \man $ with dual coframe $ (\theta^a) $. Then, the \bcdef{connection 1-form} $ \tensor{\omega}{^a_b} \in \df{1} $ is defined as:
   \begin{equation}
     \tensor{\omega}{^a_b} \defeq \omega^a_{cb} \theta^c
     \label{eq:connection-1-form}
   \end{equation}
 \end{definition}
 
-Note that these are really $ n^2 $ 1-forms, according to values of $ a,b = 1, \dots, n $. This is also known as the \textit{spin connection}, due to its relationship to spinors in curved spacetime.
+Note that these are truly $ n^2 $ 1-forms, according to values of $ a,b = 1, \dots, n $. This is also known as the \textit{spin connection}, due to its relationship to spinors in curved spacetime.
 Then, the connection in the vielbein basis is easily defined:
 \begin{equation*}
-  \na_X Y = X(Y^a) e_a + Y^a X^b \na_{e_b} e_a = X^b [e_b(Y^a) + \omega^a_{bc} Y^c] e_a
+  \na_X Y = X(Y^a) E_a + Y^a X^b \na_{E_b} E_a = X^b [E_b(Y^a) + \omega^a_{bc} Y^c] E_a
 \end{equation*}
-Hence, setting the notation $ \na_b Y^a \equiv (\na_{e_b} Y)^a $, it is clear that the connection takes the form:
+Hence, setting the notation $ \na_b Y^a \equiv (\na_{E_b} Y)^a $, it is clear that the connection takes the form:
 \begin{equation}
-  \na_b Y^a = e_b(Y^a) + \omega^a_{bc} Y^c
+  \na_b Y^a = E_b(Y^a) + \omega^a_{bc} Y^c
   \label{eq:vielbein-cov-der}
 \end{equation}
-In general, $ e_b(Y^a) = \tensor{e}{_b^\mu} \pa_\mu Y^a $. Using \eref{eq:cov-der-form-aux}, the covariant derivative of forms is found:
+In general, $ E_b(Y^a) = \tensor{e}{_b^\mu} \pa_\mu Y^a $. Using \eref{eq:cov-der-form-aux}, the covariant derivative of forms is found:
 \begin{equation}
-  \na_b \zeta_a = e_b(\zeta_a) - \omega^c_{ba} \zeta_c
+  \na_b \zeta_a = E_b(\zeta_a) - \omega^c_{ba} \zeta_c
 \end{equation}
 Finally, for tensors of general rank:
 \begin{equation}
-  \na_c \tensor{T}{^{a_1 \dots a_r}_{b_1 \dots b_s}} = e_c(\tensor{T}{^{a_1 \dots a_r}_{b_1 \dots b_s}}) + \sum_{j = 1}^r \omega^{a_j}_{c d_j} \tensor{T}{^{a_1 \dots d_j \dots a_n}_{b_1 \dots b_s}} - \sum_{j = 1}^s \omega^{d_j}_{c b_j} \tensor{T}{^{a_1 \dots a_n}_{b_1 \dots d_j \dots b_n}}
+  \na_c \tensor{T}{^{a_1 \dots a_r}_{b_1 \dots b_s}} = E_c(\tensor{T}{^{a_1 \dots a_r}_{b_1 \dots b_s}}) + \sum_{j = 1}^r \omega^{a_j}_{c d_j} \tensor{T}{^{a_1 \dots d_j \dots a_n}_{b_1 \dots b_s}} - \sum_{j = 1}^s \omega^{d_j}_{c b_j} \tensor{T}{^{a_1 \dots a_n}_{b_1 \dots d_j \dots b_n}}
 \end{equation}
 
 \begin{lemma}{Transformation law}{}
-  Given a local Lorentzian transformation $ \Lambda $ acting as in \eref{eq:vielbeins-trans}:
+  Given a local Lorentz transformation $ \Lambda $ acting as in \eref{eq:vielbeins-trans}:
   \begin{equation}
     \tensor{\tilde{\omega}}{^a_b} = \tensor{\Lambda}{^a_c} \tensor{\omega}{^c_d} \tensor{(\Lambda^{-1})}{^d_b} + \tensor{\Lambda}{^a_c} \dd \tensor{(\Lambda^{-1})}{^c_b}
     \label{eq:con-1-form-trans}
@@ -1201,24 +1215,24 @@ Finally, for tensors of general rank:
   \begin{proof}
     For ease of notation, rename the transformation in \eref{eq:vielbeins-trans} as $ \Lambda^{-1} \equiv \mt{L} $. Then, from the orthogonality condition $ \theta^a (e_b) = \delta^a_b $, it is clear that:
     \begin{equation*}
-      \tilde{e}_a = \tensor{\mt{L}}{^b_a} e_b
+      \tilde{E}_a = \tensor{\mt{L}}{^b_a} E_b
       \qquad \qquad
       \tilde{\theta}^a = \tensor{(\mt{L}^{-1})}{^a_b} \theta^b
     \end{equation*}
     Then, the connection coefficients can be computed as:
     \begin{equation*}
       \begin{split}
-        \tilde{\omega}^a_{cb} \tilde{e}_a
-        & = \na_{\tilde{e}_c} \tilde{e}_b = \tensor{\mt{L}}{^d_c} \na_{e_d} (\tensor{\mt{L}}{^f_b} e_f) = \tensor{\mt{L}}{^d_c} \left[ \na_{e_d} \tensor{\mt{L}}{^f_b} e_f + \tensor{\mt{L}}{^f_b} \na_{e_d} e_f \right] \\
-        & = \tensor{\mt{L}}{^d_c} \left[ \na_{e_d} \tensor{\mt{L}}{^f_b} e_f + \tensor{\mt{L}}{^f_b} \omega^g_{df} e_g \right] = \tensor{\mt{L}}{^d_c} \left[ \na_{e_d} \tensor{\mt{L}}{^f_b} + \tensor{\mt{L}}{^g_b} \omega^f_{dg} \right] \tensor{(\mt{L}^{-1})}{^a_f} \tilde{e}_a
+        \tilde{\omega}^a_{cb} \tilde{E}_a
+        & = \na_{\tilde{E}_c} \tilde{E}_b = \tensor{\mt{L}}{^d_c} \na_{E_d} (\tensor{\mt{L}}{^f_b} E_f) = \tensor{\mt{L}}{^d_c} \left[ \na_{E_d} \tensor{\mt{L}}{^f_b} E_f + \tensor{\mt{L}}{^f_b} \na_{E_d} E_f \right] \\
+        & = \tensor{\mt{L}}{^d_c} \left[ \na_{E_d} \tensor{\mt{L}}{^f_b} E_f + \tensor{\mt{L}}{^f_b} \omega^g_{df} E_g \right] = \tensor{\mt{L}}{^d_c} \left[ \na_{E_d} \tensor{\mt{L}}{^f_b} + \tensor{\mt{L}}{^g_b} \omega^f_{dg} \right] \tensor{(\mt{L}^{-1})}{^a_f} \tilde{E}_a
       \end{split}
     \end{equation*}
     Finally, the transformed connection 1-form is:
     \begin{equation*}
       \begin{split}
         \tensor{\tilde{\omega}}{^a_b}
-        & = \tilde{\omega}^a_{cb} \tilde{\theta^c} = \tensor{\mt{L}}{^d_c} \left[ \na_{e_d} \tensor{\mt{L}}{^f_b} + \tensor{\mt{L}}{^g_b} \omega^f_{dg} \right] \tensor{(\mt{L}^{-1})}{^a_f} \tensor{(\mt{L}^{-1})}{^c_h} \theta^h \\
-        & = \left[ \na_{e_d} \tensor{\mt{L}}{^f_b} + \tensor{\mt{L}}{^g_b} \omega^f_{dg} \right] \tensor{(\mt{L}^{-1})}{^a_f} \theta^d = \tensor{(\mt{L}^{-1})}{^a_c} \left[ \dd x^\mu \na_\mu \tensor{\mt{L}}{^c_b} + \tensor{\omega}{^c_d} \tensor{\mt{L}}{^d_b} \right]
+        & = \tilde{\omega}^a_{cb} \tilde{\theta^c} = \tensor{\mt{L}}{^d_c} \left[ \na_{E_d} \tensor{\mt{L}}{^f_b} + \tensor{\mt{L}}{^g_b} \omega^f_{dg} \right] \tensor{(\mt{L}^{-1})}{^a_f} \tensor{(\mt{L}^{-1})}{^c_h} \theta^h \\
+        & = \left[ \na_{E_d} \tensor{\mt{L}}{^f_b} + \tensor{\mt{L}}{^g_b} \omega^f_{dg} \right] \tensor{(\mt{L}^{-1})}{^a_f} \theta^d = \tensor{(\mt{L}^{-1})}{^a_c} \left[ \dd x^\mu \na_\mu \tensor{\mt{L}}{^c_b} + \tensor{\omega}{^c_d} \tensor{\mt{L}}{^d_b} \right]
       \end{split}
     \end{equation*}
     Recalling that $ \dd f = \dd x^\mu \na_\mu f $, with $ f \in \cm $, and that $ \Lambda = \mt{L}^{-1} $ yields the thesis.
@@ -1227,10 +1241,10 @@ Finally, for tensors of general rank:
 
 The second term reflects the second term in \pref{prop:gamma-non-tens}, which involves the derivative of the coordinate transformation.
 
-As for the connection coefficients, it is possible to compute the torsion tensor on a vielbein basis as $ \tensor{T}{^a_{bc}} = \tors(\theta^a , e_b , e_c) $, which retains the antisimmetry $ \tensor{T}{^a_{bc}} = - \tensor{T}{^a_{cb}} $.
+As for the connection coefficients, it is possible to compute the torsion tensor on a vielbein basis as $ \tensor{T}{^a_{bc}} = \tors(\theta^a , E_b , E_c) $, which retains the antisimmetry $ \tensor{T}{^a_{bc}} = - \tensor{T}{^a_{cb}} $.
 
 \begin{definition}{Torsion 2-form}{}
-  On a metric manifold with vielbeins, the \bcdef{torsion 2-form} is defined as:
+  Let $ (\man,g) $ be a metric manifold, and let $ (E_a) $ be a vielbein frame on $ \man $ with dual coframe $ (\theta^a) $. Then, the \bcdef{torsion 2-form} $ T^a \in \df{2} $ is defined as:
   \begin{equation}
     T^a \defeq \frac{1}{2} \tensor{T}{^a_{bc}} \theta^b \wedge \theta^c
   \end{equation}
@@ -1254,7 +1268,7 @@ This is a vector-valued 2-form, thus $ T^a $ has $ n $ independent 2-forms. Like
         & = \tensor{e}{^a_\rho} \tensor{e}{_c^\lambda} \tensor{e}{^c_\mu} \tensor{e}{^b_\nu} \left( \pa_\lambda \tensor{e}{_b^\rho} + \tensor{e}{_b^\sigma} \Gamma^\rho_{\lambda \sigma} \right) \dd x^\mu \wedge \dd x^\nu = \tensor{e}{^a_\rho} \tensor{e}{^b_\nu} \left( \pa_\mu \tensor{e}{_b^\rho} + \tensor{e}{_b^\sigma} \Gamma^\rho_{\mu \sigma} \right) \dd x^\mu \wedge \dd x^\nu \\
       \end{split}
     \end{equation*}
-    Now, $ \tensor{e}{^b_\nu} \tensor{e}{_b^\rho} = \delta_\nu^\rho $ implies $ \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} = - \tensor{e}{_b^\rho} \pa_\mu \tensor{e}{^n_\nu} $, hence:
+    Now, $ \tensor{e}{^b_\nu} \tensor{e}{_b^\rho} = \delta_\nu^\rho $ implies $ \tensor{e}{^b_\nu} \pa_\mu \tensor{e}{_b^\rho} = - \tensor{e}{_b^\rho} \pa_\mu \tensor{e}{^b_\nu} $, hence:
     \begin{equation*}
       \begin{split}
         \tensor{\omega}{^a_b} \wedge \theta^b
@@ -1279,8 +1293,8 @@ This construction can be generalized to arbitrary vector-valued 1-forms, definin
 \end{equation}
 This is a map $ \dcov : \df{p} \ra \df{p+1} $, like the exterior derivative, but it has an important invariance property.
 
-\begin{lemma}{Lorentz invariance}{form-lor-inv}
-  The covariant exterior derivative transformations under local Lorentz as:
+\begin{lemma}{Lorentz covariance of covariant exterior derivative}{form-lor-inv}
+  The covariant exterior derivative transforms under local Lorentz transformations as:
   \begin{equation}
     \zeta^a \mapsto \tensor{\Lambda}{^a_b} \zeta^b
     \quad \implies \quad
@@ -1305,7 +1319,7 @@ This is a map $ \dcov : \df{p} \ra \df{p+1} $, like the exterior derivative, but
 
 The exterior covariant derivative can be used to extend the covariant derivative to vector-valued 1-forms (using \eref{eq:vielbein-cov-der}):
 \begin{equation}
-  \dcov \zeta^a = \pa_\mu \zeta^a \tensor{e}{_c^\mu} \wedge \theta^c + \omega^a_{cb} \zeta^b \wedge \theta^c = \left[ e_c(\zeta^a) + \omega^a_{cb} \zeta^b \right] \wedge \theta^c \equiv \tensor{\zeta}{^a_{;c}} \wedge \theta^c
+  \dcov \zeta^a = \pa_\mu \zeta^a \tensor{e}{_c^\mu} \wedge \theta^c + \omega^a_{cb} \zeta^b \wedge \theta^c = \left[ E_c(\zeta^a) + \omega^a_{cb} \zeta^b \right] \wedge \theta^c \equiv \tensor{\zeta}{^a_{;c}} \wedge \theta^c
 \end{equation}
 
 The same construction for the exterior covariant derivative can be generalized to tensor-valued $ p $-forms as:
@@ -1345,7 +1359,7 @@ For a Levi--Civita connection, a stronger result holds.
     \begin{equation*}
       \begin{split}
         0
-        & = \na_X (g_{\mu \nu} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu}) = X^c g_{\mu \nu} \left( \na_{e_c} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu} + \tensor{e}{_a^\mu} \na_{e_c} \tensor{e}{_b^\nu} \right) \\
+        & = \na_X (g_{\mu \nu} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu}) = X^c g_{\mu \nu} \left( \na_{E_c} \tensor{e}{_a^\mu} \tensor{e}{_b^\nu} + \tensor{e}{_a^\mu} \na_{E_c} \tensor{e}{_b^\nu} \right) \\
         & = X^c g_{\mu \nu} \left( \omega^d_{ca} \tensor{e}{_d^\mu} \tensor{e}{_b^\nu} + \omega^d_{cb} \tensor{e}{_a^\mu} \tensor{e}{_d^\nu} \right) = X^c \left( \omega^d_{ca} \eta_{db} + \omega^d_{cb} \eta_{ad} \right)
       \end{split}
     \end{equation*}
@@ -1363,10 +1377,10 @@ The Levi--Civita connection is the unique connection such that \eeref{eq:first-c
 
 \subsection{Curvature 2-form}
 
-As for the torsion tensor, it is possible to compute the curvature tensor on a vielbein basis as $ \tensor{R}{^a_{bcd}} = \riem(\theta^a , e_b , e_c , e_d) $, which retains the symmetries \pref{prop:riemann-symmetries}.
+As for the torsion tensor, it is possible to compute the curvature tensor on a vielbein basis as $ \tensor{R}{^a_{bcd}} = \riem(\theta^a , E_b , E_c , E_d) $, which retains the symmetries \pref{prop:riemann-symmetries}.
 
 \begin{definition}{Curvature 2-form}{}
-  On a metric manifold with vielbeins, the \bcdef{curvature 2-form} is defined as:
+  Let $ (\man,g) $ be a metric manifold, and let $ (E_a) $ be a vielbein frame on $ \man $ with dual coframe $ (\theta^a) $. Then, the \bcdef{curvature 2-form} $ \tensor{\Omega}{^a_b} \in \df{2} $ is defined as:
   \begin{equation}
     \tensor{\Omega}{^a_b} \defeq \frac{1}{2} \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d
     \label{eq:curvature-2-def}
@@ -1386,54 +1400,54 @@ The curvature 2-form is a tensor-valued 2-form, hence $ \tensor{\Omega}{^a_b} $ 
   \begin{proof}
     Recalling \eref{eq:riemann-operator-def}, it is possible to write:
     \begin{equation*}
-      \tensor{R}{^a_{bcd}} e_a = \riem(e_c , e_d) e_b = \na_{e_c} \na_{e_d} e_b - \na_{e_d} \na_{e_c} e_b - \na_{[e_c , e_d]} e_b
+      \tensor{R}{^a_{bcd}} E_a = \riem(E_c , E_d) E_b = \na_{E_c} \na_{E_d} E_b - \na_{E_d} \na_{E_c} E_b - \na_{[E_c , E_d]} E_b
     \end{equation*}
-    In general, by linearity of the connection, $ \na_X e_b = \tensor{\omega}{^c_b}(X) e_c $, hence (using $ \na_X f = X(f) $):
+    In general, by linearity of the connection, $ \na_X E_b = \tensor{\omega}{^c_b}(X) E_c $, hence (using $ \na_X f = X(f) $):
     \begin{equation*}
       \begin{split}
-        \tensor{R}{^a_{bcd}} e_a
-        & = \na_{e_c} [\omega^a_{db} e_a] - \na_{e_d} [\omega^a_{cb} e_a] - \tensor{\omega}{^a_b}([e_c , e_d]) e_a \\
-        & = e_c(\omega^a_{db}) e_a + \omega^f_{db} \omega^a_{cf} e_a - e_d(\omega^a_{cb}) e_a - \omega^f_{cb} \omega^a_{df} e_a - \tensor{\omega}{^a_b}([e_c , e_d]) e_a \\
+        \tensor{R}{^a_{bcd}} E_a
+        & = \na_{E_c} [\omega^a_{db} E_a] - \na_{E_d} [\omega^a_{cb} E_a] - \tensor{\omega}{^a_b}([E_c , E_d]) E_a \\
+        & = E_c(\omega^a_{db}) E_a + \omega^f_{db} \omega^a_{cf} E_a - E_d(\omega^a_{cb}) E_a - \omega^f_{cb} \omega^a_{df} E_a - \tensor{\omega}{^a_b}([E_c , E_d]) E_a \\
       \end{split}
     \end{equation*}
 
     \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{connection-ext-der}
       \begin{equation}
-        \dd \tensor{\omega}{^m_n}(e_a , e_b) = e_a(\omega^m_{bn}) - e_b(\omega^m_{an}) - \tensor{\omega}{^m_n}([e_a , e_b])
+        \dd \tensor{\omega}{^m_n}(E_a , E_b) = E_a(\omega^m_{bn}) - E_b(\omega^m_{an}) - \tensor{\omega}{^m_n}([E_a , E_b])
       \end{equation}
     \end{lemma}
 
     \begin{proofbox}
       \begin{proof}
-        Writing $ \pa_\mu = \tensor{e}{^a_\mu} e_a $ and $ \dd x^\mu = \tensor{e}{_a^\mu} \theta^a $, by linearity of the connection:
+        Writing $ \pa_\mu = \tensor{e}{^a_\mu} E_a $ and $ \dd x^\mu = \tensor{e}{_a^\mu} \theta^a $, by linearity of the connection:
         \begin{equation*}
-          \dd \tensor{\omega}{^m_n} = \na_{e_a} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} \theta^a \wedge \theta^b = \frac{1}{2} \left[ \na_{e_a} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} - \na_{e_b} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_a^\mu} \right] \theta^a \wedge \theta^b
+          \dd \tensor{\omega}{^m_n} = \na_{E_a} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} \theta^a \wedge \theta^b = \frac{1}{2} \left[ \na_{E_a} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} - \na_{E_b} (\omega^m_{cn} \tensor{e}{^c_\mu}) \tensor{e}{_a^\mu} \right] \theta^a \wedge \theta^b
         \end{equation*}
         Since $ \omega^m_{cn} \tensor{e}{^c_\mu} $ is a scalar function, using the Leibniz rule:
         \begin{equation*}
-          \dd \tensor{\omega}{^m_n}(e_a , e_b) = e_a(\omega^m_bn) - e_b(\omega^m_an) + \omega^m_{cn} \left[ e_a(\tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} - e_b(\tensor{e}{^c_\mu}) \tensor{e}{_a^\mu} \right]
+          \dd \tensor{\omega}{^m_n}(E_a , E_b) = E_a(\omega^m_bn) - E_b(\omega^m_an) + \omega^m_{cn} \left[ E_a(\tensor{e}{^c_\mu}) \tensor{e}{_b^\mu} - E_b(\tensor{e}{^c_\mu}) \tensor{e}{_a^\mu} \right]
         \end{equation*}
         Now, consider the action of the commutator of vielbeins on $ \cm $:
         \begin{equation*}
           \begin{split}
-            [e_a , e_b](f)
-            & \defeq e_a(e_b(f)) - e_b(e_a(f)) = \tensor{e}{_a^\mu} \pa_\mu (\tensor{e}{_b^\nu} \pa_\nu f) - \tensor{e}{_b^\nu} \pa_\nu (\tensor{e}{_a^\mu} \pa_\mu f) \\
-            & = \tensor{e}{_a^\mu} \pa_\mu \tensor{e}{_b^\nu} \pa_\nu f - \tensor{e}{_b^\nu} \pa_\nu \tensor{e}{_a^\mu} \pa_\mu f = \left[ e_a(\tensor{e}{_b^\mu}) \tensor{e}{^c_\mu} - e_b(\tensor{e}{_a^\mu}) \tensor{e}{^c_\mu} \right] e_c(f) \\
+            [E_a , E_b](f)
+            & \defeq E_a(E_b(f)) - E_b(E_a(f)) = \tensor{e}{_a^\mu} \pa_\mu (\tensor{e}{_b^\nu} \pa_\nu f) - \tensor{e}{_b^\nu} \pa_\nu (\tensor{e}{_a^\mu} \pa_\mu f) \\
+            & = \tensor{e}{_a^\mu} \pa_\mu \tensor{e}{_b^\nu} \pa_\nu f - \tensor{e}{_b^\nu} \pa_\nu \tensor{e}{_a^\mu} \pa_\mu f = \left[ E_a(\tensor{e}{_b^\mu}) \tensor{e}{^c_\mu} - E_b(\tensor{e}{_a^\mu}) \tensor{e}{^c_\mu} \right] E_c(f) \\
           \end{split}
         \end{equation*}
-        As $ \tensor{e}{_b^\mu} \tensor{e}{^c_\mu} = \delta^c_b $, by the Leibniz rule $ e_a(\tensor{e}{_b^\mu}) \tensor{e}{^c_\mu} + \tensor{e}{_b^\mu} e_a(\tensor{e}{^c_\mu}) = 0 $, hence:
+        As $ \tensor{e}{_b^\mu} \tensor{e}{^c_\mu} = \delta^c_b $, by the Leibniz rule $ E_a(\tensor{e}{_b^\mu}) \tensor{e}{^c_\mu} + \tensor{e}{_b^\mu} E_a(\tensor{e}{^c_\mu}) = 0 $, hence:
         \begin{equation}
-          ([e_a , e_b])^c = \tensor{e}{_a^\mu} e_b(\tensor{e}{^c_\mu}) - \tensor{e}{_b^\mu} e_a(\tensor{e}{^c_\mu})
+          ([E_a , E_b])^c = \tensor{e}{_a^\mu} E_b(\tensor{e}{^c_\mu}) - \tensor{e}{_b^\mu} e_a(\tensor{e}{^c_\mu})
         \end{equation}
-        which, inserted in the expression for $ \dd \tensor{\omega}{^m_n}(e_a , e_b) $, yields the thesis.
+        which, inserted in the expression for $ \dd \tensor{\omega}{^m_n}(E_a , E_b) $, yields the thesis.
       \end{proof}
     \end{proofbox}
 
     Using \lref{lemma:connection-ext-der}, the above expression becomes:
     \begin{equation*}
-      \tensor{R}{^a_{bcd}} = \dd \tensor{\omega}{^a_b}(e_c , e_d) + \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df}
+      \tensor{R}{^a_{bcd}} = \dd \tensor{\omega}{^a_b}(E_c , E_d) + \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df}
     \end{equation*}
-    But $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(e_c , e_d) $, while:
+    But $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(E_c , E_d) $, while:
     \begin{equation*}
       \tensor{\omega}{^a_f} \wedge \tensor{\omega}{^f_b} = \omega^a_{cf} \omega^f_{db} \theta^c \wedge \theta^d = \frac{1}{2} \left[ \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df} \right] \theta^c \wedge \theta^d
     \end{equation*}
@@ -1445,7 +1459,7 @@ Combining the two structure equations, it is possible to find simple expressions
 
 \begin{proposition}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    \dcov T^a = \tensor{\Omega}{^a_b} \wedge e^b
+    \dcov T^a = \tensor{\Omega}{^a_b} \wedge E^b
     \qquad \qquad
     \dcov \tensor{\Omega}{^a_b} = 0
     \label{eq:cov-ext-der-torsion-curvature}
@@ -1462,7 +1476,7 @@ Combining the two structure equations, it is possible to find simple expressions
     \begin{equation*}
       \dd T^a + \tensor{\omega}{^a_b} \wedge T^a = \left( \dd \tensor{\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b} \right) \wedge \theta^b
       \quad \implies \quad
-      \dcov T^a = \tensor{\Omega}{^a_b} \wedge e^b
+      \dcov T^a = \tensor{\Omega}{^a_b} \wedge E^b
     \end{equation*}
     Now, take the exterior derivative of \eref{eq:second-cartan-stru-eq} and apply \eref{eq:ext-der-prod-rule}:
     \begin{equation*}
@@ -1536,29 +1550,29 @@ In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \
 
     \begin{proofbox}
       \begin{proof}
-        By \eref{eq:curvature-2-def} $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(e_c , e_d) $, thus to compute this expression first consider:
+        By \eref{eq:curvature-2-def} $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(E_c , E_d) $, thus to compute this expression first consider:
         \begin{equation*}
           \dd \tensor{\omega}{^a_b} = \dd \omega^a_{mb} \wedge \theta^m + \omega^a_{mb} \dd \theta^m = \dd \omega^a_{mb} \wedge \theta^m - \omega^a_{mb} \tensor{\omega}{^m_k} \wedge \theta^k
         \end{equation*}
-        where \eref{eq:first-cartan-stru-eq} was used. Then, since $ \dd f = \pa_\mu f \tensor{e}{_a^\mu} \theta^a = e_a(f) \theta^a \,\, \forall f \in \cm $:
+        where \eref{eq:first-cartan-stru-eq} was used. Then, since $ \dd f = \pa_\mu f \tensor{e}{_a^\mu} \theta^a = E_a(f) \theta^a \,\, \forall f \in \cm $:
         \begin{equation*}
-          \dd \tensor{\omega}{^a_b} = e_k(\omega^a_{mb}) \theta^k \wedge \theta^m - \omega^a_{mb} \tensor{\omega}{^m_k} \wedge \theta^k = \left[ e_m(\omega^a_{kb}) - \omega^a_{cb} \omega^c_{mk} \right] \theta^m \wedge \theta^k
+          \dd \tensor{\omega}{^a_b} = E_k(\omega^a_{mb}) \theta^k \wedge \theta^m - \omega^a_{mb} \tensor{\omega}{^m_k} \wedge \theta^k = \left[ E_m(\omega^a_{kb}) - \omega^a_{cb} \omega^c_{mk} \right] \theta^m \wedge \theta^k
         \end{equation*}
         Therefore, form \eref{eq:second-cartan-stru-eq}:
         \begin{equation*}
-          \tensor{\Omega}{^a_b} = \left[ e_m(\omega^a_{kb}) - \omega^a_{cb} \omega^c_{mk} + \omega^a_{mc} \omega^c_{kb} \right] \theta^m \wedge \theta^k
+          \tensor{\Omega}{^a_b} = \left[ E_m(\omega^a_{kb}) - \omega^a_{cb} \omega^c_{mk} + \omega^a_{mc} \omega^c_{kb} \right] \theta^m \wedge \theta^k
         \end{equation*}
-        Now, to evaluate $ \tensor{\Omega}{^a_b}(e_c , e_d) $, use:
+        Now, to evaluate $ \tensor{\Omega}{^a_b}(E_c , E_d) $, use:
         \begin{equation*}
-          \theta^m \wedge \theta^k (e_c , e_d) \equiv
+          \theta^m \wedge \theta^k (E_c , E_d) \equiv
           \begin{vmatrix}
-            \theta^m(e_c) & \theta^m(e_d) \\ \theta^k(e_c) & \theta^k(e_d)
+            \theta^m(E_c) & \theta^m(E_d) \\ \theta^k(E_c) & \theta^k(E_d)
           \end{vmatrix}
           = \delta^m_c \delta^k_d - \delta^m_d \delta^k_c \eqdef \delta^{mk}_{cd}
         \end{equation*}
         Hence, defining $ \omega_{abc} \equiv \eta_{ak} \omega^k_{bc} $, the curvature tensor is found to be:
         \begin{equation*}
-          R_{abcd} = \left[ e_m(\omega_{akb}) - \omega_{agb} \omega^g_{mk} + \omega_{amg} \omega^g_{kb} \right] \delta^{mk}_{cd}
+          R_{abcd} = \left[ E_m(\omega_{akb}) - \omega_{agb} \omega^g_{mk} + \omega_{amg} \omega^g_{kb} \right] \delta^{mk}_{cd}
         \end{equation*}
         Then, since $ \delta^{mk}_{cd} = \delta^{[mk]}_{[cd]} $ and, recalling \eref{eq:connection-form-symm} for a Levi--Civita connection, $ \omega_{ab} = - \omega_{ba} \implies \omega_{acb} = \omega_{[a|c|b]} $, this is equivalente to the thesis.
       \end{proof}
@@ -1574,7 +1588,7 @@ In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \
 
 Note that \lref{lemma:riemann-symmetry-vielbein} allows to explicitly compute the curvature tensor from connection coefficients:
 \begin{equation}
-  R_{abcd} = e_c(\omega_{adb}) - e_d(\omega_{acb}) - \omega_{agb} \left( \omega^g_{cd} - \omega^g_{dc} \right) + \omega_{acg} \omega^g_{db} - \omega_{adg} \omega^g_{cb}
+  R_{abcd} = E_c(\omega_{adb}) - E_d(\omega_{acb}) - \omega_{agb} \left( \omega^g_{cd} - \omega^g_{dc} \right) + \omega_{acg} \omega^g_{db} - \omega_{adg} \omega^g_{cb}
 \end{equation}
 Moreover, by multilinearity, the curvature tensor in the vielbein basis retains the symmetry $ R_{abcd} = R_{cdab} $. This, together with $ R_{abcd} = R_{[ab][cd]} $, means that the Riemann tensor can be thought as having two symmetrized multi-indices $ [ab] $ and $ [cd] $, hence the number of independent components is $ \frac{1}{2} N (N+1) $, where $ N $ is the number of possible values for a single multi-index, i.e. $ N = \frac{1}{2} n (n-1) $. However, one has to account for the constraint posed by the first Bianchi identity: since there is one such constraint for each choise of four distinc indices, the total number of independent components of the Riemann tensor is:
 \begin{equation*}
