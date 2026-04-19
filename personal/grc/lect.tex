@@ -912,6 +912,150 @@ Il no hair theorem significa che, indipendentemente dal collasso che lo forma, u
 
 I buchi neri stazionari quindi hanno o una simmetria sferica (Schwarzschild) o quantomeno assiale (Kerr).
 
+\chapter{Lecture 16/04}
+
+\section{Buchi neri di Kerr}
+
+La metrica di Kerr è una metrica altamente non-banale, e la dimostrazione che soddisfa le equazioni di Einstein è molto lunga. Storicamente è stata derivata studiando le simmetrie del tensore di Weyl, in particolare è una soluzione di Petrov di tipo D, con timelike Killing vector e simmetria assiale. Non esistono soluzioni analitiche che descrivono il collasso di materia in un KBH, a differenza dei BH di Schwarzschild.
+
+La metrica di Kerr è stazionaria (non statico), quindi c'è un timelike Killing vector field $ \xi = \frac{\pa}{\pa t} $ (non ortogonale alle spacelike hypersurfaces, altrimenti sarebbe statico), e c'è una simmetria assiale, quindi c'è un axial (spacelike) Killing vector field $ m = \frac{\pa}{\pa \varphi} $. Per scrivere la metrica, usiamo una generalizzazione delle coordinate di Schwarzschild, le \emph{coordinate di Boyer--Lindquist} $ t,r,\vartheta,\varphi $: queste sono chiaramente delle coordinate adattate a $ \xi $ ed $ m $. Inoltre, per il no hair theorem, il buco nero è descritto unicamente dalla sua massa $ M $ e dal suo momento angolare totale $ J $: per $ J \ra 0 $ la metrica di Kerr deve ridursi a quella di Schwarzschild. La metrica è piuttosto complicata:
+\begin{equation}
+  \dd s^2 = g_{tt} \dd t^2 + g_{t\varphi} \dd t \, \dd \varphi + g_{rr} \dd r^2 + g_{\vartheta \vartheta} \dd \vartheta^2 + g_{\varphi \varphi} \dd \varphi^2
+\end{equation}
+Il cross-term $ t\varphi $ è tipico della rotazione. I termini angolari non sono quelli della simmetria sferica. Per scrivere questi termini, conviene introdurre il parametro $ a \equiv \frac{J}{M} $ e delle funzioni ausiliarie:
+\begin{equation}
+  \Sigma \equiv r^2 + a^2 \cos^2 \vartheta
+  \qquad
+\end{equation}
+\begin{equation}
+  \Delta \equiv r^2 - 2 M r + a^2
+\end{equation}
+Nel caso di Nordstrom (e Schwarzschild con $ q = 0 $) $ \Delta(r) / r^2 = 1 - 2M / r + q/r^2 \equiv h(r) $, quindi nel caso di Kerr si ha una generalizzazione. La metrica di Kerr diventa così:
+\begin{equation}
+  g_{tt} = - \left( 1 - \frac{2 M r}{\Sigma} \right)
+  \qquad
+  \xrightarrow{a \ra 0} 1 - \frac{r}{\sr} \equiv h(r)
+\end{equation}
+\begin{equation}
+  g_{rr} = \frac{\Sigma}{\Delta}
+  \qquad
+  \xrightarrow{a \ra 0} \frac{1}{h(r)}
+\end{equation}
+\begin{equation}
+  g_{\vartheta \vartheta} = \Sigma
+  \qquad
+  \xrightarrow{a \ra 0} r^2
+\end{equation}
+\begin{equation}
+  g_{\varphi \varphi} \left[ r^2 + a^2 + \frac{2Mr a^2 \sin^2 \vartheta}{\Sigma} \right] \sin^2 \vartheta
+  \qquad
+  \xrightarrow{a \ra 0} r^2 \sin^2 \vartheta
+\end{equation}
+\begin{equation}
+  g_{t\varphi} = - \frac{2M r a \sin^2\vartheta}{\Sigma}
+  \qquad
+  \xrightarrow{a \ra 0} 0
+\end{equation}
+Si vede quindi che $ \Sigma $ generalizza $ r^2 $ e $ \Delta $ generalizza $ r^2 h(r) $ del caso SBH. Inoltre, espandendo si vede che la metrica di Kerr è asintoticamente piatta, e le deviazioni dallo spazio di Minkowski dipendono da $ \frac{M}{r} $ e $ \frac{J}{r^2} $.
+
+Essendo le equazioni di Einstein altamente non-lineari, non si può dare senso distribuzionale alla soluzione, ovvero non ha senso di parlare di un monopolo localizzato nell'origine (ovvero $ M = M \delta(r) $), a differenza del caso di Maxwell in cui invece ha senso parlare di cariche puntiformi.
+
+Si noti che SBH ha simmetria $ t \ra -t $ in quanto è statico, mentre in questo caso non c'è.
+
+La metrica di Kerr soddisfa le ipotesi del no hair theorem, quindi nel collasso della stella vengono annichilati tutti i multipoli di ordine superiore e rimangono soltanto $ M $ e $ J $.
+
+Essendo generalizzazioni delle coordinate di Eddington--Finkelstein, le coordinate di Boyer--Linquist sono le coordinate naturali per il KBH. Esse presentano una singolarità di coordinate: $ \sin^2 \vartheta = 0 $, che è l'usuale singolarità delle coordinate sferiche. Al contrario, le regioni singolari in cui $ \Sigma = 0 $ e $ \Delta = 0 $ sono più interessati. Studiando il tensore di Weyl, la true singularity di questo spaziotempo è data da $ \Sigma = 0 $: questa coincide con la singolarità di Schwarschild $ r = 0 $ solo per $ a \ra 0 $, mentre in questo caso la singolarità è una ring singularity:
+\begin{equation}
+  r^2 + a^2 \cos^2 \vartheta = 0
+\end{equation}
+Inoltre, mentre in SBH $ r \in \R^+ $ per definizione, nel KBH si può avere $ \Sigma < 0 $, ovvero si può attraversare la singolarità. Per quando riguarda $ \Delta $, si riscrive:
+\begin{equation*}
+  \Delta = r^2 - 2 M r + a^2 = (r - r_+) (r - r_-)
+\end{equation*}
+Con $ r_+ \geq r_- $: nel caso $ r_+ = r_- $, ovvero se $ a = 1 \iff M = J $, si parla di buco nero estremo, ma normalmente $ a < 1 \iff J < M $. Come con Nordstrom, $ r_- $ ha solo rilevanza tecnica ed è un Cauchy horizon (che viene distrutto anche da piccole variazioni della metrica), mentre $ r_+ $ è l'event horizon. La struttura causale del KBH è resa complicata dal fatto che non esistono patch di coordinate che eliminano sia $ r_+ $ che $ r_- $, quindi non esistono delle corddinate di Kruskal "facili", ma si devono costruire delle coordinate come Eddington--Finkelstein ingoing/outgoing sia vicino $ r_+ $ che vicino ad $ r_- $, note come coordinate di Kerr-Schild. Si distinguono quindi queste regioni:
+\begin{itemize}
+  \item regione I: $ \Sigma(r) > 0 $ con $ r \in (r_+ , +\infty) $;
+  \item regione II : $ \Sigma(r) > 0 $ con $ r \in (r_- , r_+) $;
+  \item regione III: $ \Sigma(r) = 0 $;
+  \item regione IV: $ \Sigma(r) < 0 $.
+\end{itemize}
+In linea di principio, queste regioni sono tutte disconnesse, proprio perché non ci sono delle coordinate di Kuskal "buone" che descrivano tutto lo spaziotempo.
+
+Il bordo $ r = r_+ $ della regione I è un Killing horizon, poiché $ \xi^2 = 0 $ lì, quindi rappresenta un event horizon (generalizza $ r = \sr $) e si può calcolare la surface gravity. Inoltre, mentre in SBH si possono avere delle orbite ad $ r = \text{const.} $ fuori dall'orizzonte (non sono geodetiche, richiedono accellerazione), nel KBH ciò non succede a causa del momento angolare del BH che trascina lo spaziotempo. Questo si vede studiando il segno di $ \xi^2 $:
+\begin{equation*}
+  \xi^2 = g(\xi , \xi) = g_{tt} = - \frac{\Delta - a^2 \sin^2 \vartheta}{\Sigma}
+\end{equation*}
+Per risolvere $ \xi^2 \leq 0 $, quindi, si trova:
+\begin{equation*}
+  \Delta^2 - a^2 \sin^2 \vartheta \geq 0
+  \quad \implies \quad
+  (r - r_+) (r - r_-) - a^2 \sin^2 \vartheta \geq 0
+\end{equation*}
+Questo è un polinomio di secondo grado, quindi date le sue radici $ r_1 < r_2 $ la disequazione è risolta da $ r \leq r_1 \land r \geq r_2 $. Il punto $ r = r_2 $ è detto lo static limit, ed è dato da:
+\begin{equation*}
+  r_2 = M + \sqrt{M^2 - a^2 \cos^2 \vartheta}
+\end{equation*}
+Questa non è una superficie sferica: la regione compresa tra le superfici dello static limit $ r = r_2 $ e dell'event horizon $ r = r_+ $ è detta \bctxt{ergoregion} $ (r_+ , r_2) $ (anche detta impropriamente ergosphere, sebbene non sia una sfera). Nella ergoregion $ \xi $ rimane timelike, quindi è possibile trovare un orbita che generalizza lo "stare fermo" nel SBH. Intuitivamente, dato che il KBH ruota, per osservarlo come se fosse fermo si dovrà ruotare attorno ad esso, con vettore determinato dai due vettori di Killing $ \xi $ ed $ m $:
+\begin{equation}
+  X = \frac{\pa}{\pa t} + \Omega \frac{\pa}{\pa \varphi}
+\end{equation}
+dove $ \Omega $ può essere interpretato come la velocità angolare dell'osservatore:
+\begin{equation*}
+  U = U^t \frac{\pa}{\pa t} + U^\varphi \frac{\pa}{\pa \varphi} = U^t \left( \frac{\pa}{\pa t} + \frac{U^\varphi}{U^t} \frac{\pa}{\pa \varphi} \right)
+  \quad \implies \quad
+  \Omega = \frac{U^\varphi}{U^t} = \frac{\dd \varphi}{\dd t}
+\end{equation*}
+Affinche la traiettoria sia timelike:
+\begin{equation*}
+  U^2 < 0
+  \quad \iff \quad
+  X^2 < 0
+  \quad \iff \quad
+  \xi^2 + \Omega^2 m^2 + \Omega \xi \cdot m < 0
+  \quad \iff \quad
+  g_{tt} + \Omega^2 g_{\varphi \varphi} + \Omega g_{t \varphi} < 0
+\end{equation*}
+Questa è ancora un'equazione di secondo grado in $ \Omega $, quindi ci saranno due radici $ \Omega_1 < \Omega_2 $ e la soluzione sarà $ \Omega \in (\Omega_1 , \Omega_2) $: studiando il discriminante, si trova che $ \Omega_2 \ra \Omega_1 $ per $ r \ra r_+ $, ovvero all'orizzonte, e questo valore coincidente $ \Omega_\text{H} \equiv \Omega_1(r_+) = \Omega_2(r_+) $ è la velocità angolare dell'orizzonte (conto facile di sola algebra):
+\begin{equation}
+  \Omega_\text{H} = \frac{a^2}{r_+^2 + a^2}
+\end{equation}
+Al contrario, $ r \Omega_{1,2} \ra \pm 1 $ per $ r \ra \infty $.
+
+Quindi, nella ergoregion tutto deve ruotare o cadere nell'orizzonte: la ergoregion è la regione dove si forma il disco di accrescimento.
+
+Dato che un osservatore con quadrivelocità $ U $ osserva l'energia di una particella con quadrimomento $ P $ pari a $ E = - P \cdot U $, per un osservatore all'infinito $ U = \frac{\pa}{\pa t} $ e si trova il processo di Penrose per estrarre energia dal buco nero nell'ergoregion NON HO CAPITO PERCHé.
+
+Le geodetiche sono molto complicate, ma l'eqazione geodetica continua ad essere separabile e risolvibile per quadrature, in quanto ci sono delle quantità conservate oltre ai vettori di Killing: sono quantità strane tensoriali, detti Killing tensors.
+
+La geodetica associata a $ \xi $ è $ \na_\xi \xi = k \xi $, dove $ k $ rappresenta il fatto che non è una geodetica affinely-parametrized ed è la surface gravity all'event horizon:
+\begin{equation}
+  k = \frac{r_+ - r_-}{2 (r_+^2 + a^2)}
+\end{equation}
+Si vede che, come al solito, la surface gravity si annulla per un buco nero estremo.
+
+\paragraph{Ring singularity}
+
+Tornando alla ring singularity, si trova che la ring singularity $ \Sigma = 0 $ a $ t = \text{const.} $ ha topologia $ \Sn{1} $. Per quanto riguarda il vettore di Killing assiale:
+\begin{equation*}
+  m^2 = g_{\varphi \varphi} =
+  \begin{cases}
+    > 0 & \Sigma > 0 \\
+    < 0 & \Sigma < 0
+  \end{cases}
+\end{equation*}
+quindi oltrepassata la ring singularity $ m $ diventa spacelike, quindi compiendo una rotazione completa si forma un loop temporale chiuso: questa è una violazione di causalità. Inoltre, a differenza di SBH, è possibile attraversare la singolarità senza essere distrutti dalle forze di marea, quindi si può attraversare il wormhole di Kerr: non è però chiaro il significato fisico di questa regione oltre la ring singularity.
+
+\paragraph{Penrose process}
+
+L'idea è di essere un osservatore all'infinito e di lanciare una particella verso il buco nero in modo tale da non cadere nel buco nero, ma così da entrare nell'ergoregion e poi uscirne (esistono geodetiche di questo tipo). Se all'ingresso nell'ergoregion la particella si scinde in due, la parte che ne fuoriesce ha energia maggiore di quella iniziale.
+
+L'energia misurata all'infinito è $ E = - P \cdcot \xi = - P \cdot \frac{\pa}{\pa t} $. Per conservazione dell'impulso $ P = P_1 + P_2 $, e si supponga che l'$ 1 $ cade nel buco nero mentre il $ 2 $ fuoriesce dall'ergoregion. Dato che nell'ergoregion $ \xi^2 $ cambia di segno, si può avere $ E_2 = E - E_1 > 0 $, a patto che appunto la scissione avvenga nell'ergoregion. Ciò determina una variazione $ M \mapsto M + \delta M , J \mapsto J + \delta J $ del BH, con $ \delta M , \delta J < 0 $, quindi si estrae energia a spese del BH.
+
+Il punto è osservare che $ \zeta^2 < 0 $ e $ \xi^2 > 0 $ nell'ergoregione (MA COS'è MO ZETA????), quindi $ - P_1 \cdot \zeta > 0 $, ovvero $ E_1 - \Omega_\text{H} L_1 > 0 $ (COS'è $ L_1 $ MALEDETTO). Si trova una variazione sempre positiva:
+\begin{equation*}
+  \delta \left[ M^2 - \sqrt{M^4 - J^2} \right] \geq 0
+\end{equation*}
+ma questa non è altro che l'area dell'orizzonte degli eventi (per vederlo serve passare alle coordinate di Kerr--Schild), quindi l'estrazione di energia avviene in modo che l'area dell'orizzonte degli eventi aumenti sempre. Questo è interessante perché, una volta assegnata a livello quantistico una temperatura al BH, si trova che l'entropia è data dall'area dell'event horizon, quindi questa relazione conferma la seconda legge della termodinamica. La temperatura si trova essere legata alla surface gravity.
 
 
 
@@ -921,3 +1065,4 @@ I buchi neri stazionari quindi hanno o una simmetria sferica (Schwarzschild) o q
 
 
 
+ 

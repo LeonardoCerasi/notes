@@ -112,6 +112,248 @@ dove $ B $ dipende dal numero di loop bosonici e fermionici:
 \end{equation*}
 dove $ n_c $ è il numero di colori e $ n_f $ è il numero di flavours. Nel Modello Standard $ B > 0 $, quindi la differenza decresce all'aumentare dell'energia, ovvero $ \alpha_s $ decresce all'aumentare del'energia: questo fenomeno è noto come asymptotic freedom, per cui la QCD diventa perturbativa ad alte energie. Per questo stesso motivo, a basse energie si ha il color confinement, dato che un oggetto colorato interagirebbe in maniera estremamente intensa tramite la strong interaction.
 
+\chapter{Lecture 16/04}
+
+\section{Operatore parità}
+
+Le interazioni deboli non conservano la parità, quindi è importante studiare $ \oppar $. Esso è un operatore unitario, quindi per ogni stato $ \ket{\psi} , \ket{\phi} $, definiti $ \ket{\tilde{\psi}} = \oppar \ket{\psi} , \ket{\tilde{\phi}} = \oppar \ket{\phi} $, si ha:
+\begin{equation*}
+  \braket{\tilde{\psi} | \tilde{\phi}} = \braket{\psi | \oppar\deg \oppar | \phi} = \braket{\psi | \id | \phi} = \braket{\psi | \phi}
+\end{equation*}
+La parità inverte agisce in modo che, dato un qualsiasi operatore vettoriale polare $ \hat{\ve{v}} $ (e.g. posizione, impulso):
+\begin{equation*}
+  \braket{\tilde{\psi} | \hat{\ve{v}} | \tilde{\phi}} = - \braket{\psi | \hat{\ve{v}} | \phi}
+\end{equation*}
+quindi a livello operatoriale:
+\begin{equation}
+  \oppar\dg \hat{\ve{v}} \oppar = - \hat{\ve{v}}
+\end{equation}
+Al contrario, i vettori assiali (e.g. momento angolare) rimangono invariati sotto effetto di parità. Ciò rispecchia il fatto che, passando da un sistema di riferimento destrogiro ad uno levogiro, i vettori polari assumono un segno negativo, mentre i vettori assiali rimangono invariati. I vettori polari ed assiali vengono anche detti rispettivamente vettori e pseudovettori.
+
+Dato che l'operatore di parità deve essere sia unitario che nilpotente, allora esso è anche hermitiano:
+\begin{equation*}
+  \oppar\dg \oppar = \id
+  \qquad
+  \oppar^2 = \id
+  \quad \implies \quad
+  \oppar = \oppar^{-1} = \oppar\dg
+\end{equation*}
+Ciò significa che esso è un osservabile con autovalori reali, ed in particolare $ \oppar \ket{p} = \eta_p \ket{p} \implies \ket{p} = \eta_p^2 \ket{p} $, quindi i possibili autovalori sono $ \eta_p = \pm 1 $. Le interazioni elettromagnetiche e forti conservano la parità, quindi gli autostati elettromagnetici e forti hanno un autovalore di parità ben definito.
+
+\subsection{Campi scalari}
+
+\subsubsection{Campo scalare reale}
+
+Si consideri un campo scalare reale:
+\begin{equation*}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img p \cdot x} + a\dg(\ve{p}) e^{\img p \cdot x} \right]
+\end{equation*}
+che è un operatore hermitiano. Sotto parità:
+\begin{equation*}
+  \phi(x) \mapsto \oppar\dg \phi(x) \oppar = \oppar \phi(x) \oppar = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \oppar a(\ve{p}) \oppar e^{-\img p \cdot x} + \oppar a\dg(\ve{p}) \oppar e^{\img p \cdot x} \right]
+\end{equation*}
+Per capire come esprimere $ \oppar a\dg(\ve{p}) \oppar $, lo si faccia agire sul vuoto:
+\begin{equation*}
+  a\dg(\ve{p}) \ket{0} = \ket{\ve{p}}
+  \quad \implies \quad
+  (\oppar a\dg(\ve{p}) \oppar) = \eta_p \ket{-\ve{p}}
+\end{equation*}
+dove $ \eta_p \in \R $ poiché $ \oppar a\dg(\ve{p}) \oppar $ è hermitiano, e $ \eta^2 = \pm 1 $ poiché NON HO CAPITO, quindi:
+\begin{equation}
+  \oppar a\dg(\ve{p}) \oppar = \eta_p a\dg(-\ve{p})
+  \qquad
+  \eta_p = \pm 1
+  \label{eq:ad}
+\end{equation}
+e ugualmente per l'operatore di distruzione, prendendo il coniugato hermitiano:
+\begin{equation}
+  \oppar a(\ve{p}) \oppar = \eta_p a(-\ve{p})
+  \qquad
+  \eta_p = \pm 1
+  \label{eq:a}
+\end{equation}
+Dunque, per il campo scalare:
+\begin{equation}
+  \begin{split}
+    \oppar \phi(x) \oppar
+    & = \eta_p \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(-\ve{p}) e^{-\img (E t - \ve{p} \cdot \ve{x})} + a\dg(-\ve{p}) e^{\img (E t - \ve{p} \cdot \ve{x})} \right] \\
+    & = \eta_p \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img (E t + \ve{p} \cdot \ve{x})} + a\dg(\ve{p}) e^{\img (E t + \ve{p} \cdot \ve{x})} \right] \\
+    & = \eta_p \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img (E t - \ve{p} \cdot (-\ve{x}))} + a\dg(\ve{p}) e^{\img (E t - \ve{p} \cdot (-\ve{x}))} \right] \\
+  \end{split}
+\end{equation}
+ovvero:
+\begin{equation}
+  \oppar \phi(t,\ve{x}) \oppar = \eta_b \phi(t,-\ve{x})
+\end{equation}
+Se il campo ha parità intrinseca $ \eta_b = +1 $ si parla di \emph{campo scalare}, se invece $ \eta_b = -1 $ di \emph{campo pseudoscalare}. Per esempio i pioni sono particelle pseudoscalari.
+
+\subsubsection{Campo scalare complesso}
+
+Si consideri un campo scalare complesso:
+\begin{equation*}
+  \phi(x) = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ a(\ve{p}) e^{-\img p \cdot x} + b\dg(\ve{p}) e^{\img p \cdot x} \right]
+\end{equation*}
+Con lo stesso ragionamento, si trovano di nuovo \ref{eq:ad}-\ref{eq:a} e anche:
+\begin{equation}
+  \oppar b(\ve{p}) \oppar = \eta_{\bar{p}} b(-\ve{p})
+  \qquad
+  \eta_{\hat{p}} = \pm 1
+  \label{eq:b}
+\end{equation}
+\begin{equation}
+  \oppar b\dg(\ve{p}) \oppar = \eta_{\bar{p}} b\dg(-\ve{p})
+  \qquad
+  \eta_{\hat{p}} = \pm 1
+  \label{eq:bd}
+\end{equation}
+Quindi:
+\begin{equation*}
+    \oppar \phi(x) \oppar = \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \eta_p a(-\ve{p}) e^{-\img p \cdot x} + \eta_{\bar{p}} b\dg(-\ve{p}) e^{\img p \cdot x} \right]
+\end{equation*}
+A questo punto, si deve assumere che $ \eta_{\bar{p}} = \eta_p $, ovvero che particella e antiparticella abbiano la stessa parità intrinseca, così da avere come prima:
+\begin{equation}
+  \oppar \phi(t,\ve{x}) \oppar = \eta_p \phi(t,-\ve{x})
+\end{equation}
+Domanda da fare al prof: l'assunto $ \eta_{\bar{p}} = \eta_p $ si può derivare in altro modo o è un'ipotesi a priori che va verificata sperimentalmente?
+
+\subsection{Campi spinoriali}
+
+\subsubsection{Campo di Dirac}
+
+Un campo di Dirac $ \Psi(x) $ risolve l'equazione di Dirac:
+\begin{equation}
+  (\img \slashed{\pa} - m) \Psi(x) = 0
+\end{equation}
+Espandendo:
+\begin{equation*}
+  (\img \gamma^0 \pa_0 + \img \gamma^i \pa_i - m) \Psi(x) = 0
+\end{equation*}
+\begin{equation*}
+  (\img \gamma^i \pa_i - m) \Psi(x) = - \img \gamma^0 \pa_0 \Psi(x)
+\end{equation*}
+Sotto trasformatione di parità, si consideri $ \Psi(x) \mapsto \oppar \Psi(x) \oppar \equiv \Psi'(x') $, con $ x'  \equiv (t , -\ve{x}) $. Settando:
+\begin{equation*}
+  \Psi'(x') = \hat{\Pi} \Psi(x)
+\end{equation*}
+dove $ \hat{\Pi} $ è un operatore che può rimescolare le componenti di $ \Psi $. Si richiede che $ \Psi'(x') $ soddisfi l'equazione di Dirac trasformata sotto parità:
+\begin{equation*}
+  \img \left( \gamma^1 \frac{\pa}{\pa {x^1}'} + \gamma^2 \frac{\pa}{\pa {x^2}'} + \gamma^3 \frac{\pa}{\pa {x^3}'} \right) \Psi'(x') - m \Psi'(x') = - \img \gamma^0 \frac{\pa}{\pa {x^0}'}
+\end{equation*}
+Per comodità $ (x^0,x^1,x^2,x^3) \equiv (t,x,y,z) $ e $ ({x^0}' , {x^1}' , {x^2}' , {x^3}') \equiv (t',x',y,',z') $, così sotto parità $ t = t' $ e $ (x',y',z') = - (x,y,z) $, quindi:
+\begin{equation*}
+  - \img \left( \gamma^1 \frac{\pa}{\pa x^1} + \gamma^2 \frac{\pa}{\pa x^2} + \gamma^3 \frac{\pa}{\pa x^3} \right) \hat{\Pi} \Psi(x) - m \hat{\Pi} \Psi(x) = - \img \gamma^0 \frac{\pa}{\pa x^0} \hat{\Pi} \Psi(x)
+\end{equation*}
+\begin{equation*}
+  - \img \left( \gamma^1 \hat{\Pi} \frac{\pa}{\pa x^1} + \gamma^2 \hat{\Pi} \frac{\pa}{\pa x^2} + \gamma^3 \hat{\Pi} \frac{\pa}{\pa x^3} \right) \Psi(x) - m \hat{\Pi} \Psi(x) = - \img \gamma^0 \hat{\Pi} \frac{\pa}{\pa x^0} \Psi(x)
+\end{equation*}
+Per ottenere l'invarianza, questa equazione deve ridursi all'equazione di Dirac originale, imponendo così delle condizioni su $ \hat{\Pi} $:
+\begin{equation*}
+  - \img \left( \gamma^0 \gamma^1 \hat{\Pi} \frac{\pa}{\pa x^1} + \gamma^0 \gamma^2 \hat{\Pi} \frac{\pa}{\pa x^2} + \gamma^0 \gamma^3 \hat{\Pi} \frac{\pa}{\pa x^3} \right) \Psi(x) - m \gamma^0 \hat{\Pi} \Psi(x) = - \img \hat{\Pi} \frac{\pa}{\pa x^0} \Psi(x)
+\end{equation*}
+Si deve quindi avere:
+\begin{equation*}
+  \gamma^0 \gamma^1 \hat{\Pi} = - \gamma^1 \mt{A}
+  \qquad
+  \gamma^0 \gamma^2 \hat{\Pi} = - \gamma^2 \mt{A}
+  \qquad
+  \gamma^0 \gamma^3 \hat{\Pi} = - \gamma^3 \mt{A}
+  \qquad
+  \gamma^0 \hat{\Pi} = \id \mt{A}
+  \qquad
+  \hat{\Pi} = \gamma^0 \mt{A}
+\end{equation*}
+Ai trova quindi banalmente $ \hat{\Pi} = \gamma^0 \mt{A} $, quindi si può prendere semplicemente $ \mt{A} $ così che $ \hat{\Pi} = \gamma^0 $, quindi indipendentemente dalla rappresentazione dell'algebra di Dirac:
+\begin{equation}
+  \oppar \Psi(x) \oppar = \gamma^0 \Psi(x)
+\end{equation}
+Per vedere come trasformano gli stati, si decompone:
+\begin{equation*}
+  \Psi(x) = \sum_{r = 1,2} \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ u(\ve{p},r) e^{-\img p \cdot x} b(\ve{p},r) + v(\ve{p},r) e^{\img p \cdot x} d\dg(\ve{p},r) \right]
+\end{equation*}
+Quindi:
+\begin{equation*}
+  \begin{split}
+    \Psi'(x)
+    & = \gamma^0 \Psi(t,-\ve{x}) = \sum_{r = 1,2} \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \gamm^0 u(\ve{p},r) e^{-\img (Et - \ve{p} \cdot (-\ve{x}))} b(\ve{p},r) + \gamma^0 v(\ve{p},r) e^{\img (Et - \ve{p} \cdot (-\ve{x}))} d\dg(\ve{p},r) \right] \\
+    & = \sum_{r = 1,2} \int \frac{\dd^3p}{(2\pi)^{3/2}} \frac{1}{\sqrt{2E(\ve{p})}} \left[ \gamm^0 u(-\ve{p},r) e^{-\img (Et - \ve{p} \cdot \ve{x})} b(-\ve{p},r) + \gamma^0 v(-\ve{p},r) e^{\img (Et - \ve{p} \cdot \ve{x})} d\dg(-\ve{p},r) \right] \\
+  \end{split}
+\end{equation*}
+Sotto parità quindi $ u(\ve{p},r) \mapsto \tilde{u}(-\ve{p},r') = \gamma^0 u(\ve{p},r) $ e $ v(\ve{p},r) \mapsto \tilde{v}(-\ve{p},r') = \gamma^0 v(\ve{p},r) $. Per studiarne l'elicità, si prenda l'operatore elicità:
+\begin{equation*}
+  \hat{h} = \frac{\ve{S} \cdot \ve{p}}{\norm{\ve{p}}} = \frac{1}{2p}
+  \begin{bmatrix}
+    \bs{\sigma} \cdot \hat{\ve{p}} & 0 \\ 0 & \bs{\sigma} \cdot \hat{\ve{p}}
+  \end{bmatrix}
+\end{equation*}
+così che:
+\begin{equation*}
+  \hat{h} \tilde{u}(-\ve{p} , r') = \frac{1}{2p}
+  \begin{bmatrix}
+    \bs{\sigma} \cdot \hat{\ve{p}} & 0 \\ 0 & \bs{\sigma} \cdot \hat{\ve{p}}
+  \end{bmatrix}
+  \tilde{u}(-\ve{p},r')
+  = \frac{1}{2p}
+  \begin{bmatrix}
+    - \bs{\sigma} \cdot \ve{p} & 0 \\ 0 & - \bs{\sigma} \cdot \ve{p}
+  \end{bmatrix}
+  \tilde{u}(-\ve{p},r')
+\end{equation*}
+Moltiplicando da sinistra per $ \id = \gamma^0 \gamma^0 $, nella rappresentazione di Dirac--Pauli ($ \gamma^0 = \diag(\id_2 , -\id_2) $:
+\begin{equation*}
+  \hat{h} \tilde{u}(-\ve{p},r') = \gamma^0 \frac{1}{2p}
+  \begin{bmatrix}
+    - \bs{\sigma} \cdot \ve{p} & 0 \\ 0 & \bs{\sigma} \cdot \ve{p}
+  \end{bmatrix}
+  \tilde{u}(-\ve{p},r')
+  = \gamma^0 \frac{1}{2p}
+  \begin{bmatrix}
+    - \bs{\sigma} \cdot \ve{p} & 0 \\ 0 & \bs{\sigma} \cdot \ve{p}
+  \end{bmatrix}
+  \gamma^0 u(\ve{p},r)
+  = - \gamma^0 \hat{h} u(\ve{p},r) = - r \gamma^0 u(\ve{p},r) = - r \tilde{u}(-\ve{p},r')
+\end{equation*}
+Quindi, la parità preserva la natura degli spinori come autostati dell'elicità, ma ne inverte il segno dell'autovalore $ r' = -r $: questo è ciò che ci aspettavamo, dato che lo spin è un vettore assiale che rimane invariato sotto parità, mentre il momento è un vettore polare ed acquisice un segno negativo sotto parità:
+
+Per studiare la parità intrinseca, dobbiamo osservare come trasformano gli stati ad impulso nullo, poiché essi trasformano o in sé stessi o nell'opposto di sé stessi, a seconda della parità intrinseca. In generale:
+\begin{equation*}
+  u(\ve{p},r) \mapsto \tilde{u}(-\ve{p},-r) = \gamma^0 u(\ve{p},r)
+  \qquad
+  v(\ve{p},r) \mapsto \tilde{v}(-\ve{p},-r) = \gamma^0 v(\ve{p},r)
+\end{equation*}
+Per $ \ve{p} \ra \ve{0} $ la particella diventa non-relativistica, e gli spinori diventano:
+\begin{equation*}
+  u(\ve{0},r) = \sqrt{2m}
+  \begin{pmatrix}
+    \xi_r \\ 0
+  \end{pmatrix}
+  \qquad
+  v(\ve{0},r) = \sqrt{2m}
+  \begin{pmatrix}
+    0 \\ \xi_r
+  \end{pmatrix}
+\end{equation*}
+Quindi, molitplicando per $ \gamma^0 = \diag(\id_2 , - \id_2) $, si vede subito che $ u $ rimane invariato, mentre $ v $ prende un segno negativo: ciò significa che particelle ed antiparticelle con spin-$ \frac{1}{2} $ hanno parità intrinseche uguali ed opposte.
+
+\subsection{Campi vettoriali}
+
+Nel caso di particelle con spin-$ 1 $, si deve distinguere tra componente temporale e componenti spaziali. Sotto parità, un campo vettoriale polare $ A_\mu(x) $ trasforma come:
+\begin{equation*}
+  \oppar A_0(t,\ve{x}) \oppar = A_0(t,-\ve{x})
+  \qquad
+  \oppar A_i(t,\ve{x}) \oppar = - A_i(t,-\ve{x})
+\end{equation*}
+mentre un campo vettoriale assiale $ B_\mu(x) $:
+\begin{equation*}
+  \oppar B_0(t,\ve{x}) \oppar = - B_0(t,-\ve{x})
+  \qquad
+  \oppar B_i(t,\ve{x}) \oppar = B_i(t,-\ve{x})
+\end{equation*}
+Dato che i termini d'interazione vettoriale sono del tipo $ J^\mu A_\mu = \bar{\Psi} \gamma^\mu \Psi A_\mu $ e conservano la parità, dato che $ \Psi $ ha parità intrinseca $ \pm 1 $ e $ \bar{\Psi} $ ha parità intrinseca $ \mp 1 $, si deve assegnare al fotone parità intrinseca $ -1 $ (i dettagli li vediamo settimana prossima), poiché il vertice $ e^-e^+ \ra \gamma $ ha parità intrinseca totale iniziale $ (+1)(-1) = -1 $.
+
+
+
+
+
 
 
 
