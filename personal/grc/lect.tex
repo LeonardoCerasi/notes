@@ -1057,6 +1057,151 @@ Il punto è osservare che $ \zeta^2 < 0 $ e $ \xi^2 > 0 $ nell'ergoregione (MA C
 \end{equation*}
 ma questa non è altro che l'area dell'orizzonte degli eventi (per vederlo serve passare alle coordinate di Kerr--Schild), quindi l'estrazione di energia avviene in modo che l'area dell'orizzonte degli eventi aumenti sempre. Questo è interessante perché, una volta assegnata a livello quantistico una temperatura al BH, si trova che l'entropia è data dall'area dell'event horizon, quindi questa relazione conferma la seconda legge della termodinamica. La temperatura si trova essere legata alla surface gravity.
 
+% qui inizia Nesti
+
+\chapter{Lecture 21/04}
+
+\section{Recap del corso di GRC}
+
+Assumiamo flatness spaziale $ k = 0 $. % check Fourier transform on S^3 and H^3, instead of R^3
+Quindi FLRW metric è:
+\begin{equation}
+  \dd s^2 = a^2(\eta) \left[ \dd \eta^2 - \dd \ve{x}^2 \right]
+\end{equation}
+doeve $ a(\eta) $ è lo scale factor determinato dalle eq. di Einstein. I coefficienti di Christoffeln in questo caso sono:
+\begin{equation*}
+  \Gamma^0_{oo} = \hub
+  \qquad
+  \Gamma^0_{ij} = \hub \delta_{ij}
+  \qquad
+  \Gamma^i_{0j} = \hub \delta^i_j
+\end{equation*}
+con:
+\begin{equation*}
+  \hub \equiv \frac{a'}{a} = a H = \dot{a}
+\end{equation*}
+e in generale $ \pa_t = a^{-1} \pa_\eta $ (dato che $ a(\eta) = \frac{\dd t}{\dd \eta} $).
+La geodesic equation è:
+\begin{equation*}
+  p^\nu \na_\nu p^\mu = 0
+\end{equation*}
+\begin{equation*}
+  p^0 {p^0}' + \Gamma^0_{\nu \rho} p^\nu p^\rho = 0
+\end{equation*}
+\begin{equation*}
+  (a^{-1} E) \pa_\eta (a^{-1} E) = - \hub a^{-2} E^2 - \ham a^{-2} \norm{\ve{p}}^2
+\end{equation*}
+quindi per i fotoni $ \pa_\eta(a E) = 0 $, ovvero $ E \sim \frac{1}{a} $, determinando il redshift della temperatura dell'universo (ovvero la temperatura del photon bath):
+\begin{equation*}
+  T \sim \frac{1}{a}
+\end{equation*}
+
+\subsection{Perturbazioni}
+
+Per le perturbazioni cosmologiche su background piatto $ \hat{g}_{\mu \nu} = a^2 \diag(1 , -1 , -1 , -1) $, si trova:
+\begin{equation*}
+  R_{00} = - 3 \hub'
+  \qquad \qquad
+  R_{ij} = (\hub' + 2 \hub^2) \delta_{ij}
+  \qquad \qquad
+  R = - 6 (\hub' + \hub^2) a^{-2}
+\end{equation*}
+
+\begin{equation*}
+  G_{00} = 3 \hub^2
+  \qquad \qquad
+  G_{ij} = - (2 \hub' + \hub^2) \delta_{ij}
+\end{equation*}
+
+Perturbando la materia, si trovano quindi le seguenti equazioni di Einstein (Friedmann):
+\begin{equation}
+  3 \hub^2 = 8 \pi G a^2 \bar{\rho}
+  \label{eq:f1}
+\end{equation}
+\begin{equation}
+  (2\hub' + \hub^2) = - 8 \pi G \bar{P}
+  \label{eq:f2}
+\end{equation}
+L'equazione di continuità $ \na^\nu \tensor{T}{^\mu_\nu} = 0 $ determina:
+\begin{equation*}
+  \bar{\rho}' = - 3 \hub (\bar{\rho} + \bar{p})
+  \quad \implies \quad
+  \rho \propto a^{-3 (1 + w)}
+\end{equation*}
+quindi questa soluzione è indifferente se espressa in coordinate time (come nel corso precedente) o in conformal time, con $ \bar{P} = w \bar{\rho} $. Se $ a \sim t^\alpha $ or $ a \sim \eta^\beta $, si trova quindi $ H \sim t^{-1} $ or $ \hub \sim \eta^{-1} $, eccetto per caso particolare di vacuum energy. To be precise:
+\begin{equation*}
+  a(t) \sim t^{\frac{2}{3 (1 + w)}} \sim \tau ^{\frac{2}{1 + 3 w}}
+\end{equation*}
+\begin{equation*}
+  H(t) = \frac{2}{1 + 3 w} \frac{1}{t}
+  \qquad
+  \hub(a) = H_0 a^{- \frac{1}{2} (1 + 3 w)}
+\end{equation*}
+
+\subsection{Termodinamica}
+
+Relativistic equilibrium densities:
+\begin{equation*}
+  \bar{n}(T) = \frac{\zeta(3)}{\pi^2} \dof T^3
+  \begin{cases}
+    1 & \text{bosons} \\
+    \frac{3}{4} & \text{fermions}
+  \end{cases}
+  \qquad \qquad
+  \bar{\rho}(T) = \frac{\pi^2}{30} \dof T^4
+  \begin{cases}
+    1 & \text{bosons} \\
+    \frac{7}{8} & \text{fermions}
+  \end{cases}
+\end{equation*}
+Non-relativistic equilibrium densities:
+\begin{equation*}
+  \bar{n}(T) = g \left( \frac{mT}{2\pi} \right)^{3/2} e^{-m/T}
+  \qquad \qquad
+  \bar{\rho}(T) \simeq m \bar{n}(T) + \frac{3}{2} \bar{n}(T) T
+  \qquad \qquad
+  \bar{P} \simeq \bar{n}(T) T
+\end{equation*}
+
+\subsubsection{Thermal history}
+
+Si ha equilibrio se $ \Gamma / H \gg 1 $, mentre quando $ \Gamma / H \ll 1 $ la specie esce fuori dall'equlibrio (freeze-out): si ricordi equilibrio sempre rispetto al photon bath (detto anche thermal bath). Inoltre, si ha $ m / T \ll 1 $ regime relativistico e $ m / T \gg 1 $ regime non-relativistico.
+
+Per la thermal history, si ricordi:
+\begin{equation*}
+  \frac{T}{1 \mev} \sim \sqrt{\frac{1 \,\text{sec}}{t}}
+\end{equation*}
+I passi che ci interessano della thermal history sono:
+\begin{itemize}
+  \item neutrino decoupling (e conseguente neutron decoupling): $ T \sim 1 \mev $, $ t \sim 1 \,\text{sec} $ e $ z \sim 6 \cdot 10^9 $;
+  \item $ e^+ e^- $ annihilation: $ T \sim 0.5 \mev $, $ t \sim 6 \,\text{sec} $ e $ z \sim 2 \cdot 10^9 $;
+  \item BBN
+  \item matter-radiation equality: $ T \sim 0.75 \ev $, $ t \sim 60 \,\text{ky} $ and $ z \simeq 3300 $;
+  \item recombination and photon decoupling (ovvero stop di $ e^- + p^+ \leftrightarrow \ch{D} + \gamma $ e $ e^- + \gamma \leftrightarrow e^- + \gamma $) (produzione della CMB): $ T \sim 0.3 \ev $, $ t \sim 380 \,\text{ky} $ e $ z \simeq 1100 $. Si ricordi che c'è una frazione di elettroni che va in freeze-out, senza essere catturati negli atomi: $ X_e \sim 10^{-3} $ (esercizio sul Baumann, fallo);
+  \item reionization (re-ionizzazione dell'universo a seguito dell'esplosione delle prime stelle, che erano enormi): $ t \sim 100 \,\text{My} $ e $ z \simeq 10 $.
+\end{itemize}
+
+Parlare della reionization è difficile perché richiede di capire l'evoluzione delle prime stelle, che avviene durante la cosiddetta Dark Ages cosmica (tra $ z \sim 1100 $ e $ z \sim 10 $) della quale non ci sono osservazioni.
+
+\subsubsection{CMB}
+
+Background temperature $ \hat{T} \simeq 2.7 \,\text{K} $ omogeneo. Poi i multipoli:
+\begin{itemize}
+  \item $ \delta T_\text{dipole} $ è dovuto all'effetto Doppler causato dalla nostra velocità rispetto alla CMB (blueshift nella direzione del moto, redshift nella direzione opposta), e viene sottratta dall'analisi;
+  \item $ \delta T_\ell $ sono i dipoli di ordine superiore, e si osservano $ \delta T_\ell / T \sim 10^{-5} $ (estremamente piccolo, porta al problema dell'orizzonte).
+\end{itemize}
+
+Dall'horizon problem si trova la necessità di un periodo di espansione accellerata vacuum-dominated (ovvero violando la SEC con $ w = -1 $), in cui:
+\begin{equation*}
+  \frac{\dd}{\dd t} H^{-1} < 0
+  \quad \iff \quad
+  \ddot{a} > 0
+\end{equation*}
+Definendo il parametro di slow-roll $ \varepsilon $ che descrive l'inflazione (questo lo devi reuperare dal Baumann) come:
+\begin{equation}
+  \varepsilon \defeq - \frac{\dot{H}}{H^2} = - \frac{\hub}{\hib^2} + 1 = \frac{3}{2} (1 + w)
+\end{equation}
+si vede che $ w \simeq -1 \implies \varepsilon \simeq 0 $, ovvero $ H = \text{const.} $ come per la vacuum energy. L'aim di questa parte del corso è capire come realizzare questo fluido.
 
 
 
