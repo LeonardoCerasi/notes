@@ -1203,6 +1203,180 @@ Definendo il parametro di slow-roll $ \varepsilon $ che descrive l'inflazione (q
 \end{equation}
 si vede che $ w \simeq -1 \implies \varepsilon \simeq 0 $, ovvero $ H = \text{const.} $ come per la vacuum energy. L'aim di questa parte del corso è capire come realizzare questo fluido.
 
+\chapter{Lecture 28/04}
+
+\section{Initial conditions from Inflation}
+
+GR perturbations + inflaton field $ \varphi $. Expanding quadratically in a spatially-flat gauge ($ g_{ij} = -a^2 \delta_{ij} $) only the scalar sector of the inflaton field remains. The inflaton actions is:
+\begin{equation*}
+  \act = \int \dd \eta \dd^3x \left[ \frac{1}{2} a^2 \left( {\varphi'}^2 - (\grad \varphi)^2 \right) - a^4 V(\varphi) \right]
+\end{equation*}
+where the $ a $ factors come from $ \sqg \sim a^4 $ and $ g^{00} \sim a^{-2} $. Perturbing and expanding:
+\begin{equation*}
+  \varphi(\eta , \ve{x}) = \bar{\varphi}(\eta) + \delta \varphi(\eta , \ve{x}) \equiv \bar{\varphi}(\tau) + \frac{f(\eta , \ve{x})}{a(\eta)}
+\end{equation*}
+\begin{equation*}
+  \begin{split}
+    \act\od2
+    & = \frac{1}{2} \int \dd \eta \dd^3x \left[ {f'}^2 - (\grad f)^2 - 2 \hub f f' + \left( \hub^2 - a^2 V'' \right)f^2 \right] \\
+    & = \frac{1}{2} \int \dd \eta \dd^3x \left[ {f'}^2 - (\grad f)^2 + \left( \hub' + \hub^2 - a^2 V'' \right) f^2 \right]
+  \end{split}
+\end{equation*}
+Note that:
+\begin{equation*}
+  \hub' = \frac{a''}{a} - \hub^2
+\end{equation*}
+hence:
+\begin{equation*}
+  \act\od2 = \frac{1}{2} \int \dd \eta \dd^3x \left[ {f'}^2 - (\grad f)^2 + \left( \frac{a''}{a} - a^2 V'' \right) f^2 \right]
+\end{equation*}
+Using the fact that we are in slow-roll, i.e. $ H \sim \text{const.} $ and\footnote{To be precise $ a = e^{H t} = - (H (\eta - \eta_\text{e}))^{-1} \sim - (H \eta)^{-1} $} $ a \sim - (H \eta)^{-1} $, so that $ \hub = a H \sim a $ and:
+\begin{equation*}
+  \frac{a''}{a} = 2 H^2 a^2
+\end{equation*}
+Therefore, recalling $ \eta_V \equiv V'' / V \ll 1 $:
+\begin{equation*}
+  a^2 V'' = 3 H^2 a^2 \eta_V \ll a^2 H^2
+\end{equation*}
+This means that, under the hypothesis of slow-roll, the analysis is approximately independent of the inflaton potential. Thus:
+\begin{equation*}
+  \act\od2 = \frac{1}{2} \int \dd \eta \dd^3x \left[ {f'}^2 + (\grad f)^2 + \frac{a''}{a} f^2 \right]
+  \qquad \qquad
+  \frac{a''}{a} = \frac{2}{\eta^2}
+\end{equation*}
+This is just the action for a collection of (sort of) harmonic oscillators, for each $ k $ allowed in the Fourier decomposition:
+\begin{equation*}
+  f_\ve{k}(\eta) = \int \frac{\dd^3x}{(2\pi^{3/2})} e^{- \img \ve{k} \cdot \ve{x}} f(\eta , \ve{x})
+\end{equation*}
+\begin{equation*}
+  \act\od2 = \int \dd \eta \frac{1}{2} \left[ {f_\ve{k}''}^2 - \frac{1}{2} \left( k^2 - \frac{a''}{a} \right) f_\ve{k}^2 \right] \frac{\dd^3k}{(2\pi)^3}
+\end{equation*}
+The frequency of each harmonic oscillator then is:
+\begin{equation}
+  \omega^2 = k^2 - \frac{a''}{a}
+\end{equation}
+which is (conformal) time dependent, since $ a'' / a = 2 / \eta^2 $. Note that this term is small at later times, but big at earlier times, and this affects the nature of the harmonic oscillator:
+\begin{itemize}
+  \item $ \omega^2 > 0 $ for $ k \eta > \sqrt{2} $ (sub-horizon), $ f'' = - k^2 f \implies f \sim e^{\pm \img k \eta} $
+  \item $ \omega^2 < 0 $ for $ k \eta < \sqrt{2} $ (super-horizon), tachyonic regime $ f'' = \frac{2}{\eta^2} f \implies f \sim e^{\text{something positive}} $ explodes
+\end{itemize}
+This happens at the point shown in fig, at which $ k \sim \eta^{-1} $, i.e. when the perturbation exits from the moving (conformal) Hubble radius: this happens later for larger $ k $, i.e. for smaller frequencies.
+
+Let's solve the \emph{Makhanov--Sasaki equation}:
+\begin{equation}
+  f_\ve{k}'' + \left( k^2 - \frac{a''}{a} \right) f_\ve{k} = 0
+\end{equation}
+
+\subsection{Quantization of the harmonic oscillator, again}
+
+In the usual harmonic oscillator $ \ddot{q} + \omega^2 q = 0 $, with $ \omega $ constant, the usual quantization prcedure is:
+\begin{enumerate}
+  \item define $ p \equiv \dot{q} $, promote them to operators and impose $ [\hat{q} , \hat{p}] = \img $ (which is time-independent);
+  \item expand in normal modes through creation and annihilation operators:
+    \begin{equation*}
+      \hat{q}(t) = q(t) a + q^*(t) a\dg
+      \qquad \qquad
+      \hat{p}(t) = p(t) a + p^*(t) a\dg
+    \end{equation*}
+    These ladder operators are time-independent, but this is not compulsory, while $ q(t) $ is the solution to the EOM;
+  \item normalization:
+    \begin{equation*}
+      [\hat{q} , \hat{p}] = \img
+      \quad \iff \quad
+      W[q][a , a\dg] = \id
+    \end{equation*}
+    where $ W[q] = \img (\dot{q} q^* - \dot{q}^* q) $ is the Wronskian of the solution, which is constant in this case, thus allowing to choose $ [a , a\dg] = 1 $ and $ W[q] = 1 $;
+  \item define the vacuum state such that $ a \ket{\emptyset} = 0 $, and then define $ a\dg \ket{\emptyset} = \ket{1} $ and so on;
+  \item choose solutions $ q(t) $ in order that $ \ket{\emptyset} $ is the ground state of the Hamiltonian.
+\end{enumerate}
+Now take the Hamiltonian of the harmonic oscillator:
+\begin{equation*}
+  \begin{split}
+    H
+    & = \frac{1}{2} \hat{p}^2 + \frac{\omega^2}{2} \hat{q}^2 \\
+    & = \frac{1}{2} \left[ \hat{a}^2 (\dot{q}^2 + \omega^2 q^2) + {a\dg}^2 (\dot{q}^2 + \omega^2 q^2)^* + (\abs{\dot{q}}^2 + \omega^2 \abs{q}^2) (aa\dg + a\dg a) \right]
+  \end{split}
+\end{equation*}
+In order to have $ H \ket{\emptyset} \propto \ket{\emptyset} $, it is necessary that $ \dot{q}^2 + \omega^2 q^2 = 0 $, i.e. $ \dot{q} = \pm \img \omega q $ (positive and negative ``energy" solutions). The Wronskian is $ W[q] = \mp 2 \omega \abs{q}^2 $, so $ W = 1 $ requires the negative solution, i.e. the positive energy solution, and $ \abs{q}^2 = \frac{1}{2\omega} $. Therefore, the only solution for $ W[q] = 1 $ is:
+\begin{equation}
+  q(t) = \frac{1}{\sqrt{2\omega}} e^{- \img \omega t}
+\end{equation}
+Inserting this in the above Hamiltonian:
+\begin{equation}
+  H = \omega \left( \frac{1}{2} + a\dg a \right)
+\end{equation}
+which is the usual Hamiltonian for the harmonic oscillator, obtained in an different and more general way. Now, to study quantum fluctuations, notice that $ \braket{\emptyset | \hat{q} | \emptyset} = 0 $ and:
+\begin{equation*}
+  \braket{\emptyset | \abs{\hat{q}}^2 | \emptyset} = \braket{\emptyset | (q^* a\dg + q a) (qa + q^* a\dg) | \emptyset} = \abs{q}^2 \braket{\emptyset | a a\dg | \emptyset} = \abs{q}^2 = \frac{1}{2\omega}
+\end{equation*}
+This agrees with usual intuition, since a larger frequency yields a smaller dispersion.
+
+\subsubsection{Time-dependent harmonic oscillator}
+
+Consider the Makhanov--Sasaki eq:
+\begin{equation*}
+  f_\ve{k}'' + \left( k^2 - \frac{2}{\eta^2} \right) f_\ve{k} = 0
+\end{equation*}
+Since the Lagrangian above defined is canonical, define the canonical momentum as:
+\begin{equation*}
+  \pi_\ve{k} \ewquiv \frac{\pa \lag}{\pa \dot{f}_\ve{k}} = \dot{f}_\ve{k}^2
+\end{equation*}
+and define the canonical commutation relations:
+\begin{equation*}
+  [\hat{f}(\eta , \ve{x}) , \hat{\pi}(\eta , \ve{y})] = \delta^{(3)}(\ve{x} - \ve{y})
+  \qquad \qquad
+  [\hat{f}_\ve{k}(\eta , \ve{x}) , \hat{\pi}_{\ve{k}'}(\eta , \ve{x})] = \delta^{(3)}(\ve{k} - \ve{k}')
+\end{equation*}
+Then, introducing ladder operators and performing the mode expansion:
+\begin{equation*}
+  \hat{f}_\ve{k}(\eta) = f_k(\eta) a_\ve{k} + f_k^*(\eta) a_\ve{k}\dg
+\end{equation*}
+Notice that the solutions of the EOM only depend on $ k $, not on $ \ve{k} $, due to homogeneity isotropy of the background. In general, $ \im f_k \ssq \C $, so it has both a module and a phase. Now, perform normalization through the Wronskian: $ W[f_k] [a_\ve{k} , a_\ve{k}\dg] = \id $, so choose:
+\begin{equation*}
+  W[f_k] = 1
+  \qquad \qquad
+  [a_\ve{k} , a_\ve{k'}\dg] = \delta^{(3)}(\ve{k} - \ve{k}')
+\end{equation*}
+Now, we have to define the Fock vacuum $ \ket{\Omega}$: the problem is that now the set of ladder operators is time-dependent, so in general the vacuums at two different conformal times would be different. Luckily, as $ \eta \ra - \infty $ we have $ \omega^2 \ra k^2 $, so choose the vacuum $ \keŧ{\Omega} $ to be the Fock vacuum at $ \tau \ra - \infty $, known as the \emph{Bunch--Davies vacuum}. This choice determines:
+\begin{equation*}
+  f_k(\eta) = \frac{1}{\sqrt{2\omega_k}} e^{-\img \omega_k \eta} \simeq \frac{1}{\sqrt{2k}} e^{-\img k \eta}
+\end{equation*}
+With these boundary conditions, it is possible to solve the Makhanov--Sasaki eq in slow-roll:
+\begin{equation}
+  f_k(\eta) = \alpha \frac{e^{-\img k \eta}}{\sqrt{2k}} \left( 1 - \frac{\img}{k \eta} \right)) + \beta \frac{e^{\img k \eta}}{\sqrt{2k}} \left( 1 + \frac{\img}{k \eta} \right)
+\end{equation}
+The Bunch--Davies choice of vacuum implies $ \beta = 0 $, hence the accepted solutions is:
+\begin{equation}
+  f_k(\eta) = \frac{e^{-\img k \eta}}{\sqrt{2k}} \left( 1 - \frac{\img}{k \eta} \right)
+\end{equation}
+Note that the module $ \abs{f_k(\eta)} $ diverges at $ \eta = 0 $, i.e. before horizon crossing at $ \eta \sim 1 / k $, but let's ignore this and compute mean and variance:
+\begin{equation*}
+  \braket{\Omega | \hat{f}_k | \Omega} = 0
+  \qquad \qquad
+  \braket{\Omega | \abs{\hat{f}_k}^2 | \Omega} = \abs{f_k}^2 = \frac{1}{2k} \left( 1 + \frac{1}{k^2 \eta^2} \right)
+\end{equation*}
+In 3D there is an additional term to compute (see Baumann):
+\begin{equation*}
+  \braket{\Omega | f(\eta , \ve{0}) f(\tau , \ve{0}) | \Omega} = \dots = \int \frac{\dd^3k}{(2\pi)^3} \abs{f_k}^2 = \int \dd \ln k \frac{k^3}{2\pi^2} \abs{f_k}^2
+\end{equation*}
+Now, define the \bctxt{power spectrum of $ f $}:
+\begin{equation}
+  \Delta_f^2(k,\eta) = \frac{k^3}{2\pi^2} \abs{f_k(\eta)}^2
+\end{equation}
+()which at the end will become the CMB) In this case:
+\begin{equation*}
+  \Delta_f^2(k,\eta) = \frac{k^2}{4\pi^2} \left( 1 + \frac{1}{k^2 \eta^2} \right)
+\end{equation*}
+We were interested in the fluctuations of the inflaton field $ \varphi $, i.e. $ \delta \varphi = f / a $, hence $ \Delta_{\delta \varphi}^2 = a^{-2} \Delta_f^2 $, so using $ a \sim - (H \eta)^{-1} $:
+\begin{equation}
+  \Delta_{\delta \varphi}^2(k , \eta) = \frac{H^2}{4\pi^2} (1 + k^2 \eta^2)
+\end{equation}
+A miracle has happened: the power spectrum of $ f $ was singular at $ \eta = 0 $ (circa when it exits from the horizon), while that of $ \delta \varphi $ does not, since it is regulated by the scale parameter $ a $. This is known as the flat power spectrum, since sub-horizon it is circa constant (if normalized in log scale like here). At horizon exit:
+\begin{equation*}
+  \Delta_{\delta \varphi}(k) = \left( \frac{H^2}{4\pi^2} \right) \bigg\vert_{\tau = k^{-1}}
+\end{equation*}
+
+Per $ f_k $, il modulo rappresenta il numero di occupazione degli stati, quindi quando esplode c'è la transizione da quantum a classical (come particelle: poche particelle sono sistema quantistico, $ \sim 10^23 $ possono iniziare a comportarsi come classico)
 
 
 
