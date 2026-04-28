@@ -1581,15 +1581,215 @@ which is known as the \emph{fundamental theorem of line integrals}.
 
 A key geometrical character of metric manifolds is curvature. In order to study the curvature of a metric manifold, one first needs to geodesics, i.e. the generalization of straight lines in Euclidean space. These have two defining properties: they are the unique shortest path between their endpoints, and they are the only curves parametrized with zero acceleration. In the context of metric manifolds, the first definition is rather complicated, so the second is adopted: in order to make it well-defined, it is necessary to introduce a coordinate-independent notion of directional derivative.
 
-% define tangential directional derivative as tangential projection of equation above Eq. 1.4.10
-% to define acceleration \gamma'', one would need to compare \gamma' at different points, but these are vectors of two completely different tangent spaces, so need to introduce connection
+In the Euclidean case, the \emph{directional derivative} of $ Y \in \xv(\R^n) $ along $ \ve{v} \in T_p\R^n $ is defined by \eref{eq:directional-derivative-vector-field} and \eref{eq:directional-derivative-component}:
+\begin{equation*}
+  D_\ve{v} Y = v^i \frac{\pa Y^j}{\pa x^i} (p) \frac{\pa}{\pa x^j} \bigg\vert_p
+\end{equation*}
+which is still $ D_\ve{v} Y \in T_p\R^n $. This definition can be generalized to a directional derivative along $ X \in \xv(\R^n) $ as:
+\begin{equation}
+  D_X Y = X(Y^i) \frac{\pa}{\pa x^i}
+\end{equation}
+which is instead $ D_X Y \in \xv(\R^n) $. This notion can be applied to curves on Euclidean submanifolds. Consider a curve $ \gamma : I \ra \man $, where $ \man \ssq \R^n $ is an embedded submanifold, so that its acceleration can be coputed as:
+\begin{equation*}
+  \gamma''(t) = \ddot{\gamma}^i(t) \frac{\pa}{\pa x^i} \bigg\vert_{\gamma(t)}
+\end{equation*}
+To think of $ \gamma $ as a geodesic in $ \man $, it needs to be ``as straight as possible": defining the \emph{tangential projector} $ \pi^\top : T_{\gamma(t)}\R^n \ra T_{\gamma(t)}\man $ as an orthogonal projection, it is reasonable to state that $ \gamma $ is as straight as possible if its tangential acceleration $ {\gamma''}^\top(t) \equiv \pi^\top(\gamma''(t)) $ vanishes.
 
+Clearly, this technique cannot be generalized to abstract metric manifolds, in which there is no ambient Euclidean space. Indeed, in a generic metric manifold $ \man $, the velocity vector of a curve $ \gamma : I \ra \man $ is a well-defined vector $ \gamma'(t) \in T_{\gamma(t)}\man $, while its acceleration has no such coordinate-independent interpretation.
 
+\begin{example}{Coordinate-dependence of $ \gamma''(t) $ in $ \R^2 $}{coord-dep-acc}
+  Consider the parametrization of the unit circle in $ \R^2 $ in Cartesian coordinates $ \gamma(t) = (x(t) , y(t)) = (\cos t , \sin t) $, so that its acceleration vector is:
+  \begin{equation*}
+    \gamma''(t) = x''(t) \frac{\pa}{\pa x} \bigg\vert_{\gamma(t)} + y''(t) \frac{\pa}{\pa y}_{\gamma(t)} = - \cos t \frac{\pa}{\pa x} \bigg\vert_{\gamma(t)} - \sin t \frac{\pa}{\pa y} \bigg\vert_{\gamma(t)}
+  \end{equation*}
+  On the contrary, in polar coordinates $ \gamma(t) = (r(t) , \vartheta(t)) = (1 , t) $, so:
+  \begin{equation*}
+    \gamma''(t) = r''(t) \frac{\pa}{\pa r} \bigg\vert_{\gamma(t)} + \vartheta''(t) \frac{\pa}{\pa \vartheta}_{\gamma(t)} = 0
+  \end{equation*}
+  which clearly shows the coordinate-dependence of $ \gamma''(t) $.
+\end{example}
 
+As shown in \exref{ex:coord-dep-acc}, the problem with defining $ \gamma''(t) $ by differentiating $ \gamma'(t) $ with respect to $ t $ is that it is necessary to take the folling limit:
+\begin{equation*}
+  \gamma''(t) = \lim_{h \ra 0} \frac{\gamma'(t + h) - \gamma'(t)}{h}
+\end{equation*}
+However, $ \gamma'(t + h) \in T_{\gamma(t + h)}\man $ while $ \gamma'(t) \in T_{\gamma(t)}\man $, but these are entirely different vector spaces, so it does not make sense to subtract vectors from them. In order to define a coordinate-independent way to differentiate vector fields along curves, then, it is necessary to ``connect" nearby tangent spaces.
 
+\subsection{Koszul connections}
 
+It is easiest to define first a way to differentiate sections of vector bundles.
 
+\begin{definition}{Koszul connection}{koszul-connection}
+  Let $ \pi : E \ra \man $ be a smooth vector bundle over a smooth manifold $ \man $. A \bcdef{Koszul connection} in $ E $ is a map:
+  \begin{equation}
+    \na : \xm \times \Gamma(E) \ra \Gamma(E) : (X , Y) \mapsto \na_X Y
+  \end{equation}
+  with the following properties:
+  \begin{enumerate}
+    \item \label{item:kc-1} $ \na_X Y $ is $ \cm $-linear in $ X $, i.e.:
+      \begin{equation*}
+        \na_{f_1 X_1 + f_2 X_2} Y = f_1 \na_{X_1} Y + f_2 \na_{X_2} Y
+        \quad
+        \forall f_1 , f_2 \in \cm , X_1 , X_2 \in \xm , Y \in \Gamma(E)
+      \end{equation*}
+    \item \label{item:kc-2} $ \na_X Y $ is $ \R $-linear in $ Y $, i.e.:
+      \begin{equation*}
+        \na_X (c_1 Y_1 + c_2 Y_2 = c_1 \na_X Y_1 + c_2 \na_X Y_2
+        \quad
+        \forall c_1 , c_2 \in \R , X \in \xm , Y_1 , Y_2 \in \Gamma(E)
+      \end{equation*}
+    \item \label{item:kc-3} for all $ f \in \cm , X \in \xm , Y \in \Gamma(E) $:
+      \begin{equation}
+        \na_X (f Y) = f \na_X Y + X(f) Y
+      \end{equation}
+  \end{enumerate}
+\end{definition}
 
+Since no other kinds of connections are considered in these notes, Koszul connections are also called simply connections. $ \na_X Y $ is the \emph{covariant derivative of $ Y $ along $ X $}.
+
+Although the Koszul connection is defined by its action on global sections of the vector bundle, it is truly a local operator.
+
+\begin{lemma}{Locality of Koszul connections}{connection-locality}
+  Let $ \na $ be a Koszul connection in a smooth vector bundle $ \pi : E \ra \man $. For every $ X \in \xm $, $ Y \in \Gamma(E) $ and $ p \in \man $, the covariant derivative $ \na_X Y \vert_p $ depends only on the values of $ X $ and $ Y $ in an arbitrarily small neighbourhood of $ p $: more precisely, if $ X = \tilde{X} $ and $ Y = \tilde{Y} $ in a neighbourhood of $ p $, then $ \na_X Y \vert_p = \na_{\tilde{X}} \tilde{Y} \vert_p $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Replacing $ Y $ with $ Y - \tilde{Y} $, it suffices to prove that $ \na_X Y \vert_p = 0 $ if $ Y = 0 $ on a neighbourhood of $ p $. Suppose $ Y \in \Gamma(E) : Y \vert_U \equiv 0 $ on $ U \in \tp(\man) : U \ni p $, and consider a bump function $ \varphi \in \cm $ with support in $ U $ such that $ \varphi(p) = 1 $. By hypothesis, then, $ \varphi Y \equiv 0 $ on all of $ \man $, so for every $ X \in \xm $:
+    \begin{equation*}
+      \na_X (\varphi Y) = 0
+      \quad \implies \quad
+      X(\varphi) Y + \varphi \na_X Y = 0
+    \end{equation*}
+    Since $ Y \equiv 0 $ on $ \supp \varphi $, the first term is identically zero, so evaluating the remaining expression at $ p $ shows that $ \na_X Y \vert_p = 0 $. The argument for $ X $ is similar.
+  \end{proof}
+\end{proofbox}
+
+\begin{proposition}{Restrictions of Koszul connections}{connection-restriction}
+  Let $ \na $ be a Koszul connection in a smooth vector bundle $ \pi : E \ra \man $. For every $ U \in \tp(\man) $, there is a unique Koszul connection $ \na^U $ on the restricted bundle $ E \vert_U $ that satisfies the following relation for every $ X \in \xm , Y \in \Gamma(E) $:
+  \begin{equation}
+    \na^U_{X\vert_U} (Y \vert_U) = (\na_X Y) \vert_U
+    \label{eq:connection-restriction}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    First, prove uniqueness. Suppose $ \na^U $ is any such connections, and consider arbitrary $ X \in \xv(U) , Y \in \Gamma(E \vert_U) $. Given $ p \in U $, it is possible to use a bump function to construct $ \tilde{X} \in \xm : \tilde{X} \vert_U = X $ and $ \tilde{Y} \in \Gamma(E) : \tilde{Y} \vert_U = Y $, and then by \lref{lemma:connection-locality} and \eref{eq:connection-restriction}:
+    \begin{equation*}
+      \na_X^U Y \vert_p = \na^U_{\tilde{X} \vert_U} (\tilde{Y} \vert_U) \vert_p = (\na_{\tilde{X}} \tilde{Y}) \vert_p
+    \end{equation*}
+    The right-hand side is completely determined by $ \na $, so this shows that $ \na^U $ is uniquely defined if it exists.
+
+    To prove existence, given $ X \in \xv(U) $ and $ Y \in \Gamma(E \vert_U) $, for every $ p \in U $ construct $ \tilde{X} \in \xm $ and $ \tilde{Y} \in \Gamma(E) $ as above, and define $ \na_X^U Y \vert_p $ by the above relation. This is independent of the choice of $ \tilde{X} $ and $ \tilde{Y} $ by \lref{lemma:connection-locality}, moreover it is smooth since the same formula holds on some neighbourhood of $ p $ and it can be shown to satisfy the conditions of \dref{def:koszul-connection}.
+  \end{proof}
+\end{proofbox}
+
+Typically, the restriction of $ \na $ to $ U $ is simply denoted by $ \na^U \equiv \na $ for ease of notation, since by \pref{prop:connection-restriction} there is no ambiguity in doing so. With this result, it is possible to prove a stronger result than \lref{lemma:connection-locality}, as it can be shown that only the value $ X_p $ is necessary to compute $ \na_X Y \vert_p $.
+
+\begin{proposition}{Stronger locality of Koszul connections}{connection-locality-stronger}
+  Let $ \na $ be a Koszul connection in a smooth vector bundle $ \pi : E \ra \man $. For every $ X \in \xm $, $ Y \in \Gamma(E) $ and $ p \in \man $, the covariant derivative $ \na_X Y \vert_p $ depends only on $ X_p $ and on the values $ Y $ in an arbitrarily small neighbourhood of $ p $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    The claim on $ Y $ has been proved in \lref{lemma:connection-locality}. To prove the claim on $ X $, it suffices by linearity to assume $ X_p = 0 $ and $ \na_X Y \vert_p = 0 $. Choosing coordinates $ (x^i) $ on $ U \in \tp(\man) : U \ni p $ and writing $ X = X^i \pa_i $, by \pref{prop:connection-restriction}, for every $ Y \in \Gamma(E \vert_U) $:
+    \begin{equation*}
+      \na_X Y \vert_p = \na_{X^i \pa_i} Y \vert_p = X^i_p \na_{\pa_i} Y \vert_p = 0
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+By \pref{prop:connection-restriction} and \pref{prop:connection-locality-stronger}, it is possible to make sense of $ \na_v Y $ with $ v \in T_p\man $ and $ Y $ a smooth local section defined only on some neighourhood of $ p $: let $ X $ be a smooth vector field on a neighbourhood of $ p $ such that $ X_p = v $, and set $ \na_v Y \equiv \na_X Y \vert_p $, which does not depend on the extension chosen by \pref{prop:connection-locality-stronger}.
+
+\subsubsection{Connections on tangent bundles}
+
+Let $ \man $ be a smooth manifold. A \emph{connection on $ \man $} is a Koszul connection in $ T\man $, i.e. a map $ \na : \xm \times \xm \ra \xm $ satisfying \dref{def:koszul-connection}.
+
+In order to perform computations, it is necessary to examine how a connection appears in terms of a local frame, so let $ (E^i) $ be a smooth local frame for $ T\man $ on some $ U \in \tp(\man) $. Then, $ \na_{E_i} E_j $ can be expanded as follows:
+\begin{equation}
+  \na_{E_i} E_j = \Gamma^k_{ij} E_k
+  \label{eq:connection-coefficients}
+\end{equation}
+where $ \Gamma^k_{ij} : U \ra \R $ are $ n^3 $ smooth functions on $ U $, called the \bctxt{connection coefficients} of $ \na $ in the given frame.
+
+\begin{lemma}{Connection coefficients}{covariant-derivative-vector}
+  Let $ \man $ be a smooth $ n $-manifold, and let $ \na $ be a connection in $ T\man $. Let $ (E^i) $ be a smooth local frame over some $ U \in \tp(\man) $, and let $ \{\Gamma^j_{ij}\}_{i,j,k = 1 , \dots , n} $ be the connection coefficients of $ \na $ in this frame. Writing $ X , Y \in \xv(U) $ as $ X = X^i E_i $ and $ Y = Y^j E_j $:
+  \begin{equation}
+    \na_X Y = \left[ X(Y^k) + \Gamma^k_{ij} X^i Y^j \right] E_k
+    \label{eq:covariant-derivative-vector}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By \dref{def:koszul-connection}:
+    \begin{equation*}
+      \na_X Y = \na_X (Y^j E_j) = X(Y^j) E_j + Y^j \na_{X^i E_i} E_j = X(Y^j) E_j + X^i Y^j \Gamma^k_{ij} E_k
+    \end{equation*}
+    Renaming the first dummy index yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+Under a frame transformations, connections coefficients have a non-homogeneus transformation law, thus showing that they are not the components of a tensor.
+
+\begin{proposition}{Transformation law for connection coefficients}{}
+  Let $ \man $ be a smooth manifold, and let $ \na $ be a connection in $ T\man $. Let $ (E_i) $ and $ (\tilde{E}_i) $ be two smooth local frames for $ T\man $ on some $ U \in \tp(\man) $ related by $ \tilde{E}_i = \tensor{A}{^j_i} E_j $, for some matrix of smooth functions $ [\tensor{A}{^j_i}] $, and denote the connection coefficients of $ \na $ in these frames respectively as $ \Gamma^k_{ij} $ and $ \tilde{\Gamma}^k_{ij} $. Then:
+  \begin{equation}
+    \tilde{\Gamma}^k_{ij} = \tensor{(A^{-1})}{^k_p} \tensor{A}{^q_i} \left[ \tensor{A}{^r_j} \Gamma^p_{qr} + E_q(\tensor{A}{^p_j}) \right]
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By direct computation:
+    \begin{equation*}
+      \begin{split}
+        \tilde{\Gamma}^k_{ij} \tilde{E}_k
+        & = \na_{\tilde{E}_i} \tilde{E_j} = \na_{\tensor{A}{^q_i} E_q} (\tensor{A}{^r_i} E_r) = \tensor{A}{^q_i} \na_{E_q} (\tensor{A}{^r_i} E_r) \\
+        & = \tensor{A}{^q_i} \left[ \tensor{A}{^r_i} \Gamma^p_{qr} E_p + E_q(\tensor{A}{^r_i}) E_r \right] = \tensor{A}{^q_i} \left[ \tensor{A}{^r_i} \Gamma^p_{qr} + E_q(\tensor{A}{^p_i}) \right] E_p
+      \end{split}
+    \end{equation*}
+    Writing $ E_p = \tensor{(A^{-1})}{^k_p} \tilde{E}_k $ completes the proof.
+  \end{proof}
+\end{proofbox}
+
+The importance of connections comes from the fact that it is always possible to find one on a smooth manifold.
+
+\begin{theorem}{Existence of connections on tangent bundles}{}
+  The tangent bundle of every smooth manifold admits a Koszul connection.
+\end{theorem}
+
+\begin{proofbox}
+  \begin{proof}
+    First, an auxiliary result is needed.
+
+    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Construction of connections}{construction-connection}
+      Let $ \man $ be a smooth $ n $-manifold which admits a global frame $ (E_i) $. \eref{eq:covariant-derivative-vector} gives a one-to-one correspondence between connections in $ T\man $ and choices of $ n^3 $ smooth $ \R $-functions $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $ on $ \man $.
+    \end{lemma}
+
+    \begin{proofbox}
+      \begin{proof}
+        Every connection determines functions $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $ by \eref{eq:connection-coefficients}, which satisfy \eref{eq:covariant-derivative-vector} by \lref{lemma:covariant-derivative-vector}.
+
+        On the other hand, given $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $, it is possible to define $ \na_X Y $ by \eref{eq:covariant-derivative-vector}: the resulting expression is clearly smooth if $ X $ and $ Y $ are smooth, $ \R $-linear in $ Y $ and $ \cm $-linear in $ X $, and the product rule in \dref{def:koszul-connection} follows from a straightforward calculation.
+      \end{proof}
+    \end{proofbox}
+
+    Let $ \man $ be a smooth manifold, and cover $ \man $ with coordinate charts $ \{U_\alpha\} $: by \lref{lemma:construction-connection}, the existence of a connection $ \na^\alpha $ on each $ U_\alpha $ is guaranteed. Choosing a partition of unity $ \{\varphi_\alpha\} $ subordinate to $ U_\alpha $, define:
+    \begin{equation*}
+      \na_X Y \equiv \sum_\alpha \varphi_\alpha \na^\alpha_X Y
+    \end{equation*}
+    Since the set of supports of the $ \varphi_\alpha $ functions is locally finite, the right-hand side contains only finitely-many non-zero terms in a neighbourhood of each point, so it defineds a smooth vector field on $ \man $. Moreover, this definition is manifestly $ \R $-linear in $ Y $ and $ \cm $-linear in $ X $. For the product rule:
+    \begin{equation*}
+      \na_X (f Y) = \sum_\alpha \varphi_\alpha \left[ X(f) Y + f \na^\alpha_X Y \right] = X(f) Y \sum_\alpha \varphi_\alpha + f \sum_\alpha \varphi_\alpha \na^\alpha_X Y = X(f) \na_X Y + f \na_X Y
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
+
+\subsubsection{Covariant derivatives of tensor fields}
 
 
 
@@ -1668,7 +1868,6 @@ The dependency on $ X $ can therefore be eliminated, and in components:
 A sloppy notation is often used: $ (\na_\nu Y)^\mu \equiv \na_\nu Y^\mu $. This must not be confused as the covariant derivative of $ Y^\mu $. Moreover $ \na_\nu Y^\mu \equiv \tensor{Y}{^\mu_{;\nu}} $, while $ \pa_\mu f \equiv f_{,\mu} $. On the coordinate basis $ e_\mu = \pa_\mu $, then:
 \begin{equation}
   \tensor{Y}{^\mu_{;\nu}} = \tensor{Y}{^\mu_{,\nu}} + \Gamma^\mu_{\nu \rho} Y^\rho
-  \label{eq:covariant-derivative-vector}
 \end{equation}
 Note that $ \tensor{Y}{^\mu_{;\nu}} $ is the $ \mu^{\text{th}} $ component of $ \na_\nu Y $, while $ \tensor{Y}{^\mu_{,\nu}} $ is the partial derivative of $ Y^{\mu} $ along $ \pa_{\nu} $.
 
