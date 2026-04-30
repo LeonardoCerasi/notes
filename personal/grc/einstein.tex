@@ -1,84 +1,80 @@
 \selectlanguage{english}
 
-The force of gravity is mediated by a gravitational field, which is identified with a metric $ g_{\mu \nu}(x) $ on a 4-dimensional Lorentzian manifold called spacetime. This metric is a dynamical object, as all other fields in Nature, thus the laws governing its dynamics must be studied.
+The force of gravity is mediated by a gravitational field, which is identified with a metric $ g(x) $ on a $ n $-dimensional Lorentzian manifold called \emph{spacetime}. This metric is a dynamical object, as all other fields in Nature, thus the laws governing its dynamics must be studied.
 
-\section{Einstein-Hilbert action}
+\section{Geometrodynamics in vacuum}
 
-Differential Geometry places strict limits to the possible actions that can be formulated, ensuring it is something intrinsic to the metric and independent on the choice of coordinates.
+Differential Geometry poses strict limits to the possible actions that can be formulated, ensuring it is something intrinsic to the metric and independent on the choice of coordinates.
 
-Spacetime is a Lorentzian manifold $ \mathcal{M} $, thus, recalling the canonical volume form in \eref{eq:volume-form}, there needs to be a metric-dependent scalar function on $ \mathcal{M} $: the obvious non-trivial choice is the Ricci scalar. The resulting action is the \bctxt{Einstein--Hilbert action}:
+Spacetime is a Lorentzian $ n $-manifold $ \mathcal{M} $, thus, recalling the canonical volume form in \eref{eq:volume-form}, there needs to be a metric-dependent scalar function on $ \mathcal{M} $: the obvious non-trivial choice is the Ricci scalar. The resulting action is the \bctxt{Einstein--Hilbert action}:
 \begin{equation}
-  \mathcal{S} = \int \dd^4 x \sqgm \, R
+  \act = \int \dd^n x \sqg \, R
   \label{eq:einstein-hilbert-action}
 \end{equation}
-where the negative sign makes it manifest that the metric has signature $ (-,+,+,+) $. Schematically, the Riemann tensor is $ R \sim \pa \Gamma + \Gamma \Gamma $, while $ \Gamma \sim \pa g $, thus the Einstein-Hilbert action is second order in derivatives of the metric, like most other actions (for bosonic fields) in physics.
+This is the simplest non-trivial action for the gravitational field allowed by Differential Geometry.
+Schematically, the Riemann tensor is $ R \sim \pa \Gamma + \Gamma \Gamma $, while $ \Gamma \sim \pa g $, thus the Einstein--Hilbert Lagrangian is second order in derivatives of the metric, like most other Lagrangians of bosonic fields in physics.
 
-\subsection{Equations of motion}
-
-To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consider a fixed initial metric $ g_{\mu \nu}(x) $ and a perturbation $ g_{\mu \nu}(x) \mapsto g_{\mu \nu}(x) + \delta g_{\mu \nu}(x) $. For the inverse metric:
-\begin{equation*}
-  g_{\mu \nu} g^{\nu \rho} = \delta_\mu^\rho
-  \quad \implies \quad
-  \delta g_{\mu \nu} g^{\nu \rho} + g_{\mu \nu} \delta g^{\nu \rho} = 0
-  \quad \implies \quad
-  \delta g^{\mu \nu} = - g^{\mu \rho} g^{\nu \sigma} \delta g_{\rho \sigma}
-\end{equation*}
-
-\begin{lemma}{}{lemma-sqgm}
-  The variation of $ \sqgm $ is:
+\begin{observation}{Dimensionale analysis}{}
+  The Einstein--Hilbert action in \eref{eq:einstein-hilbert-action} does not have the right dimensions, which will be necessary when considering the presence of matter.
+  In a $ 4 $-dimensional spacetime, if $ x^\mu $ has dimension of length, then $ g_{\mu \nu} $ is dimensionless and the Ricci scalar is $ [R] = L^{-2} $. Including the integration measure, $ [\act] = L^2 $, but it must have the same dimension of $ [\hbar] =  M L^2 T^{-1} $ (i.e. energy $ \times $ time). Thus, the action with the right dimension is:
   \begin{equation}
-    \delta \sqgm = - \frac{1}{2} \sqgm\, g_{\mu \nu} \delta g^{\mu \nu}
+    \act = \frac{c^3}{16 \pi G} \int \dd^4 x \sqg \, R
+    \label{eq:einstein-hilbert}
   \end{equation}
-\end{lemma}
+\end{observation}
 
-\begin{proofbox}
-  \begin{proof}
-    Recall that for invertible matrices $ \log \det \mt{A} = \tr \log \mt{A} $, i.e. $ (\det \mt{A})^{-1} \delta (\det \mt{A}) = \tr (\mt{A}^{-1} \delta \mt{A}) $. Applying this to the metric:
-    \begin{equation*}
-      \delta \sqgm = \frac{1}{2} \frac{1}{\sqgm} \delta (-\mt{g}) = \frac{1}{2} \frac{1}{\sqgm} (-\mt{g}) g^{\mu \nu} \delta g_{\mu \nu} = \frac{1}{2} \sqgm\, g^{\mu \nu} \delta g_{\mu \nu} = - \frac{1}{2} \sqgm\, g_{\mu \nu} \delta g^{\mu \nu}
-    \end{equation*}
-    which is the thesis.
-  \end{proof}
-\end{proofbox}
+To determine the Euler--Lagrange equations of the Einstein--Hilbert action, consider a fixed initial metric $ g(x) $ and a perturbation $ g(x) \mapsto g(x) + \delta g(x) $.
 
-\begin{lemma}{}{}
-  The variation of the Christoffel symbols is:
+\begin{lemma}{Metric variations}{metric-variations}
+  Let $ (\man , g) $ be a metric manifold. Under a variation $ g(x) \mapsto g(x) + \delta g(x) $:
   \begin{equation}
-    \delta \Gamma^\rho_{\mu \nu} = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
+    \delta g_{\mu \nu} \equiv (\delta g)_{\mu \nu}
+    \qquad \quad
+    \delta g^{\mu \nu} = - g^{\mu \alpha} g^{\nu \beta} \delta g_{\alpha \beta}
+    \qquad \quad
+    \delta \sqg = \frac{\sigma}{2} \sqg\, g_{\mu \nu} \delta g^{\mu \nu}
   \end{equation}
-\end{lemma}
-
-\begin{proofbox}
-  \begin{proof}
-    First note that, although $ \Gamma^\rho_{\mu \nu} $ is not a tensor, $ \delta \Gamma^\rho_{\mu \nu} $ is, for it is the difference of two Christoffel symbols, one computed with $ g_{\mu \nu} $ and the other with $ g_{\mu \nu} + \delta g_{\mu \nu} $, but the extra term in the transformation law of $ \Gamma^\rho_{\mu \nu} $ is independent of the metric, thus it cancels out.
-
-    This observation allows working in normal coordinates at $ p \in \mathcal{M} $, so that $ \pa_\rho g_{\mu \nu} = 0 $ and $ \Gamma^\rho_{\mu \nu} = 0 $ at that point. Then, to linear order in the variation, at $ p $:
-    \begin{equation*}
-      \delta \Gamma^\rho_{\mu \nu} = \frac{1}{2} g^{\rho \sigma} ( \pa_\mu \delta g_{\sigma \nu} + \pa_\nu \delta g_{\sigma \mu} - \pa_\sigma \delta g_{\mu \nu} ) = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
-    \end{equation*}
-    This is a tensor equation, hence valid in all coordinate system and, being $ p $ arbitrary, on all $ \mathcal{M} $.
-  \end{proof}
-\end{proofbox}
-
-\begin{lemma}{}{}
-  The variation of the Ricci tensor is:
+  \begin{equation}
+    \delta {\Gamma^\rho_{\mu \nu}}\od1 = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
+  \end{equation}
   \begin{equation}
     \delta R_{\mu \nu} = \na_\rho \delta \Gamma^\rho_{\mu \nu} - \na_\nu \delta \Gamma^\rho_{\rho \mu}
   \end{equation}
+  where $ \sigma $ is the parity of the signature of $ g $.
 \end{lemma}
 
 \begin{proofbox}
   \begin{proof}
-    Working in normal coordinates, the Riemann tensor becomes $ \tensor{R}{^\sigma_{\mu \rho \nu}} = \pa_\rho \Gamma^\sigma_{\nu \mu} - \pa_\nu \Gamma^\sigma_{\rho \mu} $, so:
+    $ \delta g_{\mu \nu} \equiv (\delta g)_{\mu \nu} $ is a definition. For the inverse metric:
     \begin{equation*}
-      \delta \tensor{R}{^\sigma_{\mu \rho \nu}} = \pa_\rho \delta \Gamma^\sigma_{\nu \mu} - \pa_\nu \delta \Gamma^\sigma_{\rho \mu} = \na_\rho \delta \Gamma^\sigma_{\nu \mu} - \na_\nu \delta \Gamma^\sigma_{\rho \mu}
+      g_{\mu \nu} g^{\nu \rho} = \delta_\mu^\rho
+      \quad \implies \quad
+      \delta g_{\mu \nu} g^{\nu \rho} + g_{\mu \nu} \delta g^{\nu \rho} = 0
+      \quad \implies \quad
+      \delta g^{\mu \nu} = - g^{\mu \rho} g^{\nu \sigma} \delta g_{\rho \sigma}
     \end{equation*}
-    This is a tensor equation, hence valid in all coordinates systems and on all $ \mathcal{M} $. Contracting indices $ \sigma,\rho $ and working to leading order yields the result.
+    The variation of $ \sqg $ requires a classical result for inverticle matrices: $ \log \det \mt{A} = \tr \log \mt{A} $, i.e. $ (\det \mt{A})^{-1} \delta (\det \mt{A}) = \tr (\mt{A}^{-1} \delta \mt{A}) $. Applying this to the metric:
+    \begin{equation*}
+      \delta \sqg = \frac{1}{2} \frac{1}{\sqg} \delta \mt{g} = \frac{1}{2} \frac{1}{\sqg} (\sigma \mt{g}) g^{\mu \nu} \delta g_{\mu \nu} = \frac{\sigma}{2} \sqg\, g^{\mu \nu} \delta g_{\mu \nu} = \frac{\sigma}{2} \sqg\, g_{\mu \nu} \delta g^{\mu \nu}
+    \end{equation*}
+
+    Now, consider the Christoffel symbols, and in particular note that, although $ \Gamma^\rho_{\mu \nu} $ is not a tensor, $ \delta \Gamma^\rho_{\mu \nu} $ is, since it is the difference of two Christoffel symbols, one computed with $ g_{\mu \nu} $ and the other with $ g_{\mu \nu} + \delta g_{\mu \nu} $, and the extra term in the transformation law of $ \Gamma^\rho_{\mu \nu} $ is independent of the metric, thus it cancels out. This observation allows to work in normal coordinates at $ p \in \mathcal{M} $, so that $ \pa_\rho g_{\mu \nu} \vert_p = 0 $ and $ \Gamma^\rho_{\mu \nu} \vert_p = 0 $. Then, to linear order in the variation:
+    \begin{equation*}
+      {\delta \Gamma^\rho_{\mu \nu}}\od1 \vert_p = \frac{1}{2} g^{\rho \sigma} ( \pa_\mu \delta g_{\sigma \nu} + \pa_\nu \delta g_{\sigma \mu} - \pa_\sigma \delta g_{\mu \nu} ) \vert_p = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
+    \end{equation*}
+    This is a tensor equation, hence valid in all coordinate system and, by the arbitrariness of $ p $, on all $ \mathcal{M} $.
+    In normal coordinates, the Riemann tensor becomes $ \tensor{R}{^\sigma_{\mu \rho \nu}} \vert_p = \pa_\rho \Gamma^\sigma_{\nu \mu} \vert_p - \pa_\nu \Gamma^\sigma_{\rho \mu} \vert_p $, so:
+    \begin{equation*}
+      \delta \tensor{R}{^\sigma_{\mu \rho \nu}} \vert_p = \pa_\rho \delta \Gamma^\sigma_{\nu \mu} \vert_p - \pa_\nu \delta \Gamma^\sigma_{\rho \mu} \vert_p = \na_\rho \delta \Gamma^\sigma_{\nu \mu} \vert_p - \na_\nu \delta \Gamma^\sigma_{\rho \mu} \vert_p
+    \end{equation*}
+    This is a tensor equation, hence again valid in all coordinates systems and on all $ \mathcal{M} $. Contracting indices $ \sigma,\rho $ yields the thesis.
   \end{proof}
 \end{proofbox}
 
+With these expressions it is now possible to compute the variations of the Einstein--Hilbert action to find the equations of motion of the gravitational field.
+
 \begin{proposition}{Einstein field equations in vacuum}{prop-einst-eq}
-  The Euler-Lagrange equations of the Einstein-Hilbert action are:
+  The Euler--Lagrange equations of the Einstein--Hilbert action are:
   \begin{equation}
     G_{\mu \nu} = 0
     \label{eq:vacuum-feq}
@@ -87,134 +83,41 @@ To determine the Euler-Lagrange equations of the Einstein-Hilbert action, consid
 
 \begin{proofbox}
   \begin{proof}
-    
-    Varying the Einstein-Hilbert action:
+    Varying the Einstein--Hilbert action:
     \begin{equation*}
-      \begin{split}
-        \delta \mathcal{S}
-        &= \delta \int d^4 x \sqgm\, g^{\mu \nu} R_{\mu \nu} \\
-        &= \int d^4 x \left[ \delta (\sqgm) g^{\mu \nu} R_{\mu \nu} + \sqgm (\delta g^{\mu \nu}) R_{\mu \nu} + \sqgm\, g^{\mu \nu} (\delta R_{\mu \nu}) \right] \\
-        &= \int d^4 x \sqgm \left[ \left( - \frac{1}{2} R g_{\mu \nu} + R_{\mu \nu} \right) \delta g^{\mu \nu} + g^{\mu \nu} \left( \na_\rho \delta \Gamma^\rho_{\mu \nu} - \na_\nu \Gamma^\rho_{\rho \mu} \right) \right] \\
-        &= \int d^4 x \sqgm \left[ \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \delta g^{\mu \nu} + \na_\mu \left( g^{\rho \nu} \delta \Gamma^\mu_{\rho \nu} - g^{\mu \nu} \delta \Gamma^\rho_{\rho \nu} \right) \right]
-      \end{split}
+      \delta \act = \delta \int \dd^n x \sqg\, g^{\mu \nu} R_{\mu \nu} = \int \dd^n x \left[ (\delta \sqg) g^{\mu \nu} R_{\mu \nu} + \sqg (\delta g^{\mu \nu}) R_{\mu \nu} + \sqg\, g^{\mu \nu} (\delta R_{\mu \nu}) \right] \\
     \end{equation*}
-    The last term is a total derivative, hence by the divergence theorem \eref{eq:gauss-theorem} it yields a boundary term which can be ignored (Gibbons-Hawking boundary term). The Euler-Lagrange equations are then found imposing $ \delta \mathcal{S} = 0 $ for arbitrary $ \delta g_{\mu \nu} $, so recalling the definition of the Einstein tensor \eref{eq:einstein-def} the proof is completed.
+    Inserting the expressions in \lref{lemma:metric-variations}:
+    \begin{equation*}
+      \delta \act = \int \dd^n x \sqg \left[ \left( - \frac{1}{2} R g_{\mu \nu} + R_{\mu \nu} \right) \delta g^{\mu \nu} + g^{\mu \nu} \left( \na_\rho \delta \Gamma^\rho_{\mu \nu} - \na_\nu \Gamma^\rho_{\rho \mu} \right) \right]
+    \end{equation*}
+    Then, using the metric compatibility of the Levi--Civita connection:
+    \begin{equation*}
+      \act = \int \dd^n x \sqg \left[ \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \delta g^{\mu \nu} + \na_\mu \left( g^{\rho \nu} \delta \Gamma^\mu_{\rho \nu} - g^{\mu \nu} \delta \Gamma^\rho_{\rho \nu} \right) \right]
+    \end{equation*}
+    The last term is a total derivative, hence by the divergence theorem \eref{eq:gauss-theorem} it yields a boundary term which can be ignored (the so-called \emph{Gibbons--Hawking--York boundary term}). The Euler--Lagrange equations are then found imposing $ \delta \act = 0 $ for arbitrary $ \delta g_{\mu \nu} $, so recalling the definition of the Einstein tensor \eref{eq:einstein-def} the proof is completed.
   \end{proof}
 \end{proofbox}
 
-These equations are the Einstein field equations in vacuum, which govern the geometrodynamics of spacetime in the absence of any matter. For this reason, they can be further simplified: by contracting with $ g^{\mu \nu} $ one finds $ R = 0 $, thus:
+These equations are the Einstein field equations in vacuum, which govern the geometrodynamics of spacetime in the absence of any matter. For this reason, they can be further simplified with a contraction: in general, the trace of the Einstein tensor is:
 \begin{equation}
-  R_{\mu \nu} = 0
+  G = \frac{2 - n}{2} R
 \end{equation}
+This means that vacuum spacetimes of dimension $ n \neq 2 $ are Ricci-flat. Metric $ 2 $-manifolds are instead trivialized by the existence of isothermal coordinates (see Ex. 7.9 in \S 7.6.2 of \cite{nakahara}).
 
-\subsubsection{Dimensional analysis}
-
-The Einstein-Hilbert action in \eref{eq:einstein-hilbert-action} does not have the right dimensions, which will be necessary when considering the presence of matter.
-If $ x^\mu $ has dimension of length, then $ g_{\mu \nu} $ is dimensionless and the Ricci scalar is $ [R] = L^{-2} $. Including the integration measure, $ [\mathcal{S}] = L^2 $, but it must have the same dimension of $ [\hbar] =  M L^2 T^{-1} $ (i.e. energy $ \times $ times). Thus, the action with the right dimension is:
+While a constant gravitational Lagrangian has no physical relevance, as it uniquely implies $ g \equiv 0 $, \eref{eq:einstein-hilbert} allows for the addition of a constant term to the Ricci scalar. An interesting expression is:
 \begin{equation}
-  \mathcal{S} = \frac{c^3}{16 \pi G} \int \dd^4 x \sqgm \, R
-  \label{eq:einstein-hilbert}
+  \mathcal{S} = \frac{1}{16 \pi G} \int \dd^n x \sqg \left[ R - (n - 2) \Lambda \right]
 \end{equation}
-In the following, natural units are adopted: $ c = \hbar = 1 $.
-
-\subsubsection{Cosmological constant}
-
-In reality, \eref{eq:einstein-hilbert} is not the simplest action allowed by Differential Geometry: in fact, a constant term could be added to the Ricci scalar. The action then becomes:
+$ \Lambda \in \R $ is known as a \emph{cosmological constant} and has dimension $ [\Lambda] = L^{-2} $. The resulting field equations are:
 \begin{equation}
-  \mathcal{S} = \frac{1}{16 \pi G} \int \dd^4 x \sqgm \left( R - 2 \Lambda \right)
+  R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = - \frac{n-2}{2} \Lambda g_{\mu \nu}
 \end{equation}
-$ \Lambda $ is a \bctxt{cosmological constant} and has dimension $ [\Lambda] = L^{-2} $. The resulting field equations are:
-\begin{equation}
-  R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = - \Lambda g_{\mu \nu}
-\end{equation}
-Contracting with $ g^{\mu \nu} $ yields $ R = 4\Lambda $, thus in the absence of matter:
+Contracting with $ g^{\mu \nu} $ yields $ R = \frac{2n}{n-2} \Lambda $, thus in the absence of matter:
 \begin{equation}
   R_{\mu \nu} = \Lambda g_{\mu \nu}
 \end{equation}
-
-\subsection{Diffeomorphisms}
-
-Being the metric a symmetric $ \R^{4 \times 4} $ matrix, it should have $ \frac{1}{2} \times 4 \times 5 = 10 $ degrees of freedom. However, not all the components of $ g_{\mu \nu} $ are physical. Indeed, two metrics related by a change of coordinates $ x^\mu \mapsto \tilde{x}^\mu(x) $ describe the same physical spacetime, thus there is a redundancy in any given representation of the metric, which removes precisely 4 degrees of freedom, leaving only 6 physical degrees of freedom.
-
-Mathematically, given a diffeomorphism $ \phi : \mathcal{M} \rightarrow \mathcal{M} $, it maps all fields on $ \mathcal{M} $ to a new set of fields on $ \mathcal{M} $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theories.
-
-Consider a diffeomorphism $ x^\mu \mapsto \tilde{x}^\mu = x^\mu + \delta x^\mu $: this can be viewed as an active diffeomorphism (alibi interpretation), where points in spacetime are mapped from one another, or as a passive diffeomorpshim (alias interpretation), in which only the coordinates of each point are affected, but the two interpretations are equivalent. This change of coordinates can be thought as generated by an infinitesimal smooth vector field $ Z \in \xm : \delta x^\mu = - Z^\mu (x) $.
-
-\begin{lemma}{Transformation of tensors under infinitesimal diffeomorphisms}{tens-inf-diff}
-  Let $ (\man,g) $ be a metric manifold, $ Z \in \xm $ and $ T \in \tns{r}{s}(\man) $. Given a smooth chart $ (U,(x^\mu)) $ on $ \man $, under a coordinate change $ x^\mu \mapsto \tilde{x}^\mu $, define the \bclemma{pointwise variation} of $ T $ as:
-  \begin{equation}
-    \tensor{\delta T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) \defeq \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x)
-  \end{equation}
-  Then, if $ \tilde{x}^\mu = x^\mu - Z^\mu $, the pointwise variation of $ T $ is:
-  \begin{equation}
-     \tensor{\delta T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) = \tensor{(\ld_Z T)}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) + \smo(Z^2)
-  \end{equation}
-\end{lemma}
-
-\begin{proofbox}
-  \begin{proof}
-    By \eref{eq:tensor-trans}:
-    \begin{equation*}
-      \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(\tilde{x}) = \frac{\pa \tilde{x}^{\mu_1}}{\pa x^{\alpha_1}} \dots \frac{\pa x^{\mu_r}}{\pa x^{\alpha_r}} \frac{\pa x^{\beta_1}}{\pa \tilde{x}^{\nu_1}} \dots \frac{\pa x^{\beta_s}}{\pa \tilde{x}^{\nu_s}} \tensor{T}{^{\alpha_1 \dots \alpha_r}_{\beta_1 \dots \beta_s}}(x)
-    \end{equation*}
-    Now, note that\footnote{The second relation needs proof.}: % TODO: proof of the second relation
-    \begin{equation*}
-      \frac{\pa \tilde{x}^\mu}{\pa x^\alpha} = \delta^\mu_\alpha - \pa_\alpha Z^\mu
-      \qquad \qquad
-      \frac{\pa x^\beta}{\pa \tilde{x}^\nu} = \delta^\beta_\nu + \pa_\nu Z^\beta + \smo(Z^2)
-    \end{equation*}
-    so that:
-    \begin{equation*}
-      \begin{split}
-        \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(\tilde{x})
-        & = \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - \sum_{i = 1}^r \tensor{T}{^{\mu_1 \dots \rho \dots \mu_r}_{\nu_1 \dots \nu_l}}(x) \pa_\rho Z^{\mu_i}(x) \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad + \sum_{j = 1}^s \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \rho \dots \nu_s}}(x) \pa_{\nu_j} Z^\rho(x) + \smo(Z^2)
-      \end{split}
-    \end{equation*}
-    On the other hand:
-    \begin{equation*}
-      \begin{split}
-        \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(\tilde{x})
-        & = \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - Z^\rho \pa_\rho \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x)  \\
-        & = \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - Z^\rho \pa_\rho \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) + \smo(Z^2)
-      \end{split}
-    \end{equation*}
-    Therefore, by definition:
-    \begin{equation*}
-      \begin{split}
-        \tensor{\delta T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x)
-        & = Z^\rho \pa_\rho \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - \sum_{i = 1}^r \tensor{T}{^{\mu_1 \dots \rho \dots \mu_r}_{\nu_1 \dots \nu_l}}(x) \pa_\rho Z^{\mu_i}(x) \\
-        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad + \sum_{j = 1}^s \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \rho \dots \nu_s}}(x) \pa_{\nu_j} Z^\rho(x) + \smo(Z^2)
-      \end{split}
-    \end{equation*}
-    which is precisely \eref{eq:tensor-lie-der}.
-  \end{proof}
-\end{proofbox}
-
-By \lref{lemma:tens-inf-diff}, at first order in $ Z $ the metric transforms as:
-\begin{equation}
-  \delta g_{\mu \nu} = (\ld_Z g)_{\mu \nu}
-  \label{eq:lie-der-metric}
-\end{equation}
-Thus, an infinitesimal diffeomorphism along $ Z \in \xm $ makes the metric change by an infinitesimal amount given by its Lie derivative along $ Z $, which can be viewed as the leading term in the Taylor expansion along $ Z $. These equations can be rewritten in a simpler form:
-\begin{equation*}
-  \delta g_{\mu \nu} = Z^\rho \pa_\rho g_{\mu \nu} + \pa_\nu Z_\mu - Z^\rho \pa_\nu g_{\mu \rho} + \pa_\mu Z_\nu - Z^\rho \pa_\mu g_{\nu \rho} = \pa_\mu Z_\nu + \pa_\nu Z_\mu + 2 g_{\rho \sigma} \Gamma^\sigma_{\mu \nu} Z^\rho
-\end{equation*}
-Therefore:
-\begin{equation}
-  \delta g_{\mu \nu} = \na_\mu Z_\nu + \na_\nu Z_\mu
-  \label{eq:metric-variation}
-\end{equation}
-This equation can be used in the path integral. In fact, insisting that $ \delta \mathcal{S} = 0 $ for any $ \delta g_{\mu \nu} $ gives the equations of motion; on the other hand, those variations $ \delta g_{\mu \nu} $ for which $ \delta \mathcal{S} = 0 $ for any metric are the \textit{symmetries} of the action. From \pref{prop:prop-einst-eq}:
-\begin{equation*}
-  \delta \mathcal{S} = \int \dd^4 x \sqgm\, G^{\mu \nu} \delta g_{\mu \nu} = 2 \int \dd^4 x \sqgm\, G^{\mu \nu} \na_\mu Z_\nu
-\end{equation*}
-Invariance for $ x^\mu \mapsto x^\mu - Z^\mu $ means that $ \delta \mathcal{S} = 0 $ for all $ Z \in \xm $, hence, integrating by parts:
-\begin{equation}
-  \na_\mu G^{\mu \nu} = 0
-  \label{eq:bianchi-id}
-\end{equation}
-This is the Bianchi identity: although it is a result from Differential Geometry, is follows from diffeomorphism invariance of the Einstein-Hilbert action. This identity contains 4 equations, which make the 10 Einstein equations not completely independent: in fact, only 6 of them are independent, the same number of independent components of the metric, thus ensuring that the field equations are not overdetermined.
+Manifolds on which $ \ricc = \kappa g $ for a constant $ \kappa \in \R $ are known as \bctxt{Einstein manifolds}: clearly, Ricci-flat manifolds are a special class of Einstein manifolds with $ \kappa = 0 $.
 
 \newpage
 \section{Simple solutions}
@@ -324,7 +227,7 @@ More precisely, this is the \textit{static patch} of de Sitter space.
 
 \subsubsection{de Sitter geodesics}
 
-To interpret a metric, it's useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
+To interpret a metric, it is useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
 \begin{equation}
   \mathcal{S} = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dd \dot{\varphi}^2) \right]
   \label{eq:dS-action}
@@ -475,7 +378,7 @@ This means that the particle follows a null geodesic. Its equation of motion is:
 \end{figure}
 
 Its plot in \figref{fig:ads-pot} makes it clear that any massless particle can escape to $ r \rightarrow \infty $, as the null potential is asymptotically constant, and it will experience the usual gravitational redshift: AdS only confines massive particles.
-To solve for the trajectory, it's easier to work with $ r = R \sinh \rho $ and $ \ell = 0 $, so that:
+To solve for the trajectory, it is easier to work with $ r = R \sinh \rho $ and $ \ell = 0 $, so that:
 \begin{equation*}
   R \dot{\rho} = \pm \frac{E}{\cosh \rho}
   \quad \Rightarrow \quad
@@ -541,55 +444,232 @@ In each case, massive particles fall towards $ z = \infty $ or $ \rho = -\infty 
 \section{Symmetries}
 
 What makes Minkowski, dS and AdS special solutions to the Einstein equations are their symmetries.
+The symmetries of Minkowski spacetime are familiar: translations and rotations of spacetime, with the latter splitting between proper rotations and Lorentz boosts. These symmetries are responsible for the existence of energy, momentum and angular momentum on a fixed Minkowski background: it is important to characterize the symmetries of a general metric.
 
-The symmetries of Minkowski spacetime are familiar: translations and rotations of spacetime, with the latter splitting between proper rotations and Lorentz boosts. These symmetries are responsible for the existence of energy, momentum and angular momentum on a fixed Minkowski background.
+\subsection{Diffeomorphisms-invariant action}
 
-It is important to characterize the symmetries of a general metric.
+Being the metric a symmetric $ \R^{4 \times 4} $ matrix, it should have $ \frac{1}{2} \times 4 \times 5 = 10 $ degrees of freedom. However, not all the components of $ g_{\mu \nu} $ are physical. Indeed, two metrics related by a change of coordinates $ x^\mu \mapsto \tilde{x}^\mu(x) $ describe the same physical spacetime, thus there is a redundancy in any given representation of the metric which removes precisely 4 degrees of freedom, leaving only 6 physical degrees of freedom.
+
+Mathematically, given a diffeomorphism $ \phi : \mathcal{M} \rightarrow \mathcal{M} $, it maps all fields on $ \mathcal{M} $ to a new set of fields on $ \mathcal{M} $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theories.
+
+Consider a diffeomorphism $ x^\mu \mapsto \tilde{x}^\mu = x^\mu + \delta x^\mu $: this can be viewed as an active diffeomorphism, where points in spacetime are mapped from one another, or as a passive diffeomorpshim, in which only the coordinates of each point are affected, but the two interpretations are equivalent.
+
+\begin{lemma}{Transformation of tensors under infinitesimal diffeomorphisms}{tens-inf-diff}
+  Let $ (\man,g) $ be a metric manifold, $ Z \in \xm $ and $ T \in \tns{r}{s}(\man) $. Given a smooth chart $ (U,(x^\mu)) $ on $ \man $, under a coordinate change $ x^\mu \mapsto \tilde{x}^\mu $, define the \bclemma{pointwise variation} of $ T $ as:
+  \begin{equation}
+    \tensor{\delta T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) \defeq \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x)
+  \end{equation}
+  Then, if $ \tilde{x}^\mu(x) = x^\mu - Z^\mu(x) $, the pointwise variation of $ T $ is:
+  \begin{equation}
+     \tensor{\delta T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) = \tensor{(\ld_Z T)}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) + \smo(Z^2)
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:tensor-trans}:
+    \begin{equation*}
+      \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(\tilde{x}) = \frac{\pa \tilde{x}^{\mu_1}}{\pa x^{\alpha_1}} \dots \frac{\pa x^{\mu_r}}{\pa x^{\alpha_r}} \frac{\pa x^{\beta_1}}{\pa \tilde{x}^{\nu_1}} \dots \frac{\pa x^{\beta_s}}{\pa \tilde{x}^{\nu_s}} \tensor{T}{^{\alpha_1 \dots \alpha_r}_{\beta_1 \dots \beta_s}}(x)
+    \end{equation*}
+    Now, note that\footnote{The second relation needs proof.}: % TODO: proof of the second relation
+    \begin{equation*}
+      \frac{\pa \tilde{x}^\mu}{\pa x^\alpha} = \delta^\mu_\alpha - \pa_\alpha Z^\mu
+      \qquad \qquad
+      \frac{\pa x^\beta}{\pa \tilde{x}^\nu} = \delta^\beta_\nu + \pa_\nu Z^\beta + \smo(Z^2)
+    \end{equation*}
+    so that:
+    \begin{equation*}
+      \begin{split}
+        \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(\tilde{x})
+        & = \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - \sum_{i = 1}^r \tensor{T}{^{\mu_1 \dots \rho \dots \mu_r}_{\nu_1 \dots \nu_l}}(x) \pa_\rho Z^{\mu_i}(x) \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad + \sum_{j = 1}^s \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \rho \dots \nu_s}}(x) \pa_{\nu_j} Z^\rho(x) + \smo(Z^2)
+      \end{split}
+    \end{equation*}
+    On the other hand:
+    \begin{equation*}
+      \begin{split}
+        \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(\tilde{x})
+        & = \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - Z^\rho \pa_\rho \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x)  \\
+        & = \tensor{\tilde{T}}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - Z^\rho \pa_\rho \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) + \smo(Z^2)
+      \end{split}
+    \end{equation*}
+    Therefore, by definition:
+    \begin{equation*}
+      \begin{split}
+        \tensor{\delta T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x)
+        & = Z^\rho \pa_\rho \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}}(x) - \sum_{i = 1}^r \tensor{T}{^{\mu_1 \dots \rho \dots \mu_r}_{\nu_1 \dots \nu_l}}(x) \pa_\rho Z^{\mu_i}(x) \\
+        & \qquad \qquad \qquad \qquad \qquad \qquad \qquad + \sum_{j = 1}^s \tensor{T}{^{\mu_1 \dots \mu_r}_{\nu_1 \dots \rho \dots \nu_s}}(x) \pa_{\nu_j} Z^\rho(x) + \smo(Z^2)
+      \end{split}
+    \end{equation*}
+    which is precisely \eref{eq:tensor-lie-der}.
+  \end{proof}
+\end{proofbox}
+
+By \lref{lemma:tens-inf-diff}, at first order in $ Z $ the metric transforms as:
+\begin{equation}
+  \delta g_{\mu \nu} = (\ld_Z g)_{\mu \nu}
+  \label{eq:lie-der-metric}
+\end{equation}
+Thus, an infinitesimal diffeomorphism along $ Z \in \xm $ makes the metric change by an infinitesimal amount given by its Lie derivative along $ Z $, which can be viewed as the leading term in the Taylor expansion along $ Z $. These equations can be rewritten with \eref{eq:tensor-lie-der}:
+\begin{equation*}
+  \delta g_{\mu \nu} = Z^\rho \pa_\rho g_{\mu \nu} + g_{\rho \nu} \pa_\mu Z^\rho + g_{\mu \rho} \pa_\nu Z^\rho
+\end{equation*}
+Using the metric compatibility $ \na_\rho g_{\mu \nu} = 0 $ of the Levi--Civita connection, from which it follows that $ \pa_\rho g_{\mu \nu} = \Gamma^\lambda_{\rho \mu} g_{\lambda \nu} + \Gamma^\lambda_{\rho \nu} g_{\mu \lambda} $, this expression becomes:
+\begin{equation*}
+  \delta g_{\mu \nu} = g_{\mu \rho} ( \pa_\nu Z^\rho + \Gamma^\rho_{\nu \lambda} Z^\lambda ) + g_{\rho \nu} ( \pa_\mu Z^\rho + \Gamma^\rho_{\lambda \nu} Z^\lambda ) = g_{\mu \rho} \na_\nu Z^\rho + g_{\rho \nu} \na_\mu Z^\rho
+\end{equation*}
+Using again the metric compatibility, the metric factors can be brought inside the covariant derivatives, yielding a simple expression:
+\begin{equation}
+  \delta g_{\mu \nu} = \na_\mu Z_\nu + \na_\nu Z_\mu
+  \label{eq:metric-variation}
+\end{equation}
+This equation can be used in the path integral. In fact, insisting that $ \delta \mathcal{S} = 0 $ for any $ \delta g_{\mu \nu} $ gives the equations of motion; on the other hand, those variations $ \delta g_{\mu \nu} $ for which $ \delta \mathcal{S} = 0 $ for any metric are the \textit{symmetries} of the action. From \pref{prop:prop-einst-eq}:
+\begin{equation*}
+  \delta \mathcal{S} = \int \dd^4 x \sqg\, G^{\mu \nu} \delta g_{\mu \nu} = 2 \int \dd^4 x \sqg\, G^{\mu \nu} \na_\mu Z_\nu
+\end{equation*}
+Invariance for $ x^\mu \mapsto x^\mu - Z^\mu $ means that $ \delta \mathcal{S} = 0 $ for all $ Z \in \xm $, hence, integrating by parts:
+\begin{equation}
+  \na_\mu G^{\mu \nu} = 0
+  \label{eq:bianchi-id}
+\end{equation}
+This is the Bianchi identity: although it is a result from Differential Geometry, is follows from diffeomorphism invariance of the Einstein--Hilbert action. This identity contains 4 equations, which make the 10 Einstein equations not completely independent: in fact, only 6 of them are independent, the same number of independent components of the metric, thus ensuring that the field equations are not overdetermined.
 
 \subsection{Isometries}
 \label{ssec:isometries}
 
+With \eref{eq:metric-variation}, it is possible to find those vector fields which identically have $ \delta g_{\mu \nu} \equiv 0 $, i.e. those under whose flow the metric tensor remains unchanged.
+
 \begin{definition}{Isometry}{}
   Given a flow associated to $ K \in \xm $, it is said to be an \bcdef{isometry} if:
   \begin{equation}
-    \ld_K g = 0
-    \quad \iff \quad
     \na_\mu K_\nu + \na_\nu K_\mu = 0
     \label{eq:killing}
   \end{equation}
 \end{definition}
-Recall \eeref{eq:lie-der-metric}{eq:metric-variation} for the equivalence. This condition means that the metric doesn't change along flow lines: this is called \textit{Killing equation}, and a vector field which satisfied it is a \bctxt{Killing vector field}.
+
+By \eeref{eq:lie-der-metric}{eq:metric-variation}, this condition is equivalent to $ \ld_K g = 0 $, which means that the metric does not change along flow lines: this is called \textit{Killing equation}, and a vector field which satisfied it is a \bctxt{Killing vector field}.
 Killing vectors are easily checked to form a Lie algebra: this is the Lie algebra of the isometry group of the manifold.
 
+Given a Killing vector field $ K \in \xm $, it is always possible to find a set of coordinates $ (x^0 , x^1 , x^2 , y) $ on $ \man $ such that $ K = \frac{\pa}{\pa y} $, known as \emph{adapted coordinates}, in which the Killing equation simply reads:
+\begin{equation*}
+  \frac{\pa}{\pa y} g_{\mu \nu} = 0
+\end{equation*}
+
 \begin{example}{Ignorable degrees of freedom}{}
-  Given a metric $ g_{\mu \nu}(x) $, if it doesn't depend on $ x^1 \equiv y $, then $ X = \pa_y $ is a Killing vector field, for $ (\ld_{\pa_y} g)_{\mu \nu} = \pa_y g_{\mu \nu} = 0 $. This is the case of ignorable degrees of freedom, as \eeref{eq:dS-energy}{eq:dS-ang-mom}.
+  Given a metric $ g_{\mu \nu}(x) $, if it does not depend on $ x^1 \equiv y $, then $ X = \pa_y $ is a Killing vector field, for $ (\ld_{\pa_y} g)_{\mu \nu} = \pa_y g_{\mu \nu} = 0 $. This is the case of ignorable degrees of freedom, as \eeref{eq:dS-energy}{eq:dS-ang-mom}.
 \end{example}
 
-\subsubsection{Minkowski spacetime}
+It is possible to reframe Noether's theorem in the context of Killing vectors. Indeed, the presence of a Killing vector field gives rise to a conserved quantity.
 
-Consider Minkowski spacetime $ \R^{1,3} $ with $ g_{\mu \nu} = \eta_{\mu \nu} $. Killing equation is:
-\begin{equation*}
-  \pa_\mu K_\nu + \pa_\nu K_\mu = 0
-\end{equation*}
-There are two forms of solution. The first one is:
-\begin{equation*}
-  K_\mu = c_\mu
-\end{equation*}
-for any constant vector $ c_\mu $. These generate translations. Alternatively:
-\begin{equation*}
-  K_\mu = \omega_{\mu \nu} x^\nu
-  \,:\, \omega_{\mu \nu} = - \omega_{\nu \mu}
-\end{equation*}
-These generate rotations and Lorentz boosts (see \S 1.2 of \cite{leonardo}). The emergence of the Lie algebra structure can be elucidated defining the Killing vectors:
-\begin{equation*}
-  P_\mu \defeq \pa_\mu
-  \qquad
-  M_{\mu \nu} \defeq \eta_{\mu \rho} x^\rho \pa_\nu - \eta_{\nu \rho} x^\rho \pa_\mu
-\end{equation*}
-These are 10 Killing vectors: 4 for translations and 6 for rotations and boosts.
+\begin{theorem}{Noether's theorem}{}
+  Let $ (\man,g) $ be a Lorentzian manifold, and suppose that it admits a Killing vector field $ K \in \xm $. Then, given an affinely-parametrized geodesic with tangent vector field $ U $, it is possible to define a \bcth{Noether charge} associated to $ K $ as:
+  \begin{equation}
+    Q_K \defeq \braket{U , K}_g
+  \end{equation}
+  which is conserved along the geodesic, i.e. $ \na_U Q_K = 0 $.
+\end{theorem}
 
-\begin{proposition}{Poincaré algebra}{}
-  Killing vectors of Minkowski spacetime obbey:
+\begin{proofbox}
+  \begin{proof}
+    Since the geodesic is affinely-parametrized, $ \na_U U = 0 $, hence by direct computation:
+    \begin{equation*}
+      \begin{split}
+        \na_U Q_K
+        & = \na_U \braket{U , K}_g = \braket{\na_U U , K}_g + \braket{U , \na_U K}_g \\
+        & = \braket{U , \na_U K}_g = U^\mu U^\nu \na_\nu K_\mu = U^\mu U^\nu \na_{(\nu} K_{\mu)} = 0
+      \end{split}
+    \end{equation*}
+    which vanishes by the Killing equation $ \na_{(\nu} K_{\mu)} = 0 $.
+  \end{proof}
+\end{proofbox}
+
+In general, the Noether charge of a timelike Killing vector field is interpreted as an energy, while that of a spacelike Killing vector field as a momentum (either linear or angular).
+
+\subsubsection{Maximally symmetric spacetimes}
+
+Starting from the Killing equation, it is possible to further characterize Killing vector fields with the curvature tensor.
+
+\begin{lemma}{Killing vectors and Riemann tensor}{}
+  A Killing vector field $ K \in \xm $ satisfies:
+  \begin{equation}
+    \na_\nu \na_\alpha K_\mu = - \tensor{R}{_{\alpha \mu \nu}^\beta} K_\beta
+    \label{eq:killing-riemann}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By the Ricci identity \eref{eq:ricci-id}, assuming a torsionless-connection:
+    \begin{equation*}
+      \na_\mu \na_\nu K_\alpha - \na_\nu \na_\mu K_\alpha = \tensor{R}{_{\alpha \beta \mu \nu}} K^\beta = \tensor{R}{_{\mu \nu \alpha}^\beta} K_\beta
+    \end{equation*}
+    where the first symmetry of \eref{eq:riemann-symm} has been used. By the Killing equation $ \na_\nu \na_\mu K_\alpha = - \na_\nu \na_\alpha K_\mu $, so:
+    \begin{equation*}
+      \na_\mu \na_\nu K_\alpha + \na_\nu \na_\alpha K_\mu = \tensor{R}{_{\mu \nu \alpha}^\beta} K_\beta
+    \end{equation*}
+    Performing cyclic permutations of indices, a set of three equations is found (including the previous one):
+    \begin{equation*}
+      \na_\mu \na_\nu K_\alpha + \na_\nu \na_\alpha K_\mu = \tensor{R}{_{\mu \nu \alpha}^\beta} K_\beta
+    \end{equation*}
+    \begin{equation*}
+      \na_\nu \na_\alpha K_\mu + \na_\alpha \na_\mu K_\nu = \tensor{R}{_{\nu \alpha \mu}^\beta} K_\beta
+    \end{equation*}
+    \begin{equation*}
+      \na_\alpha \na_\mu K_\nu + \na_\mu \na_\nu K_\alpha = \tensor{R}{_{\alpha \mu \nu}^\beta} K_\beta
+    \end{equation*}
+    Summing the first two and subtracting the last one:
+    \begin{equation*}
+      2 \na_\nu \na_\alpha K_\mu = (\tensor{R}{_{\mu \nu \alpha}^\beta} + \tensor{R}{_{\nu \alpha \mu}^\beta} - \tensor{R}{_{\alpha \mu \nu}^\beta}) K_\beta
+    \end{equation*}
+    The Bianchi identity $ \tensor{R}{_{[\mu \nu \alpha]}^\beta} = 0 $ then implies $ \tensor{R}{_{\mu \nu \alpha}^\beta} + \tensor{R}{_{\nu \alpha \mu}^\beta} = - \tensor{R}{_{\alpha \mu \nu}^\beta} $, which yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+\ceref{eq:killing}{eq:killing-riemann} can be used to determine Killing vector fields: starting from a point $ p \in \man $ and moving along a curve, initial conditions are imposed on $ K^\mu \vert_p $ and $ \na_\mu K_\nu \vert_p $, however the Killing equation reduces the number of independent initial conditions, since only those on $ \na_{[\mu} K_{\nu]} \vert_p $ are relevant. On an $ n $-dimensional Lorentzian manifold $ \man $, then, the maximum number of independent Killing vector fields (i.e. of independent initial conditions) is:
+\begin{equation}
+  N_{K,\text{max}} = n + \frac{n (n-1)}{2} = \frac{n (n+1)}{2}
+\end{equation}
+A spacetime which admits $ N_{K,\text{max}} $ Killing vector fields is said to be \bctxt{maximally symmetric}.
+
+\begin{lemma}{Riemann tensor of maximally symmetric spacetime}{}
+  The curvature tensor of a maximally symmetric spacetime can be written as:
+  \begin{equation}
+    R_{\mu \nu \alpha \beta} = \lambda (g_{\mu \alpha} g_{\nu \beta} - g_{\nu \alpha} g_{\mu \beta})
+    \qquad
+    \lambda \in \R
+  \end{equation}
+\end{lemma}
+
+The constant $ \lambda \in \R $ has dimensions of $ [\lambda] = L^{-2} $. The Ricci tensor and scalar are consequently expressed by:
+\begin{equation}
+  R_{\mu \nu} = 3 \lambda g_{\mu \nu}
+  \qquad \qquad
+  R = 12 \lambda
+\end{equation}
+
+\newpage
+
+\begin{example}{Minkowski spacetime}{}
+ Consider Minkowski spacetime $ \R^{1,3} $ with $ g_{\mu \nu} = \eta_{\mu \nu} $. Killing equation is:
+  \begin{equation*}
+    \pa_\mu K_\nu + \pa_\nu K_\mu = 0
+  \end{equation*}
+  There are two forms of solution. The first one is:
+  \begin{equation*}
+    K_\mu = c_\mu
+  \end{equation*}
+  for any constant vector $ c_\mu $. These generate translations. Alternatively:
+  \begin{equation*}
+    K_\mu = \omega_{\mu \nu} x^\nu
+    \,:\, \omega_{\mu \nu} = - \omega_{\nu \mu}
+  \end{equation*}
+  These generate rotations and Lorentz boosts (see \S 1.2 of \cite{leonardo}). The emergence of the Lie algebra structure can be elucidated defining the Killing vectors:
+  \begin{equation*}
+    P_\mu \defeq \pa_\mu
+    \qquad
+    M_{\mu \nu} \defeq \eta_{\mu \rho} x^\rho \pa_\nu - \eta_{\nu \rho} x^\rho \pa_\mu
+  \end{equation*}
+  These are 10 Killing vectors, 4 for translations and 6 for rotations and boosts, which obey the Poincaré algebra:
   \begin{equation*}
     [P_\mu, P_\nu] = 0
     \qquad
@@ -598,73 +678,30 @@ These are 10 Killing vectors: 4 for translations and 6 for rotations and boosts.
   \begin{equation*}
     [M_{\mu \nu}, M_{\rho \sigma}] = \eta_{\mu \sigma} M_{\nu \rho} + \eta_{\nu \rho} M_{\mu \sigma} - \eta_{\mu \rho} M_{\nu \sigma} - \eta_{\nu \sigma} M_{\mu \rho}
   \end{equation*}
-\end{proposition}
+  This is precisely the Lie algebra of the Poincaré group $ \ISO{1,3} \defeq \R^4 \rtimes \SOn{1,3} $, i.e. the isometry group of Minkowski spacetime. 
+\end{example}
 
-\begin{proofbox}
-  \begin{proof}
-    By direct calculation.
-  \end{proof}
-\end{proofbox}
+\begin{example}{(anti-)de Sitter spacetime}{}
+  The isometries of dS and AdS are best seen from their embeddings.
+  The constraint \eref{eq:dS-param} which defined de Sitter space is invariant under the rotations of $ \R^{1,4} $, thus dS inherits the $ \SOn{1,4} $ isometry group. Similarly, the constraint \eref{eq:ads-param} which defines anti-de Sitter space is invariant under rotations of $ \R^{2,3} $, so AdS inherits the $ \SOn{2,3} $ isometry group. Note that both these groups are 10-dimensional, as $ \ISO{1,3} $.
 
-This is precisely the Lie algebra of the Poincaré group $ \mathrm{ISO}(1,3) \defeq \R^4 \rtimes \SOn{1,3} $, i.e. the isometry group of Minkowski spacetime.
+  It is simple to determine the 10 Killing spinors of 5-dimensional spacetime:
+  \begin{equation*}
+    M_{AB} = \eta_{AC} X^C \pa_B - \eta_{BC} X^C \pa_A
+  \end{equation*}
+  where $ X^A, A = 0,1,2,3,4 $ are 5-dimensional coordinates and $ \eta_{AB} $ is the appropriate Minkowski metric, with signature $ (-,+,+,+,+) $ for dS and $ (-,-,+,+,+) $ for AdS. In either case, the Lie algebra is that of the appropriate Lorentz group:
+  \begin{equation*}
+    [M_{AB}, M_{CD}] = \eta_{AD} M_{BC} + \eta_{BC} M_{AD} - \eta_{AC} M_{BD} - \eta_{BD} M_{AC}
+  \end{equation*}
+  The embedding hyperbolae are both invariant under these Killing vectors: flows generated by them map points on the hyperbolae to other points on the hyperbolae. Therefore, these Killing vectors are inherited by dS and AdS respectively.
 
-\subsubsection{de Sitter and anti-de Sitter space}
+  Energy is defined as the Noether charge of a timelike Killing vector. In anti-de Sitter space there is no problem finding a timelike Killing vector, as the metric in global coordinates \eref{eq:ads-metric} is time-independent, so $ K = \pa_t $. However, this is not the case in de Sitter space.
 
-The isometries of dS and AdS are best seen from their embeddings.
-The constraint \eref{eq:dS-param} which defined de Sitter space is invariant under the rotations of $ \R^{1,4} $, thus dS inherits the $ \SOn{1,4} $ isometry group. Similarly, the constraint \eref{eq:ads-param} which defines anti-de Sitter space is invariant under rotations of $ \R^{2,3} $, so AdS inherits the $ \SOn{2,3} $ isometry group. Note that both these groups are 10-dimensional, as $ \R^4 \rtimes \SOn{1,3} $.
-
-It is simple to determine the 10 Killing spinors of 5-dimensional spacetime:
-\begin{equation*}
-  M_{AB} = \eta_{AC} X^C \pa_B - \eta_{BC} X^C \pa_A
-\end{equation*}
-where $ X^A, A = 0,1,2,3,4 $ are 5-dimensional coordinates and $ \eta_{AB} $ is the appropriate Minkowski metric, with signature $ (-,+,+,+,+) $ for dS and $ (-,-,+,+,+) $ for AdS. In either case, the Lie algebra is that of the appropriate Lorentz group:
-\begin{equation*}
-  [M_{AB}, M_{CD}] = \eta_{AD} M_{BC} + \eta_{BC} M_{AD} - \eta_{AC} M_{BD} - \eta_{BD} M_{AC}
-\end{equation*}
-The embedding hyperbolae are both invariant under these Killing vectors: flows generated by them map points on the hyperbolae to other points on the hyperbolae. Therefore, these Killing vectors are inherited by dS and AdS respectively.
-
-\paragraph{Energy}
-
-Energy is defined by timelike Killing vectors. In anti-de Sitter space there is no problem finding a timelike Killing vector, as the metric in global coordinates \eref{eq:ads-metric} is time-independent, so $ K = \pa_t $. However, this is not the case in de Sitter space.
-
-Considering dS in the static patch with coordinates $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $, the metric \eref{eq:dS-metric} is time-independent, thus $ K = \pa_t $ is a Killing vector; pushing it forward to the 5-dimensional space:
-\begin{equation*}
-  \pa_t = \frac{\pa X^A}{\pa t} \pa_A = \frac{1}{R} ( X^4 \pa_0 + X^0 \pa_4 )
-\end{equation*}
-On the static patch, this Killing vector is timelike and the energy \eref{eq:dS-energy} follows from it. The problem is that the static patch is only one-half of the hyperboloid: when considering the whole AdS, one must account for the case $ X^0 = 0, X^4 < 0 $, in which the Killing vector points in the past direction, or $ X^0 \neq 0, X^4 = 0 $, in which it is spacelike. Therefore, the Killing vector can be both timelike (future-directed and past-directed) or spacelike when spanning the whole manifold: for this reason, it's not possible to define a global positive conserved energy on the total de Sitter space. The same conclusion follows by noting that the metric in global coordinates \eref{eq:ds-global-coo} is time-dependent.
-
-\subsection{Conserved quantities}
-
-It is possible to reframe Noether's theorem in the context of Killing vectors.
-
-\begin{theorem}{Noether's theorem}{}
-  Given a massive particle moving on a geodesic $ x^\mu(\tau) $ in a spacetime with metric $ g $ which admits a Killing vector field $ K $, then the \bcth{Noether charge} is conserved along the geodesic:
-  \begin{equation}
-    Q \defeq K_\mu \frac{\dd x^\mu}{\dd \tau}
-  \end{equation}
-\end{theorem}
-
-\begin{proofbox}
-  \begin{proof}
-    First, show that $ Q $ is indeed conserved along the geodesic, recalling \eref{eq:killing}:
-    \begin{equation*}
-      \frac{\dd Q}{\dd \tau} = \pa_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} + K_\mu \frac{\dd^2 x^\mu}{\dd \tau^2} = \pa_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} - K_\mu \Gamma^\mu_{\rho \sigma} \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = \na_\nu K_\mu \frac{\dd x^\nu}{\dd \tau} \frac{\dd x^\mu}{\dd \tau} = 0
-    \end{equation*}
-    To show that $ Q $ follows from Noether's theorem, consider the action of the massive particle and introduce an infinitesimal transformation $ \delta x^\mu = K^\mu (x) $:
-    \begin{equation*}
-      \begin{split}
-        \delta \mathcal{S}
-        &= \delta \int \dd \tau\, g_{\mu \nu}(x) \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau} = \int \dd \tau \left[ \pa_\rho g_{\mu \nu} \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau} \delta x^\rho + 2 g_{\mu \nu} \frac{\dd x^\mu}{\dd \tau} \frac{\dd \delta x^\nu}{\dd \tau} \right] \\
-        &= \int \dd \tau \left[ \pa_\rho g_{\mu \nu} \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau} K^\rho + 2 \frac{\dd x^\mu}{\dd \tau} \left( \frac{\dd K_\mu}{\dd \tau} - K^\nu \frac{\dd g_{\mu \nu}}{\dd \tau} \right) \right] \\
-        &= \int \dd \tau \left[ \pa_\rho g_{\mu \nu} K^\rho - 2 K^\rho \pa_\nu g_{\mu \rho} + 2 \pa_\nu K_\mu \right] \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau} = \int \dd \tau\, 2 \na_\nu K_\mu \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau}
-      \end{split}
-    \end{equation*}
-    The transformation is a symmetry if $ \delta \mathcal{S} = 0 $, thus, by the symmetry of $ \frac{\dd x^\mu}{\dd \tau} \frac{\dd x^\nu}{\dd \tau} $, the resulting equation is $ \na_{(\nu} K_{\mu)} = 0 $, i.e. Killing equation.
-  \end{proof}
-\end{proofbox}
-
-\begin{example}{}{}
-  Energy and angular momentum defined on de Sitter geodesics by \eeref{eq:dS-energy}{eq:dS-ang-mom} are Noether charges associated to Killing vectors $ \pa_t $ and $ \pa_\varphi $ respectively.
+  Considering dS in the static patch with coordinates $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $, the metric \eref{eq:dS-metric} is time-independent, thus $ K = \pa_t $ is a Killing vector; pushing it forward to the 5-dimensional space:
+  \begin{equation*}
+    \pa_t = \frac{\pa X^A}{\pa t} \pa_A = \frac{1}{R} ( X^4 \pa_0 + X^0 \pa_4 )
+  \end{equation*}
+  On the static patch, this Killing vector is timelike and the energy \eref{eq:dS-energy} follows from it. The problem is that the static patch is only one-half of the hyperboloid: when considering the whole AdS, one must account for the case $ X^0 = 0, X^4 < 0 $, in which the Killing vector points in the past direction, or $ X^0 \neq 0, X^4 = 0 $, in which it is spacelike. Therefore, the Killing vector can be both timelike (future-directed and past-directed) or spacelike when spanning the whole manifold: for this reason, it is not possible to define a global positive conserved energy on the total de Sitter space. The same conclusion follows by noting that the metric in global coordinates \eref{eq:ds-global-coo} is time-dependent. 
 \end{example}
 
 \subsection{Komar integrals}
@@ -973,7 +1010,7 @@ After conformal compactification, $ \tilde{t} \in \R $ and $ \psi \in \left[ 0, 
 Note that $ \R $ is the time factor.
 The Penrose diagram clearly shows that light rays reach the boundary in finite conformal time. To study physics in AdS, one needs to specify boundary conditions at $ \mathcal{I} $: for example, reflecting boundary conditions make light rays bounce back and forth forever, rendering AdS a ``box" spacetime in which massive particle are confined in the interior and massless particles bounce off the boundary.
 
-Another characteristic of AdS space is that it is not \textit{globally hyperbolic}: there exists no Cauchy surface on which initial data can be specified. Consider for example the 3-dimensional spacelike hypersurface $ \Sigma $ in \figref{fig:ads-penr}. Specifying initial data on $ \Sigma $ it's not sufficient to solve for their time evolution: in AdS, there exist points in the future of $ \Sigma $ which are in causal contact with the boundary, thus the time evolution depends on boundary conditions too.
+Another characteristic of AdS space is that it is not \textit{globally hyperbolic}: there exists no Cauchy surface on which initial data can be specified. Consider for example the 3-dimensional spacelike hypersurface $ \Sigma $ in \figref{fig:ads-penr}. Specifying initial data on $ \Sigma $ it is not sufficient to solve for their time evolution: in AdS, there exist points in the future of $ \Sigma $ which are in causal contact with the boundary, thus the time evolution depends on boundary conditions too.
 
 To make the Penrose diagram for AdS not stretch to infinity, the time coordinate can be restricted to finite values by:
 \begin{equation*}
@@ -1001,19 +1038,19 @@ The simplest way to describe matter is by fields governed by a Lagrangian. Consi
 \end{equation}
 The negative sign of the kinetic term follows from the signature choice $ (-,+,+,+) $. The generalization to curved spacetime is straightforward:
 \begin{equation*}
-  \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqgm \left[ - \frac{1}{2} g^{\mu \nu} \na_\mu \phi \na_\nu \phi - V(\phi) \right]
+  \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqg \left[ - \frac{1}{2} g^{\mu \nu} \na_\mu \phi \na_\nu \phi - V(\phi) \right]
 \end{equation*}
 Note the (useful) redundancy $ \na_\mu \phi = \pa_\mu \phi $. Curved spacetime also introduces the possibility to add new terms to the Lagrangian. For example:
 \begin{equation}
-  \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqgm \left[ - \frac{1}{2} g^{\mu \nu} \na_\mu \phi \na_\nu \phi - V(\phi) - \frac{1}{2} \xi R \phi^2 \right]
+  \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqg \left[ - \frac{1}{2} g^{\mu \nu} \na_\mu \phi \na_\nu \phi - V(\phi) - \frac{1}{2} \xi R \phi^2 \right]
   \label{eq:scalar-action-r}
 \end{equation}
 for some $ \xi \in \R $. This theory correctly reduces to \eref{eq:scalar-action} on flat spacetime, as $ R = 0 $. To derive the equation of motion, vary the action keeping the metric fixed:
 \begin{equation*}
   \begin{split}
     \delta \mathcal{S}_{\text{scalar}}
-    &= \int \dd^4 x \sqgm \left[ - g^{\mu \nu} \na_\mu \delta \phi \na_\nu \phi - \frac{\pa V}{\pa \phi} \delta \phi - \xi R \phi \delta \phi \right] \\
-    &= \int \dd^4 x \sqgm \left[ \left( g^{\mu \nu} \na_\mu \na_\nu \phi - \frac{\pa V}{\pa \phi} - \xi R \phi \right) \delta \phi - \na_\mu ( \delta \phi \na^\mu \phi ) \right]
+    &= \int \dd^4 x \sqg \left[ - g^{\mu \nu} \na_\mu \delta \phi \na_\nu \phi - \frac{\pa V}{\pa \phi} \delta \phi - \xi R \phi \delta \phi \right] \\
+    &= \int \dd^4 x \sqg \left[ \left( g^{\mu \nu} \na_\mu \na_\nu \phi - \frac{\pa V}{\pa \phi} - \xi R \phi \right) \delta \phi - \na_\mu ( \delta \phi \na^\mu \phi ) \right]
   \end{split}
 \end{equation*}
 where integration by parts was possible due to $ \na_\mu g_{\rho \sigma} = 0 $ for the Levi-Civita connection. The last term is, by divergence theorem, a boundary term, thus the equation of motion for a scalar field theory in curved spacetime is:
@@ -1026,7 +1063,7 @@ Now covariant derivatives are necessary, as $ \na_\mu \na_\nu \neq \pa_\mu \pa_\
 
 To understand how matter fields back-react on spacetime, consider the combined action:
 \begin{equation}
-  \mathcal{S} = \frac{1}{16\pi G} \int \dd^4 x \sqgm \left( R - 2 \Lambda \right) + \mathcal{S}_M
+  \mathcal{S} = \frac{1}{16\pi G} \int \dd^4 x \sqg \left( R - 2 \Lambda \right) + \mathcal{S}_M
   \label{eq:ei-matter-action}
 \end{equation}
 where $ \mathcal{S}_M $ is the action for matter fields, which in general depends on both the fields and the metric.
@@ -1034,7 +1071,7 @@ where $ \mathcal{S}_M $ is the action for matter fields, which in general depend
 \begin{definition}{Energy-momentum tensor}{energy-momentum-tensor}
   Given a field theory for matter described by the action $ \mathcal{S}_M $, the \bcdef{energy-momentum tensor} is defined as:
   \begin{equation}
-    T_{\mu \nu} \defeq - \frac{2}{\sqgm} \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}}
+    T_{\mu \nu} \defeq - \frac{2}{\sqg} \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}}
     \label{eq:em-tens-def}
   \end{equation}
 \end{definition}
@@ -1053,7 +1090,7 @@ Clearly, the energy-momentum tensor is symmetric, since it inherits the symmetry
   \begin{proof}
     Varying the full metric, by \dref{def:energy-momentum-tensor}:
     \begin{equation*}
-      \delta \mathcal{S} = \frac{1}{16\pi G} \int \dd^4 x \sqgm \left[ G_{\mu \nu} + \Lambda g_{\mu \nu} \right] \delta g^{\mu \nu} - \frac{1}{2} \int \dd^4 x \sqgm T_{\mu \nu} \delta g^{\mu \nu} = 0
+      \delta \mathcal{S} = \frac{1}{16\pi G} \int \dd^4 x \sqg \left[ G_{\mu \nu} + \Lambda g_{\mu \nu} \right] \delta g^{\mu \nu} - \frac{1}{2} \int \dd^4 x \sqg T_{\mu \nu} \delta g^{\mu \nu} = 0
     \end{equation*}
     which is the thesis.
   \end{proof}
@@ -1075,7 +1112,7 @@ Remember that the cosmological constant is present inside the energy-momentum te
 
 The action $ \mathcal{S}_M $ is, by hypothesis, diffeomorphism-invariant, thus, recalling the argument which lead to Bianchi identity \eref{eq:bianchi-id}, given $ \delta g_{\mu \nu} = (\ld_X g)_{\mu \nu} = 2 \na_{(\mu} X_{\nu)} $:
 \begin{equation*}
-  \delta \mathcal{S}_M = - \frac{1}{2} \int \dd^4 x \sqgm \, T_{\mu \nu} \delta g^{\mu \nu} = - \int \dd^4 x \sqgm \, T_{\mu \nu} \na^\mu X^\nu
+  \delta \mathcal{S}_M = - \frac{1}{2} \int \dd^4 x \sqg \, T_{\mu \nu} \delta g^{\mu \nu} = - \int \dd^4 x \sqg \, T_{\mu \nu} \na^\mu X^\nu
 \end{equation*}
 Diffeomorphism invariance means that $ \delta \mathcal{S}_M = 0 $ for all $ X \in \xm $, hence, integrating by parts:
 \begin{equation}
@@ -1100,9 +1137,9 @@ i.e. the flat version of \eref{eq:em-tens-def}.
 
 \subsubsection{Field theories}
 
-It is straightforward to compute $ T_{\mu \nu} $ for a scalar field $ \phi(x) $. Recall \eref{eq:scalar-action-r} (with $ \xi = 0 $) and \lref{lemma:lemma-sqgm}:
+It is straightforward to compute $ T_{\mu \nu} $ for a scalar field $ \phi(x) $. Recall \eref{eq:scalar-action-r} (with $ \xi = 0 $) and \lref{lemma:metric-variations}:
 \begin{equation*}
-  \delta \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqgm \left[ \frac{1}{4} g_{\mu \nu} \na^\rho \phi \na_\rho \phi + \frac{1}{2} g_{\mu \nu} V(\phi) - \frac{1}{2} \na_\mu \phi \na_\nu \phi \right] \delta g^{\mu \nu}
+  \delta \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqg \left[ \frac{1}{4} g_{\mu \nu} \na^\rho \phi \na_\rho \phi + \frac{1}{2} g_{\mu \nu} V(\phi) - \frac{1}{2} \na_\mu \phi \na_\nu \phi \right] \delta g^{\mu \nu}
 \end{equation*}
 This gives the energy-momentum tensor:
 \begin{equation}
@@ -1119,7 +1156,7 @@ which is the energy density of a scalar field.
 
 Varying Maxwell action \eref{eq:maxwell-action}:
 \begin{equation*}
-  \delta \mathcal{S}_{\text{Maxwell}} = - \frac{1}{4} \int \dd x^4 \sqgm \left[ - \frac{1}{2} g_{\mu \nu} F^{\rho \sigma} F_{\rho \sigma} + 2 g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} \right] \delta g^{\mu \nu}
+  \delta \mathcal{S}_{\text{Maxwell}} = - \frac{1}{4} \int \dd x^4 \sqg \left[ - \frac{1}{2} g_{\mu \nu} F^{\rho \sigma} F_{\rho \sigma} + 2 g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} \right] \delta g^{\mu \nu}
 \end{equation*}
 So the energy-momentum tensor for Maxwell theory is:
 \begin{equation}
@@ -1164,20 +1201,20 @@ which is a generalization of Euler equation, i.e. the fluid equivalent of Newton
 
 There is a difference between the energy-momentum tensor and the current which arises from a global symmetry. Consider a conserved current $ J^\mu : \na_\mu J^\mu = 0 $. Invoking the divergence theorem \eref{eq:gauss-theorem}:
 \begin{equation*}
-  0 = \int_V d^4 x \sqgm\, \na_\mu J^\mu = \int_{\pa V} d^3 x \sqrt{\gamma}\, n_{\mu} J^\mu
+  0 = \int_V d^4 x \sqg\, \na_\mu J^\mu = \int_{\pa V} d^3 x \sqrt{\gamma}\, n_{\mu} J^\mu
 \end{equation*}
 where $ V $ is a spatial volume with boundary $ \pa V = \Sigma_1 \cup \Sigma_2 \cup B $, with $ \Sigma_1, \Sigma_2 $ past and future spacelike boundarires and $ B $ timelike (lateral) boundary. If no current flows out of the region, i.e. $ n_\mu J^\mu \vert_B = 0 $, then this expression becomes the conservation $ Q(\Sigma_1) = Q(\Sigma_2) $ of the charge associated to the current:
 \begin{equation*}
   Q(\Sigma) \equiv \int_\Sigma \dd^3 x \sqrt{\gamma}\, n_\mu J^\mu
 \end{equation*}
 Thus, for a vector field, covariant conservation is equivalent to actual conservation.
-However, the same argument does not apply to the energy-momentum tensor: the problem arises from generalizing $ \na_\mu J^\mu = \frac{1}{\sqgm} \pa_\mu (\sqgm J^\mu) $ to a higher-order tensor field, which is necessary in order to have a divergence theorem like \eref{eq:gauss-theorem}. Indeed:
+However, the same argument does not apply to the energy-momentum tensor: the problem arises from generalizing $ \na_\mu J^\mu = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) $ to a higher-order tensor field, which is necessary in order to have a divergence theorem like \eref{eq:gauss-theorem}. Indeed:
 \begin{equation*}
-  \na_\mu T^{\mu \nu} = \pa_\mu T^{\mu \nu} + \Gamma^\mu_{\mu \rho} T^{\rho \nu} + \Gamma^\nu_{\mu \rho} T^{\mu \rho} = \frac{1}{\sqgm} \pa_\mu (\sqgm\, T^{\mu \nu}) + \Gamma^\nu_{\mu \rho} T^{\mu \rho}
+  \na_\mu T^{\mu \nu} = \pa_\mu T^{\mu \nu} + \Gamma^\mu_{\mu \rho} T^{\rho \nu} + \Gamma^\nu_{\mu \rho} T^{\mu \rho} = \frac{1}{\sqg} \pa_\mu (\sqg\, T^{\mu \nu}) + \Gamma^\nu_{\mu \rho} T^{\mu \rho}
 \end{equation*}
-The last term doesn't allow to convert the integral of $ \na_\mu T^{\mu \nu} $ to a boundary term. Instead:
+The last term does not allow to convert the integral of $ \na_\mu T^{\mu \nu} $ to a boundary term. Instead:
 \begin{equation}
-  \pa_\mu (\sqgm\, T^{\mu \nu}) = -\sqgm\, \Gamma^\nu_{\mu \rho} T^{\mu \rho}
+  \pa_\mu (\sqg\, T^{\mu \nu}) = -\sqg\, \Gamma^\nu_{\mu \rho} T^{\mu \rho}
   \label{eq:no-div-th}
 \end{equation}
 Therefore, for higher-order tensors, covariant conservation is not equivalent to actual conservation.
@@ -1204,7 +1241,7 @@ The problem of energy conservation becomes subtle when dealing with spacetimes w
 
 For example, a system comprised of two orbiting stars is modelled by a spacetime which does not have such a Killing vector: however, the problem of energy conservation does not arise in this case, as the stars, while orbiting each other, emit gravitational waves, thus losing energy and eventually spiraling towards each other. Nonetheless, a meaningful question is that of energy conservation of the total system, i.e. the two stars and the gravitational field. A guess would be to consider a total energy-momentum tensor defined similarly to \eref{eq:em-tens-def}, but:
 \begin{equation*}
-  T^{\text{total}}_{\mu \nu} = - \frac{2}{\sqgm} \left[ \frac{1}{16\pi G} \frac{\delta \mathcal{S}_{\text{EH}}}{\delta g^{\mu \nu}} + \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \right] = - \frac{1}{8\pi G} G_{\mu \nu} + T_{\mu \nu} = 0
+  T^{\text{total}}_{\mu \nu} = - \frac{2}{\sqg} \left[ \frac{1}{16\pi G} \frac{\delta \mathcal{S}_{\text{EH}}}{\delta g^{\mu \nu}} + \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \right] = - \frac{1}{8\pi G} G_{\mu \nu} + T_{\mu \nu} = 0
 \end{equation*}
 by Einstein field equations. This equation has no physical significance other than expressing the subtlety of energy conservation in Genera Relativity.
 

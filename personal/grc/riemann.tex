@@ -1734,7 +1734,7 @@ where $ \Gamma^k_{ij} : U \ra \R $ are $ n^3 $ smooth functions on $ U $, called
 
 Under a frame transformations, connections coefficients have a non-homogeneus transformation law, thus showing that they are not the components of a tensor.
 
-\begin{proposition}{Transformation law for connection coefficients}{}
+\begin{proposition}{Transformation law for connection coefficients}{trans-connection-coeff}
   Let $ \man $ be a smooth manifold, and let $ \na $ be a connection in $ T\man $. Let $ (E_i) $ and $ (\tilde{E}_i) $ be two smooth local frames for $ T\man $ on some $ U \in \tp(\man) $ related by $ \tilde{E}_i = \tensor{A}{^j_i} E_j $, for some matrix of smooth functions $ [\tensor{A}{^j_i}] $, and denote the connection coefficients of $ \na $ in these frames respectively as $ \Gamma^k_{ij} $ and $ \tilde{\Gamma}^k_{ij} $. Then:
   \begin{equation}
     \tilde{\Gamma}^k_{ij} = \tensor{(A^{-1})}{^k_p} \tensor{A}{^q_i} \left[ \tensor{A}{^r_j} \Gamma^p_{qr} + E_q(\tensor{A}{^p_j}) \right]
@@ -1781,7 +1781,7 @@ The importance of connections comes from the fact that it is always possible to 
     \begin{equation*}
       \na_X Y \equiv \sum_\alpha \varphi_\alpha \na^\alpha_X Y
     \end{equation*}
-    Since the set of supports of the $ \varphi_\alpha $ functions is locally finite, the right-hand side contains only finitely-many non-zero terms in a neighbourhood of each point, so it defineds a smooth vector field on $ \man $. Moreover, this definition is manifestly $ \R $-linear in $ Y $ and $ \cm $-linear in $ X $. For the product rule:
+    Since the set of supports of the $ \varphi_\alpha $ functions is locally finite, the right-hand side contains only finitely-many non-zero terms in a neighbourhood of each point, so it defined a smooth vector field on $ \man $. Moreover, this definition is manifestly $ \R $-linear in $ Y $ and $ \cm $-linear in $ X $. For the product rule:
     \begin{equation*}
       \na_X (f Y) = \sum_\alpha \varphi_\alpha \left[ X(f) Y + f \na^\alpha_X Y \right] = X(f) Y \sum_\alpha \varphi_\alpha + f \sum_\alpha \varphi_\alpha \na^\alpha_X Y = X(f) \na_X Y + f \na_X Y
     \end{equation*}
@@ -1789,11 +1789,103 @@ The importance of connections comes from the fact that it is always possible to 
   \end{proof}
 \end{proofbox}
 
+Since the tangent bundle of any smooth manifolds $ \man $ always admits a connection $ \na^0 $, the set $ \conn(T\man) $ of all connections in $ T\man $ can be shown to be the following affine space:
+\begin{equation}
+  \conn(T\man) = \{ \na^0 + D : D \in \tns{1}{2}(\man) \}
+\end{equation}
+where $ D \in \tns{1}{2}(\man) $ is interpreted as a map $ \xm \times \xm \ra \xm $, and $ \na^0 + D : \xm \times \xm \ra \xm $ acts on $ X,Y \in \xm $ like:
+\begin{equation*}
+  (\na^0 + D)_X Y = \na^0_X Y + D(X,Y)
+\end{equation*}
+
 \subsubsection{Covariant derivatives of tensor fields}
 
+By \dref{def:koszul-connection}, a connection in $ T\man $ gives a way of computing covariant derivatives of smooth vector fields: it can be shown that every connection in $ T\man $ also automatically induces connections in all tensor bundles over $ \man $, thus allowing to compute covariant derivatives of arbitrary-rank smooth tensor fields.
 
+\begin{proposition}{Induced connection on tensor bundles}{}
+  Let $ \man $ be a smooth manifold, and let $ \na $ be a connection in $ T\man $. Then, $ \na $ uniquely determines a connection in each tensor bundle $ T^k_l\man $, also denoted by $ \na $, satisfying the following conditions:
+  \begin{enumerate}
+    \item the two connections agree in $ T^1_0\man = T\man $;
+    \item $ \na $ in $ T^0_0 \man = \man \times \R $ is given by ordinary differentiation of functions:
+      \begin{equation*}
+        \na_X f = X(f)
+      \end{equation*}
+    \item $ \na $ obeys the following product rule with respect to tensor products:
+      \begin{equation}
+        \na_X (F \otimes G) = (\na_X F) \otimes G + F \otimes (\na_X G)
+      \end{equation}
+    \item $ \na $ commutes with all contractions: if $ \tr $ denotes a trace on any pairs of indices (one covariant and one contravariant), then:
+      \begin{equation*}
+        \na_X (\tr F) = \tr (\na F)
+      \end{equation*}
+    \item $ \na $ obeys the following product rule with respect to the natural pairing between a covector field $ \omega \in \xms $ and a vector field $ Y \in \xm $:
+      \begin{equation}
+        \na_X \braket{\omega , Y} = \braket{\na_X \omega , Y} + \braket{\omega , \na_X Y}
+        \label{eq:co-covec-pairing}
+      \end{equation}
+    \item for all $ F \in \tns{k}{l}(\man) $, $ \omega^1 , \dots , \omega^k \in \xms $ and $ Y_1 , \dots , Y_l \in \xm $:
+      \begin{multline}
+        (\na_X F) (\omega^1 , \dots , \omega^k , Y_1 , \dots , Y_l) = X(F(\omega^1 , \dots , \omega^k , Y_1 , \dots , Y_l)) \\
+        - \sum_{i = 1}^{k} F(\omega^1 , \dots , \na_X \omega^i , \dots , \omega^k , Y_1 , \dots , Y_l) \\
+        - \sum_{j = 1}^{k} F(\omega^1 , \dots , \omega^k , Y_1 , \dots , \na_X Y_j , \dots , Y_l)
+      \end{multline}
+  \end{enumerate}
+\end{proposition}
 
+In particular, \eref{eq:co-covec-pairing} allows to compute the covariant derivative of a covector field $ \omega \in \xms $:
+\begin{equation}
+  (\na_X \omega)(Y) = X(\omega(Y)) - \omega(\na_X Y)
+\end{equation}
+All of these expressions, however, are not very practical for explicit computations, since computing the value of $ \na_X F $ at a point requires extending all of its arguments to vector/covector fields on an open set, and then computing a great number of derivatives. A more useful computation strategy makes use of local frames.
 
+\begin{lemma}{Computation of covariant derivatives}{}
+  Let $ \man $ be a smooth manifold, and let $ \na $ be a connection in $ T\man $. Let $ (E_i) $ be a local frame on $ \man $, with dual coframe $ (\varepsilon^i) $, and let $ \{\Gamma^k_{ij}\} $ be the connection coefficients of $ \na $ with respect to this frame. Let $ X \in \xm $ be locally expressed in this frame as $ X = X^i E_i $. Then:
+  \begin{enumerate}
+    \item the covariant derivative of $ \omega = \omega_i \varepsilon^i \in \xms $ is given locally by:
+      \begin{equation}
+        \na_X \omega = \left[ X(\omega_k) - \Gamma^i_{jk} X^j \omega_i \right] \varepsilon^k
+        \label{eq:covariant-derivative-covector}
+      \end{equation}
+    \item given $ F \in \tns{k}{l}(\man) $ expressed locally as:
+      \begin{equation*}
+        F = F^{i_1 \dots i_k}_{j_1 \dots j_l} E_{i_1} \otimes \dots \otimes E_{i_k} \otimes \varepsilon^{j_1} \otimes \dots \otimes \varepsilon^{j_l}
+      \end{equation*}
+      then its covariant derivative is given locally in components by:
+      \begin{equation}
+        (\na_X F)^{i_1 \dots i_k}_{j_1 \dots j_l} = \left[ X(F^{i_1 \dots i_k}_{j_1 \dots j_l}) + \sum_{s = 1}^k \Gamma^{i_s}_{mp} X^m F^{i_1 \dots p \dots i_k}_{j_1 \dots j_l} - \sum_{s = 1}^l \Gamma^p_{m j_s} X^m F^{i_1 \dots i_k}_{j_1 \dots p \dots j_l} \right]
+        \label{eq:covariant-derivative-tensor}
+      \end{equation}
+  \end{enumerate}
+\end{lemma}
+
+Since the covariant derivative $ \na_X F $ of a tensor field is $ \cm $-linear in $ X $, the covariant derivatives of $ F $ in all directions can be encoded in a single tensor whose rank is one more than the rank of $ F $.
+
+\begin{proposition}{Total covariant derivative}{}
+  Let $ \man $ be a smooth manifold, and let $ \na $ be a connection in $ T\man $. For every $ F \in \tns{k}{l}(\man) $, the follwing map:
+  \begin{equation*}
+    \na F : \underbrace{\xms \times \dots \times \xms}_{k \text{ times}} \times \underbrace{\xm \times \dots \times \xm}_{l+1 \text{ times}} \ra \cm
+  \end{equation*}
+  \begin{equation*}
+    (\na F) (\omega^1 , \dots , \omega^k , Y_1 , \dots , Y_l , X) = (\na_X F) (\omega^1 , \dots , \omega^k , Y_1 , \dots , Y_l)
+  \end{equation*}
+  defines a smooth $ (k , l+1) $-tensor on $ \man $ called the \bcprop{total covariant derivative} of $ F $.
+\end{proposition}
+
+To make expression easier to read, usually only the components with respect to the local frame are shown, and the covariant derivative is represented by a semicolon. For example, the (total) covariant derivative of a vector field $ Y = Y^i E_i \in \xm $ is a $ (1,1) $-tensor $ \na Y = \tensor{Y}{^i_{;j}} E_i \otimes \varepsilon^j $ with components:
+\begin{equation}
+  \tensor{Y}{^i_{;j}} = E_j(Y^i) + \Gamma^i_{jk} Y^k
+  \label{eq:covariant-derivative-vector-comp}
+\end{equation}
+In a similar way, given $ \omega = \omega_i \varepsilon^i \in \xms $ is $ \na \omega = \omega_{i;j} \varepsilon^k \otimes \varepsilon^j $, with components:
+\begin{equation}
+  \omega_{i;j} = E_j(\omega_i) - \Gamma^k_{ji} \omega_k
+  \label{eq:covariant-derivative-covector-comp}
+\end{equation}
+The generalization to an arbitrary $ F \in \tns{k}{l}(\man) $ is then trivial:
+\begin{equation}
+  F^{i_1 \dots i_k}_{j_1 \dots j_l ; m} = E_m (F^{i_1 \dots i_k}_{j_1 \dots j_l}) + \sum_{s = 1}^k \Gamma^{i_s}_{mp} F^{i_1 \dots p \dots i_k}_{j_1 \dots j_l} - \sum_{s = 1}^l \Gamma^p_{m j_s} F^{i_1 \dots i_k}_{j_1 \dots p \dots j_l}
+  \label{eq:covariant-derivative-tensor-comp}
+\end{equation}
 
 
 
@@ -1829,115 +1921,9 @@ The importance of connections comes from the fact that it is always possible to 
 
 
 \newpage
-\section{Connections}
+\section{Levi--Civita connections}
 
-There is a different way to differentiate tensor fields, distinct from the Lie derivative, associated to a different way to map different vector spaces at different points: the covariant derivative.
-
-For the rest of this chapter, $ \mathcal{M} $ is implied to be an $ n $-dimensional metric manifold with metric tensor $ g $.
-
-\subsection{Covariant derivative}
-
-\begin{definition}{Connection}{}
-  The \bcdef{connection} is a map $ \na : \xm \times \xm \rightarrow \xm $, usually written as $ \na(X,Y) \equiv \na_X Y $, where $ \na_X $ is called the \bcdef{covariant derivative}, satisfying the following properties for all $ X,Y,Z \in \xm $ and $ f,g \in \cm $:
-  \begin{enumerate}
-    \item $ \na_X (Y + Z) = \na_X Y + \na_X Z $;
-    \item $ \na_{fX + gY} Z = f \na_X Z + g \na_Y Z $;
-    \item $ \na_X (fY) = f \na_X Y + X(f) Y $.
-  \end{enumerate}
-\end{definition}
-
-Usually $ X(f) \equiv \na_X f $. The covariant derivative endows the manifold with more structure: in particular, given a basis $ \{e_{\mu}\}_{\mu = 1 , \dots , n} $ of $ \xm $, its covariant derivative is expressed as:
-\begin{equation}
-  \na_{e_{\rho}} e_{\nu} \equiv \Gamma^{\mu}_{\rho \nu} e_{\mu}
-\end{equation}
-The $ \Gamma^{\mu}_{\rho \nu} $ are the components of the connection on that basis. Conventionally $ \na_{e_{\mu}} \equiv \na_{\mu} $, thus resembling a partial derivative. To elucidate how the covariant derivative acts on vector fields:
-\begin{equation*}
-  \begin{split}
-    \na_X Y
-    &= \na_X (Y^\mu e_\mu) \\
-    &= X(Y^\mu) e_\mu + Y^\mu \na_X e_\mu \\
-    &= X^{\nu} e_{\nu} (Y^{\mu}) e_{\mu} + Y^{\mu} X^{\nu} \na_{\nu} e_{\mu} \\
-    &= X^{\nu} \left[ e_{\nu}(Y^{\mu}) + \Gamma^{\mu}_{\nu \rho} Y^{\rho} \right] e_{\mu} \\
-    &= X^{\nu} \na_{\nu} Y = X^{\nu} (\na_{\nu} Y)^{\mu} e_{\mu}
-  \end{split}
-\end{equation*}
-The dependency on $ X $ can therefore be eliminated, and in components:
-\begin{equation}
-  (\na_\nu Y)^\mu = e_\nu (Y^\mu) + \Gamma^\mu_{\nu \rho} Y^\rho
-\end{equation}
-A sloppy notation is often used: $ (\na_\nu Y)^\mu \equiv \na_\nu Y^\mu $. This must not be confused as the covariant derivative of $ Y^\mu $. Moreover $ \na_\nu Y^\mu \equiv \tensor{Y}{^\mu_{;\nu}} $, while $ \pa_\mu f \equiv f_{,\mu} $. On the coordinate basis $ e_\mu = \pa_\mu $, then:
-\begin{equation}
-  \tensor{Y}{^\mu_{;\nu}} = \tensor{Y}{^\mu_{,\nu}} + \Gamma^\mu_{\nu \rho} Y^\rho
-\end{equation}
-Note that $ \tensor{Y}{^\mu_{;\nu}} $ is the $ \mu^{\text{th}} $ component of $ \na_\nu Y $, while $ \tensor{Y}{^\mu_{,\nu}} $ is the partial derivative of $ Y^{\mu} $ along $ \pa_{\nu} $.
-
-The covariant derivative coincides with other derivatives on $ \cm $: it can be shown that $ \na_X f = \mathcal{L}_X f = X(f) $ and $ \na_\mu f = \pa_\mu f $. On $ \xm $, however, $ \na_X $ and $ \mathcal{L}_X $ are distinct: while $ \na_X = X^\mu \na_\mu $, there is no way to write the same relation for $ \mathcal{L}_X $, for it depends not only on $ X $ but on its first derivative too. The covariant derivative is thus the natural generalization of the partial derivative to curved manifolds.
-
-\begin{proposition}{}{gamma-non-tens}
-  $ \Gamma^\mu_{\rho \nu} $ are not components of a tensor.
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    Given the basis transformation $ \tilde{e}_\nu = \tensor{A}{^\mu _\nu} e_\mu $, with $ A $ and invertible matrix (if they are both coordinate basis, then $ \tensor{A}{^\mu _\nu} = \frac{\pa x^\mu}{\pa y^\nu} $), the components of a (1,2) tensor must transform as:
-    \begin{equation*}
-      \tensor{\tilde{T}}{^\mu _\rho _\nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \tensor{T}{^\tau _\sigma _\lambda}
-    \end{equation*}
-    In the new basis:
-    \begin{equation*}
-      \begin{split}
-        \tilde{\Gamma}^\mu_{\rho \nu} \tilde{e}_\mu
-        &= \na_{\tilde{e}_\rho}\tilde{e}_\nu = \na_{\tensor{A}{^\sigma _\rho} e_\sigma} (\tensor{A}{^\lambda _\nu} e_{\nu}) = \tensor{A}{^\sigma _\rho} \na_{e_\sigma} (\tensor{A}{^\lambda _\nu} e_\lambda) \\
-        &= \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} e_\tau + \tensor{A}{^\sigma _\rho} e_\lambda \pa_\sigma \tensor{A}{^\lambda _\nu} = \left[ \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} + \tensor{A}{^\sigma _\rho} \pa_\sigma \tensor{A}{^\tau _\nu} \right] e_\tau \\
-        &= \left[ \tensor{A}{^\sigma _\rho} \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} + \tensor{A}{^\sigma _\rho} \pa_\sigma \tensor{A}{^\tau _\nu} \right] \tensor{(A^{-1})}{^\mu _\tau} \tilde{e}_\mu
-      \end{split}
-    \end{equation*}
-    Thus, there is a second term proportional to $ \pa A $ which deviates from the transformation law:
-    \begin{equation*}
-      \tilde{\Gamma}^\mu_{\rho \nu} = \tensor{(A^{-1})}{^\mu _\tau} \tensor{A}{^\sigma _\rho} \left[ \tensor{A}{^\lambda _\nu} \Gamma^\tau_{\sigma \lambda} + \pa_\sigma \tensor{A}{^\tau _\nu} \right]
-    \end{equation*}
-    which means that $ \Gamma^\mu_{\rho \nu} $ is not a tensor.
-  \end{proof}
-\end{proofbox}
-
-\subsection{Covariant derivative of tensors}
-
-First of all, it is necessary to elucidate how the covariant derivative acts on 1-forms. Given a 1-form $ \omega $, the 1-form $ \na_X \omega $ is defined by its action on vector fields. By Leibniz rule:
-\begin{equation*}
-  \na_X (\omega(Y)) = (\na_X \omega)(Y) + \omega(\na_X Y)
-\end{equation*}
-Recalling that $ \omega(Y) $ is a function, $ \na_X (\omega(Y)) = X(\omega(Y)) $, therefore:
-\begin{equation}
-  (\na_X \omega)(Y) = X(\omega(Y)) - \omega(\na_X Y)
-  \label{eq:cov-der-form-aux}
-\end{equation}
-Expressing it in coordinates:
-\begin{equation*}
-  \begin{split}
-    X^\mu (\na_\mu \omega)_\nu Y^\nu
-    &= X^\mu \pa_\mu (\omega_\nu Y^\nu) - \omega_\nu X^\mu \left[ \pa_\mu Y^\nu + \Gamma^\nu_{\mu \rho} Y^\rho \right] \\
-    &= X^\mu \left[ \pa_\mu \omega_\rho - \Gamma^\nu_{\mu \rho} \omega_{\nu} \right] Y^\rho
-  \end{split}
-\end{equation*}
-Crucially, the $ \pa Y $ terms cancel out, allowing to define $ \na_X \omega $ without referencing $ Y $:
-\begin{equation}
-  (\na_\mu \omega)_\rho = \pa_\mu \omega_\rho - \Gamma^\nu_{\mu \rho} \omega_\nu
-\end{equation}
-Using the same notation as for vector fields $ (\na_\mu \omega)_\rho \equiv \na_\mu \omega_\rho \equiv \omega_{\rho ; \mu} $:
-\begin{equation}
-  \omega_{\rho ;\mu} = \omega_{\rho,\mu} - \Gamma^\nu_{\mu \rho} \omega_\nu
-\end{equation}
-This kind of argument can be extended to a general $ (p,q) $ tensor field:
-\begin{equation}
-  \begin{split}
-    \na_\rho \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\mu_q}} = \pa_\rho \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\nu_q}}
-    &+ \Gamma^{\mu_1}_{\rho \sigma} \tensor{T}{^\sigma ^{\mu_2} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\nu_q}} + \dots + \Gamma^{\mu_p}_{\rho \sigma} \tensor{T}{^{\mu_1} ^\dots ^{\mu_{p-1}} ^\sigma _{\nu_1} _\dots _{\nu_q}} \\
-    &- \Gamma^\sigma_{\rho \nu_1} \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _\sigma _{\nu_2} _\dots _{\nu_q}} - \dots - \Gamma^\sigma_{\rho \nu_q} \tensor{T}{^{\mu_1} ^\dots ^{\mu_p} _{\nu_1} _\dots _{\nu_{q-1}} _\sigma}
-  \end{split}
-\end{equation}
-The pattern is clear: for each upper index $ \mu $ there is a $ + \Gamma^\mu_{\rho \sigma} T^\sigma $ term, while for each lower index $ \nu $ there is $ - \Gamma^\sigma_{\rho \nu} T_\sigma $ term. Furthermore, it is necessary to generalize the comma-notation: for example, $ \tensor{X}{^\mu _; _\nu _\rho} \equiv \na_\rho \na_\nu X^\mu $, so the rightmost index is the one acting first.
-
-\subsubsection{Torsion and curvature}
+\subsection{Torsion and curvature}
 
 Even though the connection is not a tensor, it is used to construct two important tensors.
 
@@ -2045,7 +2031,7 @@ Clearly, the curvature tensor is anti-symmetric in its last two lower indices, i
   \end{proof}
 \end{proofbox}
 
-\subsubsection{Levi--Civita connection}
+\subsection{Levi--Civita connection}
 
 The discussion on the connection has so far been independent of the metric. Starting to consider it, an important result is the fundamental theorem of Riemannian geometry.
 
@@ -2109,7 +2095,7 @@ It is possible to explicit the components of the Levi--Civita connection in term
   In flat space $ \R^n $, endowed with either Euclidean or Minkowski metric, it is always possible to choose Cartesian coordinates, in which case the Christoffel symbols vanish. Being the Riemann tensor a genuine tensor, it therefore will vanish in all possible coordinate systems on $ \R^n $, even in those with $ \Gamma^\rho_{\mu \nu} \neq 0 $: this expresses the flatness of $ \R^n $.
 \end{example}
 
-\subsubsection{Einstein tensor}
+\subsection{Einstein tensor}
 
 In addition to the anti-symmetry in its last two indices, the Riemann tensor presents additional subtle symmetries when using the Levi--Civita connection.
 
@@ -2207,7 +2193,7 @@ Most importantly, the Einstein tensor is covariantly conserved, as of \eref{eq:r
   \na^\mu G_{\mu \nu} = 0
 \end{equation}
 
-\subsubsection{Gauss' theorem}
+\subsection{Gauss' theorem}
 
 The divergence theorem (or Gauss' theorem) states that the integral of a total derivative is a boundary term. It is possible to express this theorem on curved manifolds in a convenient way.
 
@@ -2266,7 +2252,7 @@ Note that this theorem holds on Lorentzian manifolds too, with the condition tha
 \newpage
 \section{Parallel transport}
 
-The connection connects tangent spaces, or more generally any tensor vector space, at different points of the manifold: this map is called parallel transport and it's necessary for the definition of differentiation.
+The connection connects tangent spaces, or more generally any tensor vector space, at different points of the manifold: this map is called parallel transport and it is necessary for the definition of differentiation.
 
 \begin{definition}{Parallel transport}{}
   Consider a vector field $ X $ and some associated integral curve $ \gamma $, with coordinates $ x^\mu(\tau) $ such that:
@@ -2323,7 +2309,7 @@ For the Levi--Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely t
 \subsection{Normal coordinates}
 
 \begin{theorem}{Equivalence principle}{equivalence}
-  Given a Riemannian manifold $ (\mathcal{M},g) $ and $ p \in \mathcal{M} $, in a neighbourhood of $ p $ it's always possible to find coordinates, called \bcth{normal coordinates}, such that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $ and $ g_{\mu \nu , \rho}(p) = 0 $.
+  Given a Riemannian manifold $ (\mathcal{M},g) $ and $ p \in \mathcal{M} $, in a neighbourhood of $ p $ it is always possible to find coordinates, called \bcth{normal coordinates}, such that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $ and $ g_{\mu \nu , \rho}(p) = 0 $.
 \end{theorem}
 
 \begin{proofbox}
@@ -2340,12 +2326,12 @@ For the Levi--Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely t
     \begin{equation*}
       \frac{\pa y^\rho}{\pa x^\mu}\bigg\vert_{x = 0} \frac{\pa y^\sigma}{\pa x^\nu}\bigg\vert_{x = 0} \tilde{g}_{\rho \sigma}(p) = \delta_{\mu \nu}
     \end{equation*}
-    Given any $ \tilde{g}_{\rho \sigma}(p) $, it's always possible to find $ \frac{\pa y}{\pa x} $ that satisfies this condition. In fact, if $ \dim_{\R} \mathcal{M} = n $, the Jacobian of the transformation has $ n^2 $ independent elements and the equation above puts $ \frac{1}{2} n (n + 1) $ constraints: the remaining free parameters are $ \frac{1}{2} n (n - 1) $, which is precisely the dimension of $ \SOn{n} $, the symmetry group of the flat metric.
+    Given any $ \tilde{g}_{\rho \sigma}(p) $, it is always possible to find $ \frac{\pa y}{\pa x} $ that satisfies this condition. In fact, if $ \dim_{\R} \mathcal{M} = n $, the Jacobian of the transformation has $ n^2 $ independent elements and the equation above puts $ \frac{1}{2} n (n + 1) $ constraints: the remaining free parameters are $ \frac{1}{2} n (n - 1) $, which is precisely the dimension of $ \SOn{n} $, the symmetry group of the flat metric.
     A similar counting shows that $ g_{\mu \nu , \rho}(p) = 0 $ puts $ \frac{1}{2} n^2 (n + 1) $ constraints, precisely the number of independent elements of the Hessian of the transformation.
   \end{proof}
 \end{proofbox}
 
-This theorem holds for Lorentzian manifolds too, but the flat metric is now $ \eta_{\mu \nu} $ and its symmetry group is $ \SOn{1, n-1} $. The condition $ g_{\mu \nu , \rho}(p) = 0 $ implies that $ \Gamma^\mu_{\nu \rho}(p) = 0 $, but generally the Christoffel symbols won't vanish away from $ p $. Note, however, that it's not generally possible to ensure the vanishing of second derivatives too: indeed, $ g_{\mu \nu , \rho \sigma}(p) = 0 $ would put $ \frac{1}{4} n^2 (n + 1)^2 $ constraints, but the independent $ \frac{\pa^3 y}{\pa^3 x} $ terms are $ \frac{1}{6} n^2 (n+1) (n+2) $, thus leaving $ \frac{1}{12} n^2 (n^2 - 1) $ free terms: this is precisely the number of independent components of the Riemann tensor, therefore in general it is not possible to pick coordinates as to make the Riemann tensor vanish too.
+This theorem holds for Lorentzian manifolds too, but the flat metric is now $ \eta_{\mu \nu} $ and its symmetry group is $ \SOn{1, n-1} $. The condition $ g_{\mu \nu , \rho}(p) = 0 $ implies that $ \Gamma^\mu_{\nu \rho}(p) = 0 $, but generally the Christoffel symbols won't vanish away from $ p $. Note, however, that it is not generally possible to ensure the vanishing of second derivatives too: indeed, $ g_{\mu \nu , \rho \sigma}(p) = 0 $ would put $ \frac{1}{4} n^2 (n + 1)^2 $ constraints, but the independent $ \frac{\pa^3 y}{\pa^3 x} $ terms are $ \frac{1}{6} n^2 (n+1) (n+2) $, thus leaving $ \frac{1}{12} n^2 (n^2 - 1) $ free terms: this is precisely the number of independent components of the Riemann tensor, therefore in general it is not possible to pick coordinates as to make the Riemann tensor vanish too.
 
 \subsubsection{Exponential map}
 
@@ -2399,7 +2385,7 @@ In normal coordinates $ \Gamma^\mu_{\nu \rho}(p) = 0 $, thus $ \frac{\dd Z^\mu}{
     &= Z_p^\mu - \frac{\delta\tau^2}{2} X^\nu Z^\rho \frac{\dd \Gamma^\mu_{\nu \rho}}{\dd \tau}\bigg\vert_{\tau = 0} + \smo(\delta\tau^3) = Z_p^\mu - \frac{\delta\tau^2}{2} \left[ X^\nu X^\sigma Z^\rho \Gamma^\mu_{\nu \rho , \sigma} \right]_p + \smo(\delta\tau^3)
   \end{split}
 \end{equation*}
-where $ \frac{\dd}{\dd \tau} = X^\sigma \pa_\sigma $. Now, $ Z_q $ needs to be parallely transported along $ Y $ to $ Z_r $, but this time $ \frac{\dd Z^\mu}{\dd \sigma}\big\vert_{\sigma = 0} $ doesn't vanish, in general. From the parallel transport equation:
+where $ \frac{\dd}{\dd \tau} = X^\sigma \pa_\sigma $. Now, $ Z_q $ needs to be parallely transported along $ Y $ to $ Z_r $, but this time $ \frac{\dd Z^\mu}{\dd \sigma}\big\vert_{\sigma = 0} $ does not vanish, in general. From the parallel transport equation:
 \begin{equation*}
   \frac{\dd Z^\mu}{\dd \sigma}\bigg\vert_{\sigma = 0} = - \left[ Y^\nu Z^\rho \Gamma^\mu_{\nu \rho} \right]_q = - \left[ Y^\nu Z^\rho X^\sigma \Gamma^\mu_{\nu \rho , \sigma} \right]_p \delta \tau + \smo(\delta\tau^2)
 \end{equation*}
@@ -2475,7 +2461,7 @@ The meaning of these vector fields is evident: the tangent vector field fixes a 
   \label{fig:geo-dev}
 \end{figure}
 
-The family of geodesics sweeps a surface embedded in the manifold, so there is freedom in the choice of coordinates $ s $ and $ \tau $. In particular, it's always possible to pick them so that $ X = \frac{\pa}{\pa \tau} $ and $ S = \frac{\pa}{\pa s} $, in order for them to be linearly independent: $ [X,S] = 0 $, as in \figref{fig:geo-dev}. Consider a torsion-free connection, so that:
+The family of geodesics sweeps a surface embedded in the manifold, so there is freedom in the choice of coordinates $ s $ and $ \tau $. In particular, it is always possible to pick them so that $ X = \frac{\pa}{\pa \tau} $ and $ S = \frac{\pa}{\pa s} $, in order for them to be linearly independent: $ [X,S] = 0 $, as in \figref{fig:geo-dev}. Consider a torsion-free connection, so that:
 \begin{equation*}
   \na_X S - \na_S X = [X,S] = 0
   \quad \implies \quad
