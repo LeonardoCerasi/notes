@@ -117,340 +117,15 @@ Contracting with $ g^{\mu \nu} $ yields $ R = \frac{2n}{n-2} \Lambda $, thus in 
 \begin{equation}
   R_{\mu \nu} = \Lambda g_{\mu \nu}
 \end{equation}
-Manifolds on which $ \ricc = \kappa g $ for a constant $ \kappa \in \R $ are known as \bctxt{Einstein manifolds}: clearly, Ricci-flat manifolds are a special class of Einstein manifolds with $ \kappa = 0 $.
+Manifolds on which $ \ricc = \kappa g $ for a constant $ \kappa \in \R $ are known as \bctxt{Einstein manifolds}: clearly, Ricci-flat manifolds are a special class of Einstein manifolds with $ \kappa = 0 $. Notice that Einstein manifolds have constant Ricci scalar curvature $ R = n \kappa $.
 
-\newpage
-\section{Simple solutions}
+\subsection{Symmetries}
 
-The Einstein equations in the absence of matter are $ R_{\mu \nu} = \Lambda g_{\mu \nu} $, with $ \Lambda \in \R $.
-
-\subsection{Minkowski space}
-
-The simplest case is $ \Lambda = 0 $. The Einstein equations then reduce to $ R_{\mu \nu} = 0 $, with the condition of $ g_{\mu \nu} $ being non-degenerate, since it is a metric and the field equations require the existence of the inverse metric $ g^{\mu \nu} $. This restriction is physically unusual: it is not a holonomic constraint on the physical degrees of freedom, but an inequality $ \det g < 0 $ (with required signature $ (-,+,+,+) $) which is not found for other fields of the Standard Model.
-
-% TODO add a definition of holonomic constraint as a footnote
-
-The simplest Ricci flat metric is Minkowski space $ \dd s^2 = -\dd t^2 + \dd \ve{x}^2 $, but it is not the only metric obeying $ R_{\mu \nu} = 0 $. Another example is Schwarzschild metric.
-
-\subsection{de Sitter space}
-\label{ssec:dS-space}
-
-Consider $ \Lambda > 0 $. A possible ansatz is:
-\begin{equation*}
-  \dd s^2 = - f(r)^2 \dd t^2 + f(r)^{-2} \dd r^2 + r^2 (\dd \vartheta^2 + \sin^2 \vartheta \dd \varphi^2)
-\end{equation*}
-
-\subsubsection{Riemann tensor}
-
-First, one needs to compute the Ricci tensor for this metric: a simple way is using the curvature form. The non-coordinate 1-forms satisfy $ \dd s^2 = \eta_{ab} \theta^a \otimes \theta^b $, thus:
-\begin{equation*}
-  \theta^0 = f \dd t
-  \qquad
-  \theta^1 = f^{-1} \dd r
-  \qquad
-  \theta^2 = r \dd \vartheta
-  \qquad
-  \theta^3 = r \sin \vartheta \dd \varphi
-\end{equation*}
-\begin{equation*}
-  \dd\theta^0 = f' \dd r \wedge \dd t
-  \qquad
-  \dd\theta^1 = 0
-  \qquad
-  \dd\theta^2 = \dd r \wedge \dd \vartheta
-  \qquad
-  \dd\theta^3 = \sin \vartheta \dd r \wedge \dd \varphi + r \cos \vartheta \dd \vartheta \wedge \dd \varphi
-\end{equation*}
-The first Cartan structure relation \eref{eq:first-cartan-stru-eq}, together with \eref{eq:connection-form-symm}, allow to determine the connection 1-form. For example, the first equation is $ \tensor{\omega}{^0_1} = f' f \dd t = f' \dd \theta^0 $, and then $ \tensor{\omega}{^1_0} = \omega_{10} = - \omega_{01} = \tensor{\omega}{^0_1} $. Using the other structure equation, the only non-vanishing components of the connection 1-form are:
-\begin{equation*}
-  \tensor{\omega}{^0_1} = \tensor{\omega}{^1_0} = f' \hat{\theta}^0
-  \qquad
-  \tensor{\omega}{^2_1} = - \tensor{\omega}{^1_2} = \frac{f}{r} \hat{\theta}^2
-  \qquad
-  \tensor{\omega}{^3_1} = - \tensor{\omega}{^1_3} = \frac{f}{r} \hat{\theta}^3
-  \qquad
-  \tensor{\omega}{^3_2} = - \tensor{\omega}{^2_3} = \frac{\cot \theta}{r} \hat{\theta}^3
-\end{equation*}
-The curvature 2-form can be computed from the second Cartan structure relation \eref{eq:second-cartan-stru-eq}. For example, $ \tensor{\Omega}{^0_1} = \dd \tensor{\omega}{^0_1} + \tensor{\omega}{^0_c} \wedge \tensor{\omega}{^c_1} $, but $ \tensor{\omega}{^0_c} \wedge \tensor{\omega}{^c_1} = \tensor{\omega}{^0_1} \wedge \tensor{\omega}{^1_1} = 0 $, thus $ \tensor{\Omega}{^0_1} = \dd \tensor{\omega}{^0_1} = ( (f')^2 + f'' f) \dd r \wedge \dd t $. From the curvature 2-form, the Riemann tensor can be computed via \eref{eq:curvature-2-def} (recall the anti-symmetries of the Riemann tensor), finding the only non-vanishing components:
-\begin{equation*}
-  R_{0101} = f f'' + (f')^2
-  \qquad
-  R_{0202} = R_{0303} = \frac{f f'}{r}
-  \qquad
-  R_{1212} = R_{1313} = - \frac{f f'}{r}
-  \qquad
-  R_{2323} = \frac{1 - f^2}{r^2}
-\end{equation*}
-To convert back to $ x^\mu = (t,r,\vartheta,\varphi) $, use $ R_{\mu \nu \rho \sigma} = \tensor{e}{^a_\mu} \tensor{e}{^b_\nu} \tensor{e}{^c_\rho} \tensor{e}{^d_\sigma} R_{abcd} $, which is particularly easy given that the matrices $ \tensor{e}{_a^\mu} $ which define the non-coordiante 1-forms are diagonal:
-\begin{equation*}
-  R_{trtr} = f(r) f''(r) + f'(r)^2
-  \qquad
-  R_{t \vartheta t \vartheta} = f(r)^3 f'(r) r
-  \qquad
-  R_{t \varphi t \varphi} = f(r)^3 f'(r) r \sin^2 \vartheta
-\end{equation*}
-\begin{equation*}
-  R_{r \vartheta r \vartheta} = - \frac{f'(r) r}{f(r)}
-  \qquad
-  R_{r \varphi r \varphi} = - \frac{f'(r) r}{f(r)} \sin^2 \vartheta
-  \qquad
-  R_{\vartheta \varphi \vartheta \varphi} = (1 - f(r)^2) r^2 \sin^2 \vartheta
-\end{equation*}
-
-\subsubsection{Ricci tensor}
-
-Given the Riemann tensor, it is easy to check that the Ricci tensor is diagonal with components:
-\begin{equation*}
-  R_{tt} = - f(r)^4 R_{rr} = f(r)^3 \left[ f''(r) + \frac{2f'(r)}{r} + \frac{f'(r)^2}{f(r)} \right]
-\end{equation*}
-\begin{equation*}
-  R_{\varphi \varphi} = \sin^2 \vartheta R_{\vartheta \vartheta} = (1 - f(r)^2 - 2 f(r) f'(r) r) \sin^2 \vartheta
-\end{equation*}
-Imposing $ R_{\mu \nu} = \Lambda g_{\mu \nu} $ determines two constraints on $ f(r) $:
-\begin{equation*}
-  f''(r) + \frac{2f'(r)}{r} + \frac{f'(r)^2}{f(r)} = - \frac{\Lambda}{f(r)}
-  \qquad \qquad
-  1 - 2 f(r) f'(r) r - f(r)^2 = \Lambda r^2
-\end{equation*}
-A solution is:
-\begin{equation*}
-  f(r) = \sqrt{1 - \frac{r^2}{R^2}}
-  \qquad
-  R^2 \equiv \frac{3}{\Lambda}
-\end{equation*}
-This determines the metric of \bctxt{de Sitter space}:
-\begin{equation}
-  \dd s^2 = - \left( 1 - \frac{r^2}{R^2} \right) \dd t^2 + \left( 1 - \frac{r^2}{R^2} \right)^{-1} \dd r^2 + r^2 (\dd \vartheta^2 + \sin^2 \vartheta \dd \varphi^2)
-  \label{eq:dS-metric}
-\end{equation}
-More precisely, this is the \textit{static patch} of de Sitter space.
-
-\subsubsection{de Sitter geodesics}
-
-To interpret a metric, it is useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
-\begin{equation}
-  \mathcal{S} = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dd \dot{\varphi}^2) \right]
-  \label{eq:dS-action}
-\end{equation}
-where $ \dot{x}^\mu \equiv \frac{\dd x^\mu}{\dd \sigma} $. This Lagrangian has two ignorable degrees of freedom which lead to conserved quantities: $ t(\sigma) $ and $ \varphi(\sigma) $, as they appear only with time derivatives. The first one has energy as the conserved quantity, while the second has angular momentum:
-\begin{equation}
-  E = - \frac{1}{2} \frac{\pa L}{\pa \dot{t}} = f(r)^2 \dot{t}
-  \label{eq:dS-energy}
-\end{equation}
-\begin{equation}
-  \ell = \frac{1}{2} \frac{\pa L}{\pa \dot{\varphi}} = r^2 \sin^2 \vartheta \dot{\varphi}
-  \label{eq:dS-ang-mom}
-\end{equation}
-The $ \frac{1}{2} $ are due to the absence of the usual factor in the kinetic term. The equations of motion from the action \eref{eq:dS-action} should be supplemented with a constraint to distinguish whether a particle is massive or massless. For a massive particle, the trajectory must be timelike, so:
-\begin{equation*}
-  - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dot{\varphi}^2) = -1
-\end{equation*}
-WLOG consider geodeiscs that lie in the $ \vartheta = \frac{\pi}{2} $ plane, so that $ \dot{\theta} = 0 $ and $ \sin^2 \vartheta = 1 $. Replacing $ (t,\varphi) $ with $ (E,\ell) $, the constraint becomes:
-\begin{equation}
-  \dot{r}^2 + V_{\text{eff}}(r) = E^2
-  \qquad
-  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) f(r)^2
-\end{equation}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.80 \textwidth]{geod-ds.png}
-  \caption{Effective potential for de Sitter geodesics, with $ \ell \neq 0 $ and $ \ell = 0 $ respectively.}
-  \label{fig:geo-ds}
-\end{figure}
-
-For de Sitter space:
-\begin{equation}
-  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 - \frac{r^2}{R^2} \right)
-\end{equation}
-This effective potential is plotted in \figref{fig:geo-ds}: immediately, one sees that the potential pushes the particle to larger values of $ r $. Focusing on geodesics with $ \ell = 0 $, the potential is a harmonic repulsor: a particle stationary at $ r = 0 $ is an unstable geodesic, since if it has non-zero initial velocity it will follow the trajectory:
-\begin{equation}
-  r(\sigma) = R \sqrt{E^2 - 1} \sinh \frac{\sigma}{R}
-  \label{eq:dS-repulsor}
-\end{equation}
-Note that the metric is singular at $ r = R $, a fact not manifest in the geodesic \eref{eq:dS-repulsor} which shows that any observer reaches $ r = R $ in finite proper time. Problems arise when studying the coordinate time $ t $, which has the interpretation of the time experienced by some stationary at $ r = 0 $; from \eref{eq:dS-energy}:
-\begin{equation*}
-  \frac{\dd t}{\dd \sigma} = E \left( 1 - \frac{r^2}{R^2} \right)^{-1}
-\end{equation*}
-This shows that $ t(\sigma) \rightarrow \infty $ as $ r(\sigma) \rightarrow R $: in fact, if $ r(\sigma^*) = R $, then for $ \sigma = \sigma^* - \varepsilon $ one has $ \frac{\dd t}{\dd \sigma} = - \frac{\alpha}{\varepsilon} $, i.e. $ t(\varepsilon) = - \log (\varepsilon / R) $, so $ t(\varepsilon) \rightarrow \infty $ as $ \varepsilon \rightarrow 0 $. This means that a particle moving along the geodesic \eref{eq:dS-repulsor} will reach $ r = R $ in finite proper time, but a stationary observer at $ r = 0 $ will measure an infinite amount of time.
-
-% TODO should review this part, as it is unclear
-
-This strange behaviour is similar to what happens at the horizon of a black hole ($ r = 2GM $): however, the Schwarzschild metric has a singularity at $ r = 0 $, while de Sitter metric looks flat at $ r = 0 $. de Sitter space seems like an inverted black hole in which particles are pushed outwars to $ r = R $.
-
-\subsubsection{de Sitter embeddings}
-
-de Sitter space can be embedded as a submanifold of $ \R^{1,4} $ with metric:
-\begin{equation}
-  \dd s^2 = - (\dd X^0)^2 + \sum_{i = 1}^{4} (\dd X^i)^2
-  \label{eq:dS-param-metric}
-\end{equation}
-In particular, de Sitter metric \eref{eq:dS-metric} is a metric on the submanifold of $ \R^{1,4} $ defined by the timelike hyperboloid:
-\begin{equation}
-  -(X^0)^2 + \sum_{i = 1}^{4} (X^i)^2 = R^2
-  \label{eq:dS-param}
-\end{equation}
-A way of parametrizing this constraint is by imposing that $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, so that:
-\begin{equation*}
-  R^2 - r^2 = (X^4)^2 - (X^0)^2
-\end{equation*}
-The solutions are parametrized as:
-\begin{equation*}
-  X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R}
-  \qquad
-  X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R}
-\end{equation*}
-Computing the respective variations, along with $ \sum_{i = 1}^{3} (\dd X^i)^2 = \dd r^2 + r^2 \dd \Omega_2^2 $, where $ \dd \Omega_n^2 $ is the metric element on $ \Sn{n} $, allows to show that the pull-back of the Minkowski metric \eref{eq:dS-param-metric} on the hyperboloid \eref{eq:dS-param} so parametrized gives the de Sitter metric \eref{eq:dS-metric} in the static patch coordinates.
-
-The coordinates $ \{X^i\}_{i = 0,\dots,4} $ so defined are not the most intuitive: they single out $ X^4 $ as special, when the constraint does no such thing, and they do not cover the whole hyperboloid, as they are limited to $ X^4 \ge 0 $. A better choice of parametrization is:
-\begin{equation*}
-  X^0 = R \sinh \frac{\tau}{R}
-  \qquad \qquad
-  X^i = y^i R \cosh \frac{\tau}{R}
-  \,:\,
-  \sum_{i = 1}^{4} (y^i)^2 = 1
-\end{equation*}
-Given this constraint, $ \{y^i\}_{i = 1,,2,3,4} $ parametrize $ \Sn{3} $. These coordinates retain more of the symmetry of de Sitter space and cover the whole space, thus are a better parametrization. The pull-back of Minkowski metric, however, gives a rather different metric on de Sitter space:
-\begin{equation}
-  \dd s^2 = - \dd \tau^2 + R^2 \cosh^2 \frac{\tau}{R}\, \dd \Omega_3^2
-  \label{eq:ds-global-coo}
-\end{equation}
-These are known as \textit{global coordinates}, as they cover the whole space (except for usual singularities at the poles for any choice of coordinates on $ \Sn{3} $). Since this metric is related to that in \eref{eq:dS-metric} by a change of coordinates, it too must obey the Einstein equations. Global coordinates also show that the singularity which happens at $ X^4 = 0 $, i.e. at $ r = R $, is nothing but a coordinate singularity.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.30 \textwidth]{ds-space.png}
-  \caption{de Sitter space visualization with global coordinates.}
-  \label{fig:ds-space}
-\end{figure}
-
-These coordinates provide a clearer intuition for the physics of de Sitter space: it is a time-dependent solution of the field equations in which a spatial $ \Sn{3} $ first shrinks to a minimal radius $ R $ and then expands, as shown in \figref{fig:ds-space}. The expansionary phase is a good approximation to our current universe on large scales.
-
-\subsection{Anti-de Sitter space}
-
-Consider $ \Lambda < 0 $. With the same ansatz as for de Sitter space, it is easy to find the metric for \bctxt{anti-de Sitter space} (AdS):
-\begin{equation}
-  \dd s^2 = - \left( 1 + \frac{r^2}{R^2} \right) \dd t^2 + \left( 1 + \frac{r^2}{R^2} \right)^{-1} \dd r^2 + r^2 \dd \Omega_2^2
-  \qquad
-  R^2 \equiv - \frac{3}{\Lambda}
-  \label{eq:ads-metric}
-\end{equation}
-Equivalent coordinates are found setting $ r = R \sinh \rho $:
-\begin{equation}
-  \dd s^2 = - \cosh^2 \rho\, \dd t^2 + R^2 \dd \rho^2 + R^2 \sinh^2 \rho\, \dd \Omega_2^2
-  \label{eq:ads-equiv-coo}
-\end{equation}
-In AdS there is no coordinate singularity in $ r $, and indeed coordinates cover the whole space.
-
-\subsubsection{Anti-de Sitter geodesics}
-
-AdS has the same action as in \eref{eq:dS-action}, thus the radial trajectory of a massive particle moving along a geodesic in the $ \vartheta = \frac{\pi}{2} $ plane is $ \dot{r}^2 + V_{\text{eff}}(r) = E^2 $, with:
-\begin{equation}
-  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 + \frac{r^2}{R^2} \right)
-\end{equation}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.80 \textwidth]{geod-ads.png}
-  \caption{Effective potential for anti-de Sitter geodesics, with $ \ell \neq 0 $ and $ \ell = 0 $ respectively.}
-  \label{fig:geo-ads}
-\end{figure}
-
-Plotting it in \figref{fig:geo-ads}, the geodesics' behaviour is clear: with no angular momentum, anti-de Sitter space acts like a harmonic oscillator, pulling the particle towards the origin and making it oscillate around $ r = 0 $. If the particle has non-zero angular momentum, then the potential has a minimum at $ r_*^2 = R \ell $, thus particles oscillate around $ r_* $: importantly, particles with finite energy cannot escape to $ r \rightarrow \infty $, but are constrained by the spacetime within some finite distance from the origin.
-
-This picture of AdS as a harmonic trap which pulls particle to the origin clashes with the fact that AdS is a homogeneous space (roughly, all points are the same). To understand how these two facts are compatible, consider a stationary observer at $ r = 0 $: this is a geodesic and, from its perspective, other observers (with $ \ell = 0 $) will oscillate around $ r = 0 $ along geodesics. However, since these observers move along geodesics, in their reference frame they are stationary at $ r = 0 $, with all other observers oscillating. Thus, while in dS each observer views themselves at the center of the universe, with other observers moving away from them, in AdS each observer views themselves as the center of the universe, with other observer oscillating around them.\\
-Its possible to study geodesics for a massless particle too. This time, the constraint to the action is:
-\begin{equation*}
-  - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dot{\varphi}^2) = 0
-\end{equation*}
-This means that the particle follows a null geodesic. Its equation of motion is:
-\begin{equation*}
-  \dot{r}^2 + V_{\text{null}}(r) = E^2
-  \qquad
-  V_{\text{null}}(r) = \frac{\ell^2}{r^2} \left( 1 + \frac{r^2}{R^2} \right)
-\end{equation*}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.50 \textwidth]{ads-pot.png}
-  \caption{Potential experienced by massless particles with $ \ell \neq 0 $ in AdS.}
-  \label{fig:ads-pot}
-\end{figure}
-
-Its plot in \figref{fig:ads-pot} makes it clear that any massless particle can escape to $ r \rightarrow \infty $, as the null potential is asymptotically constant, and it will experience the usual gravitational redshift: AdS only confines massive particles.
-To solve for the trajectory, it is easier to work with $ r = R \sinh \rho $ and $ \ell = 0 $, so that:
-\begin{equation*}
-  R \dot{\rho} = \pm \frac{E}{\cosh \rho}
-  \quad \Rightarrow \quad
-  R \sinh \rho(\sigma) = E (\sigma - \sigma_0)
-\end{equation*}
-One sees that $ \rho \rightarrow \infty $ only in infinite affine time (i.e. $ \sigma \rightarrow \infty $). However, in coordinate time, recalling \eref{eq:dS-energy}, $ E = \cosh^2 \rho\, \dot{t} $, so:
-\begin{equation*}
-  R \tan \frac{t}{R} = E (\sigma - \sigma_0)
-\end{equation*}
-Hence, as affine time $ \sigma \rightarrow \infty $, coordinate time $ t \rightarrow \frac{\pi}{2} R $. This means that light rays escape to infinity in a finite amount of coordinate time: to make sense of dynamics in AdS, one must specify some boundary conditions at infinity to dictate how massless particles and field behave.
-AdS does not appear to be of any cosmological interest.
-
-\subsubsection{Anti-de Sitter embeddings}
-
-AdS too has a natural embedding in a 5-dimensional spacetime: it is a submanifold of $ \R^{2,3} $ with metric:
-\begin{equation}
-  ds^2 = - (\dd X^0)^2 - (\dd x^4)^2 + \sum_{i = 1}^{3} (\dd X^i)^2
-  \label{eq:ads-param-metric}
-\end{equation}
-In particular, anti-de Sitter metric \eref{eq:ads-metric} is a metric on the hyperboloid:
-\begin{equation}
-  - (X^0)^2 - (X^4)^2 + \sum_{i = 1}^{3} (X^i)^2 = - R^2
-  \label{eq:ads-param}
-\end{equation}
-This constraint can be solved via the parametrization:
-\begin{equation*}
-  X^0 = R \cosh \rho \sin \frac{t}{R}
-  \qquad
-  X^4 = R \cosh \rho \cos \frac{t}{R}
-  \qquad
-  X^i = y^i R \sinh \rho
-  \,:\,
-  \sum_{i = 1}^{3} (y^i)^2 = 1
-\end{equation*}
-Given this constraint, $ \{y^i\}_{i = 1,2,3} $ parametrize $ \Sn{2} $. The pull-back of the metric \eref{eq:ads-param-metric} on the hyperboloid so parametrized gives anti-de Sitter metric \eref{eq:ads-metric}.
-
-Note a small subtlety: the embedding hyperboloid has topology $ \Sn{1} \times \R^3 $, not $ \R^4 $: this corresponds to a compact time direction, as $ t \in [0, 2\pi R) $. However, AdS metric does not have such restriction, with $ t \in \R $: this is a universal covering of the hyperboloid.
-
-Another useful parametrization of the hyperboloid is the following:
-\begin{equation*}
-  X^4 - X^3 = r
-  \qquad
-  X^4 + X^3 = \frac{R^2}{r} + \frac{r}{R^2} \eta_{ij} x^i x^j
-  \qquad
-  X^i = \frac{r}{R} x^i
-  \,,\, i = 0,1,2
-\end{equation*}
-with $ r \in [0, \infty) $. With these coordinates, the metric takes the form:
-\begin{equation*}
-  \dd s^2 = R^2 \frac{\dd r^2}{r^2} + \frac{r^2}{R^2} \eta_{ij} \dd x^i \dd x^j
-\end{equation*}
-These coordinates do not cover the whole AdS, but only one-half of the hyperboloid, restricted to $ X^4 - X^3 > 0 $: this is known as the \textit{Poincaré patch} of AdS. Moreover, $ x^0 $ cannot be further extended beyond $ x^0 \in (-\infty, +\infty) $, thus in global coordinates the restriction $ t \in [0,2\pi R) $ remains. In this case, massive particles fall towards $ r = 0 $.
-
-Finally, there are two more possible coordinate systems on the Poincaré patch, obtained by setting $ z = \frac{R^2}{r} $ and $ r = R e^\rho $:
-\begin{equation*}
-  \dd s^2 = \frac{R^2}{z^2} \left( \dd z^2 + \eta_{ij} \dd x^i \dd x^j \right)
-  \qquad \qquad
-  \dd s^2 = R^2 \dd \rho^2 + e^{2\rho} \eta_{ij} \dd x^i \dd x^j
-\end{equation*}
-In each case, massive particles fall towards $ z = \infty $ or $ \rho = -\infty $.
-
-\newpage
-\section{Symmetries}
-
-What makes Minkowski, dS and AdS special solutions to the Einstein equations are their symmetries.
-The symmetries of Minkowski spacetime are familiar: translations and rotations of spacetime, with the latter splitting between proper rotations and Lorentz boosts. These symmetries are responsible for the existence of energy, momentum and angular momentum on a fixed Minkowski background: it is important to characterize the symmetries of a general metric.
-
-\subsection{Diffeomorphisms-invariant action}
+The Einstein equations are highly non-linear, hence they are extremely hard to solve. In the study of their solutions, a fundamental role is played by symmetries. For example, consider the simplest solution, i.e. Minkowski spacetime: its symmetries are familiar, namely translations and rotations of spacetime (with the latter splitting between proper rotations and Lorentz boosts), whose existence allows to define conserved energy, momentum and angular momentum on a fixed Minkowski background. It is then important to characterize the symmetries of a general metric.
 
 Being the metric a symmetric $ \R^{4 \times 4} $ matrix, it should have $ \frac{1}{2} \times 4 \times 5 = 10 $ degrees of freedom. However, not all the components of $ g_{\mu \nu} $ are physical. Indeed, two metrics related by a change of coordinates $ x^\mu \mapsto \tilde{x}^\mu(x) $ describe the same physical spacetime, thus there is a redundancy in any given representation of the metric which removes precisely 4 degrees of freedom, leaving only 6 physical degrees of freedom.
 
-Mathematically, given a diffeomorphism $ \phi : \mathcal{M} \rightarrow \mathcal{M} $, it maps all fields on $ \mathcal{M} $ to a new set of fields on $ \mathcal{M} $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theories.
+Formally, a diffeomorphism $ \phi : \mathcal{M} \rightarrow \mathcal{M} $ maps all fields on $ \mathcal{M} $ to a new set of fields on $ \mathcal{M} $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theories.
 
 Consider a diffeomorphism $ x^\mu \mapsto \tilde{x}^\mu = x^\mu + \delta x^\mu $: this can be viewed as an active diffeomorphism, where points in spacetime are mapped from one another, or as a passive diffeomorpshim, in which only the coordinates of each point are affected, but the two interpretations are equivalent.
 
@@ -534,7 +209,7 @@ Invariance for $ x^\mu \mapsto x^\mu - Z^\mu $ means that $ \delta \mathcal{S} =
 \end{equation}
 This is the Bianchi identity: although it is a result from Differential Geometry, is follows from diffeomorphism invariance of the Einstein--Hilbert action. This identity contains 4 equations, which make the 10 Einstein equations not completely independent: in fact, only 6 of them are independent, the same number of independent components of the metric, thus ensuring that the field equations are not overdetermined.
 
-\subsection{Isometries}
+\subsubsection{Isometries}
 \label{ssec:isometries}
 
 With \eref{eq:metric-variation}, it is possible to find those vector fields which identically have $ \delta g_{\mu \nu} \equiv 0 $, i.e. those under whose flow the metric tensor remains unchanged.
@@ -621,7 +296,7 @@ Starting from the Killing equation, it is possible to further characterize Killi
     \begin{equation*}
       2 \na_\nu \na_\alpha K_\mu = (\tensor{R}{_{\mu \nu \alpha}^\beta} + \tensor{R}{_{\nu \alpha \mu}^\beta} - \tensor{R}{_{\alpha \mu \nu}^\beta}) K_\beta
     \end{equation*}
-    The Bianchi identity $ \tensor{R}{_{[\mu \nu \alpha]}^\beta} = 0 $ then implies $ \tensor{R}{_{\mu \nu \alpha}^\beta} + \tensor{R}{_{\nu \alpha \mu}^\beta} = - \tensor{R}{_{\alpha \mu \nu}^\beta} $, which yields the thesis.
+    The Bianchi identity $ \tensor{R}{_{[\mu \nu \alpha]}^\beta} = 0 \implies \tensor{R}{_{\mu \nu \alpha}^\beta} + \tensor{R}{_{\nu \alpha \mu}^\beta} = - \tensor{R}{_{\alpha \mu \nu}^\beta} $ completes the proof.
   \end{proof}
 \end{proofbox}
 
@@ -629,82 +304,36 @@ Starting from the Killing equation, it is possible to further characterize Killi
 \begin{equation}
   N_{K,\text{max}} = n + \frac{n (n-1)}{2} = \frac{n (n+1)}{2}
 \end{equation}
-A spacetime which admits $ N_{K,\text{max}} $ Killing vector fields is said to be \bctxt{maximally symmetric}.
+A spacetime which admits $ N_{K,\text{max}} $ Killing vector fields is said to be \bctxt{maximally symmetric}. These $ N_{K,\text{max}} $ Killing vector fields split between generators of translations and rotations: indeed, in an $ n $-dimensional space there are $ n $ axes along which to define translations and $ \frac{1}{2} n (n-1) $ planes in which to define rotations, thus reproducing the above split between initial conditions.
 
-\begin{lemma}{Riemann tensor of maximally symmetric spacetime}{}
+\begin{proposition}{Riemann tensor of maximally symmetric spacetime}{}
   The curvature tensor of a maximally symmetric spacetime can be written as:
   \begin{equation}
     R_{\mu \nu \alpha \beta} = \lambda (g_{\mu \alpha} g_{\nu \beta} - g_{\nu \alpha} g_{\mu \beta})
     \qquad
     \lambda \in \R
   \end{equation}
-\end{lemma}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    In a maximally symmetric spacetime the curvature is independent under all possible translations and rotations, hence choose normal coordinates at an arbitrary $ p \in \man $, so that $ g_{\mu \nu} \vert_p = \eta_{\mu \nu} $. These coordinates are not unique, since any Lorentz transformation leaves the metric components unchanged and equal to $ \eta_{\mu \nu} $ (by definition of Lorentz transformation, recall \obsref{obs:vielbein-lorentz}). Lorentz invariance must then be imposed on the Riemann tensor: this means that it can only be expressed in terms of Lorentz invariant tensors, which uniquely are the Lorentz--Minkowski metric, the Kronecker delta and the Levi--Civita tensor. The only combination of these tensor which matches the symmetries of the Riemann tensor (\pref{prop:riemann-symmetries}) is:
+    \begin{equation*}
+      R_{\mu \nu \alpha \beta} \vert_p \propto \eta_{\mu \alpha} \eta_{\nu \beta} - \eta_{\mu \beta} \eta_{\nu \alpha}
+    \end{equation*}
+    Replacing $ \eta_{\mu \nu} $ with $ g_{\mu \nu} \vert_p = \eta_{\mu \nu} $ turns this into a tensorial equation, valid on all of $ \man $ by the arbitrariness of $ p $, hence the thesis.
+  \end{proof}
+\end{proofbox}
 
 The constant $ \lambda \in \R $ has dimensions of $ [\lambda] = L^{-2} $. The Ricci tensor and scalar are consequently expressed by:
 \begin{equation}
-  R_{\mu \nu} = 3 \lambda g_{\mu \nu}
+  R_{\mu \nu} = (n-1) \lambda g_{\mu \nu}
   \qquad \qquad
-  R = 12 \lambda
+  R = n(n-1) \lambda
 \end{equation}
+Therefore, maximally symmetric spacetimes are Einstein manifolds, and as such have constant Ricci scalar curvature. An explicit construction of maximally symmetric solutions to \eref{eq:einstein-def} is given in \secref{ssec:maximally-symmetric-solutions}.
 
-\newpage
-
-\begin{example}{Minkowski spacetime}{}
- Consider Minkowski spacetime $ \R^{1,3} $ with $ g_{\mu \nu} = \eta_{\mu \nu} $. Killing equation is:
-  \begin{equation*}
-    \pa_\mu K_\nu + \pa_\nu K_\mu = 0
-  \end{equation*}
-  There are two forms of solution. The first one is:
-  \begin{equation*}
-    K_\mu = c_\mu
-  \end{equation*}
-  for any constant vector $ c_\mu $. These generate translations. Alternatively:
-  \begin{equation*}
-    K_\mu = \omega_{\mu \nu} x^\nu
-    \,:\, \omega_{\mu \nu} = - \omega_{\nu \mu}
-  \end{equation*}
-  These generate rotations and Lorentz boosts (see \S 1.2 of \cite{leonardo}). The emergence of the Lie algebra structure can be elucidated defining the Killing vectors:
-  \begin{equation*}
-    P_\mu \defeq \pa_\mu
-    \qquad
-    M_{\mu \nu} \defeq \eta_{\mu \rho} x^\rho \pa_\nu - \eta_{\nu \rho} x^\rho \pa_\mu
-  \end{equation*}
-  These are 10 Killing vectors, 4 for translations and 6 for rotations and boosts, which obey the Poincaré algebra:
-  \begin{equation*}
-    [P_\mu, P_\nu] = 0
-    \qquad
-    [M_{\mu \nu}, P_\sigma] = - \eta_{\mu \sigma} P_\nu + \eta_{\sigma \nu} P_\mu
-  \end{equation*}
-  \begin{equation*}
-    [M_{\mu \nu}, M_{\rho \sigma}] = \eta_{\mu \sigma} M_{\nu \rho} + \eta_{\nu \rho} M_{\mu \sigma} - \eta_{\mu \rho} M_{\nu \sigma} - \eta_{\nu \sigma} M_{\mu \rho}
-  \end{equation*}
-  This is precisely the Lie algebra of the Poincaré group $ \ISO{1,3} \defeq \R^4 \rtimes \SOn{1,3} $, i.e. the isometry group of Minkowski spacetime. 
-\end{example}
-
-\begin{example}{(anti-)de Sitter spacetime}{}
-  The isometries of dS and AdS are best seen from their embeddings.
-  The constraint \eref{eq:dS-param} which defined de Sitter space is invariant under the rotations of $ \R^{1,4} $, thus dS inherits the $ \SOn{1,4} $ isometry group. Similarly, the constraint \eref{eq:ads-param} which defines anti-de Sitter space is invariant under rotations of $ \R^{2,3} $, so AdS inherits the $ \SOn{2,3} $ isometry group. Note that both these groups are 10-dimensional, as $ \ISO{1,3} $.
-
-  It is simple to determine the 10 Killing spinors of 5-dimensional spacetime:
-  \begin{equation*}
-    M_{AB} = \eta_{AC} X^C \pa_B - \eta_{BC} X^C \pa_A
-  \end{equation*}
-  where $ X^A, A = 0,1,2,3,4 $ are 5-dimensional coordinates and $ \eta_{AB} $ is the appropriate Minkowski metric, with signature $ (-,+,+,+,+) $ for dS and $ (-,-,+,+,+) $ for AdS. In either case, the Lie algebra is that of the appropriate Lorentz group:
-  \begin{equation*}
-    [M_{AB}, M_{CD}] = \eta_{AD} M_{BC} + \eta_{BC} M_{AD} - \eta_{AC} M_{BD} - \eta_{BD} M_{AC}
-  \end{equation*}
-  The embedding hyperbolae are both invariant under these Killing vectors: flows generated by them map points on the hyperbolae to other points on the hyperbolae. Therefore, these Killing vectors are inherited by dS and AdS respectively.
-
-  Energy is defined as the Noether charge of a timelike Killing vector. In anti-de Sitter space there is no problem finding a timelike Killing vector, as the metric in global coordinates \eref{eq:ads-metric} is time-independent, so $ K = \pa_t $. However, this is not the case in de Sitter space.
-
-  Considering dS in the static patch with coordinates $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $, the metric \eref{eq:dS-metric} is time-independent, thus $ K = \pa_t $ is a Killing vector; pushing it forward to the 5-dimensional space:
-  \begin{equation*}
-    \pa_t = \frac{\pa X^A}{\pa t} \pa_A = \frac{1}{R} ( X^4 \pa_0 + X^0 \pa_4 )
-  \end{equation*}
-  On the static patch, this Killing vector is timelike and the energy \eref{eq:dS-energy} follows from it. The problem is that the static patch is only one-half of the hyperboloid: when considering the whole AdS, one must account for the case $ X^0 = 0, X^4 < 0 $, in which the Killing vector points in the past direction, or $ X^0 \neq 0, X^4 = 0 $, in which it is spacelike. Therefore, the Killing vector can be both timelike (future-directed and past-directed) or spacelike when spanning the whole manifold: for this reason, it is not possible to define a global positive conserved energy on the total de Sitter space. The same conclusion follows by noting that the metric in global coordinates \eref{eq:ds-global-coo} is time-dependent. 
-\end{example}
-
-\subsection{Komar integrals}
+\subsubsection{Komar integrals}
 
 \begin{definition}{Komar form}{}
   Given a Killing vector $ K = K^\mu \pa_\mu $ and the 1-form $ K^\flat \equiv K_\mu \dd x^\mu $, the associated \bcdef{Komar form} is the 2-form defined as:
@@ -770,6 +399,387 @@ The constant $ \lambda \in \R $ has dimensions of $ [\lambda] = L^{-2} $. The Ri
 \end{proofbox}
 
 As for Noether integrals of a particle, Komar integrals of spacetime are interpreted based on the defining Killing vector. For example, if $ K^\mu $ is everywhere timelike, i.e. $ g_{\mu \nu} K^\mu K^\nu < 0 $, then its Komar integral can be identified with the energy (or the mass) of spacetime; if the Killing vector is related to rotations, instead, the conserved charge is the angular momentum of spacetime.
+
+\subsection{Maximally symmetric solutions}
+\label{ssec:maximally-symmetric-solutions}
+
+The Einstein equations in the absence of matter reduce to $ R_{\mu \nu} = \Lambda g_{\mu \nu} $, with $ \Lambda \in \R $. In the case of maximally symmetric solutions, $ \Lambda = (n-1) R $, and the possible solutions split into three classes: $ \Lambda = 0 $ (Minkowski), $ \Lambda > 0 $ (de Sitter) and $ \Lambda < 0 $ (anti-de Sitter).
+
+\subsubsection{Minkowski space}
+
+The simplest case is $ \Lambda = 0 $. The Einstein equations then reduce to $ R_{\mu \nu} = 0 $, with the condition of $ g_{\mu \nu} $ being non-degenerate, since it is a metric and the field equations require the existence of the inverse metric $ g^{\mu \nu} $. This restriction is physically unusual: it is not a holonomic constraint on the physical degrees of freedom, but an inequality $ \det g < 0 $ (with required signature $ (-,+,+,+) $) which is not found for other fields of the Standard Model.
+
+% TODO add a definition of holonomic constraint as a footnote
+
+The simplest Ricci flat metric is Minkowski space $ \dd s^2 = -\dd t^2 + \dd \ve{x}^2 $, but it is not the only metric obeying $ R_{\mu \nu} = 0 $. Another example is Schwarzschild metric.
+
+\subsubsection{de Sitter space}
+\label{ssec:dS-space}
+
+Consider $ \Lambda > 0 $. A possible ansatz is:
+\begin{equation*}
+  \dd s^2 = - f(r)^2 \dd t^2 + f(r)^{-2} \dd r^2 + r^2 (\dd \vartheta^2 + \sin^2 \vartheta \dd \varphi^2)
+\end{equation*}
+
+\paragraph{Riemann tensor}
+
+First, one needs to compute the Ricci tensor for this metric: a simple way is using the curvature form. The non-coordinate 1-forms satisfy $ \dd s^2 = \eta_{ab} \theta^a \otimes \theta^b $, thus:
+\begin{equation*}
+  \theta^0 = f \dd t
+  \qquad
+  \theta^1 = f^{-1} \dd r
+  \qquad
+  \theta^2 = r \dd \vartheta
+  \qquad
+  \theta^3 = r \sin \vartheta \dd \varphi
+\end{equation*}
+\begin{equation*}
+  \dd\theta^0 = f' \dd r \wedge \dd t
+  \qquad
+  \dd\theta^1 = 0
+  \qquad
+  \dd\theta^2 = \dd r \wedge \dd \vartheta
+  \qquad
+  \dd\theta^3 = \sin \vartheta \dd r \wedge \dd \varphi + r \cos \vartheta \dd \vartheta \wedge \dd \varphi
+\end{equation*}
+The first Cartan structure relation \eref{eq:first-cartan-stru-eq}, together with \eref{eq:connection-form-symm}, allow to determine the connection 1-form. For example, the first equation is $ \tensor{\omega}{^0_1} = f' f \dd t = f' \dd \theta^0 $, and then $ \tensor{\omega}{^1_0} = \omega_{10} = - \omega_{01} = \tensor{\omega}{^0_1} $. Using the other structure equation, the only non-vanishing components of the connection 1-form are:
+\begin{equation*}
+  \tensor{\omega}{^0_1} = \tensor{\omega}{^1_0} = f' \hat{\theta}^0
+  \qquad
+  \tensor{\omega}{^2_1} = - \tensor{\omega}{^1_2} = \frac{f}{r} \hat{\theta}^2
+  \qquad
+  \tensor{\omega}{^3_1} = - \tensor{\omega}{^1_3} = \frac{f}{r} \hat{\theta}^3
+  \qquad
+  \tensor{\omega}{^3_2} = - \tensor{\omega}{^2_3} = \frac{\cot \theta}{r} \hat{\theta}^3
+\end{equation*}
+The curvature 2-form can be computed from the second Cartan structure relation \eref{eq:second-cartan-stru-eq}. For example, $ \tensor{\Omega}{^0_1} = \dd \tensor{\omega}{^0_1} + \tensor{\omega}{^0_c} \wedge \tensor{\omega}{^c_1} $, but $ \tensor{\omega}{^0_c} \wedge \tensor{\omega}{^c_1} = \tensor{\omega}{^0_1} \wedge \tensor{\omega}{^1_1} = 0 $, thus $ \tensor{\Omega}{^0_1} = \dd \tensor{\omega}{^0_1} = ( (f')^2 + f'' f) \dd r \wedge \dd t $. From the curvature 2-form, the Riemann tensor can be computed via \eref{eq:curvature-2-def} (recall the anti-symmetries of the Riemann tensor), finding the only non-vanishing components:
+\begin{equation*}
+  R_{0101} = f f'' + (f')^2
+  \qquad
+  R_{0202} = R_{0303} = \frac{f f'}{r}
+  \qquad
+  R_{1212} = R_{1313} = - \frac{f f'}{r}
+  \qquad
+  R_{2323} = \frac{1 - f^2}{r^2}
+\end{equation*}
+To convert back to $ x^\mu = (t,r,\vartheta,\varphi) $, use $ R_{\mu \nu \rho \sigma} = \tensor{e}{^a_\mu} \tensor{e}{^b_\nu} \tensor{e}{^c_\rho} \tensor{e}{^d_\sigma} R_{abcd} $, which is particularly easy given that the matrices $ \tensor{e}{_a^\mu} $ which define the non-coordiante 1-forms are diagonal:
+\begin{equation*}
+  R_{trtr} = f(r) f''(r) + f'(r)^2
+  \qquad
+  R_{t \vartheta t \vartheta} = f(r)^3 f'(r) r
+  \qquad
+  R_{t \varphi t \varphi} = f(r)^3 f'(r) r \sin^2 \vartheta
+\end{equation*}
+\begin{equation*}
+  R_{r \vartheta r \vartheta} = - \frac{f'(r) r}{f(r)}
+  \qquad
+  R_{r \varphi r \varphi} = - \frac{f'(r) r}{f(r)} \sin^2 \vartheta
+  \qquad
+  R_{\vartheta \varphi \vartheta \varphi} = (1 - f(r)^2) r^2 \sin^2 \vartheta
+\end{equation*}
+
+\paragraph{Ricci tensor}
+
+Given the Riemann tensor, it is easy to check that the Ricci tensor is diagonal with components:
+\begin{equation*}
+  R_{tt} = - f(r)^4 R_{rr} = f(r)^3 \left[ f''(r) + \frac{2f'(r)}{r} + \frac{f'(r)^2}{f(r)} \right]
+\end{equation*}
+\begin{equation*}
+  R_{\varphi \varphi} = \sin^2 \vartheta R_{\vartheta \vartheta} = (1 - f(r)^2 - 2 f(r) f'(r) r) \sin^2 \vartheta
+\end{equation*}
+Imposing $ R_{\mu \nu} = \Lambda g_{\mu \nu} $ determines two constraints on $ f(r) $:
+\begin{equation*}
+  f''(r) + \frac{2f'(r)}{r} + \frac{f'(r)^2}{f(r)} = - \frac{\Lambda}{f(r)}
+  \qquad \qquad
+  1 - 2 f(r) f'(r) r - f(r)^2 = \Lambda r^2
+\end{equation*}
+
+% TODO modify notation, overlap with Ricci scalar
+
+A solution is:
+\begin{equation*}
+  f(r) = \sqrt{1 - \frac{r^2}{R^2}}
+  \qquad
+  R^2 \equiv \frac{3}{\Lambda}
+\end{equation*}
+This determines the metric of \bctxt{de Sitter space}:
+\begin{equation}
+  \dd s^2 = - \left( 1 - \frac{r^2}{R^2} \right) \dd t^2 + \left( 1 - \frac{r^2}{R^2} \right)^{-1} \dd r^2 + r^2 (\dd \vartheta^2 + \sin^2 \vartheta \dd \varphi^2)
+  \label{eq:dS-metric}
+\end{equation}
+More precisely, this is the \textit{static patch} of de Sitter space.
+
+\paragraph{de Sitter geodesics}
+
+To interpret a metric, it is useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
+\begin{equation}
+  \mathcal{S} = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dd \dot{\varphi}^2) \right]
+  \label{eq:dS-action}
+\end{equation}
+where $ \dot{x}^\mu \equiv \frac{\dd x^\mu}{\dd \sigma} $. This Lagrangian has two ignorable degrees of freedom which lead to conserved quantities: $ t(\sigma) $ and $ \varphi(\sigma) $, as they appear only with time derivatives. The first one has energy as the conserved quantity, while the second has angular momentum:
+\begin{equation}
+  E = - \frac{1}{2} \frac{\pa L}{\pa \dot{t}} = f(r)^2 \dot{t}
+  \label{eq:dS-energy}
+\end{equation}
+\begin{equation}
+  \ell = \frac{1}{2} \frac{\pa L}{\pa \dot{\varphi}} = r^2 \sin^2 \vartheta \dot{\varphi}
+  \label{eq:dS-ang-mom}
+\end{equation}
+The $ \frac{1}{2} $ are due to the absence of the usual factor in the kinetic term. The equations of motion from the action \eref{eq:dS-action} should be supplemented with a constraint to distinguish whether a particle is massive or massless. For a massive particle, the trajectory must be timelike, so:
+\begin{equation*}
+  - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dot{\varphi}^2) = -1
+\end{equation*}
+WLOG consider geodeiscs that lie in the $ \vartheta = \frac{\pi}{2} $ plane, so that $ \dot{\theta} = 0 $ and $ \sin^2 \vartheta = 1 $. Replacing $ (t,\varphi) $ with $ (E,\ell) $, the constraint becomes:
+\begin{equation}
+  \dot{r}^2 + V_{\text{eff}}(r) = E^2
+  \qquad
+  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) f(r)^2
+\end{equation}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{geod-ds.png}
+  \caption{Effective potential for de Sitter geodesics, with $ \ell \neq 0 $ and $ \ell = 0 $ respectively.}
+  \label{fig:geo-ds}
+\end{figure}
+
+For de Sitter space:
+\begin{equation}
+  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 - \frac{r^2}{R^2} \right)
+\end{equation}
+This effective potential is plotted in \figref{fig:geo-ds}: immediately, one sees that the potential pushes the particle to larger values of $ r $. Focusing on geodesics with $ \ell = 0 $, the potential is a harmonic repulsor: a particle stationary at $ r = 0 $ is an unstable geodesic, since if it has non-zero initial velocity it will follow the trajectory:
+\begin{equation}
+  r(\sigma) = R \sqrt{E^2 - 1} \sinh \frac{\sigma}{R}
+  \label{eq:dS-repulsor}
+\end{equation}
+Note that the metric is singular at $ r = R $, a fact not manifest in the geodesic \eref{eq:dS-repulsor} which shows that any observer reaches $ r = R $ in finite proper time. Problems arise when studying the coordinate time $ t $, which has the interpretation of the time experienced by some stationary at $ r = 0 $; from \eref{eq:dS-energy}:
+\begin{equation*}
+  \frac{\dd t}{\dd \sigma} = E \left( 1 - \frac{r^2}{R^2} \right)^{-1}
+\end{equation*}
+This shows that $ t(\sigma) \rightarrow \infty $ as $ r(\sigma) \rightarrow R $: in fact, if $ r(\sigma^*) = R $, then for $ \sigma = \sigma^* - \varepsilon $ one has $ \frac{\dd t}{\dd \sigma} = - \frac{\alpha}{\varepsilon} $, i.e. $ t(\varepsilon) = - \log (\varepsilon / R) $, so $ t(\varepsilon) \rightarrow \infty $ as $ \varepsilon \rightarrow 0 $. This means that a particle moving along the geodesic \eref{eq:dS-repulsor} will reach $ r = R $ in finite proper time, but a stationary observer at $ r = 0 $ will measure an infinite amount of time.
+
+% TODO should review this part, as it is unclear
+
+This strange behaviour is similar to what happens at the horizon of a black hole ($ r = 2GM $): however, the Schwarzschild metric has a singularity at $ r = 0 $, while de Sitter metric looks flat at $ r = 0 $. de Sitter space seems like an inverted black hole in which particles are pushed outwars to $ r = R $.
+
+\paragraph{de Sitter embeddings}
+
+de Sitter space can be embedded as a submanifold of $ \R^{1,4} $ with metric:
+\begin{equation}
+  \dd s^2 = - (\dd X^0)^2 + \sum_{i = 1}^{4} (\dd X^i)^2
+  \label{eq:dS-param-metric}
+\end{equation}
+In particular, de Sitter metric \eref{eq:dS-metric} is a metric on the submanifold of $ \R^{1,4} $ defined by the timelike hyperboloid:
+\begin{equation}
+  -(X^0)^2 + \sum_{i = 1}^{4} (X^i)^2 = R^2
+  \label{eq:dS-param}
+\end{equation}
+A way of parametrizing this constraint is by imposing that $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, so that:
+\begin{equation*}
+  R^2 - r^2 = (X^4)^2 - (X^0)^2
+\end{equation*}
+The solutions are parametrized as:
+\begin{equation*}
+  X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R}
+  \qquad
+  X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R}
+\end{equation*}
+Computing the respective variations, along with $ \sum_{i = 1}^{3} (\dd X^i)^2 = \dd r^2 + r^2 \dd \Omega_2^2 $, where $ \dd \Omega_n^2 $ is the metric element on $ \Sn{n} $, allows to show that the pull-back of the Minkowski metric \eref{eq:dS-param-metric} on the hyperboloid \eref{eq:dS-param} so parametrized gives the de Sitter metric \eref{eq:dS-metric} in the static patch coordinates.
+
+The coordinates $ \{X^i\}_{i = 0,\dots,4} $ so defined are not the most intuitive: they single out $ X^4 $ as special, when the constraint does no such thing, and they do not cover the whole hyperboloid, as they are limited to $ X^4 \ge 0 $. A better choice of parametrization is:
+\begin{equation*}
+  X^0 = R \sinh \frac{\tau}{R}
+  \qquad \qquad
+  X^i = y^i R \cosh \frac{\tau}{R}
+  \,:\,
+  \sum_{i = 1}^{4} (y^i)^2 = 1
+\end{equation*}
+Given this constraint, $ \{y^i\}_{i = 1,,2,3,4} $ parametrize $ \Sn{3} $. These coordinates retain more of the symmetry of de Sitter space and cover the whole space, thus are a better parametrization. The pull-back of Minkowski metric, however, gives a rather different metric on de Sitter space:
+\begin{equation}
+  \dd s^2 = - \dd \tau^2 + R^2 \cosh^2 \frac{\tau}{R}\, \dd \Omega_3^2
+  \label{eq:ds-global-coo}
+\end{equation}
+These are known as \textit{global coordinates}, as they cover the whole space (except for usual singularities at the poles for any choice of coordinates on $ \Sn{3} $). Since this metric is related to that in \eref{eq:dS-metric} by a change of coordinates, it too must obey the Einstein equations. Global coordinates also show that the singularity which happens at $ X^4 = 0 $, i.e. at $ r = R $, is nothing but a coordinate singularity.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.30 \textwidth]{ds-space.png}
+  \caption{de Sitter space visualization with global coordinates.}
+  \label{fig:ds-space}
+\end{figure}
+
+These coordinates provide a clearer intuition for the physics of de Sitter space: it is a time-dependent solution of the field equations in which a spatial $ \Sn{3} $ first shrinks to a minimal radius $ R $ and then expands, as shown in \figref{fig:ds-space}. The expansionary phase is a good approximation to our current universe on large scales.
+
+\subsubsection{Anti-de Sitter space}
+
+Consider $ \Lambda < 0 $. With the same ansatz as for de Sitter space, it is easy to find the metric for \bctxt{anti-de Sitter space} (AdS):
+\begin{equation}
+  \dd s^2 = - \left( 1 + \frac{r^2}{R^2} \right) \dd t^2 + \left( 1 + \frac{r^2}{R^2} \right)^{-1} \dd r^2 + r^2 \dd \Omega_2^2
+  \qquad
+  R^2 \equiv - \frac{3}{\Lambda}
+  \label{eq:ads-metric}
+\end{equation}
+Equivalent coordinates are found setting $ r = R \sinh \rho $:
+\begin{equation}
+  \dd s^2 = - \cosh^2 \rho\, \dd t^2 + R^2 \dd \rho^2 + R^2 \sinh^2 \rho\, \dd \Omega_2^2
+  \label{eq:ads-equiv-coo}
+\end{equation}
+In AdS there is no coordinate singularity in $ r $, and indeed coordinates cover the whole space.
+
+\paragraph{Anti-de Sitter geodesics}
+
+AdS has the same action as in \eref{eq:dS-action}, thus the radial trajectory of a massive particle moving along a geodesic in the $ \vartheta = \frac{\pi}{2} $ plane is $ \dot{r}^2 + V_{\text{eff}}(r) = E^2 $, with:
+\begin{equation}
+  V_{\text{eff}}(r) = \left( 1 + \frac{\ell^2}{r^2} \right) \left( 1 + \frac{r^2}{R^2} \right)
+\end{equation}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.80 \textwidth]{geod-ads.png}
+  \caption{Effective potential for anti-de Sitter geodesics, with $ \ell \neq 0 $ and $ \ell = 0 $ respectively.}
+  \label{fig:geo-ads}
+\end{figure}
+
+Plotting it in \figref{fig:geo-ads}, the geodesics' behaviour is clear: with no angular momentum, anti-de Sitter space acts like a harmonic oscillator, pulling the particle towards the origin and making it oscillate around $ r = 0 $. If the particle has non-zero angular momentum, then the potential has a minimum at $ r_*^2 = R \ell $, thus particles oscillate around $ r_* $: importantly, particles with finite energy cannot escape to $ r \rightarrow \infty $, but are constrained by the spacetime within some finite distance from the origin.
+
+This picture of AdS as a harmonic trap which pulls particle to the origin clashes with the fact that AdS is a homogeneous space (roughly, all points are the same). To understand how these two facts are compatible, consider a stationary observer at $ r = 0 $: this is a geodesic and, from its perspective, other observers (with $ \ell = 0 $) will oscillate around $ r = 0 $ along geodesics. However, since these observers move along geodesics, in their reference frame they are stationary at $ r = 0 $, with all other observers oscillating. Thus, while in dS each observer views themselves at the center of the universe, with other observers moving away from them, in AdS each observer views themselves as the center of the universe, with other observer oscillating around them.\\
+Its possible to study geodesics for a massless particle too. This time, the constraint to the action is:
+\begin{equation*}
+  - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dot{\varphi}^2) = 0
+\end{equation*}
+This means that the particle follows a null geodesic. Its equation of motion is:
+\begin{equation*}
+  \dot{r}^2 + V_{\text{null}}(r) = E^2
+  \qquad
+  V_{\text{null}}(r) = \frac{\ell^2}{r^2} \left( 1 + \frac{r^2}{R^2} \right)
+\end{equation*}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{ads-pot.png}
+  \caption{Potential experienced by massless particles with $ \ell \neq 0 $ in AdS.}
+  \label{fig:ads-pot}
+\end{figure}
+
+Its plot in \figref{fig:ads-pot} makes it clear that any massless particle can escape to $ r \rightarrow \infty $, as the null potential is asymptotically constant, and it will experience the usual gravitational redshift: AdS only confines massive particles.
+To solve for the trajectory, it is easier to work with $ r = R \sinh \rho $ and $ \ell = 0 $, so that:
+\begin{equation*}
+  R \dot{\rho} = \pm \frac{E}{\cosh \rho}
+  \quad \Rightarrow \quad
+  R \sinh \rho(\sigma) = E (\sigma - \sigma_0)
+\end{equation*}
+One sees that $ \rho \rightarrow \infty $ only in infinite affine time (i.e. $ \sigma \rightarrow \infty $). However, in coordinate time, recalling \eref{eq:dS-energy}, $ E = \cosh^2 \rho\, \dot{t} $, so:
+\begin{equation*}
+  R \tan \frac{t}{R} = E (\sigma - \sigma_0)
+\end{equation*}
+Hence, as affine time $ \sigma \rightarrow \infty $, coordinate time $ t \rightarrow \frac{\pi}{2} R $. This means that light rays escape to infinity in a finite amount of coordinate time: to make sense of dynamics in AdS, one must specify some boundary conditions at infinity to dictate how massless particles and field behave.
+AdS does not appear to be of any cosmological interest.
+
+\paragraph{Anti-de Sitter embeddings}
+
+AdS too has a natural embedding in a 5-dimensional spacetime: it is a submanifold of $ \R^{2,3} $ with metric:
+\begin{equation}
+  ds^2 = - (\dd X^0)^2 - (\dd x^4)^2 + \sum_{i = 1}^{3} (\dd X^i)^2
+  \label{eq:ads-param-metric}
+\end{equation}
+In particular, anti-de Sitter metric \eref{eq:ads-metric} is a metric on the hyperboloid:
+\begin{equation}
+  - (X^0)^2 - (X^4)^2 + \sum_{i = 1}^{3} (X^i)^2 = - R^2
+  \label{eq:ads-param}
+\end{equation}
+This constraint can be solved via the parametrization:
+\begin{equation*}
+  X^0 = R \cosh \rho \sin \frac{t}{R}
+  \qquad
+  X^4 = R \cosh \rho \cos \frac{t}{R}
+  \qquad
+  X^i = y^i R \sinh \rho
+  \,:\,
+  \sum_{i = 1}^{3} (y^i)^2 = 1
+\end{equation*}
+Given this constraint, $ \{y^i\}_{i = 1,2,3} $ parametrize $ \Sn{2} $. The pull-back of the metric \eref{eq:ads-param-metric} on the hyperboloid so parametrized gives anti-de Sitter metric \eref{eq:ads-metric}.
+
+Note a small subtlety: the embedding hyperboloid has topology $ \Sn{1} \times \R^3 $, not $ \R^4 $: this corresponds to a compact time direction, as $ t \in [0, 2\pi R) $. However, AdS metric does not have such restriction, with $ t \in \R $: this is a universal covering of the hyperboloid.
+
+Another useful parametrization of the hyperboloid is the following:
+\begin{equation*}
+  X^4 - X^3 = r
+  \qquad
+  X^4 + X^3 = \frac{R^2}{r} + \frac{r}{R^2} \eta_{ij} x^i x^j
+  \qquad
+  X^i = \frac{r}{R} x^i
+  \,,\, i = 0,1,2
+\end{equation*}
+with $ r \in [0, \infty) $. With these coordinates, the metric takes the form:
+\begin{equation*}
+  \dd s^2 = R^2 \frac{\dd r^2}{r^2} + \frac{r^2}{R^2} \eta_{ij} \dd x^i \dd x^j
+\end{equation*}
+These coordinates do not cover the whole AdS, but only one-half of the hyperboloid, restricted to $ X^4 - X^3 > 0 $: this is known as the \textit{Poincaré patch} of AdS. Moreover, $ x^0 $ cannot be further extended beyond $ x^0 \in (-\infty, +\infty) $, thus in global coordinates the restriction $ t \in [0,2\pi R) $ remains. In this case, massive particles fall towards $ r = 0 $.
+
+Finally, there are two more possible coordinate systems on the Poincaré patch, obtained by setting $ z = \frac{R^2}{r} $ and $ r = R e^\rho $:
+\begin{equation*}
+  \dd s^2 = \frac{R^2}{z^2} \left( \dd z^2 + \eta_{ij} \dd x^i \dd x^j \right)
+  \qquad \qquad
+  \dd s^2 = R^2 \dd \rho^2 + e^{2\rho} \eta_{ij} \dd x^i \dd x^j
+\end{equation*}
+In each case, massive particles fall towards $ z = \infty $ or $ \rho = -\infty $.
+
+\subsubsection{Isometry groups}
+
+\paragraph{Minkowski spacetime}
+
+Consider Minkowski spacetime $ \R^{1,3} $ with $ g_{\mu \nu} = \eta_{\mu \nu} $. The Killing equation is:
+\begin{equation*}
+  \pa_\mu K_\nu + \pa_\nu K_\mu = 0
+\end{equation*}
+There are two forms of solution. The first one is:
+\begin{equation*}
+  K_\mu = c_\mu
+\end{equation*}
+for any constant vector $ c_\mu $. These generate translations. Alternatively:
+\begin{equation*}
+  K_\mu = \omega_{\mu \nu} x^\nu
+  \,:\, \omega_{\mu \nu} = - \omega_{\nu \mu}
+\end{equation*}
+These generate rotations and Lorentz boosts (see \S 1.2 of \cite{leonardo}). The emergence of the Lie algebra structure can be elucidated defining the Killing vectors:
+\begin{equation*}
+  P_\mu \defeq \pa_\mu
+  \qquad
+  M_{\mu \nu} \defeq \eta_{\mu \rho} x^\rho \pa_\nu - \eta_{\nu \rho} x^\rho \pa_\mu
+\end{equation*}
+These are 10 Killing vectors, 4 for translations and 6 for rotations and boosts, which obey the Poincaré algebra:
+\begin{equation*}
+  [P_\mu, P_\nu] = 0
+  \qquad
+  [M_{\mu \nu}, P_\sigma] = - \eta_{\mu \sigma} P_\nu + \eta_{\sigma \nu} P_\mu
+\end{equation*}
+\begin{equation*}
+  [M_{\mu \nu}, M_{\rho \sigma}] = \eta_{\mu \sigma} M_{\nu \rho} + \eta_{\nu \rho} M_{\mu \sigma} - \eta_{\mu \rho} M_{\nu \sigma} - \eta_{\nu \sigma} M_{\mu \rho}
+\end{equation*}
+This is precisely the Lie algebra of the Poincaré group $ \ISO{1,3} \defeq \R^4 \rtimes \SOn{1,3} $, i.e. the isometry group of Minkowski spacetime.
+
+\paragraph{dS and AdS spacetime}
+
+The isometries of dS and AdS are best seen from their embeddings.
+The constraint \eref{eq:dS-param} which defined de Sitter space is invariant under the rotations of $ \R^{1,4} $, thus dS inherits the $ \SOn{1,4} $ isometry group. Similarly, the constraint \eref{eq:ads-param} which defines anti-de Sitter space is invariant under rotations of $ \R^{2,3} $, so AdS inherits the $ \SOn{2,3} $ isometry group. Note that both these groups are 10-dimensional, as $ \ISO{1,3} $.
+
+It is simple to determine the 10 Killing spinors of 5-dimensional spacetime:
+\begin{equation*}
+  M_{AB} = \eta_{AC} X^C \pa_B - \eta_{BC} X^C \pa_A
+\end{equation*}
+where $ X^A, A = 0,1,2,3,4 $ are 5-dimensional coordinates and $ \eta_{AB} $ is the appropriate Minkowski metric, with signature $ (-,+,+,+,+) $ for dS and $ (-,-,+,+,+) $ for AdS. In either case, the Lie algebra is that of the appropriate Lorentz group:
+\begin{equation*}
+  [M_{AB}, M_{CD}] = \eta_{AD} M_{BC} + \eta_{BC} M_{AD} - \eta_{AC} M_{BD} - \eta_{BD} M_{AC}
+\end{equation*}
+The embedding hyperbolae are both invariant under these Killing vectors: flows generated by them map points on the hyperbolae to other points on the hyperbolae. Therefore, these Killing vectors are inherited by dS and AdS respectively.
+
+Energy is defined as the Noether charge of a timelike Killing vector. In anti-de Sitter space there is no problem finding a timelike Killing vector, as the metric in global coordinates \eref{eq:ads-metric} is time-independent, so $ K = \pa_t $. However, this is not the case in de Sitter space.
+
+Considering dS in the static patch with coordinates $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $, the metric \eref{eq:dS-metric} is time-independent, thus $ K = \pa_t $ is a Killing vector; pushing it forward to the 5-dimensional space:
+\begin{equation*}
+  \pa_t = \frac{\pa X^A}{\pa t} \pa_A = \frac{1}{R} ( X^4 \pa_0 + X^0 \pa_4 )
+\end{equation*}
+On the static patch, this Killing vector is timelike and the energy \eref{eq:dS-energy} follows from it. The problem is that the static patch is only one-half of the hyperboloid: when considering the whole AdS, one must account for the case $ X^0 = 0, X^4 < 0 $, in which the Killing vector points in the past direction, or $ X^0 \neq 0, X^4 = 0 $, in which it is spacelike. Therefore, the Killing vector can be both timelike (future-directed and past-directed) or spacelike when spanning the whole manifold: for this reason, it is not possible to define a global positive conserved energy on the total de Sitter space. The same conclusion follows by noting that the metric in global coordinates \eref{eq:ds-global-coo} is time-dependent. 
 
 \newpage
 \section{Asymptotics of spacetime}
