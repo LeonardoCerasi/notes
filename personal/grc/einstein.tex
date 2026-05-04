@@ -230,14 +230,9 @@ Given a Killing vector field $ \xi \in \xm $, it is always possible to find a se
 \begin{equation*}
   \frac{\pa}{\pa y} g_{\mu \nu} = 0
 \end{equation*}
+which is the case of an ignorable degree of freedom. It is possible to reframe Noether's theorem in the context of Killing vectors. Indeed, the presence of a Killing vector field gives rise to a conserved quantity.
 
-\begin{example}{Ignorable degrees of freedom}{}
-  Given a metric $ g_{\mu \nu}(x) $, if it does not depend on $ x^1 \equiv y $, then $ \xi = \pa_y $ is a Killing vector field, for $ (\ld_{\pa_y} g)_{\mu \nu} = \pa_y g_{\mu \nu} = 0 $. This is the case of ignorable degrees of freedom, as \eeref{eq:dS-energy}{eq:dS-ang-mom}.
-\end{example}
-
-It is possible to reframe Noether's theorem in the context of Killing vectors. Indeed, the presence of a Killing vector field gives rise to a conserved quantity.
-
-\begin{theorem}{Noether's theorem}{}
+\begin{theorem}{Noether's theorem}{noether-killing}
   Let $ (\man,g) $ be a spacetime, and suppose that it admits a Killing vector field $ \xi \in \xm $. Then, given an affinely-parametrized geodesic with tangent vector field $ U $, it is possible to define a \bcth{Noether charge} associated to $ \xi $ as:
   \begin{equation}
     Q_\xi \defeq \braket{U , \xi}_g
@@ -259,7 +254,29 @@ It is possible to reframe Noether's theorem in the context of Killing vectors. I
   \end{proof}
 \end{proofbox}
 
-In general, the Noether charge of a timelike Killing vector field is interpreted as an energy, while that of a spacelike Killing vector field as a momentum (either linear or angular).
+The interpretation of the Noether charge depends on the nature of the associated Killing vector field, e.g. if $ \xi $ is globally timelike then $ Q_\xi $ can be interpreted as an energy.
+
+\begin{example}{Static spherically-symmetric spacetime}{}
+  Consider a static spherically-symmetric spacetime with metric:
+  \begin{equation*}
+    \dd s^2 = - h(r) \dd t^2 + h(r)^{-1} \dd r^2 + r^2 \dd \Omega_2^2
+  \end{equation*}
+  There are $ 4 $ Killing vector fields: $ \frac{\pa}{\pa t} $, since $ t $ is a cyclic variable, and the $ 3 $ Killing vector fields, among which is $ \frac{\pa}{\pa \varphi} $, associated to the spatial isometry subgroup $ \SOn{3} $.
+
+  Consider a generic geodesic $ \gamma $ with tangent vector field $ u $, with $ u^2 = -1 $ (timelike) or $ u^2 = 0 $ (null). By Noether's theorem \tref{th:noether-killing}, then, $ \braket{u , \frac{\pa}{\pa t}}_g $ is constant along $ \gamma $:
+  \begin{equation*}
+    \left\langle u , \frac{\pa}{\pa t} \right\rangle_g = u^\mu g_{\mu 0} = - u^0 h
+  \end{equation*}
+  This expression resembles that for the energy of a particle with $ 4 $-momentum $ p $ measured by an observer with $ 4 $-velocity $ v $:
+  \begin{equation}
+    E_\text{local} = - \braket{p , v}_g
+  \end{equation}
+  Indeed, the $ 4 $-velocity of a stationary ($ r , \vartheta , \varphi = \text{const.} $) observer at infinity is just $ v = \frac{\pa}{\pa t} $, so assuming a timelike geodesic with $ u^\mu = \frac{1}{m} p^\mu $:
+  \begin{equation*}
+    E_\infty = - \braket{p , v} = - m \left\langle u , \frac{\pa}{\pa t} \right\rangle_g
+  \end{equation*}
+  Therefore, the Noether charge associated to $ \frac{\pa}{\pa t} $ is the energy per unit mass measured at infinity, which is constant along timelike geodesics. Equivalently, $ \braket{u , \frac{\pa}{\pa \varphi}}_g $ turns out to be the particle's angular momentum per unit mass measured at infinity.
+\end{example}
 
 \subsubsection{Maximally symmetric spacetimes}
 
@@ -389,20 +406,22 @@ As for Noether integrals of a particle, Komar integrals of spacetime are interpr
 \subsection{Maximally symmetric solutions}
 \label{ssec:maximally-symmetric-solutions}
 
+% TODO: must rewiew
+
 The Einstein equations in the absence of matter reduce to $ \rr_{\mu \nu} = \Lambda g_{\mu \nu} $, with $ \Lambda \in \R $. In the case of maximally symmetric solutions, $ \Lambda = (n-1) R $, and the possible solutions split into three classes: $ \Lambda = 0 $ (Minkowski), $ \Lambda > 0 $ (de Sitter) and $ \Lambda < 0 $ (anti-de Sitter).
 
 \subsubsection{Minkowski space}
 
 The simplest case is $ \Lambda = 0 $. The Einstein equations then reduce to $ \rr_{\mu \nu} = 0 $, with the condition of $ g_{\mu \nu} $ being non-degenerate, since it is a metric and the field equations require the existence of the inverse metric $ g^{\mu \nu} $. This restriction is physically unusual: it is not a holonomic constraint on the physical degrees of freedom, but an inequality $ \det g < 0 $ (with required signature $ (-,+,+,+) $) which is not found for other fields of the Standard Model.
 
-% TODO add a definition of holonomic constraint as a footnote
+% TODO: add a definition of holonomic constraint as a footnote
 
 The simplest Ricci flat metric is the Lorentz--Minkowski metric $ \dd s^2 = -\dd t^2 + \dd \ve{x}^2 $ on $ \R^{1,d-1} $, but it is not the only one: another example is the Schwarzschild metric (\secref{sec:schwarz-sol}).
 
 \subsubsection{de Sitter space}
 \label{ssec:dS-space}
 
-Consider now $ \Lambda > 0 $. A possible ansatz is:
+Consider now $ \Lambda > 0 $ and $ d = 4 $. A static spherically-symmetric ansatz is:
 \begin{equation*}
   \dd s^2 = - f(r)^2 \dd t^2 + f(r)^{-2} \dd r^2 + r^2 (\dd \vartheta^2 + \sin^2 \vartheta \dd \varphi^2)
 \end{equation*}
@@ -541,7 +560,7 @@ Note that the metric is singular at $ r = R $, a fact not manifest in the geodes
 \end{equation*}
 This shows that $ t(\sigma) \rightarrow \infty $ as $ r(\sigma) \rightarrow R $: in fact, if $ r(\sigma^*) = R $, then for $ \sigma = \sigma^* - \varepsilon $ one has $ \frac{\dd t}{\dd \sigma} = - \frac{\alpha}{\varepsilon} $, i.e. $ t(\varepsilon) = - \log (\varepsilon / R) $, so $ t(\varepsilon) \rightarrow \infty $ as $ \varepsilon \rightarrow 0 $. This means that a particle moving along the geodesic \eref{eq:dS-repulsor} will reach $ r = R $ in finite proper time, but a stationary observer at $ r = 0 $ will measure an infinite amount of time.
 
-% TODO should review this part, as it is unclear
+% TODO: should review this part, as it is unclear
 
 This strange behaviour is similar to what happens at the horizon of a black hole ($ r = 2GM $): however, the Schwarzschild metric has a singularity at $ r = 0 $, while de Sitter metric looks flat at $ r = 0 $. de Sitter space seems like an inverted black hole in which particles are pushed outwars to $ r = R $.
 
@@ -805,22 +824,22 @@ In classical (and quantum) field theory in a Minkowski background, given a Poinc
   \tensor{\mathcal{T}}{^\mu_\nu} = \frac{\pa \lag}{\pa (\pa_\mu \Phi_a)} \pa_\nu \Phi_a - \delta^\mu_\nu \lag
 \end{equation}
 Like all Noether currents, the C-EMT is on-shell conserved, i.e. $ \pa_\mu \tensor{\mathcal{T}}{^\mu_\nu} = 0 $ if the equations of motion are satisfied.
-The main problem of the C-EMT, however, is that it is not symmetric; moreover, its generalization to a generic curved spacetime is not obvious. For this reason, it is convenient to define another energy-momentum tensor starting from the action $ \act[\Phi] $:
+The main problem of the C-EMT, however, is that it is not symmetric; moreover, its generalization to a generic curved spacetime is not obvious. For this reason, it is convenient to define another energy-momentum tensor starting from the action $ \act[\Phi] = \int_\man \dd^d x \sqg \lag(\Phi , \pa \Phi , g) $:
 \begin{equation}
-  T_{\mu \nu} \defeq - \frac{2}{\sqg} \frac{\delta \act}{\delta g^{\mu \nu}}
+  T_{\mu \nu} \defeq - \frac{2}{\sqg} \frac{\delta (\sqg \lag)}{\delta g^{\mu \nu}}
   \label{eq:em-tens-def}
 \end{equation}
-This is the so-called \bctxt{Belinfante--Rosenfeld energy-momentum tensor} (BR-EMT), which is manifestly a symmetric $ (0,2) $-tensor, as it inherits the symmetries of the metric. It can be shown that, in general, the C-EMT and the BR-EMT only differ by a total derivative:
+This is the so-called \bctxt{Belinfante--Rosenfeld energy-momentum tensor} (BR-EMT), which is manifestly a symmetric $ (0,2) $-tensor, as it inherits the symmetries of the metric. It can be shown that, in a flat background, the C-EMT and the BR-EMT only differ by a total derivative:
 \begin{equation}
-  T^{\mu \nu} = \mathcal{T}^{\mu \nu} + \pa_\alpha B^{\alpha \mu \nu}
+  T^{\mu \nu} \vert_{g = \eta} = \mathcal{T}^{\mu \nu} + \pa_\alpha B^{\alpha \mu \nu}
 \end{equation}
-where the form of the potential $ B^{\alpha \mu \nu} $ depends on the nature of the field $ \phi $, and in particular on its spin. Indeed, if the field $ \Phi $ transforms under a finite-dimensional representation of the Lorentz group $ \SOp{1,d-1} $ with generators $ \tensor{[\mathcal{J}^{\mu \nu}]}{^a_b} $ obeying the Lorentz algebra\footnotemark, then the Belinfante potential has a universal expression in terms of the \emph{spin current} (see \S 7.4 of \cite{weinberg}):
+where the form of the potential $ B^{\alpha \mu \nu} $ depends on the nature of the field $ \phi $, and in particular on its spin. Indeed, if the field $ \Phi $ transforms under a finite-dimensional representation of the Lorentz group $ \SOp{1,d-1} $, with generators $ \tensor{[\mathcal{J}^{\mu \nu}]}{^a_b} $ obeying the Lorentz algebra\footnotemark, then the Belinfante potential has a universal expression in terms of the \emph{spin current} (see \S 7.4 of \cite{weinberg}):
 \begin{equation}
   B^{\alpha \mu \nu} = \frac{\img}{2} \left( S^{\alpha \mu \nu} + S^{\mu \nu \alpha} + S^{\nu \mu \alpha} \right)
   \qquad \qquad
   S^{\alpha \mu \nu} \equiv \frac{\pa \lag}{\pa (\pa_\alpha \Phi^a)} \tensor{[\mathcal{J}^{\mu \nu}]}{^a_b} \Phi^b
 \end{equation}
-It can be shown that the combination $ \mathcal{T}^{\mu \nu} + \pa_\alpha B^{\alpha \mu \nu} $ is indeed symmetric, and the manifest antisymmetry $ B^{\alpha \mu \nu} = - B^{\mu \alpha \nu} $ ensures that $ \pa_\mu T^{\mu \nu} = \pa_\mu \mathcal{T}^{\mu \nu} $, i.e. that the BR-EMT is on-shell conserved too. Moreover, the addition of a total derivative does not affect the Noether charge $ P^\mu \equiv \int_\Sigma \dd^3x \mathcal{T}^{0\mu} $, since it only determines a vanishing spatial boundary terms, hence the C-EMT and the BR-EMT encode the same dynamical information: for this reason, in the following $ T^{\mu \nu} $ is simply called the energy-momentum tensor (EMT).
+It can be shown that the combination $ \mathcal{T}^{\mu \nu} + \pa_\alpha B^{\alpha \mu \nu} $ is indeed symmetric, and the manifest antisymmetry $ B^{\alpha \mu \nu} = - B^{\mu \alpha \nu} $ ensures that $ \pa_\mu T^{\mu \nu} = \pa_\mu \mathcal{T}^{\mu \nu} $, i.e. that the BR-EMT is on-shell conserved too. Moreover, the addition of a total derivative does not affect the Noether charge $ P^\mu \equiv \int_\Sigma \dd^{d-1}x \mathcal{T}^{0\mu} $, since it only determines a vanishing spatial boundary term, hence the C-EMT and the BR-EMT encode the same dynamical information: for this reason, in the following $ T^{\mu \nu} $ is simply called the energy-momentum tensor (EMT).
 
 \footnotetext{The Lorentz algebra $ \lorad $ is composed of the generators of $ d - 1 $ boosts (hyperbolic rotations) and $ \frac{1}{2} (d - 1) (d - 2) $ spatial rotations, hence it has $ \frac{1}{2} d (d - 1) $ generators $ \mathcal{J}^{\mu \nu} = - \mathcal{J}^{\nu \mu} $ satisfying:
 \begin{equation}
@@ -833,16 +852,16 @@ It can be shown that the combination $ \mathcal{T}^{\mu \nu} + \pa_\alpha B^{\al
 To understand how matter fields back-react on the spacetime metric, consider the combined action:
 \begin{equation}
   \act[g,\Phi] = \frac{1}{16\pi \gd} \int_\man \dd^d x \sqg \left( \rr - (d - 2) \Lambda \right) + \act_\text{mat}[g,\Phi]
-  \label{eq:ei-matter-action}
+  \label{eq:gravity-matter-action}
 \end{equation}
 where $ \act_\text{m} $ is the combined action for all matter fields (here collectively denoted by $ \Phi $), which in general depends on both the fields and the metric.
 
 \begin{proposition}{Einstein field equations}{}
-  The equations of motion determined by the action \eref{eq:ei-matter-action} are:
+  The equations of motion determined by the action \eref{eq:gravity-matter-action} are:
   \begin{equation}
     G_{\mu \nu} + \Lambda g_{\mu \nu} = 8\pi \gd T_{\mu \nu}
     \qquad \qquad
-    \frac{\delta \act_\text{mat}}{\delta \phi} = 0
+    \frac{\delta \act_\text{mat}}{\delta \Phi} = 0
     \label{eq:ef-eq}
   \end{equation}
 \end{proposition}
@@ -851,9 +870,9 @@ where $ \act_\text{m} $ is the combined action for all matter fields (here colle
   \begin{proof}
     Varying the full action and inserting \eref{eq:em-tens-def}:
     \begin{equation*}
-      \delta \act = \frac{1}{16\pi \gd} \int_\man \dd^d x \sqg \left[ G_{\mu \nu} + \Lambda g_{\mu \nu} \right] \delta g^{\mu \nu} - \frac{1}{2} \int_\man \dd^d x \sqg T_{\mu \nu} \delta g^{\mu \nu} + \int_\man \dd^d x \frac{\delta \act_\text{mat}}{\delta \phi} \delta \phi = 0
+      \delta \act = \frac{1}{16\pi \gd} \int_\man \dd^d x \sqg \left[ G_{\mu \nu} + \Lambda g_{\mu \nu} \right] \delta g^{\mu \nu} + \int_\man \dd^d x \sqg \left[ - \frac{1}{2} T_{\mu \nu} \delta g^{\mu \nu} + \frac{\delta \lag_\text{mat}}{\delta \Phi} \delta \Phi \right] = 0
     \end{equation*}
-    which is the thesis.
+    where matter fields are assumed to vanish asymptotically.
   \end{proof}
 \end{proofbox}
 
@@ -871,32 +890,34 @@ with cosmological constant absorbed in the EMT.
 
 \subsubsection{Symmetries}
 
-The action $ \act_\text{mat} $ is required to be diffeomorphism-invariant, thus, recalling the argument which lead to Bianchi identity \eref{eq:bianchi-id}, given $ Z \in \xm $ such that $ \delta g_{\mu \nu} = (\ld_Z g)_{\mu \nu} = 2 \na_{(\mu} Z_{\nu)} $:
+The combined action \eref{eq:gravity-matter-action} must be diffeomorphism-invariant, thus, given $ Z \in \xm : \delta g = \ld_Z g $ and following the same argument which lead to the Bianchi identity $ \eref{eq:bianchi-id} $:
 \begin{equation*}
-  \delta \act_\text{mat} = - \frac{1}{2} \int \dd^d x \sqg \, T_{\mu \nu} \delta g^{\mu \nu} = - \int \dd^d x \sqg \, T_{\mu \nu} \na^\mu Z^\nu
+  \delta \act = \int_\man \dd^dx \sqg \left[ \left( \frac{1}{8 \pi \gd} G_{\mu \nu} - T^{\mu \nu} \right) \na^{(\mu} Z^{\nu)} + \frac{\delta \lag_\text{mat}}{\delta \Phi} \delta_Z \Phi \right] = 0
 \end{equation*}
-Diffeomorphism invariance means that $ \delta \act_\text{m} = 0 \,\, \forall Z \in \xm $, hence, integrating by parts:
+Using the Bianchi identity \eref{eq:bianchi-id} to rewrite the first term:
+\begin{equation*}
+  G_{\mu \nu} \na^{(\mu} Z^{\nu)} = G_{\mu \nu} \na^\nu Z^\mu = \na^\nu (G_{\mu \nu} Z^\mu) \equiv \na^\nu q_\nu
+\end{equation*}
+So, by Gauss's theorem \tref{th:gauss} applied to $ q \in \xm $:
+\begin{equation*}
+  \int_\man \dd^dx \sqg \, \na^\nu q_\nu = \int_{\pa \man} \dd^{d-1}x \sqrt{\gamma} \, n_\nu q^\nu \equiv 0
+\end{equation*}
+which can be made vanishing by a suitable choice of boundary conditions. Then, using the same argument for the EMT:
+\begin{equation*}
+  T_{\mu \nu} \na^{(\mu} Z^{\nu)} = \na^\nu (T_{\mu \nu} Z^\mu) - Z^\mu \na^\nu T_{\mu \nu}
+\end{equation*}
+The first term produces a neglectable boundary term, as before, so the remaining variation of the action is:
+\begin{equation*}
+  \delta \act = \int_\man \dd^dx \sqg \left[ Z^\mu \na^\nu T_{\mu \nu} + \frac{\delta \lag_\text{mat}}{\delta \Phi} \delta_Z \Phi \right] = 0
+\end{equation*}
+For on-shell matter fields the second term vanishes by the Euler--Lagrange equations, hence the EMT is on-shell covariantly conserved:
 \begin{equation}
-  \na_\mu T^{\mu \nu} = 0
-  \label{eq:em-tens-cons}
+  \na^\nu T_{\mu \nu} = 0
 \end{equation}
-Of course, this was necessary to make Einstein equations consistent, as $ \na_\mu G^{\mu \nu} = 0 $. Anyway, this equation hints to the more profound nature of the energy-momentum tensor, which has nothing to do with gravity: it can be shown that the EMT is linked to Noether currents associated to translational invariance in space and time. Trivially, \eref{eq:em-tens-cons} reduces in flat spacetime to $ \pa_\mu T^{\mu \nu} = 0 $, which is the usual conservation law of Noether currents.
 
-Consider a translation $ x^\mu \mapsto x^\mu + \delta x^\mu $, with $ \delta x^\mu = Z^\mu(x) $. The action restricted to flat spacetime is not invariant under such shift, but one which is invariant can be constructed coupling the matter fields to a background metric and allowing this to vary. The change of the action in flat space, where the metric is fixed, must be equal and opposite to the change of the action where the metric can vary but $ x^\mu $ is fixed, thus:
-\begin{equation*}
-  \begin{split}
-    \delta \mathcal{S}_{\text{flat}}
-    &= - \int \dd^4 x\, \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \bigg\vert_{g_{\mu \nu} = \eta_{\mu \nu}} \delta g^{\mu \nu} = - \int \dd^4 x\, \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \bigg\vert_{g_{\mu \nu} = \eta_{\mu \nu}} \pa^{(\mu} X^{\nu)} \\
-    &= - 2 \int \dd^4 x\, \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \bigg\vert_{g_{\mu \nu} = \eta_{\mu \nu}} \pa^\mu X^\nu = - 2 \int \dd^4 x\, \pa^\mu \left[ \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \right]_{g_{\mu \nu} = \eta_{\mu \nu}} X^\nu
-  \end{split}
-\end{equation*}
-But $ \delta \mathcal{S}_{\text{flat}} = 0 $ for all constant $ X^\mu $, as this is the definition of a translationally-invariant theory, hence the conserved Noether current in flat space is:
-\begin{equation*}
-  T_{\mu \nu} = - 2 \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \bigg\vert_{g_{\mu \nu} = \eta_{\mu \nu}}
-\end{equation*}
-i.e. the flat version of \eref{eq:em-tens-def}.
+\subsubsection{Examples of EMTs}
 
-\subsubsection{Field theories}
+\paragraph{Scalar field theory}
 
 It is straightforward to compute $ T_{\mu \nu} $ for a scalar field $ \phi(x) $. Recall \eref{eq:scalar-action-r} (with $ \xi = 0 $) and \lref{lemma:metric-variations}:
 \begin{equation*}
@@ -929,17 +950,9 @@ In flat Minkowski spacetime:
 \end{equation*}
 which is the energy density of the electromagnetic field.
 
-\subsubsection{Perfect fluids}
+\paragraph{Perfect fluids}
 
-A perfect fluid is described by its energy density $ \rho(\ve{x},t) $, pressure $ p(\ve{x},t) $ and velocity 4-vector field $ u^\mu(\ve{x},t) : u^\mu u_\mu = -1 $. Pressure and energy density are related by an \textit{equation of state} $ p = p(\rho) $.
-
-\begin{example}{Dust}{}
-  Dust is a fluid of massive particles floating around very slowly, so that the equation of state is $ p = 0 $.
-\end{example}
-\begin{example}{Radiation}{}
-  Radiation is a fluid of photons with $ p = \rho / 3 $.
-\end{example}
-
+A perfect fluid is described by its energy density $ \rho(\ve{x},t) $, pressure $ p(\ve{x},t) $ and velocity 4-vector field $ u^\mu(\ve{x},t) : u^\mu u_\mu = -1 $. Pressure and energy density are related by an \textit{equation of state} $ p = p(\rho) $: cosmological fluids have a simple equation of state of the form $ p = w \rho $, e.g. $ w = \frac{1}{3} $ for radiation and $ w = 0 $ for dust.
 The energy-momentum tensor of a perfect fluid is:
 \begin{equation}
   T^{\mu \nu} = (\rho + p) u^\mu u^\nu + p g^{\mu \nu}
@@ -960,61 +973,60 @@ which is a generalization of Euler equation, i.e. the fluid equivalent of Newton
 \subsection{Energy conservation}
 \label{ssec:energy-conservation}
 
-There is a difference between the energy-momentum tensor and the current which arises from a global symmetry. Consider a conserved current $ J^\mu : \na_\mu J^\mu = 0 $. Invoking the divergence theorem \eref{eq:gauss-theorem}:
-\begin{equation*}
-  0 = \int_V d^4 x \sqg\, \na_\mu J^\mu = \int_{\pa V} d^3 x \sqrt{\gamma}\, n_{\mu} J^\mu
-\end{equation*}
-where $ V $ is a spatial volume with boundary $ \pa V = \Sigma_1 \cup \Sigma_2 \cup B $, with $ \Sigma_1, \Sigma_2 $ past and future spacelike boundarires and $ B $ timelike (lateral) boundary. If no current flows out of the region, i.e. $ n_\mu J^\mu \vert_B = 0 $, then this expression becomes the conservation $ Q(\Sigma_1) = Q(\Sigma_2) $ of the charge associated to the current:
-\begin{equation*}
-  Q(\Sigma) \equiv \int_\Sigma \dd^3 x \sqrt{\gamma}\, n_\mu J^\mu
-\end{equation*}
-Thus, for a vector field, covariant conservation is equivalent to actual conservation.
-However, the same argument does not apply to the energy-momentum tensor: the problem arises from generalizing $ \na_\mu J^\mu = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) $ to a higher-order tensor field, which is necessary in order to have a divergence theorem like \eref{eq:gauss-theorem}. Indeed:
+Being the EMT a tensor current, its covariant conservation has more subtle implications than the covariant conservation of vector currents.
+
+\begin{observation}{Covariant conservation of vector currents}{vec-curr-cons}
+  Consider a conserved vector current $ J \in \xm : \na_\mu J^\mu = 0 $. By Gauss's theorem \tref{th:gauss}, given a $ d $-dimensional submanifold $ \mathcal{V} $:
+  \begin{equation*}
+    0 = \int_\mathcal{V} \dd^dx \sqg \, \na_\mu J^\mu = \int_{\pa \mathcal{V}} \dd^{d-1}x \sqrt{\gamma} \, n_\mu J^\mu
+  \end{equation*}
+  Now, assume that the boundary has a tubular shape like $ \pa \mathcal{V} = \Sigma_1 \cup \Sigma_2 \cup S $, where $ \Sigma_{1,2} $ are past and future spacelike hypersurfaces and $ S $ is a (lateral) timelike hypersurface. If no current flows in/out of $ \mathcal{V} $, i.e. if $ n_\mu J^\mu \vert_S = 0 $, then the above equation reduces to charge conservation $ Q_J(\Sigma_1) = Q_J(\Sigma_2) $, where the charge associated to $ J $ on a spacelike hypersurface $ \Sigma $ is defined as:
+  \begin{equation}
+    Q_J(\Sigma) \defeq \int_\Sigma \dd^{d-1}x \sqrt{\gamma} \, n_\mu J^\mu
+  \end{equation}
+  Therefore, for a vector current, covariant conservation is equivalent to charge conservation.
+\end{observation}
+
+The same argument as in \obsref{obs:vec-curr-cons} does not apply to the energy-momentum tensor: the problem arises from generalizing $ \na_\mu J^\mu = \frac{1}{\sqg} \pa_\mu (\sqg J^\mu) $ to higher-order tensor fields, which is necessary in order to have a divergence theorem like \eref{eq:gauss-theorem}. Indeed, for a $ (0,2) $-tensor field:
 \begin{equation*}
   \na_\mu T^{\mu \nu} = \pa_\mu T^{\mu \nu} + \Gamma^\mu_{\mu \rho} T^{\rho \nu} + \Gamma^\nu_{\mu \rho} T^{\mu \rho} = \frac{1}{\sqg} \pa_\mu (\sqg\, T^{\mu \nu}) + \Gamma^\nu_{\mu \rho} T^{\mu \rho}
 \end{equation*}
-The last term does not allow to convert the integral of $ \na_\mu T^{\mu \nu} $ to a boundary term. Instead:
+The last term does not allow to convert the integral of $ \na_\mu T^{\mu \nu} = 0 $ to a boundary term. Instead:
 \begin{equation}
   \pa_\mu (\sqg\, T^{\mu \nu}) = -\sqg\, \Gamma^\nu_{\mu \rho} T^{\mu \rho}
   \label{eq:no-div-th}
 \end{equation}
-Therefore, for higher-order tensors, covariant conservation is not equivalent to actual conservation.
-
-\subsubsection{Conserved energy from Killing vectors}
-
-Given a Killing vector $ K $, it is possible to define a conserved current associated to the energy-momentum tensor as:
+Thus, for higher-order tensors, covariant conservation is not equivalent to charge conservation.
+For the EMT, however, it is possible to define a conserved vector current associated to a Killing vector field $ \xi \in \xm $:
 \begin{equation}
-  J_T^\nu \defeq K_\mu T^{\mu \nu}
+  J_T^\nu[\xi] \defeq \xi_\mu T^{\mu \nu}
 \end{equation}
 This current is covariantly conserved, as:
 \begin{equation*}
-  \na_\nu J_T^\nu = T^{\mu \nu} \na_\nu K_\mu + K_\mu \na_\nu T^{\mu \nu} = T^{\mu \nu} \na_{(\nu} K_{\mu)} = 0
+  \na_\nu J_T^\nu[\xi] = T^{\mu \nu} \na_\nu \xi_\mu + K_\mu \na_\nu \xi^{\mu \nu} = T^{\mu \nu} \na_{(\nu} \xi_{\mu)} = 0
 \end{equation*}
 Its associated conserved charge on a spatial hypersurface $ \Sigma $ is defined as:
 \begin{equation}
-  Q_T(\Sigma) \defeq \int_\Sigma d^3 x \sqrt{\gamma}\, n_\mu J_T^\mu
+  Q_T[\xi ; \Sigma] \defeq \int_\Sigma d^{d-1} x \sqrt{\gamma}\, n_\mu J_T^\mu
 \end{equation}
-The interpretation of this charge depends on the properties of the Killing vector: if $ K $ is globally timelike, then the charge is the energy of matter $ E = Q_T(\Sigma) $, meanwhile if $ K $ is globally spacelike, then it is the momentum of matter.
+The interpretation of this conserved charge depends on the nature of the associated Killing vector field, e.g. if $ \xi $ is globally timelike, then the charge can be interpreted as the energy of matter.
 
-\paragraph{Absence of Killing vectors}
-
-The problem of energy conservation becomes subtle when dealing with spacetimes which do not have any globally timelike Killing vector.
-
-For example, a system comprised of two orbiting stars is modelled by a spacetime which does not have such a Killing vector: however, the problem of energy conservation does not arise in this case, as the stars, while orbiting each other, emit gravitational waves, thus losing energy and eventually spiraling towards each other. Nonetheless, a meaningful question is that of energy conservation of the total system, i.e. the two stars and the gravitational field. A guess would be to consider a total energy-momentum tensor defined similarly to \eref{eq:em-tens-def}, but:
+The problem of energy conservation becomes subtle when dealing with spacetimes which do not admit any globally timelike Killing vector field.
+For example, a system comprised of two orbiting stars is modelled by a spacetime which does not have such a Killing vector field: however, the problem of energy conservation does not arise in this case, as the stars, while orbiting each other, emit gravitational waves, thus losing energy and eventually spiraling towards each other. Nonetheless, a meaningful question is that of energy conservation of the total system, i.e. the two stars and the gravitational field. A guess would be to consider a total energy-momentum tensor defined similarly to \eref{eq:em-tens-def}, but:
 \begin{equation*}
   T^{\text{total}}_{\mu \nu} = - \frac{2}{\sqg} \left[ \frac{1}{16\pi G} \frac{\delta \mathcal{S}_{\text{EH}}}{\delta g^{\mu \nu}} + \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \right] = - \frac{1}{8\pi G} G_{\mu \nu} + T_{\mu \nu} = 0
 \end{equation*}
-by Einstein field equations. This equation has no physical significance other than expressing the subtlety of energy conservation in Genera Relativity.
+by the Einstein field equations. This equation has no physical significance other than expressing the subtlety of energy conservation in Genera Relativity.
 
-Clearly, one could try to understand the energy carried by the gravitational field alone. Unfortunately, there are compelling arguments that there exists no tensor which can be thought as the local energy density of the gravitational field: roughly speaking, the energy density of the Newtonian gravitational field $ \Phi $ is proportional to $ (\na \Phi)^2 $, so the relativistic equivalent should be proportional to the first derivatives of the metric, which can be made locally vanishing by normal coordinates due to the equivalence principle, and a tensor which vanishes in one coordinate system does so in all of them.
+Clearly, one could try to understand the energy carried by the gravitational field alone. Unfortunately, there are compelling arguments that there exists no tensor which can be thought as the local energy density of the gravitational field: roughly speaking, the energy density of the Newtonian gravitational field $ \Phi $ is proportional to $ (\na \Phi)^2 $, so the relativistic equivalent should be proportional to the first derivatives of the metric, which can be made locally vanishing by normal coordinates due to the equivalence principle, and a tensor which vanishes in one coordinate frame does so in all of them.
 
 \subsection{Energy conditions}
 
-To study the general properties of a spacetime without explicitly referencing the specific characteristics of matter, one needs to place certain restrictions on the kinds of energy-momentum tensor which are considered physical: these are the \textit{energy conditions} and express the idea that energy should be positive.
+To study the general properties of a spacetime without explicitly referencing the specific characteristics of matter, one needs to place certain restrictions on the kinds of EMTs which are considered physical: these are the \textit{energy conditions} and express the idea that energy should be positive.
 
-\subsubsection{Weak energy condition}
+\paragraph{Weak energy condition}
 
-This condition states that, for any timelike vector field $ X $:
+The weak energy condition states that, for any timelike vector field $ X \in \xm $:
 \begin{equation*}
   T_{\mu \nu} X^\mu X^\nu \ge 0
 \end{equation*}
@@ -1024,81 +1036,32 @@ This quantity is the energy measured by an observer moving along the timelike in
   \label{eq:weak-en-cond}
 \end{equation}
 
-\paragraph{Fluids}
+\paragraph{Strong energy condition}
 
-Recall the energy-momentum tensor for a fluid \eref{eq:em-tens-fluid} and impose the weak energy condition (WLOG $ X \cdot X = -1 $):
-\begin{equation*}
-  (\rho + p) (u \cdot X)^2 - p \ge 0
-\end{equation*}
-In the rest-frame $ u^\mu = (1,0,0,0) $, so considering a constant $ X^\mu = (\cosh \varphi, \sinh \varphi, 0, 0) $, whose integral curves are world-lines of observers boosted with rapidity $ \varphi $ with respect to the fluid, then:
-\begin{equation*}
-  (\rho + p) \cosh^2 \varphi - p \ge 0
-  \quad \implies \quad
-  \begin{cases}
-    \rho \ge 0 & \varphi = 0 \\
-    p \ge -\rho & \varphi \rightarrow \infty
-  \end{cases}
-\end{equation*}
-The first condition ensures that the energy density is positive, the second allows for negative pressure limited from below.
-
-Note that there are situations in which negative energy density makes physical sense: viewing the cosmological constant as part of the energy-momentum density, then any $ \Lambda < 0 $ violates the weak energy condition. In this sense, AdS space violates the weak energy condition.
-
-\paragraph{Scalar fields}
-
-The weak energy condition for the energy-momentum tensor of a scalar field theory \eref{eq:em-tens-scalar} reads:
-\begin{equation*}
-  (X^\mu \pa_\mu \phi)^2 + \frac{1}{2} \pa_\mu \phi \pa^\mu \phi + V(\phi) \ge 0
-\end{equation*}
-The sum of the first two terms is always positive: define $ Y_\mu = \pa_\mu \phi + X_\mu X^\nu \pa_\nu \phi : X_\mu Y^\mu = 0 $, i.e. orthogonal to $ X_\mu $, so it must be spacelike or null, hence $ Y_\mu Y^\mu \ge 0 $. Rewriting the above condition:
-\begin{equation*}
-  \frac{1}{2} (X^\mu \pa_\mu \phi)^2 + \frac{1}{2} Y_\mu Y^\mu + V(\phi) \ge 0
-  \quad \implies \quad
-  V(\phi) \ge 0
-\end{equation*}
-The weak energy condition is clearly violated by any classical field theory with $ V(\phi) \le 0 $.
-
-\subsubsection{Strong energy condition}
-
-This condition states that:
+The strong energy condition states that:
 \begin{equation}
   R_{\mu \nu} X^\mu X^\nu \ge 0
   \qquad
   \forall\, X \in \xm : X_\mu X^\mu \le 0
 \end{equation}
-The strong energy condition ensures that timelike geodesics converge, i.e. that gravity is attractive. Using \eref{eq:ef-eq-alt}, this condition can be rewritten as:
+This condition ensures that timelike geodesics converge, i.e. that gravity is attractive. Using \eref{eq:ef-eq-alt}, this condition can be rewritten as:
 \begin{equation*}
-  \left( T_{\mu \nu} - \frac{1}{2} T g_{\mu \nu} \right) X^\mu X^\nu \ge 0
+  \left( T_{\mu \nu} - \frac{1}{d-2} T g_{\mu \nu} \right) X^\mu X^\nu \ge 0
 \end{equation*}
-Taking yet again $ X \cdot X = -1 $, the strong energy condition for the energy-momentum tensor of a fluid \eref{eq:em-tens-fluid} in the rest-frame reads:
-\begin{equation*}
-  (\rho + p) (u \cdot X)^2 - p + \frac{1}{2} (3p - \rho) \ge 0
-  \quad \implies \quad
-  (\rho + p) \cosh \varphi^2 - p + \frac{1}{2} (3p - \rho) \ge 0
-\end{equation*}
-whose solution is:
-\begin{equation*}
-  \begin{cases}
-    p \ge -\rho/3 & \varphi = 0 \\
-    p \ge -\rho & \varphi \rightarrow \infty
-  \end{cases}
-\end{equation*}
-It is possible to show that $ \Lambda > 0 $ violates the strong energy condition: dS space is incompatible with it, as timelike geodesics are pulled apart by the expansion of space.
 
-Moreover, any classical scalar field theory with $ V(\phi) \ge 0 $ violates the strong energy condition.
+\paragraph{Null energy condition}
 
-\subsubsection{Null energy condition}
-
-This condition states that:
+The null energy condition states that:
 \begin{equation}
   T_{\mu \nu} X^\mu X^\nu \ge 0
   \qquad
   \forall\, X \in \xm : X_\mu X^\mu = 0
 \end{equation}
-This condition is implied by both the weak and strong energy condition, but the converse is not true: it is weaker than both conditions. However, it is satisfied by any classical field theory and any perfect fluid with $ \rho + p \ge 0 $.
+This condition is implied by both the weak and strong energy condition, but the converse is not true: it is weaker than both conditions.
 
-\subsubsection{Dominant energy condition}
+\paragraph{Dominant energy condition}
 
-Given a future-directed timelike vector field $ X $, it is possible to define the energy density current measured by an observer moving along integral curves of $ X $ as:
+Given a future-directed timelike vector field $ X \in \xm $, it is possible to define the energy density current measured by an observer moving along integral curves of $ X $ as:
 \begin{equation*}
   J^\mu \equiv - T^{\mu \nu} X_\nu
 \end{equation*}
@@ -1109,10 +1072,59 @@ The dominant energy condition requires that, in addition to the WEC \eref{eq:wea
 \end{equation}
 This means that the energy density current is either timelike or null, so requiring that energy does not flow faster than light.
 
-It is possible to check that this condition is always satisfied by a classical scalar field theory, while for a perfect fluid it imposes $ \rho^2 \ge p^2 $.
+\begin{example}{Fluids}{}
+  Recall the energy-momentum tensor for a fluid \eref{eq:em-tens-fluid} and impose the weak energy condition (WLOG $ \braket{X , X}_g = -1 $):
+  \begin{equation*}
+    (\rho + p) (u \cdot X)^2 - p \ge 0
+  \end{equation*}
+  In the rest-frame $ u^\mu = (1,0,0,0) $, so considering a constant $ X^\mu = (\cosh \varphi, \sinh \varphi, 0, 0) $, whose integral curves are world-lines of observers boosted with rapidity $ \varphi $ with respect to the fluid, then:
+  \begin{equation*}
+    (\rho + p) \cosh^2 \varphi - p \ge 0
+    \quad \implies \quad
+    \begin{cases}
+      \rho \ge 0 & \varphi = 0 \\
+      p \ge -\rho & \varphi \rightarrow \infty
+    \end{cases}
+  \end{equation*}
+  The first condition ensures that the energy density is positive, the second allows for negative pressure limited from below.
+  Note that there are situations in which negative energy density makes physical sense: viewing the cosmological constant as part of the energy-momentum density, then any $ \Lambda < 0 $ violates the weak energy condition. In this sense, AdS space violates the weak energy condition. 
+
+  On the other hand, the strong energy condition for the energy-momentum tensor of a fluid \eref{eq:em-tens-fluid} in the rest-frame reads:
+  \begin{equation*}
+    (\rho + p) (u \cdot X)^2 - p + \frac{1}{2} (3p - \rho) \ge 0
+    \quad \implies \quad
+    (\rho + p) \cosh \varphi^2 - p + \frac{1}{2} (3p - \rho) \ge 0
+  \end{equation*}
+  whose solution is:
+  \begin{equation*}
+    \begin{cases}
+      p \ge -\rho/3 & \varphi = 0 \\
+      p \ge -\rho & \varphi \rightarrow \infty
+    \end{cases}
+  \end{equation*}
+  It is possible to show that $ \Lambda > 0 $ violates the strong energy condition: dS space is incompatible with it, as timelike geodesics are pulled apart by the expansion of space.
+
+  Furthermore, it can be shown that the null energy condition implies $ \rho + p \geq 0 $, while the dominant energy condition imposes $ \rho^2 \geq p^2 $.
+\end{example}
+
+\begin{example}{Scalar field theories}{}
+  The weak energy condition for the energy-momentum tensor of a scalar field theory \eref{eq:em-tens-scalar} reads:
+  \begin{equation*}
+    (X^\mu \pa_\mu \phi)^2 + \frac{1}{2} \pa_\mu \phi \pa^\mu \phi + V(\phi) \ge 0
+  \end{equation*}
+  The sum of the first two terms is always positive: define $ Y_\mu = \pa_\mu \phi + X_\mu X^\nu \pa_\nu \phi : X_\mu Y^\mu = 0 $, i.e. orthogonal to $ X_\mu $, so it must be spacelike or null, hence $ Y_\mu Y^\mu \ge 0 $. Rewriting the above condition:
+  \begin{equation*}
+    \frac{1}{2} (X^\mu \pa_\mu \phi)^2 + \frac{1}{2} Y_\mu Y^\mu + V(\phi) \ge 0
+    \quad \implies \quad
+    V(\phi) \ge 0
+  \end{equation*}
+  The weak energy condition is clearly violated by any classical field theory with $ V(\phi) \le 0 $. On the contrary, any classical scalar field theory with $ V(\phi) \ge 0 $ violates the strong energy condition, while the null is satisfied by any classical scalar field theory.
+\end{example}
 
 \newpage
 \section{Asymptotics of spacetime}
+
+% TODO: must rewiew
 
 The three special solution (Minkowski, dS, AdS) not only have different spacetime curvature and symmetries, but, more fundamentally, they have different behaviour at infinity. Their importance lies in the fact that, however complicated the metric might be, if fields are suitably localized, then they will asymptote to one of these three symmetric spaces.
 
@@ -1368,6 +1380,8 @@ with conformally compactified $ \tau \in \left[ - \frac{\pi}{2}, + \frac{\pi}{2}
 \section{Schwarzschild solution}
 \label{sec:schwarz-sol}
 
+% TODO: must rewiew
+
 The Schwarzschild solution is the unique static and spherically-symmetric vacuum solution to the Einstein field equations \eref{eq:vacuum-feq}: it describes spacetime outside a spherically-symmetric body, and it is the most important exact solution of the field equations.
 
 \subsection{Birkhoff theorem}
@@ -1410,7 +1424,7 @@ Conversely, assume that the Froebenius condition holds for the Killing field $ K
 To show that $ \ld_K \omega = 0 $, expand both $ \ld_K \omega $ and $ \ld_K g $:
 \begin{equation*}
   (\ld_K \omega)(X) = K(\omega(X)) - \omega([K,X]) = K(g(K,X)) - g(K , [K,X])
-  % TODO proof of second term
+  % TODO: proof of second term
 \end{equation*}
 \begin{equation*}
   0 = (\ld_K g)(K,X) = K(g(K,X)) - g([K,K] , X) - g([K,X],K) = K(g(K,X)) - g(K , [K,X])
@@ -1612,6 +1626,7 @@ with $ a \equiv \exp (\text{const.} / 2\sr) $. Differentiating this equation and
 Note that $ \tau $ is the proper time of the source, while $ t_\text{r} $ can be identified with the proper time of the observer, since $ R \gg \sr $. This means that the rate of reception of photons by the observer is exponentially damped, resulting in an exponential decrease of the observed intensity of the source as it approaches $ r = \sr $. Additionally, the light emitted by the source is exponentially redshifted\footnotemark, near the horizon: combining these effects, the source eventually becomes undetectable, but the radiation intensity never drops to zero, although the source crosses the horizon in a finite proper time (as per \eref{eq:aux-2}).
 
 \footnotetext{Requires proof.}
+% TODO: proof of exponential redshift
 
 \subsection{Classical tests of General Relativity}
 
@@ -1627,7 +1642,7 @@ Then, if two stationary cloks at $ r_1 = r $ and $ r_2 = r + \Delta r $ exchange
 \end{equation}
 where the approximation holds for $ \Delta r \ll r $ and $ \sr \ll r $.
 
-% TODO add Observation on GPS
+% TODO: add Observation on GPS
 
 \subsubsection{Periastron precession}
 
