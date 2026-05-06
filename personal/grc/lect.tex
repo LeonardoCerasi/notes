@@ -1378,6 +1378,238 @@ A miracle has happened: the power spectrum of $ f $ was singular at $ \eta = 0 $
 
 Per $ f_k $, il modulo rappresenta il numero di occupazione degli stati, quindi quando esplode c'è la transizione da quantum a classical (come particelle: poche particelle sono sistema quantistico, $ \sim 10^23 $ possono iniziare a comportarsi come classico)
 
+\chapter{Lecture 05/05}
+
+Last time: EMT and conservation with Euler equations.
+
+\section{Perturbed Einstein equations}
+
+At first order, the perturbed Einstein equations become:
+\begin{itemize}
+  \item traceless part $ \braket{ij} $:
+    \begin{equation}
+      \pa_{\langle i} \pa_{j \rangle} (\Phi - \Psi) = - 8 \pi a^2 \Pi_{ij} = 0
+    \end{equation}
+    in absence of anisotropic stress (already done last semester), which is only caused by neutrinos. Therefore, the two gauge-invariant potentials are $ \Phi = \Psi $;
+  \item $ 00 $ component:
+    \begin{equation}
+      (\text{0$ ^\text{th} $ order})
+      \qquad
+      \hub^2 = \frac{8\pi G}{3} a^2 \bar{\rho}
+    \end{equation}
+    \begin{equation}
+      (\text{1$ ^\text{st} $ order})
+      \qquad
+      \lap \Phi = 4 \pi G a^2 \bar{\rho} \delta + 3 \hub (\Phi' + \hub \Psi)
+    \end{equation}
+  \item $ 0i $ component:
+    \begin{equation*}
+      \pa_i (\Phi' + \hub \Phi) = 4 \pi G a^2 q_i
+    \end{equation*}
+    where $ q_i = (\rho + p) v_i $, but $ v_i = \hat{v}_i + \pa_i v $ (not guage invariant), so integrating:
+    \begin{equation}
+      \Phi' + \hub \Phi = 4 \pi G a^2 (\bar{\rho} + \bar{p}) v
+    \end{equation}
+    Therefore $ 00 + 0i $:
+    \begin{equation}
+      \na^2 \Phi = 4 \pi G a^2 \bar{\rho} \Delta
+    \end{equation}
+    which, as expected, is indeed gauge invariant.
+  \item component (non ho capito quale):
+    \begin{equation}
+      (\text{0$ ^\text{th} $ order})
+      \qquad
+      2 \hub' + \hub^2 = - 8 \pi G a^2 \bar{\rho}
+    \end{equation}
+    \begin{equation}
+      (\text{1$ ^\text{st} $ order})
+      \qquad
+      \Phi'' + 3 \hub \Phi' (2\hub' + \hub^2) \Phi = 4 \pi a^2 \delta p \ (+ \text{anisotropic stress})
+    \end{equation}
+\end{itemize}
+
+We want now to show that physics outside the Hubble horizon is frozen. Since gauge invariance makes it difficult to define how somenthing is constant, consider the 3D metric:
+\begin{equation*}
+  \gamma_{ij} = a^2 \left[ (1 + 2C) \delta_{ij} + 2 E_{ij} \right]
+\end{equation*}
+and restrict to scalars only, i.e. $ E_{ij} = \pa_{\langle i} \pa_{j \rangle} E $. Now, compute the Ricci curvature on 3D spatial sections:
+\begin{equation}
+  a^2 {^{(3)}R} = - \na^2 \left( C - \frac{1}{3} \na^2 E \right)
+\end{equation}
+This is not gauge invariant, since it is the curvature of spatial sections only, and it is computed in the comoving gauge ($ B = v = 0 $ , $ g^{0i} = 0 $). To make it gauge invariant, define:
+\begin{equation}
+  \EuScript{R} \equiv C - \frac{1}{3} \na^2 E + \hub (B + v)
+\end{equation}
+This is known as comoving curvature perturbation (CCP).
+
+Exercise: check it is indeed guage invariant and in the comoving gauge reduces to the comoving curvature perturbation (the transformation law of all these quantities have been define in previous lectures).
+
+Switching now to the Newtonian gauge:
+\begin{equation}
+  \EuScript{R}_\text{N} = - \Phi + \hub v
+\end{equation}
+Note that this is different from $ {^{(3)}R}_\text{N} $. Then, $ 0i $ can be used to eliminate $ v $:
+\begin{equation*}
+  \EuScript{R} = - \Phi + \frac{\hub (\Phi' + \hub \Phi)}{4 \pi G a^2 (\bar{\rho} + \bar{p})}
+\end{equation*}
+In Inflation $ \hub \sim a $, so $ \EuScript{R} \sim \Phi $, while in RD $ \hub \sim a^{-1} , \bar{\rho} \sim a^{-4} $, hence again $ \EuScript{R} \sim \Phi $. Then (with a lot of algebraic work, see Baumann):
+\begin{equation*}
+  -4\pi G a^2 (\bar{\rho} + \bar{p}) \EuScript{R}' = 4 \pi G \hub \delta P_\text{non-adiabatic} + \hub \frac{\bar{p}'}{\bar{\rho}'} \na^2 \Phi
+\end{equation*}
+where:
+\begin{equation}
+  \delta P_\text{non-adiabatic} = \delta p - \frac{p'}{\rho'} \delta \rho
+\end{equation}
+which is only non-vanishing for barotropic things (didn't understand), so for us $ \delta P_\text{non-adiabatic} = 0 $. Using $ \pa_\eta = \hub \pa_{\ln a} $:
+\begin{equation}
+  \frac{\dd \ln \EuScript{R}}{\dd \ln a} \sim \frac{K^2}{\hub^2} \ll 1
+  \ \text{(superhorizon)}
+\end{equation}
+This means that on superhorizon scales the CCP, and so the gravitational potential $ \Phi $, remains approximately frozen.
+
+\section{Inflation to Reheating to Adiabatic}
+
+Now let's why adiabatic perturbations are $ \frac{\delta_i}{1 + w_i} = \frac{\delta_j}{1 + w_j} $ (explained very poorly on Baumann).
+
+What done up to now is in \emph{single-field inflation}, where the inflaton field is perturbed as:
+\begin{equation*}
+  \phi(\eta , \ve{x}) = \bar{\phi}(\eta) + \delta \phi(\eta , \ve{x})
+\end{equation*}
+where $ \bar{\phi}(\eta) $ is the slow-roll background and the perturbation $ \delta \phi(\eta , \ve{x}) $ is large at horizon exit. The presence of the perturbation implies that the end of Inflation is displaced in time at different points in space. Then, the Reheating process $ \rho_\phi \ra \rho_\text{r} , \rho_\text{m} , \dots $, which is always the same process, produces densities of various species $ \rho(\eta , \ve{x}) = \bar{\rho}_i (\eta + \delta \eta (\eta , \ve{x})) $, i.e. same solutions as before but displaced in time. As before:
+\begin{equation*}
+  \delta \rho_i(\eta , \ve{x}) = \bar{\rho}_i (\eta + \delta \eta) - \bar{\rho}_i(\eta) = \bar{\rho}_i' \delta \eta = 3 \hub (1 + w_i) \bar{\rho}_i \delta \eta
+\end{equation*}
+which implies:
+\begin{equation*}
+  \delta_i = \frac{\delta \rho_i}{\bar{\rho}_i} = (1 + w_i) (3 \hub \delta \eta)
+\end{equation*}
+which implies:
+\begin{equation*}
+  \frac{\delta_i}{1 + w_i} = \frac{\delta_j}{1 + w_j}
+\end{equation*}
+This is then a consequence of the fact that there is only one inflaton field: it can be seen as a sort of prediction of the fact that there is only one inflaton field.
+
+Still not explained why they are called adiabatic.
+
+Consequences of ``adiabatic" perturbations:
+\begin{itemize}
+  \item all matter has $ \delta_i = \text{equal} $
+  \item radiation has $ \delta_\text{r} = \frac{4}{3} \delta_\text{m} $
+  \item $ \delta $ total is dominated by largest $ \bar{\rho}_i $
+  \item density ratios are constant in space:
+    \begin{equation*}
+      \frac{n_i(\eta , \ve{x})}{n_j(\eta , \ve{x})} = \frac{\bar{n}_i \left( 1 + \frac{\delta n_i}{\bar{n_i}} \right)}{\bar{n}_j \left( 1 + \frac{\delta n_j}{\bar{n_j}} \right)}
+    \end{equation*}
+    but $ \frac{\delta n}{n} = \frac{\delta \rho}{\rho} \frac{1}{1 + w} $ (e.g. $ \rho_\text{r} \sim a^{-4} $ and $ n_\text{r} \sim a^{-3} $):
+    \begin{equation*}
+      \frac{n_i(\eta , \ve{x})}{n_j(\eta , \ve{x})} = \frac{\bar{n}_i}{\bar{n}_j} \frac{\left( 1 + \frac{\delta_i}{1 + w_i} \right)}{\left( 1 + \frac{\delta_j}{1 + w_j} \right)} = \frac{\bar{n}_i}{\bar{n}_j}
+    \end{equation*}
+\end{itemize}
+
+To understand why this is called adiabatic (a term linked to entropy), define fractions of various components of the cosmological fluid as:
+\begin{equation*}
+  x_i \equiv \frac{n_i}{n}
+  \qquad \qquad
+  n \equiv \sum_j n_j
+\end{equation*}
+Then, the (relative) entropy (per particle) of this mix is:
+\begin{equation*}
+  \frac{s_\text{rel}}{n} = - \sum_i x_i \ln x_i
+\end{equation*}
+where $ \sum_i x_i = 1 $. This is like a measure of the occupation of states (e.g. if only one component, then that component has $ x_i = 1 $, i.e. $ \ln x_i = 0 $, and other components have $ x_j = 0 $, so $ s_\text{rel} = 0 $). This does not depend on spatial coordinates, since the fluid moves in bulk togethe, indeed:
+\begin{equation*}
+  \delta \left( \frac{s_\text{rel}}{n} \right) = \sum_{i,j} A_{ij} \delta \left( \ln \frac{n_i}{n_j} \right)
+\end{equation*}
+because $ s_\text{rel} / n $ only depends on $ n_i / n_j $, but:
+\begin{equation*}
+  \delta \left( \ln \frac{n_i}{n_j} \right) = \frac{\delta n_i}{n_i} - \frac{\delta n_j}{n_j} = \frac{\delta_i}{1 + w_i} - \frac{\delta_j}{1 + w_j} = 0
+\end{equation*}
+Hence, these perturbations are adiabatic since $ \delta (s_\text{rel} / n) = 0 $.
+
+In particular, defining \emph{isocurvature perturbations} as:
+\begin{equation}
+  S_{ij} = \frac{\delta_i}{1 + w_i} - \frac{\delta_j}{1 + w_j}
+\end{equation}
+adiabatic perturbations have $ S_{ij} = 0 $ (prediction of single-field inflation on initial conditions of radiation/matter perturbations).
+
+\subsection{Power spectrum of $ \EuScript{R} $}
+
+We want to link the curvature perturbations to $ \delta \phi $. Recall:
+\begin{equation*}
+  \EuScript{R} = - \Phi + \frac{\hub}{\bar{\rho} + \bar{p}} \delta q
+\end{equation*}
+with $ \delta q = (\bar{\rho} + \bar{p}) v $ coming from $ \tensor{T}{^0_i} $. For the inflaton fluid $ \tensor{T}{^0_i} = - \pa_i \delta q $, and:
+\begin{equation*}
+  \delta \tensor{T}{^0_i} = g^{0\mu} \pa_\mu p \pa_i \delta p = \frac{\phi'}{a^2} \pa_i \delta \phi
+\end{equation*}
+Also, recall $ \bar{\rho} + \bar{p} = a^{-2} (\phi')^2 $ (important), so that:
+\begin{equation}
+  \EuScript{R} = - \frac{\hub}{\phi'} \delta \phi
+\end{equation}
+Note that $ \hub / \phi' = 1 / ( \pl \sqrt{\varepsilon} ) $ slow-roll parameter, hence $ \EuScript{R} \ra \infty $ if $ \varepsilon \ra 0 $. Without slow-roll, the universe would be dS forever.
+
+Now, the power spectrum of $ \EuScript $ is:
+\begin{equation*}
+  \Delta^2_\EuScript{R}(k) = \frac{1}{(\phi' / \hub)^2} \Delta^2_{\delta \phi} \vert_{k = \frac{1}{\eta}}
+\end{equation*}
+but $ \Delta^2_{\delta \phi} = (H / 2\pi)^2 $, so:
+\begin{equation}
+  \Delta^2_\EuScript{R}(k) = \frac{1}{8 \pi^2 \varepsilon} \left( \frac{H}{\pl} \right)^2 \bigg\vert_{\tau = k^{-1}}
+\end{equation}
+This is again a flat power spectrum, but it is enhanced w.r.t. that of $ \delta \phi $ by a factor of $ \varepsilon^{-1} \sim 100 $. It is directly linked to fluctuations in the CMB. The red tilt (see fig.) defines the spectral index:
+\begin{equation}
+  n_\text{s} - 1 \equiv \frac{\dd \ln \Delta^2_\EuScript{R}(k)}{\dd \ln k}
+\end{equation}
+So:
+\begin{equation*}
+  n_\text{s} - 1 = \frac{\dd (2 \ln H - \ln \varepsilon)}{\dd \ln k} = -2 \varepsilon - \zeta
+\end{equation*}
+where we used $ \ln k \sim \ln \frac{1}{\eta} \sim \ln a \sim \mathcal{N} $ and:
+\begin{equation*}
+  \varepsilon = \frac{\dd \ln H}{\dd \ln a}
+  \qquad \qquad
+  \zeta = \frac{\dd \ln \zeta}{\dd \ln a}
+\end{equation*}
+Experimentally (see later) $ n_\text{s} - 1 \sim - 0.04 $ (negative as red tilt).
+
+\section{Gravitational waves}
+
+Now let's do everything done for the inflaton with GWs, to find the GW power spectrum. Expanding the gravitational lagrangiat at second order in the perturbations $ h_{ij}^\text{TT}(\eta , \ve{x}) $:
+\begin{equation*}
+  \act_\text{EH}\od2 = \frac{\pl^2}{8} \int \dd^4x \, a^2 \left[ {h_{ij}'}^2 - (\grad h_{ij})^2 \right]
+\end{equation*}
+since it is a massless field. Howerver, it is not yet canonical due to the $ a^2 $ factor. To make it canonical, define $ f_{ij} = \frac{\pl}{2} a h_{ij} $, so that:
+\begin{equation*}
+  f_{ij} = \frac{1}{\sqrt{2}}
+  \begin{bmatrix}
+    f_+ & f_\times & 0 \\
+    f_\times & - f_+ & 0 \\
+    0 & 0 & 0
+  \end{bmatrix}
+\end{equation*}
+transverse-traceless along direction of propagation of GWs (WLOG $ \hat{z} $). Then:
+\begin{equation*}
+  \act_\text{EH}\od2 = \frac{1}{2} \sum_{\lambda = + , \times} \int \dd^4x \left[ {f_\lambda'}^2 - (\grad f_\lambda)^2 + \frac{\ddot{a}}{a} f_\lambda^2 \right]
+\end{equation*}
+Similar to inflaton (since the inflaton potential is negligible, as seen in previous lectures). This is just two copies of the inflaton field, hence:
+\begin{equation}
+  \Delta^2_h(k) = 2 \left( \frac{2}{a \pl} \right)^2 \Delta^2_f \frac{2}{\pi^2} \left( \frac{H}{\pl} \right)^2 \bigg\vert_{\tau = k^{-1}}
+\end{equation}
+Comparing with:
+\begin{equation*}
+  \Delta^2_\EuScript{R} = \frac{1}{8 \pi^2 \varepsilon} \left( \frac{H}{\pl} \right)^2
+\end{equation*}
+These are very similar, with the difference that $ \Delta^2_h $ is not enhanced by $ \varepsilon $. This is the power spectrum of GWs which arrive at us today, but are not observable since the amplitude of higher-frequency waves (which are thos actually observable) gets extremely damped by the subhorizon evolution. Could be indirectly detected since the presence of GWs polarizes the light of the CMB in a peculiar way.
+
+$ \Delta^2_h $ is proportional to the tensor power-spectrum amplitude $ A_\text{r} $, while $ \Delta^2_\EuScript{R} $ is proportional to the scalar power-spectrum amplitude $ A_\text{s} $. The tensor-scalar ratio is then:
+\begin{equation}
+  r \equiv \frac{A_\text{t}}{A_\text{s}} = 16 \varepsilon
+\end{equation}
+$ A_\text{s} $ is measured, and if $ A_\text{t} $ will be measured the value of $ r $ will be a confirmation (or refutation) of this theory of inflation.
+
+Una misura di $ \Delta^2_h $ sarebbe epocale perché $ \Delta^2_h $ sono fluttuazioni quantistiche delle GWs, quindi sarebbe una conferma della natura quantistica della gravità.
+
+
 
 
 
