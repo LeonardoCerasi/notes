@@ -1,5 +1,509 @@
 \selectlanguage{english}
 
-Although the Einstein field equations, being second-order non-linear inhomogeneuos PDEs, are highly non-trivial to solve, they admit wave-like solutions, which produce what are known as \emph{gravitational waves} (GWs). To study GWs, three approaches are possible: perturbative solutions, beyond-leading-order corrections and exact solutions.
+Although the Einstein field equations, being second-order non-linear inhomogeneuos PDEs, are highly non-trivial to solve, they admit wave-like solutions, which produce what are known as \emph{gravitational waves} (GWs). To study GWs, three approaches are possible: perturbative solutions, exact solutions and asymptotic solutions of radiating systems.
 
 \section{Perturbations of spacetime}
+
+The basic perturbative approach for the study of GWs is to consider a background metric $ \bar{g} $ and introduce a perturbation $ h $ describing the GWs, so to obtain a spacetime metric like:
+\begin{equation}
+  g_{\mu \nu} = \bar{g}_{\mu \nu} + h_{\mu \nu}
+  \label{eq:gw-pert-exp}
+\end{equation}
+A key property of GWs is the time-domain splitting between the background metric and the perturbations: indeed, observable GWs have frequencies $ \sim 1 \,\text{Hz} $, so the variations of $ h $ have timescale of $ \sim 1 \,\text{sec} $, while those of $ \bar{g} $ have cosmological timescale $ \sim H_0^{-1} $, i.e. in the order of billions of years. Note that this time-domain splitting is not gauge invariant, since it depends on the explicit coordinates used.
+
+\subsection{Perturbed field equations}
+
+To generalize the perturbative expansion in \eref{eq:gw-pert-exp}, consider a 1-parameter family of metrics $ q(\lambda) $ analytic in $ \lambda \in \R $:
+\begin{equation*}
+  q(0) = \bar{g}
+  \qquad \qquad
+  \frac{\dd q}{\dd \lambda} \bigg\vert_{\lambda = 0} = h
+\end{equation*}
+Then, as $ \lambda \ra 0 $ the metric reduces to $ q(\lambda) = \bar{g} + \lambda h + \smo(\lambda^2) $, which is just the above expression. Now, consider the two Levi--Civita connections associated to $ q(\lambda) $ and $ \bar{g} $ respectively:
+\begin{equation}
+  \bar{\na}_\alpha \bar{g}_{\mu \nu} = 0
+  \qquad \qquad
+  \tilde{\na}_\alpha q_{\mu \nu} = 0
+  \label{eq:perturbation-levi-civita}
+\end{equation}
+
+\begin{lemma}{Difference tensor}{}
+  Let $ \man $ be a metric manifold, and let $ \tilde{\na} , \bar{\na} $ be two Koszul connections in $ \man $. Then, given $ \omega \in \df{1} $:
+  \begin{equation}
+    \tilde{\na}_\mu \omega_\alpha - \bar{\na}_\mu \omega_\alpha = - C^\rho_{\mu \alpha} \omega_\rho
+    \label{eq:difference-tensor}
+  \end{equation}
+  with $ C \in \tns{1}{2}(\man) $. If both families of connections are torsion-free, $ C^\rho_{\mu \alpha} = C^\rho_{\alpha \mu} $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    To show that $ C \in \tns{1}{2}(\man) $, recall that any connection acts on $ T^0_0\man = \cm $ as $ \na_\mu f = \pa_\mu f $, hence all connections in $ \man $ agree on $ T^0_0\man $. Now, let $ f \in \cm , \omega \in \df{1} $:
+    \begin{equation*}
+      \tilde{\na}_\mu (f \omega_\alpha) - \bar{\na}_\mu (f \omega_\alpha) = (\tilde{\na}_\mu f) \omega_\alpha + f (\tilde{\na}_\mu \omega_\alpha) - (\bar{\na}_\mu f) \omega_\alpha - f (\bar{\na}_\mu \omega_\alpha) = f (\tilde{\na}_\mu \omega_\alpha - \bar{\na}_\mu \omega_\alpha)
+    \end{equation*}
+    Now, consider $ \eta \in \df{1} : \eta \vert_p = \omega \vert_p $: it can be shown that there exist $ \{f_a\} \ssq \cm : f_a(p) = 0 $ and $ \{\zeta^a\} \ssq \df{1} $ such that:
+    \begin{equation*}
+      \eta - \omega = \sum_a f_a \zeta^a
+    \end{equation*}
+    Then:
+    \begin{equation*}
+      \tilde{\na}_\mu (\eta_\alpha - \omega_\alpha) - \bar{\na}_\mu (\eta_\alpha - \omega_\alpha) = \sum_a \left[ \tilde{\na}_\mu (f_a \zeta^a_\alpha) - \bar{\na}_\mu (f_a \zeta^a_\alpha) \right] = \sum_a f_a \left[ \tilde{\na}_\mu \zeta^a_\alpha - \bar{\na}_\mu \zeta^a_\alpha \right]
+    \end{equation*}
+    which vanishes at $ p $ since $ f_a(p) = 0 $. Therefore:
+    \begin{equation*}
+      \left[ \tilde{\na}_\mu \eta_\alpha - \bar{\na}_\mu \eta_\alpha \right]_p = \left[ \tilde{\na}_\mu \omega_\alpha - \bar{\na}_\mu \omega_\alpha \right]_p
+    \end{equation*}
+    which shows that the difference $ \tilde{\na}_\mu \omega_\alpha - \bar{\na}_\mu \omega_\alpha $ only depends on the value of $ \omega_\alpha \vert_p $. This means that $ \tilde{\na}_\mu - \bar{\na}_\mu $ defines a linear map $ T_p^*\man \ra T^0_2(T_p\man) $, and so a $ (1,2) $-tensor field $ C $ with components \eref{eq:difference-tensor}.
+
+    Now, consider $ \omega_\alpha = \na_\alpha f $ with $ f \in \cm $:
+    \begin{equation*}
+      \tilde{\na}_\mu \tilde{\na}_\nu f - \bar{\na}_\mu \bar{\na}_\nu f = - C^\rho_{\mu \nu} f
+    \end{equation*}
+    However, for a torsion-free connection $ \na $:
+    \begin{equation*}
+      \na_\mu \na_\nu f = \na_\mu (\pa_\nu f) = \pa_\mu \pa_\nu f - \Gamma^\rho_{\mu \nu} \pa_\rho f = \pa_\nu \pa_\mu - \Gamma^\rho_{\nu \mu} \pa_\rho f = \na_\nu \na_\mu f
+    \end{equation*}
+    Therefore, if both $ \tilde{\na} $ and $ \bar{\na} $ are torsion-free, $ C^\rho_{\mu \nu} = C^\rho_{\nu \mu} $.
+  \end{proof}
+\end{proofbox}
+
+The difference tensor can be used to characterize the curvature tensors of the perturbed metric.
+
+\begin{proposition}{Difference tensor of perturbed metric}{}
+  Given the two Levi--Civita connections defined in \eref{eq:perturbation-levi-civita}, the difference tensor defined by ($ \omega \in \df{1} $):
+  \begin{equation*}
+    \tilde{\na}_\mu \omega_\alpha - \bar{\na}_\mu \omega_\alpha = - C^\rho_{\mu \alpha} \omega_\rho
+  \end{equation*}
+  is expressed as:
+  \begin{equation}
+    C^\rho_{\mu \nu}(\lambda) = \frac{1}{2} q^{\rho \alpha} (\bar{\na}_\mu q_{\nu \alpha} - \bar{\na}_\nu q_{\mu \alpha} - \bar{\na}_\alpha q_{\mu \nu})
+    \label{eq:perturbation-difference-tensor}
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    By the metric-compatibility of the Levi--Civita connection:
+    \begin{equation*}
+      0 = \tilde{\na}_\alpha q_{\mu \nu} = \bar{\na}_\alpha q_{\mu \nu} - C^\rho_{\alpha \mu} q_{\rho \nu} - C^\rho_{\alpha \nu} q_{\mu \rho}
+    \end{equation*}
+    Exchanging $ \alpha \lra \mu $ and then $ \mu \lra \nu $, a set of three equations is found:
+    \begin{equation*}
+      \bar{\na}_\alpha q_{\mu \nu} - C^\rho_{\alpha \mu} q_{\rho \nu} - C^\rho_{\alpha \nu} q_{\mu \rho} = 0
+    \end{equation*}
+    \begin{equation*}
+      \bar{\na}_\mu q_{\alpha \nu} - C^\rho_{\mu \alpha} q_{\rho \nu} - C^\rho_{\mu \nu} q_{\alpha \rho} = 0
+    \end{equation*}
+    \begin{equation*}
+      \bar{\na}_\nu q_{\alpha \mu} - C^\rho_{\nu \alpha} q_{\rho \mu} - C^\rho_{\nu \mu} q_{\alpha \rho} = 0
+    \end{equation*}
+    Summing the last two equations and subtracting the first one:
+    \begin{equation*}
+      \bar{\na}_\mu q_{\alpha \nu} + \bar{\na}_\nu q_{\alpha \mu} - \bar{\na}_\alpha q_{\mu \nu} - 2 C^\rho_{\mu \nu} q_{\alpha \rho} = 0
+    \end{equation*}
+    which yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+The Riemann curvature tensor can now be computed directly from definition (\eref{eq:riemann-operator-def}).
+
+\begin{lemma}{Difference of Riemann tensors}{}
+  Given the two Levi--Civita connections defined in \eref{eq:perturbation-levi-civita}, the difference of the associated Riemann tensors is:
+  \begin{equation}
+    \tensor{\tilde{\rr}}{_{\mu \nu \alpha}^\rho} - \tensor{\bar{\rr}}{_{\mu \nu \alpha}^\rho} = 2 \bar{\na}_{[\nu} C^\rho_{\mu]\alpha} + C^\rho_{\nu \beta} C^\beta_{\mu \alpha} - C^\rho_{\nu \alpha} C^\rho_{\mu \beta}
+    \label{eq:perturbation-riemann}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:riemann-operator-def}:
+    \begin{equation*}
+      \begin{split}
+        \tensor{\tilde{\rr}}{_{\mu \nu \alpha}^\rho} \omega_\rho
+        & = \tilde{\na}_\mu \tilde{\na}_\nu \omega_\alpha - \tilde{\na}_\nu \tilde{\na}_\mu \omega_\alpha \\
+        & = \tilde{\na}_\mu ( \bar{\na}_\nu \omega_\alpha - C^\rho_{\nu \alpha} \omega_\rho ) - \tilde{\na}_\nu ( \bar{\na}_\mu \omega_\alpha - C^\rho_{\mu \alpha} \omega_\rho ) \omega_\rho \\
+        & = \bar{\na}_\mu \bar{\na}_\nu \omega_\alpha - C^\rho_{\mu \nu} \bar{\na}_\rho \omega_\alpha - C^\rho_{\mu \alpha} \bar{\na}_\nu \omega_\rho - \tilde{\na}_\mu (C^\rho_{\nu \alpha} \omega_\rho) \\
+        & \quad - \bar{\na}_\nu \bar{\na}_\mu \omega_\alpha + C^\rho_{\nu \mu} \bar{\na}_\rho \omega_\alpha + C^\rho_{\nu \alpha} \bar{\na}_\mu \omega_\rho + \tilde{\na}_\nu (C^\rho_{\mu \alpha} \omega_\rho) \\
+        & = \tensor{\bar{\rr}}{_{\mu \nu \alpha}^\rho} \omega_\rho - C^\rho_{\mu \alpha} \bar{\na}_\nu \omega_\rho + C^\rho_{\nu \alpha} \bar{\na}_\mu \omega_\rho - \tilde{\na}_\mu (C^\rho_{\nu \alpha} \omega_\rho) + \tilde{\na}_\nu (C^\rho_{\mu \alpha} \omega_\rho)
+      \end{split}
+    \end{equation*}
+    Now, note that:
+    \begin{equation*}
+      \begin{split}
+        \tilde{\na}_\mu (C^\rho_{\nu \alpha} \omega_\rho)
+        & = \na_\mu (C^\rho_{\nu \alpha}) \omega_\rho + C^\rho_{\nu \alpha} \tilde{\na}_\mu \omega_\rho \\
+        & = \bar{\na}_\mu C^\rho_{\nu \alpha} \omega_\rho + C^\rho_{\mu \beta} C^\beta_{\nu \alpha} \omega_\rho - C^\beta_{\mu \nu} C^\rho_{\beta \alpha} \omega_\rho - C^\beta_{\mu \alpha} C^\rho_{\nu \beta} \omega_\rho + C^\rho_{\nu \alpha} \bar{\na}_\mu \omega_\rho - C^\rho_{\nu \alpha} C^\beta_{\mu \rho} \omega_\beta
+      \end{split}
+    \end{equation*}
+    Thus:
+    \begin{equation*}
+      \begin{split}
+        \tensor{\tilde{\rr}}{_{\mu \nu \alpha}^\rho} \omega_\rho
+        & = \tensor{\bar{\rr}}{_{\mu \nu \alpha}^\rho} \omega_\rho - C^\rho_{\mu \alpha} \bar{\na}_\nu \omega_\rho + C^\rho_{\nu \alpha} \bar{\na}_\mu \omega_\rho - \tilde{\na}_\mu (C^\rho_{\nu \alpha} \omega_\rho) + \tilde{\na}_\nu (C^\rho_{\mu \alpha} \omega_\rho) \\
+        & \quad - \bar{\na}_\mu C^\rho_{\nu \alpha} \omega_\rho - C^\rho_{\mu \beta} C^\beta_{\nu \alpha} \omega_\rho + C^\beta_{\mu \nu} C^\rho_{\beta \alpha} \omega_\rho + C^\beta_{\mu \alpha} C^\rho_{\nu \beta} \omega_\rho - C^\rho_{\nu \alpha} \bar{\na}_\mu \omega_\rho + C^\rho_{\nu \alpha} C^\beta_{\mu \rho} \omega_\beta \\
+        & \quad + \bar{\na}_\nu C^\rho_{\mu \alpha} \omega_\rho + C^\rho_{\nu \beta} C^\beta_{\mu \alpha} \omega_\rho - C^\beta_{\nu \mu} C^\rho_{\beta \alpha} \omega_\rho - C^\beta_{\nu \alpha} C^\rho_{\mu \beta} \omega_\rho + C^\rho_{\mu \alpha} \bar{\na}_\nu \omega_\rho - C^\rho_{\mu \alpha} C^\beta_{\nu \rho} \omega_\beta \\
+        & = \tensor{\bar{\rr}}{_{\mu \nu \alpha}^\rho} \omega_\rho + 2 \bar{\na}_{[\nu} C^\rho_{\mu]\alpha} \omega_\rho - 2 C^\beta_{\nu \alpha} C^\rho_{\mu \beta} \omega_\rho + 2 C^\rho_{\nu \beta} C^\beta_{\mu \alpha} \omega_\rho + C^\rho_{\nu \alpha} C^\beta_{\mu \rho} \omega_\beta - C^\rho_{\mu \alpha} C^\beta_{\nu \rho} \omega_\beta
+      \end{split}
+    \end{equation*}
+    Renaming dummy indices yields the thesis.
+  \end{proof}
+\end{proofbox}
+
+\eref{eq:perturbation-difference-tensor} and \eref{eq:perturbation-riemann} are valid at all orders of the analytic parameter $ \lambda \in \R $, hence they are well suited for a perturbative expansion. At NLO, the inverse metric tensor reads:
+\begin{equation}
+  q^{\mu \nu} = \bar{g}^{\mu \nu} - \lambda \bar{g}^{\mu \alpha} \bar{g}^{\nu \beta} h_{\alpha \beta} + \smo(\lambda^2)
+\end{equation}
+hence indices of quantities proportional to $ h $ are raised/lowered by $ \bar{g} $ only: $ h^{\mu \nu} = \bar{g}^{\mu \alpha} \bar{g}^{\nu \beta} h_{\alpha \beta} + \smo(\lambda^2) $.
+Then, the difference tensor and the Riemann tensor at linear order become:
+\begin{equation}
+  C^\rho_{\mu \nu}(\lambda) = \frac{1}{2} \bar{g}^{\rho \alpha} ( \bar{\na}_\mu h_{\nu \alpha} + \bar{\na}_\nu h_{\mu \alpha} - \bar{\na}_\alpha h_{\mu \nu} ) \lambda + \smo(\lambda^2)
+\end{equation}
+\begin{equation}
+  \tensor{\tilde{\rr}}{_{\mu \nu \alpha}^\rho} = \tensor{\bar{\rr}}{_{\mu \nu \alpha}^\rho} + 2 \bar{\na}_{[\nu} [C\od1]^\rho_{\mu]\alpha} \lambda + \smo(\lambda^2)
+\end{equation}
+Therefore, $ \tensor{[\tilde{\rr}\od1]}{_{\mu \nu \alpha}^\rho} = 2 \bar{\na}_{[\nu} [C\od1]^\rho_{\mu]\alpha} $. With this formalism, it is possible to analytically expand the Einstein field equations in powers of $ \lambda \in \R $:
+\begin{equation*}
+  \bar{G}_{\mu \nu} + [G\od1]_{\mu \nu} \lambda + \smo(\lambda^2) = 8 \pi \gd \left( \bar{T}_{\mu \nu} + [T\od1]_{\mu \nu} \lambda + \smo(\lambda^2) \right)
+\end{equation*}
+There is an order-by-order split of the field equations into background and N$ ^n $LO equations:
+\begin{equation}
+  \bar{G}_{\mu \nu} = 8 \pi \gd \bar{T}_{\mu \nu}
+  \qquad \qquad
+  [G\od n]_{\mu \nu} = 8 \pi \gd [T\od n]_{\mu \nu}
+  \label{eq:perturbation-einstein}
+\end{equation}
+
+\begin{observation}{Gauge invariance of analytic expansion}{gauge-exp}
+  Under an infinitesimal diffeomorphism generated by $ Z \in \xm : x^\mu \mapsto x^\mu + Z^\mu $, the metric changes as $ q_{\mu \nu} \mapsto q_{\mu \nu} + \delta q_{\mu \nu} $ with:
+  \begin{equation*}
+    \delta q = \ld_Z q = \sum_{n \in \N_0} \ld_Z q\od n \lambda^n = \ld_Z \bar{g} + \lambda \ld_Z h + \smo(\lambda^2)
+  \end{equation*}
+  However, the perturbative expasion requires $ \lambda \ra 0 $, hence the second term is a second order one (as both $ Z $ and $ \lambda $ are infinitesimal) and the variation $ \delta q $ only has beyond-leading-order terms. Therefore, under an infinitesimal diffeomorphism, the perturbed metric at first-order transforms as:
+  \begin{equation}
+    \bar{g} \mapsto \bar{g}
+    \qquad \qquad
+    h \mapsto = h + \ld_Z \bar{g}
+  \end{equation}
+  i.e. $ \delta h_{\mu \nu} = 2\bar{\na}_{(\mu} Z_{\nu)} $, with $ Z_\mu = \bar{g}_{\mu \nu} Z^\nu $. In the same way, $ \delta \tensor{[\tilde{\rr}\od1]}{_{\mu \nu \alpha}^\rho} = \ld_Z \tensor{\bar{\rr}}{_{\mu \nu \alpha}^\rho} $.
+\end{observation}
+
+The perturbed Einstein field equations \eref{eq:perturbation-einstein} are most conveniently expressed in terms of a modified perturbation metric:
+\begin{equation}
+  \bar{h}_{\mu \nu} \defeq h_{\mu \nu} - \frac{1}{2} h \bar{g}_{\mu \nu}
+  \qquad \qquad
+  h \equiv \bar{g}^{\mu \nu} h_{\mu \nu}
+\end{equation}
+The bar notation in $ \bar{h}_{\mu \nu} $ has nothing to do with the background metric. Then, setting $ \bar{\Box} \equiv \bar{g}^{\mu \nu} \bar{\na}_\mu \bar{\na}_\nu $, the Einstein tensor at NLO can be shown to be:
+\begin{equation}
+  [G\od1]_{\mu \nu} = - \frac{1}{2} \bar{\Box} \bar{h}_{\mu \nu} + \bar{h}_{\mu \nu} \bar{\rr} + \bar{\na}_{(\nu} \bar{\na}^\alpha \bar{h}_{\mu)\alpha} + \tensor{\bar{\rr}}{_{(\mu}^\alpha} \bar{h}_{\nu)\alpha} + \bar{\rr}_{\alpha \nu \mu \beta} \bar{h}^{\alpha \beta} - \frac{1}{2} \bar{g}_{\mu \nu} \left[ \bar{\rr}_{\alpha \beta} \bar{h}^{\alpha \beta} + \bar{\na}^\alpha \bar{\na}^\beta \bar{h}_{\alpha \beta} \right]
+  \label{eq:nlo-einstein}
+\end{equation}
+This expression is greatly simplified by imposing a gauge-fixing condition (by \obsref{obs:gauge-exp}). In particular, a convenient choice is the \bctxt{Lorentz gauge}:
+\begin{equation}
+  \bar{\na}^\alpha \bar{h}_{\alpha \mu } = 0
+  \label{eq:lorentz-gauge}
+\end{equation}
+In this gauge, the NLO Einstein tensor reduces to:
+\begin{equation*}
+  [G\od1]_{\mu \nu} = - \frac{1}{2} \bar{\Box} \bar{h}_{\mu \nu} + \bar{h}_{\mu \nu} \bar{\rr} + \tensor{\bar{\rr}}{_{(\mu}^\alpha} \bar{h}_{\nu)\alpha} + \bar{\rr}_{\alpha \nu \mu \beta} \bar{h}^{\alpha \beta} - \frac{1}{2} \bar{g}_{\mu \nu} \bar{\rr}_{\alpha \beta} \bar{h}^{\alpha \beta}
+\end{equation*}
+The time-domain splitting between the background metric and the perturbation in \eref{eq:gw-pert-exp} can be generally represented by an inequality between the spacetime scale $ L_\text{b} $ of the background and that $ \lambda $ of the perturbation: indeed, by dimensional analysis, the background curvature scales like $ \bar{\rr} \sim L_\text{b}^{-2} $, while the perturbation like $ \pa h \sim \lambda^{-1} $, hence by the split $ \lambda \ll L_\text{b} $ it is clear that the first perturbation term dominates over the other curvature terms. The NLO field equations thus have the schematic form of a wave equation:
+\begin{equation*}
+  \bar{\Box} \bar{h}_{\mu \nu} = - 16 \pi \gn [T\od1]_{\mu \nu} + (\text{background curvature terms})
+\end{equation*}
+
+\begin{observation}{Quantum gravity}{}
+  The NLO Einstein tensor can be found by the variation of the linearized Einstein--Hilber action, also known as the \bcobs{Fierz--Pauli action}, which turns out to be:
+  \begin{equation}
+    \act_\text{FP}\od1 = \frac{1}{8\pi \gd} \int \dd^4 x \left[ - \frac{1}{4} \pa_\rho h_{\mu \nu} \pa^\rho h^{\mu \nu} + \frac{1}{2} \pa_\rho h_{\mu \nu} \pa^\nu h^{\rho \mu} + \frac{1}{4} \pa_\mu h \pa^\mu h - \frac{1}{2} \pa_\nu h^{\mu \nu} \pa_\mu h \right]
+  \end{equation}
+  An effective free theory of the graviton is given by the Fierz--Pauli lagrangian, which can then be generalized to an interacting theory introducing an interaction Lagrangian $ \lag_\text{int} $. Note that $ h_{\mu \nu} $ is dimensionless, hence to describe the graviton it is customary to define a canonical field $ \hat{h}_{\mu \nu} \equiv (\gd)^{-1/2} h_{\mu \nu} $: recall by \obsref{obs:dimensional-analysis} that $ [\gd] = d - 2 $, hence $ [\hat{h}] = \frac{2 - d}{2} $ and correctly $ [\lag_\text{FP}] = -d $. Since the Fierz--Pauli action must be at least of order $ (\pa h)^2 $, the lowest-order interacting term has schematic structure:
+  \begin{equation*}
+    \lag_\text{int} \sim \frac{1}{\gd} (\pa h)^2 h \sim \sqrt{\gd} (\pa \hat{h})^2 \hat{h} \sim \frac{1}{\pl^2} (\pa \hat{h}) \hat{h}
+  \end{equation*}
+  where the Plank mass is define (in natural units) as $ \pl^2 \equiv 1 / 8 \pi \gd $.
+  The coupling has mass dimension $ \frac{d - 2}{2} $, hence this quantum field theory of the graviton is non-renormalizable for $ d > 2 $. This was to be expected from an effective theory: indeed, the inverse metric $ q^{\mu \nu} $ truly has infinite powers of $ h $, hence the radiative corrections given by virtual gravitons are extremely small, and they only become non-negligible when the perturbative expansion diverges (for $ E \gtrsim \pl $), with consequent loss of meaning of the effective theory.
+\end{observation}
+
+\subsection{Linear propagation of GWs}
+
+Consider a $ d = 4 $ background metric $ \bar{g}_{\mu \nu} = \eta_{\mu \nu} $: this is, of course, only an approximation, since the metric perturbation would have a back-propagation effect which curves the background, nontheless it can be seen as restricting to a spacetime region which is small when compared to the curvature scale of the background. The Lorentz gauge-fixing condition then reduces to:
+\begin{equation*}
+  \pa^\mu \bar{h}_{\mu \nu} = 0
+\end{equation*}
+Under an infinitesimall diffeomorphism generated by $ Z \in \xm $:
+\begin{equation*}
+  \delta h_{\mu \nu} = (\ld_Z \eta)_{\mu \nu} = \pa_\mu Z_\nu + \pa_\nu Z_\mu
+  \qquad \qquad
+  \delta h = 2 \pa^\mu Z_\mu
+\end{equation*}
+Then, setting $ \Box = \eta^{\mu \nu} \pa_\mu \pa_\nu $ (the bar notation is suppressed for objects of the flat background):
+\begin{equation*}
+  \delta \bar{h}_{\mu \nu} = \pa_\mu Z_\nu + \pa_\nu Z_\mu - \eta_{\mu \nu} \pa^\alpha Z_\alpha
+  \quad \implies \quad
+  \delta (\pa^\mu \bar{h}_{\mu \nu}) = \Box Z_\nu
+\end{equation*}
+The Lorentz gauge thus presents a residual gauge freedom for $ Z \in \xm $, such that:
+\begin{equation}
+  \Box Z^\mu = 0
+\end{equation}
+For this reason, the Lorentz gauge is also known as the \emph{harmonic gauge} (or \emph{de Donder gauge}), since it preserves the condition $ \Box x^\mu = 0 $ (as $ x^\mu \mapsto x^\mu + Z^\mu $).
+
+In $ d \ge 4 $ it makes physical sense\footnotemark to consider the propagation of GWs in vacuum $ [T\od1]_{\mu \nu} = 0 $:
+\begin{equation}
+  \Box \bar{h}_{\mu \nu} = 0
+  \label{eq:vacuum-gw}
+\end{equation}
+
+\footnotetext{In $ d = 2 , 3 $ the Riemann tensor has respectively $ 1 $ and $ 6 $ independent components (recall \eref{eq:riemann-deg-freedom}), so the vacuum field equations (which are $ 10 $ independent equations) completely nullify the Riemann tensor, making it identically vanish.}
+
+$ \bar{h}_{\mu \nu} $ can then be seen as a massless spin-$ 2 $ field propagating in Minkowski spacetime: by symmetry, it would have $ 10 $ independent components, but the Lorentz gauge eliminates $ 4 $ degrees of freedom, and the residual gauge eliminates additional $ 4 $ of them, leaving only $ 2 $ degrees of freedom for the propagating GW.
+
+To explicitly see this, consider the general ansatz for the vacuum wave equation in the homogeneous and isotropic spacetime $ \R^{1,3} $:
+\begin{equation*}
+  \bar{h}_{\mu \nu}(x) = \int_{\R^{1,3}} \frac{\dd^4k}{(2\pi)^4} e^{\img k \cdot x} \bar{\varepsilon}_{\mu \nu}(k)
+\end{equation*}
+for some polarization matrix $ \bar{\varepsilon}_{\mu \nu}(k) \in \C^{4 \times 4} $ (the physical perturbation is the real part of this Fourier transform). In order to be a solution, the on-shell condition given by the equations of motion \eref{eq:vacuum-gw} must be satisfied:
+\begin{equation*}
+  \eta^{\alpha \beta} k_\alpha k_\beta \bar{\varepsilon}_{\mu \nu}(k) = 0
+  \quad \implies \quad
+  k^2 = 0
+\end{equation*}
+confirming that $ \bar{h}_{\mu \nu} $ is a massless field\footnotemark. Then, the solution to the linearized field equations reads:
+
+\footnotetext{For a massless field there is no mass gap, since the energy $ k^0 = \pm \sqrt{\ve{k}^2} = \pm \omega $ can be made arbitrarily small.}
+
+\begin{equation}
+  \bar{h}_{\mu \nu}(x) = \int_{\R^{1,3}} \frac{\dd^4k}{(2\pi)^4} \delta^{(4)}(k^2) e^{\img k \cdot x} \bar{\varepsilon}_{\mu \nu}(k)
+\end{equation}
+Imposing the Lorentz gauge-fixing condition:
+\begin{equation*}
+  \pa^\mu \bar{h}_{\mu \nu} = 0
+  \quad \implies \quad
+  k^\mu \bar{\varepsilon}_{\mu \nu} = 0
+\end{equation*}
+which means that the polarization matrix must be transverse to the direction of propagation of the GW. The residual gauge freedom can be exploited writing $ Z \in \xm $ as:
+\begin{equation*}
+  Z^\mu(x) = \int_{\R^{1,3}} \frac{\dd^4k}{(2\pi)^4} \hat{Z}^\mu(k) e^{\img k \cdot x}
+\end{equation*}
+Then, the gauge condition $ \Box Z^\mu = 0 $ simply becomes $ k^2 \hat{Z}^\mu = 0 $, i.e. $ k^2 = 0 $. This means that on-shell it is possible to freely choose the component functions $ Z^\mu $. First, observe that the infinitesimal gauge transformation $ x^\mu \mapsto x^\mu + Z^\mu $ acts as:
+\begin{equation*}
+  h_{\mu \nu}(x) \mapsto \bar{h}_{\mu \nu}(x) + 2 \pa_{(\mu} Z_{\nu)}(x) = \int_{\R^{1,3}} \frac{\dd^4k}{(2\pi)^4} \delta^{(4)}(k^2) [ \varepsilon_{\mu \nu} + 2 \img k_{(\mu} \hat{Z}_{\nu)} ] e^{\img k \cdot x}
+\end{equation*}
+which corresponds to a transformation of the polarization matrix:
+\begin{equation}
+  \varepsilon_{\mu \nu} \mapsto \varepsilon_{\mu \nu} + \img ( k_\mu \hat{Z}_\nu + k_\nu \hat{Z}_\mu )
+\end{equation}
+The component $ \hat{Z}^0 $ is chosen so that $ h = \eta^{\mu \nu} h_{\mu \nu} = 0 $, which means that:
+\begin{equation*}
+  \eta^{\mu \nu} \varepsilon_{\mu \nu} + 2 \img k_\mu \hat{Z}^\mu = 0
+  \quad \implies \quad
+  \hat{Z}^0 = \frac{1}{k^0} \left( \eta^{\mu \nu} \varepsilon_{\mu \nu} + \ve{k} \cdot \ve{Z} \right)
+\end{equation*}
+Once this condition is imposed, $ \bar{h}_{\mu \nu} = h_{\mu \nu} $ and $ \bar{\varepsilon}_{\mu \nu} = \varepsilon_{\mu \nu} $. Then, the remaining components $ \hat{Z}^i $ are chosen so that $ \bar{h}_{0i} = h_{0i} = 0 $, which means that:
+\begin{equation*}
+  \varepsilon_{0i} + \img ( k_0 \hat{Z}_i + k_i \hat{Z}_0 ) = 0
+\end{equation*}
+The complete gauge fixing then results into:
+\begin{equation*}
+  k^\mu \varepsilon_{\mu \nu} = 0
+  \qquad
+  \eta^{\mu \nu} \varepsilon_{\mu \nu} = 0
+  \qquad
+  \varepsilon_{0i} = 0
+\end{equation*}
+This are indeed $ 8 $ conditions on the polarization matrix, corresponding to the $ 4 $ Lorentz gauge-fixing conditions and the $ 4 $ residual gauge-fixing conditions. It is trivial to check that these conditions are equivalent to:
+\begin{equation}
+  \varepsilon_{0\mu} = 0
+  \qquad
+  k^i \varepsilon_{ij} = 0
+  \qquad
+  \delta^{ij} \varepsilon_{ij} = 0
+\end{equation}
+For this reason, this is known as the \bctxt{transverse-traceless gauge} (TT gauge). In the TT gauge, then:
+\begin{equation*}
+  \varepsilon_{\mu \nu}^\text{TT} =
+  \begin{bmatrix}
+    0 & \ve{0} \\
+    \ve{0} & \varepsilon_{ij}
+  \end{bmatrix}
+\end{equation*}
+where $ \varepsilon_{ij} $ is a transverse-traceless spatial polarization matrix.
+
+\begin{observation}{Transverse and traceless matrices}{tt-projector}
+  In general, any $ \R^{d \times d} $ matrix can be made traceless and transverse with respect to some versor $ \ve{n} \in \R^d $. Indeed, defining the transverse projector:
+  \begin{equation}
+    \mathcal{P}_{ij} = \delta_{ij} - n_i n_j
+  \end{equation}
+  it is clear that $ n_i \mathcal{P}_{ij} = n_j - n_j = 0 $. On the other hand, any $ q_{ij} \in \R^{d \times d} $ can be made traceless by:
+  \begin{equation*}
+    q_{ij} \mapsto q_{ij} - \frac{1}{d} q_{mn} \delta_{mn} \delta_{ij}
+  \end{equation*}
+  Hence, it is possible to define a transverse-traceless projector as:
+  \begin{equation}
+    q_{ij}^\text{TT} = \Lambda_{imjn} q_{mn}
+    \qquad \qquad
+    \Lambda_{imjn} = \mathcal{P}_{im} \mathcal{P}_{jn} - \frac{1}{d-1} \mathcal{P}_{ij} \mathcal{P}_{mn}
+  \end{equation}
+  which trivially satisfies $ n_i \Lambda_{imjn} = n_j \Lambda_{imjn} = \delta_{ij} \Lambda_{imjn} = 0 $.
+\end{observation}
+
+By the construction outlined in \obsref{obs:tt-projector}, assuming WLOG that the GW propagates along $ k^\mu = (\omega , 0 , 0 , \omega) $, the polarization matrix is found to be:
+\begin{equation}
+  \varepsilon_{\mu \nu}^\text{TT} =
+  \begin{bmatrix}
+    0 & 0 & 0 & 0 \\
+    0 & H_+ & H_\times & 0 \\
+    0 & H_\times & - H_+ & 0 \\
+    0 & 0 & 0 & 0
+  \end{bmatrix}
+\end{equation}
+which shows the two linearly-independent physical polarizations:
+\begin{equation*}
+  \varepsilon_{ij}^\text{TT} = H_+
+  \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & -1 & 0 \\
+    0 & 0 & 0
+  \end{bmatrix}
+  + H_\times
+  \begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 0
+  \end{bmatrix}
+\end{equation*}
+
+\subsection{Geodesic deviation}
+
+To understand how GWs can be detected, it is necessary to study how the passage of a GW affects the distance between neighbourhing geodesics.
+
+\begin{definition}{Geodesic congruence}{}
+  Let $ (\man , g) $ be a spacetime. Given a nowhere-vanishing $ X \in \xm $, the set of its integral curves $ \{\gamma_s(\tau)\} $ is called a \bcdef{congruence}. If it is possible to define a tangent vector field $ u = \frac{\pa \gamma_s}{\pa \tau} $ such that $ \na_u u = 0 $, it is called a \bcdef{geodesic congruence}.
+\end{definition}
+
+A congruence is characterized by its nowhere-vanishing vector field $ X \in \xm $: if $ X $ is timelike/spacelike/null, the congruence is called a timelike/spacelike/null congruence. For example, a timelike geodesic congruence can be interpreted as a family of free-falling test particles (i.e. not affected by mutual interactions), while a null geodesic congruence can be seen as a family of freely propagating light rays.
+
+Consider a timelike geodesic congruence $ \{\gamma_s(\tau)\} $, and define the tangent vector field and the deviation vector field:
+\begin{equation}
+  u = \frac{\pa}{\pa \tau} \gamma_s(\tau)
+  \qquad \qquad
+  \xi = \frac{\pa}{\pa s} \gamma_s(\tau)
+\end{equation}
+In particular, $ \xi $ is the vector which, at fixed affine parameter, points from a given geodesic to the next one in the congruence. In general, $ u $ and $ \xi $ need not be orthogonal, but they can be chosen so. Indeed, the angle between them is constant:
+\begin{equation*}
+  \frac{\dd}{\dd \tau} \braket{\xi , u}_g = \na_u \braket{\xi , u}_g = \braket{\na_u \xi , u}_g = u_\alpha u^\beta \na_\beta \xi^\alpha
+\end{equation*}
+Choosing $ u $ and $ \xi $ such that $ [u , \xi] = 0 $ (e.g. by choosing them among local coordinates) yields $ \xi^\alpha \na_\alpha u^\mu - u^\alpha \na_\alpha \xi^\mu = 0 $, hence:
+\begin{equation*}
+  \frac{\dd}{\dd \tau} \braket{\xi , u}_g = u_\alpha \xi^\beta \na_\beta u^\alpha = \frac{1}{2} \na_\xi u^2 = 0
+\end{equation*}
+since for a timelike congruence $ u $ can be chosen so that $ u^2 = -1 $. This allows to fix $ \braket{u , \xi}_g = 0 $ for a particular value of the affine parameter.
+
+The relative deviation of the geodesics is encoded in the variation of $ \xi $. One defines the relative velocity and acceleration of the geodesic deviation along the congruence as:
+\begin{equation*}
+  v = \na_u \xi
+  \qquad \qquad
+  a = \na_u v
+\end{equation*}
+
+\begin{lemma}{Geodesic deviation acceleration}{}
+  Let $ (\man,g) $ be a spacetime. Given a geodesic congruence, the geodesic deviation acceleration is:
+  \begin{equation}
+    a^\mu = \tensor{\rr}{^\mu_{\rho \alpha \beta}} u^\rho u^\alpha \xi^\beta
+    \label{eq:geodesic-acceleration}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By definition:
+    \begin{equation*}
+      a^\mu = \na_u v^\mu = u^\alpha \na_\alpha (u^\beta \na_\beta \xi^\mu) = u^\alpha \na_\alpha (\xi^\beta \na_\beta u^\mu) = u^\alpha \xi^\beta \na_\alpha \na_\beta u^\mu + u^\alpha \na_\alpha \xi^\beta \na_\beta u^\mu
+    \end{equation*}
+    where in the second equality $ [\xi , u] = 0 $ was used. Inserting the Ricci identity \eref{eq:ricci-id} for a torsion-free connection and using $ [\xi , u] = 0 $ again:
+    \begin{equation*}
+      \begin{split}
+        a^\mu
+        & = u^\alpha \xi^\beta (\na_\beta \na_\alpha u^\mu + \tensor{\rr}{^\mu_{\rho \alpha \beta}} u^\rho) + \xi^\alpha \na_\alpha u^\beta \na_\beta u^\mu \\
+        & = u^\alpha \xi^\beta \tensor{\rr}{^\mu_{\rho \alpha \beta}} u^\rho + \xi^\rho (u^\alpha \na_\beta \na_\alpha u^\mu + \na_\beta u^\alpha \na_\alpha u^\mu) \\
+        & = u^\alpha \xi^\beta \tensor{\rr}{^\mu_{\rho \alpha \beta}} u^\rho + \xi^\beta \na_\beta (\na_u u^\mu) = u^\alpha \xi^\beta \tensor{\rr}{^\mu_{\rho \alpha \beta}} u^\rho
+      \end{split}
+    \end{equation*}
+    which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+\eref{eq:geodesic-acceleration} shows that in flat spacetime the elements of a congruence have no relative non-uniform motion, and the only relative acceleration is provided by the curvature of spacetime: this makes the geodesic deviation a primary experimental probe of the passage of GWs.
+
+Consider two test masses displaced (at constant time) by a spatial vector $ \bs{\xi} $. Both test masses are assumed t
+o be in free fall in a flat region of spacetime, so that the background metric is $ \bar{g}_{\mu \nu} = \eta_{\mu \nu} $. Then, upon the passage of a GW, the metric is perturbed (in the TT frame) as:
+\begin{equation*}
+  \dd s^2 = - \dd t^2 + (\delta_{ij} + h_{ij}^\text{TT}) \dd x^i \dd x^j
+\end{equation*}
+Since the two test masses move along timelike geodesics, their trajectories are described by the geodesic equation:
+\begin{equation*}
+  \frac{\dd^2 x^i}{\dd \tau^2} + \Gamma^i_{\alpha \beta} \frac{\dd x^\alpha}{\dd \tau} \frac{\dd x^\beta}{\dd \tau} = 0
+  \qquad \qquad
+  \frac{\dd x^i}{\dd \tau} \bigg\vert_{\tau = 0} = 0
+\end{equation*}
+where the initial condition ensures that they are initially at rest. Inserting the initial condition in the geodesic equation:
+\begin{equation*}
+  \begin{split}
+    \frac{\dd^2 x^i}{\dd \tau^2} \bigg\vert_{\tau = 0} = - \Gamma^i_{00} \left( \frac{\dd x^0}{\dd \tau} \right)^2 \bigg\vert_{\tau = 0} = - \frac{1}{2} g^{i \alpha} (2 \pa_0 g_{0 \alpha} - \pa_\alpha g_{00}) \left( \frac{\dd x^0}{\dd \tau} \right)^2 \bigg\vert_{\tau = 0} = 0
+  \end{split}
+\end{equation*}
+This means that the test masses remain at rest if they are initially at rest. However, their proper distance is indeed affected by the passage of the GW:
+\begin{equation*}
+  \bs{\xi}^2 = g_{\mu \nu} \xi^\mu \xi^\nu = (\delta_{ij} + h_{ij}^\text{TT}) \xi^i \xi^j = \dist_0^2 + h_{ij}^\text{TT} \xi^i \xi^j
+\end{equation*}
+So, the proper distance between the two test masses oscillates with the GW:
+\begin{equation*}
+  \dist(t) = \norm{\bs{\xi}} = \dist_0 \sqrt{1 + \frac{1}{\dist_0^2} h_{ij}^\text{TT} \xi^i \xi^j} \simeq \dist_0 + \frac{1}{2 \dist_0} h_{ij}^\text{TT} \xi^i \xi^j
+\end{equation*}
+
+\begin{observation}{Free-falling frame and detector frame}{}
+  Regardless of the motion of an observer along a curve $ \gamma(\tau) $, it is always possible to choose suitable local coordinates, known as \emph{Fermi normal coordinates}, such that:
+  \begin{equation*}
+    g_{\mu \nu} \vert_{\gamma(\tau)} = \eta_{\mu \nu}
+    \qquad \qquad
+    \Gamma^\mu_{\alpha \beta} \vert_{\gamma(\tau)} = 0
+  \end{equation*}
+  The metric then differs from the Lorentz--Minkowski metric only by terms proportional to the spacetime curvature and to the acceleration of the observer. In the case of a free-falling observer $ \na_u u = 0 $, and the metric can be shown to be:
+  \begin{equation*}
+    \dd s^2 = - \dd t^2 \left[ 1 + \rr_{i0j0} x^i x^j \right] - 2 \dd t \dd x^i \frac{2}{3} \rr_{0jik} x^j x^k + \dd x^i \dd x^j \left[ \delta_{ij} - \frac{1}{3} \rr_{ijk\ell} x^k x^\ell \right] + \dots
+  \end{equation*}
+  On Earth, observers comoving with the detector are not in free fall, hence acceleration effects should be taken into consideration.
+\end{observation}
+
+Now, apply the geodesic deviation equation \eref{eq:geodesic-acceleration} to the geodesics of the two test masses. Clearly, $ u = \frac{\dd}{\dd \tau} $, hence it becomes:
+\begin{equation*}
+  \frac{\dd^2 \xi^\mu}{\dd \tau^2} = - \tensor{\rr}{_{\beta \alpha}^\mu_\rho} u^\rho u^\alpha \xi^\beta
+\end{equation*}
+In the free-fall frame $ u^\mu = (1 , \ve{0}) $, so $ \braket{u , \xi}_g = 0 $ implies that $ \xi^\mu = (0 , \bs{\xi}) $ and:
+\begin{equation*}
+  \frac{\dd^2 \xi^i}{\dd \tau^2} = - \tensor{\rr}{_{j0}^i_0} \xi^j
+\end{equation*}
+For non-relativistic motion the proper time $ \tau $ can be replaced with the coordinate time $ t $. Moreover, at linear order the Riemann tensor is gauge-invariant, hence it can be computed in the preferred gauge. In the TT gauge:
+\begin{equation*}
+  \tensor{\rr}{_{j0}^i_0} = \tensor{[\rr\od1]}{_{j0}^i_0} = \rr_{i0j0}^\text{TT} = \frac{1}{2} \pa_0^2 h_{ij}^\text{TT}
+\end{equation*}
+The geodesic deviation is then described at linear order by a simple ODE:
+\begin{equation}
+  \frac{\dd^2 \xi^i}{\dd t^2} = \frac{1}{2} \pa_0^2 h_{ij}^\text{TT} \xi^j
+\end{equation}
+Note that this approximation is only valid if the detector frame can be taken to be in free fall: this is valid if the characteristic dimension of the detector $ x $ is much smaller than the scale of spacetime curvature $ L $, i.e. $ x \ll L $. In this case $ L^{-2} \sim \rr \sim \pa_0 h^\text{TT} \sim \lambda_\text{GW}^{-2} $, hence $ x \ll \lambda_\text{GW} $, where $ \lambda_\text{GW} $ is the wavelength of the GW: taking $ \lambda_\text{GW} \sim 10^5 \,\text{km} $ as a reference scale\footnotemark, Earth-based interferometers (e.g. LIGO, VIRGO, KAGRA) with $ x \sim 10 \,\text{km} $ are well described by this approximation, while space-based detectors (e.g. LISA) with $ x \sim 10^6 \,\text{km} $ require a more careful analysis.
+
+\footnotetext{$ \lambda_\text{GW} \sim 10^5 \,\text{km} $ corresponds to $ \nu_\text{GW} \sim 1 \,\text{Hz} $, which is the typical frequency scale of GWs generated by compact binaries.}
+
+
+
+
+
+
+
+
+
+
