@@ -124,6 +124,8 @@ Contracting with $ g^{\mu \nu} $ yields $ \rr = \frac{2d}{d-2} \Lambda $, thus i
 \end{equation}
 Manifolds on which $ \ricc = \kappa g $ for a constant $ \kappa \in \R $ are known as \bctxt{Einstein manifolds}: clearly, Ricci-flat manifolds are a special class of Einstein manifolds with $ \kappa = 0 $. Notice that Einstein manifolds have constant Ricci scalar curvature $ \rr = \kappa d $.
 
+Note that the Einstein field equations are not linear in the metric, hence the superposition principle is not valid for gravitational fields, except at NLO in the approximation of weak gravity (see \secref{ssec:weak-gravity}).
+
 \subsection{Symmetries}
 
 The Einstein equations are highly non-linear, hence they are extremely hard to solve. In the study of their solutions, a fundamental role is played by symmetries. For example, consider the simplest solution, i.e. Minkowski spacetime: its symmetries are familiar, namely translations and rotations of spacetime (with the latter splitting between proper rotations and Lorentz boosts), whose existence allows to define conserved energy, momentum and angular momentum on a fixed Minkowski background. It is then important to characterize the symmetries of a general metric.
@@ -358,7 +360,8 @@ Noether's theorem is not the only way to associate conserved quantities to Killi
 \begin{definition}{Komar form}{}
   Let $ (\man , g) $ be a spacetime, and let $ \xi \in \xm $ be a Killing vector field. The \bcdef{Komar charge} $ \ve{K}[\xi] \in \df{d-2} $ associated to $ \xi $ is defined as:
   \begin{equation}
-    \ve{K}[\xi] \defeq (-1)^{d-1} \frac{1}{16 \pi \gd} \star \dd \xi^\flat
+    \ve{K}[\xi] \defeq - \frac{1}{16 \pi \gd} \star \dd \xi^\flat
+    \label{eq:komar-form}
   \end{equation}
 \end{definition}
 
@@ -393,15 +396,19 @@ Like other on-shell closed $ (d-2) $-forms, the integral of the Komar form $ \ve
   Let $ (\man , g) $ be a spacetime, and let $ \xi \in \xm $ be a Killing vector field. Given a closed oriented spacelike $ (d-2) $-submanifold $ S \ssq \man $, the \bcdef{Komar charge} associated to $ \xi $ in $ S $ is define as:
   \begin{equation}
     Q_\text{K}[\xi ; S] \defeq \int_S \ve{K}[\xi]
+    \label{eq:komar-charge-s}
   \end{equation}
 \end{definition}
 
 For asymptotically flat spacetimes, a $ (d-2) $-sphere at spatial infinity $ \Sn{d-2}_\infty $ is usually chosen, resulting in the so-called \emph{Komar integral} of $ \xi $:
 \begin{equation}
-  Q_\text{K}[\xi] \equiv \int_{\Sn{d-2}_\infty} \ve{K}[\xi] = (-1)^{d-1} \frac{1}{16 \pi \gd} \int_{\Sn{d-2}_\infty} \star \dd \xi^\flat
+  Q_\text{K}[\xi] \equiv \int_{\Sn{d-2}_\infty} \ve{K}[\xi] = - \frac{1}{16 \pi \gd} \int_{\Sn{d-2}_\infty} \star \dd \xi^\flat
+  \label{eq:komar-charge}
 \end{equation}
 
 As for Noether integrals of a particle, Komar integrals of spacetime are interpreted based on the defining Killing vector. For example, if $ \xi $ is everywhere timelike, then its Komar integral can be identified with the energy (or the mass) of spacetime; if the Killing vector is related to rotations, instead, the conserved charge is the angular momentum of spacetime.
+
+Note that the sign of \eref{eq:komar-form} and \eref{eq:komar-charge-s} is dictated by the convention used for the Hodge dual \eref{eq:hodge-alibi}: if $ \varepsilon_{j_{p+1} \dots j_n j_1 \dots j_p} $ is used in place of $ \varepsilon_{j_1 \dots j_p} $, as in \cite{ballesteros}, then the correct sign is $ (-1)^{d-1} $.
 
 \subsection{Maximally symmetric solutions}
 \label{ssec:maximally-symmetric-solutions}
