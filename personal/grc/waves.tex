@@ -228,7 +228,7 @@ The time-domain splitting between the background metric and the perturbation in 
   The coupling has mass dimension $ \frac{d - 2}{2} $, hence this quantum field theory of the graviton is non-renormalizable for $ d > 2 $. This was to be expected from an effective theory: indeed, the inverse metric $ q^{\mu \nu} $ truly has infinite powers of $ h $, hence the radiative corrections given by virtual gravitons are extremely small, and they only become non-negligible when the perturbative expansion diverges (for $ E \gtrsim \pl $), with consequent loss of meaning of the effective theory.
 \end{observation}
 
-\subsection{Linear propagation of GWs}
+\subsection{Linear theory of GWs}
 
 Consider a $ d = 4 $ background metric $ \bar{g}_{\mu \nu} = \eta_{\mu \nu} $: this is, of course, only an approximation, since the metric perturbation would have a back-propagation effect which curves the background, nontheless it can be seen as restricting to a spacetime region which is small when compared to the curvature scale of the background. The Lorentz gauge-fixing condition then reduces to:
 \begin{equation*}
@@ -748,6 +748,60 @@ This expression allows to explicitly compute the total energy and momentum of sp
     P^j = \frac{1}{16\pi \gn} \int_{\Sn{2}_\infty} \dd^2S \, n^i [\delta_i^j (\pa_0 h - \pa^k h_{k0}) + \pa_i h_{j0} - \pa_0 h_{ij}]
   \end{equation}
 \end{lemma}
+
+\newpage
+\section{Propagation of GWs}
+
+The perturbative study of GWs is based on the separation of the waves from the background, as in \eref{eq:gw-pert-exp}: the problem is that, in a general setting, there is no unambiguous way to perform this separation, and on top of that it is not gauge invariant either.
+
+A natural splitting between the spacetime background and the gravitational waves arises when there is a clear separation of scales. This is the case, for example, when in some coordinate system the metric can be written as in \eref{eq:gw-pert-exp}, where $ \bar{g} $ has a typical scale of spatial variation $ L_\text{b} $, while $ h $ is characterized by a wavelength\footnotemark $ \lambda $ such that:
+
+\footnotetext{For a function $ f(x) $ oscillating as $ e^{\img k x} $, with $ k = 2\pi / \lambda \equiv \lbar^{-1} $, the typical length-scale is $ \lbar $ rather than $ \lambda $, in the sense that $ \abs{f'} = \lbar^{-1} \abs{f} $.}
+
+\begin{equation}
+  \lbar \ll L_\text{b}
+  \label{eq:l-condition}
+\end{equation}
+In this case, $ h $ has the physical interpretation of small ripples on a smooth background. Equivalently, in frequency space, if $ \bar{g} $ contains frequencies up to $ f_\text{b} $, while $ h $ is a monochromatic wave peaked around a frequency $ f $, then it must be:
+\begin{equation}
+  f \gg f_\text{b}
+  \label{eq:f-condition}
+\end{equation}
+which is the case of a high-frequency perturbation over a slowly-varying background. Note that the scales $ L_\text{b} $ and $ f_\text{b} $ are a priori unrelated, hence the two condition are independent, and it suffices that one of them is satisfied: \eref{eq:l-condition} is known as the \emph{short-wave expansion}, but for GWs \eref{eq:f-condition} is usually fulfilled instead\footnotemark.
+
+\subsection{Back-reaction on the background}
+
+To study how GWs modify the background spacetime as they propagate, expand the $ \rr_{\mu \nu} $ in powers of $ h $:
+\begin{equation*}
+  \rr_{\mu \nu} = \sum_{n \in \N_0} [\rr\od{n}] = \bar{\rr}_{\mu \nu} + [\rr\od1]_{\mu \nu} + [\rr\od2]_{\mu \nu} + \smo(h^3)
+\end{equation*}
+where $ \bar{\rr}_{\mu \nu} $ is the Ricci tensor of the background, thus containing only low-frequency modes. On the other hand, $ [\rr\od1]_{\mu \nu} $ is linear in $ h_{\mu \nu} $, thus containing only high-frequency modes, while $ [\rr\od2]_{\mu \nu} $ is quadratic in $ h_{\mu \nu} $, thus containing both low- and high-frequency modes: indeed, in a quadratic term $ \sim h_{\mu \nu} h_{\rho \sigma} $ a mode with high $ \ve{k}_1 $ from $ h_{\mu \nu} $ can combine with a mode with high $ \ve{k}_2 \simeq - \ve{k}_1 $ from $ h_{\rho \sigma} $, yielding a low-frequency mode. This separation into low- and high-frequency modes can be imposed on the Einstein field equations, suitably written as:
+\begin{equation*}
+  \rr_{\mu \nu} = 8\pi \gn \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)
+\end{equation*}
+In order to do this, introduce the \bctxt{Brill--Hartle--Isaacson average} (BHI average) $ \braket{A} $ which averages the quantity $ A $ over a scale of order of a few wavelengths $ \lambda $, so that:
+\begin{equation*}
+  \bar{g}_{\mu \nu} \equiv \braket{g_{\mu \nu}}
+  \qquad \qquad
+  h_{\mu \nu} = g_{\mu \nu} - \braket{g_{\mu \nu}}
+\end{equation*}
+This makes manifest that the BHI average eliminates oscillations on scales $ \sim \lambda $, leaving only low-frequency modes: in particular, $ \braket{h_{\mu \nu}} = 0 $, as trivially seen by the above relations. The BHI average can be shown to have the following properties (integration by parts and integration of total derivative):
+\begin{equation}
+  \braket{A \bar{\na}_\alpha B} = - \braket{B \bar{\na}_\alpha A} + \smo \left( \frac{\lbar^2}{L_\text{b}^2} \right)
+  \qquad \qquad
+  \braket{\bar{\na}_\alpha A} = 0 + \smo \left( \frac{\lbar}{L_\text{b}} \right)
+\end{equation}
+Setting the notation $ A^\text{Low} \equiv \braket{A} $ and $ A^\text{High} \equiv A - \braket{A} $, the above observation on the mode composition of the Ricci tensor at various orders is confirmed by the expansion at NLO:
+\begin{equation}
+  [\rr\od1]_{\mu \nu} = \frac{1}{2} \left( \bar{\na}^\alpha \bar{\na}_\mu h_{\nu \alpha} + \bar{\na}^\alpha \bar{\na}_\nu h_{\mu \alpha} - \bar{\dal} h_{\mu \nu} - \bar{\na}_\mu \bar{\na}_\nu h \right)
+\end{equation}
+which yields $ \braket{[\rr\od1]_{\mu \nu}} = 0 $ by $ \braket{h_{\mu \nu}} = 0 $. On the contrary, schematically $ [\rr\od2]_{\mu \nu} \sim (\na h)^2 + h \na^2 h $, so $ \braket{[\rr\od2]_{\mu \nu}} \sim \braket{(\na h)^2} $ by integration by parts. The Einstein field equations are then split as:
+\begin{equation}
+  \bar{\rr}_{\mu \nu} + [\rr\od2]_{\mu \nu}^\text{Low} = 8\pi \gn \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)^\text{Low}
+\end{equation}
+\begin{equation}
+  [\rr\od1]_{\mu \nu} + [\rr\od2]_{\mu \nu}^\text{High} = 8\pi \gn \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)^\text{High}
+\end{equation}
 
 
 

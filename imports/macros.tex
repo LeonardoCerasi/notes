@@ -52,6 +52,19 @@
 \newcommand{\ra}{\rightarrow}
 \newcommand{\lra}{\leftrightarrow}
 
+% barred lambda
+\makeatletter
+\newcommand{\lbar}{%
+  \mathpalette\lambdabar@aux\relax
+}
+\newcommand{\lambdabar@aux}[2]{%
+  \ooalign{%
+    $\m@th#1\lambda$\cr
+    \hidewidth\raise-.75ex\hbox{$\m@th#1\overline{\phantom{\lambda}}$}\hidewidth\cr
+  }%
+}
+\makeatother
+
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 
