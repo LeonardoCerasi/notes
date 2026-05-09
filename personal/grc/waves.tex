@@ -523,6 +523,7 @@ In this case, use the Poisson equation $ \lap \Phi = 4 \pi \gn \varrho $ to rewr
 Again, only the flux of the gravitational field through $ \pa V $ modifies the total mass inside $ V $. A similar argument can be extended to the general relativistic case.
 
 \subsection{Energy-momentum pseudotensor}
+\label{ssec:pseudo-emt}
 
 Since any gravitational field can be locally nullified with the choice of a local inertial frame (through Fermi normal coordinates), the energy of a gravitational field is not suitably described by a tensor, since a tensor which vanishes in a particular frame does so in all of them.
 
@@ -742,10 +743,10 @@ This expression allows to explicitly compute the total energy and momentum of sp
 
 \begin{lemma}[before upper = {\tcbtitle}]{ADM energy and momentum in weak gravity}{}
   \begin{equation}
-    P^0 = \frac{1}{16\pi \gn} \int_{\Sn{2}_\infty} \dd^2S \, n_i (\pa_j h^{ij} - \pa^i h)
+    P^0 = \frac{1}{16\pi \gn} \int_{\Sn{2}_\infty} \dd^2S \, n_i (\pa_j h_{ij} - \pa_i h)
   \end{equation}
   \begin{equation}
-    P^j = \frac{1}{16\pi \gn} \int_{\Sn{2}_\infty} \dd^2S \, n^i [\delta_i^j (\pa_0 h - \pa^k h_{k0}) + \pa_i h_{j0} - \pa_0 h_{ij}]
+    P^j = \frac{1}{16\pi \gn} \int_{\Sn{2}_\infty} \dd^2S \, n_i [\delta_i^j (\pa_0 h - \pa_k h_{k0}) + \pa_i h_{j0} - \pa_0 h_{ij}]
   \end{equation}
 \end{lemma}
 
@@ -779,7 +780,7 @@ where $ \bar{\rr}_{\mu \nu} $ is the Ricci tensor of the background, thus contai
 \begin{equation*}
   \rr_{\mu \nu} = 8\pi \gn \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)
 \end{equation*}
-In order to do this, introduce the \bctxt{Brill--Hartle--Isaacson average} (BHI average) $ \braket{A} $ which averages the quantity $ A $ over a scale of order of a few wavelengths $ \lambda $, so that:
+In order to do this, introduce the \bctxt{Brill--Hartle--Isaacson average} (BHI average) $ \braket{A} $ which spatially averages the quantity $ A $ over a scale of order of a few wavelengths $ \lambda $, so that:
 \begin{equation*}
   \bar{g}_{\mu \nu} \equiv \braket{g_{\mu \nu}}
   \qquad \qquad
@@ -790,18 +791,176 @@ This makes manifest that the BHI average eliminates oscillations on scales $ \si
   \braket{A \bar{\na}_\alpha B} = - \braket{B \bar{\na}_\alpha A} + \smo \left( \frac{\lbar^2}{L_\text{b}^2} \right)
   \qquad \qquad
   \braket{\bar{\na}_\alpha A} = 0 + \smo \left( \frac{\lbar}{L_\text{b}} \right)
+  \label{eq:bhi-prop}
 \end{equation}
 Setting the notation $ A^\text{Low} \equiv \braket{A} $ and $ A^\text{High} \equiv A - \braket{A} $, the above observation on the mode composition of the Ricci tensor at various orders is confirmed by the expansion at NLO:
 \begin{equation}
-  [\rr\od1]_{\mu \nu} = \frac{1}{2} \left( \bar{\na}^\alpha \bar{\na}_\mu h_{\nu \alpha} + \bar{\na}^\alpha \bar{\na}_\nu h_{\mu \alpha} - \bar{\dal} h_{\mu \nu} - \bar{\na}_\mu \bar{\na}_\nu h \right)
+  [\rr\od1]_{\mu \nu} = \frac{1}{2} \left( \bar{\na}^\alpha \bar{\na}_\mu h_{\nu \alpha} + \bar{\na}^\alpha \bar{\na}_\nu h_{\mu \alpha} - \bar{\dal} h_{\mu \nu} - \bar{\na}_\nu \bar{\na}_\mu h \right)
 \end{equation}
 which yields $ \braket{[\rr\od1]_{\mu \nu}} = 0 $ by $ \braket{h_{\mu \nu}} = 0 $. On the contrary, schematically $ [\rr\od2]_{\mu \nu} \sim (\na h)^2 + h \na^2 h $, so $ \braket{[\rr\od2]_{\mu \nu}} \sim \braket{(\na h)^2} $ by integration by parts. The Einstein field equations are then split as:
 \begin{equation}
   \bar{\rr}_{\mu \nu} + [\rr\od2]_{\mu \nu}^\text{Low} = 8\pi \gn \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)^\text{Low}
+  \label{eq:gw-low}
 \end{equation}
 \begin{equation}
   [\rr\od1]_{\mu \nu} + [\rr\od2]_{\mu \nu}^\text{High} = 8\pi \gn \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)^\text{High}
+  \label{eq:gw-high}
 \end{equation}
+The low-frequency equation gives the scale of $ h $: in vacuum $ \bar{\rr}_{\mu \nu} + [\rr\od2]_{\mu \nu} = 0 $, thus, given $ \bar{\rr} \sim L_\text{b}^{-2} $ and $ \rr\od2 \sim h^2 / \lbar^2 $, the perturbation scale is $ h \sim \lbar / L_\text{b} $; in presence of matter, instead, $ L_\text{b}^{-2} + h^2 / \lbar^2 $ equals to the matter contribution, which is dominant if $ L_\text{b}^{-2} \gg h^2 / \lbar^2 $, i.e. if $ h \ll \lbar / L_\text{b} $. In general, GWs have typical scale:
+\begin{equation}
+  h \lesssim \frac{\lbar}{L_\text{b}}
+  \label{eq:gw-ampl-constraint}
+\end{equation}
+Notice that $ \bar{g}_{\mu \nu} \equiv \eta_{\mu \nu} $ means $ L_\text{b}^{-1} \ra 0 $, hence by the above relation the background spacetime cannot be flat: GWs always back-react on the background. The amplitude of a GW can violate \eref{eq:gw-ampl-constraint} only in a non-perturbative description, e.g. in presence of an exact solution.
+
+\subsection{Energy carried by a GW}
+
+To express the back-reaction of GWs on the background spacetime clearly, define the effective background contribution of matter\footnotemark as $ \braket{T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T} \equiv \bar{T}_{\mu \nu} - \frac{1}{2} \bar{g}_{\mu \nu} \bar{T} $, with $ \bar{T} \equiv \bar{g}_{\mu \nu} \bar{T}^{\mu \nu} $, so that \eref{eq:gw-low} can be rewritten as:
+\begin{equation}
+  \bar{\rr}_{\mu \nu} = - [\rr\od2]_{\mu \nu}^\text{Low} + 8 \pi \gn \left( \bar{T}_{\mu \nu} - \frac{1}{2} \bar{g}_{\mu \nu} \bar{T} \right)
+  \label{eq:gw-background}
+\end{equation}
+This expression directly links the background curvature to the background matter contribution plus an additional gravitational contribution due to the GWs: $ \braket{\rr\od2} $ contains the large-scale back-reaction of small-scale high-frequency GWs.
+
+\footnotetext{By definition, $ \bar{T}_{\mu \nu} $ only has low-frequency (or low-momentum) modes, and can be viewed as a smoothed form ``macroscopic" form of the fundamental ``microscopic" EMT $ T_{\mu \nu} $. The EMT generated by a macroscopic matter distribution is already quite smooth, so in this case $ \bar{T}_{\mu \nu} \simeq T_{\mu \nu} $.}
+
+In order to study the energy carried by a GW, define the pseudo-EMT $ t_{\mu \nu} $ as:
+\begin{equation}
+  t_{\mu \nu} \defeq - \frac{1}{8\pi \gn} \left\langle [\rr\od2]_{\mu \nu} - \frac{1}{2} g_{\mu \nu} \rr\od2 \right\rangle
+  \label{eq:pseudo-emt-def}
+\end{equation}
+where $ \rr\od2 \equiv g^{\mu \nu} [\rr\od2]_{\mu \nu} $. Then, defining the trace $ t \equiv g^{\mu \nu} t_{\mu \nu} $, at NNLO:
+\begin{equation*}
+  [t\od2]_{\mu \nu} = - \frac{1}{8\pi \gn} \left( \braket{[\rr\od2]_{\mu \nu}} - \frac{1}{2} \bar{g}_{\mu \nu} \bar{g}^{\alpha \beta} \braket{[\rr\od2]_{\alpha \beta}} \right)
+  \qquad \qquad
+  t\od2 = \frac{1}{8\pi \gn} \bar{g}^{\alpha \beta} \braket{[\rr\od2]_{\alpha \beta}}
+\end{equation*}
+This pseudo-EMT represents the self-consistent contribution of the GW to the background geometry: being defined by through the BHI average, it respects the equivalence principle, since it does not provide a localized notion of gravitational EMT. Inserting the pseudo-EMT into \eref{eq:gw-background}:
+\begin{equation*}
+  \bar{R}_{\mu \nu} = 8\pi \gn \left( t_{\mu \nu} - \frac{1}{2} \bar{g}_{\mu \nu} t + \bar{T}_{\mu \nu} - \frac{1}{2} \bar{g} \bar{T} \right)
+\end{equation*}
+or, equivalently:
+\begin{equation}
+  \bar{G}_{\mu \nu} = 8\pi \gn \left( t_{\mu \nu} + \bar{T}_{\mu \nu} \right)
+\end{equation}
+which makes it clear that this pseudo-EMT encodes the energy-momentum contribution of the GW which back-reacts on the background spacetime. The background Bianchi identities $ \bar{\na}^\mu \bar{G}_{\mu \nu} = 0 $ lead to the covariant conservation $ \bar{\na}^\mu (t_{\mu \nu} + \bar{T}_{\mu \nu}) = 0 $.
+
+\begin{observation}{Quasi-gauge invariance of the pseudo-EMT}{quasi-gauge-inv-pseudo-emt}
+  Using the formalism developed in \secref{ssec:weak-gravity}, it is possible to compute $ [\rr\od2]_{\mu \nu} $, finding:
+  \begin{multline}
+    [\rr\od2]_{\mu \nu} = \frac{1}{2} \bar{g}^{\rho \sigma} \bar{g}^{\alpha \beta} \bigg[ \frac{1}{2} \bar{\na}_\mu h_{\rho \alpha} \bar{\na}_\nu h_{\sigma \beta} + 2 \bar{\na}_\rho h_{\nu \alpha} \bar{\na}_{[\sigma} h_{|\mu| \beta]} + \\
+    + h_{\rho \alpha} (\bar{\na}_\nu \bar{\na}_\mu h_{\sigma \beta} + \bar{\na}_\beta \bar{\na}_\sigma h_{\mu \nu} - \bar{\na}_\beta \bar{\na}_\nu h_{\mu \sigma} - \bar{\na}_\beta \bar{\na}_\mu h_{\nu \sigma}) + \\
+    + \left( \frac{1}{2} \bar{\na}_\alpha h_{\rho \sigma} - \bar{\na}_\rho h_{\alpha \sigma} \right) ({\bar{\na}_\nu h_{\mu \beta} + \bar{\na}_\mu h_{\nu \beta} - \bar{\na}_\beta h_{\mu \nu}}) \bigg]
+    \label{eq:nnlo-ricci}
+  \end{multline}
+  In general, this expression is not gauge invariant, and under a gauge transformation is transforms schematically as:
+  \begin{equation}
+    [\rr\od2]_{\mu \nu} \mapsto [\rr\od2]_{\mu \nu} + \bar{\na}_\rho \tensor{A}{^\rho_{\mu \nu}}
+  \end{equation}
+  However, recalling \eref{eq:bhi-prop}, when computing $ t_{\mu \nu} $ the second term only produces a boundary term of order $ \smo(\lbar / L_\text{b}) $, which can be neglected. Therefore, the pseudo-EMT is quasi-gauge invariant.
+\end{observation}
+
+By \obsref{obs:quasi-gauge-inv-pseudo-emt}, the pseudo-EMT can be computed in the preferred gauge.
+
+\begin{lemma}{Pseudo-EMT in Lorentz gauge}{}
+  In the Lorentz gauge, the pseudo-EMT becomes:
+  \begin{equation}
+    [t\od2]_{\mu \nu} = \frac{1}{32\pi \gn} \braket{\bar{\na}_\mu \bar{h}_{\mu \beta} \bar{\na}_\nu \bar{h}^{\alpha \beta}}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Recalling the definition of the Lorentz gauge \eref{eq:lorentz-gauge}, the NNLO Ricci tensor \eref{eq:nnlo-ricci} becomes:
+    \begin{equation*}
+      [\rr\od2]_{\mu \nu}
+    \end{equation*}
+    Then, the pseudo-EMT \eref{eq:pseudo-emt-def}
+    % TODO: complete the proof
+  \end{proof}
+\end{proofbox}
+
+In a regione where matter is absent, hence far from any source, $ \bar{g}_{\mu \nu} \simeq \eta_{\mu \nu} $ and the TT gauge can also be used, yielding a simplified expression:
+\begin{equation}
+  [t\od2]_{\mu \nu} \simeq \frac{1}{32\pi \gn} \braket{\pa_\mu h^\text{TT}_{ij} \pa_\nu h^\text{TT}_{ij}}
+\end{equation}
+As shown in \secref{ssec:pseudo-emt}, it is possible to compute the amount of energy extracted from a source producing GWs from the flux of $ t_{0i} $ through a spatial hypersurface $ \pa V $ far from the source:
+\begin{equation*}
+  E_V = \int_V \dd^3x \, T_\text{eff}^{00}
+  \qquad \implies \qquad
+  \frac{\dd E_V}{\dd t} = - \int_{\pa V} \dd^2S \, n_i T_\text{eff}^{0i}
+\end{equation*}
+In the absence of matter fluxes through $ \pa V $ (e.g. photons, neutrinos, ...), the flux is entirely due to the pseudo-EMT:
+\begin{equation*}
+  \frac{\dd E_V}{\dd t} = - \frac{1}{32\pi \gn} \int_{\pa V} \dd^2S \, n^k \braket{\pa_0 h^\text{TT}_{ij} \pa_k h^\text{TT}_{ij}}
+\end{equation*}
+Far from any source $ h^\text{TT}_{ij} \sim f_{ij}(t - r) $ (generic wave solution), with $ r \equiv \abs{\ve{x}} $, so:
+\begin{equation*}
+  \pa_k h^\text{TT}_{ij} = \pa_0 h^\text{TT}_{ij} \pa_k(t - r) = - \dot{h}^\text{TT}_{ij} \frac{x_k}{r}
+\end{equation*}
+Then:
+\begin{equation*}
+  \int_{\pa V} \dd^2S \, n^k \braket{\pa_0 h^\text{TT}_{ij} \pa_k h^\text{TT}_{ij}} = - \int_{\pa V} \dd^2S \, n^k n_k \braket{\dot{h}^\text{TT}_{ij} \dot{h}^\text{TT}_{ij}} = - r^2 \int_{\Sn{2}_r} \dd \Omega_2 [t\od2]_{00}
+\end{equation*}
+where in the last step it has been assumed that $ \pa V \cong \Sn{2}_r $. The irradiated energy can then be computed as:
+\begin{equation}
+  \frac{\dd E_V}{\dd t} = - \frac{1}{32 \pi \gn} r^2 \int_{\Sn{2}_r} \dd \Omega_2 \braket{\dot{h}^\text{TT}_{ij} \dot{h}^\text{TT}_{ij}}
+\end{equation}
+
+\subsection{Propagation in curved spacetime}
+
+While the low-frequency equation \eref{eq:gw-low} allows to identify the pseudo-EMT of the GW, its propagation through spacetime is determined by the high-frequency equation \eref{eq:gw-high}.
+
+First of all, consider the limiting case of no external sources, i.e. $ T_{\mu \nu} = 0 $, so that \eref{eq:gw-high} becomes:
+\begin{equation*}
+  [\rr\od1]_{\mu \nu} = - [\rr\od2]_{\mu \nu}^\text{High}
+\end{equation*}
+Performing order-of-magnitude estimates:
+\begin{equation*}
+  \rr\od1 \sim \pa^2 h \sim \frac{h}{\lbar^2}
+  \qquad \qquad
+  [\rr\od2]^\text{High} \sim (\pa h)^2 \sim \frac{h^2}{\lbar^2}
+\end{equation*}
+Recalling \eref{eq:gw-ampl-constraint}, a small parameter $ \varepsilon \in \R^+ $ can be defined as $ \varepsilon \sim h \sim \lbar / L_\text{b} $, so that:
+\begin{equation*}
+  \rr\od1 \sim \frac{1}{\varepsilon L_\text{b}}
+  \qquad \qquad
+  [\rr\od2]^\text{High} \sim \frac{1}{L_\text{b}}
+\end{equation*}
+Since $ \varepsilon > 0 $ is small, the second term is subleading when compared to the first, hence at LO:
+\begin{equation}
+  [\rr\od1]_{\mu \nu} \simeq 0
+\end{equation}
+This equation can be written in the Lorentz gauge as:
+\begin{equation*}
+  \dal \bar{h}_{\mu \nu} + 2 \bar{\rr}_{\mu \alpha \nu \beta} \bar{h}^{\alpha \beta} - 2 \bar{\rr}_{\alpha (\nu} \tensor{\bar{h}}{_{\mu)}^\alpha} \simeq 0
+\end{equation*}
+where $ \dal \equiv \pa_\mu \pa^\mu $ since $ \bar{g}_{\mu \nu} \simeq \eta_{\mu \nu} $ at LO in $ \varepsilon $.
+The two curvature terms are of order $ \sim h / L_\text{b}^2 \sim \varepsilon^3 / \lbar^2 $, while the first term is of order $ \sim h / \lbar^2 \sim \varepsilon / \lbar^2 $, hence the curvature terms are subleading and at LO:
+\begin{equation}
+  \dal \bar{h}_{\mu \nu} \simeq 0
+\end{equation}
+This is just the wave equation derived from the linearized theory, which thus remains valid in the limit of GWs being the only sources of curvature. In the absence of matter (or at least far from sources) the TT gauge can be used, and the wave equation has general solution:
+\begin{equation}
+  h^\text{TT}_{ij}(x) = \int_{\R^3} \frac{\dd^3k}{(2\pi)^3} \left[ \ampl_{ij}(k) e^{\img k \cdot x} + \ampl^*_{ij}(k) e^{-\img k \cdot x} \right]
+\end{equation}
+with $ k \equiv (\omega , \ve{k}) : \norm{\ve{k}} = \omega = 2\pi f $. Typical astrophysical sources are localized in a certain direction $ \hat{\ve{k}}_0 $, so $ \ampl_ij(k) = \ampl_{ij}(f) \delta^{(3)}(\hat{\ve{k}} - \hat{\ve{k}}_0) $. Note that for ground detectors the spatial dependence of the wave can often be ignored.
+
+Now, consider the presence of external matter dominating the curvature. In this case, recalling the discussion on \eref{eq:gw-ampl-constraint}, $ h \ll \lbar / L_\text{b} \ll 1 $, so the expansions in $ h $ and in $ \lbar / L_\text{b} $ are different: for GWs, terms quadratic in $ h $ are extremely negligible, so retain only terms linear in $ h $ and expand them in powers of $ \lbar / L_\text{b} $. In this case, $ [\rr\od2]^\text{High} \sim h^2 $ is neglibile, while the source term is:
+\begin{equation*}
+  \left( T_{\mu \nu} - \frac{1}{2} g_{\mu \nu} T \right)^\text{High} \sim \frac{h}{L_\text{b}^2}
+\end{equation*}
+This is because $ T_{\mu \nu} $ is smooth for macroscopic matter sources, hence its high-frequency components depend on the perturbation $ h_{\mu \nu} $, thus $ T_{\mu \nu} \sim h / L_\text{b}^2 $, and similarly for $ g_{\mu \nu} T = (\bar{g}_{\mu \nu} + h_{\mu \nu}) T $. On the contrary, $ \rr\od1 \sim \pa^2 h \sim h / \lbar^2 $, so the source term is smaller by a factor $ \smo (\lbar^2 / L_\text{b}^2) $, which does not contribute at LO and NLO. The linear equation at NLO in $ \lbar / L_\text{b} $ is then:
+\begin{equation*}
+  [\rr\od1]_{\mu \nu} = 0
+\end{equation*}
+As discussed above, in the Lorentz gauge this equation leads to:
+\begin{equation}
+  \bar{\dal} \bar{h}_{\mu \nu} = 0
+\end{equation}
+where now $ \bar{\dal} \equiv \bar{\na}_\mu \bar{\na}^\mu $. This wave equation therefore determines the propagation of GWs in a curved background, in the short-wave limit $ \lbar \ll L_\text{b} $ (or equivalently $ f \gg f_\text{b} $). 
+
+In conclusion, the separation of the Einstein field equations into low- and high-frequency components allows to describe both the effects of GWs and external matter on the background spacetime (low-frequency), and the propagation of GWs in the curved background (high-frequency).
 
 
 
