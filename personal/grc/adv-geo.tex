@@ -3,11 +3,11 @@
 \section{de Rham cohomology}
 
 \begin{definition}{Closed form}{}
-  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{k} $ is \bcdef{closed} if $ \defcol{\dd \omega = 0} $.
+  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{k} $ is \bcdef{closed} if $ \dd \omega = 0 $.
 \end{definition}
 
 \begin{definition}{Exact form}{}
-  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{k} $ is \bcdef{exact} if $ \exists \eta \in \df{k-1} : \defcol{\omega = \dd \eta} $, known as the \emph{potential} of $ \omega $.
+  Let $ \man $ be a smooth manifold. Then, $ \omega \in \df{k} $ is \bcdef{exact} if $ \exists \eta \in \df{k-1} : \omega = \dd \eta $, known as the \emph{potential} of $ \omega $.
 \end{definition}
 
 Since $ \dd^2 = 0 $, every exact for is closed. The converse, however, is in general not true: every closed form is exact only on manifolds with particular topological properties. By Stokes' theorem, it is clear that the integral of an exact form over any compact submanifold without boundary vanishes.
@@ -22,7 +22,7 @@ Given a smooth manifold $ \man $, a smooth covector field $ \omega \in \df{1} $ 
 
 \begin{proofbox}
   \begin{proof}
-    If $ \omega \in \df{1} $ is exact, then it is conservative by \ref{eq:fundamental-th-line-integrals} it is conservative.
+    If $ \omega \in \df{1} $ is exact, then it is conservative by \eref{eq:fundamental-th-line-integrals} it is conservative.
 
     Suppose $ \omega \in \df{1} $ is conservative, and assume $ \man $ to be connected. Since the line integrals of $ \omega $ are path-independent, denote by $ \int_p^q \omega $ the line integral of $ \omega $ along any piecewise smooth curve segment from $ p \in \man $ to $ q \in \man $. As a backward reparametrization of a path from $ p $ to $ q $ is a path to $ q $ to $ p $, then \eref{eq:line-reparam} implies $ \int_q^p \omega = - \int_p^q \omega $, while \eref{eq:line-piece} implies:
     \begin{equation*}
@@ -127,7 +127,7 @@ which are respectively the $ \R $-vector spaces of closed $ p $-forms and exact 
 \begin{definition}{de Rham cohomology groups}{}
   Let $ \man $ be a smooth manifold. The \bcdef{de Rham cohomology group of degree $ p $}, with $ p \in \N_0 $, is defined as:
   \begin{equation}
-    \defcol{\hp{p}(\man)} \defeq \frac{\zp{p}(\man)}{\bp{p}(\man)}
+    \hp{p}(\man) \defeq \frac{\zp{p}(\man)}{\bp{p}(\man)}
   \end{equation}
 \end{definition}
 
@@ -136,7 +136,7 @@ This quotient vector space is well-defined for all $ p \in \N_0 $, since every e
 For any $ \omega \in \df{p} $, let $ [\omega] \in \hp{p}(\man) $ denote the equivalence class of $ \omega $, known its \emph{cohomology class}: if $ [\omega] = [\omega'] $, i.e. if $ \omega $ and $ \omega' $ differ by an exact form, then $ \omega $ and $ \omega' $ are said to be \emph{cohomologous}.
 
 \begin{proposition}{Induced cohomology map}{induced-cohomology}
-  For any smooth map $ f : \man_1 \ra \man_2 $, the pull-back $ f^* : \dfm{p}(\man_2) \ra \dfm{p}(\man_1) $ maps $ \zp{p}(\man_2) \mapsto \zp{p}(\man_1) $ and $ \bp{p}(\man_2) \mapsto \bp{p}(\man_1) $. It therefore descends to a linear map $ \propcol{f^* : \hp{p}(\man_2) \ra \hp{p}(\man_1)} $, called the \bcprop{induced cohomology map}, such that $ \id_\man^* = \id_{\hp{p}(\man)} $ and, if $ g : \man_2 \ra \man_3 $ is another smooth map, then:
+  For any smooth map $ f : \man_1 \ra \man_2 $, the pull-back $ f^* : \dfm{p}(\man_2) \ra \dfm{p}(\man_1) $ maps $ \zp{p}(\man_2) \mapsto \zp{p}(\man_1) $ and $ \bp{p}(\man_2) \mapsto \bp{p}(\man_1) $. It therefore descends to a linear map $ f^* : \hp{p}(\man_2) \ra \hp{p}(\man_1) $, called the \bcprop{induced cohomology map}, such that $ \id_\man^* = \id_{\hp{p}(\man)} $ and, if $ g : \man_2 \ra \man_3 $ is another smooth map, then:
   \begin{equation*}
     (g \circ f)^* = f^* \circ g^* : \hp{p}(\man_3) \ra \hp{p}(\man_1)
   \end{equation*}
@@ -186,7 +186,7 @@ Therefore, each de Rham group of a disconnected manifold is just the direct prod
 \cref{cor:dr-diff-inv} has a profound generalization: de Rham cohomology groups are topological invariants (actually, they are homotopy invariants, see \secref{sec:homotopy} for homotopy equivalence).
 
 \begin{definition}{Cochain homotopy}{}
-  Let $ f , g : \man_1 \ra \man_2 $ be smooth maps. A collection of linear maps $ \defcol{h_p : \dfm{p}(\man_2) \ra \dfm{p-1}(\man_1)} $ is a \bcdef{cochain homotopy} between $ f^* $ and $ g^* $ if, for all $ \omega \in \dfm{p}(\man_2) $:
+  Let $ f , g : \man_1 \ra \man_2 $ be smooth maps. A collection of linear maps $ h_p : \dfm{p}(\man_2) \ra \dfm{p-1}(\man_1) $ is a \bcdef{cochain homotopy} between $ f^* $ and $ g^* $ if, for all $ \omega \in \dfm{p}(\man_2) $:
   \begin{equation}
     (\dd_{p-1} \circ h_p \omega + h_{p+1} \circ \dd_p) \omega = g^* \omega - f^* \omega
     \label{eq:cochain-homotopy-def}
@@ -366,7 +366,7 @@ where $ \gamma $ is any piecewise smooth curve representing the path homotopy cl
   \end{proof}
 \end{proofbox}
 
-By \tref{th:integral-path-homotopy}, on simply connected smooth manifolds every closed $ 1 $-form is exact, therefore $ \hp{1}(\man) = 0 $. This result can be generalized.
+By \tref{th:integral-path-homotopy}, on simply connected smooth manifolds every closed $ 1 $-form is exact, so $ \hp{1}(\man) = 0 $. This result can be generalized.
 
 \begin{corollary}{}{connected-cohomology}
   If $ \man $ is a connected smooth manifold with finite fundamental group, then $ \hp{1}(\man) = 0 $.
@@ -441,7 +441,7 @@ such that each sequence:
 is exact. This means that $ f_p $ is injective, $ g_p $ is surjective and $ \im f_p = \ker g_p $ for each $ p \in \N_0 $.
 
 \begin{lemma}{Zigzag lemma}{zigzag}
-  Given a short exact sequence of complexes as in \eref{eq:short-exact-sequence}, for each $ p \in \N_0 $ there is a linear map $ \lemmacol{\delta_p : \hp{p}(C^*) \ra \hp{p+1}(A^*)} $, called the \bclemma{connecting homomorphism}, such that the following sequence is exact:
+  Given a short exact sequence of complexes as in \eref{eq:short-exact-sequence}, for each $ p \in \N_0 $ there is a linear map $ \delta_p : \hp{p}(C^*) \ra \hp{p+1}(A^*) $, called the \bclemma{connecting homomorphism}, such that the following sequence is exact:
   \begin{equation*}
     \dots \xrightarrow{\ \delta_{p-1} \ } \hp{p}(A^*) \xrightarrow{\ f_p^* \ } \hp{p}(B^*) \xrightarrow{\ g_p^* \ } \hp{p}(C^*) \xrightarrow{\ \delta_p \ } \hp{p+1} \xrightarrow{\ f_{p+1}^* \ } \dots
   \end{equation*}
@@ -539,7 +539,7 @@ Since pull-backs commute with exterior derivatives, these maps descend to linear
 \end{figure}
 
 \begin{corollary}{Characterization of connecting homomorphism}{}
-  The \bcthcol{connecting homomorphism} $ \thcorcol{\delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man)} $ of the Mayer--Veitoris sequence is defined as follows. For each $ \omega \in \zp{p}(U \cap V) $, there are $ \eta \in \dfm{p}(U) , \eta' \in \dfm{p}(V) $ such that $ \omega = \eta \vert_{U \cap V} - \eta' \vert_{U \cap V} $: then, $ \delta_p [\omega] = [\sigma] $, where $ \sigma \in \df{p+1} $ such that $ \sigma \vert_U = \dd \eta $ and $ \sigma \vert_V = \dd \eta' $.
+  The \bcth{connecting homomorphism} $ \delta_p : \hp{p}(U \cap V) \ra \hp{p+1}(\man) $ of the Mayer--Veitoris sequence is defined as follows. For each $ \omega \in \zp{p}(U \cap V) $, there are $ \eta \in \dfm{p}(U) , \eta' \in \dfm{p}(V) $ such that $ \omega = \eta \vert_{U \cap V} - \eta' \vert_{U \cap V} $: then, $ \delta_p [\omega] = [\sigma] $, where $ \sigma \in \df{p+1} $ such that $ \sigma \vert_U = \dd \eta $ and $ \sigma \vert_V = \dd \eta' $.
 
   If $ \{\varphi , \psi\} $ is a smooth partition of unity subordinate to $ \{U,V\} $, then one can take $ \eta = \psi \omega $ and $ \eta' = - \varphi \omega $, both extended to zero outside of the supports of $ \psi $ and $ \varphi $.
 \end{corollary}
@@ -658,7 +658,7 @@ Since the integral of the exterior derivative of a compactly supported $ (n-1) $
 
     $ (k = 1) $ Since $ \man_1 = U_1 $ is diffeomorphic to $ \R^n $, the claim is proved by the following lemma.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Poincaré lemma with compact support}{poincare-compact}
+    \begin{lemma}{Poincaré lemma with compact support}{poincare-compact}
       Let $ n \geq p \geq 1 $ and let $ \omega $ be a compactly supported $ p $-form on $ \R^n $. If $ p = n $, suppose $ \int_{\R^n} \omega = 0 $. Then, there exists $ \eta \in \dfcm{p-1}(\R^n) $ such that $ \omega = \dd \eta $.
     \end{lemma}
 
@@ -719,7 +719,7 @@ An analogous result for non-orientable manifolds can be found in a similar way.
 Once the top-degree cohomology groups of all compact manifolds are found, smooth maps between them can be studied by assigning an integer to them in such a way that homotopic maps have the same integer.
 
 \begin{theorem}{Degree of smooth map}{deg}
-  Let $ \man_1 , \man_2 $ be compact oriented smooth $ n $-manifolds, and let $ f : \man_1 \ra \man_2 $ be a smooth map. There exists a unique $ \thcol{k_f \in \Z} $, called the \bcth{degree of $ f $}, that satisfies:
+  Let $ \man_1 , \man_2 $ be compact oriented smooth $ n $-manifolds, and let $ f : \man_1 \ra \man_2 $ be a smooth map. There exists a unique $ k_f \in \Z $, called the \bcth{degree of $ f $}, that satisfies:
   \begin{enumerate}
     \item \label{item:deg-1} for every $ \omega \in \dfm{n}(\man_2) $:
       \begin{equation*}
@@ -798,7 +798,6 @@ By \lref{lemma:pd}, it is possible to defined the degree of a continuous map $ f
 
 % TODO: complete the treatment of cohomology from Lee
 
-\newpage
 \section{Hodge theory}
 
 The study of the de Rham cohomology of a metric manifold makes use of the additional structure given by the metric.
@@ -902,7 +901,7 @@ with components:
 
 \begin{proofbox}
   \begin{proof}
-    This invariance is trivially derived from \eref{eq:hodge-def}, since both the inner product (\pref{prop:inner-product-forms}) and the volume form (\pref{prop:riemannian-volume-form}) are independent of the choice of oriented orthonromal frame.
+    This invariance is trivially derived from \eref{eq:hodge-def}, since both the inner product and the volume form are independent of the choice of oriented orthonromal frame, respectively by \pref{prop:inner-product-forms} and \pref{prop:riemannian-volume-form}.
 
     This can also be seen directly from \eref{eq:hodge-alibi} (alibi interpretation) or \eref{eq:hodge-alias} (alias interpretation). For example, given two smooth charts $ (U,x^i) , (V,y^i) : U \cap V \neq \emptyset $, then on $ U \cap V $:
     \begin{equation*}
@@ -913,17 +912,23 @@ with components:
         & \quad \times \frac{\pa y^{i_1}}{\pa x^{a_1}} \frac{\pa y^{j_1}}{\pa x^{b_1}} g^{a_1 b_1} \dots \frac{\pa y^{i_p}}{\pa x^{a_p}} \frac{\pa y^{j_p}}{\pa x^{b_p}} g^{a_p b_p} \epsilon_{j_1 \dots j_n} \frac{\pa y^{j_{p+1}}}{\pa x^{b_{p+1}}} \dd x^{b_{p+1}} \wedge \dots \wedge \frac{\pa y^{j_n}}{\pa x^{b_n}} \dd x^{b_n} \\
         & = \abs{\det \left[ \frac{\pa x}{\pa y} \right]} \frac{\pa y^{i_1}}{\pa x^{a_1}} \frac{\pa y^{j_1}}{\pa x^{b_1}} \dots \frac{\pa y^{i_p}}{\pa x^{a_p}} \frac{\pa y^{j_p}}{\pa x^{b_p}} \frac{\pa y^{j_{p+1}}}{\pa x^{b_{p+1}}} \dots \frac{\pa y^{j_n}}{\pa x^{b_n}} \epsilon_{j_1 \dots j_n} \times \\
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \frac{\sqg}{(n-p)!} g^{a_1 b_1} \dots g^{a_p b_p} \dd x^{b_{p+1}} \wedge \dots \dd x^{b_n} \\
+      \end{split}
+    \end{equation*}
+    Now, recall the following identity for $ \mt{M} \in \R^{n \times n} $ has been used:
+    \begin{equation}
+      \epsilon^{i_1 \dots i_n} M_{i_1 j_1} \dots M_{i_n j_n} = \epsilon_{j_1 \dots j_n} \det \mt{M}
+      \label{eq:matrix-identity}
+    \end{equation}
+    so that the above expression becomes:
+    \begin{equation*}
+      \begin{split}
+        \star (\dd y^{i_1} \wedge \dots \wedge \dd y^{i_p}) \hspace{-0.15em}
         & = \abs{\det \left[ \frac{\pa x}{\pa y} \right]} \frac{\pa y^{i_1}}{\pa x^{a_1}} \dots \frac{\pa y^{i_p}}{\pa x^{a_p}} \epsilon_{b_1 \dots b_n} \det \left[ \frac{\pa y}{\pa x} \right] \\
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \frac{\sqg}{(n-p)!} g^{a_1 b_1} \dots g^{a_p b_p} \dd x^{b_{p+1}} \wedge \dots \dd x^{b_n} \\
         & = \sgn \left( \det \left[ \frac{\pa y}{\pa x} \right] \right) \frac{\pa y^{i_1}}{\pa x^{j_1}} \dots \frac{\pa y^{i_p}}{\pa x^{j_p}} \star (\dd x^{j_1} \wedge \dots \wedge \dd x^{j_p})
       \end{split}
     \end{equation*}
-    where the following identity for $ \mt{M} \in \R^{n \times n} $ has been used:
-    \begin{equation}
-      \epsilon^{i_1 \dots i_n} M_{i_1 j_1} \dots M_{i_n j_n} = \epsilon_{j_1 \dots j_n} \det \mt{M}
-      \label{eq:matrix-identity}
-    \end{equation}
-    Since the two charts are assumed to be have the same orientation, the sign function returns $ +1 $, and the relation found clearly shows that the factors coming from the transformation of $ \star (\dd y^{i_1} \wedge \dots \wedge \dd y^{i_p}) $ exactly cancel those in the transformation of $ \omega_{i_1 \dots i_p} $, leaving $ \star \omega $ unchanged.
+    Since the two charts are assumed to have the same orientation, the sign function returns $ +1 $, and the relation found clearly shows that the factors coming from the transformation of $ \star (\dd y^{i_1} \wedge \dots \wedge \dd y^{i_p}) $ exactly cancel those in the transformation of $ \omega_{i_1 \dots i_p} $, leaving $ \star \omega $ unchanged.
   \end{proof}
 \end{proofbox}
 
@@ -947,20 +952,19 @@ Therefore, the Hodge operator is a well-defined operator.
         & = \frac{\sqg}{(n-p)!} g^{i_1 j_1} \dots g^{i_p j_p} \epsilon_{j_1 \dots j_n} \star (\dd x^{j_{p+1}} \wedge \dots \wedge \dd x^{j_n}) \\
         & = \frac{\abs{\det [g_{ij}]}}{(n-p)! p!} g^{i_1 j_1} \dots g^{i_p j_p} g^{j_{p+1} a_1} \dots g^{j_n a_{n-p}} \epsilon_{j_1 \dots j_n} \epsilon_{a_1 \dots a_n} \times \\
         & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \times \dd x^{a_{n-p+1}} \wedge \dots \wedge \dd x^{a_n} \\
-        & = \frac{\abs{\det [g_{ij}]}}{(n-p)! p!} \det [g_{ij}] \epsilon^{i_1 \dots i_p a_1 \dots a_{n-p}} \epsilon_{a_1 \dots a_n} \dd x^{a_{n-p+1}} \wedge \dots \wedge \dd x^{a_n} \\
+        & = \frac{\abs{\det [g_{ij}]}}{(n-p)! p!} \det [g^{ij}] \epsilon^{i_1 \dots i_p a_1 \dots a_{n-p}} \epsilon_{a_1 \dots a_n} \dd x^{a_{n-p+1}} \wedge \dots \wedge \dd x^{a_n} \\
         & = \frac{\sigma}{(n-p)! p!} (-1)^{p(n-p)} \epsilon^{a_1 \dots a_{n-p} i_1 \dots i_p} \epsilon_{a_1 \dots a_{n-p} j_1 \dots j_p} \dd x^{j_1} \wedge \dots \wedge \dd x^{j_p}
       \end{split}
     \end{equation*}
-    where \eref{eq:matrix-identity} has been used. Now, the following identity for the generalized Kroncker delta can be used:
+    where \eref{eq:matrix-identity} has been used. Now, use the following identity for the generalized Kroncker delta:
     \begin{equation}
-      \delta^{i_1 \dots i_p}_{j_1 \dots j_p} = \frac{1}{m!} \epsilon^{a_1 \dots a_m i_1 \dots i_p} \epsilon_{a_1 \dots a_m j_1 \dots j_p}
+      m! \, \delta^{i_1 \dots i_p}_{j_1 \dots j_p} = \epsilon^{a_1 \dots a_m i_1 \dots i_p} \epsilon_{a_1 \dots a_m j_1 \dots j_p}
     \end{equation}
-    yielding:
+    so that:
     \begin{equation*}
       \begin{split}
         \star (\star (\dd x^{i_1} \wedge \dots \wedge \dd x^{i_p}))
         & = \frac{\sigma}{p!} (-1)^{p(n-p)} \delta^{i_1 \dots i_p}_{j_1 \dots j_p} \dd x^{j_1} \wedge \dots \wedge \dd x^{j_p} \\
-        & = \sigma (-1)^{p(n-p)} \delta^{i_1}_{[j_1} \dots \delta^{i_p}_{j_p]} \dd x^{j_1} \wedge \dots \wedge \dd x^{j_p} \\
         & = \sigma (-1)^{p(n-p)} \dd x^{i_1} \wedge \dots \wedge \dd x^{i_p}
       \end{split}
     \end{equation*}
@@ -1020,7 +1024,7 @@ Using the Hodge operator, the $ L^2 $-inner product of $ \omega , \eta \in \dfs{
 For metric manifolds with boundary, the $ \cdd $ is not the adjoint of $ \dd $ in the operator-theoretic sense, since $ (\dd \omega , \eta) $ and $ (\omega , \cdd \eta) $ differ by a boundary term proportional to $ \int_{\pa \man} \omega \wedge \star \eta $.
 
 \begin{definition}{Laplace--de Rham operator}{}
-  Let $ (\man,g) $ be a metric manifold. The \bcdef{Laplace--Beltrami operator} is the operator $ \lapd : \df{p} \ra \df{p} $ defined as:
+  Let $ (\man,g) $ be a metric manifold. The \bcdef{Laplace--de Rham operator} $ \lapd \in \End \df{p} $ is the operator defined as:
   \begin{equation}
     \lapd \defeq (\dd + \cdd)^2
   \end{equation}
@@ -1117,7 +1121,6 @@ As in \secref{ssec:de-rham-cohomology-groups}, the form-degree of $ \dd_p : \df{
 
 This is the fundamental result of Hodge theory: each de Rham cohomology class contains exactly one harmonic form.
 
-\newpage
 \section{Cartan formalism}
 
 Given a metric $ n $-manifold $ \man $ and a smooth chart $ (U , (x^\mu)) $, consider a local smooth frame on $ U $ defined as a linear combination of the coordinate basis:
@@ -1164,8 +1167,6 @@ The metric tensor can be written in both frames as $ g = g_{\mu \nu} \dd x^\mu \
   In the Lorentzian case, then, $ \Lambda \in \On{1,n-1} $: this group has four disconnected components, defined by the four combinations of $ \det \Lambda = \pm 1 $ and $ \tensor{\Lambda}{^0_0} \geq 1 $ or $ \tensor{\Lambda}{^0_0} \leq -1 $; the special orthochronous component $ \lorgn $, defined by $ \det \Lambda = 1 $ and $ \tensor{\Lambda}{^0_0} \geq 1 $, is the group of Lorentz transformations on $ T_pU $ (for a more detailed account on the Lorentz group, see \S 1.2 of \cite{leonardo}).
   Transformations between tetrad frames therefore are \bcobs{local Lorentz transformations}, since, contrary to usual Lorentz transformations, they can vary from point to point of $ U $.
 \end{observation}
-
-\newpage
 
 \subsection{Connection 1-form}
 
@@ -1241,20 +1242,20 @@ Finally, for tensors of general rank:
 
 The second term reflects the second term in \pref{prop:trans-connection-coeff}, which involves the derivative of the coordinate transformation.
 
-As for the connection coefficients, it is possible to compute the torsion tensor on a vielbein basis as $ \tensor{T}{^a_{bc}} = \tors(\theta^a , E_b , E_c) $, which retains the antisimmetry $ \tensor{T}{^a_{bc}} = - \tensor{T}{^a_{cb}} $.
+As for the connection coefficients, it is possible to compute the torsion tensor on a vielbein basis as $ \tensor{\ttt}{^a_{bc}} = \tors(\theta^a , E_b , E_c) $, which retains the antisimmetry $ \tensor{\ttt}{^a_{bc}} = - \tensor{\ttt}{^a_{cb}} $.
 
 \begin{definition}{Torsion 2-form}{}
-  Let $ (\man,g) $ be a metric manifold, and let $ (E_a) $ be a vielbein frame on $ \man $ with dual coframe $ (\theta^a) $. Then, the \bcdef{torsion 2-form} $ T^a \in \df{2} $ is defined as:
+  Let $ (\man,g) $ be a metric manifold, and let $ (E_a) $ be a vielbein frame on $ \man $ with dual coframe $ (\theta^a) $. Then, the \bcdef{torsion 2-form} $ \Tau^a \in \df{2} $ is defined as:
   \begin{equation}
-    T^a \defeq \frac{1}{2} \tensor{T}{^a_{bc}} \theta^b \wedge \theta^c
+    \Tau^a \defeq \frac{1}{2} \tensor{\ttt}{^a_{bc}} \theta^b \wedge \theta^c
   \end{equation}
 \end{definition}
 
-This is a vector-valued 2-form, thus $ T^a $ has $ n $ independent 2-forms. Like \eref{eq:torsion-comp}, the torsion 2-form is linked to the connection 1-form by the first Cartan structure equation.
+This is a vector-valued 2-form, thus $ \Tau^a $ has $ n $ independent 2-forms. Like \eref{eq:torsion-comp}, the torsion 2-form is linked to the connection 1-form by the first Cartan structure equation.
 
 \begin{theorem}[before upper = {\tcbtitle}]{First Cartan structure equation}{}
   \begin{equation}
-    T^a = \dd\theta^a + \tensor{\omega}{^a_b} \wedge \theta^b
+    \Tau^a = \dd\theta^a + \tensor{\omega}{^a_b} \wedge \theta^b
   \end{equation}
 \end{theorem}
 
@@ -1279,11 +1280,11 @@ This is a vector-valued 2-form, thus $ T^a $ has $ n $ independent 2-forms. Like
     Now, from the multilinearity of the torsion tensor:
     \begin{equation*}
       \begin{split}
-        T^a
-        & = \frac{1}{2} \tensor{T}{^a_{bc}} \theta^b \wedge \theta^c = \frac{1}{2} \tensor{e}{^a_\rho} \tensor{e}{_b^\alpha} \tensor{e}{_c^\beta} \tensor{e}{^b_\mu} \tensor{e}{^c_\nu} \tensor{T}{^\rho_{\beta \gamma}} \dd x^\mu \wedge \dd x^\nu = \frac{1}{2} \tensor{e}{^a_\rho} \tensor{T}{^\rho_{\mu \nu}} \dd x^\mu \wedge \dd x^\nu
+        \Tau^a
+        & = \frac{1}{2} \tensor{\ttt}{^a_{bc}} \theta^b \wedge \theta^c = \frac{1}{2} \tensor{e}{^a_\rho} \tensor{e}{_b^\alpha} \tensor{e}{_c^\beta} \tensor{e}{^b_\mu} \tensor{e}{^c_\nu} \tensor{T}{^\rho_{\beta \gamma}} \dd x^\mu \wedge \dd x^\nu = \frac{1}{2} \tensor{e}{^a_\rho} \tensor{\ttt}{^\rho_{\mu \nu}} \dd x^\mu \wedge \dd x^\nu
       \end{split}
     \end{equation*}
-    Writing $ \tensor{T}{^\rho_{\mu \nu}} = 2 \Gamma^\rho_{[\mu \nu]} $ completes the proof.
+    Writing $ \tensor{\ttt}{^\rho_{\mu \nu}} = 2 \Gamma^\rho_{[\mu \nu]} $ completes the proof.
   \end{proof}
 \end{proofbox}
 
@@ -1377,12 +1378,12 @@ The Levi--Civita connection is the unique connection such that \eeref{eq:first-c
 
 \subsection{Curvature 2-form}
 
-As for the torsion tensor, it is possible to compute the curvature tensor on a vielbein basis as $ \tensor{R}{^a_{bcd}} = \riem(\theta^a , E_b , E_c , E_d) $, which retains the symmetries \pref{prop:riemann-symmetries}.
+As for the torsion tensor, it is possible to compute the curvature tensor on a vielbein basis as $ \tensor{\rr}{^a_{bcd}} = \riem(\theta^a , E_b , E_c , E_d) $, which retains the symmetries \pref{prop:riemann-symmetries}.
 
 \begin{definition}{Curvature 2-form}{}
   Let $ (\man,g) $ be a metric manifold, and let $ (E_a) $ be a vielbein frame on $ \man $ with dual coframe $ (\theta^a) $. Then, the \bcdef{curvature 2-form} $ \tensor{\Omega}{^a_b} \in \df{2} $ is defined as:
   \begin{equation}
-    \tensor{\Omega}{^a_b} \defeq \frac{1}{2} \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d
+    \tensor{\Omega}{^a_b} \defeq \frac{1}{2} \tensor{\rr}{^a_{bcd}} \theta^c \wedge \theta^d
     \label{eq:curvature-2-def}
   \end{equation}
 \end{definition}
@@ -1400,18 +1401,18 @@ The curvature 2-form is a tensor-valued 2-form, hence $ \tensor{\Omega}{^a_b} $ 
   \begin{proof}
     Recalling \eref{eq:riemann-operator-def}, it is possible to write:
     \begin{equation*}
-      \tensor{R}{^a_{bcd}} E_a = \riem(E_c , E_d) E_b = \na_{E_c} \na_{E_d} E_b - \na_{E_d} \na_{E_c} E_b - \na_{[E_c , E_d]} E_b
+      \tensor{\rr}{^a_{bcd}} E_a = \riem(E_c , E_d) E_b = \na_{E_c} \na_{E_d} E_b - \na_{E_d} \na_{E_c} E_b - \na_{[E_c , E_d]} E_b
     \end{equation*}
     In general, by linearity of the connection, $ \na_X E_b = \tensor{\omega}{^c_b}(X) E_c $, hence (using $ \na_X f = X(f) $):
     \begin{equation*}
       \begin{split}
-        \tensor{R}{^a_{bcd}} E_a
+        \tensor{\rr}{^a_{bcd}} E_a
         & = \na_{E_c} [\omega^a_{db} E_a] - \na_{E_d} [\omega^a_{cb} E_a] - \tensor{\omega}{^a_b}([E_c , E_d]) E_a \\
         & = E_c(\omega^a_{db}) E_a + \omega^f_{db} \omega^a_{cf} E_a - E_d(\omega^a_{cb}) E_a - \omega^f_{cb} \omega^a_{df} E_a - \tensor{\omega}{^a_b}([E_c , E_d]) E_a \\
       \end{split}
     \end{equation*}
 
-    \begin{lemma}[before upper = {\tcbtitle}, borderline = {1pt}{0pt}{blue!35!black}]{}{connection-ext-der}
+    \begin{lemma}[before upper = {\tcbtitle}]{}{connection-ext-der}
       \begin{equation}
         \dd \tensor{\omega}{^m_n}(E_a , E_b) = E_a(\omega^m_{bn}) - E_b(\omega^m_{an}) - \tensor{\omega}{^m_n}([E_a , E_b])
       \end{equation}
@@ -1445,9 +1446,9 @@ The curvature 2-form is a tensor-valued 2-form, hence $ \tensor{\Omega}{^a_b} $ 
 
     Using \lref{lemma:connection-ext-der}, the above expression becomes:
     \begin{equation*}
-      \tensor{R}{^a_{bcd}} = \dd \tensor{\omega}{^a_b}(E_c , E_d) + \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df}
+      \tensor{\rr}{^a_{bcd}} = \dd \tensor{\omega}{^a_b}(E_c , E_d) + \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df}
     \end{equation*}
-    But $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(E_c , E_d) $, while:
+    But $ \tensor{\rr}{^a_{bcd}} = \tensor{\Omega}{^a_b}(E_c , E_d) $, while:
     \begin{equation*}
       \tensor{\omega}{^a_f} \wedge \tensor{\omega}{^f_b} = \omega^a_{cf} \omega^f_{db} \theta^c \wedge \theta^d = \frac{1}{2} \left[ \omega^f_{db} \omega^a_{cf} - \omega^f_{cb} \omega^a_{df} \right] \theta^c \wedge \theta^d
     \end{equation*}
@@ -1459,7 +1460,7 @@ Combining the two structure equations, it is possible to find simple expressions
 
 \begin{proposition}[before upper = {\tcbtitle}]{}{}
   \begin{equation}
-    \dcov T^a = \tensor{\Omega}{^a_b} \wedge E^b
+    \dcov \Tau^a = \tensor{\Omega}{^a_b} \wedge E^b
     \qquad \qquad
     \dcov \tensor{\Omega}{^a_b} = 0
     \label{eq:cov-ext-der-torsion-curvature}
@@ -1470,13 +1471,13 @@ Combining the two structure equations, it is possible to find simple expressions
   \begin{proof}
     From \eref{eq:first-cartan-stru-eq}, taking the exterior derivative and using \eref{eq:ext-der-prod-rule}:
     \begin{equation*}
-      \dd T^a = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge \dd \theta^b = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge (T^b - \tensor{\omega}{^b_c} \wedge \theta^c)
+      \dd \Tau^a = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge \dd \theta^b = \dd \tensor{\omega}{^a_b} \wedge \theta^b - \tensor{\omega}{^a_b} \wedge (\Tau^b - \tensor{\omega}{^b_c} \wedge \theta^c)
     \end{equation*}
     Rearranging the terms and inserting \eref{eq:second-cartan-stru-eq}:
     \begin{equation*}
-      \dd T^a + \tensor{\omega}{^a_b} \wedge T^a = \left( \dd \tensor{\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b} \right) \wedge \theta^b
+      \dd \Tau^a + \tensor{\omega}{^a_b} \wedge \Tau^a = \left( \dd \tensor{\omega}{^a_b} + \tensor{\omega}{^a_c} \wedge \tensor{\omega}{^c_b} \right) \wedge \theta^b
       \quad \implies \quad
-      \dcov T^a = \tensor{\Omega}{^a_b} \wedge E^b
+      \dcov \Tau^a = \tensor{\Omega}{^a_b} \wedge E^b
     \end{equation*}
     Now, take the exterior derivative of \eref{eq:second-cartan-stru-eq} and apply \eref{eq:ext-der-prod-rule}:
     \begin{equation*}
@@ -1497,28 +1498,28 @@ The Bianchi identities are useful identities which hold for a torsionless connec
 \begin{theorem}{Bianchi identities}{}
   For a torsionless connection:
   \begin{equation}
-    \tensor{R}{^a_{[bcd]}} = 0
+    \tensor{\rr}{^a_{[bcd]}} = 0
     \qquad \qquad
-    \tensor{R}{^a_{b[cd;k]}} = 0
+    \tensor{\rr}{^a_{b[cd;k]}} = 0
     \label{eq:bianchi-vielbein}
   \end{equation}
 \end{theorem}
 
 \begin{proofbox}
   \begin{proof}
-    Setting $ T^a \equiv 0 $ in the first \eref{eq:cov-ext-der-torsion-curvature}:
+    Setting $ \Tau^a \equiv 0 $ in the first \eref{eq:cov-ext-der-torsion-curvature}:
     \begin{equation*}
-      0 = \tensor{\Omega}{^a_b} \wedge \theta^b = \frac{1}{2} \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d \wedge \theta^b = \frac{1}{2} \tensor{R}{^a_{[bcd]}} \theta^b \wedge \theta^c \wedge \theta^d
+      0 = \tensor{\Omega}{^a_b} \wedge \theta^b = \frac{1}{2} \tensor{\rr}{^a_{bcd}} \theta^c \wedge \theta^d \wedge \theta^b = \frac{1}{2} \tensor{\rr}{^a_{[bcd]}} \theta^b \wedge \theta^c \wedge \theta^d
     \end{equation*}
     which is the first Bianchi identity. Then, from the second \eref{eq:cov-ext-der-torsion-curvature}:
     \begin{equation*}
-      0 = \dcov \tensor{\Omega}{^a_b} = \frac{1}{2} \dcov \left[ \tensor{R}{^a_{bcd}} \theta^c \wedge \theta^d \right] = \frac{1}{2} \left[ \tensor{R}{^a_{bcd;k}} \theta^k \wedge \theta^c \wedge \theta^d + \tensor{R}{^a_{bcd}} \left( \dcov \theta^c \wedge \theta^d - \theta^c \wedge \dcov \theta^d \right) \right]
+      0 = \dcov \tensor{\Omega}{^a_b} = \frac{1}{2} \dcov \left[ \tensor{\rr}{^a_{bcd}} \theta^c \wedge \theta^d \right] = \frac{1}{2} \left[ \tensor{\rr}{^a_{bcd;k}} \theta^k \wedge \theta^c \wedge \theta^d + \tensor{\rr}{^a_{bcd}} \left( \dcov \theta^c \wedge \theta^d - \theta^c \wedge \dcov \theta^d \right) \right]
     \end{equation*}
-    But $ \dcov \theta^a = T^a \equiv 0 $, hence this equation is equivalent to the second Bianchi identity.
+    But $ \dcov \theta^a = \Tau^a \equiv 0 $, hence this equation is equivalent to the second Bianchi identity.
   \end{proof}
 \end{proofbox}
 
-In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \equiv \tensor{R}{^a_{bad}} $, while the Ricci scalar is the trace $ R \equiv \eta^{ab} R_{ab} $. In the same way, the Einstein tensor is defined as $ G_{ab} \equiv R_{ab} - \frac{1}{2} \eta_{ab} R $.
+In the vielbein basis, the Ricci tensor is defined as the contraction $ \rr_{bd} \equiv \tensor{\rr}{^a_{bad}} $, while the Ricci scalar is the trace $ \rr \equiv \eta^{ab} \rr_{ab} $. In the same way, the Einstein tensor is defined as $ G_{ab} \equiv \rr_{ab} - \frac{1}{2} \eta_{ab} \rr $.
 
 \begin{corollary}{Einstein--Bianchi identity}{}
   For a Levi--Civita connection:
@@ -1529,28 +1530,27 @@ In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \
 
 \begin{proofbox}
   \begin{proof}
-    From the second Bianchi identity \eref{eq:bianchi-vielbein}, using the antisymmetry $ \tensor{R}{^a_{bcd}} = \tensor{R}{^a_{b[cd]}} $:
+    From the second Bianchi identity \eref{eq:bianchi-vielbein}, using the antisymmetry $ \tensor{\rr}{^a_{bcd}} = \tensor{\rr}{^a_{b[cd]}} $:
     \begin{equation*}
-      R_{bd;k} + \tensor{R}{^a_{bka;d}} + \tensor{R}{^a_{bdk;a}} = 0
+      \rr_{bd;k} + \tensor{\rr}{^a_{bka;d}} + \tensor{\rr}{^a_{bdk;a}} = 0
       \quad \implies \quad
-      R_{bd;k} - R_{bk;d} + \tensor{R}{^a_{bdk;a}} = 0
+      \rr_{bd;k} - \rr_{bk;d} + \tensor{\rr}{^a_{bdk;a}} = 0
     \end{equation*}
     Now, contract with $ \eta^{bd} $:
     \begin{equation*}
-      R_{;k} - \tensor{R}{^b_{k;b}} + \tensor{R}{^{ad}_{dk;a}} = 0
-      \quad \implies \quad
+      \rr_{;k} - \tensor{\rr}{^b_{k;b}} + \tensor{\rr}{^{ad}_{dk;a}} = 0
     \end{equation*}
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Symmetries of Riemann tensor}{riemann-symmetry-vielbein}
+    \begin{lemma}{Symmetries of Riemann tensor}{riemann-symmetry-vielbein}
       For a Levi--Civita connection:
       \begin{equation}
-        R_{abcd} = R_{[ab][cd]}
+        \rr_{abcd} = \rr_{[ab][cd]}
       \end{equation}
     \end{lemma}
 
     \begin{proofbox}
       \begin{proof}
-        By \eref{eq:curvature-2-def} $ \tensor{R}{^a_{bcd}} = \tensor{\Omega}{^a_b}(E_c , E_d) $, thus to compute this expression first consider:
+        By \eref{eq:curvature-2-def} $ \tensor{\rr}{^a_{bcd}} = \tensor{\Omega}{^a_b}(E_c , E_d) $, thus to compute this expression first consider:
         \begin{equation*}
           \dd \tensor{\omega}{^a_b} = \dd \omega^a_{mb} \wedge \theta^m + \omega^a_{mb} \dd \theta^m = \dd \omega^a_{mb} \wedge \theta^m - \omega^a_{mb} \tensor{\omega}{^m_k} \wedge \theta^k
         \end{equation*}
@@ -1572,7 +1572,7 @@ In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \
         \end{equation*}
         Hence, defining $ \omega_{abc} \equiv \eta_{ak} \omega^k_{bc} $, the curvature tensor is found to be:
         \begin{equation*}
-          R_{abcd} = \left[ E_m(\omega_{akb}) - \omega_{agb} \omega^g_{mk} + \omega_{amg} \omega^g_{kb} \right] \delta^{mk}_{cd}
+          \rr_{abcd} = \left[ E_m(\omega_{akb}) - \omega_{agb} \omega^g_{mk} + \omega_{amg} \omega^g_{kb} \right] \delta^{mk}_{cd}
         \end{equation*}
         Then, since $ \delta^{mk}_{cd} = \delta^{[mk]}_{[cd]} $ and, recalling \eref{eq:connection-form-symm} for a Levi--Civita connection, $ \omega_{ab} = - \omega_{ba} \implies \omega_{acb} = \omega_{[a|c|b]} $, this is equivalente to the thesis.
       \end{proof}
@@ -1580,7 +1580,7 @@ In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \
 
     Using \lref{lemma:riemann-symmetry-vielbein}, the above expression reduces to:
     \begin{equation*}
-      R_{;k} = 2 \tensor{R}{^a_{k;a}}
+      \rr_{;k} = 2 \tensor{\rr}{^a_{k;a}}
     \end{equation*}
     Then, the thesis is trivial from the metric compatibility of the connection.
   \end{proof}
@@ -1588,9 +1588,9 @@ In the vielbein basis, the Ricci tensor is defined as the contraction $ R_{bd} \
 
 Note that \lref{lemma:riemann-symmetry-vielbein} allows to explicitly compute the curvature tensor from connection coefficients:
 \begin{equation}
-  R_{abcd} = E_c(\omega_{adb}) - E_d(\omega_{acb}) - \omega_{agb} \left( \omega^g_{cd} - \omega^g_{dc} \right) + \omega_{acg} \omega^g_{db} - \omega_{adg} \omega^g_{cb}
+  \rr_{abcd} = E_c(\omega_{adb}) - E_d(\omega_{acb}) - \omega_{agb} \left( \omega^g_{cd} - \omega^g_{dc} \right) + \omega_{acg} \omega^g_{db} - \omega_{adg} \omega^g_{cb}
 \end{equation}
-Moreover, by multilinearity, the curvature tensor in the vielbein basis retains the symmetry $ R_{abcd} = R_{cdab} $. This, together with $ R_{abcd} = R_{[ab][cd]} $, means that the Riemann tensor can be thought as having two symmetrized multi-indices $ [ab] $ and $ [cd] $, hence the number of independent components is $ \frac{1}{2} N (N+1) $, where $ N $ is the number of possible values for a single multi-index, i.e. $ N = \frac{1}{2} n (n-1) $. However, one has to account for the constraint posed by the first Bianchi identity: since there is one such constraint for each choise of four distinc indices, the total number of independent components of the Riemann tensor is:
+Moreover, by multilinearity, the curvature tensor in the vielbein basis retains the symmetry $ \rr_{abcd} = \rr_{cdab} $. This, together with $ \rr_{abcd} = \rr_{[ab][cd]} $, means that the Riemann tensor can be thought as having two symmetrized multi-indices $ [ab] $ and $ [cd] $, hence the number of independent components is $ \frac{1}{2} N (N+1) $, where $ N $ is the number of possible values for a single multi-index, i.e. $ N = \frac{1}{2} n (n-1) $. However, one has to account for the constraint posed by the first Bianchi identity: since there is one such constraint for each choise of four distinc indices, the total number of independent components of the Riemann tensor is:
 \begin{equation*}
   f_\text{Riemann} = \frac{1}{2} \frac{n (n-1)}{2} \left( \frac{n(n-1)}{2} + 1 \right) - \binom{n}{4} = \frac{1}{8} (n-1) (n (n-1) + 2) - \frac{1}{24} n (n-1) (n-2) (n-3)
 \end{equation*}
@@ -1601,7 +1601,7 @@ Simplifying this expression yields the classical result:
 \end{equation}
 In particular, on $ 4 $-dimensional manifolds this analysis yields the separation of the $ 20 $ degrees of freedom of the Riemann tensor into the $ 10 $ degrees of freedom of the Ricci tensor (``symmetric" part) and the $ 10 $ of the Weyl tensor (``antisymmetric" part).
 
-Note that, if the curvature tensor is computed on a non-coordinate and non-tetrad basis, then it is not possible to impose the symmetry $ R_{abcd} = R_{cdab} $ and the unconstrained components rise to $ 36 $ (i.e. $ N^2 $): the spurious $ 16 $ degrees of freedom thus need to be eliminated with additional constraints, depending on the formalism employed.
+Note that, if the curvature tensor is computed on a non-coordinate and non-tetrad basis, then it is not possible to impose the symmetry $ \rr_{abcd} = \rr_{cdab} $ and the unconstrained components rise to $ 36 $ (i.e. $ N^2 $): the spurious $ 16 $ degrees of freedom thus need to be eliminated with additional constraints, depending on the formalism employed.
 
 
 

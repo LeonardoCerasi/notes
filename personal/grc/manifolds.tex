@@ -17,7 +17,7 @@
 
 Given a topological space $ (M,\tp) $, $ O \in \tp $ is a \emph{neighbourhood} of a point $ p \in M $ if $ p \in O $: then, $ (M,\tp) $ is \bctxt{Hausdorff} if $ \forall p,q \in M \,\, \exists O_1, O_2 \in \tp : p \in O_1 , q \in O_2 \land O_1 \cap O_2 = \emptyset $.
 
-Topological spaces allow to introduce the concept of continuity: given two topological spaces $ (M_1, \tp_1) $ and $ (M_2, \tp_2) $, a map $ f : M_1 \ra M_2 $ is \bctxt{continuous} if $ O \in \tp_2 \implies f^{-1}(O)\in \tp_1 $.
+Topological spaces allow for the introduction of the concept of continuity: given two topological spaces $ (M_1, \tp_1) $ and $ (M_2, \tp_2) $, a map $ f : M_1 \ra M_2 $ is \bctxt{continuous} if $ O \in \tp_2 \implies f^{-1}(O)\in \tp_1 $.
 
 \begin{definition}{Homeomorphism}{}
   Given two topological spaces $ (M_1, \tp_1) $ and $ (M_2, \tp_2) $, a map $ f : M_1 \rightarrow M_2 $ is a \bcdef{homeomorphism} if it is bijective and bicontinuous, i.e. both $ f $ and $ f^{-1} $ are continuous.
@@ -26,7 +26,7 @@ Topological spaces allow to introduce the concept of continuity: given two topol
 The composition of two homeomorphisms $ f : M_1 \ra M_2 $ and $ g : M_2 \ra M_3 $ is still a homeomorphism $ g \circ f : M_1 \ra M_3 $, since both bijectivity and continuity are preserved by composition.
 
 \begin{definition}{Topological manifold}{topological-manifold}
-  An $ n $-dimensional \bcdef{topological manifold} $ \mathcal{M} $ is a Hausdorff topological space such that:
+  An $ n $-dimensional \bcdef{topological manifold} $ \man $ is a Hausdorff topological space such that:
   \begin{enumerate}
     \item $ \man $ is \emph{second-countable}, i.e. there exists a countable basis for $ \tp(\man) $;
     \item $ \man $ is locally homeomorphic to $ \R^n $, i.e. $ \forall p\in\man \, \exists U \in \tp(\man) : p \in U \land \exists \varphi : U \rightarrow O \in \tp(\R^n) $ homeomorphism;
@@ -324,7 +324,6 @@ The construction of smooth structures on finite products illustrated in \exref{e
   Let $ \man $ be a smooth manifold with boundary, and let $ p \in \man $. If there exists a chart $ (U,\varphi) $ of $ \man $ such that $ \varphi(U) \ssq \U^n $ and $ \varphi(p) \in \pa \U^n $, then the same is true for every smooth chart of $ \man $ whose domain contains $ p $.
 \end{theorem}
 
-\newpage
 \section{Tangent vectors}
 
 The central idea of calculus is \emph{linear approximation}: for example, the approximations of a single-variable function with its tangent line, of a parametrized curve with its velocity vector, or of a surface with its tangent plane. In order to generalize calculus on smooth manifolds, then, one needs to introduce the notion of a ``tangent space" to a manifold at each of its points.
@@ -430,7 +429,7 @@ There is, however, an important issue to be addressed first: while tangent space
   \begin{proof}
     To prove injectivity, suppose $ X_p \in T_p\man $ and $ \dd \inc_p(X_p) = 0 \in T_p\man $. Let $ B \in \tp(\man) : p \in \man \land \overline{B} \ssq U $. If $ f \in \cfk{\infty} $ is arbitrary, it can be extended as $ \tilde{f} \in \cm : \tilde{f}\vert_{\bar{B}} \equiv f $.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Locality of derivations}{local-derivation}
+    \begin{lemma}{Locality of derivations}{local-derivation}
       Let $ \man $ be a smooth manifold and $ p \in \man $. Given $ X_p \in T_p\man $, if $ f , g \in \cm $ agree on some neighbourhood of $ p $, then $ X_p(f) = X_p(g) $.
     \end{lemma}
 
@@ -703,13 +702,17 @@ If $ (E_1 , \dots , E_n) $ is a local frame, then the tangent vectors $ (E_1 \ve
 
 For subsets of $ \R^n $, there is a special type of frames. A $ k $-tuple of vector fields $ (E_1 , \dots , E_k) $ on some $ A \ssq \R^n $ is \emph{orthonormal} if for each $ p \in A $ the vectors $ (E_1 \vert_p , \dots , E_k \vert_p) $ are orthonormal with respect to the Euclidean scalar product (with the identification $ T_p\R^n \cong \R^n $). A (local or global) frame consisting of orthonormal vector fields is called an \bctxt{orthonormal frame}.
 
-Starting from a smooth local frame $ (X_1 , \dots , X_n) $ on $ T\R^n $ over $ U \in \tp(\R^n) $, it is possible to find a smooth orthonormal frame $ (E_1 , \dots , E_n) $ over $ U $, such that $ \lspan(E_1 \vert_p , \dots , E_j \vert_p) = \lspan(X_1 \vert_p , \dots , X_j \vert_p) $ for each $ j = 1 , \dots , n $ and each $ p \in U $, using the \emph{Gram--Schmidt algorithm}:
+Starting from a smooth local frame $ (X_1 , \dots , X_n) $ on $ T\R^n $ over $ U \in \tp(\R^n) $, it is possible to find a smooth orthonormal frame $ (E_1 , \dots , E_n) $ on $ T\R^n $ over $ U $ such that:
+\begin{equation*}
+  \lspan(E_1 \vert_p , \dots , E_j \vert_p) = \lspan(X_1 \vert_p , \dots , X_j \vert_p)
+\end{equation*}
+for each $ j = 1 , \dots , n $ and each $ p \in U $, using the \emph{Gram--Schmidt algorithm}:
 \begin{equation}
   E_j = \frac{X_j - \sum_{i = 1}^{j-1} (X_j \cdot E_i) E_i}{\norm{X_j - \sum_{i = 1}^{j-1} (X_j \cdot E_i) E_i}}
 \end{equation}
-This is a recursive definition, and it is well-posed since $ X_j \vert_p \notin \lspan(E_1 \vert_p , \dots , E_{j-1} \vert_p) $ for each $ j = 1 , \dots , n $ and each $ p \in U $, hence the denominator is a nowhere-vanishing smooth function on $ U $.
+This is a recursive definition, and it is well-posed since $ X_j \vert_p \notin \lspan(E_1 \vert_p , \dots , E_{j-1} \vert_p) $ for each $ j = 1 , \dots , n $ and each $ p \in U $, so the denominator is a nowhere-vanishing smooth function on $ U $.
 
-While smooth local frames are easily found, using \pref{prop:completion-local-frames}, global ones are not. Indeed, smoth manifolds which admit a smooth local frames are said to be \bctxt{parallelizable}: for example, $ \R^n $ and $ \Tn{n} $ are all parallelizable, while the only parallelizable spheres are $ \Sn{1} $, $ \Sn{3} $ and $ \Sn{7} $. In general, the parallelizability of a smooth $ n $-manifold $ \man $ is linked to whether its tangent bundle is diffeomorphic to $ \man \times \R^n $.
+While smooth local frames are easily found, using \pref{prop:completion-local-frames}, global ones are not. Indeed, smooth manifolds which admit a smooth local frames are said to be \bctxt{parallelizable}: for example, $ \R^n $ and $ \Tn{n} $ are all parallelizable, while the only parallelizable spheres are $ \Sn{1} $, $ \Sn{3} $ and $ \Sn{7} $. In general, the parallelizability of a smooth $ n $-manifold $ \man $ is linked to whether its tangent bundle is diffeomorphic to $ \man \times \R^n $.
 
 \subsubsection{Vector fields as derivations}
 
@@ -887,7 +890,6 @@ The special case of $ f : \man_1 \ra \man_2 $ diffeomorphism yields the push-for
   f_* [X_1 , X_2] = [f_* X_1 , f_* X_2]
 \end{equation}
 
-\newpage
 \section{Submanifolds}
 
 In the study of integration (\secref{sec:integration}), a fundamental class of objects are submanifolds, i.e. manifolds which are defined inside other manifolds through special kinds of functions: immersions and embeddings.
@@ -1031,7 +1033,7 @@ This theorem hints to a topological definition of submersions: given two topolog
   Let $ \man $ be a smooth manifold. An \bcdef{embedded submanifold} of $ \man $ is a subset $ S \ssq \man $ that is a manifold in the subspace topology, endowed with a smooth structure with respect to which the inclusion map $ S \hookrightarrow \man $ is a smooth embedding.
 \end{definition}
 
-Given an embedded submanifold $ S $ of $ \man $, the \bctxt{codimension} of $ S $ is defined as $ \codim_\R S \defeq \dim_\R \man - \dim_\R S $, and $ \man $ is called the \emph{ambient manifold} of $ S $. A codimension-$ 1 $ embedded submanifold is an \emph{embedded hypersurface}. If the inclusion map $ S \hookrightarrow \man $ is only a smooth immersion, the $ S $ is an \emph{immersed submanifold}.
+The \bctxt{codimension} of an embedded submanifold $ S \ssq \man $ is defined as $ \codim_\R S \defeq \dim_\R \man - \dim_\R S $, and $ \man $ is called the \emph{ambient manifold} of $ S $. A codimension-$ 1 $ embedded submanifold is an \emph{embedded hypersurface}. If the inclusion map $ S \hookrightarrow \man $ is only a smooth immersion, the $ S $ is an \emph{immersed submanifold}.
 
 \begin{proposition}{Embeddings and submanifolds}{embedded-submanifolds}
   Let $ \man_1 $ be a smooth submanifold with/without boundary and $ \man_2 $ a smooth submanifold, and let $ f : \man_1 \ra \man_2 $ be a smooth embedding. With the subspace topology, $ f(\man_1) $ is a topological manifold with/without boundary, and it has a unique smooth structure which makes it an embedded submanifold with/without boundary of $ \man_2 $ such that $ f : \man_1 \ra f(\man_1) $ is a diffeomorphism.
@@ -1352,7 +1354,7 @@ Sard's theorem is fundamental in the study of embedded manifolds.
         Therefore, $ C \cap \overline{V}_a $ consists of exactly those points where the $ (n-1) \times (m-1) $ matrix $ [\pa F^i / \pa v^j] $ has rank less that $ n - 1 $.
         WTS $ f(C \cap \overline{V}_a) $ has measure zero in $ \R^n $.
 
-        \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Compact sets of measure zero}{compact-measure-zero}
+        \begin{lemma}{Compact sets of measure zero}{compact-measure-zero}
           Let $ K \ssq \R^n $ be a compact subset such that $ K \cap (\{c\} \times \R^{n-1}) $ has $ (n-1) $-dimensional measure zero for every $ c \in \R $. Then $ K $ has $ n $-dimensional measure zero.
         \end{lemma}
 
@@ -1411,7 +1413,7 @@ An important application of Sard's theorem is to show that every smooth manifold
   \begin{proof}
     The proof can be considerably simpified with the following lemma.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{smooth-embedding}
+    \begin{lemma}{}{smooth-embedding}
       Let $ \man $ be a smooth $ n $-manifold. If $ \man $ admits a smooth embedding into $ \R^N $ for some $ N $, then it admits a proper smooth embedding into $ \R^{2n+1} $.
     \end{lemma}
 
@@ -1610,7 +1612,6 @@ If $ \man_1 , \man_2 $ are smooth manifolds, a homotopy $ H : \man_1 \times [0,1
 
 When the codomain manifold has non-empty boundary, \tref{th:whitney-approx} and $ \pref{prop:smooth-homotopy} $ do not hold, since it might not be possible to find a smooth map that agrees with $ f $ on $ A $. However, discarding homotopy relative to a subset, the other results can be extended to maps between manifolds with boundary.
 
-\newpage
 \section{Curves}
 
 The familiar notion of curve in $ \R^n $ can be extended to generic manifolds.
@@ -1946,7 +1947,6 @@ A time-dependent vector field might not generate a flow, since two integral curv
   The maximal solution is easily found as $ x^i(t) = t x^i_0 / t_0 $, for $ t \in \R^+ $, hence the time-dependent flow of $ X $ is given by $ \psi(t,t_0,x) = t x / t_0 $, for $ (t,t_0,x) \in \R^+ \times \R^+ \times \R^n $.
 \end{example}
 
-\newpage
 \section{Vector bundles}
 
 It is possible to define additional structure on a topological manifold, in addition to a smooth structure.
@@ -2353,7 +2353,7 @@ which is a covector in $ T_p^*\man_1 $ and, as per \dref{def:pull-back}, acts on
   \begin{proof}
     Let $ p \in \man_1 $ arbitrary, and choose a smooth chart $ (V,(y^i)) $ on $ \man_2 $ which contains $ f(p) $, so that $ U = f^{-1}(V) $ is a neighbourhood of $ p $.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{pb-cont-aux}
+    \begin{lemma}{}{pb-cont-aux}
       Let $ f : \man_1 \ra \man_2 $ be a smooth map, and suppose that $ u : \man_2 \ra \R $ is a continuous function and that $ \omega $ is a covector field on $ \man_2 $. Then:
       \begin{equation}
         f^*(u\omega) = (u \circ f) f^*\omega
@@ -2415,7 +2415,6 @@ The formula derived in this proof provides a straightforward expression to compu
   \end{equation*}
 \end{example}
 
-\newpage
 \section{Tensors}
 
 So far, the analysis of smooth manifold has been carried by importing concepts of Linear Algebra to them. Now, this approach is extended by considering multilinear maps.
@@ -2571,7 +2570,7 @@ under which elements of the forms $ v_1 \otimes (v_2 \otimes v_3) $, $ v_1 \otim
 
 It is now possible to show the connection between ``abstract" tensor products and ``concrete" tensor products.
 
-\begin{lemma}
+\begin{lemma}{}{}
   If $ V_1 , \dots , V_k $ are finite-dimensional vector spaces, there is a canonical isomorphism:
   \begin{equation}
     V_1^* \otimes \dots \otimes V_k^* \cong \Mult(V_1 , \dots , V_k ; \R)
@@ -2585,7 +2584,7 @@ It is now possible to show the connection between ``abstract" tensor products an
     \begin{equation*}
       \Phi(\omega^1 , \dots , \omega^k)(v_1 , \dots , v_k) = \omega^1(v_1) \dots \omega^k(v_k)
     \end{equation*}
-    which is clearly multilinear in $ (v_1 , \dots , v_k) $. Moreover, $ \Phi(\omega^1 , \dots , \omega^k) $ is multilinear in $ (\omega^1 , \dots , \omega^k) $, hence by the characteristic property of the tensor product it determined a unique linear map $ \tilde{\Phi} : V_1^* \otimes \dots \otimes V_k^* \ra \Mult(V_1 , \dots , V_k ; \R) $ which satisfies:
+    which is multilinear in $ (v_1 , \dots , v_k) $. Moreover, $ \Phi(\omega^1 , \dots , \omega^k) $ is multilinear in $ (\omega^1 , \dots , \omega^k) $, hence by the characteristic property of the tensor product it determined a unique linear map $ \tilde{\Phi} : V_1^* \otimes \dots \otimes V_k^* \ra \Mult(V_1 , \dots , V_k ; \R) $ which satisfies:
     \begin{equation*}
       \tilde{\Phi}(\omega^1 \otimes \dots \otimes \omega^k)(v_1 , \dots , v_k) = \omega^1(v_1) \dots \omega^k(v_k)
     \end{equation*}
@@ -2601,7 +2600,7 @@ which emphasizes again the symmetry between $ V $ and $ V^* $ for finite-dimensi
 
 \subsubsection{Mixed tensors}
 
-Having defined tensor products of vector spaces, it is now possible to characterize multilinear maps on a $ \R $-vector space $ V $. Elements of the $ k $-fold tensor product $ V^* \otimes \dots \otimes V^* $ are called \emph{covariant $ k $-tensors} on $ V $: these are just multilinear maps $ \alpha : V \times \dots \times V \ra \R $. Similarly, elemnts of the $ k $-fold product $ V \otimes \dots \otimes V $ are called \emph{contravariant $ k $-tensors} on $ V $, which are multilinear maps $ \alpha : V^* \times \dots \times V^* \ra \R $.
+Having defined tensor products of vector spaces, it is now possible to characterize multilinear maps on a $ \R $-vector space $ V $. Elements of the $ k $-fold tensor product $ V^* \otimes \dots \otimes V^* $ are called \emph{covariant $ k $-tensors} on $ V $: these are just multilinear maps $ \alpha : V \times \dots \times V \ra \R $. Similarly, elements of the $ k $-fold product $ V \otimes \dots \otimes V $ are called \emph{contravariant $ k $-tensors} on $ V $, which are multilinear maps $ \alpha : V^* \times \dots \times V^* \ra \R $.
 
 \begin{definition}{Tensor}{}
   Let $ V $ be a $ \R $-vector space. Given $ k,l \in \N_0 $, the space of \bcdef{tensors of rank $ (k,l) $} is defined as:
@@ -2719,7 +2718,7 @@ A fundamental property of the Lie derivative is that it obeys a convenient produ
     \end{equation}
     The second one needs more care.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Lie derivative and differential}{lie-der-diff}
+    \begin{lemma}{Lie derivative and differential}{lie-der-diff}
       If $ V \in \xm $ and $ f \in \cm $, then:
       \begin{equation}
         \ld_V (\dd f) = \dd (\ld_V f)

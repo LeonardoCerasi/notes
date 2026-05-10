@@ -10,7 +10,7 @@ Differential Geometry poses strict limits to the possible actions that can be fo
   An orientable Lorentzian manifold $ (\man , g) $ equipped with a torsion-free Levi--Civita connection is called a \bcdef{spacetime}.
 \end{definition}
 
-To define the action for the metric of a spacetime $ (\man , g) $, recalling the canonical volume form in \eref{eq:volume-form}, there needs to be a metric-dependent scalar function on $ \mathcal{M} $: the obvious non-trivial choice is the Ricci scalar $ \rr $. The resulting action is the \bctxt{Einstein--Hilbert action}:
+To define the action for the metric of a spacetime $ (\man , g) $, recalling the canonical volume form in \eref{eq:volume-form}, there needs to be a metric-dependent scalar function on $ \man $: the obvious non-trivial choice is the Ricci scalar $ \rr $. The resulting action is the \bctxt{Einstein--Hilbert action}:
 \begin{equation}
   \act_\text{EH}[g] = \int_\man \dd^d x \sqg \, \rr
   \label{eq:einstein-hilbert-action}
@@ -63,16 +63,16 @@ To determine the Euler--Lagrange equations of the Einstein--Hilbert action, cons
       \delta \sqg = \frac{1}{2} \frac{1}{\sqg} \delta \mt{g} = \frac{1}{2} \frac{1}{\sqg} (\sigma \mt{g}) g^{\mu \nu} \delta g_{\mu \nu} = \frac{\sigma}{2} \sqg\, g^{\mu \nu} \delta g_{\mu \nu} = \frac{\sigma}{2} \sqg\, g_{\mu \nu} \delta g^{\mu \nu}
     \end{equation*}
 
-    Now, consider the Christoffel symbols, and in particular note that, although $ \Gamma^\rho_{\mu \nu} $ is not a tensor, $ \delta \Gamma^\rho_{\mu \nu} $ is, since it is the difference of two Christoffel symbols, one computed with $ g_{\mu \nu} $ and the other with $ g_{\mu \nu} + \delta g_{\mu \nu} $, and the extra term in the transformation law of $ \Gamma^\rho_{\mu \nu} $ is independent of the metric, thus it cancels out. This observation allows to work in normal coordinates at $ p \in \mathcal{M} $, so that $ \pa_\rho g_{\mu \nu} \vert_p = 0 $ and $ \Gamma^\rho_{\mu \nu} \vert_p = 0 $. Then, to linear order in the variation:
+    Now, consider the Christoffel symbols, and in particular note that, although $ \Gamma^\rho_{\mu \nu} $ is not a tensor, $ \delta \Gamma^\rho_{\mu \nu} $ is, since it is the difference of two Christoffel symbols, one computed with $ g_{\mu \nu} $ and the other with $ g_{\mu \nu} + \delta g_{\mu \nu} $, and the extra term in the transformation law of $ \Gamma^\rho_{\mu \nu} $ is independent of the metric, thus it cancels out. This observation allows to work in normal coordinates at $ p \in \man $, so that $ \pa_\rho g_{\mu \nu} \vert_p = 0 $ and $ \Gamma^\rho_{\mu \nu} \vert_p = 0 $. Then, to linear order in the variation:
     \begin{equation*}
       {\delta \Gamma^\rho_{\mu \nu}}\od1 \vert_p = \frac{1}{2} g^{\rho \sigma} ( \pa_\mu \delta g_{\sigma \nu} + \pa_\nu \delta g_{\sigma \mu} - \pa_\sigma \delta g_{\mu \nu} ) \vert_p = \frac{1}{2} g^{\rho \sigma} ( \na_\mu \delta g_{\sigma \nu} + \na_\nu \delta g_{\sigma \mu} - \na_\sigma \delta g_{\mu \nu} )
     \end{equation*}
-    This is a tensor equation, hence valid in all coordinate system and, by the arbitrariness of $ p $, on all $ \mathcal{M} $.
+    This is a tensor equation, hence valid in all coordinate system and, by the arbitrariness of $ p $, on all $ \man $.
     In normal coordinates, the Riemann tensor becomes $ \tensor{\rr}{^\sigma_{\mu \rho \nu}} \vert_p = \pa_\rho \Gamma^\sigma_{\nu \mu} \vert_p - \pa_\nu \Gamma^\sigma_{\rho \mu} \vert_p $, so:
     \begin{equation*}
       \delta \tensor{\rr}{^\sigma_{\mu \rho \nu}} \vert_p = \pa_\rho \delta \Gamma^\sigma_{\nu \mu} \vert_p - \pa_\nu \delta \Gamma^\sigma_{\rho \mu} \vert_p = \na_\rho \delta \Gamma^\sigma_{\nu \mu} \vert_p - \na_\nu \delta \Gamma^\sigma_{\rho \mu} \vert_p
     \end{equation*}
-    This is a tensor equation, hence again valid in all coordinates systems and on all $ \mathcal{M} $. Contracting indices $ \sigma,\rho $ yields the thesis.
+    This is a tensor equation, hence again valid in all coordinates systems and on all $ \man $. Contracting indices $ \sigma,\rho $ yields the thesis.
   \end{proof}
 \end{proofbox}
 
@@ -132,7 +132,7 @@ The Einstein equations are highly non-linear, hence they are extremely hard to s
 
 Being the metric a symmetric $ \R^{d \times d} $ matrix, it should have $ \frac{1}{2} d (d+1) $ degrees of freedom. However, not all the components of $ g_{\mu \nu} $ are physical. Indeed, two metrics related by a change of coordinates $ x^\mu \mapsto \tilde{x}^\mu(x) $ describe the same physical spacetime, thus there is a redundancy in any given representation of the metric which removes precisely $ d $ degrees of freedom, leaving only $ \frac{1}{2} d (d-1) $ physical degrees of freedom.
 
-Formally, a diffeomorphism $ \phi : \mathcal{M} \rightarrow \mathcal{M} $ maps all fields on $ \mathcal{M} $ to a new set of fields on $ \mathcal{M} $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theories.
+Formally, a diffeomorphism $ \phi : \man \rightarrow \man $ maps all fields on $ \man $ to a new set of fields on $ \man $: the result is physically indistinguishable from the original, describing the same spacetime but in different coordinates. Such diffeomorphisms are analogous to gauge symmetries in Yang-Mills theories.
 
 Consider a diffeomorphism $ x^\mu \mapsto \tilde{x}^\mu = x^\mu + \delta x^\mu $: this can be viewed as an active diffeomorphism, where points in spacetime are mapped from one another, or as a passive diffeomorpshim, in which only the coordinates of each point are affected, but the two interpretations are equivalent.
 
@@ -228,7 +228,7 @@ By \eeref{eq:lie-der-metric}{eq:metric-variation}, in a spacetime this condition
 \dref{def:isometry} means that the metric does not change along flow lines: this is called \textit{Killing equation}, and a vector field which satisfied it is a \bctxt{Killing vector field}.
 It can be shown that the Killing vector fields of a manifold form a Lie algebra: this is the Lie algebra of the isometry group of the manifold, which is thus generated by its Killing vector fields.
 
-Given a Killing vector field $ \xi \in \xm $, it is always possible to find a set of coordinates $ (x^0 , x^1 , \dots , x^{d-2} , y) $ on $ \man $ such that $ \xi = \frac{\pa}{\pa y} $, known as \emph{adapted coordinates}, in which the Killing equation simply reads:
+Given a Killing vector field $ \xi \in \xm $, it is always possible to choose coordinates $ (x^0 , \dots , x^{d-2} , y) $ on $ \man $ such that $ \xi = \frac{\pa}{\pa y} $, known as \emph{adapted coordinates}, in which the Killing equation simply reads:
 \begin{equation*}
   \frac{\pa}{\pa y} g_{\mu \nu} = 0
 \end{equation*}
@@ -522,7 +522,7 @@ More precisely, this is the \textit{static patch} of de Sitter space.
 
 To interpret a metric, it is useful to study its geodesics. First, note that a non-trivial $ g_{tt}(r) $ term means that a particle won't remain at rest at $ r \neq 0 $, but it will be pushed to smaller values of $ g_{tt}(r) $, i.e. larger values of $ r $. The action of a particle in the general $ f(r) $ metric, parametrized by its proper time $ \sigma $, is:
 \begin{equation}
-  \mathcal{S} = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dd \dot{\varphi}^2) \right]
+  \act = \int \dd \sigma \left[ - f(r)^2 \dot{t}^2 + f(r)^{-2} \dot{r}^2 + r^2 (\dot{\vartheta}^2 + \sin^2 \vartheta \dd \dot{\varphi}^2) \right]
   \label{eq:dS-action}
 \end{equation}
 where $ \dot{x}^\mu \equiv \frac{\dd x^\mu}{\dd \sigma} $. This Lagrangian has two ignorable degrees of freedom which lead to conserved quantities: $ t(\sigma) $ and $ \varphi(\sigma) $, as they appear only with time derivatives. The first one has energy as the conserved quantity, while the second has angular momentum:
@@ -754,16 +754,16 @@ These generate rotations and Lorentz boosts (see \S 1.2 of \cite{leonardo}). The
 \begin{equation*}
   P_\mu \defeq \pa_\mu
   \qquad
-  M_{\mu \nu} \defeq \eta_{\mu \rho} x^\rho \pa_\nu - \eta_{\nu \rho} x^\rho \pa_\mu
+  \mathcal{J}_{\mu \nu} \defeq \eta_{\mu \rho} x^\rho \pa_\nu - \eta_{\nu \rho} x^\rho \pa_\mu
 \end{equation*}
 These are 10 Killing vectors, 4 for translations and 6 for rotations and boosts, which obey the Poincaré algebra:
 \begin{equation*}
   [P_\mu, P_\nu] = 0
   \qquad
-  [M_{\mu \nu}, P_\sigma] = - \eta_{\mu \sigma} P_\nu + \eta_{\sigma \nu} P_\mu
+  [\mathcal{J}_{\mu \nu}, P_\sigma] = - \eta_{\mu \sigma} P_\nu + \eta_{\sigma \nu} P_\mu
 \end{equation*}
 \begin{equation*}
-  [M_{\mu \nu}, M_{\rho \sigma}] = \eta_{\mu \sigma} M_{\nu \rho} + \eta_{\nu \rho} M_{\mu \sigma} - \eta_{\mu \rho} M_{\nu \sigma} - \eta_{\nu \sigma} M_{\mu \rho}
+  [\mathcal{J}_{\mu \nu}, \mathcal{J}_{\rho \sigma}] = \eta_{\mu \sigma} \mathcal{J}_{\nu \rho} + \eta_{\nu \rho} \mathcal{J}_{\mu \sigma} - \eta_{\mu \rho} \mathcal{J}_{\nu \sigma} - \eta_{\nu \sigma} \mathcal{J}_{\mu \rho}
 \end{equation*}
 This is precisely the Lie algebra of the Poincaré group $ \ISO{1,3} \defeq \R^4 \rtimes \SOn{1,3} $, i.e. the isometry group of Minkowski spacetime.
 
@@ -784,13 +784,12 @@ The embedding hyperbolae are both invariant under these Killing vectors: flows g
 
 Energy is defined as the Noether charge of a timelike Killing vector. In anti-de Sitter space there is no problem finding a timelike Killing vector, as the metric in global coordinates \eref{eq:ads-metric} is time-independent, so $ K = \pa_t $. However, this is not the case in de Sitter space.
 
-Considering dS in the static patch with coordinates $ r^2 = (X^1)^2 + (X^2)^2 + (X^3)^2 $, $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $, the metric \eref{eq:dS-metric} is time-independent, thus $ K = \pa_t $ is a Killing vector; pushing it forward to the 5-dimensional space:
+Considering the static patch of dS space, the metric \eref{eq:dS-metric} is time-independent, thus $ K = \pa_t $ is a Killing vector; pushing it forward to the 5-dimensional space:
 \begin{equation*}
   \pa_t = \frac{\pa X^A}{\pa t} \pa_A = \frac{1}{R} ( X^4 \pa_0 + X^0 \pa_4 )
 \end{equation*}
 On the static patch, this Killing vector is timelike and the energy \eref{eq:dS-energy} follows from it. The problem is that the static patch is only one-half of the hyperboloid: when considering the whole AdS, one must account for the case $ X^0 = 0, X^4 < 0 $, in which the Killing vector points in the past direction, or $ X^0 \neq 0, X^4 = 0 $, in which it is spacelike. Therefore, the Killing vector can be both timelike (future-directed and past-directed) or spacelike when spanning the whole manifold: for this reason, it is not possible to define a global positive conserved energy on the total de Sitter space. The same conclusion follows by noting that the metric in global coordinates \eref{eq:ds-global-coo} is time-dependent. 
 
-\newpage
 \section{Matter coupling}
 
 Spacetime is not merely the background on which matter exists, but it is dynamically influenced by the matter distribution on it. It is therefore necessary to study how matter couples to the spacetime metric.
@@ -899,7 +898,7 @@ with cosmological constant absorbed in the EMT.
 
 The combined action \eref{eq:gravity-matter-action} must be diffeomorphism-invariant, thus, given $ Z \in \xm : \delta g = \ld_Z g $ and following the same argument which lead to the Bianchi identity $ \eref{eq:bianchi-id} $:
 \begin{equation*}
-  \delta \act = \int_\man \dd^dx \sqg \left[ \left( \frac{1}{8 \pi \gd} G_{\mu \nu} - T^{\mu \nu} \right) \na^{(\mu} Z^{\nu)} + \frac{\delta \lag_\text{mat}}{\delta \Phi} \delta_Z \Phi \right] = 0
+  \delta \act = \int_\man \dd^dx \sqg \left[ \frac{1}{2} \left( \frac{1}{8 \pi \gd} G_{\mu \nu} - T^{\mu \nu} \right) \na^{(\mu} Z^{\nu)} + \frac{\delta \lag_\text{mat}}{\delta \Phi} \delta_Z \Phi \right] = 0
 \end{equation*}
 Using the Bianchi identity \eref{eq:bianchi-id} to rewrite the first term:
 \begin{equation*}
@@ -928,7 +927,7 @@ For on-shell matter fields the second term vanishes by the Euler--Lagrange equat
 
 It is straightforward to compute $ T_{\mu \nu} $ for a scalar field $ \phi(x) $. Recall \eref{eq:scalar-action-r} (with $ \xi = 0 $) and \lref{lemma:metric-variations}:
 \begin{equation*}
-  \delta \mathcal{S}_{\text{scalar}} = \int \dd^4 x \sqg \left[ \frac{1}{4} g_{\mu \nu} \na^\rho \phi \na_\rho \phi + \frac{1}{2} g_{\mu \nu} V(\phi) - \frac{1}{2} \na_\mu \phi \na_\nu \phi \right] \delta g^{\mu \nu}
+  \delta \act_{\text{scalar}} = \int \dd^4 x \sqg \left[ \frac{1}{4} g_{\mu \nu} \na^\rho \phi \na_\rho \phi + \frac{1}{2} g_{\mu \nu} V(\phi) - \frac{1}{2} \na_\mu \phi \na_\nu \phi \right] \delta g^{\mu \nu}
 \end{equation*}
 This gives the energy-momentum tensor:
 \begin{equation}
@@ -945,7 +944,7 @@ which is the energy density of a scalar field.
 
 Varying Maxwell action \eref{eq:maxwell-action}:
 \begin{equation*}
-  \delta \mathcal{S}_{\text{Maxwell}} = - \frac{1}{4} \int \dd x^4 \sqg \left[ - \frac{1}{2} g_{\mu \nu} F^{\rho \sigma} F_{\rho \sigma} + 2 g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} \right] \delta g^{\mu \nu}
+  \delta \act_{\text{Maxwell}} = - \frac{1}{4} \int \dd x^4 \sqg \left[ - \frac{1}{2} g_{\mu \nu} F^{\rho \sigma} F_{\rho \sigma} + 2 g^{\rho \sigma} F_{\mu \rho} F_{\nu \sigma} \right] \delta g^{\mu \nu}
 \end{equation*}
 So the energy-momentum tensor for Maxwell theory is:
 \begin{equation}
@@ -1012,16 +1011,16 @@ This current is covariantly conserved, as:
 \begin{equation*}
   \na_\nu J_T^\nu[\xi] = T^{\mu \nu} \na_\nu \xi_\mu + K_\mu \na_\nu \xi^{\mu \nu} = T^{\mu \nu} \na_{(\nu} \xi_{\mu)} = 0
 \end{equation*}
-Its associated conserved charge on a spatial hypersurface $ \Sigma $ is defined as:
+Its associated conserved charge on a spacelike hypersurface $ \Sigma $ is defined as:
 \begin{equation}
-  Q_T[\xi ; \Sigma] \defeq \int_\Sigma d^{d-1} x \sqrt{\gamma}\, n_\mu J_T^\mu
+  Q_T[\xi ; \Sigma] \defeq \int_\Sigma \dd^{d-1} x \sqrt{\gamma}\, n_\mu J_T^\mu
 \end{equation}
 The interpretation of this conserved charge depends on the nature of the associated Killing vector field, e.g. if $ \xi $ is globally timelike, then the charge can be interpreted as the energy of matter.
 
 The problem of energy conservation becomes subtle when dealing with spacetimes which do not admit any globally timelike Killing vector field.
 For example, a system comprised of two orbiting stars is modelled by a spacetime which does not have such a Killing vector field: however, the problem of energy conservation does not arise in this case, as the stars, while orbiting each other, emit gravitational waves, thus losing energy and eventually spiraling towards each other. Nonetheless, a meaningful question is that of energy conservation of the total system, i.e. the two stars and the gravitational field. A guess would be to consider a total energy-momentum tensor defined similarly to \eref{eq:em-tens-def}, but:
 \begin{equation*}
-  T^{\text{total}}_{\mu \nu} = - \frac{2}{\sqg} \left[ \frac{1}{16\pi G} \frac{\delta \mathcal{S}_{\text{EH}}}{\delta g^{\mu \nu}} + \frac{\delta \mathcal{S}_M}{\delta g^{\mu \nu}} \right] = - \frac{1}{8\pi G} G_{\mu \nu} + T_{\mu \nu} = 0
+  T^{\text{total}}_{\mu \nu} = - \frac{2}{\sqg} \left[ \frac{1}{16\pi G} \frac{\delta \act_{\text{EH}}}{\delta g^{\mu \nu}} + \frac{\delta \act_\text{m}}{\delta g^{\mu \nu}} \right] = - \frac{1}{8\pi G} G_{\mu \nu} + T_{\mu \nu} = 0
 \end{equation*}
 by the Einstein field equations. This equation has no physical significance other than expressing the subtlety of energy conservation in Genera Relativity.
 
@@ -1047,11 +1046,11 @@ This quantity is the energy measured by an observer moving along the timelike in
 
 The strong energy condition states that:
 \begin{equation}
-  R_{\mu \nu} X^\mu X^\nu \ge 0
+  \rr_{\mu \nu} X^\mu X^\nu \ge 0
   \qquad
   \forall\, X \in \xm : X_\mu X^\mu \le 0
 \end{equation}
-This condition ensures that timelike geodesics converge, i.e. that gravity is attractive. Using \eref{eq:ef-eq-alt}, this condition can be rewritten as:
+This condition ensures that timelike and null geodesics eventually converge, which means that gravity is attractive. Using \eref{eq:ef-eq-alt}, this condition can be rewritten as:
 \begin{equation*}
   \left( T_{\mu \nu} - \frac{1}{d-2} T g_{\mu \nu} \right) X^\mu X^\nu \ge 0
 \end{equation*}
@@ -1128,262 +1127,6 @@ This means that the energy density current is either timelike or null, so requir
   The weak energy condition is clearly violated by any classical field theory with $ V(\phi) \le 0 $. On the contrary, any classical scalar field theory with $ V(\phi) \ge 0 $ violates the strong energy condition, while the null is satisfied by any classical scalar field theory.
 \end{example}
 
-\newpage
-\section{Asymptotics of spacetime}
-
-% TODO: must rewiew
-
-The three special solution (Minkowski, dS, AdS) not only have different spacetime curvature and symmetries, but, more fundamentally, they have different behaviour at infinity. Their importance lies in the fact that, however complicated the metric might be, if fields are suitably localized, then they will asymptote to one of these three symmetric spaces.
-
-\subsection{Conformal transformations}
-
-\begin{definition}{Conformal transformation}{}
-  Given a metric manifold $ (\mathcal{M},g) $ and a non-vanishing $ \Omega \in \cm $, a \bcdef{conformal transformation} is defined as:
-  \begin{equation}
-    \tilde{g}_{\mu \nu}(x) = \Omega^2(x) g_{\mu \nu}(x)
-  \end{equation}
-\end{definition}
-
-Typically, $ g $ and $ \tilde{g} $ describe different spacetime with considerably warped distances. However, conformal transformations preserve angles: in Lorentzian spacetime, the two metrics have the same causal structure, i.e. null/timelike/spacelike vector fields in one metric remain null/timelike/spacelike in the other too.
-
-\begin{proposition}{}{}
-  Only conformal transformations of the metric preserve its causal structure.
-\end{proposition}
-
-Although timelike particle trajectories necessarily remain timelike under a conformal transformation, the same needs not be true for geodesics, as distances get warped.
-
-\begin{proposition}{Invariance of null geodesics}{}
-  Null geodesics are mapped to null geodesics under a conformal transformation.
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    First compute the Christoffel symbols in the new metric:
-    \begin{equation*}
-      \begin{split}
-        \Gamma^\mu_{\rho \sigma}[\tilde{g}]
-        &= \frac{1}{2} \tilde{g}^{\mu \nu} (\pa_\rho \tilde{g}_{\nu \sigma} + \pa_\sigma \tilde{g}_{\rho \nu} - \pa_\nu \tilde{g}_{\rho \sigma}) \\
-        &= \frac{1}{2} \Omega^{-2} g^{\mu \nu} (\pa_\rho (\Omega^2 g_{\nu \sigma}) + \pa_\sigma (\Omega^2 g_{\rho \nu}) - \pa_\nu (\Omega^2 g_{\rho \sigma})) \\
-        &= \Gamma^\mu_{\rho \sigma}[g] + \Omega^{-1} (\delta^\mu_\sigma \na_\rho \Omega + \delta^\mu_\rho \na_\sigma \Omega - g_{\rho \sigma} \na^\mu \Omega)
-      \end{split}
-    \end{equation*}
-    In the last line, recall that $ \na = \pa $ on scalar functions. Suppose an affinely parametrized geodesic in the metric $ g $:
-    \begin{multline*}
-      \frac{\dd^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\rho \sigma}[g] \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = 0 \\
-      \quad \implies \quad
-      \frac{\dd^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\rho \sigma}[\tilde{g}] \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = \Omega^{-1} (\delta^\mu_\sigma \na_\rho \Omega + \delta^\mu_\rho \na_\sigma \Omega - g_{\rho \sigma} \na^\nu \Omega) \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau}
-    \end{multline*}
-    For a null geodesic $ g_{\rho \sigma} \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = 0 $, thus:
-    \begin{equation*}
-      \frac{\dd x^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\rho \sigma}[\tilde{g}] \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = 2 \frac{\dd x^\mu}{\dd \tau} \frac{1}{\Omega} \frac{\dd \Omega}{\dd \tau}
-    \end{equation*}
-    This is the equation of non-affinely parametrized geodesic, hence the thesis.
-  \end{proof}
-\end{proofbox}
-
-Usual curvature tensors are not invariant under conformal transformations. A curvature tensor that is indeed conformally invariant is the \bctxt{Weyl tensor}:
-\begin{equation}
-  \ww_{\mu \nu \rho \sigma} \defeq \rr_{\mu \nu \rho \sigma} - \frac{2}{d - 2} \left( g_{\mu [\rho} \rr_{\sigma] \nu} - g_{\nu [\rho} \rr_{\sigma] \mu} \right) + \frac{2}{(d-1)(d-2)} \rr g_{\mu [\rho} g_{\sigma] \nu}
-\end{equation}
-where $ d \equiv \dim_{\R}\mathcal{M} $. The Weyl tensor has all the symmetries of the Riemann tensor, with the additional property that it vanishes when contracting any pair of indices with the metric: it can be viewed as the trace-free part of the Riemann tensor.
-
-\subsection{Penrose diagrams}
-
-To study the asymptotic behaviour of spacetime, one needs to perform a conformal transformation that maps infinity to a finite distance: the resulting causal structure can then be drawn on a finite area and the resulting picture is called a \textit{Penrose diagram}.
-
-\subsubsection{Minkowski spacetime}
-\label{sssec:penr-mink}
-
-It is simplest to study $ \R^{1,1} $, where the Minkowski metric is $ \dd s^2 = -\dd t^2 + \dd x^2 $. First, introduce \bctxt{lightcone coordinates}:
-\begin{equation*}
-  u = t - x
-  \qquad
-  v = t + x
-  \quad \implies \quad
-  \dd s^2 = - \dd u\, \dd v
-\end{equation*}
-These coordinates range in $ u,v \in \R $. To work with finite quantities, define:
-\begin{equation*}
-  u = \tan \tilde{u}
-  \qquad
-  v = \tan \tilde{v}
-  \quad \implies \quad
-  \dd s^2 = - \frac{1}{\cos^2 \tilde{u} \cos^2 \tilde{v}} \dd \tilde{u}\, \dd \tilde{v}
-\end{equation*}
-where now $ \tilde{u},\tilde{v} \in \left( -\frac{\pi}{2}, +\frac{\pi}{2} \right) $. Note that the metric diverges when approaching the boundary of Minkowski spacetime. However, a conformal transformation is possible with $ \Omega(\tilde{u},\tilde{v}) \equiv \cos \tilde{u}\, \cos \tilde{v} $:
-\begin{equation*}
-  \dd \tilde{s}^2 = \left( \cos^2 \tilde{u} \cos^2 \tilde{v} \right) \dd s^2 = - \dd \tilde{u}\, \dd \tilde{v}
-\end{equation*}
-It is now possible to add $ \tilde{u} = \pm \frac{\pi}{2} $ and $ \tilde{v} = \pm \frac{\pi}{2} $: this operation is called \bctxt{conformal compactification}.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.70 \textwidth]{ms-causal.png}
-  \caption{Penrose diagram for $ d = 1 + 1 $ Minkowski spacetime.}
-  \label{fig:ms-causal}
-\end{figure}
-
-Penrose diagrams, as other relativistic diagrams, present light-rays travelling at 45°, time in the vertical direction and space in the horizontal one. \figref{fig:ms-causal} shows the Penrose diagram for Minkowski spacetime $ \R^{1,1} $ with $ \tilde{u},\tilde{v} $ coordinates, both with coordinate axis and geodesics. Moreover, the various infinities of Minkowski space are shown:
-\begin{itemize}
-  \item timelike geodesics (blue) start at $ i^- (\tilde{u},\tilde{v}) = \left( -\frac{\pi}{2}, -\frac{\pi}{2} \right) $ and end at $ i^+ (\tilde{u},\tilde{v}) = \left( +\frac{\pi}{2}, +\frac{\pi}{2} \right) $, called respectively \bctxt{past} and \bctxt{future timelike infinity};
-  \item spacelike geodesics (red) start and end at $ i^0 (\tilde{u},\tilde{v}) = \left( \mp \frac{\pi}{2}, \pm \frac{\pi}{2} \right) $, both called \bctxt{spacelike infinity};
-  \item all null curves (not shown) start at the boundary $ \mathcal{I}^- \equiv \{\tilde{u} = - \frac{\pi}{2}\} \cup \{\tilde{v} = - \frac{\pi}{2}\} $ and end at the boundary $ \mathcal{I}^+ \equiv \{\tilde{u} = +\frac{\pi}{2}\} \cup \{\tilde{v} = +\frac{\pi}{2}\} $, called respectively \bctxt{past} and \bctxt{future null infinity}.
-\end{itemize}
-It is clear then that in Minkowski spacetime there are more ways reach infinity along a null direction than in a timelike or spacelike direction.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.70 \textwidth]{ms-light.png}
-  \caption{Lightcones in $ d = 1 + 1 $ Minkowski spacetime.}
-  \label{fig:ms-light}
-\end{figure}
-
-Penrose diagrams allow to immediately visualize the causal structure of spacetime. As shown in \figref{fig:ms-light}, given a particle moving along a timelike curve, as it approaches $ i^+ $ its past lightcone encompasses progressively more of spacetime: thus, an observer in Minkowski spacetime can in principle see everything, as long as they wait long enough. Relatedly, given any two points in Minkowski spacetime, they are causally connected both in the past and in the future, as both cones intersect (see \figref{fig:ms-light}): thus, there was always an event in the past that could have influenced both, and there will always be an event in the future that can be influenced by both.
-
-\paragraph{4d Minkowski spacetime}
-
-The analysis can be repeated for $ \R^{1,3} $ with $ \dd s^2 = -\dd t^2 + \dd r^2 + r^2 \dd \Omega_2^2 $. Lightcone coordinates are again:
-\begin{equation*}
-  u = t - r
-  \qquad
-  v = t + r
-  \quad \implies \quad
-  \dd s^2 = - \dd u\, \dd v + \frac{1}{4} \left( u - v \right)^2 \dd \Omega_2^2
-\end{equation*}
-Finite range coordinates are again:
-\begin{equation*}
-   u = \tan \tilde{u}
-  \qquad
-  v = \tan \tilde{v}
-  \quad \implies \quad
-  \dd s^2 = \frac{1}{4\cos^2 \tilde{u} \cos^2 \tilde{v}} \left( -4 \dd \tilde{u}\, \dd \tilde{v} + \sin^2 (\tilde{u} - \tilde{v}) \dd \Omega_2^2 \right)
-\end{equation*}
-Finally, the conformal transformation with $ \Omega(\tilde{u},\tilde{v}) = 2 \cos \tilde{u} \cos \tilde{v} $ leads to:
-\begin{equation*}
-  \dd \tilde{s}^2 = - 4 \dd \tilde{u}\, \dd \tilde{v} + \sin^2 (\tilde{u} - \tilde{v}) \dd \Omega_2^2
-\end{equation*}
-In 4d Minkowski spacetime there is an additional constraint: $ r \ge 0 $, so $ v \ge u $. Conformal compactification leads to:
-\begin{equation*}
-  - \frac{\pi}{2} \le \tilde{u} \le \tilde{v} \le + \frac{\pi}{2}
-\end{equation*}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.30 \textwidth]{ms-4d.png}
-  \caption{Penrose diagram for $ d = 1 + 3 $ Minkowski spacetime.}
-  \label{fig:ms-4d}
-\end{figure}
-
-The corresponding Penrose diagram is drawn in \figref{fig:ms-4d}: the spatial $ \Sn{2} $ is not shows for simplicity, but every point on the diagram corresponds to an $ \Sn{2} $ of radius $ \abs{\sin (\tilde{u} - \tilde{v})} $. The line $ \tilde{u} = \tilde{v} $ is not a boundary of Minkowski spacetime, but it is simply the origin $ r = 0 $ (at which $ \Sn{2} $ shrinks to a point): to illustrate this, a null geodesic is drawn.
-
-In general, Penrose diagrams are only useful for spacetimes which contain an obvious $ \Sn{2} $, i.e. those with $ \SOn{3} $ isometry: luckily, these are the simplest and most important in physics.
-
-\subsubsection{de Sitter space}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.50 \textwidth]{ds-penr.png}
-  \caption{Penrose diagram for de Sitter space.}
-  \label{fig:ds-penr}
-\end{figure}
-
-Recall global coordinates on dS: from \eref{eq:ds-global-coo}, $ \dd s^2 = -\dd \tau^2 + R^2 \cosh^2 \frac{\tau}{R} \dd \Omega_3^2 $. To draw the Penrose diagram, define \textit{conformal time} as:
-\begin{equation*}
-  \frac{\dd \eta}{\dd \tau} = \frac{1}{R \cosh (\tau / R)}
-  \quad \implies \quad
-  \cos \eta = \frac{1}{\cosh (\tau / R)}
-\end{equation*}
-Given that $ \tau \in \R $, then $ \eta \in \left( -\frac{\pi}{2}, +\frac{\pi}{2} \right) $. In conformal time, de Sitter space has the metric:
-\begin{equation*}
-  \dd s^2 = \frac{R^2}{\cos^2 \eta} \left( -\dd \eta^2 + \dd \Omega_3^2 \right)
-\end{equation*}
-Writing $ \dd \Omega_3^2 = \dd \chi^2 + \sin^2 \chi\, \dd \Omega_2^2 $, with $ \chi \in [0,\pi] $, de Sitter metric is conformally equivalent to:
-\begin{equation*}
-  d\tilde{s}^2 = -d\eta^2 + d\chi^2 + \sin^2 \chi\, d\Omega_2^2
-\end{equation*}
-After conformal compactification, $ \eta \in \left[ - \frac{\pi}{2}, + \frac{\pi}{2} \right] $ and $ \chi \in \left[ 0,\pi \right] $. The Penrose diagram is drawn in \figref{fig:ds-penr}: the two vertical lines are not boundaries of dS, but simply the north and south poles of $ \Sn{3} $. The boundaries of the spacetime are the top and bottom lines, labelled both $ i^{\pm} $ and $ \mathcal{I}^{\pm} $ as they are where both timelike and null geodesics originate and terminate.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.80 \textwidth]{ds-diam.png}
-  \caption{Event and particle horizons for an observer at the north pole in dS, and the causal diamonds for an observer at the north and south pole.}
-  \label{fig:ds-diam}
-\end{figure}
-
-\begin{proposition}{dS boundary}{}
-  de Sitter spacetime has a spacelike $ \Sn{3} $ boundary with timelike normal vector.
-\end{proposition}
-
-The causal structure of dS is very different from that of Minkowski spacetime: it is no longer true that any observer can see everything by waiting long enough. For example, as shown in \figref{fig:ds-diam}, an observer at the north pole will eventually see only exactly half the spacetime: the boundary of this half-space is the observer's \textit{event horizon}, in the sense that signals from beyond the horizon cannot reach them. It is also clear that this event horizon is observer-dependent: in this context, these are referred to as \bctxt{cosmological horizons}.
-
-Furthermore, an observer at the north pole will only be able to communicate with another half of the spacetime, as shown in \figref{fig:ds-diam}: the boundary of this region of influence is known as the \textit{particle horizon} and it represents the furthest distance light can travel since the beginning of time. Its intersection with the event horizon determines the (nothern) \bctxt{causal diamond}: usually, nothern and southern causal diamonds are causally disconnected.
-
-Penrose diagrams can also be used to explain the divergence at $ r = R $ of the metric \eref{eq:dS-metric} on the static patch of dS. Recalling the embedding of the static patch in $ \R^{1,4} $, parametrized as $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $. Naively, the surface $ r = R $ corresponds to $ X^0 = X^4 = 0 $, but writing $ r = R ( 1 - \varepsilon^2 / 2) $ yields that $ X^0 \sim R \varepsilon \sinh \frac{t}{R} $ and $ X^4 \sim R \varepsilon \cosh \frac{t}{R} $, so $ \varepsilon \rightarrow 0 $ can be obtained keeping $ X^0, X^4 \neq 0 $ and finite, provided that $ t \rightarrow \pm \infty $: to do this, $ \varepsilon \exp (\pm t / R) $ must be kept finite, thus the surface $ r = R $ is identified with the lines $ X^0 = \pm X^4 $. Translation to polar coordinates is done by $ X^0 = R \sinh \frac{\tau}{R} $ and $ X^4 = R \cosh \frac{\tau}{R} \cos \chi $, with $ \chi $ the polar angle on $ \Sn{3} $; after mapping to conformal time, one finds that:
-\begin{equation*}
-  X^0 = \pm X^4
-  \quad \iff \quad
-  \sin \eta = \pm \cos \chi
-  \quad \iff \quad
-  \chi = \pm \left( \eta - \frac{\pi}{2} \right)
-\end{equation*}
-These are precisely the lines determining the polar causal diamonds. It can also be checked that $ r = R $ on the static patch corresponds to the north pole $ \chi = 0 $ in global coordinates and that $ t = \tau $ along this line. Therefore, the static patch of dS provides coordinates that cover only the nothern causal diamond of dS spacetime, with the coordinate singularity at $ r = R $ corresponding to the past and future observer-dependent horizons.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.30 \textwidth]{ds-kill.png}
-  \caption{$ K = \pa_t $ Killing vector field in de Sitter spacetime.}
-  \label{fig:ds-kill}
-\end{figure}
-
-Finally, Penrose diagrams help to understand the nature of the $ K = \pa_t $ Killing vector field exhibited by the static patch metric. As shown in \figref{fig:ds-kill}, there's no global timelike Killing vector field in dS spacetime: extending the Killing vector beyond the static patch, i.e. the nothern causal diamond, it is timelike but past-oriented on the souther causal diamond and spacelike on the upper and lower quadrants.
-
-\subsubsection{Anti-de Sitter space}
-
-The global coordinates on AdS are, from \eref{eq:ads-metric}, $ \dd s^2 = - \cosh^2 \rho \, \dd t^2 + R^2 \dd \rho^2 + R^2 \sinh^2 \rho \, \dd \Omega_2^2 $, with $ \rho \in [0,\infty) $. Introduce a conformal radial coordinate:
-\begin{equation*}
-  \frac{\dd \psi}{\dd \rho} = \frac{1}{\cosh \rho}
-  \quad \implies \quad
-  \cos \psi = \frac{1}{\cosh \rho}
-\end{equation*}
-with $ \psi \in [0, \frac{\pi}{2}) $. With a dimensionless coordinate time $ \tilde{t} = \frac{t}{R} $, the metric becomes:
-\begin{equation*}
-  \dd s^2 = \frac{R^2}{\cos^2 \psi} \left( -\dd \tilde{t}^2 + \dd \psi^2 + \sin^2 \psi \, \dd \Omega_2^2 \right) = \frac{R^2}{\cos^2 \psi} \left( - \dd \tilde{t}^2 + \dd \Omega_3^2 \right)
-\end{equation*}
-AdS metric is therefore conformally equivalent to:
-\begin{equation*}
-  \dd \tilde{s}^2 = -\dd \tilde{t}^2 + \dd \psi^2 + \sin^2 \psi \, \dd \Omega_2^2
-\end{equation*}
-After conformal compactification, $ \tilde{t} \in \R $ and $ \psi \in \left[ 0, \frac{\pi}{2} \right] $ and the resulting Penrose diagram is the infinite strip in \figref{fig:ads-penr}. The edge at $ \psi = 0 $ is not a boundary, but the spatial origin where $ \Sn{2} $ shrinks to a point; in contrast, $ \psi = \frac{\pi}{2} $ is a boundary of the spacetime, labelled $ \mathcal{I} $, which should be viewed as a combination of $ \mathcal{I}^- $, $ \mathcal{I}^+ $ and $ i^0 $, since null and spacelike geodesics begin and end there.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.60 \textwidth]{ads-penr.png}
-  \caption{Penrose diagrams for AdS, without and with conformally compactified time coordinate.}
-  \label{fig:ads-penr}
-\end{figure}
-
-\begin{proposition}{AdS boundary}{}
-  AdS spacetime has a timelike $ \R \times \Sn{2} $ boundary with spacelike normal vector.
-\end{proposition}
-
-Note that $ \R $ is the time factor.
-The Penrose diagram clearly shows that light rays reach the boundary in finite conformal time. To study physics in AdS, one needs to specify boundary conditions at $ \mathcal{I} $: for example, reflecting boundary conditions make light rays bounce back and forth forever, rendering AdS a ``box" spacetime in which massive particle are confined in the interior and massless particles bounce off the boundary.
-
-Another characteristic of AdS space is that it is not \textit{globally hyperbolic}: there exists no Cauchy surface on which initial data can be specified. Consider for example the 3-dimensional spacelike hypersurface $ \Sigma $ in \figref{fig:ads-penr}. Specifying initial data on $ \Sigma $ it is not sufficient to solve for their time evolution: in AdS, there exist points in the future of $ \Sigma $ which are in causal contact with the boundary, thus the time evolution depends on boundary conditions too.
-
-To make the Penrose diagram for AdS not stretch to infinity, the time coordinate can be restricted to finite values by:
-\begin{equation*}
-  \tilde{t} = \tan \tau
-  \quad \implies \quad
-  \dd s^2 = \frac{R^2}{\cos^2 \psi \cos^4 \tau} \left( -\dd \tau^2 + \cos^4 \tau \, \dd \Omega_3^2 \right)
-\end{equation*}
-This metric is conformally equivalent to:
-\begin{equation*}
-  \dd \tilde{s}^2 = - \dd \tau^2 + \cos^4 \tau \left( \dd \psi^2 + \sin^2 \psi \, \dd \Omega_2^2 \right)
-\end{equation*}
-with conformally compactified $ \tau \in \left[ - \frac{\pi}{2}, + \frac{\pi}{2} \right] $. Ignoring the spatial $ \Sn{2} $, the resulting Penrose diagram is drawn in \figref{fig:ads-penr}: the spatial $ \Sn{3} $ grows and shrinks in time, the timelike boundary $ \mathcal{I} $ is still present and now the past and future timelike infinities $ i^{\pm} $ are also shown. This diagram makes it clear that a lightray bounces back and forth off the boundary of AdS an infinite number of times.
-
-\newpage
 \section{Schwarzschild solution}
 \label{sec:schwarz-sol}
 
@@ -1504,7 +1247,7 @@ Since $ \Phi(r) = - GM / r $, where $ M $ is the total mass generating the gravi
 \begin{equation}
   m = \frac{GM}{c^2}
 \end{equation}
-Hence, $ m $ can be seen as the mass of the spherically-symmetric object which generates the Schwarzschild field: this restricts the physical significance of $ m $ to $ m \in \R^+ $, as $ m = 0 $ corresponds to flat Minkowski space. As a consequence, the Schwarzschild metric describes the spacetime outside any non-rotating spherically-symmetric object, even in presence of time dependence in the internal distribution of matter (e.g. a collapsing star).
+Hence, $ m $ can be seen as the (normalized) mass of the spherically-symmetric object which generates the Schwarzschild field: this restricts the physical significance of $ m $ to $ m \in \R^+ $, as $ m = 0 $ corresponds to flat Minkowski space. As a consequence, the Schwarzschild metric describes the spacetime outside any non-rotating spherically-symmetric object, even in presence of time dependence in the internal distribution of matter (e.g. a collapsing star).
 
 Note that the solution is singular at $ r = 2m \equiv \sr $: indeed, Birkhoff's theorem only applies in the $ r > \sr $ region, while the ``interior" region, as well as the nature of the singularitis $ r = \sr $ and $ r = 0 $, remains to be studied (in \secref{sec:schwarz-horizon}). It is important to notice that $ r $ is not the ``distance from the center": indeed, given the foliated structure of the Schwarzschild spacetime, $ \dd r $ is not the distance between two 2-spheres with $ r $ and $ r + \dd r $ (defined by their surface area), which is instead $ \dd l = \dd r / \sqrt{1 - 2m / r} $. Therefore, it is clear that the $ \{t = \text{const.}\} $ sections of spacetime are non-Euclidean.
 

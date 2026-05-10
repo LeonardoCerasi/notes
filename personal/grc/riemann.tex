@@ -204,7 +204,7 @@ which is well-defined since $ p,q \in U $ connected. If $ \man $ is connected, t
 
     To prove that $ (\man,g) $ is a metric space, there only remains to show that $ \dist_g(p,q) > 0 $ for $ p \neq q \in \man $. To do so, let $ U $ be a smooth coordinate domain containing $ p $ and not $ q $, and identify it with $ U \in \tp(\R^n) $ through the corresponding smooth coordinate map.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{norm-ineq}
+    \begin{lemma}{}{norm-ineq}
       Let $ g $ be a Riemannian metric on $ U \in \tp(\R^n) $. Given a compact subset $ K \ssq U $, there exist $ c,C \in \R^+ $ such that:
       \begin{equation}
         c \norm{v}_{\bar{g}} \leq \norm{v}_g \leq C \norm{v}_{\bar{g}}
@@ -334,7 +334,6 @@ Hence, the action of $ \hat{g}^{-1} $ on a covector field raises its covariant i
   which reduces to the usual expression in the Euclidean case.
 \end{example}
 
-\newpage
 \section{Differential forms}
 
 \subsection{Grassmann algebra}
@@ -373,7 +372,7 @@ Similarly to \obsref{obs:symmetric-tensors}, it is possible to define a natural 
 \end{equation}
 which is clearly an alternating $ k $-tensor. Note that $ \Alt \vert_{\lv{k}(V)} = \id_{\lv{k}(V)} $. For computations involving alternating tensors, it is convenient to define the following notation: given $ k \in \N $, an ordered $ k $-tuple $ I = (i_1 , \dots , i_k) \in \N^k $ is a \emph{multi-index of length $ k $}. Moreover, given $ \sigma \in \sy{n} $, the permutation of $ I $ under $ \sigma $ is denoted by $ I_\sigma \equiv (i_{\sigma(1)} , \dots , i_{\sigma(k)}) $, with the convention $ I_{\sigma \tau} \equiv (I_\sigma)_\tau $ for $ \sigma , \tau \in \sy{k} $.
 
-Multi-indices allow to generalize the construction of the determinant in $ \R^n $. Let $ V $ be an $ n $-dimensional $ \R $-vector space, and suppose $ (\varepsilon^1 , \dots , \varepsilon^n) $ is a basis of $ V^* $. For each multi-index $ I = (i_1 , \dots , i_k) $ such that $ 1 \leq i_1 , \dots , i_k \leq n $, define $ \varepsilon^I \equiv \varepsilon^{i_1 \dots i_k} \in T^0_k(V) $ by:
+Multi-indices allow for the generalization of the determinant in $ \R^n $. Let $ V $ be an $ n $-dimensional $ \R $-vector space, and suppose $ (\varepsilon^1 , \dots , \varepsilon^n) $ is a basis of $ V^* $. For each multi-index $ I = (i_1 , \dots , i_k) $ such that $ 1 \leq i_1 , \dots , i_k \leq n $, define $ \varepsilon^I \equiv \varepsilon^{i_1 \dots i_k} \in T^0_k(V) $ by:
 \begin{equation}
   \varepsilon^I(v_1 , \dots , v_k) \defeq
   \begin{vmatrix}
@@ -802,7 +801,7 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
     \end{equation*}
     Now, let $ k \geq 1 $, and suppose that \eref{eq:cartan-formula} holds for all forms of degree less than $ k $. Let $ \omega \in \df{k} $ arbitrary, which in smooth local coordinates is $ \omega = {\sum_I}' \omega_I \dd x^I $, and write e.g. $ u = x^{i_1} $ and $ \beta = \omega_I \dd x^{i_2} \wedge \dots \wedge \dd x^{i_k} $. Then, it is clear that each term of the sum can be written as $ \dd u \wedge \beta $, for some $ u \in \cm $ and $ \beta \in \df{k-1} $.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{}{prod-rule-forms}
+    \begin{lemma}{}{prod-rule-forms}
       Let $ \man $ be a smooth manifold, $ V \in \xm $ and $ \omega , \eta \in \dft $. Then:
       \begin{equation}
         \ld_V (\omega \wedge \eta) = (\ld_V \omega) \wedge \eta + \omega \wedge (\ld_V \eta)
@@ -827,7 +826,6 @@ The restriction of this formula to $ 1 $-forms is particularly useful:
 
 Since $ \dd^2 = 0 $, the Lie derivative commutes with the exterior derivative: $ \ld_V (\dd \omega) = \dd (\ld_V \omega) $.
 
-\newpage
 \section{Integration}
 \label{sec:integration}
 
@@ -1577,7 +1575,6 @@ which is known as the \emph{fundamental theorem of line integrals}.
   \end{equation*}
 \end{theorem}
 
-\newpage
 \section{Connections}
 
 A key geometrical character of metric manifolds is curvature. In order to study the curvature of a metric manifold, one first needs to geodesics, i.e. the generalization of straight lines in Euclidean space. These have two defining properties: they are the unique shortest path between their endpoints, and they are the only curves parametrized with zero acceleration. In the context of metric manifolds, the first definition is rather complicated, so the second is adopted: in order to make it well-defined, it is necessary to introduce a coordinate-independent notion of directional derivative.
@@ -1599,7 +1596,7 @@ To think of $ \gamma $ as a geodesic in $ \man $, it needs to be ``as straight a
 Clearly, this technique cannot be generalized to abstract metric manifolds, in which there is no ambient Euclidean space. Indeed, in a generic metric manifold $ \man $, the velocity vector of a curve $ \gamma : I \ra \man $ is a well-defined vector $ \gamma'(t) \in T_{\gamma(t)}\man $, while its acceleration has no such coordinate-independent interpretation.
 
 \begin{example}{Coordinate-dependence of $ \gamma''(t) $ in $ \R^2 $}{coord-dep-acc}
-  Consider the parametrization of the unit circle in $ \R^2 $ in Cartesian coordinates $ \gamma(t) = (x(t) , y(t)) = (\cos t , \sin t) $, so that its acceleration vector is:
+  Consider the parametrization of the unit circle in $ \R^2 $ as $ \gamma(t) = (x(t) , y(t)) = (\cos t , \sin t) $, so that its acceleration vector is:
   \begin{equation*}
     \gamma''(t) = x''(t) \frac{\pa}{\pa x} \bigg\vert_{\gamma(t)} + y''(t) \frac{\pa}{\pa y}_{\gamma(t)} = - \cos t \frac{\pa}{\pa x} \bigg\vert_{\gamma(t)} - \sin t \frac{\pa}{\pa y} \bigg\vert_{\gamma(t)}
   \end{equation*}
@@ -1766,13 +1763,13 @@ The importance of connections comes from the fact that it is always possible to 
   \begin{proof}
     First, an auxiliary result is needed.
 
-    \begin{lemma}[borderline = {1pt}{0pt}{blue!35!black}]{Construction of connections}{construction-connection}
+    \begin{lemma}{Construction of connections}{construction-connection}
       Let $ \man $ be a smooth $ n $-manifold which admits a global frame $ (E_i) $. \eref{eq:covariant-derivative-vector} gives a one-to-one correspondence between connections in $ T\man $ and choices of $ n^3 $ smooth $ \R $-functions $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $ on $ \man $.
     \end{lemma}
 
     \begin{proofbox}
       \begin{proof}
-        Every connection determines functions $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $ by \eref{eq:connection-coefficients}, which satisfy \eref{eq:covariant-derivative-vector} by \lref{lemma:covariant-derivative-vector}.
+        Every connection determines a set of smooth functions $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $, defined by \eref{eq:connection-coefficients}, which satisfy \eref{eq:covariant-derivative-vector} by \lref{lemma:covariant-derivative-vector}.
 
         On the other hand, given $ \{\Gamma^k_{ij}\}_{i,j,k = 1 , \dots , n} $, it is possible to define $ \na_X Y $ by \eref{eq:covariant-derivative-vector}: the resulting expression is clearly smooth if $ X $ and $ Y $ are smooth, $ \R $-linear in $ Y $ and $ \cm $-linear in $ X $, and the product rule in \dref{def:koszul-connection} follows from a straightforward calculation.
       \end{proof}
@@ -1922,7 +1919,6 @@ The generalization to an arbitrary $ F \in \tns{k}{l}(\man) $ is then trivial:
 
 
 
-\newpage
 \section{Levi--Civita connections}
 
 % TODO: must rewiew
@@ -1971,7 +1967,7 @@ The fact that these are indeed tensors, i.e. they are linear in each argument, c
     \begin{equation*}
       \begin{split}
         \tensor{T}{^\rho _\mu _\nu}
-        &= T(\dd x^\rho, \pa_\mu, \pa_\nu) = \dd x^\mu (\na_\mu \pa_\nu - \na_\nu \pa_\mu - [\pa_\mu, \pa_\nu]) \\
+        &= \tors(\dd x^\rho, \pa_\mu, \pa_\nu) = \dd x^\mu (\na_\mu \pa_\nu - \na_\nu \pa_\mu - [\pa_\mu, \pa_\nu]) \\
         &= \dd x^\mu (\pa_\mu \pa_\nu - \Gamma^\sigma_{\mu \nu} \pa_\sigma - \pa_\nu \pa_\mu + \Gamma^\sigma_{\nu \mu} \pa_\sigma) \\
         &= \left[ \Gamma^\sigma_{\mu \nu} - \Gamma^\sigma_{\nu \mu} \right] \delta^\mu_\sigma = \Gamma^\rho_{\mu \nu} - \Gamma^\rho_{\nu \mu}
       \end{split}
@@ -2040,7 +2036,7 @@ Clearly, the curvature tensor is anti-symmetric in its last two lower indices, i
 The discussion on the connection has so far been independent of the metric. Starting to consider it, an important result is the fundamental theorem of Riemannian geometry.
 
 \begin{theorem}{Riemann's theorem}{}
-  On a metric manifold $ (\mathcal{M},g) $, there exists a unique torsion-free connection that is compatible with the metric, i.e. for all $ X \in \xm $:
+  On a metric manifold $ (\man,g) $, there exists a unique torsion-free connection that is compatible with the metric, i.e. for all $ X \in \xm $:
   \begin{equation}
     \na_X g = 0
   \end{equation}
@@ -2221,7 +2217,7 @@ The divergence theorem (or Gauss' theorem) states that the integral of a total d
 \end{proofbox}
 
 \begin{theorem}{Gauss' theorem}{gauss}
-  Given a Riemannian manifold $ (\mathcal{M},g) $, consider a region $ M \subseteq \mathcal{M} $ with boundary $ \pa M $ and let $ n^\mu $ be an outward-pointing unit vector orthogonal to $ \pa M $. Then, for any vector field $ X^\mu $ on $ M $:
+  Given a Riemannian manifold $ (\man,g) $, consider a region $ M \subseteq \man $ with boundary $ \pa M $ and let $ n^\mu $ be an outward-pointing unit vector orthogonal to $ \pa M $. Then, for any vector field $ X^\mu $ on $ M $:
   \begin{equation}
     \int_M \dd^n x \sqg\, \na_\mu X^\mu = \int_{\pa M} \dd^{n-1} x \sqrt{\gamma}\, n_\mu X^\mu
     \label{eq:gauss-theorem}
@@ -2253,7 +2249,6 @@ The divergence theorem (or Gauss' theorem) states that the integral of a total d
 
 Note that this theorem holds on Lorentzian manifolds too, with the condition that $ \pa M $ must be purely timelike or purely spacelike, ensuring that $ \gamma \neq 0 $ at any point.
 
-\newpage
 \section{Parallel transport}
 
 % TODO: must rewiew
@@ -2272,7 +2267,7 @@ The connection connects tangent spaces, or more generally any tensor vector spac
   \end{equation}
 \end{definition}
 
-Suppose that $ \gamma $ connects two points $ p,q \in \mathcal{M} $: \eref{eq:parallel-transport} provides a map from the tensor vector space defined at $ p $ to that defined at $ q $. To illustrate this, consider the parallel transport of a vector field $ Y $:
+Suppose that $ \gamma $ connects two points $ p,q \in \man $: \eref{eq:parallel-transport} provides a map from the tensor vector space defined at $ p $ to that defined at $ q $. To illustrate this, consider the parallel transport of a vector field $ Y $:
 \begin{equation*}
   X^\nu (\pa_\nu Y^\mu + \Gamma^\mu_{\nu \rho} Y^\rho) = 0
 \end{equation*}
@@ -2315,7 +2310,7 @@ For the Levi--Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely t
 \subsection{Normal coordinates}
 
 \begin{theorem}{Equivalence principle}{equivalence}
-  Given a Riemannian manifold $ (\mathcal{M},g) $ and $ p \in \mathcal{M} $, in a neighbourhood of $ p $ it is always possible to find coordinates, called \bcth{normal coordinates}, such that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $ and $ g_{\mu \nu , \rho}(p) = 0 $.
+  Given a Riemannian manifold $ (\man,g) $ and $ p \in \man $, in a neighbourhood of $ p $ it is always possible to find coordinates, called \bcth{normal coordinates}, such that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $ and $ g_{\mu \nu , \rho}(p) = 0 $.
 \end{theorem}
 
 \begin{proofbox}
@@ -2332,7 +2327,7 @@ For the Levi--Civita connection $ \na_X g = 0 $. If $ Y \in \xm $ is parallely t
     \begin{equation*}
       \frac{\pa y^\rho}{\pa x^\mu}\bigg\vert_{x = 0} \frac{\pa y^\sigma}{\pa x^\nu}\bigg\vert_{x = 0} \tilde{g}_{\rho \sigma}(p) = \delta_{\mu \nu}
     \end{equation*}
-    Given any $ \tilde{g}_{\rho \sigma}(p) $, it is always possible to find $ \frac{\pa y}{\pa x} $ that satisfies this condition. In fact, if $ \dim_{\R} \mathcal{M} = n $, the Jacobian of the transformation has $ n^2 $ independent elements and the equation above puts $ \frac{1}{2} n (n + 1) $ constraints: the remaining free parameters are $ \frac{1}{2} n (n - 1) $, which is precisely the dimension of $ \SOn{n} $, the symmetry group of the flat metric.
+    Given any $ \tilde{g}_{\rho \sigma}(p) $, it is always possible to find $ \frac{\pa y}{\pa x} $ that satisfies this condition. In fact, if $ \dim_{\R} \man = n $, the Jacobian of the transformation has $ n^2 $ independent elements and the equation above puts $ \frac{1}{2} n (n + 1) $ constraints: the remaining free parameters are $ \frac{1}{2} n (n - 1) $, which is precisely the dimension of $ \SOn{n} $, the symmetry group of the flat metric.
     A similar counting shows that $ g_{\mu \nu , \rho}(p) = 0 $ puts $ \frac{1}{2} n^2 (n + 1) $ constraints, precisely the number of independent elements of the Hessian of the transformation.
   \end{proof}
 \end{proofbox}
@@ -2348,11 +2343,11 @@ This theorem holds for Lorentzian manifolds too, but the flat metric is now $ \e
   \label{fig:exp-map}
 \end{figure}
 
-A simple way to construct normal coordinates is the following: given a tangent vector $ X_p \in T_p \mathcal{M} $, there is a unique affinely parametrized geodesic through $ p $ with tangent vector $ X_p $ at $ p $; then, any point $ q $ in the neighbourhood of $ p $ is labelled by the coordinates of the geodesic that takes from $ p $ to $ q $ a fixed amount of time.
+A simple way to construct normal coordinates is the following: given a tangent vector $ X_p \in T_p \man $, there is a unique affinely parametrized geodesic through $ p $ with tangent vector $ X_p $ at $ p $; then, any point $ q $ in the neighbourhood of $ p $ is labelled by the coordinates of the geodesic that takes from $ p $ to $ q $ a fixed amount of time.
 
-Analytically, introducing a coordinate system (not necessarily normal) $ \tilde{x}^\mu $ in the neighbourhood of $ p $, an affinely parametrized geodesic solves \eref{eq:geodesic-equation}, with initial conditions $ \frac{\pa \tilde{x}^\mu}{\pa \tau}\vert_{\tau = 0} = \tilde{X}_p^\mu $ and $ \tilde{x}^\mu (\tau = 0) = 0 $ that make the solution unique. The uniqueness of the solution allows to define a map $ \Exp : T_p \mathcal{M} \rightarrow \mathcal{M} $, called the \bctxt{exponential map}, which acts as follows: given $ X_p \in T_p \mathcal{M} $, construct the appropriate geodesic as above and follow it for a fixed affine distance, conventionally $ \tau = 1 $, to get a new point $ q \in \mathcal{M} $. See Fig. \figref{fig:exp-map} for visual aid. Obviously, there may be points which cannot be reached from $ p $ by geodesics, or there may be tangent vectors $ X_p $ for which $ \Exp $ is ill-defined: in General Relativity, this occurs when spacetime has singularities, but these are not relevant issues.
+Analytically, introducing a coordinate system (not necessarily normal) $ \tilde{x}^\mu $ in the neighbourhood of $ p $, an affinely parametrized geodesic solves \eref{eq:geodesic-equation}, with initial conditions $ \frac{\pa \tilde{x}^\mu}{\pa \tau}\vert_{\tau = 0} = \tilde{X}_p^\mu $ and $ \tilde{x}^\mu (\tau = 0) = 0 $ that make the solution unique. The uniqueness of the solution allows to define a map $ \Exp : T_p \man \rightarrow \man $, called the \bctxt{exponential map}, which acts as follows: given $ X_p \in T_p \man $, construct the appropriate geodesic as above and follow it for a fixed affine distance, conventionally $ \tau = 1 $, to get a new point $ q \in \man $. See Fig. \figref{fig:exp-map} for visual aid. Obviously, there may be points which cannot be reached from $ p $ by geodesics, or there may be tangent vectors $ X_p $ for which $ \Exp $ is ill-defined: in General Relativity, this occurs when spacetime has singularities, but these are not relevant issues.
 
-Pick a basis $ \{e_\mu\} $ of $ T_p \mathcal{M} $. Then $ \Exp : T_p \mathcal{M} \ni X^\mu e_\mu \mapsto q \in \mathcal{M} $, thus it is possible to assign coordinates in the neighbourhood of $ p $ such that $ x^\mu(q) = X^\mu $: these are the normal coordinates. To show this, note that if $ \{e_\mu\} $ is orthonormal, then the geodesics will point in orthogonal directions, ensuring that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $. Now, fix a point $ q $ associated to a given tangent vector $ X_p \in T_p \mathcal{M} $: this means that $ q $ is at distance $ \tau = 1 $ from $ p $ along the given geodesic. Note that the geodesic equation is homogeneous in $ \tau $, thus in general $ \Exp : \tau X_p \mapsto x^\mu(\tau) = \tau X^\mu $, which means that geodesics take a simple form in these coordinates:
+Pick a basis $ \{e_\mu\} $ of $ T_p \man $. Then $ \Exp : T_p \man \ni X^\mu e_\mu \mapsto q \in \man $, thus it is possible to assign coordinates in the neighbourhood of $ p $ such that $ x^\mu(q) = X^\mu $: these are the normal coordinates. To show this, note that if $ \{e_\mu\} $ is orthonormal, then the geodesics will point in orthogonal directions, ensuring that $ g_{\mu \nu}(p) = \delta_{\mu \nu} $. Now, fix a point $ q $ associated to a given tangent vector $ X_p \in T_p \man $: this means that $ q $ is at distance $ \tau = 1 $ from $ p $ along the given geodesic. Note that the geodesic equation is homogeneous in $ \tau $, thus in general $ \Exp : \tau X_p \mapsto x^\mu(\tau) = \tau X^\mu $, which means that geodesics take a simple form in these coordinates:
 \begin{equation*}
   x^\mu (\tau) = \tau X^\mu
 \end{equation*}
@@ -2377,7 +2372,7 @@ To understand what ``local" means, note that there is a way to distinguish wheth
   \label{fig:par-tr}
 \end{figure}
 
-With reference to \figref{fig:par-tr}, consider a tangent vector $ Z_p \in T_p \mathcal{M} $ and two vector fields $ X,Y \in \xm : [X,Y] = 0 $, i.e. they are linearly independent. Construct two curves $ \gamma, \gamma' $ as in figure, both leading to a point $ r \in \mathcal{M} $ which, for simplicity, is close to $ p $. It is possible to impose normal coordinates centered at $ p $ such that $ x^\mu = (\tau, \sigma, \dots) $, so that $ X = \frac{\pa}{\pa \tau} $ and $ Y = \frac{\pa}{\pa \sigma} $: then $ x^\mu(p) = (0,0,0, \dots) $, $ X^\mu(q) = (\delta \tau, 0, 0, \dots) $, $ x^\mu(s) = (0, \delta \sigma, 0, \dots) $ and $ x^\mu(r) = (\delta \tau, \delta \sigma, 0, \dots)$, with $ \delta \tau, \delta \sigma $ small.\\
+With reference to \figref{fig:par-tr}, consider a tangent vector $ Z_p \in T_p \man $ and two vector fields $ X,Y \in \xm : [X,Y] = 0 $, i.e. they are linearly independent. Construct two curves $ \gamma, \gamma' $ as in figure, both leading to a point $ r \in \man $ which, for simplicity, is close to $ p $. It is possible to impose normal coordinates centered at $ p $ such that $ x^\mu = (\tau, \sigma, \dots) $, so that $ X = \frac{\pa}{\pa \tau} $ and $ Y = \frac{\pa}{\pa \sigma} $: then $ x^\mu(p) = (0,0,0, \dots) $, $ X^\mu(q) = (\delta \tau, 0, 0, \dots) $, $ x^\mu(s) = (0, \delta \sigma, 0, \dots) $ and $ x^\mu(r) = (\delta \tau, \delta \sigma, 0, \dots)$, with $ \delta \tau, \delta \sigma $ small.\\
 First, parallel transport $ Z_p $ along $ X $ to $ Z_q $, so that $ Z^\mu $ solves:
 \begin{equation*}
   \frac{\dd Z^\mu}{\dd \tau} + X^\nu \Gamma^\mu_{\nu \rho} Z^\rho = 0
@@ -2431,17 +2426,17 @@ It would be possible to evaluate the expression at $ r $ too, as it would differ
   \label{fig:torsion}
 \end{figure}
 
-Consider two tangent vectors $ X_p,Y_p \in T_p \mathcal{M} $ and a coordinate system $ x^\mu $ such that $ X_p = X^\mu \pa_\mu $ and $ Y_p = Y^\mu \pa_\mu $. If $ p : x^\mu $, as in \figref{fig:torsion} construct $ r,s \in \mathcal{M} $ such that $ r : x^\mu + \varepsilon X^\mu $ and $ s : x^\mu + \varepsilon Y^\mu $, with $ \varepsilon $ an infinitesimal parameter. Now, parallel transport $ X_p \in T_p \mathcal{M} $ along the direction of $ Y_p $ to $ X'_s \in T_s \mathcal{M} $ and $ Y_p \in T_p \mathcal{M} $ along $ X_p $ to $ Y'_r \in T_r \mathcal{M} $; their components will be:
+Consider two tangent vectors $ X_p,Y_p \in T_p \man $ and a coordinate system $ x^\mu $ such that $ X_p = X^\mu \pa_\mu $ and $ Y_p = Y^\mu \pa_\mu $. If $ p : x^\mu $, as in \figref{fig:torsion} construct $ r,s \in \man $ such that $ r : x^\mu + \varepsilon X^\mu $ and $ s : x^\mu + \varepsilon Y^\mu $, with $ \varepsilon $ an infinitesimal parameter. Now, parallel transport $ X_p \in T_p \man $ along the direction of $ Y_p $ to $ X'_s \in T_s \man $ and $ Y_p \in T_p \man $ along $ X_p $ to $ Y'_r \in T_r \man $; their components will be:
 \begin{equation*}
   X'_s = \left( X^\mu - \varepsilon \Gamma^\mu_{\nu \rho} Y^\nu X^\rho \right)
   \qquad \qquad
   Y'_r = \left( Y^\mu - \varepsilon \Gamma^\mu_{\nu \rho} X^\nu Y^\rho \right)
 \end{equation*}
-Repeating this process, starting from point $ s $ and moving along the direction of $ X'_s $, a new point $ q \in \mathcal{M} $ is determined, with coordinates:
+Repeating this process, starting from point $ s $ and moving along the direction of $ X'_s $, a new point $ q \in \man $ is determined, with coordinates:
 \begin{equation*}
   q : x^\mu + \varepsilon \left( X^\mu + Y^\mu \right) - \varepsilon^2 \Gamma^\mu_{\nu \rho} Y^\nu X^\rho
 \end{equation*}
-Analogously, starting at point $ r $ and moving along the direction of $ Y'_r $, a new point $ t \in \mathcal{M} $ is determined, with coordinates:
+Analogously, starting at point $ r $ and moving along the direction of $ Y'_r $, a new point $ t \in \man $ is determined, with coordinates:
 \begin{equation*}
   t : x^\mu + \varepsilon \left( X^\mu + Y^\mu \right) - \varepsilon^2 \Gamma^\mu_{\nu \rho} X^\nu Y^\rho
 \end{equation*}
@@ -2451,7 +2446,7 @@ If the connection is torsion-free, then $ q \equiv t $. On the other hand, if $ 
 \label{ssec:geo-dev}
 
 \begin{definition}{Tangent and deviation vector fields}{}
-  Given a one-parameter family of geodesics $ \{x^\mu(\tau;s)\}_{s \in \R} $ on a manifold $ \mathcal{M} $, the \bcdef{tangent vector field} and the \bcdef{deviation vector field} are defined as:
+  Given a one-parameter family of geodesics $ \{x^\mu(\tau;s)\}_{s \in \R} $ on a manifold $ \man $, the \bcdef{tangent vector field} and the \bcdef{deviation vector field} are defined as:
   \begin{equation}
     X^\mu \defeq \frac{\pa x^\mu}{\pa \tau}\bigg\vert_s
     \qquad \qquad

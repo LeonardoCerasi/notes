@@ -1,3 +1,36 @@
+% GLOBALS
+% ============================================================================================================
+
+% no blank pages
+\let\cleardoublepage\clearpage
+% removes indentation
+\setlength{\parindent}{0pt}
+% add subsubsection numbering
+\setcounter{secnumdepth}{3}
+
+% COLORS
+% ============================================================================================================
+
+% main colors
+\newcommand{\primcol}{red!90!black}
+\newcommand{\primarycolor}{\color{\primcol}}
+\newcommand{\seccol}{black}
+\newcommand{\secondarycolor}{\color{\seccol}}
+
+% tcolorbox colors
+\newcommand{\emptycolor}{black!0}
+\newcommand{\backgroundcolor}{black!10}
+\newcommand{\titlecolor}{black}
+\newcommand{\framecolor}{black!70}
+
+% hyper colors
+\newcommand{\linkcol}{\primcol}
+\newcommand{\urlcol}{cyan!80!black}
+\newcommand{\citecol}{green!70!black}
+
+% NUMBERING
+% ============================================================================================================
+
 % equation numbering
 \numberwithin{equation}{section}
 
@@ -17,6 +50,8 @@
 \renewcommand{\@makefnmark}{\hbox{\@textsuperscript{\sffamily\@thefnmark}}}
 \makeatother
 
+% SECTIONING
+% ============================================================================================================
 
 % sectioning
 \usepackage{titlesec}
@@ -29,31 +64,32 @@
 
 \titleformat{\part}[display]
   {\normalfont \sffamily \bfseries \centering}
-  {\color{blue!70!black} \Large \partname \, \thepart}
+  {\secondarycolor \Large \partname \, \thepart}
   {10pt} % vertical spacing
   {\Huge}
 
 \titleformat{\chapter}[display]
   {\normalfont \sffamily \bfseries}
-  {\color{blue!70!black} \large \chaptertitlename \, \thechapter}
+  {\secondarycolor \large \chaptertitlename \, \thechapter}
   {1pt}
   {\titlerule[1pt] \vspace{7pt} \Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
 
 \titleformat{\section}
   {\normalfont \sffamily \Large}
-  {\color{red!70!black} §\bfseries\thesection}
+  {\primarycolor §\bfseries\thesection}
   {10pt}
   {\bfseries}
 
 \titleformat{\subsection}
   {\normalfont \sffamily \large}
-  {\color{red!70!black} §\bfseries\thesubsection}
+  {\primarycolor §\bfseries\thesubsection}
   {10pt}
   {\bfseries}
 
 \titleformat{\subsubsection}
   {\normalfont \sffamily}
-  {\color{red!70!black} §\bfseries\thesubsubsection}
+  {\primarycolor §\bfseries\thesubsubsection}
   {10pt}
   {\bfseries}
 
@@ -63,42 +99,18 @@
   {1em}
   {\bfseries}
 
-\renewcommand{\appendixtocname}{\sffamily Appendices}
-\renewcommand{\appendixpagename}{\sffamily \Huge \bfseries Appendices}
-
-% custom table of contents
-\usepackage{tocloft}
-
-\setcounter{tocdepth}{3}
-
-\renewcommand{\cfttoctitlefont}{\sffamily \Huge \bfseries} % title font
-% part
-\renewcommand{\cftpartfont}{\sffamily \large \bfseries}
-\renewcommand{\cftpartpagefont}{\sffamily \large \bfseries}
-\renewcommand{\cftpartpresnum}{\sffamily \color{blue!70!black}}
-% chapter
-\renewcommand{\cftchapfont}{\sffamily \bfseries}
-\renewcommand{\cftchappagefont}{\sffamily \bfseries}
-\renewcommand{\cftchappresnum}{\sffamily \color{blue!70!black}}
-% section
-\renewcommand{\cftsecfont}{\sffamily}
-\renewcommand{\cftsecpagefont}{\sffamily}
-\renewcommand{\cftsecpresnum}{\sffamily \color{red!70!black}}
-% subsection
-\renewcommand{\cftsubsecfont}{\sffamily}
-\renewcommand{\cftsubsecpagefont}{\sffamily}
-\renewcommand{\cftsubsecpresnum}{\sffamily \color{red!70!black}}
-% subsubsection
-\renewcommand{\cftsubsubsecfont}{\sffamily}
-\renewcommand{\cftsubsubsecpagefont}{\sffamily}
-\renewcommand{\cftsubsubsecpresnum}{\sffamily \color{red!70!black}}
-
 % unnumbered chapter
 \titleformat{name = \chapter, numberless}[block]
   {\centering \sffamily \bfseries \Large}
   {}
   {0pt}
   {}
+
+\renewcommand{\appendixtocname}{\sffamily Appendices}
+\renewcommand{\appendixpagename}{\sffamily \Huge \bfseries Appendices}
+
+% HEADERS AND FOOTERS
+% ============================================================================================================
 
 % headers and foooters
 \usepackage{fancyhdr}
@@ -127,85 +139,57 @@
 
 \fancypagestyle{body}{%
   \fancyhead[LE,RO]{\sffamily\thepage}%
-  \fancyhead[LO]{\sffamily \color{blue!70!black}\chaptername\ \thechapter\color{black} :\ \leftmark}%
-  \fancyhead[RE]{\sffamily \color{blue!70!black}\partname\ \thepart\color{black} :\ \parttitle}%
+  \fancyhead[LO]{\centering \sffamily \bfseries \leftmark}%
+  \fancyhead[RE]{\centering \sffamily \bfseries \parttitle}%
 }
 
 % special header for the thesis (without parts) --- SECTION NAME HARDCODED
 \fancypagestyle{body-thesis}{%
   \fancyhead[LE,RO]{\sffamily\thepage}%
-  \fancyhead[LO]{\sffamily \color{blue!70!black}\chaptername\ \thechapter\color{black} :\ \leftmark}%
-  \fancyhead[RE]{\sffamily \color{red!70!black}Section\ \thesection\color{black} :\ \rightmark}%
+  \fancyhead[LO]{\centering \sffamily \leftmark}%
+  \fancyhead[RE]{\centering \sffamily \rightmark}%
 }
 
 % special header for Introduction
 \fancypagestyle{introd}{%
   \fancyhead[LE,RO]{\sffamily \thepage}%
-  \fancyhead[RE,LO]{\sffamily Introduction}%
+  \fancyhead[RE,LO]{\centering \sffamily Introduction}%
 }
 
 % special header for Contents
 \fancypagestyle{contents}{%
   \fancyhead[LE,RO]{\sffamily \thepage}%
-  \fancyhead[RE,LO]{\sffamily Contents}%
+  \fancyhead[RE,LO]{\centering \sffamily Contents}%
 }
 
 % special header for Appendix
 \fancypagestyle{append}{%
   \fancyhead[LE,RO]{\sffamily \thepage}%
-  \fancyhead[LO]{\sffamily \color{blue!70!black}\appendixname\ \thechapter \color{black}:\ \leftmark}%
-  \fancyhead[RE]{\sffamily Appendices}%
+  \fancyhead[LO]{\centering \sffamily \leftmark}%
+  \fancyhead[RE]{\centering \sffamily Appendices}%
 }
 
 % special header for Bibliography
 \fancypagestyle{biblio}{%
   \fancyhead[LE,RO]{\sffamily \thepage}%
-  \fancyhead[RE,LO]{\sffamily Bibliography}%
+  \fancyhead[RE,LO]{\centering \sffamily Bibliography}%
 }
 
 % special header for Abstract
 \fancypagestyle{abstract}{%
   \fancyhead[LE,RO]{\sffamily \thepage}%
-  \fancyhead[RE,LO]{\sffamily Abstract}%
+  \fancyhead[RE,LO]{\centering \sffamily Abstract}%
 }
 
 % special header for Notation
 \fancypagestyle{notation}{%
   \fancyhead[LE,RO]{\sffamily \thepage}%
-  \fancyhead[RE,LO]{\sffamily Notation}%
+  \fancyhead[RE,LO]{\centering \sffamily Notation}%
 }
 
-% no blank pages
-\let\cleardoublepage\clearpage
-% removes indentation
-\setlength{\parindent}{0pt}
-% add subsubsection numbering
-\setcounter{secnumdepth}{3}
+% COLOR BOXES
+% ============================================================================================================
 
-% bold text
-
-\newcommand{\bctxt}[1]{\textcolor{blue!70!black}{\sffamily \textbf{#1}}}
-
-\newcommand{\bcdef}[1]{\textcolor{green!50!black}{\sffamily \textbf{#1}}}
-\newcommand{\defcol}[1]{{\color{green!40!black}{#1}}}
-
-\newcommand{\bcth}[1]{\textcolor{red!50!black}{\sffamily \textbf{#1}}}
-\newcommand{\thcol}[1]{\color{red!40!black}{#1}}
-
-\newcommand{\bcthcol}[1]{\textcolor{red!35!black}{\sffamily \textbf{#1}}}
-\newcommand{\thcorcol}[1]{\color{red!30!black}{#1}}
-
-\newcommand{\bclemma}[1]{\textcolor{blue!35!black}{\sffamily \textbf{#1}}}
-\newcommand{\lemmacol}[1]{\color{blue!30!black}{#1}}
-
-\newcommand{\bcprop}[1]{\textcolor{cyan!35!black}{\sffamily \textbf{#1}}}
-\newcommand{\propcol}[1]{\color{cyan!30!black}{#1}}
-
-\newcommand{\bcex}[1]{\textcolor{yellow!35!black}{\sffamily \textbf{#1}}}
-
-\newcommand{\bcobs}[1]{\textcolor{brown!35!black}{\sffamily \textbf{#1}}}
-
-% fancy environments
 \usepackage[many]{tcolorbox}
 \BeforeBeginEnvironment{tcolorbox}{\savenotes}
 \AfterEndEnvironment{tcolorbox}{\spewnotes}
@@ -215,9 +199,9 @@
 \NewTcbTheorem[number within=section]{definition}{Definition}{%
   enhanced,%
   breakable,%
-  colback = green!10,%
-  colframe = green!5,%
-  coltitle = green!50!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -229,15 +213,15 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{def}
 
 \newtcbtheorem[number within=section]{theorem}{Theorem}{%
   enhanced,%
   breakable,%
-  colback = red!5,%
-  colframe = red!5,%
-  coltitle = red!50!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -249,15 +233,15 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{th}
 
 \newtcbtheorem[number within=tcb@cnt@theorem]{corollary}{Corollary}{%
   enhanced,%
   breakable,%
-  colback = red!5,%
-  colframe = red!5,%
-  coltitle = red!35!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -269,15 +253,15 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{cor}
 
 \newtcbtheorem[number within=section]{lemma}{Lemma}{%
   enhanced,%
   breakable,%
-  colback = blue!5,%
-  colframe = blue!5,%
-  coltitle = blue!35!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -289,15 +273,15 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{lemma}
 
 \newtcbtheorem[number within=tcb@cnt@lemma]{lemcorollary}{Corollary}{%
   enhanced,%
   breakable,%
-  colback = blue!5,%
-  colframe = blue!5,%
-  coltitle = blue!35!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -309,15 +293,15 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{cor}
 
 \newtcbtheorem[number within=section]{proposition}{Proposition}{%
   enhanced,%
   breakable,%
-  colback = cyan!5,%
-  colframe = cyan!5,%
-  coltitle = cyan!35!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -329,15 +313,15 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{prop}
 
 \newtcbtheorem[number within=tcb@cnt@proposition]{propcorollary}{Corollary}{%
   enhanced,%
   breakable,%
-  colback = cyan!5,%
-  colframe = cyan!5,%
-  coltitle = cyan!35!black,%
+  colback = \backgroundcolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -349,35 +333,36 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
 }{cor}
 
 \newtcbtheorem[number within=section]{example}{Example}{%
   enhanced,%
   breakable,%
-  colback = yellow!10,%
-  colframe = yellow!5,%
-  coltitle = yellow!35!black,%
+  colback = \emptycolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
   detach title,%
   before upper = {\tcbtitle\\[4pt]},%
-  left = 5pt,%
-  right = 5pt,%
-  top = 5pt,%
-  bottom = 5pt,%
+  left = 4pt,%
+  right = 0pt,%
+  top = 0pt,%
+  bottom = 0pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
+  borderline west = {1pt}{0pt}{\framecolor},%
 }{ex}
 
 \newtcbtheorem[number within=section]{observation}{Observation}{%
   enhanced,%
   breakable,%
-  colback = brown!10,%
-  colframe = brown!5,%
-  coltitle = brown!35!black,%
+  colback = \emptycolor,%
+  colframe = \emptycolor,%
+  coltitle = \titlecolor,%
   fonttitle = \sffamily\bfseries,%
   sharp corners,%
   boxrule = 0pt,%
@@ -389,22 +374,112 @@
   bottom = 5pt,%
   separator sign none,%
   description delimiters parenthesis,%
-  description font = \mdseries%
+  description font = \mdseries,%
+  borderline north = {1pt}{0pt}{\framecolor},%
+  borderline south = {1pt}{0pt}{\framecolor},%
+  borderline west = {1pt}{0pt}{\framecolor},%
+  borderline east = {1pt}{0pt}{\framecolor},%
 }{obs}
 
 \newtcolorbox{proofbox}{%
   enhanced,%
   breakable,%
-  colback = black!5,%
-  colframe = black!5,%
+  colback = \emptycolor,%
+  colframe = \emptycolor,%
   sharp corners,%
   boxrule = 0pt,%
-  left = 5pt,%
-  right = 5pt,%
-  top = 5pt,%
-  bottom = 5pt,%
-  borderline west = {1pt}{0pt}{black!70},%
+  left = 4pt,%
+  right = 0pt,%
+  top = 0pt,%
+  bottom = 0pt,%
+  borderline west = {1pt}{0pt}{\framecolor},%
 }
+
+% TABLE OF CONTENTS
+% ============================================================================================================
+
+% global table of contents
+\usepackage{tocloft}
+
+\setcounter{tocdepth}{3}
+
+\renewcommand{\cfttoctitlefont}{\sffamily \Huge \bfseries} % title font
+% part
+\renewcommand{\cftpartfont}{\sffamily \large \bfseries}
+\renewcommand{\cftpartpagefont}{\sffamily \large \bfseries}
+\renewcommand{\cftpartpresnum}{\sffamily \secondarycolor}
+% chapter
+\renewcommand{\cftchapfont}{\sffamily \bfseries}
+\renewcommand{\cftchappagefont}{\sffamily \bfseries}
+\renewcommand{\cftchappresnum}{\sffamily \secondarycolor}
+% section
+\renewcommand{\cftsecfont}{\sffamily}
+\renewcommand{\cftsecpagefont}{\sffamily}
+\renewcommand{\cftsecpresnum}{\sffamily \primarycolor}
+% subsection
+\renewcommand{\cftsubsecfont}{\sffamily}
+\renewcommand{\cftsubsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecpresnum}{\sffamily \primarycolor}
+% subsubsection
+\renewcommand{\cftsubsubsecfont}{\sffamily}
+\renewcommand{\cftsubsubsecpagefont}{\sffamily}
+\renewcommand{\cftsubsubsecpresnum}{\sffamily \primarycolor}
+
+% global table of contents
+\newcommand{\toc}{%
+  \hypersetup{linkcolor = black}%
+  \tableofcontents%
+  \hypersetup{linkcolor = \linkcol}%
+}
+
+% local table of contents
+\usepackage{etoc}
+
+\newcommand{\localtoc}{%
+  \hypersetup{linkcolor = black}%
+  \par
+  {\sffamily \bfseries Contents}%
+  \vspace{1.5ex}%
+  \hrule height 0.4pt
+  \vspace{1.5ex}%
+  {%
+    \etocsettocstyle{}{}%
+    \etocsetnexttocdepth{1}%
+    \localtableofcontents%
+  }%
+  \par
+  \vspace{1.5ex}%
+  \hrule height 0.4pt
+  \vspace{1.5ex}%
+  \hypersetup{linkcolor = \primcol}%
+  \vspace{10pt}
+}
+
+\let\oldchapter\chapter
+\RenewDocumentCommand \chapter { s +O {#3} +m }
+{
+  \IfBooleanTF {#1}{
+    \oldchapter*{#3}
+  }{
+    \oldchapter[#2]{#3}
+    \localtoc
+  }
+}
+
+% REFERENCES
+% ============================================================================================================
+
+% hyper-references
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor = \linkcol,
+  urlcolor = \urlcol,
+  citecolor = \citecol,
+}
+
+% REFENCE COMMANDS
+% ============================================================================================================
 
 % custom references
 \newcommand{\eref}[1]{\textsf{Eq.\,\ref{#1}}}
@@ -422,22 +497,32 @@
 \newcommand{\figref}[1]{\textsf{Fig.\,\ref{#1}}}
 \newcommand{\tabref}[1]{\textsf{Tab.\,\ref{#1}}}
 
-\newcommand{\secref}[1]{\textcolor{red!70!black}{\textsf{§\ref{#1}}}}
+\newcommand{\secref}[1]{{\primarycolor{\textsf{§\ref{#1}}}}}
 
 \newcommand{\itemref}[1]{\textsf{(\ref{#1})}}
 \newcommand{\iitemref}[2]{\textsf{(\ref{#1})-(\ref{#2})}}
 
-% hyper-references
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks = true,
-  urlcolor = cyan,
-  % linkcolor defined directly in \toc environment
-  citecolor = green!70!black,
-}
+% HIGHLIGHTING COMMANDS
+% ============================================================================================================
 
-\newcommand{\toc}{%
-  \hypersetup{linkcolor = black}%
-  \tableofcontents%
-  \hypersetup{linkcolor = red!70!black}%
-}
+% bold text
+\newcommand{\bctxt}[1]{{\textit{\textbf{#1}}}}
+
+\newcommand{\bcdef}[1]{{\textit{\textbf{#1}}}}
+\newcommand{\defcol}[1]{{\primarycolor{#1}}}
+
+\newcommand{\bcth}[1]{{\textit{\textbf{#1}}}}
+\newcommand{\thcol}[1]{{\primarycolor{#1}}}
+
+\newcommand{\bclemma}[1]{{\textit{\textbf{#1}}}}
+\newcommand{\lemmacol}[1]{{\primarycolor{#1}}}
+
+\newcommand{\bcprop}[1]{{\textit{\textbf{#1}}}}
+\newcommand{\propcol}[1]{{\primarycolor{#1}}}
+
+\newcommand{\bcex}[1]{{\textit{\textbf{#1}}}}
+\newcommand{\excol}[1]{{\primarycolor{#1}}}
+
+\newcommand{\bcobs}[1]{{\textit{\textbf{#1}}}}
+\newcommand{\obscol}[1]{{\primarycolor{#1}}}
+
