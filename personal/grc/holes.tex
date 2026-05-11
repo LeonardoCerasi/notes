@@ -45,7 +45,260 @@ Inescapability is only one of the two naive defining features of black holes, an
 
 The necessity of the localization condition is then evident, since it forces the black hole region to have a final spatial extent, so that particles inside it cannot travel to infinitely remote regions. To formalize this concept in a coordinate-independent way, one introduces a so-called \emph{conformal completion} of the spacetime $ (\man , g) $, which brings its infinities to a finite distance in another manifold.
 
-\subsection{Conformal completion}
+\subsection{Conformal completions}
+
+The machinery of conformal completions is based on conformal transformations between spacetimes, which turn out to preserve their causal structure, thus allowing to study their ``behaviour at infinity" and, eventually, to geive a formal definition of black hole.
+
+\subsubsection{Conformal transformations}
+
+\begin{definition}{Conformal embedding}{}
+  Let $ (\man , g) $ and $ (\tilde{\man} , \tilde{g}) $ be two metric manifolds. A \bcdef{conformal embedding} of $ \man $ into $ \tilde{\man} $ is a smooth embedding $ \Phi : \man \ra \tilde{\man} $ equipped with $ \Omega \in \cfk{\infty}(\man , \R^+) $ such that:
+  \begin{equation}
+    \tilde{g} \vert_{\Phi(\man)} = \Omega^2 g
+    \label{eq:conformal-relation}
+  \end{equation}
+\end{definition}
+
+Usually, $ \Phi(\man) $ is simply identified with $ \man $. A key property of conformal embeddings is that they preserve orthogonality relations at each point $ p \in \man $, since \eref{eq:conformal-relation} clearly implies that $ \tilde{g}_p(u,v) = 0 \iff g_p(u,v) = 0 $ for any $ u,v \in T_p\man $. In particular, for Lorentzian manifolds this means that null vectors for $ \tilde{g} $ coincide with null vectors for $ g $, hence the light cones of $ (\man , g) $ and $ (\man , \tilde{g}) $ are identical: this implies that they have the same casual structure.
+
+The same, however, is not true for geodesics, as elucidated with the formalism of \lref{lemma:difference-tensor}. Denoting as $ \na $ and $ \tilde{\na} $ the Levi--Civita connections associated to $ g $ and $ \tilde{g} $ respectively, they determine a smooth tensor field $ \cont \in \tns{1}{2}(\man) $ which acts on $ X,Y \in \xm $ as:
+\begin{equation}
+  \cont(X , Y) \defeq \tilde{\na}_Y - \na_X Y
+  \label{eq:connection-tensor}
+\end{equation}
+The components of $ \cont $ in a local frame on $ \man $ are given by \eref{eq:perturbation-difference-tensor}. From the conformal relation \eref{eq:conformal-relation} $ \na_\alpha \tilde{g}_{\mu \nu} = 2 \Omega g_{\mu \nu} \na_\alpha \Omega $, by the metric compatibility of the Levi--Civita connection, thus:
+\begin{equation}
+  C^\alpha_{\mu \nu} = 2 \delta^\alpha_{(\mu} \na_{\nu)} \log \Omega - g_{\mu \nu} g^{\alpha \beta} \na_\beta \log \Omega
+  \label{eq:conformal-difference-tensor}
+\end{equation}
+
+\begin{proposition}{Conformal preservation of null geodesics}{}
+  Let $ (\man,g) $ and $ (\man , \tilde{g}) $ be two Lorentzian manifolds with conformally-related metrics. Then, a smooth curve $ \gamma $ in $ \man $ is a null geodesic for $ \tilde{g} $ if and only if it is a null geodesic for $ g $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Given a geodesic $ \gamma $ for $ g $, its tangent vector field $ X $ satisfied $ \na_X X = 0 $. By \eref{eq:connection-tensor}, then:
+    \begin{equation*}
+      \tilde{\na}_X X = \na_X X - \cont(X,X) = \cont(X,X)
+    \end{equation*}
+    which in components becomes:
+    \begin{equation*}
+      (\na_X X)^\alpha = 2 X^\alpha \na_X \log \Omega - \braket{X,X}_g g^{\alpha \beta} \na_\beta \log \Omega
+    \end{equation*}
+    Therefore, in general geodesics for $ g $ are \emph{not} geodesics for $ \tilde{g} $, and vice versa. However, if $ \gamma $ is a null geodesic $ \braket{X , X}_g = 0 $, hence the equation above becomes:
+    \begin{equation}
+      \na_X X = (2 \na_X \log \Omega) X
+    \end{equation}
+    which is just the equation for a non-affinely-parametrized geodesic. It can be shown that the affine parameter $ \tilde{\lambda} $ of $ \gamma $ for $ \tilde{g} $ is related to the affine parameter $ \lambda $ of $ \gamma $ for $ g $ by:
+    \begin{equation*}
+      \frac{\dd \tilde{\lambda}}{\dd \lambda} = c \Omega^2
+    \end{equation*}
+    for a constant $ c \in \R $.
+  \end{proof}
+\end{proofbox}
+
+Having shown that conformal embeddings preserve the causal structure, turn now to the study of curvature.
+
+\begin{lemma}{Conformal transformation of the curvature tensor}{}
+  Let $ (\man,g) $ and $ (\man , \tilde{g}) $ be two Lorentzian manifolds with conformally-related metrics. Then, the components $ \tensor{\tilde{\rr}}{_{\mu \nu \alpha}^\beta} $ and $ \tensor{\rr}{_{\mu \nu \alpha}^\beta} $ of the Riemann tensor for $ \tilde{g} $ and $ g $, respectively, are related by:
+  \begin{multline}
+    \tensor{\tilde{\rr}}{^\beta_{\mu \nu \alpha}} = \tensor{\rr}{^\beta_{\mu \nu \alpha}} + 2 \delta^\beta_{[\mu} \na_{\nu)} \na_\alpha \log \Omega - 2 g^{\beta \rho} g_{\alpha [\mu} \na_{\nu]} \na_\rho \log \Omega + 2 (\na_{[\mu} \log \Omega) \delta^\beta_{\nu]} \na_\alpha \log \Omega + \\ - 2 (\na_{[\mu} \log \Omega) g_{\nu]\alpha} g^{\beta \rho} \na_\rho \log \Omega - 2 g_{\alpha [\mu} \delta^{\beta}_{\nu]} g^{\rho \sigma} \na_\rho \log \Omega \na_\sigma \log \Omega
+    \label{eq:conformal-riemann}
+  \end{multline}
+  where $ \na $ is the Levi--Civita connection associated to $ g $.
+\end{lemma}
+
+Contracting \ref{eq:conformal-riemann}, the conformal transformation law of the Ricci scalar curvature is found:
+\begin{equation}
+  \tilde{\rr} = \Omega^{-2} \left[ \rr - 2 (d-1) g^{\mu \nu} \na_\mu \na_\nu \log \Omega - (d-2)(d-1) g^{\mu \nu} \na_\mu \log \Omega \na_\nu \log \Omega \right]
+  \label{eq:conforma-ricci-scalar}
+\end{equation}
+where $ \tilde{\rr} \equiv \tilde{g}^{\mu \nu} \tensor{\tilde{\rr}}{^\alpha_{\mu \alpha \nu}} $ and $ \rr \equiv g^{\mu \nu} \tensor{\rr}{^\alpha_{\mu \alpha \nu}} $. It is convenient to define the ``trace-free part" of the Riemann tensor by subtracting all its possible contractions, yielding the \bctxt{Weyl tensor} $ \weyl \in \tns{1}{3}(\man) $, which has components:
+\begin{equation}
+  \ww_{\mu \nu \alpha \beta} \defeq \rr_{\mu \nu \alpha \beta} + \frac{2}{d - 2} \left( g_{\mu [\alpha} \rr_{\beta] \nu} - g_{\nu [\alpha} \rr_{\beta] \mu} \right) - \frac{2}{(d-1)(d-2)} g_{\mu [\alpha} g_{\beta]\nu} \rr
+\end{equation}
+This expression if only defined for $ d \geq 3 $, as for $ d = 1,2 $ the Riemann tensor is trivial (recall \eref{eq:riemann-deg-freedom}): in $ d = 2 $ it has a single independent component, given by the Ricci scalar, while in $ d = 1 $ it vanishes identically.
+The Weyl tensor has the same symmetries \eref{eq:riemann-symm} of the Riemann tensor, with the additional property of being trace-free in any pair of its indices. Moreover, a crucial property of $ \weyl $ is that it is conformally invariant, as can be shown from \eref{eq:conformal-riemann}:
+\begin{equation*}
+  \tensor{\tilde{\ww}}{^\beta_{\mu \nu \alpha}} = \tensor{\ww}{^\beta_{\mu \nu \alpha}}
+\end{equation*}
+For this reason, $ \weyl $ is often called the \emph{conformal (curvature) tensor}. Note that, since indices are naturally raided and lowered with different metrics, the conformal invariance relation depends on the position of the indices: e.g. $ \tilde{\ww}_{\beta \mu \nu \alpha} \equiv \tilde{g}_{\beta \rho} \tensor{\tilde{C}}{^\beta_{\mu \nu \alpha}} = \Omega^2 g_{\beta \rho} \tensor{\ww}{^\beta_{\mu \nu \alpha}} \equiv \Omega^2 \ww_{\beta \mu \nu \alpha} $. The Weyl tensor is then linked to tidal effects, which are indeed conformally invariant, since they remain unchanged when rescaling the volume.
+
+\begin{observation}{Petrov classification}{}
+  In the absence of matter, the Einstein field equations nullify the Ricci tensor, hence the only independent components of the Riemann tensor in vacuum are given by the Weyl tensor. For this reason the Weyl tensor is used to classify the vacuum solutions of the Einstein field equations: in particular, in $ d = 4 $ it is possible to take advantage of the symmetry of Hodge operator $ \star : \df{2} \ra \df{2} $, obtaining what is known as the \bcobs{Petrov classification} of vacuum solutions.
+% TODO: complete observation on petrov classification
+\end{observation}
+
+\subsubsection{Conformal completion of Minkowski spacetime}
+
+Before defining conformal completions of arbitrary spacetimes, it is instructive to first build intuition with the special case of $ d = 4 $ Minkowski spacetime $ (\mink,\eta) $.
+
+To study the ``far-away" behaviour of Minkowski spacetime, it is convenient to work in spherical coordinates $ (t , r , \vartheta , \varphi) $, which are related to the global Cartesian coordinates by:
+\begin{equation*}
+  x = r \sin \vartheta \cos \varphi
+  \quad
+  y = r \sin \vartheta \sin \varphi
+  \quad
+  z = r \cos \vartheta
+\end{equation*}
+These coordinates span $ \R \times \R^+ \times (0 , \pi) \times (0 , 2\pi) $, but they are not a smooth chart on the whole $ \man $, but only on $ \man - \Pi $, where $ \Pi $ is the closed half-hyperplane defined by $ x \geq 0 $ and $ y = 0 $. In these coordinates, the Lorentz--Minkowski metric takes the form:
+\begin{equation*}
+  \dd s^2 = - \dd t^2 + \dd r^2 + r^2 \dd \Omega_2^2
+\end{equation*}
+On the non-angular part $ \R \times \R^+ $, introduce null coordinates $ (u,v) $, respectively the retarded and advanced time, defined by:
+\begin{equation*}
+  u = t - r
+  \qquad
+  v = t + r
+\end{equation*}
+These coordinates span the half-part of $ \R^2 $ defined by $ u < v $, and the metric becomes:
+\begin{equation*}
+  \dd s^2 = - \dd u \dd v + \frac{1}{4} (v - u)^2 \dd \Omega_2^2
+\end{equation*}
+
+In order to perform the conformal completion, consider the finite-range coordinates defined by\footnote{To be precise, note that $ (u,v) $ have dimensions of time, i.e. of length, hence finite-range coordinates should be defined as $ U = \arctan (u / \ell_0) $ and $ V = \arctan (v / \ell_0) $, for some length scale $ \ell_0 $. However, this length scale is completely arbitrary and is eliminated by the conformal transformation, hence it is implicitly set to $ \ell_0 \equiv 1 $.}:
+\begin{equation*}
+  U = \arctan u
+  \qquad
+  V = \arctan v
+\end{equation*}
+The $ \arctan $ function is monotonically increasing, so $ (U,V) $ span the half-part of $ (-\frac{\pi}{2} , \frac{\pi}{2}) \times (-\frac{\pi}{2} , \frac{\pi}{2}) $ defined by $ U < V $. Using standard trigonometric relations, the metric takes the form:
+\begin{equation*}
+  \dd s^2 = \frac{1}{4 \cos^2 U \cos^2 V} \left[ - 4 \dd U \dd V + \sin^2(V - U) \dd \Omega_2^2 \right]
+\end{equation*}
+Therefore, the Lorentz--Minkowski metric is conformal to a simpler metric:
+\begin{equation}
+  \dd \tilde{s}^2 = - 4 \dd U \dd V + \sin^2(V-U) \dd \Omega_2^2
+  \label{eq:conf-aux}
+\end{equation}
+with conformal factor $ \Omega : (-\frac{\pi}{2} , \frac{\pi}{2}) \times (-\frac{\pi}{2} , \frac{\pi}{2}) \ra \R^+ : \Omega(U,V) = 2 \cos U \cos V $. The coordinates $ (U,V) $ are of null type, so consider time-space coordinates $ (\tau , \chi) $ defined by:
+\begin{equation*}
+  \tau = V + U
+  \qquad
+  \chi = V - U
+\end{equation*}
+These range of these coordinates is $ \chi \in (0 , \pi) $ and $ \tau \in (\chi - \pi , \pi - \chi) $, hence drawing the Minkowski spacetime in the $ (\tau , \chi) $ results in a half-diamond shape (see \figref{fig:conformal-minkowski}). Combining all the above coordinate transformations, it is possible to link $ (t,r) $ to $ (\tau , \chi ) $ directly, obtaining:
+\begin{equation}
+  t = \frac{\sin \tau}{\cos \tau + \cos \tau}
+  \qquad \qquad
+  r = \frac{\sin \chi}{\cos \tau + \cos \chi}
+  \label{eq:esu-embedding}
+\end{equation}
+Inserting these relations in the Lorentz--Minkowski metric, or directly from \eref{eq:conf-aux}, the conformal metric in the $ (\tau , \chi , \vartheta , \varphi) $ coordinates is found to be:
+\begin{equation}
+  \dd \tilde{s}^2 = - \dd \tau^2 + \dd \chi^2 + \sin^2 \chi \, \dd \Omega_2^2
+  \label{eq:esu-metric}
+\end{equation}
+The spatial part of the metric is just the standard metric on $ \Sn{3} $ in hyperspherical coordinates $ (\chi , \vartheta , \varphi) $. Moreover, the full metric is regular even upon relaxing the condition on $ \tau $, letting it span the entire $ \R $. Therefore, \eref{eq:esu-metric} is truly a metric $ \tilde{g} $ on $ \esu \defeq \R \times \Sn{3} $, and $ (\esu , \tilde{g}) $ is a spacetimes known as the \bctxt{Einstein static universe}, which is a solution to the Einstein field equations with $ \Lambda > 0 $ and a cosmological fluid with $ w = 0 $ and $ \rho = \Lambda / (4\pi) $ (see \secref{sssec:matter-content} for details on cosmological fluids). \eref{eq:esu-embedding} are thus a conformal embedding of $ (\mink , \eta) $ into $ (\esu , \tilde{g}) $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.30 \textwidth]{conformal-minkowski.png}
+  \caption{Conformal diagram of Minkowski spacetime. Curves $ r = \text{const.} $ are drawn in red, while curved $ r = \text{const.} $ are drawn in grey. Figure from \cite{gourgoulhon}.}
+  \label{fig:conformal-minkowski}
+\end{figure}
+
+Since $ \mink $ and $ \esu $ have the same dimension, $ \mink \in \tp(\esu) $, and its topological closure in $ \esu $ is:
+\begin{equation}
+  \overline{\mink} = \mink \sqcup \scri^+ \sqcup \scri^- \sqcup \{i^0\} \sqcup \{i^+\} \sqcup \{i^-\}
+\end{equation}
+as shown in \figref{fig:conformal-minkowski}, where the various types of infinity are:
+\begin{itemize}
+  \item \bctxt{future null infinity} $ \scri^+ \ssq \esu $, which is the hypersurface defined by $ \tau = \pi - \chi $ and $ \tau \in (0,\pi) $, i.e. $ V = \frac{\pi}{2} $ and $ U \in (-\frac{\pi}{2} , \frac{\pi}{2}) $;
+  \item \bctxt{past null infinity} $ \scri^- \ssq \esu $, which is the hypersurface defined by $ \tau = \chi - \pi $ and $ \tau \in (-\pi,0) $, i.e. $ V = -\frac{\pi}{2} $ and $ V \in (-\frac{\pi}{2} , \frac{\pi}{2}) $;
+  \item \bctxt{spacelike infinity} $ i^0 \in \esu $, which is defined by $ (\tau , \chi) = (0 , \pi) $, i.e. $ (U,V) = (-\frac{\pi}{2} , \frac{\pi}{2}) $;
+  \item \bctxt{future timelike infinity} $ i^+ \in \esu $, which is defined by $ (\tau , \chi) = (\pi , 0) $, i.e. $ (U,V) = (\frac{\pi}{2} , \frac{\pi}{2}) $;
+  \item \bctxt{past timelike infinity} $ i^- \in \esu $, which is defined by $ (\tau , \chi) = (-\pi , 0) $, i.e. $ (U,V) = (-\frac{\pi}{2} , -\frac{\pi}{2}) $.
+\end{itemize}
+Note that, since hyperspherical coordinates $ (\chi , \vartheta , \varphi) $ on $ \Sn{3} $ are singular at $ \chi = 0 , \pi $, the conditions for $ i^0 $ and $ i^\pm $ do indeed define unique points of $ \esu $, whatever the value of $ (\tau , \varphi , \vartheta) $, and not hypersurfaces. Moreover, the vertical left boundary of the half-diamond shape in \figref{fig:conformal-minkowski}, i.e. the segment defined by $ \chi = 0 $ and $ \tau \in (-\pi , \pi) $, is not part of the boundary of $ \mink $, but merely reflects the coordinate singularity at $ \chi = 0 $, which corresponds to the usual coordinate singularity at $ r = 0 $ in ordinary spherical coordinates.
+
+\figref{fig:conformal-minkowski-2d} shows the pathological nature of $ i^0 $: indeed, $ \overline{\mink} $ is self-intersecting at $ i^0 $, so there is no open neighbourhood of $ i^0 $ that is homeomorphic to a neighbourhood in $ \U^4 $, thus it is not possible to endow it with the structure of manifold with boundary (\dref{def:top-man-bound}). On the other hand, $ i^\pm $ are points where the boundary is not smooth, hence $ \mink - \{i^0\} $ can only be defined as a topological manifold with boundary, not a smooth one. For this reason, let $ \scri \equiv \scri^+ \sqcup \scri^- $ and $ \tilde{\man} \defeq \mink \sqcup \scri \ssq \esu $: then, $ \tilde{\man} $ is naturally a smooth manifold with boundary, and its manifold boundary is $ \pa \tilde{\mink} = \scri $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.60 \textwidth]{conformal-minkowski-2d.png}
+  \caption{Two views of a $ 2 $-dimensional section of $ \esu $ at $ \vartheta = \frac{\pi}{2} $ and $ \varphi = \{0,\pi\} $ (the ``right" and ``left" half of each cylinder, respectively). Again, red curves are $ r = \text{const.} $ curves nad grey curves are $ t = \text{const.} $ ones. Figure from \cite{gourgoulhon}.}
+  \label{fig:conformal-minkowski-2d}
+\end{figure}
+
+The nature of the various infinities of $ \mink $ is determined by the behaviour of its geodesics: all null geodesics start on $ \scri^- $ and end on $ \scri^+ $, all timelike geodesics start at $ i^- $ and end at $ i^+ $, and all spacelike geodesics start and end at $ i^0 $, as shown in \figref{fig:conformal-minkowski}.
+
+\begin{proposition}{Null conformal boundary of Minkowski spacetime}{}
+  Given the spacetime $ (\tilde{\man} , \tilde{g}) $ defined above, $ \scri^+ $ and $ \scri^- $ are null hypersurfaces of $ (\tilde{\man} , \tilde{g}) $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Consider first $ \scri^+ $: it is defined by $ V = \frac{\pi}{2} $, so a valid coordinate system on it is $ (U , \vartheta , \varphi) $ with $ U \in (-\frac{\pi}{2} , \frac{\pi}{2}) $. The induced metric $ \tilde{g} \vert_{\scri^+} $ is easily obtained setting $ V = \frac{\pi}{2} $ in \eref{eq:conf-aux}:
+    \begin{equation*}
+      \dd \tilde{s}^2 \vert_{\scri^+} = \cos^2 U \, \dd \Omega_2^2
+    \end{equation*}
+    This metric clearly has degenerate signature $ (0 , + , +) $, hence $ \scri^+ $ is a null hypersurface of $ (\tilde{\man} , \tilde{g}) $. Similarly, $ \scri^- $ is defined by $ U = - \frac{\pi}{2} $, so a valid coordinate system on it is $ (V , \vartheta , \varphi) $ with $ V \in (-\frac{\pi}{2} , \frac{\pi}{2}) $, and the induced metric $ \tilde{g}\vert_{\scri^-} $ is:
+    \begin{equation*}
+      \dd \tilde{s}^2 \vert_{\scri^-} = \cos^2 V \, \dd \Omega_2^2
+    \end{equation*}
+    This metric has degenerate signature $ (0 , + , +) $, hence $ \scri^- $ is a null hypersurface of $ (\tilde{\man} , \tilde{g}) $.
+  \end{proof}
+\end{proofbox}
+
+The null character of $ \scri^\pm $ also appears clearly in the conform diagram \figref{fig:conformal-minkowski}.
+
+\subsubsection{Conformal completion of arbitrary spacetimes}
+
+Having elucidated the asymptotic structure of Minkowski spacetime, it is now possible to generalize the construction of conformal completions to arbitrary spacetimes.
+
+\begin{definition}{Conformal completion}{conformal-completion}
+  A spacetime $ (\man,g) $ admits a \bcdef{conformal completion} if there exist a Lorentzian manifold with boundary $ (\tilde{\man} , \tilde{g}) $ and a conformal embedding $ \Phi : \man \ra \tilde{\man} $ with $ \Omega \in \cfk{\infty}(\man , \R^+) $ sucht that:
+  \begin{enumerate}
+    \item \label{item:cc-1} $ \tilde{\man} = \Phi(\man) \sqcup \scri $, with $ \scri \defeq \pa \tilde{\man} $;
+    \item \label{item:cc-2} $ \Omega \vert_\scri \equiv 0 $ and $ \dd \Omega \vert_\scri \neq 0 $.
+  \end{enumerate}
+  $ \scri $ is called the \bcdef{conformal infinity} (or \emph{conformal boundary}) of $ (\man , g) $ within $ (\tilde{\man} , \tilde{g}) $.
+\end{definition}
+
+Note that $ \scri $ is the manifold boundary of $ \tilde{\man} $, not the topological boundary of $ \tilde{\man} $ (which is $ \emptyset $, recall \obsref{obs:topological-manifold-boundary}). Moreover, it is not part of the physical spacetime $ \man $, since $ \scri \cap \man = \emptyset $.
+
+Condition \itemref{item:cc-1} expresses that $ \man $ is endowed with some boundary by the conformal embedding $ \Phi $, which in the following is suppressed setting $ \Phi(\man) \equiv \man $. Condition \itemref{item:cc-2} expresses instead that this boundary, which lies ``lies at an infinite distance" with respect to $ g $, is brought to a finite distance with respect to $ \tilde{g} $ by the conformal transformation, which in terms of length elements reads:
+\begin{equation*}
+  \dd s^2 = \Omega^{-2} \dd \tilde{s}^2
+\end{equation*}
+The first condition \itemref{item:cc-2} clarifies the ``lies at infinite distance" notion, since $ \Omega^{-2} \ra + \infty $ approaching $ \scri $, while the second condition \itemref{item:cc-2} ensures that $ \scri $ is a regular hypersurface of $ \tilde{\man} $.
+
+In general, unlike the caso of Minkowski spacetime, the conformal boundary $ \scri $ is not necessarily a null hypersurface. Actually, the causal type of $ \scri $ is determined by the cosmological constant.
+
+\begin{proposition}{Causal type of conformal boundaries}{}
+  Let the spacetime $ (\man , g) $ be a solution to the Einstein field equation with a cosmological constant $ \Lambda $, and let it be conformal to a spacetime $ (\tilde{\man} , \tilde{g}) $ with conformal factor $ \Omega \in \cfk{\infty}(\man , \R^+) $ and conformal boundary $ \scri \defeq \pa \tilde{\man} $. If the trace of the EMT is $ T \ra 0 $ as $ \Omega \ra 0 $, then $ \scri $ is a:
+  \begin{enumerate}
+    \item null hypersurface of $ (\tilde{\man} , \tilde{g}) $ if and only if $ \Lambda = 0 $;
+    \item spacelike hypersurface of $ (\tilde{\man} , \tilde{g}) $ if and only if $ \Lambda > 0 $;
+    \item timelike hypersurface of $ (\tilde{\man} , \tilde{g}) $ if and only if $ \Lambda < 0 $.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    From \eref{eq:conforma-ricci-scalar}, inverting the roles of $ \tilde{g} $ and $ g $ using the conformal relation \eref{eq:conformal-relation} and the difference tensor \eref{eq:conformal-difference-tensor}, it is possible to relate the Ricci scalar curvatures $ \tilde{\rr} $ and $ \rr $ of respectively $ \tilde{g} $ and $ g $ as:
+    \begin{equation*}
+      \Omega^2 \tilde{\rr} = \rr - (d-1) \tilde{g}^{\mu \nu} \left[ 2 \Omega \tilde{\na}_\mu \tilde{\na}_\nu \Omega - 8 \pa_\mu \Omega \pa_\nu \Omega \right]
+    \end{equation*}
+    where $ \tilde{\na} $ is the Levi--Civita connection associated to $ \tilde{g} $. Using \eref{eq:ef-eq-alt} to express $ \rr $, the relation becomes:
+    \begin{equation*}
+      \Omega^2 \tilde{\rr} = \frac{2}{d-2} \left[ d \Lambda - 8 \pi \gd T \right] - (d-1) \tilde{g}^{\mu \nu} \left[ 2 \Omega \tilde{\na}_\mu \tilde{\na}_\nu \Omega - 8 \pa_\mu \Omega \pa_\nu \Omega \right]
+    \end{equation*}
+    This equation is, in principle, valid only on $ \man = \tilde{\man} - \scri $. Taking the limit $ \Omega \ra 0 $, with the assumption that $ T \ra 0 $ as $ \Omega \ra 0 $, by continuity it becomes an identity on $ \scri $:
+    \begin{equation*}
+      \tilde{g}^{\mu \nu} \pa_\mu \Omega \pa_\nu \Omega \vert_\scri = - \frac{d}{4 (d-1) (d-2)} \Lambda
+    \end{equation*}
+    Now, note that $ \scri $ corresponds to a constant value of $ \Omega $, namely $ \Omega = 0 $, therefore $ \pa_\mu \Omega $ are just the components of the normal vector field $ n \in \Gamma(N\scri) $ to $ \scri $, which is defined as the metric dual of the $ 1 $-form $ \dd \Omega = \pa_\mu \Omega \, \dd x^\mu $ (which is non-vanishing by condition \itemref{item:cc-2} of \dref{def:conformal-completion}). This means that the left-hand side of the above relation is just $ \braket{n,n}_g $, and it constraints the sign of $ \braket{n,n}_g $ to be the opposite of the sign of $ \Lambda $. Given the link between the causal type of a hypersurface and the causal type of its normal vector field, this completes the proof.
+  \end{proof}
+\end{proofbox}
+
+To generalize the classification of infinities performed in Minkowski spacetime, let $ (\man , g) $ be a time-orientable spacetime admitting a conformal completion $ (\tilde{\man} , \tilde{g}) $ with conformal boundary $ \scri $. Then, it is possible to distinguish two parts of the conformal boundary: the \bctxt{future infinity} of $ (\man , g) $ is the subset $ \scri^+ \ssq \scri $ whose points can be reached from any point in $ \man $ by a future-directed causal curve in $ \tilde{\man} $; while the \bctxt{past infinity} of $ (\man , g) $ is the subset $ \scri^- \ssq \scri $ whose points can be reached from any point in $ \man $ by a past-directed causal curve in $ (\tilde{\man}) $. If $ \scri^+ $ (or $ \scri^- $) is a null hypersurface, then it is called the \emph{future} (or \emph{past}) \emph{null infinity}. If $ \scri^\pm $ are null hypersurfaces and $ \scri = \scri^+ \cup \scri^- $, then $ (\tilde{\man} , \tilde{g}) $ is called a \bctxt{conformal completion at null infinity} of $ (\man , g) $.
+
+\subsubsection{Asymptotic flatness}
+
+
 
 
 
