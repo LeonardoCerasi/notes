@@ -190,7 +190,7 @@ Inserting these relations in the Lorentz--Minkowski metric, or directly from \er
   \dd \tilde{s}^2 = - \dd \tau^2 + \dd \chi^2 + \sin^2 \chi \, \dd \Omega_2^2
   \label{eq:esu-metric}
 \end{equation}
-The spatial part of the metric is just the standard metric on $ \Sn{3} $ in hyperspherical coordinates $ (\chi , \vartheta , \varphi) $. Moreover, the full metric is regular even upon relaxing the condition on $ \tau $, letting it span the entire $ \R $. Therefore, \eref{eq:esu-metric} is truly a metric $ \tilde{g} $ on $ \esu \defeq \R \times \Sn{3} $, and $ (\esu , \tilde{g}) $ is a spacetimes known as the \bctxt{Einstein static universe}, which is a solution to the Einstein field equations with $ \Lambda > 0 $ and a cosmological fluid with $ w = 0 $ and $ \rho = \Lambda / (4\pi) $ (see \secref{sssec:matter-content} for details on cosmological fluids). \eref{eq:esu-embedding} are thus a conformal embedding of $ (\mink , \eta) $ into $ (\esu , \tilde{g}) $.
+The spatial part of the metric is just the standard metric on $ \Sn{3} $ in hyperspherical coordinates $ (\chi , \vartheta , \varphi) $. Moreover, the full metric is regular even upon relaxing the condition on $ \tau $, letting it span the entire $ \R $. Therefore, \eref{eq:esu-metric} is truly a metric $ \tilde{g} $ on $ \esu \defeq \R \times \Sn{3} $, and $ (\esu , \tilde{g}) $ is a spacetimes known as the \bctxt{Einstein static universe} (ESU), which is a solution to the Einstein field equations with $ \Lambda > 0 $ and a cosmological fluid with $ w = 0 $ and $ \rho = \Lambda / (4\pi) $ (see \secref{sssec:matter-content} for details on cosmological fluids). \eref{eq:esu-embedding} are thus a conformal embedding of $ (\mink , \eta) $ into $ (\esu , \tilde{g}) $.
 
 \begin{figure}
   \centering
@@ -267,7 +267,7 @@ The first condition \itemref{item:cc-2} clarifies the ``lies at infinite distanc
 
 In general, unlike the caso of Minkowski spacetime, the conformal boundary $ \scri $ is not necessarily a null hypersurface. Actually, the causal type of $ \scri $ is determined by the cosmological constant.
 
-\begin{proposition}{Causal type of conformal boundaries}{}
+\begin{proposition}{Causal type of conformal boundaries}{causal-conformal-boundary}
   Let the spacetime $ (\man , g) $ be a solution to the Einstein field equation with a cosmological constant $ \Lambda $, and let it be conformal to a spacetime $ (\tilde{\man} , \tilde{g}) $ with conformal factor $ \Omega \in \cfk{\infty}(\man , \R^+) $ and conformal boundary $ \scri \defeq \pa \tilde{\man} $. If the trace of the EMT is $ T \ra 0 $ as $ \Omega \ra 0 $, then $ \scri $ is a:
   \begin{enumerate}
     \item null hypersurface of $ (\tilde{\man} , \tilde{g}) $ if and only if $ \Lambda = 0 $;
@@ -279,9 +279,10 @@ In general, unlike the caso of Minkowski spacetime, the conformal boundary $ \sc
 \begin{proofbox}
   \begin{proof}
     From \eref{eq:conforma-ricci-scalar}, inverting the roles of $ \tilde{g} $ and $ g $ using the conformal relation \eref{eq:conformal-relation} and the difference tensor \eref{eq:conformal-difference-tensor}, it is possible to relate the Ricci scalar curvatures $ \tilde{\rr} $ and $ \rr $ of respectively $ \tilde{g} $ and $ g $ as:
-    \begin{equation*}
+    \begin{equation}
       \Omega^2 \tilde{\rr} = \rr - (d-1) \tilde{g}^{\mu \nu} \left[ 2 \Omega \tilde{\na}_\mu \tilde{\na}_\nu \Omega - 8 \pa_\mu \Omega \pa_\nu \Omega \right]
-    \end{equation*}
+      \label{eq:conformal-ricci}
+    \end{equation}
     where $ \tilde{\na} $ is the Levi--Civita connection associated to $ \tilde{g} $. Using \eref{eq:ef-eq-alt} to express $ \rr $, the relation becomes:
     \begin{equation*}
       \Omega^2 \tilde{\rr} = \frac{2}{d-2} \left[ d \Lambda - 8 \pi \gd T \right] - (d-1) \tilde{g}^{\mu \nu} \left[ 2 \Omega \tilde{\na}_\mu \tilde{\na}_\nu \Omega - 8 \pa_\mu \Omega \pa_\nu \Omega \right]
@@ -296,8 +297,63 @@ In general, unlike the caso of Minkowski spacetime, the conformal boundary $ \sc
 
 To generalize the classification of infinities performed in Minkowski spacetime, let $ (\man , g) $ be a time-orientable spacetime admitting a conformal completion $ (\tilde{\man} , \tilde{g}) $ with conformal boundary $ \scri $. Then, it is possible to distinguish two parts of the conformal boundary: the \bctxt{future infinity} of $ (\man , g) $ is the subset $ \scri^+ \ssq \scri $ whose points can be reached from any point in $ \man $ by a future-directed causal curve in $ \tilde{\man} $; while the \bctxt{past infinity} of $ (\man , g) $ is the subset $ \scri^- \ssq \scri $ whose points can be reached from any point in $ \man $ by a past-directed causal curve in $ (\tilde{\man}) $. If $ \scri^+ $ (or $ \scri^- $) is a null hypersurface, then it is called the \emph{future} (or \emph{past}) \emph{null infinity}. If $ \scri^\pm $ are null hypersurfaces and $ \scri = \scri^+ \cup \scri^- $, then $ (\tilde{\man} , \tilde{g}) $ is called a \bctxt{conformal completion at null infinity} of $ (\man , g) $.
 
+\begin{example}{Conformal completion of $ \ads_4 $}{}
+  The $ 4 $-dimensional anti-de Sitter spacetime $ \ads_4 $ is $ (\man , g) $, with $ \man \cong \R^4 $. The metric in the so-called \emph{glocal static coordinates} $ (\tau , r , \vartheta , \varphi) $ has components:
+  \begin{equation*}
+    \dd s^2 = \ell^2 \left[ - (1 + r^2) \dd \tau^2 + \frac{1}{1 + r^2} \dd r^2 + r^2 \dd \Omega_2^2 \right]
+  \end{equation*}
+  where $ \ell \in \R^+ $ is a constant. Note that $ (\tau , r) \in \R \times \R^+ $ are dimensionless coordinates, while $ (\vartheta , \varphi) \in (0,\pi) \times (0 , 2\pi) $ are the standard spherical coordinates on $ \Sn{2} $. This metric is a solution to the vacuum Einstein field equations with $ \Lambda = - 3 / \ell^2 $, and using the so-called \emph{conformal coordinates} $ (\tau , \chi , \vartheta , \varphi) $, with $ \chi = \arctan r \in (0 , \frac{\pi}{2}) $, it becomes:
+  \begin{equation*}
+    \dd s^2 = \frac{\ell^2}{\cos^2 \chi} \left[ - \dd \tau^2 + \dd \chi^2 + \sin^2 \chi \, \dd \Omega_2^2 \right]
+  \end{equation*}
+  Note that $ \chi \in (0,\frac{\pi}{2}) $ only spans one half of the hypersphere $ \Sn{3} $, hence $ \Omega = \ell^{-1} \cos \chi $ determines a conformal completion of $ (\man , g) $ into $ (\tilde{\man} , \tilde{g}) $, where $ \tilde{\man} $ is the part of the ESU $ \esu $ defined by $ \chi \leq \frac{\pi}{2} $, and $ \tilde{g} $ is the standard ESU metric \eref{eq:esu-metric}.
+
+  The conformal boundary $ \scri = \pa \tilde{\man} $ is then the hypersurface $ \chi = \frac{\pi}{2} $, as shown in \figref{fig:ads-conf}: its is spanned by the coordinates $ (\tau , \vartheta , \varphi) $, hence its topology is $ \scri \cong \R \times \Sn{2} $, and it is a timelike hypersurface of $ (\tilde{\man} , \tilde{g}) $, as the induced $ 3 $-metric is clearly Lorentzian (confirming \pref{prop:causal-conformal-boundary}). By the behaviour of radial null geodesics (plotted in \eref{fig:ads-conf}), it is evident that any point of $ \scri $ can be connected to $ \man $ by a future-directed null geodesics as well as by a past-directed one, therefore $ \scri = \scri^+ = \scri^- $, so that $ \scri^\pm $ are timelike hypersurfaces.
+\end{example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.30 \textwidth]{ads-conf.png}
+  \caption{Conformal completion of $ \ads_4 $ spacetime. The conformal boundary $ \scri $ is depicted in yellow, red lines are $ \chi = \text{const.} $ lines (uniformly sampled in terms of $ \tan \chi = \sinh \rho $), green curves are radial null geodeiscs, and the purple curve is a radial timelike geodesic bouncing around $ \chi = 0 $.}
+  \label{fig:ads-conf}
+\end{figure}
+
+\begin{example}{Conformal completion of $ \dss_4 $}{}
+  The $ 4 $-dimensional de Sitter spacetime $ \dss_4 $ is $ (\man , g) $, with $ \man \cong \R \times \Sn{3} $. The metric in global coordinates $ (t , \chi , \vartheta , \varphi) $ has components:
+  \begin{equation*}
+    \dd s^2 = \ell^2 \left[ - \dd t^2 + \cosh^2 t (\dd \chi^2 + \sin^2 \chi \, \dd \Omega_2^2) \right]
+  \end{equation*}
+  where $ \ell \in \R^+ $ is a constant. Note that $ t \in \R $ is a dimensionless coordinate, while $ (\chi , \vartheta , \varphi) \in (0,\pi)^2 \times (0,2\pi) $ are the standard hyperspherical coordinates on $ \Sn{3} $. This metric is a solution to the vacuum Einstein field equations with $ \Lambda = 3 / \ell^2 $, and using coordinates $ (\tau , \chi , \vartheta , \varphi) $, with $ \tau = 2 \arctan \tanh \frac{t}{2} \in (- \frac{\pi}{2} , \frac{\pi}{2}) $, it becomes:
+  \begin{equation*}
+    \dd s^2 = \frac{\ell^2}{\cos^2 \tau} \left[ - \dd \tau^2 + \dd \chi^2 + \sin^2 \chi \, \dd \Omega_2^2 \right]
+  \end{equation*}
+  Defining $ \Omega = \ell^{-1} \cos \tau = (\ell \cosh t)^{-1} $ determines a conformal completion of $ (\man , g) $ into $ (\tilde{\man} , \tilde{g}) $, where $ \tilde{\man} $ is the part of the ESU $ \esu $ defined by $ - \frac{\pi}{2} \leq \tau \leq \frac{\pi}{2} $, and $ \tilde{g} $ is the standard ESU metric $ \eref{eq:esu-metric} $.
+
+  The conformal boundary $ \scri = \pa \tilde{\man} $, found by $ \Omega \vert_\scri = 0 $, has two connected components: $ \scri^\pm $, which is the hypersurface $ \tau = \pm \frac{\pi}{2} $ of $ \tilde{\man} $. Both are spanned by the coordinates $ (\chi , \vartheta , \varphi) $, hence their topology is $ \scri^\pm \cong \Sn{3} $, and they are both spacelike hypersurfaces of $ (\tilde{\man} , \tilde{g}) $, as the induces $ 3 $-metric is clearly Riemannian (confirming \pref{prop:causal-conformal-boundary}). Finally, it is trivial to see that $ \scri^+ $ and $ \scri^- $ respectively match the definitions of future and past infinity, hence $ (\tilde{\man} , \tilde{g}) $ is a conformal completion at infinity of $ \dss_4 $.
+\end{example}
+
 \subsubsection{Asymptotic flatness}
 
+Following the conventions of Penrose \cite{penrose-2}, a spacetime $ (\man , g) $ is \bctxt{asymptotically simple} if it admits a conformal completion such that every null geodesic in $ \man $ has two endpoints in $ \scri $.
+
+This condition, although satisfied by Minkowski, de Sitter and anti-de Sitter spacetimes, is rather restrictive: in particular, it excludes black hole spacetimes, since by definition they contain null geodesics that have no endpoint on $ \scri^+ $. For this reason, define a spacetime $ (\man , g) $ to be \bctxt{weakly asymptotically simple} if there exist $ U \in \tp(\man) $ and an asymptotically simple spacetime $ (\man_0 , g_0) $ with an open neighbourhood $ U_0 \ssq \tilde{\man}_0 $ of $ \scri_0 = \pa \tilde{\man}_0 $ such that $ (U_0 \cap \man_0 , g_0) $ is isometric to $ (U , g) $ (recall \dref{def:riem-isometry}). Of course, for a given weakly asymptotically simple spacetime, there may be different non-overlapping regions $ U $ satisfying this property (e.g. in the maximally extended Kerr spacetime).
+
+\begin{definition}{Asimptotically flat spacetime}{asymptotically-flat}
+  A spacetime $ (\man , g) $ is \bcdef{asymptotically flat} if it is weakly asymptotically simple and the Ricci tensor of $ g $ vanishes in an open neighbourhood of $ \scri $.
+\end{definition}
+
+By this definition, Minkowski spacetime is asymptotically simple, while de Sitter and anti-de Sitter spacetimes are not.
+Penrose \cite{penrose-3} has shown that if $ (\man , g) $ is asymptotically simple and empty, then the Weyl tensor of $ g $ vanishes at $ \scri $, which implies that $ \riem \vert_{\scri} \equiv 0 $: this explains the nomenclature of \emph{asymptotically flat}.
+
+\begin{proposition}{Null boundary of asymptotically flat spacetimes}{}
+  The conformal boundary $ \scri $ of an asymptotically flat spacetime $ (\man , g) $ is a null hypersurface of the conformal completion $ (\tilde{\man} , \tilde{g}) $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Recall \eref{eq:conformal-ricci}. $ \rr = 0 $ in an open neighbourhood of $ \scri $, by \dref{def:asymptotically-flat}, so the limit $ \Omega \ra 0 $ results into $ \braket{n , n}_g = 0 $: by the same argument in the proof of \pref{prop:causal-conformal-boundary}, $ \scri $ is a null hypersurface.
+  \end{proof}
+\end{proofbox}
 
 
 
