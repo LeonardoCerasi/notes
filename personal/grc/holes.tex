@@ -1,6 +1,6 @@
 \selectlanguage{english}
 
-In this chapter, we develop the concept of black hole (BH). First, black holes need to be rigorously defined (\secref{sec:bh-def}): in order to do that, it is necessary to study the global structure of spacetime, and in particular its asymptotics, with a techinque developed by Penrose \cite{penrose-1, penrose-2} know as \emph{conformal completion}. Then, we analyze the three main types of black holes: Schwarschild (\secref{sec:bh-schwarzschild}), Reissner--Nordström (\secref{sec:bh-rn}) and Kerr black holes (\secref{sec:bh-kerr}).
+In this chapter, we develop the concept of black hole (BH). First, black holes need to be rigorously defined (\secref{sec:bh-def}): in order to do that, it is necessary to study the global structure of spacetime, and in particular its asymptotics, with a techinque developed by Penrose \cite{penrose-1, penrose-2} know as \emph{conformal completion}. Then, we perform a geometric analysis of event horizons (\secref{sec:event-horizons}), in order to study properties of black holes which are independent of the gravitational theory used. Finally, we cover the three main types of black holes: Schwarschild (\secref{sec:bh-schwarzschild}), Reissner--Nordström (\secref{sec:bh-rn}) and Kerr black holes (\secref{sec:bh-kerr}).
 
 \section{Definition of black hole}
 \label{sec:bh-def}
@@ -333,6 +333,7 @@ To generalize the classification of infinities performed in Minkowski spacetime,
 \end{example}
 
 \subsubsection{Asymptotic flatness}
+\label{sssec:asymptotic-flatness}
 
 Following the conventions of Penrose \cite{penrose-2}, a spacetime $ (\man , g) $ is \bctxt{asymptotically simple} if it admits a conformal completion such that every null geodesic in $ \man $ has two endpoints in $ \scri $.
 
@@ -351,9 +352,208 @@ Penrose \cite{penrose-3} has shown that if $ (\man , g) $ is asymptotically simp
 
 \begin{proofbox}
   \begin{proof}
-    Recall \eref{eq:conformal-ricci}. $ \rr = 0 $ in an open neighbourhood of $ \scri $, by \dref{def:asymptotically-flat}, so the limit $ \Omega \ra 0 $ results into $ \braket{n , n}_g = 0 $: by the same argument in the proof of \pref{prop:causal-conformal-boundary}, $ \scri $ is a null hypersurface.
+    Recall \eref{eq:conformal-ricci}. $ \rr = 0 $ in an open neighbourhood of $ \scri $, by \dref{def:asymptotically-flat}, so the limit $ \Omega \ra 0 $ results into $ \braket{n , n}_g = 0 $: by the same argument of \pref{prop:causal-conformal-boundary}, $ \scri $ is a null hypersurface.
   \end{proof}
 \end{proofbox}
+
+\subsection{Formal definition}
+
+\subsubsection{Causal structure}
+
+Let $ (\man , g) $ be a time-orientable spacetime. For any subset $ S \ssq \man $, define:
+\begin{itemize}
+  \item the \bctxt{chronological future} (or \bctxt{past}) of $ S $ as the subset $ I^\pm(S) \ssq \man $ of points that can be reached from a point of $ S $ by a future-directed (or past-directed) timelike curve of non-zero extent;
+  \item the \bctxt{causal future} (or \bctxt{past}) of $ S $ as the subset $ J^\pm(S) \ssq \man $ of points that either are in $ S $ or can be reached from a point of $ S $ by a future-directed (or past-directed) causal curve (recall \dref{def:cauchy-hypersurface}).
+\end{itemize}
+
+From these definitions, it is clear that $ S \ssq J^\pm(S) $ and $ I^\pm(S) \ssq J^\pm(S) $. On the contrary, not necessarily $ S \ssq I^\pm(S) $: for instance, if $ \man $ does not contain any closed timelike curve, then $ S \cap I^\pm(S) = \emptyset $ for $ S = \{p\} $, with $ p \in \man $.
+
+\begin{lemma}{Topological properties of causal structures}{tpcs}
+  Let $ (\man , g) $ be a time-orientable spacetime, and let $ S \ssq \man $. Then:
+  \begin{enumerate}
+    \item \label{item:tpcs-1} $ I^\pm(S) \in \tp(\man) $, while $ J^\pm(S) $ is not necessarily closed;
+    \item \label{item:tpcs-2} $ \Int J^\pm(S) = I^\pm(S) $;
+    \item \label{item:tpcs-3} $ \overline{J^\pm(S)} = \overline{I^\pm(S)} $;
+  \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    See e.g. \S 6.2 of \cite{hawking-hellis} or Chap. 14 of \cite{oneill-1}.
+  \end{proof}
+\end{proofbox}
+
+By \itemref{item:tpcs-2} and \itemref{item:tpcs-3} of \lref{lemma:tpcs}, it follows that the topological boundaries\footnotemark are $ \pa J^\pm(S) = \pa I^\pm(S) $. A spacetime $ (\man , g) $ is then said to be \bctxt{causally simple} if $ J^\pm(K) \ssq \man $ are closed for every compact subset $ K \ssq \man $.
+
+\footnotetext{Recall that, given a topological space $ \mathcal{X} $, the \emph{topological boundary} of $ S \ssq \mathcal{X} $ is $ \pa S \defeq \overline{S} - \Int S $.}
+
+If the spacetime $ (\man , g) $ admits a conformal completion $ (\tilde{\man} , \tilde{g}) $ with conformal infinity $ \scri $, then, by the above definitions, the future and past infinity of $ \man $ are expressible as:
+\begin{equation}
+  \scri^\pm = \scri \cap J^\pm(\man)
+\end{equation}
+Note that $ J^\pm(\man) $ are the causal future and causal past of $ \man $ considered as a subset of $ \tilde{\man} $.
+
+\subsubsection{Black holes}
+
+Consider a spacetime $ (\man , g) $ which admits a conformal completion with conformal boundary $ \scri $: then, the future infinity $ \scri^+ $ is \bctxt{complete} if it is a null hypersurface such that all its generators are complete null geodesics\footnote{A geodesic is \emph{complete} if its affine parameters range on the whole $ \R $. In particular, complete geodesics are indextendible.}. The neighbourhood of $ \scri^+ $ in $ \tilde{\man} $ can be considered as the infinitely-far region reached by outgoing null geodesics: hence, if a null geodesic does not reach this regione, it can be considered as trapped somewhere else in spacetime, i.e. in a black hole regione.
+
+\begin{definition}{Black hole}{black-hole}
+  Let $ (\man , g) $ be a time-oriented spacetime with a conformal completion such that its future infinity $ \scri^+ $ is complete. A \bctxt{black hole} is the set of points of $ \man $ that are not in the causal past of $ \scri^+ $:
+  \begin{equation}
+    \bh \defeq \man - (J^-(\scri^+) \cap \man)
+    \label{eq:bh-def}
+  \end{equation}
+  The topological boundary $ \eh^+ \defeq \pa \bh $ is called the \bctxt{future event horizon} (or simply \emph{event horizon}, if no ambiguity arises).
+\end{definition}
+
+From \eref{eq:bh-def}, a black hole is the set of points of $ \man $ from which no future-directed causal curve in $ \tilde{\man} $ reaches $ \scri^+ $. A useful expression for the future event horizon can be found recalling the topological identity $ \pa \bh = \overline{\bh} \cap \overline{\man - \bh} $:
+\begin{equation*}
+  \eh^+ = \overline{\man - (J^-(\scri^+) \cap \man)} \cap \overline{(J^-(\scri^+) \cap \man)} = \pa (J^{-1}(\scri^+) \cap \man)
+\end{equation*}
+Now, the boundary of $ J^-(\scri^+) $ in $ \tilde{\man} $ is $ \pa J^-(\scri^+) = \pa (J^-(\scri^+) \cap \man) \cup \scri^+ $, so $ \pa J^-(\scri^+) \cap \man = \pa(J^-(\scri^+) \cap \man) $ and:
+\begin{equation}
+  \eh^+ = \pa J^-(\scri^+) \cap \man
+\end{equation}
+This means that the future event horizon is the part of the boundary of the causal past of the future infinity $ \scri^+ $ that lies in $ \man $, as illustrated in \figref{fig:bh-def}. From \lref{lemma:tpcs}, $ \eh^+ = \pa I^-(\scri^+) \cap \man $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{bh-def.png}
+  \hspace{30pt}
+  \includegraphics[width = 0.20 \textwidth]{bh-mink.png}
+  \caption{On the left, a black hole $ \bh $ defined as the complement of the causal past of the future infinity, $ J^-(\scri^+) $. On the righ, a spurious black hole $ \bh $ in Minkowski spacetime resulting from a conformal completion with an incomplete $ \scri^+ $. Figures from \cite{gourgoulhon}.}
+  \label{fig:bh-def}
+\end{figure}
+
+\begin{example}{No black hole in Minkowski spacetime}{}
+  The Minkowski spacetime $ (\mink , \eta) $ contains no black hole, since all future-directed null geodesics terminate in $ \scri^+ $: this implies that $ \man \ssq J^-(\scri^+) $, so that $ \bh = \emptyset $. More generally, any asymptotically simple spacetime contains no black hole, as evident from definition (see \secref{sssec:asymptotic-flatness}).
+\end{example}
+
+If one relaxes the assumption of $ \scri^+ $ being complete in \dref{def:black-hole}, unphysical or ``spurious" black holes emerge. For instance, consider the conformal completion of Minkowski spacetime $ (\man , g) $ from its embedding $ \Phi : \man \ra \esu $ into the ESU (\eref{eq:esu-embedding}), but define now $ \scri^+ $ as the hypersurface of $ \esu $ geiven by $ \tau = \pi - \chi $ and $ \tau \in (0,\frac{\pi}{2}) $, instead of $ \tau \in (0,\pi) $, while keeping $ \scri^- $ unchanged: the manifold with boundary $ \tilde{\man} \equiv \man \cup \scri^+ \cup \scri^- $, equipped with the metric \eref{eq:esu-metric}, is then a conformal completion at null infinity of $ (\man , g) $. With such a $ \scri^+ $, the black hole \eref{eq:bh-def} is non-empty, as shown in \figref{fig:bh-def}.
+
+\begin{example}{Schwarzschild black hole}{schw-bh}
+  The prototype of a black hole is the Schwarzschild black hole, which is studied in \secref{sec:bh-schwarzschild}. In particular, the Schwarzschild spacetime contains a region $ \bh $ satisfying \dref{def:black-hole}, and it can be studied using a conformal diagram of the maximally-extended Schwarzschild spacetime, also known as a \emph{Carter--Penrose diagram} (see \secref{sssec:bh-schwarzshild-conformal-diag}), which is pictured in \figref{fig:schw-cart-pen}. This diagram offers a compactified view of the entire spacetime, with each point being a $ 2 $-sphere of metric area $ 4 \pi r^2 $.
+
+  The maximally-extended Schwarzschild spacetime has two causally-disconnected regions where $ 2m < r < + \infty $, denoted by $ \man_\text{I} $ and $ \man_\text{III} $ in \figref{fig:schw-cart-pen}: both are asymptotically flat, and their large-$ r $ parts resemble the conformal diagram for Minkowski spacetime (\eref{fig:conformal-minkowski}). Their future conformal boundaries $ \scri^+_\text{I} $ and $ \scri^+_\text{III} $ are null hypersurfaces of $ (\tilde{\man} , \tilde{g}) $, confirming \pref{prop:causal-conformal-boundary} since the Schwarzschild solution has $ \Lambda = 0 $: the full future conformal boundary $ \scri^+ = \scri^+_\text{I} \cup \scri^+_\text{III} $ is thus a null hypersurface with two connected components.
+
+  From \figref{fig:schw-cart-pen}, it is clear that $ J^-(\scri^+) \cap \man $ does not cover the whole $ \man $, hence there is a black hole denoted by $ \bh $. Its event horizon $ \eh^+ $ is a $ r = 2m $ hypersurface, where $ m $ is the mass parameter of the Schwarzschild solution.
+\end{example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{bh-schw.png}
+  \caption{Maximally-extended Schwarzschild spacetime, depicted in a Carter--Penrose diagam. The yellow area is the causal past of the future null infinity $ J^-(\scri^+) $, divided into three parts by $ r = 2m $ hypersurfaces, the grey area is the black hole $ \bh $, green lines are radial null geodesics and orange zigzag lines at $ r = 0 $ denote curvature singularities. Figure from \cite{gourgoulhon}.}
+  \label{fig:schw-cart-pen}
+\end{figure}
+
+In general, the black hole region in a given spacetime $ (\man , g) $ with a disconnected future infinity $ \scri^+ $ may depend on the choice of connected components of $ \scri^+ $, even if each component is assumed complete. For instance, consider the maximally-extended Schwarzschild spacetime: the regions $ \man_\text{I} $ and $ \man_\text{III} $, in which $ r \in (2m , +\infty) $, are both asymptotically flat and causally disconnected, since no causal curve can connect a point in $ \man_\text{I} $ to one in $ \man_\text{III} $ or vice versa. Then, choosing WLOG an observer in $ \man_\text{I} $, it is possible to consider a conformal completion $ (\tilde{\man} , \tilde{g}) $ of $ (\man , g) $ such that $ \scri = \scri_\text{I} $: the corresponding black hole region $ \bh $ is then larger from that in \exref{ex:schw-bh}, since it now contains $ \man_\text{III} $ too, as shown in \figref{fig:bh-schw-alt}. From the point of view of the observer in $ \man_\text{I} $, these two choices are physically indistinguishable, since no particle can travel from $ \man_\text{III} $ to $ \man_\text{I} $ anyway.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{bh-schw-alt.png}
+  \caption{Maximally-extended Schwarzschild spacetime, but with a different conformal completion, so that $ \scri^+ $ lies only at the boundary of the asymptotically-flat region $ \man_\text{I} $. Figure from \cite{gourgoulhon}.}
+  \label{fig:bh-schw-alt}
+\end{figure}
+
+\subsubsection{White holes}
+
+Inverting past and future in the definition of a black hole \eref{eq:bh-def}, one defines the so-called \bctxt{white hole} of a spacetime $ (\man , g) $ with a conformal completion with complete past infinity $ \scri^- $:
+\begin{equation}
+  \wh \defeq\man - (J^+(\scri^-) \cap \man)
+\end{equation}
+The white hole region is thus the set of points of $ \man $ that cannot be reached by a future-directed causal curve amanating from $ \scri^- $. The boundary of this white hole is called the \bctxt{past event horizon}:
+\begin{equation}
+  \eh^- \defeq \pa \wh = \pa J^+(\scri^-) \cap \man
+\end{equation}
+Carter \cite{carter} introduced the concept of \bctxt{domain of outer comunications} as the part of $ \man $ that lies neither in a black hole nor in a white hole:
+\begin{equation}
+  \doc{\man} \defeq \man - (\bh \cup \wh) = (J^-(\scri^+) \cap J^+(\scri^-)) \cap \man
+\end{equation}
+The last equality shows that the domain of outer communications is the set of points from which it is possible to exchange signals with arbitrarily fat regions. Moreover, from the definitions of black and white hole, it follows trivially that:
+\begin{equation}
+  \pa \doc{\man} = \eh^+ \cup \eh^-
+\end{equation}
+
+\begin{example}{Schwarzschild white hole}{}
+  In the maximally-extended Schwarzschild spacetime depicted in \figref{fig:schw-cart-pen}, the region $ \wh $ is a white hole, with the past event horizon $ \eh^- $ being a null hypersurface $ r = 2m $.
+\end{example}
+
+\subsubsection{Achronal boundaries}
+
+% TODO: add proofs from both gourgoulhon and mtw
+
+From the general definition of black hole \dref{def:black-hole}, it is possible to derive some geometric properties of its boundary $ \eh^+ $, independently of the gravitational theory being used.
+
+Let $ (\man , g) $ be a time-orientable spacetime. Following the conventions of \cite{hawking-hellis}, a set of the type $ \pa J^\pm(S) $, with $ S \ssq \man $, is called an \bctxt{achronal boundary} in $ \man $. In particular, event horizons are achronal boundaries.
+
+\begin{proposition}{Achronal character of achronal boundaries}{achronal-boundary}
+  Let $ (\man , g) $ be a time-orientable spacetime. Any achronal boundary in $ \man $ is an \bcprop{achronal set}, i.e. no pair of its points can be connected by a timelike curve of $ \man $.
+\end{proposition}
+
+This result justifies the used nomenclature. Note that, in this notion of achronal set, it is not required that the timelike curve lies entirely in the set. Accordingly, an analogous statement is: no timelike curve of $ \man $ meets an achronal boundary at more than one point.
+
+Since $ \eh^+ = \pa \bh $, where $ \dim_\R \bh = d $, one would expect the future event horizon to be an hypersurface of spacetime. However, $ \eh^+ $ is not necessarily a smooth manifold: there may exist some points where $ \eh^+ $ is not differentiable.
+
+\begin{proposition}{Topological nature of achronal boundaries}{achronal-topology}
+  Let $ (\man , g) $ be a time-orientable spacetime. Any achronal boundary in $ \man $ is a codimension-$ 1 $ topological submanifold of $ \man $.
+\end{proposition}
+
+To be precise, any achronal boundary in $ \man $ is a \emph{Lipschitz submanifold} of $ \man $, i.e. an intermediate between a topological submanifold, i.e. a submanifold of class $ \cfk{0} $, and a differentiable submanifold of class $ \cfk{1} $.
+
+Besides being an achronal codimension-$ 1 $ topological submanifold, the main property of achronal boundaries has been proved by Penrose \cite{penrose-4}.
+
+\begin{theorem}{Achronal boundaries ruled by null geodesics}{achronal-null-geo}
+  Let $ (\man , g) $ be a time-orientable spacetime, and let $ \ab \ssq \man $ be a future achronal boundary. Then, $ \ab $ is ruled\footnote{Analogy with a \emph{ruled surface}, i.e. a surface $ \rsscript{S} $ in Euclidean space such that there is a straight line lying in $ \rsscript{S} $ through each point of $ \rsscript{S} $ (e.g. a cylinder or a cone). The analogy holds because straight lines are the geodesics of Euclidean space.} by a family of null geodesics, called the \bcth{generators} of $ \ab $, that:
+  \begin{enumerate}
+    \item \label{item:fehrng-1} either lie entirely in $ \ab $ or never leave $ \ab $ when followed into the future from the point where they enter $ \ab $;
+    \item \label{item:fehrng-2} have no endpoint in the future.
+  \end{enumerate}
+  Moreover, there is exactly one generator through each point of $ \ab $, except at points where null geodesics enter $ \ab $, called \bcth{crossovers}. A crossover is called \emph{caustic} if it is a point where neighbourhing null geodesics focus and converge while arriving in $ \ab $.
+\end{theorem}
+
+The same result holds exchanging future $ \lra $ past.
+As a consequence, once a null geodesic has merged with $ \ab $ (at a point where it may intersect other null geodesics), it will remain forever on $ \ab $ and will never intersect any other generator. The set of all crossovers is called the \bctxt{crease set} of $ \ab $.
+
+% TODO: should clarify this concepts, see Chap. 34 of MTW
+
+\begin{proposition}{Achronal boundaries as null hypersurfaces}{achronal-null}
+  Let $ (\man , g) $ be a time-orientable spacetime, and let $ \ab \ssq \man $ be an achronal boundary. Then, wherever it is smooth, $ \ab $ is a null hypersurface.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Assume that $ \ab $ is smooth in some subset $ U \in \tp(\man) $. By \pref{prop:achronal-topology}, $ \ab $ is then a smooth hypersurface in $ U $. According to \tref{th:achronal-null-geo}, there is a null geodesic lying in $ \ab $ through any point of $ \ab \cap U $. This implies the existence of null tangent vectors at any point of $ \ab \cap U $, so that $ \ab $ must be either a null or a timelike hypersurface in $ U $. But $ \ab $ is achronal by \pref{prop:achronal-boundary}, therefore it cannot be timelike. Hence, $ \ab $ is a null hypersurface in $ U $.
+  \end{proof}
+\end{proofbox}
+
+It can be shown that future event horizons are smooth almost everywhere (e.g. the Schwarzschild black hole in \figref{fig:schw-cart-pen}): the only subset where they are not differentiable is the crease set, i.e. the set of points where null geodesics cross each other while entering $ \eh^+ $ to become null generators.
+
+\section{Event horizons}
+\label{sec:event-horizons}
+
+Having established with \pref{prop:achronal-null} that the smooth part of the event horizon of a black hole is a null hypersurface, it is convenient to analyze the geometric properties of this type of hypersurfaces, in order to distinguish between true black hole event horizones and other null hypersurfaces, e.g. future light cones.
+
+\subsection{Null hypersurfaces}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -389,260 +589,6 @@ Penrose \cite{penrose-3} has shown that if $ (\man , g) $ is asymptotically simp
 
 
 \newpage
-\section{Asymptotics of spacetime}
-
-% TODO: must rewiew
-
-The three maximally-symmetric solution (Minkowski, dS, AdS) not only have different spacetime curvature and symmetries, but, more fundamentally, they have different behaviours at infinity. Their importance lies in the fact that, given a spacetime, however complicated the metric might be, if fields are suitably localized, then the spacetime will asymptote to one of these three maximally-symmetric spacetimes.
-
-\subsection{Conformal transformations}
-
-\begin{definition}{Conformal transformation}{}
-  Given a metric manifold $ (\man,g) $ and a non-vanishing $ \Omega \in \cm $, a \bcdef{conformal transformation} is defined as:
-  \begin{equation}
-    \tilde{g}_{\mu \nu}(x) = \Omega^2(x) g_{\mu \nu}(x)
-  \end{equation}
-\end{definition}
-
-Typically, $ g $ and $ \tilde{g} $ describe different spacetime with considerably warped distances. However, conformal transformations preserve angles: in Lorentzian spacetime, the two metrics have the same causal structure, i.e. null/timelike/spacelike vector fields in one metric remain null/timelike/spacelike in the other too.
-
-\begin{proposition}{}{}
-  Only conformal transformations of the metric preserve its causal structure.
-\end{proposition}
-
-Although timelike particle trajectories necessarily remain timelike under a conformal transformation, the same needs not be true for geodesics, as distances get warped.
-
-\begin{proposition}{Invariance of null geodesics}{}
-  Null geodesics are mapped to null geodesics under a conformal transformation.
-\end{proposition}
-
-\begin{proofbox}
-  \begin{proof}
-    First compute the Christoffel symbols in the new metric:
-    \begin{equation*}
-      \begin{split}
-        \Gamma^\mu_{\rho \sigma}[\tilde{g}]
-        &= \frac{1}{2} \tilde{g}^{\mu \nu} (\pa_\rho \tilde{g}_{\nu \sigma} + \pa_\sigma \tilde{g}_{\rho \nu} - \pa_\nu \tilde{g}_{\rho \sigma}) \\
-        &= \frac{1}{2} \Omega^{-2} g^{\mu \nu} (\pa_\rho (\Omega^2 g_{\nu \sigma}) + \pa_\sigma (\Omega^2 g_{\rho \nu}) - \pa_\nu (\Omega^2 g_{\rho \sigma})) \\
-        &= \Gamma^\mu_{\rho \sigma}[g] + \Omega^{-1} (\delta^\mu_\sigma \na_\rho \Omega + \delta^\mu_\rho \na_\sigma \Omega - g_{\rho \sigma} \na^\mu \Omega)
-      \end{split}
-    \end{equation*}
-    In the last line, recall that $ \na = \pa $ on scalar functions. Suppose an affinely parametrized geodesic in the metric $ g $:
-    \begin{multline*}
-      \frac{\dd^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\rho \sigma}[g] \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = 0 \\
-      \quad \implies \quad
-      \frac{\dd^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\rho \sigma}[\tilde{g}] \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = \Omega^{-1} (\delta^\mu_\sigma \na_\rho \Omega + \delta^\mu_\rho \na_\sigma \Omega - g_{\rho \sigma} \na^\nu \Omega) \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau}
-    \end{multline*}
-    For a null geodesic $ g_{\rho \sigma} \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = 0 $, thus:
-    \begin{equation*}
-      \frac{\dd x^2 x^\mu}{\dd \tau^2} + \Gamma^\mu_{\rho \sigma}[\tilde{g}] \frac{\dd x^\rho}{\dd \tau} \frac{\dd x^\sigma}{\dd \tau} = 2 \frac{\dd x^\mu}{\dd \tau} \frac{1}{\Omega} \frac{\dd \Omega}{\dd \tau}
-    \end{equation*}
-    This is the equation of non-affinely parametrized geodesic, hence the thesis.
-  \end{proof}
-\end{proofbox}
-
-Usual curvature tensors are not invariant under conformal transformations. A curvature tensor that is indeed conformally invariant is the \bctxt{Weyl tensor}:
-\begin{equation}
-  \ww_{\mu \nu \rho \sigma} \defeq \rr_{\mu \nu \rho \sigma} - \frac{2}{d - 2} \left( g_{\mu [\rho} \rr_{\sigma] \nu} - g_{\nu [\rho} \rr_{\sigma] \mu} \right) + \frac{2}{(d-1)(d-2)} \rr g_{\mu [\rho} g_{\sigma] \nu}
-\end{equation}
-where $ d \equiv \dim_{\R}\man $. The Weyl tensor has all the symmetries of the Riemann tensor, with the additional property that it vanishes when contracting any pair of indices with the metric: it can be viewed as the trace-free part of the Riemann tensor.
-
-\subsection{Penrose diagrams}
-
-To study the asymptotic behaviour of spacetime, one needs to perform a conformal transformation that maps infinity to a finite distance: the resulting causal structure can then be drawn on a finite area and the resulting picture is called a \textit{Penrose diagram}.
-
-\subsubsection{Minkowski spacetime}
-\label{sssec:penr-mink}
-
-It is simplest to study $ \R^{1,1} $, where the Minkowski metric is $ \dd s^2 = -\dd t^2 + \dd x^2 $. First, introduce \bctxt{lightcone coordinates}:
-\begin{equation*}
-  u = t - x
-  \qquad
-  v = t + x
-  \quad \implies \quad
-  \dd s^2 = - \dd u\, \dd v
-\end{equation*}
-These coordinates range in $ u,v \in \R $. To work with finite quantities, define:
-\begin{equation*}
-  u = \tan \tilde{u}
-  \qquad
-  v = \tan \tilde{v}
-  \quad \implies \quad
-  \dd s^2 = - \frac{1}{\cos^2 \tilde{u} \cos^2 \tilde{v}} \dd \tilde{u}\, \dd \tilde{v}
-\end{equation*}
-where now $ \tilde{u},\tilde{v} \in \left( -\frac{\pi}{2}, +\frac{\pi}{2} \right) $. Note that the metric diverges when approaching the boundary of Minkowski spacetime. However, a conformal transformation is possible with $ \Omega(\tilde{u},\tilde{v}) \equiv \cos \tilde{u}\, \cos \tilde{v} $:
-\begin{equation*}
-  \dd \tilde{s}^2 = \left( \cos^2 \tilde{u} \cos^2 \tilde{v} \right) \dd s^2 = - \dd \tilde{u}\, \dd \tilde{v}
-\end{equation*}
-It is now possible to add $ \tilde{u} = \pm \frac{\pi}{2} $ and $ \tilde{v} = \pm \frac{\pi}{2} $: this operation is called \bctxt{conformal compactification}.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.70 \textwidth]{ms-causal.png}
-  \caption{Penrose diagram for $ d = 1 + 1 $ Minkowski spacetime.}
-  \label{fig:ms-causal}
-\end{figure}
-
-Penrose diagrams, as other relativistic diagrams, present light-rays travelling at 45°, time in the vertical direction and space in the horizontal one. \figref{fig:ms-causal} shows the Penrose diagram for Minkowski spacetime $ \R^{1,1} $ with $ \tilde{u},\tilde{v} $ coordinates, both with coordinate axis and geodesics. Moreover, the various infinities of Minkowski space are shown:
-\begin{itemize}
-  \item timelike geodesics (blue) start at $ i^- (\tilde{u},\tilde{v}) = \left( -\frac{\pi}{2}, -\frac{\pi}{2} \right) $ and end at $ i^+ (\tilde{u},\tilde{v}) = \left( +\frac{\pi}{2}, +\frac{\pi}{2} \right) $, called respectively \bctxt{past} and \bctxt{future timelike infinity};
-  \item spacelike geodesics (red) start and end at $ i^0 (\tilde{u},\tilde{v}) = \left( \mp \frac{\pi}{2}, \pm \frac{\pi}{2} \right) $, both called \bctxt{spacelike infinity};
-  \item all null curves (not shown) start at the boundary $ \mathcal{I}^- \equiv \{\tilde{u} = - \frac{\pi}{2}\} \cup \{\tilde{v} = - \frac{\pi}{2}\} $ and end at the boundary $ \mathcal{I}^+ \equiv \{\tilde{u} = +\frac{\pi}{2}\} \cup \{\tilde{v} = +\frac{\pi}{2}\} $, called respectively \bctxt{past} and \bctxt{future null infinity}.
-\end{itemize}
-It is clear then that in Minkowski spacetime there are more ways reach infinity along a null direction than in a timelike or spacelike direction.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.70 \textwidth]{ms-light.png}
-  \caption{Lightcones in $ d = 1 + 1 $ Minkowski spacetime.}
-  \label{fig:ms-light}
-\end{figure}
-
-Penrose diagrams allow to immediately visualize the causal structure of spacetime. As shown in \figref{fig:ms-light}, given a particle moving along a timelike curve, as it approaches $ i^+ $ its past lightcone encompasses progressively more of spacetime: thus, an observer in Minkowski spacetime can in principle see everything, as long as they wait long enough. Relatedly, given any two points in Minkowski spacetime, they are causally connected both in the past and in the future, as both cones intersect (see \figref{fig:ms-light}): thus, there was always an event in the past that could have influenced both, and there will always be an event in the future that can be influenced by both.
-
-\paragraph{4d Minkowski spacetime}
-
-The analysis can be repeated for $ \R^{1,3} $ with $ \dd s^2 = -\dd t^2 + \dd r^2 + r^2 \dd \Omega_2^2 $. Lightcone coordinates are again:
-\begin{equation*}
-  u = t - r
-  \qquad
-  v = t + r
-  \quad \implies \quad
-  \dd s^2 = - \dd u\, \dd v + \frac{1}{4} \left( u - v \right)^2 \dd \Omega_2^2
-\end{equation*}
-Finite range coordinates are again:
-\begin{equation*}
-   u = \tan \tilde{u}
-  \qquad
-  v = \tan \tilde{v}
-  \quad \implies \quad
-  \dd s^2 = \frac{1}{4\cos^2 \tilde{u} \cos^2 \tilde{v}} \left( -4 \dd \tilde{u}\, \dd \tilde{v} + \sin^2 (\tilde{u} - \tilde{v}) \dd \Omega_2^2 \right)
-\end{equation*}
-Finally, the conformal transformation with $ \Omega(\tilde{u},\tilde{v}) = 2 \cos \tilde{u} \cos \tilde{v} $ leads to:
-\begin{equation*}
-  \dd \tilde{s}^2 = - 4 \dd \tilde{u}\, \dd \tilde{v} + \sin^2 (\tilde{u} - \tilde{v}) \dd \Omega_2^2
-\end{equation*}
-In 4d Minkowski spacetime there is an additional constraint: $ r \ge 0 $, so $ v \ge u $. Conformal compactification leads to:
-\begin{equation*}
-  - \frac{\pi}{2} \le \tilde{u} \le \tilde{v} \le + \frac{\pi}{2}
-\end{equation*}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.30 \textwidth]{ms-4d.png}
-  \caption{Penrose diagram for $ d = 1 + 3 $ Minkowski spacetime.}
-  \label{fig:ms-4d}
-\end{figure}
-
-The corresponding Penrose diagram is drawn in \figref{fig:ms-4d}: the spatial $ \Sn{2} $ is not shows for simplicity, but every point on the diagram corresponds to an $ \Sn{2} $ of radius $ \abs{\sin (\tilde{u} - \tilde{v})} $. The line $ \tilde{u} = \tilde{v} $ is not a boundary of Minkowski spacetime, but it is simply the origin $ r = 0 $ (at which $ \Sn{2} $ shrinks to a point): to illustrate this, a null geodesic is drawn.
-
-In general, Penrose diagrams are only useful for spacetimes which contain an obvious $ \Sn{2} $, i.e. those with $ \SOn{3} $ isometry: luckily, these are the simplest and most important in physics.
-
-\subsubsection{de Sitter space}
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.50 \textwidth]{ds-penr.png}
-  \caption{Penrose diagram for de Sitter space.}
-  \label{fig:ds-penr}
-\end{figure}
-
-Recall global coordinates on dS: from \eref{eq:ds-global-coo}, $ \dd s^2 = -\dd \tau^2 + R^2 \cosh^2 \frac{\tau}{R} \dd \Omega_3^2 $. To draw the Penrose diagram, define \textit{conformal time} as:
-\begin{equation*}
-  \frac{\dd \eta}{\dd \tau} = \frac{1}{R \cosh (\tau / R)}
-  \quad \implies \quad
-  \cos \eta = \frac{1}{\cosh (\tau / R)}
-\end{equation*}
-Given that $ \tau \in \R $, then $ \eta \in \left( -\frac{\pi}{2}, +\frac{\pi}{2} \right) $. In conformal time, de Sitter space has the metric:
-\begin{equation*}
-  \dd s^2 = \frac{R^2}{\cos^2 \eta} \left( -\dd \eta^2 + \dd \Omega_3^2 \right)
-\end{equation*}
-Writing $ \dd \Omega_3^2 = \dd \chi^2 + \sin^2 \chi\, \dd \Omega_2^2 $, with $ \chi \in [0,\pi] $, de Sitter metric is conformally equivalent to:
-\begin{equation*}
-  d\tilde{s}^2 = -d\eta^2 + d\chi^2 + \sin^2 \chi\, d\Omega_2^2
-\end{equation*}
-After conformal compactification, $ \eta \in \left[ - \frac{\pi}{2}, + \frac{\pi}{2} \right] $ and $ \chi \in \left[ 0,\pi \right] $. The Penrose diagram is drawn in \figref{fig:ds-penr}: the two vertical lines are not boundaries of dS, but simply the north and south poles of $ \Sn{3} $. The boundaries of the spacetime are the top and bottom lines, labelled both $ i^{\pm} $ and $ \mathcal{I}^{\pm} $ as they are where both timelike and null geodesics originate and terminate.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.80 \textwidth]{ds-diam.png}
-  \caption{Event and particle horizons for an observer at the north pole in dS, and the causal diamonds for an observer at the north and south pole.}
-  \label{fig:ds-diam}
-\end{figure}
-
-\begin{proposition}{dS boundary}{}
-  de Sitter spacetime has a spacelike $ \Sn{3} $ boundary with timelike normal vector.
-\end{proposition}
-
-The causal structure of dS is very different from that of Minkowski spacetime: it is no longer true that any observer can see everything by waiting long enough. For example, as shown in \figref{fig:ds-diam}, an observer at the north pole will eventually see only exactly half the spacetime: the boundary of this half-space is the observer's \textit{event horizon}, in the sense that signals from beyond the horizon cannot reach them. It is also clear that this event horizon is observer-dependent: in this context, these are referred to as \bctxt{cosmological horizons}.
-
-Furthermore, an observer at the north pole will only be able to communicate with another half of the spacetime, as shown in \figref{fig:ds-diam}: the boundary of this region of influence is known as the \textit{particle horizon} and it represents the furthest distance light can travel since the beginning of time. Its intersection with the event horizon determines the (nothern) \bctxt{causal diamond}: usually, nothern and southern causal diamonds are causally disconnected.
-
-Penrose diagrams can also be used to explain the divergence at $ r = R $ of the metric \eref{eq:dS-metric} on the static patch of dS. Recalling the embedding of the static patch in $ \R^{1,4} $, parametrized as $ X^0 = \sqrt{R^2 - r^2} \sinh \frac{t}{R} $ and $ X^4 = \sqrt{R^2 - r^2} \cosh \frac{t}{R} $. Naively, the surface $ r = R $ corresponds to $ X^0 = X^4 = 0 $, but writing $ r = R ( 1 - \varepsilon^2 / 2) $ yields that $ X^0 \sim R \varepsilon \sinh \frac{t}{R} $ and $ X^4 \sim R \varepsilon \cosh \frac{t}{R} $, so $ \varepsilon \rightarrow 0 $ can be obtained keeping $ X^0, X^4 \neq 0 $ and finite, provided that $ t \rightarrow \pm \infty $: to do this, $ \varepsilon \exp (\pm t / R) $ must be kept finite, thus the surface $ r = R $ is identified with the lines $ X^0 = \pm X^4 $. Translation to polar coordinates is done by $ X^0 = R \sinh \frac{\tau}{R} $ and $ X^4 = R \cosh \frac{\tau}{R} \cos \chi $, with $ \chi $ the polar angle on $ \Sn{3} $; after mapping to conformal time, one finds that:
-\begin{equation*}
-  X^0 = \pm X^4
-  \quad \iff \quad
-  \sin \eta = \pm \cos \chi
-  \quad \iff \quad
-  \chi = \pm \left( \eta - \frac{\pi}{2} \right)
-\end{equation*}
-These are precisely the lines determining the polar causal diamonds. It can also be checked that $ r = R $ on the static patch corresponds to the north pole $ \chi = 0 $ in global coordinates and that $ t = \tau $ along this line. Therefore, the static patch of dS provides coordinates that cover only the nothern causal diamond of dS spacetime, with the coordinate singularity at $ r = R $ corresponding to the past and future observer-dependent horizons.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.30 \textwidth]{ds-kill.png}
-  \caption{$ K = \pa_t $ Killing vector field in de Sitter spacetime.}
-  \label{fig:ds-kill}
-\end{figure}
-
-Finally, Penrose diagrams help to understand the nature of the $ K = \pa_t $ Killing vector field exhibited by the static patch metric. As shown in \figref{fig:ds-kill}, there's no global timelike Killing vector field in dS spacetime: extending the Killing vector beyond the static patch, i.e. the nothern causal diamond, it is timelike but past-oriented on the souther causal diamond and spacelike on the upper and lower quadrants.
-
-\subsubsection{Anti-de Sitter space}
-
-The global coordinates on AdS are, from \eref{eq:ads-metric}, $ \dd s^2 = - \cosh^2 \rho \, \dd t^2 + R^2 \dd \rho^2 + R^2 \sinh^2 \rho \, \dd \Omega_2^2 $, with $ \rho \in [0,\infty) $. Introduce a conformal radial coordinate:
-\begin{equation*}
-  \frac{\dd \psi}{\dd \rho} = \frac{1}{\cosh \rho}
-  \quad \implies \quad
-  \cos \psi = \frac{1}{\cosh \rho}
-\end{equation*}
-with $ \psi \in [0, \frac{\pi}{2}) $. With a dimensionless coordinate time $ \tilde{t} = \frac{t}{R} $, the metric becomes:
-\begin{equation*}
-  \dd s^2 = \frac{R^2}{\cos^2 \psi} \left( -\dd \tilde{t}^2 + \dd \psi^2 + \sin^2 \psi \, \dd \Omega_2^2 \right) = \frac{R^2}{\cos^2 \psi} \left( - \dd \tilde{t}^2 + \dd \Omega_3^2 \right)
-\end{equation*}
-AdS metric is therefore conformally equivalent to:
-\begin{equation*}
-  \dd \tilde{s}^2 = -\dd \tilde{t}^2 + \dd \psi^2 + \sin^2 \psi \, \dd \Omega_2^2
-\end{equation*}
-After conformal compactification, $ \tilde{t} \in \R $ and $ \psi \in \left[ 0, \frac{\pi}{2} \right] $ and the resulting Penrose diagram is the infinite strip in \figref{fig:ads-penr}. The edge at $ \psi = 0 $ is not a boundary, but the spatial origin where $ \Sn{2} $ shrinks to a point; in contrast, $ \psi = \frac{\pi}{2} $ is a boundary of the spacetime, labelled $ \mathcal{I} $, which should be viewed as a combination of $ \mathcal{I}^- $, $ \mathcal{I}^+ $ and $ i^0 $, since null and spacelike geodesics begin and end there.
-
-\begin{figure}
-  \centering
-  \includegraphics[width = 0.60 \textwidth]{ads-penr.png}
-  \caption{Penrose diagrams for AdS, without and with conformally compactified time coordinate.}
-  \label{fig:ads-penr}
-\end{figure}
-
-\begin{proposition}{AdS boundary}{}
-  AdS spacetime has a timelike $ \R \times \Sn{2} $ boundary with spacelike normal vector.
-\end{proposition}
-
-Note that $ \R $ is the time factor.
-The Penrose diagram clearly shows that light rays reach the boundary in finite conformal time. To study physics in AdS, one needs to specify boundary conditions at $ \mathcal{I} $: for example, reflecting boundary conditions make light rays bounce back and forth forever, rendering AdS a ``box" spacetime in which massive particle are confined in the interior and massless particles bounce off the boundary.
-
-Another characteristic of AdS space is that it is not \textit{globally hyperbolic}: there exists no Cauchy surface on which initial data can be specified. Consider for example the 3-dimensional spacelike hypersurface $ \Sigma $ in \figref{fig:ads-penr}. Specifying initial data on $ \Sigma $ it is not sufficient to solve for their time evolution: in AdS, there exist points in the future of $ \Sigma $ which are in causal contact with the boundary, thus the time evolution depends on boundary conditions too.
-
-To make the Penrose diagram for AdS not stretch to infinity, the time coordinate can be restricted to finite values by:
-\begin{equation*}
-  \tilde{t} = \tan \tau
-  \quad \implies \quad
-  \dd s^2 = \frac{R^2}{\cos^2 \psi \cos^4 \tau} \left( -\dd \tau^2 + \cos^4 \tau \, \dd \Omega_3^2 \right)
-\end{equation*}
-This metric is conformally equivalent to:
-\begin{equation*}
-  \dd \tilde{s}^2 = - \dd \tau^2 + \cos^4 \tau \left( \dd \psi^2 + \sin^2 \psi \, \dd \Omega_2^2 \right)
-\end{equation*}
-with conformally compactified $ \tau \in \left[ - \frac{\pi}{2}, + \frac{\pi}{2} \right] $. Ignoring the spatial $ \Sn{2} $, the resulting Penrose diagram is drawn in \figref{fig:ads-penr}: the spatial $ \Sn{3} $ grows and shrinks in time, the timelike boundary $ \mathcal{I} $ is still present and now the past and future timelike infinities $ i^{\pm} $ are also shown. This diagram makes it clear that a lightray bounces back and forth off the boundary of AdS an infinite number of times.
-
 \section{Schwarzschild black holes}
 \label{sec:bh-schwarzschild}
 
@@ -927,6 +873,7 @@ Furthermore, the radius of the spatial $ \Sn{2} $ is minimum at $ 2GM $ in the m
 Although there is no way that an observer in one quadrant can signal an observer in the other quadrant, there is one way for them to communicate: jump into the black hole and meet behind the respective horizons. However, as the white hole is thought to have no physical manifestation, the other universe in the left-hand quadrant of Kruskal space is thought to be a mathematical artifact too.
 
 \subsubsection{Penrose diagram}
+\label{sssec:bh-schwarzshild-conformal-diag}
 
 \begin{figure}
   \centering
@@ -960,7 +907,7 @@ However, the singularity at $ r = 0 $ must be retained: this is mapped to $ UV =
   \quad \iff \quad
   \tilde{U} + \tilde{V} = \pm \frac{\pi}{2}
 \end{multline*}
-These are straight horizontal lines in the Penrose diagram which chop the diamond-shaped diagram (as that in \figref{fig:ms-causal}): the resulting diagram is shown in \figref{fig:kru-penr}, with singularities represented by jagged lines.
+These are straight horizontal lines in the Penrose diagram which chop the diamond-shaped diagram: the resulting diagram is shown in \figref{fig:kru-penr}, with singularities represented by jagged lines.
 
 The Penrose diagram contains the same information as the Kruskal diagram in \figref{fig:kruskal}, but it allows to state a more rigorous definition of black hole. Restricting to aymptotically flat spacetimes, the two asymptotic regions contain both null infinities $ \mathcal{I}^+ $ and $ \mathcal{I}^- $: the black hole region is then defined as the set of points which cannot send signals to $ \mathcal{I}^+ $. The boundary of the black hole region is the \textit{future event horizon} $ \mathcal{H}^+ $: equivalently, $ \mathcal{H}^+ $ is the boundary of the causal past of $ \mathcal{I}^+ $. With reference to \figref{fig:kru-penr}, the black hole associated to $ \mathcal{I}^+ $ is the upper quadrant and the left quadrant, while the black hole associated to $ \mathcal{I}'^{+} $ is the upper quadrant and the right quadrant.
 
@@ -996,7 +943,7 @@ On the contrary, Einstein field equations also allow \bctxt{naked singularities}
 \begin{equation*}
   ds^2 = - \left( 1 + \frac{2G \abs{M}}{r} \right) dt^2 + \left( 1 + \frac{2G \abs{M}}{r} \right)^{-1} dr^2 + r^2 \left( d\vartheta^2 + \sin^2 \vartheta \, d\varphi^2 \right)
 \end{equation*}
-This metric presents no coordinate singularity at $ r = 2G \abs{M} $, and so no event horizon. The Penrose diagram for such a spacetime is found analogously to that of Minkwoski spacetime (see \secref{sssec:penr-mink}), setting null coordinates $ u = t - r $ and $ v = t + r $. The resulting diagram, shown in \figref{fig:cens-3}, is identical to that of Minkowski spacetime (\figref{fig:ms-4d}), with the difference that now $ r = 0 $ presents a curvature singularity not shielded by an horizon: it is thus observed from $ \mathcal{I}^+ $.
+This metric presents no coordinate singularity at $ r = 2G \abs{M} $, and so no event horizon. The Penrose diagram for such a spacetime is found analogously to that of Minkwoski spacetime, setting null coordinates $ u = t - r $ and $ v = t + r $. The resulting diagram, shown in \figref{fig:cens-3}, is identical to that of Minkowski spacetime (\figref{fig:conformal-minkowski}), with the difference that now $ r = 0 $ presents a curvature singularity not shielded by an horizon: it is thus observed from $ \mathcal{I}^+ $.
 
 \begin{figure}
   \centering
