@@ -1,6 +1,6 @@
 \selectlanguage{english}
 
-In this chapter, we develop the concept of black hole (BH). First, black holes need to be rigorously defined (\secref{sec:bh-def}): in order to do that, it is necessary to study the global structure of spacetime, and in particular its asymptotics, with a techinque developed by Penrose \cite{penrose-1, penrose-2} know as \emph{conformal completion}. Then, we perform a geometric analysis of event horizons (\secref{sec:event-horizons}), in order to study properties of black holes which are independent of the gravitational theory used. Finally, we cover the three main types of black holes: Schwarschild (\secref{sec:bh-schwarzschild}), Reissner--Nordström (\secref{sec:bh-rn}) and Kerr black holes (\secref{sec:bh-kerr}).
+In this chapter, we develop the concept of black hole (BH). First, black holes need to be rigorously defined (\secref{sec:bh-def}): in order to do that, it is necessary to study the global structure of spacetime, and in particular its asymptotics, with a techinque developed by Penrose \cite{penrose-1, penrose-2} know as \emph{conformal completion}. Secondly, we perform a geometric analysis of event horizons (\secref{sec:event-horizons}), in order to study properties of black holes which are independent of the gravitational theory used. Then, we study black holes at equilibrium (sec:bh-stationary), covering the three main stationary black holes solutions: Schwarschild (\secref{sec:bh-schwarzschild}), Reissner--Nordström (\secref{sec:bh-rn}) and Kerr black holes (\secref{sec:bh-kerr}). Finally, we study the dynamics of black holes out of equilibrium (\secref{sec:bh-dynamics}).
 
 \section{Definition of black hole}
 \label{sec:bh-def}
@@ -10,6 +10,7 @@ In this chapter, we develop the concept of black hole (BH). First, black holes n
 It is possible to give a naive and intuitive definition of BH: given a spacetime $ (\man , g) $, a \bctxt{black hole} is ``a localized region of spacetime from which neither massive nor massless particles can escape". This definition has two essential features: \emph{localization} and \emph{inescapability}. The latter implies the existence of a boundary which no particle emitted in the black hole can cross: this boundary is known as the \bctxt{event horizon} (or simply horizon), and it is a \emph{one-way membrane}, in the sense that it can be crossed from the black hole's ``exterior" towards its ``interior", but not in the reverse way. This means that the horizon must be a hypersurface which divides $ \man $ int two regions: the interior (i.e. the BH itself) and the exterior of the black hole.
 
 \subsubsection{Black hole boundaries}
+\label{sssec:bh-boundaries}
 
 Recall that, on a Lorentzian $ d $-manifold $ (\man , g) $, a hypersurface $ \Sigma $ can be locally classified based on its \emph{causal type}, which is determined by the signature of the restricted metric $ g \vert_\Sigma $. The hypersurface $ \Sigma $ is said to be:
 \begin{itemize}
@@ -535,6 +536,374 @@ Having established with \pref{prop:achronal-null} that the smooth part of the ev
 
 \subsection{Null hypersurfaces}
 
+Let $ (\man , g) $ be a spacetime. As any hypersurface, a null hypersurface $ \eh $ can be locally considered as regular a level set (\dref{def:level-set}) of a defining map $ u \in \cfk{\infty}(U) $, with $ U \ssq \man : U \cap \eh \neq 0 $. In particular, the smooth function can be chosen so that, for all $ p \in U $:
+\begin{equation*}
+  p \in \eh \iff u(p) = 0
+  \qquad \qquad
+  \dd u \vert_\eh \neq 0
+\end{equation*}
+The second condition ensures that $ \eh $ is not self-intersecting.
+
+\subsubsection{Null geodesic generators}
+
+Let $ \nn \in \Gamma(N \eh) $ be a smooth vector field normal to $ \eh $. Being $ \eh $ a null hypersurface, $ \nn $ is null, i.e. $ \braket{\nn , \nn}_g = 0 $; moreover, WLOG choose it future-directed. As $ \nn^2 = 0 $, there is no natural normalization for null normals, since any rescaling $ \nn \mapsto \nn' = \alpha \nn $ with $ \alpha \in \R^+ $ (to preserver causal orientation) yields an analogous null normal to $ \eh $.
+
+A priori, the null normal vector field $ \nn $ is defined on $ \eh $ only. However, it is useful to consider $ \nn \in \xv(U) $, with $ U \in \tp(\man) : U \supseteq \eh $, so as to allow for the definition of the covariant derivative $ \na \nn $. To do so, consider a foliation of $ \man $, in general in the vicinity of $ \eh $, by a family of null hypersurfaces: WLOG this foliation can be seen as a family of level set of the above-defined $ u \in \cfk{\infty}(U) $, denoted by $ \{\eh_c\}_{c \in \R} : \eh_c = u^{-1}(c) $, so that $ \eh \equiv \eh_0 $. Then, $ \nn $ can be defined on the part of $ \man $ foliated by $ (\eh_c) $ so that $ \forall p \in U \, \exists c \in \R : \nn_p \in N_p\eh_c $, i.e. for each point in the region there is a leaf of the foliation to which $ \ell $ is a null normal.
+
+Obviously, the foliation $ (\eh_c) $ is not unique, but all geometrical quantities defined hereafter do not depend on the chosen foliation once they are evaluated on $ \eh $. Since $ \eh $ is a hypersurface on which $ u $ is constant, then $ \bs{v} \in T_p\man $ is tangent to $ \eh $ if and only if $ \na_{\bs{v}} u = 0 $, i.e. $ \braket{\grad u , \bs{v}}_g = 0 $ since $ u \in \tns{0}{0}(\man) $. This means that $ \grad u $ is a normal vector field on $ \eh $, so, by uniqueness of the normal direction to a hypersurface, it must be collinear to $ \nn $, and it is always possible to choose $ \rho \in \cfk{\infty}(U) $ such that:
+\begin{equation}
+  \nn = - e^\rho \grad u
+  \label{eq:frobenius-aux}
+\end{equation}
+The strictly-negative sign of the coefficients is always possible to find by a redefinition of $ u $, and it ensures that if $ u $ increases towards the future, then $ \nn $ is future-directed.
+
+\begin{lemma}[before upper = {\tcbtitle}]{Frobenius' identity}{}
+  \begin{equation}
+    \dd \ell^\flat = \dd \rho \wedge \ell^\flat
+    \label{eq:frobenius}
+  \end{equation}
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    Writing the metric dual of \eref{eq:frobenius-aux} $ \ell^\flat = - e^\rho \dd u $ in a local coordinate frame yields $ \ell_\alpha = - e^\rho \na_\alpha u $. Taking the covariant derivative:
+    \begin{equation*}
+      \na_\alpha \ell_\beta = - e^\rho \na_\alpha \rho \na_\beta u - e^\rho \na_\alpha \na_\beta u = \na_\alpha \rho \ell_\beta - e^\rho \na_\alpha \na_\beta u
+    \end{equation*}
+    Antisymmetrizing and using the torsion-free nature of the Levi--Civita connection:
+    \begin{equation}
+      \na_{[\alpha} \ell_{\beta]} = \na_{[\alpha} \rho \ell_{\beta]}
+      \label{eq:frobenius-components}
+    \end{equation}
+    The left-hand side are the components of $ \dd \ell^\flat $, again by the torsion-free property, while the right-hand side are the components of $ \dd \rho \wedge \ell^\flat $.
+  \end{proof}
+\end{proofbox}
+
+This identity is linked to the Frobenius theorem, see e.g. Th. B.3.2 of \cite{wald} of Th. C.2 of \cite{straumann}: a $ 1 $-form satisfies \eref{eq:frobenius} if and only if it defines hyperplanes that are integrable in some hypersurface ($ \eh $ in this case). Contracting the component equation \eref{eq:frobenius-components} with $ \nn $ yields:
+\begin{equation*}
+  \ell^\mu \na_\mu \ell_\alpha - \ell^\mu \na_\mu \ell_\alpha = \ell^\mu \na_\mu \rho \ell_\alpha - \ell^\mu \ell_\mu \na_\alpha \rho = \ell^\mu \na_\mu \rho \ell_\alpha
+\end{equation*}
+Since $ \nn $ is null, $ \ell^\mu \na_\alpha \ell_\mu = \na_\alpha (\ell^\mu \ell_\mu) - \ell_\mu \na_\alpha \ell^\mu = - \ell_\mu \na_\alpha \ell^\mu $, i.e. $ \ell^\mu \na_\alpha \ell_\mu = 0 $, thus:
+\begin{equation}
+  \na_{\nn} \nn = \sg \nn
+  \qquad \qquad
+  \sg \equiv \na_{\nn} \rho
+\end{equation}
+This is the equation for a non-affinely parametrized geodesic, hence the integral curves of $ \nn $ are null geodesics. $ \sg $ is often called the \emph{non-affinity coefficient}, and it can be set to $ \sg = 0 $ with a suitable\footnotemark rescaling $ \nn \mapsto \nn' = \alpha \nn $. This analysis allows to state a result analogous to \tref{th:achronal-null-geo}.
+
+\footnotetext{Explicitly, if $ \nn' = \alpha \nn $:
+\begin{equation*}
+  \na_{\nn'} \nn' = \alpha (\na_{\nn} \alpha + \sg \alpha) \nn = 0
+  \quad \iff \quad
+  \na_{\nn} \log \alpha = - \sg
+  \quad \iff \quad
+  \frac{\dd}{\dd \lambda} \log \alpha = - \sg
+\end{equation*}
+where $ \lambda $ is the parameter of $ \nn $. Therefore, setting $ \alpha(\lambda) = \exp \left( - \int_0^\lambda \dd \bar{\lambda} \, \sg(\bar{\lambda}) \right) $ along each integral curve ensures that it is an affinely-parametrized geodesic. Moreover, under a rescaling $ \ell' = \alpha \ell $, the non-affinity coefficient transforms as:
+\begin{equation}
+  \sg' = \alpha \sg + \na_{\nn} \alpha
+\end{equation}}
+
+\begin{proposition}{Geodesic generators of a null hypersurface}{null-geodesic-generators}
+  Let $ (\man , g) $ be a spacetime. Any null hypersurface $ \eh \ssq \man $ is ruled by a family of null geodesics, calle \bcprop{null geodesic generators} of $ \eh $, and each $ \nn \in \Gamma(N \eh) $ is tangent to these null geodesics. Moreover, the null geodesic generators of $ \eh $ form a congruence\footnote{Let $ \man $ be a smooth manifold, and let $ \Sigma \ssq \man $ be a smooth submanifold. Then, a \emph{congruence} in $ \Sigma $ is a family of curves in $ \Sigma $ such that through each point in $ \Sigma $ there passes one and exactly one such curve.} in $ \eh $.
+\end{proposition}
+
+This result if not trivial: while it is obvious that integral curves of a null normal of $ \eh $ at null curves tangent to $ \eh $, keep in mind that not all null curves are null geodesics. For a smooth achronal boundary, the geodesic generators defined in \pref{prop:null-geodesic-generators} are the same as those defined in \tref{th:achronal-null-geo}.
+
+\subsubsection{Cross-sections}
+
+\begin{definition}{Cross-section of a null hypersurface}{cross-section-null}
+  Let $ (\man , g) $ be a $ d $-spacetime, with $ d \geq 3 $, and let $ \eh $ be a null hypersurface. A \bcdef{cross-section} of $ \eh $ is a $ (d-2) $-submanifold $ \crs \ssq \eh $ such that:
+  \begin{enumerate}
+    \item \label{item:csnh-1} any $ \nn \in \Gamma(N \eh) $ is nowhere tangent to $ \crs $;
+    \item \label{item:csnh-2} each null geodesic generator of $ \eh $ intersects $ \crs $ at most once.
+  \end{enumerate}
+\end{definition}
+
+If each null geodesic generator of $ \eh $ intersects $ \crs $ exactly one, then $ \crs $ is a \bctxt{complete cross-section} (see \figref{fig:cross-section}). In the following, indices relative to a cross-section range from $ 2 $ to $ d -1 $ and are denoted by Latin letters from the beginning of the alphabet.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.50 \textwidth]{cross-section.png}
+  \caption{Two complete cross-section $ \crs $ and $ \crs' $ of a null hypersurface $ \eh $. Green lines represent null geodesic generators. Figure from \cite{gourgoulhon}.}
+  \label{fig:cross-section}
+\end{figure}
+
+No restriction is placed on the topology of cross-section. However, note that if $ \eh $ is a black hole event horizon, its complete cross-sections are closed manifolds, i.e. compact manifolds without boundary: the simplest example is $ \crs = \Sn{d-2} $, which is the relevant case for $ d = 4 $ (for $ d > 4 $ other compact topologies are possible).
+
+\begin{proposition}{Spacelike character of cross-sections}{}
+  Any cross-section of a null hypersurface is spacelike, i.e. all its tangent vectors are spacelike.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    To prove this proposition, first state a useful lemma.
+
+    \begin{lemma}{Tangent vectors to a null hypersurface}{cs-aux}
+      Every non-zero tangent vector $ \vv $ to a null hypersurface is either spacelike or null. Moreover, if it is null, $ \vv $ is tangent to a null geodesic generator, i.e. it is normal to the hypersurface.
+    \end{lemma}
+
+    Let $ p \in \crs $ and $ \vv \in T_p\man $ be a non-zero tangent vector to $ \crs $. By \lref{lemma:cs-aux}, $ \vv $ is either spacelike to tangent to the null geodesic generator $ \gamma $ going through $ p $, but then $ \gamma $ would be tangent to $ \crs $, which is not allowed by \itemref{item:csnh-1} of \dref{def:cross-section-null}. This implies that $ \vv $ must be spacelike, which proves that $ \crs \ssq \man $ is a spacelike submanifold.
+  \end{proof}
+\end{proofbox}
+
+Being $ \crs $ spacelike, the metric induced by $ g $ on $ \crs $ is a Riemannian metric: denote it with $ \bar{q} : T \crs \times T \crs \ra \cfk{\infty}(\crs) : \bar{q} \equiv g \vert_\crs $. Then, through the Gram--Schmidt algorithm, it is possible to find at each $ p \in \crs $ an \emph{orthogonal complement} $ T_p^\perp \crs $ of $ T_p \crs $, which is a $ 2 $-dimensional vector space such that:
+\begin{equation}
+  T_p\man = T_p \crs \oplus T_p^\perp \crs
+  \label{eq:crs-dir-sum}
+\end{equation}
+where each vector in $ T_p^\perp \crs $ is orthogonal to $ \crs $. Since $ \bar{q} $ is Riemannian, the induced metric on $ T_p^\perp \crs $ must be Lorentzian with signature $ (-,+) $, so to ensure that $ g_p = g \vert_{T^\perp \crs} \oplus \bar{q}_p $ has signature $ (-,+,\dots,+) $. Moreover, $ \crs \ssq \eh $ means that a null normal $ \nn $ of $ \eh $ is orthogonal to any vector tangent to $ \crs $, i.e. $ \nn_p \in T_p^\perp \crs \,\, \forall p \in \crs $: one can then supplement $ \nn_p $ with another null vector to form a null basis of $ T_p^\perp \crs $. It can be shown that, at each $ p \in \crs $, there exists a unique such complement $ \kk_p \in T_p\man $ with normalization $ \braket{\kk_p , \nn_p} = -1 $, so denote with $ \kk \in \xm : \kk(p) = \kk_p $ the associated vector field: note that, while $ \nn $ is independent of the choiche of the cross-section $ \crs $ of $ \eh $ through $ p $, $ \kk $ does depend on $ \crs $. Then, the induced metric $ \bar{q} $ on $ \crs $ can be extended to a metric on $ \man $ as:
+\begin{equation}
+  q \defeq g + \nn^\flat \otimes \kk^\flat + \kk^\flat \otimes \nn^\flat
+  \label{eq:crs-metric}
+\end{equation}
+In a local coordinate frame, this metric has components $ q_{\alpha \beta} = g_{\alpha \beta} + \ell_\alpha k_\beta + k_\beta \ell_\alpha $. Then, at each $ p \in \crs $, given $ \uu , \vv \in T_p\man $:
+\begin{equation}
+  q(\uu , \vv) = q(\uu^\parallel , \vv^\parallel)
+\end{equation}
+where $ \uu^\parallel , \vv^\parallel \in T_p \crs $ are the tangent parts of $ \uu $ and $ \vv $ to $ \crs $, which are uniquely defined by the direct sum \eref{eq:crs-dir-sum}. This means that the metric dual of $ q $ is an orthogonal projector onto $ \crs $:
+\begin{equation}
+  \pi_\crs \defeq \id_\man + \nn \otimes \kk^\flat + \kk \otimes \nn^\flat
+\end{equation}
+In a local coordinate frame, this projector has components $ \pi^\alpha_\beta = \delta^\alpha_\beta + \ell^\alpha k_\beta + k^\alpha \ell_\beta $, and it acts on $ T_p\man $ as $ \pi_\crs(\vv) = \vv^\parallel $. In particular, $ \pi_\crs(\nn) = \pi_\crs(\kk) = \bs{0} $.
+
+The null basis $ (\nn , \kk) \in T_p^\perp \crs $ can be orthonormalized as follows:
+\begin{equation}
+  \nb = \frac{1}{2} \nn + \kk
+  \qquad \qquad
+  \ssb = \frac{1}{2} \nn - \kk
+\end{equation}
+so that $ \braket{\nb , \nb}_g = -1 $, $ \braket{\ssb , \ssb}_g = 1 $ and $ \braket{\ssb , \nb}_g = 0 $. Substituting into \eref{eq:crs-metric}, the metric becomes:
+\begin{equation}
+  q = g + \nb^\flat \otimes \nb^\flat - \ssb^\flat \otimes \ssb^\flat
+\end{equation}
+
+\subsubsection{Expansion of cross-sections}
+
+Let $ (\man , g) $ be a $ d $-spacetime, with $ d \geq 3 $, let $ \eh \ssq \man $ be a null hypersurface with null normal $ \nn \in \Gamma(N \eh) $, and let $ \crs \ssq \eh $ be a cross-section of $ \eh $. Consider an infinitesimal $ \varepsilon \geq 0 $, and consider a pair of points $ p , p_\varepsilon \in \eh : p \in \crs $ separated by the vector $ \varepsilon \nn $ (clearly $ p_\varepsilon \in \eh $ since $ \nn $ is tangent to $ \eh $ and $ \varepsilon $ is infinitesimal). Repeating this construction for each point in $ \crs $, keeping $ \varepsilon $ fixed, results in a new $ (d-2) $-dimensional surface $ \crs_\varepsilon $, as in \figref{fig:crs-area}: this is called the \emph{Lie dragging} of $ \crs $ along $ \nn $ by $ \varepsilon $. Clearly, $ \crs_0 = \crs $.
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.70 \textwidth]{cross-section-area.png}
+  \caption{Lie dragging of $ \crs $ along $ \nn $ by $ \varepsilon $, here pictured with $ d = 3 $. Figure from \cite{gourgoulhon}.}
+  \label{fig:crs-area}
+\end{figure}
+
+Since $ p_\varepsilon \in \eh \,\,\forall p \in \crs $ for infinitesimal $ \varepsilon $, then $ \crs_\varepsilon \ssq \eh $. Moreover, being the null direction $ \nn $ transverse to $ \crs_\varepsilon $ by construction, it follows that $ \crs_\varepsilon $ is spacelike too (by \lref{lemma:cs-aux}). Then, at each point $ p \in \crs $ it is possible to define the \bctxt{expansion of $ \crs $ along $ \nn $} as the rate of change of the hyper-area $ \delta A $ of a surface element $ \delta S \crs $ around $ p $ (see \figref{fig:crs-area}):
+\begin{equation}
+  \theta_{(\nn)} \defeq \lim_{\varepsilon \ra 0} \frac{1}{\varepsilon} \frac{\delta A_\varepsilon - \delta A}{\delta A}
+  \label{eq:expansion-def}
+\end{equation}
+where $ \delta A_\varepsilon $ is the hyper-area of the Lie-dragged surface element $ \delta S_\varepsilon \ssq \crs_\varepsilon $. Note that the hyper-area $ \delta A $ is measured with respect to the induced metric $ q $ on $ \crs $, and similarly for $ \delta A_\varepsilon $ with the Riemmannian metric induced by $ g $ on $ \crs_\varepsilon $. For instance, if $ \delta S \ssq \crs $ is defined by some infinitesimal dispacements $ \delta \xx_{(2)} , \dots , \delta \xx_{(d-1)} $:
+\begin{equation*}
+  \delta A = \volf_\crs(\delta \xx_{(2)} , \dots , \delta \xx_{(d-1)})
+  \qquad \qquad
+  \volf_\crs \equiv \ip_{\ssb} \ip_{\nb} \volfg
+\end{equation*}
+which means that $ \delta A = \volfg (\nb , \ssb , \delta \xx_{(2)} , \dots , \delta \xx_{(d-1)}) $. Choosing adapted coordinates to $ \crs $ and $ \nn $, i.e. $ (x^\alpha) = (u , v , x^2 , \dots , x^{d-1}) $ such that $ \eh $ is locally the set $ u = 0 $, $ \crs $ is the set $ (u , v) = (0,0) $ and $ \nn = \pa_v $, then $ \crs_\varepsilon $ is the set $ (u,v) = (0,\varepsilon) $. Choosing the infinitesimal displacements defining $ \delta S $ to be along the coordinate lines of this frame, the hyper-area element becomes:
+\begin{equation}
+  \delta A_\varepsilon = \sqrt{\mt{q}(\varepsilon)} \, \delta x_{(2)} \dots \delta x_{(d-1)}
+  \label{eq:delta-A-e}
+\end{equation}
+where $ \mt{q}(\varepsilon) $ is the determinant of the representative matrix of the induced metric $ q_\varepsilon $ on $ \crs_\varepsilon $, computed in the chosen coordinate frame. Plugging this into the definition \eref{eq:expansion-def}:
+\begin{equation*}
+  \theta_{(\nn)} = \frac{1}{2} \frac{\dd}{\dd \varepsilon} \bigg\vert_{\varepsilon = 0} \ln \mt{q}
+\end{equation*}
+Since $ \varepsilon $ is the value of the coordinate $ v $ associated to $ \nn $, i.e. the coordinate along which the Lie dragging happens, this is just the Lie derivative of $ \ln \mt{q} $ along $ \nn $ (recall \secref{ssec:lie-der}):
+\begin{equation}
+  \theta_{(\nn)} = \frac{1}{2} \ld_{\nn} \ln \mt{q}
+  \label{eq:expansion-lie-der}
+\end{equation}
+This is a coordinate-independent definition of the expansion of $ \crs $ along $ \nn $, and with further manipulation it can be rewritten in a local coordinate frame on $ \man $ as:
+\begin{equation}
+  \theta_{(\nn)} = q^{\mu \nu} \na_\mu \ell_\nu
+  \label{eq:expansion-comp}
+\end{equation}
+where $ q^{\mu \nu} $ are the component of the inverse metric of \eref{eq:crs-metric}. Inserting the expression $ q^{\mu \nu} = g^{\mu \nu} = \ell^\mu k_\nu + k^\mu \ell^\nu $ and using the normalizations of $ \nn $ and $ \kk $ (assuming that $ \nn $ remains null on an open neighbourhood of $ \eh $):
+\begin{equation}
+  \theta_{(\nn)} = \na_\mu \ell^\mu - \sg
+  \label{eq:expansion}
+\end{equation}
+This expression is completely independent\footnotemark of $ \crs $, thus showing that the expansion at a point $ p \in \eh $ does not depend on the choice of cross-section through $ p $: this justifies the notation $ \theta_{(\nn)} $ in place of $ \theta_{(\nn)}(\crs) $, and from now on $ \theta_{(\nn)} $ is called the \emph{expansion of $ \eh $ along $ \nn $}. From \eref{eq:expansion-lie-der}, the expansion rescales as $ \theta_{(\alpha \nn)} = \alpha \theta_{(\nn)} $.
+
+\footnotetext{This can be shown geometrically too. Let $ \crs $ and $ \crs' $ be two distinct cross-sections of $ \eh $ through $ p $, let $ q \in \crs $ be a point close to $ p $ on $ \crs $, and let $ q' \in \crs' $ be the point on $ \crs' $ along the same null geodesic generator as $ q $, so that $ q $ and $ q' $ are separated by $ \varepsilon \nn $. Then, denoting as $ \delta \xx $ and $ \delta \xx' $ the vectors connecting $ p $ to $ q $ and $ q' $, respectively, it is clear that $ \delta \xx' = \delta \xx + \varepsilon \nn $, so that:
+\begin{equation*}
+  (\delta \xx')^2 = (\delta \xx)^2 + 2 \varepsilon \braket{\delta \xx , \nn}_g + \varepsilon^2 \nn^2 = (\delta \xx)^2
+\end{equation*}
+since $ \nn $ is null and normal to any tangent vector to $ \eh $, such as $ \delta \ve{x} $. Therefore, the lengths of all segments from $ p $ do not depend on the cross-section chosen, as long as their other ends lie on the same null geodesic generator of $ \eh $.}
+
+
+\begin{definition}{Deformation rate of a cross-section}{}
+  Let $ \crs \ssq \eh $ be a cross-section of a null hypersurface $ \eh $, and let $ \nn \in \Gamma(N \eh) $ be a null normal to $ \eh $. The \bcdef{deformation rate of $ \crs $ along $ \nn $} is defined as:
+  \begin{equation}
+    \Theta \defeq \frac{1}{2} \pi_\crs \ld_{\nn} q
+  \end{equation}
+  where the action of the orthogonal projector $ \pi_\crs $ onto $ \crs $ on the bilinear form $ \ld_{\nn} q $ is defined by:
+  \begin{equation}
+    \pi_\crs \ld_{\nn} q (\uu , \vv) = \ld_{\nn} q(\pi_\crs(\uu) , \pi_\crs(\vv))
+    \quad
+    \forall \uu , \vv \in T_p\man
+  \end{equation}
+\end{definition}
+
+Since $ \pi_\crs(\nn) = \pi_\crs(\kk) = \bs{0} $, in components $ \Theta_{\alpha \beta} = \frac{1}{2} \pi^\mu_\alpha \pi^\nu_\beta \ld_{\nn} g_{\mu \nu} $. Recalling \eref{eq:metric-variation}, then:
+\begin{equation}
+  \Theta_{\alpha \beta} = \pi^\mu_\alpha \pi^\nu_\beta \na_\mu \ell_\nu
+\end{equation}
+where \eref{eq:frobenius-aux} and $ \pi^\mu_\alpha \ell_\mu = 0 $ have been used. Comparing this to \eref{eq:expansion-comp} it follows that the trace of $ \Theta $ is just the expansion $ \theta_{(\nn)} $:
+\begin{equation}
+  \theta_{(\nn)} = g^{\mu \nu} \Theta_{\mu \nu} \equiv \tensor{\Theta}{^\mu_\mu}
+\end{equation}
+The trace-free part of $ \Theta $ is then called the \bctxt{shear tensor of $ \crs $ along $ \nn $}:
+\begin{equation}
+  \sigma \defeq \Theta - \frac{1}{d - 2} \theta_{(\nn)} q
+\end{equation}
+where the $ (d-2)^{-1} $ factor is needed to cancel the trace of the induced metric $ q $ on $ \crs $. Note that, like $ q $, both tensor fields $ \Theta $ and $ \sigma $ are tangent to $ \crs $, in the sense that $ \Theta(\vv , \cdot) = \sigma(\vv , \cdot) \equiv 0 \,\,\forall \vv \in T_p^\perp \crs $. Moreover, they share the same rescaling property as $ \theta_{(\nn)} $ under $ \nn \mapsto \nn' = \alpha \nn $: $ \Theta' = \alpha \Theta $ and $ \sigma' = \alpha \sigma $. These scalings show that both the deformation rate and the shear tensor depend on the choice of the null normal $ \nn $ to $ \eh $; contrary to the expansion, they also depend on the choice of the cross-section $ \crs \ssq \eh $.
+
+\subsubsection{Evolution of the expansion}
+
+\begin{theorem}{Null Raychaudhuri--Landau equation}{}
+  Let $ (\man , g) $ be a $ d $-spacetime, and let $ \eh \ssq \man $ be a null hypersurface. Then, any $ \nn \in \Gamma(N \eh) $ satisfies:
+  \begin{equation}
+    \na_{\nn} \theta_{(\nn)} = \sg \theta_{(\nn)} - \frac{1}{d - 2} \theta_{(\nn)}^2 - \sigma_{ab} \sigma^{ab} - \ricc(\nn , \nn)
+    \label{eq:raychaudhuri-landau}
+  \end{equation}
+  where $ \theta_{(\nn)} $ and $ \sigma $ are the expansion and the shear tensor of $ \eh $ along $ \nn $, and $ \sg $ is non-affinity parameter of $ \nn $.
+\end{theorem}
+
+Note that, although $ \sigma $ depends on the choice of cross-section, the shear square $ \sigma_{ab} \sigma^{ab} $ does not, since all other quantities in the null Raychaudhuri--Landau\footnotemark equation do not depend on it.
+If $ \nn $ is future-directed, the null Raychaudhuri--Landau equation is an evolution equation for $ \theta_{(\nn)} $ along the null generators of $ \eh $.
+
+\footnotetext{Actually, this is a special case of the null Raychauduri--Landau equation in which the vorticity of the vector field $ \nn $ vanishes. The general case considers a generic congruence of null geodesics (i.e. a family of null geodesics such that one and exactly one passaes through each point of $ \man $), and a null vector field tangent to the geodesics of this congruence has a priori a non-vanishing vorticity tensor $ w $, so that the null Raychauduri--Landau equation gets a $ + w_{ab} w^{ab} $ term on the right-hand side, see e.g. Eq. 4.35 of \cite{hawking-hellis}.}
+
+\begin{proposition}{Null convergence condition}{}
+  Let $ (\man , g) $ be a $ d $-spacetime, and let $ \eh \ssq \man $ be a null hypersurface. If the \bcprop{null convergence condition} holds on $ \eh $, i.e. if $ \ricc(\vv , \vv) \geq 0 $ for any null $ \vv \in T_p\man : p \in \eh $, then the expansion $ \theta_{(\nn)} $ along any null normal $ \nn \in \Gamma(N\eh) $ associated to an affine parametrization of the null geodesic generators of $ \eh $ cannot increas along $ \nn $, i.e.:
+  \begin{equation}
+    \na_{\nn} \theta_{(\nn)} \leq 0
+  \end{equation}
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Choosing $ \nn $ associated to an affine parametrization of the null geodesic generators of $ \eh $ means that $ \sg = 0 $, hence the null Raychauduri--Landau equation becomes:
+    \begin{equation*}
+      \na_{\nn} \theta_{(\nn)} = - \frac{1}{d - 2} \theta_{(\nn)}^2 - \sigma_{ab} \sigma^{ab} - \ricc(\nn , \nn)
+    \end{equation*}
+    The first term of the righ-hand side is manifestly non-positive. To show that $ \sigma_{ab} \sigma^{ab} \geq 0 $, consider a $ q $-orthonormal basis of $ T_p \crs $, so that $ q_{ab} = \delta_{ab} $ and $ q^{ab} = \delta^{ab} $ in such a basis; then:
+    \begin{equation*}
+      \sigma_{ab} \sigma^{ab} = \sum_{a,b = 2}^{n-1} (\sigma_{ab})^2 \geq 0
+      \label{eq:convergence}
+    \end{equation*}
+    The third term is non-positive due to the null convergence condition, hence $ \na_{\nn} \theta_{(\nn)} \leq 0 $.
+  \end{proof}
+\end{proofbox}
+
+This property justifies the name \emph{convergence condition}: if $ \theta_{(\nn)} < 0 $ in some part of $ \eh $, so that nearby null geodesic generators are converging, then by \eref{eq:convergence} they cannot subsequently diverge.
+
+If the spacetime $ (\man , g) $ is ruled by General Relativity, from \eref{eq:ef-eq-alt} $ \ricc(\nn , \nn) = 8\pi \gd T(\nn , \nn) $, since $ g(\nn , \nn) = 0 $ being $ \nn $ null. Therefore, the null convergence condition is equivalent to the null energy condition (see \secref{ssec:energy-conditions}).
+
+\subsection{Killing horizons}
+
+\subsubsection{Non-expanding event horizons}
+
+It is now possible to distinguish between event horizons and other null hypersurfaces. Indeed, event horizons are characterized as null hypersurface by the ``no-escape" aspect of the naive definition (\secref{sssec:bh-boundaries}): to enforce the ``localized" aspect, instead, it is reasonable to demand that the cross-sections are closed (i.e. compact and without boundary) and with a constant area, i.e. a vanishing expansion, as natural for black holes \emph{at equilibrium}.
+
+\begin{definition}{Non-expanding horizon}{non-expanding-horizon}
+  Let $ (\man , g) $ be a $ d $-spacetime. A null hypersurface $ \eh \ssq \man $ is a \bcdef{non-expanding horizon} if:
+  \begin{enumerate}
+    \item \label{item:neh-1} its topology is $ \eh \cong \R \times \crs $, where $ \crs $ is a closed $ (d-2) $-submanifold;
+    \item \label{item:neh-2} $ \theta_{(\nn)} = 0 $ along any null normal $ \nn \in \Gamma(N \eh) $.
+  \end{enumerate}
+\end{definition}
+
+Note that, given the scaling law $ \theta_{(\alpha \nn)} = \alpha \theta_{(\nn)} $, if the expansion vanishes for some null normal, then it vanishes for all other null normals. For black holes out of equilibrium (\secref{sec:bh-dynamics}), generally $ \theta_{(\nn)} > 0 $.
+
+Given a complete cross-section $ \crs \ssq \eh $ of a non-expanding horizon $ \eh $, its area with respect to $ g $ is (recall \eref{eq:delta-A-e}):
+\begin{equation}
+  A \defeq \int_\crs \volf_\crs = \int_\crs \dd x^2 \dots \dd x^{d-1} \sqrt{\mt{q}}
+\end{equation}
+where $ (x^a) = (x^2 , \dots , x^{d-1}) $ is a coordinate frame on $ \crs $ and $ \mt{q} \equiv \det q_{ab} $ is the determinant of the induced Riemannian metric on $ \crs $, computed in this frame. It can be shown that this area is independent of the choice of the complete cross-section $ \crs \ssq \eh $, hence, $ A \equiv A[\eh] $ is called the \bctxt{area} of the non-expanding horizon $ \eh $ (event though it is a hyper-area, being $ \dim_\R \eh = d - 1 \geq 2 $).
+
+\begin{proposition}{Invariance of the cross-section metric}{neh-cross-sect}
+  Let $ (\man , g) $ be a spacetime, and let $ \eh \ssq \man $ be a non-expanding horizon. If the null convergence condition holds on $ \eh $, the extended induced metric on any cross-section $ \crs $ is invariant along the geodesic generators of $ \eh $.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    If $ \eh $ is a non-expanding horizon, the null Raychaudhuri--Landau equation \eref{eq:raychaudhuri-landau} becomes:
+    \begin{equation*}
+      \sigma_{ab} \sigma^{ab} + \ricc(\nn , \nn) = 0
+    \end{equation*}
+    where $ \ricc $ is the Ricci tensor of the metric $ g $. Assuming the null convergence condition $ \ricc(\nn , \nn) \geq 0 $, this implies $ \sigma_{ab} \sigma^{ab} = 0 $, which is possible only if $ \sigma \equiv 0 $. Since $ \theta_{(\nn)} = 0 $ too, the deformation rate tensor vanishes identically: $ \Theta = \frac{1}{2} \pi_\crs \ld_{\nn} q = 0 $, which is the thesis.
+  \end{proof}
+\end{proofbox}
+
+Since $ \eh $ is a null hypersurface, the induced metric $ g \vert_\eh $ is degenerate, hence a priori there is no unique Koszul connection on $ \eh $ associated to $ g \vert_\eh $. However, if $ \eh $ is a non-expanding horizon and the null convergence condition holds on $ \eh $, then it can be shown that the Levi--Civita connection $ \na $ associated to $ g $ induces a unique torsion-free connection $ \tilde{\na} : \xv(\eh) \times \xv(\eh) \ra \xv(\eh) $ on $ \eh $ defined by $ \tilde{\na}_{\uu} \vv = \na_{\uu} \vv \,\,\forall \uu , \vv \in \xv(\eh) $. As a consequence, $ (\eh , g \vert_\eh) $ is a \bctxt{totally-geodesic submanifold} of $ (\man , g) $, since any geodesic of $ (\eh , g \vert_\eh) $ is also a geodesic of $ (\man , g) $.
+
+\subsubsection{Killing horizons}
+
+A special kind of non-expanding horizons, which is of fundamental importance in the theory of stationary black holes, is that of Killing horizons with closed-manifold cross-sections.
+
+\begin{definition}{}{}
+  Let $ (\man , g) $ be a spacetime, and let $ \xib \in \xm $ be a Killing vector field of $ \man $. A \bcdef{Killing horizon} is a connected null hypersurface $ \eh $ such that, on $ \eh $, $ \xib $ is normal to $ \eh $.
+\end{definition}
+
+Since normals to a null hypersurface are tangent to its null geodesic generators, while a Killing vector is tangent to the orbits of the corresponding isometry group\footnotemark, then it is clear that the null geodesic generators of $ \eh $ are orbits of the isometry group of $ (\man , g) $. Moreover, by definition (a normal to a hypersurface cannot vanish), the Killing vector field is non-vanishing and null on the Killin horizon:
+\begin{equation*}
+  \xib \vert_\eh \neq 0
+  \qquad \qquad
+  \xib^2 \vert_\eh = 0
+\end{equation*}
+It will be shown (REF-TO-TH) that in a stationary spacetime, under some mild hypotheses, the connected part of a black hole event horizon must be a Killing horizon.
+% WARN: add ref to Hawking's theorem on Killing horizons
+
+\footnotetext{Let $ G $ be a Lie group with a group action $ \Phi : G \times \mathcal{X} \ra \mathcal{X} $ on some set $ \mathcal{X} $: the \emph{orbit} of $ p \in \mathcal{X} $ is the set $ \{\Phi_g(p) : g \in G\} \ssq \mathcal{X} $.}
+
+\begin{example}{Schwarzschild black hole}{}
+  Consider the Schwarzschild spacetime $ (\man , g) $, with $ \man \cong \R^4 $, with the \bcex{ingoing Eddington--Finkelstein coordinates} (\secref{ssec:eddington-finkelstein-coordinates}) $ (t,r,\vartheta,\varphi) \in \R \times \R^+ \times (0,\pi) \times (0,2\pi) $, so that the Schwarzschild metric \ref{eq:schwarz-sol} takes the form:
+  \begin{equation*}
+    \dd s^2 = - \left( 1 - \frac{2m}{r} \right) \dd t^2 + \frac{4m}{r} \dd t \dd r + \left( 1 + \frac{2m}{r} \right) \dd t^2 + r^2 \dd \Omega_2^2
+  \end{equation*}
+  Consider $ u \in \cm $ defined in this coordinate frame as:
+  \begin{equation}
+    u(t,r,\vartheta,\varphi) = \left( 1 - \frac{r}{2m} \right) \exp \frac{r - t}{4m}
+  \end{equation}
+  The hypersurface $ u = 0 $, which corresponds to the $ 3 $-cylinder $ r = 2m $ (cylinder as its topology is $ \R \times \Sn{2} $), is the \emph{Schwarzschild horizon} $ \eh $, i.e. the event horizon of the Schwarzschild black hole. Then, the components of $ \grad u = g^{\alpha \mu} \pa_\alpha u \pa_\mu $ are computed to be:
+  \begin{equation*}
+    \grad u = \frac{1}{4m} e^{(r - t)/(4m)} \left[ - \left( 1 + \frac{r}{2m} \right) \frac{\pa}{\pa t} + \left( 1 - \frac{r}{2m} \right) \frac{\pa}{\pa r} \right]
+  \end{equation*}
+  Recalling \eref{eq:frobenius-aux}, chooses $ \rho \in \cm $ so that $ \ell^0 = 1 $, i.e.:
+  \begin{equation*}
+    e^\rho = - \frac{1}{\na^0 u}
+    \quad \iff \quad
+    \rho = \frac{t - r}{4m} - \log \left( 1 + \frac{r}{2m} \right) + \log (4m)
+  \end{equation*}
+  From \eref{eq:frobenius-aux}, then, the null normal to $ \eh $ is found to be:
+  \begin{equation}
+    \nn = \frac{\pa}{\pa t} + \frac{r - 2m}{r + 2m} \frac{\pa}{\pa r}
+  \end{equation}
+  which is easily checked to be null, i.e. $ g(\nn , \nn) = 0 $. Since $ \nn \neq \bs{0} $, this proves that all hypersurfaces $ \eh_c $ determined by $ u $, and in particular $ \eh_0 \equiv \eh $, are null. Moreover, on the horizon $ \nn \heq \pa_t $, which clearly is a Killing vector field since no metric component depends on $ t $: therefore, the Schwarzschild horizon is a Killing horizon.
+\end{example}
+
+An important feature of Killing horizons is that the deformation rate of any cross-section along any null normal vanishes. Indeed, consider a cross-section $ \crs $ of a Killing horizon $ \eh $, and let the null normal coincide with the Killing vector field on the horizon, i.e. $ \nn \heq \xib $, so that in a neighbourhood of $ \eh $ it can be expressed as $ \nn = \xib + u \cm $, where $ u $ is the defining function of the horizon and $ \vv \in \xm $. Then:
+\begin{equation*}
+  \Theta_{\alpha \beta} = \pi^\mu_\alpha \pi^\nu_\beta \na_\mu \xi_\nu + u \pi^\mu_\alpha \pi^\nu_\beta \na_\mu v_\nu + \pi^\mu_\alpha \pi^\nu_\beta w_\nu \na_\mu u \heq \pi^\mu_\alpha \pi^\nu_\beta \na_\mu \xi_\nu
+\end{equation*}
+where $ \pi^\mu_\alpha \na_\mu u \heq 0 $ since $ u $ is costant on $ \eh $, and so on $ \crs \ssq \eh $. By the Killing equation \eref{eq:killing} $ \pi^\mu_\alpha \pi^\nu_\beta \na_\mu \xi_\nu $ is antisymmetric, while $ \Theta_{\alpha \beta} $ is symmetric (since $ \Theta_{\alpha \beta} = \frac{1}{2} \pi^\mu_\alpha \pi^\nu_\beta \ld_{\nn} g_{\mu \nu} $), hence necessarily $ \Theta \equiv 0 $. By the scaling law of $ \Theta $, it follows that $ \Theta \equiv 0 $ along any null normal to $ \eh $.
+
+\begin{proposition}{Killing horizons as non-expanding horizons}{}
+  Any Killing horizon with closed-manifold cross-sections is a non-expanding horizon.
+\end{proposition}
+
+\begin{proofbox}
+  \begin{proof}
+    Since the deformation rate of any cross-section along any null normal vanishes, \itemref{item:neh-2} of \dref{def:non-expanding-horizon} is satisfied. \itemref{item:neh-1} is satisfied instead by the requirement of the cross-sections being closed submanifolds.
+  \end{proof}
+\end{proofbox}
+
+Note that $ \Theta $ vanishes on any Killing horizon, while to get the same result on a generic non-expanding horizon the null convergence condition is needed (\pref{prop:neh-cross-sect}).
+
+\subsubsection{Surface gravity}
 
 
 
@@ -587,6 +956,9 @@ Having established with \pref{prop:achronal-null} that the smooth part of the ev
 
 
 
+\newpage
+\section{Stationary black holes}
+\label{sec:bh-stationary}
 
 \newpage
 \section{Schwarzschild black holes}
@@ -658,6 +1030,7 @@ Although the outside of the event horizon is only described by $ X > \abs{T} $, 
 \end{figure}
 
 \subsection{Eddington--Finkelstein coordinates}
+\label{ssec:eddington-finkelstein-coordinates}
 
 Both the Schwarzschild coordinates and the Rindler coordinates do not cover the whole manifold. To find a set of coordinates that does, first introduce a new radial coordinate:
 \begin{equation}
@@ -984,6 +1357,9 @@ where the negative sign is the solution with $ \Lambda > 0 $ and the positive si
 
 \section{Kerr black holes}
 \label{sec:bh-kerr}
+
+\section{Dynamical black holes}
+\label{sec:bh-dynamics}
 
 
 
