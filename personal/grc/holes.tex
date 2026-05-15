@@ -859,7 +859,7 @@ It will be shown (REF-TO-TH) that in a stationary spacetime, under some mild hyp
 
 \footnotetext{Let $ G $ be a Lie group with a group action $ \Phi : G \times \mathcal{X} \ra \mathcal{X} $ on some set $ \mathcal{X} $: the \emph{orbit} of $ p \in \mathcal{X} $ is the set $ \{\Phi_g(p) : g \in G\} \ssq \mathcal{X} $.}
 
-\begin{example}{Schwarzschild black hole}{}
+\begin{example}{Schwarzschild black hole}{schwarzschild-horizon}
   Consider the Schwarzschild spacetime $ (\man , g) $, with $ \man \cong \R^4 $, with the \bcex{ingoing Eddington--Finkelstein coordinates} (\secref{ssec:eddington-finkelstein-coordinates}) $ (t,r,\vartheta,\varphi) \in \R \times \R^+ \times (0,\pi) \times (0,2\pi) $, so that the Schwarzschild metric \ref{eq:schwarz-sol} takes the form:
   \begin{equation*}
     \dd s^2 = - \left( 1 - \frac{2m}{r} \right) \dd t^2 + \frac{4m}{r} \dd t \dd r + \left( 1 + \frac{2m}{r} \right) \dd t^2 + r^2 \dd \Omega_2^2
@@ -881,6 +881,7 @@ It will be shown (REF-TO-TH) that in a stationary spacetime, under some mild hyp
   From \eref{eq:frobenius-aux}, then, the null normal to $ \eh $ is found to be:
   \begin{equation}
     \nn = \frac{\pa}{\pa t} + \frac{r - 2m}{r + 2m} \frac{\pa}{\pa r}
+    \label{eq:schw-ll}
   \end{equation}
   which is easily checked to be null, i.e. $ g(\nn , \nn) = 0 $. Since $ \nn \neq \bs{0} $, this proves that all hypersurfaces $ \eh_c $ determined by $ u $, and in particular $ \eh_0 \equiv \eh $, are null. Moreover, on the horizon $ \nn \heq \pa_t $, which clearly is a Killing vector field since no metric component depends on $ t $: therefore, the Schwarzschild horizon is a Killing horizon.
 \end{example}
@@ -905,60 +906,267 @@ Note that $ \Theta $ vanishes on any Killing horizon, while to get the same resu
 
 \subsubsection{Surface gravity}
 
+Let $ \sg $ be the non-affinity coefficient of the null normal $ \nn \heq \xib $ to a Killing horizon $ \eh $:
+\begin{equation*}
+  \na_{\xib} \xib \heq \sg \xib
+\end{equation*}
+Combining the metric dual with the Killing equation \eref{eq:killing} yields $ \xi^\mu \na_\alpha \xi_\mu \heq - \sg \xi_\alpha $, but notice that $ \xi^\mu \na_\alpha \xi_\mu = \frac{1}{2} \na_\alpha (\xi_\mu \xi^\mu) $, so replacing the covariant derivative with the exterior derivative (since $ \xi^\mu \xi_\mu $ is a scalar field):
+\begin{equation}
+  \dd \braket{\xib , \xib}_g \heq - 2 \sg \xi^\flat
+  \label{eq:surface-gravity-form}
+\end{equation}
+A relation like this was to be expected: if $ u \equiv \braket{\xib , \xib}_g $ is regular in an open neighbourhood of $ \eh $, i.e. if $ \dd u \neq 0 $, then $ \eh $ is the hypersurface $ u = 0 $, since $ \xib $ is null on $ \eh $, so its gradient must be collinear to the normal $ \xib $ to $ \eh $, i.e. $ \dd u \heq \alpha \xi^\flat $.
 
+\begin{lemma}[before upper = {\tcbtitle}]{Non-affinity coefficient}{}
+  \begin{equation}
+    \sg^2 \heq - \frac{1}{2} \na_\mu \xi_\nu \na^\mu \xi^\nu
+    \label{eq:surface-gravity}
+  \end{equation}
+\end{lemma}
 
+\begin{proofbox}
+  \begin{proof}
+    Since $ \xib $ is normal to the hypersurface $ \eh $, by the Frobenius theorem there exists a $ 1 $-form $ a $ such that:
+    \begin{equation*}
+      \dd \xi^\flat \heq a \wedge \xi^\flat
+    \end{equation*}
+    which in a local coordinate frame becomes:
+    \begin{equation*}
+      \na_\alpha \xi_\beta - \na_\beta \xi_\alpha \heq a_\alpha \xi_\beta - a_\beta \xi_\alpha
+    \end{equation*}
+    By the Killing equation \eref{eq:killing} the left-hand side reduces to $ 2 \na_\alpha \xi_\beta $, so contracting with $ \xib $:
+    \begin{equation*}
+      2 \xi^\mu \na_\mu \xi_\alpha \heq a_\mu \xi^\mu \alpha_\alpha - \xi^\mu \xi_\mu a_\alpha = a_\mu \xi^\mu \xi_\alpha
+    \end{equation*}
+    By \eref{eq:surface-gravity-form} the left-hand side is just $ 2 \sg \xi_\alpha $, so $ a_\mu \xi^\mu \heq 2 \sg $. Thus:
+    \begin{equation*}
+      \begin{split}
+        4 \na_\mu \xi_\nu \na^\mu \xi^\nu
+        & \heq (a_\mu \xi_\nu - a_\nu \xi_\mu) (a^\mu \xi^\nu - a^\nu \xi^\mu) \\
+        & \heq a_\mu a^\mu \xi_\nu \xi^\nu - a_\mu \xi^\mu a_\nu \xi^\nu - a_\nu \xi^\nu a_\mu \xi^\mu + a_\nu a^\nu \xi_\mu \xi^\mu \heq - 8 \sg^2
+      \end{split}
+    \end{equation*}
+    which completes the proof.
+  \end{proof}
+\end{proofbox}
 
+Although \eref{eq:surface-gravity} is an explicit expression of $ \sg $ in terms of $ \xib $, in actual calculations \eref{eq:surface-gravity-form} is usually employed to compute $ \sg $, since it does not involve any covariant derivative.
 
+Since $ \nn \heq \xib $, the vector field $ \nn $ is a symmetry generator on $ \eh $, hence one may expect that $ \sg $ is invariant along $ \nn $: this turns out to be the case. Indeed, taking the Lie derivative along $ \xib $ of \eref{eq:surface-gravity-form} and using \eref{eq:cartan-formula}:
+\begin{equation*}
+  \begin{split}
+    \ld_{\xib} (\dd \braket{\xib , \xib}_g)
+    & = \ip_{\xib} \dd^2 \braket{\xib , \xib}_g + \dd \ip_{\xib} \dd \braket{\xib , \xib}_g = 0 \\
+    & \heq - 2 \ld_{\xib} (\sg \xi^\flat) = -2 (\ld_{\xib} \sg) \xi^\flat - 2 \sg \ld_{\xib} \xi^\flat = -2 (\ld_{\xib} \sg) \xi^\flat
+  \end{split}
+\end{equation*}
+where $ \braket{\xib , \xib}_g \heq 0 $ being $ \xib $ null on $ \eh $ and $ \ld_{\xib} \xi^\flat = 0 \impliedby \ld_{\xib} \xib = 0 $, as $ \ld_{\xib} g = 0 $ by definition of Killing vector field. Since $ \nn \heq \xi $ and $ \xi^\flat \neq 0 $, this shows that the non-affinity coefficient is constant along the null geodesic generators of the Killing horizon:
+\begin{equation}
+  \ld_{\nn} \sg = 0
+  \label{eq:sg-const}
+\end{equation}
+Note that, although $ \sg $ is constant along any null geodesic generators, it may in principle vary from one generator to the other. In order to study under which conditions $ \sg $ is constant on the whole horizon, introduce the \bctxt{null dominance condition}, which states that there exists $ f \in \cm $ such that $ \bs{W} \defeq \bs{G}(\nn) - f \nn \in \xm $ is either zero of future-directed (null or timelike) for any future-directed null $ \nn \in \xm $, where $ \bs{G} \in \tns{1}{1}(\man) $ is the metric dual of the Einstein tensor, so that in local coordinate frame:
+\begin{equation}
+  W^\alpha \defeq - \tensor{G}{^\alpha_\mu} \ell^\mu - f \ell^\alpha
+  \label{eq:null-dominance-condition}
+\end{equation}
+Note that the null dominance condition implies the null convergence condition, since $ \ricc(\nn , \nn) = - \braket{\bs{W} , \nn}_g \geq 0 $ (since $ \bs{W} $ and $ \nn $ are both future-directed).
 
+\begin{theorem}{Zeroth law of black hole dynamics}{0-bhd}
+  Let $ (\man , g) $ be a spacetime, and let $ \eh \ssq \man $ be a Killing horizon defined by the Killing vector field $ \xib \in \xm $. Then, if the null dominance condition holds on $ \eh $, the non-affinity coefficient $ \sg $ associated to the null normal coinciding with $ \xib $ on $ \eh $ is constant over $ \eh $.
+\end{theorem}
 
+\begin{proofbox}
+  \begin{proof}
+    The relation $ \na_{\xib} \xib \heq \sg \xib $ is only valid at the horizon, so, to study the constancy of $ \sg $, it is not possible to apply a generic covariant derivative to it. However, note that the rank-$ (0,3) $ tensor with components $ \lct^{\mu \nu \alpha \beta} \xi_\beta $, where $ \lct^{\mu \nu \alpha \beta} \equiv \sqg \, \epsilon^{\mu \nu \alpha \beta} $ is the Levi--Civita tensor, is indeed tangent to the horizon, since $ (\lct^{\mu \nu \alpha \beta} \xi_\mu) \xi_\alpha = 0 $, thus $ \lct^{\mu \nu \alpha \beta} \xi_\beta \na_\alpha $ is a differential operator that can be safely applied to any equation holding on $ \eh $.
 
+    Equivalently, apply $ \xi_{[\alpha} \na_{\beta]} $ to $ \na_{\xib} \xib \heq \sg \xib $, yielding, in a local coordinate frame:
+    \begin{equation*}
+      \begin{split}
+        \xi_\mu \xi_{[\alpha} \na_{\beta]} \sg + \sg \xi_{[\alpha} \na_{\beta]} \xi_\mu
+        & \heq \xi_{[\alpha} \na_{\beta]} (\xi^\nu \na_\nu \xi_\mu) \heq (\xi_{[\alpha} \na_{\beta]} \xi^\nu) (\na_\nu \xi_\mu) + \xi^\nu \xi_{[\alpha} \na_{\beta]} \na_\nu \xi_\mu \\
+        & \heq (\xi_{[\alpha} \na_{\beta]} \xi^\nu) (\na_\nu \xi_\mu) - \xi^\nu \tensor{\rr}{_{\nu \mu [\beta}^\rho} \xi_{\alpha]} \xi_\rho
+      \end{split}
+    \end{equation*}
+    where \eref{eq:killing-riemann} was used in the last equality. Since $ \xib $ is hypersurface-orthogonal to the horizon, by Frobenius' theorem $ \xi_{[\mu} \na_\nu \xi_{\beta]} \heq 0 $, so using the Killing equation $ \na_\nu \xi_\beta = - \na_\beta \xi_\nu $:
+    \begin{equation}
+      \xi_\beta \na_\mu \xi_\nu \heq - 2 \xi_{[\mu} \na_{\nu]} \xi_\beta
+      \label{eq:sg-aux}
+    \end{equation}
+    This allows to rewrite the first term on the right-hand side of the above equation as:
+    \begin{equation*}
+      (\xi_{[\alpha} \na_{\beta]} \xi^\nu) (\na_\nu \xi_\mu) \heq - \frac{1}{2} (\xi^\nu \na_\alpha \xi_\beta) \na_\nu \xi_\mu \heq - \frac{1}{2} \sg \xi_\mu \na_\alpha \xi_\beta \heq \sg \xi_{[\alpha} \na_{\beta]} \xi_\mu
+    \end{equation*}
+    which cancels the second term on the left-hand side, leaving only:
+    \begin{equation*}
+      \xi_\mu \xi_{[\alpha} \na_{\beta]} \sg \heq \xi^\nu \tensor{\rr}{_{\mu \nu [\beta}^\rho} \xi_{\alpha]} \xi_\rho
+    \end{equation*}
+    On the other hand, applying $ \xi_{[\alpha} \na_{\rho]} $ to \eref{eq:sg-aux}:
+    \begin{equation*}
+      (\xi_{[\alpha} \na_\rho \xi_\beta) \na_\mu \xi_\nu + \xi_\beta \xi_{[\alpha} \na_{\rho]} \na_\mu \xi_\nu \heq -2 (\xi_{[\alpha} \na_{\rho]} \xi_{[\mu}) \na_{\nu]} \xi_\beta - 2 (\xi_{[\alpha} \na_{\rho]} \na_{[\nu} \xi_{|\beta|}) \xi_{\mu]}
+    \end{equation*}
+    Using \eref{eq:sg-aux} repeatedly, the first term on the left-hand side cancels the first term on the righ-hand side, thus, using \eref{eq:killing-riemann}:
+    \begin{equation*}
+      - \xi_\beta \tensor{\rr}{_{\mu \nu [\rho}^\sigma} \xi_{\alpha]} \xi_\sigma \heq 2 \xi_{[\mu} \tensor{\rr}{_{\nu] \beta [\rho}^\sigma} \xi_{\alpha]} \xi_\sigma
+    \end{equation*}
+    Contracting $ \beta $ and $ \rho $ makes the left-hand side vanish, so:
+    \begin{equation*}
+      - \xi_{[\mu} \tensor{\rr}{_{\nu]}^\sigma} \xi_\sigma \xi_\alpha \heq \xi_{[\mu} \tensor{\rr}{_{\nu]\beta \alpha}^\sigma} \xi^\beta x_\sigma
+    \end{equation*}
+    The right-hand side of this equation has the same form of the right-hand side of the above equation (since $ \rr_{\mu \nu \alpha \beta} = \rr_{\alpha \nu \mu \beta} $), hence combining them:
+    \begin{equation}
+      \xi_{[\alpha} \na_{\beta]} \sg \heq - \xi_{[\alpha} \rr_{\beta] \rho} \xi^\rho
+    \end{equation}
+    The right-hand side vanishes by the null dominance condition, so there only remains $ \xi_{[\alpha} \na_{\beta]} \sg \heq 0 $, which is the thesis.
+    % TODO: shoul prove the implictation from the null dominance condition
+  \end{proof}
+\end{proofbox}
 
+In the context of Killing horizon, in light of \tref{th:0-bhd}, the non-affinity coefficient $ \sg $ is called the horizon's \bctxt{surface gravity}. Note that, if gravity is described by General Relativity, the null dominance condition with $ f = \Lambda $ is equivalent to the \emph{null dominant energy condition}, which states that the vector field with components $ - \tensor{T}{^\mu_\nu} \ell^\nu $ is either zero or future-directed (null or timelike) for any future-directed null $ \nn \in \xm $, where $ T_{\mu \nu} $ is the energy-momentum tensor of matter fields. The null dominant energy condition is implied by the standard dominant energy condition (\secref{ssec:energy-conditions}).
 
+The constancy of $ \sg $ over $ \eh $ (assuming the null dominance condition) allows to classify Killing horizons in two categories:
+\begin{enumerate}
+  \item if $ \sg = 0 $, then $ \xib $ is a geodesic vector on $ \eh $, and $ \eh $ is called a \bctxt{degenerate Killing horizon};
+  \item if $ \sg \neq 0 $, then $ \eh $ is called a \bctxt{non-degenerate Killing horizon}.
+\end{enumerate}
 
+\begin{example}{Schwarzschild and Kerr black holes}{}
+  For the Schwarzschild black hole, $ \nn $ is given by \eref{eq:schw-ll} (in ingoing Eddington--Finkelstein coordinates), so its covariant derivative is computed to be:
+  \begin{equation*}
+    \na_{\nn} \nn = \frac{4m}{(r + 2m)^2} \frac{\pa}{\pa t} + \frac{4m (r - 2m)}{(r + 2m)^3} \frac{\pa}{\pa r} = \frac{4m}{(r + 2m)^2} \nn
+  \end{equation*}
+  Therefore, for any leave $ \eh_c $ of the foliation, $ \sg = 4m / (r + 2m)^2 $. In particular, for the event horizon $ \eh $:
+  \begin{equation}
+    \sg = \frac{1}{4m}
+  \end{equation}
+  Note that this value agrees with $ \sg = \na_{\nn} \rho $ (see \exref{ex:schwarzschild-horizon}). Clearly, $ \sg $ is a constant, a trivial result given that the Schwarzschild black hole is spherically-symmetric. A general result, valid for a Kerr--Newman black hole with mass parameter $ m $, angular momentum parameter $ a $ and charge parameter $ q $ is (Eq. 12.5.4 of \cite{wald}):
+  \begin{equation}
+    \sg = \frac{\sqrt{m^2 - a^2 - q^2}}{2m \left( m + \sqrt{m^2 - a^2 - q^2} \right) - q^2}
+  \end{equation}
+  which is constant too. Note that, for $ a = 0 $ and $ q = 0 $, it reduces to the Schwarzschild case. Moreover, setting $ q = 0 $, for $ a < m $ the Kerr horizon is a non-degerate Killing horizon, while it becomes degenerate for $ a = m $.
+\end{example}
 
+To see why $ \sg $ is interpreted as a surface gravity, consider a non-degenerate Killing horizon $ \eh $, so that $ \sg \neq 0 $, and let $ p \in \eh $. Given $ \vv \in T_p\man $ transverse to $ \eh $, i.e. not tangent to $ \eh $, by \eref{eq:surface-gravity-form}:
+\begin{equation*}
+  \na_{\vv} \braket{\xib , \xib}_g = - 2 \sg \braket{\xib , \vv}_g
+\end{equation*}
+The right-hand side does not vanish, as $ \sg \neq 0 $ and $ \braket{\xib , \vv}_g \neq 0 $ (being $ \vv $ not tangent to $ \eh $), thus $ \na_{\vv} \braket{\xib , \xib}_g \neq 0 $, the derivative of $ \xib^2 $ along any direction transverse to $ \eh $ does not vanish. Since $ \xib^2 \heq 0 $, this means that, in the vicinity of $ \eh $, on one side $ \xib^2 < 0 $ and on the other side $ \xib^2 > 0 $. Therefore, in the vicinity of a non-degenerate Killing horizon, the associated Killing vector field is timelike on one side, null on the horizon and spacelike on the other side.
 
+Focus on the side of $ \eh $ where $ \xib $ is timelike, and set the ``norm" $ V \equiv \sqrt{- \braket{\xib , \xib}_g} > 0 $. Then, it can be shown that:
+\begin{equation}
+  \sg^2 = \lim_\eh \na_\mu V \na^\mu V
+  \label{eq:sg-lim}
+\end{equation}
+where $ \lim_\eh $ is the limit as one approaches $ \eh $ from the timelike-$ \xib $ side, which implies $ V \ra 0 $. In this region where $ \xib $ is timelike, define:
+\begin{equation}
+  \uu \defeq \frac{1}{V} \xib
+\end{equation}
+which is a future-directed unit timelike vector field (since by convention $ \xib $ is future-directed and null on $ \eh $, otherwise take $ - \xib $). This vector field $ \uu $ can be considered as the $ d $-velocity of an observer whose worldline if a integral curve of $ \xib $, i.e. an orbit of the isometry group generated by $ \xib $. Since spacetime is not changing along this worldline (by the nature of Killing vector fields), this may be called a \emph{stationary observer}. Its $ d $-acceleration then is:
+\begin{equation*}
+  \aab = \na_{\uu} \uu = \na_{V^{-1} \xib} (V^{-1} \xib) = V^{-1} \left[ -V^{-2} (\na_{\xib} V) \xib + V^{-1} \na_{\xib} \xib \right]
+\end{equation*}
+Since $ \xib $ is a symmetry generator, $ \na_{\xib} = 0 $, which can be shown as:
+\begin{equation*}
+  \na_{\xib} V = \xi^\mu \na_\mu \sqrt{- \xi_\nu \xi^\nu} = - \frac{1}{2 \sqrt{- \xi_\nu \xi^\nu}} \xi^\mu \na_\mu (\xi_\nu \xi^\nu) = - \frac{1}{V} \xi^\mu \xi^\nu \na_\mu \xi_\nu = 0
+\end{equation*}
+since $ \na_{(\mu} \xi_{\nu)} = 0 $ (Killing's equation). Thus, using again the Killing equation:
+\begin{equation*}
+  a_\mu = \frac{1}{V^2} \xi^\alpha \na_\alpha \xi_\mu = - \frac{1}{V^2} \xi^\mu \na_\alpha \xi_\mu = - \frac{1}{V^2} \na_\alpha (\xi_\mu \xi^\mu) = \frac{1}{2V^2} \na_\alpha V^2 = \na_\alpha \log V
+\end{equation*}
+Therefore, the $ d $-acceleration can be expressed as a gradient:
+\begin{equation}
+  \aab = \grad \log V
+\end{equation}
+Since $ \braket{\aab , \uu}_g = 0 $, the $ d $-accelaration must spacelike, i.e. $ a_\mu a^\mu > 0 $, so it is possible to define its modulus as:
+\begin{equation*}
+  a \equiv \sqrt{\braket{\aab , \aab}_g} = \sqrt{\na_\mu \log V \na^\mu \log V} = \frac{1}{V} \sqrt{\na_\mu V \na^\mu V}
+\end{equation*}
+Recalling \eref{eq:sg-lim}, it is then possible to express $ \sg $ in terms of $ a $:
+\begin{equation}
+  \sg = \lim_\eh V a
+\end{equation}
+where $ \lim_\eh $ means that the worldline of the observer whose acceleration is $ \aab $ is taken arbitrarily close to the horizon $ \eh $. Since $ V \ra 0 $ approaching $ \eh $, it must be $ a \ra + \infty $ in order to have a finite $ \sg $: this means that the acceleration felt by an observer (i.e. the ``gravity") diverges as it approaches the horizon. In this sense, the physical surface gravity of $ \eh $ is infinite. However, the rescaled acceleration $ V a $ remains finite approaching $ \eh $, and it tends to $ \sg $: for this reason, $ \sg $ is regarded as the \emph{surface gravity} of the Killing horizon $ \eh $.
 
+The distinction between the surface gravity $ \sg $ and the actual gravity $ a $ measured \emph{locally}, i.e. by an observer at rest with respect to $ \eh $ and infinitely close to it. However, in the special case of a Schwarzschild black hole, $ \sg $ can be interpreted as a physical force (per unit mass) measured by a \emph{distant} observer, for which $ \xib $ is timelike in the entire region outside the Killing horizon\footnotemark: in this case, $ \sg $ can be identified with the magnitude of the force exerted by an observer ``at infinity" to hold in place a particle of unit mass close to $ \eh $.
 
+\footnotetext{This is not true for a rotating Kerr black hole, since $ \xib $ becomes null at come ``light-cylinder" outside $ \eh $ and is then spacelike away from it.}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
 \section{Stationary black holes}
 \label{sec:bh-stationary}
+
+Having defined the general notion of black hole in \secref{sec:bh-def}, focus now on the equilibrium case, i.e. black holes in stationary spacetimes.
+
+\subsection{Stationary spacetimes}
+
+\begin{definition}{Stationary spacetime}{stationary-spacetime}
+  A spacetime $ (\man , g) $ is called \bcdef{strictly stationary} if it is invariant under the action of $ \R_+ $ and the associated Killing vector field $ \xib \in \xm $ is everywhere timelike.
+
+  If $ (\man , g) $ admits a conformal completion and $ \xib $ is timelike only in the vicinity of the conformal boundary $ \scri $, then the spacetime is called \bcdef{stationary}.
+\end{definition}
+
+The condition on the Killing vector fields (generator of $ \R_+ $) is equivalent to requiring that the orbits of the group action are everywhere timelike curves (or only in the vicinity of $ \scri $). The distinction between strictly stationary and stationary spacetimes is due to the fact that, in presence of a black hole, $ \xib $ cannot be timelike everywhere.
+
+A priori, the Killing vector field $ \xib $ is not unique: $ \R_+ $ admits a reparametrization $ t \mapsto \alpha t $, with $ \alpha \in \R - \{0\} $, which corresponds\footnotemark to $ \xib \mapsto \alpha^{-1} \xib $. When the spacetime admits a conformal boundary $ \scri $ (required in presence of a black hole), then $ \xib $ is uniquely fixed by choosing that near $ \scri $ it is future-directed and $ \braket{\xib , \xib}_g \mapsto 1 $: indeed, this fixes $ \alpha = +1 $, in order to preserve the norm and the causal orientation.
+
+\footnotetext{Given a connected $ 1 $-dimensional Lie group $ G $, its elements can be labelled as $ g_t \in G : t \in \R $, with $ g_0 = e $. Then, setting the notation for the group action on a smooth manifold $ \man $ as $ \Phi_t \equiv \Phi_{g_t} : \man \ra \man $, the orbit of $ p \in \man $ is a curve $ \gamma_p : \R \ra \man : \gamma_p(t) = \Phi_t(p) $ (which may be degenerate if $ p $ is a fixed point), and the \emph{generator} $ \xib \in \xm $ of $ G $ is the velocity vector field $ \xib_p \defeq \gamma_p'(0) $. Under a rescaling $ t \mapsto \alpha t $, the velocity rescales as $ \gamma_p'(0) \mapsto \alpha^{-1} \gamma_p'(0) $, hence the generator rescales as $ \xib \mapsto \alpha^{-1} \xib $.}
+
+\begin{definition}{Static spacetime}{static-spacetime}
+  A spacetime $ (\man , g) $ is called (strictly) \bcdef{static} if it is (strictly) stationary and the Killing vector field $ \xib \in \xm $ generating the stationary group action is orthogonal to a family of hypersurfaces.
+\end{definition}
+
+In loose terms, a spacetime is stationary if ``nothing changes with time", and it is static if in addition ``nothing moves". An example of a stationary spacetime that is not static is a spacetime containing a steadily-rotating body, e.g. a star of a black hole.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 \section{Schwarzschild black holes}
