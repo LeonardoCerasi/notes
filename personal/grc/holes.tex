@@ -37,8 +37,7 @@ This can be proved by considering an orthogonal basis adapted to $ \Sigma $. Not
   \label{fig:causal-hyp}
 \end{figure}
 
-Clearly, a timelike hypersurface is a two-way membrane: it locally divides spacetime in two regions, and a future-directed timelike or null worldline can cross it in both ways, as shown in \figref{fig:causal-hyp}. On the contrary, a spacelike hypersurface is a one-way membrane: a future-directed timelike or null worldlike, which is constrained to move inside light cones, can cross it only in the future-directed way. A null hypersurface is also a one-way membrane, since, at most, a null worldline which is not going from the past region to the future region must remain on the hypersurface, as depicted in \figref{fig:causal-hyp}. Therefore, a black hole boundary can in principle be either a null or a spacelike hypersurface: it turns out that, wherever it is smooth, the event horizon is a null hypersurface (REF-TO-PROP).
-% WARN: add ref to prop
+Clearly, a timelike hypersurface is a two-way membrane: it locally divides spacetime in two regions, and a future-directed timelike or null worldline can cross it in both ways, as shown in \figref{fig:causal-hyp}. On the contrary, a spacelike hypersurface is a one-way membrane: a future-directed timelike or null worldlike, which is constrained to move inside light cones, can cross it only in the future-directed way. A null hypersurface is also a one-way membrane, since, at most, a null worldline which is not going from the past region to the future region must remain on the hypersurface, as depicted in \figref{fig:causal-hyp}. Therefore, a black hole boundary can in principle be either a null or a spacelike hypersurface: it turns out that, wherever it is smooth, the event horizon is a null hypersurface (\pref{prop:achronal-null}).
 
 \subsubsection{Localization}
 
@@ -414,6 +413,7 @@ From \eref{eq:bh-def}, a black hole is the set of points of $ \man $ from which 
 Now, the boundary of $ J^-(\scri^+) $ in $ \tilde{\man} $ is $ \pa J^-(\scri^+) = \pa (J^-(\scri^+) \cap \man) \cup \scri^+ $, so $ \pa J^-(\scri^+) \cap \man = \pa(J^-(\scri^+) \cap \man) $ and:
 \begin{equation}
   \eh^+ = \pa J^-(\scri^+) \cap \man
+  \label{eq:event-horizon}
 \end{equation}
 This means that the future event horizon is the part of the boundary of the causal past of the future infinity $ \scri^+ $ that lies in $ \man $, as illustrated in \figref{fig:bh-def}. From \lref{lemma:tpcs}, $ \eh^+ = \pa I^-(\scri^+) \cap \man $.
 
@@ -776,7 +776,7 @@ If $ \nn $ is future-directed, the null Raychaudhuri--Landau equation is an evol
 
 \footnotetext{Actually, this is a special case of the null Raychauduri--Landau equation in which the vorticity of the vector field $ \nn $ vanishes. The general case considers a generic congruence of null geodesics (i.e. a family of null geodesics such that one and exactly one passaes through each point of $ \man $), and a null vector field tangent to the geodesics of this congruence has a priori a non-vanishing vorticity tensor $ w $, so that the null Raychauduri--Landau equation gets a $ + w_{ab} w^{ab} $ term on the right-hand side, see e.g. Eq. 4.35 of \cite{hawking-hellis}.}
 
-\begin{proposition}{Null convergence condition}{}
+\begin{proposition}{Null convergence condition}{null-convergence-condition}
   Let $ (\man , g) $ be a $ d $-spacetime, and let $ \eh \ssq \man $ be a null hypersurface. If the \bcprop{null convergence condition} holds on $ \eh $, i.e. if $ \ricc(\vv , \vv) \geq 0 $ for any null $ \vv \in T_p\man : p \in \eh $, then the expansion $ \theta_{(\nn)} $ along any null normal $ \nn \in \Gamma(N\eh) $ associated to an affine parametrization of the null geodesic generators of $ \eh $ cannot increas along $ \nn $, i.e.:
   \begin{equation}
     \na_{\nn} \theta_{(\nn)} \leq 0
@@ -1032,9 +1032,10 @@ The constancy of $ \sg $ over $ \eh $ (assuming the null dominance condition) al
 
 \begin{example}{Schwarzschild and Kerr black holes}{}
   For the Schwarzschild black hole, $ \nn $ is given by \eref{eq:schw-ll} (in ingoing Eddington--Finkelstein coordinates), so its covariant derivative is computed to be:
-  \begin{equation*}
+  \begin{equation}
     \na_{\nn} \nn = \frac{4m}{(r + 2m)^2} \frac{\pa}{\pa t} + \frac{4m (r - 2m)}{(r + 2m)^3} \frac{\pa}{\pa r} = \frac{4m}{(r + 2m)^2} \nn
-  \end{equation*}
+    \label{eq:in-edd-fink}
+  \end{equation}
   Therefore, for any leave $ \eh_c $ of the foliation, $ \sg = 4m / (r + 2m)^2 $. In particular, for the event horizon $ \eh $:
   \begin{equation}
     \sg = \frac{1}{4m}
@@ -1106,7 +1107,9 @@ Having defined the general notion of black hole in \secref{sec:bh-def}, focus no
 
 The condition on the Killing vector fields (generator of $ \R_+ $) is equivalent to requiring that the orbits of the group action are everywhere timelike curves (or only in the vicinity of $ \scri $). The distinction between strictly stationary and stationary spacetimes is due to the fact that, in presence of a black hole, $ \xib $ cannot be timelike everywhere.
 
-A priori, the Killing vector field $ \xib $ is not unique: $ \R_+ $ admits a reparametrization $ t \mapsto \alpha t $, with $ \alpha \in \R - \{0\} $, which corresponds\footnotemark to $ \xib \mapsto \alpha^{-1} \xib $. When the spacetime admits a conformal boundary $ \scri $ (required in presence of a black hole), then $ \xib $ is uniquely fixed by choosing that near $ \scri $ it is future-directed and $ \braket{\xib , \xib}_g \mapsto 1 $: indeed, this fixes $ \alpha = +1 $, in order to preserve the norm and the causal orientation.
+A priori, the Killing vector field $ \xib $ is not unique: $ \R_+ $ admits a reparametrization $ t \mapsto \alpha t $, with $ \alpha \in \R - \{0\} $, which corresponds\footnotemark to $ \xib \mapsto \alpha^{-1} \xib $. When the spacetime admits a conformal boundary $ \scri $ (required in presence of a black hole), then $ \xib $ is uniquely fixed by choosing that near $ \scri $ it is future-directed and $ \braket{\xib , \xib}_g \mapsto -1 $: indeed, this fixes $ \alpha = +1 $, in order to preserve the norm and the causal orientation.
+
+If the $ d $-spacetime $ (\man , g) $ is stationary, then it is possible to choose adapted coordinates $ (x^\alpha) = (t , x^1 , \dots , x^{d-1}) $ such that $ \xib = \pa_t $, which means that $ t $ is an ignorable coordinates, i.e. $ \pa_t g_{\alpha \beta} = 0 $.
 
 \footnotetext{Given a connected $ 1 $-dimensional Lie group $ G $, its elements can be labelled as $ g_t \in G : t \in \R $, with $ g_0 = e $. Then, setting the notation for the group action on a smooth manifold $ \man $ as $ \Phi_t \equiv \Phi_{g_t} : \man \ra \man $, the orbit of $ p \in \man $ is a curve $ \gamma_p : \R \ra \man : \gamma_p(t) = \Phi_t(p) $ (which may be degenerate if $ p $ is a fixed point), and the \emph{generator} $ \xib \in \xm $ of $ G $ is the velocity vector field $ \xib_p \defeq \gamma_p'(0) $. Under a rescaling $ t \mapsto \alpha t $, the velocity rescales as $ \gamma_p'(0) \mapsto \alpha^{-1} \gamma_p'(0) $, hence the generator rescales as $ \xib \mapsto \alpha^{-1} \xib $.}
 
@@ -1114,13 +1117,309 @@ A priori, the Killing vector field $ \xib $ is not unique: $ \R_+ $ admits a rep
   A spacetime $ (\man , g) $ is called (strictly) \bcdef{static} if it is (strictly) stationary and the Killing vector field $ \xib \in \xm $ generating the stationary group action is orthogonal to a family of hypersurfaces.
 \end{definition}
 
+If the $ d $-spacetime $ (\man , g) $ is static, then it is possible to choose adapted coordinates such that $ \xib = \pa_t $ and the hypersurfaces $ t = \text{const.} $ are orthogonal to $ \xib $, i.e. $ \xi^\flat = g(\xib , \xib) \dd t $. This orthogonality condition means that $ g_{0i} = 0 \,\,\forall i \in \{1 , \dots , d-1\} $, hence in these adapted coordinates the metric of the static spacetime reads:
+\begin{equation}
+  \dd s^2 = g(\xib , \xib) \dd t^2 + g_{ij} \dd x^i \dd x^j
+\end{equation}
+Clearly, this metric is invariant under $ t \mapsto -t $, which means that a static spacetime is \emph{time-reflection symmetric}.
 In loose terms, a spacetime is stationary if ``nothing changes with time", and it is static if in addition ``nothing moves". An example of a stationary spacetime that is not static is a spacetime containing a steadily-rotating body, e.g. a star of a black hole.
 
+\subsubsection{Black holes in stationary spacetimes}
 
+Consider a spacetime $ (\man , g) $ which contains a black hole: in particular, $ (\man , g) $ admits a conformal completion $ (\tilde{\man} , \tilde{g}) $ with a complete future infinity $ \scri^+ $ (\dref{def:black-hole}). Assuming $ (\man , g) $ to be stationary, it is invariant under the isometry group $ \R_+ $ generated by the Killing vector field $ \xib \in \xm $: this can then be extended smoothly to the boundary $ \pa \tilde{\man} = \scri $, thereby defining a group action $ \Phi : \R_+ \times \tilde{\man} \ra \tilde{\man} $ on the whole conformal completion.
 
+\begin{proposition}{Stationary event horizon}{}
+  Let $ (\man , g) $ be a stationary spacetime containing a black hole. Then, the black hole event horizon $ \eh $ is globally invariant under the action of the stationary group $ \R_+ $.
+\end{proposition}
 
+\begin{proofbox}
+  \begin{proof}
+    By the above discussion, the stationary group $ \R_+ $ acts on the whole conformal completion $ \tilde{\man} $, so on the conformal infinity $ \scri $ too.
+    Let $ t \in \R $ and $ p \in \scri^+ $. Since $ \R_+ $ is an isometry group of $ g $ and $ p $ is infinitely remote from points of $ \man $, then $ \Phi_t(p) $ must be infinitely remote from any point of $ \man $ too: thus, $ \Phi_t(\scri^+) \ssq \scri $. Since $ \Phi_0(\scri^+) = \scri^+ $, by continuity $ \Phi_t(\scri^+) \ssq \scri^+ $, i.e. $ \scri^+ $ is globally invariant under the stationary group action, which means that its causal past $ J^-(\scri^+) $ is invariant too. By \eref{eq:event-horizon}, this concludes the proof.
+  \end{proof}
+\end{proofbox}
 
+The fact that $ \eh $ is \emph{globally} invariant stresses the fact that it is invariant as a whole, not that each point of $ \eh $ is a fixed point of the group action.
 
+Now, assume that $ \eh $ is smooth (which can be shown to be the case in a stationary context): by \pref{prop:achronal-null}, it is then a null hypersurface. $ \eh $ is globally invariant under the isometry group if and only if its Killing generator $ \xib $ is tangent to $ \eh $, but by \lref{lemma:cs-aux} a timelike vector cannot be tangent to a null hypersurface\footnotemark, thus $ \xib $ is either null or spacelike on $ \eh $. Given a connected component $ \eh_0 \ssq \eh $, if $ \xib $ is null on all $ \eh_0 $, then $ \eh_0 $ is called \bctxt{non-rotating}, while if $ \xib $ is spacelike on some part of $ \eh_0 $, then $ \eh_0 $ is called \bctxt{rotating}.
+
+\footnotetext{This justifies the distinction between stricly stationary and stationary spacetimes, since a black hole spacetime cannot be strictly stationary.}
+
+Intuitively, the event horizon of a black hole in a stationary spacetime should have vanishing expansion along its null normals: indeed, if $ \theta_{(\nn)} \neq 0 $, the area of cross-section would vary when dragged along $ \nn $, thus defining an ``evolution" along $ \eh $ which would break the invariance of $ \eh $ under the action of the stationary group. A rigorous proof is in Prop. 9.3.1 of \cite{hawking-hellis}. Moreover, if the cross-section $ \crs $ of $ \eh $ are closed manifolds such that the horizon topology is $ \eh \cong \R \times \crs $, then $ \eh $ is a non-expanding horizon (\dref{def:non-expanding-horizon}).
+
+\subsubsection{Topology theorems}
+% TODO: add proofs from gourgoulhon
+
+In $ d = 4 $, the topology of the horizon cross-sections can be strongly constrained.
+
+\begin{theorem}{Hawking's topology theorem \cite{hawking-1}}{topology-1}
+  Let $ (\man , g) $ be a $ 4 $-dimensional stationary spacetime containing a black hole with event horizon $ \eh $. Let $ \crs $ be a connected component of a complete cross-section of $ \eh $, and assume that:
+  \begin{enumerate}
+    \item \label{item:htt-1} $ \crs $ is closed (compact withough boundary) and orientable;
+    \item \label{item:htt-2} the null dominance condition (\eref{eq:null-dominance-condition}) is satisfied on $ \eh $ for some $ f \in \cfk(\man , \R^+_0) $;
+    \item \label{item:htt-3} given an ingoing null normal $ \kk $ to $ \crs $, when displaced into the black hole exterior along $ - \kk $, $ \crs $ becomes a surface with $ \theta_{(\ll)} > 0 $.
+  \end{enumerate}
+  Then, the cross-section has generically the topology $ \crs \cong \Sn{2} $, or, under specific hypotheses (namely the induced metric $ g \vert_\crs $ being flat), $ \crs \cong \Tn{2} = \Sn{1} \times \Sn{1} $.
+\end{theorem}
+
+For General Relativity, \itemref{item:htt-2} with $ f = \Lambda $ is equivalent to assuming $ \Lambda \geq 0 $ and the dominant null energy condition.
+
+This topology theorem is not specific of stationary black hole event horizons, since it relies only on quasi-local properties: in particular, it only requires an hypersurface (not even a null one) sliced by spacelike compact surfaces with $ \theta_{(\nn)} = 0 $ and $ \ld_{\kk} \theta_{(\nn)} \leq 0 $, with a conventional definiton of ``interior" region as that pointed towards by $ \kk $.
+
+Another version of the topology theorem relies on the weaker null convergence condition with global hypotheses, and it excludes the torus topology. In particular, it relies on the notion of global hyperbolicity: given a spacetime $ (\man , g) $, a subset $ U \ssq \man $ is \bctxt{globally hyperbolic} if it admits a \emph{Cauchy hypersurface} (\dref{def:cauchy-hypersurface}).
+
+\begin{theorem}{Chruściel--Wald topology theorem \cite{chrusciel}}{topology-2}
+  Let $ (\man , g) $ be a $ 4 $-dimensional asymptotically-flat stationary spacetime containing a black hole with event horizon $ \eh $. Assume that:
+  \begin{enumerate}
+    \item \label{item:cwtt-1} the null convergence condition (\pref{prop:null-convergence-condition}) is satisfied;
+    \item \label{item:cwtt-2} the domain of outer communications $ \doc{\man} $ is globally hyperbolic;
+    \item \label{item:cwtt-3} $ \doc{\man} $ contains an achronal asymptotically-flat hypersurface $ \Sigma $ such that $ \eh \cap \Sigma = \crs $, where $ \crs $ is a compact cross-section;
+    \item \label{item:cwtt-4} other technical conditions on the spacetime (see \cite{chrusciel});
+  \end{enumerate}
+  Then, $ \doc{\man} $ is simply connected and any connected component of $ \crs $ is homeomorphic to $ \Sn{2} $.
+\end{theorem}
+
+Both \tref{th:topology-1} and \tref{th:topology-2} regard only a connected component of the complete cross-section of the horizon: indeed, there exist stationary (actually static) spacetimes containing a black hole whose event horizon has disconnected complete cross-sections, known as \emph{Majumdar--Papapetrou spacetimes}.
+A generalization of \tref{th:topology-1} to spacetimes with $ d > 4 $ is possible, but the result is much weaker and puts less stringent constraints on the topology of cross-sections: this is due to the fact that, for $ d > 4 $, $ \dim_\R \crs > 2 $, but the proof of \tref{th:topology-1} relies on the Gauss--Bonnet theorem\footnotemark which is only valid for $ 2 $-surfaces.
+
+\footnotetext{For a smooth $ 2 $-manifold $ \crs $ with Riemannian metric $ q \in \tns{0}{2}(\crs) $, the Ricci scalar curvature $ \rr_\crs $ associated to $ q $ and the Euler charcteristic $ \chi(\crs) $ are related by:
+\begin{equation}
+  \int_{\crs} \volf_q \, \rr_\crs = 4 \pi \chi(\crs)
+  \label{eq:gauss-bonnet}
+\end{equation}}
+
+\subsection{Mass and angular momentum}
+
+For asimptotically-flat stationary spacetimes, it is possible to make the concept of mass well-defined. With the additional requirement of axisymmetry, the concept of angular momentum can be introduced too.
+
+\subsubsection{Weakly-relativistic stationary spacetimes}
+
+\begin{definition}{Weakly-relativistic spacetime}{}
+  Let $ (\man , g) $ be a $ d $-spacetime. Then, it is called \bcdef{weakly relativistic} if $ \man $ is diffeomorphic to $ \R^d $ and the metric tensor can be decomposed as:
+  \begin{equation}
+    g = f + h
+    \label{eq:weak-rel-dec}
+  \end{equation}
+  where $ f $ is a flat Lorentzian metric on $ \man $ and $ h $ is small in the following sense: in any \emph{Minkowskian coordinates}, i.e. $ (x^\alpha) $ on $ \man $ such that $ f_{\alpha \beta} = \eta_{\alpha \beta} $, then $ \abs{h_{\alpha \beta}} \ll 1 $.
+\end{definition}
+
+Note that Minkowskian coordinates are not unique, since any Poincaré transformation $ (\Lambda , \aab) \in \ISO{1,d-1} : x^\alpha \mapsto \tensor{\Lambda}{^\alpha_\mu} x^\mu + a^\alpha $ leads to another Minkowskian coordinate frame. Furthermore, the flat metric itself is not unique. Indeed, consider the change of coordinates $ x^\alpha \mapsto y^\alpha = x^\alpha + \zeta^\alpha(x) $, where $ \zeta^\alpha $ are infinitesimal functions, so that:
+\begin{equation*}
+  \begin{split}
+    g'_{\alpha \beta} = \frac{\pa x^\mu}{\pa y^\alpha} \frac{\pa x^\nu}{\pa y^\beta} g_{\mu \nu} = (\delta^\mu_\alpha - \pa_\alpha \zeta^\mu + \smo(\zeta^2)) (\delta^\nu_\beta - \pa_\beta \zeta^\nu + \smo(\zeta^2)) (\eta_{\mu \nu} + h_{\mu \nu})
+  \end{split}
+\end{equation*}
+At first order in $ \zeta $, defining $ \zeta_\alpha \equiv \eta_{\alpha \mu} \zeta^\mu $, then:
+\begin{equation*}
+  g'_{\alpha \beta} = \eta_{\alpha \beta} + h_{\alpha \beta} - \pa_\alpha \zeta_\beta - \pa_\beta \zeta_\alpha
+\end{equation*}
+Recasting this expression as $ g' = f' + h' $, where $ f' $ is the metric with components $ f'_{\alpha \beta} = \eta_{\alpha \beta} $ in the $ (y^\alpha) $ coordinate frame, the transformation preserves the flat metric while transforming the ``small perturbation" as:
+\begin{equation}
+  h'_{\alpha \beta} = h_{\alpha \beta} - \pa_\alpha \zeta_\beta - \pa_\beta \zeta_\alpha
+  \label{eq:gauge-freedom}
+\end{equation}
+This can be regarded as a \emph{gauge freedom} of $ h $, which reflects the freedom in the choice of the flat background metric $ f $ in the decomposition \eref{eq:weak-rel-dec}.
+
+\begin{lemma}{Lorentz gauge}{}
+  Let $ (\man , g) $ be a weakly-relativistic spacetime with metric $ g = f + h $, where $ f $ is a flat Lorentzian metric. Then, it is always possible to choose Minkowskian coordinates $ (x^\alpha) $ such that:
+  \begin{equation}
+    \pa_\mu (\eta^{\mu \nu} \bar{h}_{\alpha \nu}) = 0
+    \qquad \qquad
+    \bar{h} = h - \frac{1}{2} f \tr h
+  \end{equation}
+  where $ \tr h \equiv \eta^{\mu \nu} h_{\mu \nu} $.
+\end{lemma}
+
+\begin{proofbox}
+  \begin{proof}
+    By \eref{eq:gauge-freedom} $ \tr h' \equiv \eta^{\mu \nu} h'_{\mu \nu} = \tr h - 2 \pa_\mu \zeta^\mu $, so that $ \bar{h}'_{\alpha \beta} = \bar{h}_{\alpha \beta} - \pa_\alpha \zeta_\beta - \pa_\beta \zeta_\alpha + \eta_{\alpha \beta} \pa_\mu \zeta^\mu $. Thus:
+    \begin{equation*}
+      \pa_\mu (\eta^{\mu \nu} \bar{h}'_{\alpha \nu}) = \pa_\mu (\eta^{\mu \nu} \bar{h}_{\alpha \nu}) - \dal_f \zeta_\alpha
+      \qquad \qquad
+      \dal_f \equiv \eta^{\mu \nu} \pa_\mu \pa_\nu
+    \end{equation*}
+    Therefore, if the Lorentz gauge condition is not fulfilled, it can be enforced with a gauge transformation satisfying $ \dal_f \zeta_\alpha = \pa_\mu (\eta^{\mu \nu} \bar{h}_{\alpha \nu}) $, which always has a solution.
+  \end{proof}
+\end{proofbox}
+
+Recalling \eref{eq:nlo-einstein} (in this case with flat background), the Einstein tensor reduces to $ \einst = - \frac{1}{2} \dal_f \bar{h} $.
+
+Consider now a weakly-relativistic stationary spacetime $ (\man , g) $ with stationary Killing vector $ \xib $. The Minkowskian coordinates can be chosen so that $ x^0 $ is ignorable, i.e. $ \xib = \pa_0 $. Let $ \Sigma $ be a $ x^0 = \text{constl.} $ hypersurface, and let $ \gamma = f \vert_\Sigma $: the coordinates $ (x^i) $ form a Cartesian coordinate system on the submanifold $ (\Sigma , \gamma) $, since $ \gamma = \delta_{ij} \dd x^i \otimes \dd x^j $, and the d'Alembertian operator $ \dal_f $ reduces to the Laplace--Beltrami operator $ \lap_\gamma $. The Einstein field equations (at linear order in $ h $) then take the form on $ \Sigma $ of $ \frac{1}{2} d (d+1) $ independent Poisson equations:
+\begin{equation}
+  \lap \bar{h}_{\alpha \beta} = - 16 \pi \gd T_{\alpha \beta}
+\end{equation}
+The solutions are obtained using the Green's function of the $ (d-1) $-dimensional Laplace--Beltrami operator:
+\begin{equation}
+  \bar{h}_{\alpha \beta}(x) = \frac{16 \pi \gd}{(d-3) \Omega_{d-2}} \int_\Sigma \dd^{d-1} y \, T_{\alpha \beta}(y) \norm{x - y}^{3-d}
+\end{equation}
+where the norm is the standard Euclidean norm, since $ \gamma $ is a Euclidean metric. Recall that the surface hyper-area $ \Omega_d $ of $ \Sn{d} $ is given by:
+\begin{equation}
+  \Omega_d = \frac{2 \pi^{\frac{d+1}{2}}}{\Gamma(\frac{d+1}{2})}
+  \qquad \qquad
+  \Gamma(z) \defeq \int_0^{\infty} \dd t \, e^{-t} t^{z-1} \ , \ z \in \C : \Re z > 0
+\end{equation}
+
+\begin{proposition}{Asymptotic metric of weakly-relativistic system}{}
+  Let $ (\man , g) $ be a weakly-relativistic stationary $ d $-spacetime, with $ d \geq 4 $, obeying the Einstein field equations \eref{eq:ef-eq} with $ \Lambda = 0 $ and an EMT $ T $ with compact support (the \emph{source}), where the energy density dominates over spatial stresses (weakly-relativistic matter). In the Lorentz gauge, there exists a coordinate frame $ (x^\alpha) $ such that the asymptotic behaviour of the metric tensor for $ r^2 \equiv \delta_{ij} x^i x^j \ra \infty $ is:
+  \begin{equation}
+    g_{00} = -1 + \alpha_d \frac{M}{r^{d-3}} + \smo(r^{1-d})
+    \label{eq:asymptotic-00}
+  \end{equation}
+  \begin{equation}
+    g_{0i} = \frac{d-2}{2} \alpha_d \frac{J_{ij} x^j}{r^{d-1}} + \smo(r^{1-d})
+    \label{eq:asymptotic-0i}
+  \end{equation}
+  \begin{equation}
+    g_{ij} = \left( 1 + \frac{\alpha_d}{d-3} \frac{M}{r^{d-3}} \right) \delta_{ij} + \smo(r^{2-d})
+  \end{equation}
+  where $ \alpha_d \equiv 16 \pi / ((d-2) \Omega_{d-2}) $. The \bcprop{mass} and the \bcprop{angular momentum} of the source are:
+  \begin{equation}
+    M \defeq \int_\Sigma \dd^{d-1} x \, T_{00}(x)
+    \qquad \qquad
+    J_{ij} \defeq \int_\Sigma \dd^{d-1} x \left( x^j T_{0i}(x) - x^i T_{0j}(x) \right)
+    \label{eq:wrs-mass}
+  \end{equation}
+  where $ \Sigma $ is a $ x^0 = \text{const.} $ hypersurface ($ M $ and $ J_{ij} $ are independent of $ \Sigma $, i.e. of $ x^0 $). Such a coordinate frame is called the \bcprop{central source rest-frame}, since their origin is in the center of mass of the source, in the sense that:
+  \begin{equation}
+    \int_\Sigma \dd^{d-1} x \, T_{0i}(x) = 0
+    \qquad \qquad
+    \int_\Sigma \dd^{d-1} x \, x^i T_{00}(x) = 0
+  \end{equation}
+  The weakly-relavistic nature of the source is expressed in the $ (x^\alpha) $ frame as $ T_{00} \gg \abs{T_{ij}} $.
+\end{proposition}
+% TODO: add proof from gourgoulhon
+
+\subsubsection{Komar mass}
+
+To generalize the concept of mass to strongly-relativistic spacetimes in a coordinate-independent way, consider the fact that, in Newtonian gravity, the mass is provided by Gauss's law for the gravitational field $ \ve{g} = - \grad \Phi $:
+\begin{equation*}
+  M = \frac{1}{4\pi} \int_\surf \dd \ve{S} \cdot \grad \Phi
+\end{equation*}
+where $ \surf $ is any closed surface surrounding the body. The arbitrariness of $ \surf $ is possible thanks to the Gauss--Ostrogradsky theorem and to the Laplace equation $ \lap \Phi = 0 $ (outside the source). Analogously, note that the mass $ M $ appears as the coefficient of the dominant $ r^{3-d} $ term in the asymptotic expansion of $ g_{00} $ in \eref{eq:asymptotic-00}, so it could be recovered considering the flux of $ \pa_r g_{00} $ through a $ (d-2) $-sphere at large $ r $.
+
+In a coordinate-invariant way, it is more appropriate to consider the stationary Killing vector field $ \xib \in \xm $, and in particular its metric-dual $ 1 $-form $ \xi^\flat \in \df{1} $, since in adapted coordinates $ \xi^\alpha = (1 , 0 , \dots , 0) $ and $ \xi_\alpha = g_{0\alpha} $. Then, the concept of flux is naturally generalized by Komar charges (\secref{sssec:komar}), so that, assuming $ \xib $ to be normalized as $ \braket{\xib , \xib}_g \ra -1 $ on the asymptotic boundary, the \bctxt{Komar mass} over a spacelike closed $ (d-2) $-surface $ \surf \ssq \man $ is defined as:
+\begin{equation}
+  M_\surf \defeq \frac{d-2}{d-3} Q_\text{K}[\xib ; \surf] = - \frac{d-2}{d-3} \frac{1}{16\pi \gd} \int_\surf \star \dd \xi^\flat
+  \label{eq:komar-mass}
+\end{equation}
+The orientation of $ \surf $ is set by the $ (d-2) $-form $ \volf_\surf \equiv \ip_{\ssb} \ip_{\nb} \volf_g $, where $ \nb $ is any future-directed unit timelike vector field normal to $ \surf $ and $ \ssb $ is a unit spacelike vector field normal to $ \nb $, orthogonal to $ \nb $ and directed towards the ``exterior" of $ \surf $ in the following sense: assuming that $ \surf $ can be embedded into a spacelike hypersurface $ \Sigma \ssq \man $ that extends towards the asymptotic flat end of $ (\man , g) $, then for any point $ p \in \surf $ there exists a curve entirely lying in $ \Sigma $, starting from $ p $ with tangent vector $ \ssb_p $ and extending to the asymptotic flat end withour crossing $ \surf $ again.
+
+Instead of the integral of a $ (d-2) $-form over a $ (d-2) $-surface, it is possible to express the Komar mass as a flux integral, i.e. the integral of a $ 2 $-form contracted with an ``area element" normal to the $ (d-2) $-surface. In particular, given a spacelike $ (d-2) $-surface $ \surf \ssq \man $, the \bctxt{area element normal bivector} to $ \surf $ is the antisymmetric $ (2,0) $-tensor field defined on $ \surf $ as:
+\begin{equation}
+  \dd \ve{S} \defeq (\ssb \wedge \nb) \sqrt{\mt{q}} \, \dd^{d-2} x
+  \label{eq:area-element}
+\end{equation}
+where $ \nb $ and $ \ssb $ are the unit timelike and spacelike vector fields normal to $ \surf $ defined above (in particular, at each $ p \in \surf $, an orthonormal basis of the timelike plane $ T_p^\perp \surf $ normal to $ \surf $ is $ (\nb_p , \ssb_p) $), $ \mt{q} \equiv \det q_{ab} $ is the determinant of the induced (Riemannian) metric $ q = g \vert_\surf $, and $ (x^a) = (x^1 , \dots , x^{d-2}) $ is a coordinate frame on $ \surf $ such that $ (\pa_1 , \dots , \pa_{d-2}) $ is a right-handed basis for the orientation $ \volf_\surf $. The \emph{exterior product} of vectors is analogous to that of forms: $ \ssb \wedge \nb \defeq \ssb \otimes \nb - \nb \otimes \ssb $. The bivector $ \dd \ve{S} $ can be shown to be independent of the choice of coordinates $ (x^a) $ on $ \surf $ and of orthonormal basis $ (\nb , \ssb) $ of $ T_p^\perp \surf $.
+% TODO: add proof from Prop. 5.9 of gourgoulhon
+
+\begin{lemma}{Flux integral}{flux}
+  Let $ (\man , g) $ be a $ d $-spacetime, let $ \omega \in \df{2} $ and let $ \surf \ssq \man $ be a spacelike $ (d-2) $-surface. Then:
+  \begin{equation}
+    \int_\surf \star \omega = \frac{1}{2} \int_\surf \dd S^{\mu \nu} \omega_{\mu \nu}
+    \label{eq:flux}
+  \end{equation}
+  where $ \dd \ve{S} $ is the area element normal bivector to $ \surf $ defined by \eref{eq:area-element}.
+\end{lemma}
+% TODO: add proof from Lemma 5.10 of gourgoulhon
+
+Using \eref{eq:flux}, since $ (\dd \xi^\flat)_{\mu \nu} = 2 \na_\mu \xi_\nu $ (by metric compatibility and Killing's equation), the Komar mass can be rewritten as a flux integral:
+\begin{equation}
+  M_\surf = - \frac{d-2}{d-3} \frac{1}{16 \pi \gd} \int_\surf \dd S^{\mu \nu} \na_\mu \xi_\nu
+  \label{eq:komar-mass-flux}
+\end{equation}
+Alternatively, without using covariant derivatives:
+\begin{equation}
+  M_\surf = - \frac{d-2}{d-3} \frac{1}{16 \pi \gd} \int_\surf \dd^{d-2} x \, \sqrt{\mt{q}} \, \pa_\mu \xi_\nu (s^\mu n^\nu - n^\mu s^\nu)
+  \label{eq:komar-mass-flux-alt}
+\end{equation}
+
+\begin{example}{Komar mass of Schwarzschil black hole}{}
+  Consider the Schwarzschild spacetime $ (\man , g) $ in ingoing Eddington--Finkelstein coordinates $ (t,r,\vartheta,\varphi) $, so that the metric is \eref{eq:in-edd-fink}. The stationary Killing vector is $ \xib = \pa_t $, and choose $ \surf $ to be a $ 2 $-sphere defined by $ (t,r) = \text{const.} $, so that the coordinates spanning $ \surf $ are $ (x^a) = (\vartheta , \varphi) $. For the orthonormal basis of $ T_p^\perp \surf $, choose:
+  \begin{equation*}
+    \nb = N^{-1} \frac{\pa}{\pa t} - \frac{2mN}{r} \frac{\pa}{\pa r}
+    \qquad
+    \ssb = N \frac{\pa}{\pa r}
+    \qquad \qquad
+    N \equiv \left( 1 + \frac{2m}{r} \right)^{-1/2}
+  \end{equation*}
+  which are easily checked to satisfy $ \braket{\nb , \nb}_g = -1 $, $ \braket{\ssb , \ssb}_g = 1 $ and $ \braket{\nb , \ssb}_g = 0 $. Moreover, $ \braket{\nb , \pa_\vartheta}_g = \braket{\nb , \pa_\varphi}_g = 0 $ and $ \braket{\ssb , \pa_\vartheta}_g = \braket{\ssb , \pa_\varphi}_g = 0 $, which proves that $ \nb $ and $ \ssb $ are normal to $ \surf $, and $ \ssb $ points to the exterior of $ \surf $ (since $ N > 0 $), so that $ (\nb , \ssb , \pa_\vartheta , \pa_\varphi) $ is a right-handed basis. To evaluate the Komar mass, compute:
+  \begin{equation*}
+    \xi_\alpha = g_{\alpha t} = \left( -1 + \frac{2m}{r} , \frac{2m}{r} , 0 , 0 \right)
+  \end{equation*}
+  which means that the only non-zero derivatives $ \pa_\mu \xi_\nu $ are $ \pa_r \xi_t = \pa_r \xi_r = - 2m / r^2 $. The integrand in \eref{eq:komar-mass-flux-alt} reduces to:
+  \begin{equation*}
+    \pa_\mu \xi_\nu (s^\mu n^\nu - n^\mu s^\nu) = \pa_r \xi_t (s^r n^t - n^r s^t) = - \frac{2m}{r^2} (N \cdot N^{-1} + 2mN \cdot 0) = - \frac{2m}{r^2}
+  \end{equation*}
+  From \eref{eq:in-edd-fink}, the induced metric on $ \surf $ is $ \dd s^2 = r^2 \dd \Omega_2^2 $, so that $ \sqrt{\mt{q}} = r^2 \sin \vartheta $ and:
+  \begin{equation*}
+    M_\surf = - \frac{1}{8\pi \gn} \int_\surf \dd \vartheta \dd \varphi \, r^2 \sin \vartheta \left( - \frac{2m}{r^2} \right) = \frac{m}{4\pi \gn} \int_\surf \dd \vartheta \dd \varphi = \frac{m}{\gn}
+  \end{equation*}
+  Note that $ M_\surf $ does no depend on $ r $, i.e. it does not depend on the choice of the sphere $ \surf $.
+\end{example}
+
+In general, it can be shown that, for a stationary asymptotically-flat spacetime, the mass in \eref{eq:asymptotic-00} is precisely the Komar mass over a sphere at constant $ (x^0 , r) $, with $ r \ra \infty $: in particular, if the spacetime is weakly relativistic, the Komar mass is given by \eref{eq:wrs-mass} (integral over $ \surf $).
+% TODO: add proof from Prop. 5.11 of gourgoulhon
+Another useful expression for the Komar mass can be obtained in the form of a volume integral.
+
+\begin{lemma}{Flux and volume integrals}{volume-integral}
+  Let $ (\man , g) $ be an asymptotically-flat $ d $-spacetime, and let $ \Sigma $ be a compact spacelike hypersurface bounded by two closed $ (d-2) $-surfaces, an ``internal" one $ \surf_\text{int} $ and an ``external" one $ \surf_\text{ext} $, where the exterior direction is that of the asymptotic flat end of $ (\man , g) $. Let $ \nb $ be the future-directed unit normal to $ \Sigma $, and define the \bclemma{volume element normal vector} to $ \Sigma $ as:
+  \begin{equation}
+    \dd \ve{V} \defeq - \nb \sqrt{\gamma} \, \dd^{d-1} x \equiv - \nb \volf_\Sigma
+  \end{equation}
+  where $ (x^i) = (x^1 , \dots , x^{d-1}) $ is a coordinate frame on $ \Sigma $ and $ \gamma \equiv \det \gamma_{ij} $ is the determinant of the induced metric on $ \Sigma $. Then, for any $ \omega \in \df{2} $:
+  \begin{equation}
+    2 \int_\Sigma \dd V^\mu \na^\nu \omega_{\mu \nu} = \int_{\surf_\text{ext}} \dd S^{\mu \nu} \omega_{\mu \nu} - \int_{\surf_\text{int}} \dd S^{\mu \nu} \omega_{\mu \nu}
+  \end{equation}
+  where $ \dd S^{\mu \nu} $ is defined by \eref{eq:area-element}, with $ \ssb $ pointing to the asymptotic flat end of $ (\man , g) $ for both $ \surf_\text{ext} $ and $ \surf_\text{int} $.
+\end{lemma}
+% TODO: add proof from Lemma 5.12 of gourgoulhon
+
+Recalling \eref{eq:killing-riemann}, for Killing vector fields $ \na_\mu \na^\alpha \xi^\mu = \tensor{\rr}{^\alpha_\mu} \xi^\mu $, so, considering the $ 2 $-form $ \dd \xi^\flat $, which has components $ (\dd \xi^\flat)_{\mu \nu} = 2 \na_\mu \xi_\nu $, and applying \lref{lemma:volume-integral}, for an asymptotically-flat spacetime $ (\man , g) $:
+\begin{equation}
+  M_{\surf_\text{ext}} = M_{\surf_\text{int}} + \frac{d-2}{d-3} \frac{1}{8\pi \gn} \int_\Sigma \volf_\Sigma \, \ricc(\xib , \nb)
+  \label{eq:komar-mass-cons}
+\end{equation}
+where $ \Sigma $ is a compact spacelike hypersurface like in \lref{lemma:volume-integral}. The same holds if $ \Sigma $ is bounded by a single closed $ (d-2) $-surface, provided that the Komar mass of the other (non-existing) surface is set to zero. If $ (\man , g) $ is ruled by General Relativity, then in vacuum $ \ricc \equiv 0 $, which means that the Komar mass $ M_\surf $ is independent of the $ (d-2) $-surface $ \surf $ chosen. In particular, assuming that the EMT of the matter distribution vanishes for $ r \geq r_0 $, for some $ r_0 \in \R^+ $, then the Komar mass of any $ (d-2) $-surface $ \surf_r $ defined by $ (x^0 , r) = \text{const.} $ with $ r \geq r_0 $ is equal to that computed on a $ (d-2) $-sphere at infinity: $ M_\infty \equiv M_{\Sn{d-2}_\infty} $.
+
+The Komar mass can be regarded as the \emph{total mass} of a spacetime, with contributions from both matter fields and the gravitational field.
+
+% TODO: add observation on the equivalence between Komar mass and ADM mass
+
+\subsubsection{Komar angular momentum}
+
+As a stationary Killing vector determines a Komar mass, an axisymmetric Killing vector determines a Komar angular momentum.
+
+\begin{definition}{Axisymmetric spacetime}{}
+  A $ d $-spacetime $ (\man , g) $ is called \bcdef{axisymmetric} if it is invariant under the action of $ \SOn{2} \cong \Un{1} $ and the orbits of the group action are everywhere spacelike curves.
+\end{definition}
+
+Since $ \dim_\R \SOn{2} = 1 $, it is generated by a single Killing vector field $ \pb \in \xm $, which is unique up to a rescaling constant: since the orbits of $ \SOn{2} $ are closed curves, the rescaling constant is fixed requiring that the group parameter $ \varphi $ associated with $ \pb $ has the standard periodicity $ 2\pi $. If the set of points of $ \man $ left invariant under $ \SOn{2} $ is non-empty, it is called the \bctxt{rotation axis}: equivalently, it is the set of points $ p \in \man : \pb_p = \bs{0} $. Usually, the rotation axis is a $ (d-2) $-dimensional submanifold of $ \man $, and it is timelike in the regione where $ \SOn{2} $ orbits are spacelike.
+
+Given an axisymmetric $ d $-spacetime $ (\man , g) $ with $ d \geq 3 $ and axisymmetric Killing vector field $ \pb \in \xm $, the \bctxt{Komar angular momentum} over a spacelike closed $ (d-2) $-surface $ \surf \ssq \man $ is defined as:
+\begin{equation}
+  J_\surf \defeq - Q_\text{K}[\pb , \surf] = \frac{1}{16 \pi \gd} \int_\surf \star \dd \psi^\flat
+  \label{eq:komar-angular-momentum}
+\end{equation}
+Notice the absence of the dimensional factor, when compared to \eref{eq:komar-mass}: this independence of \eref{eq:komar-angular-momentum} from the spacetime dimension is due to the $ \SOn{2} $ action effective only in a $ 2 $-dimensional space, which is the orthogonal complement of the rotation axis. Moreover, $ J_\surf $ is defined for $ d \geq 3 $, while $ M_\text{surf} $ only for $ d \geq 4 $.
+
+Since \eref{eq:komar-mass-flux} and \eref{eq:komar-mass-flux-alt} only rely on $ \xib $ being a Killing vector, they remain valid for $ \pb $ (with the appropriate prefactor):
+\begin{equation}
+  J_\surf = \frac{1}{16 \pi \gd} \int_\surf \dd S^{\mu \nu} \na_\mu \psi_\nu
+  \label{eq:komar-angular-momentum-flux}
+\end{equation}
+\begin{equation}
+  J_\surf = \frac{1}{16 \pi \gd} \int_\surf \dd^{d-2} x \, \sqrt{\mt{q}} \, \pa_\mu \psi_\nu (s^\mu n^\nu - n^\mu s^\nu)
+  \label{eq:komar-angular-momentum-flux-alt}
+\end{equation}
+Moreover, it can be shown that, for a stationary axisymmetric asymptotically-flat spacetime, if asymptotically Minkowskian coordinates adapted to $ \pb $ are used, so that $ \pb = - x^2 \pa_{x^1} + x^1 \pa_{x^2} $ (i.e. the rotation axis is the $ (d-2) $-surface $ (x^1 , x^2) = (0,0) $), then the coefficient $ J_{12} $ in \eref{eq:asymptotic-0i} is precisely the Komar angular momentum over a sphere at constant $ (x^0 , r) $, with $ r \ra \infty $: in particular, if the spacetime is weakly relativistic, the Komar angular momentum is given by \eref{eq:wrs-mass} ($ J_{12} $ over $ \surf $).
+% TODO: add proof from Prop. 5.19 of gourgoulhon
+\eref{eq:komar-mass-cons} too can be imported to the Komar angular momentum:
+\begin{equation}
+  J_{\surf_\text{ext}} = J_{\surf_\text{int}} + \frac{1}{16 \pi \gd} \int_\Sigma \dd^{d-1} x \, \sqrt{\gamma} \left( -2 \tensor{\rr}{^\alpha_\mu} \psi^\mu \right) n_\alpha
+\end{equation}
+where $ \Sigma $ is a compact spacelike hypersurface bounded by two closed $ (d-2) $-surfaces, $ \nb $ is the future directed unit normal to $ \Sigma $ and $ \gamma \equiv \det \gamma_{ij} $ is the determinant of the induced metric on $ \Sigma $. Therefore, in a vacuum spacetime, the Komar angular momentum too is independent of the $ (d-2) $-surface on which it is computed.
+
+The Komar angular momentum can be regarded as the \emph{total angular momentum} of a spacetime, with contributions from both matter fields and the gravitational field.
 
 
 
