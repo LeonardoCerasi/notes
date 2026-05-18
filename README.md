@@ -1,2 +1,1 @@
-# MOVED TO GITLAB
-[note](https://gitlab.com/leonardocerasi/notes)
+# MOVED TO [GITLAB](https://gitlab.com/leonardocerasi/notes)
